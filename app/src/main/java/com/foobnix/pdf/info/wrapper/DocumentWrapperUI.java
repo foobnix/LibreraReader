@@ -1868,7 +1868,7 @@ public class DocumentWrapperUI {
             onCrop.onClick(null);
         }
 
-        DragingDialogs.searchMenu(anchor, dc, "");
+        DragingDialogs.searchMenu(anchor, dc);
     }
 
     public void onAutoScrollClick() {

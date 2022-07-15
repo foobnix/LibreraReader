@@ -1140,7 +1140,8 @@ public class DragingDialogs {
 
     }
 
-    public static void searchMenu(final FrameLayout anchor, final DocumentController controller, final String text) {
+    static String lastSearchText="";
+    public static void searchMenu(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
@@ -1151,7 +1152,8 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.search_dialog, null, false);
 
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
-                searchEdit.setText(text);
+                //searchEdit.setText(text);
+                searchEdit.setText(lastSearchText);
 
                 final MyProgressBar MyProgressBar = (MyProgressBar) view.findViewById(R.id.progressBarSearch);
                 final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
@@ -1192,6 +1194,7 @@ public class DragingDialogs {
                         boolean isRun = TempHolder.isSeaching;
                         TempHolder.isSeaching = false;
                         if (!isRun) {
+                            lastSearchText= "";
                             searchEdit.setText("");
                             controller.clearSelectedText();
                             searchingMsg.setVisibility(View.GONE);
@@ -1212,16 +1215,7 @@ public class DragingDialogs {
                         onSearch.performClick();
                     }
                 });
-                if (TxtUtils.isNotEmpty(text)) {
-                    onSearch.postDelayed(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            onSearch.performClick();
-                        }
-                    }, 250);
-
-                }
 
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
@@ -1279,6 +1273,7 @@ public class DragingDialogs {
                             Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        lastSearchText = searchString;
                         TempHolder.isSeaching = true;
 
                         searchingMsg.setText(R.string.searching_please_wait_);
@@ -1691,7 +1686,7 @@ public class DragingDialogs {
                         @Override
                         public void onClick(View v) {
                             controller.clearSelectedText();
-                            searchMenu(anchor, controller, selectedText);
+                            searchMenu(anchor, controller);
                         }
                     });
                 }

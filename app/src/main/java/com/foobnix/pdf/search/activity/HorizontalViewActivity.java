@@ -1567,7 +1567,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             onCrop.invalidate();
             reloadDoc.run();
         }
-        DragingDialogs.searchMenu(anchor, dc, "");
+        DragingDialogs.searchMenu(anchor, dc);
     }
 
     @Override
