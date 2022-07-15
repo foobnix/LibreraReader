@@ -29,6 +29,6 @@ layout: main
 {white-space: pre;}
 保留空白序列。行仅在源中的换行符和<br>元素。
 
-跨度{display：block}
-p&gt; span {display：inline}
+跨度{显示：块}
+p&gt;span{显示：内联}
 消除了页面之间非常烦人的空白行(纠正了muPDF缺陷)。

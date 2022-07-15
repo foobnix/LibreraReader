@@ -12,3 +12,7 @@
 /Builder/build
 /docs/.jekyll-cache/
 /Builder/mupdf-1.20.0/
+/Builder/bin/
+/smartreflow/bin/
+/pro/bin/
+/app/bin/

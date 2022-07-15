@@ -4,7 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
-*[Excluir e redefinir todas as configurações do Librera]{5}
+* [Excluir e redefinir todas as configurações do Librera](/faq/delete-and-reset-all-librera-settings/pt)
 * [Como adicionar um novo tópico de perguntas frequentes](/faq/how-to-add-new-faq-section/pt)
 * [Modo do músico: Alternando marcações na tela](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/pt)
 * [Configuração de impressão digital ou proteção por senha](/faq/setting-up-fingerprint-or-password-protection/pt)

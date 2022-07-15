@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/curl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/freetype" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/glfw" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/harfbuzz" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/jbig2dec" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/libjpeg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/mujs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/openjpeg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.11/thirdparty/zlib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/curl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/extract" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/freeglut" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/freetype" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/freetype/subprojects/dlg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/gumbo-parser" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/harfbuzz" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/jbig2dec" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/lcms2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/leptonica" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/libjpeg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/mujs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/openjpeg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/tesseract" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/tesseract/abseil" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/tesseract/googletest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/tesseract/test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mupdf-1.20.0/thirdparty/zlib" vcs="Git" />
+  </component>
+</project>

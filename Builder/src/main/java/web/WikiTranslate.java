@@ -116,9 +116,28 @@ public class WikiTranslate {
 
         String key = in + ln;
         if (cache.has(key)) {
-            return cache.getString(key);
+            String res =  cache.getString(key);
+            if(res.startsWith("*[")){
+                return res.replace("*[", "* [");
+            }
+
+            if(res.contains("{")){
+                
+            }else{
+                return res;
+            }
         }
         String res = traslateMDInner(in, ln);
+        if(res.contains("{1")||
+            res.contains("{2")||
+            res.contains("{3")||
+            res.contains("{4")||
+            res.contains("{5")||
+            res.contains("{6")){
+            throw new IllegalArgumentException("wrong translate"+res);
+        }
+
+
         cache.put(key, res);
         return res;
     }
@@ -193,6 +212,7 @@ public class WikiTranslate {
             System.out.println("url:" + url);
             reverse.put("   {5}", url);
             reverse.put(" {5}", url);
+            reverse.put("{5}", url);
             in = in.substring(0, index + 1) + "{5}" + in.substring(in.indexOf(")", index) + 1);
         }
 

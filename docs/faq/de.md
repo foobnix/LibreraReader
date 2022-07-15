@@ -4,47 +4,47 @@ layout: main
 
 # Häufig gestellte Fragen
 
-*[Alle Librera-Einstellungen löschen und zurücksetzen]{5}
-*[So fügen Sie ein neues FAQ-Thema hinzu]{5}
-*[Musikermodus: Bildschirmmarkierungen umschalten]{5}
-*[Einrichten des Fingerabdruck- oder Passwortschutzes]{5}
-*[Arbeiten mit den Profilen von _Librera_]{5}
-*[Verwenden der TTS-Funktion zum Lesen von Anteilen aus anderen Apps]{5}
-*[So stellen Sie die Standardeinstellungen wieder her/löschen den Cache]{5}
-*[Erneutes Paginieren Ihres Dokuments an die Seitenzahlen des Buches]{5}
-*[Kaliber-Referenzmodus]{5}
-*[Verwenden des Widgets von _Librera_]{5}
-*[Seitenhintergrund anpassen]{5}
-*[Öffnen eines Ordners mit Bildern als Buch (In einem Buch binden)]{5}
-*[Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)]{5}
-*[Seitenansicht/Layout-Optionen]{5}
-*[Annotieren und Zeichnen in PDF-Dateien]{5}
-*[Konfigurieren von Schriftarten und Stilen]{5}
-*[Einrichten der Statusleiste]{5}
-*[RSVP-Geschwindigkeitslesen]{5}
-*[TTS-Ersatz]{5}
-*[Erstellen einer neuen TXT-Datei für Notizen, Zitate usw.]{5}
-*[Lesen in RTL-Sprachen]{5}
-*[Buch mit &quot;Tag Manager&quot; öffnen]{5}
-*[Bearbeiten von _Normal_ und _Floating_ Lesezeichen]{5}
-*[Verwenden einer Text-to-Speech-Engine mit _Librera_]{5}
-*[Helligkeitssteuerung und Blaulichtfilter]{5}
-*[Lesemodi: Scrollen, Buch und Musiker]{5}
-*[Schriftgröße in PDF-Dokumenten erhöhen]{5}
-*[Sortieren Ihrer Bibliothek nach neuesten Lesevorgängen]{5}
-*[Arbeiten mit OPDS-Katalogen]{5}
-*[Datensicherung und -migration]{5}
-*[Wörterbücher und Übersetzer verwenden]{5}
-*[Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichen-Menüband)]{5}
-*[Verwenden von *Librera*zum Erlernen von Fremdsprachen]{5}
-*[Benutzeroberfläche von Theming Librera]{5}
-*[Aktualisieren Ihrer Bibliothek]{5}
-*[So löschen Sie ein Buch von einer externen SD-Karte]{5}
-*[Anpassen des Erscheinungsbilds Ihrer Bibliothek]{5}
-*[Benutzerdefinierte Tags hinzufügen und verarbeiten]{5}
-*[In-Text-Notizen vs. Fußnoten]{5}
-*[So wählen Sie Text in _Librera_ aus]{5}
-*[Ihre Leseeinrichtung auf mehreren Geräten synchronisieren]{5}
-*[Benutzerdefinierte CSS-Codierung]{5}
-*[PDF in EPUB konvertieren]{5}
-*[Navigieren in der Registerkarte _Library_]{5}
+* [Alle Librera-Einstellungen löschen und zurücksetzen](/faq/delete-and-reset-all-librera-settings/de)
+* [So fügen Sie ein neues FAQ-Thema hinzu](/faq/how-to-add-new-faq-section/de)
+* [Musikermodus: Umschalten der Bildschirmmarkierungen](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/de)
+* [Fingerabdruck- oder Passwortschutz einrichten](/faq/setting-up-fingerprint-or-password-protection/de)
+* [Arbeiten mit den Profilen von _Librera_](/faq/working-with-profiles/de)
+* [Verwenden der TTS-Funktion zum Lesen von Freigaben aus anderen Apps](/faq/how-to-transfer-text-from-browser/de)
+* [So stellen Sie die Standardeinstellungen wieder her/Cache löschen](/faq/how-to-restore-default-settings-clear-cache/de)
+* [Erneutes Paginieren Ihres Dokuments, damit es mit den Seitenzahlen des Buchs übereinstimmt](/faq/relative-page-numbers/de)
+* [Calibre-Style-Referenzmodus](/faq/reference-mode-calibre/de)
+* [Verwendung des Widgets von _Librera_](/faq/how-to-configure-the-widget/de)
+* [Seitenhintergrund anpassen](/faq/how-to-set-page-background-image/de)
+* [Öffnen eines Ordners mit Bildern als Buch (In ein Buch binden)](/faq/open-folder-with-images-as-a-book/de)
+* [Kontrast und Helligkeit in PDF (Schwarz/Weiß-Effekt)](/faq/contrast-and-brightness-in-pdf/de)
+* [Seitenanzeige/Layout-Optionen](/faq/how-to-set-up-reading-mode/de)
+* [Kommentieren und Zeichnen in PDF-Dateien](/faq/annotate-highlight-pdf/de)
+* [Konfigurieren von Schriftarten und Stilen](/faq/customize-text-fonts-and-styles/de)
+* [Einrichten der Statusleiste](/faq/how-to-set-up-a-status-bar/de)
+* [RSVP Speed Reading](/faq/rsvp-speed-reading-rapid-serial-visual-presentation/de)
+* [TTS-Ersetzungen](/faq/tts-replacements/de)
+* [Erstellen einer neuen TXT-Datei für Notizen, Angebote usw.](/faq/create-new-book-or-file-txt/de)
+* [Lesen in RTL-Sprachen](/faq/rtl-or-ltr-text-direction/de)
+* [Buch mit &quot;Tag Manager&quot; öffnen](/faq/open-book-with-tag-manager/de)
+* [Bearbeiten von _normalen_ und _schwebenden_ Lesezeichen](/faq/edit-bookmark-page-and-floating-bookmarks/de)
+* [Eine Text-to-Speech-Engine mit _Librera_ verwenden](/faq/installation-and-configuration-of-tts/de)
+* [Helligkeitssteuerung und Blaulichtfilter](/faq/brightness-control-and-blue-light-filter/de)
+* [Lesemodi: Schriftrolle, Buch und Musiker](/faq/reading-mode-vertical-book-musician/de)
+* [Erhöhen der Schriftgröße in PDF-Dokumenten](/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)
+* [Ihre Bibliothek nach den letzten Lesevorgängen sortieren](/faq/sort-library-by-last-read-date/de)
+* [Arbeiten mit OPDS-Katalogen](/faq/working-with-opds-online-catalogs/de)
+* [Datensicherung und -migration](/faq/backup-import-export-migration/de)
+* [Wörterbücher und Übersetzer verwenden](/faq/dictionaries-translate-text-online-and-offline/de)
+* [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichen-Menüband)](/faq/bookmarks-extended-panel/de)
+* [*Librera*zum Erlernen von Fremdsprachen verwenden](/faq/librera-for-study-foreign-languages/de)
+* [Design der Benutzeroberfläche von Librera](/faq/customize-theme-colors-links/de)
+* [Aktualisieren Ihrer Bibliothek](/faq/update-the-library/de)
+* [So löschen Sie ein Buch von einer externen SD-Karte](/faq/how-to-delete-file-from-external-sd-card/de)
+* [Anpassen des Erscheinungsbilds Ihrer Bibliothek](/faq/how-to-configure-the-library-view/de)
+* [Hinzufügen und Umgang mit benutzerdefinierten Tags](/faq/custom-tags/de)
+* [In-Text-Notizen vs. Fußnoten](/faq/include-footnotes-directly-in-the-text/de)
+* [So wählen Sie Text in _Librera_ aus](/faq/how-to-set-text-selection/de)
+* [Synchronisieren Ihrer Leseeinrichtung auf mehreren Geräten](/faq/setting-up-synchronization/de)
+* [Benutzerdefinierte CSS-Codierung](/faq/customize-book-css-styles/de)
+* [Konvertieren von PDF in EPUB](/faq/convert-pdf-to-epub/de)
+* [Navigieren im Tab _Bibliothek_](/faq/main-app/de)

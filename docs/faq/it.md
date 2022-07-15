@@ -4,47 +4,47 @@ layout: main
 
 # Domande frequenti
 
-*[Elimina e ripristina tutte le impostazioni di Librera]{5}
-*[Come aggiungere un nuovo argomento delle domande frequenti]{5}
-*[Modalità del musicista: attivazione/disattivazione dei contrassegni sullo schermo]{5}
-*[Impostazione della protezione tramite impronte digitali o password]{5}
-*[Lavorare con i profili di _Librera_]{5}
-*[Utilizzo della funzionalità TTS per leggere le condivisioni da altre app]{5}
-*[Come ripristinare le impostazioni predefinite/Cancella cache]{5}
-*[Reimpaginazione del documento in modo che corrisponda ai numeri di pagina del libro]{5}
-*[Modalità di riferimento stile calibro]{5}
-*[Utilizzo del widget di _Librera_]{5}
-*[Personalizzazione dello sfondo della pagina]{5}
-*[Apertura di una cartella con immagini come un libro (rilegatura in un libro)]{5}
-*[Contrasto e luminosità in PDF (effetto bianco/nero)]{5}
-*[Opzioni di visualizzazione/disposizione della pagina]{5}
-*[Annotare e disegnare nei file PDF]{5}
-*[Configurazione di caratteri e stili]{5}
-*[Impostazione della barra di stato]{5}
-*[Lettura rapida RSVP]{5}
-*[Sostituzioni TTS]{5}
-*[Creazione di un nuovo file TXT per note, citazioni, ecc.]{5}
-*[Lettura in lingue RTL]{5}
-*[Apri libro con &quot;Tag Manager&quot;]{5}
-*[Modifica dei segnalibri _normali_ e _fluttuanti_]{5}
-*[Utilizzo di un motore di sintesi vocale con _Librera_]{5}
-*[Controllo luminosità e filtro luce blu]{5}
-*[Modalità di lettura: Scorrimento, Libro e Musicista]{5}
-*[Aumento della dimensione del carattere nei documenti PDF]{5}
-*[Ordinamento della libreria in base alle ultime letture]{5}
-*[Lavorare con i cataloghi OPDS]{5}
-*[Backup e migrazione dei dati]{5}
-*[Utilizzo di dizionari e traduttori]{5}
-*[Lavorare con i segnalibri in modalità estesa (nastro dei segnalibri)]{5}
-*[Utilizzo di *Librera*per l'apprendimento delle lingue straniere]{5}
-*[IU di Theming Librera]{5}
-*[Aggiornamento della tua libreria]{5}
-*[Come eliminare un libro da una scheda SD esterna]{5}
-*[Personalizzazione dell'aspetto della tua libreria]{5}
-*[Aggiunta e gestione di tag personalizzati]{5}
-*[Note nel testo e note a piè di pagina]{5}
-*[Come selezionare il testo in _Librera_]{5}
-*[Sincronizzazione della configurazione di lettura su più dispositivi]{5}
-*[Codifica CSS personalizzata]{5}
-*[Conversione di PDF in EPUB]{5}
-*[Navigazione nella scheda _Libreria_]{5}
+* [Elimina e ripristina tutte le impostazioni di Librera](/faq/delete-and-reset-all-librera-settings/it)
+* [Come aggiungere un nuovo argomento delle domande frequenti](/faq/how-to-add-new-faq-section/it)
+* [Modalità musicista: alternare i segni sullo schermo](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/it)
+* [Impostazione della protezione dell'impronta digitale o della password](/faq/setting-up-fingerprint-or-password-protection/it)
+* [Lavorare con i profili di _Librera_](/faq/working-with-profiles/it)
+* [Utilizzo della funzionalità TTS per la lettura di condivisioni da altre app](/faq/how-to-transfer-text-from-browser/it)
+* [Come ripristinare le impostazioni predefinite/Cancella cache](/faq/how-to-restore-default-settings-clear-cache/it)
+* [Riimpaginazione del documento in modo che corrisponda ai numeri di pagina del libro](/faq/relative-page-numbers/it)
+* [Modalità di riferimento in stile calibro](/faq/reference-mode-calibre/it)
+* [Utilizzo del widget di _Librera_](/faq/how-to-configure-the-widget/it)
+* [Personalizzazione dello sfondo della pagina](/faq/how-to-set-page-background-image/it)
+* [Apertura di una cartella con immagini come libro (Rilegatura in un libro)](/faq/open-folder-with-images-as-a-book/it)
+* [Contrasto e luminosità in PDF (effetto bianco/nero)](/faq/contrast-and-brightness-in-pdf/it)
+* [Opzioni di visualizzazione/impaginazione della pagina](/faq/how-to-set-up-reading-mode/it)
+* [Annotazione e disegno nei file PDF](/faq/annotate-highlight-pdf/it)
+* [Configurazione di caratteri e stili](/faq/customize-text-fonts-and-styles/it)
+* [Impostazione della barra di stato](/faq/how-to-set-up-a-status-bar/it)
+* [Lettura velocità RSVP](/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
+* [Sostituzioni TTS](/faq/tts-replacements/it)
+* [Creazione di un nuovo file TXT per note, preventivi, ecc.](/faq/create-new-book-or-file-txt/it)
+* [Lettura nelle lingue RTL](/faq/rtl-or-ltr-text-direction/it)
+* [Apri libro con &quot;Tag Manager&quot;](/faq/open-book-with-tag-manager/it)
+* [Modifica dei segnalibri _normali_ e _mobili_](/faq/edit-bookmark-page-and-floating-bookmarks/it)
+* [Utilizzo di un motore di sintesi vocale con _Librera_](/faq/installation-and-configuration-of-tts/it)
+* [Controllo luminosità e filtro luce blu](/faq/brightness-control-and-blue-light-filter/it)
+* [Modalità di lettura: Scorrimento, Libro e Musicista](/faq/reading-mode-vertical-book-musician/it)
+* [Aumento della dimensione del carattere nei documenti PDF](/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
+* [Ordinare la tua libreria in base alle ultime letture](/faq/sort-library-by-last-read-date/it)
+* [Lavorare con i cataloghi OPDS](/faq/working-with-opds-online-catalogs/it)
+* [Backup e migrazione dei dati](/faq/backup-import-export-migration/it)
+* [Utilizzo di dizionari e traduttori](/faq/dictionaries-translate-text-online-and-offline/it)
+* [Utilizzo dei segnalibri in modalità estesa (barra dei segnalibri)](/faq/bookmarks-extended-panel/it)
+* [Utilizzo di *Librera*per l'apprendimento delle lingue straniere](/faq/librera-for-study-foreign-languages/it)
+* [UI di Theming Librera](/faq/customize-theme-colors-links/it)
+* [Aggiornare la tua libreria](/faq/update-the-library/it)
+* [Come eliminare un libro da una scheda SD esterna](/faq/how-to-delete-file-from-external-sd-card/it)
+* [Personalizzazione dell'aspetto della tua libreria](/faq/how-to-configure-the-library-view/it)
+* [Aggiunta e gestione dei tag personalizzati](/faq/custom-tags/it)
+* [Note nel testo e note a piè di pagina](/faq/include-footnotes-directly-in-the-text/it)
+* [Come selezionare il testo in _Librera_](/faq/how-to-set-text-selection/it)
+* [Sincronizzazione della configurazione di lettura su più dispositivi](/faq/setting-up-synchronization/it)
+* [Codifica CSS personalizzata](/faq/customize-book-css-styles/it)
+* [Conversione da PDF a EPUB](/faq/convert-pdf-to-epub/it)
+* [Navigazione nella scheda _Libreria_](/faq/main-app/it)

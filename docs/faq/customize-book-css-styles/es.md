@@ -29,6 +29,6 @@ Las secuencias de espacio en blanco se colapsan. Las líneas se rompen en los ca
 {white-space: pre;}
 Se conservan las secuencias de espacios en blanco. Las líneas solo se dividen en los caracteres de nueva línea en la fuente y en <br> elementos.
 
-span {display: block}
-p&gt; span {display: en línea}
+intervalo{pantalla:bloque}
+p&gt;span{pantalla:en línea}
 Elimina líneas vacías muy molestas entre páginas (rectificando defectos de muPDF).

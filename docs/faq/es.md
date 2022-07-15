@@ -4,7 +4,7 @@ layout: main
 
 # Preguntas frecuentes
 
-*[Eliminar y restablecer todos los ajustes de Librera]{5}
+* [Eliminar y restablecer todos los ajustes de Librera](/faq/delete-and-reset-all-librera-settings/es)
 * [Cómo agregar un nuevo tema de preguntas frecuentes](/faq/how-to-add-new-faq-section/es)
 * [Modo de músico: alternar marcas en pantalla](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/es)
 * [Configuración de la protección de huellas dactilares o contraseña](/faq/setting-up-fingerprint-or-password-protection/es)
