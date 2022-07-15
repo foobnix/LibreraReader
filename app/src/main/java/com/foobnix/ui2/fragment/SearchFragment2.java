@@ -1055,9 +1055,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             onRefresh.setActivated(!BooksService.isRunning);
             searchEditText.setHint(R.string.search);
 
-            if(AppsConfig.IS_LOG){
-                searchEditText.setHint(Apps.getApplicationName(getContext()));
-            }
+//            if(AppsConfig.IS_LOG){
+//                searchEditText.setHint(Apps.getApplicationName(getContext()));
+//            }
 
         }
     }
