@@ -42,10 +42,10 @@ Cela crée un outil prédéfini avec lequel vous pouvez rapidement indiquer les 
 |![](8.jpg)|![](9.jpg)|
 
 ## Enregistrement des fichiers modifiés
-*Un geste _Fermer_ ouvrira la fenêtre _Enregistrer les modifications ?_
-*Vous pouvez enregistrer votre fichier modifié en appuyant sur _OUI_
-*Vous pouvez enregistrer les modifications dans un nouveau fichier renommé. Appuyez sur _RENAME_
-*Modifiez le nom du fichier en bas de la fenêtre _Choisir_ et appuyez sur _SELECT_
+* Un geste _Fermer_ ouvrira la fenêtre _Enregistrer les modifications ?_
+* Vous pouvez enregistrer votre fichier modifié en appuyant sur _OUI_
+* Vous pouvez enregistrer les modifications dans un nouveau fichier renommé. Appuyez sur _RENAME_
+* Modifiez le nom du fichier en bas de la fenêtre _Choisir_ et appuyez sur _SELECT_
 
 |||
 |-|-|

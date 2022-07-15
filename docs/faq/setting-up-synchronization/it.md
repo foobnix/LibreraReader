@@ -22,8 +22,8 @@ Per comodità della maggior parte dei nostri utenti, abbiamo scelto Google Drive
 
 * Se è selezionato _Sincronizzazione manuale_, dovrai scorrere il dito verso il basso sullo schermo per avviare la sincronizzazione (in modalità pull-to-refresh nativa di Android)
 * Puoi impedire che lo strumento di sincronizzazione morda il tuo piano dati abilitando solo la sincronizzazione WiFi.
-*Puoi divertirti con l'animazione dell'avanzamento della sincronizzazione (rotellina) selezionando questa opzione
-*Per visualizzare il registro di sincronizzazione, tocca l'icona delle impostazioni nel pannello _Sync_
+* Puoi divertirti con l'animazione dell'avanzamento della sincronizzazione (rotellina) selezionando questa opzione
+* Per visualizzare il registro di sincronizzazione, tocca l'icona delle impostazioni nel pannello _Sync_
 
 ||||
 |-|-|-|
@@ -41,13 +41,13 @@ Se ascolti il nostro avviso di lavoro in corso e ritieni che un'app di sincroniz
 2. Mantiene le directory sincronizzate in locale (**NB!** 0l'app Dropbox ufficiale, ad esempio, **NESSUNA** di quelle!)
 
 Se sussistono entrambi i due prerequisiti:
-*fai sincronizzare la cartella **Librera** nella memoria interna. Questa cartella contiene tutte le impostazioni ei profili di _Librera_;
-*oppure dovresti spostare l'intera cartella **Librera** nella cartella creata dall'app di sincronizzazione e modificare di conseguenza il percorso dei tuoi _Profili_ in Librera.
+* fai sincronizzare la cartella * * Librera* *  nella memoria interna. Questa cartella contiene tutte le impostazioni ei profili di _Librera_;
+* oppure dovresti spostare l'intera cartella * * Librera* *  nella cartella creata dall'app di sincronizzazione e modificare di conseguenza il percorso dei tuoi _Profili_ in Librera.
 
 (Nell'esempio illustrato di seguito, abbiamo:
-*scelto la cartella **Download** per impersonare la cartella sincronizzata,
-*copiato la cartella **Librera** con tutti i suoi contenuti lì, e
-*ha cambiato il percorso dei tuoi _Profili_ in una nuova posizione.
+* scelto la cartella * * Download* *  per impersonare la cartella sincronizzata,
+* copiato la cartella * * Librera* *  con tutti i suoi contenuti lì, e
+* ha cambiato il percorso dei tuoi _Profili_ in una nuova posizione.
 
 ||||
 |-|-|-|

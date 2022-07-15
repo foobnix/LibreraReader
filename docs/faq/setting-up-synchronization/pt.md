@@ -22,8 +22,8 @@ Para a conveniência da maioria de nossos usuários, escolhemos o Google Drive c
 
 * Se a opção _Manual sync_ estiver marcada, você precisará deslizar o dedo para baixo da tela para iniciar a sincronização (no estilo nativo do Android para puxar para atualizar)
 * Você pode impedir que a ferramenta de sincronização entre no seu plano de dados ativando apenas a sincronização de WiFi.
-*Você pode se divertir com a animação de progresso de sincronização (roda giratória) marcando esta opção
-*Para visualizar o registro de sincronização, basta tocar no ícone de configurações no painel _Sync_
+* Você pode se divertir com a animação de progresso de sincronização (roda giratória) marcando esta opção
+* Para visualizar o registro de sincronização, basta tocar no ícone de configurações no painel _Sync_
 
 ||||
 |-|-|-|
@@ -41,13 +41,13 @@ Se você prestar atenção ao nosso aviso de trabalho em andamento e acreditar q
 2. Mantém os diretórios sincronizados localmente (**NB!** O aplicativo oficial do Dropbox, por exemplo, faz **NENHUM** desses!)
 
 Se ambos os dois pré-requisitos forem válidos:
-*faça a sincronização da pasta **Librera** em seu armazenamento interno. Esta pasta contém todas as suas configurações e perfis do _Librera_;
-*ou você deve mover toda esta pasta **Librera** para a pasta criada por seu aplicativo de sincronização e alterar o caminho para seus _Perfis_ no Librera de acordo.
+* faça a sincronização da pasta * * Librera* *  em seu armazenamento interno. Esta pasta contém todas as suas configurações e perfis do _Librera_;
+* ou você deve mover toda esta pasta * * Librera* *  para a pasta criada por seu aplicativo de sincronização e alterar o caminho para seus _Perfis_ no Librera de acordo.
 
 (No exemplo ilustrado abaixo, temos:
-*escolheu a pasta **Downloads** para representar sua pasta sincronizada,
-*copiou a pasta **Librera** com todo o seu conteúdo e
-*alterou o caminho de seus _Perfis_ para um novo local.
+* escolheu a pasta * * Downloads* *  para representar sua pasta sincronizada,
+* copiou a pasta * * Librera* *  com todo o seu conteúdo e
+* alterou o caminho de seus _Perfis_ para um novo local.
 
 ||||
 |-|-|-|

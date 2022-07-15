@@ -22,8 +22,8 @@ Für die Bequemlichkeit der meisten unserer Benutzer haben wir Google Drive als 
 
 * Wenn _Manuelle Synchronisierung_ aktiviert ist, müssen Sie mit dem Finger über den Bildschirm streichen, um die Synchronisierung zu starten (in der nativen Pull-to-Refresh-Methode von Android).
 * Sie können verhindern, dass sich das Synchronisierungstool in Ihren Datenplan einfügt, indem Sie nur die WiFi-Synchronisierung aktivieren.
-*Sie können sich mit Animationen zum Synchronisierungsfortschritt (drehendes Rad) unterhalten, indem Sie diese Option aktivieren
-*Um das Synchronisierungsprotokoll anzuzeigen, tippen Sie einfach auf das Einstellungssymbol im Bereich _Sync_
+* Sie können sich mit Animationen zum Synchronisierungsfortschritt (drehendes Rad) unterhalten, indem Sie diese Option aktivieren
+* Um das Synchronisierungsprotokoll anzuzeigen, tippen Sie einfach auf das Einstellungssymbol im Bereich _Sync_
 
 ||||
 |-|-|-|
@@ -41,13 +41,13 @@ Wenn Sie unsere Work-in-Progress-Warnung beachten und glauben, dass eine Synchro
 2. Speichert synchronisierte Verzeichnisse lokal (**NB!** 0offizielle Dropbox-App zum Beispiel macht **KEINE** davon!)
 
 Wenn beide Voraussetzungen erfüllt sind:
-*lassen Sie es den **Librera**-Ordner in Ihrem internen Speicher synchronisieren. Dieser Ordner enthält alle Ihre _Librera_ Einstellungen und Profile;
-*oder Sie sollten diesen gesamten **Librera**-Ordner in den Ordner verschieben, der von Ihrer Synchronisierungs-App erstellt wurde, und den Pfad zu Ihren _Profilen_ in Librera entsprechend ändern.
+* lassen Sie es den * * Librera* * -Ordner in Ihrem internen Speicher synchronisieren. Dieser Ordner enthält alle Ihre _Librera_ Einstellungen und Profile;
+* oder Sie sollten diesen gesamten * * Librera* * -Ordner in den Ordner verschieben, der von Ihrer Synchronisierungs-App erstellt wurde, und den Pfad zu Ihren _Profilen_ in Librera entsprechend ändern.
 
 (Im abgebildeten Beispiel unten haben wir:
-*den Ordner **Downloads** ausgewählt, um Ihren synchronisierten Ordner zu imitieren,
-*kopierte den **Librera**-Ordner mit all seinen Inhalten dorthin und
-*hat den Pfad zu Ihren _Profilen_ in einen neuen Speicherort geändert.
+* den Ordner * * Downloads* *  ausgewählt, um Ihren synchronisierten Ordner zu imitieren,
+* kopierte den * * Librera* * -Ordner mit all seinen Inhalten dorthin und
+* hat den Pfad zu Ihren _Profilen_ in einen neuen Speicherort geändert.
 
 ||||
 |-|-|-|

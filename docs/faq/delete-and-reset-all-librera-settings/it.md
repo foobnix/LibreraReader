@@ -23,10 +23,10 @@ Se non hai creato un profilo, il pacchetto _device.name del tuo dispositivo_ vie
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json - segnalibri
-*app-CSS.json: stili e markup del libro
-*app-Progress.json: avanzamento della lettura
-*app-Recent.json: elenco di libri letti
-*app-State.json: impostazioni generali dell'applicazione
-*app-Tags.json: tag libro
+* app-Bookmarks.json - segnalibri
+* app-CSS.json: stili e markup del libro
+* app-Progress.json: avanzamento della lettura
+* app-Recent.json: elenco di libri letti
+* app-State.json: impostazioni generali dell'applicazione
+* app-Tags.json: tag libro
 

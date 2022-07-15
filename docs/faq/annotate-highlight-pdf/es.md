@@ -44,7 +44,7 @@ Esto crea una herramienta preestablecida con la que puede indicar rápidamente l
 ## Guardar archivos editados
 * Un gesto _Cerrar_ abrirá la ventana _ ¿Guardar cambios? _
 * Puede guardar su archivo modificado tocando _SÍ_
-*Puede guardar los cambios en un archivo nuevo con el nombre cambiado. Presiona _RENOMBRAR_
+* Puede guardar los cambios en un archivo nuevo con el nombre cambiado. Presiona _RENOMBRAR_
 * Edite el nombre del archivo en la parte inferior de la ventana _Elegir_ y toque _SELECCIONAR_
 
 |||

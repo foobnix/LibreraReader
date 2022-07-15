@@ -50,8 +50,8 @@ I dizionari e i traduttori**OFFLINE** devono essere installati sul tuo dispositi
 Per abilitare la ricerca immediata nel dizionario di una parola selezionata, è necessario:
 * Apri la finestra **Preferenze** toccando l'icona **Impostazioni**
 * Seleziona la casella &quot;Apri selezione nel dizionario&quot; nella scheda principale
-*Seleziona una parola premendo a lungo
-*Se stai selezionando una sequenza di parole, devi trascinare il dito. È possibile utilizzare le maniglie per specificare la sequenza esatta.
+* Seleziona una parola premendo a lungo
+* Se stai selezionando una sequenza di parole, devi trascinare il dito. È possibile utilizzare le maniglie per specificare la sequenza esatta.
 
 ||||
 |-|-|-|
@@ -74,7 +74,7 @@ Se lasci la casella _Open selection_ deselezionata, ti verrà presentata la fine
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-*Trova (toccando il segno **+** se necessario) il dizionario o il traduttore installato preferito
+* Trova (toccando il segno * * +* *  se necessario) il dizionario o il traduttore installato preferito
 * Tocca la sua icona per richiamare la finestra popup con la traduzione delle parole (definizione)
 
 ||||

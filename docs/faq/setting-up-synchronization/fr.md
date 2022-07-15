@@ -22,8 +22,8 @@ Pour la commodité de la plupart de nos utilisateurs, nous avons choisi Google D
 
 * Si la case &quot;Synchronisation manuelle&quot; est cochée, vous devez faire glisser votre doigt vers le bas de l'écran pour lancer la synchronisation (à la manière native d'Android, tirez pour actualiser).
 * Vous pouvez empêcher l'outil de synchronisation de se mordre dans votre plan de données en activant uniquement la synchronisation WiFi.
-*Vous pouvez vous divertir avec une animation de progression synchronisée (roue qui tourne) en cochant cette option
-*Pour afficher le journal de synchronisation, appuyez simplement sur l'icône des paramètres dans le panneau _Sync_
+* Vous pouvez vous divertir avec une animation de progression synchronisée (roue qui tourne) en cochant cette option
+* Pour afficher le journal de synchronisation, appuyez simplement sur l'icône des paramètres dans le panneau _Sync_
 
 ||||
 |-|-|-|
@@ -41,13 +41,13 @@ Si vous tenez compte de notre avertissement de travail en cours et pensez qu'une
 2. Conserve les répertoires synchronisés localement (**NB !** L'application Dropbox officielle, par exemple, n'en fait **AUCUN** !)
 
 Si les deux conditions préalables sont remplies :
-*faire en sorte qu'il synchronise le dossier **Librera** dans votre stockage interne. Ce dossier contient tous vos paramètres et profils _Librera_ ;
-*ou vous devez déplacer l'intégralité de ce dossier **Librera** vers le dossier créé par votre application de synchronisation et modifier le chemin vers vos _Profiles_ dans Librera en conséquence.
+* faire en sorte qu'il synchronise le dossier * * Librera* *  dans votre stockage interne. Ce dossier contient tous vos paramètres et profils _Librera_ ;
+* ou vous devez déplacer l'intégralité de ce dossier * * Librera* *  vers le dossier créé par votre application de synchronisation et modifier le chemin vers vos _Profiles_ dans Librera en conséquence.
 
 (Dans l'exemple illustré ci-dessous, nous avons :
-*choisi le dossier **Téléchargements** pour se faire passer pour votre dossier synchronisé,
-*copié le dossier **Librera** avec tout son contenu, et
-*modifié le chemin d'accès à vos _Profiles_ vers un nouvel emplacement.
+* choisi le dossier * * Téléchargements* *  pour se faire passer pour votre dossier synchronisé,
+* copié le dossier * * Librera* *  avec tout son contenu, et
+* modifié le chemin d'accès à vos _Profiles_ vers un nouvel emplacement.
 
 ||||
 |-|-|-|

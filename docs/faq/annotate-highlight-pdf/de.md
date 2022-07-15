@@ -42,10 +42,10 @@ Dadurch entsteht ein Werkzeug-Preset, mit dem Sie zeitnah die Wörter und Wortfo
 |![](8.jpg)|![](9.jpg)|
 
 ## Bearbeitete Dateien speichern
-*Eine _Schließen_-Geste öffnet das Fenster _Änderungen speichern?_
-*Sie können Ihre geänderte Datei speichern, indem Sie auf _JA_ tippen.
-*Sie können Änderungen in einer neuen, umbenannten Datei speichern. Tippen Sie auf _RENAME_
-*Bearbeiten Sie den Dateinamen unten im Fenster _Choose_ und tippen Sie auf _SELECT_
+* Eine _Schließen_-Geste öffnet das Fenster _Änderungen speichern?_
+* Sie können Ihre geänderte Datei speichern, indem Sie auf _JA_ tippen.
+* Sie können Änderungen in einer neuen, umbenannten Datei speichern. Tippen Sie auf _RENAME_
+* Bearbeiten Sie den Dateinamen unten im Fenster _Choose_ und tippen Sie auf _SELECT_
 
 |||
 |-|-|

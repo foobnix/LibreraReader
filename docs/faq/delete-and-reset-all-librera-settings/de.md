@@ -23,10 +23,10 @@ Wenn Sie kein Profil erstellt haben, wird standardmäßig das Paket _device.name
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json – Lesezeichen
-*app-CSS.json – Stile und Buch-Markup
-*app-Progress.json – Lesefortschritt
-*app-Recent.json – Liste gelesener Bücher
-*app-State.json – allgemeine Anwendungseinstellungen
-*app-Tags.json – Buch-Tags
+* app-Bookmarks.json – Lesezeichen
+* app-CSS.json – Stile und Buch-Markup
+* app-Progress.json – Lesefortschritt
+* app-Recent.json – Liste gelesener Bücher
+* app-State.json – allgemeine Anwendungseinstellungen
+* app-Tags.json – Buch-Tags
 

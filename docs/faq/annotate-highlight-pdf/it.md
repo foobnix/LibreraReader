@@ -42,10 +42,10 @@ Questo crea uno strumento preimpostato con il quale puoi indicare prontamente le
 |![](8.jpg)|![](9.jpg)|
 
 ## Salvataggio dei file modificati
-*Un gesto _Chiudi_ aprirà la finestra _Salva modifiche?_
-*Puoi salvare il file modificato toccando _SI_
-*Puoi salvare le modifiche in un nuovo file rinominato. Tocca _RINOMINA_
-*Modifica il nome del file nella parte inferiore della finestra _Scegli_ e tocca _SELEZIONA_
+* Un gesto _Chiudi_ aprirà la finestra _Salva modifiche?_
+* Puoi salvare il file modificato toccando _SI_
+* Puoi salvare le modifiche in un nuovo file rinominato. Tocca _RINOMINA_
+* Modifica il nome del file nella parte inferiore della finestra _Scegli_ e tocca _SELEZIONA_
 
 |||
 |-|-|

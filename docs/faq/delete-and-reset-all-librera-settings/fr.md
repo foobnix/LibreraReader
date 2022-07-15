@@ -23,10 +23,10 @@ Si vous n'avez pas créé de profil, le package _device.name de votre appareil_ 
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json - signets
-*app-CSS.json : styles et balisage de livre
-*app-Progress.json : progression de la lecture
-*app-Recent.json : liste des livres lus
-*app-State.json : paramètres généraux de l'application
-*app-Tags.json : balises de livre
+* app-Bookmarks.json - signets
+* app-CSS.json : styles et balisage de livre
+* app-Progress.json : progression de la lecture
+* app-Recent.json : liste des livres lus
+* app-State.json : paramètres généraux de l'application
+* app-Tags.json : balises de livre
 

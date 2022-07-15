@@ -14,10 +14,10 @@ Gli indicatori mostrano:
 
 Per attivarli/disattivarli:
 
-*Apri un documento in modalità Musicista
-*Tocca l'icona **Impostazioni**
-*Vai alla sezione _Barra di stato_ (toccala!)
-*Seleziona/deseleziona le caselle corrispondenti
+* Apri un documento in modalità Musicista
+* Tocca l'icona * * Impostazioni* * 
+* Vai alla sezione _Barra di stato_ (toccala!)
+* Seleziona/deseleziona le caselle corrispondenti
 
 
 ![disable dashed lines](1.png)

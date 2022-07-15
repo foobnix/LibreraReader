@@ -121,6 +121,10 @@ public class WikiTranslate {
                 return res.replace("*[", "* [");
             }
 
+            if(res.startsWith("*") && !res.startsWith("* " ) && !res.startsWith("**")){
+                return res.replace("*", "* ");
+            }
+
             if(res.contains("{")){
                 
             }else{

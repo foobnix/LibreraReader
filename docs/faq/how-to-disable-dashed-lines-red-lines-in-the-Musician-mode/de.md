@@ -14,10 +14,10 @@ Die Indikatoren zeigen:
 
 Um sie ein-/auszuschalten:
 
-*Dokument im Musikermodus öffnen
-*Tippen Sie auf das Symbol **Einstellungen**
-*Gehen Sie zum Abschnitt _Statusleiste_ (tippen Sie darauf!)
-*Aktivieren/deaktivieren Sie die entsprechenden Kästchen
+* Dokument im Musikermodus öffnen
+* Tippen Sie auf das Symbol * * Einstellungen* * 
+* Gehen Sie zum Abschnitt _Statusleiste_ (tippen Sie darauf!)
+* Aktivieren/deaktivieren Sie die entsprechenden Kästchen
 
 
 ![disable dashed lines](1.png)

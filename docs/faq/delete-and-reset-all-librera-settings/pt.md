@@ -23,10 +23,10 @@ Se você não criou um perfil, o pacote _device.name do seu device_ é criado po
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json - favoritos
-*app-CSS.json – estilos e marcação de livro
-*app-Progress.json – progresso da leitura
-*app-Recent.json – lista de livros lidos
-*app-State.json – configurações gerais do aplicativo
-*app-Tags.json – tags de livro
+* app-Bookmarks.json - favoritos
+* app-CSS.json – estilos e marcação de livro
+* app-Progress.json – progresso da leitura
+* app-Recent.json – lista de livros lidos
+* app-State.json – configurações gerais do aplicativo
+* app-Tags.json – tags de livro
 

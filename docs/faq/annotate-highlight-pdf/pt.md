@@ -44,7 +44,7 @@ Isso cria uma predefinição de ferramenta com a qual você pode indicar prontam
 ## Salvando arquivos editados
 * Um gesto _Fechar_ abrirá a janela _Salvar alterações? _
 * Você pode salvar o arquivo alterado tocando em _SIM_
-*Você pode salvar as alterações em um novo arquivo renomeado. Toque em _RENAME_
+* Você pode salvar as alterações em um novo arquivo renomeado. Toque em _RENAME_
 * Edite o nome do arquivo na parte inferior da janela _Escolher_ e toque em _SELECT_
 
 |||

@@ -50,8 +50,8 @@ Los diccionarios y traductores**OFFLINE** deben instalarse en su dispositivo des
 Para habilitar una búsqueda inmediata en el diccionario de una palabra seleccionada, debe:
 * Abra la ventana **Preferencias** tocando el icono **Configuración**
 * Marque la casilla _Abra la selección en el diccionario_ en la pestaña principal
-*Seleccione una palabra con una pulsación larga
-*Si está seleccionando una secuencia de palabras, debe arrastrar el dedo. Puede utilizar los identificadores para especificar la secuencia exacta.
+* Seleccione una palabra con una pulsación larga
+* Si está seleccionando una secuencia de palabras, debe arrastrar el dedo. Puede utilizar los identificadores para especificar la secuencia exacta.
 
 ||||
 |-|-|-|
@@ -74,7 +74,7 @@ Si deja la casilla _Abierta selección_ sin marcar, se le presentará la ventana
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-*Encuentra (tocando el signo **+** si es necesario) tu diccionario o traductor instalado preferido
+* Encuentra (tocando el signo * * +* *  si es necesario) tu diccionario o traductor instalado preferido
 * Toque su icono para invocar su ventana emergente con la traducción de la palabra (definición)
 
 ||||

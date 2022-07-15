@@ -50,8 +50,8 @@ Sie können aus folgenden Optionen wählen (um nur einige zu nennen):
 Um eine sofortige Wörterbuchsuche nach einem ausgewählten Wort zu aktivieren, müssen Sie:
 * Öffnen Sie das Fenster **Einstellungen**, indem Sie auf das Symbol **Einstellungen** tippen
 * Aktivieren Sie das Kontrollkästchen &quot;Auswahl im Wörterbuch öffnen&quot; auf dem Haupt-Tab
-*Wählen Sie ein Wort durch langes Drücken aus
-*Wenn Sie eine Wortfolge auswählen, müssen Sie Ihren Finger ziehen. Sie können die Anfasser verwenden, um die genaue Reihenfolge festzulegen.
+* Wählen Sie ein Wort durch langes Drücken aus
+* Wenn Sie eine Wortfolge auswählen, müssen Sie Ihren Finger ziehen. Sie können die Anfasser verwenden, um die genaue Reihenfolge festzulegen.
 
 ||||
 |-|-|-|
@@ -74,7 +74,7 @@ Wenn Sie das Kontrollkästchen &quot;Auswahl öffnen&quot; nicht aktivieren, wir
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-*Suchen Sie (indem Sie ggf. auf das **+**-Zeichen tippen) Ihr bevorzugtes installiertes Wörterbuch oder Ihren bevorzugten Übersetzer
+* Suchen Sie (indem Sie ggf. auf das * * +* * -Zeichen tippen) Ihr bevorzugtes installiertes Wörterbuch oder Ihren bevorzugten Übersetzer
 * Tippen Sie auf das entsprechende Symbol, um das Popup-Fenster mit der Wortübersetzung (Definition) aufzurufen.
 
 ||||

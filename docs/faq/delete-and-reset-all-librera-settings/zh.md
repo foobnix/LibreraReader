@@ -23,10 +23,10 @@ layout: main
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json - 书签
-*app-CSS.json – 样式和书籍标记
-*app-Progress.json – 阅读进度
-*app-Recent.json – 已读书籍列表
-*app-State.json – 常规应用设置
-*app-Tags.json – 图书标签
+* app-Bookmarks.json - 书签
+* app-CSS.json – 样式和书籍标记
+* app-Progress.json – 阅读进度
+* app-Recent.json – 已读书籍列表
+* app-State.json – 常规应用设置
+* app-Tags.json – 图书标签
 

@@ -22,8 +22,8 @@ Para comodidad de la mayoría de nuestros usuarios, hemos elegido Google Drive c
 
 * Si se marca _Manual sync_, deberá deslizar el dedo hacia abajo en la pantalla para comenzar a sincronizar (en la forma nativa de Android de extracción y actualización)
 * Puede evitar que la herramienta de sincronización muerda su plan de datos habilitando solo la sincronización WiFi.
-*Puedes entretenerte con la animación de progreso sincronizado (rueda giratoria) marcando esta opción
-*Para ver el registro de sincronización, toca el icono de configuración en el panel _Sync_
+* Puedes entretenerte con la animación de progreso sincronizado (rueda giratoria) marcando esta opción
+* Para ver el registro de sincronización, toca el icono de configuración en el panel _Sync_
 
 ||||
 |-|-|-|
@@ -41,13 +41,13 @@ Si presta atención a nuestra advertencia de trabajo en curso y cree que una apl
 2. Mantiene los directorios sincronizados localmente (¡**NOTA!** 0la aplicación oficial de Dropbox, por ejemplo, **NINGUNO** de esos.)
 
 Si se cumplen los dos requisitos previos:
-*haz que sincronice la carpeta **Librera** en tu almacenamiento interno. Esta carpeta contiene todas tus configuraciones y perfiles de _Librera_;
-*o debe mover toda esta carpeta **Librera** a la carpeta creada por su aplicación de sincronización y cambiar la ruta a sus _Perfiles_ en Librera según corresponda.
+* haz que sincronice la carpeta * * Librera* *  en tu almacenamiento interno. Esta carpeta contiene todas tus configuraciones y perfiles de _Librera_;
+* o debe mover toda esta carpeta * * Librera* *  a la carpeta creada por su aplicación de sincronización y cambiar la ruta a sus _Perfiles_ en Librera según corresponda.
 
 (En el ejemplo ilustrado a continuación, tenemos:
-*seleccionó la carpeta **Descargas** para suplantar su carpeta sincronizada,
-*copió la carpeta **Librera** con todo su contenido allí, y
-*cambió la ruta a sus _Perfiles_ a una nueva ubicación.
+* seleccionó la carpeta * * Descargas* *  para suplantar su carpeta sincronizada,
+* copió la carpeta * * Librera* *  con todo su contenido allí, y
+* cambió la ruta a sus _Perfiles_ a una nueva ubicación.
 
 ||||
 |-|-|-|

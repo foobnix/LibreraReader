@@ -12,9 +12,9 @@ layout: main
 
 选择_转换为EPUB_
 
-*将您的PDF文件转换为EPUB
-*上传您的PDF文档并开始转换
-*以EPUB格式下载文件
+* 将您的PDF文件转换为EPUB
+* 上传您的PDF文档并开始转换
+* 以EPUB格式下载文件
 
 |1|2|3|
 |-|-|-|
@@ -25,8 +25,8 @@ layout: main
 _Reflow PDF_选项会将您的PDF文档离线转换为EPUB格式。
 >将保留文档中的所有图像。
 
-*点击底部的三点图标以打开图书菜单
-*点击书本菜单中的_Reflow PDF_项
+* 点击底部的三点图标以打开图书菜单
+* 点击书本菜单中的_Reflow PDF_项
 * PDF文档，外观更友好
 _Recent_标签中的* PDF和EPUB版本
 

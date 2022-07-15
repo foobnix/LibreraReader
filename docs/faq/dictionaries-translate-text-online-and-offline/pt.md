@@ -50,8 +50,8 @@ Dicionário russo multitranro
 Para habilitar uma pesquisa imediata no dicionário de uma palavra selecionada, você precisa:
 * Abra a janela **Preferências** tocando no ícone **Configurações**
 * Marque a caixa _Abrir seleção no dicionário_ na guia principal
-*Selecione uma palavra com um toque longo
-*Se estiver selecionando uma sequência de palavras, você precisa arrastar o dedo. Você pode usar as alças para especificar a sequência exata.
+* Selecione uma palavra com um toque longo
+* Se estiver selecionando uma sequência de palavras, você precisa arrastar o dedo. Você pode usar as alças para especificar a sequência exata.
 
 ||||
 |-|-|-|
@@ -74,7 +74,7 @@ Se você deixar a caixa _Abrir seleção_ desmarcada, será apresentada a janela
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-*Encontre (tocando no sinal **+**, se necessário) seu dicionário ou tradutor preferido instalado
+* Encontre (tocando no sinal * * +* * , se necessário) seu dicionário ou tradutor preferido instalado
 * Toque no ícone para abrir sua janela pop-up com a tradução da palavra (definição)
 
 ||||

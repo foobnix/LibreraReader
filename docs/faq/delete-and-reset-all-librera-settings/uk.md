@@ -23,10 +23,10 @@ layout: main
 |![](4.png)|![](5.png)||
 
 
-*app-Bookmarks.json – закладки
-*app-CSS.json – стилі та книжкова розмітка
-*app-Progress.json – прогрес читання
-*app-Recent.json – список прочитаних книг
-*app-State.json – загальні налаштування програми
-*app-Tags.json – теги книг
+* app-Bookmarks.json – закладки
+* app-CSS.json – стилі та книжкова розмітка
+* app-Progress.json – прогрес читання
+* app-Recent.json – список прочитаних книг
+* app-State.json – загальні налаштування програми
+* app-Tags.json – теги книг
 

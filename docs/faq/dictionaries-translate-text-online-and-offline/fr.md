@@ -50,8 +50,8 @@ Les dictionnaires et traducteurs**HORS LIGNE** doivent être installés sur votr
 Pour activer une recherche immédiate dans le dictionnaire d'un mot sélectionné, vous devez :
 * Ouvrez la fenêtre **Préférences** en appuyant sur l'icône **Paramètres**.
 * Cochez la case _Open selection in dictionary_ dans l'onglet principal
-*Sélectionnez un mot en appuyant longuement
-*Si vous sélectionnez une séquence de mots, vous devez faire glisser votre doigt. Vous pouvez utiliser les poignées pour spécifier la séquence exacte.
+* Sélectionnez un mot en appuyant longuement
+* Si vous sélectionnez une séquence de mots, vous devez faire glisser votre doigt. Vous pouvez utiliser les poignées pour spécifier la séquence exacte.
 
 ||||
 |-|-|-|
@@ -74,7 +74,7 @@ Si vous laissez la case _Open selection_ non cochée, la fenêtre **Texte** vous
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-*Recherchez (en appuyant sur le signe **+** si nécessaire) votre dictionnaire ou traducteur préféré installé
+* Recherchez (en appuyant sur le signe * * +* *  si nécessaire) votre dictionnaire ou traducteur préféré installé
 * Appuyez sur son icône pour afficher sa fenêtre contextuelle contenant le mot traduction (définition).
 
 ||||
