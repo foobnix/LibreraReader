@@ -370,8 +370,13 @@ public class MainTabs2 extends AdsFragmentActivity {
         setContentView(R.layout.main_tabs);
 
 
-        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
-        imageMenuParent = findViewById(R.id.imageParent1);
+        if (AppState.get().tapPositionTop) {
+            imageMenu = (ImageView) findViewById(R.id.imageMenu1);
+            imageMenuParent = findViewById(R.id.imageParent1);
+        } else {
+            imageMenu = (ImageView) findViewById(R.id.imageMenu2);
+            imageMenuParent = findViewById(R.id.imageParent2);
+        }
         imageMenuParent.setBackgroundColor(TintUtil.color);
 
         fab = findViewById(R.id.fab);
@@ -456,15 +461,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
             imageMenu.setVisibility(View.VISIBLE);
-        }
-
-        if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
-        }
-
-
-        if(UITab.isShowLibrary()) {
-            imageMenu.setVisibility(View.GONE);
         }
 
         // ((BrigtnessDraw)
@@ -557,22 +553,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         indicator.setBackgroundColor(TintUtil.color);
 
         if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
-            imageMenu.setVisibility(View.GONE);
             indicator.setDividerColors(Color.TRANSPARENT);
             indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
-            for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
-                View child = indicator.getmTabStrip().getChildAt(i);
-                child.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        imageMenu.performClick();
-                        return true;
-                    }
-                });
-            }
-        }
-        if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
         }
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
@@ -581,7 +563,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             indicator.setDividerColors(TintUtil.color);
             indicator.setBackgroundColor(Color.TRANSPARENT);
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
-
         }
 
 

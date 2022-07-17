@@ -96,7 +96,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     AuthorsAdapter2 authorsAdapter;
     TextView countBooks, sortBy;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage, cleanFilter, menu2;
+    ImageView sortOrder, myAutoCompleteImage, cleanFilter;
     View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
@@ -247,7 +247,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         int color = (AppState.get().appTheme == AppState.THEME_DARK_OLED ||
                         AppState.get().appTheme == AppState.THEME_DARK)
                         ? Color.WHITE : TintUtil.color;
-        TintUtil.setTintImageNoAlpha(menu2, color);
 
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
@@ -335,7 +334,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
-        menu2 = (ImageView) view.findViewById(R.id.menu2);
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -486,15 +484,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 showAutoCompleteDialog();
-            }
-        });
-
-        menu2.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (view.getRootView().findViewById(R.id.imageMenu1) != null) {
-                    view.getRootView().findViewById(R.id.imageMenu1).performClick();
-                }
             }
         });
 

@@ -66,14 +66,37 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
-                    <com.foobnix.pdf.SlidingTabLayout
-                        android:id="@+id/slidingTabs2"
+                    <LinearLayout
+                        android:id="@+id/imageParent2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:background="#3949ab"
-                        android:elevation="2dip"
-                        android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+                        android:background="#0000ff"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageMenu2"
+
+                            android:layout_width="40dip"
+                            android:visibility="gone"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dip"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/menu"
+                            android:gravity="center"
+                            android:padding="10dip"
+                            android:src="@drawable/glyphicons_517_menu_hamburger"
+                            android:tint="@color/white" />
+
+                        <com.foobnix.pdf.SlidingTabLayout
+                            android:id="@+id/slidingTabs2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:background="#3949ab"
+                            android:elevation="2dip"
+                            android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
