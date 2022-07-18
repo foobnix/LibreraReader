@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.AppDB;
 
 import org.librera.LinkedJSONObject;
@@ -692,6 +693,8 @@ public class AppState {
         AppState.get().isScrollAnimation = false;
         AppSP.get().isFirstTimeVertical = false;
         AppSP.get().isFirstTimeHorizontal = false;
+        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+
     }
 
     public boolean loadInit(final Context a) {

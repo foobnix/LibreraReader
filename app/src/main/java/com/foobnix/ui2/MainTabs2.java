@@ -451,20 +451,11 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
 
-        if (UITab.isShowPreferences()) {
+        if(UITab.isShowLibrary() || !AppState.get().tapPositionTop) {
             imageMenu.setVisibility(View.GONE);
-            //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        } else {
+        }else{
+
             imageMenu.setVisibility(View.VISIBLE);
-        }
-
-        if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
-        }
-
-
-        if(UITab.isShowLibrary()) {
-            imageMenu.setVisibility(View.GONE);
         }
 
         // ((BrigtnessDraw)
@@ -557,7 +548,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         indicator.setBackgroundColor(TintUtil.color);
 
         if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
-            imageMenu.setVisibility(View.GONE);
             indicator.setDividerColors(Color.TRANSPARENT);
             indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
             for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
@@ -570,9 +560,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                     }
                 });
             }
-        }
-        if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
         }
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
