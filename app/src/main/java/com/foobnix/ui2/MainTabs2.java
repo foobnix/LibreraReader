@@ -453,7 +453,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (UITab.isShowPreferences()) {
             imageMenu.setVisibility(View.GONE);
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
             imageMenu.setVisibility(View.VISIBLE);
         }
