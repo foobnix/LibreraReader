@@ -18,6 +18,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -202,9 +203,12 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         List<FileMeta> all = new ArrayList<FileMeta>();
 
-        List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
+        List<String> tags = TagData.getAllTagsByFile();
         if (TxtUtils.isListNotEmpty(tags)) {
             for (String tag : tags) {
+                if(TxtUtils.isEmpty(tag)){
+                    continue;
+                }
                 FileMeta m = new FileMeta("");
                 m.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG);
                 int count = AppDB.get().getAllWithTag(tag).size();
