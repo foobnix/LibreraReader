@@ -1140,13 +1140,28 @@ public class TxtUtils {
             return txt;
         }
 
+        LOG.d("filterString-begin",txt);
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
         replaceAll = replaceAll(replaceAll, "(\\w+)(-\\s)", "$1").trim();
+
+
 
         if (!replaceAll.contains(" ")) {
             String regexp = "[^\\w\\[\\]\\{\\}’']+";
             replaceAll = replaceAll(replaceAll, regexp + "$", "").replaceAll("^" + regexp, "");
         }
+        if(replaceAll.endsWith(".]")){
+            replaceAll = replaceAll.replace(".]","");
+        }
+        if(replaceAll.endsWith(")")){
+            replaceAll = replaceAll.replace(")","");
+        }
+        if(replaceAll.startsWith("[") && !replaceAll.endsWith("]")){
+            replaceAll = replaceAll.replace("[","");
+        }
+
+
+        LOG.d("filterString-end",replaceAll.trim());
         return replaceAll.trim();
     }
 

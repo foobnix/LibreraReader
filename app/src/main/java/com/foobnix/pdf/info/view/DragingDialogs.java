@@ -1328,7 +1328,7 @@ public class DragingDialogs {
                 TextView text = (TextView) inflate.findViewById(R.id.text);
                 float size = Math.max(14, BookCSS.get().fontSizeSp * 0.85f);
                 text.setTextSize(size);
-                LOG.d("FONT SIZE", size);
+                LOG.d("FONT-SIZE", size, selectedText);
 
                 footerNumber.setText(TxtUtils.getFooterNoteNumber(selectedText));
 
