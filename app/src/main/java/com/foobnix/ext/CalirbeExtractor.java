@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.librera.JSONArray;
+import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -140,14 +141,16 @@ public class CalirbeExtractor {
                             LOG.d("userGenre", attrContent);
                             try {
                                 LinkedJSONObject obj = new LinkedJSONObject(attrContent);
-                                JSONArray jsonArray = obj.getJSONArray("#value#");
-                                String res = "";
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    res = res + "," + jsonArray.getString(i);
+                                try {
+                                    meta.setGenre(obj.getString("#value#"));
+                                } catch (JSONException e) {
+                                    JSONArray jsonArray = obj.getJSONArray("#value#");
+                                    String res = "";
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        res = res + "," + jsonArray.getString(i);
+                                    }
+                                    meta.setGenre(TxtUtils.replaceFirst(res, ",", ""));
                                 }
-                                res = TxtUtils.replaceFirst(res, ",", "");
-                                meta.setGenre(res);
-                                LOG.d("userGenre-list", res);
                             } catch (Exception e) {
                                 LOG.e(e);
                             }

@@ -19,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 import org.librera.JSONArray;
+import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -444,13 +445,17 @@ public class EpubExtractor extends BaseExtractor {
                                     LOG.d("userGenre", value);
                                     try {
                                         LinkedJSONObject obj = new LinkedJSONObject(value);
-                                        JSONArray jsonArray = obj.getJSONArray("#value#");
-                                        String res = "";
-                                        for (int i = 0; i < jsonArray.length(); i++) {
-                                            res = res + "," + jsonArray.getString(i);
+                                        try {
+                                            genre = obj.getString("#value#");
+                                        } catch (JSONException e) {
+                                            JSONArray jsonArray = obj.getJSONArray("#value#");
+                                            String res = "";
+                                            for (int i = 0; i < jsonArray.length(); i++) {
+                                                res = res + "," + jsonArray.getString(i);
+                                            }
+                                            genre = TxtUtils.replaceFirst(res, ",", "");
+                                            LOG.d("userGenre-list", genre);
                                         }
-                                        genre = TxtUtils.replaceFirst(res, ",", "");
-                                        LOG.d("userGenre-list", genre);
                                     } catch (Exception e) {
                                         LOG.e(e);
                                     }
