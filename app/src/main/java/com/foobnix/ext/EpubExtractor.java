@@ -374,6 +374,7 @@ public class EpubExtractor extends BaseExtractor {
             String lang = null;
             String genre = "";
             String date = null;
+            String calibreTimestamp = null;
             String publisher = "";
             String ibsn = "";
 
@@ -431,6 +432,7 @@ public class EpubExtractor extends BaseExtractor {
                                 String propertyAttr = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "property"));
                                 String value = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "content"));
 
+
                                 if (propertyAttr.equals("belongs-to-collection")) {
                                     series = xpp.nextText();
                                     LOG.d("belongs-to-collection series", series);
@@ -441,6 +443,8 @@ public class EpubExtractor extends BaseExtractor {
                                     series = value;
                                 } else if (nameAttr.endsWith(":series_index")) {
                                     number = value;
+                                } else if ("calibre:timestamp".equals(nameAttr)) {
+                                    calibreTimestamp = value;
                                 } else if ("calibre:user_metadata:#genre".equals(nameAttr)) {
                                     LOG.d("userGenre", value);
                                     try {
@@ -460,6 +464,7 @@ public class EpubExtractor extends BaseExtractor {
                                         LOG.e(e);
                                     }
                                 }
+
                                 if ("librera:user_metadata:#genre".equals(nameAttr)) {
                                     LOG.d("librera-userGenre", value);
                                     try {
@@ -505,7 +510,12 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
-            ebookMeta.setYear(date);
+            if(date==null){
+                ebookMeta.setYear(calibreTimestamp);
+            }else {
+                ebookMeta.setYear(date);
+            }
+
             ebookMeta.setPublisher(publisher);
             ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount((int) size / 1024);
