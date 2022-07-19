@@ -328,14 +328,14 @@ static void generate_text(fz_context *ctx, fz_html_box *box, const char *text, i
 
 	while (*text)
 	{
-		if (bnl && (*text == '\n' || *text == '\r'))
+		if (*text == '\n' || *text == '\r')
 		{
 			if (text[0] == '\r' && text[1] == '\n')
 				text += 2;
 			else
 				text += 1;
-			add_flow_break(ctx, pool, flow, box);
-			g->at_bol = 1;
+			//add_flow_break(ctx, pool, flow, box);
+			//g->at_bol = 1;
 		}
 		else if (iswhite(*text))
 		{
