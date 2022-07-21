@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">更新后显示更新日志</string>
    <string name="what_is_new_in">更新内容</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载完整更新日志（PDF 文件）</string>
-   <string name="search_for_text_in_documents">全文搜索</string>
+   <string name="search_for_text_in_documents">全文检索</string>
    <string name="search_in_the_subfolders">包含子文件夹</string>
    <string name="stop">停止</string>
    <string name="document_converter_online_">在线转换文档格式</string>
@@ -51,7 +51,7 @@
    <string name="import_or_export_application_settings_to_json_file">备份</string>
    <string name="import_">导入</string>
    <string name="export_">导出</string>
-   <string name="automatic_export_backup">退出时自动导出（备份）当前会话</string>
+   <string name="automatic_export_backup">退出时自动备份当前状态</string>
    <string name="product">软件说明</string>
    <string name="version">当前版本</string>
    <string name="licence_gnu_gpl_v3_0">许可证:GNU GPL v3.0</string>
@@ -327,7 +327,7 @@
    <string name="bookmark_on_page_">添加书签</string>
    <string name="share">分享</string>
    <string name="copy">复制</string>
-   <string name="search_in_google">Google 搜索</string>
+   <string name="search_in_google">Google搜索</string>
    <string name="search_in_document">文内搜索</string>
    <string name="web_dict">在线词典</string>
    <string name="___TO___CHECK___SECTION___"></string>
