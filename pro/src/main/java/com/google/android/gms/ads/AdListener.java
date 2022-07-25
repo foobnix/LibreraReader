@@ -1,10 +1,8 @@
 package com.google.android.gms.ads;
 
-public class AdListener {
+public abstract class AdListener {
 
-    public void onAdFailedToLoad(final int errorCode) {
-
-    }
+    public abstract void onAdFailedToLoad(LoadAdError arg0);
 
     public void onAdClosed() {
 

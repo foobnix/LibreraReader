@@ -33,7 +33,7 @@ android {
     //ndkVersion "21.4.7075529"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 31
         versionCode codeNumber
         versionName versionNumber
@@ -374,14 +374,15 @@ dependencies {
     implementation project(':smartreflow')
 
 
-    libreraImplementation 'com.google.firebase:firebase-ads:19.8.0'
-    betaImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    pdf_v2Implementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    ebookaImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    tts_readerImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    pdf_classicImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    epub_readerImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
-    huaweiImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    def google_ads = "com.google.android.gms:play-services-ads:21.1.0"
+    libreraImplementation google_ads
+    betaImplementation google_ads
+    pdf_v2Implementation google_ads
+    ebookaImplementation google_ads
+    tts_readerImplementation google_ads
+    pdf_classicImplementation google_ads
+    epub_readerImplementation google_ads
+    huaweiImplementation google_ads
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation 'androidx.work:work-runtime:2.7.1'

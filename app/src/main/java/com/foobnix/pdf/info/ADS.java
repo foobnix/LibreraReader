@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -69,19 +70,21 @@ public class ADS {
                         adView.setAdSize(AdSize.BANNER);
                     }
                 } else {
-                    adView.setAdSize(AdSize.SMART_BANNER);
+                    adView.setAdSize(AdSize.BANNER);
                 }
             } else {
                 adView.setAdSize(AdSize.FULL_BANNER);
             }
-            adView.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_BANNER_ID"));
+            String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
+            LOG.d("ads-metaData", metaData);
+            adView.setAdUnitId(metaData);
 
             adView.loadAd(getAdRequest(a));
 
             adView.setAdListener(new AdListener() {
                 @Override
-                public void onAdFailedToLoad(int arg0) {
-                    LOG.d("failed ads", arg0);
+                public void onAdFailedToLoad(LoadAdError arg0) {
+                    LOG.d("ads-LoadAdError ads", arg0);
                     frame.removeAllViews();
                     frame.setVisibility(View.GONE);
                 }
@@ -158,8 +161,8 @@ public class ADS {
         if (BuildConfig.DEBUG) {
             String myID = ADS.getByTestID(a);
             return new AdRequest.Builder()//
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-                    .addTestDevice(myID)//
+                    //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
+                    //.addTestDevice(myID)//
                     .build();//
         } else {
             return new AdRequest.Builder().build();//

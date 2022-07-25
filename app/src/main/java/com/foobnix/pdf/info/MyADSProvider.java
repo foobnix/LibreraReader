@@ -3,13 +3,18 @@ package com.foobnix.pdf.info;
 import android.app.Activity;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
+
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import org.ebookdroid.LibreraApp;
 
@@ -68,9 +73,20 @@ public class MyADSProvider {
                             LOG.e(e);
                         }
 
-                        mInterstitialAd = new InterstitialAd(LibreraApp.context);
-                        mInterstitialAd.setAdUnitId(Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"));
-                        mInterstitialAd.loadAd(ADS.getAdRequest(LibreraApp.context));
+                        InterstitialAd.load(LibreraApp.context, Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"), ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                super.onAdFailedToLoad(loadAdError);
+                                LOG.d("LoadAdError", loadAdError);
+                                mInterstitialAd = null;
+                            }
+
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                super.onAdLoaded(interstitialAd);
+                                mInterstitialAd = interstitialAd;
+                            }
+                        });
                     } catch (Exception e) {
                         LOG.e(e);
                     }
@@ -94,9 +110,9 @@ public class MyADSProvider {
 
     }
 
-    public boolean showInterstial() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+    public boolean showInterstial(Activity a) {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(a);
             return true;
         }
         return false;

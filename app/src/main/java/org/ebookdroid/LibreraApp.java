@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 
+import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
 
 import com.foobnix.android.utils.Apps;
@@ -18,6 +19,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
@@ -47,7 +50,14 @@ public class LibreraApp extends MultiDexApplication {
 
         try {
             if (!AppsConfig.checkIsProInstalled(this)) {
-                MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+                //MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+                MobileAds.initialize(this, new OnInitializationCompleteListener() {
+                    @Override
+                    public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+                        LOG.d("ads-complete");
+
+                    }
+                });
             }
         } catch (Exception e) {
             AppsConfig.IS_NO_ADS = true;
