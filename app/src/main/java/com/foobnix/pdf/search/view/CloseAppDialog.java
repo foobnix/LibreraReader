@@ -73,7 +73,7 @@ public class CloseAppDialog {
         topLayout.setBackgroundColor(TintUtil.color);
 
         onRateUs.setText(onRateUs.getText());
-        dialogTitle.setText(dialogTitle.getText()+" ★★★★★");
+        onAsk.setText(onAsk.getText()+" ★★★★★");
 
         topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
         // topLayout.setVisibility(View.VISIBLE);

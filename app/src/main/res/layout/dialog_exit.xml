@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dip"
+            android:layout_marginBottom="10dip"
             android:singleLine="false"
             android:layout_gravity="center"
             android:text="@string/rate_us"
