@@ -10,7 +10,7 @@ include $(TOP_LOCAL_PATH)/libdjvu-3.5.28/Android.mk
 include $(TOP_LOCAL_PATH)/libantiword-1.3.1/Android.mk
 include $(TOP_LOCAL_PATH)/libwebp-1.2.2/Android.mk
 
-include $(TOP_LOCAL_PATH)/MuPDF-1.20.0.mk
+include $(TOP_LOCAL_PATH)/MuPDF-1.20.2.mk
 
 include $(CLEAR_VARS)
 
@@ -34,8 +34,8 @@ LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
-	jni_concurrent-1.20.0.c \
-	libmupdf-1.20.0.c
+	jni_concurrent.c \
+	libmupdf-1.20.2.c
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java

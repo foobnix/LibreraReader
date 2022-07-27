@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.20.0"
+VERSION_TAG="1.20.2"
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
@@ -51,6 +51,7 @@ ln -s $MUPDF_JAVA/libs/armeabi-v7a $LIBS
 ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
+
 
 cp -rpv $SRC/css-apply.c         $DEST/html/css-apply.c
 cp -rpv $SRC/epub-doc.c          $DEST/html/epub-doc.c
