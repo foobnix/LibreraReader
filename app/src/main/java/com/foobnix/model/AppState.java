@@ -490,6 +490,7 @@ public class AppState {
     public boolean isPreText = false;
     public boolean isLineBreaksText = false;
     public boolean isIgnoreAnnotatations = false;
+    @IgnoreHashCode
     public boolean isSaveAnnotatationsAutomatically = false;
     public boolean isShowWhatIsNewDialog = true;
     public boolean isShowCloseAppDialog = true;
