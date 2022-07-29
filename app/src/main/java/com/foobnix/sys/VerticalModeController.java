@@ -670,16 +670,16 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void saveAnnotationsToFile() {
-        if (AppState.get().isSaveAnnotatationsAutomatically) {
-
-            String path = getCurrentBook().getAbsolutePath();
-            ctr.getDecodeService().saveAnnotations(path, new Runnable() {
-
-                @Override
-                public void run() {
-                }
-            });
-        }
+//        if (AppState.get().isSaveAnnotatationsAutomatically) {
+//
+//            String path = getCurrentBook().getAbsolutePath();
+//            ctr.getDecodeService().saveAnnotations(path, new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                }
+//            });
+//        }
     }
 
     @Override
@@ -694,73 +694,91 @@ public class VerticalModeController extends DocumentController {
         if (ctr == null || ctr.getDecodeService() == null) {
             return;
         }
+        final StringBuilder path = new StringBuilder(getCurrentBook().getAbsolutePath());
+
+
         if (ctr.getDecodeService().hasAnnotationChanges()) {
-            final StringBuilder path = new StringBuilder(getCurrentBook().getAbsolutePath());
+            if(AppState.get().isSaveAnnotatationsAutomatically){
+                final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                progress.setCancelable(false);
+                progress.show();
+                ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
 
-            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.save_changes);
+                    @Override
+                    public void run() {
+                        LOG.d("saveAnnotations return 1");
+                        progress.dismiss();
+                        LOG.d("saveAnnotations return 2");
+                        ctr.closeActivity(null);
+                    }
+                });
+            }else {
 
-            builder.setMessage(getCurrentBook().getAbsolutePath());
-            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
-                        LOG.d("Save TO new file", path.toString());
-                        File newBook = new File(path.toString());
-                        newBook.delete();
-                        try {
-                            copy(getCurrentBook(), newBook);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.save_changes);
 
-                        } catch (IOException e) {
-                            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                builder.setMessage(getCurrentBook().getAbsolutePath());
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
+                            LOG.d("Save TO new file", path.toString());
+                            File newBook = new File(path.toString());
+                            newBook.delete();
+                            try {
+                                copy(getCurrentBook(), newBook);
+
+                            } catch (IOException e) {
+                                Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
                         }
+                        final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                        progress.setCancelable(false);
+                        progress.show();
+                        ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                LOG.d("saveAnnotations return 1");
+                                progress.dismiss();
+                                LOG.d("saveAnnotations return 2");
+                                ctr.closeActivity(null);
+                            }
+                        });
+                    }
+
+                    ;
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        ctr.closeActivity(null);
+                    }
+                });
+                builder.setNeutralButton(R.string.rename, new OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PrefDialogs.selectFileDialog(activity, Arrays.asList(".pdf"), getCurrentBook(), new ResultResponse<String>() {
+
+                            @Override
+                            public boolean onResultRecive(String result) {
+
+                                path.setLength(0);
+                                path.append(result);
+
+                                builder.setMessage(result);
+                                builder.show();
+                                return false;
+                            }
+                        });
 
                     }
-                    final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
-                    progress.setCancelable(false);
-                    progress.show();
-                    ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            LOG.d("saveAnnotations return 1");
-                            progress.dismiss();
-                            LOG.d("saveAnnotations return 2");
-                            ctr.closeActivity(null);
-                        }
-                    });
-                }
-
-                ;
-            });
-            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
-                    ctr.closeActivity(null);
-                }
-            });
-            builder.setNeutralButton(R.string.rename, new OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    PrefDialogs.selectFileDialog(activity, Arrays.asList(".pdf"), getCurrentBook(), new ResultResponse<String>() {
-
-                        @Override
-                        public boolean onResultRecive(String result) {
-
-                            path.setLength(0);
-                            path.append(result);
-
-                            builder.setMessage(result);
-                            builder.show();
-                            return false;
-                        }
-                    });
-
-                }
-            });
-            builder.show();
+                });
+                builder.show();
+            }
 
         } else {
             ctr.closeActivity(null);
