@@ -2,7 +2,7 @@
 
 
 ### 1.20.0
-./link_to_mupdf_1.20.0.sh
+./link_to_mupdf_1.20.2.sh
 
 cd ../
 

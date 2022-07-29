@@ -582,10 +582,6 @@ public class TTSService extends Service {
             final String secondPart = pageNumber + 1 >= AppSP.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
 
             if (TxtUtils.isNotEmpty(preText)) {
-                // Check to see if the last character is - from
-                // hyphenation; if it is, drop it.  If it isn't, add
-                // a space, to stop words from being smushed
-                // together.
                 char last = preText.charAt(preText.length() - 1);
                 if (last == '-') {
                     preText = TxtUtils.replaceLast(preText, "-", "");

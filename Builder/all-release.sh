@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./link_to_mupdf_1.20.0.sh
+./link_to_mupdf_1.20.2.sh
 
 cd ../
 

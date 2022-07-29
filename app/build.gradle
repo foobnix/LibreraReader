@@ -119,12 +119,12 @@ android {
             ]
         }
 
-        alpha {
+        old {
             minSdkVersion 14
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "MuPDF-1.20",
+                    appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",
@@ -285,8 +285,8 @@ android {
 //                println abiName + " : appSafeMode false"
 //            }
 
-            if(flavor.equals("Alpha")){
-                flavor = "MuPDF-1.20"
+            if(flavor.equals("Old")){
+                flavor = "MuPDF-1.11"
             }else if(flavor.equals("Beta")){
                 flavor = "MuPDF-1.11"
             }
@@ -368,7 +368,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
 
-    alphaImplementation project(':pro')
+    oldImplementation project(':pro')
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
