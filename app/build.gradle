@@ -164,7 +164,7 @@ android {
             ]
         }
         pro {
-            minSdkVersion 14
+            minSdkVersion 19
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [

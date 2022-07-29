@@ -75,7 +75,7 @@ public class CloseAppDialog {
         onRateUs.setText(onRateUs.getText());
         onAsk.setText(onAsk.getText()+" ★★★★★");
 
-        topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 2));
+        topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 1));
         // topLayout.setVisibility(View.VISIBLE);
         onAsk.setOnClickListener(new View.OnClickListener() {
 

@@ -492,7 +492,7 @@
    <string name="slider_scale">สเกลเลื่อน</string>
    <string name="chapter_format">รูปแบบบท</string>
    <string name="play_a_music_file">เล่นไฟล์เพลง</string>
-   <string name="rate_us">ให้คะแนนเรา</string>
+   <string name="rate_app">ให้คะแนนแอพ</string>
    <string name="reset">รีเซ็ต</string>
    <string name="status_bar_location">ตำแหน่งแถบสถานะ</string>
    <string name="add_to_bookmark">เพิ่มในบุ๊กมาร์ก</string>

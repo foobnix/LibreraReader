@@ -492,7 +492,7 @@
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend</string>
    <string name="play_a_music_file">Play an audio file</string>
-   <string name="rate_us">Rate us</string>
+   <string name="rate_app">Rate app</string>
    <string name="reset">Reset</string>
    <string name="status_bar_location">Position</string>
    <string name="add_to_bookmark">Bookmark</string>

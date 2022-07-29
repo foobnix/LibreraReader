@@ -492,7 +492,7 @@
    <string name="slider_scale">Escala del control deslizante</string>
    <string name="chapter_format">Formato de capítulo</string>
    <string name="play_a_music_file">Reproducir archivo de música</string>
-   <string name="rate_us">Califíquenos</string>
+   <string name="rate_app">Calificar aplicacion</string>
    <string name="reset">Reiniciar</string>
    <string name="status_bar_location">Posición</string>
    <string name="add_to_bookmark">Añadir a marcadores</string>

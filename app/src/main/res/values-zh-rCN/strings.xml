@@ -492,7 +492,7 @@
    <string name="slider_scale">进度条标度</string>
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音频文件</string>
-   <string name="rate_us">评价</string>
+   <string name="rate_app">评价应用</string>
    <string name="reset">重置</string>
    <string name="status_bar_location">状态栏位置</string>
    <string name="add_to_bookmark">加入书签</string>

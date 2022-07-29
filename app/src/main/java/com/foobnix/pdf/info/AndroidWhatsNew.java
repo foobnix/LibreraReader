@@ -154,7 +154,7 @@ public class AndroidWhatsNew {
 
             }
         });
-        builder.setPositiveButton(R.string.rate_us, new OnClickListener() {
+        builder.setPositiveButton(R.string.rate_app, new OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
