@@ -224,6 +224,7 @@ public class ExtUtils {
 
         if (AppState.get().supportEPUB) {
             result.add(".epub");
+            result.add(".ePub");
         }
 
         if (AppState.get().supportDJVU) {
