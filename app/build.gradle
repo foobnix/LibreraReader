@@ -4,8 +4,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 4578
-    FDroidVersionNumber = "8.5.43"
+    FDroidCodeNumber = 4586
+    FDroidVersionNumber = "8.5.45"
 }
 
 println " --------------------"
@@ -352,7 +352,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.15.1'
+    implementation 'org.jsoup:jsoup:1.15.2'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
@@ -363,7 +363,7 @@ dependencies {
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.4.2'
     implementation 'javax.xml.stream:stax-api:1.0'
-    implementation 'net.lingala.zip4j:zip4j:2.10.0'
+    implementation 'net.lingala.zip4j:zip4j:2.11.1'
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
