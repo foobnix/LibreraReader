@@ -1141,7 +1141,7 @@ public class DragingDialogs {
     }
 
     static String lastSearchText="";
-    public static void searchMenu(final FrameLayout anchor, final DocumentController controller) {
+    public static void searchMenu(final FrameLayout anchor, final DocumentController controller, String text) {
         if (controller == null) {
             return;
         }
@@ -1153,7 +1153,11 @@ public class DragingDialogs {
 
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
                 //searchEdit.setText(text);
-                searchEdit.setText(lastSearchText);
+                if(TxtUtils.isNotEmpty(text)) {
+                    searchEdit.setText(text);
+                }else{
+                    searchEdit.setText(lastSearchText);
+                }
 
                 final MyProgressBar MyProgressBar = (MyProgressBar) view.findViewById(R.id.progressBarSearch);
                 final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
@@ -1686,7 +1690,7 @@ public class DragingDialogs {
                         @Override
                         public void onClick(View v) {
                             controller.clearSelectedText();
-                            searchMenu(anchor, controller);
+                            searchMenu(anchor, controller, selectedText);
                         }
                     });
                 }
@@ -2144,7 +2148,7 @@ public class DragingDialogs {
                 drawView.clear();
             }
 
-            ;
+
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
