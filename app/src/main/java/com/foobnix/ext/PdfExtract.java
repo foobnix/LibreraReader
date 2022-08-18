@@ -38,7 +38,11 @@ public class PdfExtract {
         if (doc == null) {
             return EbookMeta.Empty();
         }
-        EbookMeta meta = new EbookMeta(doc.getBookTitle(), doc.getBookAuthor());
+        String bookAuthor = doc.getBookAuthor();
+        if(TxtUtils.isNotEmpty(bookAuthor)){
+            bookAuthor = bookAuthor.replace(" &",",");
+        }
+        EbookMeta meta = new EbookMeta(doc.getBookTitle(), bookAuthor);
         meta.setPagesCount(doc.getPageCount());
         meta.setKeywords(doc.getMeta("info:Keywords"));
         String subjectLikeGenre = doc.getMeta("info:Subject");

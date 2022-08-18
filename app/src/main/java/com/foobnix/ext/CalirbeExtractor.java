@@ -59,6 +59,9 @@ public class CalirbeExtractor {
     }
 
     public static String add(String value, String div, String value2) {
+        if(TxtUtils.isNotEmpty(value) && value.contains(div+value2)){
+            return value;
+        }
         return TxtUtils.isEmpty(value) ? value2 : value + div + value2;
     }
 
@@ -86,7 +89,8 @@ public class CalirbeExtractor {
                     }
 
                     if ("dc:creator".equals(xpp.getName()) || "dcns:creator".equals(xpp.getName())) {
-                        meta.setAuthor(add(meta.getAuthor(), ", ", xpp.nextText()));
+                        String author =  xpp.nextText();
+                        meta.setAuthor(add(meta.getAuthor(), ", ",author));
                     }
 
                     if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
@@ -107,7 +111,12 @@ public class CalirbeExtractor {
                     }
 
                     if ("dc:identifier".equals(xpp.getName()) || "dcns:identifier".equals(xpp.getName())) {
-                        meta.setIsbn(add(meta.getIsbn(), ", ", xpp.nextText()));
+                        String id = xpp.getAttributeValue(null,"opf:scheme");
+                        if(TxtUtils.isNotEmpty(id)){
+                            meta.setIsbn(add(meta.getIsbn(), ", ",id +": " +xpp.nextText()));
+                        }else {
+                            meta.setIsbn(add(meta.getIsbn(), ", ",xpp.nextText()));
+                        }
 
                     }
 
@@ -142,14 +151,19 @@ public class CalirbeExtractor {
                             try {
                                 LinkedJSONObject obj = new LinkedJSONObject(attrContent);
                                 try {
-                                    meta.setGenre(obj.getString("#value#"));
+                                    String ge = obj.getString("#value#");
+
+                                    meta.setGenre(add(meta.getGenre(), ", ", ge));
+
                                 } catch (JSONException e) {
                                     JSONArray jsonArray = obj.getJSONArray("#value#");
                                     String res = "";
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         res = res + "," + jsonArray.getString(i);
                                     }
-                                    meta.setGenre(TxtUtils.replaceFirst(res, ",", ""));
+                                    String ge1 = TxtUtils.replaceFirst(res, ",", "");
+
+                                    meta.setGenre(add(meta.getGenre(), ", ", ge1));
                                 }
                             } catch (Exception e) {
                                 LOG.e(e);
@@ -158,7 +172,8 @@ public class CalirbeExtractor {
                         if ("librera:user_metadata:#genre".equals(attrName)) {
                             LOG.d("librera-userGenre", attrContent);
                             try {
-                                meta.setGenre(attrContent);
+
+                                meta.setGenre(add(meta.getGenre(), ", ", attrContent));
                             } catch (Exception e) {
                                 LOG.e(e);
                             }
