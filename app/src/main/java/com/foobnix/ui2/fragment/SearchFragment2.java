@@ -48,7 +48,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
+import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -135,7 +135,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 searchEditText.setHint(R.string.search);
                 onRefresh.setActivated(true);
 
-                if(AppsConfig.IS_LOG){
+                if (AppsConfig.IS_LOG) {
                     searchEditText.setHint(Apps.getApplicationName(getContext()));
                 }
 
@@ -245,8 +245,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
 
         int color = (AppState.get().appTheme == AppState.THEME_DARK_OLED ||
-                        AppState.get().appTheme == AppState.THEME_DARK)
-                        ? Color.WHITE : TintUtil.color;
+                AppState.get().appTheme == AppState.THEME_DARK)
+                ? Color.WHITE : TintUtil.color;
         TintUtil.setTintImageNoAlpha(menu2, color);
 
         int colorTheme = TintUtil.getColorInDayNighth();
@@ -456,8 +456,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         authorsAdapter.setOnItemClickListener(onAuthorSeriesClick);
 
-        if (AppState.get().isRestoreSearchQuery && !TxtUtils.isEmpty(AppState.get().searchQuery))
-        {
+        if (AppState.get().isRestoreSearchQuery && !TxtUtils.isEmpty(AppState.get().searchQuery)) {
             searchEditText.setText(AppState.get().searchQuery);
         }
 
@@ -681,6 +680,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     return searchBy;
                 }
 
+
+
+
                 boolean hasEmpySeries = false;
                 for (FileMeta it : searchBy) {
                     String sequence = it.getSequence();
@@ -689,8 +691,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         hasEmpySeries = true;
                     }
                 }
-                Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
-                Collections.reverse(result);
+
+                    Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
+                    Collections.reverse(result);
+
+
+
                 String genreName = txt.replace(byGenre ? "@genre " : "@author ", "");
                 for (String it : result) {
                     FileMeta fm = new FileMeta();
@@ -717,6 +723,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 String extDir = Environment.getExternalStorageDirectory().getPath();
 
+                int count = 0;
+                FileMeta fm = null;
                 for (FileMeta it : searchBy) {
                     String parentName = "";
                     if (AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {
@@ -736,15 +744,23 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             parentName = DialogTranslateFromTo.getLanuageByCode(lang);
                         }
                     }
+                    count++;
                     if (parentName != null && !parentName.equals(last)) {
-                        FileMeta fm = new FileMeta();
+                        if (fm != null) {
+                            fm.setTitle(parentName + " (" + count + ")");
+                        }
+                        fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
+                        count = 0;
                         last = parentName;
                         res.add(fm);
                         countTitles++;
                     }
                     res.add(it);
+                }
+                if (fm != null) {
+                    fm.setTitle(fm.getTitle() + " (" + (count+1) + ")");
                 }
                 searchBy = res;
             }
@@ -771,7 +787,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText.setHint(R.string.search);
 
         //if(AppsConfig.IS_LOG){
-            //searchEditText.setHint(Apps.getApplicationName(getContext()));
+        //searchEditText.setHint(Apps.getApplicationName(getContext()));
         //}
 
 
@@ -897,7 +913,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             recyclerView.scrollToPosition(rememberPos);
 
 
-
         }
 
         showBookCount();
@@ -977,7 +992,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 public boolean onMenuItemClick(MenuItem item) {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
-                    onGridList.setContentDescription(getString(R.string.cd_view_menu)+" "+getString(names.get(index)));
+                    onGridList.setContentDescription(getString(R.string.cd_view_menu) + " " + getString(names.get(index)));
 
 
                     if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
