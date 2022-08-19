@@ -883,8 +883,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     Iterator<FileMeta> iterator = filesAndDirs.iterator();
                     while (iterator.hasNext()) {
                         FileMeta next = iterator.next();
-                        LOG.d("isHideReadBook",next.getIsRecentProgress());
-                        if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()>0.0){
+                        LOG.d("isHideReadBook-progress",next.getIsRecentProgress(), next.getPath());
+                        if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()==1.0){
                             iterator.remove();
                         }
                     }
@@ -1381,8 +1381,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
-        onGridList();
-        populate();
+        LOG.d("Browse resetFragment");
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onGridList();
+                populate();
+            }
+        },50);
+
     }
 
 }

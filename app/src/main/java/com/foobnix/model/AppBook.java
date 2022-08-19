@@ -83,6 +83,11 @@ public class AppBook implements CurrentPageListener {
         this.p = MyMath.percent(page, pages);
         LOG.d("currentPageChanged", page, pages, p);
         t = System.currentTimeMillis();
+        if(page==pages){
+            LOG.d("currentPageChanged listHash", page, pages, p);
+            TempHolder.listHash++;
+        }
+
     }
 
 
