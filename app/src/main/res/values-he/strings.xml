@@ -639,4 +639,5 @@
    <string name="cd_view_menu">הצג תפריט</string>
    <string name="cd_download_more_fonts">להוריד גופנים נוספים</string>
    <string name="restore_search_query_when_the_application_starts">שחזר שאילתת חיפוש בעת ההפעלה</string>
+   <string name="hide_read_books">להסתיר ספרים לקרוא</string>
 </resources>

@@ -639,4 +639,5 @@
    <string name="cd_view_menu">查看菜单</string>
    <string name="cd_download_more_fonts">下载更多字体</string>
    <string name="restore_search_query_when_the_application_starts">记住上次的搜索</string>
+   <string name="hide_read_books">隐藏读过的书</string>
 </resources>

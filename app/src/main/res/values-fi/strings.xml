@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Näytä valikko</string>
    <string name="cd_download_more_fonts">Lataa lisää kirjasimia</string>
    <string name="restore_search_query_when_the_application_starts">Palauta hakukysely käynnistyksen yhteydessä</string>
+   <string name="hide_read_books">Piilottaa luetut kirjat</string>
 </resources>

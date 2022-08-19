@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Мәзірді қарау</string>
    <string name="cd_download_more_fonts">Қосымша қаріптерді жүктеп алыңыз</string>
    <string name="restore_search_query_when_the_application_starts">Іске қосу кезінде іздеу сұрауын қалпына келтіріңіз</string>
+   <string name="hide_read_books">Оқыған кітаптарды жасыру</string>
 </resources>

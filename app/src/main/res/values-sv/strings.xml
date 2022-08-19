@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Visa menyn</string>
    <string name="cd_download_more_fonts">Ladda ner fler typsnitt</string>
    <string name="restore_search_query_when_the_application_starts">Återställ sökfrågan vid start</string>
+   <string name="hide_read_books">Göm läsa böcker</string>
 </resources>

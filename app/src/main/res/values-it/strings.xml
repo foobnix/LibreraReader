@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Menu di visualizzazione</string>
    <string name="cd_download_more_fonts">Scarica più caratteri</string>
    <string name="restore_search_query_when_the_application_starts">Ripristinare la query di ricerca all\'avvio</string>
+   <string name="hide_read_books">Nascondere leggere libri</string>
 </resources>

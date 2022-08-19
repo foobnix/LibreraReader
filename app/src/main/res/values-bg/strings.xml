@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Меню за преглед</string>
    <string name="cd_download_more_fonts">Изтегляне на още шрифтове</string>
    <string name="restore_search_query_when_the_application_starts">Възстановяване на заявката за търсене при стартиране</string>
+   <string name="hide_read_books">Скрий прочетени книги</string>
 </resources>

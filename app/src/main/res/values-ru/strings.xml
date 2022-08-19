@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Меню просмотра</string>
    <string name="cd_download_more_fonts">Скачать больше шрифтов</string>
    <string name="restore_search_query_when_the_application_starts">Восстановить поисковый запрос при запуске</string>
+   <string name="hide_read_books">Скрыть прочитанные книги</string>
 </resources>

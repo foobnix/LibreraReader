@@ -574,6 +574,7 @@ public class AppState {
     public String nameHorizontalMode = "";
     public String nameMusicianMode = "";
     public boolean isDisplayAllFilesInFolder = false;
+    public boolean isHideReadBook = false;
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";

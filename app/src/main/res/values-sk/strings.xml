@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Zobraziť menu</string>
    <string name="cd_download_more_fonts">Stiahnuť viac fontov</string>
    <string name="restore_search_query_when_the_application_starts">Obnoviť vyhľadávací dopyt pri spustení</string>
+   <string name="hide_read_books">Skryť prečítané knihy</string>
 </resources>

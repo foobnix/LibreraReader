@@ -48,7 +48,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppData;
-import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -83,6 +82,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -878,7 +878,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 return items;
 
             } else {
-                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
+                List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
+                if (AppState.get().isHideReadBook) {
+                    Iterator<FileMeta> iterator = filesAndDirs.iterator();
+                    while (iterator.hasNext()) {
+                        FileMeta next = iterator.next();
+                        LOG.d("isHideReadBook",next.getIsRecentProgress());
+                        if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()>0.0){
+                            iterator.remove();
+                        }
+                    }
+                }
+                return filesAndDirs;
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -1314,6 +1325,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isDisplayAllFilesInFolder = isChecked;
+
+                populate();
+            }
+        });
+        p.getMenu().addCheckbox(getString(R.string.hide_read_books), AppState.get().isHideReadBook, new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppState.get().isHideReadBook = isChecked;
 
                 populate();
             }

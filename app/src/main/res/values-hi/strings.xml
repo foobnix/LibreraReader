@@ -639,4 +639,5 @@
    <string name="cd_view_menu">मेनू देखें</string>
    <string name="cd_download_more_fonts">अधिक फोंट डाउनलोड करें</string>
    <string name="restore_search_query_when_the_application_starts">स्टार्टअप पर खोज क्वेरी को पुनर्स्थापित करें</string>
+   <string name="hide_read_books">पढ़ी गई किताबें छुपाएं</string>
 </resources>

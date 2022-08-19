@@ -639,4 +639,5 @@
    <string name="cd_view_menu">メニューを表示</string>
    <string name="cd_download_more_fonts">より多くのフォントをダウンロードする</string>
    <string name="restore_search_query_when_the_application_starts">起動時に検索クエリを復元する</string>
+   <string name="hide_read_books">読んだ本を隠す</string>
 </resources>

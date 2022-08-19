@@ -639,4 +639,5 @@
    <string name="cd_view_menu">Bekijk menu</string>
    <string name="cd_download_more_fonts">Meer lettertypen downloaden</string>
    <string name="restore_search_query_when_the_application_starts">Zoekopdracht herstellen bij opstarten</string>
+   <string name="hide_read_books">Verberg gelezen boeken</string>
 </resources>
