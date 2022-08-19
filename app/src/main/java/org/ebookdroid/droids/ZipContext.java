@@ -20,6 +20,7 @@ public class ZipContext extends PdfContext {
     public CodecDocument openDocumentInner(String fileName, String password) {
         LOG.d("ZipContext begin", fileName);
 
+
         Pair<Boolean, String> pack = CacheZipUtils.isSingleAndSupportEntry(fileName);
         if (pack.first) {
             LOG.d("ZipContext", "Singe archive entry");

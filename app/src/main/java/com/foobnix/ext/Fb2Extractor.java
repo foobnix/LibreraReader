@@ -1133,7 +1133,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
-                writer.println(line);
+                writer.print(line);
             }
 
         }
