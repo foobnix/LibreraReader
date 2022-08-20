@@ -494,7 +494,9 @@ public class AppDB {
             QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
             where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"), FileMetaDao.Properties.IsSearchBook.eq(1));
             //where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
-            return where.list();
+            List<FileMeta> list = where.list();
+            ExtUtils.removeNotFound(list);
+            return list;
         } catch (Exception e) {
             return new ArrayList<FileMeta>();
         }

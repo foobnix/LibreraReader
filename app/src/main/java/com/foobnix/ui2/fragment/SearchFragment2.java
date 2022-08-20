@@ -619,7 +619,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void searchAndOrderExteral(String text) {
         if (searchEditText != null) {
             searchEditText.setText(text);
-            searchAndOrderSync(null);
+            searchAndOrderAsync();
         }
 
     }
@@ -643,7 +643,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Subscribe
     public void onShowTag(OpenTagMessage msg) {
-        searchAndOrderExteral("@tags " + msg.getTagName());
+        if (searchEditText != null) {
+            searchEditText.setText("@tags " + msg.getTagName());
+        }
+        searchAndOrderAsync();
 
     }
 
@@ -668,6 +671,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
 
             ExtUtils.removeReadBooks(searchBy);
+            ExtUtils.removeNotFound(searchBy);
 
 
             List<String> result = new ArrayList<String>();
@@ -778,16 +782,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
-    @Override
-    public void populateDataInUI(List<FileMeta> items) {
-        searchAndOrderSync(items);
-    }
-
-    public void toastState(String command, boolean state) {
+   public void toastState(String command, boolean state) {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
 
-    public void searchAndOrderSync(List<FileMeta> loadingResults) {
+    @Override
+    public void populateDataInUI(List<FileMeta> items) {
         handler.removeCallbacks(sortAndSeach);
 
         String txt = searchEditText.getText().toString().trim();
@@ -832,15 +832,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
 
             searchAdapter.clearItems();
-            if (loadingResults != null) {
-                searchAdapter.getItemsList().addAll(loadingResults);
-            }
-//            else {
-//                List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
-//                ExtUtils.removeReadBooks(allSearchBy);
-//                searchAdapter.getItemsList().addAll(allSearchBy);
-//
-//            }
+            searchAdapter.getItemsList().addAll(items);
             searchAdapter.notifyDataSetChanged();
             handler.postDelayed(new Runnable() {
 

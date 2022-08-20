@@ -1950,15 +1950,25 @@ public class ExtUtils {
 //
 //    }
 
-    public static void removeReadBooks(List<FileMeta> all){
+    public static void removeReadBooks(List<FileMeta> all) {
         if (AppState.get().isHideReadBook) {
             Iterator<FileMeta> iterator = all.iterator();
             while (iterator.hasNext()) {
                 FileMeta next = iterator.next();
-                LOG.d("isHideReadBook-progress",next.getIsRecentProgress(), next.getPath());
-                if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()==1.0){
+                LOG.d("isHideReadBook-progress", next.getIsRecentProgress(), next.getPath());
+                if (next.getIsRecentProgress() != null && next.getIsRecentProgress() == 1.0) {
                     iterator.remove();
                 }
+            }
+        }
+    }
+
+    public static void removeNotFound(List<FileMeta> all) {
+        Iterator<FileMeta> iterator = all.iterator();
+        while (iterator.hasNext()) {
+            FileMeta next = iterator.next();
+            if (!new File(next.getPath()).exists()) {
+                iterator.remove();
             }
         }
     }
