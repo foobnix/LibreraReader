@@ -666,7 +666,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
 
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+
             ExtUtils.removeReadBooks(searchBy);
+
 
             List<String> result = new ArrayList<String>();
             boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
@@ -831,14 +833,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             searchAdapter.clearItems();
             if (loadingResults != null) {
-                ExtUtils.removeReadBooks(loadingResults);
                 searchAdapter.getItemsList().addAll(loadingResults);
-            } else {
-                List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
-                ExtUtils.removeReadBooks(allSearchBy);
-                searchAdapter.getItemsList().addAll(allSearchBy);
-
             }
+//            else {
+//                List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+//                ExtUtils.removeReadBooks(allSearchBy);
+//                searchAdapter.getItemsList().addAll(allSearchBy);
+//
+//            }
             searchAdapter.notifyDataSetChanged();
             handler.postDelayed(new Runnable() {
 
