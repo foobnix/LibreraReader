@@ -96,6 +96,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1948,6 +1949,19 @@ public class ExtUtils {
 //        return encoding == null ? "UTF-8" : encoding;
 //
 //    }
+
+    public static void removeReadBooks(List<FileMeta> all){
+        if (AppState.get().isHideReadBook) {
+            Iterator<FileMeta> iterator = all.iterator();
+            while (iterator.hasNext()) {
+                FileMeta next = iterator.next();
+                LOG.d("isHideReadBook-progress",next.getIsRecentProgress(), next.getPath());
+                if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()==1.0){
+                    iterator.remove();
+                }
+            }
+        }
+    }
 
 
     public static boolean deleteRecursive(File fileOrDirectory) {

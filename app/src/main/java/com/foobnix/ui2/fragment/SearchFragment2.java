@@ -48,6 +48,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -665,6 +666,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
 
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+            ExtUtils.removeReadBooks(searchBy);
 
             List<String> result = new ArrayList<String>();
             boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
@@ -725,6 +727,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 int count = 0;
                 FileMeta fm = null;
+
+                ///
+
                 for (FileMeta it : searchBy) {
                     String parentName = "";
                     if (AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {
@@ -826,9 +831,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             searchAdapter.clearItems();
             if (loadingResults != null) {
+                ExtUtils.removeReadBooks(loadingResults);
                 searchAdapter.getItemsList().addAll(loadingResults);
             } else {
                 List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+                ExtUtils.removeReadBooks(allSearchBy);
                 searchAdapter.getItemsList().addAll(allSearchBy);
 
             }

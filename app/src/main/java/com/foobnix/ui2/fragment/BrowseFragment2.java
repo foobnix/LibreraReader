@@ -879,16 +879,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             } else {
                 List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
-                if (AppState.get().isHideReadBook) {
-                    Iterator<FileMeta> iterator = filesAndDirs.iterator();
-                    while (iterator.hasNext()) {
-                        FileMeta next = iterator.next();
-                        LOG.d("isHideReadBook-progress",next.getIsRecentProgress(), next.getPath());
-                        if(next.getIsRecentProgress()!=null && next.getIsRecentProgress()==1.0){
-                            iterator.remove();
-                        }
-                    }
-                }
+                ExtUtils.removeReadBooks(filesAndDirs);
                 return filesAndDirs;
             }
         } catch (Exception e) {
@@ -1333,6 +1324,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isHideReadBook = isChecked;
+                TempHolder.listHash++;
 
                 populate();
             }

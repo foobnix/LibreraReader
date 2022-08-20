@@ -1257,13 +1257,17 @@ public class PrefFragment2 extends UIFragment {
             final CheckBox isDisplayAnnotation = new CheckBox(v.getContext());
             isDisplayAnnotation.setText(R.string.show_book_description);
 
+            final CheckBox isHideReadBook = new CheckBox(v.getContext());
+            isHideReadBook.setText(R.string.hide_read_books);
+
             final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null,
                     isFirstSurname,
                     isSkipFolderWithNOMEDIA,
                     isShowOnlyOriginalFileNames,
                     isAuthorTitleFromMetaPDF,
                     isUseCalibreOpf,
-                    isDisplayAnnotation);
+                    isDisplayAnnotation,
+                    isHideReadBook);
 
             isFirstSurname.setChecked(AppState.get().isFirstSurname);
             isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
@@ -1271,6 +1275,7 @@ public class PrefFragment2 extends UIFragment {
             isShowOnlyOriginalFileNames.setChecked(AppState.get().isShowOnlyOriginalFileNames);
             isUseCalibreOpf.setChecked(AppState.get().isUseCalibreOpf);
             isDisplayAnnotation.setChecked(AppState.get().isDisplayAnnotation);
+            isHideReadBook.setChecked(AppState.get().isHideReadBook);
 
 
             final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
@@ -1280,6 +1285,7 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
                 AppState.get().isUseCalibreOpf = isUseCalibreOpf.isChecked();
                 AppState.get().isDisplayAnnotation = isDisplayAnnotation.isChecked();
+
 
 
                 handler.removeCallbacksAndMessages(null);
@@ -1299,6 +1305,14 @@ public class PrefFragment2 extends UIFragment {
             isShowOnlyOriginalFileNames.setOnCheckedChangeListener(listener);
             isUseCalibreOpf.setOnCheckedChangeListener(listener);
             isDisplayAnnotation.setOnCheckedChangeListener(listener);
+            isHideReadBook.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    AppState.get().isHideReadBook = isHideReadBook.isChecked();
+                    TempHolder.listHash++;
+                    notifyFragment();
+                }
+            });
 
         });
 
