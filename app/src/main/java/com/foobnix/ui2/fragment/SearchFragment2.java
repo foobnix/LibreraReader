@@ -1088,8 +1088,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
-        onGridList();
-        searchAndOrderAsync();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onGridList();
+                searchAndOrderAsync();
+            }
+        },150);
     }
 
 

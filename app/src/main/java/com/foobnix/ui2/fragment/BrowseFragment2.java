@@ -1380,7 +1380,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 onGridList();
                 populate();
             }
-        },50);
+        },150);
 
     }
 
