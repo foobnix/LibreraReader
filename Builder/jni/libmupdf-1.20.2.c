@@ -139,6 +139,11 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 
 	fz_register_document_handlers(doc->ctx);
 
+	fz_install_load_system_font_funcs(doc->ctx,
+    		load_droid_font,
+    		load_droid_cjk_font,
+    		load_droid_fallback_font);
+
 	fz_set_user_css(doc->ctx, css);
 	fz_set_use_document_css(doc->ctx, isDocCSS);
 
@@ -212,10 +217,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 	(*env)->ReleaseStringUTFChars(env, fname, filename);
 	(*env)->ReleaseStringUTFChars(env, pwd, password);
 
-	fz_install_load_system_font_funcs(doc->ctx,
-    		load_droid_font,
-    		load_droid_cjk_font,
-    		load_droid_fallback_font);
 
 	// DEBUG("MuPdfDocument.nativeOpen(): return handle = %p", doc);
 	return (jlong) (long) doc;
