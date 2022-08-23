@@ -23,7 +23,6 @@
 /* Android font functions */
 
 #include "mupdf/fitz.h"
-#include "mupdf/pdf.h"
 #include "mupdf/ucdn.h"
 
 static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const char *c, int idx)
