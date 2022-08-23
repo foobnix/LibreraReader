@@ -201,14 +201,14 @@ public class TxtUtils {
         return Math.round(f * 100) + "%";
     }
 
-    public static String deltaPageMax(int current) {
+    public static String deltaPageMax(int max) {
         if (AppState.get().pageNumberFormat == AppState.PAGE_NUMBER_FORMAT_PERCENT) {
-            return "100%";
+            return  ""+max;
         }
         if (TempHolder.get().pageDelta == 0) {
-            return "" + current;
+            return "" + max;
         }
-        return "[" + (current + TempHolder.get().pageDelta) + "]";
+        return "[" + (max + TempHolder.get().pageDelta) + "]";
     }
 
     public static void addFilteredGenreSeries(String item, List<String> result, boolean simpleAdd) {
