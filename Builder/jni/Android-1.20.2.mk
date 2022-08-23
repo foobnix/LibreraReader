@@ -35,6 +35,7 @@ LOCAL_SRC_FILES := \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
 	jni_concurrent.c \
+	androidfonts.c \
 	libmupdf-1.20.2.c
 
 
