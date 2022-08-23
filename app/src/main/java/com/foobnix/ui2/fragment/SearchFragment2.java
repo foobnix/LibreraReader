@@ -960,7 +960,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.publication_date//
         );
 
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
+        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_paragraph_justify, //
                 R.drawable.glyphicons_114_justify_compact, //
                 R.drawable.glyphicons_156_show_big_thumbnails, //
                 R.drawable.glyphicons_157_show_thumbnails, //

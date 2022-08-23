@@ -1995,7 +1995,7 @@ public class DragingDialogs {
                             dc.getActivity().startActivity(Intent.createChooser(intent, dc.getActivity().getString(R.string.share)));
                             return true;
                         });
-                        menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_1_picture).setOnMenuItemClickListener((it) -> {
+                        menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_38_picture).setOnMenuItemClickListener((it) -> {
                             ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
                             return true;
                         });

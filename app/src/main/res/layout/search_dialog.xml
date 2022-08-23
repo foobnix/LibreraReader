@@ -42,7 +42,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_28_search1" />
+            android:src="@drawable/glyphicons_28_search" />
     </LinearLayout>
 
     <TextView

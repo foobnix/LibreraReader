@@ -20,14 +20,14 @@
         <ImageView
             android:contentDescription="@string/cd_application_menu"
             android:id="@+id/menu2"
-            android:padding="9dip"
+            android:padding="4dip"
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:layout_margin="0dip"
             android:tint="@color/foobnix_light_blue"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
-            android:src="@drawable/glyphicons_517_menu_hamburger" />
+            android:src="@drawable/glyphicons_600_menu" />
 
 
 
@@ -132,8 +132,8 @@
                 android:layout_height="@dimen/wh_button"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="12dip"
-                android:src="@drawable/glyphicons_601_chevron_up"
+                android:padding="9dip"
+                android:src="@drawable/glyphicons_221_chevron_down"
                 android:tint="@color/white" />
 
             <View
@@ -161,7 +161,7 @@
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
-                android:src="@drawable/glyphicons_114_justify" />
+                android:src="@drawable/glyphicons_114_paragraph_justify" />
         </LinearLayout>
     </LinearLayout>
 

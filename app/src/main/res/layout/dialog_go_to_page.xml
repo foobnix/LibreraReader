@@ -30,7 +30,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/go_to_page"
-            android:src="@drawable/glyphicons_28_search1" />
+            android:src="@drawable/glyphicons_28_search" />
     </LinearLayout>
 
     <GridView

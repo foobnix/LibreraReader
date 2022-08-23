@@ -27,7 +27,7 @@ public class PopupHelper {
         }
         int stringId = R.string.list;
         if (libraryMode == AppState.MODE_LIST) {
-            gridList.setImageResource(R.drawable.glyphicons_114_justify);
+            gridList.setImageResource(R.drawable.glyphicons_114_paragraph_justify);
             stringId = R.string.list;
         } else if (libraryMode == AppState.MODE_LIST_COMPACT) {
             gridList.setImageResource(R.drawable.glyphicons_114_justify_compact);
