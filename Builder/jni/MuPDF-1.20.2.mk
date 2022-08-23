@@ -52,15 +52,12 @@ LOCAL_STATIC_LIBRARIES = webpmux webpdemux webp
 
 LOCAL_C_INCLUDES := $(MUPDF_PATH)/include
 
-LOCAL_CFLAGS := \
-	-ffunction-sections -fdata-sections \
-	-D_FILE_OFFSET_BITS=32 \
-	-DNOTO_SMALL \
-	-DAA_BITS=8 \
-	-DOPJ_STATIC -DOPJ_HAVE_INTTYPES_H -DOPJ_HAVE_STDINT_H \
-	-DHAVE_LCMS2MT \
-
-LOCAL_CFLAGS += -fPIC
+LOCAL_CFLAGS += -ffunction-sections -fdata-sections
+LOCAL_CFLAGS += -D_FILE_OFFSET_BITS=32
+LOCAL_CFLAGS += -DTOFU_NOTO
+LOCAL_CFLAGS += -DTOFU_CJK
+LOCAL_CFLAGS += -DTOFU_SIL
+LOCAL_CFLAGS += -DAA_BITS=8
 
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(FREETYPE_CFLAGS)))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(GUMBO_CFLAGS)))
