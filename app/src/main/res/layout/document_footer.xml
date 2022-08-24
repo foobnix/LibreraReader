@@ -64,7 +64,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:contentDescription="@string/back"
-                android:src="@drawable/glyphicons_222_unshare"
+                android:src="@drawable/glyphicons_885_step_back"
                 android:visibility="visible" />
 
             <ImageView

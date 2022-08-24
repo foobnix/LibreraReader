@@ -27,7 +27,7 @@
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
                     android:padding="5dip"
-                    android:src="@drawable/glyphicons_607_te_background"
+                    android:src="@drawable/glyphicons_695_text_background"
                     android:tint="@color/tint_gray" />
 
                 <ImageView
@@ -64,7 +64,7 @@
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
                     android:padding="5dip"
-                    android:src="@drawable/glyphicons_433_plus"
+                    android:src="@drawable/glyphicons_371_plus"
                     android:tint="@color/tint_gray" />
             </LinearLayout>
         </HorizontalScrollView>
@@ -179,7 +179,7 @@
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:padding="4dip"
-                android:src="@drawable/glyphicons_basic_578_share"
+                android:src="@drawable/glyphicons_578_share"
                 android:tint="@color/tint_gray" />
 
             <TextView
@@ -206,7 +206,7 @@
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:padding="4dip"
-                android:src="@drawable/glyphicons_basic_614_copy"
+                android:src="@drawable/glyphicons_614_copy"
                 android:tint="@color/tint_gray" />
 
             <TextView

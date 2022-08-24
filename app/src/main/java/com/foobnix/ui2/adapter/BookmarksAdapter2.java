@@ -62,7 +62,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
                 onDeleteClickListener.onResultRecive(item);
             }
         });
-        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_208_remove_2 : R.drawable.glyphicons_basic_578_share);
+        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_208_remove_2 : R.drawable.glyphicons_578_share);
         TintUtil.setTintImageNoAlpha(holder.remove, holder.remove.getResources().getColor(R.color.lt_grey_dima));
 
         if (withTitle) {

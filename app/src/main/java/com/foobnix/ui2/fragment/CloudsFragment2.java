@@ -102,14 +102,14 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         });
         cloudsLayout = view.findViewById(R.id.cloudsLayout);
         isShowCloudsLine = view.findViewById(R.id.isShowCloudsLine);
-        isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+        isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_221_chevron_down : R.drawable.glyphicons_222_chevron_up);
         cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
         isShowCloudsLine.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
-                isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+                isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_221_chevron_down : R.drawable.glyphicons_222_chevron_up);
                 cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
             }
         });

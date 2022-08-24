@@ -145,7 +145,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/glyphicons_602_chevron_down" />
+            android:src="@drawable/glyphicons_221_chevron_down" />
 
         <View
             android:layout_width="1dip"

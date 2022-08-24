@@ -649,7 +649,7 @@ public class Dialogs {
         view.setBackgroundColor(Color.TRANSPARENT);
         final ImageView img = (ImageView) view.findViewById(R.id.itColor);
         img.setColorFilter(a.getResources().getColor(R.color.tint_gray));
-        img.setImageResource(R.drawable.glyphicons_433_plus);
+        img.setImageResource(R.drawable.glyphicons_371_plus);
         img.setBackgroundColor(AppState.get().uiTextColorUser);
         colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 

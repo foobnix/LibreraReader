@@ -93,14 +93,14 @@ public class DialogSpeedRead {
             @Override
             public boolean onLongClick(View v) {
                 MyPopupMenu menu = new MyPopupMenu(textWord);
-                menu.getMenu().add(R.string.share).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                menu.getMenu().add(R.string.share).setIcon(R.drawable.glyphicons_578_share).setOnMenuItemClickListener((it) -> {
                     final Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_TEXT, textWord.getText().toString().trim());
                     a.startActivity(Intent.createChooser(intent, a.getString(R.string.share)));
                     return true;
                 });
-                menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+                menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_614_copy).setOnMenuItemClickListener((it) -> {
 
                     if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
                         android.text.ClipboardManager clipboard = (android.text.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);

@@ -631,7 +631,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
 
-        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_221_chevron_down : R.drawable.glyphicons_222_chevron_up);
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
         sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
@@ -968,7 +968,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered, //
                 R.drawable.glyphicons_67_tags, //
-                R.drawable.glyphicons_basic_417_globe, //
+                R.drawable.glyphicons_417_globe, //
                 R.drawable.glyphicons_67_tags,
                 R.drawable.glyphicons_451_hand_like,
                 R.drawable.glyphicons_589_book_open

@@ -1428,7 +1428,7 @@ public class DragingDialogs {
                             }
                             final ImageView image = new ImageView(controller.getActivity());
                             if (line.startsWith("H")) {
-                                image.setImageResource(R.drawable.glyphicons_607_te_background);
+                                image.setImageResource(R.drawable.glyphicons_695_text_background);
                             } else if (line.startsWith("U")) {
                                 image.setImageResource(R.drawable.glyphicons_104_underline);
                             } else if (line.startsWith("S")) {
@@ -1481,7 +1481,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
-                        Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
+                        Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_695_text_background);
                         highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_underline);
@@ -1834,7 +1834,7 @@ public class DragingDialogs {
                 ImageView image = new ImageView(anchor.getContext());
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
                 image.setLayoutParams(layoutParams);
-                image.setImageResource(R.drawable.glyphicons_433_plus);
+                image.setImageResource(R.drawable.glyphicons_371_plus);
                 image.setBackgroundResource(R.drawable.bg_border_ltgray);
 
                 TintUtil.setTintImageWithAlpha(image, Color.LTGRAY);
@@ -1988,7 +1988,7 @@ public class DragingDialogs {
 
 
                         MyPopupMenu menu = new MyPopupMenu(view);
-                        menu.getMenu().add(R.string.share_as_text).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                        menu.getMenu().add(R.string.share_as_text).setIcon(R.drawable.glyphicons_578_share).setOnMenuItemClickListener((it) -> {
                             final Intent intent = new Intent(Intent.ACTION_SEND);
                             intent.setType("text/plain");
                             intent.putExtra(Intent.EXTRA_TEXT, dc.getTextForPage(position));
@@ -1999,7 +1999,7 @@ public class DragingDialogs {
                             ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
                             return true;
                         });
-                        menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+                        menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_614_copy).setOnMenuItemClickListener((it) -> {
 
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                                 ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
@@ -2406,7 +2406,7 @@ public class DragingDialogs {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_basic_578_share, R.string.share,
+                titlePopupMenu.getMenu(R.drawable.glyphicons_578_share, R.string.share,
                         () -> ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook())
                 );
 
@@ -4817,14 +4817,14 @@ public class DragingDialogs {
                     @Override
                     public void onClick(final View v) {
                         AppState.get().isShowToolBar = !AppState.get().isShowToolBar;
-                        pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_336_pushpin : R.drawable.glyphicons_200_ban);
+                        pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_415_push_pin : R.drawable.glyphicons_305_no_symbol);
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
 
                     }
                 });
-                pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_336_pushpin : R.drawable.glyphicons_200_ban);
+                pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_415_push_pin : R.drawable.glyphicons_305_no_symbol);
 
                 // TOP panel end
 

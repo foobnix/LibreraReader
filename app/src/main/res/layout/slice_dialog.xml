@@ -18,7 +18,7 @@
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:padding="3dip"
-            android:src="@drawable/glyphicons_434_minus"
+            android:src="@drawable/glyphicons_372_minus"
             android:tint="@color/tint_gray" />
 
         <EditText
@@ -42,7 +42,7 @@
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:padding="3dip"
-            android:src="@drawable/glyphicons_433_plus"
+            android:src="@drawable/glyphicons_371_plus"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 

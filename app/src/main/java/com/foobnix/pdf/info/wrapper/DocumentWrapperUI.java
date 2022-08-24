@@ -1725,9 +1725,9 @@ public class DocumentWrapperUI {
 
     public void initToolBarPlusMinus() {
         if (AppState.get().isShowToolBar) {
-            toolBarButton.setImageResource(R.drawable.glyphicons_336_pushpin);
+            toolBarButton.setImageResource(R.drawable.glyphicons_415_push_pin);
         } else {
-            toolBarButton.setImageResource(R.drawable.glyphicons_200_ban);
+            toolBarButton.setImageResource(R.drawable.glyphicons_305_no_symbol);
         }
         if (AppState.get().isEditMode || AppState.get().isShowToolBar) {
             titleBar.setVisibility(View.VISIBLE);

@@ -107,7 +107,7 @@ import java.util.Date;
 import java.util.List;
 
 public class PrefFragment2 extends UIFragment {
-    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.preferences, R.drawable.glyphicons_281_settings);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.preferences, R.drawable.glyphicons_5_settings);
 
     private static final String WWW_SITE = "https://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
@@ -2084,7 +2084,7 @@ public class PrefFragment2 extends UIFragment {
                 getResources().
 
                         getColor(R.color.tint_gray));
-        img.setImageResource(R.drawable.glyphicons_433_plus);
+        img.setImageResource(R.drawable.glyphicons_371_plus);
         img.setBackgroundColor(AppState.get().userColor);
         colorsLine.addView(view, new
 

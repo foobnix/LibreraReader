@@ -385,7 +385,7 @@
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="100dip"
-        android:src="@drawable/glyphicons_basic_299_circle_selected"
+        android:src="@drawable/glyphicons_299_circle_selected"
         android:tint="@color/tint_blue" />
 
     <ImageView
@@ -393,7 +393,7 @@
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="150dip"
-        android:src="@drawable/glyphicons_basic_298_circle_empty"
+        android:src="@drawable/glyphicons_298_circle_empty"
         android:tint="@color/tint_blue" />
 
     <FrameLayout

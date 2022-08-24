@@ -623,7 +623,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_281_settings"
+                android:src="@drawable/glyphicons_5_settings"
                 android:tint="@color/tint_gray" />
 
             <LinearLayout
@@ -940,7 +940,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_433_plus"
+                android:src="@drawable/glyphicons_371_plus"
                 android:tint="@color/tint_gray" />
 
             <TextView

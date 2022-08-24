@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_281_settings"
+                android:src="@drawable/glyphicons_5_settings"
                 android:tint="@color/tint_gray" />
 
             <TextView

@@ -117,7 +117,7 @@
                 android:layout_marginLeft="2dip"
                 android:layout_weight="0"
                 android:rotation="-90"
-                android:src="@drawable/glyphicons_766_battery_full"
+                android:src="@drawable/glyphicons_822_battery_charged"
                 android:tint="@color/tint_gray" />
 
             <TextView
@@ -187,7 +187,7 @@
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="1dip"
-                android:src="@drawable/glyphicons_200_ban"
+                android:src="@drawable/glyphicons_305_no_symbol"
                 android:tint="@color/tint_gray" />
 
             <ImageView

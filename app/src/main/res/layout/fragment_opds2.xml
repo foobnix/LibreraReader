@@ -25,7 +25,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/cd_back_to_parent"
-            android:src="@drawable/glyphicons_225_chevron_left" />
+            android:src="@drawable/glyphicons_223_chevron_left" />
 
         <View
             android:layout_width="1dip"
@@ -104,7 +104,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/cd_add_new_opds_catalog"
-            android:src="@drawable/glyphicons_433_plus" />
+            android:src="@drawable/glyphicons_371_plus" />
     </LinearLayout>
 
     <FrameLayout

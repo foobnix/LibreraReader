@@ -194,7 +194,7 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_336_pushpin"
+                android:src="@drawable/glyphicons_415_push_pin"
                 android:tint="@color/tint_gray"
                 android:visibility="gone" />
         </LinearLayout>
@@ -292,7 +292,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_605_textsize"
+                android:src="@drawable/glyphicons_106_text_height"
                 android:tint="@color/tint_gray" />
 
             <LinearLayout

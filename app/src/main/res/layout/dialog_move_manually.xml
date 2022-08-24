@@ -18,7 +18,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_219_circle_arrow_top"
+            android:src="@drawable/glyphicons_648_circle_up"
             android:tint="@color/lt_grey" />
         
         <ImageView
@@ -45,7 +45,7 @@
             android:layout_height="50dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_217_circle_arrow_left"
+            android:src="@drawable/glyphicons_649_circle_left"
             android:tint="@color/lt_grey" />
 
         <ImageView
@@ -55,7 +55,7 @@
             android:layout_marginLeft="10dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_218_circle_arrow_right"
+            android:src="@drawable/glyphicons_650_circle_right"
             android:tint="@color/lt_grey" />
         
         
@@ -97,7 +97,7 @@
             android:layout_marginLeft="30dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_220_circle_arrow_down"
+            android:src="@drawable/glyphicons_647_circle_down"
             android:tint="@color/lt_grey" />
 
         

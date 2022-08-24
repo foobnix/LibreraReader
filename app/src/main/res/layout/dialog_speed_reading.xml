@@ -59,7 +59,7 @@
             android:layout_centerVertical="true"
             android:layout_weight="0"
             android:background="@drawable/bg_clickable"
-            android:src="@drawable/glyphicons_225_chevron_left"
+            android:src="@drawable/glyphicons_223_chevron_left"
             android:tint="@color/tint_blue" />
 
         <ImageView
