@@ -256,7 +256,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/menu"
-                android:src="@drawable/glyphicons_518_option_vertical" />
+                android:src="@drawable/glyphicons_498_more_vertical" />
 
             <ImageView
                 android:id="@+id/lockUnlock"
@@ -265,7 +265,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/block_page_movement_horizontally"
-                android:src="@drawable/glyphicons_204_lock" />
+                android:src="@drawable/glyphicons_217_lock" />
         </LinearLayout>
     </LinearLayout>
 

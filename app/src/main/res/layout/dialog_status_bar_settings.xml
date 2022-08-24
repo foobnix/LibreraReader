@@ -130,7 +130,7 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_207_ok"
+                android:src="@drawable/glyphicons_739_check"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
         

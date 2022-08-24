@@ -199,7 +199,7 @@
                     android:contentDescription="@string/remove"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="6dip"
-                    android:src="@drawable/glyphicons_208_remove_2"
+                    android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima1"
                     android:visibility="visible" />
 
@@ -234,7 +234,7 @@
                     android:padding="5dip"
                     android:contentDescription="@string/book_menu"
                     android:singleLine="true"
-                    android:src="@drawable/glyphicons_518_option_vertical"
+                    android:src="@drawable/glyphicons_498_more_vertical"
                     android:tint="@color/tint_gray"
                     android:visibility="visible" />
             </LinearLayout>

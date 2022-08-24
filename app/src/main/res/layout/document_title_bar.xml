@@ -153,7 +153,7 @@
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/glyphicons_185_volume_up"
+                android:src="@drawable/glyphicons_186_volume_up"
                 android:tint="@color/tint_gray"
                 android:visibility="visible" />
 
@@ -164,7 +164,7 @@
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/glyphicons_205_unlock"
+                android:src="@drawable/glyphicons_218_lock_open"
                 android:tint="@color/tint_gray"
                 android:visibility="visible" />
 
@@ -200,7 +200,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="1dip"
                 android:contentDescription="@string/close"
-                android:src="@drawable/glyphicons_208_remove_2"
+                android:src="@drawable/glyphicons_599_menu_close"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 

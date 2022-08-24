@@ -1577,9 +1577,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateLockMode() {
         if (AppSP.get().isLocked) {
-            lockModelImage.setImageResource(R.drawable.glyphicons_204_lock);
+            lockModelImage.setImageResource(R.drawable.glyphicons_217_lock);
         } else {
-            lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
+            lockModelImage.setImageResource(R.drawable.glyphicons_218_lock_open);
         }
 //        if (AppState.get().l) {
 //            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);

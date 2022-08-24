@@ -87,7 +87,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/cleanFilter"
                 android:layout_weight="0"
-                android:src="@drawable/glyphicons_207_ok" />
+                android:src="@drawable/glyphicons_739_check" />
 
             <ImageView
                 android:contentDescription="@string/cd_clear_search_reasult"
@@ -98,7 +98,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/countBooks"
                 android:layout_weight="0"
-                android:src="@drawable/glyphicons_208_remove_2" />
+                android:src="@drawable/glyphicons_599_menu_close" />
         </RelativeLayout>
 
         <LinearLayout

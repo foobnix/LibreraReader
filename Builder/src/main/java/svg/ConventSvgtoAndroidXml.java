@@ -18,13 +18,15 @@ public class ConventSvgtoAndroidXml {
         String out = "/home/dev/git/LibreraReader/app/src/main/res/drawable/";
 
         List<Integer> ids = Arrays.asList(
-                4,5,21,28,37,38,49,55,66,67,72,73,77,82,87,94,
+                4,5,17,21,28,37,38,49,55,66,67,72,73,77,82,86,87,92,94,
                 101,104,105,106,108,114,115,137,145,151,157,158,159,
-                160,166,172,173,174,175,176,177,178,193,
-                211,221,222,223,224,231,232,292,298,299,
-                305,309,310,371,372,
-                415,417,451,544,578,589,
+                160,166,172,173,174,175,176,177,178,185,186,193,
+                211,212,217, 218, 221,222,223,224,231,232,292,298,299,
+                305,309,310,371,372,399,
+                415,417,451,476, 477, 498,
+                522,544,545, 578,589,599,
                 600,614,631,632,636,647,648,649,650,695,
+                739,
                 822,885);
 
         File[] files = new File(in).listFiles();
@@ -58,8 +60,8 @@ public class ConventSvgtoAndroidXml {
             String androidXml = "<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
                     "    android:viewportHeight=\"32\"\n" +
                     "    android:viewportWidth=\"32\"\n" +
-                    "    android:width=\"28dp\"\n" +
-                    "    android:height=\"28dp\"\n" +
+                    "    android:width=\"32dp\"\n" +
+                    "    android:height=\"32dp\"\n" +
                     "    >\n";
 
             path = path.replaceAll("id=\"(\\w+-*\\w*-*\\w*)\"","");

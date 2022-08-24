@@ -1921,7 +1921,7 @@ public class DragingDialogs {
 
             @Override
             public void beforeCreate() {
-                setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(anchor.getContext(), anchor);
 
                 titlePopupMenu.getMenu().addCheckbox(dc.getString(R.string.show_search_bar), AppState.get().isShowSearchBar, (buttonView, isChecked) -> {
@@ -2403,7 +2403,7 @@ public class DragingDialogs {
 
                 bookmarksAdapter.notifyDataSetChanged();
 
-                setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_578_share, R.string.share,
@@ -3508,13 +3508,13 @@ public class DragingDialogs {
 
                 final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
                 isSwipeGestureReverse.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_211_arrow_down);
+                isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_212_arrow_up : R.drawable.glyphicons_211_arrow_down);
                 isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
-                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_211_arrow_down);
+                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_212_arrow_up : R.drawable.glyphicons_211_arrow_down);
                     }
                 });
 

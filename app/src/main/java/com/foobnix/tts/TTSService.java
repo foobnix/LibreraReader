@@ -343,7 +343,7 @@ public class TTSService extends Service {
                 .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
                 .setContentTitle(Apps.getApplicationName(this)) //
                 .setContentText(getString(R.string.please_wait))
-                .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
+                .addAction(R.drawable.glyphicons_599_menu_close, getString(R.string.stop), stopDestroy)//
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                 .build();
 

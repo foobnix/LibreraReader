@@ -52,7 +52,7 @@
             android:adjustViewBounds="true"
             android:layout_marginRight="4dip"
             android:cropToPadding="true"
-            android:src="@drawable/glyphicons_517_menu_hamburger"
+            android:src="@drawable/glyphicons_600_menu"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 

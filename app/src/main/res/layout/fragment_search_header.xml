@@ -58,7 +58,7 @@
                 android:layout_toLeftOf="@+id/countBooks"
                 android:layout_weight="0"
                 android:contentDescription="@string/clear_all"
-                android:src="@drawable/glyphicons_208_remove_2" />
+                android:src="@drawable/glyphicons_599_menu_close" />
         </RelativeLayout>
 
         <LinearLayout

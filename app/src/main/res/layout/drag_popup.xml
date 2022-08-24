@@ -82,7 +82,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:src="@drawable/glyphicons_208_remove_2" />
+                android:src="@drawable/glyphicons_599_menu_close" />
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.MyFrameLayout

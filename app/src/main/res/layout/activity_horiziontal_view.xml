@@ -238,7 +238,7 @@
                 android:layout_marginRight="10dip"
                 android:layout_weight="0"
                 android:contentDescription="@string/close_book"
-                android:src="@drawable/glyphicons_208_remove_2" />
+                android:src="@drawable/glyphicons_599_menu_close" />
         </RelativeLayout>
 
         <LinearLayout
@@ -274,7 +274,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/contrast"
-                android:src="@drawable/glyphicons_190_brightness_my"
+                android:src="@drawable/glyphicons_92_contrast"
                 android:visibility="visible" />
 
             <com.foobnix.pdf.info.view.UnderlineImageView
@@ -333,7 +333,7 @@
         android:background="@drawable/bg_search_second_clickable"
         android:contentDescription="read aloudW"
         android:padding="7dip"
-        android:src="@drawable/glyphicons_185_volume_up"
+        android:src="@drawable/glyphicons_186_volume_up"
         android:tint="@color/white"
         android:visibility="gone" />
 

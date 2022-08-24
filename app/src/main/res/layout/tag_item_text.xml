@@ -25,7 +25,7 @@
         android:padding="5dip"
 		android:layout_marginLeft="10dip"
         android:contentDescription="@string/remove"
-        android:src="@drawable/glyphicons_208_remove_2"
+        android:src="@drawable/glyphicons_599_menu_close"
         android:tint="@color/lt_grey_dima"
         android:visibility="visible" />
 

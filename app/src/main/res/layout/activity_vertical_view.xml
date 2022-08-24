@@ -121,7 +121,7 @@
         android:background="@drawable/bg_search_second_clickable"
         android:contentDescription="@string/text_to_speech"
         android:padding="7dip"
-        android:src="@drawable/glyphicons_185_volume_up"
+        android:src="@drawable/glyphicons_186_volume_up"
         android:tint="@color/white"
         android:visibility="gone" />
 

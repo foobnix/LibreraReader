@@ -139,7 +139,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="6dip"
                     android:contentDescription="@string/book_menu"
-                    android:src="@drawable/glyphicons_518_option_vertical"
+                    android:src="@drawable/glyphicons_498_more_vertical"
                     android:tint="@color/tint_gray" />
             </LinearLayout>
         </LinearLayout>

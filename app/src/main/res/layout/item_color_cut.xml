@@ -12,6 +12,6 @@
         android:padding="5dip"
         android:layout_gravity="center"
         android:tint="@color/tint_gray"
-        android:src="@drawable/baseline_delete_black_48dp" />
+        android:src="@drawable/glyphicons_17_bin" />
 
 </FrameLayout>

@@ -29,6 +29,6 @@
         android:layout_marginLeft="20dip"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
-        android:src="@drawable/glyphicons_208_remove_2" />
+        android:src="@drawable/glyphicons_599_menu_close" />
 
 </LinearLayout>

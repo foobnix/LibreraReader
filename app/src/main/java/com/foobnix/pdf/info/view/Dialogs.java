@@ -155,7 +155,7 @@ public class Dialogs {
                 img.setMaxWidth(Dips.DP_25);
                 img.setMaxHeight(Dips.DP_25);
 
-                img.setImageResource(R.drawable.glyphicons_208_remove_2);
+                img.setImageResource(R.drawable.glyphicons_599_menu_close);
                 TintUtil.setTintImageWithAlpha(img);
 
                 img.setOnClickListener(new OnClickListener() {
@@ -171,7 +171,7 @@ public class Dialogs {
                 move.setMaxWidth(Dips.DP_25);
                 move.setMaxHeight(Dips.DP_25);
 
-                move.setImageResource(R.drawable.glyphicons_517_menu_hamburger);
+                move.setImageResource(R.drawable.glyphicons_600_menu);
                 TintUtil.setTintImageWithAlpha(move);
 
 

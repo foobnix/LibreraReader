@@ -196,7 +196,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 AppState.get().sortByReverse = !AppState.get().sortByReverse;
-                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
                 sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
 
 
@@ -241,7 +241,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         });
         openAsBook.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
         sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
 
         sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));

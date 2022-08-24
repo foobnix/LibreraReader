@@ -40,7 +40,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_weight="0"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_182_download_alt"
+                android:src="@drawable/glyphicons_399_import"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 

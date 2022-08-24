@@ -44,7 +44,7 @@
                             android:contentDescription="@string/menu"
                             android:gravity="center"
                             android:padding="10dip"
-                            android:src="@drawable/glyphicons_517_menu_hamburger"
+                            android:src="@drawable/glyphicons_600_menu"
                             android:tint="@color/white" />
 
                         <com.foobnix.pdf.SlidingTabLayout

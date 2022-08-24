@@ -1074,14 +1074,14 @@ public class DocumentWrapperUI {
         // int mode = View.VISIBLE;
 
         if (AppSP.get().isLocked) {
-            lockUnlock.setImageResource(R.drawable.glyphicons_204_lock);
-            lockUnlockTop.setImageResource(R.drawable.glyphicons_204_lock);
+            lockUnlock.setImageResource(R.drawable.glyphicons_217_lock);
+            lockUnlockTop.setImageResource(R.drawable.glyphicons_217_lock);
             // lockUnlock.setColorFilter(a.getResources().getColor(R.color.tint_yellow));
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_yellow));
             // mode = View.VISIBLE;
         } else {
-            lockUnlock.setImageResource(R.drawable.glyphicons_205_unlock);
-            lockUnlockTop.setImageResource(R.drawable.glyphicons_205_unlock);
+            lockUnlock.setImageResource(R.drawable.glyphicons_218_lock_open);
+            lockUnlockTop.setImageResource(R.drawable.glyphicons_218_lock_open);
             // lockUnlock.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // mode = View.GONE;

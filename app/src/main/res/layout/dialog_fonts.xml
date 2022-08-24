@@ -40,7 +40,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_214_arrow_up"
+            android:src="@drawable/glyphicons_212_arrow_up"
             android:tint="@color/tint_gray" />
 
         <ImageView
@@ -90,7 +90,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_214_arrow_up"
+            android:src="@drawable/glyphicons_212_arrow_up"
             android:tint="@color/tint_gray" />
 
         <ImageView
@@ -140,7 +140,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_214_arrow_up"
+            android:src="@drawable/glyphicons_212_arrow_up"
             android:tint="@color/tint_gray" />
 
         <ImageView
@@ -190,7 +190,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_214_arrow_up"
+            android:src="@drawable/glyphicons_212_arrow_up"
             android:tint="@color/tint_gray" />
 
         <ImageView
@@ -241,7 +241,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_214_arrow_up"
+            android:src="@drawable/glyphicons_212_arrow_up"
             android:tint="@color/tint_gray" />
 
         <ImageView
@@ -310,7 +310,7 @@
                 android:layout_weight="0"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="10dip"
-                android:src="@drawable/glyphicons_214_arrow_up"
+                android:src="@drawable/glyphicons_212_arrow_up"
                 android:tint="@color/tint_gray" />
 
             <ImageView

@@ -124,7 +124,7 @@ public class FileInformationDialog {
         boolean isCloud = Clouds.showHideCloudImage(image, fileMeta.getPath());
         if (!isCloud) {
             // image.setVisibility(View.VISIBLE);
-            image.setImageResource(R.drawable.glyphicons_41_cloud_plus);
+            image.setImageResource(R.drawable.glyphicons_545_cloud_upload);
             TintUtil.setTintImageWithAlpha(image);
             image.setOnClickListener(new OnClickListener() {
 

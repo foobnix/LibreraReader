@@ -83,6 +83,6 @@
         android:contentDescription="@string/close"
         android:background="@drawable/bg_clickable"
         android:padding="10dp"
-        android:src="@drawable/glyphicons_208_remove_2" />
+        android:src="@drawable/glyphicons_599_menu_close" />
 
 </LinearLayout>
