@@ -920,7 +920,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_filetypes_65_pdf"
+                android:src="@drawable/glyphicons_filetypes_1_file_text"
                 android:tint="@color/tint_gray" />
 
             <TextView

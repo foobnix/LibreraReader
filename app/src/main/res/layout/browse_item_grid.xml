@@ -137,7 +137,7 @@
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="6dip"
+                    android:padding="2dip"
                     android:contentDescription="@string/book_menu"
                     android:src="@drawable/glyphicons_498_more_vertical"
                     android:tint="@color/tint_gray" />

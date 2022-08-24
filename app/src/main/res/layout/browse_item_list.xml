@@ -231,7 +231,7 @@
                     android:layout_marginBottom="-1dip"
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="5dip"
+                    android:padding="2dip"
                     android:contentDescription="@string/book_menu"
                     android:singleLine="true"
                     android:src="@drawable/glyphicons_498_more_vertical"
