@@ -179,7 +179,7 @@
             android:padding="4dip"
             android:layout_weight="0"
             android:tintMode="@color/tint_blue"
-            android:src="@drawable/glyphicons_2_book_open" />
+            android:src="@drawable/glyphicons_589_book_open" />
 
         <LinearLayout
             android:layout_weight="1"

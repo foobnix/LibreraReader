@@ -1,8 +1,14 @@
 package com.foobnix.pdf;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.PathShape;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -300,6 +306,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                 Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
 
+
+
                 if (myPOS == POS_VERTICAL) {
                     tabTitleView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
                 } else {
@@ -307,8 +315,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 }
 
 
-                tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
 
+                tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
 
                 if (AppState.get().appTheme == AppState.THEME_INK) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);

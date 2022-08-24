@@ -1430,9 +1430,9 @@ public class DragingDialogs {
                             if (line.startsWith("H")) {
                                 image.setImageResource(R.drawable.glyphicons_607_te_background);
                             } else if (line.startsWith("U")) {
-                                image.setImageResource(R.drawable.glyphicons_104_te_underline);
+                                image.setImageResource(R.drawable.glyphicons_104_underline);
                             } else if (line.startsWith("S")) {
-                                image.setImageResource(R.drawable.glyphicons_105_te_strike);
+                                image.setImageResource(R.drawable.glyphicons_105_strikethrough);
                             }
                             String color = line.substring(1);
                             final int colorInt = Color.parseColor(color);
@@ -1484,10 +1484,10 @@ public class DragingDialogs {
                         Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
                         highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_te_underline);
+                        Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_underline);
                         underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_te_strike);
+                        Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_strikethrough);
                         strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         menu.getMenu().add(R.string.highlight_of_text).setIcon(highlight).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -3508,13 +3508,13 @@ public class DragingDialogs {
 
                 final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
                 isSwipeGestureReverse.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
+                isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_211_arrow_down);
                 isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
-                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
+                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_211_arrow_down);
                     }
                 });
 
@@ -4745,7 +4745,7 @@ public class DragingDialogs {
                         controller.restartActivity();
                     }
                 });
-                brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+                brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_231_moon);
 
                 final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
                 // isCrop.setVisibility(controller.isTextFormat() ||

@@ -96,7 +96,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/recent"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_72_book1"
+                android:src="@drawable/glyphicons_72_book"
                 android:tint="@color/tint_gray"
                 android:visibility="gone" />
 
@@ -330,7 +330,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_101_font"
+                android:src="@drawable/glyphicons_101_text"
                 android:tint="@color/tint_gray" />
 
             <TextView
@@ -636,7 +636,7 @@
                         android:layout_width="@dimen/wh_button"
                         android:layout_height="@dimen/wh_button"
                         android:padding="10dip"
-                        android:src="@drawable/glyphicons_2_moon"
+                        android:src="@drawable/glyphicons_231_moon"
                         android:tint="#ffffff" />
                 </RelativeLayout>
 

@@ -701,7 +701,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        dayNightButton.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
+        dayNightButton.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_231_moon);
 
         moveCenter.setOnClickListener(new OnClickListener() {
 

@@ -17,7 +17,12 @@ public class ConventSvgtoAndroidXml {
         String in = "/home/dev/Dropbox/Projects/glyphicons_pro/glyphicons-pro/glyphicons-pro/glyphicons-basic-2-0/svg/individual-svg/";
         String out = "/home/dev/git/LibreraReader/app/src/main/res/drawable/";
 
-        List<Integer> ids = Arrays.asList(21,28,38,82,114,221,222,600);
+        List<Integer> ids = Arrays.asList(
+                4,21,28,37,38,49,55,66,67,72,73,82,87,94,
+                101,104,105,108,114,137,145,151,157,158,
+                211,221,222,231,292,
+                309,310,
+                417,451,544,589,600);
 
         File[] files = new File(in).listFiles();
         for (File file : files) {
@@ -50,11 +55,11 @@ public class ConventSvgtoAndroidXml {
             String androidXml = "<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\n" +
                     "    android:viewportHeight=\"32\"\n" +
                     "    android:viewportWidth=\"32\"\n" +
-                    "    android:width=\"48dp\"\n" +
-                    "    android:height=\"48dp\"\n" +
+                    "    android:width=\"28dp\"\n" +
+                    "    android:height=\"28dp\"\n" +
                     "    >\n";
 
-            path = path.replaceAll("id=\"(\\w+-*\\w+)\"","");
+            path = path.replaceAll("id=\"(\\w+-*\\w*-*\\w*)\"","");
             path = path.replace(" d=","android:fillColor=\"@color/black\"\n android:pathData=");
 
             androidXml += path+"\n";

@@ -84,7 +84,7 @@ import java.util.Stack;
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static final String EMPTY_ID = "\u00A0";
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_589_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
     private static final String CMD_MARGIN = "@@keycode_margin";
@@ -962,16 +962,16 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_paragraph_justify, //
                 R.drawable.glyphicons_114_justify_compact, //
-                R.drawable.glyphicons_156_show_big_thumbnails, //
-                R.drawable.glyphicons_157_show_thumbnails, //
+                R.drawable.glyphicons_157_thumbnails, //
+                R.drawable.glyphicons_158_thumbnails_small, //
                 R.drawable.glyphicons_4_user, //
                 R.drawable.glyphicons_66_tag, //
                 R.drawable.glyphicons_710_list_numbered, //
-                R.drawable.glyphicons_67_keywords, //
+                R.drawable.glyphicons_67_tags, //
                 R.drawable.glyphicons_basic_417_globe, //
                 R.drawable.glyphicons_67_tags,
-                R.drawable.glyphicons_4_thumbs_up,
-                R.drawable.glyphicons_2_book_open
+                R.drawable.glyphicons_451_hand_like,
+                R.drawable.glyphicons_589_book_open
         );
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //

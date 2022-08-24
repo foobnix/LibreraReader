@@ -22,7 +22,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:padding="8dip"
-            android:src="@drawable/glyphicons_2_book_open" />
+            android:src="@drawable/glyphicons_589_book_open" />
 
         <TextView
             android:id="@+id/text1"

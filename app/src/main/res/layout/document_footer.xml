@@ -84,7 +84,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/recent"
-                android:src="@drawable/glyphicons_72_book1" />
+                android:src="@drawable/glyphicons_72_book" />
 
             <ImageView
                 android:id="@+id/editTop2"
@@ -93,7 +93,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/annotations_draw"
-                android:src="@drawable/glyphicons_151_edit" />
+                android:src="@drawable/glyphicons_151_square_edit" />
 
             <ImageView
                 android:id="@+id/thumbnail"
@@ -111,7 +111,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/bookmarks"
-                android:src="@drawable/glyphicons_73_bookmark1" />
+                android:src="@drawable/glyphicons_73_bookmark" />
 
             <ImageView
                 android:id="@+id/onDocDontext"

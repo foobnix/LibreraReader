@@ -40,7 +40,7 @@
             android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray_dash2"
-            android:src="@drawable/glyphicons_73_bookmark1"
+            android:src="@drawable/glyphicons_73_bookmark"
             android:tint="@color/lt_grey_dima" />
     </LinearLayout>
 

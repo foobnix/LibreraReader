@@ -33,10 +33,10 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.glyphicons_114_justify_compact);
             stringId = R.string.compact;
         } else if (libraryMode == AppState.MODE_GRID) {
-            gridList.setImageResource(R.drawable.glyphicons_156_show_big_thumbnails);
+            gridList.setImageResource(R.drawable.glyphicons_157_thumbnails);
             stringId = R.string.grid;
         } else if (libraryMode == AppState.MODE_COVERS) {
-            gridList.setImageResource(R.drawable.glyphicons_157_show_thumbnails);
+            gridList.setImageResource(R.drawable.glyphicons_158_thumbnails_small);
             stringId = R.string.cover;
         } else if (libraryMode == AppState.MODE_AUTHORS) {
             gridList.setImageResource(R.drawable.glyphicons_4_user);
@@ -51,13 +51,13 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.glyphicons_67_tags);
             stringId = R.string.my_tags;
         } else if (libraryMode == AppState.MODE_KEYWORDS) {
-            gridList.setImageResource(R.drawable.glyphicons_67_keywords);
+            gridList.setImageResource(R.drawable.glyphicons_67_tags);
             stringId = R.string.keywords;
         } else if (libraryMode == AppState.MODE_PUBLISHER) {
-            gridList.setImageResource(R.drawable.glyphicons_4_thumbs_up);
+            gridList.setImageResource(R.drawable.glyphicons_451_hand_like);
             stringId = R.string.publisher;
         }else if (libraryMode == AppState.MODE_PUBLICATION_DATE) {
-            gridList.setImageResource(R.drawable.glyphicons_2_book_open);
+            gridList.setImageResource(R.drawable.glyphicons_589_book_open);
             stringId = R.string.publication_date;
         }
 

@@ -39,7 +39,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_49_star);
 
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
@@ -163,8 +163,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
                 R.drawable.glyphicons_114_justify_compact, //
-                R.drawable.glyphicons_156_show_big_thumbnails, //
-                R.drawable.glyphicons_157_show_thumbnails //
+                R.drawable.glyphicons_157_thumbnails, //
+                R.drawable.glyphicons_158_thumbnails_small //
         );
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 

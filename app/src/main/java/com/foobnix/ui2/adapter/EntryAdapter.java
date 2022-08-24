@@ -270,7 +270,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     if (link.filePath != null) {
 
-                        Drawable d = ContextCompat.getDrawable(context, R.drawable.glyphicons_2_book_open2);
+                        Drawable d = ContextCompat.getDrawable(context, R.drawable.glyphicons_589_book_open);
                         TintUtil.setDrawableTint(d, t.getCurrentTextColor());
 
                         t.setCompoundDrawablePadding(Dips.dpToPx(6));

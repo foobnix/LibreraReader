@@ -16,7 +16,7 @@
         android:paddingRight="2dip"
         android:layout_marginBottom="2dip"	
         android:paddingBottom="8dip"
-        android:src="@drawable/glyphicons_2_book_open" />
+        android:src="@drawable/glyphicons_589_book_open" />
 
     <TextView
         android:id="@+id/text1"
