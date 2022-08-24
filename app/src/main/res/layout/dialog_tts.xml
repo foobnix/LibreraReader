@@ -64,7 +64,7 @@
                 android:layout_height="@dimen/wh_button_small"
                 android:background="@drawable/bg_clickable"
                 android:padding="4dip"
-                android:src="@drawable/glyphicons_196_info_sign"
+                android:src="@drawable/glyphicons_636_circle_info"
                 android:tint="@color/lt_grey" />
         </LinearLayout>
 

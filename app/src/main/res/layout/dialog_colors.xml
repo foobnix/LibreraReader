@@ -232,7 +232,7 @@
                         android:gravity="center"
                         android:padding="2dip"
                         android:scaleType="center"
-                        android:src="@drawable/glyphicons_191_circle_plus"
+                        android:src="@drawable/glyphicons_631_circle_plus"
                         android:textSize="40sp"
                         android:tint="@color/tint_gray" />
 

@@ -67,7 +67,7 @@
             android:layout_height="50dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_191_circle_plus"
+            android:src="@drawable/glyphicons_631_circle_plus"
             android:tint="@color/lt_grey" />
 
         <ImageView
@@ -77,7 +77,7 @@
             android:layout_marginLeft="10dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_192_circle_minus"
+            android:src="@drawable/glyphicons_632_circle_minus"
             android:tint="@color/lt_grey" />
     </LinearLayout>
     

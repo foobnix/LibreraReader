@@ -64,7 +64,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/zoom_in_zoom_out"
-                android:src="@drawable/glyphicons_192_circle_minus" />
+                android:src="@drawable/glyphicons_632_circle_minus" />
 
             <ImageView
                 android:id="@+id/zoomPlus"
@@ -73,7 +73,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/zoom_in_zoom_out"
-                android:src="@drawable/glyphicons_191_circle_plus" />
+                android:src="@drawable/glyphicons_631_circle_plus" />
 
             <com.foobnix.pdf.info.view.UnderlineImageView
                 android:id="@+id/onBC"

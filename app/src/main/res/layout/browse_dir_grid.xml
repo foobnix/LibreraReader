@@ -24,7 +24,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_margin="4dip"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_441_folder_closed" />
+            android:src="@drawable/glyphicons_145_folder_open" />
 
         <ImageView
             android:id="@+id/starIcon"

@@ -125,7 +125,7 @@ public class BrowserAdapter extends BaseAdapter {
             imageView.setLayoutParams(imageView.getLayoutParams());
 
             title1.setSingleLine();
-            imageView.setImageResource(R.drawable.glyphicons_441_folder_closed);
+            imageView.setImageResource(R.drawable.glyphicons_145_folder_open);
             TintUtil.setTintImageWithAlpha(imageView);
             imageView.setBackgroundColor(Color.TRANSPARENT);
 

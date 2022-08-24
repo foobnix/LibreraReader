@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dip"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_441_folder_closed" />
+            android:src="@drawable/glyphicons_145_folder_open" />
 
         <LinearLayout
             android:layout_width="match_parent"
