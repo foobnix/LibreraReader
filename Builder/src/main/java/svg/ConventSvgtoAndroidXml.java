@@ -13,8 +13,7 @@ import java.util.Arrays;
 
 public class ConventSvgtoAndroidXml {
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello World");
-        String in = "/home/dev/Dropbox/Projects/glyphicons_pro/glyphicons-pro/glyphicons-pro/glyphicons-basic-2-0/svg/individual-svg/";
+        String in = "/home/dev/Dropbox/Projects/glyphicons_pro/glyphicons-basic-2-4/";
         String out = "/home/dev/git/LibreraReader/app/src/main/res/drawable/";
 
         List<Integer> ids = Arrays.asList(
@@ -38,7 +37,7 @@ public class ConventSvgtoAndroidXml {
             File outFile = new File(out,name);
             boolean has = false;
             for(int id:ids){
-                if(name.contains("_"+id+"_")){
+                if(name.contains("-"+id+"-")){
                     has = true;
                     break;
                 }
@@ -74,12 +73,18 @@ public class ConventSvgtoAndroidXml {
             System.out.println(androidXml);
             System.out.println("==");
 
+            String outName = outFile.getPath();
+            outName = outName.replace(".svg",".xml");
+            outName = outName.replace("-basic","");
+            outName = outName.replace("-","_");
+            System.out.println(":"+outName+":");
 
-            //break;
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outFile.getPath().replace(".svg",".xml")));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outName));
             writer.write(androidXml);
             writer.close();
+
+
 
 
 
