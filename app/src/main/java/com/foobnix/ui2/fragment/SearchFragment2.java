@@ -966,7 +966,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_158_thumbnails_small, //
                 R.drawable.glyphicons_4_user, //
                 R.drawable.glyphicons_66_tag, //
-                R.drawable.glyphicons_710_list_numbered, //
+                R.drawable.glyphicons_115_list, //
                 R.drawable.glyphicons_67_tags, //
                 R.drawable.glyphicons_417_globe, //
                 R.drawable.glyphicons_67_tags,

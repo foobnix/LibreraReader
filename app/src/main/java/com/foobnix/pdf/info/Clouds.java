@@ -653,7 +653,7 @@ public class Clouds {
 
         if (isLibreraSyncFile(path)) {
             img.setVisibility(View.VISIBLE);
-            img.setImageResource(R.drawable.glyphicons_748_synchronization);
+            img.setImageResource(R.drawable.glyphicons_761_sync);
             //TintUtil.setTintImageNoAlpha(img, TintUtil.cloudSyncColor);
 
             TintUtil.setTintImageWithAlpha(img, img.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());

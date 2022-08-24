@@ -900,7 +900,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_529_database_search"
+                android:src="@drawable/glyphicons_144_database_search"
                 android:tint="@color/tint_gray" />
 
             <TextView

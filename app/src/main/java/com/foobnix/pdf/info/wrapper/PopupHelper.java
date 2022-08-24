@@ -42,7 +42,7 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.glyphicons_4_user);
             stringId = R.string.author;
         } else if (libraryMode == AppState.MODE_SERIES) {
-            gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
+            gridList.setImageResource(R.drawable.glyphicons_115_list);
             stringId = R.string.serie;
         } else if (libraryMode == AppState.MODE_GENRE) {
             gridList.setImageResource(R.drawable.glyphicons_66_tag);

@@ -515,7 +515,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_449_translate"
+                android:src="@drawable/glyphicons_580_translate"
                 android:tint="@color/tint_gray" />
 
             <CheckBox
