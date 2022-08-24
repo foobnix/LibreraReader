@@ -91,7 +91,7 @@
     <style name="buttonClear">
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
-        <item name="android:padding">8dip</item>
+        <item name="android:padding">4dip</item>
         <item name="android:tint">@color/tint_gray</item>
     </style>
 

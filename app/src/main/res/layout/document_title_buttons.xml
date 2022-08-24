@@ -46,7 +46,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="align document"
-                android:src="@drawable/glyphicons_292_square_empty_minus" />
+                android:src="@drawable/glyphicons_112_paragraph_center" />
 
             <ImageView
                 android:id="@+id/moveRight"
