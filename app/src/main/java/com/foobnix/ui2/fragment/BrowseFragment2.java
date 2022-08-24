@@ -327,7 +327,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         displayAnyPath(Environment.getExternalStorageDirectory().getPath());
                         return false;
                     }
-                }).setIcon(R.drawable.glyphicons_146_folder_sd1);
+                }).setIcon(R.drawable.glyphicons_336_folder);
 
                 for (final String info : extFolders) {
 
@@ -346,7 +346,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             displayAnyPath(info);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_146_folder_sd1);
+                    }).setIcon(R.drawable.glyphicons_336_folder);
 
                 }
 
@@ -358,7 +358,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             displayAnyPath(BookCSS.get().downlodsPath);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                    }).setIcon(R.drawable.glyphicons_146_folder_plus);
                 }
 
 
@@ -396,7 +396,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                 StringDB.delete(BookCSS.get().pathSAF, saf, (String db) -> BookCSS.get().pathSAF = db);
                                 return false;
                             }
-                        }).setIcon(R.drawable.glyphicons_146_folder_sd1);
+                        }).setIcon(R.drawable.glyphicons_336_folder);
 
 
                     }
@@ -429,7 +429,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             displayAnyPath(info);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_591_folder_star);
+                    }).setIcon(R.drawable.glyphicons_150_folder_star);
 
                 }
 
