@@ -13,7 +13,7 @@
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_weight="0"
-        android:src="@drawable/glyphicons_72_book"
+        android:src="@drawable/glyphicons_422_book_library"
         android:visibility="gone" />
 
     <TextView

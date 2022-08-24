@@ -96,7 +96,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/recent"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_72_book"
+                android:src="@drawable/glyphicons_422_book_library"
                 android:tint="@color/tint_gray"
                 android:visibility="gone" />
 

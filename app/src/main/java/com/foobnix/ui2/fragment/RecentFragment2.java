@@ -33,7 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_422_book_library);
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
     View panelRecent;

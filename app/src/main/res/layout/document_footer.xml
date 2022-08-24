@@ -84,7 +84,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/recent"
-                android:src="@drawable/glyphicons_72_book" />
+                android:src="@drawable/glyphicons_422_book_library" />
 
             <ImageView
                 android:id="@+id/editTop2"
