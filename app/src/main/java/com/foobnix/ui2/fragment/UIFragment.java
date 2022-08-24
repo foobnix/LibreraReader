@@ -146,7 +146,8 @@ public abstract class UIFragment<T> extends Fragment {
             resetFragment();
             listHash = TempHolder.listHash;
         } else {
-            notifyFragment();
+            //TODO ???
+            //notifyFragment();
 
             try {
                 if (adFrame == null) {
