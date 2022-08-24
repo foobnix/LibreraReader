@@ -28,7 +28,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="Go to fist page"
-                android:src="@drawable/glyphicons_172_fast_backward" />
+                android:src="@drawable/glyphicons_172_skip_to_start" />
 
             <ImageView
                 android:id="@+id/moveLeft"

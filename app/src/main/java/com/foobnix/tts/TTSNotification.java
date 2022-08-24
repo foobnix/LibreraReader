@@ -139,11 +139,11 @@ public class TTSNotification {
             remoteViewsSmall.setViewVisibility(R.id.ttsDialog, View.GONE);
 
             if (TTSEngine.get().isPlaying()) {
-                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
-                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
+                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
             } else {
-                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
-                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
+                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
             }
 
             final int color = TintUtil.color == Color.BLACK ? Color.LTGRAY : TintUtil.color;

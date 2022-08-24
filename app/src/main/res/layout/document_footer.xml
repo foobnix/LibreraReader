@@ -120,7 +120,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/content_of_book"
-                android:src="@drawable/glyphicons_115_list1" />
+                android:src="@drawable/glyphicons_115_list" />
 
             <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"

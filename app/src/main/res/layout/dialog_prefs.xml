@@ -109,7 +109,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/recent"
                 android:padding="9dip"
-                android:src="@drawable/glyphicons_174_play"
+                android:src="@drawable/glyphicons_175_play"
                 android:tint="@color/tint_gray" />
 
             <ImageView
@@ -479,7 +479,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:padding="5dip"
-                android:src="@drawable/glyphicons_169_ear_plugs"
+                android:src="@drawable/glyphicons_77_headphones"
                 android:tint="@color/tint_gray" />
 
             <LinearLayout

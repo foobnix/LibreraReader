@@ -72,7 +72,7 @@ public class TTSControlsView extends FrameLayout {
             }
 
             LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
-            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_175_pause : R.drawable.glyphicons_174_play);
+            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_174_pause : R.drawable.glyphicons_175_play);
         }
     };
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

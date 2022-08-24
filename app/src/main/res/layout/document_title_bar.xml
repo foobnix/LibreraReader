@@ -138,7 +138,7 @@
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
-                android:src="@drawable/glyphicons_172_fast_backward"
+                android:src="@drawable/glyphicons_172_skip_to_start"
                 android:text="1"
                     android:layout_marginLeft="5dip"
                 android:textColor="@color/tint_gray"
