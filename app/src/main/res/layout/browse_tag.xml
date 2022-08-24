@@ -58,7 +58,7 @@
             android:layout_marginRight="4dip"
             android:background="?android:attr/selectableItemBackground"
             android:padding="7dip"
-            android:src="@drawable/star_2"
+            android:src="@drawable/glyphicons_50_star_empty"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 

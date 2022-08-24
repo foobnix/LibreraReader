@@ -280,13 +280,13 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         @Override
                         public void run() {
-                            starIcon.setImageResource(R.drawable.star_1);
+                            starIcon.setImageResource(R.drawable.glyphicons_49_star);
                             TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                         }
                     }, entry, false);
                 } else {
                     AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(entry.appState, "");
-                    starIcon.setImageResource(R.drawable.star_2);
+                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
                     TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                     // AlertDialogs.showOkDialog(getActivity(),
                     // getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
@@ -826,9 +826,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         if (AppState.get().myOPDSLinks.contains(url)) {
-            starIcon.setImageResource(R.drawable.star_1);
+            starIcon.setImageResource(R.drawable.glyphicons_49_star);
         } else {
-            starIcon.setImageResource(R.drawable.star_2);
+            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
         }
         TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
     }

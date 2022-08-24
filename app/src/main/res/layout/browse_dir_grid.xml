@@ -33,7 +33,7 @@
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
             android:padding="4dip"
-            android:src="@drawable/star_2"
+            android:src="@drawable/glyphicons_50_star_empty"
             android:tint="@color/tint_gray" />
 
         <TextView

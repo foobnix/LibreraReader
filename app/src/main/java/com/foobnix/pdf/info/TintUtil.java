@@ -320,10 +320,10 @@ public class TintUtil {
 
     public static void drawStar(final ImageView imageView, boolean isStar) {
         if (isStar) {
-            imageView.setImageResource(R.drawable.star_1);
+            imageView.setImageResource(R.drawable.glyphicons_49_star);
             TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
         } else {
-            imageView.setImageResource(R.drawable.star_2);
+            imageView.setImageResource(R.drawable.glyphicons_50_star_empty);
             TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
         }
     }

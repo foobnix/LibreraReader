@@ -20,6 +20,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:padding="1dip"
-        android:src="@drawable/star_1" />
+        android:src="@drawable/glyphicons_49_star" />
 
 </RelativeLayout>

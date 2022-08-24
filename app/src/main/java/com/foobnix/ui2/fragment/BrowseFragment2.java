@@ -1206,9 +1206,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppDB.get().isStarFolder(displayPath)) {
-            starIcon.setImageResource(R.drawable.star_1);
+            starIcon.setImageResource(R.drawable.glyphicons_49_star);
         } else {
-            starIcon.setImageResource(R.drawable.star_2);
+            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
         }
         TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
 
@@ -1221,18 +1221,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 fileMeta.setPathTxt(ExtUtils.getFileName(displayPath));
                 DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
                 if (AppDB.get().isStarFolder(displayPath)) {
-                    starIcon.setImageResource(R.drawable.star_1);
+                    starIcon.setImageResource(R.drawable.glyphicons_49_star);
                 } else {
-                    starIcon.setImageResource(R.drawable.star_2);
+                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
                 }
             }
         });
 
         final String ldir = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, false).toString();
         if (AppDB.get().isStarFolder(ldir)) {
-            starIconDir.setImageResource(R.drawable.star_1);
+            starIconDir.setImageResource(R.drawable.glyphicons_49_star);
         } else {
-            starIconDir.setImageResource(R.drawable.star_2);
+            starIconDir.setImageResource(R.drawable.glyphicons_50_star_empty);
         }
         TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
@@ -1246,9 +1246,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 FileMetaCore.createMetaIfNeed(genarateXMLBook.getPath(), false);
                 DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
                 if (AppDB.get().isStarFolder(ldir)) {
-                    starIconDir.setImageResource(R.drawable.star_1);
+                    starIconDir.setImageResource(R.drawable.glyphicons_49_star);
                 } else {
-                    starIconDir.setImageResource(R.drawable.star_2);
+                    starIconDir.setImageResource(R.drawable.glyphicons_50_star_empty);
                 }
                 TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
             }

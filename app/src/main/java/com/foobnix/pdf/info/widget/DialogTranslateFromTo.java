@@ -237,7 +237,7 @@ public class DialogTranslateFromTo {
                 ((TextView) layout.findViewById(R.id.text1)).setText(item.name);
                 ((TextView) layout.findViewById(R.id.type1)).setText(item.type);
                 if (item.image == null) {
-                    ((ImageView) layout.findViewById(R.id.image1)).setImageResource(R.drawable.web);
+                    ((ImageView) layout.findViewById(R.id.image1)).setImageResource(R.drawable.glyphicons_544_cloud);
                 } else {
                     ((ImageView) layout.findViewById(R.id.image1)).setImageDrawable(item.image);
                 }

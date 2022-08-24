@@ -13,7 +13,7 @@
         android:layout_height="48dip"
         android:orientation="horizontal"
         android:padding="12dip"
-        android:src="@drawable/screen_zoom_out_dark"
+        android:src="@drawable/glyphicons_372_minus"
         android:tint="#FF0000" />
 
     <TextView

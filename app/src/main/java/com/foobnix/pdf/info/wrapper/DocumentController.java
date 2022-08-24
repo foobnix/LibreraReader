@@ -244,13 +244,13 @@ public abstract class DocumentController {
     public static int getFullScreenIcon(final Activity a, final int mode) {
         switch (mode) {
             case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
-                return R.drawable.glyphicons_487_fit_frame_to_image;
+                return R.drawable.glyphicons_215_fullscreen_off;
             case AppState.FULL_SCREEN_NORMAL:
-                return R.drawable.glyphicons_488_fit_image_to_frame;
+                return R.drawable.glyphicons_216_fullscreen;
             case AppState.FULL_SCREEN_FULLSCREEN:
-                return R.drawable.glyphicons_487_fit_frame_to_image;
+                return R.drawable.glyphicons_215_fullscreen_off;
         }
-        return R.drawable.glyphicons_488_fit_image_to_frame;
+        return R.drawable.glyphicons_216_fullscreen;
     }
 
     public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {

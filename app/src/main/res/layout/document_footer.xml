@@ -234,7 +234,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:src="@drawable/document"
+                android:src="@drawable/glyphicons_37_file"
                 android:visibility="gone" />
 
             <TextView

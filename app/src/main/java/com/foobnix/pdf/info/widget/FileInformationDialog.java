@@ -460,9 +460,9 @@ public class FileInformationDialog {
                 DefaultListeners.getOnStarClick(a).onResultRecive(fileMeta, null);
 
                 if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-                    starIcon.setImageResource(R.drawable.star_2);
+                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
                 } else {
-                    starIcon.setImageResource(R.drawable.star_1);
+                    starIcon.setImageResource(R.drawable.glyphicons_49_star);
                 }
                 TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
@@ -470,9 +470,9 @@ public class FileInformationDialog {
         });
 
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-            starIcon.setImageResource(R.drawable.star_2);
+            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
         } else {
-            starIcon.setImageResource(R.drawable.star_1);
+            starIcon.setImageResource(R.drawable.glyphicons_49_star);
         }
 
         TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
