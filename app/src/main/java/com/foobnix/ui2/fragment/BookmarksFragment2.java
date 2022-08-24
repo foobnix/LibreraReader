@@ -138,7 +138,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.bookmark_by_date, R.string.bookmark_by_book);
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_159_thumbnails_list);
+        final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, R.drawable.glyphicons_159_thumbnails_list);
         final List<Integer> actions = Arrays.asList(AppState.BOOKMARK_MODE_BY_DATE, AppState.BOOKMARK_MODE_BY_BOOK);
 
         for (int i = 0; i < names.size(); i++) {
@@ -395,7 +395,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
     @Override
     public void populateDataInUI(List<AppBookmark> items) {
         if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
-            onListGrid.setImageResource(R.drawable.glyphicons_114_justify);
+            onListGrid.setImageResource(R.drawable.my_glyphicons_114_paragraph_justify);
             bookmarksAdapter.withPageNumber = true;
         } else if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_BOOK) {
             bookmarksAdapter.withPageNumber = false;

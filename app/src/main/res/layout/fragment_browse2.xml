@@ -149,7 +149,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/menu"
-            android:src="@drawable/glyphicons_114_justify" />
+            android:src="@drawable/my_glyphicons_114_paragraph_justify" />
     </LinearLayout>
 
    <androidx.cardview.widget.CardView

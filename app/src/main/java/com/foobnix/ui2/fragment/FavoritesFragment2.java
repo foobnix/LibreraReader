@@ -161,7 +161,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 R.string.cover//
         );
 
-        final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
+        final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, //
                 R.drawable.glyphicons_114_justify_compact, //
                 R.drawable.glyphicons_157_thumbnails, //
                 R.drawable.glyphicons_158_thumbnails_small //

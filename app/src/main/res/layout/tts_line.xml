@@ -11,7 +11,7 @@
         android:background="@drawable/bg_clickable"
         android:padding="7dip"
         android:contentDescription="@string/settings"
-        android:src="@drawable/glyphicons_185_volume_up1" />
+        android:src="@drawable/glyphicons_1020_head_voice" />
 
     <ImageView
         android:id="@+id/ttsPrev"

@@ -1505,7 +1505,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         onPageFlip1.setVisibility(View.VISIBLE);
-        onPageFlip1.setImageResource(R.drawable.glyphicons_37_file_pause);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_174_pause);
     }
 
     @Subscribe
@@ -1514,7 +1514,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.removeCallbacksAndMessages(null);
         flippingIntervalView.setVisibility(View.GONE);
-        onPageFlip1.setImageResource(R.drawable.glyphicons_37_file_play);
+        onPageFlip1.setImageResource(R.drawable.glyphicons_439_video_play_empty);
 
     }
 

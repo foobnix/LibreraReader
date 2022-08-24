@@ -122,7 +122,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:contentDescription="@string/preferences"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_166_iphone_exchange"
+                android:src="@drawable/glyphicons_588_book_open_text"
                 android:tint="@color/tint_gray"
                 android:visibility="gone" />
 
@@ -374,7 +374,7 @@
                 android:layout_weight="0"
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_685_article"
+                android:src="@drawable/glyphicons_140_adjust"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
@@ -649,7 +649,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/bg_border_ltgray"
                     android:padding="8dip"
-                    android:src="@drawable/glyphicons_685_article"
+                    android:src="@drawable/glyphicons_140_adjust"
                     android:tint="@color/tint_gray" />
 
                 <TextView

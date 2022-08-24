@@ -178,7 +178,7 @@ public class TTSNotification {
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             builder.setContentIntent(contentIntent) //
-                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
+                    .setSmallIcon(R.drawable.glyphicons_1020_head_voice) //
                     .setColor(color)
                     // .setLargeIcon(bookImage) //
                     // .setTicker(context.getString(R.string.app_name)) //

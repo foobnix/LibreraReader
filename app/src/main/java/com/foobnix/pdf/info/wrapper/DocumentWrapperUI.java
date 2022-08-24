@@ -1783,9 +1783,9 @@ public class DocumentWrapperUI {
         initToolBarPlusMinus();
 
         if (AppState.get().isAutoScroll) {
-            autoScroll.setImageResource(R.drawable.glyphicons_37_file_pause);
+            autoScroll.setImageResource(R.drawable.glyphicons_174_pause);
         } else {
-            autoScroll.setImageResource(R.drawable.glyphicons_37_file_play);
+            autoScroll.setImageResource(R.drawable.glyphicons_439_video_play_empty);
         }
 
         if (dc.isMusicianMode()) {

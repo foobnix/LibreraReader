@@ -138,7 +138,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:contentDescription="@string/menu"
-            android:src="@drawable/glyphicons_114_justify" />
+            android:src="@drawable/my_glyphicons_114_paragraph_justify" />
     </LinearLayout>
 
     <RelativeLayout

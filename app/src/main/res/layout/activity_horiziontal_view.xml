@@ -264,7 +264,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/move"
-                android:src="@drawable/glyphicons_187_move"
+                android:src="@drawable/glyphicons_809_drop_plus"
                 android:visibility="visible" />
 
             <com.foobnix.pdf.info.view.UnderlineImageView

@@ -28,7 +28,7 @@
             android:layout_height="50dip"
             android:background="@drawable/bg_border_ltgray"
             android:padding="10dip"
-            android:src="@drawable/glyphicons_114_justify"
+            android:src="@drawable/my_glyphicons_114_paragraph_justify"
             android:tint="@color/lt_grey" />
         
     </LinearLayout>

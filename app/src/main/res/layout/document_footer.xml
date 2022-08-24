@@ -217,7 +217,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/automatic"
-                android:src="@drawable/glyphicons_37_file_play" />
+                android:src="@drawable/glyphicons_439_video_play_empty" />
 
             <ImageView
                 android:id="@+id/textToSpeach"
@@ -226,7 +226,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/text_to_speech"
-                android:src="@drawable/glyphicons_185_volume_up1" />
+                android:src="@drawable/glyphicons_1020_head_voice" />
 
             <ImageView
                 android:id="@+id/toPage"
