@@ -22,7 +22,7 @@
         android:layout_weight="0"
         android:gravity="center"
         android:minWidth="150dip"
-        android:padding="10dip"
+        android:padding="4dip"
         android:text="@string/add_tag" />
 
 </LinearLayout>

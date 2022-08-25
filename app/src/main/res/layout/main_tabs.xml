@@ -43,7 +43,7 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:contentDescription="@string/menu"
                             android:gravity="center"
-                            android:padding="10dip"
+                            android:padding="4dip"
                             android:src="@drawable/glyphicons_600_menu"
                             android:tint="@color/white" />
 

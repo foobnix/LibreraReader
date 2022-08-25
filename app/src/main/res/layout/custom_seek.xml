@@ -41,7 +41,7 @@
         android:layout_width="35dip"
         android:layout_height="35dip"
         android:layout_weight="0"
-        android:padding="10dip"
+        android:padding="5dip"
         android:contentDescription="@string/minus"
         android:src="@drawable/glyphicons_372_minus"
         android:tint="@color/tint_gray" />
@@ -53,7 +53,7 @@
         android:layout_height="35dip"
         android:layout_marginRight="10dip"
         android:layout_weight="0"
-        android:padding="10dip"
+        android:padding="5dip"
         android:src="@drawable/glyphicons_371_plus"
         android:tint="@color/tint_gray" />
 

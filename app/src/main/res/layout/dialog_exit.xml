@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dip"
+        android:padding="4dip"
         android:text="@string/exit_application_question"
         android:textSize="20sp" />
 
@@ -55,7 +55,7 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dip"
+            android:padding="4dip"
             android:singleLine="false"
             android:text="@string/ask_rate_us1"
             android:textColor="@color/white" />
@@ -65,7 +65,7 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dip"
+            android:padding="4dip"
             android:layout_marginBottom="10dip"
             android:singleLine="false"
             android:layout_gravity="center"

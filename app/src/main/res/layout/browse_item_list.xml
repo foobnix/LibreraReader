@@ -198,7 +198,7 @@
                     android:layout_weight="0"
                     android:contentDescription="@string/remove"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="6dip"
+                    android:padding="2dip"
                     android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima1"
                     android:visibility="visible" />

@@ -392,9 +392,8 @@
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:background="@drawable/bg_clickable"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_211_arrow_down"
-                android:tint="@color/link_color" />
+                android:tint="@color/tint_gray" />
         </LinearLayout>
 
         <CheckBox

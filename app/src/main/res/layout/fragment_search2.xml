@@ -132,7 +132,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="10dip"
+                android:padding="4dip"
                 android:src="@drawable/glyphicons_221_chevron_down"
                 android:tint="@color/white" />
 

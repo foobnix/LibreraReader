@@ -25,7 +25,7 @@
         android:layout_weight="0"
         android:id="@+id/onCancel"
         android:tint="@color/lt_grey"
-        android:padding="6dip"
+        android:padding="2dip"
         android:layout_marginLeft="20dip"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"

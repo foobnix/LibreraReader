@@ -112,7 +112,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
-            android:padding="6dip"
+            android:padding="2dip"
             android:contentDescription="@string/remove"
             android:src="@drawable/glyphicons_599_menu_close"
             android:tint="@color/lt_grey_dima" />

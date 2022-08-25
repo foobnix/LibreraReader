@@ -21,7 +21,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:padding="8dip"
+            android:padding="6dip"
             android:src="@drawable/glyphicons_589_book_open" />
 
         <TextView
@@ -46,13 +46,13 @@
             android:layout_marginLeft="10dip"
             android:id="@+id/imageDrag"
             android:contentDescription="@string/drag_element"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
             android:layout_weight="0"
             android:adjustViewBounds="true"
             android:layout_marginRight="4dip"
             android:cropToPadding="true"
-            android:src="@drawable/glyphicons_600_menu"
+            android:src="@drawable/glyphicons_arrows_875_upwards_and_downwards_nav_barb_arrow"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 

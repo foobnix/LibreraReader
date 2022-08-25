@@ -1260,6 +1260,7 @@ public class DocumentWrapperUI {
         toolBarButton = (ImageView) a.findViewById(R.id.imageToolbar);
         toolBarButton.setOnClickListener(onHideShowToolBar);
 
+
         // nextPage.setOnClickListener(onNextPage);
         // prevPage.setOnClickListener(onPrevPage);
 
@@ -1389,6 +1390,7 @@ public class DocumentWrapperUI {
 
         currentTime = (TextView) a.findViewById(R.id.currentTime);
         batteryLevel = (TextView) a.findViewById(R.id.currentBattery);
+        batteryLevel.setOnClickListener(onHideShowToolBar);
 
         currentSeek.setOnLongClickListener(new OnLongClickListener() {
 
