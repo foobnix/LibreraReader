@@ -22,7 +22,7 @@
 
         android:layout_marginLeft="10dp"
         android:background="@drawable/bg_clickable"
-        android:padding="6dp"
+        android:padding="2dp"
         android:src="@drawable/glyphicons_173_rewind" />
 
     <ImageView
@@ -31,9 +31,8 @@
         android:layout_height="@dimen/wh_button_big"
         android:layout_gravity="center"
         android:contentDescription="@string/play_pause"
-        android:layout_marginLeft="14dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/bg_clickable"
-        android:padding="4dp"
         android:src="@drawable/glyphicons_175_play" />
 
 
@@ -46,7 +45,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dip"
         android:background="@drawable/bg_clickable"
-        android:padding="6dp"
+        android:padding="2dp"
         android:src="@drawable/glyphicons_177_forward" />
     
     
@@ -58,7 +57,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dip"
         android:background="@drawable/bg_clickable"
-        android:padding="8dp"
+        android:padding="2dp"
         android:src="@drawable/glyphicons_172_skip_to_start" />
     
     
@@ -70,7 +69,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dip"
         android:background="@drawable/bg_clickable"
-        android:padding="8dp"
+        android:padding="2dp"
         android:src="@drawable/glyphicons_178_skip_to_end" />
     
 
@@ -82,7 +81,7 @@
         android:layout_marginLeft="10dip"
         android:contentDescription="@string/close"
         android:background="@drawable/bg_clickable"
-        android:padding="10dp"
+        android:padding="8dp"
         android:src="@drawable/glyphicons_599_menu_close" />
 
 </LinearLayout>

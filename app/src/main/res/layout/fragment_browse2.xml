@@ -118,7 +118,7 @@
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="12dip"
+                android:padding="8dip"
                 android:src="@drawable/glyphicons_222_chevron_up"
                 android:tint="@color/white" />
 

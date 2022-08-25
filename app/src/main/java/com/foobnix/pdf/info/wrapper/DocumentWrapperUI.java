@@ -1555,7 +1555,7 @@ public class DocumentWrapperUI {
         lirbiLogo.setTextSize(AppState.get().statusBarTextSizeAdv);
 
         int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
-        int smallIconSize = iconSize - Dips.dpToPx(5);
+
 
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
@@ -1564,8 +1564,8 @@ public class DocumentWrapperUI {
         closeTop.getLayoutParams().height = closeTop.getLayoutParams().width = iconSize;
         toolBarButton.getLayoutParams().height = toolBarButton.getLayoutParams().width = iconSize;
 
-        clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = smallIconSize;
-        batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = smallIconSize;
+        clockIcon.getLayoutParams().height = clockIcon.getLayoutParams().width = iconSize;
+        batteryIcon.getLayoutParams().height = batteryIcon.getLayoutParams().width = iconSize;
 
         // lirbiLogo.getLayoutParams().height = panelSize;
 
