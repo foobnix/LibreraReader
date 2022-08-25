@@ -39,6 +39,21 @@
                 android:text="@string/profile" />
 
             <TextView
+                android:id="@+id/restoreDefaultProfile"
+                style="@style/textLinkWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dip"
+                android:layout_weight="0"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/restore_defaults_short"
+                android:textSize="@dimen/text_subtitle"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_marginLeft="10dip"
                 android:id="@+id/onCloseApp"
                 style="@style/textLinkWhite"
                 android:layout_width="wrap_content"

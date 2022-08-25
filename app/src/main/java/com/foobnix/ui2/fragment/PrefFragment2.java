@@ -2387,6 +2387,7 @@ public class PrefFragment2 extends UIFragment {
 
 
         TextView onProfile = inflate.findViewById(R.id.onProfile);
+        TextView restoreDefaultProfile = inflate.findViewById(R.id.restoreDefaultProfile);
 
         profileLetter = inflate.findViewById(R.id.profileLetter);
 
@@ -2404,6 +2405,7 @@ public class PrefFragment2 extends UIFragment {
         onProfile.setContentDescription(p + " " + getString(R.string.profile));
 
         TxtUtils.underlineTextView(onProfile);
+        TxtUtils.underlineTextView(restoreDefaultProfile);
         onProfile.setOnClickListener(v ->
 
         {
@@ -2464,6 +2466,8 @@ public class PrefFragment2 extends UIFragment {
 
                     IO.writeObjAsync(AppProfile.syncState, o);
 
+                    AppProfile.syncExclude.delete();
+
                     //AppProfile.init(getActivity());
                     BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
                     onTheme();
@@ -2474,6 +2478,7 @@ public class PrefFragment2 extends UIFragment {
             return true;
         };
         onProfile.setOnLongClickListener(onDefaultProfile);
+        restoreDefaultProfile.setOnClickListener(v -> onDefaultProfile.onLongClick(v));
         profileLetter.setOnLongClickListener(onDefaultProfile);
 
         inflate.findViewById(R.id.onProfileEdit).
