@@ -103,6 +103,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
+            android:padding="6dip"
             android:contentDescription="@string/cd_add_new_opds_catalog"
             android:src="@drawable/glyphicons_371_plus" />
     </LinearLayout>

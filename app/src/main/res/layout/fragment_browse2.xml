@@ -71,12 +71,12 @@
 
         <ImageView
             android:id="@+id/createFolder"
+            style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/create_folder"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="10dip"
+            android:padding="6dip"
             android:src="@drawable/glyphicons_371_plus"
             android:tint="@color/tint_white" />
 
@@ -118,7 +118,7 @@
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:padding="8dip"
+                android:padding="10dip"
                 android:src="@drawable/glyphicons_222_chevron_up"
                 android:tint="@color/white" />
 

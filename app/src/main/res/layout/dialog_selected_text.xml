@@ -115,8 +115,8 @@
 
             <ImageView
                 android:id="@+id/readTTS"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
+                android:layout_width="@dimen/wh_button_medium"
+                android:layout_height="@dimen/wh_button_medium"
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
@@ -125,15 +125,17 @@
 
             <ImageView
                 android:id="@+id/readTTSNext"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
+                android:layout_width="@dimen/wh_button_medium"
+                android:layout_height="@dimen/wh_button_medium"
                 android:layout_marginLeft="8dip"
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
                 android:src="@drawable/glyphicons_smileys_100_headphones"
                 android:tint="@color/tint_gray"
+                android:layout_marginRight="5dip"
                 android:visibility="visible" />
+
         </LinearLayout>
 
 
