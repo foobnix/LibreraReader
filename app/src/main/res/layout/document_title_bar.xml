@@ -175,7 +175,7 @@
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/glyphicons_full_page"
+                android:src="@drawable/my_glyphicons_full_page"
                 android:tint="@color/tint_gray" />
 
             <ImageView

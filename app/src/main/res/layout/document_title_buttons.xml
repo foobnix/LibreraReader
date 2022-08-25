@@ -108,7 +108,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="cut pages into two"
-                android:src="@drawable/glyphicons_page_split"
+                android:src="@drawable/my_glyphicons_page_split"
                 android:visibility="gone" />
 
             <ImageView

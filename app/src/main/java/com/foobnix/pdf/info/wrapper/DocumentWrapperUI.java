@@ -193,24 +193,24 @@ public class DocumentWrapperUI {
         public void onClick(final View v) {
             MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
 
-            p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            p.getMenu().add(R.string.one_page).setIcon(R.drawable.my_glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
-                    onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                    onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
                     AppSP.get().isCut = !false;
                     onCut.onClick(null);
                     hideShowEditIcon();
                     return false;
                 }
             });
-            p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            p.getMenu().add(R.string.half_page).setIcon(R.drawable.my_glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
-                    onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                    onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
                     AppSP.get().isCut = !true;
                     onCut.onClick(null);
                     hideShowEditIcon();
@@ -339,7 +339,7 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View v) {
             if (AppSP.get().isCut) {
-                onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
                 onCut.onClick(null);
                 return;
             }
@@ -1301,7 +1301,7 @@ public class DocumentWrapperUI {
 
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
-        onModeChange.setImageResource(AppSP.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
+        onModeChange.setImageResource(AppSP.get().isCut ? R.drawable.my_glyphicons_page_split : R.drawable.my_glyphicons_two_page_one);
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -1750,7 +1750,7 @@ public class DocumentWrapperUI {
     public void initNextType() {
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             nextTypeBootom.setText(R.string.by_pages);
-            nextScreenType.setImageResource(R.drawable.glyphicons_full_page);
+            nextScreenType.setImageResource(R.drawable.my_glyphicons_full_page);
 
         } else {
             if (AppState.get().nextScreenScrollBy == 100) {
@@ -1758,7 +1758,7 @@ public class DocumentWrapperUI {
             } else {
                 nextTypeBootom.setText(AppState.get().nextScreenScrollBy + "% " + dc.getString(R.string.of_screen));
             }
-            nextScreenType.setImageResource(R.drawable.glyphicons_halp_page);
+            nextScreenType.setImageResource(R.drawable.my_glyphicons_halp_page);
 
         }
 
@@ -1860,7 +1860,7 @@ public class DocumentWrapperUI {
 
     public void showSearchDialog() {
         if (AppSP.get().isCut) {
-            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+            onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
             AppSP.get().isCut = !false;
             onCut.onClick(null);
         }

@@ -24,7 +24,6 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -795,12 +794,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
 
                 MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-                p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(R.string.one_page).setIcon(R.drawable.my_glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         closeDialogs();
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                        onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
                         AppSP.get().isDouble = false;
                         AppSP.get().isDoubleCoverAlone = false;
                         AppSP.get().isCut = false;
@@ -823,13 +822,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         return false;
                     }
                 });
-                p.getMenu().add(R.string.two_pages).setIcon(R.drawable.glyphicons_two_pages_12).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(R.string.two_pages).setIcon(R.drawable.my_glyphicons_two_pages_12).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
                         closeDialogs();
-                        onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
+                        onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
                         AppSP.get().isDouble = true;
                         AppSP.get().isCut = false;
                         AppSP.get().isDoubleCoverAlone = false;
@@ -853,13 +852,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
                 });
                 if (!dc.isTextFormat()) {
-                    p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    p.getMenu().add(R.string.two_pages_cover).setIcon(R.drawable.my_glyphicons_two_pages_23).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
 
                             closeDialogs();
-                            onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+                            onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
                             AppSP.get().isDouble = true;
                             AppSP.get().isCut = false;
                             AppSP.get().isDoubleCoverAlone = true;
@@ -883,13 +882,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     });
                 }
                 if (!dc.isTextFormat()) {
-                    p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    p.getMenu().add(R.string.half_page).setIcon(R.drawable.my_glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
 
                             closeDialogs();
-                            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                            onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
                             AppSP.get().isDouble = false;
                             AppSP.get().isCut = true;
                             AppSP.get().isSmartReflow = false;
@@ -1412,16 +1411,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void updateIconMode() {
         if (AppSP.get().isDouble) {
             if (AppSP.get().isDoubleCoverAlone) {
-                onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
+                onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
             } else {
-                onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
+                onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
             }
         } else if (AppSP.get().isCut) {
-            onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+            onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
         } else if (AppSP.get().isSmartReflow) {
             onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
         } else {
-            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+            onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
         }
     }
 
@@ -1431,7 +1430,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void modeOnePage() {
-        onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+        onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
         AppSP.get().isDouble = false;
         AppSP.get().isDoubleCoverAlone = false;
         AppSP.get().isCut = false;
@@ -1558,7 +1557,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     private void showSearchDialog() {
 
         if (AppSP.get().isCrop || AppSP.get().isCut) {
-            onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+            onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
             AppSP.get().isCrop = false;
             AppSP.get().isCut = false;
             AppSP.get().isDouble = false;

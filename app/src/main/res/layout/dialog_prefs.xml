@@ -609,7 +609,7 @@
                         android:id="@+id/onDayColorImage"
                         android:layout_width="@dimen/wh_button"
                         android:layout_height="@dimen/wh_button"
-                        android:padding="10dip"
+                        android:padding="6dip"
                         android:src="@drawable/glyphicons_232_sun"
                         android:tint="#000000" />
                 </RelativeLayout>
@@ -635,7 +635,7 @@
                         android:id="@+id/onNigthColorImage"
                         android:layout_width="@dimen/wh_button"
                         android:layout_height="@dimen/wh_button"
-                        android:padding="10dip"
+                        android:padding="6dip"
                         android:src="@drawable/glyphicons_231_moon"
                         android:tint="#ffffff" />
                 </RelativeLayout>

@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:src="@drawable/glyphicons_two_page_one"
+                android:src="@drawable/my_glyphicons_two_page_one"
                 android:visibility="visible" />
 
             <Button
