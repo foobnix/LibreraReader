@@ -23,7 +23,7 @@
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
         android:layout_weight="0"
-        android:padding="5dip"
+        android:padding="2dip"
         android:src="@drawable/glyphicons_599_menu_close"
         android:tint="@color/lt_grey_dima"
         android:visibility="visible" />

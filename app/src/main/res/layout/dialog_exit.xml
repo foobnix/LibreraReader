@@ -43,9 +43,10 @@
             <ImageView
                 android:id="@+id/onClose"
                 style="@style/buttonWhiteClose"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
                 android:layout_weight="0"
+                android:padding="4dip"
                 android:contentDescription="@string/close"
                 android:src="@drawable/glyphicons_599_menu_close" />
         </LinearLayout>
