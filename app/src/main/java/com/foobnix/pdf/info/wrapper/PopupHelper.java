@@ -16,8 +16,6 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 
 public class PopupHelper {
 
@@ -30,7 +28,7 @@ public class PopupHelper {
             gridList.setImageResource(R.drawable.my_glyphicons_114_paragraph_justify);
             stringId = R.string.list;
         } else if (libraryMode == AppState.MODE_LIST_COMPACT) {
-            gridList.setImageResource(R.drawable.glyphicons_114_justify_compact);
+            gridList.setImageResource(R.drawable.my_glyphicons_114_justify_compact);
             stringId = R.string.compact;
         } else if (libraryMode == AppState.MODE_GRID) {
             gridList.setImageResource(R.drawable.glyphicons_157_thumbnails);

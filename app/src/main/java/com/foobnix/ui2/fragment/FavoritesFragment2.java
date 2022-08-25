@@ -29,7 +29,6 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -162,7 +161,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         );
 
         final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, //
-                R.drawable.glyphicons_114_justify_compact, //
+                R.drawable.my_glyphicons_114_justify_compact, //
                 R.drawable.glyphicons_157_thumbnails, //
                 R.drawable.glyphicons_158_thumbnails_small //
         );

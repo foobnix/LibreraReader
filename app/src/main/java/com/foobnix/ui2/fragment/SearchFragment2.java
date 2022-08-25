@@ -49,7 +49,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -961,7 +960,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         );
 
         final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, //
-                R.drawable.glyphicons_114_justify_compact, //
+                R.drawable.my_glyphicons_114_justify_compact, //
                 R.drawable.glyphicons_157_thumbnails, //
                 R.drawable.glyphicons_158_thumbnails_small, //
                 R.drawable.glyphicons_4_user, //
