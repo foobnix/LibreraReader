@@ -264,7 +264,7 @@ public class PrefFragment2 extends UIFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        inflate = inflater.inflate(R.layout.preferences, container, false);
+        inflate = inflater.inflate(R.layout.fragment_preferences, container, false);
 
 
         singIn = inflate.findViewById(R.id.signIn);

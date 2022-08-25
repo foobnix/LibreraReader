@@ -97,7 +97,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:contentDescription="@string/settings"
-                android:padding="8dip"
+                android:padding="4dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
                 android:tint="@color/tint_gray" />
 
@@ -320,10 +320,10 @@
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
-                    android:padding="8dip"
-                    android:src="@drawable/glyphicons_137_cogwheel"
+                    android:padding="4dip"
+                    android:src="@drawable/glyphicons_140_adjust"
                     android:tint="@color/tint_gray"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/moreLybraryettings"
@@ -715,7 +715,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:padding="8dip"
+                android:padding="4dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
                 android:tint="@color/tint_gray" />
 
@@ -1490,7 +1490,7 @@
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
-                    android:padding="8dip"
+                    android:padding="4dip"
                     android:src="@drawable/glyphicons_137_cogwheel"
                     android:tint="@color/tint_gray" />
             </LinearLayout>
