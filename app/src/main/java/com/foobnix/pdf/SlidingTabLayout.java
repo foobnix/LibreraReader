@@ -91,7 +91,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private static int myPOS = POS_VERTICAL;
 
-    private static int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
+    private static int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 10 : 7;
 
     private int mTitleOffset;
 
@@ -128,7 +128,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     public void init() {
         myPOS = AppState.get().tapPositionTop ? POS_HORIZONTAL : POS_VERTICAL;
-        TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
+        TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 10 : 7;
         addView(getmTabStrip(), LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
     }
