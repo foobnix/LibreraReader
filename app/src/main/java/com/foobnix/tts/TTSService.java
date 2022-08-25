@@ -340,7 +340,7 @@ public class TTSService extends Service {
     private void startServiceWithNotification() {
         PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_IMMUTABLE );
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                .setSmallIcon(R.drawable.glyphicons_1020_head_voice) //
+                .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
                 .setContentTitle(Apps.getApplicationName(this)) //
                 .setContentText(getString(R.string.please_wait))
                 .addAction(R.drawable.glyphicons_599_menu_close, getString(R.string.stop), stopDestroy)//

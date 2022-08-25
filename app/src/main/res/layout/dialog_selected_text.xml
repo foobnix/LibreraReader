@@ -26,7 +26,7 @@
                     android:layout_height="@dimen/wh_button"
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
-                    android:padding="5dip"
+                    android:padding="2dip"
                     android:src="@drawable/glyphicons_695_text_background"
                     android:tint="@color/tint_gray" />
 
@@ -36,7 +36,7 @@
                     android:layout_height="@dimen/wh_button"
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
-                    android:padding="5dip"
+                    android:padding="2dip"
                     android:src="@drawable/glyphicons_104_underline"
                     android:tint="@color/tint_gray" />
 
@@ -46,7 +46,7 @@
                     android:layout_height="@dimen/wh_button"
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
-                    android:padding="5dip"
+                    android:padding="2dip"
                     android:src="@drawable/glyphicons_105_strikethrough"
                     android:tint="@color/tint_gray" />
 
@@ -63,7 +63,7 @@
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_marginLeft="5dip"
                     android:background="@android:drawable/list_selector_background"
-                    android:padding="5dip"
+                    android:padding="1dip"
                     android:src="@drawable/glyphicons_371_plus"
                     android:tint="@color/tint_gray" />
             </LinearLayout>
@@ -120,20 +120,18 @@
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_185_volume_down"
+                android:src="@drawable/glyphicons_1020_head_voice"
                 android:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/readTTSNext"
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:layout_marginLeft="4dip"
+                android:layout_marginLeft="8dip"
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_186_volume_up"
+                android:src="@drawable/glyphicons_smileys_100_headphones"
                 android:tint="@color/tint_gray"
                 android:visibility="visible" />
         </LinearLayout>
@@ -150,7 +148,6 @@
             <ImageView
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_73_bookmark"
                 android:tint="@color/tint_gray" />
 
@@ -178,7 +175,6 @@
             <ImageView
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_578_share"
                 android:tint="@color/tint_gray" />
 
@@ -205,7 +201,6 @@
             <ImageView
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_614_copy"
                 android:tint="@color/tint_gray" />
 
@@ -233,7 +228,6 @@
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:background="@android:drawable/list_selector_background"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_417_globe"
                 android:tint="@color/tint_gray" />
 
@@ -261,7 +255,6 @@
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:background="@android:drawable/list_selector_background"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_28_search"
                 android:tint="@color/tint_gray" />
 
@@ -286,7 +279,6 @@
             <ImageView
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:padding="4dip"
                 android:src="@drawable/glyphicons_580_translate"
                 android:tint="@color/tint_gray" />
 
