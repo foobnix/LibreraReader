@@ -40,7 +40,12 @@ LOCAL_SRC_FILES := \
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java
-LOCAL_LDLIBS := -lm -llog -ljnigraphics
+
+LOCAL_LDLIBS = -ljnigraphics
+LOCAL_LDLIBS += -llog
+LOCAL_LDLIBS += -lz
+LOCAL_LDLIBS += -lm
+
 
 
 include $(BUILD_SHARED_LIBRARY)
