@@ -35,7 +35,7 @@
    <string name="full_list_of_changes_with_images_web_pdf_">画像による変更の完全なリスト（Web、PDF）</string>
    <string name="search_for_text_in_documents">マルチドキュメント検索</string>
    <string name="search_in_the_subfolders">サブフォルダを含める</string>
-   <string name="stop">やめる</string>
+   <string name="stop">中止</string>
    <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
    <string name="book_covers">ブックカバー</string>
    <string name="cover_image_size">カバー画像サイズ</string>
@@ -457,7 +457,7 @@
    <string name="no_keywords">キーワードなし</string>
    <string name="my_tags">私のタグ</string>
    <string name="crop_borders_symmetrically">境界を対称的にトリミングする</string>
-   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグからPDFブックの著者とタイトルを表示する</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著書名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO  - 広告なしで本を読むためのプログラム、それをインストールするとこのアプリケーションで広告が削除されます</string>
    <string name="annotation">注釈</string>
@@ -517,7 +517,7 @@
    <string name="tags">タグ</string>
    <string name="are_you_sure_to_delete_playlist_">プレイリストを削除してもよろしいですか？</string>
    <string name="delete_this_bookmark_">このブックマークを削除しますか？</string>
-   <string name="zoom_in_out_with_lock_enable">>ロックされたページの拡大/縮小</string>
+   <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
    <string name="read_by_sentences">文章で読む</string>
    <string name="do_not_read_characters">文字を読みません</string>
