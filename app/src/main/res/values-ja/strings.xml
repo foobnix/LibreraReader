@@ -232,7 +232,7 @@
    <string name="incorrect_value">間違った値</string>
    <string name="this_directory_is_already_in_the_list">このディレクトリは既にリストに含まれています</string>
    <string name="you_neet_to_apply_the_new_settings">あなたは新しい設定を適用する必要があります</string>
-   <string name="block_page_movement_horizontally">水平方向にページ移動をブロックする</string>
+   <string name="block_page_movement_horizontally">ロック：ページのドラッグを無効</string>
    <string name="there_are_no_email_applications_installed_">メールアプリケーションがインストールされていません。</string>
    <string name="file_not_found">ファイルが見つかりません</string>
    <string name="you_need_grant_permission">このアプリケーションのために外部ストレージの権限を許可してください</string>
