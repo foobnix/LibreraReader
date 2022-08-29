@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Descărcați mai multe fonturi</string>
    <string name="restore_search_query_when_the_application_starts">Restabiliți interogarea de căutare la pornire</string>
    <string name="hide_read_books">Ascunde cărțile citite</string>
+   <string name="image_scale">Scara imaginii</string>
 </resources>

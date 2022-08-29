@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">더 많은 글꼴 다운로드</string>
    <string name="restore_search_query_when_the_application_starts">시작 시 검색어 복원</string>
    <string name="hide_read_books">읽은 책 숨기기</string>
+   <string name="image_scale">이미지 스케일</string>
 </resources>

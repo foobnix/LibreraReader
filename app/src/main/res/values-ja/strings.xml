@@ -598,7 +598,7 @@
    <string name="paste_or_type_text_in_here">ここにテキストを貼り付けるか入力します</string>
    <string name="go_to_the_folder">フォルダに移動</string>
    <string name="you_should_enable_allow_battery">バックグラウンドで聴くには、[バッテリー]> [バックグラウンドアクティビティを許可]を有効にする必要があります</string>
-   <string name="use_calibre_metadata">calibreのmetadata.opfを使用する</string>
+   <string name="use_calibre_metadata">Calibreのmetadata.opfを使用する</string>
    <string name="icons_only">アイコンのみ</string>
    <string name="migration">移行</string>
    <string name="please_backup1">移行する前にバックアップ（エクスポート）することをお勧めします</string>
@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">より多くのフォントをダウンロードする</string>
    <string name="restore_search_query_when_the_application_starts">起動時に検索クエリを復元する</string>
    <string name="hide_read_books">読んだ本を隠す</string>
+   <string name="image_scale">画像スケール</string>
 </resources>

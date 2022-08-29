@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Pakua fonti zaidi</string>
    <string name="restore_search_query_when_the_application_starts">Rejesha hoja ya utafutaji wakati wa kuanza</string>
    <string name="hide_read_books">Ficha kusoma vitabu</string>
+   <string name="image_scale">Kiwango cha picha</string>
 </resources>

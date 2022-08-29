@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Pobierz więcej czcionek</string>
    <string name="restore_search_query_when_the_application_starts">Przywróć zapytanie wyszukiwania przy starcie</string>
    <string name="hide_read_books">Ukryj przeczytaj książki</string>
+   <string name="image_scale">Skala obrazu</string>
 </resources>

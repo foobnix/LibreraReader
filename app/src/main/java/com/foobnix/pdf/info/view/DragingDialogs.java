@@ -158,7 +158,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 public class DragingDialogs {
 
@@ -166,6 +165,7 @@ public class DragingDialogs {
     public final static int PREF_HEIGHT = 560;
 
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
+    static String lastSearchText = "";
 
     public static void samble(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
@@ -1140,7 +1140,6 @@ public class DragingDialogs {
 
     }
 
-    static String lastSearchText="";
     public static void searchMenu(final FrameLayout anchor, final DocumentController controller, String text) {
         if (controller == null) {
             return;
@@ -1153,9 +1152,9 @@ public class DragingDialogs {
 
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
                 //searchEdit.setText(text);
-                if(TxtUtils.isNotEmpty(text)) {
+                if (TxtUtils.isNotEmpty(text)) {
                     searchEdit.setText(text);
-                }else{
+                } else {
                     searchEdit.setText(lastSearchText);
                 }
 
@@ -1198,7 +1197,7 @@ public class DragingDialogs {
                         boolean isRun = TempHolder.isSeaching;
                         TempHolder.isSeaching = false;
                         if (!isRun) {
-                            lastSearchText= "";
+                            lastSearchText = "";
                             searchEdit.setText("");
                             controller.clearSelectedText();
                             searchingMsg.setVisibility(View.GONE);
@@ -1956,7 +1955,6 @@ public class DragingDialogs {
                 grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
 
 
-
                 final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), dc.getPageCount(), dc.getCurentPageFirst1() - 1) {
@@ -2147,7 +2145,6 @@ public class DragingDialogs {
                 drawView.setVisibility(View.GONE);
                 drawView.clear();
             }
-
 
 
             @Override
@@ -3647,9 +3644,6 @@ public class DragingDialogs {
                 });
 
 
-
-
-
                 CheckBox isIgnoreAnnotatations = (CheckBox) inflate.findViewById(R.id.isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setChecked(AppState.get().isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4294,7 +4288,7 @@ public class DragingDialogs {
                                         load.setLang(code);
                                         SharedBooks.save(load1);
                                     }
-                                    if(AppState.get().isDefaultHyphenLanguage){
+                                    if (AppState.get().isDefaultHyphenLanguage) {
                                         AppState.get().defaultHyphenLanguageCode = code;
                                     }
 
@@ -4312,12 +4306,10 @@ public class DragingDialogs {
                 isDefaultHyphenLanguage.setChecked(AppState.get().isDefaultHyphenLanguage);
                 isDefaultHyphenLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     AppState.get().isDefaultHyphenLanguage = isChecked;
-                    if(isChecked){
-                        AppState.get().defaultHyphenLanguageCode= AppSP.get().hypenLang;
+                    if (isChecked) {
+                        AppState.get().defaultHyphenLanguageCode = AppSP.get().hypenLang;
                     }
                 });
-
-
 
 
                 // - hypens
@@ -4371,6 +4363,20 @@ public class DragingDialogs {
 
                     }
                 });
+
+                final CustomSeek imageScale = (CustomSeek) inflate.findViewById(R.id.imageScale);
+                imageScale.init(1, 30, (int) BookCSS.get().imageScale * 10,"x");
+                imageScale.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        BookCSS.get().imageScale = (float) result / 10;
+                        imageScale.setValueText(""+BookCSS.get().imageScale);
+                        return false;
+                    }
+                });
+                imageScale.setValueText(""+BookCSS.get().imageScale);
+
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
                 lineHeight.init(0, 30, BookCSS.get().lineHeight);
@@ -4859,7 +4865,7 @@ public class DragingDialogs {
 
                 CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
 
-                ((View)isCharacterEncoding.getParent()).setVisibility(isTxtOrZip || controller.getCurrentBook().getPath().endsWith(".pdb") ? View.VISIBLE : View.GONE);
+                ((View) isCharacterEncoding.getParent()).setVisibility(isTxtOrZip || controller.getCurrentBook().getPath().endsWith(".pdb") ? View.VISIBLE : View.GONE);
                 isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
                 isCharacterEncoding.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -4881,10 +4887,10 @@ public class DragingDialogs {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
                         List<String> keys = new ArrayList<>(Charset.availableCharsets().keySet());
-                        keys.add(0,"UTF-8");
+                        keys.add(0, "UTF-8");
 
                         for (final String name : keys) {
-                            if(name.startsWith("IBM") ||name.startsWith("x-")){
+                            if (name.startsWith("IBM") || name.startsWith("x-")) {
                                 continue;
                             }
                             popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {

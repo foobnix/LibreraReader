@@ -89,7 +89,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
             // int allocatedMemory = CoreSettings.get().pdfStorageSize;
             LOG.d("allocatedMemory", AppState.get().allocatedMemorySize, " MB " + allocatedMemory);
-            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1);
+            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1,BookCSS.get().imageScale);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("MUPDF! >>> open [document]", open, ExtUtils.getFileName(fname));
@@ -109,7 +109,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     public static native int getMupdfVersion();
 
-    private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle);
+    private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle, float scale);
 
     private static native void free(long handle);
 

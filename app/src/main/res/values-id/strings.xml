@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Unduh lebih banyak font</string>
    <string name="restore_search_query_when_the_application_starts">Pulihkan permintaan pencarian saat startup</string>
    <string name="hide_read_books">Sembunyikan buku yang sudah dibaca</string>
+   <string name="image_scale">Skala gambar</string>
 </resources>

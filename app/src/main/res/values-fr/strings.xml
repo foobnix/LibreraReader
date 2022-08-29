@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Télécharger plus de polices</string>
    <string name="restore_search_query_when_the_application_starts">Restaurer la requête de recherche au démarrage</string>
    <string name="hide_read_books">Masquer les livres lus</string>
+   <string name="image_scale">Échelle de l\'image</string>
 </resources>

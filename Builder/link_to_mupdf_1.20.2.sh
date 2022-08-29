@@ -63,7 +63,9 @@ cp -rpv $SRC/muimg.c             $DEST/cbz/muimg.c
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
 cp -rpv $SRC/image.c             $DEST/fitz/image.c
+
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
+cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 
 cd $MUPDF_JAVA

@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">فونت های بیشتر را دانلود کنید</string>
    <string name="restore_search_query_when_the_application_starts">بازیابی عبارت جستجو در هنگام راه اندازی</string>
    <string name="hide_read_books">کتاب های خوانده شده را پنهان کنید</string>
+   <string name="image_scale">مقیاس تصویر</string>
 </resources>

@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Tải thêm phông chữ</string>
    <string name="restore_search_query_when_the_application_starts">Khôi phục truy vấn tìm kiếm khi khởi động</string>
    <string name="hide_read_books">Giấu những cuốn sách đã đọc</string>
+   <string name="image_scale">Quy mô hình ảnh</string>
 </resources>

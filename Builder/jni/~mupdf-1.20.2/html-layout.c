@@ -477,8 +477,10 @@ static void layout_flow_inline(fz_context *ctx, fz_html_box *box, fz_html_box *t
 	}
 }
 
+
 static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, float page_h, hb_buffer_t *hb_buf)
 {
+    extern float image_scale;
 	fz_html_flow *node, *line, *candidate;
 	float line_w, candidate_w, indent, break_w, nonbreak_w;
 	int line_align, align;
@@ -534,14 +536,10 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 			if (node->box->style->width.unit != N_AUTO && node->box->style->height.unit == N_AUTO)
 				node->h = node->w / aspect;
 
-            	int size = 50;
-            	if(node->h < size){
-            		node->w = node->w * size/ node->h;
-            		node->h = size;
-            	}else {
-            		node->w = node->w * 2;
-            		node->h = node->h * 2;
-            	}
+
+            node->w = node->w * ctx->image_scale;
+            node->h = node->h * ctx->image_scale;
+
 
 			/* Shrink image to fit on one page if needed */
 			if (max_w > 0 && node->w > max_w)

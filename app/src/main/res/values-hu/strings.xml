@@ -640,4 +640,5 @@
    <string name="cd_download_more_fonts">Több betűtípus letöltése</string>
    <string name="restore_search_query_when_the_application_starts">A keresési lekérdezés visszaállítása indításkor</string>
    <string name="hide_read_books">Elrejteni olvasott könyveket</string>
+   <string name="image_scale">Képlépték</string>
 </resources>
