@@ -2,11 +2,11 @@
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">ライブラリ設定</string>
    <string name="scan_device_for_new_books">端末内の新しい書籍をスキャン</string>
-   <string name="add_folder">フォルダーを追加</string>
+   <string name="add_folder">フォルダを追加</string>
    <string name="archives">アーカイブ</string>
    <string name="other">その他</string>
    <string name="you_need_to_update_the_library">ライブラリを更新する必要があります</string>
-   <string name="in_the_author_s_name_first_the_surname">著者の名前では、最初に姓</string>
+   <string name="in_the_author_s_name_first_the_surname">著者名では、姓を先に</string>
    <string name="orientation">向き</string>
    <string name="automatic">自動</string>
    <string name="landscape">横</string>
@@ -32,7 +32,7 @@
    <string name="display_all_file_types_in_folders">すべてのファイルタイプをフォルダに表示する</string>
    <string name="show_the_dialog_what_is_new_for_updates">アップデートの新機能ダイアログを表示する</string>
    <string name="what_is_new_in">新機能</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">画像による変更の完全なリスト（Web、PDF）</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">変更の全リストをダウンロード（PDF）</string>
    <string name="search_for_text_in_documents">マルチドキュメント検索</string>
    <string name="search_in_the_subfolders">サブフォルダを含める</string>
    <string name="stop">中止</string>
@@ -118,14 +118,14 @@
    <string name="db_do_nothing">何もしない</string>
    <string name="remind_about_rest_every">毎日休息を思い出させる</string>
    <string name="action_on_double_tap">ダブルタップ</string>
-   <string name="db_auto_scroll">オートスクロール</string>
+   <string name="db_auto_scroll">自動スクロール</string>
    <string name="opening_book_with_losed_lock">ページを所定の位置にロックする</string>
    <string name="opening_book_with_cropped_borders">余白を切り取って本を開く</string>
-   <string name="db_auto_alignemnt">オートアライメント</string>
-   <string name="db_auto_center_horizontally">中央に水平に</string>
+   <string name="db_auto_alignemnt">自動整列</string>
+   <string name="db_auto_center_horizontally">水平方向に中央揃え</string>
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
    <string name="enhancements_for_oled_display">OLEDディスプレイの機能拡張</string>
-   <string name="ignore_annotations_on_click">クリックで注釈を無視します</string>
+   <string name="ignore_annotations_on_click">タップで注釈を無視する</string>
    <string name="save_new_annotations_automatically">自動的に新しい注釈を保存</string>
    <string name="selecting_text_by_letters">文字単位でテキストを選択</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量キーで自動スクロール速度を変更する</string>
@@ -138,7 +138,7 @@
    <string name="status_bar">ステータスバー</string>
    <string name="show_status_bar">ステータスバーを表示</string>
    <string name="show_progress_of_reading">読書の進捗状況を示す</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">読み込んだ進行状況行を使用してページの巻き戻しを有効にする</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">進捗状況行を使用したページめくりを有効にする</string>
    <string name="text_size">文字サイズ</string>
    <string name="line_height">行の高さ</string>
    <string name="text_color_day">テキストの色（昼）</string>
@@ -194,7 +194,7 @@
    <string name="proxy_server_settings">プロキシサーバーの設定</string>
    <string name="use_proxy_server">プロキシサーバーを使用する</string>
    <string name="proxy_type">プロキシタイプ</string>
-   <string name="server">サーバ</string>
+   <string name="server">サーバー</string>
    <string name="port">ポート</string>
    <string name="user">ユーザー</string>
    <string name="other_settings">その他の設定</string>
@@ -279,7 +279,7 @@
    <string name="___READING___SCREEN___SECTION___"></string>
    <string name="enter_password">パスワードを入力する</string>
    <string name="page_position">ページの位置</string>
-   <string name="open_web_page">Webページを開きます</string>
+   <string name="open_web_page">Webページを開く</string>
    <string name="hide_app">アプリケーションを非表示にする</string>
    <string name="go_to_the_library">ライブラリに行く</string>
    <string name="contrast_and_brightness">コントラストと明るさ</string>
@@ -346,7 +346,7 @@
    <string name="msg_unexpected_error">予期しないエラーが発生しました</string>
    <string name="msg_wrong_password">パスワードが間違っています</string>
    <string name="msg_password_required">パスワードを入力してください</string>
-   <string name="no_results_found_">No Results Found :(</string>
+   <string name="no_results_found_">何も見つかりません:(</string>
    <string name="off">オフ</string>
    <string name="on">オン</string>
    <string name="open_in_browser">ブラウザで開く</string>
@@ -369,12 +369,12 @@
    <string name="size_of_allocated_memory">割り当てられたメモリのサイズ</string>
    <string name="display_settings">ディスプレイの設定</string>
    <string name="image_format">画像フォーマット</string>
-   <string name="enable_vibration_for_some_actions">いくつかのアクションのための振動を有効にします</string>
+   <string name="enable_vibration_for_some_actions">一部のアクションで振動を有効にする</string>
    <string name="image">画像</string>
    <string name="transparency">透明</string>
    <string name="write_feedback">フィードバックを書く</string>
    <string name="clear_all_marked">マークをすべてクリア</string>
-   <string name="application_cannot_open_the_book">本を開くことができませんアプリケーション</string>
+   <string name="application_cannot_open_the_book">本を開けません</string>
    <string name="musician">ミュージシャン</string>
    <string name="banner_slogan_LIRBI_READER">あらゆる電子書籍形式に対応した信頼性と機能性に優れたアプリケーション</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">最高の電子書籍リーダープログラムの有料版</string>
@@ -422,7 +422,7 @@
    <string name="number">数</string>
    <string name="percent">パーセント</string>
    <string name="awards">賞</string>
-   <string name="close_book_and_application">ブックとアプリケーションを閉じる</string>
+   <string name="close_book_and_application">本とアプリケーションを閉じる</string>
    <string name="percent_and_number">パーセントと数</string>
    <string name="current_page">現在のページ</string>
    <string name="backup_folder">バックアップフォルダ</string>
@@ -430,7 +430,7 @@
    <string name="enable_contrast_and_brightness">コントラストと明るさを有効にする</string>
    <string name="enable">有効にする</string>
    <string name="link_color">リンクの色</string>
-   <string name="show_battery_percentage">バッテリの割合を表示する</string>
+   <string name="show_battery_percentage">電池の割合を表示する</string>
    <string name="show_current_time">現在の時間を表示する</string>
    <string name="telegram_channel">テレグラムチャンネル</string>
    <string name="zoom_in_out_using_the_volume_keys">音量キーで拡大/縮小する</string>
@@ -459,7 +459,7 @@
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著書名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO  - 広告なしで本を読むためのプログラム、それをインストールするとこのアプリケーションで広告が削除されます</string>
+   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO：こちらをインストールすると広告が無くなります</string>
    <string name="annotation">注釈</string>
    <string name="book">本</string>
    <string name="information">情報</string>
@@ -480,7 +480,7 @@
    <string name="cyclic_scrolling_return_to_1_page_">循環スクロール（1ページに戻る）</string>
    <string name="normalize_font_size">フォントサイズを標準化する</string>
    <string name="display_chapters_on_the_progress_line">進捗線に章を表示する</string>
-   <string name="display_sub_chapters_on_the_progress_line">進捗線のサブチャプター</string>
+   <string name="display_sub_chapters_on_the_progress_line">進捗線に節を表示する</string>
    <string name="enable_vertical_gesture">縦スワイプでページをめくる</string>
    <string name="enable_horizontal_gesture">横スワイプでページをめくる</string>
    <string name="pause_duration">一時停止時間</string>
@@ -520,7 +520,7 @@
    <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
    <string name="read_by_sentences">文章で読む</string>
-   <string name="do_not_read_characters">文字を読みません</string>
+   <string name="do_not_read_characters">記号(:)をスキップ</string>
    <string name="show_in_scroll_mode">スクロールモードで表示する</string>
    <string name="display_bookmark_text_instead_of_number">番号の代わりにブックマークテキストを表示する</string>
    <string name="export_as_text">テキストとしてエクスポート</string>
@@ -535,7 +535,7 @@
    <string name="please_wait_books_are_being_processed_">お待ちください、書籍は処理中です</string>
    <string name="system_brightness">システムの明るさ</string>
    <string name="opening_books_in_the_specified_mode">指定されたモードで本を開く</string>
-   <string name="dark_oled">ダークオイル</string>
+   <string name="dark_oled">ダーク OLED</string>
    <string name="profile">プロフィール</string>
    <string name="new_profile">新しいプロフィール</string>
    <string name="main">メイン</string>
@@ -561,7 +561,7 @@
    <string name="share_as_image">画像として共有</string>
    <string name="copy_text">テキストをコピーする</string>
    <string name="show_fast_scroll">高速スクロールを表示</string>
-   <string name="replacements">代替品</string>
+   <string name="replacements">置き換え</string>
    <string name="add_dictionary">辞書を追加</string>
    <string name="add_rule">ルールを追加</string>
    <string name="emphasis">強調</string>
@@ -573,7 +573,7 @@
    <string name="display_original_file_names_without_metadata">元のファイル名を表示する（メタデータなしで）</string>
    <string name="use_fingerprint_as_the_password">パスワードとして指紋を使う</string>
    <string name="show_tap_zones_on_screen">画面にタップゾーンを表示する</string>
-   <string name="show_the_last_page_with_the_red_line">最後のページを赤い線で表示する</string>
+   <string name="show_the_last_page_with_the_red_line">最後のページに赤い線を表示する</string>
    <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
    <string name="clear_log">クリアログ</string>
    <string name="floating_bookmark">フローティングブックマーク</string>
@@ -581,9 +581,9 @@
    <string name="pull_to_start_sync">引っ張って同期を開始</string>
    <string name="show_book_title">ステータスバーに本のタイトルを表示する</string>
    <string name="delete_reading_progress">読書の進行状況を削除する</string>
-   <string name="ignore_folder_scan_if_nomedia_file_exists">.nomediaファイルのあるフォルダーを無視する</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">.nomediaファイルのあるフォルダを無視する</string>
    <string name="record_in_mp3_format">.mp3形式で記録する</string>
-   <string name="speak_into_file_wav">レコードTTS（mp3、wav）</string>
+   <string name="speak_into_file_wav">TTSの録音（mp3、wav）</string>
    <string name="text_is_too_long">テキストが長すぎます</string>
    <string name="settings">設定</string>
    <string name="play_pause">プレイ/一時停止</string>
@@ -592,7 +592,7 @@
    <string name="copied_text">コピーされたテキスト</string>
    <string name="reference_mode_like_in_calibre_viewer">参照モード（calibre viewerのような）</string>
    <string name="profile_root">プロファイルルート</string>
-   <string name="create_folder">フォルダーを作成</string>
+   <string name="create_folder">フォルダを作成</string>
    <string name="show_hidden">非表示を表示</string>
    <string name="new_file">新しいファイル</string>
    <string name="paste_or_type_text_in_here">ここにテキストを貼り付けるか入力します</string>
