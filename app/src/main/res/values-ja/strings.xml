@@ -641,4 +641,5 @@
    <string name="restore_search_query_when_the_application_starts">起動時に検索クエリを復元する</string>
    <string name="hide_read_books">読んだ本を隠す</string>
    <string name="image_scale">画像スケール</string>
+   <string name="сreate_a_folder_with_the_name_of_the_book">本の名前でフォルダを作成する</string>
 </resources>

@@ -349,6 +349,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                 final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
                 final CheckBox opdsLargeCovers = (CheckBox) view.findViewById(R.id.opdsLargeCovers);
+                final CheckBox createBookNameFolder = (CheckBox) view.findViewById(R.id.createBookNameFolder);
                 final EditText proxyServer = (EditText) view.findViewById(R.id.proxyServer);
                 final EditText proxyPort = (EditText) view.findViewById(R.id.proxyPort);
                 final EditText proxyUser = (EditText) view.findViewById(R.id.proxyUser);
@@ -450,6 +451,15 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().opdsLargeCovers = isChecked;
+                    }
+                });
+
+                createBookNameFolder.setChecked(AppState.get().createBookNameFolder);
+                createBookNameFolder.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().createBookNameFolder = isChecked;
                     }
                 });
 
@@ -566,11 +576,16 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     outStream = getActivity().getContentResolver().openOutputStream(createDocument);
                                 } else {
                                     File LIRBI_DOWNLOAD_DIR;
-                                    if (TxtUtils.isNotEmpty(link.author)) {
-                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
-                                    } else {
-                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                    if(AppState.get().createBookNameFolder){
+                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, displayName);
+                                    }else {
+                                        if (TxtUtils.isNotEmpty(link.author)) {
+                                            LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
+                                        } else {
+                                            LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                        }
                                     }
+
                                     if (!LIRBI_DOWNLOAD_DIR.exists()) {
                                         LIRBI_DOWNLOAD_DIR.mkdirs();
                                     }

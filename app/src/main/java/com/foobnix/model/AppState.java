@@ -106,8 +106,8 @@ public class AppState {
             //"https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
-            "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
-            "http://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
+            "https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
+            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
             // "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for
             // Manybooks.net,assets://opds/manybooks.png;" + //
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
@@ -270,6 +270,7 @@ public class AppState {
 
     public String myOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;
+    public boolean createBookNameFolder = false;
     public String readColors = READ_COLORS_DEAFAUL;
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA

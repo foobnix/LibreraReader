@@ -641,4 +641,5 @@
    <string name="restore_search_query_when_the_application_starts">Suchabfrage beim Start wiederherstellen</string>
    <string name="hide_read_books">Gelesene Bücher verstecken</string>
    <string name="image_scale">Bildmaßstab</string>
+   <string name="сreate_a_folder_with_the_name_of_the_book">Erstellen Sie einen Ordner mit dem Namen des Buches</string>
 </resources>

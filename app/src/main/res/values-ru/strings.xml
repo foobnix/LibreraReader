@@ -641,4 +641,5 @@
    <string name="restore_search_query_when_the_application_starts">Восстановить поисковый запрос при запуске</string>
    <string name="hide_read_books">Скрыть прочитанные книги</string>
    <string name="image_scale">Масштаб изображения</string>
+   <string name="сreate_a_folder_with_the_name_of_the_book">Создать папку с названием книги</string>
 </resources>

@@ -641,4 +641,5 @@
    <string name="restore_search_query_when_the_application_starts">Başlangıçta arama sorgusunu geri yükle</string>
    <string name="hide_read_books">Okunan kitapları gizle</string>
    <string name="image_scale">Görüntü ölçeği</string>
+   <string name="сreate_a_folder_with_the_name_of_the_book">Kitabın adıyla bir klasör oluşturun</string>
 </resources>
