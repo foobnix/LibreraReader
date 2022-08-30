@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
@@ -43,6 +44,12 @@ public class CustomSeek extends FrameLayout {
             titleText.setTextColor(Color.parseColor(textColor));
             textCurerntValue.setTextColor(Color.parseColor(textColor));
         }
+        titleText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), titleText.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         seek = (SeekBar) inflate.findViewById(R.id.seek);
 
