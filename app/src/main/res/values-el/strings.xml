@@ -641,4 +641,5 @@
    <string name="restore_search_query_when_the_application_starts">Επαναφορά ερωτήματος αναζήτησης κατά την εκκίνηση</string>
    <string name="hide_read_books">Κρύψτε τα διαβασμένα βιβλία</string>
    <string name="image_scale">Κλίμακα εικόνας</string>
+   <string name="сreate_a_folder_with_the_name_of_the_book">Δημιουργήστε ένα φάκελο με το όνομα του βιβλίου</string>
 </resources>

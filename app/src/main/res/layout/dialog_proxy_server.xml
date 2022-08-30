@@ -121,6 +121,17 @@
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/createBookNameFolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/сreate_a_folder_with_the_name_of_the_book" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="0dip"
+            android:background="@color/lt_grey_alpha" />
+
+        <CheckBox
             android:id="@+id/opdsLargeCovers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
