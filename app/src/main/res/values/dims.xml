@@ -8,7 +8,7 @@
     <dimen name="text_title">14sp</dimen>
     <dimen name="text_title1">14sp</dimen>
     <dimen name="text_subtitle">12sp</dimen>
-    <dimen name="title_wh_button">18dp</dimen>
+    <dimen name="title_wh_button">20dp</dimen>
     <dimen name="title_wh_padding">3dp</dimen>
     <dimen name="title_h_adv">13sp</dimen>
     <dimen name="sub_checkbox">35dip</dimen>
