@@ -336,7 +336,7 @@
    <string name="text_page">ページ</string>
    <string name="page">1ページ</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">選択中...</string>
+   <string name="choose_">選択...</string>
    <string name="crop_white_borders">余白の切り取り</string>
    <string name="full_screen">全画面表示</string>
    <string name="go">Go</string>
@@ -415,7 +415,7 @@
    <string name="incorrect_password">間違ったパスワード</string>
    <string name="repeat_password">パスワードを再度入力してください。</string>
    <string name="internal_storage">内部ストレージ</string>
-   <string name="the_page_is_clipped_the_text_selection_does_not_work">ページがクリップされ、テキスト選択が機能しません</string>
+   <string name="the_page_is_clipped_the_text_selection_does_not_work">切り取られたページではテキスト選択を行えません</string>
    <string name="title">タイトル</string>
    <string name="subject">件名</string>
    <string name="keywords">キーワード</string>
@@ -577,12 +577,12 @@
    <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
    <string name="clear_log">クリアログ</string>
    <string name="floating_bookmark">フローティングブックマーク</string>
-   <string name="animate_sync_progress">同期進行アニメーションを表示</string>
+   <string name="animate_sync_progress">同期の進捗アニメーションを表示</string>
    <string name="pull_to_start_sync">引っ張って同期を開始</string>
    <string name="show_book_title">ステータスバーに本のタイトルを表示する</string>
-   <string name="delete_reading_progress">読書の進行状況を削除する</string>
+   <string name="delete_reading_progress">読書の進捗状況を削除する</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomediaファイルのあるフォルダを無視する</string>
-   <string name="record_in_mp3_format">.mp3形式で記録する</string>
+   <string name="record_in_mp3_format">.mp3形式で録音する</string>
    <string name="speak_into_file_wav">TTSの録音（mp3、wav）</string>
    <string name="text_is_too_long">テキストが長すぎます</string>
    <string name="settings">設定</string>
