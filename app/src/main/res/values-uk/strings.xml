@@ -642,4 +642,5 @@
    <string name="hide_read_books">Сховати прочитані книги</string>
    <string name="image_scale">Масштаб зображення</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Створити папку з назвою книги</string>
+   <string name="memory">Пам\'ять</string>
 </resources>

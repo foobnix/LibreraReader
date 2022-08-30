@@ -642,4 +642,5 @@
    <string name="hide_read_books">Ascunde cărțile citite</string>
    <string name="image_scale">Scara imaginii</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Creați un folder cu numele cărții</string>
+   <string name="memory">Memorie</string>
 </resources>

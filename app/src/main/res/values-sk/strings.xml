@@ -642,4 +642,5 @@
    <string name="hide_read_books">Skryť prečítané knihy</string>
    <string name="image_scale">Mierka obrazu</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Vytvorte priečinok s názvom knihy</string>
+   <string name="memory">Pamäť</string>
 </resources>

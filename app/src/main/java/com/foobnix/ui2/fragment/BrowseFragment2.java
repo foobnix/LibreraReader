@@ -319,7 +319,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
-                menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.memory).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -327,6 +327,21 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         return false;
                     }
                 }).setIcon(R.drawable.glyphicons_336_folder);
+
+                String pathDownloads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+                if(new File(pathDownloads).isDirectory()) {
+                    menu.getMenu().add(getString(R.string.memory) + "/"+ExtUtils.getFileName(pathDownloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            displayAnyPath(pathDownloads);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_336_folder);
+                }
+
+
 
                 for (final String info : extFolders) {
 
@@ -350,14 +365,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
                 if (new File(BookCSS.get().downlodsPath).isDirectory()) {
-                    menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu().add("Librera/"+getString(R.string.downloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             displayAnyPath(BookCSS.get().downlodsPath);
                             return false;
                         }
-                    }).setIcon(R.drawable.glyphicons_146_folder_plus);
+                    }).setIcon(R.drawable.glyphicons_336_folder);
                 }
 
 

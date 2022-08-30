@@ -642,4 +642,5 @@
    <string name="hide_read_books">पढ़ी गई किताबें छुपाएं</string>
    <string name="image_scale">छवि पैमाना</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">किताब के नाम से एक फोल्डर बनाएं</string>
+   <string name="memory">स्मृति</string>
 </resources>
