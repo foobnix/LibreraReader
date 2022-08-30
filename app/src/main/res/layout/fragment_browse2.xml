@@ -134,7 +134,6 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:contentDescription="@string/favorites"
-            android:padding="6dip"
             android:src="@drawable/glyphicons_336_folder" />
 
         <View
