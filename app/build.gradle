@@ -124,7 +124,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "Librera",
+                    appName      : "Librera Old",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",
@@ -284,12 +284,6 @@ android {
 //                //variant.resValue "string", "[appSafeMode]", "false"
 //                println abiName + " : appSafeMode false"
 //            }
-
-            if(flavor.equals("Old")){
-                flavor = "MuPDF-1.11"
-            }else if(flavor.equals("Beta")){
-                flavor = "MuPDF-1.11"
-            }
 
             if (abiName != null) {
                 def code = abiCodes.get(abiName, 0) + variant.versionCode

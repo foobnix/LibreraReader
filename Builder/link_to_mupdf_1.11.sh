@@ -63,10 +63,10 @@ whereis ndk-build
 echo "================== "
 
 if [ "$1" == "clean_ndk" ]; then
-ndk-build clean
+/home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build clean
 fi
 
-ndk-build
+/home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build NDK_APPLICATION_MK=jni/Application-16.mk
 echo "================== "
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS

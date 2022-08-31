@@ -44,6 +44,7 @@ rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni
 mv $MUPDF_JAVA/jni/Android-$VERSION_TAG.mk $MUPDF_JAVA/jni/Android.mk
 
+
 rm -r $LIBS
 mkdir $LIBS
 
@@ -74,7 +75,7 @@ if [ "$1" == "clean_ndk" ]; then
 ndk-build clean
 fi
 
-ndk-build
+ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
 
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
