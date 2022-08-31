@@ -14,10 +14,18 @@ cd ../
 ./gradlew assemblePdf_classicRelease
 ./gradlew assembleFdroidRelease
 
+
+cd Builder
+./link_to_mupdf_1.11.sh
+
+cd ../
+./gradlew assembleOldRelease
+
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
 cd Builder
+
 ./remove_all.sh
 ./install_all.sh
 ./clear-cache.sh
