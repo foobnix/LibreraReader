@@ -62,6 +62,173 @@ struct renderpage_s {
 extern fz_locks_context * jni_new_locks();
 extern void jni_free_locks(fz_locks_context *locks);
 
+
+static fz_font *load_noto(fz_context *ctx, const char *filename, int idx)
+{
+	fz_font *font;
+	fz_try(ctx)
+		font = fz_new_font_from_file(ctx, NULL, filename, idx, 0);
+	fz_catch(ctx)
+		return NULL;
+	return font;
+}
+
+static fz_font *load_noto_cjk(fz_context *ctx, int lang)
+{
+	fz_font *font = load_noto(ctx, "/system/fonts/NotoSansCJK-Regular.ttc", lang);
+	if (!font)
+		font = load_noto(ctx, "/system/fonts/DroidSansFallback.ttf", 0);
+	return font;
+}
+
+static fz_font *load_noto3(fz_context *ctx, const char *a, const char *b, const char *c)
+{
+	fz_font *font = load_noto(ctx, a, 0);
+	if (!font && b) font = load_noto(ctx, b, 0);
+	if (!font && c) font = load_noto(ctx, c, 0);
+	return font;
+}
+
+enum { JP, KR, SC, TC };
+
+#define NOTO3(NAME1, NAME2, NAME3) load_noto3(ctx, "/system/fonts/" NAME1 "-Regular.ttf", "/system/fonts/" NAME2 "-Regular.ttf", "/system/fonts/" NAME3 "-Regular.ttf")
+#define NOTO2(NAME1, NAME2) load_noto3(ctx, "/system/fonts/" NAME1 "-Regular.ttf", "/system/fonts/" NAME2 "-Regular.ttf", NULL)
+#define NOTO(NAME) load_noto3(ctx, "/system/fonts/" NAME "-Regular.ttf", NULL, NULL)
+
+fz_font *load_droid_fallback_font(fz_context *ctx, int script, int language, int serif, int bold, int italic)
+{
+	switch (script)
+	{
+	default:
+	case UCDN_SCRIPT_COMMON:
+	case UCDN_SCRIPT_INHERITED:
+	case UCDN_SCRIPT_UNKNOWN:
+		return NULL;
+
+	case UCDN_SCRIPT_HANGUL: return load_noto_cjk(ctx, KR);
+	case UCDN_SCRIPT_HIRAGANA: return load_noto_cjk(ctx, JP);
+	case UCDN_SCRIPT_KATAKANA: return load_noto_cjk(ctx, JP);
+	case UCDN_SCRIPT_BOPOMOFO: return load_noto_cjk(ctx, SC);
+	case UCDN_SCRIPT_HAN:
+		switch (language) {
+		case FZ_LANG_ja: return load_noto_cjk(ctx, JP);
+		case FZ_LANG_ko: return load_noto_cjk(ctx, KR);
+		case FZ_LANG_zh_Hant: return load_noto_cjk(ctx, TC);
+		default:
+		case FZ_LANG_zh_Hans: return load_noto_cjk(ctx, SC);
+		}
+
+	case UCDN_SCRIPT_LATIN: return NOTO2("NotoSans", "DroidSans");
+	case UCDN_SCRIPT_GREEK: return NOTO2("NotoSans", "DroidSans");
+	case UCDN_SCRIPT_CYRILLIC: return NOTO2("NotoSans", "DroidSans");
+	case UCDN_SCRIPT_ARABIC: return NOTO3("NotoNaskh", "NotoNaskhArabic", "DroidNaskh");
+
+	case UCDN_SCRIPT_ARMENIAN: return NOTO2("NotoSansArmenian", "DroidSansArmenian");
+	case UCDN_SCRIPT_BALINESE: return NOTO("NotoSansBalinese");
+	case UCDN_SCRIPT_BAMUM: return NOTO("NotoSansBamum");
+	case UCDN_SCRIPT_BATAK: return NOTO("NotoSansBatak");
+	case UCDN_SCRIPT_BENGALI: return NOTO("NotoSansBengali");
+	case UCDN_SCRIPT_CANADIAN_ABORIGINAL: return NOTO("NotoSansCanadianAboriginal");
+	case UCDN_SCRIPT_CHAM: return NOTO("NotoSansCham");
+	case UCDN_SCRIPT_CHEROKEE: return NOTO("NotoSansCherokee");
+	case UCDN_SCRIPT_DEVANAGARI: return NOTO2("NotoSansDevanagari", "DroidSansDevanagari");
+	case UCDN_SCRIPT_ETHIOPIC: return NOTO2("NotoSansEthiopic", "DroidSansEthiopic");
+	case UCDN_SCRIPT_GEORGIAN: return NOTO2("NotoSansGeorgian", "DroidSansGeorgian");
+	case UCDN_SCRIPT_GUJARATI: return NOTO("NotoSansGujarati");
+	case UCDN_SCRIPT_GURMUKHI: return NOTO("NotoSansGurmukhi");
+	case UCDN_SCRIPT_HEBREW: return NOTO2("NotoSansHebrew", "DroidSansHebrew");
+	case UCDN_SCRIPT_JAVANESE: return NOTO("NotoSansJavanese");
+	case UCDN_SCRIPT_KANNADA: return NOTO("NotoSansKannada");
+	case UCDN_SCRIPT_KAYAH_LI: return NOTO("NotoSansKayahLi");
+	case UCDN_SCRIPT_KHMER: return NOTO("NotoSansKhmer");
+	case UCDN_SCRIPT_LAO: return NOTO("NotoSansLao");
+	case UCDN_SCRIPT_LEPCHA: return NOTO("NotoSansLepcha");
+	case UCDN_SCRIPT_LIMBU: return NOTO("NotoSansLimbu");
+	case UCDN_SCRIPT_LISU: return NOTO("NotoSansLisu");
+	case UCDN_SCRIPT_MALAYALAM: return NOTO("NotoSansMalayalam");
+	case UCDN_SCRIPT_MANDAIC: return NOTO("NotoSansMandaic");
+	case UCDN_SCRIPT_MEETEI_MAYEK: return NOTO("NotoSansMeeteiMayek");
+	case UCDN_SCRIPT_MONGOLIAN: return NOTO("NotoSansMongolian");
+	case UCDN_SCRIPT_MYANMAR: return NOTO("NotoSansMyanmar");
+	case UCDN_SCRIPT_NEW_TAI_LUE: return NOTO("NotoSansNewTaiLue");
+	case UCDN_SCRIPT_NKO: return NOTO("NotoSansNKo");
+	case UCDN_SCRIPT_OL_CHIKI: return NOTO("NotoSansOlChiki");
+	case UCDN_SCRIPT_ORIYA: return NOTO("NotoSansOriya");
+	case UCDN_SCRIPT_SAURASHTRA: return NOTO("NotoSansSaurashtra");
+	case UCDN_SCRIPT_SINHALA: return NOTO("NotoSansSinhala");
+	case UCDN_SCRIPT_SUNDANESE: return NOTO("NotoSansSundanese");
+	case UCDN_SCRIPT_SYLOTI_NAGRI: return NOTO("NotoSansSylotiNagri");
+	case UCDN_SCRIPT_SYRIAC: return NOTO("NotoSansSyriacEastern");
+	case UCDN_SCRIPT_TAI_LE: return NOTO("NotoSansTaiLe");
+	case UCDN_SCRIPT_TAI_THAM: return NOTO("NotoSansTaiTham");
+	case UCDN_SCRIPT_TAI_VIET: return NOTO("NotoSansTaiViet");
+	case UCDN_SCRIPT_TAMIL: return NOTO2("NotoSansTamil", "DroidSansTamil");
+	case UCDN_SCRIPT_TELUGU: return NOTO("NotoSansTelugu");
+	case UCDN_SCRIPT_THAANA: return NOTO("NotoSansThaana");
+	case UCDN_SCRIPT_THAI: return NOTO2("NotoSansThai", "DroidSansThai");
+	case UCDN_SCRIPT_TIBETAN: return NOTO("NotoSansTibetan");
+	case UCDN_SCRIPT_TIFINAGH: return NOTO("NotoSansTifinagh");
+	case UCDN_SCRIPT_VAI: return NOTO("NotoSansVai");
+	case UCDN_SCRIPT_YI: return NOTO("NotoSansYi");
+
+	/* Historic */
+	case UCDN_SCRIPT_AVESTAN: return NOTO("NotoSansAvestan");
+	case UCDN_SCRIPT_BRAHMI: return NOTO("NotoSansBrahmi");
+	case UCDN_SCRIPT_BUGINESE: return NOTO("NotoSansBuginese");
+	case UCDN_SCRIPT_BUHID: return NOTO("NotoSansBuhid");
+	case UCDN_SCRIPT_CARIAN: return NOTO("NotoSansCarian");
+	case UCDN_SCRIPT_COPTIC: return NOTO("NotoSansCoptic");
+	case UCDN_SCRIPT_CUNEIFORM: return NOTO("NotoSansCuneiform");
+	case UCDN_SCRIPT_CYPRIOT: return NOTO("NotoSansCypriot");
+	case UCDN_SCRIPT_DESERET: return NOTO("NotoSansDeseret");
+	case UCDN_SCRIPT_EGYPTIAN_HIEROGLYPHS: return NOTO("NotoSansEgyptianHieroglyphs");
+	case UCDN_SCRIPT_GLAGOLITIC: return NOTO("NotoSansGlagolitic");
+	case UCDN_SCRIPT_GOTHIC: return NOTO("NotoSansGothic");
+	case UCDN_SCRIPT_HANUNOO: return NOTO("NotoSansHanunoo");
+	case UCDN_SCRIPT_IMPERIAL_ARAMAIC: return NOTO("NotoSansImperialAramaic");
+	case UCDN_SCRIPT_INSCRIPTIONAL_PAHLAVI: return NOTO("NotoSansInscriptionalPahlavi");
+	case UCDN_SCRIPT_INSCRIPTIONAL_PARTHIAN: return NOTO("NotoSansInscriptionalParthian");
+	case UCDN_SCRIPT_KAITHI: return NOTO("NotoSansKaithi");
+	case UCDN_SCRIPT_KHAROSHTHI: return NOTO("NotoSansKharoshthi");
+	case UCDN_SCRIPT_LINEAR_B: return NOTO("NotoSansLinearB");
+	case UCDN_SCRIPT_LYCIAN: return NOTO("NotoSansLycian");
+	case UCDN_SCRIPT_LYDIAN: return NOTO("NotoSansLydian");
+	case UCDN_SCRIPT_OGHAM: return NOTO("NotoSansOgham");
+	case UCDN_SCRIPT_OLD_ITALIC: return NOTO("NotoSansOldItalic");
+	case UCDN_SCRIPT_OLD_PERSIAN: return NOTO("NotoSansOldPersian");
+	case UCDN_SCRIPT_OLD_SOUTH_ARABIAN: return NOTO("NotoSansOldSouthArabian");
+	case UCDN_SCRIPT_OLD_TURKIC: return NOTO("NotoSansOldTurkic");
+	case UCDN_SCRIPT_OSMANYA: return NOTO("NotoSansOsmanya");
+	case UCDN_SCRIPT_PHAGS_PA: return NOTO("NotoSansPhagsPa");
+	case UCDN_SCRIPT_PHOENICIAN: return NOTO("NotoSansPhoenician");
+	case UCDN_SCRIPT_REJANG: return NOTO("NotoSansRejang");
+	case UCDN_SCRIPT_RUNIC: return NOTO("NotoSansRunic");
+	case UCDN_SCRIPT_SAMARITAN: return NOTO("NotoSansSamaritan");
+	case UCDN_SCRIPT_SHAVIAN: return NOTO("NotoSansShavian");
+	case UCDN_SCRIPT_TAGALOG: return NOTO("NotoSansTagalog");
+	case UCDN_SCRIPT_TAGBANWA: return NOTO("NotoSansTagbanwa");
+	case UCDN_SCRIPT_UGARITIC: return NOTO("NotoSansUgaritic");
+	}
+	return NULL;
+}
+
+fz_font *load_droid_cjk_font(fz_context *ctx, const char *name, int ros, int serif)
+{
+	switch (ros) {
+	case FZ_ADOBE_CNS_1: return load_noto_cjk(ctx, TC);
+	case FZ_ADOBE_GB_1: return load_noto_cjk(ctx, SC);
+	case FZ_ADOBE_JAPAN_1: return load_noto_cjk(ctx, JP);
+	case FZ_ADOBE_KOREA_1: return load_noto_cjk(ctx, KR);
+	}
+	return NULL;
+}
+
+fz_font *load_droid_font(fz_context *ctx, const char *name, int bold, int italic, int needs_exact_metrics)
+{
+	return NULL;
+}
+
+
 void mupdf_throw_exception_ex(JNIEnv *env, const char* exception, char *message) {
 	jthrowable new_exception = (*env)->FindClass(env, exception);
 	if (new_exception == NULL) {
@@ -152,6 +319,11 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 	}
 
 	fz_register_document_handlers(doc->ctx);
+
+	fz_install_load_system_font_funcs(doc->ctx,
+    		load_droid_font,
+    		load_droid_cjk_font,
+    		load_droid_fallback_font);
 
 	fz_set_user_css(doc->ctx, css);
 	fz_set_use_document_css(doc->ctx, isDocCSS);

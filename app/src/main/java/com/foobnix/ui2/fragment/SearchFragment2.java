@@ -699,8 +699,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     }
                 }
 
-                    Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
-                    Collections.reverse(result);
+                Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
+                Collections.reverse(result);
 
 
 
@@ -757,7 +757,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     count++;
                     if (parentName != null && !parentName.equals(last)) {
                         if (fm != null) {
-                            fm.setTitle(parentName + " (" + count + ")");
+                            fm.setTitle(fm.getTitle() + " (" + count + ")");
                         }
                         fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
@@ -781,7 +781,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
-   public void toastState(String command, boolean state) {
+    public void toastState(String command, boolean state) {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
 
