@@ -1,7 +1,7 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">书架设置</string>
-   <string name="scan_device_for_new_books">扫描的文件夹</string>
+   <string name="scan_device_for_new_books">书架包含的文件夹</string>
    <string name="add_folder">添加文件夹</string>
    <string name="archives">压缩包</string>
    <string name="other">其它</string>
@@ -44,7 +44,7 @@
    <string name="enable_effect_of_the_book_cover">立体封面</string>
    <string name="crop_images_in_the_book_cover">平面封面</string>
    <string name="borders_and_shadow_around_the_book_cover">显示边框和阴影</string>
-   <string name="tabs_position">标签页</string>
+   <string name="tabs_position">标签项</string>
    <string name="show_preferences_tab_in_the_left_menu">显示动画（滑出）</string>
    <string name="visible">显示</string>
    <string name="application_user_guide_">使用说明</string>
