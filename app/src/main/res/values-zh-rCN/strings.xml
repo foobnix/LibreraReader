@@ -25,7 +25,7 @@
    <string name="widget">小部件</string>
    <string name="show">显示</string>
    <string name="layout">布局</string>
-   <string name="number_of_books">书籍</string>
+   <string name="number_of_books">书籍数</string>
    <string name="remember_reading_mode">记住打开方式</string>
    <string name="opening_the_last_book_when_the_application_starts">启动时打开上次阅读的书籍</string>
    <string name="show_application_close_dialog_every_time">返回手势退出时需确认</string>
