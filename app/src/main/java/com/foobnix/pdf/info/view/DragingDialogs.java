@@ -4365,7 +4365,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek imageScale = (CustomSeek) inflate.findViewById(R.id.imageScale);
-                imageScale.init(1, 30, (int) BookCSS.get().imageScale * 10,"x");
+                imageScale.init(1, 50, (int) BookCSS.get().imageScale * 10,"x");
                 imageScale.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

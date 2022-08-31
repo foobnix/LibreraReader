@@ -106,7 +106,7 @@ public class BookCSS {
     public boolean isCapitalLetter = false;
     public int capitalLetterSize = 20;
     public String capitalLetterColor = "#ff0000";
-    public float imageScale = 1.5f;
+    public float imageScale = 2.0f;
 
     @IgnoreHashCode
     public int hashCode = 0;
