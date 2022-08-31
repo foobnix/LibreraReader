@@ -527,14 +527,14 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 			node->h = node->content.image->h * 72 / 96;
 			aspect = node->w / node->h;
 
-			if (node->box->style->width.unit != N_AUTO)
-				node->w = fz_from_css_number(node->box->style->width, top->em, top->w - margin_w, node->w);
-			if (node->box->style->height.unit != N_AUTO)
-				node->h = fz_from_css_number(node->box->style->height, top->em, page_h - margin_h, node->h);
-			if (node->box->style->width.unit == N_AUTO && node->box->style->height.unit != N_AUTO)
-				node->w = node->h * aspect;
-			if (node->box->style->width.unit != N_AUTO && node->box->style->height.unit == N_AUTO)
-				node->h = node->w / aspect;
+			//if (node->box->style->width.unit != N_AUTO)
+			//	node->w = fz_from_css_number(node->box->style->width, top->em, top->w - margin_w, node->w);
+			//if (node->box->style->height.unit != N_AUTO)
+//				node->h = fz_from_css_number(node->box->style->height, top->em, page_h - margin_h, node->h);
+//			if (node->box->style->width.unit == N_AUTO && node->box->style->height.unit != N_AUTO)
+//				node->w = node->h * aspect;
+//			if (node->box->style->width.unit != N_AUTO && node->box->style->height.unit == N_AUTO)
+//				node->h = node->w / aspect;
 
 
             node->w = node->w * ctx->image_scale;
