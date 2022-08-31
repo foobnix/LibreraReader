@@ -28,7 +28,7 @@
    <string name="number_of_books">書籍数</string>
    <string name="remember_reading_mode">読書モードを記憶する</string>
    <string name="opening_the_last_book_when_the_application_starts">アプリケーションの起動時に最後の本を開く</string>
-   <string name="show_application_close_dialog_every_time">毎回アプリケーションの閉じるダイアログを表示する</string>
+   <string name="show_application_close_dialog_every_time">アプリケーションの終了確認ダイアログを表示する</string>
    <string name="display_all_file_types_in_folders">すべてのファイルタイプをフォルダに表示する</string>
    <string name="show_the_dialog_what_is_new_for_updates">アップデートの新機能ダイアログを表示する</string>
    <string name="what_is_new_in">新機能</string>
@@ -204,7 +204,7 @@
    <string name="name">名前</string>
    <string name="description">説明</string>
    <string name="add_as_a_web_site">WEBサイトとして追加</string>
-   <string name="more">もっと</string>
+   <string name="more">さらに</string>
    <string name="download">ダウンロード</string>
    <string name="do_you_want_to_delete_">削除してもよろしいですか？</string>
    <string name="authentication_required">認証が必要</string>
@@ -311,7 +311,7 @@
    <string name="text_to_speech">読み上げ（TTS）設定</string>
    <string name="speed1">速度</string>
    <string name="pitch1">ピッチ</string>
-   <string name="sound_volume">音楽の音量</string>
+   <string name="sound_volume">音量</string>
    <string name="next">次へ</string>
    <string name="stop_reading_timer_">読書を止める（タイマー）</string>
    <string name="start">開始</string>
@@ -356,9 +356,9 @@
    <string name="split_pages_in_two">ページ分割</string>
    <string name="save_changes">変更を保存</string>
    <string name="rename">名前の変更</string>
-   <string name="saving_">保存しています...</string>
-   <string name="customize_font_background_colors">フォントや背景色をカスタマイズ</string>
-   <string name="customize_background_color">背景色をカスタマイズします</string>
+   <string name="saving_">保存中...</string>
+   <string name="customize_font_background_colors">フォントや背景色のカスタマイズ</string>
+   <string name="customize_background_color">背景色のカスタマイズ</string>
    <string name="clear_all_recent">最近のすべてをクリア</string>
    <string name="clear_all_bookmars">すべてのブックマークをクリア</string>
    <string name="this_function_will_works_in_modern_android">この機能は、新しいAndroidで機能します</string>
@@ -381,14 +381,14 @@
    <string name="banner_slogan_EPUB_READER">電子書籍を読むための最も便利なリーダー</string>
    <string name="banner_slogan_PDF_READER">電子文書を読み取るための最も便利な「PDFリーダー」</string>
    <string name="books">書籍</string>
-   <string name="reading_out_loud">大声で読む</string>
+   <string name="reading_out_loud">TTSで読む</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO（広告なし）：先進的なePub/PDFリーダー</string>
    <string name="custom_text">カスタムテキスト</string>
    <string name="cd_search_books_in_the_library">ライブラリで書籍を検索する</string>
    <string name="cd_clear_search_reasult">検索結果をクリア</string>
    <string name="cd_sort_results">結果を並べ替える</string>
    <string name="cd_sort_order">ソート順</string>
-   <string name="cd_update_search_search_for_new_books_on_sd_card">SDカードで検索を更新し、新しい本を検索する</string>
+   <string name="cd_update_search_search_for_new_books_on_sd_card">SDカード上の新しい本を検索する</string>
    <string name="cd_show_results_as_a_list_or_grid">結果をリストまたはグリッドとして表示する</string>
    <string name="cd_return_to_the_parent_folder">親フォルダに戻る</string>
    <string name="cd_back_to_sd_card">SDカードに戻る</string>
@@ -503,7 +503,7 @@
    <string name="exit_application">アプリケーション終了</string>
    <string name="exit_application_question">アプリケーションを終了しますか？</string>
    <string name="open_folder_as_a_book">フォルダを書籍として開く</string>
-   <string name="read_out_loud_with_tts">TTSで大声で読む</string>
+   <string name="read_out_loud_with_tts">TTSで読む</string>
    <string name="allow_minimum_brightness">最小輝度を許可する</string>
    <string name="select">選択</string>
    <string name="create_playlist">プレイリストを作成する</string>
@@ -532,7 +532,7 @@
    <string name="move">移動</string>
    <string name="tag_manager">タグマネージャ</string>
    <string name="the_file_already_exists_">ファイルは既に存在します。</string>
-   <string name="please_wait_books_are_being_processed_">お待ちください、書籍は処理中です</string>
+   <string name="please_wait_books_are_being_processed_">ライブラリを更新中...お待ちください。</string>
    <string name="system_brightness">システムの明るさ</string>
    <string name="opening_books_in_the_specified_mode">指定されたモードで本を開く</string>
    <string name="dark_oled">ダーク OLED</string>
