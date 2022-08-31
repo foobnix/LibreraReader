@@ -51,6 +51,9 @@ public class BookCSS {
     public static final String ARIAL = "Arial";
     public static final String COURIER = "Courier";
     public static final String DEFAULT_FONT = "Times New Roman";
+    public static final String CHARIS_SIL = "Charis SIL";
+
+
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
     private static final Object TAG = "BookCSS";
@@ -210,13 +213,13 @@ public class BookCSS {
 
         fontFolder = AppProfile.syncFontFolder.getPath();
         downlodsPath = AppProfile.syncDownloadFolder.getPath();
-        displayFontName = DEFAULT_FONT;
-        normalFont = DEFAULT_FONT;
-        boldFont = DEFAULT_FONT;
-        italicFont = DEFAULT_FONT;
-        boldItalicFont = DEFAULT_FONT;
-        headersFont = DEFAULT_FONT;
-        capitalFont = DEFAULT_FONT;
+        displayFontName = CHARIS_SIL;
+        normalFont = CHARIS_SIL;
+        boldFont = CHARIS_SIL;
+        italicFont = CHARIS_SIL;
+        boldItalicFont = CHARIS_SIL;
+        headersFont = CHARIS_SIL;
+        capitalFont = CHARIS_SIL;
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
@@ -299,12 +302,12 @@ public class BookCSS {
 
         displayFontName = pack.dispalyName;
 
-        normalFont = DEFAULT_FONT;
-        boldFont = DEFAULT_FONT;
-        italicFont = DEFAULT_FONT;
-        boldItalicFont = DEFAULT_FONT;
-        headersFont = DEFAULT_FONT;
-        capitalFont = DEFAULT_FONT;
+        normalFont = CHARIS_SIL;
+        boldFont = CHARIS_SIL;
+        italicFont = CHARIS_SIL;
+        boldItalicFont = CHARIS_SIL;
+        headersFont = CHARIS_SIL;
+        capitalFont = CHARIS_SIL;
 
         if (displayFontName != null && !displayFontName.contains(".")) {
             normalFont = displayFontName;
@@ -320,6 +323,7 @@ public class BookCSS {
 
         all.add(ARIAL);
         all.add(COURIER);
+        all.add(CHARIS_SIL);
         all.add(DEFAULT_FONT);
 
         all.addAll(getAllFontsFromFolder(pack.fontFolder));
@@ -359,6 +363,7 @@ public class BookCSS {
         }
         all.add(ARIAL);
         all.add(COURIER);
+        all.add(CHARIS_SIL);
         all.add(DEFAULT_FONT);
 
         all.addAll(getAllFontsFromFolder(fontFolder));
@@ -378,6 +383,7 @@ public class BookCSS {
         }
         all.add(new FontPack(ARIAL));
         all.add(new FontPack(COURIER));
+        all.add(new FontPack(CHARIS_SIL));
         all.add(new FontPack(DEFAULT_FONT));
 
         all.addAll(getAllFontsFiltered(fontFolder));
