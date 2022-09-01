@@ -316,21 +316,18 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    oldImplementation project(':pro')
+    proImplementation project(':pro')
+    fdroidImplementation project(':pro')
+    implementation project(':smartreflow')
 
-    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    implementation 'androidx.multidex:multidex:2.0.1'
-
-
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+/** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.work:work-runtime:2.7.1'
 
-
+/** Third-party **/
     implementation 'com.github.axet:lame:1.0.9'
 
     implementation 'org.greenrobot:eventbus:3.3.1'
@@ -353,13 +350,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    //implementation 'com.google.guava:guava:27.0.1-android'
 
-    oldImplementation project(':pro')
-    proImplementation project(':pro')
-    fdroidImplementation project(':pro')
-    implementation project(':smartreflow')
-
-
+/** Ads **/
     def google_ads = "com.google.android.gms:play-services-ads:21.1.0"
     libreraImplementation google_ads
     betaImplementation google_ads
@@ -370,11 +364,10 @@ dependencies {
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
 
-    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'androidx.work:work-runtime:2.7.1'
-
-
-    //implementation 'com.google.guava:guava:27.0.1-android'
+/** Testing **/
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
 
