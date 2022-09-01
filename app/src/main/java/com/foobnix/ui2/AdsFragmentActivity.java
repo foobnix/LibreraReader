@@ -13,8 +13,6 @@ import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 
-import fi.iki.elonen.SampleServer;
-
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
 
@@ -23,8 +21,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     public abstract void onFinishActivity();
 
     protected int intetrstialTimeoutSec = 0;
-
-    SampleServer sampleServer;
 
     Runnable onFinish = new Runnable() {
 
@@ -48,12 +44,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         activateAds();
-
-        // try {
-        // sampleServer = new SampleServer(this);
-        // } catch (IOException e) {
-        // LOG.e(e);
-        // }
     }
 
     public void activateAds() {
@@ -68,8 +58,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             LOG.e(e);
         }
         super.onResume();
-
-        // sampleServer.run();
     }
 
     @Override
@@ -81,7 +69,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             LOG.e(e);
         }
         super.onPause();
-        // sampleServer.stop();
     }
 
     public void adsPause() {
