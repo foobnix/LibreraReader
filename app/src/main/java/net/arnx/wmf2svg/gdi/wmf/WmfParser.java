@@ -55,14 +55,14 @@ public class WmfParser implements WmfConstants {
 			long key = in.readUint32();
 			isEmpty = false;
 			if (key == 0x9AC6CDD7) {
-				int hmf = in.readInt16();
+				in.readInt16(); // hmf
 				int vsx = in.readInt16();
 				int vsy = in.readInt16();
 				int vex = in.readInt16();
 				int vey = in.readInt16();
 				int dpi = in.readUint16();
-				long reserved = in.readUint32();
-				int checksum = in.readUint16();
+				in.readUint32(); // reserved
+				in.readUint16(); // checksum
 
 				gdi.placeableHeader(vsx, vsy, vex, vey, dpi);
 
@@ -73,11 +73,11 @@ public class WmfParser implements WmfConstants {
 				mtHeaderSize = (int)((key & 0xFFFF0000) >> 16);
 			}
 
-			int mtVersion = in.readUint16();
-			long mtSize = in.readUint32();
+			in.readUint16(); // mtVersion
+			in.readUint32(); // mtSize
 			int mtNoObjects = in.readUint16();
-			long mtMaxRecord = in.readUint32();
-			int mtNoParameters = in.readUint16();
+			in.readUint32(); // mtMaxRecord
+			in.readUint16(); // mtNoParameters
 
 			if (mtType != 1 || mtHeaderSize != 9) {
 				throw new WmfParseException("invalid file format.");
