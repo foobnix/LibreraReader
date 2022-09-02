@@ -343,6 +343,9 @@ public class AppState {
     public int sortBy = AppDB.SORT_BY.DATA.ordinal();
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
+
+    public int sortByFavorite = BR_SORT_BY_DATE;
+    public boolean sortByFavoriteReverse = false;
     @IgnoreHashCode
     public boolean isBrighrnessEnable = false;
     @IgnoreHashCode

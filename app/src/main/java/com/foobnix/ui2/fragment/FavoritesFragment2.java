@@ -13,12 +13,14 @@ import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -35,13 +37,14 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_49_star);
 
     FileMetaAdapter recentAdapter;
-    ImageView onListGrid;
+    ImageView onListGrid, sortOrder, onSort;
     View panelRecent;
     String syncronizedBooksTitle;
 
@@ -64,6 +67,77 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         bindAuthorsSeriesAdapter(recentAdapter);
 
         syncronizedBooksTitle = getString(R.string.synchronized_books);
+
+        onSort = (ImageView) view.findViewById(R.id.onSort);
+        sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+
+
+        sortOrder.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
+                onSort.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
+                sortOrder.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
+
+
+                populate();
+
+            }
+        });
+
+        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
+        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
+
+        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
+        onSort.setContentDescription(getString(R.string.cd_sort_results));
+
+        onSort.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                List<String> names = Arrays.asList(//
+                        getActivity().getString(R.string.by_file_name), //
+                        getActivity().getString(R.string.by_date), //
+                        getActivity().getString(R.string.by_size), //
+                        getActivity().getString(R.string.by_title), //
+                        getActivity().getString(R.string.by_author), //
+                        getActivity().getString(R.string.by_number_in_serie), //
+                        getActivity().getString(R.string.by_number_of_pages), //
+                        getActivity().getString(R.string.by_extension) //
+                );//
+
+                final List<Integer> ids = Arrays.asList(//
+                        AppState.BR_SORT_BY_PATH, //
+                        AppState.BR_SORT_BY_DATE, //
+                        AppState.BR_SORT_BY_SIZE, //
+                        AppState.BR_SORT_BY_TITLE, //
+                        AppState.BR_SORT_BY_AUTHOR, //
+                        AppState.BR_SORT_BY_NUMBER, //
+                        AppState.BR_SORT_BY_PAGES, //
+                        AppState.BR_SORT_BY_EXT//
+                );//
+
+                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
+                for (int i = 0; i < names.size(); i++) {
+                    String name = names.get(i);
+                    final int j = i;
+                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().sortByFavorite = ids.get(j);
+                            populate();
+                            return false;
+                        }
+                    });
+                }
+                menu.show();
+            }
+        });
+
+
 
 
         TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
@@ -236,6 +310,34 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
 
         if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
+
+            try {
+                if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PATH) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_PATH_NUMBER);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_DATE) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_PAGES);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_TITLE) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_TITLE);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_EXT) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
+                }
+                if (AppState.get().sortByFavoriteReverse) {
+                    Collections.reverse(allFavoriteFiles);
+                }
+
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
             all.add(empy);
