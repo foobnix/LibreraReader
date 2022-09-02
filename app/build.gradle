@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
@@ -23,18 +25,16 @@ ext {
 
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]"
-
-
 }
 
 android {
     buildToolsVersion '31.0.0'
-    compileSdkVersion 31
+    compileSdk 31
     //ndkVersion "21.4.7075529"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
-        minSdkVersion 19
-        targetSdkVersion 31
+        minSdk 19
+        targetSdk 31
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -48,16 +48,17 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         abortOnError true
         ignoreWarnings true
         checkReleaseBuilds taskName.contains("Pro")
-
     }
-    testOptions {
-        unitTests.includeAndroidResources = true
-        unitTests.returnDefaultValues = true
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
     }
 
     signingConfigs {
@@ -69,7 +70,6 @@ android {
         }
     }
 
-
     buildTypes {
         release {
             minifyEnabled false
@@ -79,16 +79,12 @@ android {
         debug {
             debuggable true
         }
-
-
     }
-
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 
     splits {
         abi {
@@ -97,13 +93,10 @@ android {
             include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             universalApk true
         }
-
     }
 
-
-    flavorDimensions "version"
+    flavorDimensions.add("version")
     productFlavors {
-
         beta {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
@@ -120,7 +113,7 @@ android {
         }
 
         old {
-            minSdkVersion 14
+            minSdk 14
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
@@ -164,7 +157,7 @@ android {
             ]
         }
         pro {
-            minSdkVersion 19
+            minSdk 19
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -249,7 +242,7 @@ android {
             ]
         }
         fdroid {
-            minSdkVersion 14
+            minSdk 14
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -266,7 +259,6 @@ android {
         }
     }
 
-
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
 
     applicationVariants.all { variant ->
@@ -275,70 +267,67 @@ android {
 
             def flavor = variant.productFlavors[0].name.capitalize()
             def abiName = getFilter("ABI")
-//            if(abiName =="armeabi-v7a"){
-//                variant.mergedFlavor.manifestPlaceholders.appSafeMode =  "true";
-//                //variant.resValue "string", "[appSafeMode]", "true"
-//                println abiName + " : appSafeMode true "
-//            }else{
-//                variant.mergedFlavor.manifestPlaceholders.appSafeMode =  "true";
-//                //variant.resValue "string", "[appSafeMode]", "false"
-//                println abiName + " : appSafeMode false"
-//            }
-
+/*            if (abiName == "armeabi-v7a") {
+                variant.mergedFlavor.manifestPlaceholders.appSafeMode = "true"
+                //variant.resValue "string", "[appSafeMode]", "true"
+                println abiName + " : appSafeMode true "
+            } else {
+                variant.mergedFlavor.manifestPlaceholders.appSafeMode = "true"
+                //variant.resValue "string", "[appSafeMode]", "false"
+                println abiName + " : appSafeMode false"
+            }
+*/
             if (abiName != null) {
                 def code = abiCodes.get(abiName, 0) + variant.versionCode
                 abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
                 output.versionCodeOverride = code
-                //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk"
 
                 def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
 
                 output.outputFileName = fullName
             } else {
-                //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
-                //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk"
+                //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk"
                 def fullName = "Librera ${flavor}-${versionNumber}-uni.apk"
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName
-
             }
-
         }
     }
-
 
     sourceSets {
         fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
     }
 
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
+        resources {
+            excludes.addAll(
+                    'META-INF/DEPENDENCIES',
+                    'META-INF/NOTICE',
+                    'META-INF/LICENSE',
+                    'META-INF/LICENSE.txt',
+                    'META-INF/NOTICE.txt',
+            )
+        }
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    oldImplementation project(':pro')
+    proImplementation project(':pro')
+    fdroidImplementation project(':pro')
+    implementation project(':smartreflow')
 
-    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    implementation 'androidx.multidex:multidex:2.0.1'
-
-
-
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+/** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.work:work-runtime:2.7.1'
 
-
+/** Third-party **/
     implementation 'com.github.axet:lame:1.0.9'
 
     implementation 'org.greenrobot:eventbus:3.3.1'
@@ -361,13 +350,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    //implementation 'com.google.guava:guava:27.0.1-android'
 
-    oldImplementation project(':pro')
-    proImplementation project(':pro')
-    fdroidImplementation project(':pro')
-    implementation project(':smartreflow')
-
-
+/** Ads **/
     def google_ads = "com.google.android.gms:play-services-ads:21.1.0"
     libreraImplementation google_ads
     betaImplementation google_ads
@@ -378,14 +364,10 @@ dependencies {
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
 
-    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'androidx.work:work-runtime:2.7.1'
-
-
-
-    //implementation 'com.google.guava:guava:27.0.1-android'
-
-
+/** Testing **/
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
 
@@ -416,7 +398,6 @@ task copyApks() {
             }
         }
 
-
         //File file = new File('/home/data/Dropbox/FREE_PDF_APK/testing/version.txt')
         //file.write versionNumber
     }
@@ -446,8 +427,6 @@ task incVersion() {
 
         println "My Task: [incVersion]"
     }
-
-
 }
 
 if (!taskName.contains("Fdroid")) {
