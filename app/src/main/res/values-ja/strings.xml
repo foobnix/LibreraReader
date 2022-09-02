@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">このブックマークを削除しますか？</string>
    <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
-   <string name="read_by_sentences">最後の句読点から再開:</string>
+   <string name="read_by_sentences">一時停止する区切り符号:</string>
    <string name="do_not_read_characters">記号をスキップ:</string>
    <string name="show_in_scroll_mode">スクロールモードで表示する</string>
    <string name="display_bookmark_text_instead_of_number">番号の代わりにブックマークテキストを表示する</string>
@@ -527,7 +527,7 @@
    <string name="export_as_backup_json_">バックアップとしてエクスポート（json）</string>
    <string name="import_from_backup_json_">バックアップからインポート（json）</string>
    <string name="additional_bookmarks_bar">追加のブックマークバー</string>
-   <string name="turn_the_page_on_the_last_word">最後の単語でページをめくる</string>
+   <string name="turn_the_page_on_the_last_word">ページ切り替え時の一時停止</string>
    <string name="paste">ペースト</string>
    <string name="move">移動</string>
    <string name="tag_manager">タグマネージャ</string>
