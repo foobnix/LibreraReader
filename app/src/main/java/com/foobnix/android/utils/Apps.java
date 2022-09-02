@@ -23,8 +23,6 @@ import com.foobnix.pdf.info.R;
 import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
-import androidx.core.content.ContextCompat;
-
 public class Apps {
 
     public static int ANDROID_VERSION = Build.VERSION.SDK_INT;

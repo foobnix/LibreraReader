@@ -24,10 +24,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Scope;
-import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.FileContent;
+import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.drive.DriveScopes;
@@ -118,7 +118,7 @@ public class GFile {
             credential.setSelectedAccount(account.getAccount());
             googleDriveService =
                     new com.google.api.services.drive.Drive.Builder(
-                            AndroidHttp.newCompatibleTransport(),
+                            new NetHttpTransport(),
                             new GsonFactory(),
                             credential)
                             .setApplicationName(Apps.getApplicationName(c))
@@ -149,7 +149,7 @@ public class GFile {
         credential.setSelectedAccount(account.getAccount());
         googleDriveService =
                 new com.google.api.services.drive.Drive.Builder(
-                        AndroidHttp.newCompatibleTransport(),
+                        new NetHttpTransport(),
                         new GsonFactory(),
                         credential)
                         .setApplicationName(Apps.getApplicationName(c))

@@ -47,14 +47,14 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         }
 
         // Notify the adapter of the move
-        mAdapter.onItemMove(source.getAdapterPosition(), target.getAdapterPosition());
+        mAdapter.onItemMove(source.getBindingAdapterPosition(), target.getBindingAdapterPosition());
         return true;
     }
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         // Notify the adapter of the dismissal
-        mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+        mAdapter.onItemDismiss(viewHolder.getBindingAdapterPosition());
     }
 
     @Override

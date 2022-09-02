@@ -1,11 +1,9 @@
 package com.foobnix.pdf.info.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -26,7 +24,6 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class StackGridWidgetService extends RemoteViewsService {
 
     @Override
@@ -36,7 +33,6 @@ public class StackGridWidgetService extends RemoteViewsService {
 
 }
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context context;
     private List<FileMeta> recent;

@@ -674,7 +674,6 @@ public class DocumentWrapperUI {
     //
     // }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongPress(MotionEvent ev) {
         if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
             DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
@@ -1436,7 +1435,6 @@ public class DocumentWrapperUI {
 
         anchor.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onGlobalLayout() {
                 if (anchor.getVisibility() == View.VISIBLE || dc.isMusicianMode()) {

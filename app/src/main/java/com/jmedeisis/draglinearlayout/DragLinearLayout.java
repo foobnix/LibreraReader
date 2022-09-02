@@ -22,7 +22,6 @@ import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.MotionEventCompat;
 
 /**
  * copy from github:https://github.com/justasm/DragLinearLayout
@@ -664,14 +663,14 @@ public class DragLinearLayout extends LinearLayout {
         if (!mDraggable && !mIsLongClickDraggable) {
             return super.onInterceptTouchEvent(event);
         }
-        switch (MotionEventCompat.getActionMasked(event)) {
+        switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
             getParent().requestDisallowInterceptTouchEvent(true);
             if (mDragItem.mDetecting)
                 return false; // an existing item is (likely) settling
-            mDownY = (int) MotionEventCompat.getY(event, 0);
-            mDownX = (int) MotionEventCompat.getX(event, 0);
-            mActivePointerId = MotionEventCompat.getPointerId(event, 0);
+            mDownY = (int) event.getY(0);
+            mDownX = (int) event.getX(0);
+            mActivePointerId = event.getPointerId(0);
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
@@ -683,8 +682,8 @@ public class DragLinearLayout extends LinearLayout {
             if (INVALID_POINTER_ID == mActivePointerId)
                 break;
             final int pointerIndex = event.findPointerIndex(mActivePointerId);
-                final float y = MotionEventCompat.getY(event, pointerIndex);
-            final float x = MotionEventCompat.getX(event, pointerIndex);
+                final float y = event.getY(pointerIndex);
+            final float x = event.getX(pointerIndex);
             final float dy = y - mDownY;
             final float dx = x - mDownX;
             if (getOrientation() == VERTICAL) {
@@ -701,8 +700,8 @@ public class DragLinearLayout extends LinearLayout {
                 return false;
             }
             case MotionEvent.ACTION_POINTER_UP: {
-                final int pointerIndex = MotionEventCompat.getActionIndex(event);
-                final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
+                final int pointerIndex = event.getActionIndex();
+                final int pointerId = event.getPointerId(pointerIndex);
 
             if (pointerId != mActivePointerId)
                     break; // if active pointer, fall through and cancel!
@@ -726,7 +725,7 @@ public class DragLinearLayout extends LinearLayout {
         if (!mDraggable && !mIsLongClickDraggable) {
             return super.onTouchEvent(event);
         }
-        switch (MotionEventCompat.getActionMasked(event)) {
+        switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
             if (!mDragItem.mDetecting || mDragItem.settling())
                 return false;
@@ -743,8 +742,8 @@ public class DragLinearLayout extends LinearLayout {
                 break;
 
             int pointerIndex = event.findPointerIndex(mActivePointerId);
-                int lastEventY = (int) MotionEventCompat.getY(event, pointerIndex);
-            int lastEventX = (int) MotionEventCompat.getX(event, pointerIndex);
+                int lastEventY = (int) event.getY(pointerIndex);
+            int lastEventX = (int) event.getX(pointerIndex);
             if (getOrientation() == VERTICAL) {
                 int deltaY = lastEventY - mDownY;
                 onDrag(deltaY);
@@ -755,8 +754,8 @@ public class DragLinearLayout extends LinearLayout {
                 return true;
             }
             case MotionEvent.ACTION_POINTER_UP: {
-                final int pointerIndex = MotionEventCompat.getActionIndex(event);
-                final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
+                final int pointerIndex = event.getActionIndex();
+                final int pointerId = event.getPointerId(pointerIndex);
 
             if (pointerId != mActivePointerId)
                     break; // if active pointer, fall through and cancel!
@@ -792,7 +791,7 @@ public class DragLinearLayout extends LinearLayout {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            if (MotionEvent.ACTION_DOWN == MotionEventCompat.getActionMasked(event) && mDraggable) {
+            if (MotionEvent.ACTION_DOWN == event.getActionMasked() && mDraggable) {
                 startDetectingDrag(view);
             }
             return false;

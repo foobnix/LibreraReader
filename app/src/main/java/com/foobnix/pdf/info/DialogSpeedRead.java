@@ -1,6 +1,8 @@
 package com.foobnix.pdf.info;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -101,15 +103,9 @@ public class DialogSpeedRead {
                     return true;
                 });
                 menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_614_copy).setOnMenuItemClickListener((it) -> {
-
-                    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
-                        clipboard.setText(textWord.getText().toString().trim());
-                    } else {
-                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
-                        android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
-                        clipboard.setPrimaryClip(clip);
-                    }
+                    ClipboardManager clipboard = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
+                    clipboard.setPrimaryClip(clip);
                     Toast.makeText(a, R.string.copy_text, Toast.LENGTH_SHORT).show();
                     return true;
                 });

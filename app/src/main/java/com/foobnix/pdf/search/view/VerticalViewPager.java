@@ -1,8 +1,6 @@
 package com.foobnix.pdf.search.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -70,7 +68,6 @@ public class VerticalViewPager extends CustomViewPager {
 
     private class VerticalPageTransformer implements ViewPager.PageTransformer {
 
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void transformPage(View view, float position) {
             if (position < -1) {

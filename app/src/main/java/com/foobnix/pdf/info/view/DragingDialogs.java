@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.view;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -9,6 +8,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +29,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech.OnInitListener;
-import android.text.ClipboardManager;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -732,12 +731,7 @@ public class DragingDialogs {
 
                             Intent intent = new Intent();
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            if (Build.VERSION.SDK_INT >= 14) {
-                                intent.setAction("com.android.settings.TTS_SETTINGS");
-                            } else {
-                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TextToSpeechSettings"));
-                            }
+                            intent.setAction("com.android.settings.TTS_SETTINGS");
                             activity.startActivity(intent);
                         } catch (Exception e) {
                             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -1654,15 +1648,9 @@ public class DragingDialogs {
                         controller.clearSelectedText();
                         Context c = anchor.getContext();
                         String trim = editText.getText().toString().trim();
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                            ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                            clipboard.setText(trim);
-                        } else {
-                            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-
-                            ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
-                            clipboard.setPrimaryClip(clip);
-                        }
+                        ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
+                        clipboard.setPrimaryClip(clip);
                         Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
@@ -1998,15 +1986,9 @@ public class DragingDialogs {
                             return true;
                         });
                         menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_614_copy).setOnMenuItemClickListener((it) -> {
-
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                                ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                clipboard.setText(dc.getTextForPage(position));
-                            } else {
-                                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
-                                clipboard.setPrimaryClip(clip);
-                            }
+                            ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
+                            clipboard.setPrimaryClip(clip);
                             Toast.makeText(dc.getActivity(), R.string.copy_text, Toast.LENGTH_SHORT).show();
                             return true;
                         });
@@ -3687,7 +3669,6 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(pageQuality);
                 pageQuality.setOnClickListener(new OnClickListener() {
 
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
@@ -4038,7 +4019,6 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(rtlText);
                 rtlText.setOnClickListener(new OnClickListener() {
 
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
@@ -4523,18 +4503,8 @@ public class DragingDialogs {
                 textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
                 textAlign.setOnClickListener(new OnClickListener() {
 
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
-                        if (Build.VERSION.SDK_INT <= 10) {
-                            BookCSS.get().textAlign += 1;
-                            if (BookCSS.get().textAlign == 4) {
-                                BookCSS.get().textAlign = 0;
-                            }
-                            textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
-                            return;
-                        }
-
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
                         for (final int key : alignConst.keySet()) {
                             String name = alignConst.get(key);
@@ -4723,10 +4693,6 @@ public class DragingDialogs {
                     @SuppressLint("NewApi")
                     @Override
                     public void onClick(View v) {
-                        if (Build.VERSION.SDK_INT <= 10) {
-                            Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
                         // closeDialog();
                         MenuBuilderM.addRotateMenu(onRotate, null, updateUIRefresh).show();
                     }
