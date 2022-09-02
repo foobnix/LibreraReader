@@ -131,7 +131,7 @@
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
-                android:src="@drawable/glyphicons_smileys_100_headphones"
+                android:src="@drawable/my_glyphicons_smileys_100_headphones_play"
                 android:tint="@color/tint_gray"
                 android:layout_marginRight="5dip"
                 android:visibility="visible" />
