@@ -101,7 +101,7 @@
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">高度な設定</string>
    <string name="direction_of_scrolling">スクロールの方向</string>
-   <string name="direction_of_reading_rtl_">読書の方向（RTL）</string>
+   <string name="direction_of_reading_rtl_">読書の方向</string>
    <string name="left_to_rigth">左から右へ</string>
    <string name="right_to_left">右から左へ</string>
    <string name="right_page_then_left_page_rtl_">右ページ→左ページ（RTL）</string>
@@ -124,7 +124,7 @@
    <string name="db_auto_alignemnt">自動整列</string>
    <string name="db_auto_center_horizontally">水平方向に中央揃え</string>
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
-   <string name="enhancements_for_oled_display">OLEDディスプレイの機能拡張</string>
+   <string name="enhancements_for_oled_display">AMOLED画面向けのナイトモード機能強化</string>
    <string name="ignore_annotations_on_click">タップで注釈を無視する</string>
    <string name="save_new_annotations_automatically">自動的に新しい注釈を保存</string>
    <string name="selecting_text_by_letters">文字単位でテキストを選択</string>
@@ -488,8 +488,8 @@
    <string name="capital_letter">大文字</string>
    <string name="show_the_capital_letter">大文字を表示する</string>
    <string name="size">サイズ</string>
-   <string name="quick_bookmark_by_the_headset">ヘッドセットによるクイックブックマーク</string>
-   <string name="slider_scale">スライダースケール</string>
+   <string name="quick_bookmark_by_the_headset">ヘッドセットによる高速ブックマーク（開始/停止ボタン）</string>
+   <string name="slider_scale">スライダーの目盛り</string>
    <string name="chapter_format">章形式</string>
    <string name="play_a_music_file">音楽ファイルを再生する</string>
    <string name="rate_app">アプリを評価</string>
@@ -536,10 +536,10 @@
    <string name="system_brightness">システムの明るさ</string>
    <string name="opening_books_in_the_specified_mode">指定されたモードで本を開く</string>
    <string name="dark_oled">ダーク OLED</string>
-   <string name="profile">プロフィール</string>
-   <string name="new_profile">新しいプロフィール</string>
+   <string name="profile">プロファイル</string>
+   <string name="new_profile">新しいプロファイル</string>
    <string name="main">メイン</string>
-   <string name="do_you_want_to_switch_profile_">別のプロフィールに切り替えますか？</string>
+   <string name="do_you_want_to_switch_profile_">別のプロファイルに切り替えますか？</string>
    <string name="sync_error">同期エラー</string>
    <string name="sign_in">サインイン</string>
    <string name="sign_out">サインアウト</string>
@@ -555,7 +555,7 @@
    <string name="synchronized_books">同期書籍</string>
    <string name="publication_date">発行日</string>
    <string name="empy">空</string>
-   <string name="show_quick_bookmarks">クイックブックマークを表示</string>
+   <string name="show_quick_bookmarks">高速ブックマークを表示</string>
    <string name="show_only_available_books">利用可能な本のみを表示</string>
    <string name="share_as_text">テキストとして共有</string>
    <string name="share_as_image">画像として共有</string>
