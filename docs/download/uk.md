@@ -3,18 +3,18 @@ layout: main
 ---
 # Завантажити
 
-[Librera Reader (Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+[Librera Reader у Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
-[Librera PRO (Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+[Librera PRO (без реклами) у Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Librera Beta (Google Play)](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
+[Librera FDroid на F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Librera PRO (F-Droid)](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
+[Бета-версія .apk на Dropbox](http://beta.librera.mobi)
 
-[Beta apk (Dropbox)](http://beta.librera.mobi)
+[Новини та оновлення Librera в Telegram](https://t.me/LibreraReader)
 
-[Новинги Telegram @LibreraReader](https://t.me/LibreraReader)
+[Вихідний код і випуски на GitHub](https://github.com/foobnix/LibreraReader)
 
-[GitHub](https://github.com/foobnix/LibreraReader)
+[Політика конфіденційності](/PrivacyPolicy/uk)
 
-[Політика конфіденційності](/PrivacyPolicy/ua)
+[Пожертвуйте на Patreon](https://www.patreon.com/librera)

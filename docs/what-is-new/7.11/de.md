@@ -36,7 +36,7 @@ Abonnieren Sie den **Librera Reader** -Telegrammkanal [https://t.me/LibreraReade
 **RSVP-Lesung (Rapid Serial Visual Presentation)/Geschwindigkeitslesung**
 
 Mit der Lesegeschwindigkeit von **Librera** können Sie Ihre Lesegeschwindigkeit mit der RSVP-Methode auf bis zu 700 Wörter pro Minute (WPM) steigern.
-Folgen Sie dem Link, um weitere Informationen zum Thema [Abschnitt zum Schnelllesen](/manual/Rapid-Serial-Visual-Presentation/de) zu erhalten.
+Bitte folgen Sie dem Link, um weitere Informationen zum Thema [Schnelllesen-Abschnitt](/manual/Rapid-Serial-Visual-Presentation/de) zu erhalten.
 
 * Der RSVP-Modus kann über das Buchmenü gestartet werden (Schnelllesen).
 * Geschwindigkeitslesung mit nur einem Fingertipp

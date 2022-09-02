@@ -3,20 +3,18 @@ layout: main
 ---
 # Scarica
 
-[Librera Reader (Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+[Librera Reader su Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
-[Librera PRO (Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+[Librera PRO (senza pubblicità) su Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Librera Beta (Google Play)](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
+[Librera FDroid su F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Librera PRO (F-Droid)](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
+[Beta .apk su Dropbox](http://beta.librera.mobi)
 
-[Beta apk (Dropbox)](http://beta.librera.mobi)
+[Notizie e aggiornamenti su Librera su Telegram](https://t.me/LibreraReader)
 
-[Beta apk (Telegram @LibreraBeta)](https://t.me/LibreraBeta)
+[Codice sorgente e versioni su GitHub](https://github.com/foobnix/LibreraReader)
 
-[Notizie su Librera (Telegram @LibreraReader)](https://t.me/LibreraReader)
+[Norme sulla privacy](/PrivacyPolicy/it)
 
-[GitHub](https://github.com/foobnix/LibreraReader)
-
-[Informativa sulla privacy](/PrivacyPolicy/it)
+[Dona su Patreon](https://www.patreon.com/librera)

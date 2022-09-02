@@ -3,20 +3,18 @@ layout: main
 ---
 #下载
 
-[Librera Reader(Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+[Google Play 上的 Librera 阅读器](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
-[Librera PRO(Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+[Google Play 上的 Librera PRO(无广告)](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Librera Beta(Google Play)](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
+[F-Droid 上的 Librera FDroid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Librera PRO(F-Droid)](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
+[Dropbox 上的 Beta .apk](http://beta.librera.mobi)
 
-[Beta APK(Dropbox)](http://beta.librera.mobi)
+[电报上的 Librera 新闻和更新](https://t.me/LibreraReader)
 
-[Beta APK(Telegram @LibreraBeta)](https://t.me/LibreraBeta)
+[GitHub上的源代码和发布](https://github.com/foobnix/LibreraReader)
 
-[Librera新闻(Telegram @LibreraReader)](https://t.me/LibreraReader)
+[隐私政策](/PrivacyPolicy/zh)
 
-[GitHub](https://github.com/foobnix/LibreraReader)
-
-[隐私权政策](/PrivacyPolicy/zh)
+[在 Patreon 上捐款](https://www.patreon.com/librera)

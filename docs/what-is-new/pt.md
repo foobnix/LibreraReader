@@ -2,10 +2,38 @@
 layout: main
 ---
 
-# O que há de novo (atualizado)
+# O que há de novo
 
-### [8.3.97] permite desativar a integração do menu de contexto (seleção de texto)
+<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+### [8.6.32] Guia Favoritos - lista de opções de classificação
+<img class="i" src="8.6.32.png" />
+
+### [8.6.30] Librera Old para Android 4.0+ [Download](https://github.com/foobnix/LibreraReader/releases/)
+### [8.6.21] Crie uma pasta com o nome do livro para livros baixados do OPDS
+<img class="i" src="8.6.21.png" />
+
+### [8.6.19] Fator de escala de imagem personalizada (escala gráfica) para Epub
+
+||||
+|-|-|-|
+|![](8.6.19a.png)|![](8.6.19.png)|![](8.6.19b.png)|
+
+### [8.6.01] Novos ícones vetoriais, IU aprimorada
+### [8.5.50] Mostrar contagem de livros em cada pasta
+<img class="i" src="8.5.50.png" />
+
+### [8.5.40] Ocultar livros lidos na guia Pasta e na guia Biblioteca
+<img class="i" src="8.5.40.png" />
+
+
+### [8.5.27] Restaurar consulta de pesquisa na inicialização
+
+### [8.5.12] Suporte EPUB e quadrinhos com imagens WEBP
+### [8.4.21] Codificação de texto predefinida para arquivos .TXT
+### [8.4.08] Sempre abra livros no modo de 2 páginas
+
+### [8.3.97] Habilitar desabilitar integração do menu de contexto (seleção de texto)
 |||
 |-|-|
 |![](8.3.97a.png)|![](8.3.97b.png)|

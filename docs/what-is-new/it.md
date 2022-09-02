@@ -2,10 +2,38 @@
 layout: main
 ---
 
-# Novità (aggiornato)
+# Cosa c'è di nuovo
 
-### [8.3.97] abilita disabilita integrazione menu contestuale (selezione testo)
+<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+### [8.6.32] Scheda Preferiti - elenca le opzioni di ordinamento
+<img class="i" src="8.6.32.png" />
+
+### [8.6.30] Librera Old per Android 4.0+ [Download](https://github.com/foobnix/LibreraReader/releases/)
+### [8.6.21] Creare una cartella con il nome del libro per i libri scaricati da OPDS
+<img class="i" src="8.6.21.png" />
+
+### [8.6.19] Fattore di scala dell'immagine personalizzato (scala grafica) per Epub
+
+||||
+|-|-|-|
+|![](8.6.19a.png)|![](8.6.19.png)|![](8.6.19b.png)|
+
+### [8.6.01] Nuove icone vettoriali, interfaccia utente migliorata
+### [8.5.50] Mostra il conteggio dei libri in ogni cartella
+<img class="i" src="8.5.50.png" />
+
+### [8.5.40] Nascondi i libri letti nella scheda Cartella e nella scheda Libreria
+<img class="i" src="8.5.40.png" />
+
+
+### [8.5.27] Ripristina query di ricerca all'avvio
+
+### [8.5.12] Supporta EPUB e fumetti con immagini WEBP
+### [8.4.21] Codifica del testo preimpostata per i file .TXT
+### [8.4.08] Apri sempre i libri in modalità a 2 pagine
+
+### [8.3.97] Abilita disabilita l'integrazione del menu contestuale (selezione del testo)
 |||
 |-|-|
 |![](8.3.97a.png)|![](8.3.97b.png)|

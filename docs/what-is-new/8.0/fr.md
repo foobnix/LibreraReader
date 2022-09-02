@@ -4,7 +4,7 @@ layout: main
 
 # 8.0
 
-En utilisant cette application, vous acceptez les conditions de la [Politique de confidentialité](/PrivacyPolicy/fr)
+En utilisant cette application, vous acceptez les termes de la [Politique de confidentialité](/PrivacyPolicy/fr)
 
 **Améliorations générales**
 

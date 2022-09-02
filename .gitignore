@@ -18,3 +18,5 @@
 /app/bin/
 /Builder/.vscode/
 /Builder/mupdf-*/
+/docs/Gemfile
+/docs/Gemfile.lock

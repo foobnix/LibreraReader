@@ -2,10 +2,38 @@
 layout: main
 ---
 
-# Quoi de neuf (mis à jour)
+# Quoi de neuf
 
-### [8.3.97] activer désactiver l'intégration du menu contextuel (sélection de texte)
+<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+### [8.6.32] Onglet Favoris - Options de tri de la liste
+<img class="i" src="8.6.32.png" />
+
+### [8.6.30] Librera Old pour Android 4.0+ [Télécharger](https://github.com/foobnix/LibreraReader/releases/)
+### [8.6.21] Créer un dossier avec le nom du livre pour les livres téléchargés OPDS
+<img class="i" src="8.6.21.png" />
+
+### [8.6.19] Facteur d'échelle d'image personnalisé (échelle graphique) pour Epub
+
+||||
+|-|-|-|
+|![](8.6.19a.png)|![](8.6.19.png)|![](8.6.19b.png)|
+
+### [8.6.01] Nouvelles icônes vectorielles, interface utilisateur améliorée
+### [8.5.50] Afficher le nombre de livres dans chaque dossier
+<img class="i" src="8.5.50.png" />
+
+### [8.5.40] Masquer les livres lus dans l'onglet Dossier et l'onglet Bibliothèque
+<img class="i" src="8.5.40.png" />
+
+
+### [8.5.27] Restaurer la requête de recherche au démarrage
+
+### [8.5.12] Prise en charge d'EPUB et de bandes dessinées avec des images WEBP
+### [8.4.21] Encodage de texte prédéfini pour les fichiers .TXT
+### [8.4.08] Toujours ouvrir les livres en mode 2 pages
+
+### [8.3.97] Activer désactiver l'intégration du menu contextuel (sélection de texte)
 |||
 |-|-|
 |![](8.3.97a.png)|![](8.3.97b.png)|

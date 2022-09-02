@@ -2,10 +2,38 @@
 layout: main
 ---
 
-# Was ist neu (aktualisiert)
+# Was ist neu
 
-### [8.3.97] Deaktivieren Sie die Kontextmenü-Integration (Textauswahl).
+<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+### [8.6.32] Registerkarte „Favorit“ – Listensortieroptionen
+<img class="i" src="8.6.32.png" />
+
+### [8.6.30] Librera Old für Android 4.0+ [Download](https://github.com/foobnix/LibreraReader/releases/)
+### [8.6.21] Erstellen Sie einen Ordner mit dem Namen des Buchs für von OPDS heruntergeladene Bücher
+<img class="i" src="8.6.21.png" />
+
+### [8.6.19] Benutzerdefinierter Bildskalierungsfaktor (Grafikskalierung) für Epub
+
+||||
+|-|-|-|
+|![](8.6.19a.png)|![](8.6.19.png)|![](8.6.19b.png)|
+
+### [8.6.01] Neue Vektorsymbole, verbesserte Benutzeroberfläche
+### [8.5.50] Zeigt die Anzahl der Bücher in jedem Ordner an
+<img class="i" src="8.5.50.png" />
+
+### [8.5.40] Gelesene Bücher auf den Registerkarten „Ordner“ und „Bibliothek“ ausblenden
+<img class="i" src="8.5.40.png" />
+
+
+### [8.5.27] Suchabfrage beim Start wiederherstellen
+
+### [8.5.12] Unterstützt EPUB und Comics mit WEBP-Bildern
+### [8.4.21] Voreingestellte Textcodierung für .TXT-Dateien
+### [8.4.08] Öffnen Sie Bücher immer im 2-Seiten-Modus
+
+### [8.3.97] Kontextmenü-Integration deaktivieren (Textauswahl) aktivieren
 |||
 |-|-|
 |![](8.3.97a.png)|![](8.3.97b.png)|

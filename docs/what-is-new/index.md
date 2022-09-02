@@ -4,10 +4,36 @@ layout: main
 
 # What is new
 
-[https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)
+<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
-### [8.3.97] enable disable context menu integration (text selection)
+### [8.6.32] Favorite Tab - list sorting options
+<img class="i" src="8.6.32.png" />
 
+### [8.6.30] Librera Old for Android 4.0+ [Download](https://github.com/foobnix/LibreraReader/releases/)
+### [8.6.21] Create a folder with the name of the book for OPDS downloaded books
+<img class="i" src="8.6.21.png" />
+
+### [8.6.19] Custom image scale (Graphic scale) factor for Epub
+
+||||
+|-|-|-|
+|![](8.6.19a.png)|![](8.6.19.png)|![](8.6.19b.png)|
+
+### [8.6.01] New vector icons, improved UI 
+### [8.5.50] Show book count in each folder
+<img class="i" src="8.5.50.png" />
+
+### [8.5.40] Hide read books in Folder tab and Library Tab
+<img class="i" src="8.5.40.png" />
+
+
+### [8.5.27] Restore search query at startup
+
+### [8.5.12] Support EPUB and comics with WEBP images
+### [8.4.21] Preset text encoding for .TXT files
+### [8.4.08] Always open books in 2-page mode
+
+### [8.3.97] Enable disable context menu integration (text selection)
 |||
 |-|-|
 |![](8.3.97a.png)|![](8.3.97b.png)|

@@ -36,7 +36,7 @@ Abonnez-vous au **lecteur Librera** du canal télégramme [https://t.me/LibreraR
 **Lecture RSVP (présentation visuelle en série rapide)/Lecture rapide**
 
 La lecture rapide avec **Librera** vous permet d’accroître votre vitesse de lecture jusqu’à 700 mots par minute (WPM) en implémentant la méthode RSVP.
-Suivez le lien pour trouver plus d'informations sur le sujet [section de lecture rapide](/manual/Rapid-Serial-Visual-Presentation/fr)
+Veuillez suivre le lien pour trouver plus d'informations sur le sujet [Section de lecture rapide](/manual/Rapid-Serial-Visual-Presentation/fr)
 
 * Le mode RSVP peut être lancé à partir du menu du livre (Lecture rapide)
 * Lecture rapide en un seul clic

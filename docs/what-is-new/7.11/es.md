@@ -36,7 +36,7 @@ Suscríbase al canal de Telegram **Librera Reader** [https://t.me/LibreraReaderf
 **Lectura RSVP (Presentación visual rápida en serie)/Lectura rápida**
 
 La lectura rápida con **Librera** le permite mejorar su velocidad de lectura hasta 700 palabras por minuto (WPM) implementando el método RSVP.
-Siga el enlace para encontrar más información sobre el tema [Sección de lectura rápida](/manual/Rapid-Serial-Visual-Presentation/es)
+Siga el enlace para encontrar más información sobre el tema [sección Lectura rápida](/manual/Rapid-Serial-Visual-Presentation/es)
 
 * El modo RSVP se puede iniciar desde el menú del libro (lectura rápida)
 * Velocidad de lectura en un solo toque

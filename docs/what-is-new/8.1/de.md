@@ -4,7 +4,7 @@ layout: main
 
 # 8.1
 
-Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtlinie](/PrivacyPolicy/de) zu.
+Durch die Verwendung dieser App stimmen Sie den Bedingungen der [Datenschutzerklärung](/PrivacyPolicy/de) zu.
 
 **Neue Funktionen und Verbesserungen**
 
