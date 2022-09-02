@@ -72,12 +72,18 @@ class SvgFont extends SvgObject implements GdiFont {
 		this.italic = italic;
 		this.underline = underline;
 		this.strikeout = strikeout;
-		this.charset = charset;
 		this.outPrecision = outPrecision;
 		this.clipPrecision = clipPrecision;
 		this.quality = quality;
 		this.pitchAndFamily = pitchAndFamily;
 		this.faceName = GdiUtils.convertString(faceName, charset);
+
+		String altCharset = gdi.getProperty("font-charset." + this.faceName);
+		if (altCharset != null) {
+			this.charset = Integer.parseInt(altCharset);
+		} else {
+			this.charset = charset;
+		}
 
 		// xml:lang
 		this.lang = GdiUtils.getLanguage(charset);
@@ -153,44 +159,6 @@ class SvgFont extends SvgObject implements GdiFont {
 
 	public String getLang() {
 		return lang;
-	}
-
-	public int[] validateDx(byte[] chars, int[] dx) {
-		if (dx == null || dx.length == 0) {
-			return null;
-		}
-
-		int[][] area = GdiUtils.getFirstByteArea(charset);
-		if (area == null) {
-			return dx;
-		}
-
-		int n = 0;
-		boolean skip = false;
-
-		for (int i = 0; i < chars.length && i < dx.length; i++) {
-			int c = (0xFF & chars[i]);
-
-			if (skip) {
-				dx[n - 1] += dx[i];
-				skip = false;
-				continue;
-			}
-
-			for (int j = 0; j < area.length; j++) {
-				if (area[j][0] <= c && c <= area[j][1]) {
-					skip = true;
-					break;
-				}
-			}
-
-			dx[n++] = dx[i];
-		}
-
-		int[] ndx = new int[n];
-		System.arraycopy(dx, 0, ndx, 0, n);
-
-		return ndx;
 	}
 
 	public int getFontSize() {
@@ -326,8 +294,7 @@ class SvgFont extends SvgObject implements GdiFont {
 
 		if (!fontList.isEmpty()) {
 			buffer.append("font-family:");
-			boolean isVertical = false;
-			for (Iterator i = fontList.iterator(); i.hasNext();) {
+			for (Iterator<?> i = fontList.iterator(); i.hasNext();) {
 				String font = (String)i.next();
 				if (font.indexOf(" ") != -1) {
 					buffer.append(" \"" + font + "\"");

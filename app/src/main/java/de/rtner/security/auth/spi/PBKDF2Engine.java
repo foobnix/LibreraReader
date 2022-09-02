@@ -154,12 +154,11 @@ public class PBKDF2Engine implements PBKDF2 {
         if (inputKey == null || inputKey.length != referenceKey.length) {
             return false;
         }
+        int z = 0;
         for (int i = 0; i < inputKey.length; i++) {
-            if (inputKey[i] != referenceKey[i]) {
-                return false;
-            }
+            z |= (inputKey[i] ^ referenceKey[i]);
         }
-        return true;
+        return (z == 0);
     }
     
     /**

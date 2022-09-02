@@ -549,7 +549,7 @@ public class SvgGdi implements Gdi {
 			if (dc.getFont() != null) width = Math.abs(dc.getFont().getFontSize());
 		} else {
 			if (dc.getFont() != null) {
-				dx = dc.getFont().validateDx(text, dx);
+				dx = GdiUtils.fixTextDx(dc.getFont().getCharset(), text, dx);
 			}
 
 			if (dx != null && dx.length > 0) {
@@ -586,7 +586,7 @@ public class SvgGdi implements Gdi {
 		int height = 0;
 		if (vertical) {
 			if (dc.getFont() != null) {
-				dx = dc.getFont().validateDx(text, dx);
+				dx = GdiUtils.fixTextDx(dc.getFont().getCharset(), text, dx);
 			}
 
 			buffer.setLength(0);
@@ -860,7 +860,6 @@ public class SvgGdi implements Gdi {
 			}
 		} else {
 			double sa = Math.atan2((sya - cy) * rx, (sxa - cx) * ry);
-			System.out.println(sa + " " + Math.cos(sa));
 			double sx = rx * Math.cos(sa);
 			double sy = ry * Math.sin(sa);
 
@@ -1647,22 +1646,13 @@ public class SvgGdi implements Gdi {
 
 		switch (biBitCount) {
 		case 1:
-			bfOffBits += (0x1L + 1) * 4;
+			bfOffBits += (clrUsed == 0L ? 2 : clrUsed) * 4;
 			break;
 		case 4:
-			bfOffBits += (0xFL + 1) * 4;
+			bfOffBits += (clrUsed == 0L ? 16 : clrUsed) * 4;
 			break;
 		case 8:
-			bfOffBits += (0xFFL + 1) * 4;
-			break;
-		case 16:
-			bfOffBits += (clrUsed == 0L) ? 0 : (0xFFFFL + 1) * 4;
-			break;
-		case 24:
-			bfOffBits += (clrUsed == 0L) ? 0 : (0xFFFFFFL + 1) * 4;
-			break;
-		case 32:
-			bfOffBits += (clrUsed == 0L) ? 0 : (0xFFFFFFFFL + 1) * 4;
+			bfOffBits += (clrUsed == 0L ? 256 : clrUsed) * 4;
 			break;
 		}
 

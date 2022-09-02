@@ -75,7 +75,7 @@ public class Main {
 			gdi.setReplaceSymbolFont(replaceSymbolFont);
 			if (debug) {
 				ClassLoader cl = gdi.getClass().getClassLoader();
-				Class[] interfaces = new Class[] { Gdi.class };
+				Class<?>[] interfaces = new Class[] { Gdi.class };
 				parser.parse(in, (Gdi)Proxy.newProxyInstance(cl, interfaces, new InvocationHandler() {
 					StringBuffer sb = new StringBuffer(1000);
 
@@ -102,8 +102,11 @@ public class Main {
 									} else {
 										sb.append("[");
 										for (int j = 0; j < array.length; j++) {
-											if (j > 0) sb.append(", ");
-											sb.append(Integer.toHexString(array[j]));
+											String hex = Integer.toHexString(array[j] & 0xFF);
+											if (hex.length() == 1) {
+												sb.append("0");
+											}
+											sb.append(hex);
 										}
 										sb.append("]");
 									}

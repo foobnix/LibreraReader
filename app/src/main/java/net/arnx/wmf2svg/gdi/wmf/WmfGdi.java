@@ -8,6 +8,7 @@ import net.arnx.wmf2svg.gdi.GdiPalette;
 import net.arnx.wmf2svg.gdi.GdiPatternBrush;
 import net.arnx.wmf2svg.gdi.GdiPen;
 import net.arnx.wmf2svg.gdi.GdiRegion;
+import net.arnx.wmf2svg.gdi.GdiUtils;
 import net.arnx.wmf2svg.gdi.Point;
 import net.arnx.wmf2svg.gdi.Size;
 
@@ -24,7 +25,24 @@ public class WmfGdi implements Gdi, WmfConstants {
 	private List<GdiObject> objects = new ArrayList<GdiObject>();
 	private List<byte[]> records = new ArrayList<byte[]>();
 
+	private WmfDc dc = new WmfDc();
+
+	private WmfBrush defaultBrush;
+
+	private WmfPen defaultPen;
+
+	private WmfFont defaultFont;
+
 	public WmfGdi() {
+		defaultBrush = (WmfBrush) createBrushIndirect(GdiBrush.BS_SOLID,
+				0x00FFFFFF, 0);
+		defaultPen = (WmfPen) createPenIndirect(GdiPen.PS_SOLID, 1,
+				0x00000000);
+		defaultFont = null;
+
+		dc.setBrush(defaultBrush);
+		dc.setPen(defaultPen);
+		dc.setFont(defaultFont);
 	}
 
 	public void write(OutputStream out) throws IOException {
@@ -32,7 +50,7 @@ public class WmfGdi implements Gdi, WmfConstants {
 		if (placeableHeader != null) out.write(placeableHeader);
 		if (header != null) out.write(header);
 
-		Iterator i = records.iterator();
+		Iterator<?> i = records.iterator();
 		while (i.hasNext()) {
 			out.write((byte[])i.next());
 		}
@@ -256,6 +274,14 @@ public class WmfGdi implements Gdi, WmfConstants {
 		records.add(record);
 
 		objects.set(((WmfObject)obj).getID(), null);
+
+		if (dc.getBrush() == obj) {
+			dc.setBrush(defaultBrush);
+		} else if (dc.getFont() == obj) {
+			dc.setFont(defaultFont);
+		} else if (dc.getPen() == obj) {
+			dc.setPen(defaultPen);
+		}
 	}
 
 	public void dibBitBlt(byte[] image, int dx, int dy, int dw, int dh, int sx, int sy, long rop) {
@@ -360,11 +386,11 @@ public class WmfGdi implements Gdi, WmfConstants {
 		records.add(record);
 	}
 
-	public void extTextOut(int x, int y, int options, int[] rect, byte[] text, int[] lpdx) {
+	public void extTextOut(int x, int y, int options, int[] rect, byte[] text, int[] dx) {
 		if (rect != null && rect.length != 4) {
 			throw new IllegalArgumentException("rect must be 4 length.");
 		}
-		byte[] record = new byte[14 + ((rect != null) ? 8 : 0) + (text.length + text.length%2) + (lpdx.length * 2)];
+		byte[] record = new byte[14 + ((rect != null) ? 8 : 0) + (text.length + text.length%2) + (dx.length * 2)];
 		int pos = 0;
 		pos = setUint32(record, pos, record.length/2);
 		pos = setUint16(record, pos, RECORD_EXT_TEXT_OUT);
@@ -380,10 +406,46 @@ public class WmfGdi implements Gdi, WmfConstants {
 		}
 		pos = setBytes(record, pos, text);
 		if (text.length%2 == 1) pos = setByte(record, pos, 0);
-		for (int i = 0; i < lpdx.length; i++) {
-			pos = setInt16(record, pos, lpdx[i]);
+		for (int i = 0; i < dx.length; i++) {
+			pos = setInt16(record, pos, dx[i]);
 		}
 		records.add(record);
+
+		boolean vertical = false;
+		if (dc.getFont() != null) {
+			if (dc.getFont().getFaceName().startsWith("@")) {
+				vertical = true;
+			}
+		}
+
+		int align = dc.getTextAlign();
+		int width = 0;
+		if (!vertical) {
+			if (dc.getFont() != null) {
+				dx = GdiUtils.fixTextDx(dc.getFont().getCharset(), text, dx);
+			}
+
+			if (dx != null && dx.length > 0) {
+				for (int i = 0; i < dx.length; i++) {
+					width += dx[i];
+				}
+
+				int tx = x;
+
+				if ((align & (TA_LEFT|TA_CENTER|TA_RIGHT)) == TA_RIGHT) {
+					tx -= (width-dx[dx.length-1]);
+				} else if ((align & (TA_LEFT|TA_CENTER|TA_RIGHT)) == TA_CENTER) {
+					tx -= (width-dx[dx.length-1]) / 2;
+				}
+
+				for (int i = 0; i < dx.length; i++) {
+					tx += dx[i];
+				}
+				if ((align & (TA_NOUPDATECP|TA_UPDATECP)) == TA_UPDATECP) {
+					dc.moveToEx(tx, y, null);
+				}
+			}
+		}
 	}
 
 	public void fillRgn(GdiRegion rgn, GdiBrush brush) {
@@ -448,6 +510,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, ey);
 		pos = setInt16(record, pos, ex);
 		records.add(record);
+
+		dc.moveToEx(ex, ey, null);
 	}
 
 	public void moveToEx(int x, int y, Point old) {
@@ -459,6 +523,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, x);
 		//TODO old
 		records.add(record);
+
+		dc.moveToEx(x, y, old);
 	}
 
 	public void offsetClipRgn(int x, int y) {
@@ -480,6 +546,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, x);
 		// TODO
 		records.add(record);
+
+		dc.offsetViewportOrgEx(x, y, point);
 	}
 
 	public void offsetWindowOrgEx(int x, int y, Point point) {
@@ -491,6 +559,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, x);
 		// TODO
 		records.add(record);
+
+		dc.offsetWindowOrgEx(x, y, point);
 	}
 
 	public void paintRgn(GdiRegion rgn) {
@@ -650,6 +720,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, x);
 		// TODO
 		records.add(record);
+
+		dc.scaleViewportExtEx(x, xd, y, yd, old);
 	}
 
 	public void scaleWindowExtEx(int x, int xd, int y, int yd, Size old) {
@@ -663,6 +735,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setInt16(record, pos, x);
 		// TODO
 		records.add(record);
+
+		dc.scaleWindowExtEx(x, xd, y, yd, old);
 	}
 
 	public void selectClipRgn(GdiRegion rgn) {
@@ -681,6 +755,14 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setUint16(record, pos, RECORD_SELECT_OBJECT);
 		pos = setUint16(record, pos, ((WmfObject)obj).getID());
 		records.add(record);
+
+		if (obj instanceof WmfBrush) {
+			dc.setBrush((WmfBrush) obj);
+		} else if (obj instanceof WmfFont) {
+			dc.setFont((WmfFont) obj);
+		} else if (obj instanceof WmfPen) {
+			dc.setPen((WmfPen) obj);
+		}
 	}
 
 	public void selectPalette(GdiPalette palette, boolean mode) {
@@ -826,6 +908,8 @@ public class WmfGdi implements Gdi, WmfConstants {
 		pos = setUint16(record, pos, RECORD_SET_TEXT_ALIGN);
 		pos = setInt16(record, pos, align);
 		records.add(record);
+
+		dc.setTextAlign(align);
 	}
 
 	public void setTextCharacterExtra(int extra) {
@@ -955,7 +1039,7 @@ public class WmfGdi implements Gdi, WmfConstants {
 		if (header != null) {
 			long size = header.length;
 			long maxRecordSize = 0;
-			Iterator i = records.iterator();
+			Iterator<?> i = records.iterator();
 			while (i.hasNext()) {
 				byte[] record = (byte[])i.next();
 				size += record.length;

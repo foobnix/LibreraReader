@@ -28,7 +28,7 @@ public final class GdiUtils {
 		case GdiFont.ANSI_CHARSET:
 			return "Cp1252";
 		case GdiFont.SYMBOL_CHARSET:
-			return "Cp1252";
+			return "ISO-8859-1";
 		case GdiFont.MAC_CHARSET:
 			return "MacRoman";
 		case GdiFont.SHIFTJIS_CHARSET:
@@ -130,5 +130,43 @@ public final class GdiUtils {
 		default:
 			return null;
 		}		
+	}
+
+	public static int[] fixTextDx(int charset, byte[] chars, int[] dx) {
+		if (dx == null || dx.length == 0) {
+			return null;
+		}
+
+		int[][] area = GdiUtils.getFirstByteArea(charset);
+		if (area == null) {
+			return dx;
+		}
+
+		int n = 0;
+		boolean skip = false;
+
+		for (int i = 0; i < chars.length && i < dx.length; i++) {
+			int c = (0xFF & chars[i]);
+
+			if (skip) {
+				dx[n - 1] += dx[i];
+				skip = false;
+				continue;
+			}
+
+			for (int j = 0; j < area.length; j++) {
+				if (area[j][0] <= c && c <= area[j][1]) {
+					skip = true;
+					break;
+				}
+			}
+
+			dx[n++] = dx[i];
+		}
+
+		int[] ndx = new int[n];
+		System.arraycopy(dx, 0, ndx, 0, n);
+
+		return ndx;
 	}
 }
