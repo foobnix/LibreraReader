@@ -1,6 +1,5 @@
 package com.foobnix.pdf.search.activity;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,7 +10,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -621,9 +619,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
 
         if (AppState.get().isRTL) {
-            if (Build.VERSION.SDK_INT >= 11) {
-                seekBar.setRotation(180);
-            }
+            seekBar.setRotation(180);
         }
 
         onPageFlip1 = findViewById(R.id.autoScroll);
@@ -1319,7 +1315,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         anchor.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onGlobalLayout() {
 
@@ -1336,13 +1331,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
                 }
 
-                if (Build.VERSION.SDK_INT >= 11) {
-                    if (anchor.getX() < 0) {
-                        anchor.setX(0);
-                    }
-                    if (anchor.getY() < 0) {
-                        anchor.setY(0);
-                    }
+                if (anchor.getX() < 0) {
+                    anchor.setX(0);
+                }
+                if (anchor.getY() < 0) {
+                    anchor.setY(0);
                 }
             }
 
@@ -1727,7 +1720,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Subscribe
     public void onEvent(MessageEvent ev) {
 
@@ -2066,7 +2058,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         return super.onCreateView(parent, name, context, attrs);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onRotateScreen() {
         // ADS.activate(this, adView);
         activateAds();

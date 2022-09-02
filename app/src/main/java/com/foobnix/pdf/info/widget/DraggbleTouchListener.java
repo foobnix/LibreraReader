@@ -63,8 +63,8 @@ public class DraggbleTouchListener implements OnTouchListener {
             sWidth = root.getWidth();
             sHeigh = root.getHeight();
 
-            initLatout.x = AnchorHelper.getX(anchor);
-            initLatout.y = AnchorHelper.getY(anchor);
+            initLatout.x = anchor.getX();
+            initLatout.y = anchor.getY();
 
             initPoint.x = event.getRawX();
             initPoint.y = event.getRawY();

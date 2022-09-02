@@ -341,8 +341,8 @@ public abstract class DragingPopup {
                     y = event.getRawY();
                     w = popupView.getLayoutParams().width;
                     h = popupView.getLayoutParams().height;
-                    x2 = AnchorHelper.getX(anchor);
-                    y2 = AnchorHelper.getY(anchor);
+                    x2 = anchor.getX();
+                    y2 = anchor.getY();
                 } else if (event.getAction() == MotionEvent.ACTION_MOVE && popupView.getLayoutParams() != null) {
 
                     int nWidth = (int) (w + (event.getRawX() - x));
@@ -378,13 +378,13 @@ public abstract class DragingPopup {
                     y = event.getRawY();
                     w = popupView.getLayoutParams().width;
                     h = popupView.getLayoutParams().height;
-                    x2 = AnchorHelper.getX(anchor);
-                    y2 = AnchorHelper.getY(anchor);
+                    x2 = anchor.getX();
+                    y2 = anchor.getY();
                 } else if (event.getAction() == MotionEvent.ACTION_MOVE && popupView.getLayoutParams() != null) {
                     int nWidth = (int) (w + (x - event.getRawX()));
                     if (nWidth > MIN_WH) {
                         popupView.getLayoutParams().width = nWidth;
-                        AnchorHelper.setX(anchor, event.getRawX() + (x2 - x));
+                        anchor.setX(event.getRawX() + (x2 - x));
                     }
 
                     int nHeight = (int) (h + (event.getRawY() - y));
@@ -392,7 +392,7 @@ public abstract class DragingPopup {
                         popupView.getLayoutParams().height = nHeight;
                     }
 
-                    AnchorHelper.setY(anchor, y2);
+                    anchor.setY(y2);
                     popupView.requestLayout();
 
                     LOG.d("Anchor WxH", Dips.pxToDp(anchor.getWidth()), Dips.pxToDp(anchor.getHeight()));
@@ -430,8 +430,8 @@ public abstract class DragingPopup {
     private void saveLayout() {
         try {
             Place place = new Place();
-            place.x = (int) AnchorHelper.getX(anchor);
-            place.y = (int) AnchorHelper.getY(anchor);
+            place.x = (int) anchor.getX();
+            place.y = (int) anchor.getY();
             place.width = popupView.getLayoutParams().width;
             place.height = popupView.getLayoutParams().height;
 

@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -958,10 +957,7 @@ public class PageImaveView extends View {
             } else if (action == MotionEvent.ACTION_POINTER_UP) {
                 LOG.d("TEST", "action ACTION_POINTER_UP");
                 // isDoubleTouch = true;
-                int actionIndex = 1;
-                if (Build.VERSION.SDK_INT > 7) {
-                    actionIndex = event.getActionIndex();
-                }
+                int actionIndex = event.getActionIndex();
                 LOG.d("TEST", "actionIndex " + actionIndex);
                 if (actionIndex == 1) {
                     x = event.getX();

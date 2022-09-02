@@ -6,7 +6,6 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v4.media.session.MediaSessionCompat;
 
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -69,7 +68,6 @@ public class BooksService extends IntentService {
             handler.postDelayed(timer2, 250);
         }
     };
-    private MediaSessionCompat mediaSessionCompat;
     private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
     Runnable timer = new Runnable() {
 
