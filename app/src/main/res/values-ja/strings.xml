@@ -266,8 +266,8 @@
    <string name="by_file_name">ファイル名</string>
    <string name="by_size">サイズ</string>
    <string name="by_date">日付</string>
-   <string name="by_title">書名</string>
-   <string name="by_author">本の著者</string>
+   <string name="by_title">タイトル</string>
+   <string name="by_author">著者</string>
    <string name="by_series">シリーズ</string>
    <string name="list">リスト</string>
    <string name="compact">コンパクト</string>
@@ -457,7 +457,7 @@
    <string name="no_keywords">キーワードなし</string>
    <string name="my_tags">私のタグ</string>
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
-   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著書名とタイトル名を抽出する（PDF）</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著者名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO：こちらをインストールすると広告が無くなります</string>
    <string name="annotation">注釈</string>
@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">このブックマークを削除しますか？</string>
    <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
-   <string name="read_by_sentences">最後の句読点から再開:</string>
+   <string name="read_by_sentences">一時停止する区切り符号:</string>
    <string name="do_not_read_characters">記号をスキップ:</string>
    <string name="show_in_scroll_mode">スクロールモードで表示する</string>
    <string name="display_bookmark_text_instead_of_number">番号の代わりにブックマークテキストを表示する</string>
@@ -527,7 +527,7 @@
    <string name="export_as_backup_json_">バックアップとしてエクスポート（json）</string>
    <string name="import_from_backup_json_">バックアップからインポート（json）</string>
    <string name="additional_bookmarks_bar">追加のブックマークバー</string>
-   <string name="turn_the_page_on_the_last_word">最後の単語でページをめくる</string>
+   <string name="turn_the_page_on_the_last_word">ページ切り替え時の一時停止</string>
    <string name="paste">ペースト</string>
    <string name="move">移動</string>
    <string name="tag_manager">タグマネージャ</string>
@@ -640,7 +640,7 @@
    <string name="cd_download_more_fonts">より多くのフォントをダウンロードする</string>
    <string name="restore_search_query_when_the_application_starts">起動時に検索クエリを復元する</string>
    <string name="hide_read_books">読んだ本を隠す</string>
-   <string name="graphics_scale">グラフィックスケール</string>
+   <string name="image_scale">画像スケール</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">本の名前でフォルダを作成する</string>
    <string name="memory">内部記憶</string>
 </resources>
