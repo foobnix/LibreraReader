@@ -46,7 +46,8 @@ td{
 }
 
 .sidebar li {  
-  font-size:14px;
+  font-size:1em;
+  padding: 0.1em;
 }
 
 img { 
