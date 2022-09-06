@@ -643,4 +643,5 @@
    <string name="graphics_scale">مقياس الرسومات</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">إنشاء مجلد باسم الكتاب</string>
    <string name="memory">ذاكرة</string>
+   <string name="accessibility">إمكانية الوصول</string>
 </resources>

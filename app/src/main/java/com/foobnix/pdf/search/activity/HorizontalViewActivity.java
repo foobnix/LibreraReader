@@ -564,7 +564,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
         modeName = (TextView) findViewById(R.id.modeName);
-        modeName.setText(AppState.get().nameHorizontalMode);
+
+        if(AppState.get().isEnableAccessibility){
+            modeName.setText(AppState.get().nameHorizontalMode + " ("+ getString(R.string.accessibility)+")");
+        }else{
+            modeName.setText(AppState.get().nameHorizontalMode);
+        }
 
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);

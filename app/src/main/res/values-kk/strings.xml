@@ -643,4 +643,5 @@
    <string name="graphics_scale">Графикалық масштаб</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Кітап атауы бар қалта жасаңыз</string>
    <string name="memory">Жады</string>
+   <string name="accessibility">Қолжетімділік</string>
 </resources>

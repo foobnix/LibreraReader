@@ -643,4 +643,5 @@
    <string name="graphics_scale">圖形比例</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">用書名創建一個文件夾</string>
    <string name="memory">記憶</string>
+   <string name="accessibility">可訪問性</string>
 </resources>

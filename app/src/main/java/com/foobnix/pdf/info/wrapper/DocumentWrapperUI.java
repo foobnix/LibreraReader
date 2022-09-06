@@ -289,7 +289,6 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            LOG.d("DEBUG", "Click");
             doHideShowToolBar();
         }
     };
@@ -1378,7 +1377,12 @@ public class DocumentWrapperUI {
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
         TextView modeName = (TextView) a.findViewById(R.id.modeName);
-        modeName.setText(AppState.get().nameVerticalMode);
+
+        if(AppState.get().isEnableAccessibility){
+            modeName.setText(AppState.get().nameVerticalMode + " ("+ dc.getString(R.string.accessibility)+")");
+        }else{
+            modeName.setText(AppState.get().nameVerticalMode);
+        }
 
         pagesCountIndicator = (TextView) a.findViewById(R.id.currentPageIndex);
         pagesCountIndicator.setVisibility(View.GONE);
@@ -1506,7 +1510,12 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
-            modeName.setText(AppState.get().nameMusicianMode);
+
+            if(AppState.get().isEnableAccessibility){
+                modeName.setText(AppState.get().nameMusicianMode + " ("+ dc.getString(R.string.accessibility)+")");
+            }else{
+                modeName.setText(AppState.get().nameMusicianMode);
+            }
         }
 
         currentSeek.setVisibility(View.GONE);

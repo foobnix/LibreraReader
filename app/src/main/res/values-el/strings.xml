@@ -643,4 +643,5 @@
    <string name="graphics_scale">Κλίμακα γραφικών</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Δημιουργήστε ένα φάκελο με το όνομα του βιβλίου</string>
    <string name="memory">Μνήμη</string>
+   <string name="accessibility">Προσιτότητα</string>
 </resources>

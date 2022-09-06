@@ -643,4 +643,5 @@
    <string name="graphics_scale">Échelle graphique</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Créer un dossier avec le nom du livre</string>
    <string name="memory">Mémoire</string>
+   <string name="accessibility">Accessibilité</string>
 </resources>

@@ -643,4 +643,5 @@
    <string name="graphics_scale">画像の伸縮</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">本の名前でフォルダを作成する</string>
    <string name="memory">内部記憶</string>
+   <string name="accessibility">アクセシビリティ</string>
 </resources>

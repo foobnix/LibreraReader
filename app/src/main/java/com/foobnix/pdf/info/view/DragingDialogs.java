@@ -2996,9 +2996,9 @@ public class DragingDialogs {
 
                 //
 
-                final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
-                isShowSatusBar.setChecked(AppState.get().isShowToolBar);
-                isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                final CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
+                isShowToolBar.setChecked(AppState.get().isShowToolBar);
+                isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -3045,7 +3045,7 @@ public class DragingDialogs {
                             onRefresh.run();
                         }
                         if (isChecked) {
-                            isShowSatusBar.setChecked(true);
+                            isShowToolBar.setChecked(true);
                         }
                     }
                 });
@@ -3061,7 +3061,7 @@ public class DragingDialogs {
                             onRefresh.run();
                         }
                         if (isChecked) {
-                            isShowSatusBar.setChecked(true);
+                            isShowToolBar.setChecked(true);
                         }
                     }
                 });
@@ -3208,7 +3208,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        isShowSatusBar.setChecked(true);
+                        isShowToolBar.setChecked(true);
                         if (controller.isBookMode()) {
                             AppState.get().statusBarTextSizeEasy = result;
                         } else {
@@ -3246,7 +3246,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(String string) {
-                        isShowSatusBar.setChecked(true);
+                        isShowToolBar.setChecked(true);
                         AppState.get().statusBarColorDay = Color.parseColor(string);
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
@@ -3281,7 +3281,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onResultRecive(String string) {
-                        isShowSatusBar.setChecked(true);
+                        isShowToolBar.setChecked(true);
                         AppState.get().statusBarColorNight = Color.parseColor(string);
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
