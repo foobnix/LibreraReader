@@ -137,6 +137,10 @@ public abstract class UIFragment<T> extends Fragment {
 
     public abstract void resetFragment();
 
+    public void onDoubleClick(){
+
+    }
+
     public final void onSelectFragment() {
         if (getActivity() == null) {
             return;

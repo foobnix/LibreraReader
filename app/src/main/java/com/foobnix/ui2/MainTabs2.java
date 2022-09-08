@@ -32,6 +32,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
@@ -161,7 +162,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     };
     boolean once = true;
     private SlidingTabLayout indicator;
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private DrawerLayout drawerLayout;    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -189,7 +190,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
     };
-    private DrawerLayout drawerLayout;
 
     public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
         if (a == null || swipeRefreshLayout == null) {
@@ -451,9 +451,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
 
-        if(UITab.isShowLibrary() || !AppState.get().tapPositionTop) {
+        if (UITab.isShowLibrary() || !AppState.get().tapPositionTop) {
             imageMenu.setVisibility(View.GONE);
-        }else{
+        } else {
 
             imageMenu.setVisibility(View.VISIBLE);
         }
@@ -561,6 +561,16 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
+        indicator.setOnDoubleClickAction(index -> {
+            try {
+                tabFragments.get(index).onDoubleClick();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+            return false;
+        });
+
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
@@ -692,7 +702,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             if (pos != -1) {
                 pager.setCurrentItem(pos);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
@@ -713,7 +723,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
 
 
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
@@ -789,7 +798,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         // TODO Auto-generated method stub
         return super.onKeyUp(keyCode, event);
     }
-
 
     @Override
     protected void onStop() {
@@ -886,4 +894,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
     }
+
+
 }

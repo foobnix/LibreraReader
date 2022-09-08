@@ -202,6 +202,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
     };
+    boolean isOnTop = false;
     private String NO_SERIES = ":no-series";
     private Stack<String> prevText = new Stack<String>();
     private ImageView onGridlList;
@@ -688,8 +689,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
 
 
-
-
                 boolean hasEmpySeries = false;
                 for (FileMeta it : searchBy) {
                     String sequence = it.getSequence();
@@ -701,7 +700,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 Collections.sort(result, String.CASE_INSENSITIVE_ORDER);
                 Collections.reverse(result);
-
 
 
                 String genreName = txt.replace(byGenre ? "@genre " : "@author ", "");
@@ -770,7 +768,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     res.add(it);
                 }
                 if (fm != null) {
-                    fm.setTitle(fm.getTitle() + " (" + (count+1) + ")");
+                    fm.setTitle(fm.getTitle() + " (" + (count + 1) + ")");
                 }
                 searchBy = res;
             }
@@ -1011,6 +1009,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     }
 
+    @Override
+    public void onDoubleClick() {
+        if (isOnTop) {
+            recyclerView.scrollToPosition(rememberPos);
+        } else {
+            rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+            recyclerView.scrollToPosition(0);
+        }
+        isOnTop = !isOnTop;
+    }
+
     public void showBookCount() {
         countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
     }
@@ -1085,7 +1094,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 onGridList();
                 searchAndOrderAsync();
             }
-        },150);
+        }, 150);
     }
 
 

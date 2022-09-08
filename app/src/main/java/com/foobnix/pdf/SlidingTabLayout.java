@@ -25,12 +25,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.sys.DoubleClickListener;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
@@ -123,6 +125,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabStrip = new SlidingTabStrip(context);
         mTabStrip.setDividerColors(Color.TRANSPARENT);
 
+    }
+    IntegerResponse onDoubleClickAction;
+    public void setOnDoubleClickAction(IntegerResponse onDoubleClickAction){
+        this.onDoubleClickAction = onDoubleClickAction;
     }
 
     public void init() {
@@ -269,6 +275,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         final View.OnClickListener tabClickListener = new TabClickListener();
 
         for (int i = 0; i < adapter.getCount(); i++) {
+            final int j = i;
             View tabView = null;
             TextView tabTitleView = null;
 
@@ -322,7 +329,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     tabTitleView.setTextColor(Color.WHITE);
                 }
 
-                tabView.setOnClickListener(tabClickListener);
+                //tabView.setOnClickListener(tabClickListener);
+                tabView.setOnClickListener(new DoubleClickListener() {
+                    @Override
+                    public void onSingleClick(View v) {
+                        tabClickListener.onClick(v);
+                    }
+
+                    @Override
+                    public void onDoubleClick(View v) {
+                        if(onDoubleClickAction!=null) {
+                            onDoubleClickAction.onResultRecive(j);
+                        }
+                    }
+                });
 
 
                 getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1));
