@@ -329,7 +329,7 @@
    <string name="copy">Másolás</string>
    <string name="search_in_google">Google kereső</string>
    <string name="search_in_document">Keresés a dokumentumban</string>
-   <string name="web_dict">Webes szótár</string>
+   <string name="web_dict_oxfort">Webes szótár (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Betűtípus</string>
    <string name="font_name">Betűtípus</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Bejelentkezés</string>
    <string name="sign_out">Kijelentkezés</string>
    <string name="wifi_sync_only">Csak wifi szinkronizálás</string>
-   <string name="sync_google_drive">Szinkronizálás (google meghajtó)</string>
+   <string name="sync_google_drive">Szinkronizálás (Google meghajtó)</string>
    <string name="single_tap_to_select_text">Egyetlen gombbal válassza ki a szöveget</string>
    <string name="sync_book">Szinkronizál egy könyvet</string>
    <string name="sync">Szinkronizál</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Hozzon létre egy mappát a könyv nevével</string>
    <string name="memory">Memória</string>
    <string name="accessibility">Megközelíthetőség</string>
+   <string name="web_search_google">Webes kereső (Google,...)</string>
 </resources>

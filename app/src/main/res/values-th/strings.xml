@@ -329,7 +329,7 @@
    <string name="copy">คัดลอก</string>
    <string name="search_in_google">ค้นหาใน Google</string>
    <string name="search_in_document">ค้นหาในเอกสาร</string>
-   <string name="web_dict">เว็บพจนานุกรม</string>
+   <string name="web_dict_oxfort">พจนานุกรมเว็บ (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">ตัวอักษร</string>
    <string name="font_name">ชื่อแบบอักษร</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">ลงชื่อเข้าใช้</string>
    <string name="sign_out">ออกจากระบบ</string>
    <string name="wifi_sync_only">Wifi sync เท่านั้น</string>
-   <string name="sync_google_drive">ซิงค์ (google ไดรฟ์)</string>
+   <string name="sync_google_drive">ซิงค์ (Google ไดรฟ์)</string>
    <string name="single_tap_to_select_text">แตะครั้งเดียวเพื่อเลือกข้อความ</string>
    <string name="sync_book">ซิงค์หนังสือ</string>
    <string name="sync">ซิงค์</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">สร้างโฟลเดอร์ชื่อหนังสือ</string>
    <string name="memory">หน่วยความจำ</string>
    <string name="accessibility">การเข้าถึง</string>
+   <string name="web_search_google">ค้นเว็บ (Google, ...)</string>
 </resources>

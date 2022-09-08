@@ -6,6 +6,12 @@ layout: main
 
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+
+
+### [8.6.36] 在 Google、DuckDuckGo、StartPage 中添加网页搜索
+<img class="i" src="8.6.36.png" />
+
+
 ### [8.6.32] 收藏选项卡 - 列出排序选项
 <img class="i" src="8.6.32.png" />
 

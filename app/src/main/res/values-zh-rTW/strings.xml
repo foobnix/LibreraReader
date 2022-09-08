@@ -329,7 +329,7 @@
    <string name="copy">複製</string>
    <string name="search_in_google">穀歌搜索</string>
    <string name="search_in_document">文內搜索</string>
-   <string name="web_dict">線上詞典</string>
+   <string name="web_dict_oxfort">網絡詞典（牛津，...）</string>
    <string name="___TO___CHECK___SECTION___">檢查</string>
    <string name="font">字體</string>
    <string name="font_name">字體名稱</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">用書名創建一個文件夾</string>
    <string name="memory">記憶</string>
    <string name="accessibility">可訪問性</string>
+   <string name="web_search_google">網絡搜索（谷歌，...）</string>
 </resources>

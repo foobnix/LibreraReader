@@ -329,7 +329,7 @@
    <string name="copy">نسخ</string>
    <string name="search_in_google">البحث في جوجل</string>
    <string name="search_in_document">البحث في المستند</string>
-   <string name="web_dict">قاموس على شبكة الإنترنت</string>
+   <string name="web_dict_oxfort">قاموس الويب (أكسفورد ، ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">الخط</string>
    <string name="font_name">اسم الخط</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">إنشاء مجلد باسم الكتاب</string>
    <string name="memory">ذاكرة</string>
    <string name="accessibility">إمكانية الوصول</string>
+   <string name="web_search_google">بحث الويب (Google ، ...)</string>
 </resources>

@@ -329,7 +329,7 @@
    <string name="copy">Көшіру</string>
    <string name="search_in_google">Google іздеу</string>
    <string name="search_in_document">Құжатта табу</string>
-   <string name="web_dict">Веб-сөзді іздеу</string>
+   <string name="web_dict_oxfort">Веб-сөздік (оксфорд, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Қаріп</string>
    <string name="font_name">Қаріп</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Кіру</string>
    <string name="sign_out">Шығу</string>
    <string name="wifi_sync_only">Тек Wi-Fi синхрондалуы</string>
-   <string name="sync_google_drive">Синхрондау (google drive)</string>
+   <string name="sync_google_drive">Синхрондау (Google drive)</string>
    <string name="single_tap_to_select_text">Мәтінді таңдау үшін бір рет түртіңіз</string>
    <string name="sync_book">Кітапты синхрондау</string>
    <string name="sync">Синхрондау</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Кітап атауы бар қалта жасаңыз</string>
    <string name="memory">Жады</string>
    <string name="accessibility">Қолжетімділік</string>
+   <string name="web_search_google">Веб-іздеу (Google, ...)</string>
 </resources>

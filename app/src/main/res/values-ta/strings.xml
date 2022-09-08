@@ -329,7 +329,7 @@
    <string name="copy">நகலெடுக்கவும்</string>
    <string name="search_in_google">கூகிளில் தேடு</string>
    <string name="search_in_document">ஆவணத்தில் கண்டுபிடிக்கவும்</string>
-   <string name="web_dict">வலை அகராதி தேடல்</string>
+   <string name="web_dict_oxfort">இணைய அகராதி (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">எழுத்துரு</string>
    <string name="font_name">எழுத்துரு</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">புத்தகத்தின் பெயருடன் ஒரு கோப்புறையை உருவாக்கவும்</string>
    <string name="memory">நினைவு</string>
    <string name="accessibility">அணுகல்</string>
+   <string name="web_search_google">இணைய தேடல் (Google, ...)</string>
 </resources>

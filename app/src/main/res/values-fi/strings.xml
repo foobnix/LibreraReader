@@ -329,7 +329,7 @@
    <string name="copy">Kopioi</string>
    <string name="search_in_google">Google-haku</string>
    <string name="search_in_document">Hae asiakirjasta</string>
-   <string name="web_dict">Hae Web-sanakirjasta</string>
+   <string name="web_dict_oxfort">Verkkosanakirja (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Kirjasin</string>
    <string name="font_name">Kirjasimen nimi</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Luo kansio kirjan nimellä</string>
    <string name="memory">Muisti</string>
    <string name="accessibility">Saavutettavuus</string>
+   <string name="web_search_google">Verkkohaku (Google,...)</string>
 </resources>

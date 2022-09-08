@@ -329,7 +329,7 @@
    <string name="copy">Kopiera</string>
    <string name="search_in_google">Sök i Google</string>
    <string name="search_in_document">Sök i dokumentet</string>
-   <string name="web_dict">Web ordbok</string>
+   <string name="web_dict_oxfort">Webbordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Font namn</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Logga in</string>
    <string name="sign_out">Logga ut</string>
    <string name="wifi_sync_only">Bara wifi-synkronisering</string>
-   <string name="sync_google_drive">Synkronisera (google-enhet)</string>
+   <string name="sync_google_drive">Synkronisera (Google-enhet)</string>
    <string name="single_tap_to_select_text">Tryck en gång för att välja text</string>
    <string name="sync_book">Synkronisera en bok</string>
    <string name="sync">Synkronisera</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Skapa en mapp med namnet på boken</string>
    <string name="memory">Minne</string>
    <string name="accessibility">Tillgänglighet</string>
+   <string name="web_search_google">Webbsökning (Google, ...)</string>
 </resources>

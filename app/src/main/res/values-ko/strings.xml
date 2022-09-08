@@ -329,7 +329,7 @@
    <string name="copy">복사</string>
    <string name="search_in_google">구글에서 검색</string>
    <string name="search_in_document">문서에서 검색</string>
-   <string name="web_dict">웹 사전</string>
+   <string name="web_dict_oxfort">웹 사전(옥스포드, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">글꼴</string>
    <string name="font_name">글꼴 이름</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">책 이름으로 폴더 만들기</string>
    <string name="memory">메모리</string>
    <string name="accessibility">접근성</string>
+   <string name="web_search_google">웹 검색(구글, ...)</string>
 </resources>

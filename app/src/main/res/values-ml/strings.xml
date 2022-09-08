@@ -329,7 +329,7 @@
    <string name="copy">പകർത്തുക</string>
    <string name="search_in_google">ഗൂഗിളില് തിരയുക</string>
    <string name="search_in_document">പ്രമാണത്തിൽ കണ്ടെത്തുക</string>
-   <string name="web_dict">വെബ് നിഘണ്ടു തിരയൽ</string>
+   <string name="web_dict_oxfort">വെബ് നിഘണ്ടു (ഓക്സ്ഫോർഡ്, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">ഫോണ്ട്</string>
    <string name="font_name">ഫോണ്ട്</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">പുസ്തകത്തിന്റെ പേരിൽ ഒരു ഫോൾഡർ ഉണ്ടാക്കുക</string>
    <string name="memory">ഓർമ്മ</string>
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
+   <string name="web_search_google">വെബ് തിരയൽ (ഗൂഗിൾ, ...)</string>
 </resources>

@@ -329,7 +329,7 @@
    <string name="copy">Copy</string>
    <string name="search_in_google">Search katika Google</string>
    <string name="search_in_document">Tafuta katika Hati</string>
-   <string name="web_dict">Mtandao Dictionary</string>
+   <string name="web_dict_oxfort">Kamusi ya wavuti (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Jina font</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Weka sahihi</string>
    <string name="sign_out">Toka</string>
    <string name="wifi_sync_only">Kusawazisha wifi tu</string>
-   <string name="sync_google_drive">Kusawazisha (google drive)</string>
+   <string name="sync_google_drive">Kusawazisha (Google drive)</string>
    <string name="single_tap_to_select_text">Bomba moja ili kuchagua maandishi</string>
    <string name="sync_book">Kusawazisha kitabu</string>
    <string name="sync">Kusawazisha</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Tengeneza folda yenye jina la kitabu</string>
    <string name="memory">Kumbukumbu</string>
    <string name="accessibility">Upatikanaji</string>
+   <string name="web_search_google">Utafutaji wa wavuti (Google, ...)</string>
 </resources>

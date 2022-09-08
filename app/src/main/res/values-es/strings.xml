@@ -329,7 +329,7 @@
    <string name="copy">Copiar</string>
    <string name="search_in_google">Buscar en Google</string>
    <string name="search_in_document">Buscar en el documento</string>
-   <string name="web_dict">Diccionario web</string>
+   <string name="web_dict_oxfort">Diccionario web (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Fuente</string>
    <string name="font_name">Fuente</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Crear una carpeta con el nombre del libro</string>
    <string name="memory">Memoria</string>
    <string name="accessibility">Accesibilidad</string>
+   <string name="web_search_google">Búsqueda web (Google, ...)</string>
 </resources>

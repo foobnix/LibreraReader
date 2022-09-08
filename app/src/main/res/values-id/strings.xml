@@ -329,7 +329,7 @@
    <string name="copy">Salinan</string>
    <string name="search_in_google">Cari di Google</string>
    <string name="search_in_document">Cari di Dokumen</string>
-   <string name="web_dict">Kamus Web</string>
+   <string name="web_dict_oxfort">Kamus web (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Nama huruf</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Masuk</string>
    <string name="sign_out">Keluar</string>
    <string name="wifi_sync_only">Sinkronisasi wifi saja</string>
-   <string name="sync_google_drive">Sinkronisasi (google drive)</string>
+   <string name="sync_google_drive">Sinkronisasi (Google drive)</string>
    <string name="single_tap_to_select_text">Ketuk sekali untuk memilih teks</string>
    <string name="sync_book">Sinkronisasi buku</string>
    <string name="sync">Sinkronkan</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Buat folder dengan nama buku</string>
    <string name="memory">Penyimpanan</string>
    <string name="accessibility">Aksesibilitas</string>
+   <string name="web_search_google">Pencarian web (Google, ...)</string>
 </resources>

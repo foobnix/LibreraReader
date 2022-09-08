@@ -329,7 +329,7 @@
    <string name="copy">コピー</string>
    <string name="search_in_google">グーグルで検索</string>
    <string name="search_in_document">ドキュメントで検索</string>
-   <string name="web_dict">ウェブ辞書</string>
+   <string name="web_dict_oxfort">Web 辞書 (オックスフォード、...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">フォント</string>
    <string name="font_name">フォント名</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">本の名前でフォルダを作成する</string>
    <string name="memory">内部記憶</string>
    <string name="accessibility">アクセシビリティ</string>
+   <string name="web_search_google">Web 検索 (Google など)</string>
 </resources>

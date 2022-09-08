@@ -329,7 +329,7 @@
    <string name="copy">Αντίγραφο</string>
    <string name="search_in_google">Αναζήτηση Google</string>
    <string name="search_in_document">Βρείτε στο έγγραφο</string>
-   <string name="web_dict">Αναζήτηση λεξικού ιστού</string>
+   <string name="web_dict_oxfort">Διαδικτυακό λεξικό (Οξφόρδη, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Γραμματοσειρά</string>
    <string name="font_name">Γραμματοσειρά</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Συνδεθείτε</string>
    <string name="sign_out">Αποσύνδεση</string>
    <string name="wifi_sync_only">Συγχρονισμός μόνο μέσω Wi-Fi</string>
-   <string name="sync_google_drive">Συγχρονισμός (google drive)</string>
+   <string name="sync_google_drive">Συγχρονισμός (Google drive)</string>
    <string name="single_tap_to_select_text">Επιλογή με ένα πάτημα</string>
    <string name="sync_book">Συγχρονισμός</string>
    <string name="sync">Συγχρονισμός</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Δημιουργήστε ένα φάκελο με το όνομα του βιβλίου</string>
    <string name="memory">Μνήμη</string>
    <string name="accessibility">Προσιτότητα</string>
+   <string name="web_search_google">Αναζήτηση ιστού (Google, ...)</string>
 </resources>

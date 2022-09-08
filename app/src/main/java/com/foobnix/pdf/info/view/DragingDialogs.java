@@ -61,6 +61,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -1656,13 +1657,38 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onGoogle).setOnClickListener(new OnClickListener() {
+                View onGoogle = view.findViewById(R.id.onGoogle);
+                onGoogle.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        controller.clearSelectedText();
-                        closeDialog();
-                        Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + editText.getText().toString().trim());
+                        String text = editText.getText().toString().trim();
+                        MyPopupMenu menu = new MyPopupMenu(onGoogle);
+                        menu.getMenu().add("Google").setOnMenuItemClickListener((it) -> {
+                            Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + text);
+                            return true;
+                        });
+                        menu.getMenu().add("StartPage").setOnMenuItemClickListener((it) -> {
+                            Urls.open(anchor.getContext(), "https://www.startpage.com/sp/search?query=" + text);
+                            return true;
+                        });
+                        menu.getMenu().add("DuckDuckGo").setOnMenuItemClickListener((it) -> {
+                            Urls.open(anchor.getContext(), "https://duckduckgo.com/?q=" + text);
+                            return true;
+                        });
+                        menu.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                            @Override
+                            public void onDismiss() {
+                                controller.clearSelectedText();
+                                closeDialog();
+                            }
+                        });
+                        menu.show();
+
+
+
+
+
                     }
                 });
 

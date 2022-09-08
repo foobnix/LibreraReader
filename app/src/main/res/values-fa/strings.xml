@@ -329,7 +329,7 @@
    <string name="copy">نسخه</string>
    <string name="search_in_google">جستجو در گوگل</string>
    <string name="search_in_document">جستجو در سند</string>
-   <string name="web_dict">واژه نامه وب</string>
+   <string name="web_dict_oxfort">دیکشنری وب (آکسفورد، ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">فونت</string>
    <string name="font_name">نام فونت</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">یک پوشه با نام کتاب ایجاد کنید</string>
    <string name="memory">حافظه</string>
    <string name="accessibility">دسترسی</string>
+   <string name="web_search_google">جستجوی وب (گوگل، ...)</string>
 </resources>

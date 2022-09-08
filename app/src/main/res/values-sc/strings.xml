@@ -329,7 +329,7 @@
    <string name="copy">Còpia</string>
    <string name="search_in_google">Chirca in Google</string>
    <string name="search_in_document">Busca in su documentu</string>
-   <string name="web_dict">Chirca in su ditzionàriu web</string>
+   <string name="web_dict_oxfort">Web dictionary (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Caràtere</string>
    <string name="font_name">Caràtere</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Create a folder with the name of the book</string>
    <string name="memory">Memory</string>
    <string name="accessibility">Accessibility</string>
+   <string name="web_search_google">Web search (Google, ...)</string>
 </resources>

@@ -329,7 +329,7 @@
    <string name="copy">प्रतिलिपि</string>
    <string name="search_in_google">गूगल में खोजें</string>
    <string name="search_in_document">दस्तावेज़ में खोजें</string>
-   <string name="web_dict">वेब शब्दकोश</string>
+   <string name="web_dict_oxfort">वेब डिक्शनरी (ऑक्सफोर्ड,...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">फ़ॉन्ट</string>
    <string name="font_name">फ़ॉन्ट का नाम</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">किताब के नाम से एक फोल्डर बनाएं</string>
    <string name="memory">स्मृति</string>
    <string name="accessibility">पहुँच</string>
+   <string name="web_search_google">वेब खोज (गूगल,...)</string>
 </resources>

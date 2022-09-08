@@ -329,7 +329,7 @@
    <string name="copy">Копие</string>
    <string name="search_in_google">Търсене в Google</string>
    <string name="search_in_document">Намерете в документ</string>
-   <string name="web_dict">Търсене в уеб речник</string>
+   <string name="web_dict_oxfort">Уеб речник (Оксфорд, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Шрифта</string>
    <string name="font_name">Шрифта</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Впиши се</string>
    <string name="sign_out">Отписване</string>
    <string name="wifi_sync_only">Синхронизиране само през wifi</string>
-   <string name="sync_google_drive">Синхронизиране (google drive)</string>
+   <string name="sync_google_drive">Синхронизиране (Google drive)</string>
    <string name="single_tap_to_select_text">Избор с едно докосване</string>
    <string name="sync_book">Синхронизация</string>
    <string name="sync">Синхронизация</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Създайте папка с името на книгата</string>
    <string name="memory">Памет</string>
    <string name="accessibility">Достъпност</string>
+   <string name="web_search_google">Търсене в мрежата (Google, ...)</string>
 </resources>

@@ -329,7 +329,7 @@
    <string name="copy">עותק</string>
    <string name="search_in_google">חיפוש ב- Google</string>
    <string name="search_in_document">חפש במסמך</string>
-   <string name="web_dict">מילון אינטרנט</string>
+   <string name="web_dict_oxfort">מילון אינטרנט (אוקספורד, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">גוֹפָן</string>
    <string name="font_name">שם גופן</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">ליצור תיקיה עם שם הספר</string>
    <string name="memory">זיכרון</string>
    <string name="accessibility">נְגִישׁוּת</string>
+   <string name="web_search_google">חיפוש באינטרנט (גוגל,...)</string>
 </resources>

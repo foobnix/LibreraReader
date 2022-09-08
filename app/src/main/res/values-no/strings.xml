@@ -329,7 +329,7 @@
    <string name="copy">Kopiere</string>
    <string name="search_in_google">Søk i Google</string>
    <string name="search_in_document">Søk i dokument</string>
-   <string name="web_dict">Web Dictionary</string>
+   <string name="web_dict_oxfort">Nettordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Skriftnavn</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Logg inn</string>
    <string name="sign_out">Logg ut</string>
    <string name="wifi_sync_only">Kun wifi-synkronisering</string>
-   <string name="sync_google_drive">Synkronisere (google-stasjon)</string>
+   <string name="sync_google_drive">Synkronisere (Google-stasjon)</string>
    <string name="single_tap_to_select_text">Enkelt trykk for å velge tekst</string>
    <string name="sync_book">Synkroniser en bok</string>
    <string name="sync">Synkron</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Opprette en mappe med navnet på boken</string>
    <string name="memory">Hukommelse</string>
    <string name="accessibility">Tilgjengelighet</string>
+   <string name="web_search_google">Nettsøk (Google, ...)</string>
 </resources>

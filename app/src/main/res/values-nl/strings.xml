@@ -329,7 +329,7 @@
    <string name="copy">Kopiëren</string>
    <string name="search_in_google">Zoeken in Google</string>
    <string name="search_in_document">Zoeken in document</string>
-   <string name="web_dict">Web Woordenboek</string>
+   <string name="web_dict_oxfort">Webwoordenboek (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Lettertype</string>
    <string name="font_name">Lettertype</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Maak een map met de naam van het boek</string>
    <string name="memory">Geheugen</string>
    <string name="accessibility">Toegankelijkheid</string>
+   <string name="web_search_google">Zoeken op internet (Google, ...)</string>
 </resources>

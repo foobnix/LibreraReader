@@ -329,7 +329,7 @@
    <string name="copy">Kopyala</string>
    <string name="search_in_google">Google Araması</string>
    <string name="search_in_document">Belgede bul</string>
-   <string name="web_dict">Çevrimiçi sözlükte bul</string>
+   <string name="web_dict_oxfort">Web sözlüğü (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Yazı tipi</string>
    <string name="font_name">Yazı tipi</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Oturum aç</string>
    <string name="sign_out">Oturumu Kapat</string>
    <string name="wifi_sync_only">Yalnızca wifi senkronizasyonu</string>
-   <string name="sync_google_drive">Senkronizasyon (google drive)</string>
+   <string name="sync_google_drive">Senkronizasyon (Google drive)</string>
    <string name="single_tap_to_select_text">Metni seçmek için tek dokunuşla</string>
    <string name="sync_book">Bir kitabı senkronize et</string>
    <string name="sync">Senkronize etmek</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Kitabın adıyla bir klasör oluşturun</string>
    <string name="memory">Hafıza</string>
    <string name="accessibility">Ulaşılabilirlik</string>
+   <string name="web_search_google">Web araması (Google, ...)</string>
 </resources>

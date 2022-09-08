@@ -329,7 +329,7 @@
    <string name="copy">Copier</string>
    <string name="search_in_google">Recherche dans Google</string>
    <string name="search_in_document">Rechercher dans le document</string>
-   <string name="web_dict">Dictionnaire Web</string>
+   <string name="web_dict_oxfort">Dictionnaire web (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
    <string name="font_name">Nom de la police</string>
@@ -544,7 +544,7 @@
    <string name="sign_in">Connexion</string>
    <string name="sign_out">Déconnexion</string>
    <string name="wifi_sync_only">Sync par Wifi seulement</string>
-   <string name="sync_google_drive">Sync (google drive)</string>
+   <string name="sync_google_drive">Sync (Google drive)</string>
    <string name="single_tap_to_select_text">Appuyer une seule fois pour sélectionner du texte</string>
    <string name="sync_book">Synchroniser un livre</string>
    <string name="sync">Synchroniser</string>
@@ -644,4 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">Créer un dossier avec le nom du livre</string>
    <string name="memory">Mémoire</string>
    <string name="accessibility">Accessibilité</string>
+   <string name="web_search_google">Recherche internet (Google, ...)</string>
 </resources>

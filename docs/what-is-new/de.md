@@ -6,6 +6,12 @@ layout: main
 
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+
+
+### [8.6.36] Websuche in Google, DuckDuckGo, StartPage hinzufügen
+<img class="i" src="8.6.36.png" />
+
+
 ### [8.6.32] Registerkarte „Favorit“ – Listensortieroptionen
 <img class="i" src="8.6.32.png" />
 

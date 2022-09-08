@@ -2,23 +2,25 @@
 
 
 ### 1.20.0
-./link_to_mupdf_1.20.2.sh
+./link_to_mupdf_1.11.sh
 
 cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleProRelease
-./gradlew assembleFdroidRelease
+./gradlew assembleOldRelease
 
 
 ### 1.11.1
 
 cd Builder
-./link_to_mupdf_1.11.sh
+
+./link_to_mupdf_1.20.2.sh
 
 cd ../
-./gradlew assembleOldRelease
+
+./gradlew assembleProRelease
+./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

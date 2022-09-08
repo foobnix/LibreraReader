@@ -12,6 +12,7 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:scrollbars="none">
 
             <LinearLayout
@@ -72,6 +73,7 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dip"
             android:scrollbars="none">
 
             <LinearLayout
@@ -137,6 +139,12 @@
                 android:visibility="visible" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lt_grey_alpha" />
+
 
 
         <LinearLayout
@@ -219,32 +227,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:id="@+id/onGoogle"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:background="@android:drawable/list_selector_background"
-                android:src="@drawable/glyphicons_417_globe"
-                android:tint="@color/tint_gray" />
-
-            <TextView
-
-                style="@style/textLink"
-                android:layout_width="match_parent"
-                android:layout_height="35dip"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dip"
-                android:singleLine="true"
-                android:text="@string/search_in_google"
-                android:textSize="15sp" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/onBookSearch"
@@ -272,6 +255,38 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lt_grey_alpha" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/onGoogle"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:background="@android:drawable/list_selector_background"
+                android:src="@drawable/glyphicons_417_globe"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                style="@style/textLink"
+                android:layout_width="match_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:singleLine="true"
+                android:text="@string/web_search_google"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -293,10 +308,16 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
-                android:text="@string/web_dict"
+                android:text="@string/web_dict_oxfort"
                 android:textSize="15sp" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lt_grey_alpha" />
+
 
         <HorizontalScrollView
             android:layout_width="match_parent"

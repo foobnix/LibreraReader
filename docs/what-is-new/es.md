@@ -6,6 +6,12 @@ layout: main
 
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
+
+
+### [8.6.36] Agregar búsqueda web en Google, DuckDuckGo, StartPage
+<img class="i" src="8.6.36.png" />
+
+
 ### [8.6.32] Pestaña Favoritos: lista de opciones de clasificación
 <img class="i" src="8.6.32.png" />
 
