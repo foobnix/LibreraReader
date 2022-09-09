@@ -7,6 +7,17 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.39] Déplacement de la recherche Web et des dictionnaires Web vers les fichiers utilisateur app-WebDict.json et app-WebSearch.json
+
+```
+> /storage/emulated/0/Librera/profile.Librera/device.[name]/app-WebSearch.json
+[
+{"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
+{"name": "Google", "path": "http://www.google.com/search?q=%s"},
+{"name": "StartPage", "path": "https://www.startpage.com/sp/search?query=%s"},
+{"name": "DuckDuckGo", "path": "https://duckduckgo.com/?q=%s"}
+]
+```
 
 ### [8.6.36] Ajouter la recherche Web dans Google, DuckDuckGo, StartPage
 <img class="i" src="8.6.36.png" />

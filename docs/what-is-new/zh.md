@@ -7,6 +7,17 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.39] 将 Web 搜索和 Web 词典移至用户文件 app-WebDict.json 和 app-WebSearch.json
+
+```
+> /storage/emulated/0/Librera/profile.Librera/device.[name]/app-WebSearch.json
+[
+{"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
+{"name": "Google", "path": "http://www.google.com/search?q=%s"},
+{"name": "StartPage", "path": "https://www.startpage.com/sp/search?query=%s"},
+{"name": "DuckDuckGo", "path": "https://duckduckgo.com/?q=%s"}
+]
+```
 
 ### [8.6.36] 在 Google、DuckDuckGo、StartPage 中添加网页搜索
 <img class="i" src="8.6.36.png" />

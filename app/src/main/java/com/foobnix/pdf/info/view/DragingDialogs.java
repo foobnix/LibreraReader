@@ -61,7 +61,6 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -1570,7 +1569,7 @@ public class DragingDialogs {
                 view.findViewById(R.id.onGoogle).setOnClickListener(v -> {
                     anchor.removeAllViews();
                     final PopupMenu popupMenu = new PopupMenu(v.getContext(), view);
-                    final Map<String, String> providers = AppData.get().getWebSearhc(editText.getText().toString().trim());
+                    final Map<String, String> providers = AppData.get().getWebSearch(editText.getText().toString().trim());
                     for (final String name : providers.keySet()) {
                         popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
                             Urls.open(anchor.getContext(), providers.get(name).trim());

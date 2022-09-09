@@ -126,7 +126,7 @@ public class DictsHelper {
         for (String it : keySet) {
             items.add(new DictItem(it, "web", "", null));
         }
-        keySet = AppData.get().getWebSearhc(text).keySet();
+        keySet = AppData.get().getWebSearch(text).keySet();
         for (String it : keySet) {
             items.add(new DictItem(it, "web", "", null));
         }
@@ -143,7 +143,7 @@ public class DictsHelper {
                 Map<String, String> dictionaries = AppData.get().getWebDictionaries(selectedText);
                 String url = dictionaries.get(dictName);
                 if (url == null) {
-                    dictionaries = AppData.get().getWebSearhc(selectedText);
+                    dictionaries = AppData.get().getWebSearch(selectedText);
                     url = dictionaries.get(dictName);
                 }
                 Urls.open(c, url);

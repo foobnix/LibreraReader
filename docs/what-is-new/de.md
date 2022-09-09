@@ -7,6 +7,17 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.39] Die Websuche und Webwörterbücher wurden in die Benutzerdateien app-WebDict.json und app-WebSearch.json verschoben
+
+```
+> /storage/emulated/0/Librera/profile.Librera/device.[name]/app-WebSearch.json
+[
+{"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
+{"name": "Google", "path": "http://www.google.com/search?q=%s"},
+{"name": "StartPage", "path": "https://www.startpage.com/sp/search?query=%s"},
+{"name": "DuckDuckGo", "path": "https://duckduckgo.com/?q=%s"}
+]
+```
 
 ### [8.6.36] Websuche in Google, DuckDuckGo, StartPage hinzufügen
 <img class="i" src="8.6.36.png" />

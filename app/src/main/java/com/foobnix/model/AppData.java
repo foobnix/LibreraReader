@@ -125,7 +125,7 @@ public class AppData {
         return getDictionaries(input, AppProfile.APP_WEB_DICT);
     }
 
-    public Map<String, String> getWebSearhc(String input) {
+    public Map<String, String> getWebSearch(String input) {
         return getDictionaries(input, AppProfile.APP_WEB_SEARCH);
 
     }
