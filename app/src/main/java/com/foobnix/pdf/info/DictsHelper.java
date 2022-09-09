@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.sys.TempHolder;
@@ -25,44 +26,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class DictsHelper {
-
-    public static class DictItem {
-        public String name;
-        public String type;
-        public String pkg;
-        public int hash;
-        public Drawable image;
-
-        public DictItem(String name, String type, String pkg, Drawable image) {
-            this.name = name;
-            this.type = type;
-            this.image = image;
-            this.pkg = pkg;
-        }
-
-        @Override
-        public String toString() {
-            return type + ":" + name;
-        }
-
-        public static String fetchDictName(String format) {
-            try {
-                if (format.contains(":")) {
-                    return format.substring(format.indexOf(":") + 1);
-                } else {
-                    return format;
-                }
-            } catch (Exception e) {
-                return format;
-            }
-
-        }
-
-        public void addHash(ActivityInfo activityInfo) {
-            hash = getHash(activityInfo);
-        }
-
-    }
 
     public static int getHash(ActivityInfo activityInfo) {
         String s = activityInfo.name + activityInfo.packageName;
@@ -159,7 +122,11 @@ public class DictsHelper {
 
     public static List<DictItem> getOnlineDicts(Context c, String text) {
         List<DictItem> items = new ArrayList<DictItem>();
-        Set<String> keySet = AppState.getDictionaries(text).keySet();
+        Set<String> keySet = AppData.get().getWebDictionaries(text).keySet();
+        for (String it : keySet) {
+            items.add(new DictItem(it, "web", "", null));
+        }
+        keySet = AppData.get().getWebSearhc(text).keySet();
         for (String it : keySet) {
             items.add(new DictItem(it, "web", "", null));
         }
@@ -173,8 +140,12 @@ public class DictsHelper {
             final int dictHash = AppState.get().rememberDict1Hash;
             String dictName = DictItem.fetchDictName(AppState.get().rememberDict1);
             if (dict.startsWith("web")) {
-                Map<String, String> dictionaries = AppState.getDictionaries(selectedText);
+                Map<String, String> dictionaries = AppData.get().getWebDictionaries(selectedText);
                 String url = dictionaries.get(dictName);
+                if (url == null) {
+                    dictionaries = AppData.get().getWebSearhc(selectedText);
+                    url = dictionaries.get(dictName);
+                }
                 Urls.open(c, url);
             }
             if (dict.startsWith("type")) {
@@ -202,7 +173,7 @@ public class DictsHelper {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         intent.setComponent(cName);
                         c.startActivity(intent);
-                        LOG.d("dict-intent",intent);
+                        LOG.d("dict-intent", intent);
                         // c.overridePendingTransition(0, 0);
                         return;
                     }
@@ -242,6 +213,44 @@ public class DictsHelper {
         all.addAll(searchList);
         all.addAll(sendList);
         return all;
+    }
+
+    public static class DictItem {
+        public String name;
+        public String type;
+        public String pkg;
+        public int hash;
+        public Drawable image;
+
+        public DictItem(String name, String type, String pkg, Drawable image) {
+            this.name = name;
+            this.type = type;
+            this.image = image;
+            this.pkg = pkg;
+        }
+
+        public static String fetchDictName(String format) {
+            try {
+                if (format.contains(":")) {
+                    return format.substring(format.indexOf(":") + 1);
+                } else {
+                    return format;
+                }
+            } catch (Exception e) {
+                return format;
+            }
+
+        }
+
+        @Override
+        public String toString() {
+            return type + ":" + name;
+        }
+
+        public void addHash(ActivityInfo activityInfo) {
+            hash = getHash(activityInfo);
+        }
+
     }
 
 }

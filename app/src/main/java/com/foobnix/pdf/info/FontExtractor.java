@@ -32,11 +32,9 @@ import okio.Okio;
 
 public class FontExtractor {
 
+    final static Object lock = new Object();
     public static String FONT_HTTP_ZIP1 = "https://raw.github.com/foobnix/LirbiReader/master/Builder/fonts/fonts.zip";
     public static String FONT_HTTP_ZIP2 = "https://www.dropbox.com/s/c8v7d05vskmjt28/fonts.zip?raw=1";
-
-
-    final static Object lock = new Object();
 
     public static void extractFonts(final Context c) {
         if (c == null) {
@@ -68,6 +66,20 @@ public class FontExtractor {
                             copyFontsFromZip();
                             LOG.d("copy fonts for IS_FDROID");
                         }
+
+                        File appWebDict = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_WEB_DICT);
+                        if (!appWebDict.exists()) {
+                            IOUtils.copyClose(c.getAssets().open(AppProfile.APP_WEB_DICT), new FileOutputStream(appWebDict));
+                            LOG.d("copy-dict", AppProfile.APP_WEB_DICT);
+                       }
+
+                        File appWebSearch = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_WEB_SEARCH);
+                        if (!appWebSearch.exists()) {
+                            IOUtils.copyClose(c.getAssets().open(AppProfile.APP_WEB_SEARCH), new FileOutputStream(appWebSearch));
+                            LOG.d("copy-dict", AppProfile.APP_WEB_SEARCH);
+                        }
+
+
                     }
                 } catch (Exception e) {
                     LOG.e(e);
@@ -143,7 +155,6 @@ public class FontExtractor {
                         progressDialog = MyProgressDialog.show(a, a.getString(R.string.please_wait));
 
                     }
-
 
 
                     @Override

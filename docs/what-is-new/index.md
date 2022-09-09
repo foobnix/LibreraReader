@@ -7,6 +7,7 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.39] Move Web Search and Web Dictionaries to the user files app-WebDict.json and app-WebSearch.json
 
 ### [8.6.36] Add Web Search in Google, DuckDuckGo, StartPage
 <img class="i" src="8.6.36.png" />

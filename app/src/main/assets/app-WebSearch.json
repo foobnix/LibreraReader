@@ -1,0 +1,6 @@
+[
+  {"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
+  {"name": "Google", "path": "http://www.google.com/search?q=%s"},
+  {"name": "StartPage", "path": "https://www.startpage.com/sp/search?query=%s"},
+  {"name": "DuckDuckGo", "path": "https://duckduckgo.com/?q=%s"}
+]

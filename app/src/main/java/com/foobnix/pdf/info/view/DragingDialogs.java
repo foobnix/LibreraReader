@@ -1553,33 +1553,35 @@ public class DragingDialogs {
 
                 editText.setText(selectedText);
 
-                final View onTranslate = view.findViewById(R.id.onTranslate);
-                onTranslate.setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-
-                        anchor.removeAllViews();
-
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        final Map<String, String> providers = AppState.getDictionaries(editText.getText().toString().trim());
-
-                        for (final String name : providers.keySet()) {
-
-                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    Urls.open(anchor.getContext(), providers.get(name).trim());
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
+                view.findViewById(R.id.onTranslate).setOnClickListener(v -> {
+                    anchor.removeAllViews();
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), view);
+                    final Map<String, String> providers = AppData.get().getWebDictionaries(editText.getText().toString().trim());
+                    for (final String name : providers.keySet()) {
+                        popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                            Urls.open(anchor.getContext(), providers.get(name).trim());
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
+
+                view.findViewById(R.id.onGoogle).setOnClickListener(v -> {
+                    anchor.removeAllViews();
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), view);
+                    final Map<String, String> providers = AppData.get().getWebSearhc(editText.getText().toString().trim());
+                    for (final String name : providers.keySet()) {
+                        popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                            Urls.open(anchor.getContext(), providers.get(name).trim());
+                            return false;
+                        });
+                    }
+                    popupMenu.show();
+                });
+
+
+
 
                 view.findViewById(R.id.onAddToBookmark).setOnClickListener(new OnClickListener() {
 
@@ -1657,40 +1659,7 @@ public class DragingDialogs {
                     }
                 });
 
-                View onGoogle = view.findViewById(R.id.onGoogle);
-                onGoogle.setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        String text = editText.getText().toString().trim();
-                        MyPopupMenu menu = new MyPopupMenu(onGoogle);
-                        menu.getMenu().add("Google").setOnMenuItemClickListener((it) -> {
-                            Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + text);
-                            return true;
-                        });
-                        menu.getMenu().add("StartPage").setOnMenuItemClickListener((it) -> {
-                            Urls.open(anchor.getContext(), "https://www.startpage.com/sp/search?query=" + text);
-                            return true;
-                        });
-                        menu.getMenu().add("DuckDuckGo").setOnMenuItemClickListener((it) -> {
-                            Urls.open(anchor.getContext(), "https://duckduckgo.com/?q=" + text);
-                            return true;
-                        });
-                        menu.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                            @Override
-                            public void onDismiss() {
-                                controller.clearSelectedText();
-                                closeDialog();
-                            }
-                        });
-                        menu.show();
-
-
-
-
-
-                    }
-                });
 
                 View onBookSearch = view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)

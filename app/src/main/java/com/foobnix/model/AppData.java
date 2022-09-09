@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import android.net.Uri;
+
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +33,138 @@ public class AppData {
 
     public static final int LIMIT = 3;
     static AppData inst = new AppData();
+    static Map<String, List<SimpleMeta>> cacheSM = new HashMap<>();
 
     public static AppData get() {
         return inst;
     }
 
+    public static boolean contains(List<FileMeta> list, String path) {
+        for (FileMeta f : list) {
+            if (ExtUtils.getFileName(f.getPath()).equals(ExtUtils.getFileName(path))) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static List<SimpleMeta> getSimpleMeta(File file) {
+        List<SimpleMeta> list = new ArrayList<>();
+        readSimpleMeta1(list, file, true);
+        return list;
+    }
+
+    public static void addSimpleMeta(List<SimpleMeta> list, File file) {
+        readSimpleMeta1(list, file, false);
+    }
+
+    private static void readSimpleMeta1(List<SimpleMeta> list, File file, boolean clear) {
+        if (clear) {
+            list.clear();
+        }
+        if (!file.exists()) {
+            return;
+        }
+
+
+        String in = IO.readString(file);
+        if (TxtUtils.isEmpty(in)) {
+            return;
+        }
+
+        try {
+            JSONArray array = new JSONArray(in);
+            for (int i = 0; i < array.length(); i++) {
+                final LinkedJSONObject it = array.getJSONObject(i);
+                SimpleMeta meta = new SimpleMeta();
+                meta.name = it.optString(SimpleMeta.JSON_NAME);
+                meta.path = it.optString(SimpleMeta.JSON_PATH);
+                meta.time = it.optLong(SimpleMeta.JSON_TIME);
+                meta.file = file;
+                list.add(meta);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+
+    }
+
+    public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
+        JSONArray array = new JSONArray();
+        for (SimpleMeta meta : list) {
+            LinkedJSONObject o = new LinkedJSONObject();
+            try {
+                o.put(SimpleMeta.JSON_NAME, meta.name);
+                o.put(SimpleMeta.JSON_PATH, meta.path);
+                o.put(SimpleMeta.JSON_TIME, meta.time);
+            } catch (JSONException e) {
+                LOG.e(e);
+            }
+            array.put(o);
+            LOG.d("writeSimpleMeta", o);
+        }
+
+        IO.writeObjAsync(file, array);
+
+
+    }
+
+    public static List<SimpleMeta> convert(List<String> list) {
+        List<SimpleMeta> res = new ArrayList<>();
+        for (String string : list) {
+            res.add(new SimpleMeta(string));
+        }
+        return res;
+
+
+    }
+
+    public Map<String, String> getWebDictionaries(String input) {
+        return getDictionaries(input, AppProfile.APP_WEB_DICT);
+    }
+
+    public Map<String, String> getWebSearhc(String input) {
+        return getDictionaries(input, AppProfile.APP_WEB_SEARCH);
+
+    }
+
+    private Map<String, String> getDictionaries(String input, String resName) {
+        final Map<String, String> providers = new LinkedHashMap<>();
+        String ln = AppState.get().toLang;
+        String from = AppState.get().fromLang;
+        String text = Uri.encode(input);
+
+        List<SimpleMeta> allDict = AppData.get().getAll(resName);
+        for (SimpleMeta it : allDict) {
+            String path = it.getPath();
+            String name = it.getName();
+            if (TxtUtils.isEmpty(name) || name.startsWith("_")) {
+                continue;
+            }
+
+            try {
+                path = String.format(path, text); //1 text
+            } catch (Exception e) {
+                try {
+                    path = String.format(path, from, text); //2 from, text
+                } catch (Exception e1) {
+                    try {
+                        path = String.format(path, from, ln, text);//3 from, to, text
+                    } catch (Exception e2) {
+                        LOG.e(e2);
+                        continue;
+                    }
+                }
+            }
+            LOG.d("getDictionaries", name, path);
+            providers.put(name, path);
+        }
+
+        return providers;
+
+    }
 
     public void add(SimpleMeta s, File file) {
         List<SimpleMeta> current = getSimpleMeta(file);
@@ -92,7 +222,6 @@ public class AppData {
         RecentUpates.updateAll();
     }
 
-
     private synchronized List<SimpleMeta> getAll(String name) {
         List<SimpleMeta> result = new ArrayList<>();
         final List<File> allFiles = AppProfile.getAllFiles(name);
@@ -125,7 +254,6 @@ public class AppData {
         clearAll(AppProfile.APP_RECENT_JSON);
 
     }
-
 
     public synchronized List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
@@ -194,19 +322,10 @@ public class AppData {
         return res;
     }
 
-    public static boolean contains(List<FileMeta> list, String path) {
-        for (FileMeta f : list) {
-            if (ExtUtils.getFileName(f.getPath()).equals(ExtUtils.getFileName(path))) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
     public List<SimpleMeta> getAllRecentSimple() {
         return getAll(AppProfile.APP_RECENT_JSON);
     }
+
 
     public List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
@@ -243,78 +362,6 @@ public class AppData {
 
     public List<SimpleMeta> getAllExcluded() {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
-    }
-
-    static Map<String, List<SimpleMeta>> cacheSM = new HashMap<>();
-
-    public static List<SimpleMeta> getSimpleMeta(File file) {
-        List<SimpleMeta> list = new ArrayList<>();
-        readSimpleMeta1(list, file, true);
-        return list;
-    }
-
-    public static void addSimpleMeta(List<SimpleMeta> list, File file) {
-        readSimpleMeta1(list, file, false);
-    }
-
-    private static void readSimpleMeta1(List<SimpleMeta> list, File file, boolean clear) {
-        if (clear) {
-            list.clear();
-        }
-        if (!file.exists()) {
-            return;
-        }
-
-
-        String in = IO.readString(file);
-        if (TxtUtils.isEmpty(in)) {
-            return;
-        }
-
-        try {
-            JSONArray array = new JSONArray(in);
-            for (int i = 0; i < array.length(); i++) {
-                final LinkedJSONObject it = array.getJSONObject(i);
-                SimpleMeta meta = new SimpleMeta();
-                meta.path = it.optString(SimpleMeta.JSON_PATH);
-                meta.time = it.optLong(SimpleMeta.JSON_TIME);
-                meta.file = file;
-                list.add(meta);
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-
-    }
-
-    public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
-        JSONArray array = new JSONArray();
-        for (SimpleMeta meta : list) {
-            LinkedJSONObject o = new LinkedJSONObject();
-            try {
-                o.put(SimpleMeta.JSON_PATH, meta.path);
-                o.put(SimpleMeta.JSON_TIME, meta.time);
-            } catch (JSONException e) {
-                LOG.e(e);
-            }
-            array.put(o);
-            LOG.d("writeSimpleMeta", o);
-        }
-        //cacheSM.remove(file.getPath() + file.lastModified());
-        IO.writeObjAsync(file, array);
-        //cacheSM.put(file.getPath() + file.lastModified(), list);
-
-
-    }
-
-    public static List<SimpleMeta> convert(List<String> list) {
-        List<SimpleMeta> res = new ArrayList<>();
-        for (String string : list) {
-            res.add(new SimpleMeta(string));
-        }
-        return res;
-
     }
 
 

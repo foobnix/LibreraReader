@@ -27,7 +27,6 @@ import com.foobnix.ui2.AppDB;
 
 import org.librera.LinkedJSONObject;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,8 +35,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import javax.xml.stream.events.Characters;
 
 public class AppState {
 
@@ -598,35 +595,7 @@ public class AppState {
     public String defaultHyphenLanguageCode = "en";
     public boolean isMenuIntegration = false;
 
-    public static Map<String, String> getDictionaries(String input) {
-        final Map<String, String> providers = new LinkedHashMap<>();
-        String ln = AppState.get().toLang;
-        String from = AppState.get().fromLang;
-        String text = Uri.encode(input);
-        providers.put("Google Translate", String.format("https://translate.google.com/#%s/%s/%s", from, ln, text));
-        providers.put("Lingvo", String.format("http://www.lingvo-online.ru/en/Translate/%s-%s/%s", from, ln, text));
 
-        providers.put("Dictionary.com", "http://dictionary.reference.com/browse/" + text);
-
-        providers.put("Oxford", "http://www.oxforddictionaries.com/definition/english/" + text);
-        providers.put("Longman", "http://www.ldoceonline.com/search/?q=" + text);
-        providers.put("Cambridge", "http://dictionary.cambridge.org/dictionary/american-english/" + text);
-        providers.put("Macmillan", "http://www.macmillandictionary.com/dictionary/british/" + text);
-        providers.put("Collins", "http://www.collinsdictionary.com/dictionary/english/" + text);
-        providers.put("Merriam-Webster", "http://www.merriam-webster.com/dictionary/" + text);
-        providers.put("1tudien", "http://www.1tudien.com/?w=" + text);
-        providers.put("Vdict", String.format("http://vdict.com/%s,1,0,0.html", text));
-        providers.put("Google Search", String.format("http://www.google.com/search?q=%s", text));
-        providers.put("Wikipedia", String.format("https://%s.m.wikipedia.org/wiki/%s", from, text));
-        providers.put("Wiktionary", String.format("https://%s.m.wiktionary.org/wiki/%s", from, text));
-        providers.put("Academic.ru", String.format("https://dic.academic.ru/searchall.php?SWord=%s", text));
-        providers.put("Treccani.it", String.format("http://www.treccani.it/vocabolario/ricerca/%s", text));
-        providers.put("Deepl.com", String.format("https://www.deepl.com/translator#%s/%s/%s", from, ln, text));
-        providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
-        providers.put("Ukrlit.org", String.format("http://ukrlit.org/slovnyk/%s", text));
-        providers.put("Slovnyk.ua", String.format("https://slovnyk.ua/index.php?swrd=%s", text));
-        return providers;
-    }
 
     public static synchronized AppState get() {
         return instance;
@@ -681,7 +650,7 @@ public class AppState {
             brigtnessImage = -50;
             isZoomInOutWithLock = false;
         }
-        if(Apps.isAccessibilityEnable(a)){
+        if (Apps.isAccessibilityEnable(a)) {
             accessibilityDefaults();
 
         }
@@ -691,8 +660,9 @@ public class AppState {
             isShowWhatIsNewDialog = false;
         }
     }
-    public void accessibilityDefaults(){
-        AppState.get().isEnableAccessibility=true;
+
+    public void accessibilityDefaults() {
+        AppState.get().isEnableAccessibility = true;
         AppState.get().tabWithNames = false;
         AppState.get().tapPositionTop = true;
         BookCSS.get().appFontScale = 1.1f;

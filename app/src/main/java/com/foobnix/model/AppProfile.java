@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.lifecycle.HasDefaultViewModelProviderFactory;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -55,6 +57,10 @@ public class AppProfile {
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
+
+    public static final String APP_WEB_DICT = "app-WebDict.json";
+    public static final String APP_WEB_SEARCH = "app-WebSearch.json";
+
     public static final String SYNC_FOLDER_ROOT_KEY = "syncFolderRoot";
     public static final String APP_PROFILE_SP = "AppProfile";
 
@@ -117,6 +123,7 @@ public class AppProfile {
         syncFavorite = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_FAVORITE_JSON);
         syncExclude = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_EXCLUDE_JSON);
         syncTags = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_TAGS_JSON);
+
         syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
         syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);
         syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_PROGRESS_JSON);
@@ -135,6 +142,9 @@ public class AppProfile {
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
+
+
+
     }
 
 

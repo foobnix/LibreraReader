@@ -4,10 +4,12 @@ import java.io.File;
 
 public class SimpleMeta implements MyPath.RelativePath {
 
-    public static String JSON_PATH = "path";
-    public String path;
 
+    public static String JSON_NAME = "name";
+    public static String JSON_PATH = "path";
     public static String JSON_TIME = "time";
+    public String name;
+    public String path;
     public long time;
 
 
@@ -24,7 +26,6 @@ public class SimpleMeta implements MyPath.RelativePath {
     }
 
 
-
     public SimpleMeta(String path) {
         this.path = MyPath.toRelative(path);
     }
@@ -32,10 +33,14 @@ public class SimpleMeta implements MyPath.RelativePath {
     public static SimpleMeta SyncSimpleMeta(SimpleMeta s) {
         return new SimpleMeta(MyPath.getSyncPath(s.getPath()), s.time);
     }
+
     public static SimpleMeta SyncSimpleMeta(String path) {
         return new SimpleMeta(MyPath.getSyncPath(path), 0);
     }
 
+    public String getName() {
+        return name;
+    }
 
 
     public String getPath() {
@@ -49,9 +54,8 @@ public class SimpleMeta implements MyPath.RelativePath {
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
-        final String path1 =((SimpleMeta) obj).path;
+        final String path1 = ((SimpleMeta) obj).path;
         final String path2 = this.path;
-        //return ExtUtils.getFileName(path1).equals(ExtUtils.getFileName(path2));
         return path1.equals(path2);
     }
 
@@ -65,8 +69,6 @@ public class SimpleMeta implements MyPath.RelativePath {
         return "SimpleMeta:" + path + ":" + time;
 
     }
-
-
 
 
 }

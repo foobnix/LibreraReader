@@ -1,0 +1,22 @@
+[
+  {"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
+  {"name": "Google Translate", "path": "https://translate.google.com/#%s/%s/%s"},
+  {"name": "Dictionary.com", "path": "http://dictionary.reference.com/browse/%s"},
+  {"name": "Oxford", "path": "http://www.oxforddictionaries.com/definition/english/%s"},
+  {"name": "Longman", "path": "http://www.ldoceonline.com/search/?q=%s"},
+  {"name": "Cambridge", "path": "http://dictionary.cambridge.org/dictionary/american-english/%s"},
+  {"name": "Macmillan", "path": "http://www.macmillandictionary.com/dictionary/british/%s"},
+  {"name": "Collins", "path": "http://www.collinsdictionary.com/dictionary/english/%s"},
+  {"name": "Merriam-Webster", "path": "http://www.merriam-webster.com/dictionary/%s"},
+  {"name": "1tudien", "path": "http://www.1tudien.com/?w=%s"},
+  {"name": "Vdict", "path": "http://vdict.com/%s,1,0,0.html"},
+  {"name": "Wikipedia", "path": "https://%s.m.wikipedia.org/wiki/%s"},
+  {"name": "Wiktionary", "path": "https://%s.m.wiktionary.org/wiki/%s"},
+  {"name": "Academic.ru", "path": "https://dic.academic.ru/searchall.php?SWord=%s"},
+  {"name": "Treccani.it", "path": "https://www.treccani.it/vocabolario/%s"},
+  {"name": "Deepl.com", "path": "https://www.deepl.com/translator#%s/%s/%s"},
+  {"name": "Vocabulary.com", "path": "https://www.vocabulary.com/dictionary/%s"},
+  {"name": "Ukrlit.org", "path": "http://ukrlit.org/slovnyk/%s"},
+  {"name": "Slovnyk.ua", "path": "https://slovnyk.ua/index.php?swrd=%s"},
+  {"name": "Lingvo.ru", "path": "http://www.lingvo-online.ru/en/Translate/%s-%s/%s"}
+]
