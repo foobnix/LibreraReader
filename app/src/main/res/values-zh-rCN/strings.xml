@@ -329,7 +329,7 @@
    <string name="copy">复制</string>
    <string name="search_in_google">Google搜索</string>
    <string name="search_in_document">文内搜索</string>
-   <string name="web_dict_oxfort">网络词典（牛津，...）</string>
+   <string name="web_dict_oxfort">网络词典（牛津...）</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">字体</string>
    <string name="font_name">字体名称</string>
@@ -629,7 +629,7 @@
    <string name="accessibility_mode">启用无障碍模式</string>
    <string name="welcome_accessibility">欢迎，您可以在设置中启用无障碍模式</string>
    <string name="integration_in_the_context_menu">集成到全局上下文菜单</string>
-   <string name="the_application_needs_storage_permission">应用需要访问存储权限以发现所有书籍</string>
+   <string name="the_application_needs_storage_permission">应用需要拥有存储权限以发现所有书籍</string>
    <string name="always_open_in_2_pages_mode">以双页并列模式显示页面</string>
    <string name="text_encoding">文字编码</string>
    <string name="minus">减</string>
@@ -644,5 +644,5 @@
    <string name="сreate_a_folder_with_the_name_of_the_book">用书名创建一个文件夹</string>
    <string name="memory">机身存储</string>
    <string name="accessibility">可访问性</string>
-   <string name="web_search_google">网络搜索（谷歌，...）</string>
+   <string name="web_search_google">网络搜索（谷歌...）</string>
 </resources>
