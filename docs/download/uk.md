@@ -9,7 +9,9 @@ layout: main
 
 [Librera FDroid на F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Бета-версія .apk на Dropbox](http://beta.librera.mobi)
+[Бета-версія .apk на Dropbox](https://www.dropbox.com/sh/06uflsamq4qirp3/AABAc0RXaMHCKBbYvxN-W8aYa?lst)
+
+[Бета-версія .apk на NextCloud](https://emma.cloud.tabdigital.eu/s/E8froWd87JC6cM5)
 
 [Новини та оновлення Librera в Telegram](https://t.me/LibreraReader)
 

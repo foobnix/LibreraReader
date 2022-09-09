@@ -127,4 +127,4 @@ layout: main
 
 ### [8.2.19] Geben Sie Buchformate für Lesemodi an (Lesemodus-Voreinstellungen).
 
-<img class="i" src="8.2.19.jpg" />
+<img class="i" src="8.2.19.png" />

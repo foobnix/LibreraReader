@@ -127,4 +127,4 @@ layout: main
 
 ### [8.2.19]为阅读模式(阅读模式预设)指定书籍格式
 
-<img class="i" src="8.2.19.jpg" />
+<img class="i" src="8.2.19.png" />

@@ -9,7 +9,9 @@ layout: main
 
 [F-Droid 上的 Librera FDroid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Dropbox 上的 Beta .apk](http://beta.librera.mobi)
+[Dropbox 上的 .apk 测试版](https://www.dropbox.com/sh/06uflsamq4qirp3/AABAc0RXaMHCKBbYvxN-W8aYa?lst)
+
+[NextCloud 上的 .apk 测试版](https://emma.cloud.tabdigital.eu/s/E8froWd87JC6cM5)
 
 [电报上的 Librera 新闻和更新](https://t.me/LibreraReader)
 

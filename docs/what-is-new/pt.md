@@ -127,4 +127,4 @@ layout: main
 
 ### [8.2.19] Especifique os formatos dos livros para os modos de leitura (predefinições do modo de leitura)
 
-<img class="i" src="8.2.19.jpg" />
+<img class="i" src="8.2.19.png" />

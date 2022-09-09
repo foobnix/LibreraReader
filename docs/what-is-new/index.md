@@ -127,4 +127,4 @@ layout: main
 
 ### [8.2.19] Specify book formats for reading modes (reading-mode presets)
 
-<img class="i" src="8.2.19.jpg" />
+<img class="i" src="8.2.19.png" />
