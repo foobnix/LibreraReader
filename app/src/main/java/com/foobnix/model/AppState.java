@@ -594,6 +594,12 @@ public class AppState {
     public boolean isDefaultHyphenLanguage = false;
     public String defaultHyphenLanguageCode = "en";
     public boolean isMenuIntegration = false;
+    public boolean isShowFavTags = true;
+    public boolean isShowFavPlaylist = true;
+    public boolean isShowFavFolders = true;
+    public boolean isShowFavBooks = true;
+    public boolean isShowSyncBooks = true;
+
 
 
 

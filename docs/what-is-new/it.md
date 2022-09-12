@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Configura cosa mostrare nella scheda Preferiti
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Ricerca Web e dizionari Web spostati nei file utente app-WebDict.json e app-WebSearch.json
 
 ```

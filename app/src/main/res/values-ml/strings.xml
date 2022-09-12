@@ -645,4 +645,5 @@
    <string name="memory">ഓർമ്മ</string>
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
    <string name="web_search_google">വെബ് തിരയൽ (ഗൂഗിൾ, ...)</string>
+   <string name="synced_books">സമന്വയിപ്പിച്ച പുസ്തകങ്ങൾ</string>
 </resources>

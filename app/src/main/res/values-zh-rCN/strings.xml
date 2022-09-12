@@ -645,4 +645,5 @@
    <string name="memory">机身存储</string>
    <string name="accessibility">可访问性</string>
    <string name="web_search_google">网络搜索（谷歌...）</string>
+   <string name="synced_books">同步书籍</string>
 </resources>

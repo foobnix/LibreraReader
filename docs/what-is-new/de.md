@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Konfigurieren Sie, was auf der Registerkarte „Favoriten“ angezeigt werden soll
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Die Websuche und Webwörterbücher wurden in die Benutzerdateien app-WebDict.json und app-WebSearch.json verschoben
 
 ```

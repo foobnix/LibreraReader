@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] 配置收藏选项卡中显示的内容
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] 将 Web 搜索和 Web 词典移至用户文件 app-WebDict.json 和 app-WebSearch.json
 
 ```

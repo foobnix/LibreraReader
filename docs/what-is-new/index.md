@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Configure what to show in the favorites tab
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Moved Web Search and Web Dictionaries to the user files app-WebDict.json and app-WebSearch.json
 
 ```

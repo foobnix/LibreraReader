@@ -258,7 +258,7 @@ public class AppData {
     public synchronized List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
 
-        SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, null);
+        SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.browseExts);
 
         Collections.sort(res, FileMetaComparators.BY_SYNC_DATE);
         Collections.reverse(res);

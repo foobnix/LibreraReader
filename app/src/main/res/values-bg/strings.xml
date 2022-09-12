@@ -645,4 +645,5 @@
    <string name="memory">Памет</string>
    <string name="accessibility">Достъпност</string>
    <string name="web_search_google">Търсене в мрежата (Google, ...)</string>
+   <string name="synced_books">Синхронизирани книги</string>
 </resources>

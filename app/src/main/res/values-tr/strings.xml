@@ -645,4 +645,5 @@
    <string name="memory">Hafıza</string>
    <string name="accessibility">Ulaşılabilirlik</string>
    <string name="web_search_google">Web araması (Google, ...)</string>
+   <string name="synced_books">Senkronize edilmiş kitaplar</string>
 </resources>

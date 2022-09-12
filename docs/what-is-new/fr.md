@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Configurer ce qu'il faut afficher dans l'onglet des favoris
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Déplacement de la recherche Web et des dictionnaires Web vers les fichiers utilisateur app-WebDict.json et app-WebSearch.json
 
 ```

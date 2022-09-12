@@ -7,6 +7,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import androidx.core.util.Pair;
@@ -70,6 +71,48 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+
+
+        view.findViewById(R.id.onShowMenu).setOnClickListener(v -> {
+
+            MyPopupMenu p = new MyPopupMenu(getActivity(), v);
+            p.getMenu().addCheckbox(getString(R.string.tags), AppState.get().isShowFavTags, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowFavTags = isChecked;
+                    populate();
+                }
+            });
+            p.getMenu().addCheckbox(getString(R.string.playlists), AppState.get().isShowFavPlaylist, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowFavPlaylist = isChecked;
+                    populate();
+                }
+            });
+            p.getMenu().addCheckbox(getString(R.string.folders), AppState.get().isShowFavFolders, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowFavFolders = isChecked;
+                    populate();
+                }
+            });
+            p.getMenu().addCheckbox(getString(R.string.books), AppState.get().isShowFavBooks, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowFavBooks = isChecked;
+                    populate();
+                }
+            });
+            p.getMenu().addCheckbox(getString(R.string.synced_books), AppState.get().isShowSyncBooks, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowSyncBooks = isChecked;
+                    populate();
+                }
+            });
+            p.show();
+        });
 
 
         sortOrder.setOnClickListener(new OnClickListener() {
@@ -276,85 +319,95 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         List<FileMeta> all = new ArrayList<FileMeta>();
 
-        List<String> tags = TagData.getAllTagsByFile();
-        if (TxtUtils.isListNotEmpty(tags)) {
-            for (String tag : tags) {
-                if(TxtUtils.isEmpty(tag)){
-                    continue;
+        if(AppState.get().isShowFavTags) {
+            List<String> tags = TagData.getAllTagsByFile();
+            if (TxtUtils.isListNotEmpty(tags)) {
+                for (String tag : tags) {
+                    if (TxtUtils.isEmpty(tag)) {
+                        continue;
+                    }
+                    FileMeta m = new FileMeta("");
+                    m.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG);
+                    int count = AppDB.get().getAllWithTag(tag).size();
+                    m.setPathTxt(tag + " (" + count + ")");
+                    all.add(m);
                 }
-                FileMeta m = new FileMeta("");
-                m.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG);
-                int count = AppDB.get().getAllWithTag(tag).size();
-                m.setPathTxt(tag + " (" + count + ")");
-                all.add(m);
-            }
 
+                {
+                    FileMeta empy = new FileMeta();
+                    empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+                    all.add(empy);
+                }
+            }
+        }
+
+        if(AppState.get().isShowFavPlaylist) {
+            all.addAll(Playlists.getAllPlaylistsMeta());
+        }
+
+        if(AppState.get().isShowFavFolders) {
             {
                 FileMeta empy = new FileMeta();
                 empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
                 all.add(empy);
             }
+
+            all.addAll(AppData.get().getAllFavoriteFolders());
         }
 
-        all.addAll(Playlists.getAllPlaylistsMeta());
 
-        {
-            FileMeta empy = new FileMeta();
-            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
-            all.add(empy);
-        }
+        if(AppState.get().isShowFavBooks) {
+            final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
 
-        all.addAll(AppData.get().getAllFavoriteFolders());
+            if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
 
+                try {
+                    if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PATH) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_PATH_NUMBER);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_DATE) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_PAGES);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_TITLE) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_TITLE);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_EXT) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
+                    } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
+                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
+                    }
+                    if (AppState.get().sortByFavoriteReverse) {
+                        Collections.reverse(allFavoriteFiles);
+                    }
 
-        final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
-
-        if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
-
-            try {
-                if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PATH) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_PATH_NUMBER);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_DATE) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_PAGES);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_TITLE) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_TITLE);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_EXT) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
-                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
-                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
-                }
-                if (AppState.get().sortByFavoriteReverse) {
-                    Collections.reverse(allFavoriteFiles);
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
 
-            } catch (Exception e) {
-                LOG.e(e);
+
+                FileMeta empy = new FileMeta();
+                empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+                all.add(empy);
+
+                all.addAll(allFavoriteFiles);
             }
-
-
-            FileMeta empy = new FileMeta();
-            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
-            all.add(empy);
-
-            all.addAll(allFavoriteFiles);
         }
 
-        final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
-        if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+        if(AppState.get().isShowSyncBooks) {
+            final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
+            if (TxtUtils.isListNotEmpty(allSyncBooks)) {
 
-            FileMeta empy = new FileMeta();
-            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-            empy.setTitle(syncronizedBooksTitle);
-            all.add(empy);
+                FileMeta empy = new FileMeta();
+                empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+                empy.setTitle(syncronizedBooksTitle);
+                all.add(empy);
 
 
-            all.addAll(allSyncBooks);
+                all.addAll(allSyncBooks);
+            }
         }
 
         return all;

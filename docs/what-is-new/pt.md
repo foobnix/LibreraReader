@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Configure o que mostrar na guia de favoritos
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Pesquisa na Web e dicionários da Web movidos para os arquivos do usuário app-WebDict.json e app-WebSearch.json
 
 ```

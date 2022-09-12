@@ -645,4 +645,5 @@
    <string name="memory">Penyimpanan</string>
    <string name="accessibility">Aksesibilitas</string>
    <string name="web_search_google">Pencarian web (Google, ...)</string>
+   <string name="synced_books">Buku yang disinkronkan</string>
 </resources>

@@ -645,4 +645,5 @@
    <string name="memory">หน่วยความจำ</string>
    <string name="accessibility">การเข้าถึง</string>
    <string name="web_search_google">ค้นเว็บ (Google, ...)</string>
+   <string name="synced_books">หนังสือที่ซิงค์</string>
 </resources>

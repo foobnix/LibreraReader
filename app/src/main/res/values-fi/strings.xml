@@ -645,4 +645,5 @@
    <string name="memory">Muisti</string>
    <string name="accessibility">Saavutettavuus</string>
    <string name="web_search_google">Verkkohaku (Google,...)</string>
+   <string name="synced_books">Synkronoidut kirjat</string>
 </resources>

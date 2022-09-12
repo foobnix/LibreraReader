@@ -645,4 +645,5 @@
    <string name="memory">நினைவு</string>
    <string name="accessibility">அணுகல்</string>
    <string name="web_search_google">இணைய தேடல் (Google, ...)</string>
+   <string name="synced_books">ஒத்திசைக்கப்பட்ட புத்தகங்கள்</string>
 </resources>

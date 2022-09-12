@@ -645,4 +645,5 @@
    <string name="memory">Hukommelse</string>
    <string name="accessibility">Tilgjengelighet</string>
    <string name="web_search_google">Nettsøk (Google, ...)</string>
+   <string name="synced_books">Synkroniserte bøker</string>
 </resources>

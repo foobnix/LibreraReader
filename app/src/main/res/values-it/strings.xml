@@ -645,4 +645,5 @@
    <string name="memory">Memoria</string>
    <string name="accessibility">Accessibilità</string>
    <string name="web_search_google">Ricerca sul web (Google, ...)</string>
+   <string name="synced_books">Libri sincronizzati</string>
 </resources>

@@ -645,4 +645,5 @@
    <string name="memory">Pamäť</string>
    <string name="accessibility">Prístupnosť</string>
    <string name="web_search_google">Vyhľadávanie na webe (Google, ...)</string>
+   <string name="synced_books">Synchronizované knihy</string>
 </resources>

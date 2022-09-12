@@ -645,4 +645,5 @@
    <string name="memory">स्मृति</string>
    <string name="accessibility">पहुँच</string>
    <string name="web_search_google">वेब खोज (गूगल,...)</string>
+   <string name="synced_books">समन्वयित पुस्तकें</string>
 </resources>

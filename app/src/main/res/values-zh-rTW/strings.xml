@@ -645,4 +645,5 @@
    <string name="memory">記憶</string>
    <string name="accessibility">可訪問性</string>
    <string name="web_search_google">網絡搜索（谷歌，...）</string>
+   <string name="synced_books">同步書籍</string>
 </resources>

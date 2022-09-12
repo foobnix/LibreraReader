@@ -645,4 +645,5 @@
    <string name="memory">Пам\'ять</string>
    <string name="accessibility">Доступність</string>
    <string name="web_search_google">Веб-пошук (Google, ...)</string>
+   <string name="synced_books">Синхронізовані книги</string>
 </resources>

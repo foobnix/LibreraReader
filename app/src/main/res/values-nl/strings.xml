@@ -645,4 +645,5 @@
    <string name="memory">Geheugen</string>
    <string name="accessibility">Toegankelijkheid</string>
    <string name="web_search_google">Zoeken op internet (Google, ...)</string>
+   <string name="synced_books">Gesynchroniseerde boeken</string>
 </resources>

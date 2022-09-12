@@ -645,4 +645,5 @@
    <string name="memory">Жады</string>
    <string name="accessibility">Қолжетімділік</string>
    <string name="web_search_google">Веб-іздеу (Google, ...)</string>
+   <string name="synced_books">Синхрондалған кітаптар</string>
 </resources>

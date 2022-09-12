@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] Configurar qué mostrar en la pestaña de favoritos
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] Se movieron la búsqueda web y los diccionarios web a los archivos de usuario app-WebDict.json y app-WebSearch.json
 
 ```

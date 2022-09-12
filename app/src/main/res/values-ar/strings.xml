@@ -645,4 +645,5 @@
    <string name="memory">ذاكرة</string>
    <string name="accessibility">إمكانية الوصول</string>
    <string name="web_search_google">بحث الويب (Google ، ...)</string>
+   <string name="synced_books">الكتب المتزامنة</string>
 </resources>

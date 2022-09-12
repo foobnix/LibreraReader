@@ -46,7 +46,7 @@
             android:adjustViewBounds="true"
             android:layout_marginRight="4dip"
             android:cropToPadding="true"
-            android:src="@drawable/glyphicons_600_menu"
+            android:src="@drawable/glyphicons_arrows_875_upwards_and_downwards_nav_barb_arrow"
             android:tint="@color/tint_gray" />
     </LinearLayout>
 

@@ -645,4 +645,5 @@
    <string name="memory">זיכרון</string>
    <string name="accessibility">נְגִישׁוּת</string>
    <string name="web_search_google">חיפוש באינטרנט (גוגל,...)</string>
+   <string name="synced_books">ספרים מסונכרנים</string>
 </resources>

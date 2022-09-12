@@ -645,4 +645,5 @@
    <string name="memory">Memória</string>
    <string name="accessibility">Megközelíthetőség</string>
    <string name="web_search_google">Webes kereső (Google,...)</string>
+   <string name="synced_books">Szinkronizált könyvek</string>
 </resources>

@@ -645,4 +645,5 @@
    <string name="memory">Memoria</string>
    <string name="accessibility">Accessibility</string>
    <string name="web_search_google">Interretialem inquisitionem (Google, ...)</string>
+   <string name="synced_books">Synced libri</string>
 </resources>

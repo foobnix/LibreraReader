@@ -645,4 +645,5 @@
    <string name="memory">Cuimhne</string>
    <string name="accessibility">Inrochtaineacht</string>
    <string name="web_search_google">Cuardach gréasáin (Google, ...)</string>
+   <string name="synced_books">Leabhair synced</string>
 </resources>

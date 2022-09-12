@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.40] هيئ ما سيتم عرضه في علامة التبويب المفضلة
+<img class="i" src="8.6.40.png" />
+
 ### [8.6.39] تم نقل بحث الويب وقواميس الويب إلى ملفات المستخدم app-WebDict.json و app-WebSearch.json
 
 ```
