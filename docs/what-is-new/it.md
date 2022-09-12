@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.41] Mostra il numero di serie, ordina per indice di serie
+<img class="i" src="8.6.41.png" />
+
 ### [8.6.40] Configura cosa mostrare nella scheda Preferiti
 <img class="i" src="8.6.40.png" />
 

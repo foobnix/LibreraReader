@@ -571,11 +571,18 @@ public class AppDB {
             }
 
 
+
+
             if (isAsc) {
                 where = where.orderAsc(sortby.getProperty());
             } else {
                 where = where.orderDesc(sortby.getProperty());
             }
+            if(sortby == SORT_BY.SERIES){
+                where = where.orderAsc(FileMetaDao.Properties.SIndex);
+            }
+
+
             if (sortby != SORT_BY.TITLE) {
                 where = where.orderAsc(SORT_BY.TITLE.getProperty());
             }

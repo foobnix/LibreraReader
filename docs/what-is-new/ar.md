@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.41] عرض رقم السلسلة ، بالترتيب حسب فهرس السلاسل
+<img class="i" src="8.6.41.png" />
+
 ### [8.6.40] هيئ ما سيتم عرضه في علامة التبويب المفضلة
 <img class="i" src="8.6.40.png" />
 

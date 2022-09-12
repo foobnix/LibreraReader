@@ -211,7 +211,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
 
-            holder.parent.setContentDescription(holder.getString(R.string.book)+ " " +fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
+            holder.parent.setContentDescription(holder.getString(R.string.book) + " " + fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
 
             if (!AppState.get().isShowImages && adapterType == ADAPTER_COVERS) {
                 adapterType = ADAPTER_GRID;
@@ -653,7 +653,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
 
-        holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
+        String bookExt = fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt();
+        holder.browserExt.setText(bookExt);
+
         if (holder.size != null) {
             if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
                 holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
@@ -698,6 +700,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.browserExt.setVisibility(View.VISIBLE);
         }
 
+
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
             holder.star.setImageResource(R.drawable.glyphicons_50_star_empty);
         } else {
@@ -706,7 +709,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.star, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (onStarClickListener != null) {
-            holder.star.setContentDescription(holder.c.getString(fileMeta.getIsStar()!=null && fileMeta.getIsStar() ? R.string.remove_from_favorites : R.string.add_to_favorites));
+            holder.star.setContentDescription(holder.c.getString(fileMeta.getIsStar() != null && fileMeta.getIsStar() ? R.string.remove_from_favorites : R.string.add_to_favorites));
             holder.star.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -897,6 +900,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
             }
         }
+
         if (AppState.get().isShowOnlyOriginalFileNames) {
             if (holder.path != null) {
                 holder.path.setVisibility(View.INVISIBLE);
@@ -909,7 +913,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         TxtUtils.setInkTextView(holder.title, holder.author, holder.path, holder.browserExt, holder.size, holder.date, holder.series, holder.idPercentText);
 
-        Apps.accessibilityButtonSize(holder.star,holder.menu);
+        Apps.accessibilityButtonSize(holder.star, holder.menu);
 
         return fileMeta;
     }

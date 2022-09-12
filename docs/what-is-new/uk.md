@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.41] Показати номер серії, порядок за індексом серії
+<img class="i" src="8.6.41.png" />
+
 ### [8.6.40] Налаштувати, що відображати на вкладці вибраного
 <img class="i" src="8.6.40.png" />
 

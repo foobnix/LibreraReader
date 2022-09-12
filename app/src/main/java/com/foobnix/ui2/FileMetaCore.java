@@ -91,7 +91,6 @@ public class FileMetaCore {
                 FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
 
-
                 if (isSearhcBook) {
                     fileMeta.setIsSearchBook(isSearhcBook);
                 }
@@ -99,7 +98,7 @@ public class FileMetaCore {
                 AppDB.get().update(fileMeta);
                 LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
         return fileMeta;
@@ -302,7 +301,7 @@ public class FileMetaCore {
         }
 
         if (ebookMeta.getsIndex() != null) {
-            ebookMeta.setTitle(ebookMeta.getTitle() + " [" + ebookMeta.getsIndex() + "]");
+            ebookMeta.setTitle("[" + ebookMeta.getsIndex() + "] " + ebookMeta.getTitle());
         }
 
         if (ExtUtils.isZip(path) && !unZipPath.endsWith("fb2")) {

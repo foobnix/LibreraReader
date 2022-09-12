@@ -7,6 +7,9 @@ layout: main
 <b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
 
 
+### [8.6.41] 显示系列号，按系列索引排序
+<img class="i" src="8.6.41.png" />
+
 ### [8.6.40] 配置收藏选项卡中显示的内容
 <img class="i" src="8.6.40.png" />
 

@@ -721,6 +721,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     AppState.get().sortBy == SORT_BY.PATH.getIndex() ||//
                             AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex() ||//
                             AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex() ||
+                            AppState.get().sortBy == SORT_BY.SERIES.getIndex() ||
                             AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {//
 
                 List<FileMeta> res = new ArrayList<FileMeta>();
@@ -737,6 +738,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     String parentName = "";
                     if (AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {
                         parentName = "" + it.getPublisher();
+                    } else if (AppState.get().sortBy == SORT_BY.SERIES.getIndex()) {
+                        parentName = "" + TxtUtils.nullToEmpty(it.getSequence());
+                        parentName = parentName.replace(",","");
+                        if(parentName.isEmpty()){
+                            parentName = "---";
+                        }
                     } else if (AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex()) {
                         parentName = "" + it.getYear();
                     } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
