@@ -378,7 +378,7 @@ public class ImageExtractor {
         }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
-        
+
         Bitmap bitmap = null;
 
         RectF rectF = new RectF(0, 0, 1f, 1f);
@@ -395,45 +395,44 @@ public class ImageExtractor {
         BitmapRef bitmapRef = null;
         CodecPage pageCodec = codeCache.getPage(page);
 
+
+        rectF = new RectF(0, 0, 1f, 1f);
+
+        if (isNeedDisableMagicInPDFDjvu) {
+            bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
+        } else {
+            bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
+        }
+
+        bitmap = bitmapRef.getBitmap();
+
+        if (pageUrl.getRotate() > 0) {
+            final Matrix matrix = new Matrix();
+            matrix.postRotate(pageUrl.getRotate());
+            final Bitmap bitmap1 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmap.recycle();
+            bitmap = bitmap1;
+        }
+
         if (pageUrl.getNumber() == 0) {
-            rectF = new RectF(0, 0, 1f, 1f);
-
-            if (isNeedDisableMagicInPDFDjvu) {
-                bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
-            } else {
-                bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
-            }
-
-            bitmap = bitmapRef.getBitmap();
-
-            if (pageUrl.isCrop()) {
-                if (BookType.DJVU.is(pageUrl.getPath())) {
-                    Bitmap sample = pageCodec.renderBitmapSimple(PageCropper.MAX_WIDTH, PageCropper.MAX_HEIGHT, rectF).getBitmap();
-                    bitmap = cropBitmap(bitmap, sample);
-                    sample.recycle();
-                    sample = null;
-                } else {
-                    bitmap = cropBitmap(bitmap, bitmap);
-                }
-            }
-
+            //do nothing
         } else if (pageUrl.getNumber() == 1) {
-            float right = (float) pageUrl.getCutp() / 100;
-            rectF = new RectF(0, 0, right, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF, false);
-            bitmap = bitmapRef.getBitmap();
-
-            if (pageUrl.isCrop()) {
-                bitmap = cropBitmap(bitmap, bitmap);
-            }
-
+            final Bitmap bitmap1 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth() / 2, bitmap.getHeight());
+            bitmap.recycle();
+            bitmap = bitmap1;
         } else if (pageUrl.getNumber() == 2) {
-            float right = (float) pageUrl.getCutp() / 100;
-            rectF = new RectF(right, 0, 1f, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF, false);
-            bitmap = bitmapRef.getBitmap();
+            final Bitmap bitmap1 = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, 0, bitmap.getWidth() / 2, bitmap.getHeight());
+            bitmap.recycle();
+            bitmap = bitmap1;
+        }
 
-            if (pageUrl.isCrop()) {
+        if (pageUrl.isCrop()) {
+            if (BookType.DJVU.is(pageUrl.getPath())) {
+                Bitmap sample = pageCodec.renderBitmapSimple(PageCropper.MAX_WIDTH, PageCropper.MAX_HEIGHT, rectF).getBitmap();
+                bitmap = cropBitmap(bitmap, sample);
+                sample.recycle();
+                sample = null;
+            } else {
                 bitmap = cropBitmap(bitmap, bitmap);
             }
         }
@@ -464,15 +463,6 @@ public class ImageExtractor {
             bitmap.recycle();
             bitmap = bmp.toBitmap().getBitmap();
 
-        }
-
-
-        if (pageUrl.getRotate() > 0) {
-            final Matrix matrix = new Matrix();
-            matrix.postRotate(pageUrl.getRotate());
-            final Bitmap bitmap1 = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            bitmap.recycle();
-            bitmap = bitmap1;
         }
 
         LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled(), AppSP.get().lastClosedActivity);
