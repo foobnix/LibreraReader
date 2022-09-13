@@ -646,4 +646,6 @@
    <string name="accessibility">Accessibilité</string>
    <string name="web_search_google">Recherche internet (Google, ...)</string>
    <string name="synced_books">Livres synchronisés</string>
+   <string name="smart_reflow">Refusion intelligente</string>
+   <string name="crop">Recadrer</string>
 </resources>

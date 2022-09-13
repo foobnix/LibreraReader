@@ -646,4 +646,6 @@
    <string name="accessibility">Přístupnost</string>
    <string name="web_search_google">Vyhledávání na webu (Google, ...)</string>
    <string name="synced_books">Synchronizované knihy</string>
+   <string name="smart_reflow">Chytré přeformátování</string>
+   <string name="crop">Oříznutí</string>
 </resources>

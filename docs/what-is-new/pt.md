@@ -4,6 +4,10 @@ layout: main
 
 # O que há de novo
 
+### [[8.6.44]](/download/pt) Girar e cortar no menu inferior
+<img class="i" src="8.6.44.png" />
+
+
 ### [[8.6.43]](/download/pt) Gire 90 graus, corte as bordas brancas, corte em duas páginas
 
 ||||

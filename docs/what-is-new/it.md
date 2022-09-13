@@ -4,6 +4,10 @@ layout: main
 
 # Cosa c'è di nuovo
 
+### [[8.6.44]](/download/it) Ruota e ritaglia nel menu in basso
+<img class="i" src="8.6.44.png" />
+
+
 ### [[8.6.43]](/download/it) Ruota di 90 gradi, ritaglia i bordi bianchi, taglia in due pagine
 
 ||||

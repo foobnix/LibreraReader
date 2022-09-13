@@ -646,4 +646,6 @@
    <string name="accessibility">การเข้าถึง</string>
    <string name="web_search_google">ค้นเว็บ (Google, ...)</string>
    <string name="synced_books">หนังสือที่ซิงค์</string>
+   <string name="smart_reflow">สมาร์ทรีโฟลว์</string>
+   <string name="crop">พืชผล</string>
 </resources>

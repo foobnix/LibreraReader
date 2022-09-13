@@ -646,4 +646,6 @@
    <string name="accessibility">Saavutettavuus</string>
    <string name="web_search_google">Verkkohaku (Google,...)</string>
    <string name="synced_books">Synkronoidut kirjat</string>
+   <string name="smart_reflow">Älykäs reflow</string>
+   <string name="crop">Rajata</string>
 </resources>

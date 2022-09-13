@@ -646,4 +646,6 @@
    <string name="accessibility">إمكانية الوصول</string>
    <string name="web_search_google">بحث الويب (Google ، ...)</string>
    <string name="synced_books">الكتب المتزامنة</string>
+   <string name="smart_reflow">إعادة التدفق الذكي</string>
+   <string name="crop">ا &amp; قتصاص</string>
 </resources>

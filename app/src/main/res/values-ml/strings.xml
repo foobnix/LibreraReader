@@ -646,4 +646,6 @@
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
    <string name="web_search_google">വെബ് തിരയൽ (ഗൂഗിൾ, ...)</string>
    <string name="synced_books">സമന്വയിപ്പിച്ച പുസ്തകങ്ങൾ</string>
+   <string name="smart_reflow">സ്മാർട്ട് റിഫ്ലോ</string>
+   <string name="crop">വിള</string>
 </resources>

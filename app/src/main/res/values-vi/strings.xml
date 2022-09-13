@@ -646,4 +646,6 @@
    <string name="accessibility">Khả năng tiếp cận</string>
    <string name="web_search_google">Tìm kiếm trên web (Google, ...)</string>
    <string name="synced_books">Sách được đồng bộ hóa</string>
+   <string name="smart_reflow">Chỉnh lại thông minh</string>
+   <string name="crop">Trồng trọt</string>
 </resources>

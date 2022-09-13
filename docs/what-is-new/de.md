@@ -4,6 +4,10 @@ layout: main
 
 # Was ist neu
 
+### [[8.6.44]](/download/de) Drehen und Zuschneiden im unteren Menü
+<img class="i" src="8.6.44.png" />
+
+
 ### [[8.6.43]](/download/de) Um 90 Grad drehen, weiße Ränder ausschneiden, in zwei Seiten schneiden
 
 ||||

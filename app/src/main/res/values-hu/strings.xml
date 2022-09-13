@@ -646,4 +646,6 @@
    <string name="accessibility">Megközelíthetőség</string>
    <string name="web_search_google">Webes kereső (Google,...)</string>
    <string name="synced_books">Szinkronizált könyvek</string>
+   <string name="smart_reflow">Okos reflow</string>
+   <string name="crop">Vág</string>
 </resources>

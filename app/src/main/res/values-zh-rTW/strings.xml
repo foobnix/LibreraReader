@@ -646,4 +646,6 @@
    <string name="accessibility">可訪問性</string>
    <string name="web_search_google">網絡搜索（谷歌，...）</string>
    <string name="synced_books">同步書籍</string>
+   <string name="smart_reflow">智能回流</string>
+   <string name="crop">莊稼</string>
 </resources>

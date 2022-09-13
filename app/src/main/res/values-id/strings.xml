@@ -646,4 +646,6 @@
    <string name="accessibility">Aksesibilitas</string>
    <string name="web_search_google">Pencarian web (Google, ...)</string>
    <string name="synced_books">Buku yang disinkronkan</string>
+   <string name="smart_reflow">Reflow cerdas</string>
+   <string name="crop">Tanaman</string>
 </resources>

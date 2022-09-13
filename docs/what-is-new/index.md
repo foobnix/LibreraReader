@@ -4,6 +4,10 @@ layout: main
 
 # What is new
 
+### [[8.6.44]](/download) Rotate and Crop in the bottom menu
+<img class="i" src="8.6.44.png" />
+
+
 ### [[8.6.43]](/download) Rotate 90 degrees, cut out the white borders, cut into two pages
 
 ||||

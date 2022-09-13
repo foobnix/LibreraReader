@@ -4,6 +4,10 @@ layout: main
 
 # Quoi de neuf
 
+### [[8.6.44]](/download/fr) Faire pivoter et recadrer dans le menu du bas
+<img class="i" src="8.6.44.png" />
+
+
 ### [[8.6.43]](/download/fr) Faire pivoter de 90 degrés, découper les bordures blanches, couper en deux pages
 
 ||||

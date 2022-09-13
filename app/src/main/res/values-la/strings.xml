@@ -646,4 +646,6 @@
    <string name="accessibility">Accessibility</string>
    <string name="web_search_google">Interretialem inquisitionem (Google, ...)</string>
    <string name="synced_books">Synced libri</string>
+   <string name="smart_reflow">Dolor reflow</string>
+   <string name="crop">Seges</string>
 </resources>

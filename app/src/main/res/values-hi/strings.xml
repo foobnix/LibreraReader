@@ -646,4 +646,6 @@
    <string name="accessibility">पहुँच</string>
    <string name="web_search_google">वेब खोज (गूगल,...)</string>
    <string name="synced_books">समन्वयित पुस्तकें</string>
+   <string name="smart_reflow">स्मार्ट रिफ्लो</string>
+   <string name="crop">काटना</string>
 </resources>
