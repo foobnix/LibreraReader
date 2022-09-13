@@ -4,13 +4,16 @@ layout: main
 
 # 新功能
 
-<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
+### [[8.6.43]](/download/zh) 旋转 90 度，剪掉白色边框，剪成两页
 
+||||
+|-|-|-|
+|![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [8.6.41] 显示系列号，按系列索引排序
+### [[8.6.41]](/download/zh) 显示系列名称，按系列索引排序
 <img class="i" src="8.6.41.png" />
 
-### [8.6.40] 配置收藏选项卡中显示的内容
+### [[8.6.40]](/download/zh) 配置收藏标签中显示的内容
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] 将 Web 搜索和 Web 词典移至用户文件 app-WebDict.json 和 app-WebSearch.json

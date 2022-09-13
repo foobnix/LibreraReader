@@ -4,13 +4,16 @@ layout: main
 
 # What is new
 
-<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
+### [[8.6.43]](/download) Rotate 90 degrees, cut out the white borders, cut into two pages
 
+||||
+|-|-|-|
+|![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [8.6.41] Show series number, order by series index
+### [[8.6.41]](/download) Show series name, order by series index
 <img class="i" src="8.6.41.png" />
 
-### [8.6.40] Configure what to show in the favorites tab
+### [[8.6.40]](/download) Configure what to show in the favorites tab
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Moved Web Search and Web Dictionaries to the user files app-WebDict.json and app-WebSearch.json

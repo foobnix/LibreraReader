@@ -1,4 +1,7 @@
 #cd /home/data/git/LibreraReader/docs
+cd /home/dev/git/LibreraReader/what-is-new
+mogrify -quality 85 -resize 600 *.png
+
 cd /home/dev/git/LibreraReader/docs
 
 #bundle init

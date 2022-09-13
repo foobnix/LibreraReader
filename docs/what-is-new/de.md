@@ -4,13 +4,16 @@ layout: main
 
 # Was ist neu
 
-<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
+### [[8.6.43]](/download/de) Um 90 Grad drehen, weiße Ränder ausschneiden, in zwei Seiten schneiden
 
+||||
+|-|-|-|
+|![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [8.6.41] Seriennummer anzeigen, nach Serienindex sortieren
+### [[8.6.41]](/download/de) Seriennamen anzeigen, nach Serienindex sortieren
 <img class="i" src="8.6.41.png" />
 
-### [8.6.40] Konfigurieren Sie, was auf der Registerkarte „Favoriten“ angezeigt werden soll
+### [[8.6.40]](/download/de) Konfigurieren Sie, was auf der Registerkarte &quot;Favoriten&quot; angezeigt werden soll
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Die Websuche und Webwörterbücher wurden in die Benutzerdateien app-WebDict.json und app-WebSearch.json verschoben

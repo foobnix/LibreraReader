@@ -226,7 +226,7 @@ public class WikiTranslate {
         if (line.startsWith("&gt;")) {
             line = line.replace("&gt;", ">");
         }
-        line = line.replace("]]", "]");
+        //line = line.replace("]]", "]");
         line = line.replace("## #","###");
 
 

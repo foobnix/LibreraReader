@@ -4,13 +4,16 @@ layout: main
 
 # Quoi de neuf
 
-<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
+### [[8.6.43]](/download/fr) Faire pivoter de 90 degrés, découper les bordures blanches, couper en deux pages
 
+||||
+|-|-|-|
+|![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [8.6.41] Afficher le numéro de série, trier par index de série
+### [[8.6.41]](/download/fr) Afficher le nom de la série, trier par index de série
 <img class="i" src="8.6.41.png" />
 
-### [8.6.40] Configurer ce qu'il faut afficher dans l'onglet des favoris
+### [[8.6.40]](/download/fr) Configurer les éléments à afficher dans l'onglet des favoris
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Déplacement de la recherche Web et des dictionnaires Web vers les fichiers utilisateur app-WebDict.json et app-WebSearch.json

@@ -4,13 +4,16 @@ layout: main
 
 # O que há de novo
 
-<b><i>More info on [https://t.me/s/LibreraReader](https://t.me/s/LibreraReader)</i></b>
+### [[8.6.43]](/download/pt) Gire 90 graus, corte as bordas brancas, corte em duas páginas
 
+||||
+|-|-|-|
+|![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [8.6.41] Mostrar número de série, ordem por índice de série
+### [[8.6.41]](/download/pt) Mostrar nome da série, ordem por índice de série
 <img class="i" src="8.6.41.png" />
 
-### [8.6.40] Configure o que mostrar na guia de favoritos
+### [[8.6.40]](/download/pt) Configure o que mostrar na guia de favoritos
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Pesquisa na Web e dicionários da Web movidos para os arquivos do usuário app-WebDict.json e app-WebSearch.json
