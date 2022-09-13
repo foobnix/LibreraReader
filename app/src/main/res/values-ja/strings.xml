@@ -647,5 +647,5 @@
    <string name="web_search_google">Web 検索 (Google など)</string>
    <string name="synced_books">同期された本</string>
    <string name="smart_reflow">スマートリフロー</string>
-   <string name="crop">作物</string>
+   <string name="crop">切り抜き</string>
 </resources>
