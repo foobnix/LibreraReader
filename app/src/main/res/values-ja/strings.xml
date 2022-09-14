@@ -645,7 +645,6 @@
    <string name="memory">内部記憶</string>
    <string name="accessibility">アクセシビリティ</string>
    <string name="web_search_google">Web 検索 (Google など)</string>
-   <string name="synced_books">同期された本</string>
+   <string name="synced_books">同期書籍</string>
    <string name="smart_reflow">スマートリフロー</string>
-   <string name="crop">作物</string>
 </resources>
