@@ -910,17 +910,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         return false;
                     }
                 });
-                p.getMenu().add(getString(R.string.crop)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppSP.get().isCrop = !AppSP.get().isCrop;
-                        onCropChange.run();
-                        return false;
-                    }
-                });
-
-
                 p.show();
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
