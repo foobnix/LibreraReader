@@ -711,9 +711,9 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                //if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
-                }
+                //}
             }
 
             if (AppState.get().isAccurateFontSize) {
@@ -726,9 +726,9 @@ public class BookCSS {
             builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                //if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
-                }
+                //}
             }
 
             if (!isFontFileName(italicFont)) {
