@@ -4,20 +4,20 @@ layout: main
 
 # Novedades
 
-### [[8.6.44]](/download/es) Girar y recortar en el menú inferior
+### [8.6.44] Rotar página en el menú inferior
 <img class="i" src="8.6.44.png" />
 
 
-### [[8.6.43]](/download/es) Girar 90 grados, recortar los bordes blancos, cortar en dos páginas
+### [8.6.43] Gira la página 90 grados, corta los bordes blancos, corta en dos páginas
 
 ||||
 |-|-|-|
 |![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [[8.6.41]](/download/es) Mostrar el nombre de la serie, ordenar por índice de serie
+### [8.6.41] Mostrar nombre de serie, ordenar por índice de serie
 <img class="i" src="8.6.41.png" />
 
-### [[8.6.40]](/download/es) Configurar qué mostrar en la pestaña de favoritos
+### [8.6.40] Configurar qué mostrar en la pestaña de favoritos
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Se movieron la búsqueda web y los diccionarios web a los archivos de usuario app-WebDict.json y app-WebSearch.json

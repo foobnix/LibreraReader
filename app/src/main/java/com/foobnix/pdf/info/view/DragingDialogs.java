@@ -146,7 +146,6 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
-import org.emdev.common.android.AndroidVersion;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -1581,8 +1580,6 @@ public class DragingDialogs {
                 });
 
 
-
-
                 view.findViewById(R.id.onAddToBookmark).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1658,7 +1655,6 @@ public class DragingDialogs {
                         closeDialog();
                     }
                 });
-
 
 
                 View onBookSearch = view.findViewById(R.id.onBookSearch);
@@ -1759,7 +1755,14 @@ public class DragingDialogs {
 
                                             LOG.d("intentCustom", intentCustom, intentCustom.getExtras());
 
-                                            controller.getActivity().startActivity(intentCustom);
+
+                                            try {
+                                                controller.getActivity().startActivity(intentCustom);
+                                            } catch (Exception e) {
+                                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                                LOG.e(e);
+                                            }
+
                                             // controller.getActivity().overridePendingTransition(0, 0);
 
                                         } else if (proccessTextList.contains(app)) {
@@ -1778,13 +1781,8 @@ public class DragingDialogs {
 
                                             try {
                                                 controller.getActivity().startActivity(intentProccessText);
-                                            }catch (Exception e){
-                                                final Intent intent = new Intent(Intent.ACTION_PROCESS_TEXT);
-                                                intent.setType("text/plain");
-                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                                intent.putExtra(Intent.EXTRA_PROCESS_TEXT, selecteText);
-                                                intent.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
-                                                controller.getActivity().startActivity(intent);
+                                            } catch (Exception e) {
+                                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                                                 LOG.e(e);
                                             }
                                             LOG.d("dict-intent", intentProccessText);
@@ -1801,12 +1799,8 @@ public class DragingDialogs {
 
                                             try {
                                                 controller.getActivity().startActivity(intentSearch);
-                                            }catch (Exception e){
-                                                final Intent intent = new Intent(Intent.ACTION_SEARCH);
-                                                intent.putExtra(SearchManager.QUERY, selecteText);
-                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                                controller.getActivity().startActivity(intent);
-
+                                            } catch (Exception e) {
+                                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                                                 LOG.e(e);
                                             }
                                             LOG.d("dict-intent", intentSearch);
@@ -1821,11 +1815,8 @@ public class DragingDialogs {
                                             intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
                                             try {
                                                 controller.getActivity().startActivity(intentSend);
-                                            }catch (Exception e){
-                                                final Intent intent = new Intent(Intent.ACTION_SEND);
-                                                intent.setType("text/plain");
-                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                                controller.getActivity().startActivity(intent);
+                                            } catch (Exception e) {
+                                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                                                 LOG.e(e);
 
                                             }
@@ -4377,17 +4368,17 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek imageScale = (CustomSeek) inflate.findViewById(R.id.imageScale);
-                imageScale.init(1, 50, (int) BookCSS.get().imageScale * 10,"x");
+                imageScale.init(1, 50, (int) BookCSS.get().imageScale * 10, "x");
                 imageScale.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().imageScale = (float) result / 10;
-                        imageScale.setValueText(""+BookCSS.get().imageScale);
+                        imageScale.setValueText("" + BookCSS.get().imageScale);
                         return false;
                     }
                 });
-                imageScale.setValueText(""+BookCSS.get().imageScale);
+                imageScale.setValueText("" + BookCSS.get().imageScale);
 
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);

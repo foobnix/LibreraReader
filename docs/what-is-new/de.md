@@ -4,20 +4,20 @@ layout: main
 
 # Was ist neu
 
-### [[8.6.44]](/download/de) Drehen und Zuschneiden im unteren Menü
+### [8.6.44] Seite drehen im unteren Menü
 <img class="i" src="8.6.44.png" />
 
 
-### [[8.6.43]](/download/de) Um 90 Grad drehen, weiße Ränder ausschneiden, in zwei Seiten schneiden
+### [8.6.43] Drehe die Seite um 90 Grad, schneide die weißen Ränder aus, schneide sie in zwei Seiten
 
 ||||
 |-|-|-|
 |![](8.6.43a.png)|![](8.6.43b.png)|![](8.6.43c.png)|
 
-### [[8.6.41]](/download/de) Seriennamen anzeigen, nach Serienindex sortieren
+### [8.6.41] Seriennamen anzeigen, nach Serienindex sortieren
 <img class="i" src="8.6.41.png" />
 
-### [[8.6.40]](/download/de) Konfigurieren Sie, was auf der Registerkarte &quot;Favoriten&quot; angezeigt werden soll
+### [8.6.40] Konfigurieren Sie, was auf der Registerkarte „Favoriten“ angezeigt werden soll
 <img class="i" src="8.6.40.png" />
 
 ### [8.6.39] Die Websuche und Webwörterbücher wurden in die Benutzerdateien app-WebDict.json und app-WebSearch.json verschoben
