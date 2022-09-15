@@ -1636,7 +1636,7 @@ public class DragingDialogs {
                         closeDialog();
                         final Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
-                        String txt = "\"" + editText.getText().toString().trim() + "\" (" + controller.getBookFileMetaName() + ")";
+                        String txt = editText.getText().toString().trim();
                         intent.putExtra(Intent.EXTRA_TEXT, txt);
                         controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
 
@@ -1770,7 +1770,17 @@ public class DragingDialogs {
                                             intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT, selecteText);
                                             intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
 
-                                            controller.getActivity().startActivity(intentProccessText);
+                                            try {
+                                                controller.getActivity().startActivity(intentProccessText);
+                                            }catch (Exception e){
+                                                final Intent intent = new Intent(Intent.ACTION_PROCESS_TEXT);
+                                                intent.setType("text/plain");
+                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                                intent.putExtra(Intent.EXTRA_PROCESS_TEXT, selecteText);
+                                                intent.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
+                                                controller.getActivity().startActivity(intent);
+                                                LOG.e(e);
+                                            }
                                             LOG.d("dict-intent", intentProccessText);
                                         } else if (searchList.contains(app)) {
                                             LOG.d("dict-intent", "searchList");
@@ -1781,7 +1791,16 @@ public class DragingDialogs {
                                             intentSearch.putExtra(SearchManager.QUERY, selecteText);
                                             intentSearch.putExtra(Intent.EXTRA_TEXT, selecteText);
 
-                                            controller.getActivity().startActivity(intentSearch);
+                                            try {
+                                                controller.getActivity().startActivity(intentSearch);
+                                            }catch (Exception e){
+                                                final Intent intent = new Intent(Intent.ACTION_SEARCH);
+                                                intent.putExtra(SearchManager.QUERY, selecteText);
+                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                                controller.getActivity().startActivity(intent);
+
+                                                LOG.e(e);
+                                            }
                                             LOG.d("dict-intent", intentSearch);
                                         } else if (sendList.contains(app)) {
                                             LOG.d("dict-intent", "sendList");
@@ -1790,7 +1809,16 @@ public class DragingDialogs {
                                             intentSend.setComponent(name);
 
                                             intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                            controller.getActivity().startActivity(intentSend);
+                                            try {
+                                                controller.getActivity().startActivity(intentSend);
+                                            }catch (Exception e){
+                                                final Intent intent = new Intent(Intent.ACTION_SEND);
+                                                intent.setType("text/plain");
+                                                intent.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                                controller.getActivity().startActivity(intent);
+                                                LOG.e(e);
+
+                                            }
                                             LOG.d("dict-intent", intentSend);
                                         }
                                         sp.edit().putString("last", app.activityInfo.name).commit();
