@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -167,7 +168,9 @@ public class DictsHelper {
                     // String name = app.activityInfo.loadLabel(c.getPackageManager()).toString();
                     if (dictHash == DictsHelper.getHash(app.activityInfo)) {
                         final ComponentName cName = new ComponentName(app.activityInfo.applicationInfo.packageName, app.activityInfo.name);
-                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        }
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

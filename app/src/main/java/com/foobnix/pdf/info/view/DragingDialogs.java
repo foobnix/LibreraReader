@@ -146,6 +146,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.emdev.common.android.AndroidVersion;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -1745,7 +1746,9 @@ public class DragingDialogs {
                                         if (customList.contains(app)) {
                                             LOG.d("dict-intent", "customList");
 
-                                            intentCustom.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                                intentCustom.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            }
                                             intentCustom.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                             intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -1762,7 +1765,10 @@ public class DragingDialogs {
                                         } else if (proccessTextList.contains(app)) {
                                             LOG.d("dict-intent", "proccessTextList");
 
-                                            intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                                intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            }
+
                                             intentProccessText.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentProccessText.setComponent(name);
 
@@ -1784,7 +1790,9 @@ public class DragingDialogs {
                                             LOG.d("dict-intent", intentProccessText);
                                         } else if (searchList.contains(app)) {
                                             LOG.d("dict-intent", "searchList");
-                                            intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                                intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            }
                                             intentSearch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentSearch.setComponent(name);
 
@@ -1804,7 +1812,9 @@ public class DragingDialogs {
                                             LOG.d("dict-intent", intentSearch);
                                         } else if (sendList.contains(app)) {
                                             LOG.d("dict-intent", "sendList");
-                                            intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                                intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
+                                            }
                                             intentSend.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                                             intentSend.setComponent(name);
 
