@@ -631,7 +631,7 @@
    <string name="integration_in_the_context_menu">集成到全局上下文菜单</string>
    <string name="the_application_needs_storage_permission">应用需要拥有存储权限以发现所有书籍</string>
    <string name="always_open_in_2_pages_mode">以双页并列模式显示页面</string>
-   <string name="text_encoding">文字编码</string>
+   <string name="text_encoding">字符编码</string>
    <string name="minus">减</string>
    <string name="plus">加</string>
    <string name="drag_element">拖动元素</string>
@@ -643,8 +643,8 @@
    <string name="graphics_scale">图形比例</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">用书名创建一个文件夹</string>
    <string name="memory">机身存储</string>
-   <string name="accessibility">可访问性</string>
+   <string name="accessibility">无障碍</string>
    <string name="web_search_google">网络搜索（谷歌...）</string>
    <string name="synced_books">同步书籍</string>
-   <string name="smart_reflow">智能回流</string>
+   <string name="smart_reflow">智能重排</string>
 </resources>
