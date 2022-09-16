@@ -90,7 +90,6 @@
    <string name="custom_css">Còdighe CSS personalizadu</string>
    <string name="styles">Istiles</string>
    <string name="document_styles">Documentu</string>
-   <string name="user_styles">Definidu dae s\'utente</string>
    <string name="automatic_hyphenation">Abìlita sa sillabatzione</string>
    <string name="empty_line">Lìnia bòida</string>
    <string name="margin_width">Oros de sa pàgina</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Web search (Google, ...)</string>
    <string name="synced_books">Synced books</string>
    <string name="smart_reflow">Smart reflow</string>
+   <string name="user_styles">Definidu dae s\'utente</string>
 </resources>

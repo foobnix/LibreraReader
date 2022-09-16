@@ -114,6 +114,35 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/userStyles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:singleLine="true"
+                android:text="@string/user_styles"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userStyleCss"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="false"
+                android:text="@string/user_styles" />
+
+
+        </LinearLayout>
+
 
 
         <CheckBox

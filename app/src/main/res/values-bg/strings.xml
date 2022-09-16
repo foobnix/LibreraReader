@@ -90,7 +90,6 @@
    <string name="custom_css">Персонализиран css код</string>
    <string name="styles">Стилове</string>
    <string name="document_styles">Документ</string>
-   <string name="user_styles">Дефинирани от потребителя</string>
    <string name="automatic_hyphenation">Дайте възможност за тирене</string>
    <string name="empty_line">Строфа почивка</string>
    <string name="margin_width">Полета на страницата</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Търсене в мрежата (Google, ...)</string>
    <string name="synced_books">Синхронизирани книги</string>
    <string name="smart_reflow">Интелигентно преформатиране</string>
+   <string name="user_styles">Дефинирани от потребителя</string>
 </resources>

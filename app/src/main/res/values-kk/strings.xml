@@ -90,7 +90,6 @@
    <string name="custom_css">Таңдамалы CSS коды</string>
    <string name="styles">Стильдер</string>
    <string name="document_styles">Құжат</string>
-   <string name="user_styles">Пайдаланушы анықтаған</string>
    <string name="automatic_hyphenation">Тасымалдауды қосу</string>
    <string name="empty_line">Бос жол</string>
    <string name="margin_width">Бет жағы</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Веб-іздеу (Google, ...)</string>
    <string name="synced_books">Синхрондалған кітаптар</string>
    <string name="smart_reflow">Ақылды қайта өңдеу</string>
+   <string name="user_styles">Пайдаланушы анықтаған</string>
 </resources>

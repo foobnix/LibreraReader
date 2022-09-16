@@ -90,7 +90,6 @@
    <string name="custom_css">Mukautettu CSS</string>
    <string name="styles">Tyylit</string>
    <string name="document_styles">Asiakirja</string>
-   <string name="user_styles">Käyttäjän tyylit</string>
    <string name="automatic_hyphenation">Tekstin tavutus</string>
    <string name="empty_line">Tyhjä rivi</string>
    <string name="margin_width">Sivun marginaalit</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Verkkohaku (Google,...)</string>
    <string name="synced_books">Synkronoidut kirjat</string>
    <string name="smart_reflow">Älykäs reflow</string>
+   <string name="user_styles">Käyttäjän tyylit</string>
 </resources>

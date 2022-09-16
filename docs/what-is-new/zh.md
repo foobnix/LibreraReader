@@ -4,6 +4,19 @@ layout: main
 
 # 新功能
 
+### [8.6.47] 自定义 CSS 支持和表格支持
+增加了选择用户样式 css 文件的可能性
+```
+/sdcard/Librera/profile.Librera/device.[]/*.css
+
+app-Librera.css - Librera default user styles for documents
+app-MuPDF.css - Default MUPDF styles with Table support
+```
+
+||||
+|-|-|-|
+|![](8.6.47a.png)|![](8.6.47b.png)|![](8.6.47c.png)|
+
 ### [8.6.44] 在底部菜单中旋转页面
 <img class="i" src="8.6.44.png" />
 

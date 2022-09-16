@@ -90,7 +90,6 @@
    <string name="custom_css">Custom CSS Code</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Document</string>
-   <string name="user_styles">User-defined</string>
    <string name="automatic_hyphenation">Enable hyphenation</string>
    <string name="empty_line">Stanza break</string>
    <string name="margin_width">Page margins</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Web Search (Google, ...)</string>
    <string name="synced_books">Synced books</string>
    <string name="smart_reflow">Smart reflow</string>
+   <string name="user_styles">User styles</string>
 </resources>

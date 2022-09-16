@@ -90,7 +90,6 @@
    <string name="custom_css">CSS tùy chỉnh</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Kiểu tài liệu</string>
-   <string name="user_styles">Phong cách người dùng</string>
    <string name="automatic_hyphenation">Dấu gạch nối tự động</string>
    <string name="empty_line">Hết đường</string>
    <string name="margin_width">Chiều rộng lề</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Tìm kiếm trên web (Google, ...)</string>
    <string name="synced_books">Sách được đồng bộ hóa</string>
    <string name="smart_reflow">Chỉnh lại thông minh</string>
+   <string name="user_styles">Phong cách người dùng</string>
 </resources>

@@ -90,7 +90,6 @@
    <string name="custom_css">Aangepaste CSS code</string>
    <string name="styles">Stijlen</string>
    <string name="document_styles">Document stijlen</string>
-   <string name="user_styles">Gebruiker stijlen</string>
    <string name="automatic_hyphenation">Automatische woordafbreking</string>
    <string name="empty_line">Lege regel</string>
    <string name="margin_width">Margebreedte</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Zoeken op internet (Google, ...)</string>
    <string name="synced_books">Gesynchroniseerde boeken</string>
    <string name="smart_reflow">Slimme reflow</string>
+   <string name="user_styles">Gebruiker stijlen</string>
 </resources>

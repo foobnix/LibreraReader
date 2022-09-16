@@ -90,7 +90,6 @@
    <string name="custom_css">தனிப்பயன் CSS குறியீடு</string>
    <string name="styles">பாங்குகள்</string>
    <string name="document_styles">ஆவணம்</string>
-   <string name="user_styles">பயனர் வரையறுத்த</string>
    <string name="automatic_hyphenation">சொல்பிரிகை இயக்கு</string>
    <string name="empty_line">ஸ்டான்ஸா இடைவெளி</string>
    <string name="margin_width">பக்க விளிம்புகள்</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">இணைய தேடல் (Google, ...)</string>
    <string name="synced_books">ஒத்திசைக்கப்பட்ட புத்தகங்கள்</string>
    <string name="smart_reflow">ஸ்மார்ட் ரிஃப்ளோ</string>
+   <string name="user_styles">பயனர் வரையறுத்த</string>
 </resources>

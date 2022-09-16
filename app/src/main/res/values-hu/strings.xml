@@ -90,7 +90,6 @@
    <string name="custom_css">Egyéni CSS-kód</string>
    <string name="styles">Stílusok</string>
    <string name="document_styles">Dokumentum</string>
-   <string name="user_styles">Felhasználó által meghatározott</string>
    <string name="automatic_hyphenation">Elválasztás engedélyezése</string>
    <string name="empty_line">Üres sor</string>
    <string name="margin_width">Oldalmargók</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Webes kereső (Google,...)</string>
    <string name="synced_books">Szinkronizált könyvek</string>
    <string name="smart_reflow">Okos reflow</string>
+   <string name="user_styles">Felhasználó által meghatározott</string>
 </resources>

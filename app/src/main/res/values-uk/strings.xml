@@ -90,7 +90,6 @@
    <string name="custom_css">Користувацький CSS</string>
    <string name="styles">Стилі</string>
    <string name="document_styles">Вбудовані</string>
-   <string name="user_styles">Користувацькі</string>
    <string name="automatic_hyphenation">Авторозставляння перенесень</string>
    <string name="empty_line">Порожній рядок</string>
    <string name="margin_width">Розмір відступів</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Веб-пошук (Google, ...)</string>
    <string name="synced_books">Синхронізовані книги</string>
    <string name="smart_reflow">Розумне оплавлення</string>
+   <string name="user_styles">Користувацькі</string>
 </resources>

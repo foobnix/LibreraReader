@@ -1448,7 +1448,7 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		if (try_fictionbook && fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-			fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
+			//fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
 			if (fz_use_document_css(ctx))
 				fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = load_fb2_images(ctx, root);
@@ -1456,15 +1456,15 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		else if (is_mobi)
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
-			fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
+			//fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			//fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 		else
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			//fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}

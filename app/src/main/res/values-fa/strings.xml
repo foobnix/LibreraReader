@@ -90,7 +90,6 @@
    <string name="custom_css">CSS سفارشی</string>
    <string name="styles">سبک</string>
    <string name="document_styles">سبک های سند</string>
-   <string name="user_styles">سبک های کاربر</string>
    <string name="automatic_hyphenation">فاصلهگذاری اتوماتیک</string>
    <string name="empty_line">خط خالی</string>
    <string name="margin_width">عرض حاشیه</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">جستجوی وب (گوگل، ...)</string>
    <string name="synced_books">کتاب های همگام شده</string>
    <string name="smart_reflow">جریان مجدد هوشمند</string>
+   <string name="user_styles">سبک های کاربر</string>
 </resources>

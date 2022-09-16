@@ -877,8 +877,8 @@ public class PrefFragment2 extends UIFragment {
                                                          String name = all[0];
                                                          final String code = all[1];
 
-                                                         if(BuildConfig.DEBUG){
-                                                             name += " [" + code+"]";
+                                                         if (BuildConfig.DEBUG) {
+                                                             name += " [" + code + "]";
                                                          }
                                                          popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -1194,14 +1194,14 @@ public class PrefFragment2 extends UIFragment {
         isRestoreSearchQuery.setChecked(AppState.get().isRestoreSearchQuery);
         isRestoreSearchQuery.setOnCheckedChangeListener(new
 
-                                                          OnCheckedChangeListener() {
+                                                                OnCheckedChangeListener() {
 
-                                                              @Override
-                                                              public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                           final boolean isChecked) {
-                                                                  AppState.get().isRestoreSearchQuery = isChecked;
-                                                              }
-                                                          });
+                                                                    @Override
+                                                                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                                 final boolean isChecked) {
+                                                                        AppState.get().isRestoreSearchQuery = isChecked;
+                                                                    }
+                                                                });
 
         CheckBox isShowCloseAppDialog = inflate.findViewById(R.id.isShowCloseAppDialog);
         isShowCloseAppDialog.setChecked(AppState.get().isShowCloseAppDialog);
@@ -1286,7 +1286,6 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
                 AppState.get().isUseCalibreOpf = isUseCalibreOpf.isChecked();
                 AppState.get().isDisplayAnnotation = isDisplayAnnotation.isChecked();
-
 
 
                 handler.removeCallbacksAndMessages(null);
@@ -2468,6 +2467,18 @@ public class PrefFragment2 extends UIFragment {
                     IO.writeObjAsync(AppProfile.syncState, o);
 
                     AppProfile.syncExclude.delete();
+
+                    File rootFiles = AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
+
+                    for (File file : rootFiles.listFiles()) {
+                        String name = file.getName();
+                        if (name.endsWith(".css")) {
+                            file.delete();
+                            LOG.d("Delete-css", file);
+
+                        }
+                    }
+
 
                     //AppProfile.init(getActivity());
                     BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);

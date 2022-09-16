@@ -90,7 +90,6 @@
    <string name="custom_css">맞춤 CSS</string>
    <string name="styles">스타일</string>
    <string name="document_styles">문서 스타일</string>
-   <string name="user_styles">사용자 스타일</string>
    <string name="automatic_hyphenation">자동 하이픈</string>
    <string name="empty_line">빈 라인</string>
    <string name="margin_width">여백 폭</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">웹 검색(구글, ...)</string>
    <string name="synced_books">동기화된 책</string>
    <string name="smart_reflow">스마트 리플로우</string>
+   <string name="user_styles">사용자 스타일</string>
 </resources>

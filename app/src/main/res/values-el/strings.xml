@@ -90,7 +90,6 @@
    <string name="custom_css">Προσαρμοσμένος κωδικός CSS</string>
    <string name="styles">Στυλ</string>
    <string name="document_styles">Έγγραφο</string>
-   <string name="user_styles">Ορισμένο από τον χρήστη</string>
    <string name="automatic_hyphenation">Ενεργοποίηση συλλαβισμού</string>
    <string name="empty_line">Διάλειμμα στάνζας</string>
    <string name="margin_width">Περιθώρια σελίδας</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Αναζήτηση ιστού (Google, ...)</string>
    <string name="synced_books">Συγχρονισμένα βιβλία</string>
    <string name="smart_reflow">Έξυπνη ανανέωση</string>
+   <string name="user_styles">Ορισμένο από τον χρήστη</string>
 </resources>

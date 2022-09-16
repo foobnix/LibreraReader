@@ -4,6 +4,19 @@ layout: main
 
 # Quoi de neuf
 
+### [8.6.47] Prise en charge CSS personnalisée et prise en charge des tableaux
+Ajout de la possibilité de choisir le fichier CSS des styles utilisateur
+```
+/sdcard/Librera/profile.Librera/device.[]/*.css
+
+app-Librera.css - Librera default user styles for documents
+app-MuPDF.css - Default MUPDF styles with Table support
+```
+
+||||
+|-|-|-|
+|![](8.6.47a.png)|![](8.6.47b.png)|![](8.6.47c.png)|
+
 ### [8.6.44] Faire pivoter la page dans le menu du bas
 <img class="i" src="8.6.44.png" />
 

@@ -90,7 +90,6 @@
    <string name="custom_css">カスタムCSS</string>
    <string name="styles">スタイル</string>
    <string name="document_styles">文書のスタイル</string>
-   <string name="user_styles">ユーザーのスタイル</string>
    <string name="automatic_hyphenation">自動ハイフネーション</string>
    <string name="empty_line">空行</string>
    <string name="margin_width">マージン幅</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Web 検索 (Google など)</string>
    <string name="synced_books">同期書籍</string>
    <string name="smart_reflow">スマートリフロー</string>
+   <string name="user_styles">ユーザーのスタイル</string>
 </resources>

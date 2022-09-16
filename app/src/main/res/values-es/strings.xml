@@ -90,7 +90,6 @@
    <string name="custom_css">CSS personalizado</string>
    <string name="styles">Estilos</string>
    <string name="document_styles">Documento</string>
-   <string name="user_styles">Estilos de usuario</string>
    <string name="automatic_hyphenation">Activar separación (-)</string>
    <string name="empty_line">Espacio entre estrofas</string>
    <string name="margin_width">Márgenes</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Búsqueda web (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
    <string name="smart_reflow">Reflujo inteligente</string>
+   <string name="user_styles">Estilos de usuario</string>
 </resources>

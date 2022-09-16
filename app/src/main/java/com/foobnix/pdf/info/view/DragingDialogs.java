@@ -4215,6 +4215,33 @@ public class DragingDialogs {
 
                     }
                 });
+                //user styles
+                inflate.findViewById(R.id.userStyles).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                final TextView userStyleCss = (TextView) inflate.findViewById(R.id.userStyleCss);
+                userStyleCss.setText(BookCSS.get().userStyleCss);
+                TxtUtils.underlineTextView(userStyleCss);
+
+                userStyleCss.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    File rootFiles = AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
+
+                    for (File file : rootFiles.listFiles()) {
+                        String name = file.getName();
+                        if (name.endsWith(".css")) {
+                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                                BookCSS.get().userStyleCss = name;
+                                userStyleCss.setText(BookCSS.get().userStyleCss);
+                                TxtUtils.underlineTextView(userStyleCss);
+
+                                return false;
+                            });
+                        }
+                    }
+
+
+                    popupMenu.show();
+                });
+
 
                 // end styles
 

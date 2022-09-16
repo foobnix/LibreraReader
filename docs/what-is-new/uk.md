@@ -4,6 +4,19 @@ layout: main
 
 # Що нового
 
+### [8.6.47] Спеціальна підтримка CSS і підтримка таблиць
+Додана можливість вибору файлу css стилів користувача
+```
+/sdcard/Librera/profile.Librera/device.[]/*.css
+
+app-Librera.css - Librera default user styles for documents
+app-MuPDF.css - Default MUPDF styles with Table support
+```
+
+||||
+|-|-|-|
+|![](8.6.47a.png)|![](8.6.47b.png)|![](8.6.47c.png)|
+
 ### [8.6.44] Обертання сторінки в нижньому меню
 <img class="i" src="8.6.44.png" />
 

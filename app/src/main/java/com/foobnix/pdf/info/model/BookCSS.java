@@ -16,15 +16,12 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
-import org.ebookdroid.droids.DocContext;
 import org.librera.LinkedJSONObject;
 
 import java.io.File;
@@ -76,7 +73,7 @@ public class BookCSS {
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
     public String fontFolder;
-    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 28 : 22;
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
     public String dirLastPath;
@@ -118,7 +115,7 @@ public class BookCSS {
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGHTS;
-
+    public String userStyleCss = "app-Librera.css";
     private String lastBookPathCache = "";
     private String trackPathCache;
 
@@ -552,24 +549,18 @@ public class BookCSS {
 
         StringBuilder builder = new StringBuilder();
 
+
+
+        File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
+        String css = IO.readString(cssFile);
+        builder.append(css);
+
+
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
         builder.append("isAutoHypens1" + isAutoHypens + AppSP.get().hypenLang + "{}");
-
-        builder.append("b>span,strong>span{font-weight:normal}");// fix chess
-
-        if (path.endsWith(DocContext.EXT_DOC_HTML)) {
-            builder.append("book>title, bookinfo {display:none}");
-            //builder.append("emphasis {display:inline}");
-            //builder.append("chapter,sect1, title {display:block}");
-        }
-
-
-        builder.append("svg {display:block}");
-        builder.append("math, m, svg>text {display:none}");
-        builder.append("sup>* {font-size:0.83em;vertical-align:super; font-weigh:bold}");
 
         // PAGE BEGIN
         builder.append("@page{");
@@ -579,27 +570,12 @@ public class BookCSS {
         builder.append(String.format("margin-left:%s !important;", em(marginLeft)));
         builder.append("}");
         // PAGE END
-
-
         // FB2
-        builder.append("section>title{page-break-before:avoide;}");
-        builder.append("section>title>p{text-align:center !important; text-indent:0px !important;}");
-        builder.append("title>p{text-align:center !important; text-indent:0px !important;}");
-        builder.append("subtitle{text-align:center !important; text-indent:0px !important;}");
-        builder.append("image{text-align:center; text-indent:0px;}");
-        builder.append("section+section>title{page-break-before:always;}");
-        builder.append(String.format("empty-line{display:block; padding:%s;}", em(emptyLine)));
-        builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
-
-        builder.append("text-author{font-style: italic;font-weight: bold;}");
-        builder.append("p>image{display:block;}");
+        builder.append(String.format("empty-line{padding:%s;}", em(emptyLine)));
         if (paragraphHeight > 0) {// bug is here
             builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
         }
         // not supported text-decoration
-        builder.append("del,ins,u,strikethrough{font-family:monospace;}");
-
-        // FB2 END
 
 
         builder.append("body,p,div,span {");
@@ -610,22 +586,16 @@ public class BookCSS {
             builder.append(String.format("background-color:%s;", backgroundColor));
             builder.append(String.format("color:%s;", textColor));
         }
-
         builder.append(String.format("line-height:%s !important;", em(lineHeight)));
         builder.append("}");
 
-        builder.append("body{");
-        builder.append("padding:0 !important; margin:0 !important;");
-        builder.append("}");
-
         if (AppState.get().isDayNotInvert) {
-            builder.append("t{color:" + linkColorDay + " !important; font-style: italic;}");
+            builder.append("t{color:" + linkColorDay + " !important;");
         } else {
-            builder.append("t{color:" + linkColorNight + " !important; font-style: italic;}");
+            builder.append("t{color:" + linkColorNight + " !important;}");
         }
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
-
             if (AppState.get().isDayNotInvert) {
                 builder.append("a{color:" + linkColorDay + " !important;}");
             } else {
@@ -655,30 +625,27 @@ public class BookCSS {
 
             if (isFontFileName(headersFont)) {
                 builder.append("@font-face {font-family: myHeader; src: url('" + headersFont + "') format('truetype'); }");
-                builder.append("h1{font-size:1.50em; text-align: center; font-weight: normal; font-family: myHeader;}");
-                builder.append("h2{font-size:1.30em; text-align: center; font-weight: normal; font-family: myHeader;}");
-                builder.append("h3{font-size:1.15em; text-align: center; font-weight: normal; font-family: myHeader;}");
-                builder.append("h4{font-size:1.00em; text-align: center; font-weight: normal; font-family: myHeader;}");
-                builder.append("h5{font-size:0.80em; text-align: center; font-weight: normal; font-family: myHeader;}");
-                builder.append("h6{font-size:0.60em; text-align: center; font-weight: normal; font-family: myHeader;}");
+                builder.append("h1{font-weight: normal; font-family: myHeader;}");
+                builder.append("h2{font-weight: normal; font-family: myHeader;}");
+                builder.append("h3{font-weight: normal; font-family: myHeader;}");
+                builder.append("h4{font-weight: normal; font-family: myHeader;}");
+                builder.append("h5{font-weight: normal; font-family: myHeader;}");
+                builder.append("h6{font-weight: normal; font-family: myHeader;}");
 
-                builder.append("title,title>p,title>p>strong  {font-size:1.2em; font-weight: normal; font-family: myHeader !important;}");
-                builder.append(/*                 */ "subtitle{font-size:1.0em; font-weight: normal; font-family: myHeader !important;}");
+                builder.append("title,title>p,title>p>strong  {font-weight: normal; font-family: myHeader !important;}");
+                builder.append(/*                 */ "subtitle{font-weight: normal; font-family: myHeader !important;}");
 
             } else {
-                builder.append("h1{font-size:1.50em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h2{font-size:1.30em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h3{font-size:1.15em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h4{font-size:1.00em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h5{font-size:0.80em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h6{font-size:0.60em; text-align: center; font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h1{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h2{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h3{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h4{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h5{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h6{font-weight: bold; font-family: " + headersFont + ";}");
 
-                builder.append("title, title>p{font-size:1.2em; font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("subtitle, subtitle>p{font-size:1.0em; font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("title, title>p{      font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("subtitle, subtitle>p{font-weight: bold; font-family: " + headersFont + ";}");
             }
-
-            builder.append("h1,h2,h3,h4,h5,h6,img {text-indent:0px !important; text-align: center;}");
-
             // FONTS END
 
             // BODY BEGIN
@@ -711,9 +678,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                //if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
-                    builder.append("font-family:" + normalFont + " !important;");
-                //}
+                builder.append("font-family:" + normalFont + " !important;");
             }
 
             if (AppState.get().isAccurateFontSize) {
@@ -726,9 +691,7 @@ public class BookCSS {
             builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                //if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
-                    builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
-                //}
+                builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
             }
 
             if (!isFontFileName(italicFont)) {
@@ -741,6 +704,7 @@ public class BookCSS {
             builder.append(customCSS2.replace("\n", ""));
 
         }
+
 
         String result = builder.toString();
         return result;

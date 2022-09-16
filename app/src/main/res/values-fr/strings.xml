@@ -90,7 +90,6 @@
    <string name="custom_css">CSS personnalisé</string>
    <string name="styles">Modes</string>
    <string name="document_styles">Styles de document</string>
-   <string name="user_styles">Styles utilisateur</string>
    <string name="automatic_hyphenation">Césure automatique</string>
    <string name="empty_line">Ligne vide</string>
    <string name="margin_width">Largeur de marge</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Recherche internet (Google, ...)</string>
    <string name="synced_books">Livres synchronisés</string>
    <string name="smart_reflow">Refusion intelligente</string>
+   <string name="user_styles">Styles utilisateur</string>
 </resources>

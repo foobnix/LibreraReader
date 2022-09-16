@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-### 1.20.0
+### Librera Old
 ./link_to_mupdf_1.11.sh
 
 cd ../
@@ -11,11 +11,11 @@ cd ../
 ./gradlew assembleOldRelease
 
 
-### 1.11.1
+### Librera Beta
 
 cd Builder
 
-./link_to_mupdf_1.20.2.sh
+./link_to_mupdf_master.sh
 
 cd ../
 

@@ -90,7 +90,6 @@
    <string name="custom_css">Benutzerdefinierte CSS</string>
    <string name="styles">Stile</string>
    <string name="document_styles">Dokumentenstile</string>
-   <string name="user_styles">Anwenderstile</string>
    <string name="automatic_hyphenation">Automatische Silbentrennung</string>
    <string name="empty_line">Leere Zeile</string>
    <string name="margin_width">Randbreite</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Websuche (Google, ...)</string>
    <string name="synced_books">Synchronisierte Bücher</string>
    <string name="smart_reflow">Intelligenter Rückfluss</string>
+   <string name="user_styles">Anwenderstile</string>
 </resources>

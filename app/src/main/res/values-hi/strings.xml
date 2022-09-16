@@ -90,7 +90,6 @@
    <string name="custom_css">कस्टम सीएसएस</string>
    <string name="styles">शैलियाँ</string>
    <string name="document_styles">दस्तावेज़ शैलियाँ</string>
-   <string name="user_styles">उपयोगकर्ता शैलियों</string>
    <string name="automatic_hyphenation">स्वत: हायफ़नेशन</string>
    <string name="empty_line">खाली पंक्ति</string>
    <string name="margin_width">मार्जिन चौड़ाई</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">वेब खोज (गूगल,...)</string>
    <string name="synced_books">समन्वयित पुस्तकें</string>
    <string name="smart_reflow">स्मार्ट रिफ्लो</string>
+   <string name="user_styles">उपयोगकर्ता शैलियों</string>
 </resources>

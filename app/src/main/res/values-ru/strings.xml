@@ -90,7 +90,6 @@
    <string name="custom_css">Пользовательские CSS</string>
    <string name="styles">Стили</string>
    <string name="document_styles">Встроенные</string>
-   <string name="user_styles">Пользовательские</string>
    <string name="automatic_hyphenation">Автоматически расставлять переносы</string>
    <string name="empty_line">Пустая строка</string>
    <string name="margin_width">Ширина отступов</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Веб-поиск (Google, ...)</string>
    <string name="synced_books">Синхронизированные книги</string>
    <string name="smart_reflow">Умный перекомпоновка</string>
+   <string name="user_styles">Пользовательские</string>
 </resources>

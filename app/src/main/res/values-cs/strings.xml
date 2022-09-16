@@ -90,7 +90,6 @@
    <string name="custom_css">Vlastní CSS styl</string>
    <string name="styles">Styly</string>
    <string name="document_styles">Dokument</string>
-   <string name="user_styles">Uživatelsky definované</string>
    <string name="automatic_hyphenation">Povolit dělení slov</string>
    <string name="empty_line">Prázdný řádek</string>
    <string name="margin_width">Okraje stránky</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Vyhledávání na webu (Google, ...)</string>
    <string name="synced_books">Synchronizované knihy</string>
    <string name="smart_reflow">Chytré přeformátování</string>
+   <string name="user_styles">Uživatelsky definované</string>
 </resources>

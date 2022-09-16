@@ -90,7 +90,6 @@
    <string name="custom_css">Niestandardowy CSS</string>
    <string name="styles">Style</string>
    <string name="document_styles">Style dokumentu</string>
-   <string name="user_styles">Style użytkownika</string>
    <string name="automatic_hyphenation">Automatyczne dzielenie wyrazów</string>
    <string name="empty_line">Pusta linia</string>
    <string name="margin_width">Szerokość marginesu</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Wyszukiwarka internetowa (Google, ...)</string>
    <string name="synced_books">Zsynchronizowane książki</string>
    <string name="smart_reflow">Inteligentny reflow</string>
+   <string name="user_styles">Style użytkownika</string>
 </resources>

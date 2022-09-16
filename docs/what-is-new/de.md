@@ -4,6 +4,19 @@ layout: main
 
 # Was ist neu
 
+### [8.6.47] Benutzerdefinierte CSS-Unterstützung und Tabellenunterstützung
+Möglichkeit zur Auswahl der CSS-Datei für Benutzerstile hinzugefügt
+```
+/sdcard/Librera/profile.Librera/device.[]/*.css
+
+app-Librera.css - Librera default user styles for documents
+app-MuPDF.css - Default MUPDF styles with Table support
+```
+
+||||
+|-|-|-|
+|![](8.6.47a.png)|![](8.6.47b.png)|![](8.6.47c.png)|
+
 ### [8.6.44] Seite drehen im unteren Menü
 <img class="i" src="8.6.44.png" />
 

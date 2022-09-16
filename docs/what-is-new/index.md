@@ -4,6 +4,19 @@ layout: main
 
 # What is new
 
+### [8.6.47] Custom CSS support and Table support
+Added possibility to choose user styles css file
+```
+/sdcard/Librera/profile.Librera/device.[]/*.css
+
+app-Librera.css - Librera default user styles for documents
+app-MuPDF.css - Default MUPDF styles with Table support
+```
+
+||||
+|-|-|-|
+|![](8.6.47a.png)|![](8.6.47b.png)|![](8.6.47c.png)|
+
 ### [8.6.44] Rotate page in the bottom menu
 <img class="i" src="8.6.44.png" />
 

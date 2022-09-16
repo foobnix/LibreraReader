@@ -90,7 +90,6 @@
    <string name="custom_css">لغة تنسيق ويب حسب الطلب</string>
    <string name="styles">الأنماط</string>
    <string name="document_styles">أنماط المستند</string>
-   <string name="user_styles">أساليب العضو</string>
    <string name="automatic_hyphenation">الواصلة التلقائي</string>
    <string name="empty_line">خط فارغ</string>
    <string name="margin_width">عرض الهوامش</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">بحث الويب (Google ، ...)</string>
    <string name="synced_books">الكتب المتزامنة</string>
    <string name="smart_reflow">إعادة التدفق الذكي</string>
+   <string name="user_styles">أساليب العضو</string>
 </resources>

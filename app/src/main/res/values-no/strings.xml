@@ -90,7 +90,6 @@
    <string name="custom_css">Tilpasset CSS</string>
    <string name="styles">Styles</string>
    <string name="document_styles">Dokumentstiler</string>
-   <string name="user_styles">Brukerstiler</string>
    <string name="automatic_hyphenation">Automatisk bindestrek</string>
    <string name="empty_line">Tom linje</string>
    <string name="margin_width">Marginbredde</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Nettsøk (Google, ...)</string>
    <string name="synced_books">Synkroniserte bøker</string>
    <string name="smart_reflow">Smart reflow</string>
+   <string name="user_styles">Brukerstiler</string>
 </resources>

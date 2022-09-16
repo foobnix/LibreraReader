@@ -67,19 +67,17 @@ public class FontExtractor {
                             LOG.d("copy fonts for IS_FDROID");
                         }
 
-                        File appWebDict = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_WEB_DICT);
-                        if (!appWebDict.exists()) {
-                            IOUtils.copyClose(c.getAssets().open(AppProfile.APP_WEB_DICT), new FileOutputStream(appWebDict));
-                            LOG.d("copy-dict", AppProfile.APP_WEB_DICT);
-                       }
+                        String[] rootFiles = c.getAssets().list("");
 
-                        File appWebSearch = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_WEB_SEARCH);
-                        if (!appWebSearch.exists()) {
-                            IOUtils.copyClose(c.getAssets().open(AppProfile.APP_WEB_SEARCH), new FileOutputStream(appWebSearch));
-                            LOG.d("copy-dict", AppProfile.APP_WEB_SEARCH);
+                        for (String name : rootFiles) {
+                            if (name.startsWith("app-")) {
+                                File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
+                                if (BuildConfig.DEBUG || !appFile.exists()) {
+                                    IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
+                                    LOG.d("Copy Asset", name);
+                                }
+                            }
                         }
-
-
                     }
                 } catch (Exception e) {
                     LOG.e(e);

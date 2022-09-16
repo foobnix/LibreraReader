@@ -2713,7 +2713,7 @@ fz_parse_html(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const cha
 		if (fz_xml_find(xml, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-			fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
+			//fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
 			if (fz_use_document_css(ctx))
 				fb2_load_css(ctx, g.zip, g.base_uri, g.css, xml);
 			g.images = load_fb2_images(ctx, xml);
@@ -2721,7 +2721,7 @@ fz_parse_html(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const cha
 		else
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			//fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.zip, g.base_uri, g.css, xml);
 			g.images = NULL;

@@ -90,7 +90,6 @@
    <string name="custom_css">CSS personalizat</string>
    <string name="styles">Stiluri</string>
    <string name="document_styles">Stilurile documentului</string>
-   <string name="user_styles">Stiluri de utilizare</string>
    <string name="automatic_hyphenation">Automată despărțirea în silabe</string>
    <string name="empty_line">Linie goală</string>
    <string name="margin_width">Lățimea marginii</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Căutare pe web (Google,...)</string>
    <string name="synced_books">Cărți sincronizate</string>
    <string name="smart_reflow">Reflow inteligent</string>
+   <string name="user_styles">Stiluri de utilizare</string>
 </resources>

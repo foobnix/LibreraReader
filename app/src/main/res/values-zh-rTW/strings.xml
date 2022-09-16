@@ -90,7 +90,6 @@
    <string name="custom_css">自定義CSS</string>
    <string name="styles">樣式</string>
    <string name="document_styles">文檔樣式</string>
-   <string name="user_styles">用戶樣式</string>
    <string name="automatic_hyphenation">自動斷字</string>
    <string name="empty_line">標題間距</string>
    <string name="margin_width">頁邊空白</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">網絡搜索（谷歌，...）</string>
    <string name="synced_books">同步書籍</string>
    <string name="smart_reflow">智能回流</string>
+   <string name="user_styles">用戶樣式</string>
 </resources>

@@ -90,7 +90,6 @@
    <string name="custom_css">Tinkintas CSS</string>
    <string name="styles">Stiliai</string>
    <string name="document_styles">Dokumento</string>
-   <string name="user_styles">Vartotojo</string>
    <string name="automatic_hyphenation">Automatinė pertrauka</string>
    <string name="empty_line">Tuščia linija</string>
    <string name="margin_width">Paraštės plotis</string>
@@ -647,4 +646,5 @@
    <string name="web_search_google">Žiniatinklio paieška (Google,...)</string>
    <string name="synced_books">Sinchronizuotos knygos</string>
    <string name="smart_reflow">Protingas pertvarkymas</string>
+   <string name="user_styles">Vartotojo</string>
 </resources>
