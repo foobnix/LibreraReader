@@ -8,9 +8,11 @@
 Librera Reader is an e-book reader for Android devices; 
 it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, and OPDS Catalogs
 
-Web: [http://librera.mobi/](http://librera.mobi/)
+Web: [https://librera.mobi/](https://librera.mobi/)
 
-FAQ: [Read](http://librera.mobi/faq/)
+[What is new/Changes](https://librera.mobi/what-is-new/)
+
+FAQ: [Read](https://librera.mobi/faq/)
 
 Android Play Market Apps:
 
@@ -25,7 +27,7 @@ Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 [Telegram Download Beta apk](https://t.me/LibreraBeta)
 
-[Beta .apk (latest build)](http://beta.librera.mobi)
+[Beta .apk (latest build)](https://beta.librera.mobi)
 
 [Please support Librera on Patreon](https://www.patreon.com/librera)
 
