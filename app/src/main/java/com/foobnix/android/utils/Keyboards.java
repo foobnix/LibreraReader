@@ -79,8 +79,7 @@ public class Keyboards {
             if (activity == null) {
                 return;
             }
-            if (activity instanceof MainTabs2
-                    && AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
+            if (activity instanceof MainTabs2 && AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             } else if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
