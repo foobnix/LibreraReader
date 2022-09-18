@@ -1,7 +1,5 @@
 package com.foobnix.android.utils;
 
-import static com.foobnix.androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -12,10 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
-import com.foobnix.androidx.core.view.WindowCompat;
-import com.foobnix.androidx.core.view.WindowInsetsControllerCompat;
 import com.foobnix.model.AppState;
 import com.foobnix.ui2.MainTabs2;
 
@@ -90,13 +88,12 @@ public class Keyboards {
 
             final Window window = activity.getWindow();
             final View decorView = window.getDecorView();
-            final WindowInsetsControllerCompat insetsController = WindowCompat
-                    .getInsetsController(window, decorView);
+            final WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, decorView);
 
             decorView.postDelayed(() -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     WindowCompat.setDecorFitsSystemWindows(window, false);
-                    insetsController.setSystemBarsBehavior(BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                    insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
                 } else {
                     insetsController.hide(WindowInsetsCompat.Type.navigationBars()
                             | WindowInsetsCompat.Type.statusBars());
@@ -113,12 +110,11 @@ public class Keyboards {
                 return;
             }
             final Window window = a.getWindow();
-            final WindowInsetsControllerCompat insetsController = WindowCompat
-                    .getInsetsController(window, window.getDecorView());
+            final WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 WindowCompat.setDecorFitsSystemWindows(window, false);
-                insetsController.setSystemBarsBehavior(BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
             } else {
                 insetsController.hide(WindowInsetsCompat.Type.navigationBars()
                         | WindowInsetsCompat.Type.statusBars());
