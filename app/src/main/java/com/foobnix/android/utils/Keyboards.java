@@ -1,14 +1,21 @@
 package com.foobnix.android.utils;
 
+import static com.foobnix.androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.core.view.WindowInsetsCompat;
+
+import com.foobnix.androidx.core.view.WindowCompat;
+import com.foobnix.androidx.core.view.WindowInsetsControllerCompat;
 import com.foobnix.model.AppState;
 import com.foobnix.ui2.MainTabs2;
 
@@ -69,42 +76,35 @@ public class Keyboards {
 
     }
 
-    public static void hideNavigation(final Activity a) {
+    public static void hideNavigation(final Activity activity) {
         try {
-            if (a == null) {
+            if (activity == null) {
                 return;
             }
-            if (a instanceof MainTabs2 && AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
+            if (activity instanceof MainTabs2
+                    && AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             } else if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             }
 
-            final View decorView = a.getWindow().getDecorView();
-            decorView.postDelayed(new Runnable() {
+            final Window window = activity.getWindow();
+            final View decorView = window.getDecorView();
+            final WindowInsetsControllerCompat insetsController = WindowCompat
+                    .getInsetsController(window, decorView);
 
-                @Override
-                public void run() {
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        decorView.setSystemUiVisibility(//
-                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
-                    } else {
-                        decorView.setSystemUiVisibility( //
-                                View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN); //
-                    }
+            decorView.postDelayed(() -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    WindowCompat.setDecorFitsSystemWindows(window, false);
+                    insetsController.setSystemBarsBehavior(BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                } else {
+                    insetsController.hide(WindowInsetsCompat.Type.navigationBars()
+                            | WindowInsetsCompat.Type.statusBars());
                 }
-
             }, 100);
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     public static void hideNavigationOnCreate(final Activity a) {
@@ -112,24 +112,19 @@ public class Keyboards {
             if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             }
-            final View decorView = a.getWindow().getDecorView();
-            if (Build.VERSION.SDK_INT >= 19) {
-                decorView.setSystemUiVisibility(//
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
-                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
-                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-                                | View.SYSTEM_UI_FLAG_FULLSCREEN//
-                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
+            final Window window = a.getWindow();
+            final WindowInsetsControllerCompat insetsController = WindowCompat
+                    .getInsetsController(window, window.getDecorView());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                WindowCompat.setDecorFitsSystemWindows(window, false);
+                insetsController.setSystemBarsBehavior(BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
             } else {
-                decorView.setSystemUiVisibility( //
-                        View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                | View.SYSTEM_UI_FLAG_FULLSCREEN); //
+                insetsController.hide(WindowInsetsCompat.Type.navigationBars()
+                        | WindowInsetsCompat.Type.statusBars());
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
-
 }
