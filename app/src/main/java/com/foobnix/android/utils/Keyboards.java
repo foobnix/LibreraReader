@@ -95,8 +95,7 @@ public class Keyboards {
                     WindowCompat.setDecorFitsSystemWindows(window, false);
                     insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
                 } else {
-                    insetsController.hide(WindowInsetsCompat.Type.navigationBars()
-                            | WindowInsetsCompat.Type.statusBars());
+                    insetsController.hide(WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.statusBars());
                 }
             }, 100);
         } catch (Exception e) {
@@ -116,8 +115,7 @@ public class Keyboards {
                 WindowCompat.setDecorFitsSystemWindows(window, false);
                 insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
             } else {
-                insetsController.hide(WindowInsetsCompat.Type.navigationBars()
-                        | WindowInsetsCompat.Type.statusBars());
+                insetsController.hide(WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.statusBars());
             }
         } catch (Exception e) {
             LOG.e(e);
