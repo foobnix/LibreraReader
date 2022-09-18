@@ -295,7 +295,7 @@
    <string name="headings_only">仅标题</string>
    <string name="one_page">单页</string>
    <string name="two_pages">双页</string>
-   <string name="two_pages_cover">双页封面</string>
+   <string name="two_pages_cover">封面，双页</string>
    <string name="half_page">半页</string>
    <string name="by_pages">单页</string>
    <string name="by_screans">全屏幅度</string>
@@ -644,7 +644,7 @@
    <string name="memory">机身存储</string>
    <string name="accessibility">无障碍</string>
    <string name="web_search_google">网络搜索（谷歌...）</string>
-   <string name="synced_books">同步书籍</string>
+   <string name="synced_books">同步的书籍</string>
    <string name="smart_reflow">智能重排</string>
    <string name="user_styles">用户样式</string>
 </resources>
