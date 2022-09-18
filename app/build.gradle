@@ -72,16 +72,20 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.release
             debuggable false
         }
         debug {
+            minifyEnabled false
             debuggable true
         }
     }
 
     compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -312,6 +316,7 @@ android {
             )
         }
     }
+    namespace 'com.foobnix.pdf.info'
 }
 
 dependencies {
@@ -320,6 +325,9 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
+
+/** Desugaring **/
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'

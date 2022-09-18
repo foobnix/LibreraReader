@@ -5,6 +5,7 @@ plugins {
 android {
     buildToolsVersion '31.0.0'
     compileSdk 31
+    namespace 'com.foobnix.pdf.pro'
 
     defaultConfig {
         minSdk 14
