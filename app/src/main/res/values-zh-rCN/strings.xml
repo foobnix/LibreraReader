@@ -319,7 +319,7 @@
    <string name="set_the_current_page_number">设置页码</string>
    <string name="the_book_is_over">本书结束！</string>
    <string name="___SELECT___TEXT___SECTION___"></string>
-   <string name="highlight_of_text">文本高亮</string>
+   <string name="highlight_of_text">选择</string>
    <string name="underline_of_text">下划线</string>
    <string name="strikethrough_of_text">删除线</string>
    <string name="text">文本</string>
@@ -444,14 +444,14 @@
    <string name="line_spacing">行距</string>
    <string name="paragraph_spacing">段落间距</string>
    <string name="indent">段首缩进</string>
-   <string name="allow_text_highlight">启用文本高亮</string>
-   <string name="text_highlight_mode_is_enable">文本高亮已经启用</string>
-   <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
+   <string name="allow_text_highlight">允许选取文本</string>
+   <string name="text_highlight_mode_is_enable">文本选取已启用</string>
+   <string name="text_highlight_mode_is_disable">文本选取已禁用</string>
    <string name="application_error_please_send_this_report_by_emial">出错了！请用电子邮件报告以便我们尽快修复。</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电、来短信等时候暂停</string>
-   <string name="add_resource">添加资源</string>
+   <string name="add_resource">添加文件位置</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">下载更多字体（10MB）？</string>
-   <string name="hyphenation_language">断字语言</string>
+   <string name="hyphenation_language">语言</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">将图像中的白色替换为背景色（仅限白天模式）</string>
    <string name="no_keywords">无关键词</string>
    <string name="my_tags">标签</string>
@@ -592,7 +592,7 @@
    <string name="reference_mode_like_in_calibre_viewer">参考模式（Calibre 风格）</string>
    <string name="profile_root">配置文件</string>
    <string name="create_folder">新建文件夹</string>
-   <string name="show_hidden">显示隐藏</string>
+   <string name="show_hidden">显示隐藏文件</string>
    <string name="new_file">新文件</string>
    <string name="paste_or_type_text_in_here">在此处粘贴或输入文字</string>
    <string name="go_to_the_folder">转到文件夹</string>
