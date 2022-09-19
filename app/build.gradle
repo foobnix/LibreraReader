@@ -6,8 +6,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 4814
-    FDroidVersionNumber = "8.6.46"
+    FDroidCodeNumber = 4842
+    FDroidVersionNumber = "8.6.47"
 }
 
 println " --------------------"
@@ -132,7 +132,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera Reader",
+                    appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -146,7 +146,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera Reader",
+                    appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -161,7 +161,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera PRO",
+                    appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
@@ -189,7 +189,7 @@ android {
             dimension "version"
             applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
-                    appName      : "Book Reader",
+                    appName      : "RED Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
                     appGdriveKey : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
@@ -246,7 +246,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera PRO",
+                    appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : "",
