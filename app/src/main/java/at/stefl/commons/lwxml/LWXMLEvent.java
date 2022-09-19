@@ -20,7 +20,7 @@ public enum LWXMLEvent {
     ATTRIBUTE_NAME(true), ATTRIBUTE_VALUE(true), END_ATTRIBUTE_LIST(false);
     
     static {
-        Set<LWXMLEvent> defaultFollowers = ArrayUtil.toHashSet(
+        Set<LWXMLEvent> defaultFollowers = ArrayUtil.toSet(
                 PROCESSING_INSTRUCTION_TARGET, COMMENT, START_ELEMENT,
                 END_ELEMENT, CHARACTERS, CDATA, END_DOCUMENT);
         
@@ -93,7 +93,7 @@ public enum LWXMLEvent {
     }
     
     private void setFollowingEvents(LWXMLEvent... followingEvents) {
-        setFollowingEvents(ArrayUtil.toHashSet(followingEvents));
+        setFollowingEvents(ArrayUtil.toSet(followingEvents));
     }
     
     public boolean isEndElement() {

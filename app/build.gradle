@@ -360,7 +360,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    //implementation 'com.google.guava:guava:27.0.1-android'
+    implementation 'com.google.guava:guava:27.0.1-android'
 
 /** Ads **/
     def google_ads = "com.google.android.gms:play-services-ads:21.1.0"

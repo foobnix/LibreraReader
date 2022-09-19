@@ -11,7 +11,7 @@ import at.stefl.commons.util.array.ArrayUtil;
 public class OpenDocumentUtil {
     
     private static final Set<String> POSSIBLY_EMPTY_ELEMENT_SET = ArrayUtil
-            .toHashSet("text:p", "text:h");
+            .toSet("text:p", "text:h");
     
     public static boolean isEmptyElement(LWXMLReader in) throws IOException {
         while (true) {

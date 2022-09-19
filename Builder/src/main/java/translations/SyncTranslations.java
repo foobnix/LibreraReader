@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -201,14 +200,6 @@ public class SyncTranslations {
     public static void sort(final ResourcesModel in) {
         // Collections.sort(in.getStrings(), new ModelComparator());
 
-    }
-
-    static class ModelComparator implements Comparator<StringModel> {
-
-        @Override
-        public int compare(final StringModel o1, final StringModel o2) {
-            return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
-        }
     }
 
     private static String normilizeText(String text) {

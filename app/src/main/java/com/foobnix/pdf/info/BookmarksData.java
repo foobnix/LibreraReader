@@ -14,22 +14,17 @@ import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 public class BookmarksData {
-
-
-    final static BookmarksData instance = new BookmarksData();
+    private static final BookmarksData instance = new BookmarksData();
 
     public static BookmarksData get() {
         return instance;
     }
-
 
     public void add(AppBookmark bookmark) {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text, bookmark.path);
@@ -87,24 +82,18 @@ public class BookmarksData {
                 if (fast.equals(next.text)) {
                     iterator.remove();
                 }
-
             }
-
         }
         return all;
     }
 
-
     public List<AppBookmark> getAll() {
-
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-
             List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
             for (File file : allFiles) {
                 LinkedJSONObject obj = IO.readJsonObject(file);
-
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -121,27 +110,15 @@ public class BookmarksData {
             LOG.e(e);
         }
 
-
-//        Iterator<AppBookmark> iterator = all.iterator();
-//        while (iterator.hasNext()) {
-//            AppBookmark next = iterator.next();
-//            if (next.getText().equals(quick)) {
-//                iterator.remove();
-//            }
-//        }
-
         LOG.d("getAll-size", all.size());
-        Collections.sort(all, BY_TIME);
+        all.sort(Comparator.comparingDouble(AppBookmark::getTime).reversed());
         return all;
     }
 
-
     public List<AppBookmark> getBookmarksByBook(String path) {
-
         List<AppBookmark> all = new ArrayList<>();
-
-
         List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
+
         for (File file : allFiles) {
             LinkedJSONObject obj = IO.readJsonObject(file);
             try {
@@ -167,7 +144,7 @@ public class BookmarksData {
 
 
         LOG.d("getBookmarksByBook", path, all.size());
-        Collections.sort(all, BY_PERCENT);
+        all.sort(Comparator.comparingDouble(AppBookmark::getPercent));
         return all;
     }
 
@@ -181,32 +158,11 @@ public class BookmarksData {
         return false;
     }
 
-    static final Comparator<AppBookmark> BY_PERCENT = new Comparator<AppBookmark>() {
-
-        @Override
-        public int compare(AppBookmark o1, AppBookmark o2) {
-            return Float.compare(o1.getPercent(), o2.getPercent());
-        }
-    };
-
-    static final Comparator<AppBookmark> BY_TIME = new Comparator<AppBookmark>() {
-
-        @Override
-        public int compare(AppBookmark o1, AppBookmark o2) {
-            return Float.compare(o2.getTime(), o1.getTime());
-        }
-    };
-
-
     public Map<String, List<AppBookmark>> getBookmarksMap() {
         return null;
     }
 
-
     public void cleanBookmarks() {
-        //IO.writeObj(AppProfile.syncBookmarks.getPath(), "{}");
         AppData.get().clearAll(AppProfile.APP_BOOKMARKS_JSON);
     }
-
-
 }

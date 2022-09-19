@@ -24,8 +24,7 @@ public abstract class OpenDocumentFile implements Closeable {
     private static final String MIMETYPE_PATH = "mimetype";
     private static final String MANIFEST_PATH = "META-INF/manifest.xml";
     
-    private static final Set<String> UNENCRYPTED_FILES = ArrayUtil
-            .toHashSet(new String[] { MIMETYPE_PATH, MANIFEST_PATH });
+    private static final Set<String> UNENCRYPTED_FILES = ArrayUtil.toSet(MIMETYPE_PATH, MANIFEST_PATH);
     
     private String mimetype;
     private Map<String, String> mimetypeMap;
