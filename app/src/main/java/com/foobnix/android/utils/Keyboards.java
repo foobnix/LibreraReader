@@ -85,21 +85,31 @@ public class Keyboards {
                 return;
             }
 
-            final Window window = activity.getWindow();
-            final View decorView = window.getDecorView();
-            final WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, decorView);
+            final View decorView = activity.getWindow().getDecorView();
+            decorView.postDelayed(new Runnable() {
 
-            decorView.postDelayed(() -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    WindowCompat.setDecorFitsSystemWindows(window, false);
-                    insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-                } else {
-                    insetsController.hide(WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.statusBars());
+                @Override
+                public void run() {
+                    if (Build.VERSION.SDK_INT >= 19) {
+                        decorView.setSystemUiVisibility(//
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
+                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
+                                        | View.SYSTEM_UI_FLAG_FULLSCREEN//
+                                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
+                    } else {
+                        decorView.setSystemUiVisibility( //
+                                View.SYSTEM_UI_FLAG_LOW_PROFILE //
+                                        | View.SYSTEM_UI_FLAG_FULLSCREEN); //
+                    }
                 }
+
             }, 100);
         } catch (Exception e) {
             LOG.e(e);
         }
+
     }
 
     public static void hideNavigationOnCreate(final Activity a) {
@@ -110,11 +120,19 @@ public class Keyboards {
             final Window window = a.getWindow();
             final WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                WindowCompat.setDecorFitsSystemWindows(window, false);
-                insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+            final View decorView = a.getWindow().getDecorView();
+            if (Build.VERSION.SDK_INT >= 19) {
+                decorView.setSystemUiVisibility(//
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN//
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
             } else {
-                insetsController.hide(WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.statusBars());
+                decorView.setSystemUiVisibility( //
+                        View.SYSTEM_UI_FLAG_LOW_PROFILE //
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN); //
             }
         } catch (Exception e) {
             LOG.e(e);
