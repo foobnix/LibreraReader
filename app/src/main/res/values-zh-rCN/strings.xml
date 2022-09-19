@@ -605,7 +605,7 @@
    <string name="new_path">新路径</string>
    <string name="old_path">旧路径</string>
    <string name="show_book_description">显示书籍描述</string>
-   <string name="mirror_image_for_teleprompter">倒影模式显示页面文字</string>
+   <string name="mirror_image_for_teleprompter">镜像模式显示图片（用于提词器）</string>
    <string name="defaults_">默认值</string>
    <string name="selected">已选</string>
    <string name="tab_selected">标签已选择</string>
