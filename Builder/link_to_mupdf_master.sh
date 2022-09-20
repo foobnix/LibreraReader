@@ -9,6 +9,8 @@ cd $BUILD_DIR
 VERSION_TAG="master"
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
 
+
+
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
 
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
@@ -26,6 +28,11 @@ mkdir mupdf-$VERSION_TAG
 cd mupdf-$VERSION_TAG
 
 echo "=================="
+
+if [ "$1" == "reset" ]; then
+  git reset --hard
+  git clean -f -d
+fi
 
 if [ "$1" == "clean" ]; then
   git reset --hard

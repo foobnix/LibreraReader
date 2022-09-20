@@ -477,11 +477,11 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 			fz_urldecode(path);
 			buf = fz_read_archive_entry(ctx, zip, path);
 		}
-#if FZ_ENABLE_SVG
+
 		if (strstr(src, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf, base_uri, zip);
 		else
-#endif
+
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
@@ -864,28 +864,20 @@ static void gen2_image_common(fz_context *ctx, struct genstate *g, fz_html_box *
 
 static void gen2_image_html(fz_context *ctx, struct genstate *g, fz_html_box *root_box, fz_xml *node, int display, fz_css_style *style)
 {
-	const char *src = fz_xml_att(node, "src");
+	char *src = fz_xml_att(node, "src");
+
+	if(!src){
+	    src = fz_xml_att(node, "href");
+	 }
+	 if(!src){
+     	 src = fz_xml_att(node, "l:href");
+     }
+
 	if (src)
 	{
-		fz_css_style local_style = *style;
-		fz_image *img;
-		int w, h;
-		const char *w_att = fz_xml_att(node, "width");
-		const char *h_att = fz_xml_att(node, "height");
 
-		if (w_att && (w = fz_atoi(w_att)) > 0)
-		{
-			local_style.width.value = w;
-			local_style.width.unit = strchr(w_att, '%') ? N_PERCENT : N_LENGTH;
-		}
-		if (h_att && (h = fz_atoi(h_att)) > 0)
-		{
-			local_style.height.value = h;
-			local_style.height.unit = strchr(h_att, '%') ? N_PERCENT : N_LENGTH;
-		}
-
-		img = load_html_image(ctx, g->zip, g->base_uri, src);
-		gen2_image_common(ctx, g, root_box, node, img, display, &local_style);
+		fz_image *img = load_html_image(ctx, g->zip, g->base_uri, src);
+		gen2_image_common(ctx, g, root_box, node, img, display, style);
 	}
 }
 
@@ -898,6 +890,10 @@ static void gen2_image_fb2(fz_context *ctx, struct genstate *g, fz_html_box *roo
 	{
 		fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
 		gen2_image_common(ctx, g, root_box, node, fz_keep_image(ctx, img), display, style);
+	}else{
+	        fz_css_style local_style = *style;
+	        fz_image *img = load_html_image(ctx, g->zip, g->base_uri, src);
+    		gen2_image_common(ctx, g, root_box, node, img, display, &local_style);
 	}
 }
 
@@ -1033,8 +1029,9 @@ static void gen2_children(fz_context *ctx, struct genstate *g, fz_html_box *root
 			{
 				gen2_image_html(ctx, g, root_box, node, display, &style);
 			}
-			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
+				gen2_image_html(ctx, g, root_box, node, display, &style);
 				gen2_image_fb2(ctx, g, root_box, node, display, &style);
 			}
 			else if (tag[0]=='s' && tag[1]=='v' && tag[2]=='g' && tag[3]==0)
@@ -1803,14 +1800,14 @@ fz_html *
 fz_parse_fb2(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as XML */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 0, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
 }
 
 fz_html *
 fz_parse_html5(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as HTML5 */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 0, 1, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
 }
 
 fz_html *

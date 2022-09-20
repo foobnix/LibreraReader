@@ -789,13 +789,17 @@ generate_boxes(fz_context *ctx,
 				generate_image(ctx, box, load_svg_image(ctx, g->zip, g->base_uri, g->xml, node), g);
 			}
 
-			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
 				const char *src = fz_xml_att(node, "l:href");
 				if (!src)
 					src = fz_xml_att(node, "xlink:href");
-				if (src && src[0] == '#')
+				if (!src)
+                	src = fz_xml_att(node, "href");
+				if (src)
 				{
+				    if(src[0] == '#'){
+
 					fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
 					if (display == DIS_BLOCK)
 					{
@@ -815,8 +819,43 @@ generate_boxes(fz_context *ctx,
 						insert_inline_box(ctx, box, top, markup_dir, g);
 						generate_image(ctx, box, fz_keep_image(ctx, img), g);
 					}
+					}else{
+
+					int w, h;
+                    					const char *w_att = fz_xml_att(node, "width");
+                    					const char *h_att = fz_xml_att(node, "height");
+                    					if (w_att && (w = fz_atoi(w_att)) > 0)
+                    					{
+                    						style.width.value = w;
+                    						style.width.unit = strchr(w_att, '%') ? N_PERCENT : N_LENGTH;
+                    					}
+                    					if (h_att && (h = fz_atoi(h_att)) > 0)
+                    					{
+                    						style.height.value = h;
+                    						style.height.unit = strchr(h_att, '%') ? N_PERCENT : N_LENGTH;
+                    					}
+
+					if (display == DIS_BLOCK)
+                                    					{
+                                    						fz_html_box *imgbox;
+                                    						box = new_box(ctx, g->pool, markup_dir);
+                                    						box->style = fz_css_enlist(ctx, &style, &g->styles, g->pool);
+                                    						top = insert_block_box(ctx, box, top);
+                                    						imgbox = new_short_box(ctx, g->pool, markup_dir);
+                                    						imgbox->style = fz_css_enlist(ctx, &style, &g->styles, g->pool);
+                                    						insert_inline_box(ctx, imgbox, box, markup_dir, g);
+                                    						generate_image(ctx, imgbox, load_html_image(ctx, g->zip, g->base_uri, src), g);
+                                    					}
+                                    					else if (display == DIS_INLINE)
+                                    					{
+                                    						box = new_short_box(ctx, g->pool, markup_dir);
+                                    						box->style = fz_css_enlist(ctx, &style, &g->styles, g->pool);
+                                    						insert_inline_box(ctx, box, top, markup_dir, g);
+                                    						generate_image(ctx, box, load_html_image(ctx, g->zip, g->base_uri, src), g);
+                                    					}
+                    				}
+					}
 				}
-			}
 
 			else if (display != DIS_NONE)
 			{

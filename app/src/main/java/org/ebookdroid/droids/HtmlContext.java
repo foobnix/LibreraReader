@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.HtmlExtractor;
+import com.foobnix.pdf.info.AppsConfig;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -25,6 +26,14 @@ public class HtmlContext extends PdfContext {
     }
 
     public CodecDocument openDocumentInnerForce(String fileName, String password, boolean forse) {
+
+
+        if(AppsConfig.IS_LOG){
+            MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
+            return muPdfDocument;
+        }
+
+
 
         Map<String, String> notes = null;
         try {

@@ -41,7 +41,7 @@ LOCAL_SRC_FILES := \
 	libmupdf-1.11.c
 
 
-LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 
+LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty
 LOCAL_LDLIBS := -lm -llog -ljnigraphics
 
 include $(BUILD_SHARED_LIBRARY)

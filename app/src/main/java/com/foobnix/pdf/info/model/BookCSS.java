@@ -707,6 +707,7 @@ public class BookCSS {
 
 
         String result = builder.toString();
+        LOG.d("BookCSS");
         return result;
 
     }

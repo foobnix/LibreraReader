@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FictionBook>
+    <body>
+        <title>
+            <p>Томас Балфинч</p>
+            <p>Всеобщая мифология</p>
+            <p>Час Когда боги спускались на землю</p>
+        </title>
+        <section>
+            <subtitle>* * *</subtitle>
+        </section>
+        <section>
+            <title>
+                <p>От издательства</p>
+            </title>
+        </section>
+    </body>
+
+    <body>
+        <p>Примечания fb2</p>
+    </body>
+
+</FictionBook>

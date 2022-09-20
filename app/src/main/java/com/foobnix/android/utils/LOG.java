@@ -18,7 +18,13 @@ public class LOG {
 
     public static void d(Object... statement) {
         if (isEnable) {
-            Log.d(TAG, asString(statement));
+            String msg = asString(statement);
+            if (msg != null && msg.length() > 4000) {
+                Log.d(TAG+"[part1]", msg.substring(0,4000));
+                Log.d(TAG+"[part2]", msg.substring(4000));
+            } else {
+                Log.d(TAG, msg);
+            }
         }
     }
 
@@ -65,9 +71,9 @@ public class LOG {
             out.append(":");
             try {
                 Object v = f.get(obj);
-                if(v==null){
+                if (v == null) {
                     out.append("@null");
-                }else {
+                } else {
                     out.append(v);
                 }
                 out.append("|\n");
