@@ -30,6 +30,7 @@ ext {
 android {
     buildToolsVersion '33.0.0'
     compileSdk 33
+    namespace "com.foobnix.pdf.info"
     //ndkVersion "21.4.7075529"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
@@ -82,6 +83,8 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -320,6 +323,9 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
+
+/** Desugaring **/
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'

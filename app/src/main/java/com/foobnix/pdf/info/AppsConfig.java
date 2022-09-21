@@ -23,7 +23,7 @@ public class AppsConfig {
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
     public static int MUPDF_1_11 = 111;
-    public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
+    public static boolean isDOCXSupported = true;
     public static boolean isCloudsEnable = false;
 
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
