@@ -11,13 +11,9 @@ import net.lingala.zip4j.model.LocalFileHeader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.foobnix.pdf.info.FileMetaComparators.naturalOrderComparator;
 
 public class ZipArchiveInputStream extends InputStream {
 
@@ -47,18 +43,7 @@ public class ZipArchiveInputStream extends InputStream {
 
             final List<FileHeader> fileHeaders = zp.getFileHeaders();
 
-
-            Collections.sort(fileHeaders, new Comparator<FileHeader>() {
-                @Override
-                public int compare(FileHeader o1, FileHeader o2) {
-                    try {
-                        return naturalOrderComparator.compare(o1.getFileName(), o2.getFileName());
-                    } catch (Exception e) {
-                        LOG.e(e);
-                        return 0;
-                    }
-                }
-            });
+            fileHeaders.sort(Comparator.comparing(FileHeader::getFileName));
 
             iterator = fileHeaders.iterator();
             LOG.d("ZipArchiveInputStream", file);

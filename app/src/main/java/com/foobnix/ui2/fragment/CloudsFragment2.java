@@ -21,7 +21,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -42,11 +41,11 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CloudsFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.clouds, R.drawable.glyphicons_544_cloud);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.clouds, R.drawable.glyphicons_544_cloud);
     FileMetaAdapter metaAdapter;
     ImageView onListGrid;
     View panelRecent;
@@ -260,12 +259,12 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
     public static List<FileMeta> getCloudFiles(String path, String prefix) {
 
-        List<FileMeta> res = new ArrayList<FileMeta>();
+        List<FileMeta> res = new ArrayList<>();
 
         File root = new File(path);
         File[] listFiles = root.listFiles();
         if (listFiles == null) {
-            return new ArrayList<FileMeta>();
+            return new ArrayList<>();
         }
 
         for (File file : listFiles) {
@@ -277,8 +276,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             //meta.setPath(prefix + "/" + file.getName());
             res.add(meta);
         }
-        Collections.sort(res, FileMetaComparators.BY_DATE);
-        Collections.reverse(res);
+        res.sort(Comparator.comparing(FileMeta::getDate, Comparator.nullsLast(Comparator.naturalOrder()))
+                .reversed());
 
         return res;
 

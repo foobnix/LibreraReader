@@ -21,7 +21,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -39,6 +38,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
@@ -356,28 +356,35 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         }
 
 
-        if(AppState.get().isShowFavBooks) {
+        if (AppState.get().isShowFavBooks) {
             final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
 
             if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
-
                 try {
                     if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PATH) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_PATH_NUMBER);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getPath,
+                                String.CASE_INSENSITIVE_ORDER));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_DATE) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getDate,
+                                Comparator.nullsLast(Comparator.naturalOrder())));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getSize,
+                                Comparator.nullsLast(Comparator.naturalOrder())));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getSIndex,
+                                Comparator.nullsLast(Comparator.naturalOrder())));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_PAGES);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getPages,
+                                Comparator.nullsLast(Comparator.naturalOrder())));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_TITLE) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_TITLE);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getTitle,
+                                Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_EXT) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getExt,
+                                String.CASE_INSENSITIVE_ORDER));
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
-                        Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
+                        allFavoriteFiles.sort(Comparator.comparing(FileMeta::getAuthor,
+                                Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
                     }
                     if (AppState.get().sortByFavoriteReverse) {
                         Collections.reverse(allFavoriteFiles);

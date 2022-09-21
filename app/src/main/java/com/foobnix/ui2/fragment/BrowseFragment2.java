@@ -52,7 +52,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -81,6 +80,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -989,27 +989,34 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         try {
             if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
-                Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
+                items.sort(Comparator.comparing(FileMeta::getPath, String.CASE_INSENSITIVE_ORDER));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
-                Collections.sort(items, FileMetaComparators.BY_DATE);
+                items.sort(Comparator.comparing(FileMeta::getDate,
+                        Comparator.nullsLast(Comparator.naturalOrder())));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
-                Collections.sort(items, FileMetaComparators.BY_SIZE);
+                items.sort(Comparator.comparing(FileMeta::getSize,
+                        Comparator.nullsLast(Comparator.naturalOrder())));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
-                Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
+                items.sort(Comparator.comparing(FileMeta::getSIndex,
+                        Comparator.nullsLast(Comparator.naturalOrder())));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
-                Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
+                items.sort(Comparator.comparing(FileMeta::getPages,
+                        Comparator.nullsLast(Comparator.naturalOrder())));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
-                Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
+                items.sort(Comparator.comparing(FileMeta::getTitle,
+                        Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
-                Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+                items.sort(Comparator.comparing(FileMeta::getExt, String.CASE_INSENSITIVE_ORDER));
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
-                Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
+                items.sort(Comparator.comparing(FileMeta::getAuthor,
+                        Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
             }
             if (AppState.get().sortByReverse) {
                 Collections.reverse(items);
             }
-            Collections.sort(items, FileMetaComparators.DIRS);
-
+            items.sort(Comparator.comparing(FileMeta::getCusType, Comparator.nullsLast(Comparator
+                            .comparing(cusType -> cusType == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)))
+                    .reversed());
         } catch (Exception e) {
             LOG.e(e);
         }

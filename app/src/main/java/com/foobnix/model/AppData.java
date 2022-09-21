@@ -6,9 +6,9 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.ui2.AppDB;
@@ -23,17 +23,15 @@ import org.librera.LinkedJSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class AppData {
-
     public static final int LIMIT = 3;
     static AppData inst = new AppData();
-    static Map<String, List<SimpleMeta>> cacheSM = new HashMap<>();
 
     public static AppData get() {
         return inst;
@@ -260,8 +258,9 @@ public class AppData {
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.browseExts);
 
-        Collections.sort(res, FileMetaComparators.BY_SYNC_DATE);
-        Collections.reverse(res);
+        res.sort(Comparator.comparing((FileMeta meta) -> new File(meta.getPath()),
+                        Comparator.comparingLong(GFile::getLastModified))
+                .reversed());
         return res;
     }
 
@@ -290,7 +289,7 @@ public class AppData {
             SharedBooks.updateProgress(res, false, LIMIT);
         }
         try {
-            Collections.sort(res, FileMetaComparators.BY_DATE);
+            res.sort(Comparator.comparing(FileMeta::getDate, Comparator.nullsLast(Comparator.naturalOrder())));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -317,8 +316,8 @@ public class AppData {
             }
         }
 
-        Collections.sort(res, FileMetaComparators.BY_DATE);
-        Collections.reverse(res);
+        res.sort(Comparator.comparing(FileMeta::getDate, Comparator.nullsLast(Comparator.naturalOrder()))
+                .reversed());
         return res;
     }
 
@@ -329,7 +328,7 @@ public class AppData {
 
     public List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
-        Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
+        recent.sort(Comparator.comparingLong((SimpleMeta meta) -> meta.time).reversed());
 
         LOG.d("getAllRecent");
         List<FileMeta> res = new ArrayList<>();

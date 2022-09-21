@@ -2,14 +2,13 @@ package com.foobnix.tts;
 
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -69,25 +68,21 @@ public class TTSTracks {
 
         }
 
-        File[] listFiles = root.listFiles(new FilenameFilter() {
-
-            @Override
-            public boolean accept(File dir, String name) {
-                for (String ext : ExtUtils.AUDIO) {
-                    if (name.toLowerCase(Locale.US).endsWith(ext)) {
-                        return true;
-                    }
+        File[] listFiles = root.listFiles((dir, name) -> {
+            for (String ext : ExtUtils.AUDIO) {
+                if (name.toLowerCase(Locale.US).endsWith(ext)) {
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
         if (listFiles == null || listFiles.length == 0) {
             return Collections.emptyList();
         }
 
-        List<File> items = new ArrayList<File>(Arrays.asList(listFiles));
+        List<File> items = new ArrayList<>(Arrays.asList(listFiles));
 
-        Collections.sort(items, FileMetaComparators.BY_PATH_FILE);
+        items.sort(Comparator.comparing(File::getPath, String.CASE_INSENSITIVE_ORDER));
 
         return items;
     }
@@ -101,27 +96,22 @@ public class TTSTracks {
             return null;
         }
 
-        File[] listFiles = root.listFiles(new FilenameFilter() {
-
-            @Override
-            public boolean accept(File dir, String name) {
-                for (String ext : ExtUtils.AUDIO) {
-                    if (name.toLowerCase(Locale.US).endsWith(ext)) {
-                        return true;
-                    }
+        File[] listFiles = root.listFiles((dir, name) -> {
+            for (String ext : ExtUtils.AUDIO) {
+                if (name.toLowerCase(Locale.US).endsWith(ext)) {
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
         if (listFiles == null || listFiles.length == 0) {
             return null;
         }
 
-        List<File> items = new ArrayList<File>(Arrays.asList(listFiles));
+        List<File> items = new ArrayList<>(Arrays.asList(listFiles));
 
-        Collections.sort(items, FileMetaComparators.BY_PATH_FILE);
+        items.sort(Comparator.comparing(File::getPath, String.CASE_INSENSITIVE_ORDER));
 
         return items.get(0).getPath();
     }
-
 }
