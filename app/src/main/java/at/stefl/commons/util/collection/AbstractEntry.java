@@ -1,15 +1,16 @@
 package at.stefl.commons.util.collection;
 
+import androidx.annotation.NonNull;
+
 import java.util.Map;
 import java.util.Map.Entry;
-
-import at.stefl.commons.util.object.ObjectUtil;
+import java.util.Objects;
 
 public abstract class AbstractEntry<K, V> implements Entry<K, V> {
     
     @Override
     public int hashCode() {
-        return ObjectUtil.hashCode(getKey()) ^ ObjectUtil.hashCode(getValue());
+        return Objects.hash(getKey(), getValue());
     }
     
     @Override
@@ -19,11 +20,11 @@ public abstract class AbstractEntry<K, V> implements Entry<K, V> {
         
         if (!(o instanceof Map.Entry)) return false;
         Map.Entry<?, ?> other = (Map.Entry<?, ?>) o;
-        
-        return ObjectUtil.equals(getKey(), other.getKey())
-                && ObjectUtil.equals(getValue(), other.getValue());
+
+        return Objects.equals(getKey(), other.getKey()) && Objects.equals(getValue(), other.getValue());
     }
     
+    @NonNull
     @Override
     public String toString() {
         return getKey() + "=" + getValue();
