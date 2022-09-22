@@ -892,7 +892,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 return items;
 
             } else {
-                List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
+                boolean isDisplayAllFilesInFolder = Environment.getExternalStorageDirectory().getPath().equals(displayPath) || AppState.get().isDisplayAllFilesInFolder;
+                List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, isDisplayAllFilesInFolder);
                 ExtUtils.removeReadBooks(filesAndDirs);
                 return filesAndDirs;
             }
