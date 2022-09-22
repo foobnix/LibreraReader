@@ -1,7 +1,9 @@
 package at.stefl.commons.util.collection;
 
+
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 import at.stefl.commons.util.object.ObjectUtil;
 
@@ -9,7 +11,7 @@ public abstract class AbstractEntry<K, V> implements Entry<K, V> {
     
     @Override
     public int hashCode() {
-        return ObjectUtil.hashCode(getKey()) ^ ObjectUtil.hashCode(getValue());
+        return Objects.hash(getKey(),getValue());
     }
     
     @Override

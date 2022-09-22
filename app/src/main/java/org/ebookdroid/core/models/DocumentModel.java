@@ -26,13 +26,13 @@ import org.ebookdroid.core.events.CurrentPageListener;
 import org.ebookdroid.ui.viewer.IActivityController;
 import org.ebookdroid.ui.viewer.IView;
 import org.emdev.ui.progress.IProgressIndicator;
-import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.listeners.ListenerProxy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class DocumentModel extends ListenerProxy {
 
@@ -135,7 +135,7 @@ public class DocumentModel extends ListenerProxy {
     }
 
     public void setCurrentPageIndex(final PageIndex newIndex, int pages) {
-        if (!CompareUtils.equals(currentIndex, newIndex)) {
+        if (!Objects.equals(currentIndex, newIndex)) {
 
             this.currentIndex = newIndex;
 

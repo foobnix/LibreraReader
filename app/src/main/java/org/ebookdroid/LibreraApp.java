@@ -3,6 +3,7 @@ package org.ebookdroid;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
+import android.os.StrictMode;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
@@ -42,7 +43,24 @@ public class LibreraApp extends MultiDexApplication {
 
     @Override
     public void onCreate() {
+        if(AppsConfig.IS_LOG){
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
         super.onCreate();
+
+
+
 
 
         context = getApplicationContext();

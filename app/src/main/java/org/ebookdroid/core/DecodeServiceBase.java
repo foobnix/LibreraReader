@@ -33,7 +33,6 @@ import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason;
-import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MathUtils;
 
@@ -48,7 +47,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class DecodeServiceBase implements DecodeService {
 
@@ -782,7 +780,7 @@ public class DecodeServiceBase implements DecodeService {
                 return 0;
             }
 
-            return CompareUtils.compare(r1.id, r2.id);
+            return Long.compare(r1.id, r2.id);
         }
 
     }

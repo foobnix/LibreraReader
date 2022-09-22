@@ -2,8 +2,6 @@ package org.ebookdroid.core;
 
 import android.graphics.RectF;
 
-import org.emdev.utils.CompareUtils;
-
 import java.util.Comparator;
 
 public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
@@ -28,9 +26,9 @@ public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
         int res = 0;
 
         if (viewIndex1 == cp && viewIndex2 == cp) {
-            res = CompareUtils.compare(s1.top, s2.top);
+            res = Float.compare(s1.top, s2.top);
             if (res == 0) {
-                res = CompareUtils.compare(s1.left, s2.left);
+                res = Float.compare(s1.left, s2.left);
             }
         } else if (v1 && !v2) {
             res = -1;
@@ -41,9 +39,9 @@ public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
             final float d2 = viewIndex2 + s2.centerY() - (cp + 0.5f);
             final int dist1 = Math.abs((int) (d1 * node1.level.zoom));
             final int dist2 = Math.abs((int) (d2 * node2.level.zoom));
-            res = CompareUtils.compare(dist1, dist2);
+            res = Integer.compare(dist1, dist2);
             if (res == 0) {
-                res = -CompareUtils.compare(viewIndex1, viewIndex2);
+                res = -Float.compare(viewIndex1, viewIndex2);
             }
         }
 
