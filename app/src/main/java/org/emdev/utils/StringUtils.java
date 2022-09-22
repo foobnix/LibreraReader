@@ -1,5 +1,7 @@
 package org.emdev.utils;
 
+import android.text.TextUtils;
+
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,7 +46,7 @@ public class StringUtils {
 
         final String[] split = value.split(separator);
         for (final String string : split) {
-            if (LengthUtils.isNotEmpty(string)) {
+            if (!TextUtils.isEmpty(string)) {
                 list.add(string);
             }
         }
@@ -54,7 +56,7 @@ public class StringUtils {
     public static String merge(final String separator, final String... items) {
         final StringBuffer result = new StringBuffer();
         for (final String item : items) {
-            if (LengthUtils.isNotEmpty(item)) {
+            if (!TextUtils.isEmpty(item)) {
                 if (result.length() > 0) {
                     result.append(separator);
                 }
@@ -67,7 +69,7 @@ public class StringUtils {
     public static String merge(final String separator, final Collection<String> items) {
         final StringBuffer result = new StringBuffer();
         for (final String item : items) {
-            if (LengthUtils.isNotEmpty(item)) {
+            if (!TextUtils.isEmpty(item)) {
                 if (result.length() > 0) {
                     result.append(separator);
                 }
