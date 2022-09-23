@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -324,7 +325,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
