@@ -331,12 +331,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
-        //FirebaseAnalytics.getInstance(this);
-
-        if (false) {
-            startActivity(new Intent(this, SvgActivity.class));
-            return;
-        }
 
         if (!Android6.canWrite(this)) {
             Android6.checkPermissions(this, true);

@@ -8,7 +8,7 @@
 
     </style>
 
-    <style name="StyledIndicatorsBlack" parent="Theme.AppCompat">
+    <style name="StyledIndicatorsBlack" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowIsTranslucent">true</item>

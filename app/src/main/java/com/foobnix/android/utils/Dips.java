@@ -95,6 +95,16 @@ public class Dips {
         }
     }
 
+    public static boolean isDarkThemeOn() {
+        try {
+            return (Resources.getSystem().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+
     public static boolean isEInk() {
         boolean isEink = getRefreshRate() < 30.0;
         if (isEink) {

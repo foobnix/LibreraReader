@@ -3,7 +3,6 @@ package com.foobnix.model;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.view.KeyEvent;
 
@@ -601,10 +600,6 @@ public class AppState {
     public boolean isShowSyncBooks = true;
 
 
-
-
-
-
     public static synchronized AppState get() {
         return instance;
     }
@@ -645,6 +640,7 @@ public class AppState {
         nameMusicianMode = a.getString(R.string.mode_musician);
         musicText = a.getString(R.string.musician);
 
+        appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
         if (Dips.isEInk()) {
             appTheme = AppState.THEME_INK;
             isDayNotInvert = true;
