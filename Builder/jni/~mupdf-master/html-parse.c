@@ -1445,7 +1445,7 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		if (try_fictionbook && fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-			//fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
+			fz_parse_css(ctx, g.css, user_css, "<default:fb2>");
 			if (fz_use_document_css(ctx))
 				fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = load_fb2_images(ctx, root);
@@ -1453,7 +1453,7 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		else if (is_mobi)
 		{
 			g.is_fb2 = 0;
-			//fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			fz_parse_css(ctx, g.css, user_css, "<default:html>");
 			//fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
@@ -1461,15 +1461,15 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		else
 		{
 			g.is_fb2 = 0;
-			//fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			fz_parse_css(ctx, g.css, user_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 
 		if (user_css)
 		{
-			fz_parse_css(ctx, g.css, user_css, "<user>");
-			fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
+			//fz_parse_css(ctx, g.css, user_css, "<user>");
+			//fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 		}
 	}
 	fz_catch(ctx)
@@ -1800,14 +1800,14 @@ fz_html *
 fz_parse_fb2(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as XML */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 0, 0);
 }
 
 fz_html *
 fz_parse_html5(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as HTML5 */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 0, 1, 0);
 }
 
 fz_html *

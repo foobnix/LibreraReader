@@ -1409,7 +1409,7 @@ fz_parse_html_imp(fz_context *ctx,
 		if (fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-			fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
+			fz_parse_css(ctx, g.css, user_css, "<default:fb2>");
 			if (fz_use_document_css(ctx))
 				fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = load_fb2_images(ctx, root);
@@ -1417,7 +1417,7 @@ fz_parse_html_imp(fz_context *ctx,
 		else
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			fz_parse_css(ctx, g.css, user_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = NULL;
@@ -1425,8 +1425,8 @@ fz_parse_html_imp(fz_context *ctx,
 
 		if (user_css)
 		{
-			fz_parse_css(ctx, g.css, user_css, "<user>");
-			fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
+			//fz_parse_css(ctx, g.css, user_css, "<user>");
+			//fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 		}
 	}
 	fz_catch(ctx)
