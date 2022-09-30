@@ -15,7 +15,10 @@ echo "================== "
 if [ "$1" == "clean" ]; then
   git reset --hard
   git clean -f -d
+  rm -rf generated
   make clean
+  make generate
+  make release
 fi
 make generate
 echo "================== "

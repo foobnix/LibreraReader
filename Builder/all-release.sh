@@ -7,6 +7,7 @@ cd ../
 ./gradlew clean incVersion
 
 ./gradlew assembleOldRelease
+./gradlew assembleTts_readerRelease
 
 cd Builder
 
@@ -20,7 +21,6 @@ cd ../
 ./gradlew assembleEpub_readerRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
-./gradlew assembleTts_readerRelease
 ./gradlew assemblePdf_classicRelease
 ./gradlew assembleFdroidRelease
 ./gradlew assembleHuaweiRelease

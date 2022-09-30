@@ -32,16 +32,22 @@ echo "=================="
 if [ "$1" == "reset" ]; then
   git reset --hard
   git clean -f -d
-fi
+  git submodule foreach --recursive git clean -xfd
+  git checkout --recurse-submodules 70430d0a2eabbab85b3515a8c01f41981f4afae4
 
-if [ "$1" == "clean" ]; then
-  git reset --hard
-  git clean -f -d
+  echo "=================="
+  git log -n 3
+  echo "=================="
+  rm -rf generated
   make clean
+  make generate
+  make release
 fi
 
-# make release
+
+
 make generate
+
 echo "=================="
 
 cd ..

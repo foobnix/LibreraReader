@@ -1,14 +1,8 @@
 package com.foobnix.pdf;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.PathShape;
-import android.graphics.drawable.shapes.Shape;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -27,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -57,43 +50,15 @@ import com.foobnix.ui2.adapter.TabsAdapter2;
  */
 public class SlidingTabLayout extends HorizontalScrollView {
 
-    SwipeRefreshLayout swipeRefreshLayout;
-
-    public void addSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
-        this.swipeRefreshLayout = swipeRefreshLayout;
-    }
-
-    /**
-     * Allows complete control over the colors drawn in the tab layout. Set with
-     * {@link #setCustomTabColorizer(TabColorizer)}.
-     */
-    public interface TabColorizer {
-
-        /**
-         * @return return the color of the indicator used when {@code position}
-         * is selected.
-         */
-        int getIndicatorColor(int position);
-
-        /**
-         * @return return the color of the divider drawn to the right of
-         * {@code position}.
-         */
-        int getDividerColor(int position);
-
-    }
-
     private static final int TITLE_OFFSET_DIPS = 24;
-
     private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
-
     private static int POS_HORIZONTAL = 0;
     private static int POS_VERTICAL = 1;
-
     private static int myPOS = POS_VERTICAL;
-
     private static int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 10 : 7;
-
+    private final SlidingTabStrip mTabStrip;
+    SwipeRefreshLayout swipeRefreshLayout;
+    IntegerResponse onDoubleClickAction;
     private int mTitleOffset;
 
     private int mTabViewLayoutId;
@@ -101,8 +66,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
-
-    private final SlidingTabStrip mTabStrip;
 
     public SlidingTabLayout(Context context) {
         this(context, null);
@@ -126,8 +89,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabStrip.setDividerColors(Color.TRANSPARENT);
 
     }
-    IntegerResponse onDoubleClickAction;
-    public void setOnDoubleClickAction(IntegerResponse onDoubleClickAction){
+
+    public void addSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
+        this.swipeRefreshLayout = swipeRefreshLayout;
+    }
+
+    public void setOnDoubleClickAction(IntegerResponse onDoubleClickAction) {
         this.onDoubleClickAction = onDoubleClickAction;
     }
 
@@ -137,7 +104,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
         addView(getmTabStrip(), LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -306,17 +272,17 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 }
                 tabTitleView.setContentDescription(pageTitle + " " + getContext().getString(R.string.tab));
                 // TintUtil.addTextView(tabTitleView);
-
-                Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
-
-
-
-                if (myPOS == POS_VERTICAL) {
-                    tabTitleView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
-                } else {
-                    tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                Drawable drawable = null;
+                try {
+                    drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
+                    if (myPOS == POS_VERTICAL) {
+                        tabTitleView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
+                    } else {
+                        tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
-
 
 
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
@@ -325,7 +291,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
                     tabTitleView.setTextColor(TintUtil.color);
                 } else {
-                    TintUtil.setDrawableTint(drawable, Color.WHITE);
+                    if(drawable!=null) {
+                        TintUtil.setDrawableTint(drawable, Color.WHITE);
+                    }
                     tabTitleView.setTextColor(Color.WHITE);
                 }
 
@@ -338,7 +306,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
                     @Override
                     public void onDoubleClick(View v) {
-                        if(onDoubleClickAction!=null) {
+                        if (onDoubleClickAction != null) {
                             onDoubleClickAction.onResultRecive(j);
                         }
                     }
@@ -387,6 +355,49 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     public SlidingTabStrip getmTabStrip() {
         return mTabStrip;
+    }
+
+    public void updateIcons(int position) {
+        for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
+            TextView childAt = (TextView) getmTabStrip().getChildAt(i);
+            int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
+
+
+            Drawable drawable;
+            if (myPOS == POS_VERTICAL) {
+                drawable = childAt.getCompoundDrawables()[1];
+            } else {
+                drawable = childAt.getCompoundDrawables()[0];
+            }
+
+            if (AppState.get().appTheme == AppState.THEME_INK) {
+                TintUtil.setDrawableTint(drawable, TintUtil.color);
+                childAt.setTextColor(TintUtil.color);
+            } else {
+                childAt.setTextColor(myColor);
+                TintUtil.setDrawableTint(drawable, myColor);
+            }
+        }
+    }
+
+    /**
+     * Allows complete control over the colors drawn in the tab layout. Set with
+     * {@link #setCustomTabColorizer(TabColorizer)}.
+     */
+    public interface TabColorizer {
+
+        /**
+         * @return return the color of the indicator used when {@code position}
+         * is selected.
+         */
+        int getIndicatorColor(int position);
+
+        /**
+         * @return return the color of the divider drawn to the right of
+         * {@code position}.
+         */
+        int getDividerColor(int position);
+
     }
 
     private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
@@ -438,29 +449,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
         }
 
-    }
-
-    public void updateIcons(int position) {
-        for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
-            TextView childAt = (TextView) getmTabStrip().getChildAt(i);
-            int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
-
-
-            Drawable drawable;
-            if (myPOS == POS_VERTICAL) {
-                drawable = childAt.getCompoundDrawables()[1];
-            } else {
-                drawable = childAt.getCompoundDrawables()[0];
-            }
-
-            if (AppState.get().appTheme == AppState.THEME_INK) {
-                TintUtil.setDrawableTint(drawable, TintUtil.color);
-                childAt.setTextColor(TintUtil.color);
-            } else {
-                childAt.setTextColor(myColor);
-                TintUtil.setDrawableTint(drawable, myColor);
-            }
-        }
     }
 
     private class TabClickListener implements View.OnClickListener {
