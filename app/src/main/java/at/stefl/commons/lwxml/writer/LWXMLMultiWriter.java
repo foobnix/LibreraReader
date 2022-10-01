@@ -1,10 +1,12 @@
 package at.stefl.commons.lwxml.writer;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import at.stefl.commons.lwxml.LWXMLEvent;
-import at.stefl.commons.util.iterator.ArrayIterator;
 
 public class LWXMLMultiWriter extends LWXMLWriter implements
         Iterable<LWXMLWriter> {
@@ -19,9 +21,10 @@ public class LWXMLMultiWriter extends LWXMLWriter implements
         System.arraycopy(outs, 0, this.outs, 0, len);
     }
     
+    @NonNull
     @Override
     public Iterator<LWXMLWriter> iterator() {
-        return new ArrayIterator<LWXMLWriter>(outs);
+        return Arrays.asList(outs).iterator();
     }
     
     @Override

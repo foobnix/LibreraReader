@@ -3,13 +3,12 @@ package at.stefl.opendocument.java.odf;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import at.stefl.commons.util.EnumerationUtil;
 
 public class LocatedOpenDocumentFile extends OpenDocumentFile {
     
@@ -49,13 +48,13 @@ public class LocatedOpenDocumentFile extends OpenDocumentFile {
     @Override
     public Set<String> getFileNames() throws IOException {
         if (entryMap == null) {
-            entryMap = new HashMap<String, ZipEntry>();
-            
-            for (ZipEntry entry : EnumerationUtil.iterable(zipFile.entries())) {
+            entryMap = new HashMap<>();
+
+            for (ZipEntry entry : Collections.list(zipFile.entries())) {
                 entryMap.put(entry.getName(), entry);
             }
         }
-        
+
         return entryMap.keySet();
     }
     

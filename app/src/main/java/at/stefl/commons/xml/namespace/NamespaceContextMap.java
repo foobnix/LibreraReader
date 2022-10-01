@@ -1,13 +1,12 @@
 package at.stefl.commons.xml.namespace;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import at.stefl.commons.util.iterator.EmptyIterator;
-import at.stefl.commons.util.iterator.SingleElementIterator;
 import at.stefl.commons.xml.XMLConstants;
 
 public class NamespaceContextMap implements NamespaceContext {
@@ -47,15 +46,14 @@ public class NamespaceContextMap implements NamespaceContext {
     
     @Override
     public Iterator<String> getPrefixes(String namespaceURI) {
-        if (namespaceURI == null) throw new IllegalArgumentException(
-                "namespaceURI cannot be null");
-        if (namespaceURI.equals(XMLConstants.XML_NS_URI)) return new SingleElementIterator<String>(
-                XMLConstants.XML_NS_PREFIX);
-        if (namespaceURI.equals(XMLConstants.XMLNS_ATTRIBUTE_NS_URI)) return new SingleElementIterator<String>(
-                XMLConstants.XMLNS_ATTRIBUTE);
-        
-        List<String> result = prefixesMap.get(namespaceURI);
-        if (result == null) return new EmptyIterator<String>();
+        if (namespaceURI == null)
+            throw new IllegalArgumentException("namespaceURI cannot be null");
+        if (namespaceURI.equals(XMLConstants.XML_NS_URI))
+            return Collections.singletonList(XMLConstants.XML_NS_PREFIX).iterator();
+        if (namespaceURI.equals(XMLConstants.XMLNS_ATTRIBUTE_NS_URI))
+            return Collections.singletonList(XMLConstants.XMLNS_ATTRIBUTE).iterator();
+
+        List<String> result = prefixesMap.getOrDefault(namespaceURI, Collections.emptyList());
         return result.iterator();
     }
     

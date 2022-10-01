@@ -2,7 +2,6 @@ package at.stefl.commons.util.collection;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,19 +11,11 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.RandomAccess;
 
-import at.stefl.commons.util.iterator.IterableIterator;
-import at.stefl.commons.util.iterator.IteratorEnumeration;
-import at.stefl.commons.util.iterator.IteratorUtil;
 import at.stefl.commons.util.object.ObjectTransformer;
 
 // TODO: improve argument names
 // TODO: call method by method, avoid redundant code?
 public class CollectionUtil {
-    
-    public static <E> Iterable<E> getIterable(Iterator<E> iterator) {
-        return new IterableIterator<E>(iterator);
-    }
-    
     public static boolean containsAll(Collection<?> c, Object... array) {
         for (int i = 0; i < array.length; i++) {
             if (!c.contains(array[i])) return false;
@@ -973,10 +964,6 @@ public class CollectionUtil {
         return result;
     }
     
-    public static <E> Enumeration<E> enumeration(Collection<? extends E> c) {
-        return new IteratorEnumeration<E>(c.iterator());
-    }
-    
     public static <E> void swap(List<E> list, int i, int j) {
         if (list instanceof RandomAccess) {
             list.set(i, list.set(j, list.get(i)));
@@ -1088,19 +1075,6 @@ public class CollectionUtil {
         HashSet<V> result = new HashSet<V>();
         getNotNull(map, result, keys);
         return result;
-    }
-    
-    public static <E> E[] toArray(Collection<? extends E> from, E[] to) {
-        return toArray(from, to, 0);
-    }
-    
-    public static <E> E[] toArray(Collection<? extends E> from, E[] to, int off) {
-        return toArray(from, to, off, from.size());
-    }
-    
-    public static <E> E[] toArray(Collection<? extends E> from, E[] to,
-            int off, int len) {
-        return IteratorUtil.toArray(from.iterator(), to, off, len);
     }
     
     private CollectionUtil() {}
