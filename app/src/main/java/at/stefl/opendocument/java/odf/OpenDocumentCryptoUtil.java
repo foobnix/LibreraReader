@@ -20,43 +20,22 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import at.stefl.commons.io.ByteStreamUtil;
-import at.stefl.commons.io.CountingInputStream;
 import at.stefl.commons.io.LimitedInputStream;
-import at.stefl.commons.util.collection.CollectionUtil;
-import at.stefl.commons.util.comparator.MapEntryValueComparator;
 import de.rtner.security.auth.spi.MacBasedPRF;
 import de.rtner.security.auth.spi.PBKDF2Engine;
 import de.rtner.security.auth.spi.PBKDF2Parameters;
 
 // TODO: improve class design
 public class OpenDocumentCryptoUtil {
-    
-    private static final Comparator<EncryptionParameter> PLAIN_SIZE_COMPERATOR = new Comparator<EncryptionParameter>() {
-        @Override
-        public int compare(EncryptionParameter o1, EncryptionParameter o2) {
-            return o1.getPlainSize() - o2.getPlainSize();
-        }
-    };
-    
-    private static final MapEntryValueComparator<EncryptionParameter> ENTRY_PLAIN_SIZE_COMPERATOR = new MapEntryValueComparator<EncryptionParameter>(
-            PLAIN_SIZE_COMPERATOR);
-    
-    public static int getDeflatedSize(InputStream in) throws IOException {
-    	in = new InflaterInputStream(in, new Inflater(true), 1);
-        CountingInputStream cin = new CountingInputStream(in);
-        ByteStreamUtil.flushBytewise(cin);
-        return (int) cin.count();
-    }
-    
     public static boolean validatePassword(String password,
             OpenDocumentFile documentFile) throws IOException {
         Map<String, EncryptionParameter> encryptionParameterMap = documentFile
                 .getEncryptionParameterMap();
-        
-        Map.Entry<String, EncryptionParameter> smallest = CollectionUtil
-                .getSmallest(ENTRY_PLAIN_SIZE_COMPERATOR,
-                        encryptionParameterMap.entrySet());
-        
+
+        Map.Entry<String, EncryptionParameter> smallest = encryptionParameterMap.entrySet().stream()
+                .min(Map.Entry.comparingByValue(Comparator.comparingInt(EncryptionParameter::getPlainSize)))
+                .orElse(null);
+
         if (smallest == null) return true;
         String path = smallest.getKey();
         EncryptionParameter encryptionParameter = smallest.getValue();
