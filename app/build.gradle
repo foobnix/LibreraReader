@@ -83,7 +83,7 @@ android {
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
+        //coreLibraryDesugaringEnabled true
 
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -325,7 +325,7 @@ dependencies {
     implementation project(':smartreflow')
 
 /** Desugaring **/
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
+    //coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -445,7 +445,7 @@ if (!taskName.contains("Fdroid")) {
         implementation "com.github.junrar:junrar:4.0.0"
         implementation "commons-logging:commons-logging-api:1.1"
 
-        implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+        //implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
 
 
         implementation 'com.google.android.gms:play-services-auth:17.0.0'

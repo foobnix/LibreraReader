@@ -67,6 +67,7 @@ echo "================== "
 
 if [ "$1" == "clean_ndk" ]; then
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build clean
+rm -rf $MUPDF_JAVA/obj
 fi
 
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build NDK_APPLICATION_MK=jni/Application-16.mk

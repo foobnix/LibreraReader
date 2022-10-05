@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -33,7 +32,6 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
@@ -85,8 +83,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import test.SvgActivity;
 
 
 @SuppressLint("NewApi")

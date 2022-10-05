@@ -12,7 +12,6 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;

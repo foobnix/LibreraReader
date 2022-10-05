@@ -122,7 +122,10 @@ public enum UITab {
     }
 
     public boolean isVisible() {
-        if (AppsConfig.IS_FDROID && (this == UITab.OpdsFragment || this == UITab.CloudsFragment)) {
+        if(this == UITab.CloudsFragment){
+            return false;
+        }
+        if (AppsConfig.IS_FDROID && (this == UITab.OpdsFragment)) {
             return false;
         }
         return isVisible;
