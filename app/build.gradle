@@ -39,7 +39,7 @@ android {
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        //multiDexEnabled true
     }
 
     configurations {
@@ -329,7 +329,7 @@ dependencies {
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
+    //implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.work:work-runtime:2.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -361,8 +361,9 @@ dependencies {
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     //implementation 'com.google.guava:guava:27.0.1-android'
 
+
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:21.1.0"
+    def google_ads = "com.google.android.gms:play-services-ads:21.2.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads
@@ -371,6 +372,7 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
+
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
@@ -438,23 +440,26 @@ task incVersion() {
 }
 
 if (!taskName.contains("Fdroid")) {
-
-    apply plugin: 'com.google.gms.google-services'
-
     dependencies {
         implementation "com.github.junrar:junrar:4.0.0"
-        implementation "commons-logging:commons-logging-api:1.1"
-
-        //implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-
-
-        implementation 'com.google.android.gms:play-services-auth:17.0.0'
-        implementation 'com.google.http-client:google-http-client-gson:1.30.2'
-        implementation('com.google.api-client:google-api-client-android:1.30.2') {
-            exclude group: 'org.apache.httpcomponents'
-        }
-        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
-            exclude group: 'org.apache.httpcomponents'
-        }
     }
+
+//    apply plugin: 'com.google.gms.google-services'
+//
+//    dependencies {
+//
+//        implementation "commons-logging:commons-logging-api:1.1"
+//
+//        //implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+//
+//
+//        implementation 'com.google.android.gms:play-services-auth:17.0.0'
+//        implementation 'com.google.http-client:google-http-client-gson:1.30.2'
+//        implementation('com.google.api-client:google-api-client-android:1.30.2') {
+//            exclude group: 'org.apache.httpcomponents'
+//        }
+//        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
+//            exclude group: 'org.apache.httpcomponents'
+//        }
+//    }
 }

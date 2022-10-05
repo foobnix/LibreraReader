@@ -1,12 +1,13 @@
 package org.ebookdroid;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 
 import androidx.annotation.NonNull;
-import androidx.multidex.MultiDexApplication;
+//import androidx.multidex.MultiDexApplication;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -28,7 +29,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 
-public class LibreraApp extends MultiDexApplication {
+public class LibreraApp extends Application {
 
     public final static int MUPDF_VERSION;
     public static Context context;
