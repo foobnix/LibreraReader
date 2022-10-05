@@ -12,8 +12,6 @@ import com.foobnix.model.AppState;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
-import org.ebookdroid.LibreraApp;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

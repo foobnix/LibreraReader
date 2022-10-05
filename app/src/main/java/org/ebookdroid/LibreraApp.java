@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
 //import androidx.multidex.MultiDexApplication;
 
 import com.foobnix.android.utils.Apps;
@@ -29,7 +30,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 
-public class LibreraApp extends Application {
+public class LibreraApp extends MultiDexApplication {
 
     public final static int MUPDF_VERSION;
     public static Context context;

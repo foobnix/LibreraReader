@@ -39,7 +39,7 @@ android {
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //multiDexEnabled true
+        multiDexEnabled true
     }
 
     configurations {
@@ -329,7 +329,7 @@ dependencies {
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
-    //implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.work:work-runtime:2.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
