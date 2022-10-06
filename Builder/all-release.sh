@@ -8,6 +8,12 @@ cd ../
 
 ./gradlew assembleOldRelease
 ./gradlew assembleTts_readerRelease
+./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
+./gradlew assembleEpub_readerRelease
+./gradlew assemblePdf_v2Release
+./gradlew assembleEbookaRelease
+./gradlew assemblePdf_classicRelease
 
 cd Builder
 
@@ -15,16 +21,8 @@ cd Builder
 
 cd ../
 
-
-./gradlew assembleLibreraRelease
-./gradlew assembleProRelease
-./gradlew assembleEpub_readerRelease
-./gradlew assemblePdf_v2Release
-./gradlew assembleEbookaRelease
-./gradlew assemblePdf_classicRelease
 ./gradlew assembleFdroidRelease
 ./gradlew assembleHuaweiRelease
-
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

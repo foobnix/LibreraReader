@@ -249,7 +249,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera",
+                    appName      : "Librera F-Droid",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : "",
