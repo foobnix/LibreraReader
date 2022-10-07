@@ -352,7 +352,7 @@ public class PrefFragment2 extends UIFragment {
             public void run() {
                 dragLinearLayout.removeAllViews();
                 for (UITab tab : UITab.getOrdered()) {
-                    if (AppsConfig.IS_FDROID && tab == UITab.CloudsFragment) {
+                    if (tab == UITab.CloudsFragment) {//SKIP for all
                         continue;
                     }
 

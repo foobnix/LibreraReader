@@ -169,6 +169,30 @@ public class CalirbeExtractor {
                                 LOG.e(e);
                             }
                         }
+                        if ("calibre:user_metadata:#keywords".equals(attrName) || "calibre:user_metadata:#keyword".equals(attrName)) {
+                            LOG.d("user keywords", attrContent);
+                            try {
+                                LinkedJSONObject obj = new LinkedJSONObject(attrContent);
+                                try {
+                                    String ge = obj.getString("#value#");
+
+                                    meta.setKeywords(add(meta.getKeywords(), ", ", ge));
+
+                                } catch (JSONException e) {
+                                    JSONArray jsonArray = obj.getJSONArray("#value#");
+                                    String res = "";
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        res = res + "," + jsonArray.getString(i);
+                                    }
+                                    String ge1 = TxtUtils.replaceFirst(res, ",", "");
+
+                                    meta.setKeywords(add(meta.getKeywords(), ", ", ge1));
+                                }
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                        }
+
                         if ("librera:user_metadata:#genre".equals(attrName)) {
                             LOG.d("librera-userGenre", attrContent);
                             try {

@@ -15,7 +15,8 @@ cd ../
 
 cd Builder
 
-./link_to_mupdf_master.sh
+#./link_to_mupdf_master.sh
+./link_to_mupdf_1.20.2.sh
 
 cd ../
 
