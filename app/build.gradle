@@ -100,21 +100,6 @@ android {
 
     flavorDimensions.add("version")
     productFlavors {
-        beta {
-            dimension "version"
-            applicationId "com.foobnix.pdf.reader"
-            manifestPlaceholders = [
-                    appName      : "MuPDF-1.11",
-                    appIcon      : "@mipmap/icon_pdf_reader",
-                    appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~8769894873",
-                    admobBannerId: "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId  : "ca-app-pub-8347903083053959/2769081274",
-                    appSafeMode  : "true"
-            ]
-        }
-
         old {
             minSdk 14
             dimension "version"
@@ -130,6 +115,20 @@ android {
                     appSafeMode  : "true"
             ]
         }
+        beta {
+            dimension "version"
+            applicationId "com.foobnix.pdf.reader"
+            manifestPlaceholders = [
+                    appName      : "MuPDF-1.11",
+                    appIcon      : "@mipmap/icon_pdf_reader",
+                    appRoundIcon : "@mipmap/icon_pdf_reader",
+                    appGdriveKey : librera_appGdriveKey,
+                    admobAppId   : librera_admobAppId,
+                    admobBannerId: librera_admobBannerId,
+                    admobFullId  : librera_admobFullId,
+                    appSafeMode  : "true"
+            ]
+        }
 
         librera {
             dimension "version"
@@ -138,10 +137,10 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~8769894873",
-                    admobBannerId: "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId  : "ca-app-pub-8347903083053959/2769081274",
+                    appGdriveKey : librera_appGdriveKey,
+                    admobAppId   : librera_admobAppId,
+                    admobBannerId: librera_admobBannerId,
+                    admobFullId  : librera_admobFullId,
                     appSafeMode  : "false"
             ]
         }
@@ -152,10 +151,10 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~8769894873",
-                    admobBannerId: "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId  : "ca-app-pub-8347903083053959/2769081274",
+                    appGdriveKey : huawei_appGdriveKey,
+                    admobAppId   : huawei_admobAppId,
+                    admobBannerId: huawei_admobBannerId,
+                    admobFullId  : huawei_admobFullId,
                     appSafeMode  : "false"
             ]
         }
@@ -167,7 +166,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
-                    appGdriveKey : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
+                    appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
                     admobFullId  : "",
@@ -181,10 +180,10 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_classic",
                     appRoundIcon : "@mipmap/launcher_classic",
-                    appGdriveKey : "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~8457312875",
-                    admobBannerId: "ca-app-pub-8347903083053959/5364245672",
-                    admobFullId  : "ca-app-pub-8347903083053959/7763820878",
+                    appGdriveKey : pdf_classic_appGdriveKey,
+                    admobAppId   : pdf_classic_admobAppId,
+                    admobBannerId: pdf_classic_admobBannerId,
+                    admobFullId  : pdf_classic_admobFullId,
                     appSafeMode  : "true"
             ]
         }
@@ -195,10 +194,10 @@ android {
                     appName      : "RED Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
-                    appGdriveKey : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~5153060505",
-                    admobBannerId: "ca-app-pub-8347903083053959/6159730856",
-                    admobFullId  : "ca-app-pub-8347903083053959/2346153515",
+                    appGdriveKey : ebooka_appGdriveKey,
+                    admobAppId   : ebooka_admobAppId,
+                    admobBannerId: ebooka_admobBannerId,
+                    admobFullId  : ebooka_admobFullId,
                     appSafeMode  : "false"
             ]
         }
@@ -209,10 +208,10 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_2",
                     appRoundIcon : "@mipmap/launcher_pdf_v2",
-                    appGdriveKey : "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~5943988213",
-                    admobBannerId: "ca-app-pub-8347903083053959/6705625294",
-                    admobFullId  : "ca-app-pub-8347903083053959/1346267659",
+                    appGdriveKey : pdf_v2_appGdriveKey,
+                    admobAppId   : pdf_v2_admobAppId,
+                    admobBannerId: pdf_v2_admobBannerId,
+                    admobFullId  : pdf_v2_admobFullId,
                     appSafeMode  : "false"
             ]
         }
@@ -223,10 +222,10 @@ android {
                     appName      : "TTS Reader",
                     appIcon      : "@mipmap/icon_tts_reader_app",
                     appRoundIcon : "@mipmap/launcher_tts_reader_app",
-                    appGdriveKey : "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~1533135764",
-                    admobBannerId: "ca-app-pub-8347903083053959/2702801102",
-                    admobFullId  : "ca-app-pub-8347903083053959/4602986382",
+                    appGdriveKey : tts_reader_appGdriveKey,
+                    admobAppId   : tts_reader_admobAppId,
+                    admobBannerId: tts_reader_admobBannerId,
+                    admobFullId  : tts_reader_admobFullId,
                     appSafeMode  : "false"
             ]
         }
@@ -237,10 +236,10 @@ android {
                     appName      : "Epub Reader",
                     appIcon      : "@mipmap/icon_epub_reader",
                     appRoundIcon : "@mipmap/launcher_epub_reader",
-                    appGdriveKey : "961762082517-p6b2kqqimju6rlp314mu56lipvq2m68r.apps.googleusercontent.com",
-                    admobAppId   : "ca-app-pub-8347903083053959~8118779310",
-                    admobBannerId: "ca-app-pub-8347903083053959/1553370961",
-                    admobFullId  : "ca-app-pub-8347903083053959/6163356354",
+                    appGdriveKey : epub_reader_appGdriveKey,
+                    admobAppId   : epub_reader_admobAppId,
+                    admobBannerId: epub_reader_admobBannerId,
+                    admobFullId  : epub_reader_admobFullId,
                     appSafeMode  : "false"
             ]
         }
