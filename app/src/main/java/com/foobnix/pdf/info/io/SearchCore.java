@@ -136,6 +136,8 @@ public class SearchCore {
             listFiles = file.listFiles();
         } else {
             listFiles = file.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
+
+
         }
 
         if (listFiles == null || listFiles.length == 0) {
@@ -190,8 +192,9 @@ public class SearchCore {
                     return true;
                 }
             } else {
+                String lowerCase = f.getName().toLowerCase(Locale.US);
                 for (String s : ExtUtils.browseExts) {
-                    if (f.getName().toLowerCase(Locale.US).endsWith(s)) {
+                    if (lowerCase.endsWith(s)) {
                         return true;
                     }
                 }
@@ -210,8 +213,9 @@ public class SearchCore {
             if (pathname.isDirectory()) {
                 return true;
             }
+            String lowerCase = pathname.getName().toLowerCase(Locale.US);
             for (String s : ExtUtils.browseExts) {
-                if (pathname.getName().toLowerCase(Locale.US).endsWith(s)) {
+                if (lowerCase.endsWith(s)) {
                     return true;
                 }
             }

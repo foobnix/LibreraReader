@@ -150,6 +150,8 @@ public enum BookType {
             }
         }
         list.remove(FolderContext.LXML);
+        list.remove("");
+
         return list;
     }
 

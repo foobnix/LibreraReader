@@ -159,7 +159,6 @@ public class ExtUtils {
 
         mimeCache.put(".chm", "application/x-chm");
         mimeCache.put(".xps", "application/vnd.ms-xpsdocument");
-        mimeCache.put(".chm", "application/x-chm");
         mimeCache.put(".lit", "application/x-ms-reader");
 
         mimeCache.put(".doc", "application/msword");

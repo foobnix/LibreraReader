@@ -329,8 +329,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }).setIcon(R.drawable.glyphicons_336_folder);
 
                 String pathDownloads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
-                if(new File(pathDownloads).isDirectory()) {
-                    menu.getMenu().add(getString(R.string.memory) + "/"+ExtUtils.getFileName(pathDownloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (new File(pathDownloads).isDirectory()) {
+                    menu.getMenu().add(getString(R.string.memory) + "/" + ExtUtils.getFileName(pathDownloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -340,7 +340,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         }
                     }).setIcon(R.drawable.glyphicons_336_folder);
                 }
-
 
 
                 for (final String info : extFolders) {
@@ -365,7 +364,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
                 if (new File(BookCSS.get().downlodsPath).isDirectory()) {
-                    menu.getMenu().add("Librera/"+getString(R.string.downloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu().add("Librera/" + getString(R.string.downloads)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -893,6 +892,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             } else {
                 boolean isDisplayAllFilesInFolder = Environment.getExternalStorageDirectory().getPath().equals(displayPath) || AppState.get().isDisplayAllFilesInFolder;
+                LOG.d("isDisplayAllFilesInFolder1", isDisplayAllFilesInFolder);
                 List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, isDisplayAllFilesInFolder);
                 ExtUtils.removeReadBooks(filesAndDirs);
                 return filesAndDirs;
@@ -1395,7 +1395,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 onGridList();
                 populate();
             }
-        },150);
+        }, 150);
 
     }
 
