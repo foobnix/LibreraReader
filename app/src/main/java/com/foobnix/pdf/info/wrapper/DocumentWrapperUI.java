@@ -1966,7 +1966,7 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     editTop2.setVisibility(View.VISIBLE);
                 } else {
                     editTop2.setVisibility(View.VISIBLE);

@@ -647,4 +647,5 @@
    <string name="synced_books">Synkronoidut kirjat</string>
    <string name="smart_reflow">Älykäs reflow</string>
    <string name="user_styles">Käyttäjän tyylit</string>
+   <string name="engine">Moottori</string>
 </resources>

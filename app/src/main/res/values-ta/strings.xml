@@ -647,4 +647,5 @@
    <string name="synced_books">ஒத்திசைக்கப்பட்ட புத்தகங்கள்</string>
    <string name="smart_reflow">ஸ்மார்ட் ரிஃப்ளோ</string>
    <string name="user_styles">பயனர் வரையறுத்த</string>
+   <string name="engine">இயந்திரம்</string>
 </resources>

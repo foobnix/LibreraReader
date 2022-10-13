@@ -647,4 +647,5 @@
    <string name="synced_books">Synchronizované knihy</string>
    <string name="smart_reflow">Chytré přeformátování</string>
    <string name="user_styles">Uživatelsky definované</string>
+   <string name="engine">Motor</string>
 </resources>

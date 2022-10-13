@@ -647,4 +647,5 @@
    <string name="synced_books">Cărți sincronizate</string>
    <string name="smart_reflow">Reflow inteligent</string>
    <string name="user_styles">Stiluri de utilizare</string>
+   <string name="engine">Motor</string>
 </resources>

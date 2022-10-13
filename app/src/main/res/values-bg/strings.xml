@@ -647,4 +647,5 @@
    <string name="synced_books">Синхронизирани книги</string>
    <string name="smart_reflow">Интелигентно преформатиране</string>
    <string name="user_styles">Дефинирани от потребителя</string>
+   <string name="engine">Двигател</string>
 </resources>

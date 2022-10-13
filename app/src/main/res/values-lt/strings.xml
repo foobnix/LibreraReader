@@ -647,4 +647,5 @@
    <string name="synced_books">Sinchronizuotos knygos</string>
    <string name="smart_reflow">Protingas pertvarkymas</string>
    <string name="user_styles">Vartotojo</string>
+   <string name="engine">Variklis</string>
 </resources>

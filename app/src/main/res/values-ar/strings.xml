@@ -647,4 +647,5 @@
    <string name="synced_books">الكتب المتزامنة</string>
    <string name="smart_reflow">إعادة التدفق الذكي</string>
    <string name="user_styles">أساليب العضو</string>
+   <string name="engine">محرك</string>
 </resources>

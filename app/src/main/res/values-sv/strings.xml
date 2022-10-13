@@ -647,4 +647,5 @@
    <string name="synced_books">Synkroniserade böcker</string>
    <string name="smart_reflow">Smart återflöde</string>
    <string name="user_styles">Användar stilar</string>
+   <string name="engine">Motor</string>
 </resources>

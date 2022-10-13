@@ -647,4 +647,5 @@
    <string name="synced_books">Leabhair synced</string>
    <string name="smart_reflow">Reflow cliste</string>
    <string name="user_styles">Sainithe ag an úsáideoir</string>
+   <string name="engine">Inneall</string>
 </resources>

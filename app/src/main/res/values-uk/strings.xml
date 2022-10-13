@@ -647,4 +647,5 @@
    <string name="synced_books">Синхронізовані книги</string>
    <string name="smart_reflow">Розумне оплавлення</string>
    <string name="user_styles">Користувацькі</string>
+   <string name="engine">Двигун</string>
 </resources>

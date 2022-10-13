@@ -31,7 +31,7 @@ LOCAL_C_INCLUDES := \
 	$(TOP_LOCAL_PATH)
     	
 LOCAL_CFLAGS += -DHAVE_ANDROID
-LOCAL_MODULE := mypdf
+LOCAL_MODULE := libLibrera_111
 
 LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
@@ -41,7 +41,7 @@ LOCAL_SRC_FILES := \
 	libmupdf-1.11.c
 
 
-LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty
+LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty antiword libmobi
 LOCAL_LDLIBS := -lm -llog -ljnigraphics
 
 include $(BUILD_SHARED_LIBRARY)

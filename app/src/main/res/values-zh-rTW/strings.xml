@@ -647,4 +647,5 @@
    <string name="synced_books">同步書籍</string>
    <string name="smart_reflow">智能回流</string>
    <string name="user_styles">用戶樣式</string>
+   <string name="engine">引擎</string>
 </resources>

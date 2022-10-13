@@ -28,7 +28,7 @@ LOCAL_C_INCLUDES := \
 	$(TOP_LOCAL_PATH)
     	
 LOCAL_CFLAGS := -DHAVE_ANDROID
-LOCAL_MODULE := mypdf
+LOCAL_MODULE := libLibrera_1204
 
 LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
@@ -39,7 +39,7 @@ LOCAL_SRC_FILES := \
 	libmupdf-1.20.2.c
 
 
-LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java
+LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java antiword libmobi
 
 LOCAL_LDLIBS = -ljnigraphics
 LOCAL_LDLIBS += -llog

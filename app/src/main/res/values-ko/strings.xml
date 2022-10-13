@@ -647,4 +647,5 @@
    <string name="synced_books">동기화된 책</string>
    <string name="smart_reflow">스마트 리플로우</string>
    <string name="user_styles">사용자 스타일</string>
+   <string name="engine">엔진</string>
 </resources>

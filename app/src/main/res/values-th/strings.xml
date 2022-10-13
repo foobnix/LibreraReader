@@ -647,4 +647,5 @@
    <string name="synced_books">หนังสือที่ซิงค์</string>
    <string name="smart_reflow">สมาร์ทรีโฟลว์</string>
    <string name="user_styles">สไตล์ของผู้ใช้</string>
+   <string name="engine">เครื่องยนต์</string>
 </resources>

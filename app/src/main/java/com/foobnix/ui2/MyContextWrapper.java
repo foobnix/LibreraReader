@@ -11,14 +11,16 @@ import android.os.LocaleList;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
+
 import java.util.Locale;
 
 public class MyContextWrapper {
-
 
 
     @TargetApi(24)

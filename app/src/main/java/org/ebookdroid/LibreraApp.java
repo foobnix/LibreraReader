@@ -2,6 +2,7 @@ package org.ebookdroid;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -20,6 +21,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
+import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -32,15 +34,10 @@ import java.io.StringWriter;
 
 public class LibreraApp extends MultiDexApplication {
 
-    public final static int MUPDF_VERSION;
+
     public static Context context;
 
-    static {
-        System.loadLibrary("mypdf");
-        System.loadLibrary("mobi");
-        System.loadLibrary("antiword");
-        MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
-    }
+
 
     @Override
     public void onCreate() {
@@ -60,8 +57,7 @@ public class LibreraApp extends MultiDexApplication {
         }
         super.onCreate();
 
-
-
+        AppsConfig.loadEngine(this);
 
 
         context = getApplicationContext();

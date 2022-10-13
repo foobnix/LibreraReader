@@ -647,4 +647,5 @@
    <string name="synced_books">Vitabu vilivyosawazishwa</string>
    <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">Mitindo user</string>
+   <string name="engine">Injini</string>
 </resources>

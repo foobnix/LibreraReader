@@ -647,4 +647,5 @@
    <string name="synced_books">Szinkronizált könyvek</string>
    <string name="smart_reflow">Okos reflow</string>
    <string name="user_styles">Felhasználó által meghatározott</string>
+   <string name="engine">Motor</string>
 </resources>

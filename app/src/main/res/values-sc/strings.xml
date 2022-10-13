@@ -647,4 +647,5 @@
    <string name="synced_books">Synced books</string>
    <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">Definidu dae s\'utente</string>
+   <string name="engine">Engine</string>
 </resources>

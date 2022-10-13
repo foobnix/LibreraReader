@@ -647,4 +647,5 @@
    <string name="synced_books">Senkronize edilmiş kitaplar</string>
    <string name="smart_reflow">Akıllı yeniden akış</string>
    <string name="user_styles">Kullanıcı</string>
+   <string name="engine">Motor</string>
 </resources>

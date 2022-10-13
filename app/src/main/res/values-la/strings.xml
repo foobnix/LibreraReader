@@ -647,4 +647,5 @@
    <string name="synced_books">Synced libri</string>
    <string name="smart_reflow">Dolor reflow</string>
    <string name="user_styles">Styli usufructuarii</string>
+   <string name="engine">Engine</string>
 </resources>

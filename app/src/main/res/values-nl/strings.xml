@@ -647,4 +647,5 @@
    <string name="synced_books">Gesynchroniseerde boeken</string>
    <string name="smart_reflow">Slimme reflow</string>
    <string name="user_styles">Gebruiker stijlen</string>
+   <string name="engine">Motor</string>
 </resources>

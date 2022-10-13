@@ -647,4 +647,5 @@
    <string name="synced_books">Buku yang disinkronkan</string>
    <string name="smart_reflow">Reflow cerdas</string>
    <string name="user_styles">Gaya pengguna</string>
+   <string name="engine">Mesin</string>
 </resources>

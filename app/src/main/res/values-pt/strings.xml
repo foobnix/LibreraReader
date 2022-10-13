@@ -647,4 +647,5 @@
    <string name="synced_books">Livros sincronizados</string>
    <string name="smart_reflow">Refluxo inteligente</string>
    <string name="user_styles">Estilos do usuário</string>
+   <string name="engine">Motor</string>
 </resources>

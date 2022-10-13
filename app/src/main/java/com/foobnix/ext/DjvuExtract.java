@@ -31,6 +31,9 @@ public class DjvuExtract {
         CodecDocument doc = null;
         try {
             doc = codecContex.openDocument(unZipPath, "");
+            if (doc == null) {
+                return EbookMeta.Empty();
+            }
         } catch (RuntimeException e) {
             LOG.e(e);
             return EbookMeta.Empty();

@@ -647,4 +647,5 @@
    <string name="synced_books">സമന്വയിപ്പിച്ച പുസ്തകങ്ങൾ</string>
    <string name="smart_reflow">സ്മാർട്ട് റിഫ്ലോ</string>
    <string name="user_styles">ഉപയോക്താവ് നിർവചിച്ചിരിക്കുന്നത്</string>
+   <string name="engine">എഞ്ചിൻ</string>
 </resources>

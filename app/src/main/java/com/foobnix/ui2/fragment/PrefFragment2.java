@@ -35,6 +35,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -92,10 +93,8 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
-import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -572,7 +571,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION + "-" + BuildConfig.FLAVOR + ")";
+            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_VERSION + "-" + BuildConfig.FLAVOR + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
@@ -839,6 +838,23 @@ public class PrefFragment2 extends UIFragment {
                                                       p.show();
                                                   }
                                               });
+
+
+        TextView appEngine = inflate.findViewById(R.id.appEngine);
+        appEngine.setText(AppsConfig.getCurrentEngine(getActivity()));
+        TxtUtils.underlineTextView(appEngine);
+        appEngine.setOnClickListener(v -> {
+            PopupMenu p = new PopupMenu(getContext(), appEngine);
+            for (String engine : AppsConfig.ENGINES) {
+                p.getMenu().add(engine).setOnMenuItemClickListener(item -> {
+                    AppsConfig.setEngine(getActivity(), engine);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    return false;
+                });
+            }
+            p.show();
+        });
+
 
         final TextView hypenLang = inflate.findViewById(R.id.appLang);
         hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(AppState.get().appLang));

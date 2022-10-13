@@ -46,7 +46,7 @@ public class SyncTranslations {
 
             @Override
             public boolean accept(File dir, String name) {
-                if (name.contains("large") || name.contains("v14") || name.contains("v21")) {
+                if (name.contains("large") || name.contains("v14") || name.contains("v21") || name.contains("v29")) {
                     return false;
                 }
                 if (name.contains("values-")) {

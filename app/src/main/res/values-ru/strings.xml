@@ -647,4 +647,5 @@
    <string name="synced_books">Синхронизированные книги</string>
    <string name="smart_reflow">Умный перекомпоновка</string>
    <string name="user_styles">Пользовательские</string>
+   <string name="engine">Двигатель</string>
 </resources>
