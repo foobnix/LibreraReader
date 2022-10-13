@@ -21,10 +21,8 @@ cd ../
 
 cd Builder
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm*
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 
-rm /home/dev/Nextcloud/LibreraBeta/*-arm*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 rm /home/dev/Nextcloud/LibreraBeta/*-x86*
 
 ./remove_all.sh
