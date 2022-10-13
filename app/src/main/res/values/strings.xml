@@ -648,4 +648,5 @@
    <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">User styles</string>
    <string name="engine">Engine</string>
+   <string name="restart_manually">This change requires a manual restart of the application</string>
 </resources>

@@ -45,10 +45,14 @@ public class BookCSS {
     public static final int TEXT_ALIGN_LEFT = 1;
     public static final int TEXT_ALIGN_RIGHT = 2;
     public static final int TEXT_ALIGN_CENTER = 3;
+
+    public static final String TIMES_NEW_ROMAN = "Times New Roman";
     public static final String ARIAL = "Arial";
     public static final String COURIER = "Courier";
-    public static final String DEFAULT_FONT = "Times New Roman";
     public static final String CHARIS_SIL = "Charis SIL";
+
+    public static final String DEFAULT_FONT =  CHARIS_SIL;
+
 
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
@@ -149,7 +153,7 @@ public class BookCSS {
                 return Typeface.SANS_SERIF;
             } else if (fontName.equals(BookCSS.COURIER)) {
                 return Typeface.MONOSPACE;
-            } else if (fontName.equals(BookCSS.DEFAULT_FONT)) {
+            } else if (fontName.equals(BookCSS.TIMES_NEW_ROMAN)) {
                 return Typeface.SERIF;
             } else {
                 return Typeface.createFromFile(fontName);
@@ -210,13 +214,13 @@ public class BookCSS {
 
         fontFolder = AppProfile.syncFontFolder.getPath();
         downlodsPath = AppProfile.syncDownloadFolder.getPath();
-        displayFontName = CHARIS_SIL;
-        normalFont = CHARIS_SIL;
-        boldFont = CHARIS_SIL;
-        italicFont = CHARIS_SIL;
-        boldItalicFont = CHARIS_SIL;
-        headersFont = CHARIS_SIL;
-        capitalFont = CHARIS_SIL;
+        displayFontName = DEFAULT_FONT;
+        normalFont = DEFAULT_FONT;
+        boldFont = DEFAULT_FONT;
+        italicFont = DEFAULT_FONT;
+        boldItalicFont = DEFAULT_FONT;
+        headersFont = DEFAULT_FONT;
+        capitalFont = DEFAULT_FONT;
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
@@ -294,17 +298,19 @@ public class BookCSS {
         normalFont = fontName;
     }
 
+
+
     public void resetAll(FontPack pack) {
         LOG.d("resetAll", pack.dispalyName, pack.fontFolder);
 
         displayFontName = pack.dispalyName;
 
-        normalFont = CHARIS_SIL;
-        boldFont = CHARIS_SIL;
-        italicFont = CHARIS_SIL;
-        boldItalicFont = CHARIS_SIL;
-        headersFont = CHARIS_SIL;
-        capitalFont = CHARIS_SIL;
+        normalFont = DEFAULT_FONT;
+        boldFont = DEFAULT_FONT;
+        italicFont = DEFAULT_FONT;
+        boldItalicFont = DEFAULT_FONT;
+        headersFont = DEFAULT_FONT;
+        capitalFont = DEFAULT_FONT;
 
         if (displayFontName != null && !displayFontName.contains(".")) {
             normalFont = displayFontName;
@@ -318,10 +324,10 @@ public class BookCSS {
 
         List<String> all = new ArrayList<String>();
 
+        all.add(TIMES_NEW_ROMAN);
         all.add(ARIAL);
         all.add(COURIER);
         all.add(CHARIS_SIL);
-        all.add(DEFAULT_FONT);
 
         all.addAll(getAllFontsFromFolder(pack.fontFolder));
 
@@ -358,10 +364,11 @@ public class BookCSS {
         if (AppSP.get().lastBookPath != null) {
             all.addAll(getAllFontsFromFolder(new File(AppSP.get().lastBookPath).getParent()));
         }
+        all.add(TIMES_NEW_ROMAN);
         all.add(ARIAL);
         all.add(COURIER);
         all.add(CHARIS_SIL);
-        all.add(DEFAULT_FONT);
+
 
         all.addAll(getAllFontsFromFolder(fontFolder));
 
@@ -378,10 +385,10 @@ public class BookCSS {
         if (AppSP.get().lastBookPath != null) {
             all.addAll(getAllFontsFiltered(new File(AppSP.get().lastBookPath).getParent()));
         }
+        all.add(new FontPack(TIMES_NEW_ROMAN));
         all.add(new FontPack(ARIAL));
         all.add(new FontPack(COURIER));
         all.add(new FontPack(CHARIS_SIL));
-        all.add(new FontPack(DEFAULT_FONT));
 
         all.addAll(getAllFontsFiltered(fontFolder));
 

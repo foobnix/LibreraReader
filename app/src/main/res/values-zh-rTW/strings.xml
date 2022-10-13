@@ -648,4 +648,5 @@
    <string name="smart_reflow">智能回流</string>
    <string name="user_styles">用戶樣式</string>
    <string name="engine">引擎</string>
+   <string name="restart_manually">此更改需要手動重新啟動應用程序</string>
 </resources>

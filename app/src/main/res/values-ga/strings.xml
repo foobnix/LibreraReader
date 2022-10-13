@@ -648,4 +648,5 @@
    <string name="smart_reflow">Reflow cliste</string>
    <string name="user_styles">Sainithe ag an úsáideoir</string>
    <string name="engine">Inneall</string>
+   <string name="restart_manually">Teastaíonn atosú láimhe den fheidhmchlár leis an athrú seo</string>
 </resources>

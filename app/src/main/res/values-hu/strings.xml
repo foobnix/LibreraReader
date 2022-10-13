@@ -648,4 +648,5 @@
    <string name="smart_reflow">Okos reflow</string>
    <string name="user_styles">Felhasználó által meghatározott</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Ehhez a módosításhoz az alkalmazás manuális újraindítása szükséges</string>
 </resources>

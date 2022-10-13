@@ -648,4 +648,5 @@
    <string name="smart_reflow">Интелигентно преформатиране</string>
    <string name="user_styles">Дефинирани от потребителя</string>
    <string name="engine">Двигател</string>
+   <string name="restart_manually">Тази промяна изисква ръчно рестартиране на приложението</string>
 </resources>

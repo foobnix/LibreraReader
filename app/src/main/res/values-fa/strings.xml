@@ -648,4 +648,5 @@
    <string name="smart_reflow">جریان مجدد هوشمند</string>
    <string name="user_styles">سبک های کاربر</string>
    <string name="engine">موتور</string>
+   <string name="restart_manually">این تغییر نیاز به راه اندازی مجدد دستی برنامه دارد</string>
 </resources>

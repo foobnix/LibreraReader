@@ -648,4 +648,5 @@
    <string name="smart_reflow">Reflow inteligent</string>
    <string name="user_styles">Stiluri de utilizare</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Această modificare necesită o repornire manuală a aplicației</string>
 </resources>

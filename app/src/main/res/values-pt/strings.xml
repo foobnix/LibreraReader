@@ -648,4 +648,5 @@
    <string name="smart_reflow">Refluxo inteligente</string>
    <string name="user_styles">Estilos do usuário</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Esta mudança requer uma reinicialização manual do aplicativo</string>
 </resources>

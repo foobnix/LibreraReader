@@ -648,4 +648,5 @@
    <string name="smart_reflow">Akıllı yeniden akış</string>
    <string name="user_styles">Kullanıcı</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Bu değişiklik, uygulamanın manuel olarak yeniden başlatılmasını gerektirir</string>
 </resources>

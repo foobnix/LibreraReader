@@ -648,4 +648,5 @@
    <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">Mitindo user</string>
    <string name="engine">Injini</string>
+   <string name="restart_manually">Mabadiliko haya yanahitaji kuanzishwa upya kwa programu mwenyewe</string>
 </resources>

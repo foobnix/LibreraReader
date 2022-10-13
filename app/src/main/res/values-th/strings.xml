@@ -648,4 +648,5 @@
    <string name="smart_reflow">สมาร์ทรีโฟลว์</string>
    <string name="user_styles">สไตล์ของผู้ใช้</string>
    <string name="engine">เครื่องยนต์</string>
+   <string name="restart_manually">การเปลี่ยนแปลงนี้ต้องรีสตาร์ทแอปพลิเคชันด้วยตนเอง</string>
 </resources>

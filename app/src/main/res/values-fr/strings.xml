@@ -648,4 +648,5 @@
    <string name="smart_reflow">Refusion intelligente</string>
    <string name="user_styles">Styles utilisateur</string>
    <string name="engine">Moteur</string>
+   <string name="restart_manually">Ce changement nécessite un redémarrage manuel de l\'application</string>
 </resources>

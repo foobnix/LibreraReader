@@ -648,4 +648,5 @@
    <string name="smart_reflow">스마트 리플로우</string>
    <string name="user_styles">사용자 스타일</string>
    <string name="engine">엔진</string>
+   <string name="restart_manually">이 변경에는 응용 프로그램을 수동으로 다시 시작해야 합니다.</string>
 </resources>

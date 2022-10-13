@@ -648,4 +648,5 @@
    <string name="smart_reflow">Chytré přeformátování</string>
    <string name="user_styles">Uživatelsky definované</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>
 </resources>

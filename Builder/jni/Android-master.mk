@@ -28,7 +28,7 @@ LOCAL_C_INCLUDES := \
 	$(TOP_LOCAL_PATH)
     	
 LOCAL_CFLAGS := -DHAVE_ANDROID
-LOCAL_MODULE := libLibrera_1204
+LOCAL_MODULE := MuPDF_1.20.4
 
 LOCAL_SRC_FILES := \
 	ebookdroidjni.c \

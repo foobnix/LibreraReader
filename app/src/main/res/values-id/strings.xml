@@ -648,4 +648,5 @@
    <string name="smart_reflow">Reflow cerdas</string>
    <string name="user_styles">Gaya pengguna</string>
    <string name="engine">Mesin</string>
+   <string name="restart_manually">Perubahan ini memerlukan restart manual aplikasi</string>
 </resources>

@@ -648,4 +648,5 @@
    <string name="smart_reflow">Protingas pertvarkymas</string>
    <string name="user_styles">Vartotojo</string>
    <string name="engine">Variklis</string>
+   <string name="restart_manually">Dėl šio pakeitimo reikia rankiniu būdu iš naujo paleisti programą</string>
 </resources>

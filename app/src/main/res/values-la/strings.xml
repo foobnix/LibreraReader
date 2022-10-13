@@ -648,4 +648,5 @@
    <string name="smart_reflow">Dolor reflow</string>
    <string name="user_styles">Styli usufructuarii</string>
    <string name="engine">Engine</string>
+   <string name="restart_manually">Haec mutatio requirit a manual sileo applicationis</string>
 </resources>

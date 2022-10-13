@@ -648,4 +648,5 @@
    <string name="smart_reflow">Розумне оплавлення</string>
    <string name="user_styles">Користувацькі</string>
    <string name="engine">Двигун</string>
+   <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>
 </resources>

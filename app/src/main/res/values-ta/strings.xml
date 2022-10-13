@@ -648,4 +648,5 @@
    <string name="smart_reflow">ஸ்மார்ட் ரிஃப்ளோ</string>
    <string name="user_styles">பயனர் வரையறுத்த</string>
    <string name="engine">இயந்திரம்</string>
+   <string name="restart_manually">இந்த மாற்றத்திற்கு பயன்பாட்டை கைமுறையாக மறுதொடக்கம் செய்ய வேண்டும்</string>
 </resources>

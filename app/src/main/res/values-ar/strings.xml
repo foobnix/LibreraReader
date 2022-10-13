@@ -648,4 +648,5 @@
    <string name="smart_reflow">إعادة التدفق الذكي</string>
    <string name="user_styles">أساليب العضو</string>
    <string name="engine">محرك</string>
+   <string name="restart_manually">يتطلب هذا التغيير إعادة التشغيل اليدوي للتطبيق</string>
 </resources>

@@ -648,4 +648,5 @@
    <string name="smart_reflow">Älykäs reflow</string>
    <string name="user_styles">Käyttäjän tyylit</string>
    <string name="engine">Moottori</string>
+   <string name="restart_manually">Tämä muutos vaatii sovelluksen manuaalisen uudelleenkäynnistyksen</string>
 </resources>

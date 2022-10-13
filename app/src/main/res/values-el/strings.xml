@@ -648,4 +648,5 @@
    <string name="smart_reflow">Έξυπνη ανανέωση</string>
    <string name="user_styles">Ορισμένο από τον χρήστη</string>
    <string name="engine">Κινητήρας</string>
+   <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>
 </resources>

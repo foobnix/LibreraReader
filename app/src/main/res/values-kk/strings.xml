@@ -648,4 +648,5 @@
    <string name="smart_reflow">Ақылды қайта өңдеу</string>
    <string name="user_styles">Пайдаланушы анықтаған</string>
    <string name="engine">Қозғалтқыш</string>
+   <string name="restart_manually">Бұл өзгеріс қолданбаны қолмен қайта іске қосуды талап етеді</string>
 </resources>

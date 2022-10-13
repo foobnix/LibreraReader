@@ -648,4 +648,5 @@
    <string name="smart_reflow">זרימה חוזרת חכמה</string>
    <string name="user_styles">סגנונות משתמש</string>
    <string name="engine">מנוע</string>
+   <string name="restart_manually">שינוי זה מחייב הפעלה מחדש ידנית של האפליקציה</string>
 </resources>

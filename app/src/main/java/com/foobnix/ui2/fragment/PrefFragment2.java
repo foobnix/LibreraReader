@@ -847,8 +847,14 @@ public class PrefFragment2 extends UIFragment {
             PopupMenu p = new PopupMenu(getContext(), appEngine);
             for (String engine : AppsConfig.ENGINES) {
                 p.getMenu().add(engine).setOnMenuItemClickListener(item -> {
-                    AppsConfig.setEngine(getActivity(), engine);
-                    android.os.Process.killProcess(android.os.Process.myPid());
+                    AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
+                        @Override
+                        public void run() {
+                            AppsConfig.setEngine(getActivity(), engine);
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    });
+
                     return false;
                 });
             }

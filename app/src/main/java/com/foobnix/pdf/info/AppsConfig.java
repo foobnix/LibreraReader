@@ -29,27 +29,27 @@ public class AppsConfig {
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public final static String ENGINE_Librera_111 = "Librera_111";
+
     public static int MUPDF_VERSION = 0;
     public static int MUPDF_1_11 = 111;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
     public static boolean IS_NO_ADS = false;
-    public static List<String> ENGINES = Arrays.asList(ENGINE_Librera_111, "Librera_1204");
+
+
+    public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
+    public static List<String> ENGINES = Arrays.asList(ENGINE_MuPDF_1_11, "MuPDF_1.20.4");
 
     public static void loadEngine(Context c) {
         String engine = getCurrentEngine(c);
         try {
             System.loadLibrary(engine);
-            AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
-            LOG.d("Load-library version ", engine);
         } catch (UnsatisfiedLinkError e) {
             LOG.e(e);
-            setEngine(c, ENGINE_Librera_111);
-            System.loadLibrary(engine);
-            AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
-            LOG.d("Load-library version ", engine);
+            setEngine(c, ENGINE_MuPDF_1_11);
         }
+        LOG.d("Load-library version ", engine);
+        AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
 
     }
 
@@ -59,7 +59,7 @@ public class AppsConfig {
     }
 
     public static String getCurrentEngine(Context c) {
-        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_Librera_111);
+        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_MuPDF_1_11);
     }
 
 

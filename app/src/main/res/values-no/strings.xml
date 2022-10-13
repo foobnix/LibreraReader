@@ -648,4 +648,5 @@
    <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">Brukerstiler</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Denne endringen krever en manuell omstart av programmet</string>
 </resources>

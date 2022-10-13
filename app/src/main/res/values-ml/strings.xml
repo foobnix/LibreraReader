@@ -648,4 +648,5 @@
    <string name="smart_reflow">സ്മാർട്ട് റിഫ്ലോ</string>
    <string name="user_styles">ഉപയോക്താവ് നിർവചിച്ചിരിക്കുന്നത്</string>
    <string name="engine">എഞ്ചിൻ</string>
+   <string name="restart_manually">ഈ മാറ്റത്തിന് ആപ്ലിക്കേഷൻ സ്വമേധയാ പുനരാരംഭിക്കേണ്ടതുണ്ട്</string>
 </resources>

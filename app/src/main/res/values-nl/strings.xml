@@ -648,4 +648,5 @@
    <string name="smart_reflow">Slimme reflow</string>
    <string name="user_styles">Gebruiker stijlen</string>
    <string name="engine">Motor</string>
+   <string name="restart_manually">Deze wijziging vereist een handmatige herstart van de applicatie</string>
 </resources>
