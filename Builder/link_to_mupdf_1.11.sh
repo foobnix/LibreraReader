@@ -58,6 +58,7 @@ cp -rp jni/~mupdf-1.11/image.c        $MUPDF_ROOT/source/fitz/image.c
 
 cp -rp jni/~mupdf-1.11/structured-text.h    $MUPDF_ROOT/include/mupdf/fitz/structured-text.h
 cp -rp jni/~mupdf-1.11/compressed-buffer.h  $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
+cp -rp jni/~mupdf-1.11/context.h  $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 
 cd $MUPDF_JAVA

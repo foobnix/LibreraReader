@@ -818,14 +818,10 @@ static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, floa
 	node->x = 0;
 	node->y = 0;
 
-	int size = 50;
-	if(image_h < size){
-		image_w = image_w * size/image_h;
-		image_h = size;
-	}else {
-		image_w = image_w * 3;
-		image_h = image_h * 3;
-	}
+
+    image_w = image_w * ctx->image_scale;
+    image_h = image_h * ctx->image_scale;
+
 
 	if (image_w > max_w)
 		xs = max_w / image_w;

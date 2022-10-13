@@ -289,7 +289,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env
 
 JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
-		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS) {
+		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale) {
 	renderdocument_t *doc;
 	jboolean iscopy;
 	jclass cls;
@@ -317,6 +317,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 		mupdf_throw_exception(env, "Out of Memory");
 		goto cleanup;
 	}
+
+	doc->ctx->image_scale = imageScale;
 
 	fz_register_document_handlers(doc->ctx);
 
