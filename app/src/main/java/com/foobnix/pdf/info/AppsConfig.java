@@ -15,8 +15,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,26 +27,29 @@ public class AppsConfig {
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-
+    public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
+    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.20.4";
     public static int MUPDF_VERSION = 0;
     public static int MUPDF_1_11 = 111;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
     public static boolean IS_NO_ADS = false;
 
-
-    public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
-    public static List<String> ENGINES = Arrays.asList(ENGINE_MuPDF_1_11, "MuPDF_1.20.4");
-
     public static void loadEngine(Context c) {
         String engine = getCurrentEngine(c);
         try {
+            if (!ENGINE_MuPDF_1_11.equals(engine)) {
+                engine = ENGINE_MuPDF_LATEST;
+            }
+            LOG.d("Loading-library", engine);
             System.loadLibrary(engine);
+            setEngine(c, engine);
         } catch (UnsatisfiedLinkError e) {
-            LOG.e(e);
             setEngine(c, ENGINE_MuPDF_1_11);
+            LOG.d("Loading-library", engine);
+            System.loadLibrary(ENGINE_MuPDF_1_11);
+            LOG.e(e);
         }
-        LOG.d("Load-library version ", engine);
         AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
 
     }

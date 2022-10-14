@@ -845,19 +845,30 @@ public class PrefFragment2 extends UIFragment {
         TxtUtils.underlineTextView(appEngine);
         appEngine.setOnClickListener(v -> {
             PopupMenu p = new PopupMenu(getContext(), appEngine);
-            for (String engine : AppsConfig.ENGINES) {
-                p.getMenu().add(engine).setOnMenuItemClickListener(item -> {
+
+                p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
                     AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
                         @Override
                         public void run() {
-                            AppsConfig.setEngine(getActivity(), engine);
+                            AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_1_11);
                             android.os.Process.killProcess(android.os.Process.myPid());
                         }
                     });
 
                     return false;
                 });
-            }
+            p.getMenu().add(AppsConfig.ENGINE_MuPDF_LATEST).setOnMenuItemClickListener(item -> {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
+                    @Override
+                    public void run() {
+                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_LATEST);
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+                });
+
+                return false;
+            });
+
             p.show();
         });
 
