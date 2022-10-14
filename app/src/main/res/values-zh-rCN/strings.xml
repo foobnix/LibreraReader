@@ -648,5 +648,5 @@
    <string name="smart_reflow">智能重排</string>
    <string name="user_styles">用户样式</string>
    <string name="engine">引擎</string>
-   <string name="restart_manually">此更改需要手动重新启动应用程序</string>
+   <string name="restart_manually">重启应用后生效</string>
 </resources>
