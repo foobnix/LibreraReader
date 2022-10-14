@@ -824,7 +824,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.infoLayout.setVisibility(View.VISIBLE);
             }
         }
+
         holder.authorParent.setVisibility(View.VISIBLE);
+
         if (adapterType == ADAPTER_LIST || adapterType == ADAPTER_LIST_COMPACT) {
             if (AppState.get().coverSmallSize >= IMG.TWO_LINE_COVER_SIZE) {
                 holder.title.setSingleLine(false);
@@ -833,12 +835,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.title.setTextSize(16);
             } else {
                 holder.title.setSingleLine(false);
-                holder.title.setLines(2);
+                holder.title.setLines(1);
                 holder.title.setTextSize(14);
-                holder.authorParent.setVisibility(View.GONE);
+                //holder.authorParent.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
                 holder.infoLayout.setVisibility(View.VISIBLE);
-                holder.title.setText(fileMeta.getPathTxt());
+                //holder.title.setText(fileMeta.getPathTxt());
             }
         }
 
