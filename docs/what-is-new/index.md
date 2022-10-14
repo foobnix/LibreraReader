@@ -4,6 +4,19 @@ layout: main
 
 # What is new
 
+### [8.8.0] Changing the rendering engine within the app
+
+**MuPDF_1.11** basic Librera rendering engine
+
+**MuPDF_1.20.x** modern rendering engine, fast, accurate but can be with bugs, crashes 
+
+||||
+|-|-|-|
+|![](8.8.0a.png)|![](8.8.0b.png)|![](8.8.0c.png)|
+
+### [8.6.44] Rotate page in the bottom menu
+<img class="i" src="8.6.44.png" />
+
 ### [8.6.47] Custom CSS support and Table support
 Added possibility to choose user styles css file
 ```

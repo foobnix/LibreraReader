@@ -4,6 +4,19 @@ layout: main
 
 # Novedades
 
+### [8.8.0] Cambiar el motor de renderizado dentro de la aplicación
+
+**MuPDF_1.11** motor básico de renderizado de Librera
+
+**MuPDF_1.20.x** motor de renderizado moderno, rápido, preciso, pero puede tener errores y bloqueos
+
+||||
+|-|-|-|
+|![](8.8.0a.png)|![](8.8.0b.png)|![](8.8.0c.png)|
+
+### [8.6.44] Rotar página en el menú inferior
+<img class="i" src="8.6.44.png" />
+
 ### [8.6.47] Compatibilidad con CSS personalizado y compatibilidad con tablas
 Se agregó la posibilidad de elegir el archivo css de estilos de usuario
 ```

@@ -4,6 +4,19 @@ layout: main
 
 # Quoi de neuf
 
+### [8.8.0] Modification du moteur de rendu dans l'application
+
+**MuPDF_1.11** moteur de rendu Librera de base
+
+**MuPDF_1.20.x** moteur de rendu moderne, rapide, précis mais peut être avec des bogues, des plantages
+
+||||
+|-|-|-|
+|![](8.8.0a.png)|![](8.8.0b.png)|![](8.8.0c.png)|
+
+### [8.6.44] Faire pivoter la page dans le menu du bas
+<img class="i" src="8.6.44.png" />
+
 ### [8.6.47] Prise en charge CSS personnalisée et prise en charge des tableaux
 Ajout de la possibilité de choisir le fichier CSS des styles utilisateur
 ```

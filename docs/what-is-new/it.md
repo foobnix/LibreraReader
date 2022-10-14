@@ -4,6 +4,19 @@ layout: main
 
 # Cosa c'è di nuovo
 
+### [8.8.0] Modifica del motore di rendering all'interno dell'app
+
+**MuPDF_1.11** motore di rendering Librera di base
+
+**MuPDF_1.20.x** moderno motore di rendering, veloce, preciso ma può essere con bug, arresti anomali
+
+||||
+|-|-|-|
+|![](8.8.0a.png)|![](8.8.0b.png)|![](8.8.0c.png)|
+
+### [8.6.44] Ruota pagina nel menu in basso
+<img class="i" src="8.6.44.png" />
+
 ### [8.6.47] Supporto CSS personalizzato e supporto per tabelle
 Aggiunta la possibilità di scegliere il file CSS degli stili utente
 ```

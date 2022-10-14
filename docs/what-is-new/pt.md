@@ -4,6 +4,19 @@ layout: main
 
 # O que há de novo
 
+### [8.8.0] Alterando o mecanismo de renderização no aplicativo
+
+**MuPDF_1.11** mecanismo básico de renderização do Librera
+
+**MuPDF_1.20.x** mecanismo de renderização moderno, rápido, preciso, mas pode conter bugs, falhas
+
+||||
+|-|-|-|
+|![](8.8.0a.png)|![](8.8.0b.png)|![](8.8.0c.png)|
+
+### [8.6.44] Girar página no menu inferior
+<img class="i" src="8.6.44.png" />
+
 ### [8.6.47] Suporte a CSS personalizado e suporte a tabelas
 Adicionada a possibilidade de escolher o arquivo css de estilos de usuário
 ```
