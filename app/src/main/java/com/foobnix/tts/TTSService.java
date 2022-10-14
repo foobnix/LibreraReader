@@ -1,6 +1,8 @@
 package com.foobnix.tts;
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
@@ -10,22 +12,27 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.provider.Settings;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.foobnix.android.utils.Apps;
@@ -139,6 +146,21 @@ public class TTSService extends Service {
     }
 
     public static void playPause(Context context, DocumentController controller) {
+
+        if (Build.VERSION.SDK_INT >= 33  && ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.POST_NOTIFICATIONS)) {
+//                final Intent i = new Intent();
+//                i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                i.setData( Uri.fromParts("package", context.getPackageName(), null));
+//                context.startActivity(i);
+            }else{
+                ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
+                return;
+            }
+
+        }
+
+
         if (TTSEngine.get().isPlaying()) {
             PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
             try {

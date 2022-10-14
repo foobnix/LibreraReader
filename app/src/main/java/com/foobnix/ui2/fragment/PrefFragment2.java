@@ -844,6 +844,11 @@ public class PrefFragment2 extends UIFragment {
         appEngine.setText(AppsConfig.getCurrentEngine(getActivity()));
         TxtUtils.underlineTextView(appEngine);
         appEngine.setOnClickListener(v -> {
+            if (BooksService.isRunning) {
+                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             PopupMenu p = new PopupMenu(getContext(), appEngine);
 
                 p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
