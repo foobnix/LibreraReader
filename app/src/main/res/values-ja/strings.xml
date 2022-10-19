@@ -497,7 +497,7 @@
    <string name="add_to_bookmark">ブックマークに追加</string>
    <string name="fast_reading">速読（RSVP）</string>
    <string name="minimum_line_length">最小行長（CPL）</string>
-   <string name="ask_rate_us1">このアプリを気に入ったら、Google Playで評価とレビューをお願いします。ありがとうございました！</string>
+   <string name="ask_rate_us1">このアプリを気に入りましたら、Google Playで評価とレビューをお願いします。ありがとうございます！</string>
    <string name="message">メッセージ</string>
    <string name="exit_application">アプリ終了</string>
    <string name="exit_application_question">アプリを終了しますか？</string>
@@ -648,5 +648,5 @@
    <string name="smart_reflow">スマートリフロー</string>
    <string name="user_styles">ユーザーのスタイル</string>
    <string name="engine">エンジン</string>
-   <string name="restart_manually">この変更には、アプリケーションの手動再起動が必要です</string>
+   <string name="restart_manually">この変更には、アプリの手動再起動が必要です</string>
 </resources>
