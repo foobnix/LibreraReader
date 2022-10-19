@@ -51,7 +51,7 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT =  CHARIS_SIL;
+    public static final String DEFAULT_FONT =  TIMES_NEW_ROMAN;
 
 
 

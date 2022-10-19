@@ -93,6 +93,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -279,11 +280,11 @@ public class PrefFragment2 extends UIFragment {
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppSP.get().isEnableSync = isChecked;
             if (isChecked && getActivity() != null) {
-//                if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
-//                    GFile.init(getActivity());
-//                } else {
-//                    GFile.runSyncService(getActivity());
-//                }
+                if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
+                    GFile.init(getActivity());
+                } else {
+                    GFile.runSyncService(getActivity());
+                }
             }
         });
 
@@ -312,8 +313,8 @@ public class PrefFragment2 extends UIFragment {
 
         section8 = inflate.findViewById(R.id.section8);
 
-        //inflate.findViewById(R.id.sectionSync).setVisibility(AppsConfig.IS_FDROID ? View.GONE : View.VISIBLE);
-        inflate.findViewById(R.id.sectionSync).setVisibility(View.GONE);//TODO GDIVE need to fix
+        inflate.findViewById(R.id.sectionSync).setVisibility(AppsConfig.IS_FDROID ? View.GONE : View.VISIBLE);
+        //inflate.findViewById(R.id.sectionSync).setVisibility(View.GONE);//TODO GDIVE need to fix
 
         section9 = inflate.findViewById(R.id.section9);
 

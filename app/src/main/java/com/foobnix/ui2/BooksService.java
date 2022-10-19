@@ -36,6 +36,7 @@ import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 //import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -164,29 +165,29 @@ public class BooksService extends IntentService {
                     AppProfile.save(this);
 
 
-//                    try {
-//                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
-//                        AppSP.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
-//                        GFile.sycnronizeAll(this);
-//
-//                        AppSP.get().syncTime = System.currentTimeMillis();
-//                        AppSP.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
-//                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
-//                    } catch (UserRecoverableAuthIOException e) {
-//                        GFile.logout(this);
-//                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
-//                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
-//                    } catch (Exception e) {
-//                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
-//                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
-//                        LOG.e(e);
-//                    }
-//
-//                    if (GFile.isNeedUpdate) {
-//                        LOG.d("GFILE-isNeedUpdate", GFile.isNeedUpdate);
-//                        TempHolder.get().listHash++;
-//                        EventBus.getDefault().post(new UpdateAllFragments());
-//                    }
+                    try {
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
+                        GFile.sycnronizeAll(this);
+
+                        AppSP.get().syncTime = System.currentTimeMillis();
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
+                    } catch (UserRecoverableAuthIOException e) {
+                        GFile.logout(this);
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
+                    } catch (Exception e) {
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
+                        LOG.e(e);
+                    }
+
+                    if (GFile.isNeedUpdate) {
+                        LOG.d("GFILE-isNeedUpdate", GFile.isNeedUpdate);
+                        TempHolder.get().listHash++;
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                    }
 
                 }
 

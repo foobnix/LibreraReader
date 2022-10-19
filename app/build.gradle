@@ -362,7 +362,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:21.2.0"
+    def google_ads = "com.google.android.gms:play-services-ads:21.3.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads
@@ -441,24 +441,15 @@ task incVersion() {
 if (!taskName.contains("Fdroid")) {
     dependencies {
         implementation "com.github.junrar:junrar:4.0.0"
-    }
 
-//    apply plugin: 'com.google.gms.google-services'
-//
-//    dependencies {
-//
-//        implementation "commons-logging:commons-logging-api:1.1"
-//
-//        //implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-//
-//
-//        implementation 'com.google.android.gms:play-services-auth:17.0.0'
-//        implementation 'com.google.http-client:google-http-client-gson:1.30.2'
-//        implementation('com.google.api-client:google-api-client-android:1.30.2') {
-//            exclude group: 'org.apache.httpcomponents'
-//        }
-//        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
-//            exclude group: 'org.apache.httpcomponents'
-//        }
-//    }
+        /** Google Drive Sync **/
+        implementation 'com.google.http-client:google-http-client-gson:1.42.2'
+        implementation 'com.google.android.gms:play-services-auth:20.3.0'
+        implementation('com.google.api-client:google-api-client-android:1.30.2') {
+            exclude group: 'org.apache.httpcomponents'
+        }
+        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
+            exclude group: 'org.apache.httpcomponents'
+        }
+    }
 }

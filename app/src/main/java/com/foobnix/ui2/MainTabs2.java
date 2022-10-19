@@ -71,6 +71,7 @@ import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 //import com.google.android.gms.auth.api.signin.GoogleSignIn;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -192,7 +193,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppSP.get().isEnableSync && /** GoogleSignIn.getLastSignedInAccount(a) != null && **/ BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
@@ -268,28 +269,28 @@ public class MainTabs2 extends AdsFragmentActivity {
                 fr.displayAnyPath(pathSAF);
             }
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-//            GoogleSignIn.getSignedInAccountFromIntent(data)
-//                    .addOnSuccessListener(googleAccount -> {
-//                        AppSP.get().isEnableSync = true;
-//                        Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-//                        EventBus.getDefault().post(new GDriveSycnEvent());
-//                        GFile.runSyncService(MainTabs2.this);
-//
-//                        swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
-//
-//                        AppSP.get().save();
-//
-//                    })
-//                    .addOnFailureListener(exception ->
-//                            {
-//                                LOG.e(exception);
-//                                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-//                                AppSP.get().isEnableSync = false;
-//                                swipeRefreshLayout.setEnabled(false);
-//                                AppSP.get().save();
-//
-//                            }
-//                    );
+            GoogleSignIn.getSignedInAccountFromIntent(data)
+                    .addOnSuccessListener(googleAccount -> {
+                        AppSP.get().isEnableSync = true;
+                        Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                        EventBus.getDefault().post(new GDriveSycnEvent());
+                        GFile.runSyncService(MainTabs2.this);
+
+                        swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+
+                        AppSP.get().save();
+
+                    })
+                    .addOnFailureListener(exception ->
+                            {
+                                LOG.e(exception);
+                                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
+                                AppSP.get().isEnableSync = false;
+                                swipeRefreshLayout.setEnabled(false);
+                                AppSP.get().save();
+
+                            }
+                    );
 
 
         }

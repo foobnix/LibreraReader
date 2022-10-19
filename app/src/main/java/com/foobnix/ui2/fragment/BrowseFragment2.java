@@ -48,6 +48,8 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -342,6 +344,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
 
+
                 for (final String info : extFolders) {
 
                     String name;
@@ -369,6 +372,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             displayAnyPath(BookCSS.get().downlodsPath);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_336_folder);
+                }
+                if(AppSP.get().isEnableSync){
+                    menu.getMenu().add("Librera" + "/" + "Sync").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            displayAnyPath(AppProfile.SYNC_FOLDER_BOOKS.getPath());
                             return false;
                         }
                     }).setIcon(R.drawable.glyphicons_336_folder);
