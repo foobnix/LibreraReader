@@ -39,7 +39,8 @@ LOCAL_SRC_FILES := \
 	libmupdf-1.20.2.c
 
 
-LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java antiword libmobi
+LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java
+LOCAL_WHOLE_STATIC_LIBRARIES:= antiword libmobi
 
 LOCAL_LDLIBS = -ljnigraphics
 LOCAL_LDLIBS += -llog

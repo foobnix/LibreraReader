@@ -219,7 +219,7 @@ bProcessFile(const char *szFilename)
 } /* end of bProcessFile */
 
 int
-main(int argc, char **argv)
+_main_(int argc, char **argv)
 {
 	options_type	tOptions;
 	const char	*szWordfile;
