@@ -75,7 +75,7 @@ public class MultyDocSearchDialog {
     public static void show(FragmentActivity c) {
         Model.get().path = BookCSS.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : BookCSS.get().dirLastPath;
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle(R.string.search_for_text_in_documents);
+        builder.setTitle(R.string.search_for_text_in_multiple_documents);
         builder.setView(getDialogView(c));
         builder.setCancelable(false);
         builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {

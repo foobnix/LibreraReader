@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Mostrar \'¿Qué hay de nuevo?\' después de una actualización</string>
    <string name="what_is_new_in">¿Qué hay de nuevo?</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Lista completa de cambios con imágenes (web, PDF)</string>
-   <string name="search_for_text_in_documents">Buscar texto en documentos</string>
+   <string name="search_for_text_in_multiple_documents">Buscar texto en varios documentos</string>
    <string name="search_in_the_subfolders">Buscar en subcarpetas</string>
    <string name="stop">Detener</string>
    <string name="document_converter_online_">Convertir documentos (en línea)</string>

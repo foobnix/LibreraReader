@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">عرض الحوار ما هو جديد للحصول على التحديثات</string>
    <string name="what_is_new_in">ما هو الجديد في</string>
    <string name="full_list_of_changes_with_images_web_pdf_">قائمة كاملة بالتغييرات مع الصور (الويب، بدف)</string>
-   <string name="search_for_text_in_documents">بحث متعدد المستندات</string>
+   <string name="search_for_text_in_multiple_documents">البحث عن نص في مستندات متعددة</string>
    <string name="search_in_the_subfolders">البحث في المجلدات الفرعية</string>
    <string name="stop">توقف</string>
    <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>

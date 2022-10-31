@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Hiển thị hộp thoại là gì mới cập nhật</string>
    <string name="what_is_new_in">Có gì mới trong</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Danh sách đầy đủ các thay đổi với hình ảnh (web, PDF)</string>
-   <string name="search_for_text_in_documents">Tìm kiếm nhiều tài liệu</string>
+   <string name="search_for_text_in_multiple_documents">Tìm kiếm văn bản trong nhiều tài liệu</string>
    <string name="search_in_the_subfolders">Tìm trong các thư mục con</string>
    <string name="stop">Dừng lại</string>
    <string name="document_converter_online_">Chuyển đổi tài liệu (trực tuyến)</string>

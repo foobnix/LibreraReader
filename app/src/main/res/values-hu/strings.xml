@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Újdonságok megjelenítése a frissítések után</string>
    <string name="what_is_new_in">Újdonságok -</string>
    <string name="full_list_of_changes_with_images_web_pdf_">A változások teljes listájának letöltése PDF formátumban</string>
-   <string name="search_for_text_in_documents">Szöveg keresése</string>
+   <string name="search_for_text_in_multiple_documents">Szöveg keresése több dokumentumban</string>
    <string name="search_in_the_subfolders">Tartalmazza az almappákat is</string>
    <string name="stop">Leállítás</string>
    <string name="document_converter_online_">Dokumentum konvertálása online</string>

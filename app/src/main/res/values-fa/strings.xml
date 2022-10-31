@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">نشان می دهد گفت و گو چه جدید برای به روز رسانی است</string>
    <string name="what_is_new_in">چه جدید در</string>
    <string name="full_list_of_changes_with_images_web_pdf_">لیست کامل تغییرات با تصاویر (وب، PDF)</string>
-   <string name="search_for_text_in_documents">جستجو چند سند</string>
+   <string name="search_for_text_in_multiple_documents">جستجوی متن در چندین سند</string>
    <string name="search_in_the_subfolders">جستجو در پوشه</string>
    <string name="stop">متوقف کردن</string>
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>

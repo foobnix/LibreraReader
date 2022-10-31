@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Visa dialogrutan Vad är nytt för uppdateringar</string>
    <string name="what_is_new_in">Vad är nytt i</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Full lista över ändringar med bilder (web, PDF)</string>
-   <string name="search_for_text_in_documents">Sökning av flera dokument</string>
+   <string name="search_for_text_in_multiple_documents">Söka efter text i flera dokument</string>
    <string name="search_in_the_subfolders">Sök i undermapparna</string>
    <string name="stop">Sluta</string>
    <string name="document_converter_online_">Dokumentkonverterare (online)</string>

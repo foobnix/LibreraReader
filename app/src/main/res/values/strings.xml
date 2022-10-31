@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Show What\'s New after updates</string>
    <string name="what_is_new_in">What is new in</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Download a full list of changes (PDF file).</string>
-   <string name="search_for_text_in_documents">Search for Text</string>
+   <string name="search_for_text_in_multiple_documents">Search for text in multiple documents</string>
    <string name="search_in_the_subfolders">Include subfolders</string>
    <string name="stop">Stop</string>
    <string name="document_converter_online_">Convert Document Online</string>

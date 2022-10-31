@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Zobraziť dialóg Čo je nové aktualizácií</string>
    <string name="what_is_new_in">Čo je nové v</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Úplný zoznam zmien s obrázkami (web, PDF)</string>
-   <string name="search_for_text_in_documents">Vyhľadávanie viacerých dokumentov</string>
+   <string name="search_for_text_in_multiple_documents">Hľadať text vo viacerých dokumentoch</string>
    <string name="search_in_the_subfolders">Vyhľadávanie v podpriečinkoch</string>
    <string name="stop">Prestať</string>
    <string name="document_converter_online_">Konvertor dokumentov (online)</string>

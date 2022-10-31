@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">업데이트로 달라진 기능</string>
    <string name="what_is_new_in">무엇이 새로운가?</string>
    <string name="full_list_of_changes_with_images_web_pdf_">이미지로 변경된 전체 목록 (웹, PDF)</string>
-   <string name="search_for_text_in_documents">다중 문서 검색</string>
+   <string name="search_for_text_in_multiple_documents">여러 문서에서 텍스트 검색</string>
    <string name="search_in_the_subfolders">하위 폴더에서 검색</string>
    <string name="stop">중지</string>
    <string name="document_converter_online_">문서 변환기 (온라인)</string>

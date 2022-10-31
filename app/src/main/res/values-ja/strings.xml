@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">アップデートの新機能ダイアログを表示する</string>
    <string name="what_is_new_in">新機能</string>
    <string name="full_list_of_changes_with_images_web_pdf_">変更の全リストをダウンロード（PDF）</string>
-   <string name="search_for_text_in_documents">マルチドキュメント検索</string>
+   <string name="search_for_text_in_multiple_documents">複数のドキュメント内のテキストを検索する</string>
    <string name="search_in_the_subfolders">サブフォルダを含める</string>
    <string name="stop">中止</string>
    <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>

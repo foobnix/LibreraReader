@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Güncellemedeki yenilikleri göster</string>
    <string name="what_is_new_in">Yenilikler</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Bütün değişikliklerin listesini indir (PDF dosyası)</string>
-   <string name="search_for_text_in_documents">Metin araması</string>
+   <string name="search_for_text_in_multiple_documents">Birden çok belgede metin arama</string>
    <string name="search_in_the_subfolders">Alt klasörlerde ara</string>
    <string name="stop">Dur</string>
    <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>

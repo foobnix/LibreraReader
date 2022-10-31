@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">顯示更新記錄</string>
    <string name="what_is_new_in">關于</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下載官網PDF格式更新記錄...</string>
-   <string name="search_for_text_in_documents">多文檔中搜索文本</string>
+   <string name="search_for_text_in_multiple_documents">在多個文檔中搜索文本</string>
    <string name="search_in_the_subfolders">子文件夾</string>
    <string name="stop">停止</string>
    <string name="document_converter_online_">文檔格式線上轉換</string>

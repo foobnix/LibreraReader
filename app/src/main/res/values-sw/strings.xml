@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Kuonyesha dialog kitu gani kipya kwa updates</string>
    <string name="what_is_new_in">Nini kipya ndani</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Orodha kamili ya mabadiliko na picha (mtandao, PDF)</string>
-   <string name="search_for_text_in_documents">Multi hati search</string>
+   <string name="search_for_text_in_multiple_documents">Tafuta maandishi katika hati nyingi</string>
    <string name="search_in_the_subfolders">Search katika folda ndogo</string>
    <string name="stop">Kukomesha</string>
    <string name="document_converter_online_">Document kubadilisha (mtandaoni)</string>

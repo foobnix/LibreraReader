@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Покажете какво е ново след актуализации</string>
    <string name="what_is_new_in">Какво е новото в</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Изтеглете пълен списък с промени (pdf файл)</string>
-   <string name="search_for_text_in_documents">Търсене на текст</string>
+   <string name="search_for_text_in_multiple_documents">Търсене на текст в множество документи</string>
    <string name="search_in_the_subfolders">Включват подпапки</string>
    <string name="stop">Спри</string>
    <string name="document_converter_online_">Конвертирайте документ онлайн</string>

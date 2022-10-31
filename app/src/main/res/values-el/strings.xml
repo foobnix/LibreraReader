@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Δείξτε τι νέο υπάρχει μετά τις ενημερώσεις</string>
    <string name="what_is_new_in">Τι νέο υπάρχει</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Κατεβάστε μια πλήρη λίστα αλλαγών (αρχείο pdf)</string>
-   <string name="search_for_text_in_documents">Αναζήτηση κειμένου</string>
+   <string name="search_for_text_in_multiple_documents">Αναζήτηση κειμένου σε πολλά έγγραφα</string>
    <string name="search_in_the_subfolders">Συμπεριλάβετε υποφακέλους</string>
    <string name="stop">Να σταματήσει</string>
    <string name="document_converter_online_">Μετατροπή εγγράφου σε απευθείας σύνδεση</string>

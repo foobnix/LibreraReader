@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">संवाद क्या अपडेट के लिए नया है दिखाएँ</string>
    <string name="what_is_new_in">नया क्या है</string>
    <string name="full_list_of_changes_with_images_web_pdf_">छवियों के साथ परिवर्तनों की पूरी सूची (वेब, पीडीएफ)</string>
-   <string name="search_for_text_in_documents">बहु दस्तावेज़ खोज</string>
+   <string name="search_for_text_in_multiple_documents">एकाधिक दस्तावेज़ों में टेक्स्ट खोजें</string>
    <string name="search_in_the_subfolders">सबफ़ोल्डर्स में खोजें</string>
    <string name="stop">रुकें</string>
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>

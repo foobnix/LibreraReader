@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">അപ്‌ഡേറ്റുകൾക്ക് ശേഷം പുതിയതെന്താണെന്ന് കാണിക്കുക</string>
    <string name="what_is_new_in">പുതിയതെന്താണ്</string>
    <string name="full_list_of_changes_with_images_web_pdf_">മാറ്റങ്ങളുടെ ഒരു പൂർണ്ണ പട്ടിക ഡ download ൺ‌ലോഡുചെയ്യുക (പി‌ഡി‌എഫ് ഫയൽ)</string>
-   <string name="search_for_text_in_documents">വാചകത്തിനായി തിരയുക</string>
+   <string name="search_for_text_in_multiple_documents">ഒന്നിലധികം പ്രമാണങ്ങളിൽ വാചകം തിരയുക</string>
    <string name="search_in_the_subfolders">ഉപഫോൾഡറുകൾ ഉൾപ്പെടുത്തുക</string>
    <string name="stop">നിർത്തുക</string>
    <string name="document_converter_online_">പ്രമാണം ഓൺ‌ലൈനായി പരിവർത്തനം ചെയ്യുക</string>

@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">הראה את הדו-שיח מה חדש עבור עדכוני</string>
    <string name="what_is_new_in">מה חדש ב</string>
    <string name="full_list_of_changes_with_images_web_pdf_">רשימה מלאה של שינויים עם תמונות (אינטרנט, PDF)</string>
-   <string name="search_for_text_in_documents">חיפוש מסמכים מרובים</string>
+   <string name="search_for_text_in_multiple_documents">חפש טקסט במספר מסמכים</string>
    <string name="search_in_the_subfolders">חפש בתיקיות המשנה</string>
    <string name="stop">עצור</string>
    <string name="document_converter_online_">ממיר מסמכים (באינטרנט)</string>

@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Tampilkan dialog Apa yang baru untuk pembaruan</string>
    <string name="what_is_new_in">Apa yang baru</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Daftar lengkap perubahan dengan gambar (web, PDF)</string>
-   <string name="search_for_text_in_documents">Pencarian dokumen multi</string>
+   <string name="search_for_text_in_multiple_documents">Mencari teks dalam banyak dokumen</string>
    <string name="search_in_the_subfolders">Cari di subfolder</string>
    <string name="stop">Berhenti</string>
    <string name="document_converter_online_">Konverter dokumen (online)</string>

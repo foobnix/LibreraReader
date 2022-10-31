@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Näytä päivitysten jälkeen tieto päivitetyistä ominaisuuksista</string>
    <string name="what_is_new_in">Mitä uutta</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Täydellinen luettelo muutoksista (PDF-tiedostona)</string>
-   <string name="search_for_text_in_documents">Etsi tekstiä tiedostoista</string>
+   <string name="search_for_text_in_multiple_documents">Etsi tekstiä useista asiakirjoista</string>
    <string name="search_in_the_subfolders">Hae myös alikansioista</string>
    <string name="stop">Pysäytä</string>
    <string name="document_converter_online_">Muunna tiedosto (online)</string>

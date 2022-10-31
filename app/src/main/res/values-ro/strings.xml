@@ -33,7 +33,7 @@
    <string name="show_the_dialog_what_is_new_for_updates">Afișați dialogul "Ce este nou pentru actualizări"</string>
    <string name="what_is_new_in">Ce este nou în</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Lista completă a modificărilor cu imagini (web, PDF)</string>
-   <string name="search_for_text_in_documents">Căutarea în mai multe documente</string>
+   <string name="search_for_text_in_multiple_documents">Caută text în mai multe documente</string>
    <string name="search_in_the_subfolders">Căutați în subfoldere</string>
    <string name="stop">Stop</string>
    <string name="document_converter_online_">Convertor de documente (online)</string>
