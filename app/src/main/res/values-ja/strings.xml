@@ -33,10 +33,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">アップデートの新機能ダイアログを表示する</string>
    <string name="what_is_new_in">新機能</string>
    <string name="full_list_of_changes_with_images_web_pdf_">変更の全リストをダウンロード（PDF）</string>
-   <string name="search_for_text_in_multiple_documents">複数のドキュメント内のテキストを検索する</string>
+   <string name="search_for_text_in_multiple_documents">複数文書検索 (内容検索)</string>
    <string name="search_in_the_subfolders">サブフォルダを含める</string>
    <string name="stop">中止</string>
-   <string name="document_converter_online_">ドキュメントコンバータ（オンライン）</string>
+   <string name="document_converter_online_">文書変換 (オンライン)</string>
    <string name="book_covers">ブックカバー</string>
    <string name="cover_image_size">カバー画像サイズ</string>
    <string name="column_count">列数</string>
@@ -55,7 +55,7 @@
    <string name="product">製品</string>
    <string name="version">バージョン</string>
    <string name="licence_gnu_gpl_v3_0">Licence: GNU GPL v3.0</string>
-   <string name="licenses_for_libraries">ライブラリのライセンス</string>
+   <string name="licenses_for_libraries">Libraries\' Licenses</string>
    <string name="autor_ivan_ivanenko">Autor: Ivan Ivanenko</string>
    <string name="support">サポート</string>
    <string name="web">ウェブ</string>
@@ -125,7 +125,7 @@
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
    <string name="enhancements_for_oled_display">AMOLED画面向けのナイトモード機能強化</string>
    <string name="ignore_annotations_on_click">タップで注釈を無視する</string>
-   <string name="save_new_annotations_automatically">自動的に新しい注釈を保存</string>
+   <string name="save_new_annotations_automatically">終了時に注釈を自動保存する</string>
    <string name="selecting_text_by_letters">文字単位でテキストを選択</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量ボタンで自動スクロール速度を変更する</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">画面の左側で明るさの調整を有効にする</string>
@@ -253,7 +253,7 @@
    <string name="open_with">次のアプリで開く</string>
    <string name="send_file">ファイルを送信</string>
    <string name="delete">削除</string>
-   <string name="remove_from_library">ライブラリから削除</string>
+   <string name="remove_from_library">ライブラリから削除する</string>
    <string name="send_snapshot_of_the_page">ページのスナップショットを送信</string>
    <string name="file_info">ファイル情報</string>
    <string name="archive_files">アーカイブファイル</string>
@@ -327,7 +327,7 @@
    <string name="share">共有</string>
    <string name="copy">コピー</string>
    <string name="search_in_google">グーグルで検索</string>
-   <string name="search_in_document">ドキュメントで検索</string>
+   <string name="search_in_document">文書内を検索</string>
    <string name="web_dict_oxfort">Web 辞書 (オックスフォード、...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">フォント</string>
