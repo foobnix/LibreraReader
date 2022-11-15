@@ -2,7 +2,7 @@
 layout: main
 ---
 
-#导航_Library_选项卡
+# 导航_Library_选项卡
 
 >安装完成后，默认情况下，**Librera**将打开并带有_Library_标签，其中包含有关设备上找到的书籍(和其他文档)的有用信息。这是有关_Library_标签的快速指南。
 
