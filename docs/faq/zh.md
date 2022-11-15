@@ -2,7 +2,7 @@
 layout: main
 ---
 
-#常见问题
+# 常见问题
 
 * [删除并重置所有 Librera 设置](/faq/delete-and-reset-all-librera-settings/zh)
 * [如何添加新的常见问题解答主题](/faq/how-to-add-new-faq-section/zh)
