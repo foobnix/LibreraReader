@@ -2,7 +2,7 @@
 layout: main
 ---
 
-#增加PDF文档中的字体大小
+# 增加PDF文档中的字体大小
 
 要提高PDF文档的可读性(字符太小)，可以将其在**Librera**中转换为另一种文件格式(EPUB)：
 * 在* * Librera* * 中打开您的PDF文档
