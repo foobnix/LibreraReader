@@ -518,7 +518,7 @@
    <string name="delete_this_bookmark_">このブックマークを削除しますか？</string>
    <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
-   <string name="read_by_sentences">一時停止する区切り符号:</string>
+   <string name="read_by_sentences">一時停止/再開の区切り符号:</string>
    <string name="do_not_read_characters">記号をスキップ:</string>
    <string name="show_in_scroll_mode">スクロールモードで表示する</string>
    <string name="display_bookmark_text_instead_of_number">番号の代わりにブックマークテキストを表示する</string>
