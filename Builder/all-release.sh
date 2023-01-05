@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-
-./link_to_mupdf_1.11.sh
+./link_merge.sh
 
 cd ../
+
 ./gradlew clean incVersion
 
 ./gradlew assembleOldRelease
@@ -15,19 +15,14 @@ cd ../
 ./gradlew assembleEbookaRelease
 ./gradlew assemblePdf_classicRelease
 
-cd Builder
-
-./link_to_mupdf_master.sh
-
-cd ../
-
-./gradlew assembleFdroidRelease
-./gradlew assembleHuaweiRelease
-
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
 cd Builder
+
+
+#rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
+#rm /home/dev/Nextcloud/LibreraBeta/*-x86*
 
 ./remove_all.sh
 ./install_all.sh
