@@ -38,19 +38,16 @@ public class AppsConfig {
     public static void loadEngine(Context c) {
         String engine = getCurrentEngine(c);
         try {
-            if (!ENGINE_MuPDF_1_11.equals(engine)) {
-                engine = ENGINE_MuPDF_LATEST;
-            }
-            LOG.d("Loading-library", engine);
+            engine = !ENGINE_MuPDF_1_11.equals(engine) ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11;
             System.loadLibrary(engine);
             setEngine(c, engine);
         } catch (UnsatisfiedLinkError e) {
             try {
-                setEngine(c, ENGINE_MuPDF_1_11);
                 System.loadLibrary(ENGINE_MuPDF_1_11);
+                setEngine(c, ENGINE_MuPDF_1_11);
             } catch (UnsatisfiedLinkError e1) {
-                setEngine(c, ENGINE_MuPDF_LATEST);
                 System.loadLibrary(ENGINE_MuPDF_LATEST);
+                setEngine(c, ENGINE_MuPDF_LATEST);
             }
             LOG.e(e);
         }
