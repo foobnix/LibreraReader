@@ -4,9 +4,11 @@ mogrify -quality 85 -resize 600 *.png
 
 cd /home/dev/git/LibreraReader/docs
 
-#bundle init
-#bundle add webrick
-#bundle add jekyll-watch
-#bundle add kramdown-parser-gfm
+if [ "$1" == "init" ]; then
+bundle init
+bundle add webrick
+bundle add jekyll-watch
+bundle add kramdown-parser-gfm
+fi
 
 jekyll serve

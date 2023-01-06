@@ -3,7 +3,8 @@ sudo apt-get install \
 git gnome-tweaks gimp mc vlc transmission dconf-editor cmake \
 mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev \
 libglu1-mesa-dev libxi-dev pkg-config libgl-dev \
-ruby-full build-essential zlib1g-dev
+ruby-full build-essential zlib1g-dev \
+imagemagick jekyll \
 
 sudo apt autoremove
 
