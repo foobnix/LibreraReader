@@ -26,4 +26,3 @@ cd Builder
 
 ./remove_all.sh
 ./install_all.sh
-./clear-cache.sh

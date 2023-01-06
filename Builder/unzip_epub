@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "Arugment:[$1]"
+echo "pwd:[$(pwd)]"
+
+unzip "$(pwd)/$1" -d "$(pwd)/$1-source"
