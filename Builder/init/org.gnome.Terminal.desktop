@@ -1,0 +1,11 @@
+[Desktop Entry]
+
+Name=Terminal
+Exec=gnome-terminal --maximize --working-directory="/home/dev/git/LibreraReader/Builder"
+Icon=org.gnome.Terminal
+Type=Application
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gnome-terminal --maximize --working-directory="/home/dev/"
+

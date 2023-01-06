@@ -17,11 +17,8 @@ sudo service udev restart
 
 cp -rfv profile /home/dev/.profile
 cp -rfv unzip_epub /home/dev/.local/share/nautilus/scripts
-cp -rfv user-dirs.dirs /home/dev/.config/
-
-sudo sed -i 's/Enabled=True/Enabled=False/g' /etc/xdg/user-dirs.conf
-rm -r /home/dev/Documents
-rm -r /home/dev/Templates
-rm -r /home/dev/Videos
 
 mkdir -p /home/dev/Dropbox/FREE_PDF_APK/testing/
+
+cp -rfv org.gnome.AndroidStudio.desktop /home/dev/.local/share/applications/
+cp -rfv org.gnome.Terminal.desktop /home/dev/.local/share/applications/

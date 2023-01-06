@@ -28,7 +28,7 @@ public class AppsConfig {
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
     public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
-    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.20.4";
+    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.21.1";
     public static int MUPDF_VERSION = 0;
     public static int MUPDF_1_11 = 111;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
@@ -45,9 +45,13 @@ public class AppsConfig {
             System.loadLibrary(engine);
             setEngine(c, engine);
         } catch (UnsatisfiedLinkError e) {
-            setEngine(c, ENGINE_MuPDF_1_11);
-            LOG.d("Loading-library", engine);
-            System.loadLibrary(ENGINE_MuPDF_1_11);
+            try {
+                setEngine(c, ENGINE_MuPDF_1_11);
+                System.loadLibrary(ENGINE_MuPDF_1_11);
+            } catch (UnsatisfiedLinkError e1) {
+                setEngine(c, ENGINE_MuPDF_LATEST);
+                System.loadLibrary(ENGINE_MuPDF_LATEST);
+            }
             LOG.e(e);
         }
         AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
@@ -55,12 +59,14 @@ public class AppsConfig {
     }
 
     public static void setEngine(Context c, String engine) {
+        LOG.d("setEngine", engine);
         SharedPreferences sp = c.getSharedPreferences("Engine", Context.MODE_PRIVATE);
         sp.edit().putString("version", engine).commit();
     }
 
     public static String getCurrentEngine(Context c) {
-        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_MuPDF_1_11);
+        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE)
+                .getString("version", IS_FDROID ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11);
     }
 
 
