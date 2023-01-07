@@ -59,16 +59,17 @@ ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
 
-#cp -rpv $SRC/css-apply.c         $DEST/html/css-apply.c
-#cp -rpv $SRC/epub-doc.c          $DEST/html/epub-doc.c
-#cp -rpv $SRC/html-layout.c       $DEST/html/html-layout.c
-#cp -rpv $SRC/html-parse.c        $DEST/html/html-parse.c
+cp -rpv $SRC/css-apply.c         $DEST/html/css-apply.c
+cp -rpv $SRC/epub-doc.c          $DEST/html/epub-doc.c
+cp -rpv $SRC/html-layout.c       $DEST/html/html-layout.c
+cp -rpv $SRC/html-parse.c        $DEST/html/html-parse.c
+#html-parse.c to check
 
-#cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
-#cp -rpv $SRC/muimg.c             $DEST/cbz/muimg.c
+cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
+cp -rpv $SRC/muimg.c             $DEST/cbz/muimg.c
 
-#cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
-#cp -rpv $SRC/image.c             $DEST/fitz/image.c
+cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
+cp -rpv $SRC/image.c             $DEST/fitz/image.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
