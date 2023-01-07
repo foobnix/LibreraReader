@@ -5,6 +5,7 @@ mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev \
 libglu1-mesa-dev libxi-dev pkg-config libgl-dev \
 ruby-full build-essential zlib1g-dev \
 imagemagick jekyll \
+python3-gpg \
 
 sudo apt autoremove
 
