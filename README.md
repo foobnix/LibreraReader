@@ -73,15 +73,15 @@ the repository.
 
 For this project only Analytics is used, so a spakling plan is all you need.
 
-## Librera Build on MuPdf 1.20.2 (Default) for Android 4.4+
+## Librera Build on MuPdf 1.21.1 for Android 4.4+
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.20.2.sh (Change the paths to mupdf and jniLibs folders)
+./link_to_mupdf_1.21.1.sh (Change the paths to mupdf and jniLibs folders)
 ./gradlew assembleLibrera
 ~~~~
 
-## Librera Build on MuPdf 1.11 (Old Librera) for Android 4.0+
+## Librera Build on MuPdf 1.11 for Android 4.0+
 
 ~~~~
 cd Builder
@@ -95,7 +95,7 @@ If you wish to build for F-Droid (e.g. not using google services, Internet) you 
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.20.2.sh
+./link_to_mupdf_1.21.1.sh
 ./gradlew assembleFdroid
 ~~~~
 
