@@ -6,8 +6,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 4855
-    FDroidVersionNumber = "8.8.5"
+    FDroidCodeNumber = 4865
+    FDroidVersionNumber = "8.8.15"
 }
 
 println " --------------------"
@@ -28,7 +28,7 @@ ext {
 }
 
 android {
-    buildToolsVersion '33.0.0'
+    buildToolsVersion '33.0.1'
     compileSdk 33
     namespace "com.foobnix.pdf.info"
     //ndkVersion "21.4.7075529"
@@ -354,15 +354,15 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.5.0'
     implementation 'javax.xml.stream:stax-api:1.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.2'
-    implementation 'com.github.bumptech.glide:glide:4.14.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:21.3.0"
+    def google_ads = "com.google.android.gms:play-services-ads:21.4.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads
@@ -372,11 +372,10 @@ dependencies {
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
 
-
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
 
