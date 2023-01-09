@@ -211,9 +211,9 @@ public class AddCatalogDialog {
                     Entry entry = new Entry();
                     entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
                     if (editAppState != null) {
-                        AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(editAppState, "");
+                        AppState.get().allOPDSLinks = AppState.get().allOPDSLinks.replace(editAppState, "");
                     }
-                    AppState.get().myOPDSLinks = entry.appState + AppState.get().myOPDSLinks;
+                    AppState.get().allOPDSLinks = entry.appState + AppState.get().allOPDSLinks;
                     onRefresh.run();
                     infoDialog.dismiss();
                     AppProfile.save(a);

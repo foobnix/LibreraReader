@@ -84,6 +84,13 @@ public class Urls {
                 }
             }
         });
+        alert.setPositiveButton(R.string.open_in_browser, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                open(a,url);
+                dialog.dismiss();
+            }
+        });
         AlertDialog create = alert.create();
         create.setOnDismissListener(new OnDismissListener() {
 

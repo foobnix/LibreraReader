@@ -108,7 +108,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return Arrays.asList(new Entry(test, test));
         }
 
-        String[] list = AppState.get().myOPDSLinks.split(";");
+        String[] list = AppState.get().allOPDSLinks.split(";");
         List<Entry> res = new ArrayList<Entry>();
         boolean hasStars = false;
         for (String line : list) {
@@ -120,9 +120,16 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 continue;
             }
             String[] it = line.split(",");
-            final Entry e = new Entry(it[0], it[1], it[2], it[3], true);
-            e.appState = line + ";";
-            res.add(e);
+            try {
+                final Entry e = new Entry(it[0], it[1], it[2], it[3], true);
+                e.appState = line + ";";
+                res.add(e);
+            }catch (Exception e){
+
+                LOG.e(e,line);
+            }
+
+
 
         }
         if (hasStars) {
@@ -186,7 +193,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
+                        AppState.get().allOPDSLinks = AppState.OPDS_DEFAULT;
                         url = "/";
                         populate();
                     }
@@ -228,7 +235,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(result.appState, "");
+                        AppState.get().allOPDSLinks = AppState.get().allOPDSLinks.replace(result.appState, "");
                         url = "/";
                         populate();
                     }
@@ -274,7 +281,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 }
                 entry.setAppState(url, title, url2, "assets://opds/star_1.png");
 
-                if (!AppState.get().myOPDSLinks.contains(url)) {
+                if (!AppState.get().allOPDSLinks.contains(url)) {
 
                     AddCatalogDialog.showDialog(getActivity(), new Runnable() {
 
@@ -285,7 +292,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         }
                     }, entry, false);
                 } else {
-                    AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(entry.appState, "");
+                    AppState.get().allOPDSLinks = AppState.get().allOPDSLinks.replace(entry.appState, "");
                     starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
                     TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                     // AlertDialogs.showOkDialog(getActivity(),
@@ -330,7 +337,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
+                        AppState.get().allOPDSLinks = AppState.OPDS_DEFAULT;
                         populate();
                     }
                 });
@@ -840,7 +847,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             }
         }
 
-        if (AppState.get().myOPDSLinks.contains(url)) {
+        if (AppState.get().allOPDSLinks.contains(url)) {
             starIcon.setImageResource(R.drawable.glyphicons_49_star);
         } else {
             starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);

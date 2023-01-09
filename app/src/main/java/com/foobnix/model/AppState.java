@@ -94,21 +94,14 @@ public class AppState {
 
     );
     public final static String OPDS_DEFAULT = "" + //
-            // "http://flibusta.is/opds,Flibusta,Книжное
-            // братство,http://flibusta.is/favicon.ico;" + //
 
-            // "http://opds.litres.ru,Litres,Библиотека электронных
-            // книг,assets://opds/litres.ico;" + //
-            //"https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
-            // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
-            // always free.,assets://opds/gitbook.png;" + //
             "https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
             "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
-            // "http://manybooks.net/opds/index.php,Manybooks,Online Catalog for
-            // Manybooks.net,assets://opds/manybooks.png;" + //
-            "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
-            "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;" + //
-            SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards anspand Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
+            "http://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/web.png;" + //
+            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/web.png;" + //
+            "http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/web.png;" + //
+
+            SamlibOPDS.ROOT_AWARDS + ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;" //
             // end
             ;
     public final static String READ_COLORS_DEAFAUL =
@@ -264,7 +257,7 @@ public class AppState {
 
     }
 
-    public String myOPDSLinks = OPDS_DEFAULT;
+    public String allOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;
     public boolean createBookNameFolder = false;
     public String readColors = READ_COLORS_DEAFAUL;

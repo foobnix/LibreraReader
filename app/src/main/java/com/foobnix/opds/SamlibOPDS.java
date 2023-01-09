@@ -41,9 +41,9 @@ public class SamlibOPDS {
         List<Entry> list = new ArrayList<Entry>();
         list.add(Entry.Home("https://www.worldswithoutend.com/books.asp", "Book Awards"));
         list.add(Entry.Home("https://www.worldswithoutend.com/lists.asp", "Book Lists"));
-        list.add(Entry.Home("http://fantlab.ru/awards", "Награды и премии"));
-        list.add(Entry.Home("https://www.goodreads.com/shelf/show/top-rated", "Popular Top Rated Books"));
-        list.add(Entry.Home("https://www.amazon.com/b?node=8192263011", "100 Books to Read in a Lifetime from Amazon"));
+        //list.add(Entry.Home("http://fantlab.ru/awards", "Награды и премии"));
+        list.add(Entry.Home("https://www.goodreads.com/shelf/show/top-rated", "Top Rated Books"));
+        list.add(Entry.Home("https://www.amazon.com/b?node=8192263011", "100 Books from Amazon"));
         list.add(Entry.Home("https://issuu.com/", "All World Magazines "));
         return list;
     }
@@ -230,7 +230,7 @@ public class SamlibOPDS {
             return Pair.create(getHomeAwards(), getTitle(url));
         }
         if (ROOT_FAVORITES.equals(url)) {
-            String[] list = AppState.get().myOPDSLinks.split(";");
+            String[] list = AppState.get().allOPDSLinks.split(";");
             List<Entry> res = new ArrayList<Entry>();
             for (String line : list) {
                 if (TxtUtils.isEmpty(line)) {
