@@ -31,19 +31,16 @@ if [ "$1" == "clean" ]; then
   git reset --hard
   git clean -f -d
   rm -rf generated
+  rm -rf build
   make clean
+fi
+
+if [ ! -d "build/release" ]; then
   make generate
   make release
 fi
 
-
-make generate
-make release
-
-echo "=================="
-
 cd ..
-
 
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni

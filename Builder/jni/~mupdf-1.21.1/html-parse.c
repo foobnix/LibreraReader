@@ -516,8 +516,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		const char *alt = "[image]";
-		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		//const char *alt = "[image]";
+		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
@@ -1825,14 +1825,14 @@ fz_html *
 fz_parse_fb2(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as XML */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 0, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
 }
 
 fz_html *
 fz_parse_html5(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char *base_uri, fz_buffer *buf, const char *user_css)
 {
 	/* parse only as HTML5 */
-	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 0, 1, 0);
+	return fz_parse_html_imp(ctx, set, zip, base_uri, buf, user_css, 1, 1, 0);
 }
 
 fz_html *
