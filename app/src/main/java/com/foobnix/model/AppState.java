@@ -95,11 +95,11 @@ public class AppState {
     );
     public final static String OPDS_DEFAULT = "" + //
 
-            "https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
-            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/gutenberg.png;" + //
-            "http://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/web.png;" + //
-            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/web.png;" + //
-            "http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/web.png;" + //
+            //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
+            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;" + //
+            "http://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" + //
+//            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/opds.png;" + //
+            //"http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/opds.png;" + //
 
             SamlibOPDS.ROOT_AWARDS + ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;" //
             // end
