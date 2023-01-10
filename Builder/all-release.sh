@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./link_merge.sh
+./link_two_mupdf.sh
 
 cd ../
 
