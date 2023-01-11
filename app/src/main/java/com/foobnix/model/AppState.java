@@ -451,7 +451,7 @@ public class AppState {
     public String fromLang = "en";
     public String toLang = Urls.getLangCode();
     @IgnoreHashCode
-    public int orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+    public int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
     public int recentMode = MODE_LIST;
