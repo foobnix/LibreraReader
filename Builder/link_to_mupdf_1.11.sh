@@ -50,6 +50,7 @@ cp -rp jni/~mupdf-1.11/css-apply.c    $MUPDF_ROOT/source/html/css-apply.c
 cp -rp jni/~mupdf-1.11/html-layout.c  $MUPDF_ROOT/source/html/html-layout.c
 cp -rp jni/~mupdf-1.11/xml.c          $MUPDF_ROOT/source/fitz/xml.c
 cp -rp jni/~mupdf-1.11/stext-output.c $MUPDF_ROOT/source/fitz/stext-output.c
+cp -rp jni/~mupdf-1.11/buffer.c       $MUPDF_ROOT/source/fitz/buffer.c
 cp -rp jni/~mupdf-1.11/mucbz.c        $MUPDF_ROOT/source/cbz/mucbz.c
 
 cp -rp jni/~mupdf-1.11/load-webp.c    $MUPDF_ROOT/source/fitz/load-webp.c

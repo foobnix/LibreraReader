@@ -405,20 +405,28 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 	fz_var(img);
 	fz_var(buf);
 
-	fz_strlcpy(path, base_uri, sizeof path);
-	fz_strlcat(path, "/", sizeof path);
-	fz_strlcat(path, src, sizeof path);
-	fz_urldecode(path);
-	fz_cleanname(path);
-
 	fz_try(ctx)
 	{
-		buf = fz_read_archive_entry(ctx, zip, path);
-//#if FZ_ENABLE_SVG
-		if (strstr(path, ".svg"))
+		if (!strncmp(src, "data:image/jpeg;base64,", 23))
+			buf = fz_new_buffer_from_base64(ctx, src+23, 0);
+		else if (!strncmp(src, "data:image/png;base64,", 22))
+			buf = fz_new_buffer_from_base64(ctx, src+22, 0);
+		else if (!strncmp(src, "data:image/gif;base64,", 22))
+			buf = fz_new_buffer_from_base64(ctx, src+22, 0);
+		else
+		{
+			fz_strlcpy(path, base_uri, sizeof path);
+			fz_strlcat(path, "/", sizeof path);
+			fz_strlcat(path, src, sizeof path);
+			fz_urldecode(path);
+			fz_cleanname(path);
+			buf = fz_read_archive_entry(ctx, zip, path);
+		}
+
+		if (strstr(src, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf);
 		else
-//#endif
+
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
@@ -428,6 +436,7 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 
 	return img;
 }
+
 
 static void generate_anchor(fz_context *ctx, fz_html_box *box, struct genstate *g)
 {

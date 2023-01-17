@@ -4,6 +4,10 @@ layout: main
 
 # What is new
 
+### [8.8.16] Support external (http://) images in EPUB books.
+
+Experimental feature should be enabled
+
 ### [8.8.0] Changing the rendering engine within the app
 
 **MuPDF_1.11** basic Librera rendering engine
