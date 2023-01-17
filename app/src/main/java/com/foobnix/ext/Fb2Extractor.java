@@ -1,16 +1,18 @@
 package com.foobnix.ext;
 
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Base64;
 
 import com.BaseExtractor;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -31,7 +33,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -101,14 +102,13 @@ public class Fb2Extractor extends BaseExtractor {
             writeToZip(zos, "META-INF/container.xml", container_xml);
 
 
-
             String meta = content_opf.replace("fb2.fb2", "temp" + ExtUtils.REFLOW_HTML);
 
-            if(author!=null) {
+            if (author != null) {
                 author = TextUtils.htmlEncode(author);
                 meta = meta.replace("%creator%", author);
             }
-            if(title!=null) {
+            if (title != null) {
                 title = TextUtils.htmlEncode(title);
                 meta = meta.replace("%title%", title);
             }
@@ -199,6 +199,37 @@ public class Fb2Extractor extends BaseExtractor {
                 }
             }
 
+            if (AppState.get().isExperimental && line.contains("<img src=\"http")) {
+                try {
+                    String imgScr = "<img src=\"";
+                    int i1 = line.indexOf(imgScr);
+                    int i2 = line.indexOf("\"", i1 + imgScr.length());
+                    String uri = line.substring(i1 + imgScr.length(), i2);
+                    LOG.d("remote-image-url", uri);
+
+                    Glide.with(LibreraApp.context).asFile().load(uri).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).submit().get();
+                    Bitmap submit = Glide.with(LibreraApp.context).asBitmap().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).load(uri).submit().get();
+
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    submit.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    submit.recycle();
+
+
+                    StringBuffer buffer = new StringBuffer("data:image/jpeg;base64,");
+                    buffer.append(net.arnx.wmf2svg.util.Base64.encode(byteArray));
+                    String data = buffer.toString();
+
+                    line = line.substring(0, i1 + imgScr.length()) + data + line.substring(i2);
+                    LOG.d("remote-image-line", line);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+
+
+            }
+
 
             if (AppState.get().isExperimental && svgs != null) {
 
@@ -273,7 +304,7 @@ public class Fb2Extractor extends BaseExtractor {
                 writer.println("<p>");
             }
             if (!isValidXML && AppState.get().isCharacterEncoding) {
-               line = new String(line.getBytes("windows-1252"), AppState.get().characterEncoding);
+                line = new String(line.getBytes("windows-1252"), AppState.get().characterEncoding);
             }
             writer.println(line);
 
