@@ -666,8 +666,8 @@ public class EpubExtractor extends BaseExtractor {
                                     continue;
                                 }
 
-                                textLink.put(attr, text);
-                                LOG.d("put links >>", attr, text);
+                                textLink.put(attr,  text+"#"+name);
+                                LOG.d("put links >>", attr, text+"#"+name);
 
                                 LOG.d("Extract file", file);
                                 if (TxtUtils.isEmpty(file)) {

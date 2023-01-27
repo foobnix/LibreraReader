@@ -1330,7 +1330,7 @@ public class DragingDialogs {
                 footerNumber.setText(TxtUtils.getFooterNoteNumber(selectedText));
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
-                text.setText(controller.getFootNote(selectedText));
+                text.setText(controller.getFootNote(selectedText, controller.getCurrentChapterFile()));
                 if (page == -1 || page == 0 || AppSP.get().isDouble) {
                     goTo.setVisibility(View.GONE);
                     goBack.setVisibility(View.GONE);

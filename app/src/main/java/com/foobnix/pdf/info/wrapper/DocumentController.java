@@ -396,7 +396,7 @@ public abstract class DocumentController {
 
     public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse);
 
-    public abstract String getFootNote(String text);
+    public abstract String getFootNote(String text, String chapter);
 
     public abstract List<String> getMediaAttachments();
 
@@ -559,6 +559,9 @@ public abstract class DocumentController {
 
     public String getCurrentChapter() {
         return OutlineHelper.getCurrentChapterAsString(this);
+    }
+    public String getCurrentChapterFile() {
+        return OutlineHelper.getCurrentChapterFile(this);
     }
 
     public boolean isTextFormat() {

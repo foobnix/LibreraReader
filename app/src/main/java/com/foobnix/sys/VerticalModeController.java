@@ -942,8 +942,8 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
-    public String getFootNote(String text) {
-        return ctr.getDocumentModel().decodeService.getFooterNote(text);
+    public String getFootNote(String text, String chapter) {
+        return ctr.getDocumentModel().decodeService.getFooterNote(text,chapter);
     }
 
     @Override

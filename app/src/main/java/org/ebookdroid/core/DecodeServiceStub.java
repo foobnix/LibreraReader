@@ -134,7 +134,7 @@ public class DecodeServiceStub implements DecodeService {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.ebookdroid.core.DecodeService#getOutline()
+	 *
 	 */
 	@Override
 	public void getOutline(com.foobnix.android.utils.ResultResponse<java.util.List<OutlineLink>> response) {
@@ -221,7 +221,7 @@ public class DecodeServiceStub implements DecodeService {
 	}
 
     @Override
-    public String getFooterNote(String text) {
+    public String getFooterNote(String text, String chapter) {
         return "";
     }
 

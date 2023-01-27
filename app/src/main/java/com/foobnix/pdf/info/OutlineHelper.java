@@ -155,6 +155,21 @@ public class OutlineHelper {
             return null;
         }
     }
+    public static String getCurrentChapterFile(DocumentController dc) {
+        List<OutlineLinkWrapper> outline = dc.getCurrentOutline();
+
+        if (outline == null || outline.isEmpty()) {
+            return null;
+        }
+        int root = getRootItemByPageNumber(dc);
+
+        if (outline.size() > root) {
+            OutlineLinkWrapper item = outline.get(root);
+            return item.linkUri;
+        } else {
+            return null;
+        }
+    }
 
     public static OutlineLinkWrapper getCurrentChapter(DocumentController dc) {
         List<OutlineLinkWrapper> outline = dc.getCurrentOutline();
@@ -188,6 +203,7 @@ public class OutlineHelper {
         try {
             List<OutlineLinkWrapper> outline = dc.getCurrentOutline();
             int pageNumber = dc.getCurentPageFirst1();
+
             for (int i = 0; i < outline.size(); i++) {
                 OutlineLinkWrapper item = outline.get(i);
 

@@ -181,7 +181,7 @@ public class Fb2Extractor extends BaseExtractor {
 
 
             if (AppState.get().isShowFooterNotesInText) {
-                line = includeFooterNotes(line, notes);
+                line = includeFooterNotes(line, notes, name);
             }
 
             // LOG.d("gen-in", line);
@@ -322,7 +322,7 @@ public class Fb2Extractor extends BaseExtractor {
         writer.close();
     }
 
-    public static String includeFooterNotes(String line, Map<String, String> notes) {
+    public static String includeFooterNotes(String line, Map<String, String> notes, String name) {
         if (notes == null) {
             return line;
         }
@@ -353,7 +353,9 @@ public class Fb2Extractor extends BaseExtractor {
                     i += k;
                 }
 
-                String value = notes.get(number);
+                LOG.d("includeFooterNotes", number, number+"#"+name);
+
+                String value = notes.get(number+"#"+name);
                 if (value != null) {
                     value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
                     value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
@@ -991,8 +993,13 @@ public class Fb2Extractor extends BaseExtractor {
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (sectionId != null && xpp.getName().equals("section")) {
                         String keyEnd = StreamUtils.getKeyByValue(map, sectionId);
-                        map.put(keyEnd, text.toString().trim());
-                        LOG.d("getFooterNotes section", sectionId, keyEnd, ">", text.toString());
+
+                        map.put(keyEnd, text.toString().trim());//1
+                        keyEnd = keyEnd + "#OEBPS/fb2.fb2";
+                        map.put(keyEnd, text.toString().trim());//2
+
+                        LOG.d("getFooterNotes-section", sectionId, keyEnd, ">", text.toString());
+                        LOG.d("getFooterNotesFb2-section", keyEnd, text.toString().trim());
                         sectionId = null;
                         text = null;
                     } else if (xpp.getName().equals("a")) {
@@ -1004,7 +1011,8 @@ public class Fb2Extractor extends BaseExtractor {
                             }
                             link = link.replace("#", "");
                             map.put(key, link.trim());
-                            LOG.d("getFooterNotes", key, ">", link);
+                            LOG.d("getFooterNotes-link", key, ">", link);
+                            LOG.d("getFooterNotesFb2-link", key, link);
 
 
                             key = "";
@@ -1123,7 +1131,7 @@ public class Fb2Extractor extends BaseExtractor {
 
 
             if (AppState.get().isShowFooterNotesInText) {
-                line = includeFooterNotes(line, notes);
+                line = includeFooterNotes(line, notes,"OEBPS/fb2.fb2");
             }
 
             String subLine[] = line.split("</");

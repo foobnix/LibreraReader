@@ -34,7 +34,7 @@ public interface DecodeService {
 
 	void getOutline(final ResultResponse<List<OutlineLink>> response);
 
-    String getFooterNote(String text);
+    String getFooterNote(String text, String chapter);
 
     List<String> getAttachemnts();
 

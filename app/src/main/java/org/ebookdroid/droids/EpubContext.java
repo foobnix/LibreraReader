@@ -76,7 +76,7 @@ public class EpubContext extends PdfContext {
     public Map<String, String> getNotes(String fileName) {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
-        if (jsonFile.isFile()) {
+        if (/** !BuildConfig.DEBUG && **/ jsonFile.isFile()) {
             LOG.d("getNotes cache", fileName);
             notes = JsonHelper.fileToMap(jsonFile);
         } else {

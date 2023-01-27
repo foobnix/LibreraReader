@@ -955,11 +955,11 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public String getFooterNote(String input) {
+    public String getFooterNote(String input, String chapter) {
         if (codecDocument == null || codecDocument.getFootNotes() == null) {
             return "";
         }
-        return TxtUtils.getFooterNote(input, codecDocument.getFootNotes());
+        return TxtUtils.getFooterNote(input, chapter,codecDocument.getFootNotes());
     }
 
     @Override

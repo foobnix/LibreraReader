@@ -397,9 +397,9 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public String getFootNote(String text) {
+    public String getFootNote(String text,String chapter) {
         try {
-            return TxtUtils.getFooterNote(text, codeDocument.getFootNotes());
+            return TxtUtils.getFooterNote(text, chapter, codeDocument.getFootNotes());
         } catch (Exception e) {
             LOG.e(e);
             return "";

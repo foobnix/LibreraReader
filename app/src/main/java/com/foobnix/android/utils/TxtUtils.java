@@ -1091,7 +1091,7 @@ public class TxtUtils {
         return false;
     }
 
-    public static String getFooterNote(String input, Map<String, String> footNotes) {
+    public static String getFooterNote(String input, String chapter, Map<String, String> footNotes) {
         if (input == null) {
             return "";
         }
@@ -1099,10 +1099,19 @@ public class TxtUtils {
             return "";
         }
 
+
         try {
             String id = getFooterNoteNumber(input);
 
+
             if (TxtUtils.isNotEmpty(id)) {
+                if(chapter.contains("#")){
+                    chapter = chapter.substring(0, chapter.indexOf("#"));
+                }
+                 id = id+"#"+chapter;
+
+
+                LOG.d("getFooterNote",id);
                 String string = footNotes.get(id);
                 if (TxtUtils.isNotEmpty(string)) {
                     LOG.d("Find note for id", string);
