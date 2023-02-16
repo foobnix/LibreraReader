@@ -6,18 +6,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import at.stefl.commons.io.CharStreamUtil;
 
 // TODO: put under RescourceUtil into commons
 public class StyleScriptUtil {
     
-    public static void pipeResource(Class<?> clazz, String name, Writer out)
-            {
+    public static void pipeResource(Class<?> clazz, String name, Writer out) {
         try {
-            Reader in = new InputStreamReader(clazz.getResourceAsStream(name),
-                    Charset.forName("UTF-8"));
+            Reader in = new InputStreamReader(clazz.getResourceAsStream(name), StandardCharsets.UTF_8);
             CharStreamUtil.writeStreamBuffered(in, out);
         }catch (Exception e){
             LOG.e(e);

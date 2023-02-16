@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PushbackReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import at.stefl.commons.io.ApplyFilterReader;
 import at.stefl.commons.io.CharFilter;
@@ -23,10 +24,6 @@ import at.stefl.commons.util.InaccessibleSectionException;
 // TODO: improve malformed xml handling
 // TODO: use xml escaping decoder
 public class LWXMLStreamReader extends LWXMLReader {
-    
-    // TODO: remove
-    private static final String DEFAULT_CHARSET = "UTF-8";
-    
     private static final int PUSHBACK_BUFFER_SIZE = 1;
     
     private static final CharFilter WHITESPACE_FILTER = new CharFilter() {
@@ -85,7 +82,7 @@ public class LWXMLStreamReader extends LWXMLReader {
     
     // TODO: remove
     public LWXMLStreamReader(InputStream in) {
-        this(in, Charset.forName(DEFAULT_CHARSET));
+        this(in, StandardCharsets.UTF_8);
     }
     
     // TODO: remove

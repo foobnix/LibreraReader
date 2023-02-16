@@ -23,7 +23,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -40,7 +39,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -146,8 +145,12 @@ public class TxtUtils {
     }
 
     public static String encode1251(String string) {
-        if (Charset.forName("8859_1").newEncoder().canEncode(string)) {
-            return encode(string, "8859_1", "Windows-1251");
+        if (StandardCharsets.ISO_8859_1.newEncoder().canEncode(string)) {
+            try {
+                return new String(string.getBytes(StandardCharsets.ISO_8859_1), "Windows-1251");
+            } catch (UnsupportedEncodingException e) {
+                return string;
+            }
         } else {
             return string;
         }
@@ -159,14 +162,6 @@ public class TxtUtils {
         }
         return str.toLowerCase(Locale.US);
 
-    }
-
-    public static String encode(String string, String from, String to) {
-        try {
-            return new String(string.getBytes(from), to);
-        } catch (UnsupportedEncodingException e) {
-            return string;
-        }
     }
 
     public static String deltaPage(int current) {

@@ -10,7 +10,7 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class GoogleTranslation {
 
@@ -64,7 +64,7 @@ public class GoogleTranslation {
             urlcon.addRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
             System.setProperty("http.agent", "Chrome");
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), Charset.forName("UTF-8")));
+            BufferedReader rd = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), StandardCharsets.UTF_8));
             String jsonText = readAll(rd);
             JSONObject json = new JSONObject(jsonText);
             rd.close();
