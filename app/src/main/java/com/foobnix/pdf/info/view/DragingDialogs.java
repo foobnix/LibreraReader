@@ -2487,8 +2487,10 @@ public class DragingDialogs {
     public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
 
 
-        final OnItemClickListener onClickContent = new OnItemClickListener() {
+        final ItemClickListenerWithReference<DragingPopup> onClickContent = new ItemClickListenerWithReference<DragingPopup>() {
 
+
+            int prev = -1;
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
                 final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
@@ -2509,6 +2511,10 @@ public class DragingDialogs {
                         controller.onGoToPage(link.targetPage);
                         // ((ListView) parent).requestFocusFromTouch();
                         // ((ListView) parent).setSelection(position);
+                        if(position == prev) {
+                            reference.closeDialog();
+                        }
+                        prev = position;
 
                     }
                     return;
@@ -2657,6 +2663,7 @@ public class DragingDialogs {
             }
 
         }.show("showContent", false, true);
+        onClickContent.setReference(dragingPopup);
         return dragingPopup;
 
     }
