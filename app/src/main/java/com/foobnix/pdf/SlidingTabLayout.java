@@ -1,8 +1,11 @@
 package com.foobnix.pdf;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -275,10 +278,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 Drawable drawable = null;
                 try {
                     drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
+                    //drawable = new ScaleDrawable(drawable.getCurrent(),0,Dips.DP_10,Dips.DP_10);
+                    int size = Dips.dpToPx(28);
+                    drawable.setBounds(0,0,size,size);
+
                     if (myPOS == POS_VERTICAL) {
-                        tabTitleView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
+                        tabTitleView.setCompoundDrawables(null, drawable, null, null);
                     } else {
-                        tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                        tabTitleView.setCompoundDrawables(drawable, null, null, null);
                     }
                 } catch (Exception e) {
                     LOG.e(e);

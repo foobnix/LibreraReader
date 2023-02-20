@@ -260,15 +260,22 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
+            menu2.setBackgroundResource(R.drawable.bg_search_edit_night);
+
         } else {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
+            menu2.setBackgroundResource(R.drawable.bg_search_edit);
         }
-        TintUtil.setStrokeColor(searchEditText, colorTheme);
+        TintUtil.setStrokeColor(searchEditText, TintUtil.color);
+        TintUtil.setStrokeColor(menu2, TintUtil.color);
+
         TintUtil.setUITextColor(searchEditText, colorTheme);
+
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
             TintUtil.setStrokeColor(searchEditText, Color.BLACK);
+            TintUtil.setStrokeColor(menu2, Color.BLACK);
             TintUtil.setUITextColor(searchEditText, Color.BLACK);
             countBooks.setTextColor(Color.BLACK);
 
@@ -498,6 +505,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+
+
         return view;
 
     }
@@ -571,6 +580,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
+        menu2.setVisibility(getActivity().findViewById(R.id.imageMenu1) == null ? View.GONE : View.VISIBLE);
 
     }
 
@@ -740,8 +750,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         parentName = "" + it.getPublisher();
                     } else if (AppState.get().sortBy == SORT_BY.SERIES.getIndex()) {
                         parentName = "" + TxtUtils.nullToEmpty(it.getSequence());
-                        parentName = parentName.replace(",","");
-                        if(parentName.isEmpty()){
+                        parentName = parentName.replace(",", "");
+                        if (parentName.isEmpty()) {
                             parentName = "---";
                         }
                     } else if (AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex()) {

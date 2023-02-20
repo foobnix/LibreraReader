@@ -318,6 +318,7 @@ public class AppState {
     // n,
     // 25 - 25%
     // persent
+    public int tabPositionInRecentDialog = 0;
     public boolean tapPositionTop = true;
     public boolean tabWithNames = true;
     public long fontExtractTime = 0;

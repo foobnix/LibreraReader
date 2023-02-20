@@ -69,8 +69,10 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
@@ -98,6 +100,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
@@ -139,8 +142,16 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.adapter.TabsAdapter2;
+import com.foobnix.ui2.fragment.BookmarksFragment2;
+import com.foobnix.ui2.fragment.BrowseFragment2;
+import com.foobnix.ui2.fragment.FavoritesFragment2;
+import com.foobnix.ui2.fragment.RecentFragment2;
+import com.foobnix.ui2.fragment.SearchFragment2;
+import com.foobnix.ui2.fragment.UIFragment;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -2277,7 +2288,65 @@ public class DragingDialogs {
         }.show(EDIT_COLORS_PANEL, force);
     }
 
+
     public static void recentBooks(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
+
+        new DragingPopup(R.string.library, anchor, PREF_WIDTH, PREF_HEIGHT) {
+
+            @Override
+            public View getContentView(final LayoutInflater inflater) {
+                View root = inflater.inflate(R.layout.fragemnt_include_library,null,false);
+
+                SlidingTabLayout indicator = (SlidingTabLayout) root.findViewById(R.id.slidingTabs);
+                ViewPager pager = (ViewPager) root.findViewById(R.id.pager);
+                List<UIFragment> tabFragments = new ArrayList<>();
+
+                tabFragments.add(new SearchFragment2());
+                tabFragments.add(new BrowseFragment2());
+                tabFragments.add(new RecentFragment2());
+                tabFragments.add(new FavoritesFragment2());
+
+                TabsAdapter2 adapter = new TabsAdapter2((FragmentActivity) controller.getActivity(), tabFragments);
+                pager.setAdapter(adapter);
+
+                indicator.setViewPager(pager);
+
+                pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+                    @Override
+                    public void onPageSelected(int position) {
+                        tabFragments.get(position).onSelectFragment();
+                        AppState.get().tabPositionInRecentDialog = position;
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
+
+                indicator.setVisibility(View.VISIBLE);
+                indicator.init();
+
+                indicator.setDividerColors(controller.getActivity().getResources().getColor(R.color.tint_divider));
+                indicator.setSelectedIndicatorColors(Color.WHITE);
+                indicator.setBackgroundColor(TintUtil.color);
+
+                pager.setOffscreenPageLimit(10);
+                pager.setCurrentItem(AppState.get().tabPositionInRecentDialog);
+
+                return root;
+            }
+        }.show("recentBooks");
+    }
+
+    public static void recentBooksOld(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
