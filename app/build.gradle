@@ -28,12 +28,12 @@ ext {
 }
 
 android {
-    buildToolsVersion '33.0.1'
+    buildToolsVersion '33.0.2'
     compileSdk 33
     namespace "com.foobnix.pdf.info"
-    //ndkVersion "21.4.7075529"
+
     defaultConfig {
-        applicationId "com.foobnix.pdf.reader"
+        namespace "com.foobnix.pdf.info"
         minSdk 19
         targetSdk 33
         versionCode codeNumber
@@ -330,9 +330,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation 'androidx.work:work-runtime:2.8.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 
 /** Third-party **/
     implementation 'com.github.axet:lame:1.0.9'
@@ -342,7 +342,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.15.3'
+    implementation 'org.jsoup:jsoup:1.15.4'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
@@ -353,7 +353,7 @@ dependencies {
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.5.0'
     implementation 'javax.xml.stream:stax-api:1.0'
-    implementation 'net.lingala.zip4j:zip4j:2.11.2'
+    implementation 'net.lingala.zip4j:zip4j:2.11.4'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
@@ -362,7 +362,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:21.4.0"
+    def google_ads = "com.google.android.gms:play-services-ads:21.5.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads
