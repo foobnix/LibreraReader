@@ -69,7 +69,6 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -142,11 +141,9 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.adapter.TabsAdapter2;
-import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.FavoritesFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
@@ -2298,7 +2295,7 @@ public class DragingDialogs {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
-                View root = inflater.inflate(R.layout.fragemnt_include_library,null,false);
+                View root = inflater.inflate(R.layout.fragment_include_library,null,false);
 
                 SlidingTabLayout indicator = (SlidingTabLayout) root.findViewById(R.id.slidingTabs);
                 ViewPager pager = (ViewPager) root.findViewById(R.id.pager);
