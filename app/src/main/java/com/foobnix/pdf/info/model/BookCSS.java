@@ -371,7 +371,6 @@ public class BookCSS {
 
 
         all.addAll(getAllFontsFromFolder(fontFolder));
-
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
@@ -385,10 +384,7 @@ public class BookCSS {
         if (AppSP.get().lastBookPath != null) {
             all.addAll(getAllFontsFiltered(new File(AppSP.get().lastBookPath).getParent()));
         }
-        all.add(new FontPack(TIMES_NEW_ROMAN));
-        all.add(new FontPack(ARIAL));
-        all.add(new FontPack(COURIER));
-        all.add(new FontPack(CHARIS_SIL));
+
 
         all.addAll(getAllFontsFiltered(fontFolder));
 
@@ -396,6 +392,18 @@ public class BookCSS {
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
 
+        Collections.sort(all, new Comparator<FontPack>() {
+            @Override
+            public int compare(FontPack o1, FontPack o2) {
+                return o1.dispalyName.compareTo(o2.dispalyName);
+            }
+        });
+
+
+        all.add(1,new FontPack(CHARIS_SIL));
+        all.add(2,new FontPack(TIMES_NEW_ROMAN));
+        all.add(3,new FontPack(ARIAL));
+        all.add(4,new FontPack(COURIER));
 
         return all;
     }
