@@ -125,7 +125,11 @@ public class Urls {
 
     public static void rateIT(Context a) {
         try {
-            Urls.open(a, "market://details?id=" + a.getPackageName());
+            if(AppsConfig.IS_FDROID){
+                Urls.open(a, "https://github.com/foobnix/LibreraReader");
+            }else {
+                Urls.open(a, "market://details?id=" + a.getPackageName());
+            }
         } catch (Exception e) {
             Urls.open(a, "https://play.google.com/store/apps/details?id=" + a.getPackageName());
             LOG.e(e);
