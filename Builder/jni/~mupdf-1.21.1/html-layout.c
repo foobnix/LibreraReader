@@ -754,12 +754,12 @@ static void layout_flow(fz_context *ctx, layout_data *ld, fz_html_box *box, fz_h
 
 			find_accumulated_margins(ctx, box, &margin_w, &margin_h);
 			max_w = top->s.layout.w - margin_w;
-			max_h = ld->page_h - margin_h;
+			max_h = ld->page_h - margin_h - 10;//fit using paddings
 
 			/* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
 			node->w = node->content.image->w * 72 / 96;
 			node->h = node->content.image->h * 72 / 96;
-			aspect = node->w / node->h;
+			//aspect = node->w / node->h;
 
 			//if (node->box->style->width.unit != N_AUTO)
 			//	node->w = fz_from_css_number(node->box->style->width, top->em, top->w - margin_w, node->w);
