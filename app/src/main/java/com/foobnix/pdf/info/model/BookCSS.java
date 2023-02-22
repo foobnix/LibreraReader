@@ -51,8 +51,7 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT =  TIMES_NEW_ROMAN;
-
+    public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
 
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
@@ -233,7 +232,7 @@ public class BookCSS {
         linkColorNigths = LINKCOLOR_NIGHTS;
 
         customCSS2 = //
-                "code,pre,pre>* {white-space: pre-line;}\n" + //
+                "code,pre,pre>* {white-space:pre-line;}\n" + //
                         ""//
         ;
 
@@ -297,7 +296,6 @@ public class BookCSS {
     public void allFonts(String fontName) {
         normalFont = fontName;
     }
-
 
 
     public void resetAll(FontPack pack) {
@@ -381,13 +379,8 @@ public class BookCSS {
 
     public List<FontPack> getAllFontsPacks() {
         List<FontPack> all = new ArrayList<FontPack>();
-        if (AppSP.get().lastBookPath != null) {
-            all.addAll(getAllFontsFiltered(new File(AppSP.get().lastBookPath).getParent()));
-        }
-
 
         all.addAll(getAllFontsFiltered(fontFolder));
-
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
@@ -400,10 +393,13 @@ public class BookCSS {
         });
 
 
-        all.add(1,new FontPack(CHARIS_SIL));
-        all.add(2,new FontPack(TIMES_NEW_ROMAN));
-        all.add(3,new FontPack(ARIAL));
-        all.add(4,new FontPack(COURIER));
+        all.add(0, new FontPack(COURIER));
+        all.add(0, new FontPack(ARIAL));
+        all.add(0, new FontPack(TIMES_NEW_ROMAN));
+        all.add(0, new FontPack(CHARIS_SIL));
+        if (AppSP.get().lastBookPath != null) {
+            all.addAll(0, getAllFontsFiltered(new File(AppSP.get().lastBookPath).getParent()));
+        }
 
         return all;
     }
@@ -559,18 +555,20 @@ public class BookCSS {
         return toCssString("");
     }
 
+
+    public String importantUserStyles() {
+        return documentStyle == STYLES_ONLY_USER ? " !important" : "";
+    }
+
     public String toCssString(String path) {
 
 
         StringBuilder builder = new StringBuilder();
 
 
-
         File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
         String css = IO.readString(cssFile);
         builder.append(css);
-
-
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
@@ -586,144 +584,103 @@ public class BookCSS {
         builder.append(String.format("margin-left:%s !important;", em(marginLeft)));
         builder.append("}");
         // PAGE END
-        // FB2
-        builder.append(String.format("empty-line{padding:%s;}", em(emptyLine)));
+
+        builder.append(String.format("empty-line{padding:%s %s;}", em(emptyLine), importantUserStyles()));
         if (paragraphHeight > 0) {// bug is here
-            builder.append(String.format("p{margin:%s 0}", em(paragraphHeight)));
+            builder.append(String.format("p{margin:%s 0 %s;}", em(paragraphHeight), importantUserStyles()));
         }
-        // not supported text-decoration
-
-
-        builder.append("body,p,div,span {");
-        if (AppState.get().isAccurateFontSize || !AppState.get().isDayNotInvert || documentStyle == STYLES_ONLY_USER) {
-            builder.append(String.format("background-color:%s !important;", backgroundColor));
-            builder.append(String.format("color:%s !important;", textColor));
-        } else {
-            builder.append(String.format("background-color:%s;", backgroundColor));
-            builder.append(String.format("color:%s;", textColor));
-        }
-        builder.append(String.format("line-height:%s !important;", em(lineHeight)));
-        builder.append("}");
-
-        if (AppState.get().isDayNotInvert) {
-            builder.append("t{color:" + linkColorDay + " !important;");
-        } else {
-            builder.append("t{color:" + linkColorNight + " !important;}");
-        }
+        builder.append("t{color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
-            if (AppState.get().isDayNotInvert) {
-                builder.append("a{color:" + linkColorDay + " !important;}");
-            } else {
-                builder.append("a{color:" + linkColorNight + " !important;}");
-            }
+
+            builder.append("a{color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
+            //apply settings
+            builder.append("body,p,b,i,em,span,div {");
+            builder.append(String.format("font-size:medium %s;", importantUserStyles()));
+            builder.append(String.format("background-color:%s %s;", backgroundColor, importantUserStyles()));
+            builder.append(String.format("color:%s %s;", textColor, importantUserStyles()));
+            builder.append(String.format("text-align:%s %s;", getTextAlignConst(textAlign), importantUserStyles()));
+            builder.append(String.format("line-height:%s %s;", em(lineHeight), importantUserStyles()));
+            builder.append(String.format("text-indent:%s %s;", em(textIndent), importantUserStyles()));
+            builder.append("}");
 
             // FONTS BEGIN
             if (isFontFileName(normalFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + normalFont + "') format('truetype'); font-weight: normal; font-style: normal;}");
+                builder.append("@font-face {font-family:my; src:url('" + normalFont + "') format('truetype'); font-weight:normal; font-style:normal;}");
             }
-
-            if (isFontFileName(capitalFont)) {
-                builder.append("@font-face {font-family: myCapital; src: url('" + capitalFont + "') format('truetype'); font-weight: normal; font-style: normal;}");
-            }
-
             if (isFontFileName(boldFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + boldFont + "') format('truetype'); font-weight: bold; font-style: normal;}");
+                builder.append("@font-face {font-family:my; src:url('" + boldFont + "') format('truetype'); font-weight:bold; font-style:normal;}");
             }
 
             if (isFontFileName(italicFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + italicFont + "') format('truetype'); font-weight: normal; font-style: italic;}");
+                builder.append("@font-face {font-family:my; src:url('" + italicFont + "') format('truetype'); font-weight:normal; font-style:italic;}");
             }
 
             if (isFontFileName(boldItalicFont)) {
-                builder.append("@font-face {font-family: my; src: url('" + boldItalicFont + "') format('truetype'); font-weight: bold; font-style: italic;}");
+                builder.append("@font-face {font-family:my; src:url('" + boldItalicFont + "') format('truetype'); font-weight:bold; font-style:italic;}");
+            }
+            if (isFontFileName(capitalFont)) {
+                builder.append("@font-face {font-family:myCapital; src:url('" + capitalFont + "') format('truetype'); font-weight:normal; font-style:normal;}");
             }
 
             if (isFontFileName(headersFont)) {
-                builder.append("@font-face {font-family: myHeader; src: url('" + headersFont + "') format('truetype'); }");
-                builder.append("h1{font-weight: normal; font-family: myHeader;}");
-                builder.append("h2{font-weight: normal; font-family: myHeader;}");
-                builder.append("h3{font-weight: normal; font-family: myHeader;}");
-                builder.append("h4{font-weight: normal; font-family: myHeader;}");
-                builder.append("h5{font-weight: normal; font-family: myHeader;}");
-                builder.append("h6{font-weight: normal; font-family: myHeader;}");
-
-                builder.append("title,title>p,title>p>strong  {font-weight: normal; font-family: myHeader !important;}");
-                builder.append(/*                 */ "subtitle{font-weight: normal; font-family: myHeader !important;}");
+                builder.append("@font-face {font-family:myHeader; src:url('" + headersFont + "') format('truetype'); }");
+                builder.append("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:myHeader;}");
+                builder.append("title,title>p,title>p>strong  {font-weight:normal; font-family:myHeader !important;}");
+                builder.append(/*                 */ "subtitle{font-weight:normal; font-family:myHeader !important;}");
 
             } else {
-                builder.append("h1{font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h2{font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h3{font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h4{font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h5{font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("h6{font-weight: bold; font-family: " + headersFont + ";}");
-
-                builder.append("title, title>p{      font-weight: bold; font-family: " + headersFont + ";}");
-                builder.append("subtitle, subtitle>p{font-weight: bold; font-family: " + headersFont + ";}");
+                builder.append("h1,h2,h3,h4,h5,h6{font-weight:bold; font-family:   " + headersFont + ";}");
+                builder.append("title, title>p{      font-weight:bold; font-family:" + headersFont + ";}");
+                builder.append("subtitle, subtitle>p{font-weight:bold; font-family:" + headersFont + ";}");
             }
-            // FONTS END
-
-            // BODY BEGIN
-
-            // BODY END
-
-            if (isCapitalLetter) {
-                builder.append("letter{");
-                if (isFontFileName(capitalFont)) {
-                    builder.append("font-family: myCapital !important;");
-                } else {
-                    builder.append("font-family:" + capitalFont + " !important;");
-                }
-
-                builder.append(String.format("font-size:%s;", em(capitalLetterSize)));
-
-                if (capitalLetterColor.equals("#000000") && !AppState.get().isDayNotInvert) {
-                    builder.append(String.format("color:%s;", textColor));
-                } else if (capitalLetterColor.equals("#FFFFFF") && AppState.get().isDayNotInvert) {
-                    builder.append(String.format("color:%s;", textColor));
-                } else {
-                    builder.append(String.format("color:%s;", capitalLetterColor));
-                }
-
-                builder.append("}");
-            }
-
-            builder.append("body,p{");
-
-            if (isFontFileName(normalFont)) {
-                builder.append("font-family: my !important;");
-            } else {
-                builder.append("font-family:" + normalFont + " !important;");
-            }
-
-            if (AppState.get().isAccurateFontSize) {
-                builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
-            } else {
-                builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
-            }
-            builder.append("}");
-
-            builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
+                builder.append("b{font-family:" + boldFont + ";font-weight:bold;}");
             }
 
             if (!isFontFileName(italicFont)) {
-                builder.append("i{font-family:" + italicFont + "; font-style: italic, oblique;}");
+                builder.append("i{font-family:" + italicFont + "; font-style:italic;}");
             }
-            if (AppState.get().isAccurateFontSize) {
-                builder.append("body,p,b,i,em,span{font-size:medium !important;}");
+
+            builder.append("@page{");
+
+            if (isFontFileName(normalFont)) {
+                builder.append(String.format("font-family:my %s;",importantUserStyles()));
+            } else {
+                builder.append(String.format("font-family:" + normalFont + " %s;",importantUserStyles()));
             }
+            builder.append("}");
+
 
             builder.append(customCSS2.replace("\n", ""));
 
         }
+        //FB2 Capital letter for all styles
+        if (isCapitalLetter) {
+            builder.append("letter{");
+            if (isFontFileName(capitalFont)) {
+                builder.append("font-family:myCapital !important;");
+            } else {
+                builder.append("font-family:" + capitalFont + " !important;");
+            }
+
+            builder.append(String.format("font-size:%s;", em(capitalLetterSize)));
+
+            if (capitalLetterColor.equals("#000000") && !AppState.get().isDayNotInvert) {
+                builder.append(String.format("color:%s;", textColor));
+            } else if (capitalLetterColor.equals("#FFFFFF") && AppState.get().isDayNotInvert) {
+                builder.append(String.format("color:%s;", textColor));
+            } else {
+                builder.append(String.format("color:%s;", capitalLetterColor));
+            }
+
+            builder.append("}");
+        }
 
 
         String result = builder.toString();
-        LOG.d("BookCSS",result);
+        LOG.d("BookCSS", result);
         return result;
 
     }

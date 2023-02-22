@@ -16,14 +16,18 @@ public class LOG {
         }
     }
 
-    public static void d(Object... statement) {
+    public static void d(Object msg1, Object... statement) {
         if (isEnable) {
+            if (statement.length == 0) {
+                Log.d(TAG, msg1.toString());
+                return;
+            }
             String msg = asString(statement);
             if (msg != null && msg.length() > 4000) {
-                Log.d(TAG+"[part1]", msg.substring(0,4000));
-                Log.d(TAG+"[part2]", msg.substring(4000));
+                Log.d(msg1 + "[part1]", msg.substring(0, 4000));
+                Log.d(msg1 + "[part2]", msg.substring(4000));
             } else {
-                Log.d(TAG, msg);
+                Log.d(TAG.toString(), msg);
             }
         }
     }
