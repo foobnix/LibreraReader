@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class TintUtil {
     public static final int RADIUS = Dips.dpToPx(2);
-    public static final int STROKE = Dips.dpToPx(2);
+    public static final int STROKE = Dips.dpToPx(1);
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
     public static int cloudSyncColor = Color.parseColor("#66bb6a");// Color.parseColor("#9fd8bc");
