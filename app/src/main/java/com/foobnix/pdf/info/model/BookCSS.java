@@ -571,6 +571,7 @@ public class BookCSS {
         builder.append(css);
 
 
+
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 

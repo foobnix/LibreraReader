@@ -11,6 +11,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.TempHolder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -155,6 +156,7 @@ public class OutlineHelper {
             return null;
         }
     }
+
     public static String getCurrentChapterFile(DocumentController dc) {
         List<OutlineLinkWrapper> outline = dc.getCurrentOutline();
 
@@ -163,9 +165,12 @@ public class OutlineHelper {
         }
         int root = getRootItemByPageNumber(dc);
 
+
         if (outline.size() > root) {
             OutlineLinkWrapper item = outline.get(root);
-            return item.linkUri;
+            String linkUri = item.linkUri;
+            LOG.d("currentChapterFile-linkUri",linkUri);
+            return linkUri;
         } else {
             return null;
         }
@@ -203,6 +208,9 @@ public class OutlineHelper {
         try {
             List<OutlineLinkWrapper> outline = dc.getCurrentOutline();
             int pageNumber = dc.getCurentPageFirst1();
+            if (TempHolder.get().textFromPage == 2) {
+                pageNumber = pageNumber + 1;
+            }
 
             for (int i = 0; i < outline.size(); i++) {
                 OutlineLinkWrapper item = outline.get(i);
