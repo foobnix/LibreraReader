@@ -4254,8 +4254,9 @@ public class DragingDialogs {
                 // begin styles
                 final List<String> docStyles = Arrays.asList(//
                         controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
-                        controller.getString(R.string.document_styles), //
-                        controller.getString(R.string.user_styles));
+                        controller.getString(R.string.document_styles) ,
+                        controller.getString(R.string.user_styles)
+                );
 
                 final TextView docStyle = (TextView) inflate.findViewById(R.id.documentStyle);
 
