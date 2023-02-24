@@ -25,11 +25,11 @@ Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 [Telegram](https://t.me/LibreraReader)
 
-[Telegram Download Beta apk](https://t.me/LibreraBeta)
+[Beta .apk](http://beta.librera.mobi/)
 
-[Beta .apk (latest build)](https://beta.librera.mobi)
+[Support/Donations](https://www.patreon.com/librera)
 
-[Please support Librera on Patreon](https://www.patreon.com/librera)
+[Email librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
 
 ## Required build libs
