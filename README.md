@@ -1,36 +1,41 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
-# Librera Reader
-
-**The development and support of Librera is frozen for an unpredictable time, there is a big war in my country.**
+**The development and support of Librera is frozen for an unpredictable time, there is a big war in my country Ukraine.**
 [Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
+
+[OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
+
+# Librera Reader
 
 Librera Reader is an e-book reader for Android devices; 
 it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, and OPDS Catalogs
 
-Web: [https://librera.mobi/](https://librera.mobi/)
+### Download application
+
+[Librera Reader on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+
+[Librera PRO on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
+
+[Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
+
+[Beta testing .apk](http://beta.librera.mobi/)
+
+[Application Fonts.zip](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
+
+### Links
+
+[web: https://librera.mobi/](https://librera.mobi/)
 
 [What is new/Changes](https://librera.mobi/what-is-new/)
 
-FAQ: [Read](https://librera.mobi/faq/)
+[FAQ](https://librera.mobi/faq/)
 
-Android Play Market Apps:
-
-[Librera](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
-
-[Librera PRO](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
-
-Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] folder)
-[link](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
 
 [Telegram](https://t.me/LibreraReader)
 
-[Beta .apk](http://beta.librera.mobi/)
-
 [Support/Donations](https://www.patreon.com/librera)
 
-[Email librera.reader@gmail.com](mailto:librera.reader@gmail.com)
-
+[Email: librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
 ## Required build libs
 
