@@ -30,8 +30,9 @@ it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, 
 
 [FAQ](https://librera.mobi/faq/)
 
+[Telegram Info](https://t.me/LibreraReader)
 
-[Telegram](https://t.me/LibreraReader)
+[Telegram Chat](https://t.me/librera_reader_chat)
 
 [Support/Donations on Patreon](https://www.patreon.com/librera)
 
