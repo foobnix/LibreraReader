@@ -33,7 +33,7 @@ it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, 
 
 [Telegram](https://t.me/LibreraReader)
 
-[Support/Donations](https://www.patreon.com/librera)
+[Support/Donations on Patreon](https://www.patreon.com/librera)
 
 [Email: librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
