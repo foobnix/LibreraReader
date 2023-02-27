@@ -21,7 +21,14 @@ public class Fb2Context extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + AppState.get().isShowFooterNotesInText + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameOriginal = fileNameOriginal +
+                AppState.get().isShowFooterNotesInText +
+                BookCSS.get().isAutoHypens +
+                AppSP.get().hypenLang +
+                AppSP.get().isDouble +
+                //AppState.get().isAccurateFontSize +
+                BookCSS.get().documentStyle +
+                BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         return cacheFile;
     }

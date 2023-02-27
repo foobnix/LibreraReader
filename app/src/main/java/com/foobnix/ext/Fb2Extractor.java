@@ -134,7 +134,7 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static String accurateLine(String line) {
-        if (AppState.get().isAccurateFontSize) {
+        if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER) {
             line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
             line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
@@ -1106,7 +1106,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            if (AppState.get().isAccurateFontSize || fixXML) {
+            if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || fixXML) {
                 line = line.replace("<empty-line/>", "");
             }
 

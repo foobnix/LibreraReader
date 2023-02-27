@@ -41,7 +41,7 @@ public class HtmlExtractor {
 
             HypenUtils.resetTokenizer();
 
-            boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize || force;
+            boolean accurate = !LOG.isEnable || BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || force;
 
             //accurate = false;
 

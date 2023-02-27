@@ -29,7 +29,13 @@ public class DocxContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameOriginal = fileNameOriginal +
+                BookCSS.get().isAutoHypens +
+                AppSP.get().hypenLang +
+                AppSP.get().isDouble +
+                AppState.get().isAccurateFontSize +
+                BookCSS.get().documentStyle+
+                BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
         return cacheFile;
     }

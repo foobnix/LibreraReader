@@ -26,7 +26,15 @@ public class EpubContext extends PdfContext {
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         LOG.d(TAG, "getCacheFileName", fileNameOriginal, AppSP.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isReferenceMode + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + AppSP.get().hypenLang+AppState.get().isExperimental).hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal +
+                AppState.get().isReferenceMode +
+                AppState.get().isShowFooterNotesInText +
+                //AppState.get().isAccurateFontSize +
+                BookCSS.get().documentStyle+
+                BookCSS.get().isAutoHypens +
+                AppSP.get().hypenLang+
+                AppState.get().isExperimental)
+                .hashCode() + ".epub");
         return cacheFile;
     }
 

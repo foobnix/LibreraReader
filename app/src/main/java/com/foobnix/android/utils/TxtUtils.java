@@ -340,7 +340,7 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML [before]", pageHTML);
-        if (AppState.get().isAccurateFontSize) {
+        if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER) {
             pageHTML = pageHTML.toLowerCase();
             LOG.d("pageHTML [isAccurateFontSize]", pageHTML);
 

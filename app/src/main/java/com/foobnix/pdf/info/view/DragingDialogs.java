@@ -4422,7 +4422,7 @@ public class DragingDialogs {
                 // - hypens
                 //
                 CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
-                isAccurateFontSize.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isAccurateFontSize.setVisibility(View.GONE);
                 isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
                 isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
