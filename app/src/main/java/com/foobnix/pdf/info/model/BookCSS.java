@@ -232,7 +232,7 @@ public class BookCSS {
         linkColorNigths = LINKCOLOR_NIGHTS;
 
         customCSS2 = //
-                "code,pre,pre>* {white-space:pre-line;}\n" + //
+                "code,pre,pre>* {white-space:pre-wrap; font-size:0.7em;}\n" + //
                         ""//
         ;
 
