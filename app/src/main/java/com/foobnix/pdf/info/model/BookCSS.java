@@ -578,22 +578,27 @@ public class BookCSS {
 
         // PAGE BEGIN
         builder.append("@page {");
-        builder.append(String.format("margin-top:%s !important;", em(marginTop)));
-        builder.append(String.format("margin-right:%s !important;", em(marginRight)));
-        builder.append(String.format("margin-bottom:%s !important;", em(marginBottom - 1)));
-        builder.append(String.format("margin-left:%s !important;", em(marginLeft)));
+        builder.append(String.format("margin-top:%s !important;", em(marginTop * 2)));
+        builder.append(String.format("margin-right:%s !important;", em(marginRight * 2)));
+        builder.append(String.format("margin-bottom:%s !important;", em((marginBottom - 1) * 2)));
+        builder.append(String.format("margin-left:%s !important;", em(marginLeft * 2)));
         builder.append("}");
         // PAGE END
 
         builder.append(String.format("empty-line {padding:%s;}", em(emptyLine)));
         if (paragraphHeight > 0) {// bug is here
-            builder.append(important(String.format("p {margin:%s 0;}", em(paragraphHeight))));
+            builder.append(important(String.format("p {margin:%s 0;}", em(paragraphHeight * 2))));
         }
         builder.append("t {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
 
         builder.append("p {");
         builder.append(String.format("line-height:%s !important;", em(lineHeight)));
         builder.append("}");
+        builder.append("svg {");
+        builder.append("margin:0 !important;");
+        builder.append("padding:0 !important;");
+        builder.append("}");
+
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
@@ -610,6 +615,8 @@ public class BookCSS {
             builder.append("div {");
             builder.append("margin-right:0 !important;");
             builder.append("margin-left:0 !important;");
+            builder.append("padding-left:0 !important;");
+            builder.append("padding-right:0 !important;");
             builder.append("}");
 
 
