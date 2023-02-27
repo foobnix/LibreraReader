@@ -591,18 +591,27 @@ public class BookCSS {
         }
         builder.append("t {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
 
+        builder.append("p {");
+        builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+        builder.append("}");
+
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
             builder.append("a{color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
-            builder.append("* {");
+            builder.append("body {");
             builder.append(important(String.format("font-size:medium;")));
             builder.append(important(String.format("background-color:%s;", backgroundColor)));
             builder.append(important(String.format("color:%s;", textColor)));
-            builder.append(important(String.format("text-align:%s;", getTextAlignConst(textAlign))));
-            builder.append(important(String.format("line-height:%s;", em(lineHeight))));
-            builder.append(important(String.format("text-indent:%s;", em(textIndent))));
+            builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
+            builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append("}");
+
+            builder.append("div {");
+            builder.append("margin-right:0 !important;");
+            builder.append("margin-left:0 !important;");
+            builder.append("}");
+
 
             // FONTS BEGIN
             if (isUrlFont(normalFont)) {
@@ -617,7 +626,7 @@ public class BookCSS {
             if (isUrlFont(italicFont)) {
                 builder.append("@font-face {font-family:'my'; src:url('" + italicFont + "'); font-weight:normal; font-style:italic;}");
             } else {
-                builder.append("i{font-family:'" + italicFont + "'; font-style:italic;}");
+                builder.append("i {font-family:'" + italicFont + "'; font-style:italic;}");
             }
 
             if (isUrlFont(boldItalicFont)) {
@@ -637,7 +646,7 @@ public class BookCSS {
                 builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
             }
 
-            builder.append("* {");
+            builder.append("p {");
             if (isUrlFont(normalFont)) {
                 builder.append(important("font-family:'my';"));
             } else {

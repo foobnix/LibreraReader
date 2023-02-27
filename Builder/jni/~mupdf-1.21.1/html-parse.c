@@ -1465,7 +1465,7 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 
 	fz_try(ctx)
 	{
-	    fz_parse_css(ctx, g.css, user_css, "<user>");
+	    //fz_parse_css(ctx, g.css, user_css, "<user>");
 		if (fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
@@ -1493,9 +1493,10 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 
 		if (user_css)
 		{
-			//fz_parse_css(ctx, g.css, user_css, "<user>");
-			//fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
+
 		}
+		fz_parse_css(ctx, g.css, user_css, "<user>");
+        fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 	}
 	fz_catch(ctx)
 	{
