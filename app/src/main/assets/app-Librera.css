@@ -5,7 +5,7 @@ bdo{direction:rtl;unicode-bidi:bidi-override}
 blockquote{display:block;margin:1em 40px}
 
 cite{font-style:italic}
-code{font-family:monospace}
+code{font-family:monospace; font-size:0.7em;}
 dd{display:block;margin:0 0 0 40px}
 del{text-decoration:line-through}
 div{display:block}

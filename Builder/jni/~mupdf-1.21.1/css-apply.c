@@ -889,7 +889,7 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 		return make_number(initial, initial_unit);
 
 	if (value->type == CSS_PERCENT)
-		return make_number(fz_css_strtof(value->data, NULL)/2.5, N_PERCENT);
+		return make_number(fz_css_strtof(value->data, NULL), N_PERCENT);
 
 	if (value->type == CSS_NUMBER)
 		return make_number(fz_css_strtof(value->data, NULL), N_NUMBER);
@@ -1297,7 +1297,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
         			if (value->type == CSS_PERCENT){
         				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
         			}else{
-        				style->font_size = make_number(1, N_SCALE);
+        				style->font_size = number_from_value(value, 12, N_LENGTH);
         			}
         		}
 	}

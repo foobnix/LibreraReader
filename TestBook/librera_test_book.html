@@ -17,6 +17,61 @@
 </div>
 </div>
 
+<div xmlns="http://www.w3.org/1999/xhtml" class="highlight"><pre><code></code><code class="lineno"> 1 </code><code class="c1">// createThread.cpp</code>
+<code class="lineno"> 2 </code>
+<code class="lineno"> 3 </code><code class="cp">#include</code> <code class="cpf">&lt;iostream&gt;</code><code class="cp"></code>
+<code class="lineno"> 4 </code><code class="cp">#include</code> <code class="cpf">&lt;thread&gt;</code><code class="cp"></code>
+<code class="lineno"> 5 </code>
+<code class="lineno"> 6 </code><code class="kt">void</code> <code class="nf">helloFunction</code><code class="p">(){</code>
+<code class="lineno"> 7 </code>  <code class="n">std</code><code class="o">::</code><code class="n">cout</code> <code class="o">&lt;&lt;</code> <code class="s">"Hello from a function."</code> <code class="o">&lt;&lt;</code> <code class="n">std</code><code class="o">::</code><code class="n">endl</code><code class="p">;</code>
+<code class="lineno"> 8 </code><code class="p">}</code>
+<code class="lineno"> 9 </code>
+<code class="lineno">10 </code><code class="k">class</code> <code class="nc">HelloFunctionObject</code><code class="p">{</code>
+<code class="lineno">11 </code>  <code class="k">public</code><code class="o">:</code>
+<code class="lineno">12 </code>    <code class="kt">void</code> <code class="k">operator</code><code class="p">()()</code> <code class="k">const</code> <code class="p">{</code>
+<code class="lineno">13 </code>      <code class="n">std</code><code class="o">::</code><code class="n">cout</code> <code class="o">&lt;&lt;</code> <code class="s">"Hello from a function object."</code> <code class="o">&lt;&lt;</code> <code class="n">std</code><code class="o">::</code><code class="n">endl</code><code class="p">;</code>
+<code class="lineno">14 </code>    <code class="p">}</code>
+<code class="lineno">15 </code><code class="p">};</code>
+<code class="lineno">16 </code>
+<code class="lineno">17 </code><code class="kt">int</code> <code class="nf">main</code><code class="p">(){</code>
+<code class="lineno">18 </code>
+<code class="lineno">19 </code>  <code class="n">std</code><code class="o">::</code><code class="n">cout</code> <code class="o">&lt;&lt;</code> <code class="n">std</code><code class="o">::</code><code class="n">endl</code><code class="p">;</code>
+<code class="lineno">20 </code>
+<code class="lineno">21 </code>  <code class="n">std</code><code class="o">::</code><code class="kr">thread</code> <code class="n">t1</code><code class="p">(</code><code class="n">helloFunction</code><code class="p">);</code>
+<code class="lineno">22 </code>
+<code class="lineno">23 </code>  <code class="n">HelloFunctionObject</code> <code class="n">helloFunctionObject</code><code class="p">;</code>
+<code class="lineno">24 </code>  <code class="n">std</code><code class="o">::</code><code class="kr">thread</code> <code class="n">t2</code><code class="p">(</code><code class="n">helloFunctionObject</code><code class="p">);</code>
+<code class="lineno">25 </code>
+<code class="lineno">26 </code>  <code class="n">std</code><code class="o">::</code><code class="kr">thread</code> <code class="n">t3</code><code class="p">([]{</code><code class="n">std</code><code class="o">::</code><code class="n">cout</code> <code class="o">&lt;&lt;</code> <code class="s">"Hello from a lambda."</code> <code class="o">&lt;&lt;</code> <code class="n">std</code><code class="o">::</code><code class="n">endl</code><code class="p">;});</code>
+<code class="lineno">27 </code>
+<code class="lineno">28 </code>  <code class="n">t1</code><code class="p">.</code><code class="n">join</code><code class="p">();</code>
+<code class="lineno">29 </code>  <code class="n">t2</code><code class="p">.</code><code class="n">join</code><code class="p">();</code>
+<code class="lineno">30 </code>  <code class="n">t3</code><code class="p">.</code><code class="n">join</code><code class="p">();</code>
+<code class="lineno">31 </code>
+<code class="lineno">32 </code>  <code class="n">std</code><code class="o">::</code><code class="n">cout</code> <code class="o">&lt;&lt;</code> <code class="n">std</code><code class="o">::</code><code class="n">endl</code><code class="p">;</code>
+<code class="lineno">33 </code>
+<code class="lineno">34 </code><code class="p">};</code>
+</pre></div>
+
+<div class="page"><p><a id="B1Q600"></a></p>
+    <p style="text-align:left"><span
+            style="font-size:1rem;line-height:115%"> <strong>Instructions</strong> </span></p>
+    <p style="text-align:left"><span style="font-size:1rem;">Chess visualization and calculation skills must be developed if one is to be proficient. To this end, this interactive chess book is designed to help you train. Work hard on the problems presented and the skills will transfer over to your own chess games.</span>
+    </p>
+    <p style="text-align:left"><span style="font-size:1rem;line-height:115%">(1) Please adjust your reader's font size accordingly to fit the content on each page.</span>
+    </p>
+    <p style="text-align:left"><span style="font-size:1rem;line-height:115%">(2) Whenever possible, use the internal links on each page instead of the controllers on your device.</span>
+    </p>
+    <p style="text-align:left"><span style="font-size:1rem;line-height:115%">(3) The board coordinates are not included on the problems. This was done on purpose to help you. Strong chess players know the board very well.</span>
+    </p>
+    <p style="text-align:left"><span style="font-size:1rem;line-height:115%">(4) Please work hard on the problems presented. This is the only way you will transfer the skills over to your own games. And, of course, your chess rating will go up naturally.</span>
+    </p>
+    <p style="text-align:left"><span style="font-size:1rem;line-height:115%">Lastly, enjoy yourself! Chess improvement is difficult. However, chess is also supposed to be fun. This is why we created this interactive trainer.</span>
+    </p>
+    <p align="center"><span class="style4"> <a href="text00000.html#B1Q700">Next</a> </span></p>
+</div>
+
+
 <p>one two tree</p>
 <p>one
 two

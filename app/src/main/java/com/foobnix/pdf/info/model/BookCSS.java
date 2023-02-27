@@ -591,14 +591,10 @@ public class BookCSS {
         }
         builder.append("t {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
 
-        builder.append("p {");
-        builder.append(String.format("line-height:%s !important;", em(lineHeight)));
-        builder.append("}");
         builder.append("svg {");
         builder.append("margin:0 !important;");
         builder.append("padding:0 !important;");
         builder.append("}");
-
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
@@ -610,6 +606,7 @@ public class BookCSS {
             builder.append(important(String.format("color:%s;", textColor)));
             builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append("}");
 
             builder.append("div {");
