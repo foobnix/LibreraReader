@@ -343,7 +343,6 @@ public class TxtUtils {
         if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER) {
             pageHTML = pageHTML.toLowerCase();
             LOG.d("pageHTML [isAccurateFontSize]", pageHTML);
-
         }
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
