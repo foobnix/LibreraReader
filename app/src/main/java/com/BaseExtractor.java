@@ -106,6 +106,9 @@ public abstract class BaseExtractor {
 
     public static Bitmap arrayToBitmap(byte[] array, int width) {
         try {
+            if(array==null){
+                return null;
+            }
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(array, 0, array.length, options);
@@ -117,6 +120,7 @@ public abstract class BaseExtractor {
             return BitmapFactory.decodeByteArray(array, 0, array.length, options);
 
         } catch (Exception e) {
+            LOG.e(e);
             return null;
         }
     }

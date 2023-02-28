@@ -36,6 +36,7 @@ public class ZipArchiveInputStream extends InputStream {
 
 
             zp = new ZipFile(file);
+            zp.setCharset(zp.getCharset());
 
 
 

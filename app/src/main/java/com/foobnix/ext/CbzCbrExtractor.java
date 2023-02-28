@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
@@ -23,7 +24,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-
 
 
 public class CbzCbrExtractor {
@@ -54,7 +54,7 @@ public class CbzCbrExtractor {
                     if (nextEntry.isDirectory()) {
                         continue;
                     }
-                    
+
                     String name = nextEntry.getName().toLowerCase(Locale.US);
                     if ("comicinfo.xml".equals(name)) {
                         continue;
@@ -136,7 +136,7 @@ public class CbzCbrExtractor {
             XmlPullParser xpp = XmlParser.buildPullParser();
             if (zipInputStream != null) {
                 xpp.setInput(zipInputStream, "utf-8");
-            } else if (byteArrayStream != null){
+            } else if (byteArrayStream != null) {
                 inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
                 xpp.setInput(inputStream, "utf-8");
             }
@@ -222,7 +222,7 @@ public class CbzCbrExtractor {
             XmlPullParser xpp = XmlParser.buildPullParser();
             if (zipInputStream != null) {
                 xpp.setInput(zipInputStream, "utf-8");
-            } else if (byteArrayStream != null){
+            } else if (byteArrayStream != null) {
                 inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
                 xpp.setInput(inputStream, "utf-8");
             }
@@ -331,6 +331,7 @@ public class CbzCbrExtractor {
     }
 
     public static byte[] getBookCover(String path) {
+
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             if (BookType.CBZ.is(path) || isZip(path)) {
@@ -340,22 +341,33 @@ public class CbzCbrExtractor {
 
                 List<String> names = new ArrayList<String>();
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+
                     String name = nextEntry.getName();
-                    LOG.d("Name", name);
+                    String fileName = ExtUtils.getFileName(name);
+                    if (fileName.startsWith(".")) {
+                        continue;
+                    }
+
                     if (ExtUtils.isImagePath(name)) {
                         names.add(name);
                     }
                 }
                 zipInputStream.close();
-                Collections.sort(names);
+                try {
+                    Collections.sort(names);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
 
 
                 zipInputStream = new ZipArchiveInputStream(path);
                 nextEntry = null;
 
                 String first = names.get(0);
+                LOG.d("cbz-Name-first", first);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (nextEntry.getName().equals(first)) {
+                        LOG.d("cbz-Name-first-eq", nextEntry.getName());
                         IOUtils.copyClose(zipInputStream, out);
                         break;
                     }

@@ -27,7 +27,7 @@ public class LOG {
                 Log.d(msg1 + "[part1]", msg.substring(0, 4000));
                 Log.d(msg1 + "[part2]", msg.substring(4000));
             } else {
-                Log.d(TAG.toString(), msg);
+                Log.d(msg1.toString(), msg);
             }
         }
     }

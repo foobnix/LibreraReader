@@ -137,6 +137,9 @@ public class LibreraApp extends MultiDexApplication {
                 }
             });
         }
+        if(LOG.isEnable){
+            IMG.clearDiscCache();
+        }
 
 
 
