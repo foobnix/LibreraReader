@@ -7,11 +7,15 @@
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="3dip">
+
+
 
         <TextView
             android:id="@+id/closeMenu"
@@ -349,6 +353,8 @@
 
 
             </LinearLayout>
+
+
 
         </LinearLayout>
 
@@ -1541,7 +1547,35 @@
             android:background="@drawable/bg_search_second"
             android:text="Product: Lirbi Free" />
 
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dip"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_margin="4dip"
+                android:src="@mipmap/icon_pdf_pro" />
+
+            <TextView
+                android:id="@+id/downloadPRO"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/librera_pro" />
+        </LinearLayout>
+
+
         <TextView
+            android:visibility="gone"
             android:id="@+id/pVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1581,6 +1615,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dip">
@@ -1631,6 +1666,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -1650,6 +1686,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -1686,30 +1723,7 @@
             android:text="@string/rate_pdf_reader1" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="4dip"
-            android:visibility="visible">
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_margin="4dip"
-                android:src="@mipmap/icon_pdf_pro" />
-
-            <TextView
-                android:id="@+id/downloadPRO"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="@string/librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application" />
-        </LinearLayout>
 
     </LinearLayout>
 

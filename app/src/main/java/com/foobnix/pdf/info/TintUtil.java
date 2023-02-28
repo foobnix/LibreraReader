@@ -22,6 +22,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -106,9 +107,13 @@ public class TintUtil {
     }
 
     public static void setBackgroundFillColor(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
-        drawable.setColor(color);
-        drawable.setCornerRadius(RADIUS);
+        try {
+            GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+            drawable.setColor(color);
+            drawable.setCornerRadius(RADIUS);
+        }catch (Exception e){
+            LOG.e(e);
+        }
 
     }
 

@@ -567,7 +567,7 @@ public class PrefFragment2 extends UIFragment {
             scrollView.setBackgroundColor(Color.BLACK);
         }
 
-        ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s", getString(R.string.product), Apps.getApplicationName(getActivity())));
+
         // ((TextView) findViewById(R.id.appName)).setText(AppsConfig.APP_NAME);
 
         try {
@@ -590,6 +590,7 @@ public class PrefFragment2 extends UIFragment {
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:
             // %s (%s)", getString(R.string.version), version, AppsConfig.MUPDF_VERSION));
             ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s", getString(R.string.version), version));
+            ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s %s", getString(R.string.product), Apps.getApplicationName(getActivity()), version));
         } catch (final NameNotFoundException e) {
         }
 
@@ -852,17 +853,17 @@ public class PrefFragment2 extends UIFragment {
 
             PopupMenu p = new PopupMenu(getContext(), appEngine);
 
-                p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
-                    AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
-                        @Override
-                        public void run() {
-                            AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_1_11);
-                            android.os.Process.killProcess(android.os.Process.myPid());
-                        }
-                    });
-
-                    return false;
+            p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
+                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
+                    @Override
+                    public void run() {
+                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_1_11);
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
                 });
+
+                return false;
+            });
             p.getMenu().add(AppsConfig.ENGINE_MuPDF_LATEST).setOnMenuItemClickListener(item -> {
                 AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
                     @Override
@@ -2266,7 +2267,7 @@ public class PrefFragment2 extends UIFragment {
         if (AppsConfig.checkIsProInstalled(
 
                 getActivity())) {
-            ((View) proText.getParent()).setVisibility(View.GONE);
+            //((View) proText.getParent()).setVisibility(View.GONE);
         }
 
         inflate.findViewById(R.id.cleanRecent).

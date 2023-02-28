@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Mirrored crop</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extract authors\' names and book titles from meta-data (PDF)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO: Install to remove ads</string>
+   <string name="librera_pro">Librera PRO: This app but without ads</string>
    <string name="annotation">Annotation</string>
    <string name="book">Book</string>
    <string name="information">File Info</string>
