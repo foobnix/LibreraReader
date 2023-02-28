@@ -516,8 +516,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		const char *alt = "[image]";
-		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		//const char *alt = "[image]";
+		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
@@ -525,7 +525,7 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 		{
 			add_flow_sbreak(ctx, pool, flow, box);
 			add_flow_image(ctx, pool, flow, box, img);
-			add_flow_sbreak(ctx, pool, flow, box);
+			//add_flow_sbreak(ctx, pool, flow, box);
 		}
 		fz_always(ctx)
 		{

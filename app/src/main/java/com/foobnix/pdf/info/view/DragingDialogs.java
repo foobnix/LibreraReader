@@ -4472,17 +4472,16 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek imageScale = (CustomSeek) inflate.findViewById(R.id.imageScale);
-                imageScale.init(1, 50, (int) BookCSS.get().imageScale * 10, "x");
+                imageScale.setFloatResult(true);
+                imageScale.init(1, 50, (int) (BookCSS.get().imageScale * 10), "x");
                 imageScale.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
                         BookCSS.get().imageScale = (float) result / 10;
-                        imageScale.setValueText("" + BookCSS.get().imageScale);
                         return false;
                     }
                 });
-                imageScale.setValueText("" + BookCSS.get().imageScale);
 
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
