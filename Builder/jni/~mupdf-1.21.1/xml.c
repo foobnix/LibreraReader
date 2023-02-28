@@ -702,7 +702,7 @@ parse_closing_element:
 	++p;
 	goto parse_text;
 
-parse_closing_element_1.21.1:
+parse_closing_element_1_21_1:
 	while (iswhite(*p)) ++p;
 	mark = p;
 	while (isname(*p)) ++p;
