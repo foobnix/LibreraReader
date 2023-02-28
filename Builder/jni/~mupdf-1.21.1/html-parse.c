@@ -1396,7 +1396,6 @@ static fz_xml_doc *
 parse_to_xml(fz_context *ctx, fz_buffer *buf, int try_xml, int try_html5)
 {
 	fz_xml_doc *xml;
-
 	if (try_xml && try_html5)
 	{
 		fz_try(ctx)
