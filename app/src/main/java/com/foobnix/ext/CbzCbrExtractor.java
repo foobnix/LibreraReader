@@ -340,10 +340,14 @@ public class CbzCbrExtractor {
                 ArchiveEntry nextEntry = null;
 
                 List<String> names = new ArrayList<String>();
+                String firstTemp = null;
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
 
                     String name = nextEntry.getName();
                     String fileName = ExtUtils.getFileName(name);
+                    if (firstTemp == null) {
+                        firstTemp = fileName;
+                    }
                     if (fileName.startsWith(".")) {
                         continue;
                     }
@@ -362,6 +366,10 @@ public class CbzCbrExtractor {
 
                 zipInputStream = new ZipArchiveInputStream(path);
                 nextEntry = null;
+
+                if (names.isEmpty() && firstTemp != null) {
+                    names.add(firstTemp);
+                }
 
                 String first = names.get(0);
                 LOG.d("cbz-Name-first", first);

@@ -30,6 +30,7 @@ public class FileMetaComparators {
             try {
                 return naturalOrderComparator.compare(o1.getPath().toLowerCase(), o2.getPath().toLowerCase());
             } catch (Exception e) {
+                LOG.e(e);
                 return BY_PATH.compare(o1, o2);
             }
         }
