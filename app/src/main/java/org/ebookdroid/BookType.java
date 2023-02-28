@@ -47,7 +47,7 @@ public enum BookType {
     EPUB(EpubContext.class, true, true, list("epub"), list("application/epub+zip")),
 
 
-    FB2(Fb2Context.class, true, true, list("fb2"),
+    FB2(Fb2Context.class, true, true, list("fb2","fbd"),
             list("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
 
     MOBI(MobiContext.class, true, true, list("mobi", "azw", "azw3", "azw4", "pdb", "prc"), list("application/x-mobipocket-ebook", "application/x-palm-database","application/x-mobi8-ebook","application/x-kindle-application","application/vnd.amazon.mobi8-ebook")),

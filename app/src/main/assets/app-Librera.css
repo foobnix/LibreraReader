@@ -55,11 +55,11 @@ br{display:block}
 
 FictionBook{display:block}
 stylesheet,binary{display:none}
-description,description>*{display:none}
+description>*{display:none}
 description>title-info{display:block}
 description>title-info>*{display:none}
-description>title-info>annotation{display:block;page-break-before:always;page-break-after:always}
-description>title-info>coverpage{display:block;page-break-before:always;page-break-after:always}
+description>title-info>annotation{display:block;font-style:italic}
+description>title-info>coverpage{display:block;}
 body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 
@@ -106,7 +106,7 @@ body{display:block; padding:0 !important; margin:0 !important;}
 
 h1,h2,h3,h4,h5,h6,img {text-indent:0px !important; text-align: center;}
 
-title,title>p,title>p>strong{font-size:1.2em;}
+title,title>p,title>p>strong{font-size:1.1em;}
 subtitle{font-size:1.0em;}
 
 t{font-style: italic;}
