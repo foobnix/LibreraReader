@@ -617,7 +617,7 @@ static int close_tag(fz_context *ctx, struct parser *parser, const char *mark, c
 		xml_emit_close_tag(ctx, parser);
 		return 0;
 	}
-	return 1;
+	return 0;
 }
 
 static char *xml_parse_document_imp(fz_context *ctx, struct parser *parser, const char *p) /* lgtm [cpp/use-of-goto] */
@@ -692,7 +692,7 @@ parse_processing_instruction:
 	}
 	return "end of data in processing instruction";
 
-parse_closing_element:
+parse_closing_element1:
 	while (iswhite(*p)) ++p;
 	while (isname(*p)) ++p;
 	while (iswhite(*p)) ++p;
@@ -702,7 +702,7 @@ parse_closing_element:
 	++p;
 	goto parse_text;
 
-parse_closing_element_1_21_1:
+parse_closing_element:
 	while (iswhite(*p)) ++p;
 	mark = p;
 	while (isname(*p)) ++p;
