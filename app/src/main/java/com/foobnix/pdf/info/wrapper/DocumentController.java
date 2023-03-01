@@ -560,6 +560,7 @@ public abstract class DocumentController {
     public String getCurrentChapter() {
         return OutlineHelper.getCurrentChapterAsString(this);
     }
+
     public String getCurrentChapterFile() {
         return OutlineHelper.getCurrentChapterFile(this);
     }
@@ -591,7 +592,10 @@ public abstract class DocumentController {
         LOG.d("closeDialogs", "isVisible", isVisible);
         if (isVisible) {
             try {
-                activity.findViewById(R.id.closePopup).performClick();
+                if (activity.findViewById(R.id.closePopup) != null) {
+                    activity.findViewById(R.id.closePopup).performClick();
+                }
+                anchor.setVisibility(View.GONE);
                 LOG.d("closeDialogs", "performClick");
             } catch (Exception e) {
                 LOG.e(e);
