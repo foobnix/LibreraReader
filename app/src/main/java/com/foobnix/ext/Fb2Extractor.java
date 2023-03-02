@@ -207,6 +207,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (AppState.get().isExperimental && svgs != null) {
 
 
+
                 line = line.replace("<m:", "<");
                 if (line.contains("<svg")) {
                     svgNumbver++;
@@ -254,6 +255,7 @@ public class Fb2Extractor extends BaseExtractor {
 
                     final String imageName = name + "-" + svgNumbver + ".png";
                     final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svg = svg.replace(">math>","></math>");
                     svgs.put(imageName, svg);
 
                     LOG.d("SVG-MATH:", imageName, svg);

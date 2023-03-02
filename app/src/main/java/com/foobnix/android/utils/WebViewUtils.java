@@ -132,7 +132,7 @@ public class WebViewUtils {
         handler.post(() -> {
             LOG.d("loadData-content", contentWrapper);
             web.loadData(contentWrapper, "text/html", "utf-8");
-            web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 50)), "android");
+            web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 40)), "android");
 
 
         });
