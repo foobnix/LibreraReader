@@ -161,6 +161,8 @@ public class Fb2Extractor extends BaseExtractor {
         String defs = "";
 
         int count = 0;
+        int beginMath = 0;
+
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -199,36 +201,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
             }
 
-            if ((BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) && line.contains("<img src=\"http")) {
-                try {
-                    String imgScr = "<img src=\"";
-                    int i1 = line.indexOf(imgScr);
-                    int i2 = line.indexOf("\"", i1 + imgScr.length());
-                    String uri = line.substring(i1 + imgScr.length(), i2);
-                    LOG.d("remote-image-url", uri);
-
-                    Glide.with(LibreraApp.context).asFile().load(uri).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).submit().get();
-                    Bitmap submit = Glide.with(LibreraApp.context).asBitmap().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).load(uri).submit().get();
-
-
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    submit.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
-                    submit.recycle();
-
-
-                    StringBuffer buffer = new StringBuffer("data:image/jpeg;base64,");
-                    buffer.append(net.arnx.wmf2svg.util.Base64.encode(byteArray));
-                    String data = buffer.toString();
-
-                    line = line.substring(0, i1 + imgScr.length()) + data + line.substring(i2);
-                    LOG.d("remote-image-line", line);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-
-            }
+            line = processRemoteImages(line);
 
 
             if (AppState.get().isExperimental && svgs != null) {
@@ -242,7 +215,8 @@ public class Fb2Extractor extends BaseExtractor {
                 } else if (line.contains("<math")) {
                     svgNumbver++;
                     findSVG = true;
-                    svg = line.substring(line.indexOf("<math"));
+                    beginMath = line.indexOf("<math");
+                    //svg = line.substring(beginMath);
                 } else if (line.contains("</svg>")) {
                     LOG.d("SVG", svg);
                     svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
@@ -274,7 +248,8 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 if (line.contains("</math>")) {
 
-                    svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+                    svg += line.substring(beginMath, line.indexOf("</math>") + "</math>".length());
+                    beginMath=0;
 
 
                     final String imageName = name + "-" + svgNumbver + ".png";
@@ -320,6 +295,40 @@ public class Fb2Extractor extends BaseExtractor {
         }
 
         writer.close();
+    }
+
+    public static synchronized String processRemoteImages(String line) {
+        if ((BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) && line.contains("<img src=\"http")) {
+            try {
+                String imgScr = "<img src=\"";
+                int i1 = line.indexOf(imgScr);
+                int i2 = line.indexOf("\"", i1 + imgScr.length());
+                String uri = line.substring(i1 + imgScr.length(), i2);
+                LOG.d("remote-image-url", uri);
+
+                Glide.with(LibreraApp.context).asFile().load(uri).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).submit().get();
+                Bitmap submit = Glide.with(LibreraApp.context).asBitmap().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).load(uri).submit().get();
+
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                submit.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                //submit.recycle();
+
+
+                StringBuffer buffer = new StringBuffer("data:image/jpeg;base64,");
+                buffer.append(net.arnx.wmf2svg.util.Base64.encode(byteArray));
+                String data = buffer.toString();
+
+                line = line.substring(0, i1 + imgScr.length()) + data + line.substring(i2);
+                LOG.d("remote-image-line", line);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+
+        }
+        return line;
     }
 
     public static String includeFooterNotes(String line, Map<String, String> notes, String name) {

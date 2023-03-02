@@ -33,7 +33,7 @@ public class HtmlExtractor {
 
             String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
 
-            LOG.d("HtmlExtractor encoding: ", encoding, "");
+            LOG.d("HtmlExtractor encoding: ", encoding, "", "accurate:", force);
             BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
 
             StringBuilder html = new StringBuilder();
@@ -41,11 +41,8 @@ public class HtmlExtractor {
 
             HypenUtils.resetTokenizer();
 
-            boolean accurate = !LOG.isEnable || BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || force;
 
-            //accurate = false;
-
-            if (!accurate) {
+            if (!force) {
                 File root = new File(inputPath).getParentFile();
                 for (File f : root.listFiles()) {
                     if (ExtUtils.isImageFile(f)) {
@@ -55,7 +52,7 @@ public class HtmlExtractor {
                 }
             }
 
-            if (accurate) {
+            if (force) {
                 boolean isBody = false;
                 while ((line = input.readLine()) != null) {
 
@@ -77,7 +74,7 @@ public class HtmlExtractor {
 
                 while ((line = input.readLine()) != null) {
 
-                    if (AppState.get().isExperimental) {
+                    if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) {
                         if (line.contains("<math")) {
                             svgNumbver++;
                             findSVG = true;
@@ -116,6 +113,9 @@ public class HtmlExtractor {
                         } else if (findSVG) {
                             svg += line;
                         }
+
+                        line = Fb2Extractor.processRemoteImages(line);
+
                     }
 
 
@@ -127,7 +127,7 @@ public class HtmlExtractor {
             FileOutputStream out = new FileOutputStream(file);
 
             String string = null;
-            if (accurate) {
+            if (force) {
 
                 Safelist whitelist = Safelist.basic()
                         .addAttributes("ol", "reversed", "start", "type")
@@ -146,7 +146,7 @@ public class HtmlExtractor {
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
-            if (accurate) {
+            if (force) {
                 string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
             } else {
                 string = string.replace("HTML", "html").replace("BODY", "body");
@@ -173,7 +173,7 @@ public class HtmlExtractor {
         try {
 
             String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
-            if(encoding!=null && encoding.contains("utf-8")){
+            if (encoding != null && encoding.contains("utf-8")) {
                 encoding = "utf-8";
             }
 
@@ -189,7 +189,7 @@ public class HtmlExtractor {
             }
             while ((line = input.readLine()) != null) {
 
-                line = line.replace("=3D","");
+                line = line.replace("=3D", "");
 
                 if (line.contains("<ht") || line.contains("<HT")) {
                     isFlag = true;

@@ -79,28 +79,18 @@ public class WebViewUtils {
         String h, f;
         final boolean isMath;
         if (content.trim().startsWith("<math")) {
-            h = "<html><head>" +
+            h= "<html><head>   <script type=\"text/javascript\" id=\"MathJax-script\" \n" +
+                    "            src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js\">\n" +
+                    "    </script>"  +
+                    "</head><body onload=\"android.finish()\">";
 
-                    "   <script type=\"text/x-mathjax-config\">" +
-                    "        MathJax.Hub.Config({" +
-                    "            showMathMenu: false," +
-                    "            messageStyle: \"none\"," +
-                    "            showProcessingMessages: false," +
-                    "            jax: [\"input/MathML\", \"output/PreviewHTML\"]," +
-                    "            extensions: [\"mml2jax.js\"]" +
-                    "          });" +
-                    "      </script>" +
-
-                    "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js\"></script>\n" +
-                    "<script type=\"text/javascript\"> MathJax.Hub.Register.StartupHook(\"End\",function () { android.finish() }); </script>\n" +
-                    "</head><body>";
 
 
             f = "</body></html>";
             isMath = true;
         } else {
             h = "<html><head>\n" +
-                    "</head><body onload=\" android.finish() \">";
+                    "</head><body onload=\"android.finish()\">";
             f = "</body></html>";
             isMath = false;
         }
