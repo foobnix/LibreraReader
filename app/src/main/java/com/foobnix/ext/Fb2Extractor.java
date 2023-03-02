@@ -199,7 +199,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
             }
 
-            if (AppState.get().isExperimental && line.contains("<img src=\"http")) {
+            if ((BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) && line.contains("<img src=\"http")) {
                 try {
                     String imgScr = "<img src=\"";
                     int i1 = line.indexOf(imgScr);
@@ -353,9 +353,9 @@ public class Fb2Extractor extends BaseExtractor {
                     i += k;
                 }
 
-                LOG.d("includeFooterNotes", number, number+"#"+name);
+                LOG.d("includeFooterNotes", number, number + "#" + name);
 
-                String value = notes.get(number+"#"+name);
+                String value = notes.get(number + "#" + name);
                 if (value != null) {
                     value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
                     value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
@@ -1131,7 +1131,7 @@ public class Fb2Extractor extends BaseExtractor {
 
 
             if (AppState.get().isShowFooterNotesInText) {
-                line = includeFooterNotes(line, notes,"OEBPS/fb2.fb2");
+                line = includeFooterNotes(line, notes, "OEBPS/fb2.fb2");
             }
 
             String subLine[] = line.split("</");

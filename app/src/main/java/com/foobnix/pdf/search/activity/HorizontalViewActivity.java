@@ -2166,8 +2166,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void hideShow(boolean animated) {
         if (AppState.get().isEnableAccessibility) {
-            animated = false;
-            AppState.get().isEditMode = true;
+            //animated = false;
+            //AppState.get().isEditMode = true;
             ttsFixPosition();
         }
 

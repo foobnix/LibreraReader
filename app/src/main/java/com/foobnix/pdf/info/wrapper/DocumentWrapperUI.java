@@ -77,7 +77,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -1775,7 +1774,7 @@ public class DocumentWrapperUI {
 
     public void hideShow() {
         if (AppState.get().isEnableAccessibility) {
-            AppState.get().isEditMode = true;
+            //AppState.get().isEditMode = true;
         }
 
         if (AppState.get().isEditMode) {
