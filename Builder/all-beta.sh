@@ -7,7 +7,7 @@ cd ../
 ./gradlew clean incVersion
 
 ./gradlew assembleFdroidRelease
-
+./gradlew assemblePdf_classicRelease
 
 cd Builder
 
