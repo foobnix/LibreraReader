@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Είδωλο καλλιέργειας</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Εξαγωγή ονομάτων συγγραφέων και τίτλων βιβλίων από μετα-δεδομένα (pdf)</string>
    <string name="meta_tags">Μετα-ετικέτες</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera pro: εγκατάσταση για κατάργηση διαφημίσεων</string>
+   <string name="librera_pro">Librera pro: αυτή η εφαρμογή αλλά χωρίς διαφημίσεις</string>
    <string name="annotation">Σχόλιο</string>
    <string name="book">Βιβλίο</string>
    <string name="information">Πληροφορίες αρχείου</string>

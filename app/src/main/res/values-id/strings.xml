@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - program untuk membaca buku tanpa iklan, menginstalnya menghapus iklan dalam aplikasi ini</string>
+   <string name="librera_pro">Librera pro: aplikasi ini tetapi tanpa iklan</string>
    <string name="annotation">Anotasi</string>
    <string name="book">Book</string>
    <string name="information">Informasi</string>

@@ -29,6 +29,6 @@ Le sequenze di spazi bianchi vengono compresse. Le linee sono spezzate ai caratt
 {white-space: pre;}
 Le sequenze di spazi bianchi vengono conservate. Le linee sono spezzate solo ai caratteri di nuova riga nella sorgente e in <br> elementi.
 
-span{visualizzazione:blocco}
-p&gt;span{visualizzazione:inline}
+span{display:block}
+p&gt;span{display:inline}
 Elimina le righe vuote molto fastidiose tra le pagine (correggendo i difetti muPDF).

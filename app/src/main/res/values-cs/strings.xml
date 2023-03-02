@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Zrcadlové oříznutí</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extrahovat jména autorů a názvy knih z metadat (PDF)</string>
    <string name="meta_tags">Meta tagy</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO: instalovat pro odstranění reklam</string>
+   <string name="librera_pro">Librera pro: tato aplikace, ale bez reklam</string>
    <string name="annotation">Poznámka</string>
    <string name="book">Kniha</string>
    <string name="information">Informace o souboru</string>

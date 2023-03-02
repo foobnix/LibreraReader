@@ -505,6 +505,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
 
 
         return view;
@@ -579,15 +580,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
         menu2.setVisibility(getActivity().findViewById(R.id.imageMenu1) == null ? View.GONE : View.VISIBLE);
-
     }
+
 
     @Override
     public void onStop() {
         super.onStop();
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
     }
 
     private void onMetaInfoClick(SEARCH_IN mode, String result) {
@@ -1119,6 +1118,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onDestroy() {
         super.onDestroy();
         LOG.d("SearchFragment2 onDestroy");
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
 
     }
 }

@@ -4,6 +4,13 @@ layout: main
 
 # O que há de novo
 
+### [8.8.37] Acesse a biblioteca do livro
+<img class="i" src="8.8.37.png" />
+
+### [8.8.16] Suporta imagens externas (http://) em livros EPUB.
+
+O recurso experimental deve ser ativado
+
 ### [8.8.0] Alterando o mecanismo de renderização no aplicativo
 
 **MuPDF_1.11** mecanismo básico de renderização do Librera

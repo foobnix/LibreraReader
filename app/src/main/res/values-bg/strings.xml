@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Симетрично отрязване</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Извличане на имена на автори и заглавия на книги от метаданни (pdf)</string>
    <string name="meta_tags">Мета тагове</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera pro: инсталирайте за премахване на реклами</string>
+   <string name="librera_pro">Librera pro: това приложение, но без реклами</string>
    <string name="annotation">Анотация</string>
    <string name="book">Книга</string>
    <string name="information">Информация за файла</string>

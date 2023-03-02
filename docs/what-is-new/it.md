@@ -4,6 +4,13 @@ layout: main
 
 # Cosa c'è di nuovo
 
+### [8.8.37] Accedi alla Biblioteca dal libro
+<img class="i" src="8.8.37.png" />
+
+### [8.8.16] Supporta immagini esterne (http://) nei libri EPUB.
+
+La funzione sperimentale dovrebbe essere abilitata
+
 ### [8.8.0] Modifica del motore di rendering all'interno dell'app
 
 **MuPDF_1.11** motore di rendering Librera di base

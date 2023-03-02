@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Rajaa reunukset symmetrisesti</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hae tekijöiden tiedot ja kirjan otsikot PDF-tiedoston metatiedoista</string>
    <string name="meta_tags">Metatunnisteet</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO: asenna poistaaksesi mainokset</string>
+   <string name="librera_pro">Librera pro: tämä sovellus, mutta ilman mainoksia</string>
    <string name="annotation">Huomautus</string>
    <string name="book">Kirja</string>
    <string name="information">Tiedoston tiedot</string>

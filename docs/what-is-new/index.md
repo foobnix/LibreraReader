@@ -4,6 +4,9 @@ layout: main
 
 # What is new
 
+### [8.8.37] Access Library from the book
+<img class="i" src="8.8.37.png" />
+
 ### [8.8.16] Support external (http://) images in EPUB books.
 
 Experimental feature should be enabled

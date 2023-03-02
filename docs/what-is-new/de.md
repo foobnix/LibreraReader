@@ -4,6 +4,13 @@ layout: main
 
 # Was ist neu
 
+### [8.8.37] Über das Buch auf die Bibliothek zugreifen
+<img class="i" src="8.8.37.png" />
+
+### [8.8.16] Unterstützt externe (http://) Bilder in EPUB-Büchern.
+
+Die experimentelle Funktion sollte aktiviert sein
+
 ### [8.8.0] Änderung der Rendering-Engine innerhalb der App
 
 **MuPDF_1.11** grundlegende Librera-Rendering-Engine

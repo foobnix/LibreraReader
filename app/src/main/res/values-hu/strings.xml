@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Tükrözött körülvágás</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">A könyv szerzőjének és címének kiolvasása a metaadatokból (PDF)</string>
    <string name="meta_tags">Meta-címkék</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - telepítse a hirdetések eltávolításához</string>
+   <string name="librera_pro">Librera pro: ez az alkalmazás, de hirdetések nélkül</string>
    <string name="annotation">Széljegyzet</string>
    <string name="book">Könyv</string>
    <string name="information">Fájlinformációk</string>

@@ -4,6 +4,13 @@ layout: main
 
 # Quoi de neuf
 
+### [8.8.37] Accéder à la bibliothèque depuis le livre
+<img class="i" src="8.8.37.png" />
+
+### [8.8.16] Prise en charge des images externes (http://) dans les livres EPUB.
+
+La fonctionnalité expérimentale doit être activée
+
 ### [8.8.0] Modification du moteur de rendu dans l'application
 
 **MuPDF_1.11** moteur de rendu Librera de base

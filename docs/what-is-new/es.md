@@ -4,6 +4,13 @@ layout: main
 
 # Novedades
 
+### [8.8.37] Acceder a la Biblioteca desde el libro
+<img class="i" src="8.8.37.png" />
+
+### [8.8.16] Admite imágenes externas (http://) en libros EPUB.
+
+La característica experimental debe estar habilitada
+
 ### [8.8.0] Cambiar el motor de renderizado dentro de la aplicación
 
 **MuPDF_1.11** motor básico de renderizado de Librera

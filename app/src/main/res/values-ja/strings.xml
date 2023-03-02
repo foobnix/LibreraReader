@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著者名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO：こちらをインストールすると広告が無くなります</string>
+   <string name="librera_pro">Librera pro: このアプリですが、広告はありません</string>
    <string name="annotation">注釈</string>
    <string name="book">本</string>
    <string name="information">情報</string>

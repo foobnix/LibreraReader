@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Ritaglia i bordi simmetricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visualizzazione dell\'autore e del titolo del libro PDF dai meta tag</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO - programma per leggere libri senza pubblicità, installarlo rimuove la pubblicità in questa applicazione</string>
+   <string name="librera_pro">Librera pro: questa app ma senza pubblicità</string>
    <string name="annotation">Annotazione</string>
    <string name="book">Libro</string>
    <string name="information">Informazione</string>
