@@ -51,7 +51,7 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
+    public static final String DEFAULT_FONT = CHARIS_SIL;
 
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
@@ -76,7 +76,7 @@ public class BookCSS {
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
     public String fontFolder;
-    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 28 : 22;
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 26 : 21;
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
     public String dirLastPath;

@@ -63,8 +63,10 @@ public class CustomSeek extends FrameLayout {
                 int i = seek.getProgress() + step;
                 if (i < distance) {
                     seek.setProgress(i);
+                }else {
+                    seek.setMax(i);
+                    seek.setProgress(i);
                 }
-                seek.setProgress(i);
             }
         });
         minus.setOnClickListener(new OnClickListener() {
@@ -196,7 +198,7 @@ public class CustomSeek extends FrameLayout {
         this.current = current;
         valueResponse = current;
         distance = max - min;
-        seek.setMax(distance);
+        seek.setMax(Math.max(distance,current));
         seek.setProgress(current - min);
         if (isFloatResult) {
             textCurerntValue.setText("" + (float) valueResponse / 10 + sufix);

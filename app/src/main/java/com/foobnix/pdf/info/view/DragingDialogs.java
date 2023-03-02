@@ -4538,7 +4538,7 @@ public class DragingDialogs {
                 // Margins
 
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
-                int maxMargin = Dips.isLargeOrXLargeScreen() ? 400 : 30;
+                int maxMargin = Dips.isLargeOrXLargeScreen() ? 400 : 50;
                 marginTop.init(0, maxMargin, BookCSS.get().marginTop);
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 

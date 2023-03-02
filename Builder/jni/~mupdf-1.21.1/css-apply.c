@@ -1347,10 +1347,10 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->margin[2] = number_from_property(match, PRO_MARGIN_BOTTOM, 0, N_LENGTH);
 	style->margin[3] = number_from_property(match, PRO_MARGIN_LEFT, 0, N_LENGTH);
 
-    if(style->margin[0].unit==N_SCALE && style->margin[0].value>2)style->margin[0].value=2;
-    if(style->margin[1].unit==N_SCALE && style->margin[1].value>2)style->margin[1].value=2;
-    if(style->margin[2].unit==N_SCALE && style->margin[2].value>2)style->margin[2].value=2;
-    if(style->margin[3].unit==N_SCALE && style->margin[3].value>2)style->margin[3].value=2;
+    //if(style->margin[0].unit==N_SCALE && style->margin[0].value>2)style->margin[0].value=2;
+    //if(style->margin[1].unit==N_SCALE && style->margin[1].value>2)style->margin[1].value=2;
+    //if(style->margin[2].unit==N_SCALE && style->margin[2].value>2)style->margin[2].value=2;
+    //if(style->margin[3].unit==N_SCALE && style->margin[3].value>2)style->margin[3].value=2;
 
 
 	style->padding[0] = number_from_property(match, PRO_PADDING_TOP, 0, N_LENGTH);
