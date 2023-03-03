@@ -160,7 +160,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     };
     boolean once = true;
     private SlidingTabLayout indicator;
-    private DrawerLayout drawerLayout;    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private DrawerLayout drawerLayout;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -322,6 +323,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (AppState.get().isSystemThemeColor) {
+            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
+        }
+
         if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {

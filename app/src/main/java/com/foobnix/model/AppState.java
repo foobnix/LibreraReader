@@ -62,6 +62,7 @@ public class AppState {
     public static final int THEME_DARK = 1;
     public static final int THEME_DARK_OLED = 2;
     public static final int THEME_INK = 3;
+    public boolean isSystemThemeColor = false;
     public static final int FULL_SCREEN_NORMAL = 0;
     public static final int FULL_SCREEN_FULLSCREEN = 1;
     public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;

@@ -35,7 +35,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -767,10 +766,31 @@ public class PrefFragment2 extends UIFragment {
                                                   public void onClick(final View v) {
 
                                                       PopupMenu p = new PopupMenu(getContext(), themeColor);
+                                                      p.getMenu().add(R.string.system).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().isSystemThemeColor = true;
+                                                              AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
+                                                              AppState.get().contrastImage = 0;
+                                                              AppState.get().brigtnessImage = 0;
+                                                              AppState.get().bolderTextOnImage = false;
+                                                              AppState.get().isEnableBC = false;
+
+
+                                                              IMG.clearDiscCache();
+                                                              IMG.clearMemoryCache();
+                                                              onTheme();
+
+                                                              return false;
+                                                          }
+                                                      });
+
                                                       p.getMenu().add(R.string.light).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                                           @Override
                                                           public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().isSystemThemeColor = false;
                                                               AppState.get().appTheme = AppState.THEME_LIGHT;
 
                                                               AppState.get().contrastImage = 0;
@@ -790,6 +810,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                           @Override
                                                           public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().isSystemThemeColor = false;
                                                               AppState.get().appTheme = AppState.THEME_DARK;
 
                                                               AppState.get().contrastImage = 0;
@@ -809,6 +830,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                           @Override
                                                           public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().isSystemThemeColor = false;
                                                               AppState.get().appTheme = AppState.THEME_DARK_OLED;
 
                                                               AppState.get().contrastImage = 0;
@@ -829,7 +851,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                           @Override
                                                           public boolean onMenuItemClick(MenuItem item) {
-
+                                                              AppState.get().isSystemThemeColor = false;
                                                               IMG.clearDiscCache();
                                                               IMG.clearMemoryCache();
 
@@ -2740,7 +2762,10 @@ public class PrefFragment2 extends UIFragment {
         super.onActivityCreated(savedInstanceState);
         rotationText();
 
-        if (AppState.get().appTheme == AppState.THEME_INK) {
+
+        if (AppState.get().isSystemThemeColor) {
+            themeColor.setText(TxtUtils.underline(getString(R.string.system)));
+        } else if (AppState.get().appTheme == AppState.THEME_INK) {
             themeColor.setText(TxtUtils.underline("Ink"));
         } else if (AppState.get().appTheme == AppState.THEME_LIGHT) {
             themeColor.setText(TxtUtils.underline(getString(R.string.light)));
