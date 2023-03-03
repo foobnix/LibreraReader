@@ -7,7 +7,7 @@ cd ../
 ./gradlew clean incVersion
 
 ./gradlew assembleFdroidRelease
-./gradlew assemblePdf_classicRelease
+./gradlew assembleLibreraRelease
 
 cd Builder
 
@@ -16,7 +16,6 @@ cd Builder
 
 cd ../
 
-./gradlew assembleLibreraRelease
 ./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta

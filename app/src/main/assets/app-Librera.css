@@ -79,7 +79,7 @@ sub{font-size:small;vertical-align:sub}
 image{margin:1em 0;text-align:center}
 cite,poem{margin:1em 1.5em}
 subtitle,epigraph,stanza{margin:1em 0}
-p{text-align:justify}
+
 empty-line{padding-top:1em}
 
 section>title{page-break-before:avoid;}
