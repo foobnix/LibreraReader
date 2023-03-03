@@ -600,7 +600,11 @@ public class BookCSS {
 
             builder.append("a{color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
-            builder.append("body {");
+            builder.append("body");
+            if (documentStyle == STYLES_ONLY_USER) {
+                builder.append(",p");
+            }
+            builder.append("{");
             builder.append(important(String.format("font-size:medium;")));
             builder.append(important(String.format("background-color:%s;", backgroundColor)));
             builder.append(important(String.format("color:%s;", textColor)));
