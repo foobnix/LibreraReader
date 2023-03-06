@@ -605,9 +605,19 @@ public class BookCSS {
                 builder.append(",p");
             }
             builder.append("{");
-            builder.append(important(String.format("font-size:medium;")));
-            builder.append(important(String.format("background-color:%s;", backgroundColor)));
-            builder.append(important(String.format("color:%s;", textColor)));
+
+            if(AppState.get().isDayNotInvert) {
+                builder.append(important(String.format("font-size:medium;")));
+                builder.append(important(String.format("background-color:%s;", backgroundColor)));
+                builder.append(important(String.format("color:%s;", textColor)));
+            }else{
+                //Important in the night mode
+                builder.append(String.format("font-size:medium !important;"));
+                builder.append(String.format("background-color:%s !important;", backgroundColor));
+                builder.append(String.format("color:%s !important;", textColor));
+            }
+
+            //always important
             builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("line-height:%s !important;", em(lineHeight)));
