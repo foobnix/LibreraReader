@@ -586,9 +586,7 @@ public class BookCSS {
         // PAGE END
 
         builder.append(String.format("empty-line {padding:%s;}", em(emptyLine)));
-        if (paragraphHeight > 0) {// bug is here
-            builder.append(important(String.format("p {margin:%s 0;}", em(paragraphHeight * 2))));
-        }
+
         builder.append("t {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
 
         builder.append("svg {");
@@ -598,13 +596,15 @@ public class BookCSS {
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
-            builder.append("a{color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
+            builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
-            builder.append("body");
-            if (documentStyle == STYLES_ONLY_USER) {
-                builder.append(",p");
+
+            // <P> begin
+            builder.append("p {");
+
+            if (paragraphHeight > 0) {// bug is here
+                builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
             }
-            builder.append("{");
 
             if(AppState.get().isDayNotInvert) {
                 builder.append(important(String.format("font-size:medium;")));
@@ -618,9 +618,16 @@ public class BookCSS {
             }
 
             //always important
-            builder.append(String.format("text-align:%s !important;", getTextAlignConst(textAlign)));
+            builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+
+            if (isUrlFont(normalFont)) {
+                builder.append(important("font-family:'my';"));
+            } else {
+                builder.append(important("font-family:'" + normalFont + "';"));
+            }
+
             builder.append("}");
 
             builder.append("div {");
@@ -629,7 +636,7 @@ public class BookCSS {
             builder.append("padding-left:0 !important;");
             builder.append("padding-right:0 !important;");
             builder.append("}");
-
+            // </P> end
 
             // FONTS BEGIN
             if (isUrlFont(normalFont)) {
@@ -651,7 +658,6 @@ public class BookCSS {
                 builder.append("@font-face {font-family:'my'; src:url('" + boldItalicFont + "'); font-weight:bold; font-style:italic;}");
             }
 
-
             if (isUrlFont(headersFont)) {
                 builder.append("@font-face {font-family:'myHeader'; src:url('" + headersFont + "');}");
                 builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:'myHeader';}"));
@@ -663,15 +669,6 @@ public class BookCSS {
                 builder.append(important("title,title>p,title>p>strong {font-weight:bold; font-family:'" + headersFont + "';}"));
                 builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
             }
-
-            builder.append("p {");
-            if (isUrlFont(normalFont)) {
-                builder.append(important("font-family:'my';"));
-            } else {
-                builder.append(important("font-family:'" + normalFont + "';"));
-            }
-            builder.append("}");
-
 
             builder.append(customCSS2.replace("\n", ""));
 
