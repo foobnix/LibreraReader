@@ -53,7 +53,7 @@ public class FontExtractor {
                             File index = new File(fontDir, "index");
                             LOG.d("extractFonts index exist", index.exists());
                             if (lastModified != AppState.get().fontExtractTime || !index.exists()) {
-                                copyFontsFromZip();
+                                copyFontsFromZip(AppProfile.FONT_LOCAL_ZIP);
                                 boolean indexRes = index.createNewFile();
                                 AppState.get().fontExtractTime = lastModified;
                                 LOG.d("extractFonts YES", AppState.get().fontExtractTime, lastModified);
@@ -61,11 +61,17 @@ public class FontExtractor {
                             } else {
                                 LOG.d("extractFonts NO");
                             }
-                        } else if (AppsConfig.IS_FDROID) {
-                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(AppProfile.FONT_LOCAL_ZIP));
-                            copyFontsFromZip();
-                            LOG.d("copy fonts for IS_FDROID");
                         }
+
+                        File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() + ".temp");
+                        if (!temp.isFile()) {
+                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(temp));
+                            copyFontsFromZip(temp);
+                            LOG.d("extract-fonts",temp);
+                        }else{
+                            LOG.d("extract-fonts skip");
+                        }
+
 
                         String[] rootFiles = c.getAssets().list("");
 
@@ -119,13 +125,13 @@ public class FontExtractor {
     }
 
 
-    public static void copyFontsFromZip() {
+    public static void copyFontsFromZip(File archive) {
         try {
             File fontDir = new File(BookCSS.get().fontFolder);
             fontDir.mkdirs();
 
             AppProfile.FONT_LOCAL_ZIP.getParentFile().mkdirs();
-            CacheZipUtils.extractArchive(AppProfile.FONT_LOCAL_ZIP, fontDir);
+            CacheZipUtils.extractArchive(archive, fontDir);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -171,7 +177,7 @@ public class FontExtractor {
                             }
                         }
                         if (hasZipFonts()) {
-                            copyFontsFromZip();
+                            copyFontsFromZip(AppProfile.FONT_LOCAL_ZIP);
                             return true;
                         }
                         return null;

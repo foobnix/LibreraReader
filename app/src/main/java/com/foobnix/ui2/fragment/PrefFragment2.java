@@ -52,6 +52,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
@@ -867,6 +868,8 @@ public class PrefFragment2 extends UIFragment {
         TextView appEngine = inflate.findViewById(R.id.appEngine);
         appEngine.setText(AppsConfig.getCurrentEngine(getActivity()));
         TxtUtils.underlineTextView(appEngine);
+        Views.visible(appEngine,LOG.isEnable || AppsConfig.IS_PRO);
+
         appEngine.setOnClickListener(v -> {
             if (BooksService.isRunning) {
                 Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();

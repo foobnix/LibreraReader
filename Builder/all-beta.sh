@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./fonts.sh
+
 ./link_to_mupdf_1.21.1.sh
 
 cd ../

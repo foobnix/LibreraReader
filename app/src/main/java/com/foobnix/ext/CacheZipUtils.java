@@ -248,7 +248,7 @@ public class CacheZipUtils {
 
     public static boolean extractArchive(File fromFile, File toDir) {
         try {
-            LOG.d("extractArchive From:", fromFile);
+            LOG.d("extractArchive From:", fromFile, fromFile.isFile());
             LOG.d("extractArchive To:  ", toDir);
             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(fromFile.getPath());
 

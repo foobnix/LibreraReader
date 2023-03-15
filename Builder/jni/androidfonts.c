@@ -81,7 +81,7 @@ fz_font *load_droid_fallback_font(fz_context *ctx, int script, int language, int
 	case UCDN_SCRIPT_COMMON:
 	case UCDN_SCRIPT_INHERITED:
 	case UCDN_SCRIPT_UNKNOWN:
-		return NULL;
+		return fz_new_font_from_file(ctx, NULL, "/storage/emulated/0/Librera/Fonts/FreeSerif.ttf", 0, 0);
 
 	case UCDN_SCRIPT_HANGUL: return load_noto_cjk(ctx, KR);
 	case UCDN_SCRIPT_HIRAGANA: return load_noto_cjk(ctx, JP);
@@ -254,7 +254,7 @@ fz_font *load_droid_fallback_font(fz_context *ctx, int script, int language, int
 	case UCDN_SCRIPT_TANGSA: return load_noto_try(ctx, "Tangsa");
 	case UCDN_SCRIPT_TOTO: return load_noto_try(ctx, "Toto");
 	}
-	return NULL;
+	return  fz_new_font_from_file(ctx, NULL, "/storage/emulated/0/Librera/Fonts/FreeSerif.ttf", 0, 0);
 }
 
 fz_font *load_droid_cjk_font(fz_context *ctx, const char *name, int ros, int serif)
@@ -271,5 +271,5 @@ fz_font *load_droid_cjk_font(fz_context *ctx, const char *name, int ros, int ser
 
 fz_font *load_droid_font(fz_context *ctx, const char *name, int bold, int italic, int needs_exact_metrics)
 {
-	return NULL;
+	return  NULL;
 }

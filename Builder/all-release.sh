@@ -1,28 +1,36 @@
 #!/usr/bin/env bash
 
-./link_two_mupdf.sh
+./fonts.sh
+
+./link_to_mupdf_1.21.1.sh
 
 cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleOldRelease
-./gradlew assembleTts_readerRelease
 ./gradlew assembleLibreraRelease
-./gradlew assembleProRelease
-./gradlew assembleEpub_readerRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assemblePdf_classicRelease
+./gradlew assembleFdroidRelease
+./gradlew assembleTts_readerRelease
+./gradlew assembleEpub_readerRelease
+
+cd Builder
+
+./link_two_mupdf.sh
+
+cd ../
+
+./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
-
-cd Builder
 
 
 #rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 #rm /home/dev/Nextcloud/LibreraBeta/*-x86*
 
+cd Builder
 ./remove_all.sh
 ./install_all.sh

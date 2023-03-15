@@ -25,6 +25,8 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
+
+    public static final boolean IS_PRO = BuildConfig.FLAVOR.equals("pro");
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
     public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
@@ -63,7 +65,7 @@ public class AppsConfig {
 
     public static String getCurrentEngine(Context c) {
         return c.getSharedPreferences("Engine", Context.MODE_PRIVATE)
-                .getString("version", IS_FDROID ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11);
+                .getString("version", ENGINE_MuPDF_LATEST);
     }
 
 
