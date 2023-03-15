@@ -18,8 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.lifecycle.HasDefaultViewModelProviderFactory;
-
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -417,12 +415,16 @@ public class AppProfile {
         });
         create.show();
 
+
+
+
         create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
                 text = text.replace(" ", "");
+                text = text.replaceAll( "[|\\?*<\":>+/']","_");
 
                 if (TxtUtils.isEmpty(text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
