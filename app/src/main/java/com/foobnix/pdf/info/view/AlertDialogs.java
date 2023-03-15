@@ -69,11 +69,15 @@ public class AlertDialogs {
         showOkDialog(c, message, action, null);
     }
 
-    public static void showOkDialog(final Activity c, final String message, final Runnable action, Runnable onDismiss) {
+    public static AlertDialog showOkDialog(final Activity c, final String message, final Runnable action, Runnable onDismiss) {
+        return showOkDialog(c, message, R.string.ok, action, onDismiss);
+    }
+
+    public static AlertDialog showOkDialog(final Activity c, final String message, int actionString, final Runnable action, Runnable onDismiss) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(actionString, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
@@ -105,6 +109,8 @@ public class AlertDialogs {
         });
 
         create.show();
+        return create;
+
     }
 
     public static void showDialog(final Activity c, final String message, String okButton, final Runnable onAction) {
@@ -318,7 +324,7 @@ public class AlertDialogs {
                     title += ".txt";
                 }
 
-                final File out = new File(outDir , title);
+                final File out = new File(outDir, title);
                 LOG.d("create file exists", out.exists());
                 LOG.d("create file isFile", out.isFile());
                 if (out.exists()) {

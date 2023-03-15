@@ -18,5 +18,6 @@
   {"name": "Vocabulary.com", "path": "https://www.vocabulary.com/dictionary/%s"},
   {"name": "Ukrlit.org", "path": "http://ukrlit.org/slovnyk/%s"},
   {"name": "Slovnyk.ua", "path": "https://slovnyk.ua/index.php?swrd=%s"},
-  {"name": "Lingvo.ru", "path": "http://www.lingvo-online.ru/en/Translate/%s-%s/%s"}
+  {"name": "Lingvo.ru", "path": "http://www.lingvo-online.ru/en/Translate/%s-%s/%s"},
+  {"name": "Wiktionary.org", "path": "https://%s.wiktionary.org/wiki/%s"}
 ]

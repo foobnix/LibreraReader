@@ -668,6 +668,7 @@ public class DragingDialogs {
                                     AppState.get().ttsTimer = i;
                                     timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
                                     TxtUtils.underlineTextView(timerTime);
+                                    TTSService.updateTimer();
                                     return false;
                                 }
                             });
@@ -694,6 +695,8 @@ public class DragingDialogs {
 
                     }
                 });
+                timerStart.setVisibility(View.GONE);
+                ttsPage.setVisibility(View.GONE);
 
                 ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                 timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);

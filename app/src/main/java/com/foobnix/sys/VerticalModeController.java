@@ -131,6 +131,9 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onGoToPage(int page) {
+        if (checkReadingTimer()) {
+            return;
+        }
         ctr.getDocumentController().goToPage(page - 1);
     }
 
@@ -428,7 +431,7 @@ public class VerticalModeController extends DocumentController {
             RectF prevRect = null;
             for (TextWord text : texts) {
                 RectF rect = text.getOriginal();
-                if (prevRect!=null && prevRect.top == rect.top && prevRect.bottom== rect.bottom) {
+                if (prevRect != null && prevRect.top == rect.top && prevRect.bottom == rect.bottom) {
                     prevRect.union(rect);
                     continue;
                 }
@@ -522,7 +525,7 @@ public class VerticalModeController extends DocumentController {
                 }
 
             }
-        },"@T AutoScroll 2");
+        }, "@T AutoScroll 2");
         t.setPriority(Thread.NORM_PRIORITY);
         t.start();
     }
@@ -698,7 +701,7 @@ public class VerticalModeController extends DocumentController {
 
 
         if (ctr.getDecodeService().hasAnnotationChanges()) {
-            if(AppState.get().isSaveAnnotatationsAutomatically){
+            if (AppState.get().isSaveAnnotatationsAutomatically) {
                 final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
                 progress.setCancelable(false);
                 progress.show();
@@ -712,7 +715,7 @@ public class VerticalModeController extends DocumentController {
                         ctr.closeActivity(null);
                     }
                 });
-            }else {
+            } else {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.save_changes);
@@ -943,7 +946,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public String getFootNote(String text, String chapter) {
-        return ctr.getDocumentModel().decodeService.getFooterNote(text,chapter);
+        return ctr.getDocumentModel().decodeService.getFooterNote(text, chapter);
     }
 
     @Override

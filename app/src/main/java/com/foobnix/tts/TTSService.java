@@ -19,12 +19,10 @@ import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.provider.Settings;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -145,20 +143,26 @@ public class TTSService extends Service {
         playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
     }
 
+    public static void updateTimer(){
+        TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
+        LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);
+    }
     public static void playPause(Context context, DocumentController controller) {
 
-        if (Build.VERSION.SDK_INT >= 33  && ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+
+        if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.POST_NOTIFICATIONS)) {
 //                final Intent i = new Intent();
 //                i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 //                i.setData( Uri.fromParts("package", context.getPackageName(), null));
 //                context.startActivity(i);
-            }else{
-                ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
+            } else {
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
                 return;
             }
 
         }
+
 
 
         if (TTSEngine.get().isPlaying()) {
@@ -178,6 +182,7 @@ public class TTSService extends Service {
     @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
         LOG.d(TAG, "playBookPage", page, path, width, height);
+
         TTSEngine.get().stop();
 
         AppSP.get().lastBookWidth = width;
@@ -232,7 +237,7 @@ public class TTSService extends Service {
         PendingIntent penginIntent = PendingIntent.getActivity(getApplicationContext(), 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
 
-        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag",null,penginIntent);
+        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag", null, penginIntent);
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override
@@ -360,7 +365,7 @@ public class TTSService extends Service {
     }
 
     private void startServiceWithNotification() {
-        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_IMMUTABLE );
+        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                 .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
                 .setContentTitle(Apps.getApplicationName(this)) //
@@ -376,7 +381,9 @@ public class TTSService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        updateTimer();
         startMyForeground();
+
 
 
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
@@ -555,7 +562,6 @@ public class TTSService extends Service {
             LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppSP.get().lastBookPageCount);
             if (pageNumber >= AppSP.get().lastBookPageCount) {
 
-                TempHolder.get().timerFinishTime = 0;
 
                 Vibro.vibrate(1000);
 
@@ -654,9 +660,8 @@ public class TTSService extends Service {
                             return;
                         }
 
-                        if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
-                            LOG.d(TAG, "Timer");
-                            TempHolder.get().timerFinishTime = 0;
+                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                            LOG.d(TAG, "Update-timer-Stop1");
                             stopSelf();
                             return;
                         }
@@ -691,9 +696,8 @@ public class TTSService extends Service {
                         }
 
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
-                        if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
-                            LOG.d(TAG, "Timer");
-                            TempHolder.get().timerFinishTime = 0;
+                        if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                            LOG.d(TAG, "Update-timer-Stop2");
                             stopSelf();
                             return;
                         }
@@ -726,7 +730,7 @@ public class TTSService extends Service {
 
                 SharedBooks.save(load, false);
                 AppProfile.save(this);
-            },"@T TTS Save").start();
+            }, "@T TTS Save").start();
 
         }
     }
@@ -749,7 +753,6 @@ public class TTSService extends Service {
 
 
         isActivated = false;
-        TempHolder.get().timerFinishTime = 0;
 
 
         //mAudioManager.abandonAudioFocus(listener);

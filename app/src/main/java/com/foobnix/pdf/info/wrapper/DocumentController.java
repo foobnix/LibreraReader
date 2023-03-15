@@ -1,7 +1,7 @@
 package com.foobnix.pdf.info.wrapper;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -125,6 +125,7 @@ public abstract class DocumentController {
         this.activity = activity;
         readTimeStart = System.currentTimeMillis();
         TTSEngine.get().mp3Destroy();
+        LOG.d("readTimeStart");
     }
 
     public static int getRotationText() {
@@ -440,24 +441,8 @@ public abstract class DocumentController {
 
     public abstract void cleanImageMatrix();
 
-    public void checkReadingTimer() {
-        long timeout = System.currentTimeMillis() - readTimeStart;
-        if (AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
-            AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
+    AlertDialog alertDialog;
 
-                @Override
-                public void run() {
-                    readTimeStart = System.currentTimeMillis();
-                }
-            }, new Runnable() {
-                @Override
-                public void run() {
-                    readTimeStart = System.currentTimeMillis();
-                }
-            });
-        }
-
-    }
 
     public void closeActivity() {
         handler2.removeCallbacksAndMessages(null);
@@ -514,7 +499,7 @@ public abstract class DocumentController {
     }
 
     public void onResume() {
-        readTimeStart = System.currentTimeMillis();
+
         try {
             if (getPageCount() != 0) {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
@@ -797,4 +782,27 @@ public abstract class DocumentController {
     public abstract void centerHorizontal();
 
     public abstract void recyclePage(int page);
+
+    public boolean checkReadingTimer() {
+        long timeout = System.currentTimeMillis() - readTimeStart;
+        LOG.d("readTimeStart  checkReadingTimer", timeout, TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime));
+        boolean needToRest = AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime);
+        if (alertDialog != null && alertDialog.isShowing()) {
+            return needToRest;
+        }
+        if (needToRest) {
+            alertDialog = AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), R.string.read_a_book,
+                    () -> {
+                        LOG.d("checkReadingTimer action");
+                        readTimeStart = System.currentTimeMillis();
+                    },
+                    () -> {
+                        LOG.d("checkReadingTimer dismiss");
+                    });
+        }
+        return needToRest;
+
+    }
+
+
 }

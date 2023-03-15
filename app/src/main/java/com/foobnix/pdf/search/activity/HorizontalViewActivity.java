@@ -1346,6 +1346,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onPageSelected(final int pos) {
+            dc.checkReadingTimer();
             PageImageState.currentPage = pos;
             dc.setCurrentPage(viewPager.getCurrentItem());
             updateUI(pos);
@@ -1717,8 +1718,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
-        dc.checkReadingTimer();
-
     }
 
     public synchronized void prevPage() {
@@ -1730,8 +1729,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
-        dc.checkReadingTimer();
-
     }
 
     @Subscribe

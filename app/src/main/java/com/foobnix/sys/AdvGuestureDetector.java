@@ -73,6 +73,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
+
+
             if (ev.getAction() == MotionEvent.ACTION_DOWN) {
                 x = ev.getX();
                 y = ev.getY();
@@ -295,6 +297,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
+        if (docCtrl.checkReadingTimer()) {
+            return true;
+        }
 
         final float x = distanceX, y = distanceY;
         d1 += x;
@@ -317,7 +322,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             d1 = d2 = 0;
             LOG.d("onScroll yes", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
 
-       }
+        }
 
 
         return true;
