@@ -111,6 +111,13 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     populate();
                 }
             });
+            p.getMenu().addCheckbox("Testing books", AppState.get().isShowTestBooks, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowTestBooks = isChecked;
+                    populate();
+                }
+            });
             p.show();
         });
 
@@ -403,6 +410,19 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 FileMeta empy = new FileMeta();
                 empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                 empy.setTitle(syncronizedBooksTitle);
+                all.add(empy);
+
+
+                all.addAll(allSyncBooks);
+            }
+        }
+        if(AppState.get().isShowTestBooks) {
+            final List<FileMeta> allSyncBooks = AppData.get().getAllTestedBooks();
+            if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+
+                FileMeta empy = new FileMeta();
+                empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+                empy.setTitle("Testing books");
                 all.add(empy);
 
 

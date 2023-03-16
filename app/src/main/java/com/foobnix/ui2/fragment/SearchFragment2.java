@@ -59,7 +59,9 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
@@ -68,6 +70,7 @@ import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.LibreraApp;
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -151,8 +154,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 onRefresh.setActivated(false);
                 searchEditText.setHint(R.string.extracting_information_from_books);
-            }else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+            } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchEditText.setHint(intent.getStringExtra("TEXT"));
+            }else if (BooksService.RESULT_NOTIFY_ALL.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                TempHolder.listHash++;
+                EventBus.getDefault().post(new NotifyAllFragments());
             }
         }
 

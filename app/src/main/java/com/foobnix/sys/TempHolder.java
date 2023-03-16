@@ -9,7 +9,18 @@ public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
 
     public static TempHolder inst = new TempHolder();
-    public static int listHash = 0;
+    public static volatile int listHash = 0;
+
+    public static volatile int listHashTemp;
+
+    public static boolean isListHashChange() {
+        if (listHash == listHashTemp) {
+            return false;
+        }
+        listHashTemp = listHash;
+        return true;
+    }
+
     public static volatile boolean isSeaching = false;
     public static volatile boolean isConverting = false;
     public static volatile boolean isRecordTTS = false;

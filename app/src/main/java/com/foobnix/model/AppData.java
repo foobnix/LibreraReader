@@ -2,6 +2,7 @@ package com.foobnix.model;
 
 import android.net.Uri;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -15,12 +16,18 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -363,6 +370,33 @@ public class AppData {
 
     public List<SimpleMeta> getAllExcluded() {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
+    }
+
+
+    public synchronized List<FileMeta> getAllTestedBooks() {
+        List<FileMeta> res = new ArrayList<>();
+
+        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + ".txt");
+        try {
+            BufferedReader read = new BufferedReader(new FileReader(logFile));
+            String line;
+            String prev = "";
+            while ((line = read.readLine()) != null) {
+                if (line.equals("Error")) {
+                    res.add(new FileMeta(prev));
+                }
+                prev = line;
+            }
+            if (TxtUtils.isNotEmpty(prev)) {
+                res.add(new FileMeta(prev));
+            }
+            read.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+
+        return res;
     }
 
 

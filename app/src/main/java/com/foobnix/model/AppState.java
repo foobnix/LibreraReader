@@ -594,6 +594,8 @@ public class AppState {
     public boolean isShowFavBooks = true;
     public boolean isShowSyncBooks = true;
 
+    public boolean isShowTestBooks = false;
+
 
     public static synchronized AppState get() {
         return instance;

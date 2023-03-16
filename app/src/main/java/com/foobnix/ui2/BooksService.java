@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -73,6 +74,8 @@ public class BooksService extends IntentService {
     public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
     public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
     public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
+    public static String RESULT_NOTIFY_ALL = "RESULT_NOTIFY_ALL";
+
     public static String RESULT_SEARCH_MESSAGE_TXT = "RESULT_SEARCH_MESSAGE_TXT";
 
     public static volatile boolean isRunning = false;
@@ -384,6 +387,8 @@ public class BooksService extends IntentService {
                 Clouds.get().syncronizeGet();
 
             } else if (ACTION_RUN_SELF_TEST.equals(intent.getAction())) {
+
+
                 try {
                     AppProfile.syncTestFolder.mkdirs();
                     File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(this) + "_" + Apps.getVersionName(this) + ".txt");
@@ -433,11 +438,14 @@ public class BooksService extends IntentService {
                     out.newLine();
 
                     for (FileMeta item : all) {
+                        if (item.getPath() == null || item.getPath().isEmpty()) {
+                            continue;
+                        }
                         n++;
                         sendTextMessage("Test: " + n + "/" + count);
                         LOG.d("Self-test Begin", item.getPath());
 
-                        out.write("[" + n + "]" + item.getPath());
+                        out.write(item.getPath());
                         out.newLine();
                         out.flush();
 
@@ -451,7 +459,8 @@ public class BooksService extends IntentService {
                                 out.write("Error 0 pages");
                                 out.newLine();
                                 out.flush();
-                                continue;
+
+                               continue;
                             }
                             CodecPage page = codecDocument.getPage(pageCount / 2);
                             RectF rectF = new RectF(0, 0, 1f, 1f);
@@ -460,8 +469,9 @@ public class BooksService extends IntentService {
                             LOG.d("Self-test Render OK");
                             page.getText();
                             LOG.d("Self-test Text OK");
-
-                            codecDocument.recycle();
+                            if (!BookType.DJVU.is(item.getPath())) {
+                                codecDocument.recycle();
+                            }
                             LOG.d("Self-test End", item.getPath());
                         } catch (Exception e) {
                             LOG.d("Self-test Error", item.getPath());
