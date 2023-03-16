@@ -1314,7 +1314,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
         				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
         			}else{
         				//style->font_size = number_from_value(value, 12, N_LENGTH);
- 						style->font_size = number_from_value_font(value, 1, N_SCALE);
+ 						style->font_size = number_from_value_font(value, 12, N_LENGTH);
 
 
         			}
@@ -1322,7 +1322,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	}
 	else
     {
-        style->font_size = make_number(1.0f, N_SCALE);
+        style->font_size = make_number(1, N_SCALE);
     }
 
 	value = value_from_property(match, PRO_LIST_STYLE_TYPE);
