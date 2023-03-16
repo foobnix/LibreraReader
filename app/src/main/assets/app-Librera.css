@@ -2,7 +2,7 @@ a{color:#06C;text-decoration:underline}
 address{display:block;font-style:italic}
 b{font-weight:bold}
 bdo{direction:rtl;unicode-bidi:bidi-override}
-blockquote{display:block;margin:1em 40px}
+blockquote{display:block;margin-left:4em;}
 
 cite{font-style:italic}
 code{white-space:pre-line; font-family:monospace; text-align:left;}
@@ -60,19 +60,18 @@ description>title-info{display:block}
 description>title-info>*{display:none}
 description>title-info>annotation{display:block;font-style:italic}
 description>title-info>coverpage{display:block;}
-body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
+body,section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 
 table{display:block !important; margin:1em !important;font-size:0.8em;}
 tr,thead,tfoot   {display:block !important;margin-top:1em !important;}
-td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}
+td,th, textarea,form,meter,progress, fieldset{display:block !important;border-style:solid; border-width:1px; padding:0.4em;}
 tbody {display:block !important;}
 th{font-weight:bold; text-align:center}
 
 a{color:#06C;text-decoration:underline}
 a[type=note]{font-size:small;vertical-align:super}
 emphasis{font-style:italic}
-strikethrough{text-decoration:line-through}
 strong{font-weight:bold}
 sub{font-size:small;vertical-align:sub}
 image{margin:1em 0;text-align:center}
@@ -89,7 +88,7 @@ image{text-align:center; text-indent:0px;}
 section+section>title{page-break-before:always;}
 epigraph{text-align:right; margin-left:2em;font-style: italic;}
 text-author{font-style: italic;font-weight: bold;}
-del,ins,u,strikethrough{font-family:monospace;}
+del,ins,u,strikethrough,strike,s{color:red; text-decoration:line-through;}
 
 text-author{font-style: italic;font-weight: bold;}
 p>image{display:block;}
@@ -109,3 +108,10 @@ title,title>p,title>p>strong{font-size:1.1em;}
 subtitle{font-size:1.0em;}
 
 t{font-style: italic;}
+mark{color:blue}
+summary,abbr,legend{font-weight:bold}
+dfn,q{font-style:italic}
+video,audio, canvas{color:red; font-size:0.7em;}
+code, var, samp {font-size:0.8em;}
+summary{display:block}
+textarea{margin:0.5em;padding:1em;}
