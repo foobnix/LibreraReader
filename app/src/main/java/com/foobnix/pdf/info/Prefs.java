@@ -19,7 +19,7 @@ public class Prefs {
     SharedPreferences sp;
 
     public void init(Context c) {
-        sp = c.getSharedPreferences("Errors", Context.MODE_PRIVATE);
+        sp = c.getSharedPreferences("TextErrors", Context.MODE_PRIVATE);
     }
 
     public void put(String path, int page) {
@@ -32,7 +32,7 @@ public class Prefs {
     }
 
     public boolean isErrorExist(String path, int page) {
-        boolean isErrorExist = sp.getAll().containsKey(makeHash(path, page));
+        boolean isErrorExist = sp.contains(makeHash(path, page));
         LOG.d("isErrorExist", isErrorExist, path + page);
         return isErrorExist;
     }

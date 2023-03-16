@@ -517,12 +517,11 @@ public class ImageExtractor {
         final String hash = "" + imageUri.hashCode();
         try {
             final InputStream streamInner;
+            if (sp.contains(hash)) {
+                LOG.d("Error-crash", imageUri, hash);
+                return messageFile("#crash", "");
+            }
             try {
-                if (sp.contains(hash)) {
-                    LOG.d("Error-crash", imageUri, hash);
-                    return messageFile("#crash", "");
-                }
-
                 sp.edit().putBoolean(hash, true).commit();
                 streamInner = getStreamInner(imageUri, hash);
             } finally {
