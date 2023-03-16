@@ -43,7 +43,6 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -465,15 +464,15 @@ public class ImageExtractor {
 
         }
 
-        LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled(), AppSP.get().lastClosedActivity);
+        LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled());
         if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
-            LOG.d("pageUrl run", AppSP.get().lastClosedActivity);
-            if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+
+            //if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
                 TextWord[][] text = pageCodec.getText();
                 PageImageState.get().pagesText.put(pageUrl.getPage(), text);
                 PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
                 LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
-            }
+            //}
         }
 
 

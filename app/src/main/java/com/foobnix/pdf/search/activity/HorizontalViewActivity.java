@@ -1689,8 +1689,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (ttsActive != null) {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
         }
-        AppSP.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
-        LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
     }
 

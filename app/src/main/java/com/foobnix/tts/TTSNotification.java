@@ -23,6 +23,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -92,7 +93,9 @@ public class TTSNotification {
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity) ? HorizontalViewActivity.class : VerticalViewActivity.class);
+            boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+
+            Intent intent = new Intent(context,  isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);//TO-CHECK
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {

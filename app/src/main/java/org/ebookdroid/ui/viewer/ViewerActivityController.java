@@ -374,8 +374,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (wrapperControlls != null) {
             wrapperControlls.onResume();
         }
-        AppSP.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
-        LOG.d("lasta save", AppSP.get().lastClosedActivity);
     }
 
     public void onConfigChanged() {

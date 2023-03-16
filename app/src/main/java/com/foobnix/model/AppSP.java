@@ -14,7 +14,7 @@ public class AppSP {
 
     private static AppSP instance = new AppSP();
     public String lastBookPath;
-    public String lastClosedActivity;
+
     public int lastBookPage = 0;
     public int lastBookPageCount = 0;
     public int tempBookPage = 0;

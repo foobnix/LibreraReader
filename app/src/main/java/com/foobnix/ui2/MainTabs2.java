@@ -610,7 +610,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         EventBus.getDefault().register(this);
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs, AppSP.get().lastClosedActivity);
+
         if (showTabs == false && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
@@ -619,44 +619,13 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
 
             Safe.run(() -> {
-                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity);
-                if (AppState.get().isRememberMode) {
-                    isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+                boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
 
-                }
                 Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                 startActivity(intent);
             });
-        } else if (false && !AppState.get().isOpenLastBook) {//templorary disable this feature
-            LOG.d("Open book lastA", AppSP.get().lastClosedActivity);
-
-            if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
-                LOG.d("Open Last book not found");
-                return;
-            }
-            final String saveMode = AppSP.get().lastClosedActivity;
-            Safe.run(new Runnable() {
-
-                @Override
-                public void run() {
-                    LOG.d("Open AppSP.get().lastBookPath", saveMode);
-                    if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
-                        Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                        startActivity(intent);
-                        LOG.d("Start lastA", saveMode);
-                    } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
-                        Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                        startActivity(intent);
-                        LOG.d("Start lastA", saveMode);
-                    }
-
-                }
-            });
-
         }
 
         checkGoToPage(getIntent());

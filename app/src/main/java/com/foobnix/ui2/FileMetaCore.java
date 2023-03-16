@@ -19,15 +19,12 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
-import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 
@@ -70,9 +67,9 @@ public class FileMetaCore {
     }
 
     public static void createMetaIfNeedSafe(String path, final boolean isSearhcBook) {
-        if (isSafeToExtactBook(path)) {
+        //if (isSafeToExtactBook(path)) {
             createMetaIfNeed(path, isSearhcBook);
-        }
+        //}
 
     }
 
@@ -171,17 +168,6 @@ public class FileMetaCore {
         }
     }
 
-    public static boolean isSafeToExtactBook(String path) {
-        if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)
-                || VerticalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
-
-            if (BookType.PDF.is(path) || BookType.TIFF.is(path)) {
-                LOG.d("createMetaIfNeedSafe-skip", path);
-                return false;
-            }
-        }
-        return true;
-    }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 

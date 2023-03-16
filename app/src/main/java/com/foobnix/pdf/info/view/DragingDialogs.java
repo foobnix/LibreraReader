@@ -695,12 +695,15 @@ public class DragingDialogs {
 
                     }
                 });
-                timerStart.setVisibility(View.GONE);
-                ttsPage.setVisibility(View.GONE);
+
+
 
                 ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                 timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
                 ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
+
+                ttsPage.setVisibility(View.GONE);
+                timerStart.setVisibility(View.GONE);
 
                 TTSEngine.get().getTTS(new OnInitListener() {
 

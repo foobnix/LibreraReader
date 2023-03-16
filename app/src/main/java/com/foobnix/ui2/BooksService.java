@@ -336,10 +336,10 @@ public class BooksService extends IntentService {
 
 
                 for (FileMeta meta : itemsMeta) {
-                    if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
+                    //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
                         EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
                         FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
-                    }
+                    //}
                 }
 
                 SharedBooks.updateProgress(itemsMeta, true,-1);
