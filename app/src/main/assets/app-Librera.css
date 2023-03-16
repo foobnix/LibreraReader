@@ -5,20 +5,20 @@ bdo{direction:rtl;unicode-bidi:bidi-override}
 blockquote{display:block;margin:1em 40px}
 
 cite{font-style:italic}
-code{font-family:monospace;}
+code{white-space:pre-line; font-family:monospace; text-align:left;}
 dd{display:block;margin:0 0 0 40px}
 del{text-decoration:line-through}
 div{display:block}
 dl{display:block;margin:1em 0}
-dt{display:block}
+dt{display:block;font-weight:bold;}
 em{font-style:italic}
 
-h1{display:block;font-size:1.5em;  margin:0.67em 0;page-break-after:avoid}
-h2{display:block;font-size:1.3em;  margin:0.83em 0;page-break-after:avoid}
+h1{display:block;font-size:1.7em;  margin:1em 0;page-break-after:avoid}
+h2{display:block;font-size:1.4em;  margin:1em 0;page-break-after:avoid}
 h3{display:block;font-size:1.1em;  margin:1em 0;page-break-after:avoid}
-h4{display:block;font-size:1em;    margin:1.33em 0;page-break-after:avoid}
-h5{display:block;font-size:0.8em; margin:1.67em 0;page-break-after:avoid}
-h6{display:block;font-size:0.6em; margin:2.33em 0;page-break-after:avoid}
+h4{display:block;font-size:1.0em;  margin:1em 0;page-break-after:avoid}
+h5{display:block;font-size:0.8em;  margin:1em 0;page-break-after:avoid}
+h6{display:block;font-size:0.6em;  margin:1em 0;page-break-after:avoid}
 
 head{display:none}
 hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}
@@ -71,7 +71,6 @@ th{font-weight:bold; text-align:center}
 
 a{color:#06C;text-decoration:underline}
 a[type=note]{font-size:small;vertical-align:super}
-code{white-space:pre;font-family:monospace}
 emphasis{font-style:italic}
 strikethrough{text-decoration:line-through}
 strong{font-weight:bold}
@@ -98,13 +97,13 @@ p>image{display:block;}
 b>span,strong>span{font-weight:normal}
 book>title, bookinfo {display:none}
 
-svg{display:block}
+svg{display:block;}
 math, m, svg>text {display:none}
 sup,sup>* {font-size:0.83em;vertical-align:super; font-weight:bold}
 
 body{display:block; padding:0 !important; margin:0 !important;}
 
-h1,h2,h3,h4,h5,h6,img {text-indent:0px !important; text-align: center;}
+h1,h2,h3,h4,h5,h6,img,svg {text-indent:0px !important; text-align: center;}
 
 title,title>p,title>p>strong{font-size:1.1em;}
 subtitle{font-size:1.0em;}

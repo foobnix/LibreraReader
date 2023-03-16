@@ -1280,18 +1280,23 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	value = value_from_property(match, PRO_FONT_SIZE);
 	if (value)
 	{
-		if (!strcmp(value->data, "xx-large")) style->font_size = make_number(1.73f, N_SCALE);
-		else if (!strcmp(value->data, "x-large")) style->font_size = make_number(1.44f, N_SCALE);
+		if (!strcmp(value->data, "xx-large")) style->font_size = make_number(1.7f, N_SCALE);
+		else if (!strcmp(value->data, "x-large")) style->font_size = make_number(1.4f, N_SCALE);
 		else if (!strcmp(value->data, "xxx-large")) style->font_size = make_number(2.0f, N_SCALE);
 		else if (!strcmp(value->data, "large")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "medium")) style->font_size = make_number(1.0f, N_SCALE);
 		else if (!strcmp(value->data, "normal")) style->font_size = make_number(1.0f, N_SCALE);
-		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.83f, N_SCALE);
-		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.69f, N_SCALE);
+		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.8f, N_SCALE);
+		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.6f, N_SCALE);
 		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.5f, N_SCALE);
 		else if (!strcmp(value->data, "larger")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
     	else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "initial")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "unset")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "revert")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "revert-layer")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "math")) style->font_size = make_number(1.0f, N_SCALE);
 		else
         		{
         			if (value->type == CSS_PERCENT){
@@ -1303,7 +1308,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	}
 	else
     {
-        style->font_size = make_number(1, N_SCALE);
+        style->font_size = make_number(1.0f, N_SCALE);
     }
 
 	value = value_from_property(match, PRO_LIST_STYLE_TYPE);
