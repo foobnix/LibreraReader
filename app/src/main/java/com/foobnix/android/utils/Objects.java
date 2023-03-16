@@ -38,6 +38,7 @@ public class Objects {
         return toJSONObject(obj).toString();
     }
 
+
     public static LinkedJSONObject toJSONObject(Object obj) {
         LOG.d(TAG, "saveToSP");
         final LinkedJSONObject edit = new LinkedJSONObject();

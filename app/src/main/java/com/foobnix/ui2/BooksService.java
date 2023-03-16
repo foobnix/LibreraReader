@@ -6,6 +6,8 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.RectF;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 
 import androidx.core.app.NotificationCompat;
@@ -13,8 +15,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
@@ -26,6 +30,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -49,7 +54,10 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -133,8 +141,7 @@ public class BooksService extends IntentService {
                 Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                         .setSmallIcon(R.drawable.glyphicons_761_sync) //
                         .setContentTitle(Apps.getApplicationName(this)) //
-                        .setContentText(getString(R.string.please_wait_books_are_being_processed_))
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                        .setContentText(getString(R.string.please_wait_books_are_being_processed_)).setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                         .build();
 
                 startForeground(TTSNotification.NOT_ID_2, notification);
@@ -377,43 +384,99 @@ public class BooksService extends IntentService {
                 Clouds.get().syncronizeGet();
 
             } else if (ACTION_RUN_SELF_TEST.equals(intent.getAction())) {
-                LOG.d("Self-test begin");
-                List<FileMeta> all = AppDB.get().getAll();
-                int w = Dips.screenWidth();
-                int h = Dips.screenHeight();
-                int s = BookCSS.get().fontSizeSp;
-                int count = all.size();
-                int n = 0;
-                for (FileMeta item : all) {
-                    n++;
-                    sendTextMessage("Test: " +n + "/" + count);
-                    LOG.d("Self-test Begin", item.getPath());
-                    try {
-                        CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
-                        CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
-                        int pageCount = codecDocument.getPageCount(w, h, s);
-                        if (pageCount == 0) {
-                            LOG.d("Self-test Error 0 pages");
+                try {
+                    AppProfile.syncTestFolder.mkdirs();
+                    File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(this) + "_" + Apps.getVersionName(this) + ".txt");
+                    logFile.delete();
+
+                    BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+
+                    LOG.d("Self-test begin");
+                    List<FileMeta> all = AppDB.get().getAll();
+                    int w = Dips.screenWidth();
+                    int h = Dips.screenHeight();
+                    int s = BookCSS.get().fontSizeSp;
+                    int count = all.size();
+                    int n = 0;
+
+                    out.append("ApplicationName: " + Apps.getApplicationName(this) + "\n");
+                    out.append("VersionName: " + Apps.getVersionName(this) + "\n");
+                    out.append("PackageName: " + Apps.getPackageName(this) + "\n");
+                    out.append("os.arch: " + System.getProperty("os.arch") + "\n");
+                    out.append("MUPDF_VERSION: " + AppsConfig.MUPDF_VERSION + "\n");
+                    out.append("Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT + "\n");
+                    out.append("Height x Width: " + Dips.screenHeight() + "x" + Dips.screenWidth() + "\n");
+                    out.newLine();
+                    out.append("Build.MANUFACTURER: " + Build.MANUFACTURER + "\n");
+                    out.append("Build.PRODUCT: " + Build.PRODUCT + "\n");
+                    out.append("Build.DEVICE: " + Build.DEVICE + "\n");
+                    out.append("Build.BRAND: " + Build.BRAND + "\n");
+                    out.append("Build.MODEL: " + Build.MODEL + "\n");
+
+
+                    out.newLine();
+                    out.append("[CSS]");
+                    out.newLine();
+                    out.append(BookCSS.get().toCssString().replace("}", "}\n"));
+                    out.newLine();
+                    out.append("[BookCSS]");
+                    out.newLine();
+                    out.append(Objects.toJSONString(BookCSS.get()).replace(",", ",\n"));
+                    out.newLine();
+                    out.newLine();
+                    out.append("[AppState]");
+                    out.newLine();
+                    out.append(Objects.toJSONString(AppState.get()).replace(",", ",\n"));
+                    out.newLine();
+
+                    out.append("count:" + count);
+                    out.newLine();
+
+                    for (FileMeta item : all) {
+                        n++;
+                        sendTextMessage("Test: " + n + "/" + count);
+                        LOG.d("Self-test Begin", item.getPath());
+
+                        out.write("[" + n + "]" + item.getPath());
+                        out.newLine();
+                        out.flush();
+
+                        try {
+                            CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
+                            CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
+                            int pageCount = codecDocument.getPageCount(w, h, s);
+                            if (pageCount == 0) {
+                                LOG.d("Self-test Error 0 pages");
+                                codecDocument.recycle();
+                                out.write("Error 0 pages");
+                                out.newLine();
+                                out.flush();
+                                continue;
+                            }
+                            CodecPage page = codecDocument.getPage(pageCount / 2);
+                            RectF rectF = new RectF(0, 0, 1f, 1f);
+                            BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
+                            bitmapRef.getBitmap().recycle();
+                            LOG.d("Self-test Render OK");
+                            page.getText();
+                            LOG.d("Self-test Text OK");
+
                             codecDocument.recycle();
-                            continue;
+                            LOG.d("Self-test End", item.getPath());
+                        } catch (Exception e) {
+                            LOG.d("Self-test Error", item.getPath());
+                            out.write("Error");
+                            out.newLine();
+                            out.flush();
                         }
-                        CodecPage page = codecDocument.getPage(pageCount / 2);
-                        RectF rectF = new RectF(0, 0, 1f, 1f);
-                        BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
-                        bitmapRef.getBitmap().recycle();
-                        LOG.d("Self-test Render OK");
-                        page.getText();
-                        LOG.d("Self-test Text OK");
 
-                        codecDocument.recycle();
-
-                        LOG.d("Self-test End", item.getPath());
-                    } catch (Exception e) {
-                        LOG.d("Self-test Error", item.getPath());
                     }
-
+                    LOG.d("Self-test end");
+                    out.flush();
+                    out.close();
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
-                LOG.d("Self-test end");
 
 
             }
@@ -459,9 +522,7 @@ public class BooksService extends IntentService {
 
     private void sendTextMessage(String text) {
 
-        Intent itent = new Intent(INTENT_NAME)
-                .putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_MESSAGE_TXT)
-                .putExtra("TEXT", text);
+        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_MESSAGE_TXT).putExtra("TEXT", text);
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
     }
 

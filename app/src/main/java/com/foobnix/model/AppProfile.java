@@ -79,6 +79,8 @@ public class AppProfile {
     public static File syncBookmarks;
 
     public static File syncFontFolder;
+
+    public static File syncTestFolder;
     public static File syncDownloadFolder;
 
     public static File FONT_LOCAL_ZIP;
@@ -112,6 +114,7 @@ public class AppProfile {
         SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
         FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip.pack");
         syncFontFolder = new File(SYNC_FOLDER_ROOT, "Fonts");
+        syncTestFolder = new File(SYNC_FOLDER_ROOT, "Test");
         syncDownloadFolder = new File(SYNC_FOLDER_ROOT, "Downloads");
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));

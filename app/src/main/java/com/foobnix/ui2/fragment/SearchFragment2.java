@@ -354,7 +354,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                AlertDialogs.showDialog(getActivity(), "Run Self TEST?", getString(R.string.ok), new Runnable() {
+                AlertDialogs.showDialog(getActivity(), "Run the self-test?", getString(R.string.ok), new Runnable() {
 
                     @Override
                     public void run() {
