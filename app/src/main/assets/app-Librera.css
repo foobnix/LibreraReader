@@ -55,6 +55,7 @@ br{display:block}
 
 FictionBook{display:block}
 stylesheet,binary{display:none}
+description,description>*{display:none}
 description>*{display:none}
 description>title-info{display:block}
 description>title-info>*{display:none}

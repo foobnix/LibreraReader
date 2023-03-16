@@ -5,12 +5,14 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.RectF;
 import android.os.Handler;
 
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -39,7 +41,12 @@ import com.foobnix.tts.TTSNotification;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 //import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 
+import org.ebookdroid.BookType;
+import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.core.codec.CodecContext;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -52,11 +59,14 @@ public class BooksService extends IntentService {
     public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
     public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
     public static String ACTION_SYNC_DROPBOX = "ACTION_SYNC_DROPBOX";
+    public static String ACTION_RUN_SELF_TEST = "ACTION_RUN_SELF_TEST";
     public static String ACTION_RUN_SYNCRONICATION = "ACTION_RUN_SYNCRONICATION";
     public static String RESULT_SYNC_FINISH = "RESULT_SYNC_FINISH";
     public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
     public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
     public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
+    public static String RESULT_SEARCH_MESSAGE_TXT = "RESULT_SEARCH_MESSAGE_TXT";
+
     public static volatile boolean isRunning = false;
     Handler handler;
     boolean isStartForeground = false;
@@ -157,7 +167,6 @@ public class BooksService extends IntentService {
             //TESET
 
 
-
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
                 if (AppSP.get().isEnableSync) {
 
@@ -217,7 +226,7 @@ public class BooksService extends IntentService {
                 }
 
                 List<FileMeta> localMeta = new LinkedList<FileMeta>();
-                if(JsonDB.isEmpty(BookCSS.get().searchPathsJson)){
+                if (JsonDB.isEmpty(BookCSS.get().searchPathsJson)) {
                     sendFinishMessage();
                     return;
                 }
@@ -243,7 +252,7 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
@@ -265,8 +274,6 @@ public class BooksService extends IntentService {
                         IMG.clearMemoryCache();
                     }
                 });
-
-
 
 
                 AppDB.get().deleteAllData();
@@ -337,12 +344,12 @@ public class BooksService extends IntentService {
 
                 for (FileMeta meta : itemsMeta) {
                     //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
-                        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                        FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
+                    FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                     //}
                 }
 
-                SharedBooks.updateProgress(itemsMeta, true,-1);
+                SharedBooks.updateProgress(itemsMeta, true, -1);
                 AppDB.get().updateAll(itemsMeta);
 
 
@@ -359,7 +366,7 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
@@ -368,6 +375,46 @@ public class BooksService extends IntentService {
 
             } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
                 Clouds.get().syncronizeGet();
+
+            } else if (ACTION_RUN_SELF_TEST.equals(intent.getAction())) {
+                LOG.d("Self-test begin");
+                List<FileMeta> all = AppDB.get().getAll();
+                int w = Dips.screenWidth();
+                int h = Dips.screenHeight();
+                int s = BookCSS.get().fontSizeSp;
+                int count = all.size();
+                int n = 0;
+                for (FileMeta item : all) {
+                    n++;
+                    sendTextMessage("Test: " +n + "/" + count);
+                    LOG.d("Self-test Begin", item.getPath());
+                    try {
+                        CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
+                        CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
+                        int pageCount = codecDocument.getPageCount(w, h, s);
+                        if (pageCount == 0) {
+                            LOG.d("Self-test Error 0 pages");
+                            codecDocument.recycle();
+                            continue;
+                        }
+                        CodecPage page = codecDocument.getPage(pageCount / 2);
+                        RectF rectF = new RectF(0, 0, 1f, 1f);
+                        BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
+                        bitmapRef.getBitmap().recycle();
+                        LOG.d("Self-test Render OK");
+                        page.getText();
+                        LOG.d("Self-test Text OK");
+
+                        codecDocument.recycle();
+
+                        LOG.d("Self-test End", item.getPath());
+                    } catch (Exception e) {
+                        LOG.d("Self-test Error", item.getPath());
+                    }
+
+                }
+                LOG.d("Self-test end");
+
 
             }
 
@@ -408,6 +455,14 @@ public class BooksService extends IntentService {
 
         sendFinishMessage(this);
         EventBus.getDefault().post(new MessageSyncFinish());
+    }
+
+    private void sendTextMessage(String text) {
+
+        Intent itent = new Intent(INTENT_NAME)
+                .putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_MESSAGE_TXT)
+                .putExtra("TEXT", text);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
     }
 
     private void sendProggressMessage() {

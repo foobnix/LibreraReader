@@ -52,6 +52,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -150,6 +151,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 onRefresh.setActivated(false);
                 searchEditText.setHint(R.string.extracting_information_from_books);
+            }else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                searchEditText.setHint(intent.getStringExtra("TEXT"));
             }
         }
 
@@ -348,6 +351,19 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
+        onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialogs.showDialog(getActivity(), "Run Self TEST?", getString(R.string.ok), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                    }
+                }, null);
+                return true;
+            }
+        });
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
