@@ -863,7 +863,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv * env,
 					{
 						fz_rect bbox = fz_rect_from_quad(ch->quad);
 						jobject cobj = (*env)->NewObject(env, textCharClass, ctor, bbox.x0, bbox.y0, bbox.x1, bbox.y1, ch->c);
-						if (cobj == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectfailed");
+						if (cobj == NULL)
+						    fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectfailed");
 
 						ArrayListHelper_add(&alh, arrayList, cobj);
 						(*env)->DeleteLocalRef(env, cobj);

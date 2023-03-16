@@ -1,15 +1,12 @@
 package org.ebookdroid;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
-//import androidx.multidex.MultiDexApplication;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -18,15 +15,13 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
-import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
-import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -62,6 +57,7 @@ public class LibreraApp extends MultiDexApplication {
 
         context = getApplicationContext();
         Dips.init(this);
+        Prefs.get().init(this);
 
         try {
             if (!AppsConfig.checkIsProInstalled(this)) {

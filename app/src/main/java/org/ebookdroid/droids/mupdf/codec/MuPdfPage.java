@@ -17,7 +17,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.AbstractCodecPage;
@@ -45,6 +44,7 @@ public class MuPdfPage extends AbstractCodecPage {
     private int pageNumber;
 
     private MuPdfPage(final long pageHandle, final MuPdfDocument muPdfDocument, int pageNumber) {
+        super(muPdfDocument.getPath());
         this.pageHandle = pageHandle;
         this.muPdfDocument = muPdfDocument;
         this.docHandle = muPdfDocument.getDocumentHandle();
@@ -301,7 +301,7 @@ public class MuPdfPage extends AbstractCodecPage {
     public List<PageLink> getPageLinks() {
 
 
-       if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
+        if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
             LOG.d("skip links for 1 page");
             return new ArrayList<PageLink>();
         }
@@ -433,7 +433,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public TextWord[][] getText() {
+    public TextWord[][] getTextIml() {
 
         //SKIP TEM
         if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
@@ -441,11 +441,13 @@ public class MuPdfPage extends AbstractCodecPage {
             return new TextWord[0][0];
         }
 
+
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
             return getText_111();
-        } else  {
+        } else {
             return getText_116();
         }
+
     }
 
     public TextWord[][] getText_116() {
