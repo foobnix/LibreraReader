@@ -620,6 +620,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             Safe.run(() -> {
                 boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity);
+                if (AppState.get().isRememberMode) {
+                    isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+
+                }
                 Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
