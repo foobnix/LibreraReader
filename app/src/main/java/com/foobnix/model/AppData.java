@@ -7,6 +7,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
@@ -23,14 +24,10 @@ import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -373,10 +370,17 @@ public class AppData {
     }
 
 
+    public static File getTestFileName(){
+        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context)+"_"+ AppsConfig.MUPDF_VERSION + ".txt");
+        return logFile;
+
+
+    }
+
     public synchronized List<FileMeta> getAllTestedBooks() {
         List<FileMeta> res = new ArrayList<>();
+        File logFile = getTestFileName();
 
-        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + ".txt");
         try {
             BufferedReader read = new BufferedReader(new FileReader(logFile));
             String line;

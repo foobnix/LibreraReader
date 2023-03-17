@@ -46,6 +46,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -156,7 +157,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 searchEditText.setHint(R.string.extracting_information_from_books);
             } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchEditText.setHint(intent.getStringExtra("TEXT"));
-            }else if (BooksService.RESULT_NOTIFY_ALL.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+            } else if (BooksService.RESULT_NOTIFY_ALL.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 TempHolder.listHash++;
                 EventBus.getDefault().post(new NotifyAllFragments());
             }
@@ -357,19 +358,22 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                AlertDialogs.showDialog(getActivity(), "Run the self-test?", getString(R.string.ok), new Runnable() {
 
-                    @Override
-                    public void run() {
-                        BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
-                    }
-                }, null);
-                return true;
-            }
-        });
+        if (AppState.get().isShowTestBooks) {
+            onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    AlertDialogs.showDialog(getActivity(), "Run the self-test? " + AppData.getTestFileName().getName(), getString(R.string.ok), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                        }
+                    }, null);
+                    return true;
+                }
+            });
+        }
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);

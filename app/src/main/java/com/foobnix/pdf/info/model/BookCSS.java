@@ -600,11 +600,11 @@ public class BookCSS {
             //apply settings
 
 
-       //     builder.append("body{");
-         //   builder.append("}");
+            //     builder.append("body{");
+            //   builder.append("}");
 
             // <P> begin
-            builder.append("p{");
+            builder.append("div, p{");
 
             if (paragraphHeight > 0) {// bug is here
                 builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
@@ -620,7 +620,7 @@ public class BookCSS {
                 builder.append(String.format("color:%s !important;", textColor));
             }
             //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 

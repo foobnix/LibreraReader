@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 
 import androidx.core.app.NotificationCompat;
@@ -15,7 +14,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
@@ -39,13 +37,11 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
-import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-//import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -58,7 +54,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -391,12 +387,12 @@ public class BooksService extends IntentService {
 
                 try {
                     AppProfile.syncTestFolder.mkdirs();
-                    File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(this) + "_" + Apps.getVersionName(this) + ".txt");
+                    File logFile = AppData.getTestFileName();
                     logFile.delete();
 
                     BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
 
-                    LOG.d("Self-test begin");
+
                     List<FileMeta> all = AppDB.get().getAll();
                     int w = Dips.screenWidth();
                     int h = Dips.screenHeight();
@@ -404,91 +400,78 @@ public class BooksService extends IntentService {
                     int count = all.size();
                     int n = 0;
 
-                    out.append("ApplicationName: " + Apps.getApplicationName(this) + "\n");
-                    out.append("VersionName: " + Apps.getVersionName(this) + "\n");
-                    out.append("PackageName: " + Apps.getPackageName(this) + "\n");
-                    out.append("os.arch: " + System.getProperty("os.arch") + "\n");
-                    out.append("MUPDF_VERSION: " + AppsConfig.MUPDF_VERSION + "\n");
-                    out.append("Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT + "\n");
-                    out.append("Height x Width: " + Dips.screenHeight() + "x" + Dips.screenWidth() + "\n");
+                    writeLine(out, "ApplicationName: " + Apps.getApplicationName(this));
+                    writeLine(out, "VersionName: " + Apps.getVersionName(this));
+                    writeLine(out, "PackageName: " + Apps.getPackageName(this));
+                    writeLine(out, "os.arch: " + System.getProperty("os.arch"));
+                    writeLine(out, "MUPDF_VERSION: " + AppsConfig.MUPDF_VERSION);
+                    writeLine(out, "Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT);
+                    writeLine(out, "Height x Width: " + Dips.screenHeight() + "x" + Dips.screenWidth());
                     out.newLine();
-                    out.append("Build.MANUFACTURER: " + Build.MANUFACTURER + "\n");
-                    out.append("Build.PRODUCT: " + Build.PRODUCT + "\n");
-                    out.append("Build.DEVICE: " + Build.DEVICE + "\n");
-                    out.append("Build.BRAND: " + Build.BRAND + "\n");
-                    out.append("Build.MODEL: " + Build.MODEL + "\n");
+                    writeLine(out, "Build.MANUFACTURER: " + Build.MANUFACTURER);
+                    writeLine(out, "Build.PRODUCT: " + Build.PRODUCT);
+                    writeLine(out, "Build.DEVICE: " + Build.DEVICE);
+                    writeLine(out, "Build.BRAND: " + Build.BRAND);
+                    writeLine(out, "Build.MODEL: " + Build.MODEL);
+                    out.newLine();
+                    writeLine(out, "[CSS]");
+                    writeLine(out, BookCSS.get().toCssString().replace("}", "}\n"));
+                    writeLine(out, "[BookCSS]");
+                    writeLine(out, Objects.toJSONString(BookCSS.get()).replace(",", ",\n"));
+                    writeLine(out, "[AppState]");
+                    writeLine(out, Objects.toJSONString(AppState.get()).replace(",", ",\n"));
 
 
-                    out.newLine();
-                    out.append("[CSS]");
-                    out.newLine();
-                    out.append(BookCSS.get().toCssString().replace("}", "}\n"));
-                    out.newLine();
-                    out.append("[BookCSS]");
-                    out.newLine();
-                    out.append(Objects.toJSONString(BookCSS.get()).replace(",", ",\n"));
-                    out.newLine();
-                    out.newLine();
-                    out.append("[AppState]");
-                    out.newLine();
-                    out.append(Objects.toJSONString(AppState.get()).replace(",", ",\n"));
-                    out.newLine();
+                    writeLine(out, "Books: " + count);
 
-                    out.append("count:" + count);
-                    out.newLine();
+
+                    sendNotifyAll();
 
                     for (FileMeta item : all) {
-                        if (item.getPath() == null || item.getPath().isEmpty()) {
+                        n++;
+
+                        writeLine(out, item.getPath());
+
+                        if (TxtUtils.isEmpty(item.getPath())) {
+                            writeLine(out, "Skip");
                             continue;
                         }
-                        n++;
+                        if (item.getPath().endsWith(".zip") && !item.getPath().endsWith("fb.zip")) {
+                            writeLine(out, "Skip");
+                            continue;
+                        }
                         sendTextMessage("Test: " + n + "/" + count);
-                        LOG.d("Self-test Begin", item.getPath());
-
-                        out.write(item.getPath());
-                        out.newLine();
-                        out.flush();
-
                         try {
                             CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
                             CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
                             int pageCount = codecDocument.getPageCount(w, h, s);
                             if (pageCount == 0) {
-                                LOG.d("Self-test Error 0 pages");
                                 codecDocument.recycle();
-                                out.write("Error 0 pages");
-                                out.newLine();
-                                out.flush();
-
-                               continue;
+                                writeLine(out, "Error");
+                                sendNotifyAll();
+                                continue;
                             }
                             CodecPage page = codecDocument.getPage(pageCount / 2);
                             RectF rectF = new RectF(0, 0, 1f, 1f);
                             BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
                             bitmapRef.getBitmap().recycle();
-                            LOG.d("Self-test Render OK");
                             page.getText();
-                            LOG.d("Self-test Text OK");
+
                             if (!BookType.DJVU.is(item.getPath())) {
                                 codecDocument.recycle();
                             }
-                            LOG.d("Self-test End", item.getPath());
                         } catch (Exception e) {
-                            LOG.d("Self-test Error", item.getPath());
-                            out.write("Error");
-                            out.newLine();
-                            out.flush();
+                            writeLine(out,"Error");
+                            sendNotifyAll();
                         }
 
                     }
-                    LOG.d("Self-test end");
-                    out.flush();
+                    writeLine(out,"Finish");
                     out.close();
                 } catch (Exception e) {
                     LOG.e(e);
                 }
-
-
+                sendNotifyAll();
             }
 
 
@@ -498,6 +481,13 @@ public class BooksService extends IntentService {
 
         }
         //stopSelf();
+    }
+
+    public void writeLine(BufferedWriter out, String line) throws IOException {
+        LOG.d("Self-test", line);
+        out.write(line);
+        out.newLine();
+        out.flush();
     }
 
     public void updateBookAnnotations() {
@@ -531,8 +521,12 @@ public class BooksService extends IntentService {
     }
 
     private void sendTextMessage(String text) {
-
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_MESSAGE_TXT).putExtra("TEXT", text);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
+    }
+
+    private void sendNotifyAll() {
+        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_NOTIFY_ALL);
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
     }
 
