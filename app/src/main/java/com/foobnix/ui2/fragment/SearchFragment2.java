@@ -362,6 +362,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                if (BooksService.isRunning) {
+                    Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
                 if (AppState.get().isShowTestBooks) {
                     AlertDialogs.showDialog(getActivity(), "Run the self-test? " + AppData.getTestFileName().getName(), getString(R.string.ok), new Runnable() {
 

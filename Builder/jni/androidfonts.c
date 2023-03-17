@@ -43,6 +43,26 @@ static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const c
 		return NULL;
 	return font;
 }
+static fz_font *load_my_font(fz_context *ctx)
+{
+    if(1){
+        return NULL;
+    }
+
+	char buf[500];
+	fz_font *font = NULL;
+	fz_try(ctx)
+	{
+		fz_snprintf(buf, sizeof buf, "/storage/emulated/0/Librera/Fonts/DroidSansFallbackFull.ttf1");
+		if (!fz_file_exists(ctx, buf))
+			fz_snprintf(buf, sizeof buf, "/storage/sdcard/Librera/Fonts/DroidSansFallbackFull.ttf1");
+		if (fz_file_exists(ctx, buf))
+			font = fz_new_font_from_file(ctx, NULL, buf, 0, 0);
+	}
+	fz_catch(ctx)
+		return NULL;
+	return font;
+}
 
 static fz_font *load_noto_cjk(fz_context *ctx, int lang)
 {
@@ -81,7 +101,7 @@ fz_font *load_droid_fallback_font(fz_context *ctx, int script, int language, int
 	case UCDN_SCRIPT_COMMON:
 	case UCDN_SCRIPT_INHERITED:
 	case UCDN_SCRIPT_UNKNOWN:
-		return fz_new_font_from_file(ctx, NULL, "/storage/emulated/0/Librera/Fonts/FreeSerif.ttf", 0, 0);
+		return load_my_font(ctx);
 
 	case UCDN_SCRIPT_HANGUL: return load_noto_cjk(ctx, KR);
 	case UCDN_SCRIPT_HIRAGANA: return load_noto_cjk(ctx, JP);
@@ -254,7 +274,7 @@ fz_font *load_droid_fallback_font(fz_context *ctx, int script, int language, int
 	case UCDN_SCRIPT_TANGSA: return load_noto_try(ctx, "Tangsa");
 	case UCDN_SCRIPT_TOTO: return load_noto_try(ctx, "Toto");
 	}
-	return  fz_new_font_from_file(ctx, NULL, "/storage/emulated/0/Librera/Fonts/FreeSerif.ttf", 0, 0);
+	return load_my_font(ctx);
 }
 
 fz_font *load_droid_cjk_font(fz_context *ctx, const char *name, int ros, int serif)
@@ -271,5 +291,5 @@ fz_font *load_droid_cjk_font(fz_context *ctx, const char *name, int ros, int ser
 
 fz_font *load_droid_font(fz_context *ctx, const char *name, int bold, int italic, int needs_exact_metrics)
 {
-	return  NULL;
+	return  load_my_font(ctx);;
 }

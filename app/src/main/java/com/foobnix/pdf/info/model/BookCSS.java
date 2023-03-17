@@ -602,17 +602,8 @@ public class BookCSS {
             builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
 
-
-            //     builder.append("body{");
-            //   builder.append("}");
-
-            builder.append("div {");
-            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
-            builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
-            builder.append("}");
-
             // <P> begin
-            builder.append("p {");
+            builder.append("div, p {");
 
             if (paragraphHeight > 0) {// bug is here
                 builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
@@ -639,6 +630,7 @@ public class BookCSS {
             }
 
             builder.append("}");
+            // </P> end
 
             builder.append("div {");
             builder.append("margin-right:0 !important;");
@@ -646,7 +638,7 @@ public class BookCSS {
             builder.append("padding-left:0 !important;");
             builder.append("padding-right:0 !important;");
             builder.append("}");
-            // </P> end
+
 
             // FONTS BEGIN
             if (isUrlFont(normalFont)) {
