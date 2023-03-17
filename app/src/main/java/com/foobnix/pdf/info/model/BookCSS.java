@@ -606,13 +606,13 @@ public class BookCSS {
             //     builder.append("body{");
             //   builder.append("}");
 
-            builder.append("div{");
+            builder.append("div {");
             builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
             builder.append("}");
 
             // <P> begin
-            builder.append("p{");
+            builder.append("p {");
 
             if (paragraphHeight > 0) {// bug is here
                 builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
