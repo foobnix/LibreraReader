@@ -18,5 +18,5 @@ rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm*
 
 cd Builder
-./remove_all.sh
-./install_all.sh
+#./remove_all.sh
+#./install_all.sh

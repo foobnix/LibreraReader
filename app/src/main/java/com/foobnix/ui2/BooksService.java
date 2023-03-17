@@ -20,6 +20,7 @@ import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
@@ -436,14 +437,21 @@ public class BooksService extends IntentService {
                             writeLine(out, "Skip");
                             continue;
                         }
-                        if (item.getPath().endsWith(".zip") && !item.getPath().endsWith("fb.zip")) {
+
+                        if (ExtUtils.isZip(item.getPath()) && !CacheZipUtils.isSingleAndSupportEntry(item.getPath()).first) {
                             writeLine(out, "Skip");
                             continue;
                         }
+
                         sendTextMessage("Test: " + n + "/" + count);
                         try {
-                            CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
-                            CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
+                            CodecDocument codecDocument = ImageExtractor.getNewCodecContext(item.getPath(), "", w, h);
+                            if (codecDocument == null) {
+                                codecDocument.recycle();
+                                writeLine(out, "Error");
+                                sendNotifyAll();
+                                continue;
+                            }
                             int pageCount = codecDocument.getPageCount(w, h, s);
                             if (pageCount == 0) {
                                 codecDocument.recycle();
@@ -456,17 +464,24 @@ public class BooksService extends IntentService {
                             BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
                             bitmapRef.getBitmap().recycle();
                             page.getText();
+                            page.getPageLinks();
+                            page.getPageHTML();
+
+                            if (!page.isRecycled()) {
+                                page.recycle();
+                            }
 
                             if (!BookType.DJVU.is(item.getPath())) {
                                 codecDocument.recycle();
                             }
+
                         } catch (Exception e) {
-                            writeLine(out,"Error");
+                            writeLine(out, "Error");
                             sendNotifyAll();
                         }
 
                     }
-                    writeLine(out,"Finish");
+                    writeLine(out, "Finish");
                     out.close();
                 } catch (Exception e) {
                     LOG.e(e);
