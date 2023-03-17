@@ -394,12 +394,14 @@ public class BooksService extends IntentService {
                     BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
 
 
-                    List<FileMeta> all = AppDB.get().getAll();
+                    List<FileMeta> all = AppDB.get().searchBy("", AppDB.SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+
                     int w = Dips.screenWidth();
                     int h = Dips.screenHeight();
                     int s = BookCSS.get().fontSizeSp;
                     int count = all.size();
                     int n = 0;
+                    int errors = 0;
 
                     writeLine(out, "ApplicationName: " + Apps.getApplicationName(this));
                     writeLine(out, "VersionName: " + Apps.getVersionName(this));
@@ -442,20 +444,15 @@ public class BooksService extends IntentService {
                             writeLine(out, "Skip");
                             continue;
                         }
-
                         sendTextMessage("Test: " + n + "/" + count);
                         try {
-                            CodecDocument codecDocument = ImageExtractor.getNewCodecContext(item.getPath(), "", w, h);
-                            if (codecDocument == null) {
-                                codecDocument.recycle();
-                                writeLine(out, "Error");
-                                sendNotifyAll();
-                                continue;
-                            }
+                            CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
+                            CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
                             int pageCount = codecDocument.getPageCount(w, h, s);
                             if (pageCount == 0) {
                                 codecDocument.recycle();
                                 writeLine(out, "Error");
+                                errors++;
                                 sendNotifyAll();
                                 continue;
                             }
@@ -474,13 +471,14 @@ public class BooksService extends IntentService {
                             if (!BookType.DJVU.is(item.getPath())) {
                                 codecDocument.recycle();
                             }
-
                         } catch (Exception e) {
                             writeLine(out, "Error");
+                            errors++;
                             sendNotifyAll();
                         }
 
                     }
+                    writeLine(out, "Errors: " + errors);
                     writeLine(out, "Finish");
                     out.close();
                 } catch (Exception e) {

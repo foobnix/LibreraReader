@@ -391,7 +391,7 @@ public class AppData {
                 }
                 prev = line;
             }
-            if (TxtUtils.isNotEmpty(prev)) {
+            if (!"Finish".equals(prev)) {
                 res.add(new FileMeta(prev));
             }
             read.close();

@@ -202,7 +202,7 @@ public class ImageExtractor {
 
         codecContex = BookType.getCodecContextByPath(path);
 
-        LOG.d("CodecContext", codecContex);
+        LOG.d(" getNewCodecContext CodecContext", codecContex);
 
         if (codecContex == null) {
             return null;
@@ -212,11 +212,11 @@ public class ImageExtractor {
         TempHolder.get().loadingCancelled = false;
         codeCache = codecContex.openDocument(path, passw);
         if (codeCache == null) {
-            LOG.d("[Open doc is null 1", path);
+            LOG.d("getNewCodecContext [Open doc is null 1", path);
             return null;
         }
 
-        LOG.d("CodecContext-fontSizeSp", w, h, BookCSS.get().fontSizeSp);
+        LOG.d("getNewCodecContext CodecContext-fontSizeSp", w, h, BookCSS.get().fontSizeSp);
         pageCount = codeCache.getPageCount(w, h, BookCSS.get().fontSizeSp);
         pathCache = path;
         whCache = h + w;

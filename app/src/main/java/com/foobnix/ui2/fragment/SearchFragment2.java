@@ -359,10 +359,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
 
-        if (AppState.get().isShowTestBooks) {
-            onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
+        onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (AppState.get().isShowTestBooks) {
                     AlertDialogs.showDialog(getActivity(), "Run the self-test? " + AppData.getTestFileName().getName(), getString(R.string.ok), new Runnable() {
 
                         @Override
@@ -370,10 +370,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
                         }
                     }, null);
-                    return true;
                 }
-            });
-        }
+                return true;
+            }
+        });
+
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
