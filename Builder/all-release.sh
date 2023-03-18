@@ -15,18 +15,10 @@ cd ../
 ./gradlew assembleFdroidRelease
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
-
-cd Builder
-
-./link_two_mupdf.sh
-
-cd ../
-
 ./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
-
 
 #rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 #rm /home/dev/Nextcloud/LibreraBeta/*-x86*
