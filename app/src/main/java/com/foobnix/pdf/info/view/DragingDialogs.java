@@ -4491,7 +4491,7 @@ public class DragingDialogs {
 
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
-                lineHeight.init(0, 30, BookCSS.get().lineHeight);
+                lineHeight.init(10, 30, BookCSS.get().lineHeight);
                 lineHeight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

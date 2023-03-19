@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-./fonts.sh
+#./fonts.sh
 
+#Builder folder
 ./link_to_mupdf_1.21.1.sh
 
 cd ../
@@ -11,12 +12,18 @@ cd ../
 ./gradlew assembleFdroidRelease
 ./gradlew assembleProRelease
 
+cd Builder
+./link_two_mupdf.sh
+
+cd ../
+
+./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
-#rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
-#rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.*
 
 cd Builder
 ./remove_all.sh

@@ -564,6 +564,9 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+
+        lineHeight = Math.max(10, lineHeight);
+
         StringBuilder builder = new StringBuilder();
 
         File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
@@ -593,8 +596,6 @@ public class BookCSS {
         builder.append("margin:0 !important;");
         builder.append("padding:0 !important;");
         builder.append("}");
-
-
 
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
