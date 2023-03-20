@@ -597,8 +597,12 @@ public class Fb2Extractor extends BaseExtractor {
 
     public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
             IOException {
-        zos.putNextEntry(new ZipEntry(name));
-        zipCopyNoClose(stream, zos);
+        try {
+            zos.putNextEntry(new ZipEntry(name));
+            zipCopyNoClose(stream, zos);
+        }catch (IOException e){
+            LOG.e(e);
+        }
     }
 
     public static void writeToZip(ZipOutputStream zos, String name, String content) throws
