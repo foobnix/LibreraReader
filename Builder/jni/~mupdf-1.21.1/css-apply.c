@@ -920,7 +920,7 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
 
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return isFont? make_number(x <1 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
+			return isFont? make_number(x <1.0 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
 
 
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
@@ -980,8 +980,9 @@ border_style_from_property(fz_css_match *match, int property)
 		if (!strcmp(value->data, "none")) return BS_NONE;
 		else if (!strcmp(value->data, "hidden")) return BS_NONE;
 		else if (!strcmp(value->data, "solid")) return BS_SOLID;
+		else if (!strcmp(value->data, "dotted")) return BS_SOLID;
 	}
-	return BS_NONE;
+	return BS_NONE;//SOLID by defualt
 }
 
 int fz_css_number_defined(fz_css_number number)

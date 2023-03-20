@@ -612,8 +612,13 @@ public class BookCSS {
             builder.append(String.format("font-size:medium !important;"));
 
             if (AppState.get().isDayNotInvert) {
-                builder.append(important(String.format("background-color:%s;", backgroundColor)));
-                builder.append(important(String.format("color:%s;", textColor)));
+                if (!"#FFFFFF".equals(backgroundColor)) {
+                    builder.append(important(String.format("background-color:%s;", backgroundColor)));
+                }
+                if (!"#000000".equals(textColor)) {
+                    builder.append(important(String.format("color:%s;", textColor)));
+                }
+
             } else {
                 //Important in the night mode
                 builder.append(String.format("background-color:%s !important;", backgroundColor));
