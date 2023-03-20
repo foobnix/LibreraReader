@@ -15,6 +15,12 @@ cd ../
 ./gradlew assembleFdroidRelease
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
+
+cd Builder
+./link_two_mupdf.sh
+
+cd ../
+
 ./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
