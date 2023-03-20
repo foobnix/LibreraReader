@@ -90,7 +90,7 @@ public class BookCSS {
     public int marginBottom;
     public int marginLeft;
     public int emptyLine;
-    public int lineHeight;
+    public int lineHeight12;
     public int paragraphHeight;
     public int textIndent;
     public int fontWeight;
@@ -206,7 +206,7 @@ public class BookCSS {
 
         emptyLine = 1;
 
-        lineHeight = 14;
+        lineHeight12 = 14;
         paragraphHeight = 0;
         textIndent = 10;
         fontWeight = 400;
@@ -565,7 +565,7 @@ public class BookCSS {
 
     public String toCssString(String path) {
 
-        lineHeight = Math.max(10, lineHeight);
+        lineHeight12 = Math.max(12, lineHeight12);
 
         StringBuilder builder = new StringBuilder();
 
@@ -620,7 +620,7 @@ public class BookCSS {
                 builder.append(String.format("color:%s !important;", textColor));
             }
             //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 

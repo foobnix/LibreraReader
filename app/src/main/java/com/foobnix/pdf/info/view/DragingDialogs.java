@@ -4491,12 +4491,12 @@ public class DragingDialogs {
 
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
-                lineHeight.init(10, 30, BookCSS.get().lineHeight);
+                lineHeight.init(12, 30, BookCSS.get().lineHeight12);
                 lineHeight.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        BookCSS.get().lineHeight = result;
+                        BookCSS.get().lineHeight12 = result;
                         return false;
                     }
                 });
@@ -4733,7 +4733,7 @@ public class DragingDialogs {
                                 fontWeight.reset(BookCSS.get().fontWeight / 100);
                                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                                lineHeight.reset(BookCSS.get().lineHeight);
+                                lineHeight.reset(BookCSS.get().lineHeight12);
                                 paragraphHeight.reset(BookCSS.get().paragraphHeight);
 
                                 fontParagraph.reset(BookCSS.get().textIndent);
