@@ -97,6 +97,7 @@ p>image{display:block;}
 b>span,strong>span{font-weight:normal}
 book>title, bookinfo {display:none}
 
+
 svg{display:block;}
 math, m, svg>text {display:none}
 sup,sup>* {font-size:0.83em;vertical-align:super; font-weight:bold}
@@ -116,3 +117,4 @@ video,audio, canvas{color:red; font-size:0.7em;}
 code, var, samp {font-size:0.8em;}
 summary{display:block}
 textarea{margin:0.5em;padding:1em;}
+

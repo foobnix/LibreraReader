@@ -963,7 +963,8 @@ static void gen2_tag(fz_context *ctx, struct genstate *g, fz_html_box *root_box,
 	{
 	case DIS_INLINE_BLOCK:
 		// TODO handle inline block as a flow node
-		this_box = gen2_block(ctx, g, root_box, node, style);
+		//this_box = gen2_block(ctx, g, root_box, node, style);
+		this_box = gen2_inline(ctx, g, root_box, node, style);
 		break;
 
 	case DIS_BLOCK:
