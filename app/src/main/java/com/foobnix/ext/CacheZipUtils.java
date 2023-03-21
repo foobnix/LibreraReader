@@ -114,7 +114,27 @@ public class CacheZipUtils {
             }
             for (File file : files) {
                 if (file != null && !file.getName().startsWith(exept.getName())) {
-                    file.delete();
+                    if (file.isFile()) {
+                        file.delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void removeDirs(File[] files, File exept) {
+        try {
+            if (files == null || exept == null) {
+                return;
+            }
+            for (File file : files) {
+                if (file != null && !file.getName().startsWith(exept.getName())) {
+                    if (file.isDirectory()) {
+                        deleteDir(file);
+                        LOG.d("Delete-dir", file);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -163,11 +183,11 @@ public class CacheZipUtils {
 
                 count++;
                 last = h;
-                LOG.d("isSingleAndSupportEntryInner finds",ends);
+                LOG.d("isSingleAndSupportEntryInner finds", ends);
             }
             if (count == 1 && last != null) {
                 String name = last.getFileName();
-                LOG.d("isSingleAndSupportEntryInner name",name);
+                LOG.d("isSingleAndSupportEntryInner name", name);
 
                 return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
             }
@@ -179,7 +199,7 @@ public class CacheZipUtils {
 
 
     @Deprecated
-      Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
+    Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
         String name = "";
         try {
 

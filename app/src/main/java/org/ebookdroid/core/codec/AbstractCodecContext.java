@@ -86,6 +86,7 @@ public abstract class AbstractCodecContext implements CodecContext {
         File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
         if (!BookType.ODT.is(fileNameOriginal)) {
             CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
+            CacheZipUtils.removeDirs(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), new File(cacheFileName+"-source"));
         }
 
         if (cacheFileName != null && cacheFileName.isFile()) {

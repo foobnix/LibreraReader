@@ -6,10 +6,12 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
+
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -30,9 +32,9 @@ public class EpubContext extends PdfContext {
                 AppState.get().isReferenceMode +
                 AppState.get().isShowFooterNotesInText +
                 //AppState.get().isAccurateFontSize +
-                BookCSS.get().documentStyle+
+                BookCSS.get().documentStyle +
                 BookCSS.get().isAutoHypens +
-                AppSP.get().hypenLang+
+                AppSP.get().hypenLang +
                 AppState.get().isExperimental)
                 .hashCode() + ".epub");
         return cacheFile;
@@ -42,13 +44,14 @@ public class EpubContext extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d(TAG, fileName);
 
+
         Map<String, String> notes = null;
         if (AppState.get().isShowFooterNotesInText) {
             notes = getNotes(fileName);
             LOG.d("footer-notes-extracted");
         }
 
-        if (/** BuildConfig.DEBUG || **/ (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if (/** BuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -57,6 +60,24 @@ public class EpubContext extends PdfContext {
         }
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
+
+        File out = new File(cacheFile.getPath() + "-source");
+        if (AppsConfig.MUPDF_VERSION != AppsConfig.MUPDF_1_11) {
+            try {
+                if (!out.isDirectory()) {
+                    out.mkdirs();
+                    new ZipFile(bookPath).extractAll(out.getPath());
+                    LOG.d("EpubContext unzip all");
+
+                }
+                bookPath = out.getPath() + "/META-INF/container.xml";
+                LOG.d("EpubContext open", bookPath);
+            } catch (ZipException e) {
+                LOG.e(e);
+            }
+
+        }
+
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
         if (notes != null) {
@@ -75,7 +96,9 @@ public class EpubContext extends PdfContext {
                 } catch (Exception e) {
                     LOG.e(e);
                 }
-            };
+            }
+
+            ;
         }.start();
 
         return muPdfDocument;
@@ -84,7 +107,7 @@ public class EpubContext extends PdfContext {
     public Map<String, String> getNotes(String fileName) {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
-        if (/** !BuildConfig.DEBUG && **/ jsonFile.isFile()) {
+        if (/** !BuildConfig.DEBUG && **/jsonFile.isFile()) {
             LOG.d("getNotes cache", fileName);
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
