@@ -603,12 +603,15 @@ public class BookCSS {
             builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
 
-            // <P> begin
-            builder.append("div, p {");
 
+            builder.append("div, p {");
             if (paragraphHeight > 0) {// bug is here
                 builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
             }
+            builder.append("}");
+
+            // <P> begin
+            builder.append("body, div, p {");
             builder.append(String.format("font-size:medium !important;"));
 
             if (AppState.get().isDayNotInvert) {
