@@ -4,6 +4,9 @@ layout: main
 
 # What is new
 
+### [8.8.79] Sort bookmarks by page or by date
+<img class="i" src="8.8.79.png" />
+
 ### [8.8.37] Access Library from the book
 <img class="i" src="8.8.37.png" />
 
