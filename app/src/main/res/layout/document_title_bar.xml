@@ -114,9 +114,11 @@
                 android:id="@+id/batteryIcon"
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
-
                 android:layout_weight="0"
                 android:rotation="-90"
+                android:layout_marginTop="1dip"
+                android:layout_marginRight="1dip"
+                android:layout_marginLeft="1dip"
                 android:src="@drawable/glyphicons_822_battery_charged"
                 android:tint="@color/tint_gray" />
 
