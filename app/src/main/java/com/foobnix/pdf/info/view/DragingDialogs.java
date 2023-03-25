@@ -161,6 +161,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -695,7 +696,6 @@ public class DragingDialogs {
 
                     }
                 });
-
 
 
                 ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
@@ -2304,7 +2304,7 @@ public class DragingDialogs {
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
-                View root = inflater.inflate(R.layout.fragment_include_library,null,false);
+                View root = inflater.inflate(R.layout.fragment_include_library, null, false);
 
                 SlidingTabLayout indicator = (SlidingTabLayout) root.findViewById(R.id.slidingTabs);
                 ViewPager pager = (ViewPager) root.findViewById(R.id.pager);
@@ -2325,6 +2325,7 @@ public class DragingDialogs {
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
                     }
+
                     @Override
                     public void onPageSelected(int position) {
                         tabFragments.get(position).onSelectFragment();
@@ -2476,7 +2477,27 @@ public class DragingDialogs {
 
                 objects.clear();
 
-                objects.addAll(BookmarksData.get().getBookmarksByBook(controller.getCurrentBook()));
+                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+
+                final Comparator<AppBookmark> cmp = new Comparator<AppBookmark>() {
+                    @Override
+                    public int compare(AppBookmark o1, AppBookmark o2) {
+                        switch (AppState.get().sortBookmarksOrder) {
+                            case AppState.BOOKMARK_SORT_PAGE_ASC:
+                                return Float.compare(o1.getPercent(), o2.getPercent());
+                            case AppState.BOOKMARK_SORT_PAGE_DESC:
+                                return Float.compare(o2.getPercent(), o1.getPercent());
+                            case AppState.BOOKMARK_SORT_DATE_ASC:
+                                return Long.compare(o2.getTime(), o1.getTime());
+                            case AppState.BOOKMARK_SORT_DATE_DESC:
+                                return Long.compare(o1.getTime(), o2.getTime());
+                        }
+                        return Float.compare(o1.getPercent(), o2.getPercent());
+                    }
+                };
+                objects.addAll(bookmarksByBook);
+
+                Collections.sort(objects, cmp);
 
                 bookmarksAdapter.notifyDataSetChanged();
 
@@ -2487,10 +2508,44 @@ public class DragingDialogs {
                         () -> ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook())
                 );
 
+                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages,
+                        () -> {
+                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
+                            Collections.sort(objects, cmp);
+                            bookmarksAdapter.notifyDataSetChanged();
+                        });
+
+                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages,
+                        () -> {
+                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
+                            Collections.sort(objects, cmp);
+                            bookmarksAdapter.notifyDataSetChanged();
+                        }
+                );
+
+
+                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date,
+                        () -> {
+                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
+                            Collections.sort(objects, cmp);
+                            bookmarksAdapter.notifyDataSetChanged();
+                        }
+                );
+
+                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date,
+                        () -> {
+                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
+                            Collections.sort(objects, cmp);
+                            bookmarksAdapter.notifyDataSetChanged();
+                        }
+                );
+
 
                 return a;
             }
-        }.show("addBookmarks", false, true);
+        }.
+
+                show("addBookmarks", false, true);
     }
 
     public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
@@ -2500,6 +2555,7 @@ public class DragingDialogs {
 
 
             int prev = -1;
+
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
                 final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
@@ -2520,7 +2576,7 @@ public class DragingDialogs {
                         controller.onGoToPage(link.targetPage);
                         // ((ListView) parent).requestFocusFromTouch();
                         // ((ListView) parent).setSelection(position);
-                        if(position == prev) {
+                        if (position == prev) {
                             reference.closeDialog();
                         }
                         prev = position;
@@ -4257,10 +4313,10 @@ public class DragingDialogs {
                 });
                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                // begin styles
+// begin styles
                 final List<String> docStyles = Arrays.asList(//
                         controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
-                        controller.getString(R.string.document_styles) ,
+                        controller.getString(R.string.document_styles),
                         controller.getString(R.string.user_styles)
                 );
 
@@ -4541,7 +4597,7 @@ public class DragingDialogs {
                     }
                 });
 
-                // Margins
+// Margins
 
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
                 int maxMargin = Dips.isLargeOrXLargeScreen() ? 400 : 50;
@@ -4622,7 +4678,7 @@ public class DragingDialogs {
                     }
                 });
 
-                /// aling
+/// aling
 
                 final Map<Integer, String> alignConst = new LinkedHashMap<Integer, String>();
                 alignConst.put(BookCSS.TEXT_ALIGN_JUSTIFY, controller.getString(R.string.width));
@@ -4630,7 +4686,7 @@ public class DragingDialogs {
                 alignConst.put(BookCSS.TEXT_ALIGN_RIGHT, controller.getString(R.string.right));
                 alignConst.put(BookCSS.TEXT_ALIGN_CENTER, controller.getString(R.string.center));
 
-                // align
+// align
                 final TextView textAlign = (TextView) inflate.findViewById(R.id.textAlign);
                 textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
                 textAlign.setOnClickListener(new OnClickListener() {
@@ -4655,7 +4711,7 @@ public class DragingDialogs {
                     }
                 });
 
-                // link color
+// link color
                 final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
 
                 linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
@@ -5118,7 +5174,7 @@ public class DragingDialogs {
                     }
                 });
 
-                // volume
+// volume
                 final CheckBox isReverseKyes = (CheckBox) inflate.findViewById(R.id.isReverseKyes);
                 isReverseKyes.setChecked(AppState.get().isReverseKeys);
                 isReverseKyes.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -5142,7 +5198,7 @@ public class DragingDialogs {
                     }
                 });
 
-                // orientation begin
+// orientation begin
 
                 final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
                 screenOrientation.setText(DocumentController.getRotationText());
@@ -5175,8 +5231,8 @@ public class DragingDialogs {
                 // orientation end
 
                 BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
-                // brightness end
-                // dicts
+// brightness end
+// dicts
 
                 final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);
                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
@@ -5290,9 +5346,9 @@ public class DragingDialogs {
                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
                 }
 
-                // lc.setVisibility(controller.isTextFormat() ||
-                // AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
-                // View.GONE);
+// lc.setVisibility(controller.isTextFormat() ||
+// AppState.get().isCustomizeBgAndColors ? View.VISIBLE :
+// View.GONE);
 
                 final int padding = Dips.dpToPx(3);
                 final Runnable colorsLine = new Runnable() {

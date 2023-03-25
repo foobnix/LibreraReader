@@ -596,6 +596,14 @@ public class AppState {
 
     public boolean isShowTestBooks = false;
 
+    public static final int BOOKMARK_SORT_PAGE_ASC = 0;
+    public static final int BOOKMARK_SORT_PAGE_DESC = 1;
+    public static final int BOOKMARK_SORT_DATE_ASC = 2;
+    public static final int BOOKMARK_SORT_DATE_DESC = 3;
+
+    @IgnoreHashCode
+    public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;
+
 
     public static synchronized AppState get() {
         return instance;

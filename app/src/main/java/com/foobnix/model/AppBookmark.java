@@ -48,7 +48,7 @@ public class AppBookmark implements MyPath.RelativePath {
         return p;
     }
 
-    public float getTime() {
+    public long getTime() {
         return t;
     }
 
