@@ -98,6 +98,7 @@
                 android:layout_height="13sp"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="0"
+                android:layout_marginTop="1dip"
                 android:src="@drawable/glyphicons_55_clock"
                 android:tint="@color/tint_gray" />
 
