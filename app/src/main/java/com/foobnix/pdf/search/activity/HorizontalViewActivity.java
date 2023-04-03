@@ -195,7 +195,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 EventBus.getDefault().post(new InvalidateMessage());
             }
         }
-    };    Runnable flippingRunnable = new Runnable() {
+    };
+    Runnable flippingRunnable = new Runnable() {
 
         @Override
         public void run() {
@@ -233,7 +234,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         }
     };
-    UpdatableFragmentPagerAdapter pagerAdapter;    Runnable updateTimePower = new Runnable() {
+    UpdatableFragmentPagerAdapter pagerAdapter;
+    Runnable updateTimePower = new Runnable() {
 
         @Override
         public void run() {
@@ -271,7 +273,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             hideAds();
             return true;
         }
-    };    Runnable onRefresh = new Runnable() {
+    };
+    Runnable onRefresh = new Runnable() {
 
         @Override
         public void run() {
@@ -286,7 +289,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
     };
-    private int currentScrollState;    public View.OnClickListener onBookmarks = new View.OnClickListener() {
+    private int currentScrollState;
+    public View.OnClickListener onBookmarks = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -301,7 +305,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             });
         }
     };
-    private volatile boolean isMyKey = false;    View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+    private volatile boolean isMyKey = false;
+    View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(final View arg0) {
@@ -328,7 +333,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         DocumentController.doRotation(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horiziontal_view);
-    }    SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {
+    }
+
+    SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
@@ -921,7 +928,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onCrop.setVisibility(isTextFomat && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
 
 
-
         onCrop.setOnClickListener(v -> DragingDialogs.customCropDialog(anchor, dc, onCropChange));
         onCrop.setOnLongClickListener(v -> {
             AppSP.get().isCrop = !AppSP.get().isCrop;
@@ -1053,7 +1059,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
                 });
             }
-
 
 
             @Override
@@ -1342,14 +1347,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
 
-    }    OnPageChangeListener onViewPagerChangeListener = new OnPageChangeListener() {
+    }
+
+    OnPageChangeListener onViewPagerChangeListener = new OnPageChangeListener() {
 
         @Override
         public void onPageSelected(final int pos) {
-            dc.checkReadingTimer();
             PageImageState.currentPage = pos;
             dc.setCurrentPage(viewPager.getCurrentItem());
             updateUI(pos);
+
 
             if (PageImageState.get().isAutoFit) {
                 EventBus.getDefault().post(new MessageAutoFit(pos));
@@ -1371,8 +1378,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             if (!TTSEngine.get().isPlaying()) {
                 Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
+                dc.checkReadingTimer();
             }
-
 
         }
 
@@ -1391,7 +1398,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
-    }    Runnable reloadDoc = new Runnable() {
+    }
+
+    Runnable reloadDoc = new Runnable() {
 
         @Override
         public void run() {
@@ -2507,20 +2516,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     private void updateAnimation(final TranslateAnimation a) {
         a.setDuration(250);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
