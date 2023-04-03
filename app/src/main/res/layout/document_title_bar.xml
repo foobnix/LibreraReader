@@ -93,10 +93,11 @@
                 android:textSize="@dimen/title_h_adv" />
 
             <ImageView
+
                 android:id="@+id/clockIcon"
                 android:layout_width="13sp"
                 android:layout_height="13sp"
-                android:layout_marginLeft="4dip"
+                android:layout_marginLeft="3dip"
                 android:layout_weight="0"
                 android:layout_marginTop="1dip"
                 android:src="@drawable/glyphicons_55_clock"
@@ -112,13 +113,15 @@
                 android:textSize="12sp" />
 
             <ImageView
+
                 android:id="@+id/batteryIcon"
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_weight="0"
                 android:rotation="-90"
+
                 android:layout_marginTop="1dip"
-                android:layout_marginRight="1dip"
+                android:layout_marginRight="0dip"
                 android:layout_marginLeft="1dip"
                 android:src="@drawable/glyphicons_822_battery_charged"
                 android:tint="@color/tint_gray" />
@@ -185,7 +188,7 @@
                 android:id="@+id/imageToolbar"
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="3dip"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
