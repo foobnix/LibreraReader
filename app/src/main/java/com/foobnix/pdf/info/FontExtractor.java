@@ -37,6 +37,7 @@ public class FontExtractor {
     public static String FONT_HTTP_ZIP2 = "https://www.dropbox.com/s/c8v7d05vskmjt28/fonts.zip?raw=1";
 
     public static void extractFonts(final Context c) {
+        LOG.d("extractFonts");
         if (c == null) {
             return;
         }
@@ -46,44 +47,57 @@ public class FontExtractor {
                 // extractInside(c, "fonts", BookCSS.FONTS_DIR);
                 try {
                     synchronized (lock) {
-                        if (hasZipFonts()) {
-                            long lastModified = AppProfile.FONT_LOCAL_ZIP.lastModified();
-
-                            File fontDir = new File(BookCSS.get().fontFolder);
-                            File index = new File(fontDir, "index");
-                            LOG.d("extractFonts index exist", index.exists());
-                            if (lastModified != AppState.get().fontExtractTime || !index.exists()) {
-                                copyFontsFromZip(AppProfile.FONT_LOCAL_ZIP);
-                                boolean indexRes = index.createNewFile();
-                                AppState.get().fontExtractTime = lastModified;
-                                LOG.d("extractFonts YES", AppState.get().fontExtractTime, lastModified);
-                                LOG.d("extractFonts index create", indexRes);
-                            } else {
-                                LOG.d("extractFonts NO");
-                            }
-                        }
-
-                        File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() + ".temp");
-                        if (!temp.isFile()) {
-                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(temp));
-                            copyFontsFromZip(temp);
-                            LOG.d("extract-fonts",temp);
-                        }else{
-                            LOG.d("extract-fonts skip");
-                        }
-
-
-                        String[] rootFiles = c.getAssets().list("");
-
-                        for (String name : rootFiles) {
-                            if (name.startsWith("app-")) {
-                                File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
-                                if (BuildConfig.DEBUG || !appFile.exists()) {
-                                    IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
-                                    LOG.d("Copy Asset", name);
+                        try {
+                            //critically important copy CSS
+                            String[] rootFiles = c.getAssets().list("");
+                            LOG.d("rootFiles", rootFiles);
+                            for (String name : rootFiles) {
+                                if (name.startsWith("app-")) {
+                                    LOG.d("getAssets", name);
+                                    File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
+                                    if (!appFile.exists()) {
+                                        IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
+                                        LOG.d("Copy Asset", name);
+                                    }
                                 }
                             }
+                            //critically important
+
+
+                            if (hasZipFonts()) {
+                                long lastModified = AppProfile.FONT_LOCAL_ZIP.lastModified();
+
+                                File fontDir = new File(BookCSS.get().fontFolder);
+                                File index = new File(fontDir, "index");
+                                LOG.d("extractFonts index exist", index.exists());
+                                if (lastModified != AppState.get().fontExtractTime || !index.exists()) {
+                                    copyFontsFromZip(AppProfile.FONT_LOCAL_ZIP);
+                                    boolean indexRes = index.createNewFile();
+                                    AppState.get().fontExtractTime = lastModified;
+                                    LOG.d("extractFonts YES", AppState.get().fontExtractTime, lastModified);
+                                    LOG.d("extractFonts index create", indexRes);
+                                } else {
+                                    LOG.d("extractFonts NO");
+                                }
+                            }
+                        } catch (Exception e) {
+                            LOG.e(e);
                         }
+
+                        try {
+                            File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() + ".temp");
+                            if (!temp.isFile()) {
+                                IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(temp));
+                                copyFontsFromZip(temp);
+                                LOG.d("extract-fonts", temp);
+                            } else {
+                                LOG.d("extract-fonts skip");
+                            }
+                        } catch (Exception e) {
+                            LOG.d(e);
+                        }
+
+
                     }
                 } catch (Exception e) {
                     LOG.e(e);

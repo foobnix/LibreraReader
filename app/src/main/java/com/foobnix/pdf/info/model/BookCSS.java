@@ -571,7 +571,9 @@ public class BookCSS {
 
         File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
         String css = IO.readString(cssFile);
+        LOG.d("BookCSS file", cssFile, css);
         builder.append(css);
+
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
@@ -604,11 +606,11 @@ public class BookCSS {
             //apply settings
 
 
-            builder.append("div, p {");
             if (paragraphHeight > 0) {// bug is here
+                builder.append("div, p {");
                 builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
+                builder.append("}");
             }
-            builder.append("}");
 
             // <P> begin
             builder.append("body, div, p {");
