@@ -74,7 +74,7 @@ import java.util.Set;
 
 public class PrefDialogs {
 
-    public static final String EXPORT_BACKUP_ZIP = "-export-backup.zip";
+    public static final String EXPORT_BACKUP_ZIP = "-librera-backup.zip";
     private static String lastPaht;
 
     private static String getLastPath() {
