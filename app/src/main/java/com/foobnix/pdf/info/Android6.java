@@ -59,7 +59,7 @@ public class Android6 {
                     }
                 }
             } else {
-                FontExtractor.extractFonts(a);
+               FontExtractor.extractFonts(a);
             }
             return;
         }

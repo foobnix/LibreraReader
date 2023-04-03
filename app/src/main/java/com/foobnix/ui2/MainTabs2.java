@@ -604,9 +604,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
-        if (Android6.canWrite(this)) {
-            FontExtractor.extractFonts(this);
-        }
+//        if (Android6.canWrite(this)) {
+//            FontExtractor.extractFonts(this);
+//        }
+
         EventBus.getDefault().register(this);
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);

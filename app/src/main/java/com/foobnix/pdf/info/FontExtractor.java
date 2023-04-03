@@ -55,10 +55,8 @@ public class FontExtractor {
                                 if (name.startsWith("app-")) {
                                     LOG.d("getAssets", name);
                                     File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
-                                    if (!appFile.exists()) {
-                                        IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
-                                        LOG.d("Copy Asset", name);
-                                    }
+                                    IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
+                                    LOG.d("Copy Asset", name);
                                 }
                             }
                             //critically important
