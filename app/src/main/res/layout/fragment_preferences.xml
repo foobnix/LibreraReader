@@ -1300,7 +1300,6 @@
                 android:text="@string/export_" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/migrationButton"
                 style="@style/textLink"
                 android:layout_width="wrap_content"

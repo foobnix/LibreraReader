@@ -18,6 +18,8 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyProgressDialog;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -55,8 +57,18 @@ public class FontExtractor {
                             if (name.startsWith("app-")) {
                                 LOG.d("getAssets", name);
                                 File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
-                                IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
-                                LOG.d("Copy Asset", name);
+
+                                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                                IOUtils.copyClose(c.getAssets().open(name), out);
+
+                                long l1 = appFile.length();
+                                long l2 = out.size();
+
+                                if (l1 != l2) {
+                                    LOG.d("Copy-Asset in out", l1, l2, name);
+                                    IOUtils.copyClose(new ByteArrayInputStream(out.toByteArray()), new FileOutputStream(appFile));
+                                }
+
                             }
                         }
                         //critically important
@@ -100,10 +112,8 @@ public class FontExtractor {
                 } catch (Exception e) {
                     LOG.e(e);
                 }
-
             }
 
-            ;
         }.start();
 
     }

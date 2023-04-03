@@ -32,6 +32,7 @@ android {
     compileSdk 33
     namespace "com.foobnix.pdf.info"
 
+
     defaultConfig {
         namespace "com.foobnix.pdf.info"
         minSdk 19

@@ -33,10 +33,9 @@ public class LibreraApp extends MultiDexApplication {
     public static Context context;
 
 
-
     @Override
     public void onCreate() {
-        if(false){
+        if (false) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
                     .detectDiskWrites()
@@ -102,8 +101,6 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Height", Dips.screenHeight());
 
 
-
-
         if (false) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
@@ -133,10 +130,9 @@ public class LibreraApp extends MultiDexApplication {
                 }
             });
         }
-        if(LOG.isEnable){
-            IMG.clearDiscCache();
-        }
-
+        //if(LOG.isEnable){
+        //  IMG.clearDiscCache();
+        //}
 
 
     }
