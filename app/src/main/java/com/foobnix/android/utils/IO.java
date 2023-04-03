@@ -2,6 +2,7 @@ package com.foobnix.android.utils;
 
 import com.foobnix.mobi.parser.IOUtils;
 
+import org.ebookdroid.LibreraApp;
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
@@ -9,6 +10,7 @@ import org.librera.LinkedJSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -35,7 +37,7 @@ public class IO {
     }
 
     public static void writeObj(File file, Object o) {
-        new Thread(() -> writeObjAsync(file, o),"@T writeObj").start();
+        new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
     }
 
     public static void writeObjAsync(File file, Object o) {
@@ -89,6 +91,13 @@ public class IO {
 
     public static String readString(File file) {
         return readString(file, false);
+    }
+
+    public static String readStringFromAsset(String assetName) throws IOException {
+        InputStream open = LibreraApp.context.getAssets().open(assetName);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        IOUtils.copy(open, out);
+        return out.toString().trim();
     }
 
     public static String readString(File file, boolean withSeparator) {

@@ -570,9 +570,19 @@ public class BookCSS {
         StringBuilder builder = new StringBuilder();
 
         File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
-        String css = IO.readString(cssFile);
-        LOG.d("BookCSS file", cssFile, css);
-        builder.append(css);
+        if (!cssFile.exists()) {
+            try {
+                String css = IO.readStringFromAsset("app-Librera.css");
+                LOG.d("BookCSS-from asset");
+                builder.append(css);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        } else {
+            String css = IO.readString(cssFile);
+            LOG.d("BookCSS-from file", cssFile);
+            builder.append(css);
+        }
 
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());

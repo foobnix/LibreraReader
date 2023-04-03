@@ -47,21 +47,21 @@ public class FontExtractor {
                 // extractInside(c, "fonts", BookCSS.FONTS_DIR);
                 try {
                     synchronized (lock) {
-                        try {
-                            //critically important copy CSS
-                            String[] rootFiles = c.getAssets().list("");
-                            LOG.d("rootFiles", rootFiles);
-                            for (String name : rootFiles) {
-                                if (name.startsWith("app-")) {
-                                    LOG.d("getAssets", name);
-                                    File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
-                                    IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
-                                    LOG.d("Copy Asset", name);
-                                }
+
+                        //critically important copy CSS
+                        String[] rootFiles = c.getAssets().list("");
+                        LOG.d("rootFiles", rootFiles);
+                        for (String name : rootFiles) {
+                            if (name.startsWith("app-")) {
+                                LOG.d("getAssets", name);
+                                File appFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, name);
+                                IOUtils.copyClose(c.getAssets().open(name), new FileOutputStream(appFile));
+                                LOG.d("Copy Asset", name);
                             }
-                            //critically important
+                        }
+                        //critically important
 
-
+                        try {
                             if (hasZipFonts()) {
                                 long lastModified = AppProfile.FONT_LOCAL_ZIP.lastModified();
 
