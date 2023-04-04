@@ -4,6 +4,9 @@ layout: main
 
 # Quoi de neuf
 
+### [8.8.79] Trier les signets par page ou par date
+<img class="i" src="8.8.79.png" />
+
 ### [8.8.37] Accéder à la bibliothèque depuis le livre
 <img class="i" src="8.8.37.png" />
 

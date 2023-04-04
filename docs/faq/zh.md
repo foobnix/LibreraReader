@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [PDF 中多列中的文本选择](/faq/text-selection-in-multiple-columns-in-PDFs/zh)
 * [删除并重置所有 Librera 设置](/faq/delete-and-reset-all-librera-settings/zh)
 * [如何添加新的常见问题解答主题](/faq/how-to-add-new-faq-section/zh)
 * [音乐家模式：切换屏幕标记](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/zh)

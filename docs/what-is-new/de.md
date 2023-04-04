@@ -4,6 +4,9 @@ layout: main
 
 # Was ist neu
 
+### [8.8.79] Lesezeichen nach Seite oder Datum sortieren
+<img class="i" src="8.8.79.png" />
+
 ### [8.8.37] Über das Buch auf die Bibliothek zugreifen
 <img class="i" src="8.8.37.png" />
 

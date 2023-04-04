@@ -4,6 +4,9 @@ layout: main
 
 # Cosa c'è di nuovo
 
+### [8.8.79] Ordina i segnalibri per pagina o per data
+<img class="i" src="8.8.79.png" />
+
 ### [8.8.37] Accedi alla Biblioteca dal libro
 <img class="i" src="8.8.37.png" />
 
