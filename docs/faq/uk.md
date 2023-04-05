@@ -5,8 +5,8 @@ layout: main
 # Поширені запитання
 
 * [Виділення тексту в кількох стовпцях у PDF-файлах](/faq/text-selection-in-multiple-columns-in-PDFs/uk)
-* [Видалити та скинути всі налаштування Librera](/faq/delete-and-reset-all-librera-settings/uk)
 * [Як додати нову тему поширених запитань](/faq/how-to-add-new-faq-section/uk)
+* [Видалити та скинути всі налаштування Librera](/faq/delete-and-reset-all-librera-settings/uk)
 * [Режим музиканта: перемикання позначок на екрані](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/uk)
 * [Налаштування захисту відбитком пальця або паролем](/faq/setting-up-fingerprint-or-password-protection/uk)
 * [Робота з профілями _Librera_](/faq/working-with-profiles/uk)

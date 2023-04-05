@@ -6,8 +6,8 @@ info: this file is generated automatically, please do not modify it
 # Frequently Asked Questions
 
 * [Text selection in multiple columns in PDFs](/faq/text-selection-in-multiple-columns-in-PDFs)
-* [Delete and reset all Librera settings](/faq/delete-and-reset-all-librera-settings)
 * [How to Add a New FAQ Topic](/faq/how-to-add-new-faq-section)
+* [Delete and reset all Librera settings](/faq/delete-and-reset-all-librera-settings)
 * [Musician's Mode: Toggling On-Screen Markings](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode)
 * [Setting Up Fingerprint or Password Protection](/faq/setting-up-fingerprint-or-password-protection)
 * [Working with _Librera_'s Profiles](/faq/working-with-profiles)

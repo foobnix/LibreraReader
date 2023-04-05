@@ -5,8 +5,8 @@ layout: main
 # Foire aux questions
 
 * [Sélection de texte dans plusieurs colonnes dans les PDF](/faq/text-selection-in-multiple-columns-in-PDFs/fr)
-* [Supprimer et réinitialiser tous les paramètres Librera](/faq/delete-and-reset-all-librera-settings/fr)
 * [Comment ajouter un nouveau sujet de FAQ](/faq/how-to-add-new-faq-section/fr)
+* [Supprimer et réinitialiser tous les paramètres Librera](/faq/delete-and-reset-all-librera-settings/fr)
 * [Mode Musicien : Activer les marquages à l'écran](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/fr)
 * [Configuration de la protection par empreintes digitales ou par mot de passe](/faq/setting-up-fingerprint-or-password-protection/fr)
 * [Travailler avec les profils de _Librera_](/faq/working-with-profiles/fr)
