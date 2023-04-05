@@ -4,7 +4,7 @@ layout: main
 
 # So fügen Sie ein neues FAQ-Thema hinzu
 
-Wenn Sie ein neues FAQ-Thema hinzufügen möchten, erstellen Sie in [hier](https ://github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Wenn Sie ein neues FAQ-Thema hinzufügen möchten, erstellen Sie in [hier](https://github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 Das Skript aktualisiert automatisch das FAQ-Inhaltsverzeichnis und fügt Ländereinstellungsdateien für alle unterstützten Sprachen hinzu.
 

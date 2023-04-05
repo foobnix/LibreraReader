@@ -4,6 +4,9 @@ layout: main
 
 # Novedades
 
+### [8.8.79] Ordenar marcadores por página o por fecha
+<img class="i" src="8.8.79.png" />
+
 ### [8.8.37] Acceder a la Biblioteca desde el libro
 <img class="i" src="8.8.37.png" />
 

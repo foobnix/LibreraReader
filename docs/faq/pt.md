@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Seleção de texto em várias colunas em PDFs](/faq/text-selection-in-multiple-columns-in-PDFs/pt)
 * [Excluir e redefinir todas as configurações do Librera](/faq/delete-and-reset-all-librera-settings/pt)
 * [Como adicionar um novo tópico de perguntas frequentes](/faq/how-to-add-new-faq-section/pt)
 * [Modo do músico: Alternando marcações na tela](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/pt)

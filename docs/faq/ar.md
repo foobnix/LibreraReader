@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [تحديد النص في عدة أعمدة في ملفات PDF](/faq/text-selection-in-multiple-columns-in-PDFs/ar)
 * [حذف جميع إعدادات Librera وإعادة تعيينها](/faq/delete-and-reset-all-librera-settings/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/faq/how-to-add-new-faq-section/ar)
 * [وضع الموسيقي: تبديل العلامات على الشاشة](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ar)

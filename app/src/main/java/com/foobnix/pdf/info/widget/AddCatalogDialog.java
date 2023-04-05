@@ -196,8 +196,6 @@ public class AddCatalogDialog {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-
             }
         });
 
@@ -206,8 +204,10 @@ public class AddCatalogDialog {
 
             @Override
             public void onClick(View v) {
-                final String feedUrl = url.getText().toString();
-                if (infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok)) || addAsWEb.isChecked() || !validate) {
+                final String feedUrl = url.getText().toString().trim();
+                //url.setText(feedUrl);
+                boolean isOk = infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok));
+                if (isOk || addAsWEb.isChecked() || !validate) {
                     Entry entry = new Entry();
                     entry.setAppState(feedUrl, name.getText().toString(), description.getText().toString(), image.getTag().toString());
                     if (editAppState != null) {

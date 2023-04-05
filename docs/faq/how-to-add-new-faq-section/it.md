@@ -4,7 +4,7 @@ layout: main
 
 # Come aggiungere un nuovo argomento FAQ
 
-Se desideri aggiungere un nuovo argomento delle domande frequenti, crea una cartella **[nome-separato-da-trattino]** con un singolo file en-us **index.md** in [qui](https ://github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Se desideri aggiungere un nuovo argomento delle domande frequenti, crea una cartella **[nome-separato-da-trattino]** con un singolo file en-us **index.md** in [qui](https://github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 Lo script aggiornerà automaticamente il sommario delle FAQ e aggiungerà i file delle impostazioni locali per tutte le lingue supportate.
 

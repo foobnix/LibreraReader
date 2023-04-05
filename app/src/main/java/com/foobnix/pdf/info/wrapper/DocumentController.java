@@ -98,6 +98,7 @@ public abstract class DocumentController {
             saveCurrentPageAsync();
         }
     };
+
     private DocumentWrapperUI ui;
     private File currentBook;
     private String title;
@@ -123,9 +124,14 @@ public abstract class DocumentController {
 
     public DocumentController(final Activity activity) {
         this.activity = activity;
-        readTimeStart = System.currentTimeMillis();
         TTSEngine.get().mp3Destroy();
+        resetReadTimer();
         LOG.d("readTimeStart");
+    }
+
+    public void resetReadTimer() {
+        readTimeStart = System.currentTimeMillis();
+        LOG.d("resetReadTimer");
     }
 
     public static int getRotationText() {
@@ -794,7 +800,7 @@ public abstract class DocumentController {
             alertDialog = AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), R.string.read_a_book,
                     () -> {
                         LOG.d("checkReadingTimer action");
-                        readTimeStart = System.currentTimeMillis();
+                        resetReadTimer();
                     },
                     () -> {
                         LOG.d("checkReadingTimer dismiss");

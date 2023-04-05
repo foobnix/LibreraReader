@@ -95,7 +95,7 @@ public class FontExtractor {
                         }
 
                         try {
-                            File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() + ".temp");
+                            File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() );
                             if (!temp.isFile()) {
                                 IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(temp));
                                 copyFontsFromZip(temp);

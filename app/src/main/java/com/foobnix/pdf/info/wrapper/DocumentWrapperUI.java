@@ -2076,7 +2076,7 @@ public class DocumentWrapperUI {
     public void onPause() {
         LOG.d("DocumentWrapperUI", "onPause");
         handlerTimer.removeCallbacks(updateTimePower);
-
+        dc.resetReadTimer();
     }
 
     public void onDestroy() {

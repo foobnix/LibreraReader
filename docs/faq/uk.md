@@ -4,6 +4,7 @@ layout: main
 
 # Поширені запитання
 
+* [Виділення тексту в кількох стовпцях у PDF-файлах](/faq/text-selection-in-multiple-columns-in-PDFs/uk)
 * [Видалити та скинути всі налаштування Librera](/faq/delete-and-reset-all-librera-settings/uk)
 * [Як додати нову тему поширених запитань](/faq/how-to-add-new-faq-section/uk)
 * [Режим музиканта: перемикання позначок на екрані](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/uk)
