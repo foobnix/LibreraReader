@@ -361,6 +361,8 @@ dependencies {
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
 
+    //implementation "org.nanohttpd:nanohttpd:2.3.1"
+
 
 /** Ads **/
     def google_ads = "com.google.android.gms:play-services-ads:21.5.0"

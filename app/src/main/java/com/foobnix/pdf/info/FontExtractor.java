@@ -52,7 +52,7 @@ public class FontExtractor {
 
                         //critically important copy CSS
                         String[] rootFiles = c.getAssets().list("");
-                        LOG.d("rootFiles", rootFiles);
+                        LOG.d("rootFiles", rootFiles!=null);
                         for (String name : rootFiles) {
                             if (name.startsWith("app-")) {
                                 LOG.d("getAssets", name);

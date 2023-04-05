@@ -95,10 +95,15 @@ public class IO {
 
     public static String readStringFromAsset(String assetName) throws IOException {
         InputStream open = LibreraApp.context.getAssets().open(assetName);
+        return readString(open);
+    }
+
+    public static String readString(InputStream open) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         IOUtils.copy(open, out);
         return out.toString().trim();
     }
+
 
     public static String readString(File file, boolean withSeparator) {
         if (file.getPath().equals(cacheFile)) {

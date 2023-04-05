@@ -58,6 +58,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             LOG.e(e);
         }
         super.onResume();
+        //WebServer.init(this);
     }
 
     @Override

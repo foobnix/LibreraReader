@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Librera</title>
+    <style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+    </style>
+
+    <script type="text/javascript">
+
+function point_it(event){
+    w = document.getElementById("myimg").width;
+    h = document.getElementById("myimg").height;
+	x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("myimg").offsetLeft;
+	y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("myimg").offsetTop;
+	//alert(""+pos_x+"x"+pos_y+"w"+w+"h"+h);
+	//alert(""+x/w + ":"+y/h);
+	 document.getElementById("xy").value = "" + x/w+"_"+y/h;
+	 document.getElementById("form").submit();
+	 // alert(form.action);
+}
+
+
+    </script>
+
+</head>
+<body>
+
+<form id="form" method="get">
+    <img id='myimg' class="center" src="download.png" onclick="point_it(event)"/>
+    <input type="input" id="xy" name="xy" style="display:none">
+
+</form>
+
+
+</body>
+</html>

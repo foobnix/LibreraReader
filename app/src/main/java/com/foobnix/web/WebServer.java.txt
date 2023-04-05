@@ -1,0 +1,142 @@
+package com.foobnix.web;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.os.Build;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.view.View;
+
+import androidx.annotation.RequiresApi;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
+
+import fi.iki.elonen.NanoHTTPD;
+
+public class WebServer extends NanoHTTPD {
+
+    Activity a;
+
+    public static WebServer instance;
+
+    public static void run() {
+        try {
+            instance = new WebServer();
+        } catch (IOException e) {
+            LOG.e(e);
+        }
+    }
+
+    private WebServer() throws IOException {
+        super(8081);
+        start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
+        LOG.d("WebServer", Utils.getIPAddress(true));
+    }
+
+    public static void init(Activity a) {
+        if (instance == null) {
+            try {
+                instance = new WebServer();
+            } catch (IOException e) {
+                LOG.e(e);
+            }
+        }
+        instance.a = a;
+    }
+
+    String queryTemp;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+
+
+    public Response serve(IHTTPSession session) {
+        try {
+            View v = a.findViewById(R.id.parentParent);
+
+            String query = session.getQueryParameterString();
+            LOG.d("WebServer", query);
+
+            if (queryTemp != query && query != null && query.startsWith("xy") && query.contains("_")) {
+                queryTemp = query;
+                query = query.replace("xy=", "");
+                String[] line = query.split("_");
+                float x = Float.parseFloat(line[0]);
+                float y = Float.parseFloat(line[1]);
+                LOG.d("WebServer", x, y);
+                //clickAcitivty.onClick(x, y);
+                click(x, y);
+                Thread.sleep(500);
+            }
+
+
+            Bitmap returnedBitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_4444);
+            Canvas canvas = new Canvas(returnedBitmap);
+            v.draw(canvas);
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            returnedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            returnedBitmap.recycle();
+
+
+            String html = IO.readStringFromAsset("web/index.html");
+
+            String base64 = Base64.getEncoder().encodeToString(out.toByteArray());
+            String data = "data:image/png;base64," + base64;
+            html = html.replace("download.png", data);
+            return newFixedLengthResponse(html);
+        } catch (Exception e) {
+            LOG.e(e);
+            return newFixedLengthResponse("Error" + e.getMessage());
+        }
+
+
+    }
+
+    public void click(float x, float y) {
+        if (a == null) {
+            return;
+        }
+        long downTime = SystemClock.uptimeMillis();
+        long eventTime = downTime + 100;
+        float x1 = Dips.screenWidth() * x;
+        float y1 = Dips.screenHeight() * y;
+        int metaState = 0;
+        MotionEvent down = MotionEvent.obtain(
+                downTime,
+                eventTime,
+                MotionEvent.ACTION_DOWN,
+                x1,
+                y1,
+                metaState
+        );
+
+        MotionEvent up = MotionEvent.obtain(
+                downTime + 1000,
+                eventTime + 1000,
+                MotionEvent.ACTION_UP,
+                x1,
+                y1,
+                metaState
+        );
+        a.findViewById(R.id.parentParent).post(new Runnable() {
+            @Override
+            public void run() {
+                a.findViewById(R.id.parentParent).dispatchTouchEvent(down);
+                a.findViewById(R.id.parentParent).dispatchTouchEvent(up);
+            }
+        });
+
+    }
+
+
+}
