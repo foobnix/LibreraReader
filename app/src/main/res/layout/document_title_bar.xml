@@ -97,7 +97,7 @@
                 android:id="@+id/clockIcon"
                 android:layout_width="13sp"
                 android:layout_height="13sp"
-                android:layout_marginLeft="3dip"
+                android:layout_marginLeft="1dip"
                 android:layout_weight="0"
                 android:layout_marginTop="1dip"
                 android:src="@drawable/glyphicons_55_clock"
@@ -107,7 +107,7 @@
                 android:id="@+id/currentTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="1dp"
                 android:layout_weight="0"
                 android:text="10:10"
                 android:textSize="12sp" />
@@ -119,7 +119,6 @@
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_weight="0"
                 android:rotation="-90"
-
                 android:layout_marginTop="1dip"
                 android:layout_marginRight="0dip"
                 android:layout_marginLeft="1dip"
@@ -132,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:backgroundTint="@color/tint_gray"
+                android:layout_marginLeft="1dip"
                 android:gravity="center"
                 android:text="76%"
                 android:textSize="12sp" />
@@ -188,10 +187,9 @@
                 android:id="@+id/imageToolbar"
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
-                android:layout_marginLeft="3dip"
+                android:layout_marginLeft="1dip"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/glyphicons_305_no_symbol"
                 android:tint="@color/tint_gray" />
 
@@ -202,8 +200,6 @@
                 android:layout_marginLeft="2dip"
                 android:layout_marginRight="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
-
                 android:contentDescription="@string/close"
                 android:src="@drawable/glyphicons_599_menu_close"
                 android:tint="@color/tint_gray" />
