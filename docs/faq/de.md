@@ -5,8 +5,8 @@ layout: main
 # Häufig gestellte Fragen
 
 * [Textauswahl in mehreren Spalten in PDFs](/faq/text-selection-in-multiple-columns-in-PDFs/de)
-* [Alle Librera-Einstellungen löschen und zurücksetzen](/faq/delete-and-reset-all-librera-settings/de)
 * [So fügen Sie ein neues FAQ-Thema hinzu](/faq/how-to-add-new-faq-section/de)
+* [Alle Librera-Einstellungen löschen und zurücksetzen](/faq/delete-and-reset-all-librera-settings/de)
 * [Musikermodus: Umschalten der Bildschirmmarkierungen](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/de)
 * [Fingerabdruck- oder Passwortschutz einrichten](/faq/setting-up-fingerprint-or-password-protection/de)
 * [Arbeiten mit den Profilen von _Librera_](/faq/working-with-profiles/de)

@@ -4,7 +4,7 @@ layout: main
 
 # Cómo agregar un nuevo tema de preguntas frecuentes
 
-Si desea agregar un nuevo tema de preguntas frecuentes, cree una carpeta **[cualquier nombre-separado por guión]** con un solo archivo en-us **index.md** en [aquí](https: //github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Si desea agregar un nuevo tema de preguntas frecuentes, cree una carpeta **[cualquier nombre-separado por guión]** con un solo archivo en-us **index.md** en [aquí](https : //github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 El script actualizará automáticamente la tabla de contenido de preguntas frecuentes y agregará archivos de configuración regional para todos los idiomas admitidos.
 
