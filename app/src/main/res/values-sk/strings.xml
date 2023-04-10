@@ -649,4 +649,6 @@
    <string name="user_styles">Štýly užívateľských</string>
    <string name="engine">Motora</string>
    <string name="restart_manually">Táto zmena vyžaduje manuálny reštart aplikácie</string>
+   <string name="search_in_the_library">Hľadať v knižnici</string>
+   <string name="update_metadata">Aktualizovať metadáta</string>
 </resources>

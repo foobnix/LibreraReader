@@ -649,4 +649,6 @@
    <string name="user_styles">उपयोगकर्ता शैलियों</string>
    <string name="engine">यन्त्र</string>
    <string name="restart_manually">इस परिवर्तन के लिए एप्लिकेशन के मैन्युअल पुनरारंभ की आवश्यकता है</string>
+   <string name="search_in_the_library">पुस्तकालय में खोजें</string>
+   <string name="update_metadata">मेटाडेटा अपडेट करें</string>
 </resources>

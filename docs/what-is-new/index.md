@@ -3,6 +3,12 @@ layout: main
 ---
 
 # What is new
+### [8.8.79] Search for some text in the Library books
+
+* It's possible to filter library results
+* Sentence search is possible
+
+<img class="i" src="8.8.97.png" />
 
 ### [8.8.79] Sort bookmarks by page or by date
 <img class="i" src="8.8.79.png" />

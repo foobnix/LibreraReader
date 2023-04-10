@@ -649,4 +649,6 @@
    <string name="user_styles">Ορισμένο από τον χρήστη</string>
    <string name="engine">Κινητήρας</string>
    <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>
+   <string name="search_in_the_library">Αναζήτηση στη βιβλιοθήκη</string>
+   <string name="update_metadata">Ενημέρωση μεταδεδομένων</string>
 </resources>

@@ -649,4 +649,6 @@
    <string name="user_styles">Користувацькі</string>
    <string name="engine">Двигун</string>
    <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>
+   <string name="search_in_the_library">Шукати в бібліотеці</string>
+   <string name="update_metadata">Оновити метадані</string>
 </resources>

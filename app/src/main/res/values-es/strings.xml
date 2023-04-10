@@ -649,4 +649,6 @@
    <string name="user_styles">Estilos de usuario</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Este cambio requiere un reinicio manual de la aplicación</string>
+   <string name="search_in_the_library">Buscar en la biblioteca</string>
+   <string name="update_metadata">Actualizar metadatos</string>
 </resources>

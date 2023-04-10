@@ -10,7 +10,7 @@ Há duas maneiras de selecionar texto em uma coluna.
 
 ![Column selectio in PDF](1.gif)
 
-*A segunda maneira - você precisa selecionar uma linha na coluna do início ao fim da linha. Depois de selecionar a linha, você precisa arrastar o marcador de ponto para baixo (ou para cima) para selecionar o texto na coluna. Se você destacou o texto na coluna e algumas palavras no final da linha não estão destacadas, você precisa mover outro marcador para a direita na largura da coluna.
+* A segunda maneira - você precisa selecionar uma linha na coluna do início ao fim da linha. Depois de selecionar a linha, você precisa arrastar o marcador de ponto para baixo (ou para cima) para selecionar o texto na coluna. Se você destacou o texto na coluna e algumas palavras no final da linha não estão destacadas, você precisa mover outro marcador para a direita na largura da coluna.
 
 <iframe width="900" height="400" src="https://www.youtube.com/embed/Bdj3Z86uO38" title="Librera. Select text in columns in PDF files/ Виділення тексту в колонках. Лібрера" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

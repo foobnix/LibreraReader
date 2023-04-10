@@ -830,8 +830,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
 
+    public static List<FileMeta> cacheItems;
+
     @Override
     public void populateDataInUI(List<FileMeta> items) {
+        cacheItems = items;
         handler.removeCallbacks(sortAndSeach);
 
         String txt = searchEditText.getText().toString().trim();
@@ -1150,6 +1153,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         super.onDestroy();
         LOG.d("SearchFragment2 onDestroy");
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+        cacheItems = null;
 
     }
 }

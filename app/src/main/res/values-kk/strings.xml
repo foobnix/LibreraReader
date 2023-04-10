@@ -649,4 +649,6 @@
    <string name="user_styles">Пайдаланушы анықтаған</string>
    <string name="engine">Қозғалтқыш</string>
    <string name="restart_manually">Бұл өзгеріс қолданбаны қолмен қайта іске қосуды талап етеді</string>
+   <string name="search_in_the_library">Кітапханадан іздеу</string>
+   <string name="update_metadata">Метадеректерді жаңарту</string>
 </resources>

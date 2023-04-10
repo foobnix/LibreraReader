@@ -67,16 +67,18 @@ static void mupdf_free_document(renderdocument_t* doc) {
 	if (!doc) {
 		return;
 	}
+	if (!doc->ctx) {
+		return;
+	}
+
 	//LOGE("mupdf_free_document 2");
 	//fz_locks_context *locks = doc->ctx->locks;
 
 	if (doc->outline) {
 		fz_drop_outline(doc->ctx, doc->outline);
 	}
-
+    doc->outline = NULL;
 	//LOGE("mupdf_free_document 3");
-
-	doc->outline = NULL;
 
 	if (doc->document) {
 		fz_drop_document(doc->ctx, doc->document);

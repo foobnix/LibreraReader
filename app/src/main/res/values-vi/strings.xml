@@ -649,4 +649,6 @@
    <string name="user_styles">Phong cách người dùng</string>
    <string name="engine">Động cơ</string>
    <string name="restart_manually">Thay đổi này yêu cầu khởi động lại ứng dụng theo cách thủ công</string>
+   <string name="search_in_the_library">Tìm kiếm trong thư viện</string>
+   <string name="update_metadata">Cập nhật siêu dữ liệu</string>
 </resources>

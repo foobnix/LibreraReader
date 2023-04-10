@@ -649,4 +649,6 @@
    <string name="user_styles">Пользовательские</string>
    <string name="engine">Двигатель</string>
    <string name="restart_manually">Это изменение требует ручного перезапуска приложения</string>
+   <string name="search_in_the_library">Искать в библиотеке</string>
+   <string name="update_metadata">Обновить метаданные</string>
 </resources>

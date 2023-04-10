@@ -649,4 +649,6 @@
    <string name="user_styles">用户样式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">重启应用后生效</string>
+   <string name="search_in_the_library">在图书馆搜索</string>
+   <string name="update_metadata">更新元数据</string>
 </resources>

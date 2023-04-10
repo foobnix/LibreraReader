@@ -649,4 +649,6 @@
    <string name="user_styles">Gaya pengguna</string>
    <string name="engine">Mesin</string>
    <string name="restart_manually">Perubahan ini memerlukan restart manual aplikasi</string>
+   <string name="search_in_the_library">Cari di perpustakaan</string>
+   <string name="update_metadata">Memperbarui metadata</string>
 </resources>

@@ -407,12 +407,22 @@
                 android:padding="4dip" />
 
             <TextView
+                android:id="@+id/onUpdateMeta"
+                style="@style/textLink"
+                android:contentDescription="@string/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update_metadata" />
+
+            <TextView
                 android:id="@+id/delete"
                 style="@style/textLink"
                 android:contentDescription="@string/delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete" />
+
+
         </LinearLayout>
     </ScrollView>
 

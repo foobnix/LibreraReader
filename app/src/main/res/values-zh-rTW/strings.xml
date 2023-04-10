@@ -649,4 +649,6 @@
    <string name="user_styles">用戶樣式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">此更改需要手動重新啟動應用程序</string>
+   <string name="search_in_the_library">在圖書館搜索</string>
+   <string name="update_metadata">更新元數據</string>
 </resources>

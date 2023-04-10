@@ -649,4 +649,6 @@
    <string name="user_styles">Kullanıcı</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Bu değişiklik, uygulamanın manuel olarak yeniden başlatılmasını gerektirir</string>
+   <string name="search_in_the_library">Kütüphanede ara</string>
+   <string name="update_metadata">Meta verileri güncelle</string>
 </resources>

@@ -649,4 +649,6 @@
    <string name="user_styles">ഉപയോക്താവ് നിർവചിച്ചിരിക്കുന്നത്</string>
    <string name="engine">എഞ്ചിൻ</string>
    <string name="restart_manually">ഈ മാറ്റത്തിന് ആപ്ലിക്കേഷൻ സ്വമേധയാ പുനരാരംഭിക്കേണ്ടതുണ്ട്</string>
+   <string name="search_in_the_library">ലൈബ്രറിയിൽ തിരയുക</string>
+   <string name="update_metadata">മെറ്റാഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുക</string>
 </resources>

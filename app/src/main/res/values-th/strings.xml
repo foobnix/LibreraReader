@@ -649,4 +649,6 @@
    <string name="user_styles">สไตล์ของผู้ใช้</string>
    <string name="engine">เครื่องยนต์</string>
    <string name="restart_manually">การเปลี่ยนแปลงนี้ต้องรีสตาร์ทแอปพลิเคชันด้วยตนเอง</string>
+   <string name="search_in_the_library">ค้นหาในห้องสมุด</string>
+   <string name="update_metadata">อัปเดตข้อมูลเมตา</string>
 </resources>

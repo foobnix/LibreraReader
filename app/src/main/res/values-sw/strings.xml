@@ -649,4 +649,6 @@
    <string name="user_styles">Mitindo user</string>
    <string name="engine">Injini</string>
    <string name="restart_manually">Mabadiliko haya yanahitaji kuanzishwa upya kwa programu mwenyewe</string>
+   <string name="search_in_the_library">Tafuta kwenye maktaba</string>
+   <string name="update_metadata">Sasisha metadata</string>
 </resources>

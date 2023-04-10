@@ -649,4 +649,6 @@
    <string name="user_styles">Gebruiker stijlen</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Deze wijziging vereist een handmatige herstart van de applicatie</string>
+   <string name="search_in_the_library">Zoeken in de bibliotheek</string>
+   <string name="update_metadata">Metagegevens bijwerken</string>
 </resources>

@@ -649,4 +649,6 @@
    <string name="user_styles">Användar stilar</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denna ändring kräver en manuell omstart av programmet</string>
+   <string name="search_in_the_library">Sök i biblioteket</string>
+   <string name="update_metadata">Uppdatera metadata</string>
 </resources>

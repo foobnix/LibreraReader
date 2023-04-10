@@ -3,6 +3,12 @@ layout: main
 ---
 
 # O que há de novo
+### [8.8.79] Procure algum texto nos livros da Biblioteca
+
+* É possível filtrar os resultados da biblioteca
+* A pesquisa de frases é possível
+
+<img class="i" src="8.8.97.png" />
 
 ### [8.8.79] Ordenar marcadores por página ou por data
 <img class="i" src="8.8.79.png" />

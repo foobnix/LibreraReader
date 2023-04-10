@@ -649,4 +649,6 @@
    <string name="user_styles">סגנונות משתמש</string>
    <string name="engine">מנוע</string>
    <string name="restart_manually">שינוי זה מחייב הפעלה מחדש ידנית של האפליקציה</string>
+   <string name="search_in_the_library">לחפש בספרייה</string>
+   <string name="update_metadata">לעדכן מטא נתונים</string>
 </resources>

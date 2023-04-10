@@ -3,6 +3,12 @@ layout: main
 ---
 
 # Quoi de neuf
+### [8.8.79] Rechercher du texte dans les livres de la bibliothèque
+
+* Il est possible de filtrer les résultats de la bibliothèque
+* La recherche de phrases est possible
+
+<img class="i" src="8.8.97.png" />
 
 ### [8.8.79] Trier les signets par page ou par date
 <img class="i" src="8.8.79.png" />
