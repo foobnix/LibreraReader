@@ -877,15 +877,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             searchAdapter.clearItems();
             searchAdapter.getItemsList().addAll(items);
-            searchAdapter.notifyDataSetChanged();
-//            handler.postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    searchAdapter.notifyDataSetChanged();
-//
-//                }
-//            }, 1000);
+            // searchAdapter.notifyDataSetChanged();
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    searchAdapter.notifyDataSetChanged();
+
+                }
+            }, 1000);
 
             // recyclerView.scrollToPosition(0);
 
