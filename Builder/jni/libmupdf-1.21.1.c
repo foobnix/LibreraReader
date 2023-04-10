@@ -1294,6 +1294,8 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
 	fz_font *block1 = block->u.t.first_line->first_char->font;
 	fz_font *block2 = block->u.t.last_line->last_char->font;
 
+
+
 	int is_block_bold = fz_font_is_bold(ctx,block1) && fz_font_is_bold(ctx,block2);
 	int is_block_italic = fz_font_is_italic(ctx,block1) && fz_font_is_italic(ctx,block2);
 
@@ -1301,7 +1303,7 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
         fz_write_printf(ctx, out, "<b>");
     }
 
-    if(is_block_italic){
+    if(is_block_italic && !is_block_bold){
 		fz_write_printf(ctx, out, "<i>");
 	}
 
@@ -1316,7 +1318,7 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
 			int is_italic_ch = !is_block_italic && fz_font_is_italic(ctx, ch->font);
 
 			if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
-			if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
+			if (is_italic_ch && !is_bold_ch) fz_write_printf(ctx,out,"<i>");
 
 			switch (ch->c)
 			{
@@ -1333,14 +1335,14 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
 			}
 
 			if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
-			if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
+			if (is_italic_ch && !is_bold_ch) fz_write_printf(ctx,out,"</i>");
 		}
 		fz_write_string(ctx, out, " ");
 	}
 	if(is_block_bold){
 		fz_write_printf(ctx, out, "</b>");
 	}
-	if(is_block_italic){
+	if(is_block_italic && !is_block_bold){
 		fz_write_printf(ctx, out, "</i>");
 	}
 	fz_write_string(ctx, out, "</p>\n");
