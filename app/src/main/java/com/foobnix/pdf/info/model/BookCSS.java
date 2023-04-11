@@ -416,14 +416,21 @@ public class BookCSS {
                 @Override
                 public boolean accept(File dir, String name) {
                     name = name.toLowerCase(Locale.US);
-
+                    LOG.d("name-accept", name);
                     if (excludeNoto) {
                         if (name.startsWith("noto")) {
+                            return false;
+                        } else if (name.startsWith("sec")) {
+                            return false;
+                        } else if (name.startsWith("samsung")) {
+                            return false;
+                        } else if (name.startsWith("clock")) {
                             return false;
                         }
                     }
 
-                    for (String ext : fontExts) {
+                    for (
+                            String ext : fontExts) {
                         if (name.endsWith(ext)) {
                             return true;
                         }

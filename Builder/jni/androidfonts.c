@@ -27,17 +27,19 @@
 
 static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const char *c, int idx)
 {
-	char buf[500];
+	char buf[2000];
 	fz_font *font = NULL;
 	fz_try(ctx)
 	{
 		fz_snprintf(buf, sizeof buf, "/system/fonts/%s%s%s.ttf", a, b, c);
+
 		if (!fz_file_exists(ctx, buf))
-			fz_snprintf(buf, sizeof buf, "/system/fonts/%s%s%s.otf", a, b, c);
+			fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallbackFull.ttf", a, b, c);
 		if (!fz_file_exists(ctx, buf))
-			fz_snprintf(buf, sizeof buf, "/system/fonts/%s%s%s.ttc", a, b, c);
-		if (fz_file_exists(ctx, buf))
+			fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallback.ttf", a, b, c);
+		if (fz_file_exists(ctx, buf)){
 			font = fz_new_font_from_file(ctx, NULL, buf, idx, 0);
+			}
 	}
 	fz_catch(ctx)
 		return NULL;
@@ -48,14 +50,12 @@ static fz_font *load_my_font(fz_context *ctx)
     if(1){
         return NULL;
     }
-
-	char buf[500];
+    char buf[500];
 	fz_font *font = NULL;
 	fz_try(ctx)
 	{
-		fz_snprintf(buf, sizeof buf, "/storage/emulated/0/Librera/Fonts/DroidSansFallbackFull.ttf1");
-		if (!fz_file_exists(ctx, buf))
-			fz_snprintf(buf, sizeof buf, "/storage/sdcard/Librera/Fonts/DroidSansFallbackFull.ttf1");
+		fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallbackFull.ttf");
+
 		if (fz_file_exists(ctx, buf))
 			font = fz_new_font_from_file(ctx, NULL, buf, 0, 0);
 	}
