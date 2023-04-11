@@ -424,9 +424,15 @@ public class FileInformationDialog {
         TextView onUpdateMeta = TxtUtils.underlineTextView(dialog.findViewById(R.id.onUpdateMeta));
         onUpdateMeta.setOnClickListener(v -> {
 
+            IMG.clearMemoryCache();
+            IMG.clearDiscCache();
+
             fileMeta.setState(FileMetaCore.STATE_NONE);
             FileMetaCore.reUpdateIfNeed(fileMeta);
+
             AppDB.get().refresh(fileMeta);
+
+
             TempHolder.listHash++;
             EventBus.getDefault().post(new UpdateAllFragments());
             infoDialog.dismiss();
