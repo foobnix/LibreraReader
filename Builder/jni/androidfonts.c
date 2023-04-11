@@ -24,22 +24,24 @@
 
 #include "mupdf/fitz.h"
 #include "mupdf/ucdn.h"
+#include <android/log.h>
 
 static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const char *c, int idx)
 {
-	char buf[2000];
+	char buf[500];
 	fz_font *font = NULL;
 	fz_try(ctx)
 	{
 		fz_snprintf(buf, sizeof buf, "/system/fonts/%s%s%s.ttf", a, b, c);
+		if (!fz_file_exists(ctx, buf))
+			fz_snprintf(buf, sizeof buf, "/storage/emulated/0/Librera/Fonts/%s%s%s.ttf", a, b, c);
+		if (!fz_file_exists(ctx, buf))
+			fz_snprintf(buf, sizeof buf, "/storage/sdcard/Librera/Fonts/%s%s%s.ttf", a, b, c);
 
-		if (!fz_file_exists(ctx, buf))
-			fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallbackFull.ttf", a, b, c);
-		if (!fz_file_exists(ctx, buf))
-			fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallback.ttf", a, b, c);
 		if (fz_file_exists(ctx, buf)){
 			font = fz_new_font_from_file(ctx, NULL, buf, idx, 0);
-			}
+			__android_log_print(ANDROID_LOG_DEBUG, "MuPDF-load-font", "%s",buf);
+		}
 	}
 	fz_catch(ctx)
 		return NULL;
@@ -47,21 +49,7 @@ static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const c
 }
 static fz_font *load_my_font(fz_context *ctx)
 {
-    if(1){
-        return NULL;
-    }
-    char buf[500];
-	fz_font *font = NULL;
-	fz_try(ctx)
-	{
-		fz_snprintf(buf, sizeof buf, "/system/fonts/DroidSansFallbackFull.ttf");
-
-		if (fz_file_exists(ctx, buf))
-			font = fz_new_font_from_file(ctx, NULL, buf, 0, 0);
-	}
-	fz_catch(ctx)
-		return NULL;
-	return font;
+	return NULL;
 }
 
 static fz_font *load_noto_cjk(fz_context *ctx, int lang)
@@ -69,6 +57,7 @@ static fz_font *load_noto_cjk(fz_context *ctx, int lang)
 	fz_font *font = load_noto(ctx, "NotoSerif", "CJK", "-Regular", lang);
 	if (!font) font = load_noto(ctx, "NotoSans", "CJK", "-Regular", lang);
 	if (!font) font = load_noto(ctx, "DroidSans", "Fallback", "", 0);
+	if (!font) font = load_noto(ctx, "DroidSans", "FallbackFull", "", 0);
 	return font;
 }
 
