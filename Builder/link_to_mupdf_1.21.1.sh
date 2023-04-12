@@ -69,6 +69,7 @@ cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
 cp -rpv $SRC/image.c             $DEST/fitz/image.c
 cp -rpv $SRC/xml.c               $DEST/fitz/xml.c
 cp -rpv $SRC/unzip.c             $DEST/fitz/unzip.c
+cp -rpv $SRC/directory.c         $DEST/fitz/directory.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h

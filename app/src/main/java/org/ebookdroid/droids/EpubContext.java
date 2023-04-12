@@ -61,7 +61,7 @@ public class EpubContext extends PdfContext {
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
-        if(false) {//CRASH ON CHINA BOOK
+       // if(false) {//CRASH ON CHINA BOOK
             File out = new File(cacheFile.getPath() + "-source");
             if (AppsConfig.MUPDF_VERSION != AppsConfig.MUPDF_1_11) {
                 try {
@@ -78,7 +78,7 @@ public class EpubContext extends PdfContext {
                 }
 
             }
-        }
+        //}
 
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
