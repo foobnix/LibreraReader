@@ -12,12 +12,10 @@ cd ../
 ./gradlew assembleFdroidRelease
 ./gradlew assembleProRelease
 
-cd Builder
-./link_two_mupdf.sh
-
-cd ../
-
-./gradlew assembleProRelease
+#cd Builder
+#./link_two_mupdf.sh
+#cd ../
+#./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

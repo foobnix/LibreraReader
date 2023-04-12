@@ -868,7 +868,7 @@ public class PrefFragment2 extends UIFragment {
         TextView appEngine = inflate.findViewById(R.id.appEngine);
         appEngine.setText(AppsConfig.getCurrentEngine(getActivity()));
         TxtUtils.underlineTextView(appEngine);
-        Views.visible(appEngine,LOG.isEnable || AppsConfig.IS_PRO);
+        Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
         appEngine.setOnClickListener(v -> {
             if (BooksService.isRunning) {

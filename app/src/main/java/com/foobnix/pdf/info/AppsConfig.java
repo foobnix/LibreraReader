@@ -37,7 +37,14 @@ public class AppsConfig {
     public static boolean isCloudsEnable = false;
     public static boolean IS_NO_ADS = false;
 
+    static {
+            System.loadLibrary("MuPDF_1.21.1");
+    }
+
     public static void loadEngine(Context c) {
+        if(true){
+            return;
+        }
         String engine = getCurrentEngine(c);
         try {
             engine = !ENGINE_MuPDF_1_11.equals(engine) ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11;

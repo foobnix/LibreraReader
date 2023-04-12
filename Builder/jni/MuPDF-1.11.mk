@@ -62,7 +62,7 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_CFLAGS := \
 	-ffunction-sections -fdata-sections \
-	-DTOFU_CJK \
+	-DTOFU_CJK_EXT \
 	-DAA_BITS=8 \
 
 LOCAL_SRC_FILES += \
