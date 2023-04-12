@@ -651,4 +651,5 @@
    <string name="restart_manually">Тази промяна изисква ръчно рестартиране на приложението</string>
    <string name="search_in_the_library">Търсене в библиотеката</string>
    <string name="update_metadata">Актуализиране на метаданни</string>
+   <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
 </resources>

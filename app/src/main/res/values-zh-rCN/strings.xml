@@ -651,4 +651,5 @@
    <string name="restart_manually">重启应用后生效</string>
    <string name="search_in_the_library">在图书馆搜索</string>
    <string name="update_metadata">更新元数据</string>
+   <string name="highlighting_initial_letters">突出显示首字母</string>
 </resources>

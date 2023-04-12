@@ -651,4 +651,5 @@
    <string name="restart_manually">Această modificare necesită o repornire manuală a aplicației</string>
    <string name="search_in_the_library">Cauta in biblioteca</string>
    <string name="update_metadata">Actualizați metadatele</string>
+   <string name="highlighting_initial_letters">Evidențierea literelor inițiale</string>
 </resources>

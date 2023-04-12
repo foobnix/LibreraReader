@@ -651,4 +651,5 @@
    <string name="restart_manually">Denna ändring kräver en manuell omstart av programmet</string>
    <string name="search_in_the_library">Sök i biblioteket</string>
    <string name="update_metadata">Uppdatera metadata</string>
+   <string name="highlighting_initial_letters">Markera initiala bokstäver</string>
 </resources>

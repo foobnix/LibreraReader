@@ -651,4 +651,5 @@
    <string name="restart_manually">Haec mutatio requirit a manual sileo applicationis</string>
    <string name="search_in_the_library">Quaerere in bibliotheca</string>
    <string name="update_metadata">Update metadata</string>
+   <string name="highlighting_initial_letters">Quatenus initialis litterae</string>
 </resources>

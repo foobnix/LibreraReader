@@ -3,6 +3,11 @@ layout: main
 ---
 
 # Quoi de neuf
+### [8.8.104] Surlignage des lettres initiales
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
 ### [8.8.79] Rechercher du texte dans les livres de la bibliothèque
 
 * Il est possible de filtrer les résultats de la bibliothèque

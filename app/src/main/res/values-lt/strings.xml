@@ -651,4 +651,5 @@
    <string name="restart_manually">Dėl šio pakeitimo reikia rankiniu būdu iš naujo paleisti programą</string>
    <string name="search_in_the_library">Ieškoti bibliotekoje</string>
    <string name="update_metadata">Atnaujinti metaduomenis</string>
+   <string name="highlighting_initial_letters">Paryškinant pradines raides</string>
 </resources>

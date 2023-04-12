@@ -651,4 +651,5 @@
    <string name="restart_manually">Questa modifica richiede un riavvio manuale dell\'applicazione</string>
    <string name="search_in_the_library">Cerca in biblioteca</string>
    <string name="update_metadata">Aggiornare i metadati</string>
+   <string name="highlighting_initial_letters">Evidenziando le lettere iniziali</string>
 </resources>

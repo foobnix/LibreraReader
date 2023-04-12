@@ -3,6 +3,11 @@ layout: main
 ---
 
 # O que há de novo
+### [8.8.104] Destacando letras iniciais
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
 ### [8.8.79] Procure algum texto nos livros da Biblioteca
 
 * É possível filtrar os resultados da biblioteca

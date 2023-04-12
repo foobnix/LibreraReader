@@ -3,10 +3,15 @@ layout: main
 ---
 
 # Novedades
+### [8.8.104] Resaltar letras iniciales
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
 ### [8.8.79] Buscar algún texto en los libros de la Biblioteca
 
-*Es posible filtrar los resultados de la biblioteca
-*La búsqueda de oraciones es posible
+* Es posible filtrar los resultados de la biblioteca
+* La búsqueda de oraciones es posible
 
 <img class="i" src="8.8.97.png" />
 

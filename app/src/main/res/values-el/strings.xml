@@ -651,4 +651,5 @@
    <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>
    <string name="search_in_the_library">Αναζήτηση στη βιβλιοθήκη</string>
    <string name="update_metadata">Ενημέρωση μεταδεδομένων</string>
+   <string name="highlighting_initial_letters">Τονίζοντας τα αρχικά γράμματα</string>
 </resources>

@@ -3,6 +3,11 @@ layout: main
 ---
 
 # Was ist neu
+### [8.8.104] Hervorheben von Anfangsbuchstaben
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
 ### [8.8.79] Suchen Sie nach Text in den Büchern der Bibliothek
 
 * Es ist möglich, Bibliotheksergebnisse zu filtern

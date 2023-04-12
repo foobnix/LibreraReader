@@ -651,4 +651,5 @@
    <string name="restart_manually">ഈ മാറ്റത്തിന് ആപ്ലിക്കേഷൻ സ്വമേധയാ പുനരാരംഭിക്കേണ്ടതുണ്ട്</string>
    <string name="search_in_the_library">ലൈബ്രറിയിൽ തിരയുക</string>
    <string name="update_metadata">മെറ്റാഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുക</string>
+   <string name="highlighting_initial_letters">പ്രാരംഭ അക്ഷരങ്ങൾ ഹൈലൈറ്റ് ചെയ്യുന്നു</string>
 </resources>

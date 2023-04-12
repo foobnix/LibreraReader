@@ -651,4 +651,5 @@
    <string name="restart_manually">இந்த மாற்றத்திற்கு பயன்பாட்டை கைமுறையாக மறுதொடக்கம் செய்ய வேண்டும்</string>
    <string name="search_in_the_library">நூலகத்தில் தேடுங்கள்</string>
    <string name="update_metadata">மெட்டாடேட்டாவைப் புதுப்பிக்கவும்</string>
+   <string name="highlighting_initial_letters">ஆரம்ப எழுத்துக்களை முன்னிலைப்படுத்துகிறது</string>
 </resources>

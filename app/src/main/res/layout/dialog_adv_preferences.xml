@@ -285,10 +285,18 @@
 
 
         <CheckBox
+            android:id="@+id/isBionicMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/highlighting_initial_letters" />
+
+        <CheckBox
             android:id="@+id/isMirrorImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mirror_image_for_teleprompter" />
+
+
 
         <CheckBox
             android:id="@+id/isLockPDF"

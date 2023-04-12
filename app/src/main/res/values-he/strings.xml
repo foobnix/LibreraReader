@@ -651,4 +651,5 @@
    <string name="restart_manually">שינוי זה מחייב הפעלה מחדש ידנית של האפליקציה</string>
    <string name="search_in_the_library">לחפש בספרייה</string>
    <string name="update_metadata">לעדכן מטא נתונים</string>
+   <string name="highlighting_initial_letters">הדגשת אותיות ראשוניות</string>
 </resources>

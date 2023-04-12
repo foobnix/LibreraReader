@@ -207,7 +207,6 @@ public class Fb2Extractor extends BaseExtractor {
             if (AppState.get().isExperimental && svgs != null) {
 
 
-
                 line = line.replace("<m:", "<");
                 if (line.contains("<svg")) {
                     svgNumbver++;
@@ -250,12 +249,12 @@ public class Fb2Extractor extends BaseExtractor {
                 if (line.contains("</math>")) {
 
                     svg += line.substring(beginMath, line.indexOf("</math>") + "</math>".length());
-                    beginMath=0;
+                    beginMath = 0;
 
 
                     final String imageName = name + "-" + svgNumbver + ".png";
                     final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                    svg = svg.replace(">math>","></math>");
+                    svg = svg.replace(">math>", "></math>");
                     svgs.put(imageName, svg);
 
                     LOG.d("SVG-MATH:", imageName, svg);
@@ -600,7 +599,7 @@ public class Fb2Extractor extends BaseExtractor {
         try {
             zos.putNextEntry(new ZipEntry(name));
             zipCopyNoClose(stream, zos);
-        }catch (IOException e){
+        } catch (IOException e) {
             LOG.e(e);
         }
     }

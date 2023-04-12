@@ -3744,6 +3744,15 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isBionicMode = inflate.findViewById(R.id.isBionicMode);
+                isBionicMode.setChecked(AppState.get().isBionicMode);
+                isBionicMode.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBionicMode = isChecked);
+                isBionicMode.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+
+                String txt = TxtUtils.toBionicText(isBionicMode.getText().toString());
+                isBionicMode.setText(TxtUtils.fromHtml(txt));
+
+
                 CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
                 isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);

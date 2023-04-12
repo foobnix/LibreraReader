@@ -651,4 +651,5 @@
    <string name="restart_manually">Perubahan ini memerlukan restart manual aplikasi</string>
    <string name="search_in_the_library">Cari di perpustakaan</string>
    <string name="update_metadata">Memperbarui metadata</string>
+   <string name="highlighting_initial_letters">Menyoroti huruf awal</string>
 </resources>

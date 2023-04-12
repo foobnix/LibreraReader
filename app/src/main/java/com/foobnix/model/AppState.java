@@ -584,6 +584,7 @@ public class AppState {
     public boolean isUseCalibreOpf = true;
     public boolean isDisplayAnnotation = false;
     public boolean isMirrorImage = false;
+    public boolean isBionicMode = false;
     public boolean alwaysTwoPages = false;
     public boolean isDefaultHyphenLanguage = false;
     public String defaultHyphenLanguageCode = "en";
