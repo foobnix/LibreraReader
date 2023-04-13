@@ -11,6 +11,7 @@ cd ../
 
 ./gradlew assembleFdroidRelease
 ./gradlew assembleProRelease
+./gradlew assembleLibreraRelease
 
 #cd Builder
 #./link_two_mupdf.sh

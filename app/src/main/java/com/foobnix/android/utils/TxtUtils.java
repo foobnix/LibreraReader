@@ -124,8 +124,7 @@ public class TxtUtils {
         if (w.length() == 1) {
             w = "<b>" + w + "</b>";
         } else {
-            int size = w.length();
-            int half = size / 2;
+            int half = w.length() / 2;
             w = "<b>" + w.substring(0, half) + "</b>" + w.substring(half);
         }
         return w;
