@@ -5,7 +5,7 @@
 /build
 /captures
 .externalNativeBuild
-/.idea
+/.idea*
 /Builder/mupdf-1.11
 /Builder/mupdf-1.16.1
 /Builder/mupdf-1.19.0
