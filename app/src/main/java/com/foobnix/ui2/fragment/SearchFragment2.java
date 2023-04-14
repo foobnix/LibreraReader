@@ -880,7 +880,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             searchAdapter.clearItems();
             searchAdapter.getItemsList().addAll(items);
-            // searchAdapter.notifyDataSetChanged();
+            searchAdapter.notifyDataSetChanged();
             handler.postDelayed(new Runnable() {
 
                 @Override
