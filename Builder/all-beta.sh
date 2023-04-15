@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+JAVA_HOME=/home/dev/Downloads/AndroidStudio/android-studio-2022.2.1.18-linux/android-studio/jbr/
 #./fonts.sh
 
 #Builder folder

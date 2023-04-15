@@ -29,7 +29,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 import com.github.axet.lamejni.Lame;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedInputStream;

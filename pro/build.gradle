@@ -3,14 +3,11 @@ plugins {
 }
 
 android {
-    buildToolsVersion '31.0.0'
-    compileSdk 31
+    compileSdk project.compileSdk
 
     defaultConfig {
         minSdk 14
-        targetSdk 31
-
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        targetSdk project.targetSdk
     }
 
     buildTypes {
@@ -19,13 +16,9 @@ android {
             //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'com.foobnix.pdf.pro'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //implementation 'androidx.appcompat:appcompat:1.0.0'
-    //testImplementation 'junit:junit:4.12'
-    //androidTestImplementation 'androidx.test:runner:1.1.0'
-    //androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }

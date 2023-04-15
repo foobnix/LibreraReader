@@ -28,7 +28,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;

@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.foobnix.sys.VerticalModeController;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.core.models.DocumentModel;

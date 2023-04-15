@@ -28,15 +28,14 @@ ext {
 }
 
 android {
-    buildToolsVersion '33.0.2'
-    compileSdk 33
+    compileSdk project.compileSdk
     namespace "com.foobnix.pdf.info"
 
 
     defaultConfig {
         namespace "com.foobnix.pdf.info"
-        minSdk 19
-        targetSdk 33
+        minSdk project.minSdk
+        targetSdk project.targetSdk
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

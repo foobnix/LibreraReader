@@ -17,7 +17,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.librera.JSONArray;
 import org.librera.JSONException;

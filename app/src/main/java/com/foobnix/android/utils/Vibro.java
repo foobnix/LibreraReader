@@ -8,7 +8,7 @@ import android.os.Vibrator;
 
 import com.foobnix.model.AppState;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 public class Vibro {
 

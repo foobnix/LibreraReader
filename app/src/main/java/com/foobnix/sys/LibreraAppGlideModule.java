@@ -25,7 +25,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.foobnix.android.utils.LOG;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.io.InputStream;
 

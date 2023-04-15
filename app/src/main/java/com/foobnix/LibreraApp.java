@@ -1,4 +1,4 @@
-package org.ebookdroid;
+package com.foobnix;
 
 import android.content.Context;
 import android.os.Build;

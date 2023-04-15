@@ -18,7 +18,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.io.File;
 import java.util.List;

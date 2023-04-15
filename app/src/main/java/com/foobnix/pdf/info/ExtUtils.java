@@ -74,7 +74,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
