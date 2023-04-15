@@ -652,4 +652,5 @@
    <string name="search_in_the_library">ലൈബ്രറിയിൽ തിരയുക</string>
    <string name="update_metadata">മെറ്റാഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുക</string>
    <string name="highlighting_initial_letters">പ്രാരംഭ അക്ഷരങ്ങൾ ഹൈലൈറ്റ് ചെയ്യുന്നു</string>
+   <string name="anti_aliasing_level">ആന്റി-അലിയാസിംഗ് ലെവൽ</string>
 </resources>

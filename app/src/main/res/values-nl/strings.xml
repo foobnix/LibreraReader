@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Zoeken in de bibliotheek</string>
    <string name="update_metadata">Metagegevens bijwerken</string>
    <string name="highlighting_initial_letters">Beginletters markeren</string>
+   <string name="anti_aliasing_level">Anti-aliasing niveau</string>
 </resources>

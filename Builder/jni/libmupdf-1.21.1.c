@@ -112,7 +112,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env
 
 JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
-		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale ) {
+		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale, jint antialias ) {
 	renderdocument_t *doc;
 	jboolean iscopy;
 	jclass cls;
@@ -159,7 +159,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 	doc->document = NULL;
 	doc->outline = NULL;
 
-	// fz_set_aa_level(fz_catch(ctx), alphabits);
+	fz_set_aa_level(doc->ctx, antialias);
 	doc->format = format;
 	fz_try(doc->ctx)
 	{

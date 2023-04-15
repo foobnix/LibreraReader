@@ -652,4 +652,5 @@
    <string name="search_in_the_library">図書館で探す</string>
    <string name="update_metadata">メタデータの更新</string>
    <string name="highlighting_initial_letters">頭文字のハイライト</string>
+   <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
 </resources>

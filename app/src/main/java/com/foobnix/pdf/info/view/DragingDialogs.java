@@ -3979,34 +3979,63 @@ public class DragingDialogs {
                         }).show();
                     }
                 });
+                {
+                    final TextView tapzoneSize = (TextView) inflate.findViewById(R.id.tapzoneSize);
+                    tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
+                    TxtUtils.underlineTextView(tapzoneSize);
+                    tapzoneSize.setOnClickListener(new OnClickListener() {
 
-                final TextView tapzoneSize = (TextView) inflate.findViewById(R.id.tapzoneSize);
-                tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
-                TxtUtils.underlineTextView(tapzoneSize);
-                tapzoneSize.setOnClickListener(new OnClickListener() {
+                        @SuppressLint("NewApi")
+                        @Override
+                        public void onClick(View v) {
+                            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                            for (int i = 0; i <= 45f; i += 5) {
+                                final int number = i;
+                                popupMenu.getMenu().add("" + i + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 45f; i += 5) {
-                            final int number = i;
-                            popupMenu.getMenu().add("" + i + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().tapzoneSize = number;
-                                    tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
-                                    TxtUtils.underlineTextView(tapzoneSize);
-                                    return false;
-                                }
-                            });
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem item) {
+                                        AppState.get().tapzoneSize = number;
+                                        tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
+                                        TxtUtils.underlineTextView(tapzoneSize);
+                                        return false;
+                                    }
+                                });
+                            }
+                            popupMenu.show();
                         }
-                        popupMenu.show();
-                    }
-                });
-
+                    });
+                }
                 // double tap
+                {
+                    final TextView antiAliasLevel = (TextView) inflate.findViewById(R.id.antiAliasLevel);
+                    antiAliasLevel.setText("" + AppState.get().antiAliasLevel);
+                    TxtUtils.underlineTextView(antiAliasLevel);
+                    antiAliasLevel.setOnClickListener(new OnClickListener() {
+
+                        @SuppressLint("NewApi")
+                        @Override
+                        public void onClick(View v) {
+                            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                            for (int i = 0; i <= 8; i += 1) {
+                                final int number = i;
+                                popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem item) {
+                                        AppState.get().antiAliasLevel = number;
+                                        antiAliasLevel.setText("" + AppState.get().antiAliasLevel);
+                                        TxtUtils.underlineTextView(antiAliasLevel);
+                                        return false;
+                                    }
+                                });
+                            }
+                            popupMenu.show();
+                        }
+                    });
+                }
+
+
 
                 final List<String> doubleTapNames = Arrays.asList(//
                         controller.getString(R.string.db_auto_scroll), //

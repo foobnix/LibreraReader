@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Chercher dans la bibliothèque</string>
    <string name="update_metadata">Mettre à jour les métadonnées</string>
    <string name="highlighting_initial_letters">Surlignage des lettres initiales</string>
+   <string name="anti_aliasing_level">Niveau d\'anticrénelage</string>
 </resources>

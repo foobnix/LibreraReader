@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Tìm kiếm trong thư viện</string>
    <string name="update_metadata">Cập nhật siêu dữ liệu</string>
    <string name="highlighting_initial_letters">Làm nổi bật các chữ cái đầu tiên</string>
+   <string name="anti_aliasing_level">Mức khử răng cưa</string>
 </resources>

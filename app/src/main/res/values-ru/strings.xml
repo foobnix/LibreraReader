@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Искать в библиотеке</string>
    <string name="update_metadata">Обновить метаданные</string>
    <string name="highlighting_initial_letters">Выделение начальных букв</string>
+   <string name="anti_aliasing_level">Уровень сглаживания</string>
 </resources>

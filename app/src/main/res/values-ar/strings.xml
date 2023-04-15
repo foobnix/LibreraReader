@@ -652,4 +652,5 @@
    <string name="search_in_the_library">ابحث في المكتبة</string>
    <string name="update_metadata">تحديث البيانات الوصفية</string>
    <string name="highlighting_initial_letters">تسليط الضوء على الحروف الأولية</string>
+   <string name="anti_aliasing_level">مستوى الصقل</string>
 </resources>

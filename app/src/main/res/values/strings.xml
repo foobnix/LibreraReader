@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Search in the library</string>
    <string name="update_metadata">Update metadata</string>
    <string name="highlighting_initial_letters">Highlighting initial letters</string>
+   <string name="anti_aliasing_level">Anti-aliasing level</string>
 </resources>

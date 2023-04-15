@@ -316,6 +316,7 @@ public class AppState {
     public boolean isShowReadingProgress = true;
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
+    public int antiAliasLevel = 8;//0-8
     // n,
     // 25 - 25%
     // persent

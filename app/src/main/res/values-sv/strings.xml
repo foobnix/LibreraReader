@@ -652,4 +652,5 @@
    <string name="search_in_the_library">Sök i biblioteket</string>
    <string name="update_metadata">Uppdatera metadata</string>
    <string name="highlighting_initial_letters">Markera initiala bokstäver</string>
+   <string name="anti_aliasing_level">Kantutjämningsnivå</string>
 </resources>

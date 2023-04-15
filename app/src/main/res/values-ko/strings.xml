@@ -652,4 +652,5 @@
    <string name="search_in_the_library">도서관에서 검색</string>
    <string name="update_metadata">업데이트 메타데이터</string>
    <string name="highlighting_initial_letters">첫 글자 강조</string>
+   <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
 </resources>
