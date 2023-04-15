@@ -216,8 +216,8 @@ public class DragingDialogs {
                 final View inflate = inflater.inflate(R.layout.dialog_custom_crop, null, false);
 
                 // Margins
-                final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
-                final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
+                final CustomSeek marginTop = inflate.findViewById(R.id.marginTop);
+                final CustomSeek marginBottom = inflate.findViewById(R.id.marginBottom);
 
                 int max = 30;
                 marginTop.init(0, max, AppState.get().cropTop, "%");
@@ -248,8 +248,8 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
-                final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
+                final CustomSeek marginLeft = inflate.findViewById(R.id.marginLeft);
+                final CustomSeek marginRight = inflate.findViewById(R.id.marginRight);
 
                 marginLeft.init(0, max, AppState.get().cropLeft, "%");
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
@@ -279,7 +279,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isCropSymetry = (CheckBox) inflate.findViewById(R.id.isCropSymetry);
+                CheckBox isCropSymetry = inflate.findViewById(R.id.isCropSymetry);
                 isCropSymetry.setChecked(AppSP.get().isCropSymetry);
                 isCropSymetry.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -293,7 +293,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isEnableCrop = (CheckBox) inflate.findViewById(R.id.isEnableCrop);
+                final CheckBox isEnableCrop = inflate.findViewById(R.id.isEnableCrop);
                 isEnableCrop.setChecked(AppSP.get().isCrop);
                 isEnableCrop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -403,14 +403,14 @@ public class DragingDialogs {
             public View getContentView(LayoutInflater inflater) {
                 final Activity activity = controller.getActivity();
                 final View view = inflater.inflate(R.layout.dialog_move_manually, null, false);
-                ImageView onUp = (ImageView) view.findViewById(R.id.onUp);
-                ImageView onDonw = (ImageView) view.findViewById(R.id.onDown);
-                ImageView onLeft = (ImageView) view.findViewById(R.id.onLeft);
-                ImageView onRight = (ImageView) view.findViewById(R.id.onRight);
-                ImageView onPlus = (ImageView) view.findViewById(R.id.onPlus);
-                ImageView onMinus = (ImageView) view.findViewById(R.id.onMinus);
-                ImageView onCenter = (ImageView) view.findViewById(R.id.onCenter);
-                final ImageView onCrop = (ImageView) view.findViewById(R.id.onCrop);
+                ImageView onUp = view.findViewById(R.id.onUp);
+                ImageView onDonw = view.findViewById(R.id.onDown);
+                ImageView onLeft = view.findViewById(R.id.onLeft);
+                ImageView onRight = view.findViewById(R.id.onRight);
+                ImageView onPlus = view.findViewById(R.id.onPlus);
+                ImageView onMinus = view.findViewById(R.id.onMinus);
+                ImageView onCenter = view.findViewById(R.id.onCenter);
+                final ImageView onCrop = view.findViewById(R.id.onCrop);
 
                 if (AppState.get().isDayNotInvert) {
                     TintUtil.setTintImageWithAlpha(onUp);
@@ -531,7 +531,7 @@ public class DragingDialogs {
                 final Activity activity = controller.getActivity();
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
 
-                final TextView textBGwarning = (TextView) view.findViewById(R.id.textBGwarning);
+                final TextView textBGwarning = view.findViewById(R.id.textBGwarning);
 
                 textBGwarning.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= 28) {
@@ -560,26 +560,26 @@ public class DragingDialogs {
                 }
 
 
-                final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
+                final TextView ttsPage = view.findViewById(R.id.ttsPage);
 
-                final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
+                final TextView textEngine = view.findViewById(R.id.ttsEngine);
 
-                final TextView timerTime = (TextView) view.findViewById(R.id.timerTime);
+                final TextView timerTime = view.findViewById(R.id.timerTime);
 
-                final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
-                final TextView ttsPlayMusicFile = (TextView) view.findViewById(R.id.ttsPlayMusicFile);
+                final TextView timerStart = view.findViewById(R.id.timerStart);
+                final TextView ttsPlayMusicFile = view.findViewById(R.id.ttsPlayMusicFile);
 
                 view.findViewById(R.id.onHelp).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
                         MyPopupMenu menu = new MyPopupMenu(v);
-                        for (final String key : AppState.get().TTS_ENGINES.keySet()) {
+                        for (final String key : AppState.TTS_ENGINES.keySet()) {
                             menu.getMenu().add(key).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    String value = AppState.get().TTS_ENGINES.get(key);
+                                    String value = AppState.TTS_ENGINES.get(key);
                                     String play = value.replace("https://play.google.com/store/apps/details?", "market://details?");
                                     try {
                                         Urls.open(v.getContext(), play);
@@ -595,16 +595,16 @@ public class DragingDialogs {
                     }
                 });
 
-                final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
+                final TTSControlsView tts = view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
 
 
-                TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
+                TextView ttsSkeakToFile = view.findViewById(R.id.ttsSkeakToFile);
 
-                final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
+                final TextView ttsLang = view.findViewById(R.id.ttsLang);
                 // TxtUtils.underlineTextView(ttsLang);
 
-                final TextView ttsPauseDuration = (TextView) view.findViewById(R.id.ttsPauseDuration);
+                final TextView ttsPauseDuration = view.findViewById(R.id.ttsPauseDuration);
                 if (AppState.get().ttsPauseDuration > 1000) {
                     ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration / 1000 + " sec");
                 } else {
@@ -683,7 +683,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         if (TempHolder.get().timerFinishTime == 0) {
-                            TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
+                            TempHolder.get().timerFinishTime = System.currentTimeMillis() + (long) AppState.get().ttsTimer * 60 * 1000;
                         } else {
                             TempHolder.get().timerFinishTime = 0;
                         }
@@ -754,7 +754,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
+                final CustomSeek seekBarSpeed = view.findViewById(R.id.seekBarSpeed);
                 seekBarSpeed.init(0, 600, (int) (AppState.get().ttsSpeed * 100));
                 seekBarSpeed.setStep(10);
                 seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
@@ -785,7 +785,7 @@ public class DragingDialogs {
                 seekBarSpeed.addMyPopupMenu(menu);
                 TxtUtils.setLinkTextColor(seekBarSpeed.getTitleText());
 
-                final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
+                final CustomSeek seekBarPitch = view.findViewById(R.id.seekBarPitch);
                 seekBarPitch.init(0, 200, (int) (AppState.get().ttsPitch * 100));
                 seekBarPitch.setOnSeekChanged(new IntegerResponse() {
 
@@ -799,7 +799,7 @@ public class DragingDialogs {
 
                 final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 
-                final CustomSeek seekVolume = (CustomSeek) view.findViewById(R.id.seekVolume);
+                final CustomSeek seekVolume = view.findViewById(R.id.seekVolume);
                 seekVolume.init(0, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
                 seekVolume.setOnSeekChanged(new IntegerResponse() {
 
@@ -810,7 +810,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final EditText ttsSentecesDivs = (EditText) view.findViewById(R.id.ttsSentecesDivs);
+                final EditText ttsSentecesDivs = view.findViewById(R.id.ttsSentecesDivs);
 
 
                 TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
@@ -846,7 +846,7 @@ public class DragingDialogs {
                 });
                 //
 
-                CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
+                CheckBox stopReadingOnCall = view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
                 stopReadingOnCall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -869,7 +869,7 @@ public class DragingDialogs {
                 ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
 
 
-                CheckBox ttsReadBySentences = (CheckBox) view.findViewById(R.id.ttsReadBySentences);
+                CheckBox ttsReadBySentences = view.findViewById(R.id.ttsReadBySentences);
                 ttsReadBySentences.setChecked(AppState.get().ttsReadBySentences);
                 ttsReadBySentences.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -882,7 +882,7 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isEnalbeTTSReplacements = (CheckBox) view.findViewById(R.id.isEnalbeTTSReplacements);
+                CheckBox isEnalbeTTSReplacements = view.findViewById(R.id.isEnalbeTTSReplacements);
                 isEnalbeTTSReplacements.setChecked(AppState.get().isEnalbeTTSReplacements);
                 isEnalbeTTSReplacements.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -909,7 +909,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isFastBookmarkByTTS = (CheckBox) view.findViewById(R.id.isFastBookmarkByTTS);
+                CheckBox isFastBookmarkByTTS = view.findViewById(R.id.isFastBookmarkByTTS);
                 isFastBookmarkByTTS.setChecked(AppState.get().isFastBookmarkByTTS);
                 isFastBookmarkByTTS.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -919,7 +919,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox ttsTunnOnLastWord = (CheckBox) view.findViewById(R.id.ttsTunnOnLastWord);
+                CheckBox ttsTunnOnLastWord = view.findViewById(R.id.ttsTunnOnLastWord);
                 ttsTunnOnLastWord.setChecked(AppState.get().ttsTunnOnLastWord);
                 ttsTunnOnLastWord.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -978,19 +978,19 @@ public class DragingDialogs {
                         dialog.setTitle(R.string.speak_into_file_wav);
 
                         View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
-                        final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
-                        final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
-                        final MyProgressBar MyProgressBar1 = (MyProgressBar) inflate.findViewById(R.id.MyProgressBarTTS);
-                        final Button start = (Button) inflate.findViewById(R.id.start);
-                        final Button stop = (Button) inflate.findViewById(R.id.stop);
-                        final Button delete = (Button) inflate.findViewById(R.id.delete);
+                        final TextView ttsSpeakPath = inflate.findViewById(R.id.ttsSpeakPath);
+                        final TextView progressText = inflate.findViewById(R.id.progressText);
+                        final MyProgressBar MyProgressBar1 = inflate.findViewById(R.id.MyProgressBarTTS);
+                        final Button start = inflate.findViewById(R.id.start);
+                        final Button stop = inflate.findViewById(R.id.stop);
+                        final Button delete = inflate.findViewById(R.id.delete);
                         final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
                         isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
                         isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isConvertToMp3 = isChecked);
 
 
-                        final EditText from = (EditText) inflate.findViewById(R.id.from);
-                        final EditText to = (EditText) inflate.findViewById(R.id.to);
+                        final EditText from = inflate.findViewById(R.id.from);
+                        final EditText to = inflate.findViewById(R.id.to);
 
                         from.setText("" + 1);
                         to.setText("" + controller.getPageCount());
@@ -1158,7 +1158,7 @@ public class DragingDialogs {
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.search_dialog, null, false);
 
-                final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
+                final EditText searchEdit = view.findViewById(R.id.edit1);
                 //searchEdit.setText(text);
                 if (TxtUtils.isNotEmpty(text)) {
                     searchEdit.setText(text);
@@ -1166,9 +1166,9 @@ public class DragingDialogs {
                     searchEdit.setText(lastSearchText);
                 }
 
-                final MyProgressBar MyProgressBar = (MyProgressBar) view.findViewById(R.id.progressBarSearch);
-                final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
-                final GridView gridView = (GridView) view.findViewById(R.id.grid1);
+                final MyProgressBar MyProgressBar = view.findViewById(R.id.progressBarSearch);
+                final TextView searchingMsg = view.findViewById(R.id.searching);
+                final GridView gridView = view.findViewById(R.id.grid1);
                 gridView.setColumnWidth(Dips.dpToPx(80));
 
                 final BaseItemLayoutAdapter<Integer> adapter = new BaseItemLayoutAdapter<Integer>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item) {
@@ -1197,7 +1197,7 @@ public class DragingDialogs {
                     }
                 });
 
-                ImageView onClear = (ImageView) view.findViewById(R.id.imageClear);
+                ImageView onClear = view.findViewById(R.id.imageClear);
                 onClear.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1268,7 +1268,6 @@ public class DragingDialogs {
 
                     }
 
-                    ;
                 };
 
                 onSearch.setOnClickListener(new View.OnClickListener() {
@@ -1333,10 +1332,10 @@ public class DragingDialogs {
 
                 final int currentPage = controller.getCurentPageFirst1();
 
-                TextView goTo = (TextView) inflate.findViewById(R.id.goTo);
-                TextView footerNumber = (TextView) inflate.findViewById(R.id.footerNumber);
-                TextView goBack = (TextView) inflate.findViewById(R.id.goBack);
-                TextView text = (TextView) inflate.findViewById(R.id.text);
+                TextView goTo = inflate.findViewById(R.id.goTo);
+                TextView footerNumber = inflate.findViewById(R.id.footerNumber);
+                TextView goBack = inflate.findViewById(R.id.goBack);
+                TextView text = inflate.findViewById(R.id.text);
                 float size = Math.max(14, BookCSS.get().fontSizeSp * 0.85f);
                 text.setTextSize(size);
                 LOG.d("FONT-SIZE", size, selectedText);
@@ -1375,9 +1374,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         controller.onGoToPage(currentPage);
-                        if (controller.getLinkHistory().contains(offsetY)) {
-                            controller.getLinkHistory().remove(offsetY);
-                        }
+                        controller.getLinkHistory().remove(offsetY);
                         if (updateLinks != null) {
                             updateLinks.run();
                         }
@@ -1400,7 +1397,7 @@ public class DragingDialogs {
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
 
-        final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() ? withAnnotation1 : false;
+        final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() && withAnnotation1;
 
         // try {
         // int number = Integer.parseInt(AppState.get().selectedText);
@@ -1413,18 +1410,18 @@ public class DragingDialogs {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
-                final LinearLayout linearLayoutColor = (LinearLayout) view.findViewById(R.id.colorsLine);
+                final LinearLayout linearLayoutColor = view.findViewById(R.id.colorsLine);
                 linearLayoutColor.removeAllViews();
-                List<String> colors = new ArrayList<String>(AppState.get().COLORS);
+                List<String> colors = new ArrayList<String>(AppState.COLORS);
                 colors.remove(0);
                 colors.remove(0);
 
-                final ImageView underLine = (ImageView) view.findViewById(R.id.onUnderline);
-                final ImageView strike = (ImageView) view.findViewById(R.id.onStrike);
-                final ImageView selection = (ImageView) view.findViewById(R.id.onSelection);
-                final ImageView onAddCustom = (ImageView) view.findViewById(R.id.onAddCustom);
+                final ImageView underLine = view.findViewById(R.id.onUnderline);
+                final ImageView strike = view.findViewById(R.id.onStrike);
+                final ImageView selection = view.findViewById(R.id.onSelection);
+                final ImageView onAddCustom = view.findViewById(R.id.onAddCustom);
 
-                final LinearLayout customsLayout = (LinearLayout) view.findViewById(R.id.customsLayout);
+                final LinearLayout customsLayout = view.findViewById(R.id.customsLayout);
 
                 final Runnable updateConfigRunnable = new Runnable() {
 
@@ -1563,7 +1560,7 @@ public class DragingDialogs {
 
                 }
 
-                final EditText editText = (EditText) view.findViewById(R.id.editText);
+                final EditText editText = view.findViewById(R.id.editText);
                 final String selectedText = AppState.get().selectedText;
                 // AppState.get().selectedText = null;
 
@@ -1690,7 +1687,7 @@ public class DragingDialogs {
                     });
                 }
 
-                LinearLayout dictLayout = (LinearLayout) view.findViewById(R.id.dictionaryLine);
+                LinearLayout dictLayout = view.findViewById(R.id.dictionaryLine);
                 dictLayout.removeAllViews();
 
                 final Intent intentProccessText = new Intent();
@@ -1970,10 +1967,10 @@ public class DragingDialogs {
                 searchLayout = view.findViewById(R.id.searchLayout);
                 Views.visible(searchLayout, AppState.get().isShowSearchBar);
 
-                final EditText number = (EditText) view.findViewById(R.id.edit1);
+                final EditText number = view.findViewById(R.id.edit1);
                 number.clearFocus();
                 number.setText("" + dc.getCurentPageFirst1());
-                grid = (GridView) view.findViewById(R.id.grid1);
+                grid = view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
                 if (AppSP.get().isDouble && !dc.isTextFormat()) {
@@ -1991,7 +1988,6 @@ public class DragingDialogs {
                             return PageUrl.buildSmall(currentBook.getPath(), page);
                         }
 
-                        ;
                     });
 
                 }
@@ -2147,7 +2143,7 @@ public class DragingDialogs {
             public void run() {
                 String annotationDrawColor = AppState.get().annotationDrawColor;
                 if (TxtUtils.isEmpty(annotationDrawColor)) {
-                    annotationDrawColor = AppState.get().COLORS.get(0);
+                    annotationDrawColor = AppState.COLORS.get(0);
                 }
 
                 controller.saveChanges(drawView.getPoints(), Color.parseColor(annotationDrawColor));
@@ -2172,13 +2168,13 @@ public class DragingDialogs {
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View a = inflater.inflate(R.layout.edit_panel, null, false);
-                final GridView grid = (GridView) a.findViewById(R.id.gridColors);
+                final GridView grid = a.findViewById(R.id.gridColors);
 
                 if (AppState.get().editWith == AppState.EDIT_DELETE) {
-                    AppState.get().annotationDrawColor = AppState.get().COLORS.get(0);
+                    AppState.get().annotationDrawColor = AppState.COLORS.get(0);
                 }
 
-                final BaseItemAdapter<String> adapter = new BaseItemAdapter<String>(AppState.get().COLORS) {
+                final BaseItemAdapter<String> adapter = new BaseItemAdapter<String>(AppState.COLORS) {
 
                     @Override
                     public View getView(int pos, View arg1, ViewGroup arg2, String color) {
@@ -2187,7 +2183,7 @@ public class DragingDialogs {
                             view = inflater.inflate(R.layout.item_color_cut, arg2, false);
                         } else if (pos == 1) {
                             view = inflater.inflate(R.layout.item_color_spinner, arg2, false);
-                            final Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
+                            final Spinner spinner = view.findViewById(R.id.spinner1);
                             final List<Float> values = Arrays.asList(0.5f, 0.75f, 1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f);
                             spinner.setAdapter(new BaseItemLayoutAdapter<Float>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item, values) {
 
@@ -2223,7 +2219,7 @@ public class DragingDialogs {
 
                         } else if (pos == 2121) {
                             view = inflater.inflate(R.layout.item_color_spinner, arg2, false);
-                            final Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
+                            final Spinner spinner = view.findViewById(R.id.spinner1);
                             final List<Integer> values = Arrays.asList(100, 90, 80, 70, 60, 50, 40, 30, 20, 10);
                             spinner.setAdapter(new BaseItemLayoutAdapter<Integer>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item, values) {
 
@@ -2306,8 +2302,8 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View root = inflater.inflate(R.layout.fragment_include_library, null, false);
 
-                SlidingTabLayout indicator = (SlidingTabLayout) root.findViewById(R.id.slidingTabs);
-                ViewPager pager = (ViewPager) root.findViewById(R.id.pager);
+                SlidingTabLayout indicator = root.findViewById(R.id.slidingTabs);
+                ViewPager pager = root.findViewById(R.id.pager);
                 List<UIFragment> tabFragments = new ArrayList<>();
 
                 tabFragments.add(new SearchFragment2());
@@ -2455,7 +2451,7 @@ public class DragingDialogs {
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View a = inflater.inflate(R.layout.dialog_bookmarks, null, false);
-                final ListView contentList = (ListView) a.findViewById(R.id.contentList);
+                final ListView contentList = a.findViewById(R.id.contentList);
                 contentList.setDivider(new ColorDrawable(Color.TRANSPARENT));
                 contentList.setVerticalScrollBarEnabled(false);
                 contentList.setAdapter(bookmarksAdapter);
@@ -2582,7 +2578,6 @@ public class DragingDialogs {
                         prev = position;
 
                     }
-                    return;
                 }
 
             }
@@ -2596,7 +2591,7 @@ public class DragingDialogs {
                     return view;
                 }
 
-                LinearLayout attachemnts = (LinearLayout) view.findViewById(R.id.mediaAttachments);
+                LinearLayout attachemnts = view.findViewById(R.id.mediaAttachments);
                 List<String> mediaAttachments = controller.getMediaAttachments();
                 if (mediaAttachments != null && !mediaAttachments.isEmpty()) {
                     view.findViewById(R.id.mediaAttachmentsScroll).setVisibility(View.VISIBLE);
@@ -2627,8 +2622,6 @@ public class DragingDialogs {
                                         dialog = MyProgressDialog.show(controller.getActivity(), controller.getString(R.string.msg_loading));
                                     }
 
-                                    ;
-
                                     @Override
                                     protected File doInBackground(Void... params) {
                                         return EpubExtractor.extractAttachment(controller.getCurrentBook(), nameFull);
@@ -2658,7 +2651,6 @@ public class DragingDialogs {
 
                                     }
 
-                                    ;
                                 }.execute();
 
                             }
@@ -2668,7 +2660,7 @@ public class DragingDialogs {
                     view.findViewById(R.id.mediaAttachmentsScroll).setVisibility(View.GONE);
                 }
 
-                final ListView contentList = (ListView) view.findViewById(R.id.contentList);
+                final ListView contentList = view.findViewById(R.id.contentList);
                 contentList.setSelector(android.R.color.transparent);
                 contentList.setVerticalScrollBarEnabled(false);
 
@@ -2701,7 +2693,7 @@ public class DragingDialogs {
                 };
                 contentList.postDelayed(showOutline, 50);
 
-                if (false && BookType.FB2.is(controller.getCurrentBook().getPath())) {
+                if (false) {
                     setTitlePopupIcon(AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS ? R.drawable.my_glyphicons_114_paragraph_justify : R.drawable.my_glyphicons_114_justify_sub);
                     titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
@@ -2742,7 +2734,7 @@ public class DragingDialogs {
         new DragingPopup(anchor.getContext().getString(R.string.split_pages_in_two), anchor, 300, 200) {
             SeekBar seek;
             EditText editPercent;
-            Runnable updateUI = new Runnable() {
+            final Runnable updateUI = new Runnable() {
 
                 @Override
                 public void run() {
@@ -2760,9 +2752,9 @@ public class DragingDialogs {
                 PageImageState.get().isShowCuttingLine = false;
 
                 View view = inflater.inflate(R.layout.slice_dialog, null, false);
-                editPercent = (EditText) view.findViewById(R.id.editPercent);
+                editPercent = view.findViewById(R.id.editPercent);
 
-                seek = (SeekBar) view.findViewById(R.id.seekBar);
+                seek = view.findViewById(R.id.seekBar);
                 seek.setMax(100);
 
                 view.findViewById(R.id.imagePlus).setOnClickListener(new OnClickListener() {
@@ -2811,7 +2803,7 @@ public class DragingDialogs {
                     }
                 });
 
-                Button buttonCancel = (Button) view.findViewById(R.id.buttonCancel);
+                Button buttonCancel = view.findViewById(R.id.buttonCancel);
                 buttonCancel.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -2829,7 +2821,7 @@ public class DragingDialogs {
                     }
                 });
 
-                Button buttonApply = (Button) view.findViewById(R.id.buttonApply);
+                Button buttonApply = view.findViewById(R.id.buttonApply);
 
                 buttonApply.setOnClickListener(new OnClickListener() {
 
@@ -2875,7 +2867,7 @@ public class DragingDialogs {
             public View getContentView(LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_flipping_pages, null, false);
 
-                CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
+                CheckBox isScrollAnimation = inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2886,7 +2878,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
+                CheckBox isLoopAutoplay = inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -2896,7 +2888,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
+                CheckBox isShowToolBar = inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.get().isShowToolBar);
                 isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -2909,7 +2901,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek flippingInterval = (CustomSeek) inflate.findViewById(R.id.flippingInterval);
+                final CustomSeek flippingInterval = inflate.findViewById(R.id.flippingInterval);
                 flippingInterval.init(1, 240, AppState.get().flippingInterval);
                 flippingInterval.setOnSeekChanged(new IntegerResponse() {
 
@@ -2972,9 +2964,9 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_status_bar_settings, null, false);
 
-                final CheckBox isShowReadingProgress = (CheckBox) inflate.findViewById(R.id.isShowReadingProgress);
-                final CheckBox isShowChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowChaptersOnProgress);
-                final CheckBox isShowSubChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowSubChaptersOnProgress);
+                final CheckBox isShowReadingProgress = inflate.findViewById(R.id.isShowReadingProgress);
+                final CheckBox isShowChaptersOnProgress = inflate.findViewById(R.id.isShowChaptersOnProgress);
+                final CheckBox isShowSubChaptersOnProgress = inflate.findViewById(R.id.isShowSubChaptersOnProgress);
 
                 isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
                 isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3038,7 +3030,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final EditText musicText = (EditText) inflate.findViewById(R.id.musicText);
+                final EditText musicText = inflate.findViewById(R.id.musicText);
                 musicText.setText(AppState.get().musicText);
                 ((View) musicText.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.musicTextOk).setOnClickListener(new OnClickListener() {
@@ -3054,7 +3046,7 @@ public class DragingDialogs {
                 });
                 ///
 
-                CheckBox isShowRectangularTapZones = (CheckBox) inflate.findViewById(R.id.isShowRectangularTapZones);
+                CheckBox isShowRectangularTapZones = inflate.findViewById(R.id.isShowRectangularTapZones);
                 isShowRectangularTapZones.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
                 isShowRectangularTapZones.setChecked(AppState.get().isShowRectangularTapZones);
                 isShowRectangularTapZones.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -3064,7 +3056,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowLineDividing = (CheckBox) inflate.findViewById(R.id.isShowLineDividing);
+                CheckBox isShowLineDividing = inflate.findViewById(R.id.isShowLineDividing);
                 isShowLineDividing.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
                 isShowLineDividing.setChecked(AppState.get().isShowLineDividing);
                 isShowLineDividing.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -3076,7 +3068,7 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isShowLastPageRed = (CheckBox) inflate.findViewById(R.id.isShowLastPageRed);
+                CheckBox isShowLastPageRed = inflate.findViewById(R.id.isShowLastPageRed);
                 isShowLastPageRed.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
                 isShowLastPageRed.setChecked(AppState.get().isShowLastPageRed);
                 isShowLastPageRed.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -3090,7 +3082,7 @@ public class DragingDialogs {
 
                 ///
 
-                CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
+                CheckBox isRewindEnable = inflate.findViewById(R.id.isRewindEnable);
                 isRewindEnable.setChecked(AppState.get().isRewindEnable);
                 isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3100,7 +3092,7 @@ public class DragingDialogs {
                     }
                 });
                 // isShowBookmarsPanel
-                CheckBox isShowBookmarsPanelInMusicMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
+                CheckBox isShowBookmarsPanelInMusicMode = inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
 
                 isShowBookmarsPanelInMusicMode.setChecked(AppState.get().isShowBookmarsPanelInMusicMode);
                 isShowBookmarsPanelInMusicMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3114,7 +3106,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowBookmarsPanelInScrollMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInScrollMode);
+                CheckBox isShowBookmarsPanelInScrollMode = inflate.findViewById(R.id.isShowBookmarsPanelInScrollMode);
 
                 isShowBookmarsPanelInScrollMode.setChecked(AppState.get().isShowBookmarsPanelInScrollMode);
                 isShowBookmarsPanelInScrollMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3128,7 +3120,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowBookmarsPanelInBookMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInBookMode);
+                CheckBox isShowBookmarsPanelInBookMode = inflate.findViewById(R.id.isShowBookmarsPanelInBookMode);
 
                 isShowBookmarsPanelInBookMode.setChecked(AppState.get().isShowBookmarsPanelInBookMode);
                 isShowBookmarsPanelInBookMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3142,7 +3134,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowBookmarsPanelText = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelText);
+                CheckBox isShowBookmarsPanelText = inflate.findViewById(R.id.isShowBookmarsPanelText);
                 isShowBookmarsPanelText.setChecked(AppState.get().isShowBookmarsPanelText);
                 isShowBookmarsPanelText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3157,7 +3149,7 @@ public class DragingDialogs {
 
                 //
 
-                final CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
+                final CheckBox isShowToolBar = inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.get().isShowToolBar);
                 isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3171,10 +3163,10 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isShowPanelBookName = (CheckBox) inflate.findViewById(R.id.isShowPanelBookName);
+                final CheckBox isShowPanelBookName = inflate.findViewById(R.id.isShowPanelBookName);
 
                 if (controller.isBookMode()) {
-                    isShowPanelBookName.setEnabled(AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP ? false : true);
+                    isShowPanelBookName.setEnabled(AppState.get().statusBarPosition != AppState.STATUSBAR_POSITION_TOP);
                 }
 
                 isShowPanelBookName.setChecked(controller.isBookMode() ? AppState.get().isShowPanelBookNameBookMode : AppState.get().isShowPanelBookNameScrollMode);
@@ -3195,7 +3187,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isShowTime = (CheckBox) inflate.findViewById(R.id.isShowTime);
+                final CheckBox isShowTime = inflate.findViewById(R.id.isShowTime);
                 isShowTime.setChecked(AppState.get().isShowTime);
                 isShowTime.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3211,7 +3203,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isShowBattery = (CheckBox) inflate.findViewById(R.id.isShowBattery);
+                final CheckBox isShowBattery = inflate.findViewById(R.id.isShowBattery);
                 isShowBattery.setChecked(AppState.get().isShowBattery);
                 isShowBattery.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3242,7 +3234,7 @@ public class DragingDialogs {
                     );//
 
                     final View statusBarPositionParent = inflate.findViewById(R.id.statusBarPositionParent);
-                    final TextView statusBarPosition = (TextView) inflate.findViewById(R.id.statusBarPosition);
+                    final TextView statusBarPosition = inflate.findViewById(R.id.statusBarPosition);
                     statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
                     TxtUtils.underlineTextView(statusBarPosition);
 
@@ -3297,7 +3289,7 @@ public class DragingDialogs {
                         controller.getString(R.string.percent) //
                 );//
 
-                final TextView pageNumberFormat = (TextView) inflate.findViewById(R.id.pageNumberFormat);
+                final TextView pageNumberFormat = inflate.findViewById(R.id.pageNumberFormat);
                 pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
                 TxtUtils.underlineTextView(pageNumberFormat);
 
@@ -3329,7 +3321,7 @@ public class DragingDialogs {
 
                 // Chpater format
 
-                final TextView chapterFormat = (TextView) inflate.findViewById(R.id.chapterFormat);
+                final TextView chapterFormat = inflate.findViewById(R.id.chapterFormat);
                 chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
                 TxtUtils.underlineTextView(chapterFormat);
 
@@ -3361,7 +3353,7 @@ public class DragingDialogs {
 
                 /// asd
 
-                final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
+                final CustomSeek statusBarTextSize = inflate.findViewById(R.id.statusBarTextSize);
                 statusBarTextSize.setTitleTextWidth(Dips.dpToPx(100));
 
                 statusBarTextSize.init(5, 30, controller.isBookMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
@@ -3383,7 +3375,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek progressLineHeight = (CustomSeek) inflate.findViewById(R.id.progressLineHeight);
+                final CustomSeek progressLineHeight = inflate.findViewById(R.id.progressLineHeight);
                 progressLineHeight.setTitleTextWidth(Dips.dpToPx(100));
                 progressLineHeight.init(0, 10, AppState.get().progressLineHeight);
                 progressLineHeight.setOnSeekChanged(new IntegerResponse() {
@@ -3400,7 +3392,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomColorView statusBarColorDay = (CustomColorView) inflate.findViewById(R.id.statusBarColorDay);
+                final CustomColorView statusBarColorDay = inflate.findViewById(R.id.statusBarColorDay);
                 statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays, AppState.get().tintColor));
                 statusBarColorDay.init(AppState.get().statusBarColorDay);
                 statusBarColorDay.setOnColorChanged(new StringResponse() {
@@ -3435,7 +3427,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomColorView statusBarColorNight = (CustomColorView) inflate.findViewById(R.id.statusBarColorNight);
+                final CustomColorView statusBarColorNight = inflate.findViewById(R.id.statusBarColorNight);
                 statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights, AppState.get().tintColor));
                 statusBarColorNight.init(AppState.get().statusBarColorNight);
                 statusBarColorNight.setOnColorChanged(new StringResponse() {
@@ -3516,7 +3508,7 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_adv_preferences, null, false);
 
-                CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
+                CheckBox isLoopAutoplay = inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 // isLoopAutoplay.setVisibility(AppSP.get().readingMode ==
                 // AppState.READEING_MODE_BOOK ?
@@ -3529,7 +3521,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isScrollSpeedByVolumeKeys = (CheckBox) inflate.findViewById(R.id.isScrollSpeedByVolumeKeys);
+                CheckBox isScrollSpeedByVolumeKeys = inflate.findViewById(R.id.isScrollSpeedByVolumeKeys);
                 isScrollSpeedByVolumeKeys.setChecked(AppState.get().isScrollSpeedByVolumeKeys);
                 isScrollSpeedByVolumeKeys.setVisibility(View.GONE);
                 isScrollSpeedByVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3540,7 +3532,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isBrighrnessEnable = (CheckBox) inflate.findViewById(R.id.isBrighrnessEnable);
+                CheckBox isBrighrnessEnable = inflate.findViewById(R.id.isBrighrnessEnable);
                 isBrighrnessEnable.setChecked(AppState.get().isBrighrnessEnable);
                 isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3550,7 +3542,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isAllowMinBrigthness = (CheckBox) inflate.findViewById(R.id.isAllowMinBrigthness);
+                CheckBox isAllowMinBrigthness = inflate.findViewById(R.id.isAllowMinBrigthness);
                 isAllowMinBrigthness.setChecked(AppState.get().isAllowMinBrigthness);
                 isAllowMinBrigthness.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3562,7 +3554,7 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
+                CheckBox isShowLongBackDialog = inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
                 isShowLongBackDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3572,7 +3564,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
+                CheckBox highlightByLetters = inflate.findViewById(R.id.highlightByLetters);
                 highlightByLetters.setChecked(AppState.get().selectingByLetters);
                 highlightByLetters.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3583,13 +3575,13 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
+                CheckBox isSelectTexByTouch = inflate.findViewById(R.id.isSelectTexByTouch);
                 isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
                 isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
                 isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
 
 
-                CheckBox isAllowTextSelection = (CheckBox) inflate.findViewById(R.id.isAllowTextSelection);
+                CheckBox isAllowTextSelection = inflate.findViewById(R.id.isAllowTextSelection);
                 isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
                 isAllowTextSelection.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     AppState.get().isAllowTextSelection = isChecked;
@@ -3608,15 +3600,15 @@ public class DragingDialogs {
                 isSelectTexByTouch.setEnabled(AppState.get().isAllowTextSelection);
 
 
-                CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
+                CheckBox isZoomInOutWithVolueKeys = inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isZoomInOutWithVolueKeys = isChecked);
 
-                CheckBox isZoomInOutWithLock = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithLock);
+                CheckBox isZoomInOutWithLock = inflate.findViewById(R.id.isZoomInOutWithLock);
                 isZoomInOutWithLock.setChecked(AppState.get().isZoomInOutWithLock);
                 isZoomInOutWithLock.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isZoomInOutWithLock = isChecked);
 
-                final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
+                final CustomSeek mouseWheelSpeed = inflate.findViewById(R.id.seekWheelSpeed);
                 mouseWheelSpeed.getTitleText().setSingleLine(false);
                 mouseWheelSpeed.init(1, 200, AppState.get().mouseWheelSpeed);
                 mouseWheelSpeed.setOnSeekChanged(result -> {
@@ -3624,7 +3616,7 @@ public class DragingDialogs {
                     return false;
                 });
 
-                CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
+                CheckBox isScrollAnimation = inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3635,7 +3627,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableVerticalSwipe);
+                CheckBox isDisableSwipe = inflate.findViewById(R.id.isEnableVerticalSwipe);
                 isDisableSwipe.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isDisableSwipe.setChecked(AppState.get().isEnableVerticalSwipe);
                 isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3646,7 +3638,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
+                final ImageView isSwipeGestureReverse = inflate.findViewById(R.id.isSwipeGestureReverse);
                 isSwipeGestureReverse.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_212_arrow_up : R.drawable.glyphicons_211_arrow_down);
                 isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
@@ -3658,7 +3650,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isEnableHorizontalSwipe = (CheckBox) inflate.findViewById(R.id.isEnableHorizontalSwipe);
+                CheckBox isEnableHorizontalSwipe = inflate.findViewById(R.id.isEnableHorizontalSwipe);
                 isEnableHorizontalSwipe.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isEnableHorizontalSwipe.setChecked(AppState.get().isEnableHorizontalSwipe);
                 isEnableHorizontalSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3669,7 +3661,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
+                CheckBox isVibration = inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);
                 isVibration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3678,7 +3670,7 @@ public class DragingDialogs {
                         AppState.get().isVibration = isChecked;
                     }
                 });
-                CheckBox isExperimental = (CheckBox) inflate.findViewById(R.id.isExperimental);
+                CheckBox isExperimental = inflate.findViewById(R.id.isExperimental);
                 isExperimental.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
                 isExperimental.setText(isExperimental.getText() + " (SVG, MathML)");
                 isExperimental.setChecked(AppState.get().isExperimental);
@@ -3690,7 +3682,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isReferenceMode = (CheckBox) inflate.findViewById(R.id.isReferenceMode);
+                CheckBox isReferenceMode = inflate.findViewById(R.id.isReferenceMode);
                 isReferenceMode.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
                 isReferenceMode.setChecked(AppState.get().isReferenceMode);
                 isReferenceMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3702,7 +3694,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
+                CheckBox isOLED = inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3712,7 +3704,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isLockPDF = (CheckBox) inflate.findViewById(R.id.isLockPDF);
+                CheckBox isLockPDF = inflate.findViewById(R.id.isLockPDF);
                 isLockPDF.setChecked(AppState.get().isLockPDF);
                 isLockPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isLockPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3723,7 +3715,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox alwaysTwoPages = (CheckBox) inflate.findViewById(R.id.alwaysTwoPages);
+                CheckBox alwaysTwoPages = inflate.findViewById(R.id.alwaysTwoPages);
                 alwaysTwoPages.setVisibility(TxtUtils.visibleIf(AppSP.get().readingMode == AppState.READING_MODE_BOOK));
                 alwaysTwoPages.setChecked(AppState.get().alwaysTwoPages);
                 alwaysTwoPages.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3734,7 +3726,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isMirrorImage = (CheckBox) inflate.findViewById(R.id.isMirrorImage);
+                CheckBox isMirrorImage = inflate.findViewById(R.id.isMirrorImage);
                 isMirrorImage.setChecked(AppState.get().isMirrorImage);
                 isMirrorImage.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3753,7 +3745,7 @@ public class DragingDialogs {
                 isBionicMode.setText(TxtUtils.fromHtml(txt));
 
 
-                CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
+                CheckBox isCropPDF = inflate.findViewById(R.id.isCropPDF);
                 isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isCropPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3764,7 +3756,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isCustomizeBgAndColors = (CheckBox) inflate.findViewById(R.id.isCustomizeBgAndColors);
+                CheckBox isCustomizeBgAndColors = inflate.findViewById(R.id.isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isCustomizeBgAndColors.setChecked(AppState.get().isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3781,7 +3773,7 @@ public class DragingDialogs {
                         }
                     }
                 });
-                final CheckBox isReplaceWhite = (CheckBox) inflate.findViewById(R.id.isReplaceWhite);
+                final CheckBox isReplaceWhite = inflate.findViewById(R.id.isReplaceWhite);
                 isReplaceWhite.setChecked(AppState.get().isReplaceWhite);
                 isReplaceWhite.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
@@ -3796,7 +3788,7 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isIgnoreAnnotatations = (CheckBox) inflate.findViewById(R.id.isIgnoreAnnotatations);
+                CheckBox isIgnoreAnnotatations = inflate.findViewById(R.id.isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setChecked(AppState.get().isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3809,7 +3801,7 @@ public class DragingDialogs {
 
                 isIgnoreAnnotatations.setVisibility(!(AppSP.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                CheckBox isSaveAnnotatationsAutomatically = (CheckBox) inflate.findViewById(R.id.isSaveAnnotatationsAutomatically);
+                CheckBox isSaveAnnotatationsAutomatically = inflate.findViewById(R.id.isSaveAnnotatationsAutomatically);
                 isSaveAnnotatationsAutomatically.setChecked(AppState.get().isSaveAnnotatationsAutomatically);
                 isSaveAnnotatationsAutomatically.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3823,7 +3815,7 @@ public class DragingDialogs {
                 isSaveAnnotatationsAutomatically.setVisibility(!(AppSP.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
 
-                CheckBox isCutRTL = (CheckBox) inflate.findViewById(R.id.isCutRTL);
+                CheckBox isCutRTL = inflate.findViewById(R.id.isCutRTL);
                 isCutRTL.setChecked(AppState.get().isCutRTL);
                 isCutRTL.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3833,7 +3825,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView pageQuality = (TextView) inflate.findViewById(R.id.pageQuality);
+                final TextView pageQuality = inflate.findViewById(R.id.pageQuality);
                 ((ViewGroup) pageQuality.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK && !ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
                 TxtUtils.underlineTextView(pageQuality);
@@ -3860,7 +3852,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView pagesInMemory = (TextView) inflate.findViewById(R.id.pagesInMemory);
+                final TextView pagesInMemory = inflate.findViewById(R.id.pagesInMemory);
                 ((ViewGroup) pagesInMemory.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
 
                 pagesInMemory.setText("" + AppState.get().pagesInMemory);
@@ -3910,7 +3902,7 @@ public class DragingDialogs {
                 });
 
                 ///
-                final TextView inactivityTime = (TextView) inflate.findViewById(R.id.inactivityTime);
+                final TextView inactivityTime = inflate.findViewById(R.id.inactivityTime);
                 inactivityTime.setText(AppState.get().inactivityTime == -1 ? controller.getString(R.string.system) : "" + AppState.get().inactivityTime);
                 TxtUtils.underlineTextView(inactivityTime);
                 inactivityTime.setOnClickListener(new OnClickListener() {
@@ -3959,7 +3951,7 @@ public class DragingDialogs {
 
                 ///
 
-                final TextView rotate = (TextView) inflate.findViewById(R.id.rotate);
+                final TextView rotate = inflate.findViewById(R.id.rotate);
                 ((ViewGroup) rotate.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
 
                 rotate.setText("" + AppState.get().rotate + "°");
@@ -3980,7 +3972,7 @@ public class DragingDialogs {
                     }
                 });
                 {
-                    final TextView tapzoneSize = (TextView) inflate.findViewById(R.id.tapzoneSize);
+                    final TextView tapzoneSize = inflate.findViewById(R.id.tapzoneSize);
                     tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
                     TxtUtils.underlineTextView(tapzoneSize);
                     tapzoneSize.setOnClickListener(new OnClickListener() {
@@ -4008,7 +4000,7 @@ public class DragingDialogs {
                 }
                 // double tap
                 {
-                    final TextView antiAliasLevel = (TextView) inflate.findViewById(R.id.antiAliasLevel);
+                    final TextView antiAliasLevel = inflate.findViewById(R.id.antiAliasLevel);
                     antiAliasLevel.setText("" + AppState.get().antiAliasLevel);
                     TxtUtils.underlineTextView(antiAliasLevel);
                     antiAliasLevel.setOnClickListener(new OnClickListener() {
@@ -4017,7 +4009,7 @@ public class DragingDialogs {
                         @Override
                         public void onClick(View v) {
                             final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                            for (int i = 0; i <= 8; i += 1) {
+                            for (int i = 1; i <= 8; i += 1) {
                                 final int number = i;
                                 popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -4061,7 +4053,7 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_NOTHING, //
                         AppState.DOUBLE_CLICK_START_STOP_TTS //
                 );//
-                final TextView doubleClickAction1 = (TextView) inflate.findViewById(R.id.doubleTapValue);
+                final TextView doubleClickAction1 = inflate.findViewById(R.id.doubleTapValue);
                 doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
                 TxtUtils.underlineTextView(doubleClickAction1);
 
@@ -4089,7 +4081,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
+                final TextView tapzoneCustomize = inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);
                 tapzoneCustomize.setOnClickListener(new OnClickListener() {
 
@@ -4099,7 +4091,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView allocatedMemorySize = (TextView) inflate.findViewById(R.id.allocatedMemorySize);
+                final TextView allocatedMemorySize = inflate.findViewById(R.id.allocatedMemorySize);
                 allocatedMemorySize.setText("" + AppState.get().allocatedMemorySize + "Mb");
                 TxtUtils.underlineTextView(allocatedMemorySize);
                 allocatedMemorySize.setOnClickListener(new OnClickListener() {
@@ -4126,7 +4118,7 @@ public class DragingDialogs {
                 });
 
                 // remind rest time
-                final TextView remindRestTime = (TextView) inflate.findViewById(R.id.remindRestTime);
+                final TextView remindRestTime = inflate.findViewById(R.id.remindRestTime);
                 final String minutesString = controller.getString(R.string.minutes).toLowerCase(Locale.US);
                 if (AppState.get().remindRestTime == -1) {
                     remindRestTime.setText(R.string.never);
@@ -4173,7 +4165,7 @@ public class DragingDialogs {
 
                 // rotate
 
-                final TextView rotateViewPager = (TextView) inflate.findViewById(R.id.rotateViewPager);
+                final TextView rotateViewPager = inflate.findViewById(R.id.rotateViewPager);
                 ((ViewGroup) rotateViewPager.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
                 TxtUtils.underlineTextView(rotateViewPager);
@@ -4208,7 +4200,7 @@ public class DragingDialogs {
                     }
                 });
                 // rtl
-                final TextView rtlText = (TextView) inflate.findViewById(R.id.rtlText);
+                final TextView rtlText = inflate.findViewById(R.id.rtlText);
                 ((ViewGroup) rtlText.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 if (AppState.get().isRTL) {
                     rtlText.setText(R.string.right_to_left);
@@ -4259,7 +4251,7 @@ public class DragingDialogs {
 
                 // BETA
 
-                final CustomSeek decodingThreadPriority = (CustomSeek) inflate.findViewById(R.id.decodingThreadPriority);
+                final CustomSeek decodingThreadPriority = inflate.findViewById(R.id.decodingThreadPriority);
                 decodingThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().decodingThreadPriority);
                 decodingThreadPriority.setOnSeekChanged(new IntegerResponse() {
 
@@ -4272,7 +4264,7 @@ public class DragingDialogs {
                 });
                 Views.visibleInBeta(decodingThreadPriority);
 
-                final CustomSeek drawThreadPriority = (CustomSeek) inflate.findViewById(R.id.drawThreadPriority);
+                final CustomSeek drawThreadPriority = inflate.findViewById(R.id.drawThreadPriority);
                 drawThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().drawThreadPriority);
                 drawThreadPriority.setOnSeekChanged(new IntegerResponse() {
 
@@ -4303,8 +4295,6 @@ public class DragingDialogs {
         });
         return dialog;
     }
-
-    ;
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initHash = Objects.appHash();
@@ -4338,7 +4328,7 @@ public class DragingDialogs {
             public View getContentView(final LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_reading_pref, null, false);
 
-                final CustomSeek fontWeight = (CustomSeek) inflate.findViewById(R.id.fontWeight);
+                final CustomSeek fontWeight = inflate.findViewById(R.id.fontWeight);
                 fontWeight.init(1, 9, BookCSS.get().fontWeight / 100);
                 fontWeight.setOnSeekChanged(new IntegerResponse() {
 
@@ -4358,7 +4348,7 @@ public class DragingDialogs {
                         controller.getString(R.string.user_styles)
                 );
 
-                final TextView docStyle = (TextView) inflate.findViewById(R.id.documentStyle);
+                final TextView docStyle = inflate.findViewById(R.id.documentStyle);
 
                 docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
                 TxtUtils.underlineTextView(docStyle);
@@ -4394,7 +4384,7 @@ public class DragingDialogs {
                 });
                 //user styles
                 inflate.findViewById(R.id.userStyles).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
-                final TextView userStyleCss = (TextView) inflate.findViewById(R.id.userStyleCss);
+                final TextView userStyleCss = inflate.findViewById(R.id.userStyleCss);
                 userStyleCss.setText(BookCSS.get().userStyleCss);
                 TxtUtils.underlineTextView(userStyleCss);
 
@@ -4425,7 +4415,7 @@ public class DragingDialogs {
                 // hypens
                 boolean isSupportHypens = controller.isTextFormat();
 
-                CheckBox isAutoHypens = (CheckBox) inflate.findViewById(R.id.isAutoHypens);
+                CheckBox isAutoHypens = inflate.findViewById(R.id.isAutoHypens);
                 isAutoHypens.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
 
                 isAutoHypens.setChecked(BookCSS.get().isAutoHypens);
@@ -4437,9 +4427,9 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
+                final TextView hypenLangLabel = inflate.findViewById(R.id.hypenLangLabel);
 
-                final TextView hypenLang = (TextView) inflate.findViewById(R.id.hypenLang);
+                final TextView hypenLang = inflate.findViewById(R.id.hypenLang);
 
                 hypenLang.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
                 hypenLangLabel.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
@@ -4508,7 +4498,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isDefaultHyphenLanguage = (CheckBox) inflate.findViewById(R.id.isDefaultHyphenLanguage);
+                CheckBox isDefaultHyphenLanguage = inflate.findViewById(R.id.isDefaultHyphenLanguage);
                 isDefaultHyphenLanguage.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 isDefaultHyphenLanguage.setChecked(AppState.get().isDefaultHyphenLanguage);
                 isDefaultHyphenLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -4521,7 +4511,7 @@ public class DragingDialogs {
 
                 // - hypens
                 //
-                CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
+                CheckBox isAccurateFontSize = inflate.findViewById(R.id.isAccurateFontSize);
                 isAccurateFontSize.setVisibility(View.GONE);
                 isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
                 isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4532,7 +4522,7 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowFooterNotesInText = (CheckBox) inflate.findViewById(R.id.isShowFooterNotesInText);
+                CheckBox isShowFooterNotesInText = inflate.findViewById(R.id.isShowFooterNotesInText);
                 isShowFooterNotesInText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 isShowFooterNotesInText.setChecked(AppState.get().isShowFooterNotesInText);
                 isShowFooterNotesInText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4571,7 +4561,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek imageScale = (CustomSeek) inflate.findViewById(R.id.imageScale);
+                final CustomSeek imageScale = inflate.findViewById(R.id.imageScale);
                 imageScale.setFloatResult(true);
                 imageScale.init(1, 50, (int) (BookCSS.get().imageScale * 10), "x");
                 imageScale.setOnSeekChanged(new IntegerResponse() {
@@ -4584,7 +4574,7 @@ public class DragingDialogs {
                 });
 
 
-                final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
+                final CustomSeek lineHeight = inflate.findViewById(R.id.lineHeight);
                 lineHeight.init(12, 30, BookCSS.get().lineHeight12);
                 lineHeight.setOnSeekChanged(new IntegerResponse() {
 
@@ -4595,7 +4585,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek paragraphHeight = (CustomSeek) inflate.findViewById(R.id.paragraphHeight);
+                final CustomSeek paragraphHeight = inflate.findViewById(R.id.paragraphHeight);
                 paragraphHeight.init(0, 20, BookCSS.get().paragraphHeight);
                 paragraphHeight.setOnSeekChanged(new IntegerResponse() {
 
@@ -4606,7 +4596,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek fontParagraph = (CustomSeek) inflate.findViewById(R.id.fontParagraph);
+                final CustomSeek fontParagraph = inflate.findViewById(R.id.fontParagraph);
                 fontParagraph.init(0, 30, BookCSS.get().textIndent);
                 fontParagraph.setOnSeekChanged(new IntegerResponse() {
 
@@ -4617,7 +4607,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek emptyLine = (CustomSeek) inflate.findViewById(R.id.emptyLine);
+                final CustomSeek emptyLine = inflate.findViewById(R.id.emptyLine);
                 boolean isShow =
                         //
                         BookType.FB2.is(controller.getCurrentBook().getPath()) || //
@@ -4637,7 +4627,7 @@ public class DragingDialogs {
 
 // Margins
 
-                final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
+                final CustomSeek marginTop = inflate.findViewById(R.id.marginTop);
                 int maxMargin = Dips.isLargeOrXLargeScreen() ? 400 : 50;
                 marginTop.init(0, maxMargin, BookCSS.get().marginTop);
                 marginTop.setOnSeekChanged(new IntegerResponse() {
@@ -4649,7 +4639,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
+                final CustomSeek marginBottom = inflate.findViewById(R.id.marginBottom);
                 marginBottom.init(0, maxMargin, BookCSS.get().marginBottom);
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
@@ -4660,7 +4650,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
+                final CustomSeek marginLeft = inflate.findViewById(R.id.marginLeft);
                 marginLeft.init(0, maxMargin, BookCSS.get().marginLeft);
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
 
@@ -4671,7 +4661,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
+                final CustomSeek marginRight = inflate.findViewById(R.id.marginRight);
                 marginRight.init(0, maxMargin, BookCSS.get().marginRight);
                 marginRight.setOnSeekChanged(new IntegerResponse() {
 
@@ -4684,7 +4674,7 @@ public class DragingDialogs {
 
                 // font folder
                 LOG.d("fontFolder2-2", BookCSS.get().fontFolder);
-                final TextView fontsFolder = (TextView) inflate.findViewById(R.id.fontsFolder);
+                final TextView fontsFolder = inflate.findViewById(R.id.fontsFolder);
                 TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
                 fontsFolder.setOnClickListener(new OnClickListener() {
 
@@ -4725,7 +4715,7 @@ public class DragingDialogs {
                 alignConst.put(BookCSS.TEXT_ALIGN_CENTER, controller.getString(R.string.center));
 
 // align
-                final TextView textAlign = (TextView) inflate.findViewById(R.id.textAlign);
+                final TextView textAlign = inflate.findViewById(R.id.textAlign);
                 textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
                 textAlign.setOnClickListener(new OnClickListener() {
 
@@ -4750,7 +4740,7 @@ public class DragingDialogs {
                 });
 
 // link color
-                final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
+                final CustomColorView linkColorDay = inflate.findViewById(R.id.linkColorDay);
 
                 linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
                 linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
@@ -4780,7 +4770,7 @@ public class DragingDialogs {
                 });
                 linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
-                final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
+                final CustomColorView linkColorNight = inflate.findViewById(R.id.linkColorNight);
                 linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
                 linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
                 linkColorNight.setOnColorChanged(new StringResponse() {
@@ -4934,7 +4924,7 @@ public class DragingDialogs {
                     }
                 });
 
-                ImageView brightness = (ImageView) inflate.findViewById(R.id.onBrightness);
+                ImageView brightness = inflate.findViewById(R.id.onBrightness);
                 brightness.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -4945,7 +4935,7 @@ public class DragingDialogs {
                 });
                 brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_231_moon);
 
-                final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
+                final ImageView isCrop = inflate.findViewById(R.id.onCrop);
                 // isCrop.setVisibility(controller.isTextFormat() ||
                 // AppSP.get().isCut ? View.GONE : View.VISIBLE);
                 isCrop.setOnClickListener(new View.OnClickListener() {
@@ -4960,7 +4950,7 @@ public class DragingDialogs {
                 });
                 TintUtil.setTintImageWithAlpha(isCrop, !AppSP.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
-                final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
+                final ImageView bookCut = inflate.findViewById(R.id.bookCut);
                 // bookCut.setVisibility(controller.isTextFormat() ? View.GONE :
                 // View.VISIBLE);
                 bookCut.setOnClickListener(new View.OnClickListener() {
@@ -5009,7 +4999,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final ImageView pin = (ImageView) inflate.findViewById(R.id.onPin);
+                final ImageView pin = inflate.findViewById(R.id.onPin);
                 pin.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -5026,7 +5016,7 @@ public class DragingDialogs {
 
                 // TOP panel end
 
-                CheckBox isPreText = (CheckBox) inflate.findViewById(R.id.isPreText);
+                CheckBox isPreText = inflate.findViewById(R.id.isPreText);
                 isPreText.setChecked(AppState.get().isPreText);
                 isPreText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -5039,7 +5029,7 @@ public class DragingDialogs {
                 boolean isTxtOrZip = BookType.TXT.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
                 isPreText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
-                CheckBox isLineBreaksText = (CheckBox) inflate.findViewById(R.id.isLineBreaksText);
+                CheckBox isLineBreaksText = inflate.findViewById(R.id.isLineBreaksText);
                 isLineBreaksText.setChecked(AppState.get().isLineBreaksText);
                 isLineBreaksText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -5055,7 +5045,7 @@ public class DragingDialogs {
 
                 //charsets
 
-                CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
+                CheckBox isCharacterEncoding = inflate.findViewById(R.id.isCharacterEncoding);
 
                 ((View) isCharacterEncoding.getParent()).setVisibility(isTxtOrZip || controller.getCurrentBook().getPath().endsWith(".pdb") ? View.VISIBLE : View.GONE);
                 isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
@@ -5067,7 +5057,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView characterEncoding = (TextView) inflate.findViewById(R.id.characterEncoding);
+                final TextView characterEncoding = inflate.findViewById(R.id.characterEncoding);
                 characterEncoding.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 characterEncoding.setText(AppState.get().characterEncoding);
                 TxtUtils.underlineTextView(characterEncoding);
@@ -5101,7 +5091,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
+                TextView moreSettings = inflate.findViewById(R.id.moreSettings);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.moreSettingsDiv).setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
@@ -5135,7 +5125,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final CustomSeek fontSizeSp = (CustomSeek) inflate.findViewById(R.id.fontSizeSp);
+                final CustomSeek fontSizeSp = inflate.findViewById(R.id.fontSizeSp);
                 fontSizeSp.init(10, 70, BookCSS.get().fontSizeSp);
                 fontSizeSp.setOnSeekChanged(new IntegerResponse() {
 
@@ -5150,7 +5140,7 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                final TextView textFontName = (TextView) inflate.findViewById(R.id.textFontName);
+                final TextView textFontName = inflate.findViewById(R.id.textFontName);
                 textFontName.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -5201,7 +5191,7 @@ public class DragingDialogs {
                 });
 
                 // crop
-                CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
+                CheckBox isCropBorders = inflate.findViewById(R.id.isCropBorders);
                 isCropBorders.setChecked(controller.isCropCurrentBook());
                 isCropBorders.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -5213,7 +5203,7 @@ public class DragingDialogs {
                 });
 
 // volume
-                final CheckBox isReverseKyes = (CheckBox) inflate.findViewById(R.id.isReverseKyes);
+                final CheckBox isReverseKyes = inflate.findViewById(R.id.isReverseKyes);
                 isReverseKyes.setChecked(AppState.get().isReverseKeys);
                 isReverseKyes.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -5223,22 +5213,22 @@ public class DragingDialogs {
                     }
                 });
 
-                isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys ? true : false);
+                isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys);
 
-                CheckBox isUseVolumeKeys = (CheckBox) inflate.findViewById(R.id.isUseVolumeKeys);
+                CheckBox isUseVolumeKeys = inflate.findViewById(R.id.isUseVolumeKeys);
                 isUseVolumeKeys.setChecked(AppState.get().isUseVolumeKeys);
                 isUseVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isUseVolumeKeys = isChecked;
-                        isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys ? true : false);
+                        isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys);
                     }
                 });
 
 // orientation begin
 
-                final TextView screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
+                final TextView screenOrientation = inflate.findViewById(R.id.screenOrientation);
                 screenOrientation.setText(DocumentController.getRotationText());
                 TxtUtils.underlineTextView(screenOrientation);
 
@@ -5272,7 +5262,7 @@ public class DragingDialogs {
 // brightness end
 // dicts
 
-                final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);
+                final TextView selectedDictionaly = inflate.findViewById(R.id.selectedDictionaly);
                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
                 selectedDictionaly.setOnClickListener(new OnClickListener() {
 
@@ -5299,14 +5289,14 @@ public class DragingDialogs {
 
                 // Colors
 
-                TextView textCustomizeFontBGColor = (TextView) inflate.findViewById(R.id.textCustomizeFontBGColor);
+                TextView textCustomizeFontBGColor = inflate.findViewById(R.id.textCustomizeFontBGColor);
                 if (AppState.get().isCustomizeBgAndColors || controller.isTextFormat()) {
                     textCustomizeFontBGColor.setText(R.string.customize_font_background_colors);
                 } else {
                     textCustomizeFontBGColor.setText(R.string.customize_background_color);
                 }
 
-                final ImageView onDayColorImage = (ImageView) inflate.findViewById(R.id.onDayColorImage);
+                final ImageView onDayColorImage = inflate.findViewById(R.id.onDayColorImage);
                 final TextView textDayColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDayColor));
                 textDayColor.setOnClickListener(new OnClickListener() {
 
@@ -5337,7 +5327,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final ImageView onNigthColorImage = (ImageView) inflate.findViewById(R.id.onNigthColorImage);
+                final ImageView onNigthColorImage = inflate.findViewById(R.id.onNigthColorImage);
                 final TextView textNigthColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onNigthColor));
                 textNigthColor.setOnClickListener(new OnClickListener() {
 
@@ -5364,7 +5354,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
+                final LinearLayout lc = inflate.findViewById(R.id.preColors);
 
                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                 TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
