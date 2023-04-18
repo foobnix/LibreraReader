@@ -105,7 +105,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "Librera Old",
+                    appName      : "Old",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",
@@ -119,7 +119,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "MuPDF-1.11",
+                    appName      : "Beta ",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : librera_appGdriveKey,
@@ -159,7 +159,6 @@ android {
             ]
         }
         pro {
-            minSdk 19
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [

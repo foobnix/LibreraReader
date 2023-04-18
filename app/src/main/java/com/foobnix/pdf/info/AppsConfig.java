@@ -38,11 +38,21 @@ public class AppsConfig {
     public static boolean IS_NO_ADS = false;
 
     static {
-            System.loadLibrary("MuPDF_1.21.1");
+        try {
+            System.loadLibrary(ENGINE_MuPDF_LATEST);
+        } catch (UnsatisfiedLinkError e) {
+            LOG.e(e);
+            try {
+                System.loadLibrary(ENGINE_MuPDF_1_11);
+            } catch (UnsatisfiedLinkError e1) {
+                LOG.e(e1);
+            }
+        }
+        AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
     }
 
     public static void loadEngine(Context c) {
-        if(true){
+        if (true) {
             return;
         }
         String engine = getCurrentEngine(c);
@@ -60,7 +70,7 @@ public class AppsConfig {
             }
             LOG.e(e);
         }
-        AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
+
 
     }
 
@@ -71,8 +81,7 @@ public class AppsConfig {
     }
 
     public static String getCurrentEngine(Context c) {
-        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE)
-                .getString("version", ENGINE_MuPDF_LATEST);
+        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_MuPDF_LATEST);
     }
 
 

@@ -18,11 +18,13 @@ cd ../
 ./gradlew assembleEpub_readerRelease
 
 cd Builder
-./link_two_mupdf.sh
+link_to_mupdf_1.11.sh
 
 cd ../
 
 ./gradlew assembleProRelease
+./gradlew assembleTts_readerRelease
+./gradlew assembleEpub_readerRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
