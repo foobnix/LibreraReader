@@ -39,13 +39,6 @@ strong{font-weight:bold}
 style{display:none}
 sub{font-size:0.83em;vertical-align:sub}
 
-table{display:block !important; margin:1em !important;font-size:0.8em;}
-tr,thead,tfoot   {display:block !important;margin-top:1em !important;}
-td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}
-tbody {display:block !important;}
-th{font-weight:bold; text-align:center}
-td,th, textarea,form,meter,progress, fieldset{display:block !important;border-style:solid; border-width:1px; padding:0.4em;}
-
 ul{display:block;list-style-type:disc;margin:1em;padding:0 0 0 30pt}
 ul ul{list-style-type:circle}
 ul ul ul{list-style-type:square}
@@ -65,7 +58,6 @@ description>title-info>coverpage{display:block;}
 body,section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 
-a{color:#06C;text-decoration:underline}
 a[type=note]{font-size:small;vertical-align:super}
 emphasis{font-style:italic}
 strong{font-weight:bold}
@@ -92,6 +84,7 @@ p>image{display:block;}
 b>span,strong>span{font-weight:normal}
 book>title, bookinfo {display:none}
 
+
 svg{display:block;}
 math, m, svg>text {display:none}
 sup,sup>* {font-size:0.83em;vertical-align:super; font-weight:bold}
@@ -111,4 +104,15 @@ video,audio, canvas{color:red; font-size:0.7em;}
 code, var, samp {font-size:0.8em;}
 summary{display:block}
 textarea{margin:0.5em;padding:1em;}
+
+
+table{display:table;border-spacing:2px}
+tbody{display:table-row-group}
+td{display:table-cell;padding:1px;background-color:inherit}
+tfoot{display:table-footer-group}
+th{display:table-cell;font-weight:bold;padding:1px;text-align:center;background-color:inherit}
+thead{display:table-header-group}
+tr{display:table-row}
+colgroup{display:table-column-group}
+col{display:table-column}
 

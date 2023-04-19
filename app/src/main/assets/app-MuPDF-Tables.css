@@ -1,4 +1,3 @@
-@page{margin:3em 2em}
 a{color:#06C;text-decoration:underline}
 address{display:block;font-style:italic}
 b{font-weight:bold}
@@ -37,11 +36,11 @@ strong{font-weight:bold}
 style{display:none}
 sub{font-size:0.83em;vertical-align:sub}
 sup{font-size:0.83em;vertical-align:super}
-table{display:table}
+table{display:table;border-spacing:2px}
 tbody{display:table-row-group}
-td{display:table-cell;padding:1px}
+td{display:table-cell;padding:1px;background-color:inherit}
 tfoot{display:table-footer-group}
-th{display:table-cell;font-weight:bold;padding:1px;text-align:center}
+th{display:table-cell;font-weight:bold;padding:1px;text-align:center;background-color:inherit}
 thead{display:table-header-group}
 tr{display:table-row}
 ul{display:block;list-style-type:disc;margin:1em 0;padding:0 0 0 30pt}
@@ -51,7 +50,6 @@ var{font-style:italic}
 colgroup{display:table-column-group}
 col{display:table-column}
 caption{display:block;text-align:center}
-
 pagebreak{display:block;page-break-before:always}
 dl,ol,ul{margin:0}
 p{margin:0}
@@ -59,7 +57,6 @@ blockquote{margin:0 40px}
 center{display:block;text-align:center}
 big{font-size:1.17em}
 strike{text-decoration:line-through}
-
 FictionBook{display:block;}
 stylesheet,binary{display:none}
 description>*{display:none}
@@ -69,9 +66,6 @@ description>title-info>coverpage{display:block;page-break-before:always;page-bre
 body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 p>image{display:inline}
-table{display:table}
-tr{display:table-row}
-th,td{display:table-cell}
 a{color:#06C;text-decoration:underline}
 a[type=note]{font-size:small;vertical-align:super}
 code{white-space:pre;font-family:monospace}
@@ -90,17 +84,3 @@ empty-line{padding-top:1em}
 p+p{margin-top:0;text-indent:1.5em}
 empty-line+p{margin-top:0}
 section>title{page-break-before:always}
-
-description,description>*{display:none}
-
-
-
-
-
-
-
-
-
-
-
-

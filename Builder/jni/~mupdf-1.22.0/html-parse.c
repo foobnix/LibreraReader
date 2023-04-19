@@ -877,7 +877,15 @@ static void gen2_image_common(fz_context *ctx, struct genstate *g, fz_html_box *
 
 static void gen2_image_html(fz_context *ctx, struct genstate *g, fz_html_box *root_box, fz_xml *node, int display, fz_css_style *style)
 {
-	const char *src = fz_xml_att(node, "src");
+	char *src = fz_xml_att(node, "src");
+
+	if(!src){
+	    src = fz_xml_att(node, "href");
+	 }
+	 if(!src){
+     	 src = fz_xml_att(node, "l:href");
+     }
+
 	if (src)
 	{
 		fz_css_style local_style = *style;
@@ -911,6 +919,10 @@ static void gen2_image_fb2(fz_context *ctx, struct genstate *g, fz_html_box *roo
 	{
 		fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
 		gen2_image_common(ctx, g, root_box, node, fz_keep_image(ctx, img), display, style);
+	}else{
+	        fz_css_style local_style = *style;
+	        fz_image *img = load_html_image(ctx, g->zip, g->base_uri, src);
+    		gen2_image_common(ctx, g, root_box, node, img, display, &local_style);
 	}
 }
 
@@ -1094,8 +1106,9 @@ static void gen2_children(fz_context *ctx, struct genstate *g, fz_html_box *root
 			{
 				gen2_image_html(ctx, g, root_box, node, display, &style);
 			}
-			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
+				gen2_image_html(ctx, g, root_box, node, display, &style);
 				gen2_image_fb2(ctx, g, root_box, node, display, &style);
 			}
 			else if (tag[0]=='s' && tag[1]=='v' && tag[2]=='g' && tag[3]==0)
@@ -1512,35 +1525,37 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 
 	fz_try(ctx)
 	{
-		if (try_fictionbook && fz_xml_find(root, "FictionBook"))
+		if (fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-			fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
-			if (fz_use_document_css(ctx))
-				fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
+
+		    //fz_parse_css(ctx, g.css, user_css, "<default:fb2>");
+			//if (fz_use_document_css(ctx))
+			//	fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = load_fb2_images(ctx, root);
 		}
 		else if (is_mobi)
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
-			fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
+			//fz_parse_css(ctx, g.css, user_css, "<default:html>");
+			//fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 		else
 		{
 			g.is_fb2 = 0;
-			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			//fz_parse_css(ctx, g.css, user_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 
 		if (user_css)
 		{
-			fz_parse_css(ctx, g.css, user_css, "<user>");
-			fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
+
 		}
+		fz_parse_css(ctx, g.css, user_css, "<user>");
+        fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 	}
 	fz_catch(ctx)
 	{
