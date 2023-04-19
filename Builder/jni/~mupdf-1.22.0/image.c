@@ -1275,6 +1275,8 @@ fz_recognize_image_format(fz_context *ctx, unsigned char p[8])
 	if (p[0] == 0x97 && p[1] == 'J' && p[2] == 'B' && p[3] == '2' &&
 		p[4] == '\r' && p[5] == '\n'  && p[6] == 0x1a && p[7] == '\n')
 		return FZ_IMAGE_JBIG2;
+    if (!memcmp(p, "RIFF", 4))
+    		return FZ_IMAGE_WEBP;
 	return FZ_IMAGE_UNKNOWN;
 }
 
@@ -1291,7 +1293,7 @@ fz_new_image_from_buffer(fz_context *ctx, fz_buffer *buffer)
 	int bpc;
 	uint8_t orientation = 0;
 
-	if (len < 8)
+	if (len < 16)
 		fz_throw(ctx, FZ_ERROR_GENERIC, "unknown image file format");
 
 	type = fz_recognize_image_format(ctx, buf);
@@ -1322,6 +1324,9 @@ fz_new_image_from_buffer(fz_context *ctx, fz_buffer *buffer)
 	case FZ_IMAGE_BMP:
 		fz_load_bmp_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
 		break;
+	case FZ_IMAGE_WEBP:
+    		fz_load_webp_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
+    		break;
 	case FZ_IMAGE_JBIG2:
 		fz_load_jbig2_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
 		bpc = 1;
