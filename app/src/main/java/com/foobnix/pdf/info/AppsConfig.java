@@ -30,7 +30,7 @@ public class AppsConfig {
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
     public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
-    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.21.1";
+    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.22.0";
     public static int MUPDF_VERSION = 0;
     public static int MUPDF_1_11 = 111;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;

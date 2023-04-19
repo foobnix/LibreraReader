@@ -61,7 +61,16 @@ static fz_buffer *read_dir_entry(fz_context *ctx, fz_archive *arch, const char *
 	fz_strlcpy(path, dir->path, sizeof path);
 	fz_strlcat(path, "/", sizeof path);
 	fz_strlcat(path, name, sizeof path);
-	return fz_read_file(ctx, path);
+
+	fz_buffer *ubuf;
+	fz_try(ctx)
+	 	ubuf = fz_read_file(ctx, path);
+	fz_catch(ctx){
+		 ubuf = fz_new_buffer(ctx, 1);
+       	  ubuf->len = 1;
+	}
+	return ubuf;
+
 }
 
 static int has_dir_entry(fz_context *ctx, fz_archive *arch, const char *name)

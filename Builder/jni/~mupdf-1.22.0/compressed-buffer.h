@@ -159,6 +159,7 @@ enum
 	FZ_IMAGE_PNG,
 	FZ_IMAGE_PNM,
 	FZ_IMAGE_TIFF,
+	FZ_IMAGE_WEBP,
 };
 
 /**

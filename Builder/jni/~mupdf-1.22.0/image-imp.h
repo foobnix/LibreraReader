@@ -31,6 +31,7 @@ fz_pixmap *fz_load_gif(fz_context *ctx, const unsigned char *data, size_t size);
 fz_pixmap *fz_load_bmp(fz_context *ctx, const unsigned char *data, size_t size);
 fz_pixmap *fz_load_pnm(fz_context *ctx, const unsigned char *data, size_t size);
 fz_pixmap *fz_load_jbig2(fz_context *ctx, const unsigned char *data, size_t size);
+fz_pixmap *fz_load_webp(fz_context *ctx, const unsigned char *data, size_t size);
 
 void fz_load_jpeg_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace, uint8_t *orientation);
 void fz_load_jpx_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace);
@@ -41,5 +42,6 @@ void fz_load_gif_info(fz_context *ctx, const unsigned char *data, size_t size, i
 void fz_load_bmp_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace);
 void fz_load_pnm_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace);
 void fz_load_jbig2_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace);
+void fz_load_webp_info(fz_context *ctx, const unsigned char *data, size_t size, int *w, int *h, int *xres, int *yres, fz_colorspace **cspace);
 
 #endif

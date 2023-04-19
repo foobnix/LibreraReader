@@ -118,7 +118,7 @@ public class BookCSS {
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGHTS;
-    public String userStyleCss = "app-Librera.css";
+    public String userStyleCss = "app-MuPDF-Tables.css";//app-MuPDF-Tables.css app-Librera.css
     private String lastBookPathCache = "";
     private String trackPathCache;
 

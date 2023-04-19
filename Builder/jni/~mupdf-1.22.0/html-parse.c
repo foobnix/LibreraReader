@@ -478,11 +478,11 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 			fz_urldecode(path);
 			buf = fz_read_archive_entry(ctx, zip, path);
 		}
-#if FZ_ENABLE_SVG
+
 		if (strstr(src, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf, base_uri, zip);
 		else
-#endif
+
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
@@ -497,12 +497,12 @@ static fz_image *load_svg_image(fz_context *ctx, fz_archive *zip, const char *ba
 	fz_xml_doc *xmldoc, fz_xml *node)
 {
 	fz_image *img = NULL;
-#if FZ_ENABLE_SVG
+
 	fz_try(ctx)
 		img = fz_new_image_from_svg_xml(ctx, xmldoc, node, base_uri, zip);
 	fz_catch(ctx)
 		fz_warn(ctx, "html: cannot load embedded svg document");
-#endif
+
 	return img;
 }
 
@@ -517,8 +517,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		const char *alt = "[image]";
-		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		//const char *alt = "[image]";
+		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
@@ -526,7 +526,7 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 		{
 			add_flow_sbreak(ctx, pool, flow, box);
 			add_flow_image(ctx, pool, flow, box, img);
-			add_flow_sbreak(ctx, pool, flow, box);
+			//add_flow_sbreak(ctx, pool, flow, box);
 		}
 		fz_always(ctx)
 		{
