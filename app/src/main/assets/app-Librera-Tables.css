@@ -55,7 +55,7 @@ description>title-info{display:block}
 description>title-info>*{display:none}
 description>title-info>annotation{display:block;font-style:italic}
 description>title-info>coverpage{display:block;}
-body,section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
+section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 
 a[type=note]{font-size:small;vertical-align:super}

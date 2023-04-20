@@ -28,8 +28,7 @@ cd mupdf-$VERSION_TAG
 echo "=================="
 
 if [ "$1" == "clean" ]; then
-  git reset --hard
-  git clean -f -d
+  git reset --hard &&  git clean -f -d
   rm -rf generated
   rm -rf build
   make clean

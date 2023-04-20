@@ -772,8 +772,11 @@ epub_parse_ncx(fz_context *ctx, epub_document *doc, const char *path)
 		fz_drop_buffer(ctx, buf);
 		fz_drop_xml(ctx, ncx);
 	}
-	fz_catch(ctx)
-		fz_rethrow(ctx);
+	fz_catch(ctx){
+	    //no crash if nav not valid
+		//fz_rethrow(ctx);
+	}
+
 }
 
 static char *

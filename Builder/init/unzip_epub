@@ -1,5 +1,24 @@
 #!/bin/sh
+#/home/dev/.local/share/nautilus/scripts/
 echo "Arugment:[$1]"
 echo "pwd:[$(pwd)]"
+DEST=$(pwd)/$1-source
+echo "DEST: |$DEST|"
+rm -rvf "$DEST"
 
-unzip "$(pwd)/$1" -d "$(pwd)/$1-source"
+unzip "$(pwd)/$1" -d "$DEST"
+
+cd "$DEST/OEBPS"
+echo "=== ncx ===" > ../info.txt
+xmllint --noout --valid *.ncx 2>&1 | tee -a  ../info.txt
+
+echo "=== html ===" >> ../info.txt
+xmllint --noout --valid *.html 2>&1 | tee -a  ../info.txt
+
+echo "=== xhtml ===" >> ../info.txt
+xmllint --noout --valid *.xhtml 2>&1 | tee -a  ../info.txt
+
+echo "=== xml ===" >> ../info.txt
+xmllint --noout --valid *.xml 2>&1 | tee -a  ../info.txt
+
+echo "Finish"
