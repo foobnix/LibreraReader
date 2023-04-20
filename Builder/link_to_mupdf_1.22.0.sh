@@ -98,11 +98,11 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 cd $MUPDF_JAVA
 
 if [ "$1" == "clean_ndk" ]; then
-/home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build clean
+/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build clean
 rm -rf $MUPDF_JAVA/obj
 fi
 
-/home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
+/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
 
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
