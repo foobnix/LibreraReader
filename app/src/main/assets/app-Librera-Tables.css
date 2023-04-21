@@ -24,7 +24,7 @@ head{display:none}
 hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}
 html{display:block}
 i{font-style:italic}
-u,ins{text-decoration:underline}
+u,ins,abbr{text-decoration:underline}
 kbd{font-family:monospace}
 li{display:list-item}
 menu{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}
@@ -76,7 +76,7 @@ image{text-align:center; text-indent:0px;}
 section+section>title{page-break-before:always;}
 epigraph{text-align:right; margin-left:2em;font-style: italic;}
 text-author{font-style: italic;font-weight: bold;}
-del,ins,strikethrough,strike,s{text-decoration:line-through;}
+del,strikethrough,strike,s{text-decoration:line-through;}
 
 text-author{font-style: italic;font-weight: bold;}
 p>image{display:block;}
