@@ -137,7 +137,7 @@
    <string name="status_bar">状态栏</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="show_progress_of_reading">显示进度条</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条导航</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条以导航</string>
    <string name="text_size">字体大小</string>
    <string name="line_height">进度条高度</string>
    <string name="text_color_day">字体颜色（白天）</string>
@@ -488,7 +488,7 @@
    <string name="show_the_capital_letter">首字母大写</string>
    <string name="size">尺寸</string>
    <string name="quick_bookmark_by_the_headset">启用远程书签（开始/停止按钮）</string>
-   <string name="slider_scale">进度条标度</string>
+   <string name="slider_scale">进度条刻度</string>
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音频文件</string>
    <string name="rate_app">评价应用</string>
@@ -503,7 +503,7 @@
    <string name="exit_application_question">退出程序？</string>
    <string name="open_folder_as_a_book">书籍方式打开文件夹</string>
    <string name="read_out_loud_with_tts">语音朗读</string>
-   <string name="allow_minimum_brightness">允许最小亮度</string>
+   <string name="allow_minimum_brightness">允许零亮度（黑屏）</string>
    <string name="select">选择</string>
    <string name="create_playlist">创建播放列表</string>
    <string name="upload_to_cloud">存入网盘</string>
@@ -569,7 +569,7 @@
    <string name="normal_screen">正常</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
    <string name="enable_experimental_features">启用实验功能</string>
-   <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>
+   <string name="display_original_file_names_without_metadata">显示原始文件名（而非元数据）</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
    <string name="show_tap_zones_on_screen">在屏上显示点击区（虚线）</string>
    <string name="show_the_last_page_with_the_red_line">用红线来显示末页</string>
@@ -639,7 +639,7 @@
    <string name="cd_download_more_fonts">下载更多字体</string>
    <string name="restore_search_query_when_the_application_starts">记住上次的搜索</string>
    <string name="hide_read_books">隐藏读完的书</string>
-   <string name="graphics_scale">图形比例</string>
+   <string name="graphics_scale">缩放比例</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">用书名创建一个文件夹</string>
    <string name="memory">机身存储</string>
    <string name="accessibility">无障碍</string>
@@ -649,7 +649,7 @@
    <string name="user_styles">用户样式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">重启应用后生效</string>
-   <string name="search_in_the_library">在图书馆搜索</string>
+   <string name="search_in_the_library">在书库中搜索</string>
    <string name="update_metadata">更新元数据</string>
    <string name="highlighting_initial_letters">突出显示首字母</string>
    <string name="anti_aliasing_level">抗锯齿级别</string>
