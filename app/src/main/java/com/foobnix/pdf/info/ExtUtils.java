@@ -8,8 +8,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,7 +15,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
@@ -46,6 +43,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
@@ -74,7 +72,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
 
 import org.ebookdroid.BookType;
-import com.foobnix.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -92,8 +89,6 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1050,63 +1045,14 @@ public class ExtUtils {
         String extension = extensionFromName(file.getName());
         String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
         if (mimeType == null) {
-            // If android doesn't know extension we can check our own list.
             mimeType = getMimeType(file);
         }
-
         Intent openIntent = new Intent();
         openIntent.setAction(android.content.Intent.ACTION_VIEW);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         openIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        // openIntent.setDataAndType(getUriProvider(context, file), mimeType);
         openIntent.setDataAndType(getUriProvider(context, file), mimeType);
-        // LOG.d("getUriProvider2", getUriProvider(context, file));
-        // LOG.d("getUriProvider2", Uri.fromFile(file));
-
-        // 1. Check if there is a default app opener for this type of content.
-        final PackageManager packageManager = context.getPackageManager();
-        ResolveInfo defaultAppInfo = packageManager.resolveActivity(openIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (defaultAppInfo != null && defaultAppInfo.activityInfo != null && defaultAppInfo.activityInfo.name != null && !defaultAppInfo.activityInfo.name.endsWith("ResolverActivity")) {
-            return openIntent;
-        }
-
-        // 2. Retrieve all apps for our intent. If there are no apps - return usual
-        // already created intent.
-        List<Intent> targetedOpenIntents = new ArrayList<Intent>();
-        List<ResolveInfo> appInfoList = packageManager.queryIntentActivities(openIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (appInfoList.isEmpty()) {
-            return openIntent;
-        }
-
-        // 3. Sort in alphabetical order, filter itself and create intent with the rest
-        // of the apps.
-        Collections.sort(appInfoList, new Comparator<ResolveInfo>() {
-            @Override
-            public int compare(ResolveInfo first, ResolveInfo second) {
-                String firstName = packageManager.getApplicationLabel(first.activityInfo.applicationInfo).toString();
-                String secondName = packageManager.getApplicationLabel(second.activityInfo.applicationInfo).toString();
-                return firstName.compareToIgnoreCase(secondName);
-            }
-        });
-        for (ResolveInfo appInfo : appInfoList) {
-            String packageName = appInfo.activityInfo.packageName;
-            if (packageName.equals(context.getPackageName())) {
-                continue;
-            }
-
-            Intent targetedOpenIntent = new Intent(android.content.Intent.ACTION_VIEW);
-            targetedOpenIntent.setDataAndType(getUriProvider(context, file), mimeType);
-            targetedOpenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            targetedOpenIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            targetedOpenIntent.setPackage(packageName);
-
-            targetedOpenIntents.add(targetedOpenIntent);
-        }
-        Intent remove = targetedOpenIntents.remove(targetedOpenIntents.size() - 1);
-        Intent createChooser = Intent.createChooser(remove, context.getString(R.string.open_with));
-        Intent chooserIntent = createChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedOpenIntents.toArray(new Parcelable[]{}));
-
-        return chooserIntent;
+        return openIntent;
     }
 
     public static String extensionFromName(String fileName) {
