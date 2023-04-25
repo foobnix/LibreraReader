@@ -1,11 +1,11 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
-   <string name="library_settings">书架设置</string>
+   <string name="library_settings">书库设置</string>
    <string name="scan_device_for_new_books">包含的文件夹</string>
    <string name="add_folder">添加文件夹</string>
    <string name="archives">压缩包</string>
    <string name="other">其它</string>
-   <string name="you_need_to_update_the_library">更新书架以应用更改</string>
+   <string name="you_need_to_update_the_library">更新书库以应用更改</string>
    <string name="in_the_author_s_name_first_the_surname">作者姓氏在前</string>
    <string name="orientation">屏幕方向</string>
    <string name="automatic">自动</string>
@@ -137,7 +137,7 @@
    <string name="status_bar">状态栏</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="show_progress_of_reading">显示进度条</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条导航</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条以导航</string>
    <string name="text_size">字体大小</string>
    <string name="line_height">进度条高度</string>
    <string name="text_color_day">字体颜色（白天）</string>
@@ -164,7 +164,7 @@
    <string name="export_bookmarks">导出</string>
    <string name="simple_scroll_animation">显示翻页动画（滚动）</string>
    <string name="___TABS___SECTION___"></string>
-   <string name="library">书架</string>
+   <string name="library">书库</string>
    <string name="extracting_information_from_books">建立索引</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无丛书</string>
@@ -253,7 +253,7 @@
    <string name="open_with">打开方式</string>
    <string name="send_file">发送文件</string>
    <string name="delete">删除</string>
-   <string name="remove_from_library">移出书架</string>
+   <string name="remove_from_library">移出书库</string>
    <string name="send_snapshot_of_the_page">分享页面</string>
    <string name="file_info">文件信息</string>
    <string name="archive_files">压缩文件</string>
@@ -280,7 +280,7 @@
    <string name="page_position">移动和缩放</string>
    <string name="open_web_page">打开网页</string>
    <string name="hide_app">隐藏程序</string>
-   <string name="go_to_the_library">前往书架</string>
+   <string name="go_to_the_library">前往书库</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="contrast">对比度</string>
    <string name="make_text_bold">加深显示内容（仅有黑白色）</string>
@@ -383,7 +383,7 @@
    <string name="reading_out_loud">文字转语音朗读</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO（无广告）：领先的ePUB及PDF阅读器</string>
    <string name="custom_text">标题</string>
-   <string name="cd_search_books_in_the_library">在书架中搜索</string>
+   <string name="cd_search_books_in_the_library">在书库中搜索</string>
    <string name="cd_clear_search_reasult">清除搜索记录</string>
    <string name="cd_sort_results">排序结果</string>
    <string name="cd_sort_order">排序</string>
@@ -488,7 +488,7 @@
    <string name="show_the_capital_letter">首字母大写</string>
    <string name="size">尺寸</string>
    <string name="quick_bookmark_by_the_headset">启用远程书签（开始/停止按钮）</string>
-   <string name="slider_scale">进度条标度</string>
+   <string name="slider_scale">进度条刻度</string>
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音频文件</string>
    <string name="rate_app">评价应用</string>
@@ -503,7 +503,7 @@
    <string name="exit_application_question">退出程序？</string>
    <string name="open_folder_as_a_book">书籍方式打开文件夹</string>
    <string name="read_out_loud_with_tts">语音朗读</string>
-   <string name="allow_minimum_brightness">允许最小亮度</string>
+   <string name="allow_minimum_brightness">允许零亮度（黑屏）</string>
    <string name="select">选择</string>
    <string name="create_playlist">创建播放列表</string>
    <string name="upload_to_cloud">存入网盘</string>
@@ -569,7 +569,7 @@
    <string name="normal_screen">正常</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
    <string name="enable_experimental_features">启用实验功能</string>
-   <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>
+   <string name="display_original_file_names_without_metadata">显示原始文件名（而非元数据）</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
    <string name="show_tap_zones_on_screen">在屏上显示点击区（虚线）</string>
    <string name="show_the_last_page_with_the_red_line">用红线来显示末页</string>
@@ -618,7 +618,7 @@
    <string name="m_total_pages">总页数</string>
    <string name="close_menu">关闭菜单</string>
    <string name="go_to_page">转到页面</string>
-   <string name="update_library">更新书架</string>
+   <string name="update_library">更新书库</string>
    <string name="ascending">升序</string>
    <string name="descending">降序</string>
    <string name="remove">移除</string>
@@ -639,7 +639,7 @@
    <string name="cd_download_more_fonts">下载更多字体</string>
    <string name="restore_search_query_when_the_application_starts">记住上次的搜索</string>
    <string name="hide_read_books">隐藏读完的书</string>
-   <string name="graphics_scale">图形比例</string>
+   <string name="graphics_scale">缩放比例</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">用书名创建一个文件夹</string>
    <string name="memory">机身存储</string>
    <string name="accessibility">无障碍</string>
@@ -649,7 +649,7 @@
    <string name="user_styles">用户样式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">重启应用后生效</string>
-   <string name="search_in_the_library">在图书馆搜索</string>
+   <string name="search_in_the_library">在书库中搜索</string>
    <string name="update_metadata">更新元数据</string>
    <string name="highlighting_initial_letters">突出显示首字母</string>
    <string name="anti_aliasing_level">抗锯齿级别</string>
