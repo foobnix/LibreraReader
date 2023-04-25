@@ -3,7 +3,7 @@ JAVA_HOME=/home/dev/Downloads/AndroidStudio/android-studio-2022.2.1.18-linux/and
 
 ./fonts.sh
 
-./link_to_mupdf_1.21.1.sh
+./link_to_mupdf_1.22.0.sh
 
 cd ../
 
@@ -22,7 +22,6 @@ link_to_mupdf_1.11.sh
 
 cd ../
 
-./gradlew assembleProRelease
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
 

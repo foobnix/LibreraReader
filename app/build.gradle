@@ -354,7 +354,7 @@ dependencies {
     implementation 'javax.xml.stream:stax-api:1.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.5'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
