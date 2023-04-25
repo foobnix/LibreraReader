@@ -7,7 +7,7 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 ext {
     FDroidCodeNumber = 5426
-    FDroidVersionNumber = "8.9.5"
+    FDroidVersionNumber = "8.9.9"
 }
 
 println " --------------------"
@@ -393,8 +393,14 @@ task copyApks() {
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                ["/home/dev/Dropbox/FREE_PDF_APK/testing",
-                 "/home/dev/Nextcloud/LibreraBeta"].each { dest ->
+                def list = ["/home/dev/Dropbox/FREE_PDF_APK/testing",
+                            "/home/dev/Nextcloud/LibreraBeta"]
+
+                if (project.hasProperty("relesae")) {
+                    list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                }
+
+                list.each { dest ->
                     copy {
                         from file(
                                 "build/outputs/apk/${flavor}/release/"

@@ -25,7 +25,7 @@ cd ../
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
 
-./gradlew copyApks -Pbeta
+./gradlew copyApks -Pbeta -Prelesae
 ./gradlew -stop
 
 #rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
