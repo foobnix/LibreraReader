@@ -866,43 +866,43 @@ public class PrefFragment2 extends UIFragment {
 
 
         TextView appEngine = inflate.findViewById(R.id.appEngine);
-        appEngine.setText(AppsConfig.getCurrentEngine(getActivity()));
+        appEngine.setText("" + AppsConfig.MUPDF_VERSION);
         TxtUtils.underlineTextView(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
-        appEngine.setOnClickListener(v -> {
-            if (BooksService.isRunning) {
-                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            PopupMenu p = new PopupMenu(getContext(), appEngine);
-
-            p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
-                    @Override
-                    public void run() {
-                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_1_11);
-                        android.os.Process.killProcess(android.os.Process.myPid());
-                    }
-                });
-
-                return false;
-            });
-            p.getMenu().add(AppsConfig.ENGINE_MuPDF_LATEST).setOnMenuItemClickListener(item -> {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
-                    @Override
-                    public void run() {
-                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_LATEST);
-                        android.os.Process.killProcess(android.os.Process.myPid());
-                    }
-                });
-
-                return false;
-            });
-
-            p.show();
-        });
+//        appEngine.setOnClickListener(v -> {
+//            if (BooksService.isRunning) {
+//                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//            PopupMenu p = new PopupMenu(getContext(), appEngine);
+//
+//            p.getMenu().add(AppsConfig.ENGINE_MuPDF_1_11).setOnMenuItemClickListener(item -> {
+//                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_1_11);
+//                        android.os.Process.killProcess(android.os.Process.myPid());
+//                    }
+//                });
+//
+//                return false;
+//            });
+//            p.getMenu().add(AppsConfig.ENGINE_MuPDF_LATEST).setOnMenuItemClickListener(item -> {
+//                AlertDialogs.showDialog(getActivity(), getString(R.string.restart_manually), getString(R.string.ok), new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        AppsConfig.setEngine(getActivity(), AppsConfig.ENGINE_MuPDF_LATEST);
+//                        android.os.Process.killProcess(android.os.Process.myPid());
+//                    }
+//                });
+//
+//                return false;
+//            });
+//
+//            p.show();
+//        });
 
 
         final TextView hypenLang = inflate.findViewById(R.id.appLang);

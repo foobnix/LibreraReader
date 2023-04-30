@@ -1,10 +1,10 @@
 package com.foobnix.pdf.info;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
+import android.util.Log;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -15,6 +15,8 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,8 +31,8 @@ public class AppsConfig {
     public static final boolean IS_PRO = BuildConfig.FLAVOR.equals("pro");
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
-    public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.22.0";
+    //public final static String ENGINE_MuPDF_1_11 = "MuPDF_1.11";
+    //public final static String ENGINE_MuPDF_LATEST = "MuPDF_1.22.0";
     public static int MUPDF_VERSION = 0;
     public static int MUPDF_1_11 = 111;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
@@ -38,51 +40,52 @@ public class AppsConfig {
     public static boolean IS_NO_ADS = false;
 
     static {
-        try {
-            System.loadLibrary(ENGINE_MuPDF_LATEST);
-        } catch (UnsatisfiedLinkError e) {
-            LOG.e(e);
+        List<String> engines = Arrays.asList("MuPDF_1.22.0", "MuPDF_1.21.1", "MuPDF_1.11");
+
+        for (String it : engines) {
             try {
-                System.loadLibrary(ENGINE_MuPDF_1_11);
-            } catch (UnsatisfiedLinkError e1) {
-                LOG.e(e1);
+                System.loadLibrary(it);
+                Log.d("Librera", "Load-engine " + it);
+                break;
+            } catch (UnsatisfiedLinkError e) {
+                LOG.e(e);
             }
         }
         AppsConfig.MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
     }
 
-    public static void loadEngine(Context c) {
-        if (true) {
-            return;
-        }
-        String engine = getCurrentEngine(c);
-        try {
-            engine = !ENGINE_MuPDF_1_11.equals(engine) ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11;
-            System.loadLibrary(engine);
-            setEngine(c, engine);
-        } catch (UnsatisfiedLinkError e) {
-            try {
-                System.loadLibrary(ENGINE_MuPDF_1_11);
-                setEngine(c, ENGINE_MuPDF_1_11);
-            } catch (UnsatisfiedLinkError e1) {
-                System.loadLibrary(ENGINE_MuPDF_LATEST);
-                setEngine(c, ENGINE_MuPDF_LATEST);
-            }
-            LOG.e(e);
-        }
+//    public static void loadEngine(Context c) {
+//        if (true) {
+//            return;
+//        }
+//        String engine = getCurrentEngine(c);
+//        try {
+//            engine = !ENGINE_MuPDF_1_11.equals(engine) ? ENGINE_MuPDF_LATEST : ENGINE_MuPDF_1_11;
+//            System.loadLibrary(engine);
+//            setEngine(c, engine);
+//        } catch (UnsatisfiedLinkError e) {
+//            try {
+//                System.loadLibrary(ENGINE_MuPDF_1_11);
+//                setEngine(c, ENGINE_MuPDF_1_11);
+//            } catch (UnsatisfiedLinkError e1) {
+//                System.loadLibrary(ENGINE_MuPDF_LATEST);
+//                setEngine(c, ENGINE_MuPDF_LATEST);
+//            }
+//            LOG.e(e);
+//        }
+//
+//
+//    }
 
+//    public static void setEngine(Context c, String engine) {
+//        LOG.d("setEngine", engine);
+//        SharedPreferences sp = c.getSharedPreferences("Engine", Context.MODE_PRIVATE);
+//        sp.edit().putString("version", engine).commit();
+//    }
 
-    }
-
-    public static void setEngine(Context c, String engine) {
-        LOG.d("setEngine", engine);
-        SharedPreferences sp = c.getSharedPreferences("Engine", Context.MODE_PRIVATE);
-        sp.edit().putString("version", engine).commit();
-    }
-
-    public static String getCurrentEngine(Context c) {
-        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_MuPDF_LATEST);
-    }
+//    public static String getCurrentEngine(Context c) {
+//        return c.getSharedPreferences("Engine", Context.MODE_PRIVATE).getString("version", ENGINE_MuPDF_LATEST);
+//    }
 
 
     public static boolean isPDF_DRAW_ENABLE() {

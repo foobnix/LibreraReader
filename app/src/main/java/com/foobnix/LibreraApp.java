@@ -51,7 +51,7 @@ public class LibreraApp extends MultiDexApplication {
         }
         super.onCreate();
 
-        AppsConfig.loadEngine(this);
+        //AppsConfig.loadEngine(this);
 
 
         context = getApplicationContext();
@@ -133,7 +133,6 @@ public class LibreraApp extends MultiDexApplication {
         //if(LOG.isEnable){
         //  IMG.clearDiscCache();
         //}
-
 
 
     }
