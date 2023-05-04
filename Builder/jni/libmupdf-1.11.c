@@ -281,10 +281,10 @@ static void mupdf_free_document(renderdocument_t* doc) {
 //	//LOGE("mupdf_free_document 7");
 }
 
-JNIEXPORT jint JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env,
-		jclass clazz) {
-	return 111;
+
+JNIEXPORT jstring JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getFzVersion(JNIEnv *env, jclass clazz) {
+	return (*env)->NewStringUTF(env, FZ_VERSION);
 }
 
 JNIEXPORT jlong JNICALL

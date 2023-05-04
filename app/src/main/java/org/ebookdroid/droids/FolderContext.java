@@ -32,7 +32,7 @@ public class FolderContext extends PdfContext {
         }
 
         File file;
-        if (AppsConfig.MUPDF_1_11 == AppsConfig.MUPDF_VERSION) {
+        if (AppsConfig.MUPDF_1_11.equals(AppsConfig.MUPDF_FZ_VERSION)) {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
             file.mkdirs();
             file = new File(file, "book.ldir");

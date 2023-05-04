@@ -572,7 +572,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_VERSION + "-" + BuildConfig.FLAVOR + ")";
+            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_FZ_VERSION + "-" + BuildConfig.FLAVOR + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
@@ -866,7 +866,7 @@ public class PrefFragment2 extends UIFragment {
 
 
         TextView appEngine = inflate.findViewById(R.id.appEngine);
-        appEngine.setText("" + AppsConfig.MUPDF_VERSION);
+        appEngine.setText("" + AppsConfig.MUPDF_FZ_VERSION);
         TxtUtils.underlineTextView(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 

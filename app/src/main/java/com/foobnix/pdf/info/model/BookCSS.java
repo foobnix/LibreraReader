@@ -1,7 +1,7 @@
 package com.foobnix.pdf.info.model;
 
 import static com.foobnix.pdf.info.AppsConfig.MUPDF_1_11;
-import static com.foobnix.pdf.info.AppsConfig.MUPDF_VERSION;
+import static com.foobnix.pdf.info.AppsConfig.MUPDF_FZ_VERSION;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -121,7 +121,7 @@ public class BookCSS {
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGHTS;
-    public String userStyleCss = MUPDF_VERSION == MUPDF_1_11 ? "app-Librera.css" : "app-Librera-Tables.css";
+    public String userStyleCss = MUPDF_FZ_VERSION.equals(MUPDF_1_11) ? "app-Librera.css" : "app-Librera-Tables.css";
     private String lastBookPathCache = "";
     private String trackPathCache;
 

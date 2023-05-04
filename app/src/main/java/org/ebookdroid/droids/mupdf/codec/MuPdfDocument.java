@@ -109,7 +109,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    public static native int getMupdfVersion();
+    
+    public static native String getFzVersion();
 
     private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle, float scale, int antialias);
 

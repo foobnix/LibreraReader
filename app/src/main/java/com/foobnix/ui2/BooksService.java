@@ -407,7 +407,7 @@ public class BooksService extends IntentService {
                     writeLine(out, "VersionName: " + Apps.getVersionName(this));
                     writeLine(out, "PackageName: " + Apps.getPackageName(this));
                     writeLine(out, "os.arch: " + System.getProperty("os.arch"));
-                    writeLine(out, "MUPDF_VERSION: " + AppsConfig.MUPDF_VERSION);
+                    writeLine(out, "MUPDF_VERSION: " + AppsConfig.MUPDF_FZ_VERSION);
                     writeLine(out, "Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT);
                     writeLine(out, "Height x Width: " + Dips.screenHeight() + "x" + Dips.screenWidth());
                     out.newLine();
