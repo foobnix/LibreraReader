@@ -127,23 +127,25 @@ public class Dialogs {
                 LOG.d("TTS-load-key", key, value);
 
                 LinearLayout h = new LinearLayout(activity);
-                root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+                root.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
                 h.setWeightSum(2);
                 h.setOrientation(LinearLayout.HORIZONTAL);
                 h.setGravity(Gravity.CENTER_VERTICAL);
 
                 EditText from = new EditText(activity);
+                from.setTextSize(14);
                 from.setWidth(Dips.DP_150);
                 from.setText(key);
                 from.setSingleLine();
 
 
                 TextView text = new TextView(activity);
-                text.setText(" -> ");
+                text.setText(">");
                 root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
                 EditText to = new EditText(activity);
+                to.setTextSize(14);
                 to.setWidth(Dips.DP_120);
                 to.setText(value);
                 to.setSingleLine();
@@ -151,9 +153,9 @@ public class Dialogs {
 
 
                 ImageView img = new ImageView(activity);
-                img.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
-                img.setMaxWidth(Dips.DP_25);
-                img.setMaxHeight(Dips.DP_25);
+                img.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+                img.setMaxWidth(Dips.DP_20);
+                img.setMaxHeight(Dips.DP_20);
 
                 img.setImageResource(R.drawable.glyphicons_599_menu_close);
                 TintUtil.setTintImageWithAlpha(img);
@@ -167,9 +169,9 @@ public class Dialogs {
 
 
                 ImageView move = new ImageView(activity);
-                move.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
-                move.setMaxWidth(Dips.DP_25);
-                move.setMaxHeight(Dips.DP_25);
+                move.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+                move.setMaxWidth(Dips.DP_20);
+                move.setMaxHeight(Dips.DP_20);
 
                 move.setImageResource(R.drawable.glyphicons_600_menu);
                 TintUtil.setTintImageWithAlpha(move);
@@ -214,7 +216,7 @@ public class Dialogs {
 
 
                 TextView text = new TextView(activity);
-                text.setText(" -> ");
+                text.setText("-");
                 root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
@@ -509,7 +511,7 @@ public class Dialogs {
 
                 }
             }
-        },"@T showSyncLOGDialog").start();
+        }, "@T showSyncLOGDialog").start();
 
 
         result.setText(GFile.debugOut);
