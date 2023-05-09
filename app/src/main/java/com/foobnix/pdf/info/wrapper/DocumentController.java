@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -163,6 +164,8 @@ public abstract class DocumentController {
             }
 
             Keyboards.hideNavigation(a);
+
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -190,6 +193,8 @@ public abstract class DocumentController {
 
 
             Keyboards.hideNavigation(a);
+
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -224,12 +229,34 @@ public abstract class DocumentController {
     }
 
     public static void chooseFullScreen(final Activity a, final int mode) {
+
+
         if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
             runFullScreen(a);
         } else if (mode == AppState.FULL_SCREEN_NORMAL) {
             runNormalScreen(a);
         } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
             runFullScreenCutOut(a);
+        }
+
+        try {
+            View bookName = a.findViewById(R.id.bookName);
+            View imageToolBar = a.findViewById(R.id.imageToolbar);
+
+            ViewGroup.MarginLayoutParams lp1 = (ViewGroup.MarginLayoutParams) bookName.getLayoutParams();
+            ViewGroup.MarginLayoutParams lp2 = (ViewGroup.MarginLayoutParams) imageToolBar.getLayoutParams();
+
+            if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
+                lp2.rightMargin = lp1.leftMargin = Dips.dpToPx(10);
+            } else if (mode == AppState.FULL_SCREEN_NORMAL) {
+                lp2.rightMargin = lp1.leftMargin = Dips.dpToPx(4);
+            } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+                lp2.rightMargin = lp1.leftMargin = Dips.dpToPx(15);
+            }
+            bookName.setLayoutParams(lp1);
+            imageToolBar.setLayoutParams(lp2);
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
     }

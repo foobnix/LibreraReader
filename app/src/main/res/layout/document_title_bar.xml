@@ -61,7 +61,7 @@
                 android:id="@+id/bookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dip"
+                android:layout_marginLeft="15dip"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:singleLine="true"
@@ -186,7 +186,7 @@
                 android:layout_width="@dimen/title_wh_button"
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_marginLeft="4dip"
-                android:layout_marginRight="5dip"
+                android:layout_marginRight="15dip"
                 android:layout_weight="0"
                 android:src="@drawable/glyphicons_305_no_symbol"
                 android:tint="@color/tint_gray" />
