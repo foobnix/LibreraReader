@@ -350,19 +350,16 @@ public class FileMetaCore {
 
     public static int extractYear(String input) {
         try {
-            return Integer.parseInt(input.trim());
+            input = input.trim();
+            if (input.length() > 4) {
+                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
+                if (m.find()) {
+                    input = m.group();
+                }
+            }
+            return Integer.parseInt(input);
         } catch (Exception e) {
             LOG.e(e);
-            input = input.replace("/", " ");
-            input = input.replace(".", " ");
-            try {
-                Matcher m = Pattern.compile("[0-9]{4}").matcher(input);
-                if (m.find()) {
-                    return Integer.parseInt(m.group());
-                }
-            } catch (Exception e1) {
-                LOG.e(e);
-            }
         }
         return -1;
     }

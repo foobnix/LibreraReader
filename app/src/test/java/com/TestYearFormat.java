@@ -13,8 +13,10 @@ public class TestYearFormat {
         assertEquals(2010, FileMetaCore.extractYear("2010"));
         assertEquals(2010, FileMetaCore.extractYear("03/16/2010 11:19:32 PM"));
         assertEquals(2010, FileMetaCore.extractYear("03.16.2010 11:19:32 PM"));
-        assertEquals(2010, FileMetaCore.extractYear("03/16 2010 11:19:32 PM"));
+        assertEquals(2010, FileMetaCore.extractYear("03/16 1010 2010 11:19:32 PM"));
+        assertEquals(1985, FileMetaCore.extractYear("03/16 1985 1010 11:19:32 PM"));
         assertEquals(2010, FileMetaCore.extractYear("2010123213 11:19:32 PM"));
+        assertEquals(2010, FileMetaCore.extractYear("122010123213 11:19:32 PM"));
 
     }
 }
