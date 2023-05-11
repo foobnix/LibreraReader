@@ -241,9 +241,15 @@ public abstract class DocumentController {
 
         try {
             View bookName = a.findViewById(R.id.bookName);
+            if (bookName == null) {
+                return;
+            }
             View imageToolBar = a.findViewById(R.id.imageToolbar);
 
             ViewGroup.MarginLayoutParams lp1 = (ViewGroup.MarginLayoutParams) bookName.getLayoutParams();
+            if (lp1 == null) {
+                return;
+            }
             ViewGroup.MarginLayoutParams lp2 = (ViewGroup.MarginLayoutParams) imageToolBar.getLayoutParams();
 
             if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
