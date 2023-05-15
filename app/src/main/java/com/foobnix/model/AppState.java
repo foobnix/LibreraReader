@@ -19,7 +19,6 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.AppDB;
@@ -194,11 +193,47 @@ public class AppState {
 
             //
     );
-    public static final List<String> langCodes = Arrays.asList(//
-            "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
-            "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
-            "nl", "no", "pl", "pt", "ro", "ru", "sc", "sk", "sv", //
-            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", "ta", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+    public static final List<String> langCodes = Arrays.asList("ar"
+            , "be"
+            , "bg"
+            , "cs"
+            , "de"
+            , "el"
+            , "es"
+            , "fa"
+            , "fi"
+            , "fr"
+            , "ga"
+            , "he"
+            , "hi"
+            , "hu"
+            , "id"
+            , "it"
+            , "ja"
+            , "kk"
+            , "ko"
+            , "la"
+            , "lt"
+            , "ml"
+            , "nl"
+            , "no"
+            , "pl"
+            , "pt"
+            , "ro"
+            , "ru"
+            , "sc"
+            , "sk"
+            , "sv"
+            , "sw"
+            , "ta"
+            , "th"
+            , "tr"
+            , "uk"
+            , "vi"
+            , "zh-rCN"
+            , "zh-rTW");
+
+
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
