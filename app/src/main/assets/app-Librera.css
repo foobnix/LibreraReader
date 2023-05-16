@@ -13,12 +13,12 @@ dl{display:block;margin:1em 0}
 dt{display:block;font-weight:bold;}
 em{font-style:italic}
 
-h1{display:block;font-size:1.5em;  margin:1em 0;page-break-after:avoid}
-h2{display:block;font-size:1.4em;  margin:1em 0;page-break-after:avoid}
-h3{display:block;font-size:1.2em;  margin:1em 0;page-break-after:avoid}
-h4{display:block;font-size:1.0em;  margin:1em 0;page-break-after:avoid}
-h5{display:block;font-size:0.8em;  margin:1em 0;page-break-after:avoid}
-h6{display:block;font-size:0.6em;  margin:1em 0;page-break-after:avoid}
+h1{display:block;font-size:1.8em;  margin:1em 0; page-break-after:avoid}
+h2{display:block;font-size:1.5em;  margin:1em 0; page-break-after:avoid}
+h3{display:block;font-size:1.3em;  margin:1em 0; page-break-after:avoid}
+h4{display:block;font-size:1.0em;  margin:1em 0; page-break-after:avoid}
+h5{display:block;font-size:0.8em;  margin:1em 0; page-break-after:avoid}
+h6{display:block;font-size:0.7em;  margin:1em 0; page-break-after:avoid}
 
 head{display:none}
 hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}

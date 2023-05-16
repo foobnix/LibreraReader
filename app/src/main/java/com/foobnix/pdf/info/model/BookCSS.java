@@ -210,7 +210,7 @@ public class BookCSS {
         emptyLine = 1;
 
         lineHeight12 = 14;
-        paragraphHeight = 0;
+        paragraphHeight = 1;
         textIndent = 10;
         fontWeight = 400;
 
