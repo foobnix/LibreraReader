@@ -178,6 +178,7 @@ public class ExtUtils {
         mimeCache.put(".wav", "audio/vnd.wav");
         mimeCache.put(".ogg", "audio/ogg");
         mimeCache.put(".m4a", "audio/m4a");
+        mimeCache.put(".m4b", "audio/m4b");
 
         mimeCache.put(".m3u8", "application/x-mpegURL");
         mimeCache.put(".ts", "video/MP2T");
