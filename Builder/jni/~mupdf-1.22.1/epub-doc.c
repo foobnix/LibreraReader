@@ -408,7 +408,10 @@ epub_parse_chapter(fz_context *ctx, epub_document *doc, epub_chapter *ch)
 	fz_always(ctx)
 		fz_drop_buffer(ctx, buf);
 	fz_catch(ctx)
+	{
 		fz_rethrow(ctx);
+	}
+
 
 	return fz_store_html(ctx, html, doc, ch->number);
 }

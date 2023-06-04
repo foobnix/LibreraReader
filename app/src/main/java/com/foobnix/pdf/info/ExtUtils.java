@@ -108,7 +108,7 @@ public class ExtUtils {
     public final static List<String> imageMimes = Arrays.asList("image/png", "image/jpg", "image/jpeg", "image/gif");
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
-    public final static List<String> AUDIO = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a", ".flac");
+    public final static List<String> AUDIO = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a", ".m4b", ".flac");
     private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
     private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
     private static final String IMAGE_BEGIN = "<image-begin>";
