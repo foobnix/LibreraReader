@@ -92,6 +92,7 @@ cp -rpv $SRC/xml.c               $DEST/fitz/xml.c
 cp -rpv $SRC/unzip.c             $DEST/fitz/unzip.c
 cp -rpv $SRC/directory.c         $DEST/fitz/directory.c
 cp -rpv $SRC/noto.c              $DEST/fitz/noto.c
+cp -rpv $SRC/stext-device.c      $DEST/fitz/stext-device.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
