@@ -2,7 +2,7 @@
 #./fonts.sh
 
 #Builder folder
-./link_to_mupdf_1.22.1.sh
+./link_to_mupdf_1.22.2.sh
 
 cd ../
 

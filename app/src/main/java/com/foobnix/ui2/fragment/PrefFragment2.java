@@ -590,7 +590,7 @@ public class PrefFragment2 extends UIFragment {
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:
             // %s (%s)", getString(R.string.version), version, AppsConfig.MUPDF_VERSION));
             ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s", getString(R.string.version), version));
-            ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s %s", getString(R.string.product), Apps.getApplicationName(getActivity()), version));
+            ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s %s %s", Apps.getApplicationName(getActivity()), version, "SDK: " + Build.VERSION.SDK_INT, Build.MANUFACTURER));
         } catch (final NameNotFoundException e) {
         }
 
