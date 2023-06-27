@@ -517,8 +517,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		const char *alt = "[image]";
-		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		//const char *alt = "[image]";
+		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
