@@ -373,6 +373,16 @@ dependencies {
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
 
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:2.0.0"
+    libreraImplementation messaging_ads
+    betaImplementation messaging_ads
+    pdf_v2Implementation messaging_ads
+    ebookaImplementation messaging_ads
+    tts_readerImplementation messaging_ads
+    pdf_classicImplementation messaging_ads
+    epub_readerImplementation messaging_ads
+    huaweiImplementation messaging_ads
+
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.5.2'

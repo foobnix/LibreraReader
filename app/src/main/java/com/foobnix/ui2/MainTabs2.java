@@ -42,6 +42,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -71,6 +72,12 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.FormError;
+import com.google.android.ump.UserMessagingPlatform;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -268,28 +275,24 @@ public class MainTabs2 extends AdsFragmentActivity {
                 fr.displayAnyPath(pathSAF);
             }
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            GoogleSignIn.getSignedInAccountFromIntent(data)
-                    .addOnSuccessListener(googleAccount -> {
-                        AppSP.get().isEnableSync = true;
-                        Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                        EventBus.getDefault().post(new GDriveSycnEvent());
-                        GFile.runSyncService(MainTabs2.this);
+            GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener(googleAccount -> {
+                AppSP.get().isEnableSync = true;
+                Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new GDriveSycnEvent());
+                GFile.runSyncService(MainTabs2.this);
 
-                        swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+                swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
 
-                        AppSP.get().save();
+                AppSP.get().save();
 
-                    })
-                    .addOnFailureListener(exception ->
-                            {
-                                LOG.e(exception);
-                                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                AppSP.get().isEnableSync = false;
-                                swipeRefreshLayout.setEnabled(false);
-                                AppSP.get().save();
+            }).addOnFailureListener(exception -> {
+                LOG.e(exception);
+                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
+                AppSP.get().isEnableSync = false;
+                swipeRefreshLayout.setEnabled(false);
+                AppSP.get().save();
 
-                            }
-                    );
+            });
 
 
         }
@@ -440,8 +443,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             public void onClick(View v) {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
-                else
-                    drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+                else drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
 
             }
         });
@@ -635,6 +637,49 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Apps.accessibilityText(MainTabs2.this, getString(R.string.welcome_accessibility));
             }, 5000);
         }
+
+        try {
+            //ads
+            ConsentRequestParameters params;
+            if (LOG.isEnable) {
+                ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this).setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA).addTestDeviceHashedId(ADS.getByTestID(this)).build();
+                params = new ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).setTagForUnderAgeOfConsent(false).build();
+            } else {
+                params = new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build();
+            }
+            ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(this);
+            consentInformation.requestConsentInfoUpdate(this, params, () -> {
+                if (consentInformation.isConsentFormAvailable()) {
+                    loadForm(consentInformation);
+                }
+            }, formError -> {
+
+            });
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+
+    public void loadForm(ConsentInformation consentInformation) {
+        // Loads a consent form. Must be called on the main thread.
+        UserMessagingPlatform.loadConsentForm(this, new UserMessagingPlatform.OnConsentFormLoadSuccessListener() {
+            @Override
+            public void onConsentFormLoadSuccess(ConsentForm consentForm) {
+                if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
+                    consentForm.show(MainTabs2.this, formError -> {
+                        if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.OBTAINED) {
+                        }
+                        //loadForm(consentInformation);
+                    });
+                }
+            }
+        }, new UserMessagingPlatform.OnConsentFormLoadFailureListener() {
+            @Override
+            public void onConsentFormLoadFailure(FormError formError) {
+                // Handle Error.
+            }
+        });
     }
 
 
