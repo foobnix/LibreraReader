@@ -145,11 +145,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         public void check() {
             if (isPullToRefreshEnable()) {
-                if (uiFragment instanceof PrefFragment2) {
-                    swipeRefreshLayout.setEnabled(false);
-                } else {
-                    swipeRefreshLayout.setEnabled(true);
-                }
+                swipeRefreshLayout.setEnabled(!(uiFragment instanceof PrefFragment2));
             }
         }
     };
@@ -166,34 +162,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     boolean once = true;
     private SlidingTabLayout indicator;
     private DrawerLayout drawerLayout;
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
-            if (pos != -1) {
-                if (pos >= 0) {
-                    pager.setCurrentItem(pos);
-                }
-
-                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
-                    onResume();
-                }
-
-            } else {
-                if (AppState.get().appTheme == AppState.THEME_INK) {
-                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
-                    indicator.setSelectedIndicatorColors(TintUtil.color);
-                    indicator.setDividerColors(TintUtil.color);
-                    indicator.updateIcons(pager.getCurrentItem());
-                } else {
-                    indicator.setBackgroundColor(TintUtil.color);
-                    imageMenuParent.setBackgroundColor(TintUtil.color);
-                }
-            }
-        }
-
-    };
 
     public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
         if (a == null || swipeRefreshLayout == null) {
@@ -368,7 +336,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         setContentView(R.layout.main_tabs);
 
 
-        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
+        imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
 
@@ -398,7 +366,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         overlay = findViewById(R.id.overlay);
 
-        toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
+        toastBrightnessText = findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
@@ -435,7 +403,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         imageMenu.setOnClickListener(new OnClickListener() {
 
@@ -459,7 +427,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         adapter = new TabsAdapter2(this, tabFragments);
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = findViewById(R.id.pager);
         pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
 
@@ -522,9 +490,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
 
         if (AppState.get().tapPositionTop) {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs1);
+            indicator = findViewById(R.id.slidingTabs1);
         } else {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs2);
+            indicator = findViewById(R.id.slidingTabs2);
         }
         indicator.addSwipeRefreshLayout(swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
@@ -612,7 +580,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
 
-        if (showTabs == false && AppState.get().isOpenLastBook) {
+        if (!showTabs && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
@@ -640,26 +608,35 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         try {
             //ads
-            ConsentRequestParameters params;
-            if (LOG.isEnable) {
-                ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this).setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA).addTestDeviceHashedId(ADS.getByTestID(this)).build();
-                params = new ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).setTagForUnderAgeOfConsent(false).build();
-            } else {
-                params = new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build();
-            }
-            ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(this);
-            consentInformation.requestConsentInfoUpdate(this, params, () -> {
-                if (consentInformation.isConsentFormAvailable()) {
-                    loadForm(consentInformation);
-                }
-            }, formError -> {
+            if (!AppsConfig.checkIsProInstalled(this)) {
+                ConsentRequestParameters params;
 
-            });
+                if (LOG.isEnable) {
+                    ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                            .addTestDeviceHashedId(ADS.getByTestID(this)).build();
+
+                    params = new ConsentRequestParameters.Builder()
+                            .setConsentDebugSettings(debugSettings)
+                            .setTagForUnderAgeOfConsent(false).build();
+                } else {
+                    params = new ConsentRequestParameters.Builder()
+                            .setTagForUnderAgeOfConsent(false)
+                            .build();
+                }
+                ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(this);
+                consentInformation.requestConsentInfoUpdate(this, params, () -> {
+                    if (consentInformation.isConsentFormAvailable()) {
+                        loadForm(consentInformation);
+                    }
+                }, formError -> {});
+            }
+
         } catch (Exception e) {
             LOG.e(e);
         }
-    }
 
+    }
 
     public void loadForm(ConsentInformation consentInformation) {
         // Loads a consent form. Must be called on the main thread.
@@ -681,7 +658,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
@@ -868,7 +844,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
@@ -903,12 +879,41 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else {
             closeActivityRunnable.run();
         }
-    }
+    }    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
+            if (pos != -1) {
+                if (pos >= 0) {
+                    pager.setCurrentItem(pos);
+                }
+
+                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
+                    onResume();
+                }
+
+            } else {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
+                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+                    indicator.setSelectedIndicatorColors(TintUtil.color);
+                    indicator.setDividerColors(TintUtil.color);
+                    indicator.updateIcons(pager.getCurrentItem());
+                } else {
+                    indicator.setBackgroundColor(TintUtil.color);
+                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                }
+            }
+        }
+
+    };
 
     @Subscribe
     public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
     }
+
+
 
 
 }
