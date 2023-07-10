@@ -90,7 +90,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
@@ -122,7 +121,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             LOG.d("onPageSelected", uiFragment);
             Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
-
 
         }
 
@@ -207,7 +205,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
-
         checkGoToPage(intent);
 
     }
@@ -262,9 +259,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             });
 
-
         }
-
 
     }
 
@@ -309,7 +304,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-
         Clouds.get().init(this);
 
         //import settings
@@ -335,7 +329,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         setContentView(R.layout.main_tabs);
 
-
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
@@ -354,7 +347,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -362,7 +354,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 GFile.runSyncService(MainTabs2.this, true);
             }
         });
-
 
         overlay = findViewById(R.id.overlay);
 
@@ -411,7 +402,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             public void onClick(View v) {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
-                else drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+                else
+                    drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
 
             }
         });
@@ -429,7 +421,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         adapter = new TabsAdapter2(this, tabFragments);
         pager = findViewById(R.id.pager);
         pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
-
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
@@ -481,7 +472,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                     }
                     TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
 
-
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -504,7 +494,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 LOG.d("OnFocusChangeListener", hasFocus);
             }
         });
-
 
         indicator.setViewPager(pager);
 
@@ -536,7 +525,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             return false;
         });
 
-
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
             indicator.setSelectedIndicatorColors(TintUtil.color);
@@ -545,7 +533,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
         }
-
 
         Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
@@ -608,7 +595,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         try {
             //ads
-            if (!AppsConfig.checkIsProInstalled(this)) {
+            if (AppsConfig.IS_GDPR_ENABLE && !AppsConfig.checkIsProInstalled(this)) {
                 ConsentRequestParameters params;
 
                 if (LOG.isEnable) {
@@ -715,7 +702,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
 
-
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
@@ -725,7 +711,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
-
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
@@ -739,7 +724,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
                 uiFragment.onSelectFragment();
             }
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -818,7 +802,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
-
         EventBus.getDefault().unregister(this);
         IMG.clearMemoryCache();
         super.onDestroy();
@@ -879,6 +862,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else {
             closeActivityRunnable.run();
         }
+    }
+
+    @Subscribe
+    public void onCloseAppMsg(MsgCloseMainTabs event) {
+        onFinishActivity();
     }    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
@@ -907,12 +895,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
     };
-
-    @Subscribe
-    public void onCloseAppMsg(MsgCloseMainTabs event) {
-        onFinishActivity();
-    }
-
 
 
 

@@ -35,6 +35,7 @@ public class AppsConfig {
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
     public static boolean IS_NO_ADS = false;
+    public static boolean IS_GDPR_ENABLE = false;
 
     static {
         System.loadLibrary("MuPDF");
