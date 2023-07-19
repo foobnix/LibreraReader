@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.text.format.DateFormat;
 
 import java.sql.Date;
 
@@ -11,8 +12,13 @@ public class UiSystemUtils {
 
     public static String getSystemTime(Activity a) {
         final java.text.DateFormat dateFormat = android.text.format.DateFormat.getTimeFormat(a);
-        String replace = dateFormat.format(new Date(System.currentTimeMillis())).replace("AM", "").replace("PM", "");
-        return replace.trim();
+        String dateTime = dateFormat.format(new Date(System.currentTimeMillis()));
+
+        boolean is24 = DateFormat.is24HourFormat(a);
+        if (is24) {
+            dateTime = dateTime.replace("AM", "").replace("PM", "");
+        }
+        return dateTime.trim();
     }
 
     public static int getPowerLevel(Activity a) {
