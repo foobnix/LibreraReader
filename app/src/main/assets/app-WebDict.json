@@ -2,7 +2,7 @@
   {"name": "_ Disabled dict starts with _", "path": "https://translate.google.com/#%s/%s/%s"},
   {"name": "Google Translate", "path": "https://translate.google.com/#%s/%s/%s"},
   {"name": "Dictionary.com", "path": "http://dictionary.reference.com/browse/%s"},
-  {"name": "Oxford", "path": "http://www.oxforddictionaries.com/definition/english/%s"},
+  {"name": "Oxford", "path": "https://www.oxfordlearnersdictionaries.com/definition/english/%s"},
   {"name": "Longman", "path": "http://www.ldoceonline.com/search/?q=%s"},
   {"name": "Cambridge", "path": "http://dictionary.cambridge.org/dictionary/american-english/%s"},
   {"name": "Macmillan", "path": "http://www.macmillandictionary.com/dictionary/british/%s"},

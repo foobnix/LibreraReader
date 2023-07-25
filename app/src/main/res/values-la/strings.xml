@@ -649,4 +649,8 @@
    <string name="user_styles">Styli usufructuarii</string>
    <string name="engine">Engine</string>
    <string name="restart_manually">Haec mutatio requirit a manual sileo applicationis</string>
+   <string name="search_in_the_library">Quaerere in bibliotheca</string>
+   <string name="update_metadata">Update metadata</string>
+   <string name="highlighting_initial_letters">Quatenus initialis litterae</string>
+   <string name="anti_aliasing_level">Anti-aliasing gradu</string>
 </resources>

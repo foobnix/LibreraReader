@@ -54,7 +54,7 @@ public class OPDS {
     final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
 
     public static int random = new Random().nextInt();
-    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2997." + random + " Safari/537.36";
+    public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; Librera) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2997." + random + " Safari/537.36";
 
     public static void buildProxy() {
         new Thread(new Runnable() {
@@ -74,7 +74,7 @@ public class OPDS {
                 }
                 client = builder.build();
             }
-        },"@T buildProxy").start();
+        }, "@T buildProxy").start();
 
     }
 
@@ -143,7 +143,6 @@ public class OPDS {
             }
 
 
-
             if (response.code() == 401 || response.code() == 400) {
                 try {
                     Thread.sleep(1000);
@@ -181,7 +180,7 @@ public class OPDS {
         }
 
         String string = response.body().string();
-        string = string.replace("\u0001M\u0001J","");
+        string = string.replace("\u0001M\u0001J", "");
         response.close();
         return string;
     }

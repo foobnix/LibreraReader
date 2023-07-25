@@ -70,7 +70,7 @@ import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -830,8 +830,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
 
+    public static List<FileMeta> cacheItems;
+
     @Override
     public void populateDataInUI(List<FileMeta> items) {
+        cacheItems = items;
         handler.removeCallbacks(sortAndSeach);
 
         String txt = searchEditText.getText().toString().trim();
@@ -878,14 +881,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchAdapter.clearItems();
             searchAdapter.getItemsList().addAll(items);
             searchAdapter.notifyDataSetChanged();
-//            handler.postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    searchAdapter.notifyDataSetChanged();
-//
-//                }
-//            }, 1000);
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    searchAdapter.notifyDataSetChanged();
+
+                }
+            }, 1000);
 
             // recyclerView.scrollToPosition(0);
 
@@ -1150,6 +1153,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         super.onDestroy();
         LOG.d("SearchFragment2 onDestroy");
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+        cacheItems = null;
 
     }
 }

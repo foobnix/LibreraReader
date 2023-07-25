@@ -1,0 +1,118 @@
+a{color:#06C;text-decoration:underline}
+address{display:block;font-style:italic}
+b{font-weight:bold}
+bdo{direction:rtl;unicode-bidi:bidi-override}
+blockquote{display:block;margin-left:4em;}
+
+cite{font-style:italic}
+code{white-space:pre-line; font-family:monospace; text-align:left;}
+dd{display:block;margin:0 0 0 40px}
+del{text-decoration:line-through}
+div{display:block}
+dl{display:block;margin:1em 0}
+dt{display:block;font-weight:bold;}
+em{font-style:italic}
+
+h1{display:block;font-size:1.8em;  margin:1em 0; page-break-after:avoid}
+h2{display:block;font-size:1.5em;  margin:1em 0; page-break-after:avoid}
+h3{display:block;font-size:1.3em;  margin:1em 0; page-break-after:avoid}
+h4{display:block;font-size:1.0em;  margin:1em 0; page-break-after:avoid}
+h5{display:block;font-size:0.8em;  margin:1em 0; page-break-after:avoid}
+h6{display:block;font-size:0.7em;  margin:1em 0; page-break-after:avoid}
+
+head{display:none}
+hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}
+html{display:block}
+i{font-style:italic}
+u,ins,abbr{text-decoration:underline}
+kbd{font-family:monospace}
+li{display:list-item}
+menu{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}
+ol{display:block;list-style-type:decimal;margin:1em;padding:0 1em 0 1em}
+p{display:block;}
+pre{display:block;font-family:monospace;margin:1em 0;white-space:pre}
+samp{font-family:monospace}
+script{display:none}
+small{font-size:0.83em}
+x-small{font-size:0.6em}
+strong{font-weight:bold}
+style{display:none}
+sub{font-size:0.83em;vertical-align:sub}
+
+ul{display:block;list-style-type:disc;margin:1em;padding:0 0 0 30pt}
+ul ul{list-style-type:circle}
+ul ul ul{list-style-type:square}
+var{font-style:italic}
+figcaption {display:block; text-align:center}
+figcaption>p {text-align:center}
+br{display:block}
+
+FictionBook{display:block}
+stylesheet,binary{display:none}
+description,description>*{display:none}
+description>*{display:none}
+description>title-info{display:block}
+description>title-info>*{display:none}
+description>title-info>annotation{display:block;font-style:italic}
+description>title-info>coverpage{display:block;}
+section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
+image{display:block}
+
+a[type=note]{font-size:small;vertical-align:super}
+emphasis{font-style:italic}
+strong{font-weight:bold}
+sub{font-size:small;vertical-align:sub}
+image{margin:1em 0;text-align:center}
+cite,poem{margin:1em 1.5em}
+subtitle,epigraph,stanza{margin:1em 0}
+
+empty-line{padding-top:1em}
+
+section>title{page-break-before:avoid;}
+section>title>p{text-align:center !important; text-indent:0px !important;}
+title>p{text-align:center !important; text-indent:0px !important;}
+subtitle{text-align:center !important; text-indent:0px !important;}
+image{text-align:center; text-indent:0px;}
+section+section>title{page-break-before:always;}
+epigraph{text-align:right; margin-left:2em;font-style: italic;}
+text-author{font-style: italic;font-weight: bold;}
+del,strikethrough,strike,s{text-decoration:line-through;}
+
+text-author{font-style: italic;font-weight: bold;}
+p>image{display:block;}
+
+b>span,strong>span{font-weight:normal}
+book>title, bookinfo {display:none}
+
+
+svg{display:block;}
+math, m, svg>text {display:none}
+sup,sup>* {font-size:0.83em;vertical-align:super; font-weight:bold}
+
+body{display:block; padding:0 !important; margin:0 !important;}
+
+h1,h2,h3,h4,h5,h6,img,svg {text-indent:0px !important; text-align: center;}
+
+title,title>p,title>p>strong{font-size:1.1em;}
+subtitle{font-size:1.0em;}
+
+t{font-style: italic;}
+mark{color:blue}
+summary,abbr,legend{font-weight:bold}
+dfn,q{font-style:italic}
+video,audio, canvas{color:red; font-size:0.7em;}
+code, var, samp {font-size:0.8em;}
+summary{display:block}
+textarea{margin:0.5em;padding:1em;}
+
+
+table{display:table;border-spacing:2px}
+tbody{display:table-row-group}
+td{display:table-cell;padding:1px;background-color:inherit}
+tfoot{display:table-footer-group}
+th{display:table-cell;font-weight:bold;padding:1px;text-align:center;background-color:inherit}
+thead{display:table-header-group}
+tr{display:table-row}
+colgroup{display:table-column-group}
+col{display:table-column}
+

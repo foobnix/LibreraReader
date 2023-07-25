@@ -649,4 +649,8 @@
    <string name="user_styles">Anwenderstile</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Diese Änderung erfordert einen manuellen Neustart der Anwendung</string>
+   <string name="search_in_the_library">Suche in der Bibliothek</string>
+   <string name="update_metadata">Metadaten aktualisieren</string>
+   <string name="highlighting_initial_letters">Anfangsbuchstaben hervorheben</string>
+   <string name="anti_aliasing_level">Anti-Aliasing-Stufe</string>
 </resources>

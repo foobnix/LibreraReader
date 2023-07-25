@@ -2,7 +2,7 @@ package com.foobnix.android.utils;
 
 import com.foobnix.mobi.parser.IOUtils;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;

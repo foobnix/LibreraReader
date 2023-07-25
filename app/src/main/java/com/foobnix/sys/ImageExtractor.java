@@ -48,7 +48,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 import org.ebookdroid.core.codec.CodecContext;

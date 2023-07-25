@@ -33,7 +33,7 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;

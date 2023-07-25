@@ -2,6 +2,7 @@ package com.foobnix.model;
 
 import android.net.Uri;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
@@ -17,7 +18,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.librera.JSONArray;
 import org.librera.JSONException;
@@ -370,8 +370,8 @@ public class AppData {
     }
 
 
-    public static File getTestFileName(){
-        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context)+"_"+ AppsConfig.MUPDF_VERSION + ".txt");
+    public static File getTestFileName() {
+        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" + AppsConfig.MUPDF_FZ_VERSION + ".txt");
         return logFile;
 
 

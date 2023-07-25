@@ -110,11 +110,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 AppSP.get().isDoubleCoverAlone = false;
                 AppSP.get().isLocked = bs.getLock(isTextFormat);
                 TempHolder.get().pageDelta = bs.d;
-                if (AppState.get().isCropPDF && !AppSP.get().isCut && !isTextFormat ) {
+                if (AppState.get().isCropPDF && !AppSP.get().isCut && !isTextFormat) {
                     AppSP.get().isCrop = true;
                 }
             }
-
 
 
             BookCSS.get().detectLang(path);
@@ -149,9 +148,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
 
         view = new PdfSurfaceView(getController());
-
-
-
 
 
         frameLayout.addView(view.getView());
@@ -259,7 +255,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         // Analytics.onStart(this);
         try {
             getController().getDocumentModel().decodeService.restore();
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
@@ -274,7 +270,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onStop() {
         try {
             getController().getDocumentModel().decodeService.shutdown();
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
         super.onStop();
@@ -416,11 +412,15 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
-        if (AppState.get().isShowLongBackDialog) {
-            CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
-        } else {
-            //showInterstial();
-            getController().getListener().onCloseActivityAdnShowInterstial();
+        try {
+            if (AppState.get().isShowLongBackDialog) {
+                CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
+            } else {
+                //showInterstial();
+                getController().getListener().onCloseActivityAdnShowInterstial();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
     }

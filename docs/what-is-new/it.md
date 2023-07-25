@@ -3,6 +3,17 @@ layout: main
 ---
 
 # Cosa c'è di nuovo
+### [8.8.104] Evidenziando le lettere iniziali
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
+### [8.8.79] Cerca del testo nei libri della Biblioteca
+
+* È possibile filtrare i risultati della raccolta
+* È possibile la ricerca di frasi
+
+<img class="i" src="8.8.97.png" />
 
 ### [8.8.79] Ordina i segnalibri per pagina o per data
 <img class="i" src="8.8.79.png" />

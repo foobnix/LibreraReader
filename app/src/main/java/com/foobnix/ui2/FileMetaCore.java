@@ -30,6 +30,8 @@ import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileMetaCore {
 
@@ -68,7 +70,7 @@ public class FileMetaCore {
 
     public static void createMetaIfNeedSafe(String path, final boolean isSearhcBook) {
         //if (isSafeToExtactBook(path)) {
-            createMetaIfNeed(path, isSearhcBook);
+        createMetaIfNeed(path, isSearhcBook);
         //}
 
     }
@@ -327,13 +329,17 @@ public class FileMetaCore {
             fileMeta.setPages(pagesCount);
         }
 
-        if (TxtUtils.isNotEmpty(meta.getYear())) {
+        String yearString = meta.getYear();
+        if (TxtUtils.isNotEmpty(yearString)) {
             try {
-                fileMeta.setYear(Integer.parseInt(meta.getYear().trim()));
+                int year = extractYear(yearString);
+                LOG.d("extractYear", yearString, year);
+                if (year > 0) {
+                    fileMeta.setYear(year);
+                }
             } catch (Exception e) {
                 LOG.e(e);
             }
-
         }
         fileMeta.setPublisher(meta.getPublisher());
         fileMeta.setIsbn(meta.getIsbn());
@@ -341,6 +347,23 @@ public class FileMetaCore {
         fileMeta.setState(STATE_FULL);
 
     }
+
+    public static int extractYear(String input) {
+        try {
+            input = input.trim();
+            if (input.length() > 4) {
+                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
+                if (m.find()) {
+                    input = m.group();
+                }
+            }
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return -1;
+    }
+
 
     public void upadteBasicMeta(FileMeta fileMeta, File file) {
         fileMeta.setTitle(file.getName());// temp

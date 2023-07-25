@@ -1,14 +1,16 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
-**The development and support of Librera is frozen for an unpredictable time, there is a big war in my country Ukraine.**
+**The development and support of Librera is frozen for an unpredictable time, there is a big war in my country
+Ukraine.**
 [Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
 
 [OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
 
 # Librera Reader
 
-Librera Reader is an e-book reader for Android devices; 
-it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, and OPDS Catalogs
+Librera Reader is an e-book reader for Android devices;
+it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX,
+and OPDS Catalogs
 
 ### Download application
 
@@ -20,7 +22,7 @@ it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, 
 
 [Beta testing .apk](http://beta.librera.mobi/)
 
-[Application Fonts.zip](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
+[Application Fonts.zip](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts)
 
 ### Links
 
@@ -59,7 +61,8 @@ keytool -genkey -v -storetype PKCS12 -keystore keystore.pkcs12 -alias ALIAS -key
 ~~~~
 
 Now edit or create the file ~/.gradle/gradle.properties and set following values
-(replacing PASSWD by the password you typed while creating the keystore, ALIAS as before and using the path to your keystore):
+(replacing PASSWD by the password you typed while creating the keystore, ALIAS as before and using the path to your
+keystore):
 
 ~~~~
 RELEASE_STORE_FILE=/PATH/TO/YOUR/keystore.pkcs12
@@ -74,34 +77,26 @@ To build with firebase support (all version but the ones for Fdroid) you need to
 authentication file for firebase services offered by google. Therefore please follow
 https://firebase.google.com/docs/android/setup to create your own project. You need to
 register for the packages com.foobnix.pdf.info and com.foobnix.pdf.reader.a1. This way
-you will get a google-services.json file that you have to place in the app folder of 
+you will get a google-services.json file that you have to place in the app folder of
 the repository.
 
 For this project only Analytics is used, so a spakling plan is all you need.
 
-## Librera Build on MuPdf 1.21.1 for Android 4.4+
+## Librera Build on MuPdf
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.21.1.sh (Change the paths to mupdf and jniLibs folders)
+./link_to_mupdf_x.x.x.sh (Change the paths to mupdf and jniLibs folders)
 ./gradlew assembleLibrera
 ~~~~
 
-## Librera Build on MuPdf 1.11 for Android 4.0+
-
-~~~~
-cd Builder
-./link_to_mupdf_1.11.sh
-./gradlew assembleOld
-~~~~
-
-## Building for F-Droid for Android 4.4+
+## Building for F-Droid for Android
 
 If you wish to build for F-Droid (e.g. not using google services, Internet) you can run the build with
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.21.1.sh
+./link_to_mupdf_x.x.x.sh
 ./gradlew assembleFdroid
 ~~~~
 

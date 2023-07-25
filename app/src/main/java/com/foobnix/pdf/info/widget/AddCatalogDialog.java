@@ -35,7 +35,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.util.Arrays;
 import java.util.List;

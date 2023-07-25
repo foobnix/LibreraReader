@@ -649,4 +649,8 @@
    <string name="user_styles">Definidu dae s\'utente</string>
    <string name="engine">Engine</string>
    <string name="restart_manually">This change requires a manual restart of the application</string>
+   <string name="search_in_the_library">Search in the library</string>
+   <string name="update_metadata">Update metadata</string>
+   <string name="highlighting_initial_letters">Highlighting initial letters</string>
+   <string name="anti_aliasing_level">Anti-aliasing level</string>
 </resources>

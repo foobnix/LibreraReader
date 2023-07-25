@@ -6,8 +6,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 5242
-    FDroidVersionNumber = "8.8.76"
+    FDroidCodeNumber = 5468
+    FDroidVersionNumber = "8.9.20"
 }
 
 println " --------------------"
@@ -28,15 +28,14 @@ ext {
 }
 
 android {
-    buildToolsVersion '33.0.2'
-    compileSdk 33
+    compileSdk project.compileSdk
     namespace "com.foobnix.pdf.info"
 
 
     defaultConfig {
         namespace "com.foobnix.pdf.info"
-        minSdk 19
-        targetSdk 33
+        minSdk project.minSdk
+        targetSdk project.targetSdk
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -106,7 +105,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "Librera Old",
+                    appName      : "Old",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",
@@ -120,7 +119,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "MuPDF-1.11",
+                    appName      : "Beta ",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : librera_appGdriveKey,
@@ -160,7 +159,6 @@ android {
             ]
         }
         pro {
-            minSdk 19
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -330,8 +328,8 @@ dependencies {
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.work:work-runtime:2.8.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.work:work-runtime:2.8.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
@@ -355,8 +353,8 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.5.0'
     implementation 'javax.xml.stream:stax-api:1.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.5'
-    implementation 'com.github.bumptech.glide:glide:4.15.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
@@ -365,7 +363,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:21.5.0"
+    def google_ads = "com.google.android.gms:play-services-ads:22.1.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads
@@ -374,6 +372,16 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
     huaweiImplementation google_ads
+
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:2.0.0"
+    libreraImplementation messaging_ads
+    betaImplementation messaging_ads
+    pdf_v2Implementation messaging_ads
+    ebookaImplementation messaging_ads
+    tts_readerImplementation messaging_ads
+    pdf_classicImplementation messaging_ads
+    epub_readerImplementation messaging_ads
+    huaweiImplementation messaging_ads
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
@@ -387,7 +395,9 @@ task copyApks() {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
         delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
+
 
         android.applicationVariants.all { variant ->
             if ("release" == variant.buildType.name) {
@@ -395,8 +405,12 @@ task copyApks() {
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                ["/home/dev/Dropbox/FREE_PDF_APK/testing",
-                 "/home/dev/Nextcloud/LibreraBeta"].each { dest ->
+                def list = ["/home/dev/Nextcloud/LibreraBeta", "/home/dev/Dropbox/FREE_PDF_APK/testing"]
+
+                if (project.hasProperty("relesae")) {
+                    list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                }
+                list.each { dest ->
                     copy {
                         from file(
                                 "build/outputs/apk/${flavor}/release/"

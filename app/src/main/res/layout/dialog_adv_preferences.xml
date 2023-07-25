@@ -258,6 +258,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:text="@string/anti_aliasing_level"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/antiAliasLevel"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="gone">
 
             <TextView
@@ -285,10 +304,18 @@
 
 
         <CheckBox
+            android:id="@+id/isBionicMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/highlighting_initial_letters" />
+
+        <CheckBox
             android:id="@+id/isMirrorImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mirror_image_for_teleprompter" />
+
+
 
         <CheckBox
             android:id="@+id/isLockPDF"

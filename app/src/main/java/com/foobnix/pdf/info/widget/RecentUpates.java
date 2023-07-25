@@ -30,7 +30,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSActivity;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;

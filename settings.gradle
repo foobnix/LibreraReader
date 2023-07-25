@@ -1,1 +1,2 @@
 include ':app', ':pro', ':Builder', ':smartreflow'
+include ':app2'

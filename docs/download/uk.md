@@ -20,3 +20,5 @@ layout: main
 [Політика конфіденційності](/PrivacyPolicy/uk)
 
 [Пожертвуйте на Patreon](https://www.patreon.com/librera)
+
+[Люди що внесли вклад в проект](/contributors)

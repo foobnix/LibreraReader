@@ -649,4 +649,8 @@
    <string name="user_styles">ユーザーのスタイル</string>
    <string name="engine">エンジン</string>
    <string name="restart_manually">この変更には、アプリの手動再起動が必要です</string>
+   <string name="search_in_the_library">図書館で探す</string>
+   <string name="update_metadata">メタデータの更新</string>
+   <string name="highlighting_initial_letters">頭文字のハイライト</string>
+   <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
 </resources>

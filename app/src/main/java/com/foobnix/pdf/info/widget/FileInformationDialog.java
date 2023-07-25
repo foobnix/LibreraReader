@@ -41,8 +41,10 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
@@ -51,7 +53,7 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.greenrobot.eventbus.EventBus;
 
@@ -93,7 +95,7 @@ public class FileInformationDialog {
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
 
 
-        LOG.d("FileMeta-State", fileMeta.getState(),fileMeta.getTitle());
+        LOG.d("FileMeta-State", fileMeta.getState(), fileMeta.getTitle());
 
 
         if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
@@ -419,21 +421,33 @@ public class FileInformationDialog {
 
             }
         });
+        TextView onUpdateMeta = TxtUtils.underlineTextView(dialog.findViewById(R.id.onUpdateMeta));
+        onUpdateMeta.setOnClickListener(v -> {
+
+            IMG.clearMemoryCache();
+            IMG.clearDiscCache();
+
+            fileMeta.setState(FileMetaCore.STATE_NONE);
+            FileMetaCore.reUpdateIfNeed(fileMeta);
+
+            AppDB.get().refresh(fileMeta);
+
+
+            TempHolder.listHash++;
+            EventBus.getDefault().post(new UpdateAllFragments());
+            infoDialog.dismiss();
+        });
 
         View openFile = dialog.findViewById(R.id.openFile);
         // openFile.setVisibility(ExtUtils.isNotSupportedFile(file) ? View.GONE :
         // View.VISIBLE);
-        openFile.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.showDocumentWithoutDialog2(a, file);
-
+        openFile.setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+                infoDialog = null;
             }
+            ExtUtils.showDocumentWithoutDialog2(a, file);
+
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);

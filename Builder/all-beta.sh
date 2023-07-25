@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-
 #./fonts.sh
 
 #Builder folder
-./link_to_mupdf_1.21.1.sh
+./link_to_mupdf_1.22.2.sh
 
 cd ../
 
@@ -11,13 +10,12 @@ cd ../
 
 ./gradlew assembleFdroidRelease
 ./gradlew assembleProRelease
+#./gradlew assembleLibreraRelease
 
-cd Builder
-./link_two_mupdf.sh
-
-cd ../
-
-./gradlew assembleProRelease
+#cd Builder
+#./link_two_mupdf.sh
+#cd ../
+#./gradlew assembleProRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

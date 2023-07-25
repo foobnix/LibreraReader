@@ -1711,7 +1711,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
         GFile.runSyncService(this);
-        dc.resetReadTimer();
+        if(dc!=null) {
+            dc.resetReadTimer();
+        }
 
     }
 

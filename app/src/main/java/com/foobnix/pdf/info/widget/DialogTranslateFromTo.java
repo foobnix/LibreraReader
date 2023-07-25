@@ -24,7 +24,7 @@ import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.DictsHelper.DictItem;
 import com.foobnix.pdf.info.R;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

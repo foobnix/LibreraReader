@@ -649,4 +649,8 @@
    <string name="user_styles">Uživatelsky definované</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>
+   <string name="search_in_the_library">Hledat v knihovně</string>
+   <string name="update_metadata">Aktualizovat metadata</string>
+   <string name="highlighting_initial_letters">Zvýraznění počátečních písmen</string>
+   <string name="anti_aliasing_level">Úroveň anti-aliasingu</string>
 </resources>

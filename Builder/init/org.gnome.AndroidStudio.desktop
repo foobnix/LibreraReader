@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Android Studio
-Exec=/home/dev/Downloads/android-studio-2021.3.1.17-linux/android-studio/bin/studio.sh
-Icon=/home/dev/Downloads/android-studio-2021.3.1.17-linux/android-studio/bin/studio.png
-Type=Application
-StartupWMClass=jetbrains-studio
-

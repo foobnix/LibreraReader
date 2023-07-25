@@ -1,5 +1,8 @@
 package com.foobnix.pdf.info.model;
 
+import static com.foobnix.pdf.info.AppsConfig.MUPDF_1_11;
+import static com.foobnix.pdf.info.AppsConfig.MUPDF_FZ_VERSION;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Environment;
@@ -52,7 +55,6 @@ public class BookCSS {
     public static final String CHARIS_SIL = "Charis SIL";
 
     public static final String DEFAULT_FONT = CHARIS_SIL;
-
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
@@ -118,7 +120,7 @@ public class BookCSS {
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGHTS;
-    public String userStyleCss = "app-Librera.css";
+    public String userStyleCss = MUPDF_FZ_VERSION.equals(MUPDF_1_11) ? "app-Librera.css" : "app-Librera-Tables.css";
     private String lastBookPathCache = "";
     private String trackPathCache;
 
@@ -207,7 +209,7 @@ public class BookCSS {
         emptyLine = 1;
 
         lineHeight12 = 14;
-        paragraphHeight = 0;
+        paragraphHeight = 1;
         textIndent = 10;
         fontWeight = 400;
 
@@ -236,9 +238,7 @@ public class BookCSS {
                         ""//
         ;
 
-
         LOG.d("BookCSS", "resetToDefault");
-
 
     }
 
@@ -249,7 +249,6 @@ public class BookCSS {
         resetToDefault(c);
 
         IO.readObj(AppProfile.syncCSS, instance);
-
 
         try {
             if (TxtUtils.isEmpty(instance.searchPathsJson)) {
@@ -265,7 +264,6 @@ public class BookCSS {
         } catch (Exception e) {
             LOG.e(e);
         }
-
 
     }
 
@@ -292,11 +290,9 @@ public class BookCSS {
 
     }
 
-
     public void allFonts(String fontName) {
         normalFont = fontName;
     }
-
 
     public void resetAll(FontPack pack) {
         LOG.d("resetAll", pack.dispalyName, pack.fontFolder);
@@ -367,12 +363,10 @@ public class BookCSS {
         all.add(COURIER);
         all.add(CHARIS_SIL);
 
-
         all.addAll(getAllFontsFromFolder(fontFolder));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
-
 
         return all;
     }
@@ -391,7 +385,6 @@ public class BookCSS {
                 return o1.dispalyName.compareTo(o2.dispalyName);
             }
         });
-
 
         all.add(0, new FontPack(COURIER));
         all.add(0, new FontPack(ARIAL));
@@ -416,14 +409,21 @@ public class BookCSS {
                 @Override
                 public boolean accept(File dir, String name) {
                     name = name.toLowerCase(Locale.US);
-
+                    LOG.d("name-accept", name);
                     if (excludeNoto) {
                         if (name.startsWith("noto")) {
+                            return false;
+                        } else if (name.startsWith("sec")) {
+                            return false;
+                        } else if (name.startsWith("samsung")) {
+                            return false;
+                        } else if (name.startsWith("clock")) {
                             return false;
                         }
                     }
 
-                    for (String ext : fontExts) {
+                    for (
+                            String ext : fontExts) {
                         if (name.endsWith(ext)) {
                             return true;
                         }
@@ -565,7 +565,7 @@ public class BookCSS {
 
     public String toCssString(String path) {
 
-        lineHeight12 = Math.max(12, lineHeight12);
+        lineHeight12 = Math.max(10, lineHeight12);
 
         StringBuilder builder = new StringBuilder();
 
@@ -583,7 +583,6 @@ public class BookCSS {
             LOG.d("BookCSS-from file", cssFile);
             builder.append(css);
         }
-
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
@@ -609,12 +608,10 @@ public class BookCSS {
         builder.append("padding:0 !important;");
         builder.append("}");
 
-
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
             builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
             //apply settings
-
 
             if (paragraphHeight > 0) {// bug is here
                 builder.append("div, p {");
@@ -623,7 +620,7 @@ public class BookCSS {
             }
 
             // <P> begin
-            builder.append("body, div, p {");
+            builder.append("body, div, p, span {");
             builder.append(String.format("font-size:medium !important;"));
 
             if (AppState.get().isDayNotInvert) {
@@ -659,7 +656,6 @@ public class BookCSS {
             builder.append("padding-left:0 !important;");
             builder.append("padding-right:0 !important;");
             builder.append("}");
-
 
             // FONTS BEGIN
             if (isUrlFont(normalFont)) {

@@ -442,7 +442,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
 
 
-        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+        if (AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
             return getText_111();
         } else {
             return getText_116();

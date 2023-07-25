@@ -26,7 +26,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

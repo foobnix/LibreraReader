@@ -649,4 +649,8 @@
    <string name="user_styles">Stiluri de utilizare</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Această modificare necesită o repornire manuală a aplicației</string>
+   <string name="search_in_the_library">Cauta in biblioteca</string>
+   <string name="update_metadata">Actualizați metadatele</string>
+   <string name="highlighting_initial_letters">Evidențierea literelor inițiale</string>
+   <string name="anti_aliasing_level">Nivel anti-aliasing</string>
 </resources>

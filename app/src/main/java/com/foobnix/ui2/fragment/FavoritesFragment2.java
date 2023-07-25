@@ -328,6 +328,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         if(AppState.get().isShowFavTags) {
             List<String> tags = TagData.getAllTagsByFile();
+            Collections.sort(tags,String.CASE_INSENSITIVE_ORDER);
+
             if (TxtUtils.isListNotEmpty(tags)) {
                 for (String tag : tags) {
                     if (TxtUtils.isEmpty(tag)) {

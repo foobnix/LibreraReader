@@ -649,4 +649,8 @@
    <string name="user_styles">Brukerstiler</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denne endringen krever en manuell omstart av programmet</string>
+   <string name="search_in_the_library">Søk i biblioteket</string>
+   <string name="update_metadata">Oppdatere metadata</string>
+   <string name="highlighting_initial_letters">Utheving av forbokstaver</string>
+   <string name="anti_aliasing_level">Anti-aliasing nivå</string>
 </resources>

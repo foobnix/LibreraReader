@@ -149,7 +149,7 @@ public class HtmlExtractor {
             if (force) {
                 string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
             } else {
-                string = string.replace("HTML", "html").replace("BODY", "body");
+                //string = string.replace("HTML", "html").replace("BODY", "body");
             }
             // string = string.replace("\">", "\"/>");
             string = string.replace("<br>", "<br/>");

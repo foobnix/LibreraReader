@@ -23,13 +23,12 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
@@ -105,6 +104,30 @@ public class TxtUtils {
             }
         }
         return false;
+    }
+
+    public static String toBionicText(String text) {
+        if (TxtUtils.isEmpty(text)) {
+            return text;
+        }
+        String[] words = text.split(" ");
+        StringBuilder builder = new StringBuilder();
+        for (String w : words) {
+            builder.append(toBionicWord(w));
+            builder.append(" ");
+        }
+
+        return builder.toString().trim();
+    }
+
+    public static String toBionicWord(String w) {
+        if (w.length() == 1) {
+            w = "<b>" + w + "</b>";
+        } else {
+            int half = w.length() / 2;
+            w = "<b>" + w.substring(0, half) + "</b>" + w.substring(half);
+        }
+        return w;
     }
 
     public static String lastWord(String line) {
@@ -203,7 +226,7 @@ public class TxtUtils {
 
     public static String deltaPageMax(int max) {
         if (AppState.get().pageNumberFormat == AppState.PAGE_NUMBER_FORMAT_PERCENT) {
-            return  ""+max;
+            return "" + max;
         }
         if (TempHolder.get().pageDelta == 0) {
             return "" + max;
@@ -1104,13 +1127,13 @@ public class TxtUtils {
 
 
             if (TxtUtils.isNotEmpty(id)) {
-                if(chapter.contains("#")){
+                if (chapter.contains("#")) {
                     chapter = chapter.substring(0, chapter.indexOf("#"));
                 }
-                 id = id+"#"+chapter;
+                id = id + "#" + chapter;
 
 
-                LOG.d("getFooterNote",id);
+                LOG.d("getFooterNote", id);
                 String string = footNotes.get(id);
                 if (TxtUtils.isNotEmpty(string)) {
                     LOG.d("Find note for id", string);
@@ -1148,28 +1171,27 @@ public class TxtUtils {
             return txt;
         }
 
-        LOG.d("filterString-begin",txt);
+        LOG.d("filterString-begin", txt);
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
         replaceAll = replaceAll(replaceAll, "(\\w+)(-\\s)", "$1").trim();
-
 
 
         if (!replaceAll.contains(" ")) {
             String regexp = "[^\\w\\[\\]\\{\\}’']+";
             replaceAll = replaceAll(replaceAll, regexp + "$", "").replaceAll("^" + regexp, "");
         }
-        if(replaceAll.endsWith(".]")){
-            replaceAll = replaceAll.replace(".]","");
+        if (replaceAll.endsWith(".]")) {
+            replaceAll = replaceAll.replace(".]", "");
         }
-        if(replaceAll.endsWith(")")){
-            replaceAll = replaceAll.replace(")","");
+        if (replaceAll.endsWith(")")) {
+            replaceAll = replaceAll.replace(")", "");
         }
-        if(replaceAll.startsWith("[") && !replaceAll.endsWith("]")){
-            replaceAll = replaceAll.replace("[","");
+        if (replaceAll.startsWith("[") && !replaceAll.endsWith("]")) {
+            replaceAll = replaceAll.replace("[", "");
         }
 
 
-        LOG.d("filterString-end",replaceAll.trim());
+        LOG.d("filterString-end", replaceAll.trim());
         return replaceAll.trim();
     }
 

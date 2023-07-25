@@ -67,16 +67,18 @@ static void mupdf_free_document(renderdocument_t* doc) {
 	if (!doc) {
 		return;
 	}
+	if (!doc->ctx) {
+		return;
+	}
+
 	//LOGE("mupdf_free_document 2");
 	//fz_locks_context *locks = doc->ctx->locks;
 
 	if (doc->outline) {
 		fz_drop_outline(doc->ctx, doc->outline);
 	}
-
+    doc->outline = NULL;
 	//LOGE("mupdf_free_document 3");
-
-	doc->outline = NULL;
 
 	if (doc->document) {
 		fz_drop_document(doc->ctx, doc->document);
@@ -100,17 +102,15 @@ static void mupdf_free_document(renderdocument_t* doc) {
 	//LOGE("mupdf_free_document 7");
 }
 
-JNIEXPORT jint JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env,
-		jclass clazz) {
-	return 1211;
+
+JNIEXPORT jstring JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getFzVersion(JNIEnv *env, jclass clazz) {
+	return (*env)->NewStringUTF(env, FZ_VERSION);
 }
-
-
 
 JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
-		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale ) {
+		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale, jint antialias ) {
 	renderdocument_t *doc;
 	jboolean iscopy;
 	jclass cls;
@@ -157,7 +157,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 	doc->document = NULL;
 	doc->outline = NULL;
 
-	// fz_set_aa_level(fz_catch(ctx), alphabits);
+	fz_set_aa_level(doc->ctx, antialias);
 	doc->format = format;
 	fz_try(doc->ctx)
 	{
@@ -674,11 +674,19 @@ JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 		jclass clazz,jlong dochandle, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
+    renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 
-
-	if (outline && outline->title){
-		return (*env)->NewStringUTF(env, outline->title);
-	}
+	 if(!doc || !outline || doc->ctx == NULL){
+        return NULL;
+     }
+	 if (outline){
+                char st[4048];
+                fz_try(doc->ctx)
+                    snprintf(st, 4047, "%s", outline->title);
+                fz_catch(doc->ctx)
+                    return NULL;
+                return (*env)->NewStringUTF(env, st);
+            }
 
 	return NULL;
 }
@@ -693,10 +701,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 	if (!outline)
 		return NULL;
 
-	char linkbuf[2048];
+	char linkbuf[4048];
 	int pageNo = -1;//outline->page;
 
-	snprintf(linkbuf, 2047, "#%d", pageNo + 1);
+	snprintf(linkbuf, 4047, "#%d", pageNo + 1);
 
 	return (*env)->NewStringUTF(env, linkbuf);
 }
@@ -1297,13 +1305,8 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
 	int is_block_bold = fz_font_is_bold(ctx,block1) && fz_font_is_bold(ctx,block2);
 	int is_block_italic = fz_font_is_italic(ctx,block1) && fz_font_is_italic(ctx,block2);
 
-    if(is_block_bold){
-        fz_write_printf(ctx, out, "<b>");
-    }
-
-    if(is_block_italic){
-		fz_write_printf(ctx, out, "<i>");
-	}
+    if(is_block_bold) fz_write_printf(ctx, out, "<b>");
+    if(is_block_italic) fz_write_printf(ctx, out, "<i>");
 
 	for (line = block->u.t.first_line; line; line = line->next)
 	{
@@ -1331,18 +1334,17 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
 					fz_write_byte(ctx, out, utf[i]);
 				break;
 			}
-
-			if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
-			if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
+            if(is_bold_ch && is_italic_ch) fz_write_printf(ctx,out,"</i></b>");
+			else if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
+			else if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
 		}
 		fz_write_string(ctx, out, " ");
+
 	}
-	if(is_block_bold){
-		fz_write_printf(ctx, out, "</b>");
-	}
-	if(is_block_italic){
-		fz_write_printf(ctx, out, "</i>");
-	}
+	if(is_block_bold && is_block_italic) fz_write_printf(ctx, out, "</i></b>");
+	else if(is_block_bold) fz_write_printf(ctx, out, "</b>");
+	else if(is_block_italic) fz_write_printf(ctx, out, "</i>");
+
 	fz_write_string(ctx, out, "</p>\n");
 	if(fs > fontSize){
 		fz_write_string(ctx, out, "<pause>\n");

@@ -649,4 +649,8 @@
    <string name="user_styles">سبک های کاربر</string>
    <string name="engine">موتور</string>
    <string name="restart_manually">این تغییر نیاز به راه اندازی مجدد دستی برنامه دارد</string>
+   <string name="search_in_the_library">در کتابخانه جستجو کنید</string>
+   <string name="update_metadata">به روز رسانی متادیتا</string>
+   <string name="highlighting_initial_letters">برجسته کردن حروف اولیه</string>
+   <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.foobnix.hypen;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 
 import java.util.List;
 import java.util.Locale;
@@ -64,6 +66,12 @@ public class HypenUtils {
 
             @Override
             public void findText(String w) {
+
+                if (AppState.get().isBionicMode) {
+                    res.append(TxtUtils.toBionicWord(w));
+                    return;
+                }
+
                 if (w.length() <= 3) {
                     res.append(w);
                 } else {

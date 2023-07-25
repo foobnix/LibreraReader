@@ -40,6 +40,13 @@
             android:layout_weight="0"
             android:text="@string/search_in_the_subfolders" />
 
+    <CheckBox
+        android:id="@+id/searchInLibreryResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/search_in_the_library" />
+
     <LinearLayout
         android:layout_weight="0"
         android:orientation="horizontal"

@@ -649,4 +649,8 @@
    <string name="user_styles">Sainithe ag an úsáideoir</string>
    <string name="engine">Inneall</string>
    <string name="restart_manually">Teastaíonn atosú láimhe den fheidhmchlár leis an athrú seo</string>
+   <string name="search_in_the_library">Cuardach sa leabharlann</string>
+   <string name="update_metadata">Meiteashonraí a nuashonrú</string>
+   <string name="highlighting_initial_letters">Ag cur béime ar litreacha tosaigh</string>
+   <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
 </resources>

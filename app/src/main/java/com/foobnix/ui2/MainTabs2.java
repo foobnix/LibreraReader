@@ -42,6 +42,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -71,6 +72,12 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.FormError;
+import com.google.android.ump.UserMessagingPlatform;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -82,7 +89,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
@@ -116,7 +122,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             LOG.d("onPageSelected", uiFragment);
             Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
 
-
         }
 
         @Override
@@ -138,11 +143,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         public void check() {
             if (isPullToRefreshEnable()) {
-                if (uiFragment instanceof PrefFragment2) {
-                    swipeRefreshLayout.setEnabled(false);
-                } else {
-                    swipeRefreshLayout.setEnabled(true);
-                }
+                swipeRefreshLayout.setEnabled(!(uiFragment instanceof PrefFragment2));
             }
         }
     };
@@ -159,34 +160,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     boolean once = true;
     private SlidingTabLayout indicator;
     private DrawerLayout drawerLayout;
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
-            if (pos != -1) {
-                if (pos >= 0) {
-                    pager.setCurrentItem(pos);
-                }
-
-                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
-                    onResume();
-                }
-
-            } else {
-                if (AppState.get().appTheme == AppState.THEME_INK) {
-                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
-                    indicator.setSelectedIndicatorColors(TintUtil.color);
-                    indicator.setDividerColors(TintUtil.color);
-                    indicator.updateIcons(pager.getCurrentItem());
-                } else {
-                    indicator.setBackgroundColor(TintUtil.color);
-                    imageMenuParent.setBackgroundColor(TintUtil.color);
-                }
-            }
-        }
-
-    };
 
     public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
         if (a == null || swipeRefreshLayout == null) {
@@ -232,7 +205,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
-
         checkGoToPage(intent);
 
     }
@@ -268,32 +240,26 @@ public class MainTabs2 extends AdsFragmentActivity {
                 fr.displayAnyPath(pathSAF);
             }
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            GoogleSignIn.getSignedInAccountFromIntent(data)
-                    .addOnSuccessListener(googleAccount -> {
-                        AppSP.get().isEnableSync = true;
-                        Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                        EventBus.getDefault().post(new GDriveSycnEvent());
-                        GFile.runSyncService(MainTabs2.this);
+            GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener(googleAccount -> {
+                AppSP.get().isEnableSync = true;
+                Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new GDriveSycnEvent());
+                GFile.runSyncService(MainTabs2.this);
 
-                        swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+                swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
 
-                        AppSP.get().save();
+                AppSP.get().save();
 
-                    })
-                    .addOnFailureListener(exception ->
-                            {
-                                LOG.e(exception);
-                                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                AppSP.get().isEnableSync = false;
-                                swipeRefreshLayout.setEnabled(false);
-                                AppSP.get().save();
+            }).addOnFailureListener(exception -> {
+                LOG.e(exception);
+                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
+                AppSP.get().isEnableSync = false;
+                swipeRefreshLayout.setEnabled(false);
+                AppSP.get().save();
 
-                            }
-                    );
-
+            });
 
         }
-
 
     }
 
@@ -338,7 +304,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-
         Clouds.get().init(this);
 
         //import settings
@@ -364,8 +329,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         setContentView(R.layout.main_tabs);
 
-
-        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
+        imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
 
@@ -383,7 +347,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -392,10 +355,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
 
-
         overlay = findViewById(R.id.overlay);
 
-        toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
+        toastBrightnessText = findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
@@ -432,7 +394,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         imageMenu.setOnClickListener(new OnClickListener() {
 
@@ -457,9 +419,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         adapter = new TabsAdapter2(this, tabFragments);
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = findViewById(R.id.pager);
         pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
-
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
@@ -511,7 +472,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                     }
                     TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
 
-
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -520,9 +480,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
 
         if (AppState.get().tapPositionTop) {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs1);
+            indicator = findViewById(R.id.slidingTabs1);
         } else {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs2);
+            indicator = findViewById(R.id.slidingTabs2);
         }
         indicator.addSwipeRefreshLayout(swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
@@ -534,7 +494,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 LOG.d("OnFocusChangeListener", hasFocus);
             }
         });
-
 
         indicator.setViewPager(pager);
 
@@ -566,7 +525,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             return false;
         });
 
-
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
             indicator.setSelectedIndicatorColors(TintUtil.color);
@@ -575,7 +533,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
         }
-
 
         Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
@@ -610,7 +567,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
 
-        if (showTabs == false && AppState.get().isOpenLastBook) {
+        if (!showTabs && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
@@ -635,8 +592,59 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Apps.accessibilityText(MainTabs2.this, getString(R.string.welcome_accessibility));
             }, 5000);
         }
+
+        try {
+            //ads
+            if (AppsConfig.IS_GDPR_ENABLE && !AppsConfig.checkIsProInstalled(this)) {
+                ConsentRequestParameters params;
+
+                if (LOG.isEnable) {
+                    ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+                            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                            .addTestDeviceHashedId(ADS.getByTestID(this)).build();
+
+                    params = new ConsentRequestParameters.Builder()
+                            .setConsentDebugSettings(debugSettings)
+                            .setTagForUnderAgeOfConsent(false).build();
+                } else {
+                    params = new ConsentRequestParameters.Builder()
+                            .setTagForUnderAgeOfConsent(false)
+                            .build();
+                }
+                ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(this);
+                consentInformation.requestConsentInfoUpdate(this, params, () -> {
+                    if (consentInformation.isConsentFormAvailable()) {
+                        loadForm(consentInformation);
+                    }
+                }, formError -> {});
+            }
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
+    public void loadForm(ConsentInformation consentInformation) {
+        // Loads a consent form. Must be called on the main thread.
+        UserMessagingPlatform.loadConsentForm(this, new UserMessagingPlatform.OnConsentFormLoadSuccessListener() {
+            @Override
+            public void onConsentFormLoadSuccess(ConsentForm consentForm) {
+                if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
+                    consentForm.show(MainTabs2.this, formError -> {
+                        if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.OBTAINED) {
+                        }
+                        //loadForm(consentInformation);
+                    });
+                }
+            }
+        }, new UserMessagingPlatform.OnConsentFormLoadFailureListener() {
+            @Override
+            public void onConsentFormLoadFailure(FormError formError) {
+                // Handle Error.
+            }
+        });
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
@@ -694,7 +702,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
 
-
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
@@ -704,7 +711,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
-
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
@@ -718,7 +724,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
                 uiFragment.onSelectFragment();
             }
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -797,7 +802,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
-
         EventBus.getDefault().unregister(this);
         IMG.clearMemoryCache();
         super.onDestroy();
@@ -823,7 +827,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
@@ -863,7 +867,35 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Subscribe
     public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
-    }
+    }    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
+            if (pos != -1) {
+                if (pos >= 0) {
+                    pager.setCurrentItem(pos);
+                }
+
+                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
+                    onResume();
+                }
+
+            } else {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
+                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+                    indicator.setSelectedIndicatorColors(TintUtil.color);
+                    indicator.setDividerColors(TintUtil.color);
+                    indicator.updateIcons(pager.getCurrentItem());
+                } else {
+                    indicator.setBackgroundColor(TintUtil.color);
+                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                }
+            }
+        }
+
+    };
+
 
 
 }

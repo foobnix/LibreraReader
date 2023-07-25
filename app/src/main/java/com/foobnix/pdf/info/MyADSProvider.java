@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ui2.MainTabs2;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 
 import com.google.android.gms.ads.LoadAdError;
@@ -16,7 +15,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
-import org.ebookdroid.LibreraApp;
+import com.foobnix.LibreraApp;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

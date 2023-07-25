@@ -26,11 +26,12 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export JAVA_HOME=/home/dev/Downloads/jdk-11.0.12/jdk-11.0.12/
+export JAVA_HOME=/home/dev/Downloads/openjdk-17.0.1_linux-x64_bin/jdk-17.0.1
+
 
 #NDK=/home/dev/Android/Sdk/ndk/21.4.7075529
 NDK=/home/dev/Android/Sdk/ndk/25.1.8937393
 ADB=/home/dev/Android/Sdk/platform-tools
 BUILDER=/home/dev/git/LibreraReader/Builder
 
-PATH=$PATH:$NDK:$ADB:$BUILDER
+PATH=$PATH:$NDK:$ADB:$BUILDER:$JAVA_HOME/bin

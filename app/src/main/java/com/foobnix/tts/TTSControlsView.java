@@ -54,27 +54,32 @@ public class TTSControlsView extends FrameLayout {
 
         @Override
         public void run() {
-            if (TTSEngine.get().isMp3()) {
-                initMp3();
-                if (TTSEngine.get().mp != null) {
-                    seekCurrent.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getCurrentPosition()));
-                    seekMax.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getDuration()));
+            try {
+                if (TTSEngine.get().isMp3()) {
+                    initMp3();
+                    if (TTSEngine.get().mp != null) {
+                        seekCurrent.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getCurrentPosition()));
+                        seekMax.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getDuration()));
 
-                    seekMp3.setMax(TTSEngine.get().mp.getDuration());
-                    seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
+                        seekMp3.setMax(TTSEngine.get().mp.getDuration());
+                        seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
 
-                    udateButtons();
+                        udateButtons();
+                    }
+
+                } else {
+                    layoutMp3.setVisibility(View.GONE);
+                    trackName.setVisibility(View.GONE);
                 }
 
-            } else {
-                layoutMp3.setVisibility(View.GONE);
-                trackName.setVisibility(View.GONE);
+                LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
+                ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_174_pause : R.drawable.glyphicons_175_play);
+            } catch (Exception e) {
+                LOG.e(e);
             }
-
-            LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
-            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_174_pause : R.drawable.glyphicons_175_play);
         }
     };
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public TTSControlsView(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -334,7 +339,8 @@ public class TTSControlsView extends FrameLayout {
             handler.postDelayed(update, 200);
         }
     }
-    public void reset(){
+
+    public void reset() {
         TTSEngine.get().loadMP3(BookCSS.get().mp3BookPathGet());
         update.run();
 

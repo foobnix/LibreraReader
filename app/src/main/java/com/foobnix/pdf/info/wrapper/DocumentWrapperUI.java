@@ -96,7 +96,6 @@ public class DocumentWrapperUI {
     final Handler handlerTimer = new Handler();
 
 
-
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
 
         @Override
@@ -1379,9 +1378,9 @@ public class DocumentWrapperUI {
 
         TextView modeName = (TextView) a.findViewById(R.id.modeName);
 
-        if(AppState.get().isEnableAccessibility){
-            modeName.setText(AppState.get().nameVerticalMode + " ("+ dc.getString(R.string.accessibility)+")");
-        }else{
+        if (AppState.get().isEnableAccessibility) {
+            modeName.setText(AppState.get().nameVerticalMode + " (" + dc.getString(R.string.accessibility) + ")");
+        } else {
             modeName.setText(AppState.get().nameVerticalMode);
         }
 
@@ -1512,9 +1511,9 @@ public class DocumentWrapperUI {
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
 
-            if(AppState.get().isEnableAccessibility){
-                modeName.setText(AppState.get().nameMusicianMode + " ("+ dc.getString(R.string.accessibility)+")");
-            }else{
+            if (AppState.get().isEnableAccessibility) {
+                modeName.setText(AppState.get().nameMusicianMode + " (" + dc.getString(R.string.accessibility) + ")");
+            } else {
                 modeName.setText(AppState.get().nameMusicianMode);
             }
         }
@@ -1878,7 +1877,7 @@ public class DocumentWrapperUI {
             onCrop.onClick(null);
         }
 
-        DragingDialogs.searchMenu(anchor, dc,"");
+        DragingDialogs.searchMenu(anchor, dc, "");
     }
 
     public void onAutoScrollClick() {
@@ -1967,7 +1966,7 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
                     editTop2.setVisibility(View.VISIBLE);
                 } else {
                     editTop2.setVisibility(View.VISIBLE);

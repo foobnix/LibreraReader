@@ -433,14 +433,14 @@
    <string name="show_current_time">Показати поточний час</string>
    <string name="telegram_channel">Телеграма каналу</string>
    <string name="zoom_in_out_using_the_volume_keys">Зміна масштабу клавішами регулювання гучності</string>
-   <string name="tag">Тег</string>
-   <string name="no_tag">Немає тегу</string>
-   <string name="add_tag">Додати тег</string>
-   <string name="do_you_want_to_delete_this_tag_from_all_books_">Ви хочете видалити цей тег із усіх книг?</string>
+   <string name="tag">Теґ</string>
+   <string name="no_tag">Немає теґу</string>
+   <string name="add_tag">Додати теґ</string>
+   <string name="do_you_want_to_delete_this_tag_from_all_books_">Ви хочете видалити цей теґ із усіх книг?</string>
    <string name="by_number_of_pages">Кількість сторінок</string>
    <string name="by_number_in_serie">Номер у серії</string>
    <string name="by_extension">Розширення</string>
-   <string name="recent_favorites_tags">Недавні, вибрані, теги</string>
+   <string name="recent_favorites_tags">Недавні, вибрані, теґи</string>
    <string name="line_spacing">Міжрядковий інтервал</string>
    <string name="paragraph_spacing">Міжрядковий інтервал</string>
    <string name="indent">Відступ</string>
@@ -454,10 +454,10 @@
    <string name="hyphenation_language">Мова перенесень</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Заміна білого кольору на зображення з фоновим кольором</string>
    <string name="no_keywords">Немає ключових слів</string>
-   <string name="my_tags">Мої теги</string>
+   <string name="my_tags">Мої теґи</string>
    <string name="crop_borders_symmetrically">Обрізання меж симетрично</string>
-   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Показувати авторів та назви книг PDF з метатегів</string>
-   <string name="meta_tags">Метатеги</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Показувати авторів та назви книг PDF з метатеґів</string>
+   <string name="meta_tags">Метатеґи</string>
    <string name="librera_pro">Librera pro: ця програма, але без реклами</string>
    <string name="annotation">Анотація</string>
    <string name="book">Книга</string>
@@ -508,12 +508,12 @@
    <string name="create_playlist">Створити список</string>
    <string name="upload_to_cloud">Завантажити в хмару</string>
    <string name="add_to_playlist">Додати до плейлиста</string>
-   <string name="create_tag">Створити тег</string>
-   <string name="add_tags">Додати теги</string>
+   <string name="create_tag">Створити теґ</string>
+   <string name="add_tags">Додати теґи</string>
    <string name="play">Відтворити</string>
    <string name="favorite">Улюблений</string>
    <string name="playlists">Списки</string>
-   <string name="tags">Теги</string>
+   <string name="tags">Теґи</string>
    <string name="are_you_sure_to_delete_playlist_">Ви дійсно бажаєте видалити список відтворення?</string>
    <string name="delete_this_bookmark_">Видалити цю закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Збільшити / зменшити з увімкненням блокування</string>
@@ -529,7 +529,7 @@
    <string name="turn_the_page_on_the_last_word">Перегортати сторінку на останньому слові</string>
    <string name="paste">Вставити</string>
    <string name="move">Перемістити</string>
-   <string name="tag_manager">Менеджер тегів</string>
+   <string name="tag_manager">Менеджер теґів</string>
    <string name="the_file_already_exists_">Файл уже існує.</string>
    <string name="please_wait_books_are_being_processed_">Зачекайте, книги обробляються</string>
    <string name="system_brightness">Яскравість системи</string>
@@ -649,4 +649,8 @@
    <string name="user_styles">Користувацькі</string>
    <string name="engine">Двигун</string>
    <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>
+   <string name="search_in_the_library">Шукати в бібліотеці</string>
+   <string name="update_metadata">Оновити метадані</string>
+   <string name="highlighting_initial_letters">Виділення початкових букв</string>
+   <string name="anti_aliasing_level">Рівень згладжування</string>
 </resources>

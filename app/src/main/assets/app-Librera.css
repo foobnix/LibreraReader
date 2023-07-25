@@ -13,18 +13,18 @@ dl{display:block;margin:1em 0}
 dt{display:block;font-weight:bold;}
 em{font-style:italic}
 
-h1{display:block;font-size:1.5em;  margin:1em 0;page-break-after:avoid}
-h2{display:block;font-size:1.4em;  margin:1em 0;page-break-after:avoid}
-h3{display:block;font-size:1.2em;  margin:1em 0;page-break-after:avoid}
-h4{display:block;font-size:1.0em;  margin:1em 0;page-break-after:avoid}
-h5{display:block;font-size:0.8em;  margin:1em 0;page-break-after:avoid}
-h6{display:block;font-size:0.6em;  margin:1em 0;page-break-after:avoid}
+h1{display:block;font-size:1.8em;  margin:1em 0; page-break-after:avoid}
+h2{display:block;font-size:1.5em;  margin:1em 0; page-break-after:avoid}
+h3{display:block;font-size:1.3em;  margin:1em 0; page-break-after:avoid}
+h4{display:block;font-size:1.0em;  margin:1em 0; page-break-after:avoid}
+h5{display:block;font-size:0.8em;  margin:1em 0; page-break-after:avoid}
+h6{display:block;font-size:0.7em;  margin:1em 0; page-break-after:avoid}
 
 head{display:none}
 hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}
 html{display:block}
 i{font-style:italic}
-ins{text-decoration:underline}
+u,ins,abbr{text-decoration:underline}
 kbd{font-family:monospace}
 li{display:list-item}
 menu{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}
@@ -44,6 +44,7 @@ tr,thead,tfoot   {display:block !important;margin-top:1em !important;}
 td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}
 tbody {display:block !important;}
 th{font-weight:bold; text-align:center}
+td,th, textarea,form,meter,progress, fieldset{display:block !important;border-style:solid; border-width:1px; padding:0.4em;}
 
 ul{display:block;list-style-type:disc;margin:1em;padding:0 0 0 30pt}
 ul ul{list-style-type:circle}
@@ -64,12 +65,6 @@ description>title-info>coverpage{display:block;}
 body,section,title,subtitle,p, epigraph,text-author,date,poem,stanza,v,empty-line{display:block}
 image{display:block}
 
-table{display:block !important; margin:1em !important;font-size:0.8em;}
-tr,thead,tfoot   {display:block !important;margin-top:1em !important;}
-td,th, textarea,form,meter,progress, fieldset{display:block !important;border-style:solid; border-width:1px; padding:0.4em;}
-tbody {display:block !important;}
-th{font-weight:bold; text-align:center}
-
 a{color:#06C;text-decoration:underline}
 a[type=note]{font-size:small;vertical-align:super}
 emphasis{font-style:italic}
@@ -89,14 +84,13 @@ image{text-align:center; text-indent:0px;}
 section+section>title{page-break-before:always;}
 epigraph{text-align:right; margin-left:2em;font-style: italic;}
 text-author{font-style: italic;font-weight: bold;}
-del,ins,u,strikethrough,strike,s{color:red; text-decoration:line-through;}
+del,strikethrough,strike,s{text-decoration:line-through;}
 
 text-author{font-style: italic;font-weight: bold;}
 p>image{display:block;}
 
 b>span,strong>span{font-weight:normal}
 book>title, bookinfo {display:none}
-
 
 svg{display:block;}
 math, m, svg>text {display:none}

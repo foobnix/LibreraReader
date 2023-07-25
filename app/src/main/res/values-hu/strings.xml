@@ -649,4 +649,8 @@
    <string name="user_styles">Felhasználó által meghatározott</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Ehhez a módosításhoz az alkalmazás manuális újraindítása szükséges</string>
+   <string name="search_in_the_library">Keress a könyvtárban</string>
+   <string name="update_metadata">Frissítse a metaadatokat</string>
+   <string name="highlighting_initial_letters">Kezdőbetűk kiemelése</string>
+   <string name="anti_aliasing_level">Élsimítási szint</string>
 </resources>

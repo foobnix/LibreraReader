@@ -25,6 +25,7 @@ public class Fb2Context extends PdfContext {
                 AppState.get().isShowFooterNotesInText +
                 BookCSS.get().isAutoHypens +
                 AppSP.get().hypenLang +
+                AppState.get().isBionicMode +
                 AppSP.get().isDouble +
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +

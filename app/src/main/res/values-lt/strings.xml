@@ -649,4 +649,8 @@
    <string name="user_styles">Vartotojo</string>
    <string name="engine">Variklis</string>
    <string name="restart_manually">Dėl šio pakeitimo reikia rankiniu būdu iš naujo paleisti programą</string>
+   <string name="search_in_the_library">Ieškoti bibliotekoje</string>
+   <string name="update_metadata">Atnaujinti metaduomenis</string>
+   <string name="highlighting_initial_letters">Paryškinant pradines raides</string>
+   <string name="anti_aliasing_level">Anti-aliasing lygis</string>
 </resources>

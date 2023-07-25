@@ -649,4 +649,8 @@
    <string name="user_styles">Käyttäjän tyylit</string>
    <string name="engine">Moottori</string>
    <string name="restart_manually">Tämä muutos vaatii sovelluksen manuaalisen uudelleenkäynnistyksen</string>
+   <string name="search_in_the_library">Etsi kirjastosta</string>
+   <string name="update_metadata">Päivittää metatiedot</string>
+   <string name="highlighting_initial_letters">Korostamalla alkukirjaimia</string>
+   <string name="anti_aliasing_level">Anti-aliasing taso</string>
 </resources>

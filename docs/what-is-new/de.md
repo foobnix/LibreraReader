@@ -3,6 +3,17 @@ layout: main
 ---
 
 # Was ist neu
+### [8.8.104] Hervorheben von Anfangsbuchstaben
+||||
+|-|-|-|
+|![](8.8.104a.png)|![](8.8.104b.png)||
+
+### [8.8.79] Suchen Sie nach Text in den Büchern der Bibliothek
+
+* Es ist möglich, Bibliotheksergebnisse zu filtern
+* Satzsuche ist möglich
+
+<img class="i" src="8.8.97.png" />
 
 ### [8.8.79] Lesezeichen nach Seite oder Datum sortieren
 <img class="i" src="8.8.79.png" />

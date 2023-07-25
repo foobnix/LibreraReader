@@ -34,6 +34,7 @@ public class EpubContext extends PdfContext {
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +
                 BookCSS.get().isAutoHypens +
+                AppState.get().isBionicMode +
                 AppSP.get().hypenLang +
                 AppState.get().isExperimental)
                 .hashCode() + ".epub");
@@ -61,8 +62,9 @@ public class EpubContext extends PdfContext {
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
+        // if(false) {//CRASH ON CHINA BOOK
         File out = new File(cacheFile.getPath() + "-source");
-        if (AppsConfig.MUPDF_VERSION != AppsConfig.MUPDF_1_11) {
+        if (!AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
             try {
                 if (!out.isDirectory()) {
                     out.mkdirs();
@@ -77,6 +79,7 @@ public class EpubContext extends PdfContext {
             }
 
         }
+        //}
 
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 

@@ -706,7 +706,7 @@ extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getMetaKey
         	miniexp_t *iter =  NULL;
 
 
-        	char result[1024];
+        	char result[2024];
         	strcpy(result, "");
 
         	for (iter = keys; *iter; ++iter)
@@ -741,8 +741,8 @@ extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuOutline_getLink(JNI
             number = ddjvu_document_search_pageno((ddjvu_document_t*) docHandle, link + 1);
             if (number >= 0)
             {
-                char linkbuf[128];
-                snprintf(linkbuf, 127, "#%d", number + 1);
+                char linkbuf[4128];
+                snprintf(linkbuf, 4127, "#%d", number + 1);
                 return env->NewStringUTF(linkbuf);
             }
         }
