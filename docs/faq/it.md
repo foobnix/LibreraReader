@@ -4,6 +4,7 @@ layout: main
 
 # Domande frequenti
 
+*[Configura le dimensioni delle aree delle schede a sinistra/destra/in alto/in basso](/faq/tap-zones-configuration/it)
 * [Lavorare con i profili di _Librera_](/faq/working-with-profiles/it)
 * [Lavorare con i cataloghi OPDS](/faq/working-with-opds-online-catalogs/it)
 * [Aggiornare la tua libreria](/faq/update-the-library/it)

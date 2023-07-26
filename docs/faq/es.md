@@ -4,6 +4,7 @@ layout: main
 
 # Preguntas frecuentes
 
+*[Configurar el tamaño de las zonas de pestañas izquierda/derecha/arriba/abajo](/faq/tap-zones-configuration/es)
 * [Trabajar con los perfiles de _Librera_](/faq/working-with-profiles/es)
 * [Trabajar con catálogos OPDS](/faq/working-with-opds-online-catalogs/es)
 * [Actualización de su biblioteca](/faq/update-the-library/es)

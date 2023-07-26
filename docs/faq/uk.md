@@ -4,6 +4,7 @@ layout: main
 
 # Поширені запитання
 
+*[Налаштувати розмір зони вкладок ліворуч/праворуч/верху/низу](/faq/tap-zones-configuration/uk)
 * [Робота з профілями _Librera_](/faq/working-with-profiles/uk)
 * [Робота з каталогами OPDS](/faq/working-with-opds-online-catalogs/uk)
 * [Оновлення вашої бібліотеки](/faq/update-the-library/uk)

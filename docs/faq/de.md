@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+*[Größe der Tab-Zonen links/rechts/oben/unten konfigurieren](/faq/tap-zones-configuration/de)
 * [Arbeiten mit den Profilen von _Librera_](/faq/working-with-profiles/de)
 * [Arbeiten mit OPDS-Katalogen](/faq/working-with-opds-online-catalogs/de)
 * [Aktualisieren Ihrer Bibliothek](/faq/update-the-library/de)

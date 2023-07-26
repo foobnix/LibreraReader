@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Configure tab zones size  left/right/top/bottom](/faq/tap-zones-configuration)
 * [Working with _Librera_'s Profiles](/faq/working-with-profiles)
 * [Working with OPDS Catalogs](/faq/working-with-opds-online-catalogs)
 * [Updating Your Library](/faq/update-the-library)

@@ -4,6 +4,7 @@ layout: main
 
 # Foire aux questions
 
+*[Configurer la taille des zones d'onglet gauche/droite/haut/bas](/faq/tap-zones-configuration/fr)
 * [Travailler avec les profils de _Librera_](/faq/working-with-profiles/fr)
 * [Travailler avec les catalogues OPDS](/faq/working-with-opds-online-catalogs/fr)
 * [Mise à jour de votre bibliothèque](/faq/update-the-library/fr)

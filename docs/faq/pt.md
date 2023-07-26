@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+*[Configurar o tamanho das zonas da guia esquerda/direita/superior/inferior](/faq/tap-zones-configuration/pt)
 * [Trabalho com perfis de _Librera_](/faq/working-with-profiles/pt)
 * [Trabalho com Catálogos OPDS](/faq/working-with-opds-online-catalogs/pt)
 * [Atualizando sua biblioteca](/faq/update-the-library/pt)

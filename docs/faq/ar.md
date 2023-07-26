@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [تكوين حجم مناطق علامات التبويب لليسار/اليمين/أعلى/أسفل](/faq/tap-zones-configuration/ar)
 * [العمل مع ملفات _Librera_ الشخصية](/faq/working-with-profiles/ar)
 * [العمل مع كتالوجات OPDS](/faq/working-with-opds-online-catalogs/ar)
 * [تحديث مكتبتك](/faq/update-the-library/ar)

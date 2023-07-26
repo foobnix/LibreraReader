@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+*[配置标签区域左/右/上/下尺寸](/faq/tap-zones-configuration/zh)
 * [使用 _Librera_ 的个人资料](/faq/working-with-profiles/zh)
 * [使用 OPDS 目录](/faq/working-with-opds-online-catalogs/zh)
 * [更新您的图书馆](/faq/update-the-library/zh)
