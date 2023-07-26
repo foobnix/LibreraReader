@@ -29,6 +29,6 @@ Sequenzen von Leerzeichen werden reduziert. Zeilen werden bei Zeilenumbrüchen u
 {white-space: pre;}
 Sequenzen von Leerzeichen bleiben erhalten. Zeilen werden nur bei Zeilenumbrüchen in der Quelle und bei unterbrochen <br> Elemente.
 
-span{anzeige:block}
+span{display:block}
 p&gt;span{display:inline}
 Beseitigt störende Leerzeilen zwischen den Seiten (Behebung von muPDF-Fehlern).

@@ -21,9 +21,16 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
-    final static String HOME = "/home/dev/git/LibreraReader";
+    static String HOME = "/home/dev/git/LibreraReader";
 
     public static void main(String[] args) throws Exception {
+        if (!new File(HOME).isDirectory()) {
+            HOME = "/Users/dev/git/LibreraReader";
+        }
+        if (!new File(HOME).isDirectory()) {
+            throw new Exception("HOME not found");
+        }
+
 
         GenerateFAQ.updateIndex(HOME + "/docs/faq", "Frequently Asked Questions");
 
@@ -35,7 +42,11 @@ public class WikiTranslate {
         );
 
         File file = new File("/home/dev/Dropbox/Dev/cache.json");
-        if(!file.isFile()){
+        if (!file.isFile()) {
+            file = new File("/Users/dev/Library/CloudStorage/Dropbox/Dev/cache.json");
+        }
+
+        if (!file.isFile()) {
             throw new Exception("file cache.json not found");
         }
 
@@ -43,7 +54,7 @@ public class WikiTranslate {
 
         try {
 
-            for(String path: paths) {
+            for (String path : paths) {
                 syncPaths(path, "uk");
                 syncPaths(path, "fr");
                 syncPaths(path, "de");
@@ -53,7 +64,6 @@ public class WikiTranslate {
                 syncPaths(path, "zh");
                 syncPaths(path, "ar");
             }
-
 
 
         } finally {
@@ -114,32 +124,31 @@ public class WikiTranslate {
         }
 
 
-
         String key = in + ln;
         if (cache.has(key)) {
-            String res =  cache.getString(key);
-            if(res.startsWith("*[")){
+            String res = cache.getString(key);
+            if (res.startsWith("*[")) {
                 return res.replace("*[", "* [");
             }
 
-            if(res.startsWith("*") && !res.startsWith("* " ) && !res.startsWith("**")){
+            if (res.startsWith("*") && !res.startsWith("* ") && !res.startsWith("**")) {
                 return res.replace("*", "* ");
             }
 
-            if(res.contains("{")){
-                
-            }else{
+            if (res.contains("{")) {
+
+            } else {
                 return res;
             }
         }
         String res = traslateMDInner(in, ln);
-        if(res.contains("{1")||
-            res.contains("{2")||
-            res.contains("{3")||
-            res.contains("{4")||
-            res.contains("{5")||
-            res.contains("{6")){
-            throw new IllegalArgumentException("wrong translate"+res);
+        if (res.contains("{1") ||
+                res.contains("{2") ||
+                res.contains("{3") ||
+                res.contains("{4") ||
+                res.contains("{5") ||
+                res.contains("{6")) {
+            throw new IllegalArgumentException("wrong translate" + res);
         }
 
 
@@ -155,7 +164,7 @@ public class WikiTranslate {
 
         in = in.replace("__", "**");
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.","[t.me","[@");
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.", "[t.me", "[@");
 
         boolean findCode = false;
         for (String pr : ignoreLines) {
@@ -227,13 +236,13 @@ public class WikiTranslate {
             line = line.replace("&gt;", ">");
         }
         //line = line.replace("]]", "]");
-        line = line.replace("## #","###");
+        line = line.replace("## #", "###");
 
 
         for (String key : reverse.keySet()) {
             line = line.replace(key, reverse.get(key));
         }
-        line = line.replace("## #","###");
+        line = line.replace("## #", "###");
         System.out.println(line);
         return line;
     }
@@ -281,9 +290,9 @@ public class WikiTranslate {
             }
 
             //if(line.trim().equals("layout: main")){
-                //line += "\ninfo: this file is generated automatically, please do not modify it";
+            //line += "\ninfo: this file is generated automatically, please do not modify it";
             //}
-            if(line.startsWith("info:")){
+            if (line.startsWith("info:")) {
                 continue;
             }
 
