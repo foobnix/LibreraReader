@@ -22,9 +22,9 @@ allprojects {
     }
 }
 project.ext {
-    targetSdk = 33
+    targetSdk = 34
     minSdk = 19
-    compileSdk = 33
+    compileSdk = 34
 }
 
 task clean(type: Delete) {

@@ -190,7 +190,7 @@ android {
             dimension "version"
             applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
-                    appName      : "RED Reader",
+                    appName      : "Book Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
                     appGdriveKey : ebooka_appGdriveKey,
