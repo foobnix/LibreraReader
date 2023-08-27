@@ -103,6 +103,8 @@ if [ "$1" == "clean_ndk" ]; then
 rm -rf $MUPDF_JAVA/obj
 fi
 
+start=`date +%s`
+
 /Users/dev/Library/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
 /home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
 
@@ -110,5 +112,14 @@ echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
 echo "=================="
+
+end=`date +%s`
+runtime=$( echo "$end - $start" | bc -l )
+echo "Run time: ${runtime}"
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    grep -m 1 'model name' /proc/cpuinfo
+else
+    sysctl -n machdep.cpu.brand_string
+fi
 
 fi
