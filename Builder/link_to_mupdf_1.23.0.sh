@@ -113,13 +113,19 @@ echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
 echo "=================="
 
-end=`date +%s`
-runtime=$( echo "$end - $start" | bc -l )
-echo "Run time: ${runtime}"
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    grep -m 1 'model name' /proc/cpuinfo
-else
-    sysctl -n machdep.cpu.brand_string
+
+if [ "$1" == "clean_ndk" ]; then
+  cd $BUILD_DIR
+  end=`date +%s`
+  runtime=$( echo "$end - $start" | bc -l )
+  echo "==== $(basename $BASH_SOURCE)  =====" | tee -a log.txt
+  echo "Run time: ${runtime}" | tee -a log.txt
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      grep -m 1 'model name' /proc/cpuinfo | tee -a log.txt
+  else
+      sysctl -n machdep.cpu.brand_string | tee -a log.txt
+  fi
 fi
+
 
 fi
