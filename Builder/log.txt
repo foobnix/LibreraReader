@@ -1,3 +1,3 @@
 ==== link_to_mupdf_1.23.0.sh  =====
-Run time: 2
+Run time: 534
 Apple M1
