@@ -45,7 +45,6 @@ public class EpubContext extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d(TAG, fileName);
 
-
         Map<String, String> notes = null;
         if (AppState.get().isShowFooterNotesInText) {
             notes = getNotes(fileName);
@@ -62,24 +61,25 @@ public class EpubContext extends PdfContext {
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
-        // if(false) {//CRASH ON CHINA BOOK
-        File out = new File(cacheFile.getPath() + "-source");
-        if (!AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
-            try {
-                if (!out.isDirectory()) {
-                    out.mkdirs();
-                    new ZipFile(bookPath).extractAll(out.getPath());
-                    LOG.d("EpubContext unzip all");
+        if (false) {//CRASH ON CHINA BOOK
+            //TODO find the issue on mupdf 1.23!!!!
+            File out = new File(cacheFile.getPath() + "-source");
+            if (!AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
+                try {
+                    if (!out.isDirectory()) {
+                        out.mkdirs();
+                        new ZipFile(bookPath).extractAll(out.getPath());
+                        LOG.d("EpubContext unzip all");
 
+                    }
+                    bookPath = out.getPath() + "/META-INF/container.xml";
+                    LOG.d("EpubContext open", bookPath);
+                } catch (ZipException e) {
+                    LOG.e(e);
                 }
-                bookPath = out.getPath() + "/META-INF/container.xml";
-                LOG.d("EpubContext open", bookPath);
-            } catch (ZipException e) {
-                LOG.e(e);
-            }
 
+            }
         }
-        //}
 
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
