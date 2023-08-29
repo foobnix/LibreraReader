@@ -20,6 +20,7 @@ import android.util.Pair;
 import androidx.annotation.RequiresApi;
 
 import com.BaseExtractor;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
@@ -48,7 +49,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
-import com.foobnix.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 import org.ebookdroid.core.codec.CodecContext;
@@ -208,7 +208,6 @@ public class ImageExtractor {
             return null;
         }
 
-
         TempHolder.get().loadingCancelled = false;
         codeCache = codecContex.openDocument(path, passw);
         if (codeCache == null) {
@@ -238,7 +237,6 @@ public class ImageExtractor {
             final float k = (float) page.getHeight() / page.getWidth();
             int width = pageUrl.getWidth();
             int height = (int) (width * k);
-
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
@@ -279,7 +277,6 @@ public class ImageExtractor {
 
         pageUrl.setPath(unZipPath);
         LOG.d("proccessCoverPage unZipPath", unZipPath);
-
 
         Bitmap cover = null;
 
@@ -326,7 +323,6 @@ public class ImageExtractor {
 
         return cover;
     }
-
 
     public Bitmap generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {
         LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
@@ -377,6 +373,10 @@ public class ImageExtractor {
         }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
+        if (pageInfo == null) {
+            LOG.d("TEST", "pageInfo is null" + path);
+            return null;
+        }
 
         Bitmap bitmap = null;
 
@@ -393,7 +393,6 @@ public class ImageExtractor {
 
         BitmapRef bitmapRef = null;
         CodecPage pageCodec = codeCache.getPage(page);
-
 
         rectF = new RectF(0, 0, 1f, 1f);
 
@@ -455,7 +454,6 @@ public class ImageExtractor {
             }
         }
 
-
         if (pageUrl.isInvert()) {
             final RawBitmap bmp = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
             bmp.invert();
@@ -468,13 +466,12 @@ public class ImageExtractor {
         if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
 
             //if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
-                TextWord[][] text = pageCodec.getText();
-                PageImageState.get().pagesText.put(pageUrl.getPage(), text);
-                PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
-                LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
+            TextWord[][] text = pageCodec.getText();
+            PageImageState.get().pagesText.put(pageUrl.getPage(), text);
+            PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+            LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
             //}
         }
-
 
         if (!pageCodec.isRecycled()) {
             pageCodec.recycle();
@@ -486,7 +483,6 @@ public class ImageExtractor {
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }
-
 
         return bitmap;
     }
@@ -571,7 +567,6 @@ public class ImageExtractor {
 
         try {
 
-
             if (ExtUtils.isExteralSD(path)) {
                 if (ExtUtils.isImagePath(path)) {
                     return c.getContentResolver().openInputStream(Uri.parse(path));
@@ -588,7 +583,6 @@ public class ImageExtractor {
             }
 
             // File file = new File(path);
-
 
             if (ExtUtils.isImagePath(path)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
@@ -614,7 +608,6 @@ public class ImageExtractor {
             // if (!file.isFile()) {
             // return messageFile("#no file", "");
             // }
-
 
             int page = pageUrl.getPage();
 
@@ -700,6 +693,5 @@ public class ImageExtractor {
     private InputStream messageFile(String msg, String name) {
         return bitmapToStream(BaseExtractor.getBookCoverWithTitle(msg, name, true));
     }
-
 
 }
