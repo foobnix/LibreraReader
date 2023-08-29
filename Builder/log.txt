@@ -4,3 +4,12 @@ Apple M1
 ==== link_to_mupdf_1.23.0.sh  =====
 Run time: 1050
 model name	: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
+==== link_to_mupdf_1.23.0.sh  =====
+Run time: 158
+Apple M1
+==== link_to_mupdf_1.23.0.sh  =====
+Run time: 161
+Apple M1
+==== link_to_mupdf_1.23.0.sh  =====
+Run time: 163
+Apple M1

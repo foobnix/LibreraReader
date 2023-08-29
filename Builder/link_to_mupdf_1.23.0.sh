@@ -105,8 +105,16 @@ fi
 
 start=`date +%s`
 
-/Users/dev/Library/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
-/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
+NDK_VERSION="25.2.9519653"
+for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
+do
+  if [ -f "$NDK" ]; then
+  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=armeabi-v7a &
+  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=arm64-v8a &
+  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86 &
+  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86_64
+  fi
+done
 
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
