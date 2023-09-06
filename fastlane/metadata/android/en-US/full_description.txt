@@ -2,7 +2,7 @@ Librera Reader is a highly customizable and feature-rich application
 for reading e-books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats
 
 With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
-It even features a unique auto-scrolling, hands-free Musician's mode, with contollable speed
+It even features a unique auto-scrolling, hands-free Musician's mode, with controllable speed
 
 For better security, the F-Droid version, is based on the latest MuPDF and does not require access to the Internet.
 
