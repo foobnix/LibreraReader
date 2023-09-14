@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.23.0"
+VERSION_TAG="1.23.3"
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
@@ -126,13 +126,8 @@ if [ "$1" == "clean_ndk" ]; then
   cd $BUILD_DIR
   end=`date +%s`
   runtime=$( echo "$end - $start" | bc -l )
-  echo "==== $(basename $BASH_SOURCE)  =====" | tee -a log.txt
   echo "Run time: ${runtime}" | tee -a log.txt
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-      grep -m 1 'model name' /proc/cpuinfo | tee -a log.txt
-  else
-      sysctl -n machdep.cpu.brand_string | tee -a log.txt
-  fi
+
 fi
 
 
