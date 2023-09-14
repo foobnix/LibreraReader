@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
-// CA 94129, USA, for further information.
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
 
 #include "mupdf/fitz.h"
 #include "html-imp.h"
@@ -94,83 +94,6 @@ user_css_sum(fz_context *ctx)
 	if (css)
 		sum = crc32(sum, (Byte*)css, (int)strlen(css));
 	return sum;
-}
-
-static int dummy = 1;
-
-struct encrypted {
-	fz_archive super;
-	fz_archive *chain;
-	fz_tree *info;
-};
-
-static int has_encrypted_entry(fz_context *ctx, fz_archive *arch_, const char *name)
-{
-	struct encrypted *arch = (struct encrypted *)arch_;
-	return fz_has_archive_entry(ctx, arch->chain, name);
-}
-
-static fz_stream *open_encrypted_entry(fz_context *ctx, fz_archive *arch_, const char *name)
-{
-	struct encrypted *arch = (struct encrypted *)arch_;
-	if (fz_tree_lookup(ctx, arch->info, name))
-		return NULL;
-	return fz_open_archive_entry(ctx, arch->chain, name);
-}
-
-static fz_buffer *read_encrypted_entry(fz_context *ctx, fz_archive *arch_, const char *name)
-{
-	struct encrypted *arch = (struct encrypted *)arch_;
-	if (fz_tree_lookup(ctx, arch->info, name))
-		return NULL;
-	return fz_read_archive_entry(ctx, arch->chain, name);
-}
-
-static void drop_encrypted_archive(fz_context *ctx, fz_archive *arch_)
-{
-	struct encrypted *arch = (struct encrypted *)arch_;
-	fz_drop_tree(ctx, arch->info, NULL);
-	fz_drop_archive(ctx, arch->chain);
-}
-
-static fz_archive *new_encrypted_archive(fz_context *ctx, fz_archive *chain, fz_tree *info)
-{
-	struct encrypted *arch;
-
-	arch = fz_new_derived_archive(ctx, NULL, struct encrypted);
-	arch->super.format = "encrypted";
-	arch->super.has_entry = has_encrypted_entry;
-	arch->super.read_entry = read_encrypted_entry;
-	arch->super.open_entry = open_encrypted_entry;
-	arch->super.drop_archive = drop_encrypted_archive;
-	arch->chain = chain;
-	arch->info = info;
-
-	return &arch->super;
-}
-
-static void
-epub_parse_encryption(fz_context *ctx, epub_document *doc, fz_xml *root)
-{
-	fz_tree *info = NULL;
-	fz_xml *edata;
-
-	for (edata = fz_xml_find_down(root, "EncryptedData"); edata; edata = fz_xml_find_next(edata, "EncryptedData"))
-	{
-		fz_xml *cdata = fz_xml_find_down(edata, "CipherData");
-		fz_xml *cref = fz_xml_find_down(cdata, "CipherReference");
-		char *uri = fz_xml_att(cref, "URI");
-		if (uri)
-		{
-			// TODO: Support reading EncryptedKey and EncryptionMethod to decrypt content.
-			info = fz_tree_insert(ctx, info, uri, &dummy);
-		}
-	}
-
-	if (info)
-	{
-		doc->zip = new_encrypted_archive(ctx, doc->zip, info);
-	}
 }
 
 static fz_html *epub_get_laid_out_html(fz_context *ctx, epub_document *doc, epub_chapter *ch);
@@ -481,11 +404,14 @@ epub_parse_chapter(fz_context *ctx, epub_document *doc, epub_chapter *ch)
 
 	buf = fz_read_archive_entry(ctx, zip, ch->path);
 	fz_try(ctx)
-		html = fz_parse_xhtml(ctx, doc->set, zip, base_uri, buf, fz_user_css(ctx));
+	html = fz_parse_xhtml(ctx, doc->set, zip, base_uri, buf, fz_user_css(ctx));
 	fz_always(ctx)
-		fz_drop_buffer(ctx, buf);
+	fz_drop_buffer(ctx, buf);
 	fz_catch(ctx)
+	{
 		fz_rethrow(ctx);
+	}
+
 
 	return fz_store_html(ctx, html, doc, ch->number);
 }
@@ -512,7 +438,7 @@ epub_get_laid_out_html(fz_context *ctx, epub_document *doc, epub_chapter *ch)
 }
 
 static fz_rect
-epub_bound_page(fz_context *ctx, fz_page *page_, fz_box_type box)
+epub_bound_page(fz_context *ctx, fz_page *page_)
 {
 	epub_document *doc = (epub_document*)page_->doc;
 	epub_page *page = (epub_page*)page_;
@@ -609,7 +535,7 @@ epub_load_page(fz_context *ctx, fz_document *doc_, int chapter, int number)
 }
 
 static void
-epub_page_label(fz_context *ctx, fz_document *doc_, int chapter, int number, char *buf, size_t size)
+epub_page_label(fz_context *ctx, fz_document *doc_, int chapter, int number, char *buf, int size)
 {
 	fz_snprintf(buf, size, "ch. %d, p. %d", chapter+1, number+1);
 }
@@ -659,6 +585,12 @@ rel_path_from_idref(fz_xml *manifest, const char *idref)
 		const char *id = fz_xml_att(item, "id");
 		if (id && !strcmp(id, idref))
 			return fz_xml_att(item, "href");
+
+		const char *id2 = fz_xml_att(item, "properties");
+		if (id2 && !strcmp(id2, idref))
+			return fz_xml_att(item, "href");
+
+
 		item = fz_xml_find_next(item, "item");
 	}
 	return NULL;
@@ -723,6 +655,103 @@ epub_parse_ncx_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base
 	return head;
 }
 
+static fz_outline *
+epub_parse_nav_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base_uri)
+{
+	char path[2048];
+	fz_outline *outline, *head, **tailp;
+
+	head = NULL;
+	tailp = &head;
+
+
+	node =  fz_xml_find_down(fz_xml_find_down(node, "ol"),"li");
+
+
+	while (node)
+	{
+		fz_xml *tag = fz_xml_find_down(node, "a");
+		char *text = fz_xml_text(fz_xml_down(tag));
+		if(!text){
+			text = fz_xml_text(fz_xml_down(fz_xml_down(tag)));
+		}
+		char *content = fz_xml_att(tag, "href");
+		if (text && content)
+		{
+			fz_strlcpy(path, base_uri, sizeof path);
+			fz_strlcat(path, "/", sizeof path);
+			fz_strlcat(path, content, sizeof path);
+			fz_urldecode(path);
+			fz_cleanname(path);
+
+			fz_try(ctx)
+			{
+
+
+				*tailp = outline = fz_new_outline(ctx);
+				tailp = &(*tailp)->next;
+				outline->title = fz_strdup(ctx, text);
+				outline->uri = fz_strdup(ctx, path);
+				outline->page = fz_make_location(-1, -1);
+				outline->down = epub_parse_nav_imp(ctx, doc, node, base_uri);
+			}
+			fz_catch(ctx)
+			{
+				fz_drop_outline(ctx, head);
+				fz_rethrow(ctx);
+			}
+		}
+		node = fz_xml_find_next(node, "li");
+	}
+
+	return head;
+}
+
+static void
+epub_parse_nav(fz_context *ctx, epub_document *doc, const char *path)
+{
+	fz_archive *zip = doc->zip;
+	fz_buffer *buf = NULL;
+	fz_xml_doc *ncx = NULL;
+	char base_uri[2048];
+
+	fz_var(buf);
+	fz_var(ncx);
+
+	fz_try(ctx)
+	{
+
+		fz_dirname(base_uri, path, sizeof base_uri);
+
+		buf = fz_read_archive_entry(ctx, zip, path);
+		ncx = fz_parse_xml(ctx, buf, 0);
+
+		fz_xml *body = fz_xml_find_down(fz_xml_root(ncx), "body");
+		fz_xml *section = fz_xml_find_down(body, "section");
+		if(section){
+			body = section;
+		}
+		fz_xml *nav = fz_xml_find_down(body, "nav");
+
+		while (nav){
+			char *id = fz_xml_att(nav, "epub:type");
+			if(!strcmp(id, "toc")){
+				doc->outline = epub_parse_nav_imp(ctx, doc, nav, base_uri);
+				break;
+			}
+			nav = fz_xml_find_next(body,"nav");
+		}
+	}
+	fz_always(ctx)
+	{
+		fz_drop_buffer(ctx, buf);
+		fz_drop_xml(ctx, ncx);
+	}
+	fz_catch(ctx)
+	fz_rethrow(ctx);
+}
+
+
 static void
 epub_parse_ncx(fz_context *ctx, epub_document *doc, const char *path)
 {
@@ -746,8 +775,11 @@ epub_parse_ncx(fz_context *ctx, epub_document *doc, const char *path)
 		fz_drop_buffer(ctx, buf);
 		fz_drop_xml(ctx, ncx);
 	}
-	fz_catch(ctx)
-		fz_rethrow(ctx);
+	fz_catch(ctx){
+		//no crash if nav not valid
+		//fz_rethrow(ctx);
+	}
+
 }
 
 static char *
@@ -759,54 +791,11 @@ find_metadata(fz_context *ctx, fz_xml *metadata, char *key)
 	return NULL;
 }
 
-static fz_buffer *
-read_container_and_prefix(fz_context *ctx, fz_archive *zip, char *prefix, size_t prefix_len)
-{
-	int n = fz_count_archive_entries(ctx, zip);
-	int i;
-
-	prefix[0] = 0;
-
-	/* First off, look for the container.xml at the top level. */
-	for (i = 0; i < n; i++)
-	{
-		const char *p = fz_list_archive_entry(ctx, zip, i);
-
-		if (!strcmp(p, "META-INF/container.xml"))
-			return fz_read_archive_entry(ctx, zip, "META-INF/container.xml");
-	}
-
-	/* If that failed, look for the first such file in a subdirectory. */
-	for (i = 0; i < n; i++)
-	{
-		const char *p = fz_list_archive_entry(ctx, zip, i);
-		size_t z = strlen(p);
-		size_t z0 = sizeof("META-INF/container.xml")-1;
-
-		if (z < z0)
-			continue;
-		if (!strcmp(p + z - z0, "META-INF/container.xml"))
-		{
-			if (z - z0 >= prefix_len)
-			{
-				fz_warn(ctx, "Ignoring %s as path too long.", p);
-				continue;
-			}
-			memcpy(prefix, p, z-z0);
-			prefix[z-z0] = 0;
-			return fz_read_archive_entry(ctx, zip, p);
-		}
-	}
-
-	return fz_read_archive_entry(ctx, zip, "META-INF/container.xml");
-}
-
 static void
 epub_parse_header(fz_context *ctx, epub_document *doc)
 {
 	fz_archive *zip = doc->zip;
 	fz_buffer *buf = NULL;
-	fz_xml_doc *encryption_xml = NULL;
 	fz_xml_doc *container_xml = NULL;
 	fz_xml_doc *content_opf = NULL;
 	fz_xml *container, *rootfiles, *rootfile;
@@ -815,50 +804,26 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 	const char *full_path;
 	const char *version;
 	char ncx[2048], s[2048];
-	char *prefixed_full_path = NULL;
-	size_t prefix_len;
 	epub_chapter **tailp;
 	int i;
 
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+
 	fz_var(buf);
-	fz_var(encryption_xml);
 	fz_var(container_xml);
 	fz_var(content_opf);
-	fz_var(prefixed_full_path);
 
 	fz_try(ctx)
 	{
-		/* parse META-INF/encryption.xml to figure out which entries are encrypted */
-
 		/* parse META-INF/container.xml to find OPF */
-		/* Reuse base_uri to read the prefix. */
-		buf = read_container_and_prefix(ctx, zip, base_uri, sizeof(base_uri));
+
+		buf = fz_read_archive_entry(ctx, zip, "META-INF/container.xml");
 		container_xml = fz_parse_xml(ctx, buf, 0);
 		fz_drop_buffer(ctx, buf);
 		buf = NULL;
-
-		/* Some epub files can be prefixed by a directory name. This (normally
-		 * empty!) will be in base_uri. */
-		prefix_len = strlen(base_uri);
-		{
-			/* Further abuse base_uri to hold a temporary name. */
-			const size_t z0 = sizeof("META-INF/encryption.xml")-1;
-			if (sizeof(base_uri) <= prefix_len + z0)
-				fz_throw(ctx, FZ_ERROR_GENERIC, "Prefix too long in epub");
-			strcpy(base_uri + prefix_len, "META-INF/encryption.xml");
-			if (fz_has_archive_entry(ctx, zip, base_uri))
-			{
-				fz_warn(ctx, "EPUB may be locked by DRM");
-
-				buf = fz_read_archive_entry(ctx, zip, base_uri);
-				encryption_xml = fz_parse_xml(ctx, buf, 0);
-				fz_drop_buffer(ctx, buf);
-				buf = NULL;
-
-				epub_parse_encryption(ctx, doc, fz_xml_find(fz_xml_root(encryption_xml), "encryption"));
-				zip = doc->zip;
-			}
-		}
 
 		container = fz_xml_find(fz_xml_root(container_xml), "container");
 		rootfiles = fz_xml_find_down(container, "rootfiles");
@@ -867,15 +832,11 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 		if (!full_path)
 			fz_throw(ctx, FZ_ERROR_GENERIC, "cannot find root file in EPUB");
 
-		fz_dirname(base_uri+prefix_len, full_path, sizeof(base_uri) - prefix_len);
-
-		prefixed_full_path = fz_malloc(ctx, strlen(full_path) + prefix_len + 1);
-		memcpy(prefixed_full_path, base_uri, prefix_len);
-		strcpy(prefixed_full_path + prefix_len, full_path);
+		fz_dirname(base_uri, full_path, sizeof base_uri);
 
 		/* parse OPF to find NCX and spine */
 
-		buf = fz_read_archive_entry(ctx, zip, prefixed_full_path);
+		buf = fz_read_archive_entry(ctx, zip, full_path);
 		content_opf = fz_parse_xml(ctx, buf, 0);
 		fz_drop_buffer(ctx, buf);
 		buf = NULL;
@@ -898,6 +859,9 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 		if (path_from_idref(ncx, manifest, base_uri, fz_xml_att(spine, "toc"), sizeof ncx))
 		{
 			epub_parse_ncx(ctx, doc, ncx);
+		}else if (path_from_idref(ncx, manifest, base_uri, "nav", sizeof ncx))
+		{
+			epub_parse_nav(ctx, doc, ncx);
 		}
 
 		doc->spine = NULL;
@@ -927,12 +891,10 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 	{
 		fz_drop_xml(ctx, content_opf);
 		fz_drop_xml(ctx, container_xml);
-		fz_drop_xml(ctx, encryption_xml);
 		fz_drop_buffer(ctx, buf);
-		fz_free(ctx, prefixed_full_path);
 	}
 	fz_catch(ctx)
-		fz_rethrow(ctx);
+	fz_rethrow(ctx);
 }
 
 static fz_outline *
@@ -943,7 +905,7 @@ epub_load_outline(fz_context *ctx, fz_document *doc_)
 }
 
 static int
-epub_lookup_metadata(fz_context *ctx, fz_document *doc_, const char *key, char *buf, size_t size)
+epub_lookup_metadata(fz_context *ctx, fz_document *doc_, const char *key, char *buf, int size)
 {
 	epub_document *doc = (epub_document*)doc_;
 	if (!strcmp(key, FZ_META_FORMAT))
@@ -981,9 +943,9 @@ epub_output_accelerator(fz_context *ctx, fz_document *doc_, fz_output *out)
 		fz_close_output(ctx, out);
 	}
 	fz_always(ctx)
-		fz_drop_output(ctx, out);
+	fz_drop_output(ctx, out);
 	fz_catch(ctx)
-		fz_rethrow(ctx);
+	fz_rethrow(ctx);
 }
 
 static fz_document *
@@ -1060,9 +1022,9 @@ epub_open_accel_document(fz_context *ctx, const char *filename, const char *acce
 			doc = epub_init(ctx, fz_open_zip_archive(ctx, filename), afile);
 	}
 	fz_always(ctx)
-		fz_drop_stream(ctx, afile);
+	fz_drop_stream(ctx, afile);
 	fz_catch(ctx)
-		fz_rethrow(ctx);
+	fz_rethrow(ctx);
 
 	return doc;
 }
@@ -1088,24 +1050,24 @@ epub_recognize(fz_context *doc, const char *magic)
 }
 
 static const char *epub_extensions[] =
-{
-	"epub",
-	NULL
-};
+		{
+				"epub",
+				NULL
+		};
 
 static const char *epub_mimetypes[] =
-{
-	"application/epub+zip",
-	NULL
-};
+		{
+				"application/epub+zip",
+				NULL
+		};
 
 fz_document_handler epub_document_handler =
-{
-	epub_recognize,
-	epub_open_document,
-	epub_open_document_with_stream,
-	epub_extensions,
-	epub_mimetypes,
-	epub_open_accel_document,
-	epub_open_accel_document_with_stream
-};
+		{
+				epub_recognize,
+				epub_open_document,
+				epub_open_document_with_stream,
+				epub_extensions,
+				epub_mimetypes,
+				epub_open_accel_document,
+				epub_open_accel_document_with_stream
+		};
