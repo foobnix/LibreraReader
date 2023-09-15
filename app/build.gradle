@@ -397,6 +397,7 @@ task copyApks() {
         delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
         delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
         delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
+        delete fileTree("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
 
         android.applicationVariants.all { variant ->
@@ -405,7 +406,9 @@ task copyApks() {
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                def list = ["/home/dev/Nextcloud/LibreraBeta", "/home/dev/Dropbox/FREE_PDF_APK/testing"]
+                def list = ["/home/dev/Nextcloud/LibreraBeta",
+                            "/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing",
+                            "/home/dev/Dropbox/FREE_PDF_APK/testing"]
 
                 if (project.hasProperty("relesae")) {
                     list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
