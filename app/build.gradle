@@ -395,10 +395,11 @@ task copyApks() {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
-        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
         delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
         delete fileTree("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
+        delete fileTree("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk")
+        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
 
         android.applicationVariants.all { variant ->
             if ("release" == variant.buildType.name) {
@@ -406,22 +407,36 @@ task copyApks() {
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                def list = ["/home/dev/Nextcloud/LibreraBeta",
+                def list =
+                            ["/home/dev/Nextcloud/LibreraBeta",
                             "/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing",
                             "/home/dev/Dropbox/FREE_PDF_APK/testing"]
 
+
+
                 if (project.hasProperty("relesae")) {
                     list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                    list.add("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$versionNumber")
                 }
                 list.each { dest ->
-                    copy {
-                        from file(
-                                "build/outputs/apk/${flavor}/release/"
-                        )
-                        include "*.apk"
-                        into file(dest)
-                        println "Copy: '" + flavor + "' to " + dest
-                    }
+
+                            copy {
+                                from file(
+                                        "build/outputs/apk/${flavor}/release/"
+                                )
+                                include "*.apk"
+                                into file(dest)
+                                println "Copy: '" + flavor + "' to " + dest
+
+                                eachFile {
+                                    if (!file(dest).exists()) {
+                                        it.exclude()
+                                    }
+                                }
+
+                            }
+
+
                 }
             }
         }
