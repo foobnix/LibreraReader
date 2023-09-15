@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        compose_ui_version = '1.4.2'
+        //compose_ui_version = '1.5.3'
     }
     repositories {
         google()
@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10'
     }
 }
 
@@ -25,6 +25,7 @@ project.ext {
     targetSdk = 34
     minSdk = 19
     compileSdk = 34
+   // compose_ui_version = '1.5.3'
 }
 
 task clean(type: Delete) {

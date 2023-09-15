@@ -33,7 +33,7 @@ mkdir -p $MUPDF_JAVA/jni
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
 rm -rf  $MUPDF_JAVA/jni
-cp -rRp jni $MUPDF_JAVA/jni
+cp -Rp jni $MUPDF_JAVA/jni
 mv $MUPDF_JAVA/jni/Android-1.11.mk $MUPDF_JAVA/jni/Android.mk
 
 rm -r $LIBS
@@ -69,10 +69,25 @@ echo "================== "
 
 if [ "$1" == "clean_ndk" ]; then
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build clean
+/Users/dev/Library/Android/Sdk/ndk/25.2.9519653/ndk-build clean
+
 rm -rf $MUPDF_JAVA/obj
 fi
 
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build NDK_APPLICATION_MK=jni/Application-16.mk
+
+NDK_VERSION="25.2.9519653"
+for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
+do
+  if [ -f "$NDK" ]; then
+  $NDK NDK_APPLICATION_MK=jni/Application-16.mk APP_ABI=armeabi-v7a &
+  $NDK NDK_APPLICATION_MK=jni/Application-16.mk APP_ABI=arm64-v8a &
+  $NDK NDK_APPLICATION_MK=jni/Application-16.mk APP_ABI=x86 &
+  $NDK NDK_APPLICATION_MK=jni/Application-16.mk APP_ABI=x86_64
+  fi
+done
+
+
 echo "================== "
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS

@@ -1,2 +1,2 @@
 include ':app', ':pro', ':Builder', ':smartreflow'
-include ':app2'
+include ':epub'

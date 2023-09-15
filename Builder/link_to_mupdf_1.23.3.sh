@@ -126,9 +126,7 @@ if [ "$1" == "clean_ndk" ]; then
   cd $BUILD_DIR
   end=`date +%s`
   runtime=$( echo "$end - $start" | bc -l )
-  echo "Run time: ${runtime}" | tee -a log.txt
-
+  echo "Run time: ${runtime}"
 fi
-
 
 fi
