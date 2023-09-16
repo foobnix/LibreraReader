@@ -180,6 +180,7 @@ public class CbzCbrExtractor {
             String date = null;
             String publisher = "";
             String pageCount = null;
+            String isbn = "";
 
             if (BookType.CBZ.is(path) || isZip(path)) {
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
@@ -270,8 +271,12 @@ public class CbzCbrExtractor {
                         pageCount = xpp.nextText();
                     }
 
-                    if (lang == null && ("LanguageISO".equals(xpp.getName()))) {
+                    if (lang == null && "LanguageISO".equals(xpp.getName())) {
                         lang = xpp.nextText();
+                    }
+
+                    if ("".equals(isbn) && "GTIN".equals(xpp.getName())) {
+                        isbn = xpp.nextText();
                     }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
@@ -309,6 +314,7 @@ public class CbzCbrExtractor {
             ebookMeta.setLang(lang);
             ebookMeta.setYear(date);
             ebookMeta.setPublisher(publisher);
+            ebookMeta.setIsbn(isbn);
             if (pageCount != null) {
                 try {
                     if (pageCount.contains(".")) {
