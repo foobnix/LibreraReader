@@ -29,6 +29,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
 import com.foobnix.LibreraApp;
+
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
@@ -121,12 +122,17 @@ public class TxtUtils {
     }
 
     public static String toBionicWord(String w) {
+        LOG.d("toBionicWord", w);
         if (w.length() == 1) {
+            if (!w.equals("a")) {
+                return w;
+            }
             w = "<b>" + w + "</b>";
         } else {
             int half = w.length() / 2;
             w = "<b>" + w.substring(0, half) + "</b>" + w.substring(half);
         }
+        LOG.d("toBionicWord", w);
         return w;
     }
 

@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.HtmlExtractor;
+import com.foobnix.hypen.HypenUtils;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -37,6 +38,7 @@ public class HtmlContext extends PdfContext {
         Map<String, String> notes = null;
         try {
             FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), forse);
+
             fileName = extract.path;
             notes = extract.notes;
             LOG.d("new file name", fileName);
