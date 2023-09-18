@@ -123,13 +123,18 @@ public class TxtUtils {
 
     public static String toBionicWord(String w) {
         LOG.d("toBionicWord", w);
-        if (w.length() == 1) {
+        int length = w.length();
+        if (length == 1) {
             if (!w.equals("a")) {
                 return w;
             }
             w = "<b>" + w + "</b>";
         } else {
-            int half = w.length() / 2;
+            int half = length / 2;
+            if (length > 4) {
+                half += length % 2;
+            }
+
             w = "<b>" + w.substring(0, half) + "</b>" + w.substring(half);
         }
         LOG.d("toBionicWord", w);
