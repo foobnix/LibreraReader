@@ -620,7 +620,7 @@ public class BookCSS {
             }
 
             // <P> begin
-            builder.append("body, div, p, span {");
+            builder.append("body, div, p, span, hr {");
             builder.append(String.format("font-size:medium !important;"));
 
             if (AppState.get().isDayNotInvert) {
