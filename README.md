@@ -87,6 +87,7 @@ For this project only Analytics is used, so a spakling plan is all you need.
 ~~~~
 cd Builder
 ./link_to_mupdf_x.x.x.sh (Change the paths to mupdf and jniLibs folders)
+cd ..
 ./gradlew assembleLibrera
 ~~~~
 
@@ -97,6 +98,7 @@ If you wish to build for F-Droid (e.g. not using google services, Internet) you 
 ~~~~
 cd Builder
 ./link_to_mupdf_x.x.x.sh
+cd ..
 ./gradlew assembleFdroid
 ~~~~
 
