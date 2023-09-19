@@ -1,6 +1,7 @@
 package com.foobnix.ui2.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -228,11 +229,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             //AppDB.get().getDao().detach(fileMeta);
             //}
 
-            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
+            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new IMG.ResourceReady() {
 
 
                 @Override
-                public void run() {
+                public void onResourceReady(Bitmap bitmap) {
 
                     if (position <= items.size() - 1 && needRefresh) {
                         FileMeta it = AppDB.get().load(fileMeta.getPath());
@@ -300,12 +301,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
             }
 
+            TintUtil.setNoTintImage(holder.image);
+
             if (new File(fileMeta.getPath(), "Fonts").isDirectory()) {
                 holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
-                TintUtil.setNoTintImage(holder.image);
             } else {
-                holder.image.setImageResource(R.drawable.glyphicons_145_folder_open);
-                TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+                if (AppState.get().isFolderPreview) {
+                    IMG.updateImageSizeSmallDir(holder.image);
+                    IMG.getCoverPage(holder.image, fileMeta.getPath(),IMG.getImageSize());
+                } else {
+                    holder.image.setImageResource(R.drawable.glyphicons_145_folder_open);
+                    TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+                }
+
             }
 
             TintUtil.setTintImageWithAlpha(holder.starIcon, holder.starIcon.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());

@@ -28,11 +28,13 @@ import com.bumptech.glide.request.target.Target;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.MainTabs2;
 
 import com.foobnix.LibreraApp;
+
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.util.regex.Pattern;
@@ -87,6 +89,15 @@ public class IMG {
         }
         LayoutParams lp = imageView.getLayoutParams();
         lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
+        lp.height = (int) (lp.width * WIDTH_DK);
+        return lp;
+    }
+    public static LayoutParams updateImageSizeSmallDir(View imageView) {
+        if (imageView == null || imageView.getLayoutParams() == null) {
+            return null;
+        }
+        LayoutParams lp = imageView.getLayoutParams();
+        lp.width = Dips.dpToPx(AppState.get().coverSmallSize)/2;
         lp.height = (int) (lp.width * WIDTH_DK);
         return lp;
     }
@@ -217,12 +228,16 @@ public class IMG {
         try {
             final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
             Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
 
-    public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
+    public static interface ResourceReady {
+        void onResourceReady(Bitmap bitmap);
+    }
+
+    public static void getCoverPageWithEffect(ImageView img, String path, int width, ResourceReady run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
         LOG.d("Bitmap-test-load", path);
         IMG.with(img.getContext())
@@ -244,7 +259,7 @@ public class IMG {
                         LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         if (run != null) {
-                            run.run();
+                            run.onResourceReady(null);
                         }
                         return true;
                     }
@@ -265,7 +280,10 @@ public class IMG {
     public static String toUrl(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         pdfUrl.setUnic(0);
-        pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
+        //pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
+
+        pdfUrl.hash = (""+AppState.get().isBookCoverEffect+TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode()+ MagicHelper.hash();
+
         return pdfUrl.toString();
     }
 

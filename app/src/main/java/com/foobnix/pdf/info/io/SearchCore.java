@@ -206,12 +206,31 @@ public class SearchCore {
 
     public static SupportedExtAndDirsFilter SUPPORTED_EXT_AND_DIRS_FILTER = new SupportedExtAndDirsFilter();
 
+    public static SupportedExtFilesOnly SUPPORTED_EXT_FILES_ONLY = new SupportedExtFilesOnly();
+
+
     public static class SupportedExtAndDirsFilter implements FileFilter {
 
         @Override
         public boolean accept(File pathname) {
             if (pathname.isDirectory()) {
                 return true;
+            }
+            String lowerCase = pathname.getName().toLowerCase(Locale.US);
+            for (String s : ExtUtils.browseExts) {
+                if (lowerCase.endsWith(s)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    public static class SupportedExtFilesOnly implements FileFilter {
+
+        @Override
+        public boolean accept(File pathname) {
+            if (pathname.isDirectory()) {
+                return false;
             }
             String lowerCase = pathname.getName().toLowerCase(Locale.US);
             for (String s : ExtUtils.browseExts) {

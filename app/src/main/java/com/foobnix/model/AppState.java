@@ -606,6 +606,9 @@ public class AppState {
     public String nameMusicianMode = "";
     public boolean isDisplayAllFilesInFolder = false;
     public boolean isHideReadBook = false;
+
+    public boolean isFolderPreview  = true;
+
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";

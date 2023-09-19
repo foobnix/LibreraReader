@@ -55,6 +55,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -994,6 +995,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+
+
     public void displayItems(List<FileMeta> items) {
         itemsCount = items.size();
         if (searchAdapter == null) {
@@ -1003,26 +1006,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         searchAdapter.clearItems();
 
         try {
-            if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
-                Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
-                Collections.sort(items, FileMetaComparators.BY_DATE);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
-                Collections.sort(items, FileMetaComparators.BY_SIZE);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
-                Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
-                Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
-                Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
-                Collections.sort(items, FileMetaComparators.BR_BY_EXT);
-            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
-                Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
-            }
-            if (AppState.get().sortByReverse) {
-                Collections.reverse(items);
-            }
+            sortItems(items);
             Collections.sort(items, FileMetaComparators.DIRS);
 
         } catch (Exception e) {
@@ -1060,6 +1044,29 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             openAsBook.setVisibility(View.GONE);
         }
 
+    }
+
+    public static void sortItems(List<FileMeta> items) {
+        if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
+            Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
+            Collections.sort(items, FileMetaComparators.BY_DATE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
+            Collections.sort(items, FileMetaComparators.BY_SIZE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
+            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
+            Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
+            Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
+            Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
+            Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
+        }
+        if (AppState.get().sortByReverse) {
+            Collections.reverse(items);
+        }
     }
 
     public void showPathHeader() {
@@ -1166,6 +1173,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void onClick(View v) {
+
+                        IMG.clearMemoryCache();
+                        IMG.clearDiscCache();
+
                         StringBuilder builder = new StringBuilder();
                         for (int j = 0; j <= index; j++) {
                             builder.append("/");
@@ -1340,6 +1351,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, R.drawable.my_glyphicons_114_justify_compact, R.drawable.glyphicons_157_thumbnails, R.drawable.glyphicons_158_thumbnails_small);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
+
+        p.getMenu().addCheckbox("Folder preview", AppState.get().isFolderPreview, new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppState.get().isFolderPreview = isChecked;
+
+                populate();
+            }
+        });
 
         p.getMenu().addCheckbox(getString(R.string.show_hidden), AppState.get().isDisplayAllFilesInFolder, new CompoundButton.OnCheckedChangeListener() {
             @Override

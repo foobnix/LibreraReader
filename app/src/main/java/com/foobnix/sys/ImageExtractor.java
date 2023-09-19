@@ -1,5 +1,8 @@
 package com.foobnix.sys;
 
+import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_AND_DIRS_FILTER;
+import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_FILES_ONLY;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,6 +13,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Build;
@@ -42,11 +47,13 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.fragment.BrowseFragment2;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -66,6 +73,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
@@ -251,11 +261,40 @@ public class ImageExtractor {
 
     }
 
+
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
         String path = pageUrl.getPath();
 
         if (pageUrl.getHeight() == 0) {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
+        }
+
+        if(AppState.get().isFolderPreview) {
+            File root = new File(path);
+            if (root.isDirectory()) {
+                File[] listFiles = root.listFiles(SUPPORTED_EXT_FILES_ONLY);
+                LOG.d("proccessCoverPage-Directory", root.getName(), listFiles.length, pageUrl.hash);
+                if (listFiles == null || listFiles.length == 0) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Drawable drawable = LibreraApp.context.getDrawable(R.drawable.glyphicons_145_folder_open);
+                        drawable.setTint(TintUtil.getColorInDayNighth());
+                        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(bitmap);
+                        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                        drawable.draw(canvas);
+                        return bitmap;
+                    } else {
+                        return BitmapFactory.decodeResource(LibreraApp.context.getResources(), R.drawable.gitbook);
+                    }
+                }
+                List<FileMeta> list = new ArrayList();
+                for (File file : listFiles) {
+                    list.add(new FileMeta(file.getPath()));
+                }
+                BrowseFragment2.sortItems(list);
+                path = list.get(0).getPath();
+            }
         }
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
