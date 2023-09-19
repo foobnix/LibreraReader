@@ -229,7 +229,7 @@ public class AddCatalogDialog {
                 asyncTask = new AsyncTask() {
                     @Override
                     protected Object doInBackground(Object... params) {
-                        List<String> suffixes = Arrays.asList("", "/opds", ":8080", ":8080/opds");
+                        List<String> suffixes = Arrays.asList("", "/opds", ":8080", ":8080/opds","/opds/v1.2/catalog");
                         for (String suffix : suffixes) {
                             final String uri = TxtUtils.replaceLast(feedUrl, "/", "") + suffix;
                             LOG.d("OPDS-uri", uri);

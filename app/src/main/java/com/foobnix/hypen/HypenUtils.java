@@ -81,7 +81,7 @@ public class HypenUtils {
                         res.append(join);
                     } catch (Exception e) {
                         res.append(w);
-                        LOG.e(e, "Exception findText", w);
+                        //LOG.e(e, "Exception findText", w);
                     }
                 }
             }

@@ -61,6 +61,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -68,6 +69,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -162,6 +164,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -1624,20 +1627,41 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onShare).setOnClickListener(new OnClickListener() {
+                View onShare = view.findViewById(R.id.onShare);
+                onShare.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        controller.clearSelectedText();
-                        closeDialog();
+
+
                         final Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
+                        String trimText = editText.getText().toString().trim();
+                        FileMeta meta = controller.getBookFileMeta();
 
-                        String txt =
-                                controller.getBookFileMetaName() + ": \"" + editText.getText().toString().trim() + "\"";
+                        List<String> list = Arrays.asList(
+                                "Format: Quote",
+                                "Format: \"Quote\"\n-- Author",
+                                "Format: \"Quote\"\n-- Author\nTitle"
+                        );
 
-                        intent.putExtra(Intent.EXTRA_TEXT, txt);
-                        controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
+                        MyPopupMenu menu = new MyPopupMenu(v);
+                        for (String line : list) {
+                            menu.getMenu().add(line).setOnMenuItemClickListener(menuItem -> {
+                                String res = line.replace("Format: ", "");
+                                res = res.replace("Author", meta.getAuthor());
+                                res = res.replace("Title", meta.getTitle());
+                                res = res.replace("Quote", trimText);
+                                intent.putExtra(Intent.EXTRA_TEXT, res);
+
+                                controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
+                                controller.clearSelectedText();
+                                closeDialog();
+                                return false;
+                            });
+                        }
+                        menu.show();
+
 
                     }
                 });
