@@ -2,6 +2,7 @@ package com.foobnix.android.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -15,9 +16,11 @@ import android.text.SpannedString;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.core.util.Pair;
+import androidx.core.widget.TintableCompoundButton;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
@@ -1363,17 +1366,38 @@ public class TxtUtils {
     }
 
     public static void updateAllLinks(ViewGroup parent, int color) {
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            if (child instanceof ViewGroup) {
-                updateAllLinks((ViewGroup) child, color);
-            }
-            if (child instanceof TextView) {
-                if ("textLink".equals(child.getTag())) {
-                    ((TextView) child).setTextColor(color);
+        try {
+            int childCount = parent.getChildCount();
+            ColorStateList tint = ColorStateList.valueOf(color);
+            for (int i = 0; i < childCount; i++) {
+                View child = parent.getChildAt(i);
+                if (child instanceof ViewGroup) {
+                    updateAllLinks((ViewGroup) child, color);
+                }
+                if (child instanceof TextView) {
+                    if ("textLink".equals(child.getTag())) {
+                        ((TextView) child).setTextColor(color);
+                    }
+                }
+                if (child instanceof CheckBox) {
+                    CheckBox checkBox = (CheckBox) child;
+
+                    if (Build.VERSION.SDK_INT < 21) {
+                        ((TintableCompoundButton) checkBox).setSupportButtonTintList(tint);
+                    } else {
+                        checkBox.setButtonTintList(tint);
+                    }
+                }
+                if (Build.VERSION.SDK_INT > 21) {
+                    if (child instanceof SeekBar) {
+                        ((SeekBar) child).setProgressTintList(tint);
+                        ((SeekBar) child).setThumbTintList(tint);
+
+                    }
                 }
             }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
     }

@@ -1300,7 +1300,8 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.moreLybraryettings)).setOnClickListener(v -> {
+        View libPrefView = inflate.findViewById(R.id.moreLybraryettings);
+        TxtUtils.underlineTextView(libPrefView).setOnClickListener(v -> {
 
 
             final CheckBox isFirstSurname = new CheckBox(v.getContext());
@@ -1379,7 +1380,9 @@ public class PrefFragment2 extends UIFragment {
                 }
             });
 
+
         });
+
 
 
         ////

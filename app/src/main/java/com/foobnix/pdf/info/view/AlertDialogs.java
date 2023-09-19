@@ -19,6 +19,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.UI;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
@@ -169,6 +170,7 @@ public class AlertDialogs {
         for (View child : childs) {
             l.addView(child);
         }
+        TxtUtils.updateAllLinks(l);
 
         scroll.addView(l);
         builder.setView(scroll);
