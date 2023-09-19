@@ -653,4 +653,5 @@
    <string name="update_metadata">Päivittää metatiedot</string>
    <string name="highlighting_initial_letters">Korostamalla alkukirjaimia</string>
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
+   <string name="folder_preview">Kansion esikatselu</string>
 </resources>

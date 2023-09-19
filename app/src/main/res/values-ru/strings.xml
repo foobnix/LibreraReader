@@ -653,4 +653,5 @@
    <string name="update_metadata">Обновить метаданные</string>
    <string name="highlighting_initial_letters">Выделение начальных букв</string>
    <string name="anti_aliasing_level">Уровень сглаживания</string>
+   <string name="folder_preview">Предварительный просмотр папки</string>
 </resources>

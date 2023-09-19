@@ -653,4 +653,5 @@
    <string name="update_metadata">อัปเดตข้อมูลเมตา</string>
    <string name="highlighting_initial_letters">เน้นตัวอักษรเริ่มต้น</string>
    <string name="anti_aliasing_level">ระดับการต่อต้านนามแฝง</string>
+   <string name="folder_preview">ดูตัวอย่างโฟลเดอร์</string>
 </resources>

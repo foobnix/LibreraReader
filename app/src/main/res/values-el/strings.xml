@@ -653,4 +653,5 @@
    <string name="update_metadata">Ενημέρωση μεταδεδομένων</string>
    <string name="highlighting_initial_letters">Τονίζοντας τα αρχικά γράμματα</string>
    <string name="anti_aliasing_level">Επίπεδο αντιολίσθησης</string>
+   <string name="folder_preview">Προεπισκόπηση φακέλου</string>
 </resources>

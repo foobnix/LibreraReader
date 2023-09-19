@@ -653,4 +653,5 @@
    <string name="update_metadata">Oppdatere metadata</string>
    <string name="highlighting_initial_letters">Utheving av forbokstaver</string>
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
+   <string name="folder_preview">Mappe forhåndsvisning</string>
 </resources>

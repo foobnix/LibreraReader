@@ -596,7 +596,7 @@
    <string name="new_file">Новы файл</string>
    <string name="paste_or_type_text_in_here">Устаўце або ўвядзіце тэкст тут</string>
    <string name="go_to_the_folder">Перайсці ў тэчку</string>
-   <string name="you_should_enable_allow_battery">Вы павінны ўключыць \"акумулятар\" &gt; \"дазволіць фонавую дзейнасць\", каб слухаць у фонавым рэжыме.</string>
+   <string name="you_should_enable_allow_battery">Вы павінны ўключыць \"акумулятар\" > \"дазволіць фонавую дзейнасць\", каб слухаць у фонавым рэжыме.</string>
    <string name="use_calibre_metadata">Выкарыстоўваць calibre metadata.opf</string>
    <string name="icons_only">Толькі значкі</string>
    <string name="migration">Міграваць</string>
@@ -653,4 +653,5 @@
    <string name="update_metadata">Абнавіць метададзеныя</string>
    <string name="highlighting_initial_letters">Вылучэнне пачатковых літар</string>
    <string name="anti_aliasing_level">Ўзровень згладжвання</string>
+   <string name="folder_preview">Папярэдні прагляд папкі</string>
 </resources>

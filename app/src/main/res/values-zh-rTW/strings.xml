@@ -653,4 +653,5 @@
    <string name="update_metadata">更新元數據</string>
    <string name="highlighting_initial_letters">突出顯示首字母</string>
    <string name="anti_aliasing_level">抗鋸齒級別</string>
+   <string name="folder_preview">資料夾預覽</string>
 </resources>

@@ -42,6 +42,7 @@ public class SyncTranslations {
 
     public static List<String> getAllLangCodes(String path) {
         File file = new File(path);
+
         String[] list = file.list(new FilenameFilter() {
 
             @Override
@@ -63,8 +64,9 @@ public class SyncTranslations {
         return asList;
     }
 
-    private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");
-    private static Config IVAN = new Config("ivan", "", "/home/dev/git/LibreraReader/app/src/main/res/");
+    private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");//Linux
+    private static Config IVAN = new Config("ivan", "", "/Users/dev/git/LibreraReader/app/src/main/res/");//MAC
+
 
     // run as "SyncTranslations user_name"
     public static void main(final String[] args) throws Exception {

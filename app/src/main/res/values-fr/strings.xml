@@ -653,4 +653,5 @@
    <string name="update_metadata">Mettre à jour les métadonnées</string>
    <string name="highlighting_initial_letters">Surlignage des lettres initiales</string>
    <string name="anti_aliasing_level">Niveau d\'anticrénelage</string>
+   <string name="folder_preview">Aperçu du dossier</string>
 </resources>

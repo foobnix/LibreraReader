@@ -653,4 +653,5 @@
    <string name="update_metadata">Atualizar metadados</string>
    <string name="highlighting_initial_letters">Destacando as letras iniciais</string>
    <string name="anti_aliasing_level">Nível anti-aliasing</string>
+   <string name="folder_preview">Visualização da pasta</string>
 </resources>
