@@ -93,6 +93,13 @@ public class AppState {
             "#000000" //
 
     );
+    public static final List<String> ACCENT_COLORS = Arrays.asList(//
+            "#E3C800", //
+            "#EA5964", //
+            "#00897B", //
+            "#FFFFFF" //
+
+    );
     public final static String OPDS_DEFAULT = "" + //
 
             //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
@@ -607,7 +614,7 @@ public class AppState {
     public boolean isDisplayAllFilesInFolder = false;
     public boolean isHideReadBook = false;
 
-    public boolean isFolderPreview  = true;
+    public boolean isFolderPreview  = false;
 
     public String myAutoCompleteDb = "";
     public String bookTags = "";

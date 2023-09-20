@@ -303,12 +303,36 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             TintUtil.setNoTintImage(holder.image);
 
+            if (AppState.get().isFolderPreview && fileMeta.getPages() != null && fileMeta.getPages() > 0) {
+                holder.count.setVisibility(View.VISIBLE);
+                holder.count.setText(TxtUtils.formatInt(fileMeta.getPages()));
+            } else {
+                holder.count.setVisibility(View.GONE);
+            }
+
             if (new File(fileMeta.getPath(), "Fonts").isDirectory()) {
                 holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
             } else {
                 if (AppState.get().isFolderPreview) {
                     IMG.updateImageSizeSmallDir(holder.image);
-                    IMG.getCoverPage(holder.image, fileMeta.getPath(),IMG.getImageSize());
+                    IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new IMG.ResourceReady() {
+                        @Override
+                        public void onResourceReady(Bitmap bitmap) {
+                            FileMeta meta = AppDB.get().load(fileMeta.getPath());
+
+                            if (meta != null) {
+                                items.set(position,meta);
+                                if (AppState.get().isFolderPreview && meta.getPages() != null && meta.getPages() > 0) {
+                                    holder.count.setVisibility(View.VISIBLE);
+                                    holder.count.setText(TxtUtils.formatInt(meta.getPages()));
+                                } else {
+                                    holder.count.setVisibility(View.GONE);
+                                }
+                            }
+
+
+                        }
+                    });
                 } else {
                     holder.image.setImageResource(R.drawable.glyphicons_145_folder_open);
                     TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());

@@ -481,7 +481,7 @@ public class DefaultListeners {
                 }
 
                 fileMeta.setIsStarTime(System.currentTimeMillis());
-                AppDB.get().updateOrSave(fileMeta);
+                AppDB.get().save(fileMeta);
 
 
                 if (adapter != null) {

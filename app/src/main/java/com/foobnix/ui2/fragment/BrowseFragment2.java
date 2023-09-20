@@ -910,6 +910,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 LOG.d("isDisplayAllFilesInFolder1", isDisplayAllFilesInFolder);
                 List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, isDisplayAllFilesInFolder);
                 ExtUtils.removeReadBooks(filesAndDirs);
+
+
+
                 return filesAndDirs;
             }
         } catch (Exception e) {

@@ -16,6 +16,7 @@ import android.text.SpannedString;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -79,6 +80,11 @@ public class TxtUtils {
     static List<String> dividers = Arrays.asList(" - ", " _ ", "_-_", "+-+");
     static List<String> trash = Arrays.asList("-", "—", "_", "  ");
     int a = 1;
+
+    public static String formatInt(Integer in) {
+        if (in == null) return "0";
+        return in.toString();
+    }
 
     //<a> asdfsadf </a>
     public static String getStringInTag(String string, String tag) {
@@ -1341,18 +1347,37 @@ public class TxtUtils {
 
     public static void updateAllLinks(View parent) {
         try {
+            int color = AppState.get().uiTextColor;
             if (parent instanceof ViewGroup) {
                 if (AppState.get().isUiTextColor) {
-                    TxtUtils.updateAllLinks((ViewGroup) parent, AppState.get().uiTextColor);
+                    TxtUtils.updateAllLinks((ViewGroup) parent, color);
                 } else {
                     TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
-                    int systemLinkColor = out.getColor(0, 0);
-
-                    TxtUtils.updateAllLinks((ViewGroup) parent, systemLinkColor);
+                    color = out.getColor(0, Color.WHITE);
+                    TxtUtils.updateAllLinks((ViewGroup) parent, color);
                 }
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
+
+            List<Integer> ids = Arrays.asList(
+                    R.id.restoreDefaultProfile,
+                    R.id.onCloseApp,
+                    R.id.title,
+                    R.id.chapter,
+                    R.id.currentSeek,
+                    R.id.maxSeek,
+                    R.id.modeName,
+                    R.id.nextTypeBootom
+            );
+            if(AppState.get().isUiTextColor) {
+                for (int id : ids) {
+                    TextView view = parent.findViewById(id);
+                    if (view != null) view.setTextColor(color);
+                }
+            }
+
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1379,16 +1404,16 @@ public class TxtUtils {
                         ((TextView) child).setTextColor(color);
                     }
                 }
-                if (child instanceof CheckBox) {
-                    CheckBox checkBox = (CheckBox) child;
-
-                    if (Build.VERSION.SDK_INT < 21) {
-                        ((TintableCompoundButton) checkBox).setSupportButtonTintList(tint);
-                    } else {
-                        checkBox.setButtonTintList(tint);
+                if (Build.VERSION.SDK_INT >= 21) {
+                    if (child instanceof CheckBox) {
+                        ((CheckBox) child).setButtonTintList(tint);
                     }
-                }
-                if (Build.VERSION.SDK_INT > 21) {
+                    if (child instanceof ImageView && AppState.get().isUiTextColor) {
+                        ImageView imageView = (ImageView) child;
+                        imageView.setImageTintList(tint);
+                        //imageView.setAlpha(1f);
+                    }
+
                     if (child instanceof SeekBar) {
                         ((SeekBar) child).setProgressTintList(tint);
                         ((SeekBar) child).setThumbTintList(tint);

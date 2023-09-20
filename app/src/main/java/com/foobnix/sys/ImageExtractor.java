@@ -273,7 +273,6 @@ public class ImageExtractor {
             File root = new File(path);
             if (root.isDirectory()) {
                 File[] listFiles = root.listFiles(SUPPORTED_EXT_FILES_ONLY);
-                LOG.d("proccessCoverPage-Directory", root.getName(), listFiles.length, pageUrl.hash);
                 if (listFiles == null || listFiles.length == 0) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         Drawable drawable = LibreraApp.context.getDrawable(R.drawable.glyphicons_145_folder_open);
@@ -294,6 +293,14 @@ public class ImageExtractor {
                 }
                 BrowseFragment2.sortItems(list);
                 path = list.get(0).getPath();
+
+                FileMeta fileMeta = AppDB.get().getOrCreate(root.getPath());
+                fileMeta.setPages(list.size());
+                AppDB.get().save(fileMeta);
+
+
+                LOG.d("Directory-Count", root.getName(), list.size());
+
             }
         }
 
@@ -311,7 +318,7 @@ public class ImageExtractor {
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(unZipPath));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-            AppDB.get().updateOrSave(fileMeta);
+            AppDB.get().save(fileMeta);
         }
 
         pageUrl.setPath(unZipPath);

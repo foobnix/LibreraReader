@@ -41,7 +41,7 @@ public class SearchCore {
 
     public static void searchSimple(List<FileMeta> items, File root, List<String> exts) {
 
-        if (root ==null || exts == null) {
+        if (root == null || exts == null) {
             return;
         }
 
@@ -155,19 +155,19 @@ public class SearchCore {
                 continue;
             }
 
-            FileMeta meta = new FileMeta(it.getPath());
+
+            FileMeta meta =  AppDB.get().getOrCreate(it.getPath());
 
             if (it.isDirectory()) {
                 FileMetaCore.get().upadteBasicMeta(meta, it);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                 meta.setIsStar(AppDB.get().isStarFolder(meta.getPath()));
+
             } else {
-                FileMeta load = AppDB.get().load(it.getPath());
-                if (load == null) {
+                if (meta.getState() != FileMetaCore.STATE_FULL) {
                     FileMetaCore.get().upadteBasicMeta(meta, it);
-                } else {
-                    meta = load;
                 }
+
                 if (it.getName().endsWith(Playlists.L_PLAYLIST)) {
                     meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
                 }
@@ -225,6 +225,7 @@ public class SearchCore {
             return false;
         }
     }
+
     public static class SupportedExtFilesOnly implements FileFilter {
 
         @Override

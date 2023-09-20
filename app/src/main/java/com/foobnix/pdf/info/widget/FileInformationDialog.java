@@ -430,7 +430,7 @@ public class FileInformationDialog {
             fileMeta.setState(FileMetaCore.STATE_NONE);
             FileMetaCore.reUpdateIfNeed(fileMeta);
 
-            AppDB.get().refresh(fileMeta);
+            AppDB.get().save(fileMeta);
 
 
             TempHolder.listHash++;

@@ -265,7 +265,7 @@ public class AppDB {
     }
 
     public void save(FileMeta meta) {
-        fileMetaDao.insertOrReplace(meta);
+        fileMetaDao.save(meta);
     }
 
     public long getCount() {
@@ -300,6 +300,13 @@ public class AppDB {
         }
     }
 
+    public void update(FileMeta load) {
+        if (fileMetaDao == null) {
+            fileMetaDao.save(load);
+        }
+
+    }
+
     public FileMeta load(String path) {
         if (fileMetaDao == null) {
             return null;
@@ -309,7 +316,9 @@ public class AppDB {
 
     public FileMeta getOrCreate(String path) {
         if (fileMetaDao == null) {
-            return new FileMeta(path);
+            FileMeta fileMeta = new FileMeta(path);
+            fileMeta.setPages(200);
+            return fileMeta;
         }
         FileMeta load = null;
         try {
@@ -318,12 +327,14 @@ public class AppDB {
             if (load == null) {
                 load = new FileMeta(path);
                 fileMetaDao.insert(load);
+
             }
         } catch (Exception e) {
             LOG.e(e);
         }
         if (load == null) {
             load = new FileMeta(path);
+            load.setPages(100);
         }
 
         if (load.getState() == null) {
@@ -333,28 +344,6 @@ public class AppDB {
         return load;
     }
 
-    public void update(FileMeta meta) {
-        if (fileMetaDao == null) {
-            return;
-        }
-        try {
-            fileMetaDao.update(meta);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public void refresh(FileMeta meta) {
-        if (fileMetaDao == null) {
-            return;
-        }
-        try {
-            fileMetaDao.refresh(meta);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
     public void clearSession() {
         try {
             daoSession.clear();
@@ -362,17 +351,6 @@ public class AppDB {
         } catch (Exception e) {
             LOG.e(e);
         }
-    }
-
-    public synchronized void updateOrSave(FileMeta meta) {
-        if (fileMetaDao.load(meta.getPath()) == null) {
-            fileMetaDao.insert(meta);
-            //LOG.d("updateOrSave insert", LOG.ojectAsString(meta));
-        } else {
-            fileMetaDao.update(meta);
-            //LOG.d("updateOrSave update", LOG.ojectAsString(meta));
-        }
-
     }
 
     public void saveAll(List<FileMeta> list) {
@@ -571,14 +549,12 @@ public class AppDB {
             }
 
 
-
-
             if (isAsc) {
                 where = where.orderAsc(sortby.getProperty());
             } else {
                 where = where.orderDesc(sortby.getProperty());
             }
-            if(sortby == SORT_BY.SERIES){
+            if (sortby == SORT_BY.SERIES) {
                 where = where.orderAsc(FileMetaDao.Properties.SIndex);
             }
 

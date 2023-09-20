@@ -87,7 +87,7 @@ public abstract class UIFragment<T> extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        TxtUtils.updateAllLinks(view);
+        //TxtUtils.updateAllLinks(view);
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TxtUtils.setInkTextView(view);
         }

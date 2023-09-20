@@ -228,7 +228,7 @@ public class DocumentModel extends ListenerProxy {
                 FileMeta meta = AppDB.get().load(bs.path);
                 if (meta != null) {
                     meta.setPages(pagesCount);
-                    AppDB.get().update(meta);
+                    AppDB.get().save(meta);
                     LOG.d("update openDocument.getPageCount()", bs.path, pagesCount);
                 }
             }

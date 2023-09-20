@@ -7,6 +7,7 @@
     <color name="alpa_ee">#ee000000</color>
     <color name="foobnix_dark_blue">#000080</color>
     <color name="foobnix_light_blue">#0000ff</color>
+    <color name="foobnix_light_blue_alfa">#aa0000ff</color>
     
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

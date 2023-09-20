@@ -665,7 +665,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                 if (!ExtUtils.isExteralSD(bookPath)) {
                                     FileMeta meta = AppDB.get().getOrCreate(bookPath);
                                     meta.setIsSearchBook(true);
-                                    AppDB.get().updateOrSave(meta);
+                                    AppDB.get().save(meta);
                                     //IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                                 }
                                 TempHolder.listHash++;

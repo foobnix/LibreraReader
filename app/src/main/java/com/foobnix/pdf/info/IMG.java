@@ -92,12 +92,13 @@ public class IMG {
         lp.height = (int) (lp.width * WIDTH_DK);
         return lp;
     }
+
     public static LayoutParams updateImageSizeSmallDir(View imageView) {
         if (imageView == null || imageView.getLayoutParams() == null) {
             return null;
         }
         LayoutParams lp = imageView.getLayoutParams();
-        lp.width = Dips.dpToPx(AppState.get().coverSmallSize)/2;
+        lp.width = (int) (Dips.dpToPx(AppState.get().coverSmallSize) / 1.5);
         lp.height = (int) (lp.width * WIDTH_DK);
         return lp;
     }
@@ -282,7 +283,7 @@ public class IMG {
         pdfUrl.setUnic(0);
         //pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
 
-        pdfUrl.hash = (""+AppState.get().isBookCoverEffect+TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode()+ MagicHelper.hash();
+        pdfUrl.hash = ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
 
         return pdfUrl.toString();
     }

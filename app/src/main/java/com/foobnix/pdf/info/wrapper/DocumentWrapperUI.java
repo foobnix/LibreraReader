@@ -1084,6 +1084,7 @@ public class DocumentWrapperUI {
             // lockUnlockTop.setColorFilter(a.getResources().getColor(R.color.tint_white));
             // mode = View.GONE;
         }
+        //TxtUtils.updateAllLinks(parentParent);
 //        if (AppState.get().l) {
 //            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
 //        } else {
@@ -1524,7 +1525,7 @@ public class DocumentWrapperUI {
 
         hideShowPrevNext();
         dc.initAnchor(anchor);
-
+        TxtUtils.updateAllLinks(parentParent);
     }
 
     public void updateSeekBarColorAndSize() {
@@ -2020,13 +2021,13 @@ public class DocumentWrapperUI {
                     progressDraw.updatePageCount(dc.getPageCount() - 1);
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
                     progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
-                    if (TxtUtils.isListEmpty(list)) {
-                        TintUtil.setTintImageWithAlpha(onDocDontext, Color.LTGRAY);
-                    }
-
-                    if (ExtUtils.isNoTextLayerForamt(dc.getCurrentBook().getPath())) {
-                        TintUtil.setTintImageWithAlpha(textToSpeach, Color.LTGRAY);
-                    }
+//                    if (TxtUtils.isListEmpty(list)) {
+//                        TintUtil.setTintImageWithAlpha(onDocDontext, Color.LTGRAY);
+//                    }
+//
+//                    if (ExtUtils.isNoTextLayerForamt(dc.getCurrentBook().getPath())) {
+//                        TintUtil.setTintImageWithAlpha(textToSpeach, Color.LTGRAY);
+//                    }
                     if (dc.isTextFormat()) {
                         // TintUtil.setTintImage(lockUnlock, Color.LTGRAY);
                     }

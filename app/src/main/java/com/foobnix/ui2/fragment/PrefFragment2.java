@@ -383,7 +383,7 @@ public class PrefFragment2 extends UIFragment {
                         }
                     });
                     ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
-                    TintUtil.setTintImageWithAlpha(library.findViewById(R.id.image1), TintUtil.COLOR_TINT_GRAY);
+                    //TintUtil.setTintImageWithAlpha(library.findViewById(R.id.image1), TintUtil.COLOR_TINT_GRAY);
                     library.setTag(tab.getIndex());
                     dragLinearLayout.addView(library, layoutParams);
                 }
@@ -396,6 +396,7 @@ public class PrefFragment2 extends UIFragment {
             }
         };
         dragLinear.run();
+
         TxtUtils.underlineTextView(inflate.findViewById(R.id.tabsApply)).setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1384,7 +1385,6 @@ public class PrefFragment2 extends UIFragment {
         });
 
 
-
         ////
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).
 
@@ -2112,80 +2112,171 @@ public class PrefFragment2 extends UIFragment {
                                                 }
                                             });
 
-        LinearLayout colorsLine = inflate.findViewById(R.id.colorsLine);
-        colorsLine.removeAllViews();
+        //color
+        {
+            LinearLayout colorsLine = inflate.findViewById(R.id.colorsLine);
+            colorsLine.removeAllViews();
 
-        for (
-                String color : AppState.STYLE_COLORS) {
+            for (String color : AppState.STYLE_COLORS) {
+                View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
+                view.setBackgroundColor(Color.TRANSPARENT);
+                final int intColor = Color.parseColor(color);
+                final View img = view.findViewById(R.id.itColor);
+                img.setBackgroundColor(intColor);
+                img.setContentDescription(getString(R.string.color));
+
+                colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+
+                view.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        TintUtil.color = intColor;
+                        AppState.get().tintColor = intColor;
+                        TempHolder.listHash++;
+
+                        onTintChanged();
+                        sendNotifyTintChanged();
+
+                        AppProfile.save(getActivity());
+
+                    }
+                });
+            }
+
             View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
             view.setBackgroundColor(Color.TRANSPARENT);
-            final int intColor = Color.parseColor(color);
-            final View img = view.findViewById(R.id.itColor);
-            img.setBackgroundColor(intColor);
-            img.setContentDescription(getString(R.string.color));
+            view.setContentDescription(getString(R.string.color));
+            final ImageView img = view.findViewById(R.id.itColor);
+            img.setColorFilter(
 
-            colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+                    getResources().
+
+                            getColor(R.color.tint_gray));
+            img.setImageResource(R.drawable.glyphicons_371_plus);
+            img.setBackgroundColor(AppState.get().userColor);
+            colorsLine.addView(view, new
+
+                    LayoutParams(Dips.dpToPx(30), Dips.
+
+                    dpToPx(30)));
 
             view.setOnClickListener(new OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
-                    TintUtil.color = intColor;
-                    AppState.get().tintColor = intColor;
-                    TempHolder.listHash++;
+                    new HSVColorPickerDialog(getContext(), AppState.get().userColor, new OnColorSelectedListener() {
 
-                    onTintChanged();
-                    sendNotifyTintChanged();
+                        @Override
+                        public void colorSelected(Integer color) {
+                            AppState.get().userColor = color;
+                            AppState.get().tintColor = color;
+                            TintUtil.color = color;
+                            img.setBackgroundColor(color);
 
-                    AppProfile.save(getActivity());
+                            onTintChanged();
+                            sendNotifyTintChanged();
+
+                            AppProfile.save(getActivity());
+
+                            TempHolder.listHash++;
+
+                        }
+                    }).show();
 
                 }
             });
         }
+        ///end colors
+        ////
+        {
+            Runnable onAccent = new Runnable() {
+                @Override
+                public void run() {
 
-        View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
-        view.setBackgroundColor(Color.TRANSPARENT);
-        view.setContentDescription(getString(R.string.color));
-        final ImageView img = view.findViewById(R.id.itColor);
-        img.setColorFilter(
 
-                getResources().
+                    TempHolder.listHash++;
+                    onTintChanged();
+                    sendNotifyTintChanged();
+                    ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                        getColor(R.color.tint_gray));
-        img.setImageResource(R.drawable.glyphicons_371_plus);
-        img.setBackgroundColor(AppState.get().userColor);
-        colorsLine.addView(view, new
+                    TxtUtils.updateAllLinks(inflate);
+                }
+            };
 
-                LayoutParams(Dips.dpToPx(30), Dips.
+            LinearLayout colorsLine = inflate.findViewById(R.id.colorsLine_a);
+            colorsLine.removeAllViews();
 
-                dpToPx(30)));
+            CheckBox isAccentTextColor = inflate.findViewById(R.id.isAccentTextColor);
 
-        view.setOnClickListener(new
+            isAccentTextColor.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    AppState.get().isUiTextColor = b;
+                    onAccent.run();
+                }
+            });
+            isAccentTextColor.setChecked(AppState.get().isUiTextColor);
 
-                                        OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                new HSVColorPickerDialog(getContext(), AppState.get().userColor, new OnColorSelectedListener() {
+            for (String color : AppState.ACCENT_COLORS) {
+                View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
+                view.setBackgroundColor(Color.TRANSPARENT);
+                final int intColor = Color.parseColor(color);
+                final View img = view.findViewById(R.id.itColor);
+                img.setBackgroundColor(intColor);
+                img.setContentDescription(getString(R.string.color));
 
-                                                    @Override
-                                                    public void colorSelected(Integer color) {
-                                                        AppState.get().userColor = color;
-                                                        AppState.get().tintColor = color;
-                                                        TintUtil.color = color;
-                                                        img.setBackgroundColor(color);
+                colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
-                                                        onTintChanged();
-                                                        sendNotifyTintChanged();
+                view.setOnClickListener(new OnClickListener() {
 
-                                                        AppProfile.save(getActivity());
+                    @Override
+                    public void onClick(View v) {
 
-                                                        TempHolder.listHash++;
 
-                                                    }
-                                                }).show();
+                        AppState.get().isUiTextColor = true;
+                        AppState.get().uiTextColor = intColor;
+                        AppState.get().uiTextColorUser = intColor;
 
-                                            }
-                                        });
+                        isAccentTextColor.setChecked(AppState.get().isUiTextColor);
+
+                        onAccent.run();
+
+                    }
+                });
+            }
+
+            View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
+            view.setBackgroundColor(Color.TRANSPARENT);
+            view.setContentDescription(getString(R.string.color));
+            final ImageView img = view.findViewById(R.id.itColor);
+            img.setColorFilter(getResources().getColor(R.color.tint_gray));
+            img.setImageResource(R.drawable.glyphicons_371_plus);
+            img.setBackgroundColor(AppState.get().userColor);
+            colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new HSVColorPickerDialog(getContext(), AppState.get().userColor, new OnColorSelectedListener() {
+
+                        @Override
+                        public void colorSelected(Integer color) {
+                            AppState.get().isUiTextColor = true;
+                            AppState.get().uiTextColor = color;
+                            AppState.get().uiTextColorUser = color;
+
+                            img.setBackgroundColor(color);
+                            isAccentTextColor.setChecked(AppState.get().isUiTextColor);
+
+                            onAccent.run();
+
+                        }
+                    }).show();
+
+                }
+            });
+        }
+        ////
 
         underline(inflate.findViewById(R.id.linksColor)).
 
@@ -2203,12 +2294,17 @@ public class PrefFragment2 extends UIFragment {
                                 sendNotifyTintChanged();
                                 ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                                TxtUtils.updateAllLinks(inflate.getRootView());
+                                TxtUtils.updateAllLinks(inflate);
 
                             }
                         });
                     }
                 });
+
+        ///link colors
+
+
+        ////
 
         underline(inflate.findViewById(R.id.onContrast)).
 
@@ -2589,6 +2685,7 @@ public class PrefFragment2 extends UIFragment {
                 );
 
 
+        TxtUtils.updateAllLinks(inflate);
         return inflate;
 
     }

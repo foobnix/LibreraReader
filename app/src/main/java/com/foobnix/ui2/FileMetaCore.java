@@ -165,7 +165,7 @@ public class FileMetaCore {
             EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileMeta.getPath(), CacheDir.ZipApp, true);
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(fileMeta.getPath()));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-            AppDB.get().updateOrSave(fileMeta);
+            AppDB.get().save(fileMeta);
             LOG.d("reupdateIfNeed 2", fileMeta.getPath(), fileMeta.getState());
         }
     }

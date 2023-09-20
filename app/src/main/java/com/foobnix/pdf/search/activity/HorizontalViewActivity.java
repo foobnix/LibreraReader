@@ -1317,6 +1317,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         });
 
+        TxtUtils.updateAllLinks(parentParent);
+
     }
 
     public void showPagesHelper() {
@@ -1973,9 +1975,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 onClose.setVisibility(View.VISIBLE);
                 progressDraw.updateDivs(result);
                 updateUI(dc.getCurrentPage());
-                if (TxtUtils.isListEmpty(result)) {
-                    TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
-                }
+//                if (TxtUtils.isListEmpty(result)) {
+//                    TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
+//                }
                 showPagesHelper();
                 return false;
             }

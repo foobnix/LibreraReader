@@ -20,6 +20,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
@@ -174,6 +175,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             }
         });
+
+
 
 
     }
