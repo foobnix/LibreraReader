@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
@@ -48,6 +49,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import com.foobnix.LibreraApp;
+
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -143,10 +145,11 @@ public class TTSService extends Service {
         playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
     }
 
-    public static void updateTimer(){
+    public static void updateTimer() {
         TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
         LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);
     }
+
     public static void playPause(Context context, DocumentController controller) {
 
 
@@ -162,7 +165,6 @@ public class TTSService extends Service {
             }
 
         }
-
 
 
         if (TTSEngine.get().isPlaying()) {
@@ -374,7 +376,12 @@ public class TTSService extends Service {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                 .build();
 
-        startForeground(TTSNotification.NOT_ID, notification);
+
+        if (Build.VERSION.SDK_INT >= 29) {
+            startForeground(TTSNotification.NOT_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+        } else {
+            startForeground(TTSNotification.NOT_ID, notification);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
@@ -383,7 +390,6 @@ public class TTSService extends Service {
 
         updateTimer();
         startMyForeground();
-
 
 
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);

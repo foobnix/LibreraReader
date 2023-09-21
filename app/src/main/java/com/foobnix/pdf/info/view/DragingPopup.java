@@ -272,8 +272,8 @@ public abstract class DragingPopup {
         }
 
         View contentView = getContentView(inflater);
-        TxtUtils.updateAllLinks(contentView);
         popupContent.addView(contentView);
+
 
         ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
         if (titlePopupMenu == null) {
@@ -294,6 +294,7 @@ public abstract class DragingPopup {
 
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();
+        TxtUtils.updateAllLinks(popupView);
         anchor.addView(popupView);
         final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
         draggbleTouchListener.setOnMoveFinish(new Runnable() {
