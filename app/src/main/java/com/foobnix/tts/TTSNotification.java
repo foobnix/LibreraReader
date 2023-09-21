@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.NotificationTarget;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
@@ -34,6 +36,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
 import com.foobnix.LibreraApp;
+
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -76,9 +79,13 @@ public class TTSNotification {
             return;
         }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_LOW);
+        //channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        //channel.setShowBadge(false);
+        //channel.setSound(null,null);
+
+
         notificationManager.createNotificationChannel(channel);
 
     }
@@ -96,7 +103,7 @@ public class TTSNotification {
 
             boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
 
-            Intent intent = new Intent(context,  isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);//TO-CHECK
+            Intent intent = new Intent(context, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);//TO-CHECK
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {
@@ -114,8 +121,6 @@ public class TTSNotification {
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
             RemoteViews remoteViewsSmall = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line_small);
-
-
 
 
             //remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
@@ -150,7 +155,7 @@ public class TTSNotification {
                 remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
             }
 
-            final int color =AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
+            final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
 
 
             remoteViews.setInt(R.id.ttsPlay, "setColorFilter", color);
@@ -165,7 +170,7 @@ public class TTSNotification {
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
 
-            String pageNumber = "(" +TxtUtils.getProgressPercent(page, maxPages) + " "  + page + "/" + maxPages + ")";
+            String pageNumber = "(" + TxtUtils.getProgressPercent(page, maxPages) + " " + page + "/" + maxPages + ")";
 
             if (page == -1 || maxPages == -1) {
                 pageNumber = "";
@@ -177,11 +182,16 @@ public class TTSNotification {
                 textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
             }
 
-            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1+ " ","\n").trim());
+            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1 + " ", "\n").trim());
             //remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+
+            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+
+            Bitmap submit = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
@@ -190,8 +200,17 @@ public class TTSNotification {
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
-                    .setPriority(NotificationCompat.PRIORITY_MAX) //
+                    .setPriority(NotificationCompat.PRIORITY_HIGH) //
+                    //.setCategory(NotificationCompat.CATEGORY_)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
+
+
+                    .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+
+
+                    //.setSmallIcon(android.R.color.transparent)
+
+
                     // .addAction(R.drawable.glyphicons_175_pause,
                     // context.getString(R.string.to_paly_pause), playPause)//
                     // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
@@ -202,13 +221,18 @@ public class TTSNotification {
                     // .setContentText(pageNumber) //
                     // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
                     // .addAction(action)//
+                    //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                    .setSilent(true)
                     .setCustomBigContentView(remoteViews) ///
                     .setCustomContentView(remoteViewsSmall); ///
 
+
             Notification n = builder.build(); //
+
+
             nm.notify(NOT_ID, n);
 
-            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+
             Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
             Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
 
