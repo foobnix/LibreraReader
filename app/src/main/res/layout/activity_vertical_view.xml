@@ -182,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/seekSpeedLayot"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dip" />
+        android:layout_marginTop="15dip" />
 
     <FrameLayout
         android:id="@+id/bottomBar1"

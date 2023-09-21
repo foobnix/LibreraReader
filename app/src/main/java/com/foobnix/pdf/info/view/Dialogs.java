@@ -701,10 +701,18 @@ public class Dialogs {
             MyProgressBar pr = (MyProgressBar) view.findViewById(R.id.MyProgressBarLoading);
             pr.setSaveEnabled(false);
             pr.setSaveFromParentEnabled(false);
-            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
+
+            int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
+            final int tintColor =AppState.get().isUiTextColor ? AppState.get().uiTextColor : color;
+
+
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);
-            TintUtil.setTintImageNoAlpha(image, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
+
+            TintUtil.setTintImageNoAlpha(image, tintColor);
+            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), tintColor);
+            TintUtil.setTintText(text,tintColor);
+
             image.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -713,6 +721,7 @@ public class Dialogs {
                     onCancel.run();
                 }
             });
+
 
             builder.setView(view);
             builder.setCancelable(false);

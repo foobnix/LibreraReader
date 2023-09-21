@@ -10,7 +10,10 @@
     <string name="google_drive" translatable="false">Google Drive</string>
     
     <string name="dropbox" translatable="false">Dropbox</string>
-    
+
+
     <string name="wiki_url" translatable="false">http://librera.mobi/wiki#menu</string>
+
+    <string name="no_tint" translatable="false">no_tint</string>
 	
 </resources>

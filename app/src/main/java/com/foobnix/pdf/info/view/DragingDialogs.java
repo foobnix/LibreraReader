@@ -69,7 +69,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -164,7 +163,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -1749,6 +1747,7 @@ public class DragingDialogs {
                             LOG.d("Add APP", app.activityInfo.name);
                             try {
                                 ImageView image = new ImageView(anchor.getContext());
+                                image.setTag(controller.getString(R.string.no_tint));
                                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
                                 layoutParams.rightMargin = Dips.dpToPx(8);
                                 image.setLayoutParams(layoutParams);
@@ -5423,6 +5422,7 @@ public class DragingDialogs {
                         // add DayBG
                         {
                             ImageView t1 = new ImageView(controller.getActivity());
+                            t1.setTag(controller.getString(R.string.no_tint));
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
                             params.setMargins(padding, padding, padding, padding);
                             t1.setLayoutParams(params);
@@ -5451,6 +5451,7 @@ public class DragingDialogs {
                         // add Night
                         {
                             ImageView t2 = new ImageView(controller.getActivity());
+                            t2.setTag(controller.getString(R.string.no_tint));
                             LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
                             params2.setMargins(padding, padding, padding, padding);
                             t2.setLayoutParams(params2);

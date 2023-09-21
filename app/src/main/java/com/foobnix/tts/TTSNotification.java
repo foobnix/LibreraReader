@@ -77,7 +77,8 @@ public class TTSNotification {
         }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setImportance(NotificationManager.IMPORTANCE_LOW);
+        channel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         notificationManager.createNotificationChannel(channel);
 
     }
@@ -149,7 +150,9 @@ public class TTSNotification {
                 remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
             }
 
-            final int color = TintUtil.color == Color.BLACK ? Color.LTGRAY : TintUtil.color;
+            final int color =AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
+
+
             remoteViews.setInt(R.id.ttsPlay, "setColorFilter", color);
             remoteViews.setInt(R.id.ttsNext, "setColorFilter", color);
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", color);

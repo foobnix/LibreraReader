@@ -253,10 +253,11 @@ public abstract class DragingPopup {
         popupContent.removeAllViews();
         beforeCreate();
 
-        if (titleAction != null) {
-            popupView.findViewById(R.id.onTitleAction).setVisibility(View.VISIBLE);
+        TextView titleAction = popupView.findViewById(R.id.onTitleAction);
+        if (this.titleAction != null) {
+            titleAction.setVisibility(View.VISIBLE);
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.VISIBLE);
-            popupView.findViewById(R.id.onTitleAction).setOnClickListener(new OnClickListener() {
+            titleAction.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -266,8 +267,9 @@ public abstract class DragingPopup {
 
                 }
             });
+            TxtUtils.underlineTextView(titleAction);
         } else {
-            popupView.findViewById(R.id.onTitleAction).setVisibility(View.GONE);
+            titleAction.setVisibility(View.GONE);
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.GONE);
         }
 
@@ -294,7 +296,9 @@ public abstract class DragingPopup {
 
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();
+
         TxtUtils.updateAllLinks(popupView);
+
         anchor.addView(popupView);
         final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
         draggbleTouchListener.setOnMoveFinish(new Runnable() {

@@ -102,8 +102,13 @@ public class TTSControlsView extends FrameLayout {
         ttsDialog.setVisibility(View.GONE);
         trackName.setVisibility(View.GONE);
 
-        colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
-        int alpha = 220;
+        //colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
+        if (AppState.get().isUiTextColor) {
+            colorTint = AppState.get().uiTextColor;
+        }else{
+            colorTint = AppState.get().tintColor;
+        }
+        int alpha = 240;
         TintUtil.setTintImageWithAlpha(ttsStop, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsPlayPause, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsNext, colorTint, alpha);
@@ -112,6 +117,8 @@ public class TTSControlsView extends FrameLayout {
         TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint, alpha);
         TintUtil.setTintText(trackName, colorTint);
+
+       // TxtUtils.updateAllLinks(view);
 
         ttsNext.setOnClickListener(new OnClickListener() {
 

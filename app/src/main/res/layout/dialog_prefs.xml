@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,7 +98,7 @@
                 android:contentDescription="@string/recent"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_422_book_library"
-                android:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -110,7 +111,7 @@
                 android:contentDescription="@string/recent"
                 android:padding="9dip"
                 android:src="@drawable/glyphicons_175_play"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/bookCut"
@@ -123,7 +124,7 @@
                 android:contentDescription="@string/preferences"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_588_book_open_text"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -136,7 +137,7 @@
                 android:contentDescription="@string/recent"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_86_reload"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -148,7 +149,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_232_sun"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -160,7 +161,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_94_crop"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -172,7 +173,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_216_fullscreen"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/onTTS"
@@ -183,7 +184,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_186_volume_up"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -195,7 +196,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_415_push_pin"
-                android:tint="@color/tint_gray"
+                  app:tint="@color/tint_gray"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -216,7 +217,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_522_monitors"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -293,7 +294,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_106_text_height"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -331,7 +332,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_101_text"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <TextView
                 android:id="@+id/fontNamePreview"
@@ -362,7 +363,7 @@
                 android:padding="8dip"
                 android:contentDescription="@string/cd_download_more_fonts"
                 android:src="@drawable/glyphicons_399_import"
-                android:tint="@color/tint_red" />
+                  app:tint="@color/tint_red" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"
@@ -375,7 +376,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_140_adjust"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
         </LinearLayout>
 
         <View
@@ -397,7 +398,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_232_sun"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -451,7 +452,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_94_crop"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -480,7 +481,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_77_headphones"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -516,7 +517,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_580_translate"
-                android:tint="@color/tint_gray" />
+                  app:tint="@color/tint_gray" />
 
             <CheckBox
                 android:id="@+id/isRememberDictionary"
@@ -607,11 +608,12 @@
 
                     <ImageView
                         android:id="@+id/onDayColorImage"
+                        android:tag="@string/no_tint"
                         android:layout_width="@dimen/wh_button"
                         android:layout_height="@dimen/wh_button"
                         android:padding="6dip"
                         android:src="@drawable/glyphicons_232_sun"
-                        android:tint="#000000" />
+                          app:tint="#000000" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -632,12 +634,13 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:tag="@string/no_tint"
                         android:id="@+id/onNigthColorImage"
                         android:layout_width="@dimen/wh_button"
                         android:layout_height="@dimen/wh_button"
                         android:padding="6dip"
                         android:src="@drawable/glyphicons_231_moon"
-                        android:tint="#ffffff" />
+                          app:tint="#ffffff" />
                 </RelativeLayout>
 
                 <ImageView
@@ -650,7 +653,7 @@
                     android:background="@drawable/bg_border_ltgray"
                     android:padding="8dip"
                     android:src="@drawable/glyphicons_140_adjust"
-                    android:tint="@color/tint_gray" />
+                      app:tint="@color/tint_gray" />
 
                 <TextView
                     android:id="@+id/onDefaultColor"

@@ -21,7 +21,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.core.util.Pair;
-import androidx.core.widget.TintableCompoundButton;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
@@ -1021,6 +1020,9 @@ public class TxtUtils {
     }
 
     public static TextView underlineTextView(View view) {
+        if (view == null) {
+            return null;
+        }
         TextView textView = (TextView) view;
         String text = textView.getText().toString();
         textView.setText(underline(text));
@@ -1370,7 +1372,7 @@ public class TxtUtils {
                     R.id.modeName,
                     R.id.nextTypeBootom
             );
-            if(AppState.get().isUiTextColor) {
+            if (AppState.get().isUiTextColor) {
                 for (int id : ids) {
                     TextView view = parent.findViewById(id);
                     if (view != null) view.setTextColor(color);
@@ -1396,6 +1398,11 @@ public class TxtUtils {
             ColorStateList tint = ColorStateList.valueOf(color);
             for (int i = 0; i < childCount; i++) {
                 View child = parent.getChildAt(i);
+
+                if ("no_tint".equals(child.getTag())) {
+                    continue;
+                }
+
                 if (child instanceof ViewGroup) {
                     updateAllLinks((ViewGroup) child, color);
                 }
@@ -1411,6 +1418,7 @@ public class TxtUtils {
                     if (child instanceof ImageView && AppState.get().isUiTextColor) {
                         ImageView imageView = (ImageView) child;
                         imageView.setImageTintList(tint);
+
                         //imageView.setAlpha(1f);
                     }
 

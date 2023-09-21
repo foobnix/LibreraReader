@@ -222,7 +222,7 @@ public class TintUtil {
     public static ImageView setTintImageWithAlpha(ImageView img, int color, int alpha) {
         img.setColorFilter(color, Mode.SRC_ATOP);
         if (alpha > 0) {
-            img.setAlpha(alpha);
+            img.setImageAlpha(alpha);
         }
         return img;
     }

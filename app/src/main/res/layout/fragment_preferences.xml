@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
 
     android:layout_width="match_parent"
@@ -118,7 +119,7 @@
                 android:contentDescription="@string/settings"
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
 
         </LinearLayout>
@@ -341,7 +342,7 @@
                     android:layout_weight="0"
                     android:padding="4dip"
                     android:src="@drawable/glyphicons_140_adjust"
-                    android:tint="@color/tint_gray"
+                     app:tint="@color/tint_gray"
                     android:visibility="visible" />
 
                 <TextView
@@ -551,6 +552,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_marginTop="4dip"
             android:layout_marginBottom="4dip"
             android:layout_width="wrap_content"
@@ -671,7 +673,7 @@
             android:id="@+id/customBrightness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></com.foobnix.pdf.info.view.CustomSeek>
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -711,7 +713,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_5_settings"
-                android:tint="@color/tint_gray" />
+                 app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -804,7 +806,7 @@
                 android:layout_weight="0"
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
+                 app:tint="@color/tint_gray" />
 
 
         </LinearLayout>
@@ -988,7 +990,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_144_database_search"
-                android:tint="@color/tint_gray" />
+                 app:tint="@color/tint_gray" />
 
             <TextView
                 android:id="@+id/docSearch"
@@ -1008,7 +1010,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_filetypes_1_file_text"
-                android:tint="@color/tint_gray" />
+                 app:tint="@color/tint_gray" />
 
             <TextView
                 android:id="@+id/docConverter"
@@ -1028,7 +1030,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_371_plus"
-                android:tint="@color/tint_gray" />
+                 app:tint="@color/tint_gray" />
 
             <TextView
                 android:id="@+id/newFile"
@@ -1099,7 +1101,7 @@
             android:id="@+id/coverSmallSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            myseek:text="@string/list"></com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/list"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1579,7 +1581,7 @@
                     android:layout_weight="0"
                     android:padding="4dip"
                     android:src="@drawable/glyphicons_137_cogwheel"
-                    android:tint="@color/tint_gray" />
+                     app:tint="@color/tint_gray" />
             </LinearLayout>
 
         </LinearLayout>
@@ -1603,6 +1605,7 @@
             android:visibility="visible">
 
             <ImageView
+                android:tag="@string/no_tint"
                 android:id="@+id/imageView1"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"

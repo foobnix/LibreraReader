@@ -6,6 +6,7 @@
     android:padding="4dip">
 
     <ImageView
+        android:tag="@string/no_tint"
         android:id="@+id/ttsIcon"
         android:layout_width="60dip"
         android:layout_height="match_parent"
@@ -28,8 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
+            android:minLines="2"
             android:maxLines="3"
-            android:text="Book Title long long long long long long long long long long long long long long long long  long long long long long long long long long long long long "
+            android:gravity="center_vertical"
+            android:text="Book Title"
             android:textStyle="normal" />
 
         <include layout="@layout/tts_line" />

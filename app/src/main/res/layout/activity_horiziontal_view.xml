@@ -344,7 +344,7 @@
         android:layout_above="@+id/bottomBar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dip" />
+        android:layout_marginBottom="15dip" />
 
     <FrameLayout
         android:id="@+id/bottomBar"
