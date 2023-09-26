@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">प्रारंभिक अक्षरों को हाइलाइट करना</string>
    <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
+   <string name="accent">लहज़ा</string>
 </resources>

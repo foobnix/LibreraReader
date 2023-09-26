@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Quatenus initialis litterae</string>
    <string name="anti_aliasing_level">Anti-aliasing gradu</string>
    <string name="folder_preview">Folder preview</string>
+   <string name="accent">Accentu</string>
 </resources>

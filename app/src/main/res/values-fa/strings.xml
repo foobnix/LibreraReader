@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">برجسته کردن حروف اولیه</string>
    <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
    <string name="folder_preview">پیش نمایش پوشه</string>
+   <string name="accent">لهجه</string>
 </resources>

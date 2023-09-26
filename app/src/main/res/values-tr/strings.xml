@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Ilk harfleri vurgulama</string>
    <string name="anti_aliasing_level">Kenar yumuşatma seviyesi</string>
    <string name="folder_preview">Klasör önizlemesi</string>
+   <string name="accent">Aksan</string>
 </resources>

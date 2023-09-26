@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Evidenziando le lettere iniziali</string>
    <string name="anti_aliasing_level">Livello di anti-aliasing</string>
    <string name="folder_preview">Anteprima della cartella</string>
+   <string name="accent">Accento</string>
 </resources>

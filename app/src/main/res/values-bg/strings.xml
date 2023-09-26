@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
+   <string name="accent">Акцент</string>
 </resources>

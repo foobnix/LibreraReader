@@ -82,6 +82,7 @@ public class TTSNotification {
         NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_LOW);
         //channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
         //channel.setShowBadge(false);
         //channel.setSound(null,null);
 
@@ -190,7 +191,12 @@ public class TTSNotification {
 
             String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
 
-            Bitmap submit = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+            Bitmap bitmap = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+
+            if (bitmap != null) {
+                remoteViews.setImageViewBitmap(R.id.ttsIcon, bitmap);
+                remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bitmap);
+            }
 
 
             builder.setContentIntent(contentIntent) //
@@ -231,10 +237,10 @@ public class TTSNotification {
 
 
             nm.notify(NOT_ID, n);
-
-
-            Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
-            Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
+            if (bitmap == null) {
+                Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
+                Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
+            }
 
             return n;
         } catch (Exception e) {

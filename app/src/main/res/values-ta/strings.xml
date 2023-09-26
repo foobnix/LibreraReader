@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">ஆரம்ப எழுத்துக்களை முன்னிலைப்படுத்துகிறது</string>
    <string name="anti_aliasing_level">மாற்று மாற்று நிலை</string>
    <string name="folder_preview">கோப்புறை முன்னோட்டம்</string>
+   <string name="accent">உச்சரிப்பு</string>
 </resources>

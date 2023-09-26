@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Zvýraznenie začiatočných písmen</string>
    <string name="anti_aliasing_level">Úroveň anti-aliasingu</string>
    <string name="folder_preview">Náhľad priečinka</string>
+   <string name="accent">Prízvuk</string>
 </resources>

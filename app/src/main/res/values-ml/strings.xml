@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">പ്രാരംഭ അക്ഷരങ്ങൾ ഹൈലൈറ്റ് ചെയ്യുന്നു</string>
    <string name="anti_aliasing_level">ആന്റി-അലിയാസിംഗ് ലെവൽ</string>
    <string name="folder_preview">ഫോൾഡർ പ്രിവ്യൂ</string>
+   <string name="accent">ഉച്ചാരണം</string>
 </resources>

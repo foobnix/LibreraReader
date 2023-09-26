@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Làm nổi bật các chữ cái đầu tiên</string>
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
+   <string name="accent">Giọng</string>
 </resources>

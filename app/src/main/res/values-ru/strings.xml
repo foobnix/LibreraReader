@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Выделение начальных букв</string>
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предварительный просмотр папки</string>
+   <string name="accent">Акцент</string>
 </resources>

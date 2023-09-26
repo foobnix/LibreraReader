@@ -31,7 +31,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center_vertical"
-            android:padding="4dip"
+            android:padding="2dip"
             android:text="Book Title"
             android:visibility="visible" />
 

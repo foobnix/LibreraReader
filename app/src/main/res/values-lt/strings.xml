@@ -654,4 +654,5 @@
    <string name="highlighting_initial_letters">Paryškinant pradines raides</string>
    <string name="anti_aliasing_level">Anti-aliasing lygis</string>
    <string name="folder_preview">Aplanko peržiūra</string>
+   <string name="accent">Akcentas</string>
 </resources>
