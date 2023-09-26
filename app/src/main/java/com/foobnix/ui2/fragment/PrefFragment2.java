@@ -2694,6 +2694,8 @@ public class PrefFragment2 extends UIFragment {
         AppState.get().appTheme = AppState.THEME_INK;
         AppState.get().blueLightAlpha = 0;
         AppState.get().tintColor = Color.BLACK;
+        AppState.get().uiTextColor = Color.BLACK;
+        AppState.get().isUiTextColor = true;
         TintUtil.color = Color.BLACK;
 
         onTintChanged();

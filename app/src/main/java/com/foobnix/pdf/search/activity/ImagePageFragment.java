@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -77,7 +78,8 @@ public class ImagePageFragment extends Fragment {
         image.setPageNumber(page);
         text.setText(getString(R.string.page) + " " + (page + 1));
 
-        text.setTextColor(MagicHelper.getTextColor());
+        //text.setTextColor(MagicHelper.getTextColor());
+        TxtUtils.setLinkTextColor(text);
 
         handler = new Handler();
         handler.postDelayed(new Runnable() {

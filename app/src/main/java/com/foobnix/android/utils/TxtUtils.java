@@ -1347,17 +1347,18 @@ public class TxtUtils {
 
     }
 
+
     public static void updateAllLinks(View parent) {
         try {
             int color = AppState.get().uiTextColor;
             if (parent instanceof ViewGroup) {
                 if (AppState.get().isUiTextColor) {
-                    TxtUtils.updateAllLinks((ViewGroup) parent, color);
+                    color = AppState.get().uiTextColor;
                 } else {
                     TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     color = out.getColor(0, Color.WHITE);
-                    TxtUtils.updateAllLinks((ViewGroup) parent, color);
                 }
+                TxtUtils.updateAllLinks((ViewGroup) parent, color);
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
@@ -1386,11 +1387,17 @@ public class TxtUtils {
     }
 
     public static void setLinkTextColor(TextView txt) {
-        if (AppState.get().isUiTextColor) {
-            txt.setTextColor(AppState.get().uiTextColor);
-        }
 
+        int color = AppState.get().uiTextColor;
+        if (AppState.get().isUiTextColor) {
+            color = AppState.get().uiTextColor;
+        } else {
+            TypedArray out = txt.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+            color = out.getColor(0, Color.WHITE);
+        }
+        txt.setTextColor(color);
     }
+
 
     public static void updateAllLinks(ViewGroup parent, int color) {
         try {
@@ -1422,7 +1429,7 @@ public class TxtUtils {
                         //imageView.setAlpha(1f);
                     }
 
-                    if (child instanceof SeekBar) {
+                    if (child instanceof SeekBar && AppState.get().isUiTextColor) {
                         ((SeekBar) child).setProgressTintList(tint);
                         ((SeekBar) child).setThumbTintList(tint);
 
