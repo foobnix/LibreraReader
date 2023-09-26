@@ -95,7 +95,7 @@ public class FileMetaCore {
                 }
 
                 AppDB.get().update(fileMeta);
-                LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
+                LOG.d("BooksService", isSearhcBook,"UPDATE", path);
             }
         } catch (Exception e) {
             LOG.e(e);

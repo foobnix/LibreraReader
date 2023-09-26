@@ -226,7 +226,7 @@ public class BooksService extends IntentService {
                     if (ExtUtils.isMounted(bookFile)) {
                         if (!bookFile.exists()) {
                             AppDB.get().delete(meta);
-                            LOG.d("BooksService Delete-setIsSearchBook", meta.getPath());
+                            LOG.d("BooksService", "Delete-setIsSearchBook", meta.getPath());
                         }
                     }
 
@@ -252,14 +252,14 @@ public class BooksService extends IntentService {
                 for (FileMeta meta : localMeta) {
                     if (!all.contains(meta)) {
                         FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
-                        LOG.d("BooksService add book", meta.getPath());
+                        LOG.d("BooksService", "Add book", meta.getPath());
                     }
                 }
 
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
+                    LOG.d("BooksService","STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 

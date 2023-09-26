@@ -301,7 +301,7 @@ public class AppDB {
     }
 
     public void update(FileMeta load) {
-        if (fileMetaDao == null) {
+        if (fileMetaDao != null) {
             fileMetaDao.save(load);
         }
 
