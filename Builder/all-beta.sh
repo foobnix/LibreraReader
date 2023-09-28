@@ -4,7 +4,10 @@
 #Builder folder
 ./link_to_mupdf_1.23.3.sh
 
+export JAVA_HOME=`/usr/libexec/java_home -v 17`
+echo "================== "
 java -version
+echo "================== "
 
 cd ../
 
