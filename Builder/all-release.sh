@@ -31,6 +31,9 @@ cd ../
 rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.*
 
+rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
+rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.*
+
 cd Builder
 ./remove_all.sh
 ./install_all.sh
