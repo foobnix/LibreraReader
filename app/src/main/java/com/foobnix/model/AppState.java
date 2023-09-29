@@ -206,6 +206,7 @@ public class AppState {
             , "cs"
             , "de"
             , "el"
+            , "en"
             , "es"
             , "fa"
             , "fi"
