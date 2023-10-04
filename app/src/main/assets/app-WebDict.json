@@ -19,5 +19,6 @@
   {"name": "Ukrlit.org", "path": "http://ukrlit.org/slovnyk/%s"},
   {"name": "Slovnyk.ua", "path": "https://slovnyk.ua/index.php?swrd=%s"},
   {"name": "Lingvo.ru", "path": "http://www.lingvo-online.ru/en/Translate/%s-%s/%s"},
-  {"name": "Wiktionary.org", "path": "https://%s.wiktionary.org/wiki/%s"}
+  {"name": "Wiktionary.org", "path": "https://%s.wiktionary.org/wiki/%s"},
+  {"name": "Perseus Greek", "path": "http://www.perseus.tufts.edu/hopper/morph?l=%s&la=greek"}
 ]
