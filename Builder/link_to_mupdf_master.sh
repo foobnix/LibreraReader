@@ -6,8 +6,8 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.23.3"
-git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
+VERSION_TAG="master"
+git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-$VERSION_TAG
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
 
@@ -90,7 +90,6 @@ cp -rpv $SRC/image.c             $DEST/fitz/image.c
 cp -rpv $SRC/unzip.c             $DEST/fitz/unzip.c
 cp -rpv $SRC/directory.c         $DEST/fitz/directory.c
 cp -rpv $SRC/xml.c               $DEST/fitz/xml.c
-cp -rpv $SRC/list-device.c       $DEST/fitz/list-device.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
