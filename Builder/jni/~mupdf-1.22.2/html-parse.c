@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
-// CA 94129, USA, for further information.
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
 
 #include "mupdf/fitz.h"
 #include "mupdf/ucdn.h"
@@ -517,8 +517,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		//const char *alt = "[image]";
-		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		const char *alt = "[image]";
+		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
@@ -1788,13 +1788,7 @@ fz_parse_html_imp(fz_context *ctx,
 	html->layout_h = 0;
 	html->layout_em = 0;
 
-	fz_try(ctx)
-		fz_parse_html_tree(ctx, set, zip, base_uri, buf, user_css, try_xml, try_html5, &html->tree, &html->title, 1, patch_mobi);
-	fz_catch(ctx)
-	{
-		fz_drop_html(ctx, html);
-		fz_rethrow(ctx);
-	}
+	fz_parse_html_tree(ctx, set, zip, base_uri, buf, user_css, try_xml, try_html5, &html->tree, &html->title, 1, patch_mobi);
 
 	return html;
 }

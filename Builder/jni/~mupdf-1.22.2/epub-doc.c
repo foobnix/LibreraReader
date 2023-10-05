@@ -404,9 +404,9 @@ epub_parse_chapter(fz_context *ctx, epub_document *doc, epub_chapter *ch)
 
 	buf = fz_read_archive_entry(ctx, zip, ch->path);
 	fz_try(ctx)
-	html = fz_parse_xhtml(ctx, doc->set, zip, base_uri, buf, fz_user_css(ctx));
+		html = fz_parse_xhtml(ctx, doc->set, zip, base_uri, buf, fz_user_css(ctx));
 	fz_always(ctx)
-	fz_drop_buffer(ctx, buf);
+		fz_drop_buffer(ctx, buf);
 	fz_catch(ctx)
 	{
 		fz_rethrow(ctx);
@@ -587,8 +587,8 @@ rel_path_from_idref(fz_xml *manifest, const char *idref)
 			return fz_xml_att(item, "href");
 
 		const char *id2 = fz_xml_att(item, "properties");
-		if (id2 && !strcmp(id2, idref))
-			return fz_xml_att(item, "href");
+				if (id2 && !strcmp(id2, idref))
+					return fz_xml_att(item, "href");
 
 
 		item = fz_xml_find_next(item, "item");
@@ -684,22 +684,22 @@ epub_parse_nav_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base
 			fz_urldecode(path);
 			fz_cleanname(path);
 
-			fz_try(ctx)
-			{
+            fz_try(ctx)
+                        {
 
 
-				*tailp = outline = fz_new_outline(ctx);
-				tailp = &(*tailp)->next;
-				outline->title = fz_strdup(ctx, text);
-				outline->uri = fz_strdup(ctx, path);
-				outline->page = fz_make_location(-1, -1);
-				outline->down = epub_parse_nav_imp(ctx, doc, node, base_uri);
+			*tailp = outline = fz_new_outline(ctx);
+			tailp = &(*tailp)->next;
+			outline->title = fz_strdup(ctx, text);
+			outline->uri = fz_strdup(ctx, path);
+			outline->page = fz_make_location(-1, -1);
+			outline->down = epub_parse_nav_imp(ctx, doc, node, base_uri);
 			}
-			fz_catch(ctx)
-			{
-				fz_drop_outline(ctx, head);
-				fz_rethrow(ctx);
-			}
+            fz_catch(ctx)
+            {
+                fz_drop_outline(ctx, head);
+                fz_rethrow(ctx);
+            }
 		}
 		node = fz_xml_find_next(node, "li");
 	}
@@ -715,40 +715,40 @@ epub_parse_nav(fz_context *ctx, epub_document *doc, const char *path)
 	fz_xml_doc *ncx = NULL;
 	char base_uri[2048];
 
-	fz_var(buf);
+    fz_var(buf);
 	fz_var(ncx);
 
-	fz_try(ctx)
+    fz_try(ctx)
 	{
 
-		fz_dirname(base_uri, path, sizeof base_uri);
+        fz_dirname(base_uri, path, sizeof base_uri);
 
-		buf = fz_read_archive_entry(ctx, zip, path);
-		ncx = fz_parse_xml(ctx, buf, 0);
+        buf = fz_read_archive_entry(ctx, zip, path);
+        ncx = fz_parse_xml(ctx, buf, 0);
 
-		fz_xml *body = fz_xml_find_down(fz_xml_root(ncx), "body");
-		fz_xml *section = fz_xml_find_down(body, "section");
-		if(section){
-			body = section;
-		}
-		fz_xml *nav = fz_xml_find_down(body, "nav");
+        fz_xml *body = fz_xml_find_down(fz_xml_root(ncx), "body");
+        fz_xml *section = fz_xml_find_down(body, "section");
+        if(section){
+            body = section;
+        }
+        fz_xml *nav = fz_xml_find_down(body, "nav");
 
-		while (nav){
-			char *id = fz_xml_att(nav, "epub:type");
-			if(!strcmp(id, "toc")){
-				doc->outline = epub_parse_nav_imp(ctx, doc, nav, base_uri);
-				break;
-			}
-			nav = fz_xml_find_next(body,"nav");
-		}
+        while (nav){
+            char *id = fz_xml_att(nav, "epub:type");
+            if(!strcmp(id, "toc")){
+                doc->outline = epub_parse_nav_imp(ctx, doc, nav, base_uri);
+                break;
+            }
+            nav = fz_xml_find_next(body,"nav");
+        }
 	}
 	fz_always(ctx)
-	{
-		fz_drop_buffer(ctx, buf);
-		fz_drop_xml(ctx, ncx);
-	}
-	fz_catch(ctx)
-	fz_rethrow(ctx);
+    {
+        fz_drop_buffer(ctx, buf);
+        fz_drop_xml(ctx, ncx);
+    }
+    fz_catch(ctx)
+        fz_rethrow(ctx);
 }
 
 
@@ -776,7 +776,7 @@ epub_parse_ncx(fz_context *ctx, epub_document *doc, const char *path)
 		fz_drop_xml(ctx, ncx);
 	}
 	fz_catch(ctx){
-		//no crash if nav not valid
+	    //no crash if nav not valid
 		//fz_rethrow(ctx);
 	}
 
@@ -860,9 +860,9 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 		{
 			epub_parse_ncx(ctx, doc, ncx);
 		}else if (path_from_idref(ncx, manifest, base_uri, "nav", sizeof ncx))
-		{
-			epub_parse_nav(ctx, doc, ncx);
-		}
+        {
+            epub_parse_nav(ctx, doc, ncx);
+        }
 
 		doc->spine = NULL;
 		tailp = &doc->spine;
@@ -894,7 +894,7 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 		fz_drop_buffer(ctx, buf);
 	}
 	fz_catch(ctx)
-	fz_rethrow(ctx);
+		fz_rethrow(ctx);
 }
 
 static fz_outline *
@@ -943,9 +943,9 @@ epub_output_accelerator(fz_context *ctx, fz_document *doc_, fz_output *out)
 		fz_close_output(ctx, out);
 	}
 	fz_always(ctx)
-	fz_drop_output(ctx, out);
+		fz_drop_output(ctx, out);
 	fz_catch(ctx)
-	fz_rethrow(ctx);
+		fz_rethrow(ctx);
 }
 
 static fz_document *
@@ -1022,9 +1022,9 @@ epub_open_accel_document(fz_context *ctx, const char *filename, const char *acce
 			doc = epub_init(ctx, fz_open_zip_archive(ctx, filename), afile);
 	}
 	fz_always(ctx)
-	fz_drop_stream(ctx, afile);
+		fz_drop_stream(ctx, afile);
 	fz_catch(ctx)
-	fz_rethrow(ctx);
+		fz_rethrow(ctx);
 
 	return doc;
 }
@@ -1050,24 +1050,24 @@ epub_recognize(fz_context *doc, const char *magic)
 }
 
 static const char *epub_extensions[] =
-		{
-				"epub",
-				NULL
-		};
+{
+	"epub",
+	NULL
+};
 
 static const char *epub_mimetypes[] =
-		{
-				"application/epub+zip",
-				NULL
-		};
+{
+	"application/epub+zip",
+	NULL
+};
 
 fz_document_handler epub_document_handler =
-		{
-				epub_recognize,
-				epub_open_document,
-				epub_open_document_with_stream,
-				epub_extensions,
-				epub_mimetypes,
-				epub_open_accel_document,
-				epub_open_accel_document_with_stream
-		};
+{
+	epub_recognize,
+	epub_open_document,
+	epub_open_document_with_stream,
+	epub_extensions,
+	epub_mimetypes,
+	epub_open_accel_document,
+	epub_open_accel_document_with_stream
+};

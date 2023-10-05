@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
-// CA 94129, USA, for further information.
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
 
 #ifndef MUPDF_FITZ_COMPRESSED_BUFFER_H
 #define MUPDF_FITZ_COMPRESSED_BUFFER_H
@@ -33,53 +33,57 @@
 	Compression parameters used for buffers of compressed data;
 	typically for the source data for images.
 */
-typedef struct {
-    int type;
-    union {
-        struct {
-            int color_transform; /* Use -1 for unset */
-        } jpeg;
-        struct {
-            int smask_in_data;
-        } jpx;
-        struct {
-            fz_jbig2_globals *globals;
-            int embedded;
-        } jbig2;
-        struct {
-            int columns;
-            int rows;
-            int k;
-            int end_of_line;
-            int encoded_byte_align;
-            int end_of_block;
-            int black_is_1;
-            int damaged_rows_before_error;
-        } fax;
-        struct {
-            int columns;
-            int colors;
-            int predictor;
-            int bpc;
-        }
-                flate;
-        struct {
-            int columns;
-            int colors;
-            int predictor;
-            int bpc;
-            int early_change;
-        } lzw;
-    } u;
+typedef struct
+{
+	int type;
+	union {
+		struct {
+			int color_transform; /* Use -1 for unset */
+		} jpeg;
+		struct {
+			int smask_in_data;
+		} jpx;
+		struct {
+			fz_jbig2_globals *globals;
+			int embedded;
+		} jbig2;
+		struct {
+			int columns;
+			int rows;
+			int k;
+			int end_of_line;
+			int encoded_byte_align;
+			int end_of_block;
+			int black_is_1;
+			int damaged_rows_before_error;
+		} fax;
+		struct
+		{
+			int columns;
+			int colors;
+			int predictor;
+			int bpc;
+		}
+		flate;
+		struct
+		{
+			int columns;
+			int colors;
+			int predictor;
+			int bpc;
+			int early_change;
+		} lzw;
+	} u;
 } fz_compression_params;
 
 /**
 	Buffers of compressed data; typically for the source data
 	for images.
 */
-typedef struct {
-    fz_compression_params params;
-    fz_buffer *buffer;
+typedef struct
+{
+	fz_compression_params params;
+	fz_buffer *buffer;
 } fz_compressed_buffer;
 
 /**
@@ -132,30 +136,30 @@ const char *fz_image_type_name(int type);
 */
 int fz_lookup_image_type(const char *type);
 
-enum {
-    FZ_IMAGE_UNKNOWN = 0,
+enum
+{
+	FZ_IMAGE_UNKNOWN = 0,
 
-    /* Uncompressed samples */
-    FZ_IMAGE_RAW,
+	/* Uncompressed samples */
+	FZ_IMAGE_RAW,
 
-    /* Compressed samples */
-    FZ_IMAGE_FAX,
-    FZ_IMAGE_FLATE,
-    FZ_IMAGE_LZW,
-    FZ_IMAGE_RLD,
+	/* Compressed samples */
+	FZ_IMAGE_FAX,
+	FZ_IMAGE_FLATE,
+	FZ_IMAGE_LZW,
+	FZ_IMAGE_RLD,
 
-    /* Full image formats */
-    FZ_IMAGE_BMP,
-    FZ_IMAGE_GIF,
-    FZ_IMAGE_JBIG2,
-    FZ_IMAGE_JPEG,
-    FZ_IMAGE_JPX,
-    FZ_IMAGE_JXR,
-    FZ_IMAGE_PNG,
-    FZ_IMAGE_PNM,
-    FZ_IMAGE_TIFF,
-    FZ_IMAGE_PSD,
-    FZ_IMAGE_WEBP,
+	/* Full image formats */
+	FZ_IMAGE_BMP,
+	FZ_IMAGE_GIF,
+	FZ_IMAGE_JBIG2,
+	FZ_IMAGE_JPEG,
+	FZ_IMAGE_JPX,
+	FZ_IMAGE_JXR,
+	FZ_IMAGE_PNG,
+	FZ_IMAGE_PNM,
+	FZ_IMAGE_TIFF,
+	FZ_IMAGE_WEBP,
 };
 
 /**
