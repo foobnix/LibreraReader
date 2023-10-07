@@ -621,14 +621,14 @@ public class BookCSS {
 
 
             if (!AppState.get().isDayNotInvert) {
-                builder.append("h1, h2, h3, h4, h5, h6{");
+                builder.append("h1, h2, h3, h4, h5, h6, hr{");
                 builder.append(String.format("background-color:%s !important;", backgroundColor));
                 builder.append(String.format("color:%s !important;", textColor));
                 builder.append("}");
             }
 
             // <P> begin
-            builder.append("body, div, p, span, hr{");
+            builder.append("body, div, p, span{");
             builder.append(String.format("font-size:medium !important;"));
 
             if (AppState.get().isDayNotInvert) {
