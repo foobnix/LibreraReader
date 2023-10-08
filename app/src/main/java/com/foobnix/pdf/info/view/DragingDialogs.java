@@ -5504,14 +5504,14 @@ public class DragingDialogs {
                                 AppState.get().colorDayText = AppState.COLOR_BLACK;
                                 AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                textDayColor.setTextColor(AppState.COLOR_BLACK);
-                                textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
+                                textDayColor.setTextColor(AppState.get().colorDayText);
+                                textDayColor.setBackgroundColor(AppState.get().colorDayBg);
 
-                                AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                                AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                AppState.get().colorNigthText = AppState.COLOR_WHITE_2;
+                                AppState.get().colorNigthBg = AppState.COLOR_BLACK_2;
 
-                                textNigthColor.setTextColor(AppState.COLOR_WHITE);
-                                textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
+                                textNigthColor.setTextColor(AppState.get().colorNigthText);
+                                textNigthColor.setBackgroundColor( AppState.get().colorNigthBg);
 
                                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                                 TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);

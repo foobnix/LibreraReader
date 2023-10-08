@@ -118,9 +118,9 @@ public class AppState {
                     "2,#f2f0e9,#383226,0;" + //
                     "3,#f9f5e8,#333333,0;" + //
                     //
-                    "A,#000000,#ffffff,1;" + //
+                    "A,#3a3a3a,#c8c8c8,1;" + //
                     "B,#000000,#8cffb5,1;" + //
-                    "C,#3a3a3a,#c8c8c8,1;"; //
+                    "C,#000000,#ffffff,1;"; //
     public static final String TTS_REPLACEMENTS =
 
             "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
@@ -245,8 +245,11 @@ public class AppState {
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
+    public static int COLOR_WHITE_2 = Color.parseColor("#c8c8c8");
     // public static int COLOR_BLACK = Color.parseColor("#030303");
     public static int COLOR_BLACK = Color.BLACK;
+    public static int COLOR_BLACK_2 = Color.parseColor("#3a3a3a");
+
     public static int WIDGET_LIST = 1;
     public static int WIDGET_GRID = 2;
     public static int EDIT_NONE = 0;
@@ -510,8 +513,8 @@ public class AppState {
     public int mp3seek = 0;
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
-    public int colorNigthText = COLOR_WHITE;
-    public int colorNigthBg = COLOR_BLACK;
+    public int colorNigthText = COLOR_WHITE_2;
+    public int colorNigthBg = COLOR_BLACK_2;
     public boolean supportPDF = true;
     public boolean supportXPS = false;
     public boolean supportDJVU = true;
