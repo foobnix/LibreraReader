@@ -297,7 +297,7 @@ public abstract class DragingPopup {
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();
 
-        TxtUtils.updateAllLinks(popupView);
+        TxtUtils.updateAllLinks(popupView,true);
 
         anchor.addView(popupView);
         final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);

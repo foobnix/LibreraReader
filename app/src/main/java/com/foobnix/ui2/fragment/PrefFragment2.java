@@ -2199,7 +2199,7 @@ public class PrefFragment2 extends UIFragment {
                     sendNotifyTintChanged();
                     ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                    TxtUtils.updateAllLinks(inflate);
+                    TxtUtils.updateAllLinks(inflate, true);
                 }
             };
 
@@ -2294,7 +2294,7 @@ public class PrefFragment2 extends UIFragment {
                                 sendNotifyTintChanged();
                                 ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                                TxtUtils.updateAllLinks(inflate);
+                                TxtUtils.updateAllLinks(inflate,true);
 
                             }
                         });
@@ -2685,7 +2685,7 @@ public class PrefFragment2 extends UIFragment {
                 );
 
 
-        TxtUtils.updateAllLinks(inflate);
+        TxtUtils.updateAllLinks(inflate,true);
         return inflate;
 
     }

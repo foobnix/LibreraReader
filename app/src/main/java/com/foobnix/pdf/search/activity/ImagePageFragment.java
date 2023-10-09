@@ -78,8 +78,8 @@ public class ImagePageFragment extends Fragment {
         image.setPageNumber(page);
         text.setText(getString(R.string.page) + " " + (page + 1));
 
-        //text.setTextColor(MagicHelper.getTextColor());
-        TxtUtils.setLinkTextColor(text);
+        text.setTextColor(MagicHelper.getTextColor());
+        //TxtUtils.setLinkTextColor(text);
 
         handler = new Handler();
         handler.postDelayed(new Runnable() {

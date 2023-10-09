@@ -588,7 +588,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
         linkHistory.setVisibility(View.GONE);
 
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar = (SeekBar) findViewById(R.id.seekBar1);
 
         if (AppState.get().isRTL) {
             seekBar.setRotation(180);
@@ -1066,6 +1066,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 try {
                     LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
                     try {
+                        //Thread.sleep(5250);
+
                         while (viewPager.getHeight() == 0) {
                             Thread.sleep(250);
                         }
@@ -1315,9 +1317,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
             }
 
+
+
         });
 
-        TxtUtils.updateAllLinks(parentParent);
+
 
     }
 
@@ -1488,6 +1492,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1962,7 +1967,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         updateLockMode();
 
-        tinUI();
+
 
         onViewPagerChangeListener.onPageSelected(dc.getCurentPage());
 
@@ -1984,6 +1989,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }, false);
 
         showHelp();
+        tinUI();
 
     }
 
@@ -2005,11 +2011,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private void tinUI() {
+        TxtUtils.updateAllLinks(parentParent);
         TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
         TintUtil.setStatusBarColor(this);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
+
+
     }
 
     // @Override

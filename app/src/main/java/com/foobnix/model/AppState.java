@@ -334,7 +334,7 @@ public class AppState {
     public int flippingInterval = 10;
     public int ttsTimer = 240;
     public int ttsPauseDuration = 50;
-    public int transparencyUI = 245;
+    public int transparencyUI = 250;
     @IgnoreHashCode
     public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
     @IgnoreHashCode

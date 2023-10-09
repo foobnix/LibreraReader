@@ -1349,6 +1349,10 @@ public class TxtUtils {
 
 
     public static void updateAllLinks(View parent) {
+        updateAllLinks(parent, false);
+    }
+
+    public static void updateAllLinks(View parent, boolean accentImage) {
         try {
             int color = AppState.get().uiTextColor;
             if (parent instanceof ViewGroup) {
@@ -1358,7 +1362,7 @@ public class TxtUtils {
                     TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     color = out.getColor(0, Color.WHITE);
                 }
-                TxtUtils.updateAllLinks((ViewGroup) parent, color);
+                TxtUtils.updateAllLinks((ViewGroup) parent, color, accentImage);
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
@@ -1399,7 +1403,8 @@ public class TxtUtils {
     }
 
 
-    public static void updateAllLinks(ViewGroup parent, int color) {
+    public static void updateAllLinks(ViewGroup parent, int color, boolean accentImages) {
+
         try {
             int childCount = parent.getChildCount();
             ColorStateList tint = ColorStateList.valueOf(color);
@@ -1411,7 +1416,7 @@ public class TxtUtils {
                 }
 
                 if (child instanceof ViewGroup) {
-                    updateAllLinks((ViewGroup) child, color);
+                   updateAllLinks((ViewGroup) child, color, accentImages);
                 }
                 if (child instanceof TextView) {
                     if ("textLink".equals(child.getTag())) {
@@ -1420,18 +1425,32 @@ public class TxtUtils {
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
                     if (child instanceof CheckBox) {
-                        ((CheckBox) child).setButtonTintList(tint);
-                    }
-                    if (child instanceof ImageView && AppState.get().isUiTextColor) {
+                       ((CheckBox) child).setButtonTintList(tint);
+                    } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
-                        imageView.setImageTintList(tint);
 
-                        //imageView.setAlpha(1f);
-                    }
+                        if (imageView.getId() == R.id.closePopup) {
+                            imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                        } else if (accentImages || AppState.get().isUiTextColor) {
+                            imageView.setImageTintList(tint);
+                        } else {
+                            imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                        }
+                    } else if (child instanceof SeekBar) {
+                        SeekBar seekBar = (SeekBar) child;
+                        seekBar.setSaveEnabled(false);
+                        seekBar.setSaveFromParentEnabled(false);
 
-                    if (child instanceof SeekBar && AppState.get().isUiTextColor) {
-                        ((SeekBar) child).setProgressTintList(tint);
-                        ((SeekBar) child).setThumbTintList(tint);
+                        if (AppState.get().isUiTextColor || accentImages) {
+                            seekBar.setProgressTintList(tint);
+                            seekBar.setThumbTintList(tint);
+                            seekBar.setIndeterminateTintList(tint);
+
+                        } else {
+                            seekBar.setProgressTintList(ColorStateList.valueOf(Color.WHITE));
+                            seekBar.setThumbTintList(ColorStateList.valueOf(Color.WHITE));
+                            seekBar.setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));
+                        }
 
                     }
                 }

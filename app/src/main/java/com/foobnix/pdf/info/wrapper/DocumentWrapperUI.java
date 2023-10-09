@@ -1132,7 +1132,7 @@ public class DocumentWrapperUI {
         imageMenuArrow = (ImageView) a.findViewById(R.id.imageMenuArrow);
         adFrame = a.findViewById(R.id.adFrame);
 
-        seekBar = (SeekBar) a.findViewById(R.id.seekBar);
+        seekBar = (SeekBar) a.findViewById(R.id.seekBar1);
         seekBar.setAccessibilityDelegate(new View.AccessibilityDelegate());
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
