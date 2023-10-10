@@ -430,6 +430,7 @@ task copyApks() {
                                 println "Copy: '" + flavor + "' to " + dest
 
                                 eachFile {
+                                    project.file(dest).mkdirs()
                                     if (!file(dest).exists()) {
                                         it.exclude()
                                     }

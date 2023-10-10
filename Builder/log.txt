@@ -1,0 +1,3 @@
+==== _link_to_mupdf_1.23.0.sh  =====
+Run time: 0
+Apple M1

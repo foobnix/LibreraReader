@@ -3,7 +3,18 @@ layout: main
 ---
 
 # What is new
+
+### [8.9.54] Accent color
+
+||||
+|-|-|-|
+|![](8.9.54a.jpg)|![](8.9.54b.jpg)||
+
+### [8.9.50] Folder preview
+<img class="i" src="8.9.50.jpg" />
+
 ### [8.8.104] Highlighting initial letters
+
 ||||
 |-|-|-|
 |![](8.8.104a.png)|![](8.8.104b.png)||

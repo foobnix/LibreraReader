@@ -29,6 +29,6 @@ Les séquences d'espaces blancs sont réduites. Les lignes sont brisées aux car
 {white-space: pre;}
 Les séquences d'espaces blancs sont conservées. Les lignes ne sont rompues que sur les caractères de nouvelle ligne de la source et sur <br> éléments.
 
-s'étendre {affichage : bloc}
-p&gt;étendue{affichage :inline}
+span{affichage:bloc}
+p&gt;span{display:inline}
 Élimine les lignes vides très gênantes entre les pages (rectifiant les failles muPDF).

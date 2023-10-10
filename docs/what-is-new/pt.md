@@ -3,7 +3,18 @@ layout: main
 ---
 
 # O que há de novo
+
+### [8.9.54] Cor de destaque
+
+||||
+|-|-|-|
+|![](8.9.54a.jpg)|![](8.9.54b.jpg)||
+
+### [8.9.50] Visualização da pasta
+<img class="i" src="8.9.50.jpg" />
+
 ### [8.8.104] Destacando letras iniciais
+
 ||||
 |-|-|-|
 |![](8.8.104a.png)|![](8.8.104b.png)||

@@ -29,6 +29,6 @@ Seqüências de espaço em branco são recolhidas. As linhas são quebradas com 
 {white-space: pre;}
 Sequências de espaço em branco são preservadas. As linhas são quebradas apenas em caracteres de nova linha na origem e em <br> elementos.
 
-span{display:block}
+span{exibição:bloco}
 p&gt;span{display:inline}
 Elimina linhas vazias muito irritantes entre as páginas (corrigindo falhas de muPDF).

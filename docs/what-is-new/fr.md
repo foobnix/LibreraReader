@@ -3,7 +3,18 @@ layout: main
 ---
 
 # Quoi de neuf
+
+### [8.9.54] Couleur d'accentuation
+
+||||
+|-|-|-|
+|![](8.9.54a.jpg)|![](8.9.54b.jpg)||
+
+### [8.9.50] Aperçu du dossier
+<img class="i" src="8.9.50.jpg" />
+
 ### [8.8.104] Surlignage des lettres initiales
+
 ||||
 |-|-|-|
 |![](8.8.104a.png)|![](8.8.104b.png)||
