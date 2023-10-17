@@ -43,7 +43,7 @@ public class CoreSettings {
         decodingThreadPriority = Thread.MAX_PRIORITY; // 7
         drawThreadPriority = Thread.NORM_PRIORITY; // 6
 
-        bitmapSize = Dips.screenMinWH() < 800 ? 8 : 9;// 6-64,7-128,8-256,9-512,10-1024
+        bitmapSize = Dips.screenMinWH() < 800 ? 9 : 10;// 6-64,7-128,8-256,9-512,10-1024
         bitmapFileringEnabled = false;
         textureReuseEnabled = false;// !!!
         reloadDuringZoom = false;

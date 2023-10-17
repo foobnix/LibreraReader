@@ -1,5 +1,6 @@
 package org.ebookdroid.droids.mupdf.codec;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
@@ -77,6 +78,7 @@ public class MuPdfPage extends AbstractCodecPage {
     private static void renderPageSafe(MuPdfDocument dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b) {
         if (dochandle != null && dochandle.getDocumentHandle() != 0 && !dochandle.isRecycled()) {
             renderPage(dochandle.getDocumentHandle(), pagehandle, viewboxarray, matrixarray, bufferarray, r, g, b);
+
         }
     }
 
