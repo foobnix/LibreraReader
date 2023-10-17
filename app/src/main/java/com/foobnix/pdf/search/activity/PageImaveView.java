@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
@@ -40,6 +42,8 @@ import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
 
 import com.foobnix.LibreraApp;
+
+import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
@@ -178,34 +182,32 @@ public class PageImaveView extends View {
         }
     }
 
-    public synchronized List<PageLink> getPageLinks(int number) {
+    public synchronized Pair<List<PageLink>, List<Annotation>> getPageLinks(int number) {
         if (AppSP.get().isCut || AppSP.get().isCrop) {
-            return Collections.emptyList();
+            return new Pair(Collections.emptyList(), Collections.emptyList());
         }
-
-        List<PageLink> all = getPageLinksInner(number);
-        if (all == null) {
-            return Collections.emptyList();
-        }
-        return all;
+        return getPageLinksInner(number);
 
     }
 
-    public synchronized List<PageLink> getPageLinksInner(int number) {
+    public synchronized Pair<List<PageLink>, List<Annotation>> getPageLinksInner(int number) {
 
         try {
+            List<PageLink> t = null;
+            List<Annotation> a = null;
+
             if (AppSP.get().isDouble && number != 0) {
 
                 int page = pageNumber * 2;
                 if (AppSP.get().isDoubleCoverAlone) {
                     page--;
                 }
-
-                List<PageLink> t = null;
                 if (number == 1) {
                     t = PageImageState.get().pagesLinks.get(page);
+                    a = PageImageState.get().pagesAnnotation.get(page);
                 } else if (number == 2) {
                     t = PageImageState.get().pagesLinks.get(page + 1);
+                    a = PageImageState.get().pagesAnnotation.get(page + 1);
                 }
 
                 if (t != null) {
@@ -215,11 +217,18 @@ public class PageImaveView extends View {
                         LOG.d("PageLinks targetPage before", l.targetPage);
                     }
                 }
-
-                return t;
             } else {
-                return PageImageState.get().pagesLinks.get(pageNumber);
+                t = PageImageState.get().pagesLinks.get(pageNumber);
+                a = PageImageState.get().pagesAnnotation.get(pageNumber);
             }
+
+            if (t == null) {
+                t = Collections.emptyList();
+            }
+            if (a == null) {
+                a = Collections.emptyList();
+            }
+            return new Pair(t, a);
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -389,15 +398,15 @@ public class PageImaveView extends View {
 
                 if (!BookCSS.get().isTextFormat()) {
                     if (AppSP.get().isDouble) {
-                        for (PageLink pl : getPageLinks(1)) {
+                        for (PageLink pl : getPageLinks(1).first) {
                             drawLink(canvas, pl);
                         }
 
-                        for (PageLink pl : getPageLinks(2)) {
+                        for (PageLink pl : getPageLinks(2).first) {
                             drawLink(canvas, pl);
                         }
                     } else {
-                        for (PageLink pl : getPageLinks(0)) {
+                        for (PageLink pl : getPageLinks(0).first) {
                             drawLink(canvas, pl);
                         }
                     }
@@ -509,7 +518,7 @@ public class PageImaveView extends View {
         // c.drawText("" + pl.targetPage, o.right, o.bottom, paintWrods);
     }
 
-    public PageLink getPageLinkClicked(float x1, float y1) {
+    public Pair<PageLink, Annotation> getPageLinkClicked(float x1, float y1) {
 
         RectF tr = new RectF();
         imageMatrix().mapRect(tr);
@@ -534,11 +543,16 @@ public class PageImaveView extends View {
         if (AppSP.get().isDouble) {
             firstNumber = x1 < drawableWidth / 2 ? 1 : 2;
         }
+        //
 
-        List<PageLink> pageLinks = getPageLinks(firstNumber);
-        if (pageLinks == null) {
-            return null;
-        }
+
+        //
+
+
+        PageLink p = null;
+        Annotation a = null;
+        List<PageLink> pageLinks = getPageLinks(firstNumber).first;
+        List<Annotation> annotations = getPageLinks(firstNumber).second;
 
         LOG.d("getPageLinkClicked", x1, "w", drawableWidth, firstNumber, "links", pageLinks.size());
 
@@ -549,11 +563,24 @@ public class PageImaveView extends View {
             RectF wordRect = transform(link.sourceRect, firstNumber);
             boolean intersects = RectF.intersects(wordRect, tapRect);
             if (intersects) {
-                return link;
+                p = link;
+                break;
+            }
+        }
+        for (Annotation link : annotations) {
+            if (link == null) {
+                continue;
+            }
+            RectF wordRect = transform(link, firstNumber);
+            boolean intersects = RectF.intersects(wordRect, tapRect);
+            if (intersects) {
+                a = link;
+                LOG.d("Link Clicked", a.text);
+                break;
             }
         }
 
-        return null;
+        return new Pair(p, a);
 
     }
 
@@ -999,7 +1026,8 @@ public class PageImaveView extends View {
 
                 if (!isIgronerClick) {
                     int target = 0;
-                    PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
+                    Pair<PageLink, Annotation> pair = getPageLinkClicked(event.getX(), event.getY());
+                    PageLink pageLink = pair.first;
                     if (pageLink != null) {
                         target = pageLink.targetPage;
                         if (AppSP.get().isDouble && target != -1) {
@@ -1007,6 +1035,9 @@ public class PageImaveView extends View {
                         }
                         TempHolder.get().linkPage = target;
                         LOG.d("Go to targetPage", target);
+                    }
+                    if (pair.second != null) {
+                        Dialogs.showTextDialog(getContext(), pair.second.text);
                     }
 
                     if (isMoveNextPrev != 0) {

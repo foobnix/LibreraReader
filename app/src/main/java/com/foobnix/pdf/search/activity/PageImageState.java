@@ -6,6 +6,7 @@ import android.util.SparseArray;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
+import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
@@ -20,6 +21,7 @@ public class PageImageState {
     private SparseArray<List<TextWord>> selectedWords = new SparseArray<List<TextWord>>();
     public final SparseArray<TextWord[][]> pagesText = new SparseArray<TextWord[][]>();
     public final SparseArray<List<PageLink>> pagesLinks = new SparseArray<List<PageLink>>();
+    public final SparseArray<List<Annotation>> pagesAnnotation = new SparseArray<List<Annotation>>();
     private Matrix matrix = new Matrix();
 
     public static volatile int currentPage = 0;

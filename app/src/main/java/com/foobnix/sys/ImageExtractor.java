@@ -515,6 +515,7 @@ public class ImageExtractor {
             TextWord[][] text = pageCodec.getText();
             PageImageState.get().pagesText.put(pageUrl.getPage(), text);
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+            PageImageState.get().pagesAnnotation.put(pageUrl.getPage(),pageCodec.getAnnotations());
             LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
             //}
         }

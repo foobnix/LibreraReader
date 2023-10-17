@@ -703,15 +703,14 @@ public class Dialogs {
             pr.setSaveFromParentEnabled(false);
 
             int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
-            final int tintColor =AppState.get().isUiTextColor ? AppState.get().uiTextColor : color;
-
+            final int tintColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : color;
 
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);
 
             TintUtil.setTintImageNoAlpha(image, tintColor);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), tintColor);
-            TintUtil.setTintText(text,tintColor);
+            TintUtil.setTintText(text, tintColor);
 
             image.setOnClickListener(new OnClickListener() {
 
@@ -1298,6 +1297,28 @@ public class Dialogs {
         final List<String> tags = new ArrayList<String>(res);
         Collections.sort(tags);
         return tags;
+    }
+
+    public static void showTextDialog(Context activity, String textString) {
+        if (activity == null) {
+            return;
+        }
+        TextView text = new TextView(activity);
+        text.setText(textString);
+        text.setTextIsSelectable(true);
+        text.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setView(text);
+
+        builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
+
     }
 
 }

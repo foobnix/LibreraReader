@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.Apps;
@@ -44,6 +46,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -738,7 +741,8 @@ public abstract class DocumentController {
     }
 
     public void showAnnotation(Annotation annotation) {
-        Toast.makeText(activity, "" + annotation.text, Toast.LENGTH_SHORT).show();
+        Dialogs.showTextDialog(activity,annotation.text);
+        //Toast.makeText(activity, "" + annotation.text, Toast.LENGTH_SHORT).show();
     }
 
     public void onSingleTap() {
