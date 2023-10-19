@@ -1,5 +1,6 @@
 package com.foobnix;
 
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
@@ -145,4 +146,9 @@ public class LibreraApp extends MultiDexApplication {
         TintUtil.clean();
     }
 
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        LOG.d("onTrimMemory", level);
+    }
 }

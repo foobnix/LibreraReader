@@ -249,7 +249,7 @@ public class MagicHelper {
             return bg1;
         }
         bgPath = getImagePath();
-        bg1 = loadBitmap(getImagePath());
+        bg1 = loadBitmap(bgPath);
         mainColor = getDominantColor(bg1);
         return bg1;
     }
