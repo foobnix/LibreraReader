@@ -49,74 +49,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var sliderPosition by remember { mutableFloatStateOf(0f) }
-                    var delta by remember { mutableFloatStateOf(0f) }
-                    val mUrl = "https://librera.mobi/"
-                    var zoom by remember { mutableIntStateOf(125) }
-                    var uiVisible by remember {
-                        mutableStateOf(true)
-                    }
-
-                    Box(
-                    ) {
-                        LibreraWebView(
-                            modifier = Modifier.align(Alignment.Center),
-                            url = mUrl,
-                            value = sliderPosition,
-                            onValueChange = { sliderPosition = it },
-                            onDelta = { delta = it },
-                            zoom = zoom,
-                            onClick = { uiVisible = !uiVisible }
-                        )
-
-                        if (uiVisible) {
-                            Row(
-                                modifier = Modifier
-                                    .align(Alignment.TopCenter)
-                                    .fillMaxWidth()
-                                    .background(
-                                        Color.LightGray
-                                    )
-                                    .padding(10.dp),
-                            ) {
-                                IconButton(onClick = { zoom -= 10 }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Remove,
-                                        tint = Color.Blue,
-                                        contentDescription = ""
-                                    )
-                                }
-                                IconButton(onClick = { zoom += 10 }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Add,
-                                        tint = Color.Blue,
-                                        contentDescription = ""
-                                    )
-                                }
-
-                                Spacer(modifier = Modifier.weight(1f))
-                                IconButton(onClick = { }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Close,
-                                        tint = Color.Blue,
-                                        contentDescription = ""
-                                    )
-                                }
-                            }
-
-                            Slider(
-                                modifier = Modifier
-                                    .align(Alignment.BottomEnd)
-                                    .background(
-                                        Color.LightGray
-                                    )
-                                    .padding(10.dp),
-                                value = sliderPosition,
-                                valueRange = 0f..(1 - delta),
-                                onValueChange = { sliderPosition = it })
-                        }
-                    }
-
+                    WebViewReader(url = "https://librera.mobi/")
                 }
             }
         }

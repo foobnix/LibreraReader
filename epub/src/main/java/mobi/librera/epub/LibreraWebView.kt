@@ -23,16 +23,16 @@ fun LibreraWebView(
     return AndroidView(
         modifier = modifier,
         factory = {
-            var webView = MyWebView(it,
-                onValueChange = { }, onClick = onClick
+            var webView = MyWebView(
+                it,
+                onClick = onClick
             )
-            webView.setOnScrollChangeListener { p0, scrollX, scrollY, p3, p4 ->
+            webView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
                 onValueChange(scrollY.toFloat() / webView.contentHeight)
                 onDelta(webView.height.toFloat() / webView.contentHeight)
             }
 
             webView.apply {
-                //settings.textZoom = (zoom * 100).toInt();
                 loadUrl(url)
             }
 
@@ -45,22 +45,18 @@ fun LibreraWebView(
 
 class MyWebView constructor(
     context: Context,
-    private val onValueChange: (Float) -> Unit,
     var onClick: () -> Unit
 ) :
     WebView(context) {
 
     private var computeVerticalScrollRange = 0
     override fun getContentHeight(): Int {
-        //if (computeVerticalScrollRange == 0) {
         computeVerticalScrollRange = computeVerticalScrollRange()
-
-        //}
         return computeVerticalScrollRange
     }
 
 
-    var isClicked = false;
+    private var isClicked = false;
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event?.action == MotionEvent.ACTION_DOWN) {
             isClicked = true;
@@ -72,7 +68,6 @@ class MyWebView constructor(
             if (isClicked) {
                 onClick()
             }
-            Log.d("onTouchEvent", "onTouchEvent");
         }
         return super.onTouchEvent(event)
 
