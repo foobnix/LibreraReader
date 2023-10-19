@@ -1,5 +1,6 @@
 package mobi.librera.epub
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -16,20 +17,21 @@ import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import dev.burnoo.compose.rememberpreference.rememberIntPreference
 
 @Composable
 fun WebViewReader(url: String) {
     var sliderPosition by remember { mutableFloatStateOf(0f) }
     var delta by remember { mutableFloatStateOf(0f) }
-    var zoom by remember { mutableIntStateOf(125) }
+    var zoom by rememberIntPreference(keyName = "zoom", initialValue = 125, defaultValue = 125)
     var uiVisible by remember { mutableStateOf(true) }
 
     Box(
@@ -40,7 +42,7 @@ fun WebViewReader(url: String) {
             value = sliderPosition,
             onValueChange = { sliderPosition = it },
             onDelta = { delta = it },
-            zoom = zoom,
+            zoom = zoom!!,
             onClick = { uiVisible = !uiVisible }
         )
 
@@ -54,14 +56,14 @@ fun WebViewReader(url: String) {
                     )
                     .padding(10.dp),
             ) {
-                IconButton(onClick = { zoom -= 10 }) {
+                IconButton(onClick = { zoom = zoom!! - 10 }) {
                     Icon(
                         imageVector = Icons.Default.Remove,
                         tint = Color.Blue,
                         contentDescription = ""
                     )
                 }
-                IconButton(onClick = { zoom += 10 }) {
+                IconButton(onClick = { zoom = zoom!! + 10 }) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         tint = Color.Blue,
@@ -70,7 +72,8 @@ fun WebViewReader(url: String) {
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(onClick = { }) {
+                val activity = (LocalContext.current as? Activity)
+                IconButton(onClick = { activity?.finish() }) {
                     Icon(
                         imageVector = Icons.Default.Close,
                         tint = Color.Blue,
