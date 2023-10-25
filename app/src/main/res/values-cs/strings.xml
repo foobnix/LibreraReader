@@ -652,7 +652,7 @@
    <string name="search_in_the_library">Hledat v knihovně</string>
    <string name="update_metadata">Aktualizovat metadata</string>
    <string name="highlighting_initial_letters">Zvýraznění počátečních písmen</string>
-   <string name="anti_aliasing_level">Úroveň anti-aliasingu</string>
+   <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
    <string name="accent">Přízvuk</string>
 </resources>
