@@ -522,7 +522,7 @@
    <string name="do_not_read_characters">특수 문자를 읽지 않는다.</string>
    <string name="show_in_scroll_mode">스크롤 모드</string>
    <string name="display_bookmark_text_instead_of_number">페이지 번호 대신 북마크 텍스트 표시</string>
-   <string name="export_as_text">txt 파일로 내보내기</string>
+   <string name="export_as_text">Txt 파일로 내보내기</string>
    <string name="export_as_backup_json_">백업으로 내보내기 (json)</string>
    <string name="import_from_backup_json_">백업에서 가져 오기 (json)</string>
    <string name="additional_bookmarks_bar">추가 북마크 바</string>

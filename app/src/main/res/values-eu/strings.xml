@@ -596,7 +596,7 @@
    <string name="new_file">Fitxategi berria</string>
    <string name="paste_or_type_text_in_here">Itsatsi edo idatzi bertan</string>
    <string name="go_to_the_folder">Joan karpetara</string>
-   <string name="you_should_enable_allow_battery">Bigarren planoan entzuteko baimendu behar duzu \"batería\"> \"baimendu bigarren planoko jarduera\"/string>
+   <string name="you_should_enable_allow_battery">\"Bateria\" &gt; \"Baimendu atzeko planoko jarduera\" gaitu beharko zenuke atzeko planoan entzuteko.</string>
    <string name="use_calibre_metadata">Erabili calibre metadata.opf</string>
    <string name="icons_only">Ikonoak soilik</string>
    <string name="migration">Migrazioa</string>
