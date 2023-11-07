@@ -2,7 +2,7 @@
 
 ./fonts.sh
 
-./link_to_mupdf_1.23.3.sh
+./link_to_mupdf_1.23.5.sh
 
 cd ../
 
