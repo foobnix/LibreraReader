@@ -1430,6 +1430,17 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		if (!style->font)
 			style->font = fz_load_html_font(ctx, set, "serif", is_bold, is_italic, style->small_caps);
 	}
+
+
+    style->padding[1].value = style->padding[1].value / 2;
+    style->padding[3].value = style->padding[3].value / 2;
+
+    style->margin[1].value = style->margin[1].value / 2;
+    style->margin[3].value =  style->margin[3].value / 2;
+
+
+    if (style->line_height.value < 0) style->line_height.value = 1.2f;
+
 }
 
 #ifdef DEBUG_CSS_SPLAY
