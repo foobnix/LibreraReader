@@ -328,7 +328,7 @@ dependencies {
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'androidx.work:work-runtime:2.8.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -341,13 +341,13 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.16.1'
+    implementation 'org.jsoup:jsoup:1.16.2'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.6'
     implementation 'io.github.rburgst:okhttp-digest:1.21'
-    implementation 'com.squareup.okio:okio-parent:1.17.5'
+    implementation 'com.squareup.okio:okio-parent:1.17.6'
 
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.5.0'
@@ -363,7 +363,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:22.4.0"
+    def google_ads = "com.google.android.gms:play-services-ads:22.5.0"
     libreraImplementation google_ads
     betaImplementation google_ads
     pdf_v2Implementation google_ads

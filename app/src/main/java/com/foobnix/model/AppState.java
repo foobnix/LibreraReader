@@ -331,7 +331,7 @@ public class AppState {
     @IgnoreHashCode
     public int inactivityTime = 5;
     @IgnoreHashCode
-    public int remindRestTime = 240;
+    public int remindRestTime = -1;
     public int flippingInterval = 10;
     public int ttsTimer = 240;
     public int ttsPauseDuration = 50;
