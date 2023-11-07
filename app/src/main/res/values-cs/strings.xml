@@ -458,7 +458,7 @@
    <string name="crop_borders_symmetrically">Zrcadlové oříznutí</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extrahovat jména autorů a názvy knih z metadat (PDF)</string>
    <string name="meta_tags">Meta tagy</string>
-   <string name="librera_pro">Librera pro: tato aplikace, ale bez reklam</string>
+   <string name="librera_pro">Librera PRO: tato aplikace, ale bez reklam</string>
    <string name="annotation">Poznámka</string>
    <string name="book">Kniha</string>
    <string name="information">Informace o souboru</string>
@@ -620,13 +620,13 @@
    <string name="go_to_page">Jdi na stránku</string>
    <string name="update_library">Aktualizovat knihovnu</string>
    <string name="ascending">Vzestupně</string>
-   <string name="descending">Klesající</string>
+   <string name="descending">Sestupně</string>
    <string name="remove">Odstranit</string>
    <string name="add_to_favorites">Přidat k oblíbeným</string>
    <string name="remove_from_favorites">Odstranit z oblíbených</string>
    <string name="book_menu">Nabídka knihy</string>
-   <string name="accessibility_mode">Režim usnadnění</string>
-   <string name="welcome_accessibility">Vítejte, můžete povolit optimalizaci usnadnění přístupu v nabídce vlevo</string>
+   <string name="accessibility_mode">Povolit Režim usnadnění</string>
+   <string name="welcome_accessibility">Vítejte! můžete Povolit Režim usnadnění v předvolbách</string>
    <string name="integration_in_the_context_menu">Integrace v kontextovém menu</string>
    <string name="the_application_needs_storage_permission">Aplikace potřebuje povolení k přístupu do úložiště, aby našla všechny knihy</string>
    <string name="always_open_in_2_pages_mode">Vždy otevřít v režimu 2 stránek</string>
@@ -647,12 +647,12 @@
    <string name="synced_books">Synchronizované knihy</string>
    <string name="smart_reflow">Chytré přeformátování</string>
    <string name="user_styles">Uživatelsky definované</string>
-   <string name="engine">Motor</string>
+   <string name="engine">Engine</string>
    <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>
    <string name="search_in_the_library">Hledat v knihovně</string>
    <string name="update_metadata">Aktualizovat metadata</string>
    <string name="highlighting_initial_letters">Zvýraznění počátečních písmen</string>
-   <string name="anti_aliasing_level">Úroveň anti-aliasingu</string>
+   <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
    <string name="accent">Přízvuk</string>
 </resources>
