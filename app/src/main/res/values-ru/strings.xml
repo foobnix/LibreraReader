@@ -639,7 +639,7 @@
    <string name="cd_download_more_fonts">Скачать больше шрифтов</string>
    <string name="restore_search_query_when_the_application_starts">Восстанавливать поисковый запрос при запуске</string>
    <string name="hide_read_books">Скрывать прочитанные книги</string>
-   <string name="graphics_scale">Масштаб изобраажений</string>
+   <string name="graphics_scale">Масштаб изображений</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Создать папку с названием книги</string>
    <string name="memory">Память</string>
    <string name="accessibility">Доступность</string>
@@ -653,6 +653,6 @@
    <string name="update_metadata">Обновить метаданные</string>
    <string name="highlighting_initial_letters">Выделять начальные буквы</string>
    <string name="anti_aliasing_level">Уровень сглаживания</string>
-   <string name="folder_preview">Предросмотр папки</string>
+   <string name="folder_preview">Предпросмотр папки</string>
    <string name="accent">Цвет акцента</string>
 </resources>
