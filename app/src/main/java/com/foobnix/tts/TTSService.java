@@ -145,6 +145,7 @@ public class TTSService extends Service {
         playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
     }
 
+
     public static void updateTimer() {
         TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
         LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);

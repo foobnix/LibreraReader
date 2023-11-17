@@ -27,17 +27,24 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppSP;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class RecentBooksScreen extends Screen  {
+public final class RecentBooksScreen extends Screen {
 
     public RecentBooksScreen(@NonNull CarContext carContext) {
         super(carContext);
@@ -95,38 +102,50 @@ public final class RecentBooksScreen extends Screen  {
                         @Override
                         public void onClick() {
                             selected = meta;
+                            AppData.get().addRecent(new SimpleMeta(meta.getPath()));
+
+                            TTSEngine.get().stop();
+                            AppSP.get().lastBookPath = selected.getPath();
+
                             isPlaying = false;
                             invalidate();
                         }
                     })
-                    .addText(meta.getAuthor())
+                    .addText(TxtUtils.nullToEmpty(meta.getAuthor()))
                     .setImage(new CarIcon.Builder(icon).build(), IMAGE_TYPE_LARGE)
                     .build();
             listBuilder.addItem(build);
         }
 
 
-        Action pause = new Action.Builder()
+        Action playPause = new Action.Builder()
                 .setTitle(isPlaying ? getCarContext().getString(R.string.pause) : getCarContext().getString(R.string.play))
                 .setOnClickListener(
                         () -> {
-                            isPlaying = !isPlaying;
+                            if (TTSEngine.get().isPlaying()) {
+                                TTSEngine.get().stop();
+                                isPlaying = false;
+                            } else {
+                                TTSService.playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
+                                isPlaying = true;
+                            }
                             invalidate();
                         })
                 .build();
-
         return new ListTemplate.Builder()
                 .setSingleList(listBuilder.build())
                 .setTitle(selected == null ? "Librera" : selected.getTitle())
-
                 .setActionStrip(
                         new ActionStrip.Builder()
-                                .addAction(pause)
+                                .addAction(new Action.Builder().setIcon(getIcon(R.drawable.glyphicons_86_reload)).setOnClickListener(() -> invalidate()).build())
+                                .addAction(playPause)
                                 .build())
 
                 .build();
     }
-
+    public CarIcon getIcon(int id){
+        return new CarIcon.Builder(IconCompat.createWithResource(getCarContext(), id)).build();
+    }
 
 
     public void onDestroy(@NonNull LifecycleOwner owner) {
