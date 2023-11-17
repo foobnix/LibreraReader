@@ -1,2 +1,5 @@
 include ':app', ':pro', ':Builder', ':smartreflow'
 include ':epub'
+include ':myauto'
+include ':myauto2'
+include ':audio1'

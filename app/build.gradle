@@ -117,6 +117,7 @@ android {
         }
         beta {
             dimension "version"
+            minSdk 21
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
                     appName      : "Beta ",
@@ -358,6 +359,7 @@ dependencies {
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
+    implementation "androidx.car.app:app:1.4.0-rc01"
 
     //implementation "org.nanohttpd:nanohttpd:2.3.1"
 
@@ -382,6 +384,10 @@ dependencies {
     pdf_classicImplementation messaging_ads
     epub_readerImplementation messaging_ads
     huaweiImplementation messaging_ads
+
+
+
+
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'

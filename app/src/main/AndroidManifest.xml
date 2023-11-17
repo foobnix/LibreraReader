@@ -42,6 +42,7 @@
     </queries>
 
     <application
+        tools:overrideLibrary="androidx.car.app"
         android:name="com.foobnix.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
@@ -54,6 +55,15 @@
         tools:replace="label, icon, roundIcon">
 
         <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
+        <meta-data
+            android:name="androidx.car.app.minCarApiLevel"
+            android:value="1" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -77,6 +87,33 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
+
+        <service
+            android:name="com.foobnix.car.LibreraAppService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService" />
+                <category android:name="androidx.car.app.category.POI"/>
+            </intent-filter>
+        </service>
+
+        <!--
+        <meta-data
+            android:name="androidx.car.app.TintableAttributionIcon"
+            android:resource="@drawable/dropbox" />
+
+        <service android:name="com.foobnix.car.MyMediaBrowserService"
+            android:foregroundServiceType="mediaPlayback"
+            android:stopWithTask="false"
+            android:enabled="true"
+            android:exported="true">
+                <intent-filter>
+                    <action android:name="androidx.media3.session.MediaSessionService" />
+                    <action android:name="androidx.media3.session.MediaLibraryService" />
+                    <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+        -->
 
 
         <activity

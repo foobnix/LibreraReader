@@ -25,11 +25,11 @@ cd ../
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*ß
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.apk
 
 rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.*
+rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.apk
 
 cd Builder
 ./remove_all.sh
