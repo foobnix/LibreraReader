@@ -71,7 +71,7 @@
    <string name="italic_font">Etzana</string>
    <string name="bold_italic_font">Etzana eta lodia</string>
    <string name="font_for_headers">Goiburuak</string>
-   <string name="enable_volume_keys">Nabigatu  Navegar bolumen-teklekin</string>
+   <string name="enable_volume_keys">Nabigatu bolumen-teklekin</string>
    <string name="reverse_keys">Alderantzizkatu teklak</string>
    <string name="screen_orientation">Pantailaren orientazioa</string>
    <string name="open_in_the_dictionary">Ireki hiztegian</string>
@@ -106,7 +106,7 @@
    <string name="right_page_then_left_page_rtl_">Eskuin eta ezkerreko orrialdea (RTL)</string>
    <string name="rotate_page">Orria biratu</string>
    <string name="rotate_default">Berez</string>
-   <string name="tap_zone_size">Sakatzeko eremuak (ertzak)</string>
+   <string name="tap_zone_size">Sakatzeko eremuak</string>
    <string name="customize_tap_zones">Pertsonalizatu sakatzeko eremuak</string>
    <string name="left_side">Ezker aldea</string>
    <string name="right_side">Eskuin aldea</string>
@@ -132,7 +132,7 @@
    <string name="scroll_speed">Desplazamendu abiadura</string>
    <string name="page_quality">Orriaren kalitatea</string>
    <string name="pages_in_memory">Memoriako orriak</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">Itzali pantaila Apagar pantalla ondoren (minutuak)</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">Itzali pantaila hainbat minutu pasata</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Egoera barra</string>
    <string name="show_status_bar">Erakutsi egoera barra</string>
@@ -243,9 +243,9 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Irakurketa modua</string>
    <string name="convert_to">Hona bihurtu</string>
-   <string name="mode_vertical">\"Mugitu\" modua</string>
-   <string name="mode_horizontally">\"Liburu\" modua</string>
-   <string name="mode_musician">\"Musika\" modua</string>
+   <string name="mode_vertical">Korritze modua</string>
+   <string name="mode_horizontally">Liburu modua</string>
+   <string name="mode_musician">Musika modua</string>
    <string name="save">Gorde</string>
    <string name="remember_choice">Gogoratu aukeraketa</string>
    <string name="edit">Editatu</string>
