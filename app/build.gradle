@@ -117,7 +117,6 @@ android {
         }
         beta {
             dimension "version"
-            minSdk 21
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
                     appName      : "Beta ",
