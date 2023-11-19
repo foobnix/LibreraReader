@@ -359,7 +359,11 @@ dependencies {
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation "commons-logging:commons-logging-api:1.1"
+
+
     implementation "androidx.car.app:app:1.4.0-rc01"
+    implementation("androidx.media3:media3-ui:1.1.1")
+    implementation("androidx.media3:media3-session:1.1.1")
 
     //implementation "org.nanohttpd:nanohttpd:2.3.1"
 

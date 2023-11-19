@@ -52,7 +52,7 @@ public enum BookType {
 
     MOBI(MobiContext.class, true, true, list("mobi", "azw", "azw3", "azw4", "pdb", "prc"), list("application/x-mobipocket-ebook", "application/x-palm-database","application/x-mobi8-ebook","application/x-kindle-application","application/vnd.amazon.mobi8-ebook")),
 
-    TXT(TxtContext.class, true, true, list("txt", "playlist","log"), list("text/plain","text/x-log")),
+    TXT(TxtContext.class, true, true, list("txt", "playlist","log","ini"), list("text/plain","text/x-log")),
 
     JSON(TxtContext.class, true, true, list("json"), list("application/json")),
 

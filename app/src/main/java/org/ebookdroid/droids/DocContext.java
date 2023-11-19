@@ -2,6 +2,7 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.libmobi.LibMobi;
@@ -35,11 +36,16 @@ public class DocContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
+        boolean isDoc = CbzCbrExtractor.isDoc(fileName);
+        LOG.d("isDOC", "isDOC" + isDoc);
+        if (!isDoc) {
+            return new TxtContext().openDocumentInner(fileName, password);
+        }
 
         if (!cacheFile.isFile()) {
             String outputTemp = cacheFile.getPath() + ".tmp";
             final int res = LibMobi.convertDocToHtml(fileName, outputTemp);
-            LOG.d("convertDocToHtml",res);
+            LOG.d("convertDocToHtml", res);
             if (res == 0) {
                 return new RtfContext().openDocumentInner(fileName, password);
             }
@@ -50,7 +56,7 @@ public class DocContext extends PdfContext {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
 
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null,null,0);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, null, 0);
                 out.close();
                 in.close();
 

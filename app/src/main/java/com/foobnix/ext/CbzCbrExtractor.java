@@ -43,6 +43,22 @@ public class CbzCbrExtractor {
         return false;
     }
 
+    public static boolean isDoc(String path) {
+        try {
+            byte[] buffer = new byte[2];
+            FileInputStream is = new FileInputStream(path);
+            is.read(buffer);
+            is.close();
+            LOG.d("isDOC buffer", buffer[0], buffer[1]);
+            if (buffer[0] == -48 && buffer[1] == -49) {
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
+
     public static int getPageCount(String path) {
         int count = 0;
         try {
