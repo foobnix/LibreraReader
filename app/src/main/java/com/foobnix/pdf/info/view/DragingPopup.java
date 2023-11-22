@@ -20,7 +20,6 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -31,7 +30,12 @@ import java.util.Map;
 public abstract class DragingPopup {
     protected static final String PREF = "PREF";
     private static final String DRAGGING_POPUPS = "DraggingPopups";
+    static Map<String, Place> cache = new HashMap<String, Place>();
     private static int MIN_WH = Dips.dpToPx(50);
+    protected String titleAction;
+    protected Runnable titleRunnable;
+    protected int titlePopupIcon;
+    protected MyPopupMenu titlePopupMenu;
     private FrameLayout anchor;
     private View popupView;
     private MyFrameLayout popupContent;
@@ -40,75 +44,14 @@ public abstract class DragingPopup {
     private int width;
     private int heigth;
     private Runnable onCloseListener;
-
-    protected String titleAction;
-    protected Runnable titleRunnable;
-
-    protected int titlePopupIcon;
-    protected MyPopupMenu titlePopupMenu;
-
-    public View getView() {
-        return popupView;
-    }
-
-    public void beforeCreate() {
-
-    }
-
-    static class Place {
-        public int x, y, width, height;
+    Runnable closeRunnable = new Runnable() {
 
         @Override
-        public String toString() {
-            return String.format("%s,%s,%s,%s", x, y, width, height);
+        public void run() {
+            closeDialog();
         }
-
-        public static Place fromString(String str) {
-            Place p = new Place();
-            if (TxtUtils.isEmpty(str)) {
-                return p;
-            }
-            try {
-                String[] split = str.split(",");
-                p.x = Integer.valueOf(split[0]);
-                p.y = Integer.valueOf(split[1]);
-                p.width = Integer.valueOf(split[2]);
-                p.height = Integer.valueOf(split[3]);
-                return p;
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-            return p;
-        }
-    }
-
-    static Map<String, Place> cache = new HashMap<String, Place>();
+    };
     private View topHeaderLayout;
-
-    public static void loadCache(final Context c) {
-        try {
-            cache.clear();
-            SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
-
-            Map<String, String> all = (Map<String, String>) sp.getAll();
-            for (String key : all.keySet()) {
-                cache.put(key, Place.fromString(all.get(key)));
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static void saveCache(final Context c) {
-        SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
-        sp.edit().clear().commit();
-        Editor edit = sp.edit();
-        for (String key : cache.keySet()) {
-            edit.putString(key, cache.get(key).toString());
-        }
-        edit.commit();
-
-    }
 
     public DragingPopup(String title, final FrameLayout anchor) {
         this(title, anchor, 250, 250);
@@ -170,36 +113,69 @@ public abstract class DragingPopup {
         });
     }
 
+    public static void loadCache(final Context c) {
+        try {
+            cache.clear();
+            SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
+
+            Map<String, String> all = (Map<String, String>) sp.getAll();
+            for (String key : all.keySet()) {
+                cache.put(key, Place.fromString(all.get(key)));
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void saveCache(final Context c) {
+        try {
+            SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
+            sp.edit().clear().commit();
+            Editor edit = sp.edit();
+            for (String key : cache.keySet()) {
+                edit.putString(key, cache.get(key).toString());
+            }
+            edit.commit();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public View getView() {
+        return popupView;
+    }
+
+    public void beforeCreate() {
+
+    }
+
     public void postAction() {
         LOG.d("postAction");
         // anchor.getHandler().removeCallbacksAndMessages(null);
         // anchor.getHandler().postDelayed(closeRunnable, 3000);
     }
 
-    Runnable closeRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            closeDialog();
-        }
-    };
-
     public void initState() {
-        String tag = getTAG() + Dips.screenWidth();
-        if (cache.containsKey(tag)) {
-            Place place = cache.get(tag);
-            AnchorHelper.setXY(anchor, place.x, place.y);
-            popupView.getLayoutParams().width = place.width;
-            popupView.getLayoutParams().height = place.height;
+        try {
+            String tag = getTAG() + Dips.screenWidth();
+            if (cache.containsKey(tag)) {
+                Place place = cache.get(tag);
+                AnchorHelper.setXY(anchor, place.x, place.y);
+                popupView.getLayoutParams().width = place.width;
+                popupView.getLayoutParams().height = place.height;
 
-            LOG.d("Anchor Load", tag, place.x, place.y, place.width, place.height);
+                LOG.d("Anchor Load", tag, place.x, place.y, place.width, place.height);
 
-            popupView.requestLayout();
-        } else {
-            AnchorHelper.setXY(anchor, Dips.dpToPx(Dips.screenWidthDP() - width) / 2, (Dips.screenHeight() - heigth) / 2);
-            popupView.getLayoutParams().width = Dips.dpToPx(width);
-            popupView.getLayoutParams().height = heigth;// Dips.dpToPx(heigth);
-            popupView.requestLayout();
+                popupView.requestLayout();
+            } else {
+                AnchorHelper.setXY(anchor, Dips.dpToPx(Dips.screenWidthDP() - width) / 2, (Dips.screenHeight() - heigth) / 2);
+                popupView.getLayoutParams().width = Dips.dpToPx(width);
+                popupView.getLayoutParams().height = heigth;// Dips.dpToPx(heigth);
+                popupView.requestLayout();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
@@ -228,6 +204,7 @@ public abstract class DragingPopup {
         ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
         onIconAction.setImageResource(icon);
     }
+
 
     public DragingPopup show(String tag, boolean always, boolean update) {
 
@@ -273,7 +250,14 @@ public abstract class DragingPopup {
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.GONE);
         }
 
-        View contentView = getContentView(inflater);
+        View contentView;
+        try {
+            contentView = getContentView(inflater);
+        } catch (Exception e) {
+            contentView = new TextView(popupView.getContext());
+            ((TextView) contentView).setText(e.getMessage());
+        }
+
         popupContent.addView(contentView);
 
 
@@ -297,7 +281,7 @@ public abstract class DragingPopup {
         anchor.setVisibility(View.VISIBLE);
         anchor.removeAllViews();
 
-        TxtUtils.updateAllLinks(popupView,true);
+        TxtUtils.updateAllLinks(popupView, true);
 
         anchor.addView(popupView);
         final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
@@ -431,7 +415,6 @@ public abstract class DragingPopup {
         AppProfile.save(anchor.getContext());
     }
 
-
     private void saveLayout() {
         try {
             Place place = new Place();
@@ -460,6 +443,33 @@ public abstract class DragingPopup {
     public DragingPopup setOnCloseListener(Runnable onCloseListener) {
         this.onCloseListener = onCloseListener;
         return this;
+    }
+
+    static class Place {
+        public int x, y, width, height;
+
+        public static Place fromString(String str) {
+            Place p = new Place();
+            if (TxtUtils.isEmpty(str)) {
+                return p;
+            }
+            try {
+                String[] split = str.split(",");
+                p.x = Integer.valueOf(split[0]);
+                p.y = Integer.valueOf(split[1]);
+                p.width = Integer.valueOf(split[2]);
+                p.height = Integer.valueOf(split[3]);
+                return p;
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            return p;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s,%s,%s,%s", x, y, width, height);
+        }
     }
 
 }
