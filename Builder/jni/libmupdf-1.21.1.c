@@ -29,6 +29,7 @@ struct renderdocument_s {
 	fz_context *ctx;
 	fz_document *document;
 	fz_outline *outline;
+	char *accel;
 	unsigned char format; // save current document format.
 };
 
@@ -110,16 +111,18 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getFzVersion(JNIEnv *env, j
 
 JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
-		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale, jint antialias ) {
+		jclass clazz, jint storememory, jint format, jstring fname, jstring pwd, jstring jcss, jint isDocCSS, jfloat imageScale, jint antialias,jstring accelerate ) {
 	renderdocument_t *doc;
 	jboolean iscopy;
 	jclass cls;
 	jfieldID fid;
 	char *filename;
+	char *accel;
 	char *password;
 	char *css;
 
 	filename = (char*) (*env)->GetStringUTFChars(env, fname, &iscopy);
+	accel = (char*) (*env)->GetStringUTFChars(env, accelerate, &iscopy);
 	password = (char*) (*env)->GetStringUTFChars(env, pwd, &iscopy);
 	css = (char*) (*env)->GetStringUTFChars(env, jcss, NULL);
 
@@ -164,7 +167,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 		printf("Open start %s \n", filename);
 		__android_log_print(ANDROID_LOG_DEBUG, "EBookDroid", "Open");
 
-		doc->document = (fz_document*) fz_open_accelerated_document(doc->ctx, filename,NULL);
+		doc->accel = accel;
+		int atime = fz_stat_mtime(accel);
+		if(atime == 0){
+			doc->document = (fz_document*) fz_open_accelerated_document(doc->ctx, filename,NULL);
+		}else{
+			doc->document = (fz_document*) fz_open_accelerated_document(doc->ctx, filename,accel);
+		}
+
+
+
 
 		//fz_drop_context(doc->ctx);
 		//fz_set_user_css(doc->ctx,css);
@@ -428,7 +440,11 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEnv *env,
 		DEBUG("fontSize set %d", fontSize);
 
 		fz_layout_document(doc->ctx, doc->document, width, height, size);
-		return (fz_count_pages(doc->ctx, doc->document));
+
+
+		int count = (fz_count_pages(doc->ctx, doc->document));
+		fz_save_accelerator(doc->ctx, doc->document, doc->accel);
+		return count;
 	}
 	fz_catch(doc->ctx)
 	{

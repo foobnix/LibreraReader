@@ -61,8 +61,7 @@ public class EpubContext extends PdfContext {
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
-        if (false) {
-            //TODO find the issue on mupdf 1.23!!!!
+        if (false) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");
             if (!AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
                 try {

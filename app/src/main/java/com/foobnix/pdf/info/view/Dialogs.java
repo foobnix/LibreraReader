@@ -731,6 +731,15 @@ public class Dialogs {
             if (AppState.get().isExperimental) {
                 WebViewUtils.init(c);
             }
+            long time = System.currentTimeMillis();
+            dialog.setOnDismissListener(new OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    long sec = System.currentTimeMillis() - time;
+                    LOG.d("Book loading time:", (float) sec / 1000, "sec");
+
+                }
+            });
 
             return dialog;
         } catch (Exception e) {
