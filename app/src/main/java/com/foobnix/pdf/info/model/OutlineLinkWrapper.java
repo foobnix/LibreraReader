@@ -3,20 +3,21 @@ package com.foobnix.pdf.info.model;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.PageUrl;
 
-public class OutlineLinkWrapper {
+import java.io.Serializable;
+
+
+public class OutlineLinkWrapper implements Serializable {
 
     public final int level;
     private final String title;
     public String targetUrl;
     public int targetPage = -1;
-    public long docHandle;
 
     public String linkUri;
 
-    public OutlineLinkWrapper(final String title, final String link, final int level, long docHandle, String linkUri) {
+    public OutlineLinkWrapper(final String title, final String link, final int level, String linkUri) {
         this.title = title;
         this.level = level;
-        this.docHandle = docHandle;
 
         this.linkUri = linkUri;
 

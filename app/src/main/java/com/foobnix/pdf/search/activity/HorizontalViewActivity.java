@@ -999,7 +999,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onClose = findViewById(R.id.bookClose);
         Apps.accessibilityButtonSize(onClose);
-        onClose.setVisibility(View.INVISIBLE);
+        onClose.setVisibility(View.VISIBLE);
 
         onClose.setOnClickListener(new View.OnClickListener() {
 

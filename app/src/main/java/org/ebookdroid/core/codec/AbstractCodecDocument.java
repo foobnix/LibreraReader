@@ -16,6 +16,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     protected final long documentHandle;
 
+    public String cacheFilename;
+
     protected AbstractCodecDocument(final CodecContext context, long documentHandle) {
         this.context = context;
         this.documentHandle = documentHandle;

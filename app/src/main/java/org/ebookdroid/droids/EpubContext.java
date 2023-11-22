@@ -81,21 +81,23 @@ public class EpubContext extends PdfContext {
         }
 
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
+        muPdfDocument.cacheFilename = bookPath;
 
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
         }
 
-        Thread t= new Thread("@T openDocument") {
+        Thread t = new Thread("@T openDocument") {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(250);
-                    muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
+
                     if (muPdfDocument.getFootNotes() == null) {
                         muPdfDocument.setFootNotes(getNotes(fileName));
                     }
-                    removeTempFiles();
+                    muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
+
+                    //removeTempFiles();
                 } catch (Exception e) {
                     LOG.e(e);
                 }

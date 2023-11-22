@@ -476,18 +476,12 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void getOutline(final ResultResponse<List<OutlineLink>> response) {
-
-
         if (true) {
 
             Thread t = new Thread("@T getOutlineV") {
                 @Override
                 public void run() {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+
                     if (codecDocument == null) {
                         response.onResultRecive(null);
                         return;

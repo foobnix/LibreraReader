@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
@@ -14,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -54,15 +54,15 @@ import java.util.Locale;
 
 public abstract class HorizontalModeController extends DocumentController {
 
-    private int pagesCount;
     int currentPage;
-    private CopyAsyncTask searchTask;
-    private boolean isTextFormat = false;
     String bookPath;
     CodecDocument codeDocument;
-
     int imageWidth, imageHeight;
+    private int pagesCount;
+    private CopyAsyncTask searchTask;
+    private boolean isTextFormat = false;
     private SharedPreferences matrixSP;
+    private volatile boolean isClosed = false;
 
     public HorizontalModeController(Activity activity, int w, int h) {
         super(activity);
@@ -100,7 +100,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 AppSP.get().isCrop = true;
             }
         }
-        if(AppState.get().alwaysTwoPages){
+        if (AppState.get().alwaysTwoPages) {
             AppSP.get().isDouble = true;
             AppSP.get().isCut = false;
             AppSP.get().isDoubleCoverAlone = false;
@@ -176,6 +176,26 @@ public abstract class HorizontalModeController extends DocumentController {
 
     }
 
+    public static String getBookPathFromActivity(Activity a) {
+        return a.getIntent().getData().getPath();
+    }
+
+    public static String getTempTitle(Activity a) {
+        try {
+            return getTitle(getBookPathFromActivity(a));
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        }
+    }
+
+    public static String getTitle(String path) {
+        if (ExtUtils.hasTitle(path)) {
+            return AppDB.get().getOrCreate(path).getTitle();
+        }
+        return new File(path).getName();
+    }
+
     @Override
     public void updateRendering() {
 
@@ -230,20 +250,6 @@ public abstract class HorizontalModeController extends DocumentController {
     public void saveAnnotationsToFile() {
     }
 
-    public static String getBookPathFromActivity(Activity a) {
-        return a.getIntent().getData().getPath();
-    }
-
-    public static String getTempTitle(Activity a) {
-        try {
-            return getTitle(getBookPathFromActivity(a));
-        } catch (Exception e) {
-            LOG.e(e);
-            return "";
-        }
-    }
-
-
     public int getCurrentPage() {
         return currentPage;
     }
@@ -256,7 +262,6 @@ public abstract class HorizontalModeController extends DocumentController {
     public int getCurentPageFirst1() {
         return currentPage + 1;
     }
-
 
     public int getOpenPageNumber() {
         return currentPage;
@@ -398,7 +403,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public String getFootNote(String text,String chapter) {
+    public String getFootNote(String text, String chapter) {
         try {
             return TxtUtils.getFooterNote(text, chapter, codeDocument.getFootNotes());
         } catch (Exception e) {
@@ -424,8 +429,6 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public void onScrollUp() {
     }
-
-    private volatile boolean isClosed = false;
 
     @Override
     public void onCloseActivityFinal(final Runnable run) {
@@ -541,29 +544,39 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public synchronized void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
         if (codeDocument == null) {
+            outlineResonse.onResultRecive(outline);
             return;
         }
+
         if (outline == null) {
+            outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook().getName());
+            if (outline != null) {
+                outlineResonse.onResultRecive(outline);
+                return;
+            }
+
             outline = new ArrayList<OutlineLinkWrapper>();
             Thread thread = new Thread("@T getOutlineH") {
                 @Override
                 public void run() {
 
                     try {
-                        Thread.sleep(500);
                         for (OutlineLink ol : codeDocument.getOutline()) {
                             if (TempHolder.get().loadingCancelled) {
+
                                 return;
                             }
                             if (!codeDocument.isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
                                 if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                                 } else {
                                     int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
                                 }
                             }
                         }
+
+                        CacheZipUtils.savaJavaCache(outline, getCurrentBook().getName());
 
                         // setOutline(outline);
                         if (outlineResonse != null) {
@@ -760,13 +773,6 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public String getTitle() {
         return getTitle(getBookPath());
-    }
-
-    public static String getTitle(String path) {
-        if (ExtUtils.hasTitle(path)) {
-            return AppDB.get().getOrCreate(path).getTitle();
-        }
-        return new File(path).getName();
     }
 
     @Override

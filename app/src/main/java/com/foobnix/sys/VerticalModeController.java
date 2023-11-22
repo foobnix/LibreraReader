@@ -20,6 +20,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -909,6 +910,14 @@ public class VerticalModeController extends DocumentController {
             resultWrapper.onResultRecive(outline);
             return;
         }
+
+
+        outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook().getName());
+        if (outline != null) {
+            resultWrapper.onResultRecive(outline);
+            return;
+        }
+
         ctr.getDocumentModel().decodeService.getOutline(new ResultResponse<List<OutlineLink>>() {
 
             @Override
@@ -927,10 +936,10 @@ public class VerticalModeController extends DocumentController {
                         if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
 
                             if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                             } else {
                                 int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
                             }
 
                         }
@@ -938,6 +947,7 @@ public class VerticalModeController extends DocumentController {
                         LOG.e(e);
                     }
                 }
+                CacheZipUtils.savaJavaCache(outline, getCurrentBook().getName());
                 resultWrapper.onResultRecive(outline);
                 return true;
             }

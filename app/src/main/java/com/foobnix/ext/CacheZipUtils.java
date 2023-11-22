@@ -23,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,6 +42,7 @@ public class CacheZipUtils {
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
     public static File CACHE_RECENT;
+    public static File CACHE_TEMP;
     public static File ATTACHMENTS_CACHE_DIR;
     static Pair<Boolean, String> cacheRes;
     static String cacheFile;
@@ -55,6 +58,7 @@ public class CacheZipUtils {
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
         CACHE_RECENT = new File(externalCacheDir, "Recent");
+        CACHE_TEMP = new File(externalCacheDir, "Temp");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
@@ -70,6 +74,53 @@ public class CacheZipUtils {
         if (!CACHE_WEB.exists()) {
             CACHE_WEB.mkdirs();
         }
+        if (!CACHE_TEMP.exists()) {
+            CACHE_TEMP.mkdirs();
+        }
+    }
+
+    public static void savaJavaCache(Object object, String key) {
+        try {
+            LOG.d("JavaCache save", object, key);
+            FileOutputStream fos = new FileOutputStream(new File(CACHE_TEMP, key + "-outline"));
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(object);
+            oos.flush();
+            oos.close();
+            LOG.d("JavaCache save success");
+
+            File[] files = CACHE_TEMP.listFiles();
+            Arrays.sort(files, (f1, f2) -> Long.compare(f1.lastModified(), f2.lastModified()));
+            if (files.length > 50) {
+                files[0].delete();
+                LOG.d("JavaCache save delete", files[0]);
+            }
+
+        } catch (Exception e) {
+            LOG.d("JavaCache save error");
+            LOG.e(e);
+        }
+    }
+
+    public static Object loadJavaCache(String key) {
+        try {
+
+            File file = new File(CACHE_TEMP, key + "-outline");
+            LOG.d("JavaCache load exist", file.isFile(), file);
+            if (!file.isFile()) {
+                return null;
+            }
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object res = ois.readObject();
+            ois.close();
+            LOG.d("JavaCache load success");
+            return res;
+        } catch (Exception e) {
+            LOG.d("JavaCache load error");
+            LOG.e(e);
+        }
+        return null;
     }
 
     public static void clearBookDir() {
@@ -113,6 +164,10 @@ public class CacheZipUtils {
                 return;
             }
             for (File file : files) {
+                if (file.getName().equals("outline")) {
+                    continue;
+                }
+
                 if (file != null && !file.getName().startsWith(exept.getName())) {
                     if (file.isFile()) {
                         file.delete();
@@ -195,34 +250,6 @@ public class CacheZipUtils {
         } catch (Exception e) {
             return new Pair<Boolean, String>(false, "");
         }
-    }
-
-
-    @Deprecated
-    Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
-        String name = "";
-        try {
-
-            boolean find = false;
-            ArchiveEntry nextEntry = null;
-
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (nextEntry.isDirectory()) {
-                    continue;
-                }
-
-                name = nextEntry.getName();
-                if (find) {
-                    zipInputStream.close();
-                    return new Pair<Boolean, String>(false, "");
-                }
-                find = true;
-            }
-            zipInputStream.close();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
     }
 
     public static UnZipRes extracIfNeed(String path, CacheDir folder) {
@@ -388,6 +415,33 @@ public class CacheZipUtils {
                 os.close();
             }
         }
+    }
+
+    @Deprecated
+    Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
+        String name = "";
+        try {
+
+            boolean find = false;
+            ArchiveEntry nextEntry = null;
+
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (nextEntry.isDirectory()) {
+                    continue;
+                }
+
+                name = nextEntry.getName();
+                if (find) {
+                    zipInputStream.close();
+                    return new Pair<Boolean, String>(false, "");
+                }
+                find = true;
+            }
+            zipInputStream.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
     }
 
     public enum CacheDir {
