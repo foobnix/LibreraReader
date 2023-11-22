@@ -53,15 +53,12 @@ public class DecodeServiceBase implements DecodeService {
     static final AtomicLong TASK_ID_SEQ = new AtomicLong();
 
     final CodecContext codecContext;
-
-    ExecutorRunnable executor = new ExecutorRunnable();
-
     final AtomicBoolean isRecycled = new AtomicBoolean();
-
     final AtomicReference<ViewState> viewState = new AtomicReference<ViewState>();
-
+    final Map<PageTreeNode, DecodeTask> decodingTasks = new IdentityHashMap<PageTreeNode, DecodeTask>();
+    final List<Task> tasks = new ArrayList<Task>();
+    ExecutorRunnable executor = new ExecutorRunnable();
     private CodecDocument codecDocument;
-
     private Map<Integer, CodecPageHolder> pages = new LinkedHashMap<Integer, CodecPageHolder>() {
 
         private static final long serialVersionUID = -8845124816503128098L;
@@ -83,7 +80,6 @@ public class DecodeServiceBase implements DecodeService {
         }
 
     };
-
     private IView view;
 
     public DecodeServiceBase(final CodecContext codecContext, IView view) {
@@ -480,20 +476,29 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void getOutline(final ResultResponse<List<OutlineLink>> response) {
+
+
         if (true) {
 
-            new Thread("@T getOutlineV") {
+            Thread t = new Thread("@T getOutlineV") {
                 @Override
                 public void run() {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     if (codecDocument == null) {
                         response.onResultRecive(null);
                         return;
                     }
                     response.onResultRecive(codecDocument.getOutline());
                 }
-            }.start();
+            };
+            t.setPriority(Thread.MIN_PRIORITY);
+            t.start();
 
-            return;
+            return;//STOP
         }
         executor.addAny(new Task(0) {
 
@@ -527,9 +532,107 @@ public class DecodeServiceBase implements DecodeService {
         return pagesInMemory == 0 ? 1 : Math.max(minSize, pagesInMemory);
     }
 
-    final Map<PageTreeNode, DecodeTask> decodingTasks = new IdentityHashMap<PageTreeNode, DecodeTask>();
-    final List<Task> tasks = new ArrayList<Task>();
+    @Override
+    public boolean isPageSizeCacheable() {
+        return codecContext.isPageSizeCacheable();
+    }
 
+    @Override
+    public Map<Integer, CodecPageHolder> getPages() {
+        return pages;
+    }
+
+    @Override
+    public void processTextForPages(Page[] pages) {
+        for (Page page : pages) {
+            if (isRecycled.get()) {
+                return;
+            }
+            if (page.texts == null) {
+                CodecPage page2 = codecDocument.getPage(page.index.docIndex);
+                page.texts = page2.getText();
+                page2.recycle();
+            }
+        }
+    }
+
+    @Override
+    public List<PageLink> getLinksForPage(int page) {
+        if (codecDocument == null || codecDocument.getPage(page) == null) {
+            return null;
+        }
+        return codecDocument.getPage(page).getPageLinks();
+    }
+
+    @Override
+    public TextWord[][] getTextForPage(int page) {
+        if (codecDocument == null) {
+            return null;
+        }
+        final CodecPage page1 = codecDocument.getPage(page);
+        if (page1 == null) {
+            return null;
+        }
+        return page1.getText();
+    }
+
+    @Override
+    public String getPageHTML(int page) {
+        if (codecDocument == null) {
+            return null;
+        }
+        final CodecPage page1 = codecDocument.getPage(page);
+        if (page1 == null) {
+            return null;
+        }
+        return page1.getPageHTML();
+    }
+
+    @Override
+    public String getFooterNote(String input, String chapter) {
+        if (codecDocument == null || codecDocument.getFootNotes() == null) {
+            return "";
+        }
+        return TxtUtils.getFooterNote(input, chapter, codecDocument.getFootNotes());
+    }
+
+    @Override
+    public List<String> getAttachemnts() {
+        return codecDocument.getMediaAttachments();
+    }
+
+    @Override
+    public CodecDocument getCodecDocument() {
+        return codecDocument;
+    }
+
+    @Override
+    public void shutdown() {
+        try {
+            executor.run.set(false);
+            synchronized (executor.run) {
+                executor.run.notifyAll();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    @Override
+    public void restore() {
+        try {
+            if (executor.run.get()) {
+                return;
+            }
+            executor = null;
+            executor = new ExecutorRunnable();
+            synchronized (executor.run) {
+                executor.run.notifyAll();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
 
     class ExecutorRunnable implements Runnable, org.ebookdroid.core.ExecutorRunnable {
 
@@ -563,7 +666,7 @@ public class DecodeServiceBase implements DecodeService {
             // TempHolder.lock.lock();
             try {
 
-                if (tasks!=null && !tasks.isEmpty()) {
+                if (tasks != null && !tasks.isEmpty()) {
                     final TaskComparator comp = new TaskComparator(viewState.get());
                     Task candidate = null;
                     int cindex = 0;
@@ -896,108 +999,6 @@ public class DecodeServiceBase implements DecodeService {
             return buf.toString();
         }
 
-    }
-
-    @Override
-    public boolean isPageSizeCacheable() {
-        return codecContext.isPageSizeCacheable();
-    }
-
-    @Override
-    public Map<Integer, CodecPageHolder> getPages() {
-        return pages;
-    }
-
-    @Override
-    public void processTextForPages(Page[] pages) {
-        for (Page page : pages) {
-            if (isRecycled.get()) {
-                return;
-            }
-            if (page.texts == null) {
-                CodecPage page2 = codecDocument.getPage(page.index.docIndex);
-                page.texts = page2.getText();
-                page2.recycle();
-            }
-        }
-    }
-
-    @Override
-    public List<PageLink> getLinksForPage(int page) {
-        if (codecDocument == null || codecDocument.getPage(page) == null) {
-            return null;
-        }
-        return codecDocument.getPage(page).getPageLinks();
-    }
-
-    @Override
-    public TextWord[][] getTextForPage(int page) {
-        if (codecDocument == null) {
-            return null;
-        }
-        final CodecPage page1 = codecDocument.getPage(page);
-        if (page1 == null) {
-            return null;
-        }
-        return page1.getText();
-    }
-
-    @Override
-    public String getPageHTML(int page) {
-        if (codecDocument == null) {
-            return null;
-        }
-        final CodecPage page1 = codecDocument.getPage(page);
-        if (page1 == null) {
-            return null;
-        }
-        return page1.getPageHTML();
-    }
-
-    @Override
-    public String getFooterNote(String input, String chapter) {
-        if (codecDocument == null || codecDocument.getFootNotes() == null) {
-            return "";
-        }
-        return TxtUtils.getFooterNote(input, chapter,codecDocument.getFootNotes());
-    }
-
-    @Override
-    public List<String> getAttachemnts() {
-        return codecDocument.getMediaAttachments();
-    }
-
-    @Override
-    public CodecDocument getCodecDocument() {
-        return codecDocument;
-    }
-
-    @Override
-    public void shutdown() {
-        try {
-            executor.run.set(false);
-            synchronized (executor.run) {
-                executor.run.notifyAll();
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    @Override
-    public void restore() {
-        try {
-            if (executor.run.get()) {
-                return;
-            }
-            executor = null;
-            executor = new ExecutorRunnable();
-            synchronized (executor.run) {
-                executor.run.notifyAll();
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
     }
 
 

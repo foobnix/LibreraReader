@@ -86,10 +86,11 @@ public class EpubContext extends PdfContext {
             muPdfDocument.setFootNotes(notes);
         }
 
-        new Thread("@T openDocument") {
+        Thread t= new Thread("@T openDocument") {
             @Override
             public void run() {
                 try {
+                    Thread.sleep(250);
                     muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
                     if (muPdfDocument.getFootNotes() == null) {
                         muPdfDocument.setFootNotes(getNotes(fileName));
@@ -100,8 +101,9 @@ public class EpubContext extends PdfContext {
                 }
             }
 
-            ;
-        }.start();
+        };
+        t.setPriority(Thread.MIN_PRIORITY);
+        t.start();
 
         return muPdfDocument;
     }

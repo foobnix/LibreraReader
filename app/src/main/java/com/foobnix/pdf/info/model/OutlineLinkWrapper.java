@@ -1,20 +1,14 @@
 package com.foobnix.pdf.info.model;
 
-import android.graphics.RectF;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.PageUrl;
 
-public class OutlineLinkWrapper implements CharSequence {
+public class OutlineLinkWrapper {
 
-    private final String title;
     public final int level;
-
+    private final String title;
     public String targetUrl;
     public int targetPage = -1;
-    public RectF targetRect;
     public long docHandle;
 
     public String linkUri;
@@ -69,47 +63,9 @@ public class OutlineLinkWrapper implements CharSequence {
             t = t.substring(0, title.indexOf("$"));
         }
         t = t.replace(Fb2Extractor.DIVIDER, "");
-        t = t.replaceAll("^\\s+","");
+        t = t.replaceAll("^\\s+", "");
         return t;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.CharSequence#charAt(int)
-     */
-    @Override
-    public char charAt(final int index) {
-        return title.charAt(index);
-    }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.CharSequence#length()
-     */
-    @Override
-    public int length() {
-        return title.length();
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.CharSequence#subSequence(int, int)
-     */
-    @Override
-    public CharSequence subSequence(final int start, final int end) {
-        return title.subSequence(start, end);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return title;
-    }
 }

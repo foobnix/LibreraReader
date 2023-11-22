@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
@@ -544,11 +545,12 @@ public abstract class HorizontalModeController extends DocumentController {
         }
         if (outline == null) {
             outline = new ArrayList<OutlineLinkWrapper>();
-            new Thread("@T getOutlineH") {
+            Thread thread = new Thread("@T getOutlineH") {
                 @Override
                 public void run() {
 
                     try {
+                        Thread.sleep(500);
                         for (OutlineLink ol : codeDocument.getOutline()) {
                             if (TempHolder.get().loadingCancelled) {
                                 return;
@@ -580,8 +582,10 @@ public abstract class HorizontalModeController extends DocumentController {
 
                 }
 
-                ;
-            }.start();
+
+            };
+            thread.setPriority(Thread.MIN_PRIORITY);
+            thread.start();
         } else {
             outlineResonse.onResultRecive(outline);
         }
