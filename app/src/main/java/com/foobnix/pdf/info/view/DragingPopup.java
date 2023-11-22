@@ -24,6 +24,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -254,8 +256,10 @@ public abstract class DragingPopup {
         try {
             contentView = getContentView(inflater);
         } catch (Exception e) {
+            LOG.e(e);
             contentView = new TextView(popupView.getContext());
-            ((TextView) contentView).setText(e.getMessage());
+            ((TextView) contentView).setText(LOG.toString(e));
+            ((TextView) contentView).setTextIsSelectable(true);
         }
 
         popupContent.addView(contentView);

@@ -2,6 +2,8 @@ package com.foobnix.android.utils;
 
 import android.util.Log;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -14,6 +16,14 @@ public class LOG {
         if (isEnable) {
             Log.d(TAG, statement);
         }
+    }
+
+
+
+    public static String toString(Exception e) {
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 
     public static void d(Object msg1, Object... statement) {
