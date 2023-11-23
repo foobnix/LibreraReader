@@ -14,6 +14,8 @@ import android.os.Build;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppData;
@@ -31,6 +33,30 @@ public class DictsHelper {
     public static int getHash(ActivityInfo activityInfo) {
         String s = activityInfo.name + activityInfo.packageName;
         return s.hashCode();
+    }
+
+    @NonNull
+    public static List<ResolveInfo> resolveInfosList(Intent intent, PackageManager pm) {
+        try {
+            return pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        } catch (Exception e) {
+            LOG.e(e);
+            try {
+                return pm.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+            } catch (Exception e1) {
+                LOG.e(e1);
+                return new ArrayList<>();
+            }
+
+        }
+    }
+
+    public static List<ResolveInfo> resolveInfosList(Context c, Intent intent) {
+        try {
+            return resolveInfosList(intent, c.getPackageManager());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 
     public static Intent getType1(String selecteText) {
@@ -113,10 +139,10 @@ public class DictsHelper {
 
     public static List<DictItem> getAllResolveInfoAsDictItem1(Context c, String text) {
         List<DictItem> items = new ArrayList<DictItem>();
-        items.addAll(getByType(c, getByIntent(c, getType0(text), text), "type0"));
-        items.addAll(getByType(c, getByIntent(c, getType1(text), text), "type1"));
-        items.addAll(getByType(c, getByIntent(c, getType2(text), text), "type2"));
-        items.addAll(getByType(c, getByIntent(c, getType3(text), text), "type3"));
+        items.addAll(getByType(c, resolveInfosList(c, getType0(text)), "type0"));
+        items.addAll(getByType(c, resolveInfosList(c, getType1(text)), "type1"));
+        items.addAll(getByType(c, resolveInfosList(c, getType2(text)), "type2"));
+        items.addAll(getByType(c, resolveInfosList(c, getType3(text)), "type3"));
 
         return items;
     }
@@ -163,7 +189,7 @@ public class DictsHelper {
                 if (dict.startsWith("type3")) {
                     intent = getType3(selectedText);
                 }
-                List<ResolveInfo> apps = getByIntent(c, intent, selectedText);
+                List<ResolveInfo> apps = resolveInfosList(c, intent);
                 for (final ResolveInfo app : apps) {
                     // String name = app.activityInfo.loadLabel(c.getPackageManager()).toString();
                     if (dictHash == DictsHelper.getHash(app.activityInfo)) {
@@ -191,11 +217,6 @@ public class DictsHelper {
 
     }
 
-    public static List<ResolveInfo> getByIntent(Context c, Intent intent, String text) {
-        PackageManager pm = c.getPackageManager();
-        final List<ResolveInfo> items = pm.queryIntentActivities(intent, 0);
-        return items;
-    }
 
     public static List<ResolveInfo> getAllResolveInfo(Context c, String text) {
         PackageManager pm = c.getPackageManager();
@@ -205,10 +226,10 @@ public class DictsHelper {
         Intent intentSearch = getType2(text);
         Intent intentSend = getType3(text);
 
-        final List<ResolveInfo> proccessCustom = pm.queryIntentActivities(intentProccessCustom, 0);
-        final List<ResolveInfo> proccessTextList = pm.queryIntentActivities(intentProccessText, 0);
-        final List<ResolveInfo> searchList = pm.queryIntentActivities(intentSearch, 0);
-        final List<ResolveInfo> sendList = pm.queryIntentActivities(intentSend, 0);
+        final List<ResolveInfo> proccessCustom = resolveInfosList(intentProccessCustom, pm);
+        final List<ResolveInfo> proccessTextList = resolveInfosList(intentProccessText, pm);
+        final List<ResolveInfo> searchList = resolveInfosList(intentSearch, pm);
+        final List<ResolveInfo> sendList = resolveInfosList(intentSend, pm);
 
         final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
         all.addAll(proccessCustom);

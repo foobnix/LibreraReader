@@ -69,6 +69,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -1715,10 +1716,10 @@ public class DragingDialogs {
 
                 PackageManager pm = anchor.getContext().getPackageManager();
 
-                final List<ResolveInfo> proccessTextList = pm.queryIntentActivities(intentProccessText, 0);
-                final List<ResolveInfo> searchList = pm.queryIntentActivities(intentSearch, 0);
-                final List<ResolveInfo> sendList = pm.queryIntentActivities(intentSend, 0);
-                final List<ResolveInfo> customList = pm.queryIntentActivities(intentCustom, 0);
+                final List<ResolveInfo> proccessTextList = DictsHelper.resolveInfosList(intentProccessText, pm);
+                final List<ResolveInfo> searchList = DictsHelper.resolveInfosList(intentSearch, pm);
+                final List<ResolveInfo> sendList = DictsHelper.resolveInfosList(intentSend, pm);
+                final List<ResolveInfo> customList = DictsHelper.resolveInfosList(intentCustom, pm);
 
                 final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
                 all.addAll(customList);
@@ -1941,6 +1942,8 @@ public class DragingDialogs {
         });
 
     }
+
+
 
     public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
         if (dc == null) {
