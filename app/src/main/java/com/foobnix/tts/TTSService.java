@@ -34,8 +34,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.media.session.MediaButtonReceiver;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
@@ -47,8 +49,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
-
-import com.foobnix.LibreraApp;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -295,9 +295,16 @@ public class TTSService extends Service {
         Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         mediaButtonIntent.setClass(this, MediaButtonReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
+        try {
+            mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
+        } catch (Exception e) {
+            LOG.e(e);
+
+        }
 
         //setSessionToken(mMediaSessionCompat.getSessionToken());
+
+
 
 
         // mMediaSessionCompat.setPlaybackState(new
@@ -350,12 +357,18 @@ public class TTSService extends Service {
         if (!isStartForeground) {
             if (TxtUtils.isNotEmpty(AppSP.get().lastBookPath)) {
                 try {
-                    Notification show = TTSNotification.show(AppSP.get().lastBookPath, AppSP.get().lastBookPage, AppSP.get().lastBookPageCount);
-                    if (show != null) {
-                        startForeground(TTSNotification.NOT_ID, show);
-                    } else {
-                        startServiceWithNotification();
-                    }
+                    TTSNotification.show(AppSP.get().lastBookPath, AppSP.get().lastBookPage, AppSP.get().lastBookPageCount, new ResultResponse<Notification>() {
+                        @Override
+                        public boolean onResultRecive(Notification result) {
+                            if (result != null) {
+                                startForeground(TTSNotification.NOT_ID, result);
+                            } else {
+                                startServiceWithNotification();
+                            }
+                            return false;
+                        }
+                    });
+
                 } catch (Exception e) {
                     LOG.e(e);
                     startServiceWithNotification();
@@ -501,7 +514,7 @@ public class TTSService extends Service {
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
             if (TTSEngine.get().isMp3PlayPause()) {
-                TTSNotification.show(AppSP.get().lastBookPath, -1, -1);
+                TTSNotification.show(AppSP.get().lastBookPath, -1, -1,null);
                 return START_STICKY;
             }
 
@@ -721,7 +734,7 @@ public class TTSService extends Service {
 
             TTSEngine.get().speek(firstPart);
 
-            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
+            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount(),null);
             LOG.d("TtsStatus send");
             EventBus.getDefault().post(new TtsStatus());
 

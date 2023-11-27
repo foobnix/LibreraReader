@@ -63,6 +63,12 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
 
 
+    implementation("androidx.media3:media3-session:1.2.0")
+    implementation("androidx.media3:media3-ui:1.2.0")
+    implementation("androidx.media3:media3-common:1.2.0")
+    implementation("androidx.media3:media3-exoplayer:1.2.0")
+
+
     implementation ("dev.burnoo:compose-remember-preference:1.0.1")
 
 

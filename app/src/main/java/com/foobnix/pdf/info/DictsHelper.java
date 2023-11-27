@@ -55,6 +55,7 @@ public class DictsHelper {
         try {
             return resolveInfosList(intent, c.getPackageManager());
         } catch (Exception e) {
+            LOG.e(e);
             return new ArrayList<>();
         }
     }

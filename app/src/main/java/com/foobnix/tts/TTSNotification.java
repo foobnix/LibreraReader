@@ -8,20 +8,24 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.NotificationTarget;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
@@ -29,13 +33,10 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
-
-import com.foobnix.LibreraApp;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -65,7 +66,7 @@ public class TTSNotification {
 
         @Override
         public void run() {
-            show(bookPath1, page1, pageCount);
+            show(bookPath1, page1, pageCount, null);
         }
     };
     private static Handler handler;
@@ -91,7 +92,7 @@ public class TTSNotification {
 
     }
 
-    public static Notification show(String bookPath, int page, int maxPages) {
+    public static void show(String bookPath, int page, int maxPages, ResultResponse<Notification> onResult) {
         bookPath1 = bookPath;
         page1 = page;
         pageCount = maxPages;
@@ -191,61 +192,68 @@ public class TTSNotification {
 
             String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
 
-            Bitmap bitmap = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
-
-            if (bitmap != null) {
-                remoteViews.setImageViewBitmap(R.id.ttsIcon, bitmap);
-                remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bitmap);
-            }
-
-
-            builder.setContentIntent(contentIntent) //
-                    .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
-                    .setColor(color)
-                    // .setLargeIcon(bookImage) //
-                    // .setTicker(context.getString(R.string.app_name)) //
-                    // .setWhen(System.currentTimeMillis()) //
-                    .setOngoing(true)//
-                    .setPriority(NotificationCompat.PRIORITY_HIGH) //
-                    //.setCategory(NotificationCompat.CATEGORY_)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
+            Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
+                    remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
 
 
-                    .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+                    builder.setContentIntent(contentIntent) //
+                            .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
+                            .setColor(color)
+                            // .setLargeIcon(bookImage) //
+                            // .setTicker(context.getString(R.string.app_name)) //
+                            // .setWhen(System.currentTimeMillis()) //
+                            .setOngoing(true)//
+                            .setPriority(NotificationCompat.PRIORITY_HIGH) //
+                            //.setCategory(NotificationCompat.CATEGORY_)
+                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
 
 
-                    //.setSmallIcon(android.R.color.transparent)
+                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
 
 
-                    // .addAction(R.drawable.glyphicons_175_pause,
-                    // context.getString(R.string.to_paly_pause), playPause)//
-                    // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
-                    // next)//
-                    // .addAction(R.drawable.glyphicons_177_forward,
-                    // context.getString(R.string.stop), stopDestroy)//
-                    // .setContentTitle(fileMetaBookName) //
-                    // .setContentText(pageNumber) //
-                    // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
-                    // .addAction(action)//
-                    //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                    .setSilent(true)
-                    .setCustomBigContentView(remoteViews) ///
-                    .setCustomContentView(remoteViewsSmall); ///
+                            //.setSmallIcon(android.R.color.transparent)
 
 
-            Notification n = builder.build(); //
+                            // .addAction(R.drawable.glyphicons_175_pause,
+                            // context.getString(R.string.to_paly_pause), playPause)//
+                            // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
+                            // next)//
+                            // .addAction(R.drawable.glyphicons_177_forward,
+                            // context.getString(R.string.stop), stopDestroy)//
+                            // .setContentTitle(fileMetaBookName) //
+                            // .setContentText(pageNumber) //
+                            // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
+                            // .addAction(action)//
+                            //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                            .setSilent(true)
+                            .setCustomBigContentView(remoteViews) ///
+                            .setCustomContentView(remoteViewsSmall); ///
+                    Notification n = builder.build(); //
+
+                    nm.notify(NOT_ID, n);
+                    if (onResult != null) {
+                        onResult.onResultRecive(n);
+                    }
+
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                }
+            });
 
 
-            nm.notify(NOT_ID, n);
-            if (bitmap == null) {
-                Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
-                Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
-            }
+            // if (bitmap == null) {
+            //     Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
+            //     Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
+            //    }
 
-            return n;
         } catch (Exception e) {
             LOG.e(e);
-            return null;
         }
     }
 
