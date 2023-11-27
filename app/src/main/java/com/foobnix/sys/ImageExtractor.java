@@ -1,6 +1,5 @@
 package com.foobnix.sys;
 
-import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_AND_DIRS_FILTER;
 import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_FILES_ONLY;
 
 import android.content.Context;
@@ -14,7 +13,6 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
 import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Build;
@@ -74,7 +72,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -237,7 +234,6 @@ public class ImageExtractor {
         return BaseExtractor.getBookCoverWithTitle(msg, name, true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
             LOG.d("Cover-PDF-navite");
@@ -269,7 +265,7 @@ public class ImageExtractor {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
         }
 
-        if(AppState.get().isFolderPreview) {
+        if (AppState.get().isFolderPreview) {
             File root = new File(path);
             if (root.isDirectory()) {
                 File[] listFiles = root.listFiles(SUPPORTED_EXT_FILES_ONLY);
@@ -340,7 +336,18 @@ public class ImageExtractor {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
-            cover = proccessOtherPage(pageUrl);
+
+            if (BookType.PDF.is(unZipPath) && (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT)) {
+                LOG.d("Native-PDF-cover", pageUrl);
+                cover = coverPDFNative(pageUrl);
+                if (cover == null) {
+                    LOG.d("Native-PDF-cover", "error", pageUrl);
+                    cover = proccessOtherPage(pageUrl);
+                }
+            } else {
+                cover = proccessOtherPage(pageUrl);
+            }
+
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FOLDER.is(unZipPath)) {
@@ -515,7 +522,7 @@ public class ImageExtractor {
             TextWord[][] text = pageCodec.getText();
             PageImageState.get().pagesText.put(pageUrl.getPage(), text);
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
-            if(BookType.PDF.is(path)) {
+            if (BookType.PDF.is(path)) {
                 PageImageState.get().pagesAnnotation.put(pageUrl.getPage(), pageCodec.getAnnotations());
             }
             LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);

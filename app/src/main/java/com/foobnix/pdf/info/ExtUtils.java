@@ -963,7 +963,7 @@ public class ExtUtils {
             public void run() {
                 showDocumentInner(c, uri, percent, playList);
             }
-        });
+        },true);
 
     }
 

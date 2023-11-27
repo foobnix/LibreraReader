@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-
 import com.foobnix.LibreraApp;
 
 import java.util.Random;
@@ -22,9 +21,22 @@ public class Safe {
     static int counter;
 
     public static void run(final Runnable action) {
-        if(LibreraApp.context == null ){
+        run(action, false);
+    }
+
+    public static void run(final Runnable action, boolean fromLibrary) {
+
+
+        if (LibreraApp.context == null) {
             return;
         }
+        LOG.d("Safe fromLibrary", fromLibrary);
+        if (fromLibrary) {
+            action.run();
+            return;
+        }
+
+
         LOG.d("Safe-isPaused", Glide.with(LibreraApp.context).isPaused());
         if (Glide.with(LibreraApp.context).isPaused()) {
             Glide.with(LibreraApp.context).resumeRequestsRecursive();
@@ -43,7 +55,7 @@ public class Safe {
                     }
 
                     @Override
-                    public void onLoadCleared(@Nullable  Drawable placeholder) {
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
 
                     }
 
