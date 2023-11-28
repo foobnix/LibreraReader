@@ -22,11 +22,6 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <uses-feature
-        android:name="android.hardware.type.automotive"
-        android:required="true" />
-
-
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -84,40 +79,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
-
-        <!--
-        <service
-            android:name="com.foobnix.car.LibreraAppService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="androidx.car.app.CarAppService" />
-                <category android:name="androidx.car.app.category.POI"/>
-            </intent-filter>
-        </service>
-        -->
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
-
-        <meta-data
-            android:name="androidx.car.app.minCarApiLevel"
-            android:value="1" />
-
-        <meta-data
-            android:name="androidx.car.app.TintableAttributionIcon"
-            android:resource="@drawable/dropbox" />
-
-        <service android:name="com.foobnix.car.MyMediaBrowserService"
-            android:foregroundServiceType="mediaPlayback"
-            android:stopWithTask="false"
-            android:enabled="true"
-            android:exported="true">
-                <intent-filter>
-                    <action android:name="android.media.browse.MediaBrowserService" />
-            </intent-filter>
-        </service>
-
-
 
         <activity
             android:name="com.foobnix.zipmanager.SendReceiveActivity"

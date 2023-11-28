@@ -32,7 +32,9 @@ public class Safe {
         }
         LOG.d("Safe fromLibrary", fromLibrary);
         if (fromLibrary) {
-            action.run();
+            if (action != null) {
+                action.run();
+            }
             return;
         }
 

@@ -101,7 +101,7 @@ android {
     flavorDimensions.add("version")
     productFlavors {
         old {
-            minSdk 14
+            //minSdk 14
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
@@ -341,7 +341,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.16.2'
+    implementation 'org.jsoup:jsoup:1.17.1'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
@@ -360,9 +360,9 @@ dependencies {
     implementation "commons-logging:commons-logging-api:1.1"
 
 
-    implementation "androidx.car.app:app:1.4.0-rc01"
-    implementation("androidx.media3:media3-ui:1.1.1")
-    implementation("androidx.media3:media3-session:1.1.1")
+    //implementation "androidx.car.app:app:1.4.0-rc01"
+    //implementation("androidx.media3:media3-ui:1.1.1")
+    //implementation("androidx.media3:media3-session:1.1.1")
 
 
     //implementation "org.nanohttpd:nanohttpd:2.3.1"
