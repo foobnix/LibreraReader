@@ -69,14 +69,14 @@ echo "================== "
 
 if [ "$1" == "clean_ndk" ]; then
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build clean
-/Users/dev/Library/Android/Sdk/ndk/25.2.9519653/ndk-build clean
+/Users/dev/Library/Android/Sdk/ndk/26.1.10909125/ndk-build clean
 
 rm -rf $MUPDF_JAVA/obj
 fi
 
 /home/dev/Android/Sdk/ndk/21.4.7075529/ndk-build NDK_APPLICATION_MK=jni/Application-16.mk
 
-NDK_VERSION="25.2.9519653"
+NDK_VERSION="26.1.10909125"
 for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
 do
   if [ -f "$NDK" ]; then

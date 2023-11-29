@@ -1,7 +1,7 @@
 package com.foobnix;
 
-import android.content.ComponentCallbacks2;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -9,7 +9,6 @@ import android.os.StrictMode;
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
 
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
@@ -17,15 +16,11 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
-import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 
 public class LibreraApp extends MultiDexApplication {
@@ -102,38 +97,23 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Height", Dips.screenHeight());
 
 
-        if (false) {
+        if (AppsConfig.IS_FDROID || BuildConfig.DEBUG) {
+            LOG.writeCrashTofile = true;
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {
-                    LOG.e(e);
-                    e.printStackTrace();
-                    try {
+                    LOG.uncaughtException(e);
 
-                        StringWriter errors = new StringWriter();
-                        e.printStackTrace(new PrintWriter(errors));
-                        String log = errors.toString();
-                        log = log + "/n";
-                        log = log + Build.MANUFACTURER + "/n";
-                        log = log + Build.PRODUCT + "/n";
-                        log = log + Build.DEVICE + "/n";
-                        log = log + Build.BRAND + "/n";
-                        log = log + Build.BRAND + "/n";
-                        log = log + Build.MODEL + "/n";
-                        log = log + Build.VERSION.SDK_INT + "/n";
-                        Apps.onCrashEmail(context, log, context.getString(R.string.application_error_please_send_this_report_by_emial));
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
 
-                        System.exit(1);
+                    System.exit(0);
 
-                    } catch (Exception e1) {
-                        LOG.e(e1);
-                    }
                 }
             });
         }
-        //if(LOG.isEnable){
-        //  IMG.clearDiscCache();
-        //}
 
 
     }

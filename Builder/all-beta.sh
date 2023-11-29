@@ -4,6 +4,7 @@
 #Builder folder
 ./link_to_mupdf_1.23.5.sh
 
+#/usr/libexec/java_home -V
 export JAVA_HOME=`/usr/libexec/java_home -v 17`
 echo "================== "
 java -version
@@ -25,7 +26,7 @@ cd ../
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*ß
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.apk
 
 rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*

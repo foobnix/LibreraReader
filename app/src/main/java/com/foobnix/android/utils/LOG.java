@@ -2,6 +2,10 @@ package com.foobnix.android.utils;
 
 import android.util.Log;
 
+import com.foobnix.model.AppProfile;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
@@ -12,6 +16,8 @@ public class LOG {
     public static String TAG = "DEBUG";
     public static String DELIMITER = "|";
 
+    public static boolean writeCrashTofile = false;
+
     public static void printlog(String statement) {
         if (isEnable) {
             Log.d(TAG, statement);
@@ -19,8 +25,7 @@ public class LOG {
     }
 
 
-
-    public static String toString(Exception e) {
+    public static String toString(Throwable e) {
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));
         return sw.toString();
@@ -54,8 +59,32 @@ public class LOG {
     }
 
     public static void e(Throwable e, Object... statement) {
+        e(e, false, statement);
+    }
+
+    public static void uncaughtException(Throwable e, Object... statement) {
+        e(e, true, statement);
+    }
+
+
+    private static void e(Throwable e, Boolean uncaughtException, Object... statement) {
         if (isEnable) {
             Log.e(TAG, asString(statement), e);
+        }
+        if (writeCrashTofile) {
+            try {
+                FileWriter fw = new FileWriter(new File(AppProfile.SYNC_FOLDER_ROOT, "crash.txt"), true);
+                if (uncaughtException) {
+                    fw.append("\n ======== uncaughtException =========== \n");
+                }
+                fw.append(toString(e));
+                fw.append("\n =================== \n");
+
+                fw.flush();
+                fw.close();
+            } catch (Exception e1) {
+                Log.e(TAG, asString(statement), e1);
+            }
         }
     }
 
