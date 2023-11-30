@@ -6,6 +6,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.multidex.BuildConfig;
+
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -27,6 +29,7 @@ public class AppsConfig {
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
 
     public static final boolean IS_PRO = BuildConfig.FLAVOR.equals("pro");
+    public static final boolean IS_WRITE_LOGS = IS_FDROID || BuildConfig.DEBUG;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 

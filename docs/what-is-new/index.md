@@ -4,6 +4,13 @@ layout: main
 
 # What is new
 
+### [8.9.76] Show print edition page numbers (Epub3)
+
+||||
+|-|-|-|
+|![](8.9.76a.png)|![](8.9.76b.png)||
+
+
 ### [8.9.54] Accent color
 
 ||||

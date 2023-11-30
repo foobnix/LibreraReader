@@ -97,7 +97,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Height", Dips.screenHeight());
 
 
-        if (AppsConfig.IS_FDROID || BuildConfig.DEBUG) {
+        if (AppsConfig.IS_WRITE_LOGS) {
             LOG.writeCrashTofile = true;
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
