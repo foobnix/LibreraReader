@@ -75,6 +75,8 @@ public class EpubExtractor extends BaseExtractor {
 
     public static void proccessHypensApache(String input, String output, final Map<String, String> notes) throws Exception {
 
+        Fb2Extractor.epub3Pages.clear();
+
         LOG.d("proccessHypens2", input, output);
 
         ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(input);

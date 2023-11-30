@@ -80,7 +80,7 @@ public class MuPdfLinks {
 
     private static native int getPageLinkTargetPage(long dochandle, long linkhandle);
 
-    private static native int getLinkPage(long dochandle, String id);
+    public static native int getLinkPage(long dochandle, String id);
 
     public static int getLinkPageWrapper(long dochandle, String id) {
         if (TxtUtils.isEmpty(id)) {
@@ -88,6 +88,7 @@ public class MuPdfLinks {
         }
         TempHolder.lock.lock();
         try {
+            LOG.d("getLinkPage",id);
             return getLinkPage(dochandle, id);
         } finally {
             TempHolder.lock.unlock();

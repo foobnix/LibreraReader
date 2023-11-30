@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -82,7 +84,9 @@ public class Fb2Extractor extends BaseExtractor {
             "   \n" + //
             " </navMap>\n" + //
             "</ncx>";//
+    public static Map<Integer, String> epub3Pages = new HashMap();
     static Fb2Extractor inst = new Fb2Extractor();
+    static Pattern pattern = Pattern.compile("<a id=\"page(\\d+)\"");
     public Map<String, String> genresRus = new HashMap<>();
 
     private Fb2Extractor() {
@@ -143,7 +147,6 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-
     public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
@@ -190,10 +193,15 @@ public class Fb2Extractor extends BaseExtractor {
             // LOG.d("gen-in", line);
             line = accurateLine(line);
 
-            if (AppState.get().isShowPageNumbers && line.contains("<a id=\"page")) {
-                String replacement = "<br/><pn>page $1</pn><br/>";
-                line = line.replaceAll("<a id=\"page(\\d+)\"></a>", replacement);
-                line = line.replaceAll("<a id=\"page(\\d+)\"/>", replacement);
+            if (AppState.get().isShowPageNumbers) {
+                Matcher matcher = pattern.matcher(line);
+                while (matcher.find()) {
+                    int pageId = Integer.parseInt(matcher.group(1));
+                    //LOG.d("epub3Pages 1", line);
+                    line = line.replace("<a id=\"page" + pageId, "<br/><pn>page " + pageId + "</pn><br/><a id=\"page" + pageId);
+                    epub3Pages.put(pageId, name + "#page" + pageId);
+                    //LOG.d("epub3Pages 2", line);
+                }
             }
 
             if (AppState.get().isReferenceMode) {

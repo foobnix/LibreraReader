@@ -17,11 +17,30 @@ public class MuPdfOutline {
 
     private long docHandle;
 
+    private static native String getTitle(long dochandle, long outlinehandle);
+
+    private static native String getLink(long outlinehandle, long dochandle);
+
+    private static native String getLinkUri(long outlinehandle, long dochandle);
+
+    private static native int fillLinkTargetPoint(long outlinehandle, float[] point);
+
+    private static native long getNext(long outlinehandle);
+
+    private static native long getChild(long outlinehandle);
+
+    private static native long open(long dochandle);
+
+    private static native void free(long dochandle);
+
     public List<OutlineLink> getOutline(final long dochandle) {
         final List<OutlineLink> ls = new ArrayList<OutlineLink>();
         docHandle = dochandle;
         TempHolder.lock.lock();
         try {
+
+
+
             final long outline = open(dochandle);
             ttOutline(ls, outline, 0);
             free(dochandle);
@@ -30,6 +49,14 @@ public class MuPdfOutline {
         } finally {
             TempHolder.lock.unlock();
         }
+
+        if(AppState.get().isShowPageNumbers) {
+            ls.add(new OutlineLink("Epub3 pages", "", 0, docHandle, ""));
+            for (int i : Fb2Extractor.epub3Pages.keySet()) {
+                ls.add(new OutlineLink("Page " + i, Fb2Extractor.epub3Pages.get(i), 1, docHandle, Fb2Extractor.epub3Pages.get(i)));
+            }
+        }
+
         return ls;
     }
 
@@ -82,20 +109,4 @@ public class MuPdfOutline {
             outline = getNext(outline);
         }
     }
-
-    private static native String getTitle(long dochandle, long outlinehandle);
-
-    private static native String getLink(long outlinehandle, long dochandle);
-
-    private static native String getLinkUri(long outlinehandle, long dochandle);
-
-    private static native int fillLinkTargetPoint(long outlinehandle, float[] point);
-
-    private static native long getNext(long outlinehandle);
-
-    private static native long getChild(long outlinehandle);
-
-    private static native long open(long dochandle);
-
-    private static native void free(long dochandle);
 }
