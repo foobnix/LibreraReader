@@ -7,6 +7,7 @@ import android.util.Base64;
 import com.BaseExtractor;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
@@ -18,7 +19,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.sys.TempHolder;
 
-import com.foobnix.LibreraApp;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -143,6 +143,7 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
+
     public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
@@ -188,6 +189,12 @@ public class Fb2Extractor extends BaseExtractor {
 
             // LOG.d("gen-in", line);
             line = accurateLine(line);
+
+            if (AppState.get().isShowPageNumbers && line.contains("<a id=\"page")) {
+                String replacement = "<br/><pn>page $1</pn><br/>";
+                line = line.replaceAll("<a id=\"page(\\d+)\"></a>", replacement);
+                line = line.replaceAll("<a id=\"page(\\d+)\"/>", replacement);
+            }
 
             if (AppState.get().isReferenceMode) {
 

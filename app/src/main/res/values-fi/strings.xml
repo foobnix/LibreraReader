@@ -511,6 +511,7 @@
    <string name="create_tag">Luo tunniste</string>
    <string name="add_tags">Lisää tunnisteita</string>
    <string name="play">Toista</string>
+   <string name="pause">Tauko</string>
    <string name="favorite">Suosikki</string>
    <string name="playlists">Soittolistoja</string>
    <string name="tags">Tunnisteet</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
    <string name="accent">Aksentti</string>
+   <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
 </resources>

@@ -511,6 +511,7 @@
    <string name="create_tag">Создать тег</string>
    <string name="add_tags">Добавить тег(и)</string>
    <string name="play">Проиграть</string>
+   <string name="pause">Пауза</string>
    <string name="favorite">Избранные</string>
    <string name="playlists">Плейлисты</string>
    <string name="tags">Теги</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
    <string name="accent">Цвет акцента</string>
+   <string name="show_print_edition_page_numbers_epub3">Показать номера страниц печатного издания (epub3)</string>
 </resources>

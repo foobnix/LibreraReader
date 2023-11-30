@@ -511,6 +511,7 @@
    <string name="create_tag">Nový štítek</string>
    <string name="add_tags">Přidat štítky</string>
    <string name="play">Přehrát</string>
+   <string name="pause">Pauza</string>
    <string name="favorite">Nejoblíbenější</string>
    <string name="playlists">Playlist</string>
    <string name="tags">Štítky</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
    <string name="accent">Přízvuk</string>
+   <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
 </resources>

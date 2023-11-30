@@ -511,6 +511,7 @@
    <string name="create_tag">Creați etichetă</string>
    <string name="add_tags">Adaugă etichete</string>
    <string name="play">Joaca</string>
+   <string name="pause">Pauză</string>
    <string name="favorite">Favorit</string>
    <string name="playlists">Liste de redare</string>
    <string name="tags">Etichete</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
    <string name="accent">Accent</string>
+   <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
 </resources>

@@ -511,6 +511,7 @@
    <string name="create_tag">Maak een tag</string>
    <string name="add_tags">Tags toevoegen</string>
    <string name="play">Spelen</string>
+   <string name="pause">Pauze</string>
    <string name="favorite">Favoriet</string>
    <string name="playlists">Afspeellijsten</string>
    <string name="tags">Tags</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
    <string name="accent">Accent</string>
+   <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
 </resources>

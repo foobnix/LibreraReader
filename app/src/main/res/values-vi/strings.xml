@@ -511,6 +511,7 @@
    <string name="create_tag">Tạo thẻ</string>
    <string name="add_tags">Thêm thẻ</string>
    <string name="play">Chơi</string>
+   <string name="pause">Tạm ngừng</string>
    <string name="favorite">Yêu thích</string>
    <string name="playlists">Danh sách phát</string>
    <string name="tags">Thẻ</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
    <string name="accent">Giọng</string>
+   <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
 </resources>

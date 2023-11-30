@@ -511,6 +511,7 @@
    <string name="create_tag">Criar tag</string>
    <string name="add_tags">Adicionar tags</string>
    <string name="play">Toque</string>
+   <string name="pause">Pausa</string>
    <string name="favorite">Favorito</string>
    <string name="playlists">Listas de reprodução</string>
    <string name="tags">Tag</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Nível anti-aliasing</string>
    <string name="folder_preview">Visualização da pasta</string>
    <string name="accent">Sotaque</string>
+   <string name="show_print_edition_page_numbers_epub3">Mostrar números de página da edição impressa (epub3)</string>
 </resources>

@@ -3688,6 +3688,18 @@ public class DragingDialogs {
                         BookCSS.get().isAutoHypens = true;
                     }
                 });
+                CheckBox isShowPageNumbers = inflate.findViewById(R.id.isShowPageNumbers);
+                isShowPageNumbers.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
+                isShowPageNumbers.setChecked(AppState.get().isShowPageNumbers);
+                isShowPageNumbers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowPageNumbers = isChecked;
+                        BookCSS.get().isAutoHypens = true;
+                    }
+                });
+
 
                 CheckBox isOLED = inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);

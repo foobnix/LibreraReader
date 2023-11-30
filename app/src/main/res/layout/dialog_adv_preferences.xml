@@ -473,6 +473,12 @@
             android:layout_height="wrap_content"
             android:text="@string/reference_mode_like_in_calibre_viewer" />
 
+        <CheckBox
+            android:id="@+id/isShowPageNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_print_edition_page_numbers_epub3" />
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/decodingThreadPriority"
             android:layout_width="match_parent"

@@ -511,6 +511,7 @@
    <string name="create_tag">टैग बनाएं</string>
    <string name="add_tags">टैग लगा दो</string>
    <string name="play">प्ले</string>
+   <string name="pause">विराम</string>
    <string name="favorite">पसंदीदा</string>
    <string name="playlists">प्लेलिस्ट</string>
    <string name="tags">टैग</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
    <string name="accent">लहज़ा</string>
+   <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>
 </resources>

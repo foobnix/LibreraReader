@@ -511,6 +511,7 @@
    <string name="create_tag">إنشاء علامة</string>
    <string name="add_tags">اضف اشارة</string>
    <string name="play">لعب</string>
+   <string name="pause">يوقف</string>
    <string name="favorite">مفضل</string>
    <string name="playlists">قوائم التشغيل</string>
    <string name="tags">الكلمات</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">مستوى الصقل</string>
    <string name="folder_preview">معاينة المجلد</string>
    <string name="accent">لهجة</string>
+   <string name="show_print_edition_page_numbers_epub3">إظهار أرقام صفحات الطبعة المطبوعة (epub3)</string>
 </resources>

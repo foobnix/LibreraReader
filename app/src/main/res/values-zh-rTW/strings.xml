@@ -511,6 +511,7 @@
    <string name="create_tag">創建標籤</string>
    <string name="add_tags">添加標籤</string>
    <string name="play">播放</string>
+   <string name="pause">暫停</string>
    <string name="favorite">收藏</string>
    <string name="playlists">播單</string>
    <string name="tags">標籤</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
    <string name="accent">口音</string>
+   <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
 </resources>

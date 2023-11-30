@@ -511,6 +511,7 @@
    <string name="create_tag">Opprett tagg</string>
    <string name="add_tags">Legg til merkelapper</string>
    <string name="play">Spille</string>
+   <string name="pause">Pause</string>
    <string name="favorite">Favoritt</string>
    <string name="playlists">Spillelister</string>
    <string name="tags">Tags</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
    <string name="accent">Aksent</string>
+   <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>
 </resources>

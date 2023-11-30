@@ -511,6 +511,7 @@
    <string name="create_tag">Yeni etiket</string>
    <string name="add_tags">Etiket ekle</string>
    <string name="play">Oynat</string>
+   <string name="pause">Duraklat</string>
    <string name="favorite">Favori</string>
    <string name="playlists">Çalma listeleri</string>
    <string name="tags">Etiketler</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Kenar yumuşatma seviyesi</string>
    <string name="folder_preview">Klasör önizlemesi</string>
    <string name="accent">Aksan</string>
+   <string name="show_print_edition_page_numbers_epub3">Basılı baskı sayfa numaralarını göster (epub3)</string>
 </resources>

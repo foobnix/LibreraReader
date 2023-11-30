@@ -511,6 +511,7 @@
    <string name="create_tag">Címke létrehozása</string>
    <string name="add_tags">Címkék hozzáadása</string>
    <string name="play">Játék</string>
+   <string name="pause">Szünet</string>
    <string name="favorite">Kedvenc</string>
    <string name="playlists">Lejátszási listák</string>
    <string name="tags">Címkék</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Élsimítási szint</string>
    <string name="folder_preview">Mappa előnézete</string>
    <string name="accent">Hangsúly</string>
+   <string name="show_print_edition_page_numbers_epub3">Nyomtatott kiadás oldalszámainak megjelenítése (epub3)</string>
 </resources>

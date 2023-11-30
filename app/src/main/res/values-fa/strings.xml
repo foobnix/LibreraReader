@@ -511,6 +511,7 @@
    <string name="create_tag">ایجاد تگ</string>
    <string name="add_tags">افزودن برچسب</string>
    <string name="play">بازی</string>
+   <string name="pause">مکث</string>
    <string name="favorite">مورد علاقه</string>
    <string name="playlists">لیست های پخش</string>
    <string name="tags">برچسب ها</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
    <string name="folder_preview">پیش نمایش پوشه</string>
    <string name="accent">لهجه</string>
+   <string name="show_print_edition_page_numbers_epub3">نمایش شماره صفحات نسخه چاپی (epub3)</string>
 </resources>

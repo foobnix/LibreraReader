@@ -511,6 +511,7 @@
    <string name="create_tag">Crea tag</string>
    <string name="add_tags">Aggiungere etichette</string>
    <string name="play">Giocare</string>
+   <string name="pause">Pausa</string>
    <string name="favorite">Preferiti</string>
    <string name="playlists">Playlist</string>
    <string name="tags">Tag</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Livello di anti-aliasing</string>
    <string name="folder_preview">Anteprima della cartella</string>
    <string name="accent">Accento</string>
+   <string name="show_print_edition_page_numbers_epub3">Mostra i numeri di pagina dell\'edizione cartacea (epub3)</string>
 </resources>

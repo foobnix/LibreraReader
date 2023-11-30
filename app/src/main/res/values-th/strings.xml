@@ -511,6 +511,7 @@
    <string name="create_tag">สร้างแท็ก</string>
    <string name="add_tags">เพิ่มแท็ก</string>
    <string name="play">เล่น</string>
+   <string name="pause">หยุดชั่วคราว</string>
    <string name="favorite">ที่ชื่นชอบ</string>
    <string name="playlists">รายการเพลง</string>
    <string name="tags">แท็ก</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">ระดับการต่อต้านนามแฝง</string>
    <string name="folder_preview">ดูตัวอย่างโฟลเดอร์</string>
    <string name="accent">สำเนียง</string>
+   <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
 </resources>

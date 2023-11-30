@@ -511,6 +511,7 @@
    <string name="create_tag">Нов маркер</string>
    <string name="add_tags">Добави тагове</string>
    <string name="play">Пусни</string>
+   <string name="pause">Пауза</string>
    <string name="favorite">Любим</string>
    <string name="playlists">Плейлисти</string>
    <string name="tags">Тагове</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
    <string name="accent">Акцент</string>
+   <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
 </resources>

@@ -420,6 +420,9 @@ public class AppState {
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
     public boolean isReferenceMode = false;
+
+    public boolean isShowPageNumbers = false;
+    
     public boolean isEnableAccessibility = false;
     @IgnoreHashCode
     @Deprecated

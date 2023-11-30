@@ -511,6 +511,7 @@
    <string name="create_tag">Eticheta noa</string>
    <string name="add_tags">Annanghe etichetas</string>
    <string name="play">Riprodui</string>
+   <string name="pause">Pause</string>
    <string name="favorite">Preferidu</string>
    <string name="playlists">Iscalitas</string>
    <string name="tags">Etichetas</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Anti-aliasing level</string>
    <string name="folder_preview">Folder preview</string>
    <string name="accent">Accent</string>
+   <string name="show_print_edition_page_numbers_epub3">Show print edition page numbers (epub3)</string>
 </resources>

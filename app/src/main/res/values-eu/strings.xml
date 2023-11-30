@@ -511,6 +511,7 @@
    <string name="create_tag">Sortu etiketa</string>
    <string name="add_tags">Gehitu etiketak</string>
    <string name="play">Erreproduzitu</string>
+   <string name="pause">Pausa</string>
    <string name="favorite">Gogokoa</string>
    <string name="playlists">Erreprodukzio zerrendak</string>
    <string name="tags">Etiketak</string>
@@ -596,7 +597,7 @@
    <string name="new_file">Fitxategi berria</string>
    <string name="paste_or_type_text_in_here">Itsatsi edo idatzi bertan</string>
    <string name="go_to_the_folder">Joan karpetara</string>
-   <string name="you_should_enable_allow_battery">\"Bateria\" &gt; \"Baimendu atzeko planoko jarduera\" gaitu beharko zenuke atzeko planoan entzuteko.</string>
+   <string name="you_should_enable_allow_battery">\"Bateria\" > \"Baimendu atzeko planoko jarduera\" gaitu beharko zenuke atzeko planoan entzuteko.</string>
    <string name="use_calibre_metadata">Erabili calibre metadata.opf</string>
    <string name="icons_only">Ikonoak soilik</string>
    <string name="migration">Migrazioa</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
    <string name="accent">Azentua</string>
+   <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
 </resources>

@@ -511,6 +511,7 @@
    <string name="create_tag">Тег құрыңыз</string>
    <string name="add_tags">Тегтерді қосу</string>
    <string name="play">Ойнату</string>
+   <string name="pause">Үзіліс</string>
    <string name="favorite">Сүйікті</string>
    <string name="playlists">Ойнату тізімдері</string>
    <string name="tags">Тегтер</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
    <string name="accent">Екпін</string>
+   <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
 </resources>

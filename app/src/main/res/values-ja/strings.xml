@@ -511,6 +511,7 @@
    <string name="create_tag">タグを作成する</string>
    <string name="add_tags">タグを追加する</string>
    <string name="play">再生</string>
+   <string name="pause">一時停止</string>
    <string name="favorite">お気に入り</string>
    <string name="playlists">プレイリスト</string>
    <string name="tags">タグ</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
    <string name="folder_preview">フォルダーのプレビュー</string>
    <string name="accent">アクセント</string>
+   <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
 </resources>

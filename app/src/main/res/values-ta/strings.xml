@@ -511,6 +511,7 @@
    <string name="create_tag">புதிய குறிச்சொல்</string>
    <string name="add_tags">குறிச்சொற்களைச் சேர்க்கவும்</string>
    <string name="play">தொடங்கு</string>
+   <string name="pause">இடைநிறுத்தம்</string>
    <string name="favorite">பிடித்தது</string>
    <string name="playlists">பட்டியல்</string>
    <string name="tags">குறிச்சொற்கள்</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">மாற்று மாற்று நிலை</string>
    <string name="folder_preview">கோப்புறை முன்னோட்டம்</string>
    <string name="accent">உச்சரிப்பு</string>
+   <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
 </resources>

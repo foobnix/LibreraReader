@@ -511,6 +511,7 @@
    <string name="create_tag">Tag nua</string>
    <string name="add_tags">Cuir clibeanna leis</string>
    <string name="play">Imirt</string>
+   <string name="pause">Sos</string>
    <string name="favorite">Is fearr leat</string>
    <string name="playlists">Seinmliostaí</string>
    <string name="tags">Clibeanna</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
    <string name="accent">Accent</string>
+   <string name="show_print_edition_page_numbers_epub3">Taispeáin uimhreacha leathanaigh eagrán priontála (epub3)</string>
 </resources>

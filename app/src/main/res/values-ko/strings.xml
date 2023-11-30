@@ -511,6 +511,7 @@
    <string name="create_tag">태그 생성</string>
    <string name="add_tags">태그 추가</string>
    <string name="play">재생</string>
+   <string name="pause">정지시키다</string>
    <string name="favorite">즐겨찾기</string>
    <string name="playlists">재생 목록</string>
    <string name="tags">태그</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
    <string name="folder_preview">폴더 미리보기</string>
    <string name="accent">악센트</string>
+   <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>
 </resources>

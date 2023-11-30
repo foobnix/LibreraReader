@@ -511,6 +511,7 @@
    <string name="create_tag">צור תג</string>
    <string name="add_tags">הוסף תגיות</string>
    <string name="play">שחק</string>
+   <string name="pause">הַפסָקָה</string>
    <string name="favorite">אהוב</string>
    <string name="playlists">פלייליסטים</string>
    <string name="tags">תגים</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
    <string name="accent">מִבטָא</string>
+   <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
 </resources>

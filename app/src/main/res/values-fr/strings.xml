@@ -511,6 +511,7 @@
    <string name="create_tag">Créer un mot-clé</string>
    <string name="add_tags">Ajouter des mots-clés</string>
    <string name="play">Jouer</string>
+   <string name="pause">Pause</string>
    <string name="favorite">Préféré</string>
    <string name="playlists">Playlists</string>
    <string name="tags">Mots-clés</string>
@@ -655,4 +656,5 @@
    <string name="anti_aliasing_level">Niveau d\'anticrénelage</string>
    <string name="folder_preview">Aperçu du dossier</string>
    <string name="accent">Accent</string>
+   <string name="show_print_edition_page_numbers_epub3">Afficher les numéros de page de l\'édition imprimée (epub3)</string>
 </resources>
