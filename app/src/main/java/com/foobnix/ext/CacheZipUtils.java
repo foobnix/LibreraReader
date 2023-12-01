@@ -3,12 +3,12 @@ package com.foobnix.ext;
 import android.content.Context;
 import android.os.Environment;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ArchiveEntry;
@@ -81,11 +81,10 @@ public class CacheZipUtils {
         }
     }
 
-    public static void savaJavaCache(Object object, String key) {
+    public static void savaJavaCache(Object object, File file) {
         try {
-            LOG.d("JavaCache save", object, key);
-            key = MagicHelper.hash()+key;
-            FileOutputStream fos = new FileOutputStream(new File(CACHE_TEMP, key + "-outline"));
+            LOG.d("JavaCache save", object, file.getName());
+            FileOutputStream fos = new FileOutputStream(new File(CACHE_TEMP, makeKey(file)));
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(object);
             oos.flush();
@@ -105,11 +104,10 @@ public class CacheZipUtils {
         }
     }
 
-    public static Object loadJavaCache(String key) {
+    public static Object loadJavaCache(File file1) {
         try {
 
-            key = MagicHelper.hash()+key;
-            File file = new File(CACHE_TEMP, key + "-outline");
+            File file = new File(CACHE_TEMP, makeKey(file1));
             LOG.d("JavaCache load exist", file.isFile(), file);
             if (!file.isFile()) {
                 return null;
@@ -125,6 +123,14 @@ public class CacheZipUtils {
             LOG.e(e);
         }
         return null;
+    }
+
+    @NonNull
+    private static String makeKey(File file) {
+        if (file == null) {
+            return "no-file-outline";
+        }
+        return "" + MagicHelper.hash() + file.lastModified() + file.getName() + "-outline";
     }
 
     public static void clearBookDir() {

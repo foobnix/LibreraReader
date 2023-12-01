@@ -912,7 +912,7 @@ public class VerticalModeController extends DocumentController {
         }
 
 
-        outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook().getName());
+        outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
         if (outline != null) {
             resultWrapper.onResultRecive(outline);
             return;
@@ -947,7 +947,7 @@ public class VerticalModeController extends DocumentController {
                         LOG.e(e);
                     }
                 }
-                CacheZipUtils.savaJavaCache(outline, getCurrentBook().getName());
+                CacheZipUtils.savaJavaCache(outline, getCurrentBook());
                 resultWrapper.onResultRecive(outline);
                 return true;
             }

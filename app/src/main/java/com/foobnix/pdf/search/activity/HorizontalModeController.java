@@ -549,7 +549,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
         if (outline == null) {
-            outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook().getName());
+            outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
             if (outline != null) {
                 outlineResonse.onResultRecive(outline);
                 return;
@@ -576,7 +576,7 @@ public abstract class HorizontalModeController extends DocumentController {
                             }
                         }
 
-                        CacheZipUtils.savaJavaCache(outline, getCurrentBook().getName());
+                        CacheZipUtils.savaJavaCache(outline, getCurrentBook());
 
                         // setOutline(outline);
                         if (outlineResonse != null) {
