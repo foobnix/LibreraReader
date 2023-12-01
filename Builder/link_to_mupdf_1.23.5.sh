@@ -103,7 +103,7 @@ NDK_VERSION="26.1.10909125"
 
 
 if [ "$1" == "clean_ndk" ]; then
-/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
+/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
 /home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
 rm -rf $MUPDF_JAVA/obj
 fi
@@ -111,7 +111,7 @@ fi
 start=`date +%s`
 
 
-for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
+for NDK in "/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
 do 
   if [ -f "$NDK" ]; then
   $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=armeabi-v7a &

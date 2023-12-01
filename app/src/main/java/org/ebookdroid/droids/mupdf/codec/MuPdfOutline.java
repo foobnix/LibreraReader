@@ -40,7 +40,6 @@ public class MuPdfOutline {
         try {
 
 
-
             final long outline = open(dochandle);
             ttOutline(ls, outline, 0);
             free(dochandle);
@@ -50,7 +49,7 @@ public class MuPdfOutline {
             TempHolder.lock.unlock();
         }
 
-        if(AppState.get().isShowPageNumbers) {
+        if (AppState.get().isShowPageNumbers && !Fb2Extractor.epub3Pages.isEmpty()) {
             ls.add(new OutlineLink("Epub3 pages", "", 0, docHandle, ""));
             for (int i : Fb2Extractor.epub3Pages.keySet()) {
                 ls.add(new OutlineLink("Page " + i, Fb2Extractor.epub3Pages.get(i), 1, docHandle, Fb2Extractor.epub3Pages.get(i)));
