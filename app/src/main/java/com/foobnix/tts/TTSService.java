@@ -354,6 +354,11 @@ public class TTSService extends Service {
     }
 
     public void startMyForeground() {
+        if(true){
+            startServiceWithNotification();
+            return;
+        }
+        //skip this all
         if (!isStartForeground) {
             if (TxtUtils.isNotEmpty(AppSP.get().lastBookPath)) {
                 try {
