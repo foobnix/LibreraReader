@@ -10,7 +10,7 @@ include $(TOP_LOCAL_PATH)/libdjvu-3.5.28/Android.mk
 include $(TOP_LOCAL_PATH)/libantiword-1.3.1/Android.mk
 include $(TOP_LOCAL_PATH)/libwebp-1.3.2/Android.mk
 
-include $(TOP_LOCAL_PATH)/MuPDF-1.23.3.mk
+include $(TOP_LOCAL_PATH)/MuPDF-1.23.7.mk
 
 include $(CLEAR_VARS)
 

@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.23.3"
+VERSION_TAG="1.23.7"
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
@@ -70,6 +70,7 @@ cp -rpv $DEST/fitz/image.c        $SRC/image.c
 cp -rpv $DEST/fitz/unzip.c        $SRC/unzip.c
 cp -rpv $DEST/fitz/directory.c    $SRC/directory.c
 cp -rpv $DEST/fitz/xml.c          $SRC/xml.c
+cp -rpv $DEST/fitz/list-device.c  $SRC/list-device.c
 
 cp -rpv $DEST/fitz/image-imp.h                              $SRC/image-imp.h
 cp -rpv $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h  $SRC/compressed-buffer.h
@@ -98,16 +99,19 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 cd $MUPDF_JAVA
 
+NDK_VERSION="26.1.10909125"
+
+
 if [ "$1" == "clean_ndk" ]; then
-/Users/dev/Library/Android/Sdk/ndk/25.2.9519653/ndk-build clean
-/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build clean
+/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
+/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
 rm -rf $MUPDF_JAVA/obj
 fi
 
 start=`date +%s`
 
-NDK_VERSION="25.2.9519653"
-for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
+
+for NDK in "/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
 do 
   if [ -f "$NDK" ]; then
   $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=armeabi-v7a &
