@@ -280,6 +280,7 @@ static const char *img_extensions[] =
 	"tif",
 	"tiff",
 	"wdp",
+	"webp",
 	NULL
 };
 
@@ -305,6 +306,7 @@ static const char *img_mimetypes[] =
 	"image/x-portable-pixmap",
 	"image/x-portable-floatmap",
 	"image/x-tiff",
+	"image/webp",
 	NULL
 };
 

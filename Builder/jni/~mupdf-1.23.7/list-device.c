@@ -549,8 +549,9 @@ fz_append_display_node(
 	}
 	if (private_data_len)
 	{
-		if (cmd_needs_alignment(cmd))
-			pad_size_for_pointer(list, &size);
+		//#707236 fix freeze PDF
+		//if (cmd_needs_alignment(cmd))
+		pad_size_for_pointer(list, &size);
 		private_off = size;
 		size += SIZE_IN_NODES(private_data_len);
 	}

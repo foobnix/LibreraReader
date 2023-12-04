@@ -49,6 +49,7 @@ static const char *cbz_ext_list[] = {
 	".tif",
 	".tiff",
 	".wdp",
+	".webp",
 	NULL
 };
 
@@ -128,6 +129,12 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 	for (i = 0; i < count; i++)
 	{
 		const char *name = fz_list_archive_entry(ctx, arch, i);
+
+		if (name[0]=='.' || strstr(name, "/.") != NULL) {
+		    //skip hidden files
+            continue;
+        }
+
 		const char *ext = name ? strrchr(name, '.') : NULL;
 		for (k = 0; cbz_ext_list[k]; k++)
 		{
@@ -140,6 +147,52 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 	}
 
 	qsort((char **)doc->page, doc->page_count, sizeof *doc->page, cbz_compare_page_names);
+}
+
+static void
+cbz_create_page_list_dir(fz_context *ctx, cbz_document *doc, char *ldir)
+{
+	fz_archive *arch = doc->arch;
+	int i, k, count;
+
+
+	fz_buffer *buf;
+	fz_xml *container_xml;
+
+	buf = fz_read_archive_entry(ctx, arch, ldir);
+	container_xml = fz_xml_root(fz_parse_xml(ctx, buf, 0));
+	fz_drop_buffer(ctx, buf);
+
+
+	fz_xml *container;
+	container = fz_xml_find(container_xml, "container");
+
+	const char *version;
+	version = fz_xml_att(container, "count");
+
+
+	count = fz_atoi(version);
+
+	fz_xml *itemref;
+	itemref = fz_xml_find_down(container_xml, "item");
+
+
+
+	doc->page_count = 0;
+	doc->page = fz_malloc_array(ctx, count, const char *);
+
+
+	while (itemref)
+	{
+		const char *path;
+		path = fz_xml_att(itemref, "path");
+
+		doc->page[doc->page_count++] = path;
+
+		itemref = fz_xml_find_next(itemref, "item");
+
+	}
+
 }
 
 static void
@@ -226,8 +279,12 @@ cbz_load_page(fz_context *ctx, fz_document *doc_, int chapter, int number)
 
 	fz_var(page);
 
-	if (doc->arch)
-		buf = fz_read_archive_entry(ctx, doc->arch, doc->page[number]);
+	if (doc->arch){
+		if (fz_has_archive_entry(ctx, doc->arch, doc->page[number]))
+            buf = fz_read_archive_entry(ctx, doc->arch, doc->page[number]);
+        else
+            buf = fz_read_file(ctx, doc->page[number]);
+    }
 	if (!buf)
 		fz_throw(ctx, FZ_ERROR_GENERIC, "cannot load cbz page");
 
@@ -286,12 +343,74 @@ cbz_open_document_with_stream(fz_context *ctx, fz_stream *file)
 	return (fz_document*)doc;
 }
 
+typedef struct fz_directory_s ffz_directoryz_directory;
+struct fz_directory_s
+{
+	fz_archive super;
+
+	char *path;
+};
+
+
+static fz_document *
+cbz_open_document(fz_context *ctx, const char *filename1)
+{
+
+
+    cbz_document *doc;
+
+    doc = fz_new_derived_document(ctx, cbz_document);
+
+    doc->super.drop_document = cbz_drop_document;
+    doc->super.count_pages = cbz_count_pages;
+    doc->super.load_page = cbz_load_page;
+    doc->super.lookup_metadata = cbz_lookup_metadata;
+	if (strstr(filename1, ".ldir"))
+	{
+		char dirname1[2048];
+		fz_dirname(dirname1, filename1, sizeof dirname1);
+
+
+        	fz_try(ctx)
+        	{
+        		doc->arch = fz_open_directory(ctx, dirname1);
+        		char *name;
+        		name = strrchr(filename1, '/');
+
+        		cbz_create_page_list_dir(ctx, doc, name);
+        	}
+        	fz_catch(ctx)
+          {
+             fz_drop_document(ctx, (fz_document*)doc);
+             fz_rethrow(ctx);
+          }
+
+	}else{
+            fz_try(ctx)
+            {
+                doc->arch = fz_open_zip_archive(ctx, filename1);
+                cbz_create_page_list(ctx, doc);
+            }
+            fz_catch(ctx)
+             {
+                 fz_drop_document(ctx, (fz_document*)doc);
+                 fz_rethrow(ctx);
+             }
+
+	}
+
+
+
+	return (fz_document*)doc;
+}
+
 static const char *cbz_extensions[] =
 {
 	"cbt",
 	"cbz",
 	"tar",
 	"zip",
+	"ldir",
 	NULL
 };
 
@@ -352,7 +471,7 @@ cbz_recognize_doc_content(fz_context *ctx, fz_stream *stream)
 fz_document_handler cbz_document_handler =
 {
 	NULL,
-	NULL,
+	cbz_open_document,
 	cbz_open_document_with_stream,
 	cbz_extensions,
 	cbz_mimetypes,

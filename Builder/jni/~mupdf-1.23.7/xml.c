@@ -914,17 +914,17 @@ static char *convert_to_utf8(fz_context *ctx, unsigned char *s, size_t n, int *d
 		return dst;
 	}
 
-	table = find_xml_encoding((char*)s);
-	if (table) {
-		dst = d = Memento_label(fz_malloc(ctx, n * FZ_UTFMAX), "utf8");
-		while (*s) {
-			c = table[*s++];
-			d += fz_runetochar(d, c);
-		}
-		*d = 0;
-		*dofree = 1;
-		return dst;
-	}
+//	table = find_xml_encoding((char*)s);
+//	if (table) {
+//		dst = d = Memento_label(fz_malloc(ctx, n * FZ_UTFMAX), "utf8");
+//		while (*s) {
+//			c = table[*s++];
+//			d += fz_runetochar(d, c);
+//		}
+//		*d = 0;
+//		*dofree = 1;
+//		return dst;
+//	}
 
 	*dofree = 0;
 
