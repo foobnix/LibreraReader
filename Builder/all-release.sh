@@ -8,7 +8,7 @@ echo "================== "
 java -version
 echo "================== "
 
-./link_to_mupdf_1.23.5.sh
+./link_to_mupdf_1.23.7.sh
 
 cd ../
 

@@ -2,7 +2,7 @@
 #./fonts.sh
 
 #Builder folder
-./link_to_mupdf_1.23.5.sh
+./link_to_mupdf_1.23.7.sh
 
 #/usr/libexec/java_home -V
 export JAVA_HOME=`/usr/libexec/java_home -v 17`
