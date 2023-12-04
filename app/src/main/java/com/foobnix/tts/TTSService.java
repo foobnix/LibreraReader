@@ -355,7 +355,10 @@ public class TTSService extends Service {
 
     public void startMyForeground() {
         if(true){
-            startServiceWithNotification();
+            if (!isStartForeground) {
+                startServiceWithNotification();
+                isStartForeground = true;
+            }
             return;
         }
         //skip this all
