@@ -583,6 +583,7 @@ public abstract class DocumentController {
     public List<OutlineLinkWrapper> getCurrentOutline() {
         return outline;
     }
+    public Boolean isEpub3;
 
     public String getCurrentChapter() {
         return OutlineHelper.getCurrentChapterAsString(this);

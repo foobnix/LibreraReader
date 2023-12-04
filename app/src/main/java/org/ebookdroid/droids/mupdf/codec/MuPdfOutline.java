@@ -14,6 +14,7 @@ import java.util.List;
 public class MuPdfOutline {
 
     private static final float[] temp = new float[4];
+    public static final String EPUB_3_PAGES = "Epub3 pages";
 
     private long docHandle;
 
@@ -50,7 +51,7 @@ public class MuPdfOutline {
         }
 
         if (AppState.get().isShowPageNumbers && !Fb2Extractor.epub3Pages.isEmpty()) {
-            ls.add(new OutlineLink("Epub3 pages", "", 0, docHandle, ""));
+            ls.add(new OutlineLink(EPUB_3_PAGES, "", 0, docHandle, ""));
             for (int i : Fb2Extractor.epub3Pages.keySet()) {
                 ls.add(new OutlineLink("Page " + i, Fb2Extractor.epub3Pages.get(i), 1, docHandle, Fb2Extractor.epub3Pages.get(i)));
             }

@@ -61,7 +61,6 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -69,7 +68,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -156,6 +154,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -1944,7 +1943,6 @@ public class DragingDialogs {
     }
 
 
-
     public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
         if (dc == null) {
             return null;
@@ -2066,6 +2064,39 @@ public class DragingDialogs {
                         }
                     }
                 });
+                final View onLink = view.findViewById(R.id.onLink);
+                TintUtil.setTintBg(onLink);
+
+                if (dc.isEpub3 == null) {
+                    onLink.setVisibility(View.GONE);
+                    dc.isEpub3 = false;
+                    for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
+                        if (line.getTitleAsString().equals(MuPdfOutline.EPUB_3_PAGES)) {
+                            onLink.setVisibility(View.VISIBLE);
+                            dc.isEpub3 = true;
+                            break;
+                        }
+                    }
+                }
+                onLink.setVisibility(dc.isEpub3 ? View.VISIBLE : View.GONE);
+
+                onLink.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String txt = number.getText().toString();
+                        int page = Integer.valueOf(txt);
+                        for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
+                            if (line.getTitleAsString().equals("Page " + page)) {
+                                dc.onGoToPage(line.targetPage);
+                                grid.setSelection(line.targetPage - 1);
+                                Keyboards.close(number);
+                                return;
+                            }
+                        }
+
+                    }
+                });
+
 
                 final View onSearch = view.findViewById(R.id.onSearch);
                 TintUtil.setTintBg(onSearch);
@@ -5526,7 +5557,7 @@ public class DragingDialogs {
                                 AppState.get().colorNigthBg = AppState.COLOR_BLACK_2;
 
                                 textNigthColor.setTextColor(AppState.get().colorNigthText);
-                                textNigthColor.setBackgroundColor( AppState.get().colorNigthBg);
+                                textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);
 
                                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                                 TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
