@@ -11,6 +11,7 @@ import androidx.multidex.MultiDexApplication;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
@@ -96,6 +97,10 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
         LOG.d("Build.Height", Dips.screenHeight());
 
+
+        if(TxtUtils.isEmpty(AppsConfig.FLAVOR)){
+            throw new RuntimeException("Application not configured correctly!");
+        }
 
         if (AppsConfig.IS_WRITE_LOGS) {
             LOG.writeCrashTofile = true;

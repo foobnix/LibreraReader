@@ -6,8 +6,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.multidex.BuildConfig;
-
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -25,11 +23,12 @@ public class AppsConfig {
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
+
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
-
-    public static final boolean IS_PRO = BuildConfig.FLAVOR.equals("pro");
     public static final boolean IS_WRITE_LOGS = IS_FDROID || BuildConfig.DEBUG;
+    public static final String FLAVOR = BuildConfig.FLAVOR;
+
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 

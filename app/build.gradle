@@ -33,7 +33,9 @@ android {
     compileSdk project.compileSdk
     namespace "com.foobnix.pdf.info"
 
-
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         namespace "com.foobnix.pdf.info"
         minSdk project.minSdk
@@ -245,7 +247,7 @@ android {
             ]
         }
         fdroid {
-            //minSdk 14
+            //minSdk 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [

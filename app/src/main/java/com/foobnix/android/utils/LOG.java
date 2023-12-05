@@ -75,10 +75,10 @@ public class LOG {
             try {
                 FileWriter fw = new FileWriter(new File(AppProfile.SYNC_FOLDER_ROOT, "crash.txt"), true);
                 if (uncaughtException) {
-                    fw.append("\n ======== uncaughtException =========== \n");
+                    fw.write("\n ======== uncaughtException =========== \n");
                 }
-                fw.append(toString(e));
-                fw.append("\n =================== \n");
+                fw.write(toString(e));
+                fw.write("\n =================== \n");
 
                 fw.flush();
                 fw.close();
