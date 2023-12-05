@@ -5,7 +5,9 @@
 ./link_to_mupdf_1.23.7.sh
 
 #/usr/libexec/java_home -V
-export JAVA_HOME=`/usr/libexec/java_home -v 17`
+#export JAVA_HOME=`/usr/libexec/java_home -v 17`
+export JAVA_HOME=/home/dev/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
+
 echo "================== "
 java -version
 echo "================== "
