@@ -132,6 +132,9 @@ if [ "$1" == "fdroid" ]; then
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-16 &
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-16 &
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-16
+      echo "=================="
+      echo "NDK:"  $NDK
+      echo "APP_PLATFORM=android-16"
       fi
     done
 else
@@ -142,14 +145,16 @@ else
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-21 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-21 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-21
+    echo "=================="
+    echo "NDK:"  $NDK
+    echo "APP_PLATFORM=android-21"
     fi
   done
 
 fi
 
-
 echo "=================="
-echo "MUPDF:" $MUPDF_JAVA
-echo "LIBS:"  $LIBS
+echo "MUPDF:"$MUPDF_JAVA
+echo "JNI:"$LIBS
 echo "=================="
 fi
