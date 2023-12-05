@@ -7,9 +7,16 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $BUILD_DIR
 
 VERSION_TAG="1.23.7"
-git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
+MUPDF_FOLDER=mupdf-$VERSION_TAG
 
-MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
+if [ "$1" == "fdroid" ]; then
+  MUPDF_FOLDER=$MUPDF_FOLDER-fdroid
+fi
+
+git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
+
+MUPDF_ROOT=$BUILD_DIR/$MUPDF_FOLDER
+
 
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 mkdir -p $MUPDF_JAVA/jni
@@ -22,9 +29,9 @@ echo "MUPDF :" $VERSION_TAG
 echo "================== "
 
 mkdir $SRC
-mkdir mupdf-$VERSION_TAG
+mkdir $MUPDF_FOLDER
 
-cd mupdf-$VERSION_TAG
+cd $MUPDF_FOLDER
 
 echo "=================="
 
@@ -100,40 +107,49 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 cd $MUPDF_JAVA
 
 
-#NDK_VERSION="26.1.10909125"
-NDK_VERSION="21.4.7075529"
+NDK_VERSION="26.1.10909125"
+FDRIOD_NDK_VERSION="21.4.7075529"
 
+PATH1=/Volumes/SSD-USB/Android/Sdk/ndk
+PATH2=/home/dev/Android/Sdk/ndk
 
 if [ "$1" == "clean_ndk" ]; then
-/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
-/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
+  if [ "$2" == "fdroid" ]; then
+   $PATH1/$FDRIOD_NDK_VERSION/ndk-build clean
+   $PATH2/$FDRIOD_NDK_VERSION/ndk-build clean
+  else
+   $PATH1/$NDK_VERSION/ndk-build clean
+   $PATH2/$NDK_VERSION/ndk-build clean
+  fi
 rm -rf $MUPDF_JAVA/obj
 fi
 
-start=`date +%s`
+if [ "$1" == "fdroid" ]; then
+  for NDK in "$PATH1/$FDRIOD_NDK_VERSION/ndk-build" "$PATH2/$FDRIOD_NDK_VERSION/ndk-build";
+    do
+      if [ -f "$NDK" ]; then
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-16 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-16 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-16 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-16
+      fi
+    done
+else
+  for NDK in "$PATH1/$NDK_VERSION/ndk-build" "$PATH2/$NDK_VERSION/ndk-build";
+  do
+    if [ -f "$NDK" ]; then
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-21 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-21 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-21 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-21
+    fi
+  done
 
+fi
 
-for NDK in "/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
-do 
-  if [ -f "$NDK" ]; then
-  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-16 &
-  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-16 &
-  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-16 &
-  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-16
-  fi
-done
 
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
 echo "=================="
-
-
-if [ "$1" == "clean_ndk" ]; then
-  cd $BUILD_DIR
-  end=`date +%s`
-  runtime=$( echo "$end - $start" | bc -l )
-  echo "Run time: ${runtime}"
-fi
-
 fi
