@@ -2,9 +2,10 @@
 #./fonts.sh
 
 #/usr/libexec/java_home -V
-export JAVA_HOME=`/usr/libexec/java_home -v 17`
-if [ "$1" == "pc" ]; then
-export JAVA_HOME=/home/dev/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
+if [ "$(uname)" == "Darwin" ]; then
+  export JAVA_HOME=`/usr/libexec/java_home -v 17`
+else
+  export JAVA_HOME=/home/dev/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
 fi
 ####################################
 
