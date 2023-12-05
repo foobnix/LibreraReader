@@ -234,6 +234,7 @@ public class ImageExtractor {
         return BaseExtractor.getBookCoverWithTitle(msg, name, true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
             LOG.d("Cover-PDF-navite");
@@ -336,12 +337,15 @@ public class ImageExtractor {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
-
-            if (BookType.PDF.is(unZipPath) && (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT)) {
-                LOG.d("Native-PDF-cover", pageUrl);
-                cover = coverPDFNative(pageUrl);
-                if (cover == null) {
-                    LOG.d("Native-PDF-cover", "error", pageUrl);
+            if (Build.VERSION.SDK_INT >= 21) {
+                if (BookType.PDF.is(unZipPath) && (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT)) {
+                    LOG.d("Native-PDF-cover", pageUrl);
+                    cover = coverPDFNative(pageUrl);
+                    if (cover == null) {
+                        LOG.d("Native-PDF-cover", "error", pageUrl);
+                        cover = proccessOtherPage(pageUrl);
+                    }
+                } else {
                     cover = proccessOtherPage(pageUrl);
                 }
             } else {

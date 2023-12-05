@@ -114,10 +114,10 @@ start=`date +%s`
 for NDK in "/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
 do 
   if [ -f "$NDK" ]; then
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=armeabi-v7a &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=arm64-v8a &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86 &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86_64
+  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-16 &
+  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-16 &
+  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-16 &
+  $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-16
   fi
 done
 

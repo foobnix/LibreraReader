@@ -247,7 +247,7 @@ android {
             ]
         }
         fdroid {
-            //minSdk 16
+            minSdk 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [

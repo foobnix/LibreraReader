@@ -102,7 +102,7 @@ if [ "$1" == "clean_ndk" ]; then
 rm -rf $MUPDF_JAVA/obj
 fi
 
-#/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application-19.mk
+#/home/dev/Android/Sdk/ndk/25.2.9519653/ndk-build NDK_APPLICATION_MK=jni/Application.mk
 
 NDK_VERSION="25.2.9519653"
 for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
