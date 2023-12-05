@@ -473,6 +473,14 @@ public class MuPdfPage extends AbstractCodecPage {
         ArrayList<TextWord> words = new ArrayList<TextWord>();
         TextWord tw = new TextWord();
         for (TextChar tc : chars) {
+            if (AppState.get().selectingByLetters) {
+                if (tc.c == TxtUtils.NON_BREAKE_SPACE_CHAR) {
+                    tc.c = ' ';
+                }
+                words.add(new TextWord(tc));
+                continue;
+            }
+
             if (tc.c == ' ') {
                 if (tw.w.length() > 0) {
                     words.add(tw);

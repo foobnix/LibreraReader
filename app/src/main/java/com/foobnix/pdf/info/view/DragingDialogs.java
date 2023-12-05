@@ -2070,11 +2070,13 @@ public class DragingDialogs {
                 if (dc.isEpub3 == null) {
                     onLink.setVisibility(View.GONE);
                     dc.isEpub3 = false;
-                    for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
-                        if (line.getTitleAsString().equals(MuPdfOutline.EPUB_3_PAGES)) {
-                            onLink.setVisibility(View.VISIBLE);
-                            dc.isEpub3 = true;
-                            break;
+                    if (dc.getCurrentOutline() != null) {
+                        for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
+                            if (line.getTitleAsString().equals(MuPdfOutline.EPUB_3_PAGES)) {
+                                onLink.setVisibility(View.VISIBLE);
+                                dc.isEpub3 = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -2083,15 +2085,19 @@ public class DragingDialogs {
                 onLink.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String txt = number.getText().toString();
-                        int page = Integer.valueOf(txt);
-                        for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
-                            if (line.getTitleAsString().equals("Page " + page)) {
-                                dc.onGoToPage(line.targetPage);
-                                grid.setSelection(line.targetPage - 1);
-                                Keyboards.close(number);
-                                return;
+                        try {
+                            String txt = number.getText().toString();
+                            int page = Integer.valueOf(txt);
+                            for (OutlineLinkWrapper line : dc.getCurrentOutline()) {
+                                if (line.getTitleAsString().equals("Page " + page)) {
+                                    dc.onGoToPage(line.targetPage);
+                                    grid.setSelection(line.targetPage - 1);
+                                    Keyboards.close(number);
+                                    return;
+                                }
                             }
+                        } catch (Exception e) {
+                            LOG.e(e);
                         }
 
                     }
