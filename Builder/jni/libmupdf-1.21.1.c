@@ -853,6 +853,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv * env,
 	fz_context *ctx = doc_t->ctx;
 	fz_document *doc = doc_t->document;
 
+    if(!ctx || !doc){
+        return NULL;
+    }
+
 	textCharClass = (*env)->FindClass(env, PACKAGENAME "/TextChar");
 	if (textCharClass == NULL) return NULL;
 	textSpanClass = (*env)->FindClass(env, "[L" PACKAGENAME "/TextChar;");
