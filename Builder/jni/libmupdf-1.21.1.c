@@ -1398,6 +1398,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_document *doc = doc_t->document;
 	pdf_document *idoc = pdf_specifics(ctx, doc);
 
+    if(!ctx || !doc || !page){
+        return NULL;
+    }
+
 	fz_stext_page *text = NULL;
 	fz_device *dev = NULL;
 	fz_matrix ctm;
