@@ -235,13 +235,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 @Override
                 public void onResourceReady(Bitmap bitmap) {
 
-                    if (position <= items.size() - 1 && needRefresh) {
-                        FileMeta it = AppDB.get().load(fileMeta.getPath());
+                    try {
+                        if (position < items.size() && needRefresh) {
+                            FileMeta it = AppDB.get().load(fileMeta.getPath());
 
-                        if (it != null) {
-                            items.set(position, it);
-                            bindFileMetaView(holder, position);
+                            if (it != null) {
+                                items.set(position, it);
+                                bindFileMetaView(holder, position);
+                            }
                         }
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
 
                 }
@@ -318,16 +322,20 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new IMG.ResourceReady() {
                         @Override
                         public void onResourceReady(Bitmap bitmap) {
-                            FileMeta meta = AppDB.get().load(fileMeta.getPath());
+                            try {
+                                FileMeta meta = AppDB.get().load(fileMeta.getPath());
 
-                            if (meta != null) {
-                                items.set(position,meta);
-                                if (AppState.get().isFolderPreview && meta.getPages() != null && meta.getPages() > 0) {
-                                    holder.count.setVisibility(View.VISIBLE);
-                                    holder.count.setText(TxtUtils.formatInt(meta.getPages()));
-                                } else {
-                                    holder.count.setVisibility(View.GONE);
+                                if (meta != null && position < items.size()) {
+                                    items.set(position, meta);
+                                    if (AppState.get().isFolderPreview && meta.getPages() != null && meta.getPages() > 0) {
+                                        holder.count.setVisibility(View.VISIBLE);
+                                        holder.count.setText(TxtUtils.formatInt(meta.getPages()));
+                                    } else {
+                                        holder.count.setVisibility(View.GONE);
+                                    }
                                 }
+                            } catch (Exception e) {
+                                LOG.e(e);
                             }
 
 
