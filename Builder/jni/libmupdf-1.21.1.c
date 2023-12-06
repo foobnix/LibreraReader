@@ -716,7 +716,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 		jclass clazz, jlong outlinehandle, jlong dochandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-
+    if(!doc){
+        return NULL;
+    }
 // DEBUG("PdfOutline_getLink(%p)",outline);
 	if (!outline)
 		return NULL;
@@ -734,6 +736,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(JNIEnv *env,
 		jclass clazz, jlong outlinehandle, jlong dochandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
+    if(!doc){
+        return NULL;
+    }
 
 // DEBUG("PdfOutline_getLink(%p)",outline);
 	if (outline && outline->uri){
