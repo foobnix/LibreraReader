@@ -95,7 +95,7 @@ public class FileMetaCore {
                 }
 
                 AppDB.get().update(fileMeta);
-                LOG.d("BooksService", isSearhcBook,"UPDATE", path);
+                LOG.d("BooksService", isSearhcBook, "UPDATE", path);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -134,8 +134,12 @@ public class FileMetaCore {
             if (TxtUtils.isEmpty(info)) {
                 return "";
             }
-            info = Jsoup.clean(info, Safelist.none());
-            info = info.replace("&nbsp;", " ");
+            try {
+                info = Jsoup.clean(info, Safelist.none());
+                info = info.replace("&nbsp;", " ");
+            } catch (Throwable e1) {
+                LOG.e(e1);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -170,6 +174,21 @@ public class FileMetaCore {
         }
     }
 
+    public static int extractYear(String input) {
+        try {
+            input = input.trim();
+            if (input.length() > 4) {
+                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
+                if (m.find()) {
+                    input = m.group();
+                }
+            }
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return -1;
+    }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 
@@ -347,23 +366,6 @@ public class FileMetaCore {
         fileMeta.setState(STATE_FULL);
 
     }
-
-    public static int extractYear(String input) {
-        try {
-            input = input.trim();
-            if (input.length() > 4) {
-                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
-                if (m.find()) {
-                    input = m.group();
-                }
-            }
-            return Integer.parseInt(input);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return -1;
-    }
-
 
     public void upadteBasicMeta(FileMeta fileMeta, File file) {
         fileMeta.setTitle(file.getName());// temp

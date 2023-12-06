@@ -345,7 +345,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.17.1'
+    implementation 'org.jsoup:jsoup:1.16.2'//bug in 1.17.1
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
