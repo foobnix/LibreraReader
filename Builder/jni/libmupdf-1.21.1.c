@@ -614,6 +614,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	buffer = (*env)->GetPrimitiveArrayCritical(env, bufferarray, 0);
 
 	fz_context* ctx = page->ctx;
+    if(!ctx || ctx == NULL){
+        (*env)->ReleasePrimitiveArrayCritical(env, bufferarray, buffer, 0);
+        return;
+    }
 
 	fz_colorspace *colorspace = fz_device_bgr(ctx);
 
