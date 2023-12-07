@@ -3,10 +3,12 @@
 ./fonts.sh
 
 #/usr/libexec/java_home -V
-export JAVA_HOME=`/usr/libexec/java_home -v 17`
-echo "================== "
-java -version
-echo "================== "
+if [ "$(uname)" == "Darwin" ]; then
+  export JAVA_HOME=`/usr/libexec/java_home -v 17`
+else
+  export JAVA_HOME=/home/dev/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
+fi
+####################################
 
 ./link_to_mupdf_1.23.7.sh
 
@@ -18,18 +20,19 @@ cd ../
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assemblePdf_classicRelease
-./gradlew assembleFdroidRelease
+#./gradlew assembleFdroidRelease
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
 ./gradlew assembleProRelease
 
 cd Builder
-link_to_mupdf_1.11.sh
+./link_to_mupdf_1.23.7.sh fdroid
 
 cd ../
 
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
+./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta -Prelesae
 ./gradlew -stop

@@ -104,36 +104,22 @@ android {
 
     flavorDimensions.add("version")
     productFlavors {
-        old {
-            //minSdk 14
+        fdroid {
+            minSdk 16
             dimension "version"
-            applicationId "com.foobnix.pdf.reader.a1"
+            applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Old",
-                    appIcon      : "@mipmap/icon_pdf_reader",
-                    appRoundIcon : "@mipmap/icon_pdf_reader",
+                    appName      : "Librera FD",
+                    appIcon      : "@mipmap/icon_pdf_pro",
+                    appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : "",
                     admobAppId   : "",
                     admobBannerId: "",
                     admobFullId  : "",
                     appSafeMode  : "true"
             ]
+            versionNameSuffix '-fdroid'
         }
-        beta {
-            dimension "version"
-            applicationId "com.foobnix.pdf.reader"
-            manifestPlaceholders = [
-                    appName      : "Beta ",
-                    appIcon      : "@mipmap/icon_pdf_reader",
-                    appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appGdriveKey : librera_appGdriveKey,
-                    admobAppId   : librera_admobAppId,
-                    admobBannerId: librera_admobBannerId,
-                    admobFullId  : librera_admobFullId,
-                    appSafeMode  : "true"
-            ]
-        }
-
         librera {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
@@ -246,22 +232,6 @@ android {
                     appSafeMode  : "false"
             ]
         }
-        fdroid {
-            minSdk 16
-            dimension "version"
-            applicationId "com.foobnix.pro.pdf.reader"
-            manifestPlaceholders = [
-                    appName      : "Librera FD",
-                    appIcon      : "@mipmap/icon_pdf_pro",
-                    appRoundIcon : "@mipmap/icon_pdf_pro",
-                    appGdriveKey : "",
-                    admobAppId   : "",
-                    admobBannerId: "",
-                    admobFullId  : "",
-                    appSafeMode  : "true"
-            ]
-            versionNameSuffix '-fdroid'
-        }
     }
 
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
@@ -321,7 +291,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    oldImplementation project(':pro')
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
@@ -375,7 +344,6 @@ dependencies {
 /** Ads **/
     def google_ads = "com.google.android.gms:play-services-ads:22.5.0"
     libreraImplementation google_ads
-    betaImplementation google_ads
     pdf_v2Implementation google_ads
     ebookaImplementation google_ads
     tts_readerImplementation google_ads
@@ -385,7 +353,6 @@ dependencies {
 
     def messaging_ads = "com.google.android.ump:user-messaging-platform:2.1.0"
     libreraImplementation messaging_ads
-    betaImplementation messaging_ads
     pdf_v2Implementation messaging_ads
     ebookaImplementation messaging_ads
     tts_readerImplementation messaging_ads
