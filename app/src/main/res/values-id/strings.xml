@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Hapus bookmark ini?</string>
    <string name="zoom_in_out_with_lock_enable">Perbesar / perkecil dengan pengaktifan kunci</string>
    <string name="show_footnotes_directly_in_text">Tampilkan catatan kaki secara langsung dalam teks</string>
-   <string name="read_by_sentences">Dibaca dengan kalimat</string>
+   <string name="read_by_sentences">Jeda singkat setelah simbol</string>
    <string name="do_not_read_characters">Jangan membaca karakter</string>
    <string name="show_in_scroll_mode">Tampilkan dalam mode gulir</string>
    <string name="display_bookmark_text_instead_of_number">Tampilkan teks bookmark alih-alih angka</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Akar profil</string>
    <string name="create_folder">Membuat folder</string>
    <string name="show_hidden">Tampilkan disembunyikan</string>
-   <string name="new_file">File baru</string>
+   <string name="new_file_txt">File baru (.txt)</string>
    <string name="paste_or_type_text_in_here">Rekatkan atau ketikkan teks di sini</string>
    <string name="go_to_the_folder">Buka folder</string>
    <string name="you_should_enable_allow_battery">Anda harus mengaktifkan \"baterai\"> \"izinkan aktivitas latar belakang\" untuk mendengarkan di latar belakang</string>

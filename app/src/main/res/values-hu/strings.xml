@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Törölje ezt a könyvjelzőt?</string>
    <string name="zoom_in_out_with_lock_enable">Nagyítás / kicsinyítés zárolással</string>
    <string name="show_footnotes_directly_in_text">A lábjegyzeteket közvetlenül a szövegben mutassa</string>
-   <string name="read_by_sentences">Olvassa el a mondatokat</string>
+   <string name="read_by_sentences">Rövid szünet a szimbólum után</string>
    <string name="do_not_read_characters">Ne olvassa el a karaktereket</string>
    <string name="show_in_scroll_mode">Görgetési módban</string>
    <string name="display_bookmark_text_instead_of_number">A könyvjelző szövegének megjelenítése a szám helyett</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profil gyökér</string>
    <string name="create_folder">Mappa létrehozás</string>
    <string name="show_hidden">Rejtett megjelenítése</string>
-   <string name="new_file">Új fájl</string>
+   <string name="new_file_txt">Új fájl (.txt)</string>
    <string name="paste_or_type_text_in_here">Illessze be vagy írja be a szöveget ide</string>
    <string name="go_to_the_folder">Menjen a mappába</string>
    <string name="you_should_enable_allow_battery">Engedélyeznie kell az \"akkumulátor\"> \"engedélyeznie kell a háttértevékenységet\" lehetőséget, hogy meghallgassa a háttérben</string>

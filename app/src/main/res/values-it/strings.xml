@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Cancella questo segnalibro?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / out con blocco abilitato</string>
    <string name="show_footnotes_directly_in_text">Mostra le note a piè di pagina direttamente nel testo</string>
-   <string name="read_by_sentences">Leggi per frasi</string>
+   <string name="read_by_sentences">Una breve pausa dopo il simbolo</string>
    <string name="do_not_read_characters">Non leggere caratteri</string>
    <string name="show_in_scroll_mode">Mostra in modalità di scorrimento</string>
    <string name="display_bookmark_text_instead_of_number">Visualizza il testo del segnalibro invece del numero</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Radice del profilo</string>
    <string name="create_folder">Creare una cartella</string>
    <string name="show_hidden">Mostra nascosto</string>
-   <string name="new_file">Nuovo file</string>
+   <string name="new_file_txt">Nuovo file (.txt)</string>
    <string name="paste_or_type_text_in_here">Incolla o digita il testo qui</string>
    <string name="go_to_the_folder">Vai alla cartella</string>
    <string name="you_should_enable_allow_battery">Dovresti abilitare \"batteria\"> \"consenti attività in background\" per ascoltare in background</string>

@@ -25,7 +25,7 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
 
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
-    public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
+    public static final boolean IS_LOG = BuildConfig.DEBUG;
     public static final boolean IS_WRITE_LOGS = IS_FDROID || BuildConfig.DEBUG;
     public static final String FLAVOR = BuildConfig.FLAVOR;
 

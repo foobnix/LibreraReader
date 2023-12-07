@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Radera det här bokmärket?</string>
    <string name="zoom_in_out_with_lock_enable">Zooma in / ut med låsaktivera</string>
    <string name="show_footnotes_directly_in_text">Visa fotnoter direkt i text</string>
-   <string name="read_by_sentences">Läs med meningar</string>
+   <string name="read_by_sentences">En kort paus efter symbolen</string>
    <string name="do_not_read_characters">Läs inte tecken</string>
    <string name="show_in_scroll_mode">Visa i rullningsläge</string>
    <string name="display_bookmark_text_instead_of_number">Visa bokmärkestext istället för nummer</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profilrot</string>
    <string name="create_folder">Skapa mapp</string>
    <string name="show_hidden">Visa dold</string>
-   <string name="new_file">Ny fil</string>
+   <string name="new_file_txt">Ny fil (.txt)</string>
    <string name="paste_or_type_text_in_here">Klistra in eller skriv text här</string>
    <string name="go_to_the_folder">Gå till mappen</string>
    <string name="you_should_enable_allow_battery">Bör du aktivera \"batteri\"> \"tillåta bakgrundsaktivitet\" att lyssna i bakgrunden</string>

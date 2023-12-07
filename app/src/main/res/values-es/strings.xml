@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">¿Borrar este marcador?</string>
    <string name="zoom_in_out_with_lock_enable">Acercar/alejar con bloqueo habilitado</string>
    <string name="show_footnotes_directly_in_text">Mostrar notas en el texto</string>
-   <string name="read_by_sentences">Continuar desde el último signo de puntuación:</string>
+   <string name="read_by_sentences">Una breve pausa después del símbolo</string>
    <string name="do_not_read_characters">Saltar símbolos</string>
    <string name="show_in_scroll_mode">Modo de desplazamiento</string>
    <string name="display_bookmark_text_instead_of_number">Mostrar texto (en lugar de número)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Raíz del perfil</string>
    <string name="create_folder">Crear carpeta</string>
    <string name="show_hidden">Mostrar oculto</string>
-   <string name="new_file">Archivo nuevo</string>
+   <string name="new_file_txt">Nuevo archivo (.txt)</string>
    <string name="paste_or_type_text_in_here">Pegar o escribir texto aquí</string>
    <string name="go_to_the_folder">Ir a la carpeta</string>
    <string name="you_should_enable_allow_battery">Debe habilitar \"batería\"> \"permitir actividad en segundo plano\" para escuchar en segundo plano</string>

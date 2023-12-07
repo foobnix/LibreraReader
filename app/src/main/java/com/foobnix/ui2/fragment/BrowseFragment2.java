@@ -690,7 +690,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
 
-                menu.getMenu().add(R.string.new_file).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.new_file_txt).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         AlertDialogs.editFileTxt(getActivity(), null, new File(displayPath), new StringResponse() {

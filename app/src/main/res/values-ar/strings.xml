@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">حذف هذه الإشارة المرجعية؟</string>
    <string name="zoom_in_out_with_lock_enable">تكبير / تصغير مع تمكين القفل</string>
    <string name="show_footnotes_directly_in_text">عرض الحواشي السفلية مباشرة في النص</string>
-   <string name="read_by_sentences">اقرأ من الجمل</string>
+   <string name="read_by_sentences">وقفة قصيرة بعد الرمز</string>
    <string name="do_not_read_characters">لا تقرأ الأحرف</string>
    <string name="show_in_scroll_mode">تظهر في وضع التمرير</string>
    <string name="display_bookmark_text_instead_of_number">عرض نص الإشارة المرجعية بدلاً من الرقم</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">جذر الملف الشخصي</string>
    <string name="create_folder">أنشئ مجلد</string>
    <string name="show_hidden">أظهر المخفي</string>
-   <string name="new_file">ملف جديد</string>
+   <string name="new_file_txt">ملف جديد (.txt)</string>
    <string name="paste_or_type_text_in_here">الصق أو كتابة النص هنا</string>
    <string name="go_to_the_folder">اذهب الى الحافظة</string>
    <string name="you_should_enable_allow_battery">يجب تمكين \"البطارية\"> \"السماح بنشاط الخلفية\" للاستماع في الخلفية</string>

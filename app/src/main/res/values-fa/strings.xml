@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">این نشان را حذف کنید</string>
    <string name="zoom_in_out_with_lock_enable">زوم در داخل / خارج با فعال کردن قفل</string>
    <string name="show_footnotes_directly_in_text">پانویسها را مستقیما در متن نشان دهید</string>
-   <string name="read_by_sentences">خواندن با احکام</string>
+   <string name="read_by_sentences">یک مکث کوتاه بعد از نماد</string>
    <string name="do_not_read_characters">شخصیت ها را بخوانید</string>
    <string name="show_in_scroll_mode">نمایش در حالت اسکرول</string>
    <string name="display_bookmark_text_instead_of_number">نمایش متن چوب به جای شماره</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">ریشه مشخصات</string>
    <string name="create_folder">پرونده بساز</string>
    <string name="show_hidden">نمایش پنهان</string>
-   <string name="new_file">پرونده جدید</string>
+   <string name="new_file_txt">فایل جدید (txt.)</string>
    <string name="paste_or_type_text_in_here">در اینجا جایگذاری کنید یا متن را تایپ کنید</string>
    <string name="go_to_the_folder">به پوشه بروید</string>
    <string name="you_should_enable_allow_battery">شما باید \"باتری\"> \"فعالیت پس زمینه\" را فعال کنید تا در پس زمینه گوش کند</string>

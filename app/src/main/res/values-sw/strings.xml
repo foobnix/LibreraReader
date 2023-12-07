@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Futa alama hii?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom ndani / nje na uwezeshe kufuli</string>
    <string name="show_footnotes_directly_in_text">Onyesha maelezo ya chini kwa maandishi</string>
-   <string name="read_by_sentences">Soma kwa sentensi</string>
+   <string name="read_by_sentences">Pause fupi baada ya ishara</string>
    <string name="do_not_read_characters">Usisome wahusika</string>
    <string name="show_in_scroll_mode">Onyesha katika hali ya kitabu</string>
    <string name="display_bookmark_text_instead_of_number">Onyesha maandishi ya alama badala ya namba</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Mzizi wa wasifu</string>
    <string name="create_folder">Unda folda</string>
    <string name="show_hidden">Onyesha siri</string>
-   <string name="new_file">Faili mpya</string>
+   <string name="new_file_txt">Faili mpya (.txt)</string>
    <string name="paste_or_type_text_in_here">Kubandika au chapa maandishi hapa</string>
    <string name="go_to_the_folder">Nenda kwenye folda</string>
    <string name="you_should_enable_allow_battery">Unapaswa kuwezesha \"betri\"> \"ruhusu shughuli za mandharasi\" kusikiliza nyuma</string>

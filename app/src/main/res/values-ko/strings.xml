@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">이 북마크를 삭제 하시겠습니까?</string>
    <string name="zoom_in_out_with_lock_enable">잠금 상태에서 확대 / 축소</string>
    <string name="show_footnotes_directly_in_text">각주를 텍스트에 직접 표시</string>
-   <string name="read_by_sentences">문장 처음부터 다시 읽기</string>
+   <string name="read_by_sentences">기호 다음에 잠시 멈춤</string>
    <string name="do_not_read_characters">특수 문자를 읽지 않는다.</string>
    <string name="show_in_scroll_mode">스크롤 모드</string>
    <string name="display_bookmark_text_instead_of_number">페이지 번호 대신 북마크 텍스트 표시</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">프로필</string>
    <string name="create_folder">새폴더</string>
    <string name="show_hidden">숨긴파일 보기</string>
-   <string name="new_file">새파일</string>
+   <string name="new_file_txt">새 파일(.txt)</string>
    <string name="paste_or_type_text_in_here">여기에 텍스트 붙여 넣기 또는 입력</string>
    <string name="go_to_the_folder">폴더로 이동</string>
    <string name="you_should_enable_allow_battery">\"배터리\"> \"백그라운드 활동 허용\"을 활성화하여야 백그라운드 재생이 가능합니다.</string>

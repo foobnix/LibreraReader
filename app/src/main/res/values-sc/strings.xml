@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Iscantzellare custu sinnalibru?</string>
    <string name="zoom_in_out_with_lock_enable">Ismànnia/mìnima sas pàginas \"blocadas\"</string>
    <string name="show_footnotes_directly_in_text">Notas in su testu (in logu de cussas a pee de pàgina)</string>
-   <string name="read_by_sentences">Sighi dae s\'ùrtimu sinnu de puntegiadura:</string>
+   <string name="read_by_sentences">A short pause after the symbol</string>
    <string name="do_not_read_characters">Brinca sos sìmbulos:</string>
    <string name="show_in_scroll_mode">Modalidade a iscurrimentu</string>
    <string name="display_bookmark_text_instead_of_number">Ammustra su testu (in logu de su nùmeru de pagina)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profilos</string>
    <string name="create_folder">Cartella noa</string>
    <string name="show_hidden">Ammustra cuadu</string>
-   <string name="new_file">Documentu nou</string>
+   <string name="new_file_txt">New file (.txt)</string>
    <string name="paste_or_type_text_in_here">Incolla o iscrie su testu inoghe</string>
    <string name="go_to_the_folder">Bae a sa cartella</string>
    <string name="you_should_enable_allow_battery">Dias dèpere abilitare \"Bateria\" > \"Permite s\'atividade in s\'isfundu\" pro ascurtare in s\'isfundu</string>

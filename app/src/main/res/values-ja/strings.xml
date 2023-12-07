@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">このブックマークを削除しますか？</string>
    <string name="zoom_in_out_with_lock_enable">ロックされたページの拡大/縮小</string>
    <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
-   <string name="read_by_sentences">一時停止/再開の区切り符号:</string>
+   <string name="read_by_sentences">記号の後に短い一時停止</string>
    <string name="do_not_read_characters">記号をスキップ:</string>
    <string name="show_in_scroll_mode">スクロールモードで表示する</string>
    <string name="display_bookmark_text_instead_of_number">番号の代わりにブックマークテキストを表示する</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">プロファイルルート</string>
    <string name="create_folder">フォルダを作成</string>
    <string name="show_hidden">非表示を表示</string>
-   <string name="new_file">新しいファイル</string>
+   <string name="new_file_txt">新しいファイル (.txt)</string>
    <string name="paste_or_type_text_in_here">ここにテキストを貼り付けるか入力します</string>
    <string name="go_to_the_folder">フォルダに移動</string>
    <string name="you_should_enable_allow_battery">バックグラウンドで聴くには、[バッテリー]> [バックグラウンドアクティビティを許可]を有効にする必要があります</string>

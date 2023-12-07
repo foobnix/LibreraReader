@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">An leabharmharc seo a scriosadh?</string>
    <string name="zoom_in_out_with_lock_enable">Súmáil isteach / amach leathanaigh \"faoi ghlas\"</string>
    <string name="show_footnotes_directly_in_text">Nótaí i dtéacs (in ionad fonótaí / fonótaí)</string>
-   <string name="read_by_sentences">Atosú ón marc poncaíochta deireanach:</string>
+   <string name="read_by_sentences">Sos gairid i ndiaidh na siombaile</string>
    <string name="do_not_read_characters">Siombailí scipe:</string>
    <string name="show_in_scroll_mode">Modh scrollaigh</string>
    <string name="display_bookmark_text_instead_of_number">Téacs a thaispeáint (in ionad uimhir an leathanaigh)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Próifílí</string>
    <string name="create_folder">Fillteán nua</string>
    <string name="show_hidden">Taispeáin i bhfolach</string>
-   <string name="new_file">Comhad nua</string>
+   <string name="new_file_txt">Comhad nua (.txt)</string>
    <string name="paste_or_type_text_in_here">Greamaigh nó clóscríobh téacs anseo</string>
    <string name="go_to_the_folder">Téigh go dtí an fillteán</string>
    <string name="you_should_enable_allow_battery">Ba cheart duit \"ceallraí\"> \"gníomhaíocht chúlra a cheadú\" a éisteacht sa chúlra</string>

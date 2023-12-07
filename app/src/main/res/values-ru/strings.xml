@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Удалить эту закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при \"закрытом\" замке</string>
    <string name="show_footnotes_directly_in_text">Показывать полный текст примечаний внутри текста самих книг</string>
-   <string name="read_by_sentences">Начинать читать со слов после символов:</string>
+   <string name="read_by_sentences">Короткая пауза после символа</string>
    <string name="do_not_read_characters">Не произносить словами символы:</string>
    <string name="show_in_scroll_mode">Показывать в режиме свитка</string>
    <string name="display_bookmark_text_instead_of_number">Отображать текст закладок, а не их номер</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Корневая папка</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показывать скрытое</string>
-   <string name="new_file">Создать файл</string>
+   <string name="new_file_txt">Новый файл (.txt)</string>
    <string name="paste_or_type_text_in_here">Вставьте сюда текст или введите его</string>
    <string name="go_to_the_folder">Перейти к папке</string>
    <string name="you_should_enable_allow_battery">Чтобы слушать аудио в фоне, в разделе "Аккумулятор" нужно разрешить приложению работать в соответствующем режиме</string>

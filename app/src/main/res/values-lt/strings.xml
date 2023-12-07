@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Ištrinti šią žymą?</string>
    <string name="zoom_in_out_with_lock_enable">Priartinti / mažinti su užraktu</string>
    <string name="show_footnotes_directly_in_text">Parodyti išnašas tiesiogiai tekste</string>
-   <string name="read_by_sentences">Skaityti sakiniais</string>
+   <string name="read_by_sentences">Trumpa pauzė po simbolio</string>
    <string name="do_not_read_characters">Neskaitykite simbolių</string>
    <string name="show_in_scroll_mode">Rodomas slinkties režimu</string>
    <string name="display_bookmark_text_instead_of_number">Rodyti žymės tekstą vietoj skaičiaus</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profilio šaknis</string>
    <string name="create_folder">Sukurti aplanką</string>
    <string name="show_hidden">Rodyti paslėptą</string>
-   <string name="new_file">Naujas failas</string>
+   <string name="new_file_txt">Naujas failas (.txt)</string>
    <string name="paste_or_type_text_in_here">Įklijuokite arba įveskite tekstą čia</string>
    <string name="go_to_the_folder">Eikite į aplanką</string>
    <string name="you_should_enable_allow_battery">Turėtumėte įjungti „baterija“> „leisti vykdyti foninę veiklą“, kad galėtumėte klausytis fone</string>

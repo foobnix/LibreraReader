@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">ลบบุ๊คมาร์คนี้หรือไม่</string>
    <string name="zoom_in_out_with_lock_enable">ซูมเข้า / ออกพร้อมเปิดใช้งานล็อค</string>
    <string name="show_footnotes_directly_in_text">แสดงเชิงอรรถโดยตรงในข้อความ</string>
-   <string name="read_by_sentences">อ่านตามประโยค</string>
+   <string name="read_by_sentences">หยุดชั่วคราวหลังจากสัญลักษณ์</string>
    <string name="do_not_read_characters">อย่าอ่านตัวละคร</string>
    <string name="show_in_scroll_mode">แสดงในโหมดเลื่อน</string>
    <string name="display_bookmark_text_instead_of_number">แสดงข้อความบุ๊กมาร์กแทนตัวเลข</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">รายละเอียดราก</string>
    <string name="create_folder">สร้างโฟลเดอร์</string>
    <string name="show_hidden">แสดงที่ซ่อนอยู่</string>
-   <string name="new_file">ไฟล์ใหม่</string>
+   <string name="new_file_txt">ไฟล์ใหม่ (.txt)</string>
    <string name="paste_or_type_text_in_here">วางหรือพิมพ์ข้อความที่นี่</string>
    <string name="go_to_the_folder">ไปที่โฟลเดอร์</string>
    <string name="you_should_enable_allow_battery">คุณควรเปิดใช้งาน \"แบตเตอรี่\"> \"อนุญาตกิจกรรมพื้นหลัง\" เพื่อฟังในพื้นหลัง</string>

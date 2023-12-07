@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Ștergeți acest marcaj?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / out cu funcția de blocare</string>
    <string name="show_footnotes_directly_in_text">Afișați notele de subsol direct în text</string>
-   <string name="read_by_sentences">Citiți prin propoziții</string>
+   <string name="read_by_sentences">O scurtă pauză după simbol</string>
    <string name="do_not_read_characters">Nu citesc caracterele</string>
    <string name="show_in_scroll_mode">Afișați în modul de derulare</string>
    <string name="display_bookmark_text_instead_of_number">Afișați textul de marcaj în loc de număr</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Rădăcină de profil</string>
    <string name="create_folder">Creeaza dosar</string>
    <string name="show_hidden">Arata ascuns</string>
-   <string name="new_file">Nou fișier</string>
+   <string name="new_file_txt">Fișier nou (.txt)</string>
    <string name="paste_or_type_text_in_here">Inserați sau introduceți text aici</string>
    <string name="go_to_the_folder">Accesați folderul</string>
    <string name="you_should_enable_allow_battery">Ar trebui să activați „baterie”> „permiteți activității de fundal” să asculte în fundal</string>

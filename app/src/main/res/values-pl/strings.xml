@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Usunąć tę zakładkę?</string>
    <string name="zoom_in_out_with_lock_enable">Powiększenie/pomniejszenie \"zablokowanych\" stron</string>
    <string name="show_footnotes_directly_in_text">Notatki w tekście (zamiast stopek/przypisów końcowych)</string>
-   <string name="read_by_sentences">Czytać według zdań</string>
+   <string name="read_by_sentences">Krótka pauza po symbolu</string>
    <string name="do_not_read_characters">Nie czytaj znaków</string>
    <string name="show_in_scroll_mode">Pokaż w trybie przewijania</string>
    <string name="display_bookmark_text_instead_of_number">Wyświetla tekst zakładki zamiast numeru</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Katalog główny</string>
    <string name="create_folder">Utwórz katalog</string>
    <string name="show_hidden">Pokaż ukryte</string>
-   <string name="new_file">Nowy plik</string>
+   <string name="new_file_txt">Nowy plik (.txt)</string>
    <string name="paste_or_type_text_in_here">Wklej lub wpisz tekst tutaj</string>
    <string name="go_to_the_folder">Przejdź do katalogu</string>
    <string name="you_should_enable_allow_battery">Należy włączyć opcję \"bateria\" > \"zezwalaj na aktywność w tle\", aby słuchać w tle.</string>

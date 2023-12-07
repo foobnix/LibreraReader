@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">למחוק את הסימנייה?</string>
    <string name="zoom_in_out_with_lock_enable">זום פנימה / החוצה עם לאפשר לנעול</string>
    <string name="show_footnotes_directly_in_text">הצג הערות שוליים ישירות בטקסט</string>
-   <string name="read_by_sentences">לקרוא על ידי משפטים</string>
+   <string name="read_by_sentences">הפסקה קצרה אחרי הסמל</string>
    <string name="do_not_read_characters">לא לקרוא תווים</string>
    <string name="show_in_scroll_mode">הצג במצב גלילה</string>
    <string name="display_bookmark_text_instead_of_number">הצג טקסט סימניה במקום מספר</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">שורש פרופיל</string>
    <string name="create_folder">צור תיקיה</string>
    <string name="show_hidden">הראה את המוסתר</string>
-   <string name="new_file">קובץ חדש</string>
+   <string name="new_file_txt">קובץ חדש (.txt)</string>
    <string name="paste_or_type_text_in_here">הדבק או הקלד טקסט כאן</string>
    <string name="go_to_the_folder">עבור לתיקיה</string>
    <string name="you_should_enable_allow_battery">עליך לאפשר ל\"סוללה \">\" לאפשר פעילות ברקע \"להאזין ברקע</string>

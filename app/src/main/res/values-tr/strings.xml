@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Bu favoriyi sil?</string>
    <string name="zoom_in_out_with_lock_enable">Kilit etkinken yakınlaştır / uzaklaştır</string>
    <string name="show_footnotes_directly_in_text">Dipnotları doğrudan metin olarak göster</string>
-   <string name="read_by_sentences">Cümle ile oku</string>
+   <string name="read_by_sentences">Sembolden sonra kısa bir duraklama</string>
    <string name="do_not_read_characters">Karakter okumayın</string>
    <string name="show_in_scroll_mode">Kaydırma kipi</string>
    <string name="display_bookmark_text_instead_of_number">Sayı yerine yer imi metnini göster</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profiller</string>
    <string name="create_folder">Yeni klasör</string>
    <string name="show_hidden">Gizlileri göster</string>
-   <string name="new_file">Yeni dosya</string>
+   <string name="new_file_txt">Yeni dosya (.txt)</string>
    <string name="paste_or_type_text_in_here">Buraya metin yapıştır veya yaz</string>
    <string name="go_to_the_folder">Klasöre git</string>
    <string name="you_should_enable_allow_battery">Arka planda dinlemek için \"pil\"> \"arka plan etkinliğine izin ver\" seçeneğini etkinleştirmelisiniz</string>

@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Dieses Lesezeichen löschen?</string>
    <string name="zoom_in_out_with_lock_enable">Vergrößern / Verkleinern trotz Sperre aktivieren</string>
    <string name="show_footnotes_directly_in_text">Fußnoten direkt im Text anzeigen</string>
-   <string name="read_by_sentences">Von letzter Interpunktion vorlesen:</string>
+   <string name="read_by_sentences">Eine kurze Pause nach dem Symbol</string>
    <string name="do_not_read_characters">Folgende Zeichen überspringen:</string>
    <string name="show_in_scroll_mode">Scroll-Modus</string>
    <string name="display_bookmark_text_instead_of_number">Text (statt Seitenzahl) anzeigen</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profile</string>
    <string name="create_folder">Ordner erstellen</string>
    <string name="show_hidden">Verborgenes zeigen</string>
-   <string name="new_file">Neue Datei</string>
+   <string name="new_file_txt">Neue Datei (.txt)</string>
    <string name="paste_or_type_text_in_here">Text hier einfügen oder eingeben</string>
    <string name="go_to_the_folder">Gehe zu Ordner</string>
    <string name="you_should_enable_allow_battery">\"Batterie\"> \"Hintergrundaktivität zulassen\" aktivieren, um im Hintergrund zu hören</string>

@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">ഈ ബുക്ക്മാർക്ക് ഇല്ലാതാക്കണോ?</string>
    <string name="zoom_in_out_with_lock_enable">\"ലോക്കുചെയ്‌ത\" പേജുകൾ സൂം ഇൻ / out ട്ട് ചെയ്യുക</string>
    <string name="show_footnotes_directly_in_text">വാചക കുറിപ്പുകൾ (കാൽ / അവസാന കുറിപ്പുകൾക്ക് പകരം)</string>
-   <string name="read_by_sentences">അവസാന ചിഹ്ന ചിഹ്നത്തിൽ നിന്ന് പുനരാരംഭിക്കുക:</string>
+   <string name="read_by_sentences">ചിഹ്നത്തിന് ശേഷം ഒരു ചെറിയ ഇടവേള</string>
    <string name="do_not_read_characters">ചിഹ്നങ്ങൾ ഒഴിവാക്കുക:</string>
    <string name="show_in_scroll_mode">സ്ക്രോൾ മോഡ്</string>
    <string name="display_bookmark_text_instead_of_number">പ്രദർശന വാചകം (പേജ് നമ്പറിന് പകരം)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">പ്രൊഫൈലുകൾ</string>
    <string name="create_folder">പുതിയ ഫോൾഡർ</string>
    <string name="show_hidden">മറച്ചതായി കാണിക്കുക</string>
-   <string name="new_file">പുതിയ ഫയൽ</string>
+   <string name="new_file_txt">പുതിയ ഫയൽ (.txt)</string>
    <string name="paste_or_type_text_in_here">വാചകം ഒട്ടിക്കുക അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യുക</string>
    <string name="go_to_the_folder">ഫോൾഡറിലേക്ക് പോകുക</string>
    <string name="you_should_enable_allow_battery">നിങ്ങൾ പശ്ചാത്തലത്തിൽ കേൾക്കാൻ \"ബാറ്ററി\"> \"പശ്ചാത്തല പ്രവർത്തനം അനുവദിക്കുക\" പ്രാപ്തമാക്കണം</string>

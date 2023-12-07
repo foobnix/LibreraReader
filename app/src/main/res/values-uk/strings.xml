@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Видалити цю закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Збільшити / зменшити з увімкненням блокування</string>
    <string name="show_footnotes_directly_in_text">Показувати виноски безпосередньо в тексті</string>
-   <string name="read_by_sentences">Читати по реченням</string>
+   <string name="read_by_sentences">Коротка пауза після символу</string>
    <string name="do_not_read_characters">Не читати символи</string>
    <string name="show_in_scroll_mode">Показувати в режимі прокрутки</string>
    <string name="display_bookmark_text_instead_of_number">Показати текст закладки замість номера</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Корінь профілю</string>
    <string name="create_folder">Створити теку</string>
    <string name="show_hidden">Показати приховані</string>
-   <string name="new_file">Новий файл</string>
+   <string name="new_file_txt">Новий файл (.txt)</string>
    <string name="paste_or_type_text_in_here">Вставте або введіть текст сюди</string>
    <string name="go_to_the_folder">Перейти до теки</string>
    <string name="you_should_enable_allow_battery">Увімкніть \"Акумулятор\"> \"Дозволити роботу в фоні,\"  щоб слухати у фоновому режимі</string>

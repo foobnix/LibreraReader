@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Poistetaanko kirjanmerkki?</string>
    <string name="zoom_in_out_with_lock_enable">Lähennys / loitonnus lukituilla sivuilla</string>
    <string name="show_footnotes_directly_in_text">Näyttää viitteet suoraan tekstissä</string>
-   <string name="read_by_sentences">Jatka edellisestä välimerkistä:</string>
+   <string name="read_by_sentences">Lyhyt tauko symbolin jälkeen</string>
    <string name="do_not_read_characters">Ohita merkit:</string>
    <string name="show_in_scroll_mode">Vieritystila</string>
    <string name="display_bookmark_text_instead_of_number">Näytä teksti sivunumeron sijaan</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profiilit</string>
    <string name="create_folder">Uusi kansio</string>
    <string name="show_hidden">Näytä piilotetut</string>
-   <string name="new_file">Uusi tiedosto</string>
+   <string name="new_file_txt">Uusi tiedosto (.txt)</string>
    <string name="paste_or_type_text_in_here">Liitä tai kirjoita teksti tähän</string>
    <string name="go_to_the_folder">Mene kansioon</string>
    <string name="you_should_enable_allow_battery">Salli taustakäyttö laitteen asetuksista \"Akku\"> \"Salli taustatoiminnot\"</string>

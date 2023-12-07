@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Supprimer ce signet?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom avant / arrière avec verrouillage activé</string>
    <string name="show_footnotes_directly_in_text">Afficher les notes directement dans le texte</string>
-   <string name="read_by_sentences">Lire par phrases</string>
+   <string name="read_by_sentences">Une courte pause après le symbole</string>
    <string name="do_not_read_characters">Ne pas lire les caractères</string>
    <string name="show_in_scroll_mode">Montrer en mode de défilement</string>
    <string name="display_bookmark_text_instead_of_number">Afficher le texte du signet au lieu du nombre</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Racine du profil</string>
    <string name="create_folder">Créer le dossier</string>
    <string name="show_hidden">Montrer caché</string>
-   <string name="new_file">Nouveau fichier</string>
+   <string name="new_file_txt">Nouveau fichier (.txt)</string>
    <string name="paste_or_type_text_in_here">Coller ou taper du texte ici</string>
    <string name="go_to_the_folder">Aller dans le dossier</string>
    <string name="you_should_enable_allow_battery">Vous devez activer \"batterie\"> \"autoriser l\'activité en arrière-plan\" pour écouter en arrière-plan</string>

@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Xóa dấu trang này?</string>
    <string name="zoom_in_out_with_lock_enable">Phóng to / thu nhỏ với khóa cho phép</string>
    <string name="show_footnotes_directly_in_text">Hiển thị chú thích trực tiếp trong văn bản</string>
-   <string name="read_by_sentences">Đọc bằng câu</string>
+   <string name="read_by_sentences">Một khoảng dừng ngắn sau biểu tượng</string>
    <string name="do_not_read_characters">Không đọc ký tự</string>
    <string name="show_in_scroll_mode">Hiển thị trong chế độ cuộn</string>
    <string name="display_bookmark_text_instead_of_number">Hiển thị văn bản đánh dấu thay vì số</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Hồ sơ gốc</string>
    <string name="create_folder">Tạo thư mục</string>
    <string name="show_hidden">Hiển thị ẩn</string>
-   <string name="new_file">Tập tin mới</string>
+   <string name="new_file_txt">Tập tin mới (.txt)</string>
    <string name="paste_or_type_text_in_here">Dán hoặc gõ văn bản vào đây</string>
    <string name="go_to_the_folder">Đi đến thư mục</string>
    <string name="you_should_enable_allow_battery">Bạn nên bật \"pin\"> \"cho phép hoạt động nền\" để nghe trong nền</string>

@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Выдаліць гэту закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Павялічваць/памяншаць \"заблакіраваныя\" старонкі</string>
    <string name="show_footnotes_directly_in_text">Нататкі ў тэксце (замест зносак/канчаткоў)</string>
-   <string name="read_by_sentences">Аднавіць ад апошняга знака прыпынку:</string>
+   <string name="read_by_sentences">Кароткая паўза пасля сімвала</string>
    <string name="do_not_read_characters">Прапусціць сімвалы:</string>
    <string name="show_in_scroll_mode">Рэжым пракруткі</string>
    <string name="display_bookmark_text_instead_of_number">Адлюстраванне тэксту (замест нумара старонкі)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Профілі</string>
    <string name="create_folder">Новая тэчка</string>
    <string name="show_hidden">Паказаць схаваны</string>
-   <string name="new_file">Новы файл</string>
+   <string name="new_file_txt">Новы файл (.txt)</string>
    <string name="paste_or_type_text_in_here">Устаўце або ўвядзіце тэкст тут</string>
    <string name="go_to_the_folder">Перайсці ў тэчку</string>
    <string name="you_should_enable_allow_battery">Вы павінны ўключыць \"акумулятар\" > \"дазволіць фонавую дзейнасць\", каб слухаць у фонавым рэжыме.</string>

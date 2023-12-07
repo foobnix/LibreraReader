@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">刪除這個書籤？</string>
    <string name="zoom_in_out_with_lock_enable">鎖定時可縮放</string>
    <string name="show_footnotes_directly_in_text">顯示文本腳注</string>
-   <string name="read_by_sentences">按句子讀</string>
+   <string name="read_by_sentences">符號後短暫停頓</string>
    <string name="do_not_read_characters">不讀字符</string>
    <string name="show_in_scroll_mode">滾動模式顯示</string>
    <string name="display_bookmark_text_instead_of_number">顯示書籤文本而非數字</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">配置文件根</string>
    <string name="create_folder">創建檔夾</string>
    <string name="show_hidden">顯示隱藏</string>
-   <string name="new_file">新文件</string>
+   <string name="new_file_txt">新檔案（.txt）</string>
    <string name="paste_or_type_text_in_here">在此處粘貼或鍵入文本</string>
    <string name="go_to_the_folder">轉到文件夾</string>
    <string name="you_should_enable_allow_battery">您應該啟用“電池”>“允許後台活動”以在後台收聽</string>

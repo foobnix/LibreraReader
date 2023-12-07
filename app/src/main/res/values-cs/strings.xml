@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Smazat tuto záložku?</string>
    <string name="zoom_in_out_with_lock_enable">Přiblížit / oddálit \"zamčené\" stránky</string>
    <string name="show_footnotes_directly_in_text">Poznámky v textu (místo poznámek pod čarou / vysvětlivek)</string>
-   <string name="read_by_sentences">Pokračovat od posledního interpunkčního znaménka:</string>
+   <string name="read_by_sentences">Krátká pauza po symbolu</string>
    <string name="do_not_read_characters">Přeskočit symboly:</string>
    <string name="show_in_scroll_mode">Režim skrolování</string>
    <string name="display_bookmark_text_instead_of_number">Zobrazit text (místo čísla stránky)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Kořen profilu</string>
    <string name="create_folder">Vytvořit složku</string>
    <string name="show_hidden">Zobrazit skryté</string>
-   <string name="new_file">Nový soubor</string>
+   <string name="new_file_txt">Nový soubor (.txt)</string>
    <string name="paste_or_type_text_in_here">Sem vložte nebo zadejte text</string>
    <string name="go_to_the_folder">Přejděte do složky</string>
    <string name="you_should_enable_allow_battery">Měli byste povolit \"baterii\" > \"povolit aktivitu na pozadí\" pro poslech na pozadí</string>

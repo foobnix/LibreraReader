@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Delete this bookmark?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in/out \"locked\" pages</string>
    <string name="show_footnotes_directly_in_text">In-text notes (instead of foot-/endnotes)</string>
-   <string name="read_by_sentences">Resume from last punctuation mark:</string>
+   <string name="read_by_sentences">A short pause after the symbol</string>
    <string name="do_not_read_characters">Skip symbols:</string>
    <string name="show_in_scroll_mode">Scroll mode</string>
    <string name="display_bookmark_text_instead_of_number">Display text (instead of page number)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profiles</string>
    <string name="create_folder">New Folder</string>
    <string name="show_hidden">Show hidden</string>
-   <string name="new_file">New File</string>
+   <string name="new_file_txt">New file (.txt)</string>
    <string name="paste_or_type_text_in_here">Paste or type text in here</string>
    <string name="go_to_the_folder">Go to Folder</string>
    <string name="you_should_enable_allow_battery">You should enable \"Battery\" > \"Allow background activity\" to listen in the background.</string>

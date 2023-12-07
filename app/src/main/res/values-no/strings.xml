@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Slett dette bokmerket?</string>
    <string name="zoom_in_out_with_lock_enable">Zoome inn / ut med lås aktivering</string>
    <string name="show_footnotes_directly_in_text">Vis fotnoter direkte i tekst</string>
-   <string name="read_by_sentences">Les etter setninger</string>
+   <string name="read_by_sentences">En kort pause etter symbolet</string>
    <string name="do_not_read_characters">Ikke les tegn</string>
    <string name="show_in_scroll_mode">Vis i rullemodus</string>
    <string name="display_bookmark_text_instead_of_number">Vis bokmerketekst i stedet for nummer</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profilrot</string>
    <string name="create_folder">Lag mappe</string>
    <string name="show_hidden">Vis skjult</string>
-   <string name="new_file">Ny fil</string>
+   <string name="new_file_txt">Ny fil (.txt)</string>
    <string name="paste_or_type_text_in_here">Lim inn eller skriv inn tekst her</string>
    <string name="go_to_the_folder">Gå til mappen</string>
    <string name="you_should_enable_allow_battery">Bør du aktivere \"batteri\"> \"la bakgrunnsaktivitet\" lytte i bakgrunnen</string>

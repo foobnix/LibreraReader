@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">இந்த புத்தககுறய நீக்கவா?</string>
    <string name="zoom_in_out_with_lock_enable">பூட்டப்பட்ட \\ பக்கங்களை பெரிதாக்கவும்</string>
    <string name="show_footnotes_directly_in_text">உரையில் உள்ள குறிப்புகள் (கால்- / இறுதி குறிப்புகளுக்கு பதிலாக)</string>
-   <string name="read_by_sentences">கடைசி நிறுத்தற்குறியில் இருந்து மீண்டும் தொடங்குங்கள்:</string>
+   <string name="read_by_sentences">சின்னத்திற்குப் பிறகு ஒரு சிறிய இடைநிறுத்தம்</string>
    <string name="do_not_read_characters">சின்னங்களைத் தவிர்:</string>
    <string name="show_in_scroll_mode">உருள் பயன்முறை</string>
    <string name="display_bookmark_text_instead_of_number">உரையைக் காண்பி (பக்க எண்ணுக்கு பதிலாக)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">சுயவிவரங்கள்</string>
    <string name="create_folder">புதிய அடைவை</string>
    <string name="show_hidden">மறைக்கப்பட்டதைக் காட்டு</string>
-   <string name="new_file">புதிய கோப்பு</string>
+   <string name="new_file_txt">புதிய கோப்பு (.txt)</string>
    <string name="paste_or_type_text_in_here">உரையை இங்கே ஒட்டவும் அல்லது தட்டச்சு செய்யவும்</string>
    <string name="go_to_the_folder">கோப்புறைக்குச் செல்லவும்</string>
    <string name="you_should_enable_allow_battery">நீங்கள் பின்னணியில் \"பேட்டரி பின்னணி செயல்பாட்டை அனுமதிஐ இயக்க வேண்டும்</string>

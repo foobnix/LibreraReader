@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Ezabatu nahi duzu laster-marka hau?</string>
    <string name="zoom_in_out_with_lock_enable">Hurbildu/urrundu blokeoa gaituta</string>
    <string name="show_footnotes_directly_in_text">Erakutsi oharrak testuan</string>
-   <string name="read_by_sentences">Jarraitu azken puntuazio-markatik:</string>
+   <string name="read_by_sentences">Etenaldi labur bat sinboloaren ondoren</string>
    <string name="do_not_read_characters">Saltatu ikurrak</string>
    <string name="show_in_scroll_mode">Korritzeko modua</string>
    <string name="display_bookmark_text_instead_of_number">Erakutsi testua (zenbakiaren ordez)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Profilaren erroa</string>
    <string name="create_folder">Sortu karpeta</string>
    <string name="show_hidden">Erakutsi ezkutukoa</string>
-   <string name="new_file">Fitxategi berria</string>
+   <string name="new_file_txt">Fitxategi berria (.txt)</string>
    <string name="paste_or_type_text_in_here">Itsatsi edo idatzi bertan</string>
    <string name="go_to_the_folder">Joan karpetara</string>
    <string name="you_should_enable_allow_battery">\"Bateria\" > \"Baimendu atzeko planoko jarduera\" gaitu beharko zenuke atzeko planoan entzuteko.</string>

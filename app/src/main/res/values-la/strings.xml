@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Delete hoc Top?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / clausum cum enable</string>
    <string name="show_footnotes_directly_in_text">Ostende directe in textu notis</string>
-   <string name="read_by_sentences">Per sententias legere</string>
+   <string name="read_by_sentences">Paulisper mora post symbolum</string>
    <string name="do_not_read_characters">Non legitur characteribus</string>
    <string name="show_in_scroll_mode">In volumen ostendit modus</string>
    <string name="display_bookmark_text_instead_of_number">Top ostentationem textu pro numero</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Radix profile</string>
    <string name="create_folder">Partum folder</string>
    <string name="show_hidden">Ostende occultatum</string>
-   <string name="new_file">Novus lima</string>
+   <string name="new_file_txt">File nova (.txt)</string>
    <string name="paste_or_type_text_in_here">Typus vel crustulum in text here</string>
    <string name="go_to_the_folder">Ad folder</string>
    <string name="you_should_enable_allow_battery"><![CDATA[Ut possimus \"pugna\"> <font actionem patietur \"background audire]]></string>

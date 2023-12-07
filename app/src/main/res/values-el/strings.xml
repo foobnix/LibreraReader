@@ -519,7 +519,7 @@
    <string name="delete_this_bookmark_">Διαγραφή αυτού του σελιδοδείκτη;</string>
    <string name="zoom_in_out_with_lock_enable">Μεγέθυνση / σμίκρυνση \"κλειδωμένων\" σελίδων</string>
    <string name="show_footnotes_directly_in_text">Σημειώσεις σε κείμενο (αντί για υποσημειώσεις πόδι / τέλος)</string>
-   <string name="read_by_sentences">Συνέχιση από το τελευταίο σημείο στίξης:</string>
+   <string name="read_by_sentences">Μια μικρή παύση μετά το σύμβολο</string>
    <string name="do_not_read_characters">Παράλειψη συμβόλων:</string>
    <string name="show_in_scroll_mode">Λειτουργία κύλισης</string>
    <string name="display_bookmark_text_instead_of_number">Εμφανιζόμενο κείμενο (αντί για αριθμό σελίδας)</string>
@@ -594,7 +594,7 @@
    <string name="profile_root">Προφίλ</string>
    <string name="create_folder">Νέος φάκελος</string>
    <string name="show_hidden">Εμφάνιση κρυφό</string>
-   <string name="new_file">Νέο αρχείο</string>
+   <string name="new_file_txt">Νέο αρχείο (.txt)</string>
    <string name="paste_or_type_text_in_here">Επικολλήστε ή πληκτρολογήστε κείμενο εδώ</string>
    <string name="go_to_the_folder">Μεταβείτε στο φάκελο</string>
    <string name="you_should_enable_allow_battery">Θα πρέπει να ενεργοποιήσετε την \"μπαταρία\"> \"επιτρέψτε τη δραστηριότητα φόντου\" να ακούει στο παρασκήνιο</string>
