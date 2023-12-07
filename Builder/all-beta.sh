@@ -9,8 +9,13 @@ else
 fi
 ####################################
 
+git pull
+
+
 ./link_to_mupdf_1.23.7.sh fdroid
 cd ../
+
+
 
 ./gradlew clean incVersion
 ./gradlew assembleFdroidRelease
