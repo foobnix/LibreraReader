@@ -36,6 +36,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
@@ -71,6 +73,10 @@ import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import com.foobnix.LibreraApp;
+import com.foobnix.work.CheckDeletedBooksWorker;
+import com.foobnix.work.SearchAllBooksWorker;
+import com.foobnix.work.SelfTestWorker;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -371,7 +377,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                         @Override
                         public void run() {
-                            BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                           // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
+                            WorkManager.getInstance(getContext()).enqueue(workRequest);
                         }
                     }, null);
                 }
@@ -637,7 +645,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchAdapter.notifyDataSetChanged();
             IMG.clearMemoryCache();
             IMG.clearDiscCache();
-            BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+            //BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+
+            SearchAllBooksWorker.run(getActivity());
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -645,7 +656,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
-            BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
+            //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
+            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
+            WorkManager.getInstance(getContext()).enqueue(workRequest);
         } catch (Exception e) {
             LOG.e(e);
         }

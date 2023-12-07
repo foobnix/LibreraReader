@@ -93,6 +93,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.foobnix.work.SearchAllBooksWorker;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
@@ -2645,7 +2646,8 @@ public class PrefFragment2 extends UIFragment {
 
 
                     //AppProfile.init(getActivity());
-                    BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+                    //BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+                    SearchAllBooksWorker.run(getActivity());
                     onTheme();
 
                 }
@@ -2836,7 +2838,8 @@ public class PrefFragment2 extends UIFragment {
         closeLeftMenu();
 
 
-        BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+        //BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
+        SearchAllBooksWorker.run(getActivity());
 
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
