@@ -32,16 +32,20 @@ abstract class MessageWorker extends Worker {
     public Result doWork() {
 
         if (BooksService.isRunning) {
-            LOG.d("MessageWorker", "Skip",this.getClass());
+            LOG.d("MessageWorker", "Skip", this.getClass());
             return Result.failure();
         }
-        LOG.d("MessageWorker", "Run",this.getClass());
-        BooksService.isRunning = true;
+        LOG.d("MessageWorker", "Run", this.getClass());
 
-        doWorkInner();
-
-        sendFinishMessage();
-        BooksService.isRunning = false;
+        try {
+            BooksService.isRunning = true;
+            doWorkInner();
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            sendFinishMessage();
+            BooksService.isRunning = false;
+        }
         return Result.success();
     }
 
