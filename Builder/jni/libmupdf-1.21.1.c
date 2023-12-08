@@ -660,7 +660,8 @@ JNIEXPORT jlong JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_open(JNIEnv *env,
 		jclass clazz, jlong dochandle) {
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-	if (!doc->outline){
+
+	if (doc && doc->ctx && !doc->outline){
 		fz_context *ctx = doc->ctx;
 		//doc->outline = fz_load_outline(ctx, doc->document);
 
