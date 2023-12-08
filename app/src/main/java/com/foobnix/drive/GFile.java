@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
@@ -19,6 +22,8 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.work.SearchAllBooksWorker;
+import com.foobnix.work.SynctornizatoinWorker;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -751,7 +756,9 @@ public class GFile {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
                 if (account != null) {
                     GFile.buildDriveService(a);
-                    BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
+                    //BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
+                    OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SynctornizatoinWorker.class).build();
+                    WorkManager.getInstance(a).enqueue(workRequest);
                 }
             }
         } catch (Exception e) {

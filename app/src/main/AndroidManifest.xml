@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -249,10 +248,14 @@
 
         </activity>
 
+        <!--
         <service
             android:name="com.foobnix.ui2.BooksService"
             android:foregroundServiceType="dataSync"
             android:exported="false" />
+
+            -->
+
         <service
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"

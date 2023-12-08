@@ -28,6 +28,7 @@ import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.work.SyncDropboxWorker;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -101,7 +102,8 @@ public class Clouds {
     }
 
     public static void runSync(Activity a) {
-        BooksService.startForeground(a, BooksService.ACTION_SYNC_DROPBOX);
+        //BooksService.startForeground(a, BooksService.ACTION_SYNC_DROPBOX);
+        SyncDropboxWorker.run(a);
     }
 
     public static File getCacheFile(String path) {

@@ -30,9 +30,12 @@ abstract class MessageWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+
         if (BooksService.isRunning) {
+            LOG.d("MessageWorker", "Skip",this.getClass());
             return Result.failure();
         }
+        LOG.d("MessageWorker", "Run",this.getClass());
         BooksService.isRunning = true;
 
         doWorkInner();

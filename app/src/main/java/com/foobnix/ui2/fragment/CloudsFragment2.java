@@ -34,6 +34,7 @@ import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.work.SyncDropboxWorker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -96,7 +97,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 MyProgressBar.setVisibility(View.VISIBLE);
-                BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
+                //BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
+                SyncDropboxWorker.run(getActivity());
 
             }
         });
@@ -140,7 +142,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
+                            //BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
+                            SyncDropboxWorker.run(getActivity());
 
                             MyProgressBar.setVisibility(View.VISIBLE);
                         }

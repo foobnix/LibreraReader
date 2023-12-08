@@ -29,7 +29,6 @@ public class CheckDeletedBooksWorker extends MessageWorker {
     @Override
     public void doWorkInner() {
 
-
         List<FileMeta> all = AppDB.get().getAll();
 
         for (FileMeta meta : all) {
