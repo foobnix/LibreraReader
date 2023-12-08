@@ -512,9 +512,9 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
-            if(date==null){
+            if (date == null) {
                 ebookMeta.setYear(calibreTimestamp);
-            }else {
+            } else {
                 ebookMeta.setYear(date);
             }
 
@@ -572,21 +572,36 @@ public class EpubExtractor extends BaseExtractor {
                     }
                 }
             }
-
+            LOG.d("Covers-","Book:",path);
             if (coverName != null) {
                 zipInputStream.close();
 
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName();
-                    if (name.contains(coverName)) {
+                    if (name.equals(coverName)) { //EQUALS
+                        LOG.d("Covers-","EQ:", name);
                         cover = BaseExtractor.getEntryAsByte(zipInputStream);
                         break;
+                    }
+                }
+                if (cover == null) {
+                    zipInputStream.close();
+
+                    zipInputStream = Zips.buildZipArchiveInputStream(path);
+                    while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                        String name = nextEntry.getName();
+                        if (name.endsWith(coverName)) { // CONTAIN
+                            LOG.d("Covers-","END:", name, coverName);
+                            cover = BaseExtractor.getEntryAsByte(zipInputStream);
+                            break;
+                        }
                     }
                 }
             }
 
             if (cover == null) {
+                LOG.d("Covers-","OTHER:");
                 zipInputStream.close();
 
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
@@ -668,8 +683,8 @@ public class EpubExtractor extends BaseExtractor {
                                     continue;
                                 }
 
-                                textLink.put(attr,  text+"#"+name);
-                                LOG.d("put links >>", attr, text+"#"+name);
+                                textLink.put(attr, text + "#" + name);
+                                LOG.d("put links >>", attr, text + "#" + name);
 
                                 LOG.d("Extract file", file);
                                 if (TxtUtils.isEmpty(file)) {
