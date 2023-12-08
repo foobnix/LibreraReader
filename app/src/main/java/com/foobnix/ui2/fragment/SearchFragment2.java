@@ -39,6 +39,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
@@ -71,8 +72,6 @@ import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-
-import com.foobnix.LibreraApp;
 import com.foobnix.work.CheckDeletedBooksWorker;
 import com.foobnix.work.SearchAllBooksWorker;
 import com.foobnix.work.SelfTestWorker;
@@ -99,6 +98,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
     private static final String CMD_MARGIN = "@@keycode_margin";
     public static int NONE = -1;
+    public static List<FileMeta> cacheItems;
     final Set<String> autocomplitions = new HashSet<String>();
     public int prevLibModeFileMeta = AppState.MODE_GRID;
     public int prevLibModeAuthors = NONE;
@@ -377,7 +377,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                         @Override
                         public void run() {
-                           // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                            // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
                             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
                             WorkManager.getInstance(getContext()).enqueue(workRequest);
                         }
@@ -622,7 +622,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         menu2.setVisibility(getActivity().findViewById(R.id.imageMenu1) == null ? View.GONE : View.VISIBLE);
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
@@ -842,8 +841,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void toastState(String command, boolean state) {
         Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
     }
-
-    public static List<FileMeta> cacheItems;
 
     @Override
     public void populateDataInUI(List<FileMeta> items) {
@@ -1151,13 +1148,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onGridList();
-                searchAndOrderAsync();
-            }
-        }, 150);
+        if (handler != null) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onGridList();
+                    searchAndOrderAsync();
+                }
+            }, 150);
+        }
     }
 
 
