@@ -10,7 +10,7 @@ Ukraine.**
 
 Librera Reader is an e-book reader for Android devices;
 it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX,
-and OPDS Catalogs
+and OPDS Catalogs.
 
 ### Download application
 
