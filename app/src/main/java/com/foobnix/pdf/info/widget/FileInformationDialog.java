@@ -542,7 +542,7 @@ public class FileInformationDialog {
 
             }
         });
-        final String url = IMG.toUrl(path, 0, Dips.screenWidth());
+        final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_NO_EFFECT, Dips.screenWidth());
 
         Glide.with(LibreraApp.context).asBitmap().load(url).into(imageView);
 

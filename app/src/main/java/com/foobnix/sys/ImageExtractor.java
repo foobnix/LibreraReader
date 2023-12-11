@@ -245,7 +245,7 @@ public class ImageExtractor {
             int width = pageUrl.getWidth();
             int height = (int) (width * k);
 
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
             page.close();
