@@ -6,7 +6,7 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 5846
+    FDroidCodeNumber = 5848
     FDroidVersionNumber = "8.9.105"
 }
 

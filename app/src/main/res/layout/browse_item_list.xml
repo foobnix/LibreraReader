@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@color/white"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true" />
         </androidx.cardview.widget.CardView>

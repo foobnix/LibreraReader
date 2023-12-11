@@ -34,6 +34,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="0dip"
                 android:adjustViewBounds="true"
+                android:background="@color/white"
                 android:cropToPadding="true"
                 android:padding="0dip" />
         </androidx.cardview.widget.CardView>

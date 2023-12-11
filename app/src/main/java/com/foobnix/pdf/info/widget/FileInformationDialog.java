@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -451,6 +452,7 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        coverImage.setBackgroundColor(Color.WHITE);
         coverImage.getLayoutParams().width = Dips.screenMinWH() / 2;
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
@@ -534,6 +536,10 @@ public class FileInformationDialog {
         });
 
         final ScaledImageView imageView = new ScaledImageView(a);
+        imageView.setBackgroundColor(Color.WHITE);
+        imageView.setAdjustViewBounds(true);
+        imageView.setCropToPadding(true);
+
         imageView.setOnClickListener(new OnClickListener() {
 
             @Override
