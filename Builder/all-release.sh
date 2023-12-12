@@ -23,28 +23,24 @@ cd ../
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assemblePdf_classicRelease
-#./gradlew assembleFdroidRelease
 ./gradlew assembleTts_readerRelease
 ./gradlew assembleEpub_readerRelease
 ./gradlew assembleProRelease
+./gradlew assembleTts_readerRelease
+./gradlew assembleEpub_readerRelease
 
 cd Builder
 ./link_to_mupdf_1.23.7.sh fdroid
 
 cd ../
 
-./gradlew assembleTts_readerRelease
-./gradlew assembleEpub_readerRelease
 ./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta -Prelesae
 ./gradlew -stop
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.*
-
-rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/.apk
+rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/.apk
 
 cd Builder
 ./remove_all.sh

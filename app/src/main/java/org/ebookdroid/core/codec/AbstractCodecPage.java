@@ -4,6 +4,7 @@ import com.foobnix.pdf.info.Prefs;
 
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,11 +30,24 @@ public abstract class AbstractCodecPage implements CodecPage {
         }
         try {
             Prefs.get().put(path, 0);
-            return getTextIml();
+            return getTextImpl();
         } finally {
             Prefs.get().remove(path, 0);
         }
     }
 
-    public abstract TextWord[][] getTextIml();
+    @Override
+    public List<Annotation> getAnnotations() {
+        if (Prefs.get().isErrorExist(path, 0)) {
+            return new ArrayList<Annotation>();
+        }
+        try {
+            Prefs.get().put(path, 0);
+            return getAnnotationsImpl();
+        } finally {
+            Prefs.get().remove(path, 0);
+        }
+    }
+
+    public abstract TextWord[][] getTextImpl();
 }

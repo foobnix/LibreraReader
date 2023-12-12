@@ -103,7 +103,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
-    public List<Annotation> getAnnotations() {
+    public List<Annotation> getAnnotationsImpl() {
         return new ArrayList<Annotation>();
     }
 
@@ -313,7 +313,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
-    public TextWord[][] getTextIml() {
+    public TextWord[][] getTextImpl() {
         try {
             List<PageTextBox> boxs = getPageText1();
             if (TxtUtils.isListEmpty(boxs)) {

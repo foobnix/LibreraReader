@@ -13,6 +13,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -388,7 +389,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public List<Annotation> getAnnotations() {
+    public List<Annotation> getAnnotationsImpl() {
         TempHolder.lock.lock();
         List<Annotation> result = new ArrayList<Annotation>();
         try {
@@ -435,7 +436,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public TextWord[][] getTextIml() {
+    public TextWord[][] getTextImpl() {
 
         //SKIP TEM
         if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {

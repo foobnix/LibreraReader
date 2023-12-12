@@ -29,6 +29,7 @@ public interface CodecPage {
 	List<PageLink> getPageLinks();
 
 	List<Annotation> getAnnotations();
+	List<Annotation> getAnnotationsImpl();
 
 	public TextWord[][] getText();
 
