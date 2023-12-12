@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
-#APK=/home/dev/Dropbox/FREE_PDF_APK/testing
-APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+
+if [ -z "$1" ]; then
+  echo "==[Testing]=="
+  APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+else
+  echo "==[$1]=="
+  APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
+fi
 
 for DEVICE in $(adb devices | grep  -E -i '[abcdf0-9]' | tr -s "\t " " " | cut -d " " -f 1)
 do
@@ -45,5 +51,3 @@ do
 done
 
 done
-
-

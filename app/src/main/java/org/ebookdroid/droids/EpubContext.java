@@ -20,7 +20,8 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import java.io.File;
 import java.util.Map;
 
-public class EpubContext extends PdfContext {
+public class
+EpubContext extends PdfContext {
 
     private static final String TAG = "EpubContext";
     File cacheFile;

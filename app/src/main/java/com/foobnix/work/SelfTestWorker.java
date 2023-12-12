@@ -43,7 +43,9 @@ public class SelfTestWorker extends MessageWorker {
 
     @Override
     public void doWorkInner() {
-        try {
+        try
+        {
+            AppProfile.init(getApplicationContext());
             AppProfile.syncTestFolder.mkdirs();
             File logFile = AppData.getTestFileName();
             logFile.delete();
