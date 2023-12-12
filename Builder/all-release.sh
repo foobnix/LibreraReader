@@ -39,8 +39,8 @@ cd ../
 ./gradlew copyApks -Pbeta -Prelesae
 ./gradlew -stop
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/.apk
-rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/.apk
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*.apk
+rm /Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*.apk
 
 cd Builder
 ./remove_all.sh

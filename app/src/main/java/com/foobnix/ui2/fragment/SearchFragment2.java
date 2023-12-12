@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -378,8 +379,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         @Override
                         public void run() {
                             // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
+                            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
                             WorkManager.getInstance(getContext()).enqueue(workRequest);
+
                         }
                     }, null);
                 }
