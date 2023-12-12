@@ -4,6 +4,8 @@ layout: main
 
 # What is new
 
+### [8.9.117] Clicking the back button twice to exit an activity
+
 ### [8.9.76] Show print edition page numbers (Epub3)
 
 |||||

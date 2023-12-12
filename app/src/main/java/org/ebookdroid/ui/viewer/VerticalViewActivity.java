@@ -403,8 +403,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         return super.onKeyLongPress(keyCode, event);
     }
 
+
     @Override
-    public void onBackPressed() {
+    public void onBackPressedFinishImpl() {
+        getController().closeActivityFinal(null);
+    }
+
+    @Override
+    public void onBackPressedImpl() {
         // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
 
         if (isInterstialShown()) {

@@ -160,7 +160,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     };
     boolean once = true;
-    boolean doubleBackToExitPressedOnce = false;
     private SlidingTabLayout indicator;
     private DrawerLayout drawerLayout;
 
@@ -851,17 +850,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-        this.doubleBackToExitPressedOnce = true;
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
-        }
-
+    public void onBackPressedImpl() {
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
             return;
@@ -871,11 +860,15 @@ public class MainTabs2 extends AdsFragmentActivity {
             if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
                 return;
             }
-            handler.postDelayed(() -> CloseAppDialog.show(this, closeActivityRunnable), 250);
-
+            CloseAppDialog.show(this, closeActivityRunnable);
         } else {
             closeActivityRunnable.run();
         }
+    }
+
+    @Override
+    public void onBackPressedFinishImpl() {
+        closeActivityRunnable.run();
     }
 
     @Subscribe

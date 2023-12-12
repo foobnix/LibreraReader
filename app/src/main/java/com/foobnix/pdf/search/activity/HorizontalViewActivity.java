@@ -2467,7 +2467,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressedFinishImpl() {
+        showInterstial();
+    }
+
+    @Override
+    public void onBackPressedImpl() {
         // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
         if (isInterstialShown()) {
             onFinishActivity();

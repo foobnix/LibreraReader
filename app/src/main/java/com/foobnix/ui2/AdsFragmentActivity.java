@@ -4,18 +4,20 @@ import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.MyADSProvider;
+import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
-
+    Handler handler;
     private final MyADSProvider myAds = new MyADSProvider();
 
     public abstract void onFinishActivity();
@@ -35,6 +37,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onCreate(arg0);
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
+        handler = new Handler();
     }
 
 
@@ -133,5 +136,21 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         return false;
     }
 
+    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            onBackPressedFinishImpl();
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        if (handler != null) {
+            handler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+        }
 
+        handler.postDelayed(() -> onBackPressedImpl(), 500);
+    }
+    public abstract  void onBackPressedImpl();
+    public abstract  void onBackPressedFinishImpl();
 }
