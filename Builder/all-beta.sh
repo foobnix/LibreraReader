@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 #./fonts.sh
 
+git reset --hard
+git pull
+
 #/usr/libexec/java_home -V
 if [ "$(uname)" == "Darwin" ]; then
   export JAVA_HOME=`/usr/libexec/java_home -v 17`
@@ -9,7 +12,6 @@ else
 fi
 ####################################
 
-git pull
 
 
 ./link_to_mupdf_1.23.7.sh fdroid

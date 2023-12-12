@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+git reset --hard
+git pull
+
 ./fonts.sh
 
 #/usr/libexec/java_home -V

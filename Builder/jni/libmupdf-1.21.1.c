@@ -683,7 +683,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv *env,
 		jclass clazz, jlong dochandle) {
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 
-	if (doc) {
+	if (doc->ctx && doc) {
 		if (doc->outline)
 			fz_drop_outline(doc->ctx, doc->outline);
 		doc->outline = NULL;
@@ -697,7 +697,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
     renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 
-	 if(!doc || !outline || doc->ctx == NULL){
+	 if(!doc->ctx || !doc || !outline || doc->ctx == NULL){
         return NULL;
      }
 	 if (doc->ctx && outline){
