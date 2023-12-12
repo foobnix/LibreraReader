@@ -1321,16 +1321,19 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
     // fz_scale(&ctm, 1, 1);
 
     count = 0;
-    for (annot = pdf_first_annot(ctx, (pdf_page *) page->page); annot; annot = pdf_next_annot(ctx,
-                                                                                              annot))
-        count++;
+    fz_try(ctx)
+    {
+        for (annot = pdf_first_annot(ctx, (pdf_page *) page->page); annot!=NULL; annot = pdf_next_annot(ctx, annot))
+            count++;
+    }fz_catch(ctx){
+        return NULL;
+    }
 
     arr = (*env)->NewObjectArray(env, count, annotClass, NULL);
     if (arr == NULL) return NULL;
 
     count = 0;
-    for (annot = pdf_first_annot(ctx, (pdf_page *) page->page); annot; annot = pdf_next_annot(ctx,
-                                                                                              annot)) {
+    for (annot = pdf_first_annot(ctx, (pdf_page *) page->page); annot!=NULL; annot = pdf_next_annot(ctx, annot)) {
         fz_rect rect;
         enum pdf_annot_type type = pdf_annot_type(ctx, (pdf_annot *) annot);
         rect = pdf_bound_annot(ctx, annot);

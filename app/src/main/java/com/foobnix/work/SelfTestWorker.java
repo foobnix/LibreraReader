@@ -27,6 +27,7 @@ import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -122,6 +123,11 @@ public class SelfTestWorker extends MessageWorker {
                     page.getText();
                     page.getPageLinks();
                     page.getPageHTML();
+                    if (BookType.PDF.is(item.getPath())) {
+                        page.getAnnotations();
+                    }
+                    codecDocument.getOutline();
+
 
                     if (!page.isRecycled()) {
                         page.recycle();
@@ -131,6 +137,7 @@ public class SelfTestWorker extends MessageWorker {
                         codecDocument.recycle();
                     }
                 } catch (Exception e) {
+                    LOG.e(e,"Error:"+item.getPath());
                     writeLine(out, "Error");
                     errors++;
                     sendNotifyAll();
