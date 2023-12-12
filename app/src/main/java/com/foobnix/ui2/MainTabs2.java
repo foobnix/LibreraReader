@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -159,6 +160,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     };
     boolean once = true;
+    boolean doubleBackToExitPressedOnce = false;
     private SlidingTabLayout indicator;
     private DrawerLayout drawerLayout;
 
@@ -617,7 +619,8 @@ public class MainTabs2 extends AdsFragmentActivity {
                     if (consentInformation.isConsentFormAvailable()) {
                         loadForm(consentInformation);
                     }
-                }, formError -> {});
+                }, formError -> {
+                });
             }
 
         } catch (Exception e) {
@@ -849,6 +852,15 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+        }
 
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
@@ -859,8 +871,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
                 return;
             }
+            handler.postDelayed(() -> CloseAppDialog.show(this, closeActivityRunnable), 250);
 
-            CloseAppDialog.show(this, closeActivityRunnable);
         } else {
             closeActivityRunnable.run();
         }
@@ -869,7 +881,9 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Subscribe
     public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
-    }    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -897,7 +911,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
     };
-
 
 
 }
