@@ -66,7 +66,7 @@ public class TTSNotification {
 
         @Override
         public void run() {
-            show(bookPath1, page1, pageCount, null);
+            show(bookPath1, page1, pageCount);
         }
     };
     private static Handler handler;
@@ -92,7 +92,7 @@ public class TTSNotification {
 
     }
 
-    public static void show(String bookPath, int page, int maxPages, ResultResponse<Notification> onResult) {
+    public static void show(String bookPath, int page, int maxPages) {
         bookPath1 = bookPath;
         page1 = page;
         pageCount = maxPages;
@@ -190,54 +190,28 @@ public class TTSNotification {
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
-            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
 
             Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
-                    remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
+                    remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
 
 
                     builder.setContentIntent(contentIntent) //
                             .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
                             .setColor(color)
-                            // .setLargeIcon(bookImage) //
-                            // .setTicker(context.getString(R.string.app_name)) //
-                            // .setWhen(System.currentTimeMillis()) //
                             .setOngoing(true)//
                             .setPriority(NotificationCompat.PRIORITY_HIGH) //
-                            //.setCategory(NotificationCompat.CATEGORY_)
                             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
-
-
                             .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
-
-
-                            //.setSmallIcon(android.R.color.transparent)
-
-
-                            // .addAction(R.drawable.glyphicons_175_pause,
-                            // context.getString(R.string.to_paly_pause), playPause)//
-                            // .addAction(R.drawable.glyphicons_174_play, context.getString(R.string.next),
-                            // next)//
-                            // .addAction(R.drawable.glyphicons_177_forward,
-                            // context.getString(R.string.stop), stopDestroy)//
-                            // .setContentTitle(fileMetaBookName) //
-                            // .setContentText(pageNumber) //
-                            // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
-                            // .addAction(action)//
-                            //.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                             .setSilent(true)
                             .setCustomBigContentView(remoteViews) ///
                             .setCustomContentView(remoteViewsSmall); ///
                     Notification n = builder.build(); //
 
                     nm.notify(NOT_ID, n);
-                    if (onResult != null) {
-                        onResult.onResultRecive(n);
-                    }
-
                 }
 
                 @Override
@@ -245,13 +219,6 @@ public class TTSNotification {
 
                 }
             });
-
-
-            // if (bitmap == null) {
-            //     Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
-            //     Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
-            //    }
-
         } catch (Exception e) {
             LOG.e(e);
         }

@@ -359,32 +359,6 @@ public class TTSService extends Service {
                 startServiceWithNotification();
                 isStartForeground = true;
             }
-            return;
-        }
-        //skip this all
-        if (!isStartForeground) {
-            if (TxtUtils.isNotEmpty(AppSP.get().lastBookPath)) {
-                try {
-                    TTSNotification.show(AppSP.get().lastBookPath, AppSP.get().lastBookPage, AppSP.get().lastBookPageCount, new ResultResponse<Notification>() {
-                        @Override
-                        public boolean onResultRecive(Notification result) {
-                            if (result != null) {
-                                startForeground(TTSNotification.NOT_ID, result);
-                            } else {
-                                startServiceWithNotification();
-                            }
-                            return false;
-                        }
-                    });
-
-                } catch (Exception e) {
-                    LOG.e(e);
-                    startServiceWithNotification();
-                }
-            } else {
-                startServiceWithNotification();
-            }
-            isStartForeground = true;
         }
     }
 
@@ -522,7 +496,7 @@ public class TTSService extends Service {
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
             if (TTSEngine.get().isMp3PlayPause()) {
-                TTSNotification.show(AppSP.get().lastBookPath, -1, -1,null);
+                TTSNotification.show(AppSP.get().lastBookPath, -1, -1);
                 return START_STICKY;
             }
 
@@ -742,7 +716,7 @@ public class TTSService extends Service {
 
             TTSEngine.get().speek(firstPart);
 
-            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount(),null);
+            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
             LOG.d("TtsStatus send");
             EventBus.getDefault().post(new TtsStatus());
 
