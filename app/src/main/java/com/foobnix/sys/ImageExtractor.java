@@ -52,6 +52,7 @@ import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.fragment.BrowseFragment2;
+import com.google.common.collect.Lists;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -72,6 +73,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -336,22 +338,19 @@ public class ImageExtractor {
             cover = BaseExtractor.arrayToBitmap(MobiExtract.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
-        } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
-            if (Build.VERSION.SDK_INT >= 29) {
-                if (BookType.PDF.is(unZipPath) && (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT)) {
-                    LOG.d("Native-PDF-cover", pageUrl);
-                    cover = coverPDFNative(pageUrl);
-                    if (cover == null) {
-                        LOG.d("Native-PDF-cover", "error", pageUrl);
-                        cover = proccessOtherPage(pageUrl);
-                    }
-                } else {
+        } else if (BookType.PDF.is(unZipPath)) {
+            if (Build.VERSION.SDK_INT >= 29 && Arrays.asList(COVER_PAGE, COVER_PAGE_NO_EFFECT, COVER_PAGE_WITH_EFFECT).contains(pageUrl.getPage())) {
+                LOG.d("Native-PDF-cover", pageUrl);
+                cover = coverPDFNative(pageUrl);
+                if (cover == null) {
+                    LOG.d("Native-PDF-cover", "error", pageUrl);
                     cover = proccessOtherPage(pageUrl);
                 }
             } else {
                 cover = proccessOtherPage(pageUrl);
             }
-
+        } else if (BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
+            cover = proccessOtherPage(pageUrl);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FOLDER.is(unZipPath)) {
