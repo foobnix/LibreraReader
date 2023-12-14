@@ -4,6 +4,8 @@ import android.graphics.RectF;
 
 import com.foobnix.android.utils.TxtUtils;
 
+import javax.xml.stream.events.Characters;
+
 public class TextWord extends RectF {
     public String w;
     private RectF original;
@@ -27,7 +29,7 @@ public class TextWord extends RectF {
 
     public void Add(TextChar tc) {
         super.union(tc);
-        w = w.concat(new String(new char[] { tc.c }));
+        w = w.concat(new String(Character.toChars(tc.c)));
     }
 
     public TextWord(String w, RectF rect) {

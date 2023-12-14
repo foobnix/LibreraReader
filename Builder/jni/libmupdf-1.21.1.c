@@ -983,7 +983,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv *env,
     textBlockClass = (*env)->FindClass(env, "[[[L" PACKAGENAME "/TextChar;");
     if (textBlockClass == NULL)
         return NULL;
-    ctor = (*env)->GetMethodID(env, textCharClass, "<init>", "(FFFFC)V");
+    ctor = (*env)->GetMethodID(env, textCharClass, "<init>", "(FFFFI)V");
     if (ctor == NULL)
         return NULL;
 
@@ -1008,8 +1008,6 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv *env,
                 {
                     for (fz_stext_char *ch = line->first_char; ch; ch = ch->next)
                     {
-                        if (ch->c < 0xFFFF)
-                        {
                             fz_rect bbox = fz_rect_from_quad(ch->quad);
                             jobject cobj = (*env)->NewObject(env, textCharClass, ctor, bbox.x0,
                                                              bbox.y0,
@@ -1019,7 +1017,6 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv *env,
 
                             ArrayListHelper_add(&alh, arrayList, cobj);
                             (*env)->DeleteLocalRef(env, cobj);
-                        }
                     }
 
                     fz_rect bbox = fz_empty_rect;
