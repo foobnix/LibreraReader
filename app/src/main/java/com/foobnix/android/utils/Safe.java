@@ -2,6 +2,7 @@ package com.foobnix.android.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,11 +28,11 @@ public class Safe {
     public static void run(final Runnable action, boolean fromLibrary) {
 
 
-        if (LibreraApp.context == null) {
+        if (LibreraApp.context == null || action == null) {
             return;
         }
         LOG.d("Safe fromLibrary", fromLibrary);
-        if (fromLibrary) {
+        if (fromLibrary && Build.VERSION.SDK_INT >= 29) {
             if (action != null) {
                 action.run();
             }
