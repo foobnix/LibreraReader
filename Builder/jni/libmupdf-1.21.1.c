@@ -433,6 +433,9 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getLinkPage(
 {
 
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
+    if(!doc || !doc->ctx){
+      return -1;
+    }
     const char *str = (*env)->GetStringUTFChars(env, id, NULL);
 
     int pageNum = fz_page_number_from_location(doc->ctx, doc->document,
