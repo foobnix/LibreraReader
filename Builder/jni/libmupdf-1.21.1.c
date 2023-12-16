@@ -777,7 +777,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *en
     fz_outline *outline = (fz_outline *)(long)outlinehandle;
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
 
-    if (!doc->ctx || !doc || !outline || doc->ctx == NULL)
+    if (!doc || !doc->ctx || !outline)
     {
         return NULL;
     }
@@ -800,8 +800,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *en
 }
 
 JNIEXPORT jstring
-JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
-                                                                jclass clazz, jlong outlinehandle,
+JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,jclass clazz, jlong outlinehandle,
                                                                 jlong dochandle)
 {
     fz_outline *outline = (fz_outline *)(long)outlinehandle;
@@ -1247,6 +1246,10 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal
     renderpage_t *page = (renderpage_t *)(long)pagehandle;
     fz_context *ctx = doc_t->ctx;
     pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
+
+    if(!ctx || !doc_t->document || !idoc){
+      return NULL;
+    }
 
     jclass annotClass;
     jmethodID ctor;
