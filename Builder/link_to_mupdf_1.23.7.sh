@@ -109,6 +109,9 @@ cd $MUPDF_JAVA
 
 NDK_VERSION="26.1.10909125"
 FDRIOD_NDK_VERSION="21.4.7075529"
+if [ "$(uname)" == "Darwin" ]; then
+  NDK_VERSION=$FDRIOD_NDK_VERSION
+fi
 
 PATH1=/Volumes/SSD-USB/Android/Sdk/ndk
 PATH2=/home/dev/Android/Sdk/ndk
