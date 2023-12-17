@@ -7,17 +7,17 @@ import com.foobnix.pdf.info.model.AnnotationType;
 
 public class Annotation extends RectF {
 
+    public final AnnotationType type;
+    public final String text;
     private int index;
     private int page;
     private long pageHandler;
-    public final AnnotationType type;
-    public final String text;
 
-    public Annotation(final float x0, final float y0, final float x1, final float y1, final int _type, String text) {
+    public Annotation(final float x0, final float y0, final float x1, final float y1, final int _type, byte[] textArray) {
         super(x0, y0, x1, y1);
         type = _type == -1 ? AnnotationType.UNKNOWN : AnnotationType.values()[_type];
-        this.text = text;
-        LOG.d("Annotation text2", text);
+        this.text = new String(textArray);
+        LOG.d("Annotation-TEXT", text);
     }
 
     public Annotation(int page, int index) {

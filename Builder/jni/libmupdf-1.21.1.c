@@ -1262,7 +1262,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal
     annotClass = (*env)->FindClass(env, "org/ebookdroid/core/codec/Annotation");
     if (annotClass == NULL)
         return NULL;
-    ctor = (*env)->GetMethodID(env, annotClass, "<init>", "(FFFFILjava/lang/String;)V");
+    ctor = (*env)->GetMethodID(env, annotClass, "<init>", "(FFFFI[B)V");
     if (ctor == NULL)
         return NULL;
 
@@ -1290,11 +1290,13 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal
         enum pdf_annot_type type = pdf_annot_type(ctx, (pdf_annot *)annot);
         rect = pdf_bound_annot(ctx, annot);
         const char *content = pdf_annot_contents(ctx, (pdf_annot *)annot);
-        jstring text = (*env)->NewStringUTF(env, content);
+        //jstring text = (*env)->NewStringUTF(env, content);
+        jbyteArray textArray = (*env)->NewByteArray(env, strlen(content));
+        (*env)->SetByteArrayRegion(env, textArray, 0, strlen(content), (const jbyte *)content);
 
         jannot = (*env)->NewObject(env, annotClass, ctor,
                                    (float)rect.x0, (float)rect.y0, (float)rect.x1,
-                                   (float)rect.y1, type, text);
+                                   (float)rect.y1, type, textArray);
         if (jannot == NULL)
             return NULL;
         (*env)->SetObjectArrayElement(env, arr, count, jannot);
