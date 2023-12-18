@@ -14,11 +14,13 @@ import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.ui2.MyContextWrapper;
 
@@ -97,66 +99,93 @@ public class OpenerActivity extends Activity {
         LOG.d(TAG, " Scheme", getIntent().getScheme());
         LOG.d(TAG, " Mime", getIntent().getType());
 
-        File file = null;
-        if ("content".equals(uri.getScheme())) {
-            String id = uri.getLastPathSegment();
-            String utfID = Uri.decode(id).replace("file://", "");
-            LOG.d(TAG, "utfID", utfID);
-            file = new File(utfID);
-            if (!file.isFile()) {
+        File file = new File("");
 
-                String name = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
-
-                LOG.d(TAG, "id", id, "name", name);
-
-                String documentID = id.replaceAll("\\D", "");
-
-                LOG.d(TAG, "documentID", documentID);
-
-                String fileInDownlaods = findFileInDownloads(this, name, documentID);
-
-
-                if (fileInDownlaods != null) {
-                    LOG.d(TAG, "findFileInDownloads", fileInDownlaods);
-                    file = new File(fileInDownlaods);
-                } else {
-
-                    if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
-                        String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
-                        LOG.d("extByMimeType", extByMimeType, getIntent().getType());
-                        name = name + "." + extByMimeType;
-                    }
-                    name = TxtUtils.fixFileName(name);
-
-                    file = new File(AppProfile.DOWNLOADS_DIR, name);
-
-                    if (!file.isFile()) {
-                        AppProfile.downloadBookFolder.mkdirs();
-                        file = new File(AppProfile.downloadBookFolder, name);
-
-                        if (!file.isFile()) {
-                            LOG.d(TAG, "create file", file.getPath());
-                            try {
-                                FileOutputStream out = new FileOutputStream(file);
-                                InputStream inputStream = getContentResolver().openInputStream(uri);
-                                IOUtils.copyClose(inputStream, out);
-                            } catch (Exception e) {
-                                LOG.e(e);
-                            }
-                        }
-                    }
-                }
-            }
-        } else if ("file".equals(uri.getScheme())) {
+        if ("file".equals(uri.getScheme())) {
+            LOG.d(TAG, "Find file in file");
             file = new File(uri.getPath());
         }
 
-        if (file == null || !file.isFile()) {
+        String name = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
+        String id = uri.getLastPathSegment();
+        String size = getCursorValue(MediaStore.MediaColumns.SIZE);
+
+        LOG.d(TAG, "id", id, "name", name, "size", size);
+
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in getLastPathSegment");
+            String utfID = Uri.decode(id).replace("file://", "");
+            LOG.d(TAG, "utfID", utfID);
+            file = new File(utfID);
+        }
+
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in getDataPath");
+            file = new File(getDataPath().replace("/external", ""));
+        }
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in Telegram");
+            if (getDataPath().startsWith("/media/Android/data/org.telegram.messenger/files/")) {
+                file = new File(AppProfile.DOWNLOADS_DIR, "Telegram/" + name);
+            }
+        }
+
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in all Downloads by name and id", name, id);
+            String documentID = id.replaceAll("\\D", "");
+            LOG.d(TAG, "documentID", documentID);
+            String fileInDownlaods = findFileInDownloads(this, name, documentID);
+            if (fileInDownlaods != null) {
+                LOG.d(TAG, "findFileInDownloads", fileInDownlaods);
+                file = new File(fileInDownlaods);
+            }
+        }
+//        if (!file.isFile()) {
+//            LOG.d(TAG, "Find file in [Downloads]");
+//            if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
+//                String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
+//                LOG.d("extByMimeType", extByMimeType, getIntent().getType());
+//                name = name + "." + extByMimeType;
+//            }
+//            name = TxtUtils.fixFileName(name);
+//            file = new File(AppProfile.DOWNLOADS_DIR, name);
+//        }
+
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in [Librera/Downloads]");
+            AppProfile.downloadBookFolder.mkdirs();
+            LOG.d(TAG, "Find file in [Downloads]");
+            if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
+                String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
+                LOG.d("extByMimeType", extByMimeType, getIntent().getType());
+                name = name + "." + extByMimeType;
+            }
+            name = TxtUtils.fixFileName(name);
+            file = new File(AppProfile.downloadBookFolder, name);
+
+            if (file.length() != Long.parseLong(size)) {
+                file.delete();
+                LOG.d(TAG, "Delete old file");
+            }
+        }
+
+        if (!file.isFile()) {
+            LOG.d(TAG, "Create file in [Librera/Downloads]");
+            try {
+                FileOutputStream out = new FileOutputStream(file);
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                IOUtils.copyClose(inputStream, out);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+        if (file == null || !file.canRead() || !file.isFile()) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
-        LOG.d(TAG, "file", file);
+        LOG.d(TAG, "Open file", file);
         ExtUtils.openFile(this, new FileMeta(file.getPath()));
     }
 
