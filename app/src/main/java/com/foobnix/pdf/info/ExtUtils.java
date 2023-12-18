@@ -198,13 +198,18 @@ public class ExtUtils {
         if (TxtUtils.isEmpty(mime)) {
             return mime;
         }
+        String ext = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime);
+        if (ext != null) {
+            return ext;
+        }
+
         for (String key : mimeCache.keySet()) {
             if (mime.equals(mimeCache.get(key))) {
                 return key.replace(".", "");
             }
         }
-        String ext = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime);
-        return ext;
+
+        return null;
     }
 
     public static void updateSearchExts() {
@@ -963,7 +968,7 @@ public class ExtUtils {
             public void run() {
                 showDocumentInner(c, uri, percent, playList);
             }
-        },true);
+        }, true);
 
     }
 

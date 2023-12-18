@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
@@ -124,6 +125,14 @@ public class OpenerActivity extends Activity {
                     LOG.d(TAG, "findFileInDownloads", fileInDownlaods);
                     file = new File(fileInDownlaods);
                 } else {
+
+                    if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
+                        String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
+                        LOG.d("extByMimeType", extByMimeType, getIntent().getType());
+                        name = name + "." + extByMimeType;
+                    }
+                    name = TxtUtils.fixFileName(name);
+
                     file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
                     if (!file.isFile()) {
                         LOG.d(TAG, "create file", file.getPath());
