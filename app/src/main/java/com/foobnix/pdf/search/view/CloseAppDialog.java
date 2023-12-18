@@ -73,7 +73,7 @@ public class CloseAppDialog {
         topLayout.setBackgroundColor(TintUtil.color);
 
         onRateUs.setText(onRateUs.getText());
-        onAsk.setText(onAsk.getText()+" ★★★★★");
+        onAsk.setText(onAsk.getText() + " ★★★★★");
 
         topLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowRateUsOnExit && TimeUnit.MILLISECONDS.toDays(delta) > 1));
         // topLayout.setVisibility(View.VISIBLE);
@@ -176,6 +176,10 @@ public class CloseAppDialog {
             }
 
         };
+
+        if(a.isFinishing()){
+            return;
+        }
 
         if (v == null) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(a);

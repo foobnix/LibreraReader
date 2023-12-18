@@ -120,9 +120,14 @@ public class OpenerActivity extends Activity {
         }
 
         if (!file.isFile()) {
-            LOG.d(TAG, "Find file in getDataPath");
+            LOG.d(TAG, "Find file in getDataPath /external");
             file = new File(getDataPath().replace("/external", ""));
         }
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in getDataPath /document/raw:");
+            file = new File(getDataPath().replace("/document/raw:", ""));
+        }
+
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in Telegram");
             if (getDataPath().startsWith("/media/Android/data/org.telegram.messenger/files/")) {

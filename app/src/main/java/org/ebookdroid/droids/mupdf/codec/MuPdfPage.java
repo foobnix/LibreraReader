@@ -448,9 +448,14 @@ public class MuPdfPage extends AbstractCodecPage {
         if (AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
             return getText_111();
         } else {
-            return getText_116();
+            try {
+                return getText_116();
+            } catch (OutOfMemoryError e) {
+                System.gc();
+            }
         }
 
+        return new TextWord[0][0];
     }
 
     public TextWord[][] getText_116() {
