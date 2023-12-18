@@ -2295,7 +2295,7 @@ public class PrefFragment2 extends UIFragment {
                                 sendNotifyTintChanged();
                                 ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                                TxtUtils.updateAllLinks(inflate,true);
+                                TxtUtils.updateAllLinks(inflate, true);
 
                             }
                         });
@@ -2634,13 +2634,14 @@ public class PrefFragment2 extends UIFragment {
                     AppProfile.syncExclude.delete();
 
                     File rootFiles = AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
+                    if (rootFiles != null) {
+                        for (File file : rootFiles.listFiles()) {
+                            String name = file.getName();
+                            if (name.endsWith(".css")) {
+                                file.delete();
+                                LOG.d("Delete-css", file);
 
-                    for (File file : rootFiles.listFiles()) {
-                        String name = file.getName();
-                        if (name.endsWith(".css")) {
-                            file.delete();
-                            LOG.d("Delete-css", file);
-
+                            }
                         }
                     }
 
@@ -2687,7 +2688,7 @@ public class PrefFragment2 extends UIFragment {
                 );
 
 
-        TxtUtils.updateAllLinks(inflate,true);
+        TxtUtils.updateAllLinks(inflate, true);
         return inflate;
 
     }

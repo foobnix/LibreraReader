@@ -90,6 +90,7 @@ public class OpenerActivity extends Activity {
         if (uri == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
 
 
