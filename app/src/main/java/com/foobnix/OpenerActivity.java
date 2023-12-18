@@ -7,25 +7,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.Urls;
 import com.foobnix.ui2.MyContextWrapper;
-
-import org.ebookdroid.BookType;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -133,15 +128,21 @@ public class OpenerActivity extends Activity {
                     }
                     name = TxtUtils.fixFileName(name);
 
-                    file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
+                    file = new File(AppProfile.DOWNLOADS_DIR, name);
+
                     if (!file.isFile()) {
-                        LOG.d(TAG, "create file", file.getPath());
-                        try {
-                            FileOutputStream out = new FileOutputStream(file);
-                            InputStream inputStream = getContentResolver().openInputStream(uri);
-                            IOUtils.copyClose(inputStream, out);
-                        } catch (Exception e) {
-                            LOG.e(e);
+                        AppProfile.downloadBookFolder.mkdirs();
+                        file = new File(AppProfile.downloadBookFolder, name);
+
+                        if (!file.isFile()) {
+                            LOG.d(TAG, "create file", file.getPath());
+                            try {
+                                FileOutputStream out = new FileOutputStream(file);
+                                InputStream inputStream = getContentResolver().openInputStream(uri);
+                                IOUtils.copyClose(inputStream, out);
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
                         }
                     }
                 }
