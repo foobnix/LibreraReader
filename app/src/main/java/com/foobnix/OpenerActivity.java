@@ -1,11 +1,15 @@
 package com.foobnix;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.Cursors;
@@ -17,6 +21,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.BookType;
@@ -26,6 +31,31 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 public class OpenerActivity extends Activity {
+    public static String TAG = "OpenerActivity";
+
+    public static String findFileInDownloads(Context context, String name, String id) {
+        ContentResolver contentResolver = context.getContentResolver();
+        Uri uri = MediaStore.Files.getContentUri("external");
+
+        String[] projection = {
+                MediaStore.Files.FileColumns.DATA
+        };
+
+        String selection = MediaStore.Files.FileColumns._ID + " = ? AND " +
+                MediaStore.Files.FileColumns.DISPLAY_NAME + " = ?";
+
+        String[] selectionArgs = new String[]{id, name};
+
+        try (Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                int filePathId = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+                String filePath = cursor.getString(filePathId);
+                LOG.d(TAG, "FileFinder", "File Path: " + filePath);
+                return filePath;
+            }
+        }
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +78,10 @@ public class OpenerActivity extends Activity {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
         }
+        Uri uri = getIntent().getData();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             try {
-                if (getIntent().getData() == null && getIntent().getClipData() != null) {
+                if (uri == null && getIntent().getClipData() != null) {
                     getIntent().setData(getIntent().getClipData().getItemAt(0).getUri());
                 }
             } catch (Exception e) {
@@ -58,106 +89,65 @@ public class OpenerActivity extends Activity {
             }
 
         }
-        if (getIntent().getData() == null) {
+        if (uri == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
         }
 
-        LOG.d("OpenerActivity", getIntent());
-        LOG.d("OpenerActivity Data", getIntent().getData());
 
-        LOG.d("OpenerActivity Path", getDataPath());
-        LOG.d("OpenerActivity Scheme", getIntent().getScheme());
-        LOG.d("OpenerActivity Mime", getIntent().getType());
-        LOG.d("OpenerActivity DISPLAY_NAME", getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME));
-        LOG.d("OpenerActivity DATA", getCursorValue(MediaStore.MediaColumns.DATA));
+        LOG.d(TAG, getIntent());
+        LOG.d(TAG, " Data", uri);
+        LOG.d(TAG, " Path", getDataPath());
+        LOG.d(TAG, " Scheme", getIntent().getScheme());
+        LOG.d(TAG, " Mime", getIntent().getType());
 
+        File file = null;
+        if ("content".equals(uri.getScheme())) {
+            String id = uri.getLastPathSegment();
+            String utfID = Uri.decode(id).replace("file://", "");
+            LOG.d(TAG, "utfID", utfID);
+            file = new File(utfID);
+            if (!file.isFile()) {
 
-        String path = getDataPath();
-        File file = new File(path);
+                String name = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
 
-        if (!file.isFile()) {
-            String dataPath = getCursorValue(MediaStore.MediaColumns.DATA);
-            if (dataPath != null) {
-                file = new File(dataPath);
-            }
-            LOG.d("OpenerActivity 1", dataPath, file.getPath());
+                LOG.d(TAG, "id", id, "name", name);
 
-        }
-        if (!file.isFile()) {
-            try {
-                file = new File(Environment.getExternalStorageDirectory(), path.substring(path.indexOf("/", 1)));
-                LOG.d("OpenerActivity 2", file.canRead(), file.getPath());
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-        if (!file.isFile()) {
-            try {
-                file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), path.substring(path.indexOf("/", 1)));
-                LOG.d("OpenerActivity 3", file.getPath());
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+                String documentID = id.replaceAll("\\D", "");
 
-        if (!file.isFile() || !file.canRead()) {
+                LOG.d(TAG, "documentID", documentID);
+
+                String fileInDownlaods = findFileInDownloads(this, name, documentID);
 
 
-            try {
-                BookType bookType = BookType.getByMimeType(getIntent().getType());
-
-                String name1 = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
-                String name2 = getDataPath();
-                String name3 = bookType != null ? bookType.getExt() : null;
-
-                LOG.d("OpenerActivity ==============");
-                LOG.d("OpenerActivity getContentName", name1);
-                LOG.d("OpenerActivity getPath", name2);
-                LOG.d("OpenerActivity getByMimeType", name3);
-
-                String ext = "";
-                if (BookType.isSupportedExtByPath(name2)) {
-                    ext = ExtUtils.getFileExtension(name2);
-                } else if (BookType.isSupportedExtByPath(name1)) {
-                    ext = ExtUtils.getFileExtension(name1);
-                } else if (name3 != null) {
-                    ext = name3;
+                if (fileInDownlaods != null) {
+                    LOG.d(TAG, "findFileInDownloads", fileInDownlaods);
+                    file = new File(fileInDownlaods);
+                } else {
+                    file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
+                    if (!file.isFile()) {
+                        LOG.d(TAG, "create file", file.getPath());
+                        try {
+                            FileOutputStream out = new FileOutputStream(file);
+                            InputStream inputStream = getContentResolver().openInputStream(uri);
+                            IOUtils.copyClose(inputStream, out);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    }
                 }
-
-                LOG.d("OpenerActivity final ext", ext);
-
-
-                if (ext == null) {
-                    Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-
-
-                String name = getDataPath().hashCode() + "." + ext;
-
-                LOG.d("OpenerActivity", "cache", name);
-
-                if (!CacheZipUtils.CACHE_RECENT.exists()) {
-                    CacheZipUtils.CACHE_RECENT.mkdirs();
-                }
-
-                file = new File(CacheZipUtils.CACHE_RECENT, name);
-                if (!file.isFile()) {
-                    FileOutputStream out = new FileOutputStream(file);
-                    InputStream inputStream = getContentResolver().openInputStream(getIntent().getData());
-                    IOUtils.copyClose(inputStream, out);
-
-                    LOG.d("OpenerActivity", "creatae cache file", file.getPath());
-                }
-            } catch (Exception e) {
-                LOG.e(e);
             }
+        } else if ("file".equals(uri.getScheme())) {
+            file = new File(uri.getPath());
         }
 
-        //FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
+        if (file == null || !file.isFile()) {
+            Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+        LOG.d(TAG, "file", file);
         ExtUtils.openFile(this, new FileMeta(file.getPath()));
-        LOG.d("OpenerActivity", "open file", file.getPath());
     }
 
     public String getCursorValue(String id) {
@@ -187,7 +177,8 @@ public class OpenerActivity extends Activity {
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[],
+                                           int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
