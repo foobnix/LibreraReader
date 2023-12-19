@@ -28,28 +28,33 @@ public class SendReceiveActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new AsyncProgressTask<Object>() {
-            @Override
-            public Context getContext() {
-                return SendReceiveActivity.this;
-            }
-
-            @Override
-            protected Object doInBackground(Object... objects) {
-                try {
-                    updateIntent();
-                } catch (Exception e) {
-                    LOG.e(e);
+        try {
+            new AsyncProgressTask<Object>() {
+                @Override
+                public Context getContext() {
+                    return SendReceiveActivity.this;
                 }
-                return null;
-            }
 
-            @Override
-            protected void onPostExecute(Object result) {
-                super.onPostExecute(result);
-                startShareIntent();
-            }
-        }.execute();
+                @Override
+                protected Object doInBackground(Object... objects) {
+                    try {
+                        updateIntent();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Object result) {
+                    super.onPostExecute(result);
+                    startShareIntent();
+                }
+            }.execute();
+        } catch (Exception e) {
+            LOG.e(e);
+            startShareIntent();
+        }
 
     }
 
@@ -83,12 +88,18 @@ public class SendReceiveActivity extends Activity {
             Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
             final Object text = res != null ? res : extras.get(Intent.EXTRA_TEXT);
 
+            LOG.d("updateIntent res", res);
             LOG.d("updateIntent()-text", text);
+
+            if (text == null) {
+                return;
+            }
             if (text instanceof Uri) {
                 getIntent().setData((Uri) text);
             }
             Uri uri = Uri.parse((String) text);
             LOG.d("updateIntent uri", uri);
+
             if (text instanceof String && uri != null && uri.getScheme() != null && (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"))) {
 
                 LOG.d("updateIntent uri getScheme", uri.getScheme());

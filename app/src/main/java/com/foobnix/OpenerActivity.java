@@ -75,6 +75,7 @@ public class OpenerActivity extends Activity {
         if (getIntent() == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
         Uri uri = getIntent().getData();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -120,18 +121,25 @@ public class OpenerActivity extends Activity {
             file = new File(utfID);
         }
 
+        String dataPath = getDataPath();
+
+
         if (!file.isFile()) {
-            LOG.d(TAG, "Find file in getDataPath /external");
-            file = new File(getDataPath().replace("/external", ""));
+            LOG.d(TAG, "Find file in getDataPath");
+            file = new File(dataPath);
         }
         if (!file.isFile()) {
-            LOG.d(TAG, "Find file in getDataPath /document/raw:");
-            file = new File(getDataPath().replace("/document/raw:", ""));
+            LOG.d(TAG, "Find file in getDataPath /indexOf 1");
+            file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
+        }
+        if (!file.isFile()) {
+            LOG.d(TAG, "Find file in getDataPath /indexOf 2");
+            file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
         }
 
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in Telegram");
-            if (getDataPath().startsWith("/media/Android/data/org.telegram.messenger/files/")) {
+            if (dataPath.startsWith("/media/Android/data/org.telegram.messenger/files/")) {
                 file = new File(AppProfile.DOWNLOADS_DIR, "Telegram/" + name);
             }
         }
