@@ -4730,7 +4730,7 @@ public class DragingDialogs {
                 });
 
                 final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
-                downloadFonts.setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
+                //downloadFonts.setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
                 downloadFonts.setOnClickListener(new OnClickListener() {
 
                     @Override
