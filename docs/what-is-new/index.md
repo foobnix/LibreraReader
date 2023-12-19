@@ -4,6 +4,10 @@ layout: main
 
 # What is new
 
+### [8.9.127] Edit PDF meta tags
+
+<img class="i" src="8.9.127.png" />
+
 ### [8.9.117] Clicking the back button twice to exit an activity
 
 ### [8.9.76] Show print edition page numbers (Epub3)
