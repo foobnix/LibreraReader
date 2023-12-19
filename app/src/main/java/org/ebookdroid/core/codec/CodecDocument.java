@@ -66,4 +66,6 @@ public interface CodecDocument {
     String getMeta(String option);
 
     List<String> getMetaKeys();
+
+    void setMeta(String key, String value);
 }

@@ -22,6 +22,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MuPdfDocument extends AbstractCodecDocument {
 
     public static final int FORMAT_PDF = 0;
+
+    public static final String META_INFO_AUTHOR = "info:Author";
+    public static final String META_INFO_TITLE = "info:Title";
+    public static final String META_INFO_SUBJECT = "info:Subject";
+    public static final String META_INFO_KEYWORDS = "info:Keywords";
+    public static final String META_INFO_CREATOR = "info:Creator";
+    public static final String META_INFO_PRODUCER = "info:Producer";
+    public static final String META_INFO_CREATIONDATE = "info:CreationDate";
+    public static final String META_INFO_MODIFICATIONDATE = "info:ModDate";
     private static long cacheHandle;
     private static int cacheWH;
     private static long cacheSize;
@@ -34,16 +43,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private int pagesCount = -1;
     private String fname;
 
-
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get().toCssString(fname)));
         this.fname = fname;
         isEpub = ExtUtils.isTextFomat(fname);
         bookType = BookType.getByUri(fname);
-    }
-
-    public String getPath() {
-        return fname;
     }
 
     static void normalizeLinkTargetRect(final long docHandle, final int targetPage, final RectF targetRect, final int flags) {
@@ -86,13 +90,15 @@ public class MuPdfDocument extends AbstractCodecDocument {
     // 'info:ModDate'
     private native static String getMeta(long docHandle, final String option);
 
+    private native static String setMetaData(long docHandle, final String key, String value);
+
     private static long openFile(final int format, String fname, final String pwd, String css) {
         TempHolder.lock.lock();
         try {
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
             // int allocatedMemory = CoreSettings.get().pdfStorageSize;
             LOG.d("allocatedMemory", AppState.get().allocatedMemorySize, " MB " + allocatedMemory);
-            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel,fname+"+accel");
+            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, fname + "+accel");
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("MUPDF! >>> open [document]", open, ExtUtils.getFileName(fname));
@@ -109,7 +115,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    
     public static native String getFzVersion();
 
     private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle, float scale, int antialias, String accel);
@@ -145,6 +150,21 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     private static native int getPageCount(long handle, int w, int h, int size);
+
+    public String getPath() {
+        return fname;
+    }
+
+    @Override
+    public void setMeta(String key, String value) {
+        TempHolder.lock.lock();
+        try {
+            LOG.d(this.getClass(),"setMetaData", key, value);
+            setMetaData(documentHandle, key, value);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
 
     @Override
     public BookType getBookType() {

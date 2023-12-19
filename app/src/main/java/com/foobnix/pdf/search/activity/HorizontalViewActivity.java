@@ -110,6 +110,7 @@ import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -274,6 +275,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     };
     private volatile boolean isMyKey = false;
+
 
     @Override
     protected void onNewIntent(final Intent intent) {

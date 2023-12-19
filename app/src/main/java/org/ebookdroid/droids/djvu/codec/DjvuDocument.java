@@ -29,6 +29,11 @@ public class DjvuDocument extends AbstractCodecDocument {
     }
 
     @Override
+    public void setMeta(String key, String value) {
+
+    }
+
+    @Override
     public BookType getBookType() {
         return BookType.DJVU;
     }

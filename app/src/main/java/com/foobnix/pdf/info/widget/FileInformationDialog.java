@@ -26,8 +26,10 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.ext.PdfExtract;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
@@ -40,6 +42,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
@@ -54,8 +57,12 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
+
 import com.foobnix.LibreraApp;
+
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
+import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -150,6 +157,7 @@ public class FileInformationDialog {
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
             author.setText(showKeys(fileMeta.getAuthor()));
         }
+
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
 
@@ -424,18 +432,7 @@ public class FileInformationDialog {
         });
         TextView onUpdateMeta = TxtUtils.underlineTextView(dialog.findViewById(R.id.onUpdateMeta));
         onUpdateMeta.setOnClickListener(v -> {
-
-            IMG.clearMemoryCache();
-            IMG.clearDiscCache();
-
-            fileMeta.setState(FileMetaCore.STATE_NONE);
-            FileMetaCore.reUpdateIfNeed(fileMeta);
-
-            AppDB.get().save(fileMeta);
-
-
-            TempHolder.listHash++;
-            EventBus.getDefault().post(new UpdateAllFragments());
+            update(fileMeta);
             infoDialog.dismiss();
         });
 
@@ -495,7 +492,22 @@ public class FileInformationDialog {
 
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
+        TextView editTitle = (TextView) dialog.findViewById(R.id.editTitle);
+        TextView editAuthor = (TextView) dialog.findViewById(R.id.editAuthor);
+        TextView editAnnotation = (TextView) dialog.findViewById(R.id.editAnnotation);
+        Views.gone(editTitle, editAuthor, editAnnotation);
 
+        if (BookType.PDF.is(file.getPath())) {
+            Views.visible(editTitle, editAuthor, editAnnotation);
+
+            TxtUtils.underline(editTitle, editTitle.getText().toString().toLowerCase());
+            TxtUtils.underline(editAuthor, editTitle.getText().toString().toLowerCase());
+            TxtUtils.underline(editAnnotation, editTitle.getText().toString().toLowerCase());
+
+            editMeta(fileMeta, editAuthor, author, MuPdfDocument.META_INFO_AUTHOR);
+            editMeta(fileMeta, editTitle, title, MuPdfDocument.META_INFO_TITLE);
+            editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
+        }
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);
 
@@ -523,6 +535,19 @@ public class FileInformationDialog {
         });
 
         infoDialog.show();
+    }
+
+    private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
+        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(), author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
+            PdfContext codecContex = new PdfContext();
+            CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
+            doc.setMeta(key, result);
+            doc.saveAnnotations(fileMeta.getPath());
+            doc.recycle();
+            author.setText(result);
+            update(fileMeta);
+            return false;
+        }));
     }
 
     public static void showImage(Activity a, String path) {
@@ -637,4 +662,17 @@ public class FileInformationDialog {
         builder.show();
     }
 
+    public static void update(FileMeta fileMeta) {
+        IMG.clearMemoryCache();
+        IMG.clearDiscCache();
+
+        fileMeta.setState(FileMetaCore.STATE_NONE);
+        FileMetaCore.reUpdateIfNeed(fileMeta);
+
+        AppDB.get().save(fileMeta);
+
+
+        TempHolder.listHash++;
+        EventBus.getDefault().post(new UpdateAllFragments());
+    }
 }

@@ -1101,6 +1101,41 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deletePage(JNIEnv
     pdf_delete_page(ctx, idoc, page);
 }
 
+
+JNIEXPORT void JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_setMetaData(JNIEnv *env, jclass clazz, jlong handle, jstring jkey, jstring jvalue)
+{
+    renderdocument_t *doc_t = (renderdocument_t *)(long)handle;
+    fz_context *ctx = doc_t->ctx;
+	fz_document *doc = doc_t->document;
+	const char *key = NULL;
+	const char *value = NULL;
+
+	if (!ctx || !doc) return;
+	if (!jkey) return;
+	if (!jvalue) return;
+
+	key = (*env)->GetStringUTFChars(env, jkey, NULL);
+	value = (*env)->GetStringUTFChars(env, jvalue, NULL);
+	if (!key || !value)
+	{
+		if (key)
+			(*env)->ReleaseStringUTFChars(env, jkey, key);
+		return;
+	}
+
+	fz_try(ctx)
+		fz_set_metadata(ctx, doc, key, value);
+	fz_always(ctx)
+	{
+		(*env)->ReleaseStringUTFChars(env, jkey, key);
+		(*env)->ReleaseStringUTFChars(env, jvalue, value);
+	}
+	fz_catch(ctx)
+      ERROR("can't set metadata");
+}
+
+
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
                                                                               *env,
