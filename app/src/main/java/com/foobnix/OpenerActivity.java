@@ -96,8 +96,8 @@ public class OpenerActivity extends Activity {
 
 
         LOG.d(TAG, getIntent());
-        LOG.d(TAG, " Data", uri);
-        LOG.d(TAG, " Path", getDataPath());
+        LOG.d(TAG, " Uri", uri);
+        LOG.d(TAG, " dataPath", getDataPath());
         LOG.d(TAG, " Scheme", getIntent().getScheme());
         LOG.d(TAG, " Mime", getIntent().getType());
 
@@ -111,6 +111,7 @@ public class OpenerActivity extends Activity {
         String name = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
         String id = uri.getLastPathSegment();
         String size = getCursorValue(MediaStore.MediaColumns.SIZE);
+        String dataPath = getDataPath();
 
         LOG.d(TAG, "id", id, "name", name, "size", size);
 
@@ -119,22 +120,24 @@ public class OpenerActivity extends Activity {
             String utfID = Uri.decode(id).replace("file://", "");
             LOG.d(TAG, "utfID", utfID);
             file = new File(utfID);
+            LOG.d(TAG, "File:", file.getPath());
         }
-
-        String dataPath = getDataPath();
 
 
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getDataPath");
             file = new File(dataPath);
+            LOG.d(TAG, "File:", file.getPath());
         }
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 1");
             file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
+            LOG.d(TAG, "File:", file.getPath());
         }
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 2");
             file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
+            LOG.d(TAG, "File:", file.getPath());
         }
 
         if (!file.isFile()) {
@@ -142,6 +145,7 @@ public class OpenerActivity extends Activity {
             if (dataPath.startsWith("/media/Android/data/org.telegram.messenger/files/")) {
                 file = new File(AppProfile.DOWNLOADS_DIR, "Telegram/" + name);
             }
+            LOG.d(TAG, "File:", file.getPath());
         }
 
         if (!file.isFile()) {
@@ -153,6 +157,7 @@ public class OpenerActivity extends Activity {
                 LOG.d(TAG, "findFileInDownloads", fileInDownlaods);
                 file = new File(fileInDownlaods);
             }
+            LOG.d(TAG, "File:", file.getPath());
         }
 //        if (!file.isFile()) {
 //            LOG.d(TAG, "Find file in [Downloads]");
@@ -181,6 +186,7 @@ public class OpenerActivity extends Activity {
                 file.delete();
                 LOG.d(TAG, "Delete old file");
             }
+            LOG.d(TAG, "File:", file.getPath());
         }
 
         if (!file.isFile()) {
@@ -192,6 +198,7 @@ public class OpenerActivity extends Activity {
             } catch (Exception e) {
                 LOG.e(e);
             }
+            LOG.d(TAG, "File:", file.getPath());
         }
 
         if (file == null || !file.canRead() || !file.isFile()) {

@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" ]; then
-  echo "==[Testing]=="
-  APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+if [ "debug" == "$1" ]; then
+    echo "==[Debug]=="
+    APK=/Users/dev/git/LibreraReader/app/build/intermediates/apk/pro/debug
 else
-  echo "==[$1]=="
-    if [ "$(uname)" == "Darwin" ]; then
-     APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
-      else
-     APK=/home/dev/Dropbox/FREE_PDF_APK/testing/$1
-    fi
+  if [ -z "$1" ]; then
+    echo "==[Testing]=="
+    APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+    APK=/Users/dev/git/LibreraReader/app/build/intermediates/apk/pro/debug
+  else
+    echo "==[$1]=="
+      if [ "$(uname)" == "Darwin" ]; then
+       APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
+        else
+       APK=/home/dev/Dropbox/FREE_PDF_APK/testing/$1
+      fi
+  fi
 fi
 
 for DEVICE in $(adb devices | grep  -E -i '[abcdf0-9]' | tr -s "\t " " " | cut -d " " -f 1)
@@ -44,7 +50,7 @@ do
 	do
 		echo "Installing: $f"
 		#adb -s ${DEVICE} install -r "$f"
-		adb -s ${DEVICE} install "$f"
+		adb -s ${DEVICE} install -t "$f"
 	done
 
 FILES=$APK/*uni*.apk

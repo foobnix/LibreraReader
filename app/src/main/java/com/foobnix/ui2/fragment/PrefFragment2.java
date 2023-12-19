@@ -357,9 +357,9 @@ public class PrefFragment2 extends UIFragment {
                         continue;
                     }
 
-                    if (AppsConfig.IS_FDROID && tab == UITab.OpdsFragment) {
-                        continue;
-                    }
+//                    if (AppsConfig.IS_FDROID && tab == UITab.OpdsFragment) {
+//                        continue;
+//                    }
 
                     View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
                     if (AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK) {
