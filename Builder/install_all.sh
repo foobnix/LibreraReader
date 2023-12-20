@@ -7,7 +7,6 @@ else
   if [ -z "$1" ]; then
     echo "==[Testing]=="
     APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
-    APK=/Users/dev/git/LibreraReader/app/build/intermediates/apk/pro/debug
   else
     echo "==[$1]=="
       if [ "$(uname)" == "Darwin" ]; then
