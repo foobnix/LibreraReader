@@ -572,15 +572,16 @@ public class EpubExtractor extends BaseExtractor {
                     }
                 }
             }
-            LOG.d("Covers-","Book:",path);
+            LOG.d("Covers-", "Book:", path);
+            LOG.d("Covers-", "coverName:", coverName);
             if (coverName != null) {
                 zipInputStream.close();
 
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName();
-                    if (name.equals(coverName)) { //EQUALS
-                        LOG.d("Covers-","EQ:", name);
+                    if (name.equals(coverName) || name.equals("OEBPS/" + coverName)) { //EQUALS
+                        LOG.d("Covers-", "EQ:", name);
                         cover = BaseExtractor.getEntryAsByte(zipInputStream);
                         break;
                     }
@@ -592,7 +593,7 @@ public class EpubExtractor extends BaseExtractor {
                     while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                         String name = nextEntry.getName();
                         if (name.endsWith(coverName)) { // CONTAIN
-                            LOG.d("Covers-","END:", name, coverName);
+                            LOG.d("Covers-", "END:", name, coverName);
                             cover = BaseExtractor.getEntryAsByte(zipInputStream);
                             break;
                         }
@@ -601,7 +602,7 @@ public class EpubExtractor extends BaseExtractor {
             }
 
             if (cover == null) {
-                LOG.d("Covers-","OTHER:");
+                LOG.d("Covers-", "OTHER:");
                 zipInputStream.close();
 
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
