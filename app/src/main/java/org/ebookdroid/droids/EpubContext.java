@@ -33,6 +33,7 @@ EpubContext extends PdfContext {
                 AppState.get().isReferenceMode +
                 AppState.get().isShowPageNumbers +
                 AppState.get().isShowFooterNotesInText +
+                AppState.get().fullScreenMode +
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +
                 BookCSS.get().isAutoHypens +

@@ -381,6 +381,7 @@ public abstract class DocumentController {
         if (handler != null) {
             handler.removeCallbacks(timer);
         }
+
     }
 
     public abstract void onGoToPage(int page);

@@ -688,6 +688,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityFinal(Runnable run) {
+         TempHolder.get().loadingCancelled = true;
         stopTimer();
         ctr.closeActivityFinal(run);
     }

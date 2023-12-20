@@ -667,6 +667,9 @@ public class EpubExtractor extends BaseExtractor {
                         Elements select = parse.select("a[href]");
 
                         for (int i = 0; i < select.size(); i++) {
+                            if (TempHolder.get().loadingCancelled) {
+                                break;
+                            }
                             Element item = select.get(i);
                             String text = item.text();
                             if (item.attr("href").contains("#")) {
@@ -711,7 +714,9 @@ public class EpubExtractor extends BaseExtractor {
                     }
                     String name = nextEntry.getName();
                     for (String fileName : files) {
-
+                        if (TempHolder.get().loadingCancelled) {
+                            break;
+                        }
                         LOG.d("PARSE FILE NAME begin", name);
                         if (ExtUtils.getFileName(name).endsWith(ExtUtils.getFileName(fileName))) {
                             LOG.d("PARSE FILE NAME", name);
@@ -721,6 +726,9 @@ public class EpubExtractor extends BaseExtractor {
 
                             Elements ids = parse.select("[id]");
                             for (int i = 0; i < ids.size(); i++) {
+                                if (TempHolder.get().loadingCancelled) {
+                                    break;
+                                }
                                 Element item = ids.get(i);
                                 String id = item.attr("id");
 
@@ -750,8 +758,9 @@ public class EpubExtractor extends BaseExtractor {
                                 }
 
 
-                                LOG.d("put text >>", textKey, value);
+                                LOG.d("put text >>", TempHolder.get().loadingCancelled, textKey, value);
                                 notes.put(textKey, value.trim());
+
 
                             }
 
