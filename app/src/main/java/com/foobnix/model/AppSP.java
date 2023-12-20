@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Objects;
-import com.foobnix.pdf.info.BuildConfig;
 
 import java.io.File;
 
@@ -40,7 +40,7 @@ public class AppSP {
     public boolean isEnableSync;
     public String syncRootID;
 
-    public String currentProfile = BuildConfig.DEBUG ? "BETA" : "Librera";
+    public String currentProfile = LibreraBuildConfig.DEBUG ? "BETA" : "Librera";
     public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
 
     transient SharedPreferences sp;

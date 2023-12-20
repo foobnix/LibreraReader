@@ -11,7 +11,6 @@ ext {
 }
 
 
-
 println " --------------------"
 println " taskName: " + taskName
 println " --------------------"
@@ -33,9 +32,6 @@ android {
     compileSdk project.compileSdk
     namespace "com.foobnix.pdf.info"
 
-    buildFeatures {
-        buildConfig = true
-    }
     defaultConfig {
         namespace "com.foobnix.pdf.info"
         minSdk project.minSdk
@@ -134,20 +130,7 @@ android {
                     appSafeMode  : "false"
             ]
         }
-        huawei {
-            dimension "version"
-            applicationId "com.foobnix.pdf.reader"
-            manifestPlaceholders = [
-                    appName      : "Librera",
-                    appIcon      : "@mipmap/icon_pdf_reader",
-                    appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appGdriveKey : huawei_appGdriveKey,
-                    admobAppId   : huawei_admobAppId,
-                    admobBannerId: huawei_admobBannerId,
-                    admobFullId  : huawei_admobFullId,
-                    appSafeMode  : "false"
-            ]
-        }
+
         pro {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
@@ -347,14 +330,13 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:22.5.0"
+    def google_ads = "com.google.android.gms:play-services-ads:22.6.0"
     libreraImplementation google_ads
     pdf_v2Implementation google_ads
     ebookaImplementation google_ads
     tts_readerImplementation google_ads
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
-    huaweiImplementation google_ads
 
     def messaging_ads = "com.google.android.ump:user-messaging-platform:2.1.0"
     libreraImplementation messaging_ads
@@ -363,10 +345,6 @@ dependencies {
     tts_readerImplementation messaging_ads
     pdf_classicImplementation messaging_ads
     epub_readerImplementation messaging_ads
-    huaweiImplementation messaging_ads
-
-
-
 
 
 /** Testing **/
@@ -395,10 +373,9 @@ task copyApks() {
                 //println "====  " + variant.buildType.name + " " +  flavor
 
                 def list =
-                            ["/home/dev/Nextcloud/LibreraBeta",
-                            "/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing",
-                            "/home/dev/Dropbox/FREE_PDF_APK/testing"]
-
+                        ["/home/dev/Nextcloud/LibreraBeta",
+                         "/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing",
+                         "/home/dev/Dropbox/FREE_PDF_APK/testing"]
 
 
                 if (project.hasProperty("relesae")) {
@@ -407,22 +384,22 @@ task copyApks() {
                 }
                 list.each { dest ->
 
-                            copy {
-                                from file(
-                                        "build/outputs/apk/${flavor}/release/"
-                                )
-                                include "*.apk"
-                                into file(dest)
-                                println "Copy: '" + flavor + "' to " + dest
+                    copy {
+                        from file(
+                                "build/outputs/apk/${flavor}/release/"
+                        )
+                        include "*.apk"
+                        into file(dest)
+                        println "Copy: '" + flavor + "' to " + dest
 
-                                eachFile {
-                                    project.file(dest).mkdirs()
-                                    if (!file(dest).exists()) {
-                                        it.exclude()
-                                    }
-                                }
-
+                        eachFile {
+                            project.file(dest).mkdirs()
+                            if (!file(dest).exists()) {
+                                it.exclude()
                             }
+                        }
+
+                    }
 
 
                 }

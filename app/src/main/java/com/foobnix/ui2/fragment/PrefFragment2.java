@@ -42,6 +42,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -61,7 +62,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -574,7 +574,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_FZ_VERSION + "-" + BuildConfig.FLAVOR + ")";
+            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_FZ_VERSION + "-" + LibreraBuildConfig.FLAVOR + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
@@ -944,7 +944,7 @@ public class PrefFragment2 extends UIFragment {
                                                          String name = all[0];
                                                          final String code = all[1];
 
-                                                         if (BuildConfig.DEBUG) {
+                                                         if (LibreraBuildConfig.DEBUG) {
                                                              name += " [" + code + "]";
                                                          }
                                                          popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {

@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -35,7 +36,6 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -163,7 +163,7 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if (BuildConfig.DEBUG) {
+        if (LibreraBuildConfig.DEBUG) {
             pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
         }
 

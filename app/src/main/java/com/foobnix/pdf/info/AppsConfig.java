@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.Log;
 
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -24,10 +25,10 @@ public class AppsConfig {
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
 
-    public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
-    public static final boolean IS_LOG = BuildConfig.DEBUG;
-    public static final boolean IS_WRITE_LOGS = IS_FDROID || BuildConfig.DEBUG;
-    public static final String FLAVOR = BuildConfig.FLAVOR;
+    public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
+    public static final boolean IS_LOG = LibreraBuildConfig.DEBUG;
+    public static final boolean IS_WRITE_LOGS = IS_FDROID || LibreraBuildConfig.DEBUG;
+    public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
 
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);

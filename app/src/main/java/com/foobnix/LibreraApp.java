@@ -14,7 +14,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
@@ -72,7 +71,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        LOG.isEnable = BuildConfig.DEBUG || AppsConfig.IS_LOG;
+        LOG.isEnable = LibreraBuildConfig.DEBUG || AppsConfig.IS_LOG;
 
         TTSNotification.initChannels(this);
 

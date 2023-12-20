@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+    id 'java'
 }
 
 dependencies {
@@ -8,8 +8,7 @@ dependencies {
     //implementation project(':smartreflow')
 }
 
-sourceCompatibility = "8"
-targetCompatibility = "8"
+
 
 
 java {

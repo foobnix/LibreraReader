@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -158,7 +159,7 @@ public class ADS {
     }
 
     public static AdRequest getAdRequest(Context a) {
-        if (BuildConfig.DEBUG) {
+        if (LibreraBuildConfig.DEBUG) {
             String myID = ADS.getByTestID(a);
             return new AdRequest.Builder()//
                     //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//

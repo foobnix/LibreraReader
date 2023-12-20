@@ -53,7 +53,7 @@ EpubContext extends PdfContext {
             LOG.d("footer-notes-extracted");
         }
 
-        if (/** BuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if (/** LibreraBuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -115,7 +115,7 @@ EpubContext extends PdfContext {
     public Map<String, String> getNotes(String fileName) {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
-        if (/** !BuildConfig.DEBUG && **/jsonFile.isFile()) {
+        if (/** !LibreraBuildConfig.DEBUG && **/jsonFile.isFile()) {
             LOG.d("getNotes cache", fileName);
             notes = JsonHelper.fileToMap(jsonFile);
         } else {

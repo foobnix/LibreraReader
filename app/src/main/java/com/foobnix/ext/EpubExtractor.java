@@ -191,7 +191,7 @@ public class EpubExtractor extends BaseExtractor {
                     lock.wait(2000);
                 }
 
-//                if (BuildConfig.LOG) {
+//                if (LibreraBuildConfig.LOG) {
 //                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
 //                    IO.writeString(file, svgs.get(key));
 //                }

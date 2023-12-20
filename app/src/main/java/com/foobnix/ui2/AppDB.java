@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
@@ -17,7 +18,6 @@ import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -125,7 +125,7 @@ public class AppDB {
 
         fileMetaDao = daoSession.getFileMetaDao();
 
-        if (BuildConfig.DEBUG) {
+        if (LibreraBuildConfig.DEBUG) {
             QueryBuilder.LOG_SQL = true;
             QueryBuilder.LOG_VALUES = true;
         }
