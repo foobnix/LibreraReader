@@ -748,7 +748,7 @@ public class Dialogs {
 
     }
 
-    public static void showEditDialog(final Context c, String title, String init,
+    public static void showEditDialog(final Context c, boolean editOnly, String title, String init,
                                       final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
@@ -762,12 +762,14 @@ public class Dialogs {
                 onresult.onResultRecive(input.getText().toString());
             }
         });
-        builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onresult.onResultRecive(input.getText().toString());
-            }
-        });
+        if(!editOnly) {
+            builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    onresult.onResultRecive(input.getText().toString());
+                }
+            });
+        }
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

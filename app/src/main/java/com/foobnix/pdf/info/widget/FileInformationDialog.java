@@ -538,7 +538,7 @@ public class FileInformationDialog {
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
-        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(), author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
+        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(),true, author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
             PdfContext codecContex = new PdfContext();
             CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
             doc.setMeta(key, result);

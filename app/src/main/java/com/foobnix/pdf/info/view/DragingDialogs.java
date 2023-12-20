@@ -3450,7 +3450,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(),false, statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
@@ -3485,7 +3485,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), statusBarColorNight.getTextString(), AppState.get().statusBarColorNights, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(), false, statusBarColorNight.getTextString(), AppState.get().statusBarColorNights, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
@@ -4789,7 +4789,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(),  false, linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
@@ -4819,7 +4819,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(),false, linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
