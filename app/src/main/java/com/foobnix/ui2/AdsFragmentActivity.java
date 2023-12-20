@@ -17,13 +17,10 @@ import com.foobnix.tts.TTSNotification;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
-    Handler handler;
     private final MyADSProvider myAds = new MyADSProvider();
-
-    public abstract void onFinishActivity();
-
     protected int intetrstialTimeoutSec = 0;
-
+    protected boolean withInterstitial = true;
+    Handler handler;
     Runnable onFinish = new Runnable() {
 
         @Override
@@ -31,6 +28,9 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             onFinishActivity();
         }
     };
+    boolean doubleBackToExitPressedOnce = false;
+
+    public abstract void onFinishActivity();
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -39,9 +39,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         myAds.createHandler();
         handler = new Handler();
     }
-
-
-    protected boolean withInterstitial = true;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -136,21 +133,27 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         return false;
     }
 
-    boolean doubleBackToExitPressedOnce = false;
     @Override
     public void onBackPressed() {
+        LOG.d("onBackPressed", doubleBackToExitPressedOnce);
         if (doubleBackToExitPressedOnce) {
+            handler.removeCallbacksAndMessages(null);
             onBackPressedFinishImpl();
             super.onBackPressed();
             return;
         }
         this.doubleBackToExitPressedOnce = true;
         if (handler != null) {
-            handler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
-        }
+            handler.postDelayed(() -> {
+                doubleBackToExitPressedOnce = false;
+                LOG.d("onBackPressed", "timer", doubleBackToExitPressedOnce);
+                onBackPressedImpl();
+            }, 500);
 
-        handler.postDelayed(() -> onBackPressedImpl(), 500);
+        }
     }
-    public abstract  void onBackPressedImpl();
-    public abstract  void onBackPressedFinishImpl();
+
+    public abstract void onBackPressedImpl();
+
+    public abstract void onBackPressedFinishImpl();
 }
