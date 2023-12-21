@@ -763,7 +763,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv
 
     if (doc->ctx && doc)
     {
-        if (doc->outline)
+        if (doc->outline && doc->outline != NULL)
             fz_drop_outline(doc->ctx,doc->outline);
         doc->outline = NULL;
     }

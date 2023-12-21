@@ -32,26 +32,31 @@ public class OpenerActivity extends Activity {
     public static String TAG = "OpenerActivity";
 
     public static String findFileInDownloads(Context context, String name, String id) {
-        ContentResolver contentResolver = context.getContentResolver();
-        Uri uri = MediaStore.Files.getContentUri("external");
+        try {
+            ContentResolver contentResolver = context.getContentResolver();
+            Uri uri = MediaStore.Files.getContentUri("external");
 
-        String[] projection = {
-                MediaStore.Files.FileColumns.DATA
-        };
+            String[] projection = {
+                    MediaStore.Files.FileColumns.DATA
+            };
 
-        String selection = MediaStore.Files.FileColumns._ID + " = ? AND " +
-                MediaStore.Files.FileColumns.DISPLAY_NAME + " = ?";
+            String selection = MediaStore.Files.FileColumns._ID + " = ? AND " +
+                    MediaStore.Files.FileColumns.DISPLAY_NAME + " = ?";
 
-        String[] selectionArgs = new String[]{id, name};
+            String[] selectionArgs = new String[]{id, name};
 
-        try (Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)) {
-            if (cursor != null && cursor.moveToFirst()) {
-                int filePathId = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
-                String filePath = cursor.getString(filePathId);
-                LOG.d(TAG, "FileFinder", "File Path: " + filePath);
-                return filePath;
+            try (Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    int filePathId = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+                    String filePath = cursor.getString(filePathId);
+                    LOG.d(TAG, "FileFinder", "File Path: " + filePath);
+                    return filePath;
+                }
             }
+        } catch (Exception e) {
+            LOG.e(e);
         }
+
         return null;
     }
 
@@ -131,12 +136,18 @@ public class OpenerActivity extends Activity {
         }
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 1");
-            file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
+            int beginIndex = dataPath.indexOf("/", 1);
+            if (beginIndex > 0) {
+                file = new File(dataPath.substring(beginIndex));
+            }
             LOG.d(TAG, "File:", file.getPath());
         }
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 2");
-            file = new File(dataPath.substring(dataPath.indexOf("/", 1)));
+            int beginIndex = dataPath.indexOf("/", 1);
+            if (beginIndex > 0) {
+                file = new File(dataPath.substring(beginIndex));
+            }
             LOG.d(TAG, "File:", file.getPath());
         }
 
