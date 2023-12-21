@@ -122,10 +122,12 @@ public class OpenerActivity extends Activity {
 
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in getLastPathSegment");
-            String utfID = Uri.decode(id).replace("file://", "");
-            LOG.d(TAG, "utfID", utfID);
-            file = new File(utfID);
-            LOG.d(TAG, "File:", file.getPath());
+            if (id != null) {
+                String utfID = Uri.decode(id).replace("file://", "");
+                LOG.d(TAG, "utfID", utfID);
+                file = new File(utfID);
+                LOG.d(TAG, "File:", file.getPath());
+            }
         }
 
 
