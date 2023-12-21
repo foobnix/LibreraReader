@@ -356,7 +356,7 @@ dependencies {
 
 
 task copyApks() {
-    if (project.hasProperty('beta')) {
+    if (project.hasProperty('beta') || project.hasProperty("release")) {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
@@ -372,13 +372,16 @@ task copyApks() {
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                def list =
-                        ["/home/dev/Nextcloud/LibreraBeta",
-                         "/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing",
-                         "/home/dev/Dropbox/FREE_PDF_APK/testing"]
+                def list = []
+
+                if (project.hasProperty("beta")) {
+                    list.add("/home/dev/Nextcloud/LibreraBeta")
+                    list.add("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing")
+                    list.add("/home/dev/Dropbox/FREE_PDF_APK/testing")
+                }
 
 
-                if (project.hasProperty("relesae")) {
+                if (project.hasProperty("release")) {
                     list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
                     list.add("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$versionNumber")
                 }

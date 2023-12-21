@@ -36,7 +36,7 @@ cd ../
 
 ./gradlew assembleFdroidRelease
 
-./gradlew copyApks -Pbeta -Prelesae
+./gradlew copyApks -Prelease
 ./gradlew -stop
 
 rm /home/dev/Dropbox/FREE_PDF_APK/testing/*.apk
