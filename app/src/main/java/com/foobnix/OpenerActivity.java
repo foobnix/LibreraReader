@@ -239,11 +239,17 @@ public class OpenerActivity extends Activity {
 
 
     private String getDataPath() {
+        if (getIntent() == null) {
+            return "";
+        }
         if (getIntent().getData() == null) {
             return "";
         }
 
         String path = getIntent().getData().getPath();
+        if (path == null) {
+            return "";
+        }
 
         return path;
     }
