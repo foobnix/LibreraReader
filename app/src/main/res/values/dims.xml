@@ -3,6 +3,7 @@
 
     <dimen name="wh_button">36dp</dimen>
     <dimen name="wh_button_big">38dp</dimen>
+    <dimen name="wh_tts_button">42dp</dimen>
     <dimen name="wh_button_medium">32dp</dimen>
     <dimen name="wh_button_small">25dp</dimen>
     <dimen name="text_title">14sp</dimen>
