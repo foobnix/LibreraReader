@@ -353,6 +353,7 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isEditMode = true;
+
     public int fullScreenMode = FULL_SCREEN_NORMAL;
     public int fullScreenMainMode = FULL_SCREEN_NORMAL;
     public boolean isShowImages = true;
