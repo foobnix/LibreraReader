@@ -344,6 +344,9 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getFirstPageLink(JNIE
 {
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
     renderpage_t *page = (renderpage_t *)(long)pagehandle;
+    if(!doc || !page){
+      return -1;
+    }
     return (jlong)(long)((page && doc) ? fz_load_links(doc->ctx, page->page) : NULL);
 }
 
@@ -629,7 +632,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getBounds(JNIEnv
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
     renderpage_t *page = (renderpage_t *)(long)handle;
     jfloat *bbox = (*env)->GetPrimitiveArrayCritical(env, bounds, 0);
-    if (!bbox)
+    if (!doc || !page || !bbox)
         return;
     fz_rect page_bounds;
     page_bounds = fz_bound_page(page->ctx, page->page);
@@ -688,7 +691,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv
     buffer = (*env)->GetPrimitiveArrayCritical(env, bufferarray, 0);
 
     fz_context *ctx = page->ctx;
-    if (!ctx || ctx == NULL)
+    if (!ctx || !page)
     {
         (*env)->ReleasePrimitiveArrayCritical(env, bufferarray, buffer,
                                               0);
@@ -809,13 +812,10 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env
 {
     fz_outline *outline = (fz_outline *)(long)outlinehandle;
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
-    if (!doc)
+    if (!doc || !outline)
     {
         return NULL;
     }
-    // DEBUG("PdfOutline_getLink(%p)",outline);
-    if (!outline)
-        return NULL;
 
     char linkbuf[4048];
     int pageNo = -1; // outline->page;
@@ -832,7 +832,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(JNIEnv *
 {
     fz_outline *outline = (fz_outline *)(long)outlinehandle;
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
-    if (!doc)
+    if (!doc || !outline)
     {
         return NULL;
     }
@@ -972,7 +972,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv *env,
     fz_context *ctx = doc_t->ctx;
     fz_document *doc = doc_t->document;
 
-    if (!ctx || !doc)
+    if (!ctx || !doc || !page)
     {
         return NULL;
     }
@@ -1172,7 +1172,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
     (*env)->ReleasePrimitiveArrayCritical(env, jcolors, co,
                                           0);
 
-    if (idoc == NULL)
+    if (!doc || !idoc || !page)
         return;
 
     fz_var(pts);
@@ -1286,7 +1286,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal
     fz_context *ctx = doc_t->ctx;
     pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
 
-    if(!ctx || !doc_t->document || !idoc){
+    if(!ctx || !doc_t->document || !idoc || !page){
       return NULL;
     }
 
@@ -1361,6 +1361,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
     pdf_annot *annot;
     pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
 
+    if(!page){
+      return;
+    }
+
     // LOGE("deleteAnnotationInternal 2");
 
     fz_try(ctx)
@@ -1401,6 +1405,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 {
     renderdocument_t *doc_t = (renderdocument_t *)(long)handle;
     renderpage_t *page = (renderpage_t *)(long)pagehandle;
+    if(!page){
+        return;
+    }
 
     fz_context *ctx = doc_t->ctx;
     fz_document *doc = doc_t->document;

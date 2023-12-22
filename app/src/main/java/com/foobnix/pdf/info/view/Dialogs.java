@@ -702,15 +702,15 @@ public class Dialogs {
             pr.setSaveEnabled(false);
             pr.setSaveFromParentEnabled(false);
 
-            int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
-            final int tintColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : color;
+            //int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
+            //final int tintColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : color;
 
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);
 
-            TintUtil.setTintImageNoAlpha(image, tintColor);
-            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), tintColor);
-            TintUtil.setTintText(text, tintColor);
+            //TintUtil.setTintImageNoAlpha(image, tintColor);
+            //TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), tintColor);
+            //TintUtil.setTintText(text, tintColor);
 
             image.setOnClickListener(new OnClickListener() {
 

@@ -178,7 +178,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public boolean isRecycled() {
-        return pageHandle == 0;
+        return pageHandle == 0 || docHandle == 0 || muPdfDocument.isRecycled();
     }
 
     private RectF getBounds() {
@@ -438,6 +438,11 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public TextWord[][] getTextImpl() {
 
+
+        if (isRecycled()) {
+            LOG.d("skip isRecycled");
+            return new TextWord[0][0];
+        }
         //SKIP TEM
         if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
             LOG.d("skip text for 1 page");
