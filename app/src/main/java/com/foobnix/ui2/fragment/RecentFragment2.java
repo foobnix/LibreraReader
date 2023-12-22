@@ -7,6 +7,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +21,13 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -37,6 +40,41 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
     View panelRecent;
+    ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {
+
+        @Override
+        public boolean onResultRecive(FileMeta result) {
+            result.setIsRecent(false);
+            AppDB.get().update(result);
+
+            if (result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())) {
+                new File(result.getPath()).delete();
+                LOG.d("Delete cache recent file", result.getPath());
+            }
+
+
+            AppData.get().removeRecent(result);
+
+            populate();
+
+
+            return false;
+        }
+    };
+    Runnable clearAllRecent = new Runnable() {
+
+        @Override
+        public void run() {
+            AppDB.get().clearAllRecent();
+
+
+            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
+
+            AppData.get().clearRecents();
+
+            populate();
+        }
+    };
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -95,45 +133,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
     }
 
-    ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {
-
-        @Override
-        public boolean onResultRecive(FileMeta result) {
-            result.setIsRecent(false);
-            AppDB.get().update(result);
-
-            if(result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())){
-                new File(result.getPath()).delete();
-                LOG.d("Delete cache recent file", result.getPath());
-            }
-
-
-
-            AppData.get().removeRecent(result);
-
-            populate();
-
-
-
-            return false;
-        }
-    };
-
-    Runnable clearAllRecent = new Runnable() {
-
-        @Override
-        public void run() {
-            AppDB.get().clearAllRecent();
-
-
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
-
-            AppData.get().clearRecents();
-
-            populate();
-        }
-    };
-
     public boolean onBackAction() {
         return false;
     }
@@ -141,6 +140,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> allRecent = AppData.get().getAllRecent(true);
+        ExtUtils.removeReadBooks(allRecent);
         return allRecent;
     }
 
@@ -166,6 +166,17 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         final List<Integer> icons = Arrays.asList(R.drawable.my_glyphicons_114_paragraph_justify, R.drawable.my_glyphicons_114_justify_compact, R.drawable.glyphicons_157_thumbnails, R.drawable.glyphicons_158_thumbnails_small);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
+
+        p.getMenu().addCheckbox(getString(R.string.hide_read_books), AppState.get().isHideReadBook, new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppState.get().isHideReadBook = isChecked;
+                TempHolder.listHash++;
+
+                populate();
+            }
+        });
+
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
             p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -179,6 +190,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                 }
             });
         }
+
 
         p.show();
     }

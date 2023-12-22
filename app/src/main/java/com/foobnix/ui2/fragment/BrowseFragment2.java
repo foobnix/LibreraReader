@@ -108,6 +108,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     String displayPath;
     boolean isRestorePos = false;
     int itemsCount;
+
+    int readCount;
     private LinearLayout paths;
     private TextView stub;
     private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
@@ -157,6 +159,29 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         BrowseFragment2 br = new BrowseFragment2();
         br.setArguments(bundle);
         return br;
+    }
+
+    public static void sortItems(List<FileMeta> items) {
+        if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
+            Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
+            Collections.sort(items, FileMetaComparators.BY_DATE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
+            Collections.sort(items, FileMetaComparators.BY_SIZE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
+            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
+            Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
+            Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
+            Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
+            Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
+        }
+        if (AppState.get().sortByReverse) {
+            Collections.reverse(items);
+        }
     }
 
     @Override
@@ -345,7 +370,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
 
-
                 for (final String info : extFolders) {
 
                     String name;
@@ -377,7 +401,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         }
                     }).setIcon(R.drawable.glyphicons_336_folder);
                 }
-                if(AppSP.get().isEnableSync){
+                if (AppSP.get().isEnableSync) {
                     menu.getMenu().add("Librera" + "/" + "Sync").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -909,10 +933,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 boolean isDisplayAllFilesInFolder = Environment.getExternalStorageDirectory().getPath().equals(displayPath) || AppState.get().isDisplayAllFilesInFolder;
                 LOG.d("isDisplayAllFilesInFolder1", isDisplayAllFilesInFolder);
                 List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, isDisplayAllFilesInFolder);
+                int allCount = filesAndDirs.size();
                 ExtUtils.removeReadBooks(filesAndDirs);
-
-
-
+                readCount = allCount - filesAndDirs.size();
                 return filesAndDirs;
             }
         } catch (Exception e) {
@@ -998,8 +1021,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
     }
 
-
-
     public void displayItems(List<FileMeta> items) {
         itemsCount = items.size();
         if (searchAdapter == null) {
@@ -1047,29 +1068,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             openAsBook.setVisibility(View.GONE);
         }
 
-    }
-
-    public static void sortItems(List<FileMeta> items) {
-        if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
-            Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
-            Collections.sort(items, FileMetaComparators.BY_DATE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
-            Collections.sort(items, FileMetaComparators.BY_SIZE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
-            Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
-            Collections.sort(items, FileMetaComparators.BR_BY_PAGES);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_TITLE) {
-            Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
-            Collections.sort(items, FileMetaComparators.BR_BY_EXT);
-        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
-            Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
-        }
-        if (AppState.get().sortByReverse) {
-            Collections.reverse(items);
-        }
     }
 
     public void showPathHeader() {
@@ -1239,7 +1237,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             TextView stub = new TextView(getActivity());
 
-            stub.setText(" (" + itemsCount + ") ");
+            if (AppState.get().isHideReadBook) {
+                stub.setText(" (" + (itemsCount) + "/" + readCount + ") ");
+            } else {
+                stub.setText(" (" + itemsCount + ") ");
+            }
             stub.setTextColor(getResources().getColor(R.color.white));
             stub.setSingleLine();
             paths.addView(stub);
