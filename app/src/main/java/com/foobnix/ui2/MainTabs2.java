@@ -289,15 +289,15 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if (AppState.get().isSystemThemeColor) {
-            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
-        }
-
-        if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
-            setTheme(R.style.StyledIndicatorsWhite);
-        } else {
-            setTheme(R.style.StyledIndicatorsBlack);
-        }
+//        if (AppState.get().isSystemThemeColor) {
+//            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
+//        }
+//
+//        if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
+//            setTheme(R.style.StyledIndicatorsWhite);
+//        } else {
+//            setTheme(R.style.StyledIndicatorsBlack);
+//        }
         super.onCreate(savedInstanceState);
 
         if (!Android6.canWrite(this)) {

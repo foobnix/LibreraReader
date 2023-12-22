@@ -29,6 +29,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -105,9 +106,20 @@ public class TTSControlsView extends FrameLayout {
         //colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
         if (AppState.get().isUiTextColor) {
             colorTint = AppState.get().uiTextColor;
-        }else{
+        } else {
             colorTint = AppState.get().tintColor;
         }
+        if (colorTint == Color.WHITE && AppState.get().isDayNotInvert) {
+            colorTint = Color.BLACK;
+        }
+        if (colorTint == Color.BLACK && !AppState.get().isDayNotInvert) {
+            colorTint = Color.WHITE;
+        }
+        if (colorTint == Color.WHITE) {
+            colorTint = MagicHelper.otherColor(Color.WHITE, 0.2f);
+        }
+
+
         int alpha = 240;
         TintUtil.setTintImageWithAlpha(ttsStop, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsPlayPause, colorTint, alpha);
@@ -118,7 +130,7 @@ public class TTSControlsView extends FrameLayout {
         TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint, alpha);
         TintUtil.setTintText(trackName, colorTint);
 
-       // TxtUtils.updateAllLinks(view);
+        // TxtUtils.updateAllLinks(view);
 
         ttsNext.setOnClickListener(new OnClickListener() {
 

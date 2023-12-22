@@ -8,9 +8,12 @@ import android.os.Handler;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.MyADSProvider;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
@@ -34,6 +37,15 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle arg0) {
+        if (AppState.get().isSystemThemeColor) {
+            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
+        }
+
+        if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
+            setTheme(R.style.StyledIndicatorsWhite);
+        } else {
+            setTheme(R.style.StyledIndicatorsBlack);
+        }
         super.onCreate(arg0);
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
