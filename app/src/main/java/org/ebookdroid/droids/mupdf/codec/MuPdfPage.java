@@ -456,6 +456,7 @@ public class MuPdfPage extends AbstractCodecPage {
             try {
                 return getText_116();
             } catch (OutOfMemoryError e) {
+                LOG.e(e);
                 System.gc();
             }
         }
