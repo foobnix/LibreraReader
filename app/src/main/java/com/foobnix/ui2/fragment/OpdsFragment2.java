@@ -76,20 +76,19 @@ import okio.Okio;
 
 public class OpdsFragment2 extends UIFragment<Entry> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.network, R.drawable.glyphicons_417_globe);
+    public List<Entry> allCatalogs = new ArrayList<Entry>();
     EntryAdapter searchAdapter;
     TextView titleView;
-
     String url = "/";
     String urlRoot = "";
-
     String title;
     Stack<String> stack = new Stack<String>();
-
     ImageView onPlus, onProxy;
     View pathContainer, view1, view2;
     long enqueue;
     TextView defaults, faq;
     ImageView starIcon;
+    boolean isNeedLoginPassword = false;
 
     public OpdsFragment2() {
         super();
@@ -124,11 +123,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 final Entry e = new Entry(it[0], it[1], it[2], it[3], true);
                 e.appState = line + ";";
                 res.add(e);
-            }catch (Exception e){
+            } catch (Exception e) {
 
-                LOG.e(e,line);
+                LOG.e(e, line);
             }
-
 
 
         }
@@ -430,6 +428,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         try {
                             AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
+                            if (AppState.get().proxyPort >= 65535) {
+                                AppState.get().proxyPort = 0;
+                                proxyUser.setText("0");
+                            }
                         } catch (Exception e) {
                             AppState.get().proxyPort = 0;
                         }
@@ -583,9 +585,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     outStream = getActivity().getContentResolver().openOutputStream(createDocument);
                                 } else {
                                     File LIRBI_DOWNLOAD_DIR;
-                                    if(AppState.get().createBookNameFolder){
+                                    if (AppState.get().createBookNameFolder) {
                                         LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, displayName);
-                                    }else {
+                                    } else {
                                         if (TxtUtils.isNotEmpty(link.author)) {
                                             LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
                                         } else {
@@ -710,10 +712,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             LOG.e(e);
         }
     }
-
-    boolean isNeedLoginPassword = false;
-
-    public List<Entry> allCatalogs = new ArrayList<Entry>();
 
     @Override
     public List<Entry> prepareDataInBackground() {

@@ -195,7 +195,7 @@ public class OpenerActivity extends Activity {
             name = TxtUtils.fixFileName(name);
             file = new File(AppProfile.downloadBookFolder, name);
 
-            if (file.length() != Long.parseLong(size)) {
+            if (size != null && file.length() != Long.parseLong(size)) {
                 file.delete();
                 LOG.d(TAG, "Delete old file");
             }
