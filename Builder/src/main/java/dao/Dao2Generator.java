@@ -4,13 +4,14 @@ import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(8, "com.foobnix.dao2");
+        Schema schema = new Schema(9, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -49,16 +50,15 @@ public class Dao2Generator {
         note.addStringProperty("publisher");
         note.addStringProperty("isbn");
         note.addStringProperty("parentPath").indexAsc("parentPath_asc", false).indexDesc("parentPath_desc", false);
-
-
+        note.addIntProperty("filesCount");
+        note.addIntProperty("readCount");
 
         Entity dict = schema.addEntity("DictMeta");
         dict.addStringProperty("key").primaryKey();
         dict.addStringProperty("value");
 
-        new DaoGenerator().generateAll(schema, "/home/data/git/LibreraReader/app/src/main/java");
-
-
+        String path ="/Users/dev/git/LibreraReader/app/src/main/java";
+        new DaoGenerator().generateAll(schema, path);
 
 
     }

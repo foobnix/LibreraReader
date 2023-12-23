@@ -494,6 +494,21 @@ public class AppDB {
 
     }
 
+    public List<FileMeta> getAllWithProgress() {
+        if (fileMetaDao == null || fileMetaDao.queryBuilder() == null) {
+            return new ArrayList<FileMeta>();
+        }
+        QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
+        where = where.where(FileMetaDao.Properties.IsRecentProgress.isNotNull(), FileMetaDao.Properties.IsRecentProgress.eq(1.0f));
+        try {
+            return where.list() == null ? new ArrayList<FileMeta>() : where.list();
+        } catch (Exception e) {
+            return new ArrayList<FileMeta>();
+        }
+
+    }
+
+
     public List<FileMeta> searchBy(String str, SORT_BY sortby, boolean isAsc) {
         LOG.d("searchBy", str);
         try {

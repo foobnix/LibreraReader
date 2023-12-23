@@ -1238,7 +1238,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             TextView stub = new TextView(getActivity());
 
             if (AppState.get().isHideReadBook) {
-                stub.setText(" (" + (itemsCount) + "/" + readCount + ") ");
+                stub.setText(" (" + (itemsCount + readCount) + "/" + readCount + ") ");
             } else {
                 stub.setText(" (" + itemsCount + ") ");
             }

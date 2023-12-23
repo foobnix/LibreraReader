@@ -1914,6 +1914,25 @@ public class ExtUtils {
         }
     }
 
+    public static int countReadBooks(File[] listFiles) {
+        if (listFiles == null) {
+            return 0;
+        }
+
+
+        List<FileMeta> withProgress = AppDB.get().getAllWithProgress();
+        int count = 0;
+        for (File file : listFiles) {
+            if (withProgress.contains(new FileMeta(file.getPath()))) {
+                count++;
+            }
+        }
+
+        return count;
+
+
+    }
+
     public static void removeNotFound(List<FileMeta> all) {
         Iterator<FileMeta> iterator = all.iterator();
         while (iterator.hasNext()) {

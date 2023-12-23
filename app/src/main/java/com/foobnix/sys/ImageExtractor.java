@@ -294,11 +294,16 @@ public class ImageExtractor {
                 path = list.get(0).getPath();
 
                 FileMeta fileMeta = AppDB.get().getOrCreate(root.getPath());
-                fileMeta.setPages(list.size());
+                fileMeta.setFilesCount(list.size());
+
+                if(AppState.get().isHideReadBook) {
+                    fileMeta.setReadCount(ExtUtils.countReadBooks(listFiles));
+                }
+
                 AppDB.get().save(fileMeta);
 
 
-                LOG.d("Directory-Count", root.getName(), list.size());
+                //LOG.d("Directory-Count", root.getName(), list.size(), ExtUtils.countReadBooks(listFiles));
 
             }
         }

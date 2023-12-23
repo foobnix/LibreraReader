@@ -39,6 +39,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV6());
         migrations.add(new MigrationV7());
         migrations.add(new MigrationV8());
+        migrations.add(new MigrationV9());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -131,6 +132,20 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         @Override
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.ParentPath.columnName + " TEXT");
+        }
+    }
+
+        private static class MigrationV9 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 9;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.FilesCount.columnName + " INTEGER");
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.ReadCount.columnName + " INTEGER");
         }
     }
 

@@ -307,9 +307,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             TintUtil.setNoTintImage(holder.image);
 
-            if (AppState.get().isFolderPreview && fileMeta.getPages() != null && fileMeta.getPages() > 0) {
+            if (AppState.get().isFolderPreview && fileMeta.getFilesCount() != null && fileMeta.getFilesCount() > 0) {
                 holder.count.setVisibility(View.VISIBLE);
-                holder.count.setText(TxtUtils.formatInt(fileMeta.getPages()));
+
+                holder.count.setText("" + fileMeta.getFilesCount());
+                if (AppState.get().isHideReadBook) {
+                    holder.count.setText(fileMeta.getFilesCount() + "/" + fileMeta.getReadCount());
+                }
             } else {
                 holder.count.setVisibility(View.GONE);
             }
@@ -327,9 +331,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                                 if (meta != null && position < items.size()) {
                                     items.set(position, meta);
-                                    if (AppState.get().isFolderPreview && meta.getPages() != null && meta.getPages() > 0) {
+                                    if (AppState.get().isFolderPreview && meta.getFilesCount() != null && meta.getFilesCount() > 0) {
                                         holder.count.setVisibility(View.VISIBLE);
-                                        holder.count.setText(TxtUtils.formatInt(meta.getPages()));
+                                        holder.count.setText("" + meta.getFilesCount());
+                                        if (AppState.get().isHideReadBook) {
+                                            holder.count.setText("" + meta.getFilesCount() + "/" + meta.getReadCount());
+                                        }
                                     } else {
                                         holder.count.setVisibility(View.GONE);
                                     }
