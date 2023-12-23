@@ -1416,7 +1416,7 @@ public class TxtUtils {
                 }
 
                 if (child instanceof ViewGroup) {
-                   updateAllLinks((ViewGroup) child, color, accentImages);
+                    updateAllLinks((ViewGroup) child, color, accentImages);
                 }
                 if (child instanceof TextView) {
                     if ("textLink".equals(child.getTag())) {
@@ -1425,14 +1425,19 @@ public class TxtUtils {
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
                     if (child instanceof CheckBox) {
-                       ((CheckBox) child).setButtonTintList(tint);
+                        ((CheckBox) child).setButtonTintList(tint);
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 
                         if (imageView.getId() == R.id.closePopup) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (accentImages || AppState.get().isUiTextColor) {
-                            imageView.setImageTintList(tint);
+                            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+                                imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                            } else {
+                                imageView.setImageTintList(tint);
+                            }
+
                         } else {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         }
