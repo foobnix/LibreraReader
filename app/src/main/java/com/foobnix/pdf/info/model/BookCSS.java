@@ -214,7 +214,7 @@ public class BookCSS {
         fontWeight = 400;
 
         fontFolder = AppProfile.syncFontFolder.getPath();
-        downlodsPath = AppProfile.downloadBookFolder.getPath();
+        downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera").getPath();
         displayFontName = DEFAULT_FONT;
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;

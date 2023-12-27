@@ -81,7 +81,6 @@ public class AppProfile {
     public static File syncFontFolder;
 
     public static File syncTestFolder;
-    public static File downloadBookFolder;
 
     public static File FONT_LOCAL_ZIP;
 
@@ -115,8 +114,6 @@ public class AppProfile {
         FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip.pack");
         syncFontFolder = new File(SYNC_FOLDER_ROOT, "Fonts");
         syncTestFolder = new File(SYNC_FOLDER_ROOT, "Test");
-        downloadBookFolder = new File(DOWNLOADS_DIR, "Librera");
-        downloadBookFolder.mkdirs();
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);

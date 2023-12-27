@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.MyContextWrapper;
 
 import java.io.File;
@@ -185,7 +186,7 @@ public class OpenerActivity extends Activity {
 
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in [Librera/Downloads]");
-            AppProfile.downloadBookFolder.mkdirs();
+            new File(BookCSS.get().downlodsPath).mkdirs();
             LOG.d(TAG, "Find file in [Downloads]");
             if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
                 String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
@@ -193,7 +194,7 @@ public class OpenerActivity extends Activity {
                 name = name + "." + extByMimeType;
             }
             name = TxtUtils.fixFileName(name);
-            file = new File(AppProfile.downloadBookFolder, name);
+            file = new File(BookCSS.get().downlodsPath, name);
 
             if (size != null && file.length() != Long.parseLong(size)) {
                 file.delete();

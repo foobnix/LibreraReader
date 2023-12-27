@@ -1500,6 +1500,7 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, final File file, Handler dialog) {
         try {
+            new File(BookCSS.get().downlodsPath).mkdirs();
             File bookTempRoot = new File(BookCSS.get().downlodsPath, "temp-dir-" + file.getName());
             if (!bookTempRoot.exists()) {
                 bookTempRoot.mkdirs();
@@ -1611,7 +1612,7 @@ public class ExtUtils {
                 LOG.e(e);
                 return null;
             }
-
+            new File(BookCSS.get().downlodsPath).mkdirs();
             File epubOutpub = new File(BookCSS.get().downlodsPath, file.getName() + REFLOW_EPUB);
             if (epubOutpub.isFile()) {
                 epubOutpub.delete();

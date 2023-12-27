@@ -419,6 +419,7 @@ public class SamlibOPDS {
 
         link.parentTitle = authorTxt.trim() + " - " + title.trim();
 
+        new File(BookCSS.get().downlodsPath).mkdirs();
         File book = new File(BookCSS.get().downlodsPath, link.getDownloadName());
         if (book.isFile()) {
             link.filePath = book.getPath();
@@ -494,6 +495,7 @@ public class SamlibOPDS {
 
         Link web = new Link(tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
 
+        new File(BookCSS.get().downlodsPath).mkdirs();
         File book = new File(BookCSS.get().downlodsPath, download.getDownloadName());
         if (book.isFile()) {
             download.filePath = book.getPath();

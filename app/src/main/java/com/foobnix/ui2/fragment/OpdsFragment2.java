@@ -772,6 +772,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         for (Link l : links) {
             Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
+            new File(BookCSS.get().downlodsPath).mkdirs();
             File book = new File(BookCSS.get().downlodsPath, l.getDownloadName());
             if (book.isFile()) {
                 l.filePath = book.getPath();
@@ -787,6 +788,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     alternative = new Link(url, l.type);
                     alternative.rel = l.rel;
                     alternative.parentTitle = "2." + parentTitle;
+                    new File(BookCSS.get().downlodsPath).mkdirs();
                     File book1 = new File(BookCSS.get().downlodsPath, alternative.getDownloadName());
                     if (book1.isFile()) {
                         alternative.filePath = book1.getPath();

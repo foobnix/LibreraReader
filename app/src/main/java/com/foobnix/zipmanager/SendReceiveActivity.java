@@ -114,11 +114,11 @@ public class SendReceiveActivity extends Activity {
                 LOG.d("updateIntent()-is text", isText);
                 //Document document = Jsoup.connect((String) text).userAgent("Mozilla/5.0 (jsoup)").timeout(30000).get();
                 if (isText) {
+                    new File(BookCSS.get().downlodsPath).mkdirs();
                     String
                             title = TxtUtils.fixFileName(TxtUtils.substringSmart(httpResponse, 30));
                     File file = new File(BookCSS.get().downlodsPath, title + ".txt");
                     file.delete();
-                    file.getParentFile().mkdirs();
                     LOG.d("outerHtml-file", file);
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     LOG.d("outerHtml-text", httpResponse);
@@ -136,10 +136,9 @@ public class SendReceiveActivity extends Activity {
                     if (title.length() > 31) {
                         title = TxtUtils.fixFileName(TxtUtils.substringSmart(title, 30));
                     }
-
+                    new File(BookCSS.get().downlodsPath).mkdirs();
                     File file = new File(BookCSS.get().downlodsPath, title + ".html");
                     file.delete();
-                    file.getParentFile().mkdirs();
 
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     String outerHtml = Jsoup.clean(document.html(), Safelist.basic());
@@ -158,6 +157,7 @@ public class SendReceiveActivity extends Activity {
 
             } else {
 
+                new File(BookCSS.get().downlodsPath).mkdirs();
                 File file = new File(BookCSS.get().downlodsPath, "temp.txt");
                 file.delete();
                 try {
