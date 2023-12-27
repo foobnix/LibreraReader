@@ -174,8 +174,8 @@ public class Fb2Extractor extends BaseExtractor {
             }
             if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
                 isValidXMLChecked = true;
-                //isValidXML = line.contains("<");
-                isValidXML = line.indexOf(0) == '<';
+                isValidXML = line.contains("<");
+                //isValidXML = line.indexOf(0) == '<';
                 LOG.d("isValidXML", isValidXML);
                 if (!isValidXML) {
                     writer.print("<html><body>");
