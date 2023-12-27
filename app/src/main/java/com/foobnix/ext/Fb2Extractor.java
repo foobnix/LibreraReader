@@ -174,8 +174,9 @@ public class Fb2Extractor extends BaseExtractor {
             }
             if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
                 isValidXMLChecked = true;
-                isValidXML = line.contains("<");
-                LOG.d("isValidXML", isValidXML, line);
+                //isValidXML = line.contains("<");
+                isValidXML = line.indexOf(0) == '<';
+                LOG.d("isValidXML", isValidXML);
                 if (!isValidXML) {
                     writer.print("<html><body>");
                 }
@@ -429,7 +430,7 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-                line = HypenUtils.applyHypnesOld2(line);
+               line = HypenUtils.applyHypnesOld2(line);
                 writer.print(line);
                 LOG.d("gen0-ou", line);
             }

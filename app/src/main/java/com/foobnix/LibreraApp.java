@@ -13,6 +13,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
@@ -128,6 +129,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("AppState save onLowMemory");
         IMG.clearMemoryCache();
         TintUtil.clean();
+        HypenUtils.cache.clear();
     }
 
     @Override

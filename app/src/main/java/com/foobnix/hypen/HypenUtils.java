@@ -4,13 +4,19 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.StringTokenizer;
+
 
 public class HypenUtils {
 
     public static final String SHY = "&shy;";
+    public static Map<String, String> cache = new HashMap<>();
+    static boolean ignore = false;
+    static boolean ignore1 = false;
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {
@@ -35,6 +41,7 @@ public class HypenUtils {
             }
             if (instance.pattern != pattern) {
                 instance = new DefaultHyphenator(pattern);
+                cache.clear();
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -75,13 +82,20 @@ public class HypenUtils {
                 if (w.length() <= 3) {
                     res.append(w);
                 } else {
-                    try {
-                        List<String> hyphenate = instance.hyphenate(w);
-                        String join = join(hyphenate, SHY);
-                        res.append(join);
-                    } catch (Exception e) {
-                        res.append(w);
-                        //LOG.e(e, "Exception findText", w);
+                    String obj = cache.get(w);
+                    if (obj != null) {
+                        res.append(obj);
+                    } else {
+                        try {
+                            StringBuilder result = new StringBuilder();
+                            instance.hyphenate(w, result, SHY);
+                            String join = result.toString();
+                            res.append(join);
+                            cache.put(w, join);
+                        } catch (Exception e) {
+                            res.append(w);
+                            cache.put(w, w);
+                        }
                     }
                 }
             }
@@ -183,15 +197,6 @@ public class HypenUtils {
         // return string.replace(SHY + SHY, SHY);
     }
 
-    public static interface TokensListener {
-        void findText(String text);
-
-        void findOther(char ch);
-    }
-
-    static boolean ignore = false;
-    static boolean ignore1 = false;
-
     public static void resetTokenizer() {
         ignore = false;
         ignore1 = false;
@@ -246,5 +251,11 @@ public class HypenUtils {
             res.setLength(0);
         }
 
+    }
+
+    public static interface TokensListener {
+        void findText(String text);
+
+        void findOther(char ch);
     }
 }

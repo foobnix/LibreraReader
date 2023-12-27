@@ -48,6 +48,8 @@ import com.foobnix.android.utils.Views;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
@@ -736,7 +738,7 @@ public class Dialogs {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     long sec = System.currentTimeMillis() - time;
-                    LOG.d("Book loading time:", (float) sec / 1000, "sec");
+                    LOG.d("Book loading time:", (float) sec / 1000, "sec","cache:"+ HypenUtils.cache.size());
 
                 }
             });

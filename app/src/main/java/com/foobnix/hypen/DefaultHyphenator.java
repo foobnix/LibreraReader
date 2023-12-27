@@ -50,13 +50,11 @@ import java.util.Map;
 
 public class DefaultHyphenator {
 
+    public HyphenPattern pattern;
+    boolean isErrorPattern = false;
     private TrieNode trie;
     private int leftMin;
     private int rightMin;
-
-    public HyphenPattern pattern;
-
-    boolean isErrorPattern = false;
 
     public DefaultHyphenator(HyphenPattern pattern) {
         this.pattern = pattern;
@@ -177,13 +175,63 @@ public class DefaultHyphenator {
         return result;
     }
 
+    public void hyphenate(String word, StringBuilder result, String shy) {
+        if (isErrorPattern) {
+            result.append(word);
+            return;
+        }
+
+        word = "_" + word + "_";
+        String lowercase = word.toLowerCase(Locale.US);
+
+        int wordLength = lowercase.length();
+
+        int[] points = new int[wordLength];
+        int[] characterPoints = new int[wordLength];
+        for (int i = 0; i < wordLength; i++) {
+            points[i] = 0;
+            characterPoints[i] = lowercase.codePointAt(i);
+        }
+
+        TrieNode node, trie = this.trie;
+        int[] nodePoints;
+        for (int i = 0; i < wordLength; i++) {
+            node = trie;
+            for (int j = i; j < wordLength; j++) {
+                node = node.codePoint.get(characterPoints[j]);
+                if (node != null) {
+                    nodePoints = node.points;
+                    if (nodePoints != null) {
+                        for (int k = 0, nodePointsLength = nodePoints.length; k < nodePointsLength; k++) {
+                            points[i + k] = Math.max(points[i + k], nodePoints[k]);
+                        }
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+
+        int start = 1;
+        for (int i = 1; i < wordLength - 1; i++) {
+            if (i > this.leftMin && i < (wordLength - this.rightMin) && points[i] % 2 > 0) {
+                result.append(word.substring(start, i));
+                result.append(shy);
+                start = i;
+            }
+        }
+        if (start < word.length() - 1) {
+            result.append(word.substring(start, word.length() - 1));
+        }
+    }
+
     /**
      * HyphenaPattern.java is an adaptation of Bram Steins hypher.js-Project:
      * https://github.com/bramstein/Hypher
-     *
+     * <p>
      * Code from this project belongs to the following license: Copyright (c) 2011,
      * Bram Stein All rights reserved.
-     *
+     * <p>
      * Redistribution and use in source and binary forms, with or without
      * modification, are permitted provided that the following conditions are met:
      * 1. Redistributions of source code must retain the above copyright notice,
@@ -193,7 +241,7 @@ public class DefaultHyphenator {
      * materials provided with the distribution. 3. The name of the author may not
      * be used to endorse or promote products derived from this software without
      * specific prior written permission.
-     *
+     * <p>
      * THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
      * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
      * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO

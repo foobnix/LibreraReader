@@ -54,7 +54,7 @@ EpubContext extends PdfContext {
             LOG.d("footer-notes-extracted");
         }
 
-        if (/** LibreraBuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if ( /** LibreraBuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
