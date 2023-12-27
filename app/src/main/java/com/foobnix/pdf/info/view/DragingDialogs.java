@@ -1978,6 +1978,10 @@ public class DragingDialogs {
                 final EditText number = view.findViewById(R.id.edit1);
                 number.clearFocus();
                 number.setText("" + dc.getCurentPageFirst1());
+                if (TempHolder.get().pageDelta != 0) {
+                    int i = dc.getCurentPageFirst1() + TempHolder.get().pageDelta;
+                    number.setText("[" + i + "]");
+                }
                 grid = view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
@@ -2126,6 +2130,7 @@ public class DragingDialogs {
                         int page = 1;
                         try {
                             String txt = number.getText().toString();
+                            txt = txt.replace("[", "").replace("]", "");
 
                             if (txt.contains("%") || txt.contains(".") || txt.contains(",")) {
                                 txt = txt.replace("%", "").replace(",", ".");
@@ -2142,6 +2147,10 @@ public class DragingDialogs {
                         } catch (Exception e) {
                             LOG.e(e);
                             number.setText("1");
+                        }
+
+                        if (TempHolder.get().pageDelta != 0) {
+                            page -= TempHolder.get().pageDelta;
                         }
 
                         if (page >= 0 && page <= dc.getPageCount()) {
@@ -3450,7 +3459,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(),false, statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(), false, statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
@@ -4789,7 +4798,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(),  false, linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(), false, linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
@@ -4819,7 +4828,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(),false, linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
+                        Dialogs.showEditDialog(v.getContext(), false, linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
 
                             @Override
                             public boolean onResultRecive(String result) {
