@@ -12,6 +12,7 @@ public class TempHolder {
     public static volatile int listHash = 0;
 
     public static volatile int listHashTemp;
+    public static String loadingTime;
 
     public static boolean isListHashChange() {
         if (listHash == listHashTemp) {

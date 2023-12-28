@@ -51,6 +51,7 @@ import com.foobnix.drive.GFile;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
@@ -738,8 +739,11 @@ public class Dialogs {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     long sec = System.currentTimeMillis() - time;
-                    LOG.d("Book loading time:", (float) sec / 1000, "sec","cache:"+ HypenUtils.cache.size());
-
+                    String loadingTime = ((float) sec / 1000) + " sec" + " cache:" + HypenUtils.cache.size();
+                    LOG.d("Book loading time:", loadingTime, ExtUtils.getFileName(AppSP.get().lastBookPath));
+                    if (AppState.get().isShowTestBooks) {
+                        Toast.makeText(c, loadingTime, Toast.LENGTH_LONG).show();
+                    }
                 }
             });
 
@@ -764,7 +768,7 @@ public class Dialogs {
                 onresult.onResultRecive(input.getText().toString());
             }
         });
-        if(!editOnly) {
+        if (!editOnly) {
             builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
