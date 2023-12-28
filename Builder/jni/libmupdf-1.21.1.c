@@ -424,10 +424,12 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkTargetPage
 {
     fz_link *link = (fz_link *)(long)linkhandle;
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
+    if(!doc || !doc->ctx || !doc->document || !link){
+      return -1;
+    }
+    int pageNum = fz_page_number_from_location(
+        doc->ctx, doc->document, fz_resolve_link(doc->ctx, doc->document, link->uri, NULL, NULL));
 
-    int pageNum = fz_page_number_from_location(doc->ctx, doc->document,
-                                               fz_resolve_link(doc->ctx, doc->document, link->uri,
-                                                               NULL, NULL));
     return pageNum;
 }
 
@@ -437,7 +439,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getLinkPage(
 {
 
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
-    if(!doc || !doc->ctx){
+    if(!doc || !doc->ctx || !doc->document){
       return -1;
     }
     const char *str = (*env)->GetStringUTFChars(env, id, NULL);
