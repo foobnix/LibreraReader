@@ -254,6 +254,7 @@
    <string name="send_file">फाइल भेज</string>
    <string name="delete">मिटाना</string>
    <string name="remove_from_library">लाइब्रेरी से निकालें</string>
+   <string name="add_to_library">लाइब्रेरी में जोड़ें</string>
    <string name="send_snapshot_of_the_page">पेज के स्नैपशॉट भेजें</string>
    <string name="file_info">फ़ाइल जानकारी</string>
    <string name="archive_files">संग्रह फ़ाइलें</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
    <string name="accent">लहज़ा</string>
+   <string name="discarded_books">छोड़ी गई किताबें</string>
    <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>
 </resources>

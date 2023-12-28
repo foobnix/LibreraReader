@@ -254,6 +254,7 @@
    <string name="send_file">Wyślij plik</string>
    <string name="delete">Usuń</string>
    <string name="remove_from_library">Usuń z biblioteki</string>
+   <string name="add_to_library">Dodaj do biblioteki</string>
    <string name="send_snapshot_of_the_page">Wyślij stronę</string>
    <string name="file_info">Informacje o pliku</string>
    <string name="archive_files">Pliki archiwum</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Poziom antyaliasingu</string>
    <string name="folder_preview">Podgląd folderu</string>
    <string name="accent">Akcent</string>
+   <string name="discarded_books">Wyrzucone książki</string>
    <string name="show_print_edition_page_numbers_epub3">Pokaż numery stron wydań drukowanych (epub3)</string>
 </resources>

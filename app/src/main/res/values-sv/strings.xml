@@ -254,6 +254,7 @@
    <string name="send_file">Skicka Fil</string>
    <string name="delete">Radera</string>
    <string name="remove_from_library">Ta bort från biblioteket</string>
+   <string name="add_to_library">Lägga till i biblioteket</string>
    <string name="send_snapshot_of_the_page">Skicka ögonblicksbild av sidan</string>
    <string name="file_info">Filinformation</string>
    <string name="archive_files">Arkiv~~POS=TRUNC filer~~POS=HEADCOMP</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Kantutjämningsnivå</string>
    <string name="folder_preview">Förhandsgranskning av mapp</string>
    <string name="accent">Accent</string>
+   <string name="discarded_books">Kasserade böcker</string>
    <string name="show_print_edition_page_numbers_epub3">Visa sidnummer i den tryckta utgåvan (epub3)</string>
 </resources>

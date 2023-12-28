@@ -254,6 +254,7 @@
    <string name="send_file">Dosyayı gönder</string>
    <string name="delete">Sil</string>
    <string name="remove_from_library">Kütüphaneden kaldır</string>
+   <string name="add_to_library">Kütüphaneye ekle</string>
    <string name="send_snapshot_of_the_page">Sayfanın anlık resmini gönder</string>
    <string name="file_info">Dosya Bilgileri</string>
    <string name="archive_files">Arşiv dosyaları</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Kenar yumuşatma seviyesi</string>
    <string name="folder_preview">Klasör önizlemesi</string>
    <string name="accent">Aksan</string>
+   <string name="discarded_books">Atılan kitaplar</string>
    <string name="show_print_edition_page_numbers_epub3">Basılı baskı sayfa numaralarını göster (epub3)</string>
 </resources>

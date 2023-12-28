@@ -254,6 +254,7 @@
    <string name="send_file">Mittite plicam</string>
    <string name="delete">Removere</string>
    <string name="remove_from_library">Removere ex bibliotheca</string>
+   <string name="add_to_library">Adde ut bibliotheca</string>
    <string name="send_snapshot_of_the_page">Age imaginem velari</string>
    <string name="file_info">Notitae plicae</string>
    <string name="archive_files">Archiveare plicas</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Anti-aliasing gradu</string>
    <string name="folder_preview">Folder preview</string>
    <string name="accent">Accentu</string>
+   <string name="discarded_books">Abiectis libris</string>
    <string name="show_print_edition_page_numbers_epub3">Showe print edition page numbers (epub3)</string>
 </resources>

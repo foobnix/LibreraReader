@@ -254,6 +254,7 @@
    <string name="send_file">Αποστολή αρχείου</string>
    <string name="delete">Διαγράφω</string>
    <string name="remove_from_library">Αφαίρεση από τη βιβλιοθήκη</string>
+   <string name="add_to_library">Προσθήκη στη βιβλιοθήκη</string>
    <string name="send_snapshot_of_the_page">Αποστολή σελίδας</string>
    <string name="file_info">Πληροφορίες αρχείου</string>
    <string name="archive_files">Αρχεία αρχειοθέτησης</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Επίπεδο αντιολίσθησης</string>
    <string name="folder_preview">Προεπισκόπηση φακέλου</string>
    <string name="accent">Προφορά</string>
+   <string name="discarded_books">Πεταμένα βιβλία</string>
    <string name="show_print_edition_page_numbers_epub3">Εμφάνιση αριθμών σελίδων έντυπης έκδοσης (epub3)</string>
 </resources>

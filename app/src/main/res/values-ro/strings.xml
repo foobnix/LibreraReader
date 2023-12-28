@@ -254,6 +254,7 @@
    <string name="send_file">Trimiteți fișier</string>
    <string name="delete">Șterge</string>
    <string name="remove_from_library">Eliminați din Bibliotecă</string>
+   <string name="add_to_library">Adăugați la bibliotecă</string>
    <string name="send_snapshot_of_the_page">A trimite instantaneu al paginii</string>
    <string name="file_info">Informații despre fișier</string>
    <string name="archive_files">Fişierele arhivă</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
    <string name="accent">Accent</string>
+   <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
 </resources>

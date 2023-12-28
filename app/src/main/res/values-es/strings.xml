@@ -254,6 +254,7 @@
    <string name="send_file">Enviar archivo</string>
    <string name="delete">Borrar</string>
    <string name="remove_from_library">Eliminar de la biblioteca</string>
+   <string name="add_to_library">Agregar a la biblioteca</string>
    <string name="send_snapshot_of_the_page">Enviar página</string>
    <string name="file_info">Informacion del archivo</string>
    <string name="archive_files">Archivos de almacenamiento</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Nivel de suavizado</string>
    <string name="folder_preview">Vista previa de la carpeta</string>
    <string name="accent">Acento</string>
+   <string name="discarded_books">Libros descartados</string>
    <string name="show_print_edition_page_numbers_epub3">Mostrar los números de página de la edición impresa (epub3)</string>
 </resources>

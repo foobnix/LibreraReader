@@ -254,6 +254,7 @@
    <string name="send_file">파일 보내기</string>
    <string name="delete">삭제</string>
    <string name="remove_from_library">라이브러리에서 제거</string>
+   <string name="add_to_library">라이브러리에 추가</string>
    <string name="send_snapshot_of_the_page">페이지 스냅샷 보내기</string>
    <string name="file_info">파일 정보</string>
    <string name="archive_files">압축 파일</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
    <string name="folder_preview">폴더 미리보기</string>
    <string name="accent">악센트</string>
+   <string name="discarded_books">버려진 책들</string>
    <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>
 </resources>

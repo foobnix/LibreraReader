@@ -254,6 +254,7 @@
    <string name="send_file">發送文件</string>
    <string name="delete">刪除</string>
    <string name="remove_from_library">移出書架</string>
+   <string name="add_to_library">添加到庫</string>
    <string name="send_snapshot_of_the_page">分享頁面</string>
    <string name="file_info">文件資訊</string>
    <string name="archive_files">檔案</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
    <string name="accent">口音</string>
+   <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
 </resources>

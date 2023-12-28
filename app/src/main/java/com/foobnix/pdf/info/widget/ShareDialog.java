@@ -228,7 +228,6 @@ public class ShareDialog {
     public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
 
 
-
         if (file == null) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -298,6 +297,8 @@ public class ShareDialog {
             }
             if (!isRemovedFromLibrary) {
                 items.add(a.getString(R.string.remove_from_library));
+            } else {
+                items.add(a.getString(R.string.add_to_library));
             }
         }
 
@@ -333,7 +334,7 @@ public class ShareDialog {
                 int i = 0;
 
                 if (isTxt && which == i++) {
-                    AlertDialogs.editFileTxt(a, file,AppProfile.DOWNLOADS_DIR, new StringResponse() {
+                    AlertDialogs.editFileTxt(a, file, AppProfile.DOWNLOADS_DIR, new StringResponse() {
                         @Override
                         public boolean onResultRecive(String string) {
                             if ((a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity) && dc != null) {
@@ -417,17 +418,28 @@ public class ShareDialog {
                 } else if (isMainTabs && canCopy && which == i++) {
                     TempHolder.get().copyFromPath = file.getPath();
                     Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT).show();
-                } else if (isMainTabs && !isRemovedFromLibrary && which == i++) {
-                    FileMeta load = AppDB.get().load(file.getPath());
-                    if (load != null) {
-                        load.setIsSearchBook(false);
-                        load.setIsStar(false);
-                        load.setTag(null);
-                        AppDB.get().update(load);
+                } else if (isMainTabs && which == i++) {
+                    if (isRemovedFromLibrary) {
 
-                        AppData.get().removeFavorite(load);
-                        AppData.get().addExclue(load.getPath());
+                        FileMeta load = AppDB.get().load(file.getPath());
+                        if (load != null) {
+                            load.setIsSearchBook(true);
+                            AppDB.get().update(load);
+                            AppData.get().removeExcluded(load);
+                        }
 
+                    } else {
+                        FileMeta load = AppDB.get().load(file.getPath());
+                        if (load != null) {
+                            load.setIsSearchBook(false);
+                            load.setIsStar(false);
+                            load.setTag(null);
+                            AppDB.get().update(load);
+
+                            AppData.get().removeFavorite(load);
+                            AppData.get().addExclue(load.getPath());
+
+                        }
                     }
 
 

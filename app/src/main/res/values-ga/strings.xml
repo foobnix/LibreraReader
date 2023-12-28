@@ -254,6 +254,7 @@
    <string name="send_file">Seol comhad</string>
    <string name="delete">Scriosadh</string>
    <string name="remove_from_library">Bain den leabharlann</string>
+   <string name="add_to_library">Chur leis an leabharlann</string>
    <string name="send_snapshot_of_the_page">Seol leathanach</string>
    <string name="file_info">Eolas comhaid</string>
    <string name="archive_files">Comhaid cartlainne</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
    <string name="accent">Accent</string>
+   <string name="discarded_books">Leabhair caite</string>
    <string name="show_print_edition_page_numbers_epub3">Taispeáin uimhreacha leathanaigh eagrán priontála (epub3)</string>
 </resources>

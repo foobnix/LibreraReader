@@ -20,6 +20,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.Playlists;
@@ -111,6 +112,15 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     populate();
                 }
             });
+
+            p.getMenu().addCheckbox(getString(R.string.discarded_books), AppState.get().isShowDiscardedBooks, new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppState.get().isShowDiscardedBooks = isChecked;
+                    populate();
+                }
+            });
+
             p.getMenu().addCheckbox("Testing books", AppState.get().isShowTestBooks, new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -186,8 +196,6 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 menu.show();
             }
         });
-
-
 
 
         TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
@@ -326,9 +334,9 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         List<FileMeta> all = new ArrayList<FileMeta>();
 
-        if(AppState.get().isShowFavTags) {
+        if (AppState.get().isShowFavTags) {
             List<String> tags = TagData.getAllTagsByFile();
-            Collections.sort(tags,String.CASE_INSENSITIVE_ORDER);
+            Collections.sort(tags, String.CASE_INSENSITIVE_ORDER);
 
             if (TxtUtils.isListNotEmpty(tags)) {
                 for (String tag : tags) {
@@ -350,11 +358,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        if(AppState.get().isShowFavPlaylist) {
+        if (AppState.get().isShowFavPlaylist) {
             all.addAll(Playlists.getAllPlaylistsMeta());
         }
 
-        if(AppState.get().isShowFavFolders) {
+        if (AppState.get().isShowFavFolders) {
             {
                 FileMeta empy = new FileMeta();
                 empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
@@ -365,7 +373,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         }
 
 
-        if(AppState.get().isShowFavBooks) {
+        if (AppState.get().isShowFavBooks) {
             final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
 
             if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
@@ -405,7 +413,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        if(AppState.get().isShowSyncBooks) {
+        if (AppState.get().isShowSyncBooks) {
             final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
 
@@ -418,7 +426,24 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 all.addAll(allSyncBooks);
             }
         }
-        if(AppState.get().isShowTestBooks) {
+        if (AppState.get().isShowDiscardedBooks) {
+            final List<SimpleMeta> allSyncBooks = AppData.get().getAllExcluded();
+            List<FileMeta> discardedBooks = new ArrayList<>();
+            for (SimpleMeta s : allSyncBooks) {
+                discardedBooks.add(AppDB.get().getOrCreate(s.getPath()));
+            }
+
+            if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+
+                FileMeta empty = new FileMeta();
+                empty.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+                empty.setTitle(getString(R.string.discarded_books));
+                all.add(empty);
+
+                all.addAll(discardedBooks);
+            }
+        }
+        if (AppState.get().isShowTestBooks) {
             final List<FileMeta> allSyncBooks = AppData.get().getAllTestedBooks();
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
 

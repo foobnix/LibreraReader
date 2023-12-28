@@ -254,6 +254,7 @@
    <string name="send_file">Send fil</string>
    <string name="delete">Slett</string>
    <string name="remove_from_library">Fjern fra biblioteket</string>
+   <string name="add_to_library">Legge til i biblioteket</string>
    <string name="send_snapshot_of_the_page">Send øyeblikksbilde av siden</string>
    <string name="file_info">Filinformasjon</string>
    <string name="archive_files">Arkiver filer</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
    <string name="accent">Aksent</string>
+   <string name="discarded_books">Kasserte bøker</string>
    <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>
 </resources>

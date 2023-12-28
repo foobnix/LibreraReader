@@ -218,7 +218,9 @@ public class AppData {
     public void removeFavorite(FileMeta meta) {
         removeAll(meta, AppProfile.APP_FAVORITE_JSON);
     }
-
+  public void removeExcluded(FileMeta meta) {
+        removeAll(meta, AppProfile.APP_EXCLUDE_JSON);
+    }
     public void clearAll(String name) {
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {

@@ -254,6 +254,7 @@
    <string name="send_file">إرسال ملف</string>
    <string name="delete">حذف</string>
    <string name="remove_from_library">إزالة من المكتبة</string>
+   <string name="add_to_library">إضافة إلى مكتبة</string>
    <string name="send_snapshot_of_the_page">إرسال قطة من الصفحة</string>
    <string name="file_info">معلومات الملف</string>
    <string name="archive_files">ملفات الأرشيف</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">مستوى الصقل</string>
    <string name="folder_preview">معاينة المجلد</string>
    <string name="accent">لهجة</string>
+   <string name="discarded_books">الكتب المهملة</string>
    <string name="show_print_edition_page_numbers_epub3">إظهار أرقام صفحات الطبعة المطبوعة (epub3)</string>
 </resources>

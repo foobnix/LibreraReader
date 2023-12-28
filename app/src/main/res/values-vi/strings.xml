@@ -254,6 +254,7 @@
    <string name="send_file">Gửi file</string>
    <string name="delete">Xóa bỏ</string>
    <string name="remove_from_library">Xóa khỏi Thư viện</string>
+   <string name="add_to_library">Thêm vào thư viện</string>
    <string name="send_snapshot_of_the_page">Gửi ảnh chụp của trang</string>
    <string name="file_info">Thông tin file</string>
    <string name="archive_files">Lưu trữ file</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
    <string name="accent">Giọng</string>
+   <string name="discarded_books">Sách bỏ đi</string>
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
 </resources>

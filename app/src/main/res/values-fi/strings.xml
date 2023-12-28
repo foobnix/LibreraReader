@@ -254,6 +254,7 @@
    <string name="send_file">Lähetä tiedosto</string>
    <string name="delete">Poista</string>
    <string name="remove_from_library">Poista kirjastosta</string>
+   <string name="add_to_library">Lisää kirjastoon</string>
    <string name="send_snapshot_of_the_page">Lähetä sivu</string>
    <string name="file_info">Tiedoston tiedot</string>
    <string name="archive_files">Pakkaa tiedostot</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
    <string name="accent">Aksentti</string>
+   <string name="discarded_books">Hylätyt kirjat</string>
    <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
 </resources>

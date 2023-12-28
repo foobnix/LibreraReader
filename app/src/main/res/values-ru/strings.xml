@@ -254,6 +254,7 @@
    <string name="send_file">Поделиться файлом</string>
    <string name="delete">Удалить</string>
    <string name="remove_from_library">Исключить из библиотеки</string>
+   <string name="add_to_library">Добавить в библиотеку</string>
    <string name="send_snapshot_of_the_page">Отпр. снимок страницы</string>
    <string name="file_info">Информация о файле</string>
    <string name="archive_files">Файл(ы) в архиве</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
    <string name="accent">Цвет акцента</string>
+   <string name="discarded_books">Выброшенные книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показать номера страниц печатного издания (epub3)</string>
 </resources>

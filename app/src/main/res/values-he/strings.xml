@@ -254,6 +254,7 @@
    <string name="send_file">שלח קובץ</string>
    <string name="delete">לִמְחוֹק</string>
    <string name="remove_from_library">הסר מהספרייה</string>
+   <string name="add_to_library">הוסף לספריה</string>
    <string name="send_snapshot_of_the_page">שלח צילום מסך של הדף</string>
    <string name="file_info">פרטי קובץ</string>
    <string name="archive_files">קבצי ארכיון</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
    <string name="accent">מִבטָא</string>
+   <string name="discarded_books">ספרים שנזרקו</string>
    <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
 </resources>

@@ -61,7 +61,6 @@ public class AppState {
     public static final int THEME_DARK = 1;
     public static final int THEME_DARK_OLED = 2;
     public static final int THEME_INK = 3;
-    public boolean isSystemThemeColor = false;
     public static final int FULL_SCREEN_NORMAL = 0;
     public static final int FULL_SCREEN_FULLSCREEN = 1;
     public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;
@@ -178,7 +177,6 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
-
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
             "lingvo", //
@@ -241,8 +239,10 @@ public class AppState {
             , "vi"
             , "zh-rCN"
             , "zh-rTW");
-
-
+    public static final int BOOKMARK_SORT_PAGE_ASC = 0;
+    public static final int BOOKMARK_SORT_PAGE_DESC = 1;
+    public static final int BOOKMARK_SORT_DATE_ASC = 2;
+    public static final int BOOKMARK_SORT_DATE_DESC = 3;
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
@@ -250,7 +250,6 @@ public class AppState {
     // public static int COLOR_BLACK = Color.parseColor("#030303");
     public static int COLOR_BLACK = Color.BLACK;
     public static int COLOR_BLACK_2 = Color.parseColor("#3a3a3a");
-
     public static int WIDGET_LIST = 1;
     public static int WIDGET_GRID = 2;
     public static int EDIT_NONE = 0;
@@ -305,6 +304,7 @@ public class AppState {
 
     }
 
+    public boolean isSystemThemeColor = false;
     public String allOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;
     public boolean createBookNameFolder = false;
@@ -347,13 +347,10 @@ public class AppState {
     //public boolean isFullScreenMain = false;
     public boolean isAccurateFontSize = false;
     public boolean isShowFooterNotesInText = false;
-
     public boolean isCharacterEncoding = false;
     public String characterEncoding = "UTF-8";
-
     @IgnoreHashCode
     public boolean isEditMode = true;
-
     public int fullScreenMode = FULL_SCREEN_NORMAL;
     public int fullScreenMainMode = FULL_SCREEN_NORMAL;
     public boolean isShowImages = true;
@@ -383,7 +380,6 @@ public class AppState {
     public int sortBy = AppDB.SORT_BY.DATA.ordinal();
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
-
     public int sortByFavorite = BR_SORT_BY_DATE;
     public boolean sortByFavoriteReverse = false;
     @IgnoreHashCode
@@ -421,9 +417,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
     public boolean isReferenceMode = false;
-
     public boolean isShowPageNumbers = false;
-    
     public boolean isEnableAccessibility = false;
     @IgnoreHashCode
     @Deprecated
@@ -622,9 +616,7 @@ public class AppState {
     public String nameMusicianMode = "";
     public boolean isDisplayAllFilesInFolder = false;
     public boolean isHideReadBook = false;
-
-    public boolean isFolderPreview  = false;
-
+    public boolean isFolderPreview = false;
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";
@@ -649,14 +641,8 @@ public class AppState {
     public boolean isShowFavFolders = true;
     public boolean isShowFavBooks = true;
     public boolean isShowSyncBooks = true;
-
     public boolean isShowTestBooks = false;
-
-    public static final int BOOKMARK_SORT_PAGE_ASC = 0;
-    public static final int BOOKMARK_SORT_PAGE_DESC = 1;
-    public static final int BOOKMARK_SORT_DATE_ASC = 2;
-    public static final int BOOKMARK_SORT_DATE_DESC = 3;
-
+    public boolean isShowDiscardedBooks = true;
     @IgnoreHashCode
     public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;
 

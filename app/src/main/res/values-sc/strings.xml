@@ -254,6 +254,7 @@
    <string name="send_file">Imbia su documentu</string>
    <string name="delete">Iscantzella</string>
    <string name="remove_from_library">Boga dae sa biblioteca</string>
+   <string name="add_to_library">Add to library</string>
    <string name="send_snapshot_of_the_page">Imbia sa pàgina</string>
    <string name="file_info">Informatziones de su documentu</string>
    <string name="archive_files">Archìvia documentos</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Anti-aliasing level</string>
    <string name="folder_preview">Folder preview</string>
    <string name="accent">Accent</string>
+   <string name="discarded_books">Discarded books</string>
    <string name="show_print_edition_page_numbers_epub3">Show print edition page numbers (epub3)</string>
 </resources>

@@ -254,6 +254,7 @@
    <string name="send_file">ファイルを送信</string>
    <string name="delete">削除</string>
    <string name="remove_from_library">ライブラリから削除する</string>
+   <string name="add_to_library">ライブラリに追加する</string>
    <string name="send_snapshot_of_the_page">ページのスナップショットを送信</string>
    <string name="file_info">ファイル情報</string>
    <string name="archive_files">アーカイブファイル</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
    <string name="folder_preview">フォルダーのプレビュー</string>
    <string name="accent">アクセント</string>
+   <string name="discarded_books">捨てられた本</string>
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
 </resources>

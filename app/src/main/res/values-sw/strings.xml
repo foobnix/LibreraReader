@@ -254,6 +254,7 @@
    <string name="send_file">Kutuma file</string>
    <string name="delete">Kufuta</string>
    <string name="remove_from_library">Ondoa kwenye Maktaba</string>
+   <string name="add_to_library">Ongeza kwenye maktaba</string>
    <string name="send_snapshot_of_the_page">Kutuma snapshot ya ukurasa</string>
    <string name="file_info">Faili Habari</string>
    <string name="archive_files">Files archive</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Kiwango cha kupinga-aliasing</string>
    <string name="folder_preview">Hakikisho la folda</string>
    <string name="accent">Lafudhi</string>
+   <string name="discarded_books">Vitabu vilivyotupwa</string>
    <string name="show_print_edition_page_numbers_epub3">Onyesha nambari za kurasa za toleo la kuchapisha (epub3)</string>
 </resources>

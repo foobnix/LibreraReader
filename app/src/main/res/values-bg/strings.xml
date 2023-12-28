@@ -254,6 +254,7 @@
    <string name="send_file">Изпрати файл</string>
    <string name="delete">Изтрий</string>
    <string name="remove_from_library">Премахнете от библиотеката</string>
+   <string name="add_to_library">Добавете към библиотеката</string>
    <string name="send_snapshot_of_the_page">Страница за изпращане</string>
    <string name="file_info">Информация за файла</string>
    <string name="archive_files">Архивни файлове</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
    <string name="accent">Акцент</string>
+   <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
 </resources>

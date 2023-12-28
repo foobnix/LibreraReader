@@ -254,6 +254,7 @@
    <string name="send_file">கோப்பு அனுப்பவும்</string>
    <string name="delete">அழி</string>
    <string name="remove_from_library">நூலகத்திலிருந்து அகற்று</string>
+   <string name="add_to_library">நூலகத்தில் சேர்க்கவும்</string>
    <string name="send_snapshot_of_the_page">பக்கத்தை அனுப்பு</string>
    <string name="file_info">கோப்பு தகவல்</string>
    <string name="archive_files">கோப்புகளை காப்பகப்படுத்தவும்</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">மாற்று மாற்று நிலை</string>
    <string name="folder_preview">கோப்புறை முன்னோட்டம்</string>
    <string name="accent">உச்சரிப்பு</string>
+   <string name="discarded_books">நிராகரிக்கப்பட்ட புத்தகங்கள்</string>
    <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
 </resources>

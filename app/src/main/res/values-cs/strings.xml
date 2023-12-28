@@ -254,6 +254,7 @@
    <string name="send_file">Odeslat soubor</string>
    <string name="delete">Vymazat</string>
    <string name="remove_from_library">Odstranit z knihovny</string>
+   <string name="add_to_library">Přidat do knihovny</string>
    <string name="send_snapshot_of_the_page">Odeslat stránku</string>
    <string name="file_info">Informace o souboru</string>
    <string name="archive_files">Archivní soubory</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
    <string name="accent">Přízvuk</string>
+   <string name="discarded_books">Vyřazené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
 </resources>

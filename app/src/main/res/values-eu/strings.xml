@@ -254,6 +254,7 @@
    <string name="send_file">Bidali fitxategia</string>
    <string name="delete">Ezabatu</string>
    <string name="remove_from_library">Kendu liburutegitik</string>
+   <string name="add_to_library">Gehitu liburutegira</string>
    <string name="send_snapshot_of_the_page">Bidali orria</string>
    <string name="file_info">Fitxategiaren informazioa</string>
    <string name="archive_files">Artxibo fitxategiak</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
    <string name="accent">Azentua</string>
+   <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
 </resources>

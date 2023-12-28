@@ -254,6 +254,7 @@
    <string name="send_file">Файлды жіберу</string>
    <string name="delete">Жою</string>
    <string name="remove_from_library">Кітапханадан жою</string>
+   <string name="add_to_library">Кітапханаға қосу</string>
    <string name="send_snapshot_of_the_page">Бетті жіберу</string>
    <string name="file_info">Файл туралы ақпарат</string>
    <string name="archive_files">Архив файлдары</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
    <string name="accent">Екпін</string>
+   <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
 </resources>

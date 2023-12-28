@@ -254,6 +254,7 @@
    <string name="send_file">Адправіць файл</string>
    <string name="delete">Выдаліць</string>
    <string name="remove_from_library">Выдаліць з бібліятэкі</string>
+   <string name="add_to_library">Дадаць у бібліятэку</string>
    <string name="send_snapshot_of_the_page">Адправіць старонку</string>
    <string name="file_info">Інфармацыя аб файле</string>
    <string name="archive_files">Архіўныя файлы</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Ўзровень згладжвання</string>
    <string name="folder_preview">Папярэдні прагляд папкі</string>
    <string name="accent">Акцэнт</string>
+   <string name="discarded_books">Выкінутыя кнігі</string>
    <string name="show_print_edition_page_numbers_epub3">Паказаць нумары старонак друкаванага выдання (epub3)</string>
 </resources>

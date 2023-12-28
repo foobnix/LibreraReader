@@ -254,6 +254,7 @@
    <string name="send_file">ഫയൽ അയയ്‌ക്കുക</string>
    <string name="delete">ഇല്ലാതാക്കുക</string>
    <string name="remove_from_library">ലൈബ്രറിയിൽ നിന്ന് നീക്കംചെയ്യുക</string>
+   <string name="add_to_library">ലൈബ്രറിയിലേക്ക് ചേർക്കുക</string>
    <string name="send_snapshot_of_the_page">പേജ് അയയ്‌ക്കുക</string>
    <string name="file_info">ഫയൽ വിവരം</string>
    <string name="archive_files">ആർക്കൈവ് ഫയലുകൾ</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">ആന്റി-അലിയാസിംഗ് ലെവൽ</string>
    <string name="folder_preview">ഫോൾഡർ പ്രിവ്യൂ</string>
    <string name="accent">ഉച്ചാരണം</string>
+   <string name="discarded_books">ഉപേക്ഷിച്ച പുസ്തകങ്ങൾ</string>
    <string name="show_print_edition_page_numbers_epub3">പ്രിന്റ് എഡിഷൻ പേജ് നമ്പറുകൾ കാണിക്കുക (epub3)</string>
 </resources>

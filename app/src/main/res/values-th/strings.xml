@@ -254,6 +254,7 @@
    <string name="send_file">ส่งไฟล์</string>
    <string name="delete">ลบ</string>
    <string name="remove_from_library">นำออกจากห้องสมุด</string>
+   <string name="add_to_library">เพิ่มลงในห้องสมุด</string>
    <string name="send_snapshot_of_the_page">ส่งภาพหน้าจอของหน้าเว็บ</string>
    <string name="file_info">ข้อมูลแฟ้ม</string>
    <string name="archive_files">ไฟล์ที่จัดเก็บ</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">ระดับการต่อต้านนามแฝง</string>
    <string name="folder_preview">ดูตัวอย่างโฟลเดอร์</string>
    <string name="accent">สำเนียง</string>
+   <string name="discarded_books">หนังสือที่ถูกทิ้ง</string>
    <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
 </resources>

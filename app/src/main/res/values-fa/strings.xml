@@ -254,6 +254,7 @@
    <string name="send_file">ارسال فایل</string>
    <string name="delete">حذف</string>
    <string name="remove_from_library">حذف از کتابخانه</string>
+   <string name="add_to_library">به کتابخانه اضافه کنید</string>
    <string name="send_snapshot_of_the_page">ارسال عکس فوری از صفحه</string>
    <string name="file_info">اطلاعات فایل</string>
    <string name="archive_files">فایل های آرشیو</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
    <string name="folder_preview">پیش نمایش پوشه</string>
    <string name="accent">لهجه</string>
+   <string name="discarded_books">کتاب های دور ریخته شده</string>
    <string name="show_print_edition_page_numbers_epub3">نمایش شماره صفحات نسخه چاپی (epub3)</string>
 </resources>

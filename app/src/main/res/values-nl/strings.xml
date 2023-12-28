@@ -254,6 +254,7 @@
    <string name="send_file">Deel bestand</string>
    <string name="delete">Verwijder</string>
    <string name="remove_from_library">Verwijder uit de bibliotheek</string>
+   <string name="add_to_library">Toevoegen aan bibliotheek</string>
    <string name="send_snapshot_of_the_page">Deel pagina</string>
    <string name="file_info">Bestand Informatie</string>
    <string name="archive_files">Archiefbestanden</string>
@@ -656,5 +657,6 @@
    <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
    <string name="accent">Accent</string>
+   <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
 </resources>
