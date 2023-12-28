@@ -519,8 +519,8 @@
    <string name="delete_this_bookmark_">删除这个书签？</string>
    <string name="zoom_in_out_with_lock_enable">缩放锁定的页面</string>
    <string name="show_footnotes_directly_in_text">文内显示注释（而不是脚注/尾注）</string>
-   <string name="read_by_sentences">符号后短暂停顿</string>
-   <string name="do_not_read_characters">不读字符</string>
+   <string name="read_by_sentences">标点符号后短暂停顿</string>
+   <string name="do_not_read_characters">不读标点符号:</string>
    <string name="show_in_scroll_mode">滚动模式显示</string>
    <string name="display_bookmark_text_instead_of_number">显示书签文本而非数字</string>
    <string name="export_as_text">导出为TXT文件</string>
