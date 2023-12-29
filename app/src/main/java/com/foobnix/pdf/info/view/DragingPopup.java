@@ -233,6 +233,7 @@ public abstract class DragingPopup {
         beforeCreate();
 
         TextView titleAction = popupView.findViewById(R.id.onTitleAction);
+
         if (this.titleAction != null) {
             titleAction.setVisibility(View.VISIBLE);
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.VISIBLE);

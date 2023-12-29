@@ -1366,6 +1366,9 @@ public class TxtUtils {
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
+            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+                color = Color.WHITE;
+            }
 
             List<Integer> ids = Arrays.asList(
                     R.id.restoreDefaultProfile,
@@ -1429,7 +1432,7 @@ public class TxtUtils {
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 
-                        if (imageView.getId() == R.id.closePopup) {
+                        if (imageView.getId() == R.id.closePopup && !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (accentImages || AppState.get().isUiTextColor) {
                             if (AppState.get().uiTextColor == AppState.get().tintColor) {

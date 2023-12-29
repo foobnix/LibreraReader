@@ -641,7 +641,7 @@
    <string name="cd_download_more_fonts">Download more fonts</string>
    <string name="restore_search_query_when_the_application_starts">Restore search query at startup</string>
    <string name="hide_read_books">Hide read books</string>
-   <string name="graphics_scale">Graphics scale</string>
+   <string name="graphics_scale">Images scale</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Create a folder with the name of the book</string>
    <string name="memory">Memory</string>
    <string name="accessibility">Accessibility</string>
