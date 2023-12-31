@@ -144,6 +144,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
             cacheCount = getPageCount(handle, w, h, size);
             LOG.d("getPageCount put to  cache", cacheCount);
             return cacheCount;
+        } catch (Exception e) {
+            return -1;
         } finally {
             TempHolder.lock.unlock();
         }
@@ -159,7 +161,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     public void setMeta(String key, String value) {
         TempHolder.lock.lock();
         try {
-            LOG.d(this.getClass(),"setMetaData", key, value);
+            LOG.d(this.getClass(), "setMetaData", key, value);
             setMetaData(documentHandle, key, value);
         } finally {
             TempHolder.lock.unlock();
