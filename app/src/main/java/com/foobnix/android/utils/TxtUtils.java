@@ -744,6 +744,9 @@ public class TxtUtils {
     }
 
     public static String fixFileName(String fileName) {
+        if(TxtUtils.isEmpty(fileName)){
+            return "";
+        }
         fileName = fileName.replaceAll("[\\/:*?\"'<>|]", "_");
         return fileName;
 

@@ -366,8 +366,10 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkType(JNIEn
 
     fz_link *link = (fz_link *)(long)linkhandle;
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
-    return (jint)
-        fz_is_external_link(doc->ctx, link->uri);
+    if(!doc || !doc->ctx || !link){
+      return -1;
+    }
+    return (jint) fz_is_external_link(doc->ctx, link->uri);
 }
 
 JNIEXPORT jstring

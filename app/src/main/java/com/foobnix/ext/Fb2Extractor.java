@@ -291,7 +291,6 @@ public class Fb2Extractor extends BaseExtractor {
                 line = HypenUtils.applyHypnes(line);
             }
 
-
             if (!isValidXML) {
                 writer.println("<p>");
             }
