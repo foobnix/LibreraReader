@@ -109,7 +109,9 @@ static void mupdf_free_document(renderdocument_t *doc)
     // LOGE("mupdf_free_document 6");
     // jni_free_locks(locks);
 
-    free(doc);
+    if(doc && doc != NULL) {
+      free(doc);
+    }
     doc = NULL;
 
     // LOGE("mupdf_free_document 7");
