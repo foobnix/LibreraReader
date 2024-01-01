@@ -493,6 +493,9 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEn
                                                                       jint size)
 {
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
+    if(!doc || !doc->ctx || !doc->document){
+      return -1;
+    }
     fz_try(doc->ctx)
     {
         fontSize = size;
