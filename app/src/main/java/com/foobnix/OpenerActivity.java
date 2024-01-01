@@ -12,15 +12,14 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.MyContextWrapper;
@@ -196,7 +195,8 @@ public class OpenerActivity extends Activity {
             name = TxtUtils.fixFileName(name);
             file = new File(BookCSS.get().downlodsPath, name);
 
-            if (size != null && file.length() != Long.parseLong(size)) {
+
+            if (file.length() != MyMath.longValueOfNoException(size)) {
                 file.delete();
                 LOG.d(TAG, "Delete old file");
             }
