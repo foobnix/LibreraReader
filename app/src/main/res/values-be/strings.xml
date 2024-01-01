@@ -563,6 +563,7 @@
    <string name="copy_text">Скапіяваць тэкст</string>
    <string name="show_fast_scroll">Паказаць паласу пракруткі</string>
    <string name="replacements">Замены</string>
+   <string name="word_replacement">Замена слоў</string>
    <string name="add_dictionary">Дадаць слоўнік</string>
    <string name="add_rule">Новае правіла</string>
    <string name="emphasis">Знак(ы) націску ўручную</string>

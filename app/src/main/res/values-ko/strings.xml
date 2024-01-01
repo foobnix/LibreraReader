@@ -563,6 +563,7 @@
    <string name="copy_text">텍스트 복사</string>
    <string name="show_fast_scroll">스크롤바 노출</string>
    <string name="replacements">대체</string>
+   <string name="word_replacement">단어 교체</string>
    <string name="add_dictionary">사전 추가</string>
    <string name="add_rule">규칙 추가</string>
    <string name="emphasis">강조</string>

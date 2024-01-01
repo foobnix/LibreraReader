@@ -563,6 +563,7 @@
    <string name="copy_text">Kopiere tekst</string>
    <string name="show_fast_scroll">Vis rask rulle</string>
    <string name="replacements">Erstatninger</string>
+   <string name="word_replacement">Orderstatning</string>
    <string name="add_dictionary">Legg til ordbok</string>
    <string name="add_rule">Legg til regel</string>
    <string name="emphasis">Vektlegging</string>

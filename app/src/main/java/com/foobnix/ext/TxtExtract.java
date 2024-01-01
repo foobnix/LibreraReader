@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TxtExtract {
 
@@ -169,7 +170,7 @@ public class TxtExtract {
             line = line.replace("\r", "");
             line = TextUtils.htmlEncode(line);
             if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                line = HypenUtils.applyHypnes(line);
+                line = HypenUtils.applyHypnes(line, new ArrayList<>());
             }
             line = line.trim();
 

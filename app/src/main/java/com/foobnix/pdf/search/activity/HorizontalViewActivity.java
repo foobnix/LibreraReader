@@ -561,6 +561,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
         onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
 
+        final ImageView onTextReplacement = (ImageView) findViewById(R.id.onTextReplacement);
+        onTextReplacement.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DragingDialogs.textReplaces(anchor, dc);
+            }
+        });
+        Views.visible(onTextReplacement,isTextFomat);
+
+
         ImageView dayNightButton = (ImageView) findViewById(R.id.bookNight);
         dayNightButton.setOnClickListener(new View.OnClickListener() {
 

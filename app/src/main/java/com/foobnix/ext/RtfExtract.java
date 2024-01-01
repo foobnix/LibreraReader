@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,7 +79,7 @@ public class RtfExtract {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
                     if (isEnableHypens) {
-                        htmlEncode = HypenUtils.applyHypnes(htmlEncode);
+                        htmlEncode = HypenUtils.applyHypnes(htmlEncode, new ArrayList<>());
                     }
                     printText(htmlEncode);
                     writer.print(" ");

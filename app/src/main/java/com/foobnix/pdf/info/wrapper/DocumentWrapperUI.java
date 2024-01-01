@@ -80,6 +80,7 @@ import org.ebookdroid.BookType;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.zwobble.mammoth.internal.documents.Text;
 
 import java.util.Arrays;
 import java.util.List;
@@ -223,7 +224,7 @@ public class DocumentWrapperUI {
     Activity a;
     String bookTitle;
     TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
-    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen;
+    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen,onTextReplacement;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
@@ -955,6 +956,7 @@ public class DocumentWrapperUI {
         zoomPlus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomMinus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
 
+        onTextReplacement.setVisibility(View.GONE);
         if (dc.isTextFormat()) {
             moveLeft.setVisibility(View.GONE);
             moveRight.setVisibility(View.GONE);
@@ -963,6 +965,7 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
+            onTextReplacement.setVisibility(View.VISIBLE);
             if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
@@ -1307,8 +1310,13 @@ public class DocumentWrapperUI {
         prefTop.setOnClickListener(onPrefTop);
 
         fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
+
         fullscreen.setOnClickListener(onFull);
         fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
+
+         onTextReplacement = a.findViewById(R.id.onTextReplacement);
+        onTextReplacement.setOnClickListener(v -> DragingDialogs.textReplaces(anchor, dc));
+
 
 
         onCloseBook = a.findViewById(R.id.close);

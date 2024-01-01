@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class DocContext extends PdfContext {
 
@@ -56,7 +57,7 @@ public class DocContext extends PdfContext {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
 
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, null, 0);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, null, 0, new ArrayList<>());
                 out.close();
                 in.close();
 

@@ -563,6 +563,7 @@
    <string name="copy_text">Kopiatu testua</string>
    <string name="show_fast_scroll">Erakutsi korritze-barra</string>
    <string name="replacements">Ordezkoak</string>
+   <string name="word_replacement">Hitzen ordezkapena</string>
    <string name="add_dictionary">Gehitu hiztegia</string>
    <string name="add_rule">Gehitu erregela</string>
    <string name="emphasis">Enfasia</string>

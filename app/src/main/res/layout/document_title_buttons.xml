@@ -120,6 +120,15 @@
                 android:contentDescription="@string/full_screen"
                 android:src="@drawable/glyphicons_216_fullscreen" />
 
+                <ImageView
+                android:id="@+id/onTextReplacement"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/full_screen"
+                android:src="@drawable/my_glyphicons_pen" />
+
             <ImageView
                 android:id="@+id/prefTop"
                 style="@style/buttonWhite"

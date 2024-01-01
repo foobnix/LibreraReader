@@ -563,6 +563,7 @@
    <string name="copy_text">Skopiuj tekst</string>
    <string name="show_fast_scroll">Pokaż szybkie przewijanie</string>
    <string name="replacements">Części zamienne</string>
+   <string name="word_replacement">Zamiana słów</string>
    <string name="add_dictionary">Dodaj słownik</string>
    <string name="add_rule">Dodaj regułę</string>
    <string name="emphasis">Nacisk</string>

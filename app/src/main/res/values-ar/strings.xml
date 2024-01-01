@@ -563,6 +563,7 @@
    <string name="copy_text">نسخ النص</string>
    <string name="show_fast_scroll">عرض التمرير السريع</string>
    <string name="replacements">بدلاء</string>
+   <string name="word_replacement">استبدال الكلمة</string>
    <string name="add_dictionary">اضافة القاموس</string>
    <string name="add_rule">أضف القاعدة</string>
    <string name="emphasis">تشديد</string>

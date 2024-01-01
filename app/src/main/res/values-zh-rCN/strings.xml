@@ -563,6 +563,7 @@
    <string name="copy_text">复制文本</string>
    <string name="show_fast_scroll">显示滚动条</string>
    <string name="replacements">内容替换</string>
+   <string name="word_replacement">单词替换</string>
    <string name="add_dictionary">添加词典</string>
    <string name="add_rule">添加规则</string>
    <string name="emphasis">强调</string>

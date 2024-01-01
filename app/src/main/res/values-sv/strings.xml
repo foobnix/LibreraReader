@@ -563,6 +563,7 @@
    <string name="copy_text">Kopiera text</string>
    <string name="show_fast_scroll">Visa snabb bläddring</string>
    <string name="replacements">Ersättare</string>
+   <string name="word_replacement">Ordbyte</string>
    <string name="add_dictionary">Lägg till ordlista</string>
    <string name="add_rule">Lägg till regel</string>
    <string name="emphasis">Betoning</string>

@@ -563,6 +563,7 @@
    <string name="copy_text">テキストをコピーする</string>
    <string name="show_fast_scroll">高速スクロールを表示</string>
    <string name="replacements">置き換え</string>
+   <string name="word_replacement">単語の置き換え</string>
    <string name="add_dictionary">辞書を追加</string>
    <string name="add_rule">ルールを追加</string>
    <string name="emphasis">強調</string>

@@ -563,6 +563,7 @@
    <string name="copy_text">Скопировать текст</string>
    <string name="show_fast_scroll">Отобр. бегунок быстрой прокрутки</string>
    <string name="replacements">Автозамены</string>
+   <string name="word_replacement">Замена слова</string>
    <string name="add_dictionary">Добавить словарь</string>
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>

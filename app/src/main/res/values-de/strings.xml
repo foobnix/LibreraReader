@@ -563,6 +563,7 @@
    <string name="copy_text">Text kopieren</string>
    <string name="show_fast_scroll">Scrollbar anzeigen</string>
    <string name="replacements">Ersetzungsregeln</string>
+   <string name="word_replacement">Wortersatz</string>
    <string name="add_dictionary">Wörterbuch hinzufügen</string>
    <string name="add_rule">Regel hinzufügen</string>
    <string name="emphasis">Stressmarke(n)</string>

@@ -563,6 +563,7 @@
    <string name="copy_text">คัดลอกข้อความ</string>
    <string name="show_fast_scroll">แสดงการเลื่อนอย่างรวดเร็ว</string>
    <string name="replacements">ทดแทน</string>
+   <string name="word_replacement">การแทนที่คำ</string>
    <string name="add_dictionary">เพิ่มพจนานุกรม</string>
    <string name="add_rule">เพิ่มกฎ</string>
    <string name="emphasis">ความสำคัญ</string>

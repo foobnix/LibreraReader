@@ -46,6 +46,7 @@ public abstract class DragingPopup {
     private int width;
     private int heigth;
     private Runnable onCloseListener;
+
     Runnable closeRunnable = new Runnable() {
 
         @Override

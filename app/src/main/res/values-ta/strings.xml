@@ -563,6 +563,7 @@
    <string name="copy_text">உரையை நகலெடுக்கவும்</string>
    <string name="show_fast_scroll">சுருள் பட்டியைக் காட்டு</string>
    <string name="replacements">மாற்றீடுகள்</string>
+   <string name="word_replacement">வார்த்தை மாற்று</string>
    <string name="add_dictionary">அகராதியைச் சேர்க்கவும்</string>
    <string name="add_rule">புதிய விதி</string>
    <string name="emphasis">கையேடு அழுத்த குறி (கள்)</string>

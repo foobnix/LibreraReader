@@ -563,6 +563,7 @@
    <string name="copy_text">העתק טקסט</string>
    <string name="show_fast_scroll">להראות גלילה מהירה</string>
    <string name="replacements">תחליפים</string>
+   <string name="word_replacement">החלפת מילה</string>
    <string name="add_dictionary">הוסף מילון</string>
    <string name="add_rule">הוסף כלל</string>
    <string name="emphasis">דגש</string>

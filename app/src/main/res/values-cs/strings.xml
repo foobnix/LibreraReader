@@ -563,6 +563,7 @@
    <string name="copy_text">Kopírovat text</string>
    <string name="show_fast_scroll">Ukázat posuvník</string>
    <string name="replacements">Nahrazení</string>
+   <string name="word_replacement">Nahrazení slov</string>
    <string name="add_dictionary">Přidat slovník</string>
    <string name="add_rule">Přidat pravidlo</string>
    <string name="emphasis">Manuální značka (značky) přízvuku</string>

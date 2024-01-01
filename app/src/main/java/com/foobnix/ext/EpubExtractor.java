@@ -5,8 +5,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
@@ -131,6 +133,8 @@ public class EpubExtractor extends BaseExtractor {
             zipInputStream = Zips.buildZipArchiveInputStream(input);
         }
 
+        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -166,7 +170,7 @@ public class EpubExtractor extends BaseExtractor {
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
 
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count, replacements);
 
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
@@ -304,7 +308,7 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null, 0);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null, 0, new ArrayList<>());
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);

@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class HtmlExtractor {
@@ -142,7 +143,7 @@ public class HtmlExtractor {
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
-                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt));
+                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt), new ArrayList<>());
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
@@ -218,7 +219,7 @@ public class HtmlExtractor {
             String string = Jsoup.clean(html.toString(), Safelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
-                string = HypenUtils.applyHypnes(string);
+                string = HypenUtils.applyHypnes(string, new ArrayList<>());
             }
 
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";

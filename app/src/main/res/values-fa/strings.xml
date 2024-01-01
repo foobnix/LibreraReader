@@ -563,6 +563,7 @@
    <string name="copy_text">متن را کپی کنید</string>
    <string name="show_fast_scroll">نشان می دهد اسکرول سریع</string>
    <string name="replacements">جایگزین</string>
+   <string name="word_replacement">جایگزینی کلمه</string>
    <string name="add_dictionary">اضافه کردن فرهنگ لغت</string>
    <string name="add_rule">اضافه کردن قانون</string>
    <string name="emphasis">تاکید</string>

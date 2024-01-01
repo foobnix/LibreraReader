@@ -645,6 +645,8 @@ public class AppState {
     public boolean isShowDiscardedBooks = true;
     @IgnoreHashCode
     public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;
+    public boolean isEnableTextReplacement = false;
+    public long textReplacementHash = 0;
 
 
     public static synchronized AppState get() {

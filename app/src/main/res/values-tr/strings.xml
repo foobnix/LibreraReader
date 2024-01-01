@@ -563,6 +563,7 @@
    <string name="copy_text">Metni kopyala</string>
    <string name="show_fast_scroll">Kaydırma çubuğunu göster</string>
    <string name="replacements">Değiştirmeleri</string>
+   <string name="word_replacement">Kelime değiştirme</string>
    <string name="add_dictionary">Sözlük ekle</string>
    <string name="add_rule">Yeni Kural</string>
    <string name="emphasis">Vurgu</string>

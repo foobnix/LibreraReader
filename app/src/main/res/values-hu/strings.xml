@@ -563,6 +563,7 @@
    <string name="copy_text">Szöveg másolása</string>
    <string name="show_fast_scroll">Gyors görgetés</string>
    <string name="replacements">Pótlások</string>
+   <string name="word_replacement">Szócsere</string>
    <string name="add_dictionary">Szótár hozzáadása</string>
    <string name="add_rule">Szabály hozzáadása</string>
    <string name="emphasis">Hangsúly</string>

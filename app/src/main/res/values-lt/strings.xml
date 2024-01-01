@@ -563,6 +563,7 @@
    <string name="copy_text">Kopijuoti tekstą</string>
    <string name="show_fast_scroll">Rodyti greitą slinktį</string>
    <string name="replacements">Pakeitimai</string>
+   <string name="word_replacement">Žodžių pakeitimas</string>
    <string name="add_dictionary">Pridėti žodyną</string>
    <string name="add_rule">Pridėti taisyklę</string>
    <string name="emphasis">Pabrėžimas</string>

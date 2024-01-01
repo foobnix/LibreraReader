@@ -12,8 +12,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -147,7 +149,7 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number) throws Exception {
+    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number, List<SimpleMeta> replacements) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
 
@@ -288,7 +290,7 @@ public class Fb2Extractor extends BaseExtractor {
 
 
             if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                line = HypenUtils.applyHypnes(line);
+                line = HypenUtils.applyHypnes(line, replacements);
             }
 
             if (!isValidXML) {
@@ -429,7 +431,7 @@ public class Fb2Extractor extends BaseExtractor {
                     line = "</" + subLine[i];
                 }
 
-               line = HypenUtils.applyHypnesOld2(line);
+                line = HypenUtils.applyHypnesOld2(line);
                 writer.print(line);
                 LOG.d("gen0-ou", line);
             }
@@ -1065,7 +1067,7 @@ public class Fb2Extractor extends BaseExtractor {
     private boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true, null);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true, null, new ArrayList<>());
             FileOutputStream out = new FileOutputStream(toName);
             out.write(generateFb2File.toByteArray());
             out.close();
@@ -1094,7 +1096,8 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes);
+            List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes, replacements);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();
@@ -1110,7 +1113,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes) throws Exception {
+    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes, List<SimpleMeta> replacements) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -1198,7 +1201,7 @@ public class Fb2Extractor extends BaseExtractor {
 
                 if (!isFindBodyEnd) {
                     if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                        line = HypenUtils.applyHypnes(line);
+                        line = HypenUtils.applyHypnes(line, replacements);
                     }
                 }
                 writer.print(line);

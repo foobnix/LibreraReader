@@ -25,6 +25,12 @@ public class SimpleMeta implements MyPath.RelativePath {
         this.time = time;
     }
 
+        public SimpleMeta(String name, String path, long time) {
+        this.name = name;
+        this.path = path;
+        this.time = time;
+    }
+
 
     public SimpleMeta(String path) {
         this.path = MyPath.toRelative(path);

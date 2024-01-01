@@ -563,6 +563,7 @@
    <string name="copy_text">Nakala ya nakala</string>
    <string name="show_fast_scroll">Onyesha haraka kitabu</string>
    <string name="replacements">Nafasi</string>
+   <string name="word_replacement">Badala ya neno</string>
    <string name="add_dictionary">Ongeza kamusi</string>
    <string name="add_rule">Ongeza utawala</string>
    <string name="emphasis">Msisitizo</string>

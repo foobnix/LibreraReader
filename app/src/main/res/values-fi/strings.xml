@@ -563,6 +563,7 @@
    <string name="copy_text">Kopioi teksti</string>
    <string name="show_fast_scroll">Näytä vierityspalkki</string>
    <string name="replacements">Korvaukset</string>
+   <string name="word_replacement">Sanan korvaaminen</string>
    <string name="add_dictionary">Lisää sanakirja</string>
    <string name="add_rule">Lisää sääntö</string>
    <string name="emphasis">Painotus</string>

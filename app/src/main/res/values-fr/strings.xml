@@ -563,6 +563,7 @@
    <string name="copy_text">Copier le texte</string>
    <string name="show_fast_scroll">Montrer défilement rapide</string>
    <string name="replacements">Remplaçants</string>
+   <string name="word_replacement">Remplacement de mot</string>
    <string name="add_dictionary">Ajouter un dictionnaire</string>
    <string name="add_rule">Ajouter une règle</string>
    <string name="emphasis">Accentuation</string>

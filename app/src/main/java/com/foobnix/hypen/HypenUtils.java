@@ -3,6 +3,8 @@ package com.foobnix.hypen;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
+import com.foobnix.tts.TtsStatus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,12 +53,12 @@ public class HypenUtils {
 
     }
 
-    public static String applyHypnes(String htmlEncode) {
-        String res = applyHypnesNewMy(htmlEncode);
+    public static String applyHypnes(String htmlEncode, List<SimpleMeta> replacements) {
+        String res = applyHypnesNewMy(htmlEncode, replacements);
         return res;
     }
 
-    private static String applyHypnesNewMy(final String input) {
+    private static String applyHypnesNewMy(final String input, List<SimpleMeta> replacements) {
         if (input == null || input.length() == 0) {
             return "";
         }
@@ -73,6 +75,18 @@ public class HypenUtils {
 
             @Override
             public void findText(String w) {
+                if (AppState.get().isEnableTextReplacement && replacements != null) {
+                    for (SimpleMeta it : replacements) {
+                        if (TxtUtils.isNotEmpty(it.name)) {
+                            if (it.name.startsWith("*")) {
+                                String regexp = it.name.substring(1);
+                                w = TxtUtils.replaceAll(w, regexp, it.path);
+                            } else {
+                                w = w.replace(it.name, it.path);
+                            }
+                        }
+                    }
+                }
 
                 if (AppState.get().isBionicMode) {
                     res.append(TxtUtils.toBionicWord(w));

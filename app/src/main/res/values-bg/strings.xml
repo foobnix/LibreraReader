@@ -563,6 +563,7 @@
    <string name="copy_text">Копирайте текст</string>
    <string name="show_fast_scroll">Покажете лента за превъртане</string>
    <string name="replacements">Резервни части</string>
+   <string name="word_replacement">Замяна на думи</string>
    <string name="add_dictionary">Добавяне на речник</string>
    <string name="add_rule">Ново правило</string>
    <string name="emphasis">Ръчен знак (и) за стрес</string>

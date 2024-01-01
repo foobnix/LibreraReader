@@ -563,6 +563,7 @@
    <string name="copy_text">Cóip téacs</string>
    <string name="show_fast_scroll">Taispeáin scrollbharra</string>
    <string name="replacements">Athsholáthair</string>
+   <string name="word_replacement">Athsholáthair focal</string>
    <string name="add_dictionary">Cuir foclóir leis</string>
    <string name="add_rule">Riail nua</string>
    <string name="emphasis">Marc (anna) struis láimhe</string>

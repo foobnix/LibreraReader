@@ -563,6 +563,7 @@
    <string name="copy_text">Kopieer tekst</string>
    <string name="show_fast_scroll">Toon snel scrollen</string>
    <string name="replacements">Vervangingen</string>
+   <string name="word_replacement">Woordvervanging</string>
    <string name="add_dictionary">Voeg woordenboek toe</string>
    <string name="add_rule">Regel toevoegen</string>
    <string name="emphasis">Nadruk</string>

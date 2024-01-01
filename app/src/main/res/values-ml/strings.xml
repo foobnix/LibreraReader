@@ -563,6 +563,7 @@
    <string name="copy_text">വാചകം പകർത്തുക</string>
    <string name="show_fast_scroll">സ്ക്രോൾബാർ കാണിക്കുക</string>
    <string name="replacements">മാറ്റിസ്ഥാപിക്കൽ</string>
+   <string name="word_replacement">വാക്ക് മാറ്റിസ്ഥാപിക്കൽ</string>
    <string name="add_dictionary">നിഘണ്ടു ചേർക്കുക</string>
    <string name="add_rule">പുതിയ നിയമം</string>
    <string name="emphasis">മാനുവൽ സ്ട്രെസ് മാർക്ക് (കൾ)</string>

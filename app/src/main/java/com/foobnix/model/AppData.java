@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import static com.foobnix.model.AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
+
 import android.net.Uri;
 
 import com.foobnix.LibreraApp;
@@ -126,6 +128,13 @@ public class AppData {
 
     }
 
+    public static File getTestFileName() {
+        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" + AppsConfig.MUPDF_FZ_VERSION + ".txt");
+        return logFile;
+
+
+    }
+
     public Map<String, String> getWebDictionaries(String input) {
         return getDictionaries(input, AppProfile.APP_WEB_DICT);
     }
@@ -218,9 +227,11 @@ public class AppData {
     public void removeFavorite(FileMeta meta) {
         removeAll(meta, AppProfile.APP_FAVORITE_JSON);
     }
-  public void removeExcluded(FileMeta meta) {
+
+    public void removeExcluded(FileMeta meta) {
         removeAll(meta, AppProfile.APP_EXCLUDE_JSON);
     }
+
     public void clearAll(String name) {
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
@@ -329,10 +340,32 @@ public class AppData {
         return res;
     }
 
+    public List<SimpleMeta> getAllTextReplaces() {
+        File rFile = new File(SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_TEXT_REPLACEMENT);
+        List<SimpleMeta> items = new ArrayList<>();
+        addSimpleMeta(items, rFile);
+
+        Collections.sort(items, FileMetaComparators.BY_DATE_SIMPLE_META);
+        return items;
+    }
+
+    public long calculateHash(List<SimpleMeta> items) {
+        long hash = 0;
+        for (SimpleMeta it : items) {
+            hash += it.name.hashCode() + it.path.hashCode();
+        }
+        hash += ("" + AppState.get().isEnableTextReplacement).hashCode();
+        return hash;
+    }
+
+    public void saveAllTextReplaces(List<SimpleMeta> list) {
+        File rFile = new File(SYNC_FOLDER_DEVICE_PROFILE, AppProfile.APP_TEXT_REPLACEMENT);
+        writeSimpleMeta(list, rFile);
+    }
+
     public List<SimpleMeta> getAllRecentSimple() {
         return getAll(AppProfile.APP_RECENT_JSON);
     }
-
 
     public List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
@@ -369,14 +402,6 @@ public class AppData {
 
     public List<SimpleMeta> getAllExcluded() {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
-    }
-
-
-    public static File getTestFileName() {
-        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" + AppsConfig.MUPDF_FZ_VERSION + ".txt");
-        return logFile;
-
-
     }
 
     public synchronized List<FileMeta> getAllTestedBooks() {

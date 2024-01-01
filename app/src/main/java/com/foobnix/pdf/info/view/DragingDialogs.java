@@ -99,6 +99,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -149,6 +150,7 @@ import com.foobnix.ui2.fragment.FavoritesFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -156,6 +158,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.greenrobot.eventbus.EventBus;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -163,10 +166,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class DragingDialogs {
 
@@ -176,7 +181,7 @@ public class DragingDialogs {
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
     static String lastSearchText = "";
 
-    public static void samble(final FrameLayout anchor, final DocumentController controller) {
+    public static void sample(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
@@ -199,7 +204,223 @@ public class DragingDialogs {
             }
         });
         dialog.show("Sample");
+    }
 
+    public static void textReplaces(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
+
+        DragingPopup dialog = new DragingPopup(R.string.word_replacement, anchor, 300, 440) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final Activity activity = controller.getActivity();
+
+
+                List<SimpleMeta> items = AppData.get().getAllTextReplaces();
+
+                final DragLinearLayout root = new DragLinearLayout(activity);
+                root.setOrientation(LinearLayout.VERTICAL);
+
+                CheckBox isEnableTextReplacement = new CheckBox(activity);
+                isEnableTextReplacement.setText(R.string.enable);
+                isEnableTextReplacement.setChecked(AppState.get().isEnableTextReplacement);
+                isEnableTextReplacement.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isEnableTextReplacement = isChecked;
+                    }
+                });
+
+                root.addView(isEnableTextReplacement);
+
+
+                for (SimpleMeta it : items) {
+
+                    String key = it.getName();
+                    String value = it.getPath();
+
+                    LOG.d("TTS-load-key", key, value);
+
+                    LinearLayout h = new LinearLayout(activity);
+                    root.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+                    h.setWeightSum(2);
+                    h.setOrientation(LinearLayout.HORIZONTAL);
+                    h.setGravity(Gravity.CENTER_VERTICAL);
+
+                    EditText from = new EditText(activity);
+                    from.setTextSize(14);
+                    from.setWidth(Dips.DP_120);
+                    from.setText(key);
+                    from.setSingleLine();
+
+
+                    TextView text = new TextView(activity);
+                    text.setText(">");
+                    root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+
+
+                    EditText to = new EditText(activity);
+                    to.setTextSize(14);
+                    to.setWidth(Dips.DP_120);
+                    to.setText(value);
+                    to.setSingleLine();
+                    to.setHint("_");
+
+
+                    ImageView img = new ImageView(activity);
+                    img.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+                    img.setMaxWidth(Dips.DP_20);
+                    img.setMaxHeight(Dips.DP_20);
+
+                    img.setImageResource(R.drawable.glyphicons_599_menu_close);
+                    TintUtil.setTintImageWithAlpha(img);
+
+                    img.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            root.removeView(h);
+                        }
+                    });
+
+
+                    ImageView move = new ImageView(activity);
+                    move.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+                    move.setMaxWidth(Dips.DP_20);
+                    move.setMaxHeight(Dips.DP_20);
+
+                    move.setImageResource(R.drawable.glyphicons_600_menu);
+                    TintUtil.setTintImageWithAlpha(move);
+
+
+                    from.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+                    text.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0f));
+                    to.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+                    img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0f));
+                    move.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0f));
+
+                    h.addView(from);
+                    h.addView(text);
+                    h.addView(to);
+                    h.addView(img);
+                    h.addView(move);
+
+                    root.addView(h);
+                    root.setViewDraggable(h, move);
+                }
+
+                TextView add = new TextView(activity, null, R.style.textLink);
+                add.setText(activity.getString(R.string.add));
+                add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+
+                TxtUtils.underlineTextView(add);
+                add.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        LinearLayout h = new LinearLayout(activity);
+                        h.setOrientation(LinearLayout.HORIZONTAL);
+
+                        EditText from = new EditText(activity);
+                        from.setWidth(Dips.DP_120);
+                        from.setSingleLine();
+                        from.requestFocus();
+
+
+                        TextView text = new TextView(activity);
+                        text.setText("->");
+                        root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+
+
+                        EditText to = new EditText(activity);
+                        to.setWidth(Dips.DP_120);
+                        to.setSingleLine();
+                        to.setHint("_");
+
+                        h.addView(from);
+                        h.addView(text);
+                        h.addView(to);
+                        root.addView(h, root.getChildCount() - 2);
+                    }
+                });
+
+                Button save = new Button(controller.getActivity());
+                save.setText(R.string.save);
+                save.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean hasErrors = false;
+                        List<SimpleMeta> items = new ArrayList<>();
+
+                        for (int i = 0; i < root.getChildCount(); i++) {
+                            final View childAt = root.getChildAt(i);
+                            if (childAt instanceof LinearLayout) {
+                                final LinearLayout line = (LinearLayout) childAt;
+                                if (line.getOrientation() == LinearLayout.VERTICAL) {
+                                    continue;
+                                }
+                                EditText childFrom = (EditText) line.getChildAt(0);
+                                String from = childFrom.getText().toString();
+                                String to = ((EditText) line.getChildAt(2)).getText().toString();
+                                from = from.replace(" ","").trim();
+                                to = to.replace(" ","").trim();
+
+
+                                LOG.d("TTS-add", from, to);
+
+                                try {
+                                    if (from.startsWith("*")) {
+                                        try {
+                                            Pattern.compile(from.substring(1));
+                                            //res.put(from, to);
+                                            items.add(new SimpleMeta(from, to, i));
+                                        } catch (Exception e) {
+                                            LOG.d("TTS-incorrect value", from, to);
+                                            hasErrors = true;
+                                            childFrom.requestFocus();
+                                            Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else if (TxtUtils.isNotEmpty(from)) {
+                                        items.add(new SimpleMeta(from, to, i));
+                                    }
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+
+
+                            }
+                        }
+                        if (!hasErrors) {
+                            Keyboards.close(activity);
+                            AppData.get().saveAllTextReplaces(items);
+                            Toast.makeText(activity, R.string.success, Toast.LENGTH_SHORT).show();
+                            realod();
+                        }
+                    }
+                });
+
+                root.addView(add);
+                root.addView(save);
+
+                return root;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+                List<SimpleMeta> items = AppData.get().getAllTextReplaces();
+                long hashNew = AppData.get().calculateHash(items);
+
+                if (AppState.get().textReplacementHash != hashNew) {
+                    AppState.get().textReplacementHash = hashNew;
+                    controller.restartActivity();
+                }
+            }
+        });
+        dialog.show("Sample");
     }
 
     public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {

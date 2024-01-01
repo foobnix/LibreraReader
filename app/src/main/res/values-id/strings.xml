@@ -563,6 +563,7 @@
    <string name="copy_text">Salin teks</string>
    <string name="show_fast_scroll">Tampilkan gulir cepat</string>
    <string name="replacements">Penggantian</string>
+   <string name="word_replacement">Penggantian kata</string>
    <string name="add_dictionary">Tambahkan kamus</string>
    <string name="add_rule">Tambahkan aturan</string>
    <string name="emphasis">Tekanan</string>

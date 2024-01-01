@@ -563,6 +563,7 @@
    <string name="copy_text">Αντιγραφή κειμένου</string>
    <string name="show_fast_scroll">Εμφάνιση γραμμής κύλισης</string>
    <string name="replacements">Αντικαταστάσεις</string>
+   <string name="word_replacement">Αντικατάσταση λέξης</string>
    <string name="add_dictionary">Προσθέστε λεξικό</string>
    <string name="add_rule">Νέος κανόνας</string>
    <string name="emphasis">Χειροκίνητα σημάδια στρες</string>

@@ -563,6 +563,7 @@
    <string name="copy_text">Copiază textul</string>
    <string name="show_fast_scroll">Afișează scroll-ul rapid</string>
    <string name="replacements">Înlocuiri</string>
+   <string name="word_replacement">Înlocuirea cuvintelor</string>
    <string name="add_dictionary">Adăugați dicționarul</string>
    <string name="add_rule">Adăugați regula</string>
    <string name="emphasis">Accent</string>

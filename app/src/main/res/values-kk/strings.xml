@@ -563,6 +563,7 @@
    <string name="copy_text">Мәтінді көшіру</string>
    <string name="show_fast_scroll">Жылдам айналдыруды көрсетіңіз</string>
    <string name="replacements">Ауыстыру</string>
+   <string name="word_replacement">Сөзді ауыстыру</string>
    <string name="add_dictionary">Сөздік қосу</string>
    <string name="add_rule">Ереже қосу</string>
    <string name="emphasis">Назар аударыңыз</string>

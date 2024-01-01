@@ -563,6 +563,7 @@
    <string name="copy_text">Sao chép văn bản</string>
    <string name="show_fast_scroll">Hiển thị cuộn nhanh</string>
    <string name="replacements">Thay thế</string>
+   <string name="word_replacement">Thay thế từ</string>
    <string name="add_dictionary">Thêm từ điển</string>
    <string name="add_rule">Thêm quy tắc</string>
    <string name="emphasis">Nhấn mạnh</string>

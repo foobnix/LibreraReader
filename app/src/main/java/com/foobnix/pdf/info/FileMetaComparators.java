@@ -60,6 +60,16 @@ public class FileMetaComparators {
             }
         }
     };
+        public static Comparator<SimpleMeta> BY_DATE_SIMPLE_META = new Comparator<SimpleMeta>() {
+        @Override
+        public int compare(SimpleMeta o1, SimpleMeta o2) {
+            try {
+                return compareLong(o1.time, o2.time);
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
 
     public static Comparator<FileMeta> BY_SYNC_DATE = new Comparator<FileMeta>() {
         @Override

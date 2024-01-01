@@ -58,6 +58,7 @@ public class AppProfile {
 
     public static final String APP_WEB_DICT = "app-WebDict.json";
     public static final String APP_WEB_SEARCH = "app-WebSearch.json";
+    public static final String APP_TEXT_REPLACEMENT = "app-TextReplacement.json";
 
     public static final String SYNC_FOLDER_ROOT_KEY = "syncFolderRoot";
     public static final String APP_PROFILE_SP = "AppProfile";

@@ -20,6 +20,7 @@ import org.zwobble.mammoth.images.ImageConverter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +74,7 @@ public class DocxContext extends PdfContext {
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(AppSP.get().hypenLang);
                     HypenUtils.resetTokenizer();
-                    html = HypenUtils.applyHypnes(html);
+                    html = HypenUtils.applyHypnes(html, new ArrayList<>());
                 }
 
                 FileOutputStream out = new FileOutputStream(cacheFile);
