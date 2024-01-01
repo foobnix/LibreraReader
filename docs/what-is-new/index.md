@@ -4,6 +4,10 @@ layout: main
 
 # What is new
 
+### [8.9.150] Changing words within the book
+
+<img class="i" src="8.9.150.png" />
+
 ### [8.9.127] Edit PDF meta tags
 
 <img class="i" src="8.9.127.png" />

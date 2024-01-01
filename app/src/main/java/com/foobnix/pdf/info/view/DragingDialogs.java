@@ -365,7 +365,7 @@ public class DragingDialogs {
                                 String from = childFrom.getText().toString();
                                 String to = ((EditText) line.getChildAt(2)).getText().toString();
                                 from = from.replace(" ","").trim();
-                                to = to.replace(" ","").trim();
+                                to = to.trim();
 
 
                                 LOG.d("TTS-add", from, to);
@@ -393,6 +393,8 @@ public class DragingDialogs {
                             }
                         }
                         if (!hasErrors) {
+                            AppState.get().isEnableTextReplacement = true;
+                            isEnableTextReplacement.setChecked(true);
                             Keyboards.close(activity);
                             AppData.get().saveAllTextReplaces(items);
                             Toast.makeText(activity, R.string.success, Toast.LENGTH_SHORT).show();
