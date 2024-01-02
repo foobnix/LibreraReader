@@ -7,7 +7,9 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -178,6 +180,7 @@ public class MdContext extends PdfContext {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
 
+        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
 
             String l;
             String line = "";
@@ -193,7 +196,7 @@ public class MdContext extends PdfContext {
 
 
                 if (BookCSS.get().isAutoHypens) {
-                    line = HypenUtils.applyHypnes(line);
+                    line = HypenUtils.applyHypnes(line,replacements);
                 }
 
                 html.append("<p>");

@@ -343,6 +343,9 @@ public class DragingDialogs {
                         h.addView(text);
                         h.addView(to);
                         root.addView(h, root.getChildCount() - 2);
+
+                        AppState.get().isEnableTextReplacement = true;
+                                isEnableTextReplacement.setChecked(true);
                     }
                 });
 
@@ -365,7 +368,6 @@ public class DragingDialogs {
                                 String from = childFrom.getText().toString();
                                 String to = ((EditText) line.getChildAt(2)).getText().toString();
                                 from = from.replace(" ","").trim();
-                                to = to.trim();
 
 
                                 LOG.d("TTS-add", from, to);
@@ -393,13 +395,6 @@ public class DragingDialogs {
                             }
                         }
                         if (!hasErrors) {
-                            if(items.isEmpty()) {
-                                AppState.get().isEnableTextReplacement = false;
-                                isEnableTextReplacement.setChecked(false);
-                            }else{
-                                AppState.get().isEnableTextReplacement = true;
-                                isEnableTextReplacement.setChecked(true);
-                            }
                             Keyboards.close(activity);
                             AppData.get().saveAllTextReplaces(items);
                             //Toast.makeText(activity, R.string.success, Toast.LENGTH_SHORT).show();
