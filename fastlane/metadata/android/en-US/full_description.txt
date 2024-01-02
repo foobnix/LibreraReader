@@ -1,18 +1,15 @@
 Librera Reader is a highly customizable and feature-rich application
-for reading e-books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats
+for reading e-books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, formats.
 
 With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
-It even features a unique auto-scrolling, hands-free Musician's mode, with controllable speed
+It even features a unique auto-scrolling, hands-free Musician's mode, with controllable speed.
 
-For better security, the F-Droid version, is based on the latest MuPDF and does not require access to the Internet.
+F-Droid version is based on the latest MuPDF and support Android 4.1+.
 
-For the above reason, some Internet-related features of Librera Reader are missing in its F-Droid version:
+The only difference between Librera FD (F-Droid) and Librera PRO
+is the absence of Google Play services and Google Drive book synchronization in Librera FD.
 
-1) Access to OPDS (Calibre) Catalogs
-2) Google Drive Syncing
-3) Saving (sharing) pages from web browsers
-
-# Just a few Librera's main features:
+# Just a few Librera main features:
 
 * Easy document discovery by configurable criteria:
 * Auto-Scan (user-specified folders)	
@@ -39,4 +36,7 @@ For the above reason, some Internet-related features of Librera Reader are missi
 * And a whole bunch of other features for you to check out.
 
 
-The best way to fully appreciate Librera Reader, however, is to use our restriction-free Librera PRO version from Google Play.
+The best way to fully appreciate Librera Reader, however,
+is to use our restriction-free Librera PRO version from Google Play.
+
+If you enjoy Librera, please consider making a donation: https://www.patreon.com/librera
