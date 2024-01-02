@@ -2,6 +2,7 @@ package com.foobnix.hypen;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.tts.TtsStatus;
@@ -53,9 +54,13 @@ public class HypenUtils {
 
     }
 
+    public static String applyHypnes(String htmlEncode) {
+        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+        return applyHypnesNewMy(htmlEncode, replacements);
+    }
+
     public static String applyHypnes(String htmlEncode, List<SimpleMeta> replacements) {
-        String res = applyHypnesNewMy(htmlEncode, replacements);
-        return res;
+        return applyHypnesNewMy(htmlEncode, replacements);
     }
 
     private static String applyHypnesNewMy(final String input, List<SimpleMeta> replacements) {

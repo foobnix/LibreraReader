@@ -393,11 +393,16 @@ public class DragingDialogs {
                             }
                         }
                         if (!hasErrors) {
-                            AppState.get().isEnableTextReplacement = true;
-                            isEnableTextReplacement.setChecked(true);
+                            if(items.isEmpty()) {
+                                AppState.get().isEnableTextReplacement = false;
+                                isEnableTextReplacement.setChecked(false);
+                            }else{
+                                AppState.get().isEnableTextReplacement = true;
+                                isEnableTextReplacement.setChecked(true);
+                            }
                             Keyboards.close(activity);
                             AppData.get().saveAllTextReplaces(items);
-                            Toast.makeText(activity, R.string.success, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(activity, R.string.success, Toast.LENGTH_SHORT).show();
                             realod();
                         }
                     }

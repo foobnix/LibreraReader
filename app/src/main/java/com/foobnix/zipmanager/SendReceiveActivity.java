@@ -157,10 +157,10 @@ public class SendReceiveActivity extends Activity {
 
             } else {
 
-                new File(BookCSS.get().downlodsPath).mkdirs();
-                File file = new File(BookCSS.get().downlodsPath, "temp.txt");
-                file.delete();
+                File root = new File(BookCSS.get().downlodsPath, "temp");
+                root.mkdirs();
                 try {
+                    File file = new File(root, "temp-" + text.hashCode() + ".txt");
                     file.getParentFile().mkdirs();
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     fileOutputStream.write(text.toString().getBytes());

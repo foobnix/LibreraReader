@@ -74,7 +74,7 @@ public class DocxContext extends PdfContext {
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(AppSP.get().hypenLang);
                     HypenUtils.resetTokenizer();
-                    html = HypenUtils.applyHypnes(html, new ArrayList<>());
+                    html = HypenUtils.applyHypnes(html);
                 }
 
                 FileOutputStream out = new FileOutputStream(cacheFile);

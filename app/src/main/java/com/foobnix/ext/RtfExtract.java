@@ -79,7 +79,7 @@ public class RtfExtract {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
                     if (isEnableHypens) {
-                        htmlEncode = HypenUtils.applyHypnes(htmlEncode, new ArrayList<>());
+                        htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }
                     printText(htmlEncode);
                     writer.print(" ");

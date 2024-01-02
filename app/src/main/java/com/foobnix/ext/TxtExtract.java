@@ -5,8 +5,10 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TxtExtract {
 
@@ -70,12 +73,10 @@ public class TxtExtract {
             HypenUtils.applyLanguage(AppSP.get().hypenLang);
         }
 
+       List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+
         while ((line = input.readLine()) != null) {
             String outLn = null;
-
-
-
-
 
             if (AppState.get().isPreText) {
 
@@ -92,18 +93,18 @@ public class TxtExtract {
                     if (line.trim().length() == 0) {
                         outLn = "<br/>";
                     } else {
-                        outLn = format(line);
+                        outLn = format(line, replacements);
                     }
 
                 } else {
                     if (line.trim().length() == 0) {
                         outLn = "<p>&nbsp;</p>";
                     } else if (TxtUtils.isLineStartEndUpperCase(line)) {
-                        outLn = "<b>" + format(line) + "</b>";
+                        outLn = "<b>" + format(line, replacements) + "</b>";
                     } else if (line.contains("Title:")) {
-                        outLn = "<b>" + format(line) + "</b>";
+                        outLn = "<b>" + format(line, replacements) + "</b>";
                     } else {
-                        outLn = "<p>" + format(line) + "</p>";
+                        outLn = "<p>" + format(line, replacements) + "</p>";
                     }
                 }
 
@@ -164,13 +165,13 @@ public class TxtExtract {
         return sb.toString();
     }
 
-    public static String format(String line) {
+    public static String format(String line, List<SimpleMeta> replacements) {
         try {
             line = line.replace("\n", "");
             line = line.replace("\r", "");
             line = TextUtils.htmlEncode(line);
             if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                line = HypenUtils.applyHypnes(line, new ArrayList<>());
+                line = HypenUtils.applyHypnes(line, replacements);
             }
             line = line.trim();
 

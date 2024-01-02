@@ -193,7 +193,7 @@ public class MdContext extends PdfContext {
 
 
                 if (BookCSS.get().isAutoHypens) {
-                    line = HypenUtils.applyHypnes(line, new ArrayList<>());
+                    line = HypenUtils.applyHypnes(line);
                 }
 
                 html.append("<p>");

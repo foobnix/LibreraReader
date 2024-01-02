@@ -5,8 +5,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -143,7 +145,7 @@ public class HtmlExtractor {
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
-                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt), new ArrayList<>());
+                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt));
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
@@ -219,7 +221,7 @@ public class HtmlExtractor {
             String string = Jsoup.clean(html.toString(), Safelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
-                string = HypenUtils.applyHypnes(string, new ArrayList<>());
+                string = HypenUtils.applyHypnes(string);
             }
 
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";

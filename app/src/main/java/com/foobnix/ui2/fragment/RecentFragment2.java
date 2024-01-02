@@ -40,6 +40,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
     View panelRecent;
+    TextView recentName;
     ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {
 
         @Override
@@ -75,6 +76,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             populate();
         }
     };
+    int count = 0;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -87,6 +89,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         panelRecent = view.findViewById(R.id.panelRecent);
+        recentName = view.findViewById(R.id.recentName);
 
         onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
         onListGrid.setOnClickListener(new OnClickListener() {
@@ -140,7 +143,9 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
         List<FileMeta> allRecent = AppData.get().getAllRecent(true);
+        int oldSize = allRecent.size();
         ExtUtils.removeReadBooks(allRecent);
+        count = oldSize - allRecent.size();
         return allRecent;
     }
 
@@ -150,6 +155,11 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             recentAdapter.getItemsList().clear();
             recentAdapter.getItemsList().addAll(items);
             recentAdapter.notifyDataSetChanged();
+        }
+        if (AppState.get().isHideReadBook) {
+            recentName.setText(getString(R.string.recent) + " (" + (items.size() + count) + "/" + count + ")");
+        } else {
+            recentName.setText(getString(R.string.recent) + " (" + items.size() + ")");
         }
     }
 
