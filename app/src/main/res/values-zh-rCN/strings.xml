@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">下载更多字体</string>
    <string name="restore_search_query_when_the_application_starts">记住上次的搜索</string>
    <string name="hide_read_books">隐藏读完的书</string>
+   <string name="show_series_number_in_title">在标题中显示系列号</string>
    <string name="graphics_scale">图片缩放比例</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">用书名创建一个文件夹</string>
    <string name="memory">机身存储</string>

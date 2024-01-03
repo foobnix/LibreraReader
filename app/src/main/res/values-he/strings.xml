@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">להוריד גופנים נוספים</string>
    <string name="restore_search_query_when_the_application_starts">שחזר שאילתת חיפוש בעת ההפעלה</string>
    <string name="hide_read_books">להסתיר ספרים לקרוא</string>
+   <string name="show_series_number_in_title">הצג את מספר הסדרה בכותרת</string>
    <string name="graphics_scale">סולם גרפי</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">ליצור תיקיה עם שם הספר</string>
    <string name="memory">זיכרון</string>

@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">فونت های بیشتر را دانلود کنید</string>
    <string name="restore_search_query_when_the_application_starts">بازیابی عبارت جستجو در هنگام راه اندازی</string>
    <string name="hide_read_books">کتاب های خوانده شده را پنهان کنید</string>
+   <string name="show_series_number_in_title">نمایش شماره سریال در عنوان</string>
    <string name="graphics_scale">مقیاس گرافیکی</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">یک پوشه با نام کتاب ایجاد کنید</string>
    <string name="memory">حافظه</string>

@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">Pakua fonti zaidi</string>
    <string name="restore_search_query_when_the_application_starts">Rejesha hoja ya utafutaji wakati wa kuanza</string>
    <string name="hide_read_books">Ficha kusoma vitabu</string>
+   <string name="show_series_number_in_title">Onyesha nambari ya mfululizo katika kichwa</string>
    <string name="graphics_scale">Graphics wadogo</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">Tengeneza folda yenye jina la kitabu</string>
    <string name="memory">Kumbukumbu</string>
