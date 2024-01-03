@@ -26,7 +26,7 @@
    <string name="show">显示</string>
    <string name="layout">布局</string>
    <string name="number_of_books">书籍数</string>
-   <string name="remember_reading_mode">记住打开方式</string>
+   <string name="remember_reading_mode">记住翻页方式</string>
    <string name="opening_the_last_book_when_the_application_starts">启动时打开上次阅读的书籍</string>
    <string name="show_application_close_dialog_every_time">返回手势退出时需确认</string>
    <string name="display_all_file_types_in_folders">显示所有文件类型</string>
@@ -189,7 +189,7 @@
    <string name="bookmark_by_date">日期</string>
    <string name="bookmark_by_book">书籍</string>
    <string name="network">网络</string>
-   <string name="catalogs">类别</string>
+   <string name="catalogs">目录</string>
    <string name="proxy_server_settings">代理设置</string>
    <string name="use_proxy_server">使用代理</string>
    <string name="proxy_type">类型</string>
@@ -198,8 +198,8 @@
    <string name="user">用户</string>
    <string name="other_settings">其它设置</string>
    <string name="folder_for_downloaded_books">下载</string>
-   <string name="display_large_book_covers_in_the_catalog">类别中显示书籍大封面</string>
-   <string name="add_catalog">添加类别</string>
+   <string name="display_large_book_covers_in_the_catalog">目录中显示书籍大封面</string>
+   <string name="add_catalog">添加目录</string>
    <string name="name">名称</string>
    <string name="description">描述</string>
    <string name="add_as_a_web_site">添加为网站</string>
@@ -229,7 +229,7 @@
    <string name="success">成功</string>
    <string name="please_wait">请稍候...</string>
    <string name="incorrect_value">不正确的值</string>
-   <string name="this_directory_is_already_in_the_list">类别已存在</string>
+   <string name="this_directory_is_already_in_the_list">目录已存在</string>
    <string name="you_neet_to_apply_the_new_settings">请应用新设置</string>
    <string name="block_page_movement_horizontally">已锁定：已禁用页面拖动</string>
    <string name="there_are_no_email_applications_installed_">未安装电子邮件客户端</string>
@@ -254,7 +254,7 @@
    <string name="send_file">发送文件</string>
    <string name="delete">删除</string>
    <string name="remove_from_library">移出书库</string>
-   <string name="add_to_library">添加到库</string>
+   <string name="add_to_library">添加到书库</string>
    <string name="send_snapshot_of_the_page">分享页面</string>
    <string name="file_info">文件信息</string>
    <string name="archive_files">压缩文件</string>
@@ -397,8 +397,8 @@
    <string name="cd_export">导出</string>
    <string name="cd_import">导入</string>
    <string name="cd_back_to_parent">返回上级</string>
-   <string name="cd_back_to_all_catalogs">返回类别列表</string>
-   <string name="cd_add_new_opds_catalog">添加 OPDS 类别</string>
+   <string name="cd_back_to_all_catalogs">返回目录列表</string>
+   <string name="cd_add_new_opds_catalog">添加OPDS目录</string>
    <string name="can_t_delete_file">无法删除文件</string>
    <string name="switch_off">关闭</string>
    <string name="___RECENTLY___ADDED___SECTION___"></string>
@@ -424,9 +424,9 @@
    <string name="awards">授权</string>
    <string name="close_book_and_application">退出程序</string>
    <string name="percent_and_number">百分比和页码</string>
-   <string name="current_page">进度显示</string>
-   <string name="backup_folder">备份路径</string>
-   <string name="audio_books_folder">音频路径</string>
+   <string name="current_page">进度条</string>
+   <string name="backup_folder">备份</string>
+   <string name="audio_books_folder">音频文件</string>
    <string name="enable_contrast_and_brightness">手动调整</string>
    <string name="enable">启用</string>
    <string name="link_color">链接颜色</string>
@@ -535,7 +535,7 @@
    <string name="the_file_already_exists_">该文件已存在。</string>
    <string name="please_wait_books_are_being_processed_">请稍候，正在处理书籍</string>
    <string name="system_brightness">系统</string>
-   <string name="opening_books_in_the_specified_mode">设定打开书籍的默认方式</string>
+   <string name="opening_books_in_the_specified_mode">设定书籍的默认翻页方式</string>
    <string name="dark_oled">全黑(仅适用于OLED)</string>
    <string name="profile">配置文件</string>
    <string name="new_profile">新建配置文件</string>
@@ -563,7 +563,7 @@
    <string name="copy_text">复制文本</string>
    <string name="show_fast_scroll">显示滚动条</string>
    <string name="replacements">内容替换</string>
-   <string name="word_replacement">单词替换</string>
+   <string name="word_replacement">替换文本</string>
    <string name="add_dictionary">添加词典</string>
    <string name="add_rule">添加规则</string>
    <string name="emphasis">强调</string>
