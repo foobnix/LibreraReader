@@ -271,7 +271,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof NameDividerViewHolder) {
             final NameDividerViewHolder holder = (NameDividerViewHolder) holderAll;
-            holder.title.setText(fileMeta.getTitle());
+            holder.title.setText(TxtUtils.formatTitle(fileMeta));
             // bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
         } else if (holderAll instanceof DirectoryViewHolder) {
@@ -584,7 +584,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             return new FileMeta();
         }
 
-        holder.title.setText(fileMeta.getTitle());
+        holder.title.setText(TxtUtils.formatTitle(fileMeta));
+
         holder.author.setText(fileMeta.getAuthor());
 
         if (AppState.get().isUiTextColor) {
@@ -945,9 +946,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (holder.tags != null) {
                 holder.tags.setVisibility(View.GONE);
             }
-            if (fileMeta.getSIndex() != null) {
-                holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
-            }
+            holder.title.setText(TxtUtils.formatTitle(fileMeta));
         }
 
         if (AppState.get().isShowOnlyOriginalFileNames) {

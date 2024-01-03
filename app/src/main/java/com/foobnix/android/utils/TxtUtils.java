@@ -80,6 +80,14 @@ public class TxtUtils {
     static List<String> trash = Arrays.asList("-", "—", "_", "  ");
     int a = 1;
 
+    public static String formatTitle(FileMeta fileMeta) {
+        if (AppState.get().isShowSeriesNumberInTitle && fileMeta.getSIndex() != null) {
+            return "[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle();
+        } else {
+            return fileMeta.getTitle();
+        }
+    }
+
     public static String formatInt(Integer in) {
         if (in == null) return "0";
         return in.toString();
@@ -744,7 +752,7 @@ public class TxtUtils {
     }
 
     public static String fixFileName(String fileName) {
-        if(TxtUtils.isEmpty(fileName)){
+        if (TxtUtils.isEmpty(fileName)) {
             return "";
         }
         fileName = fileName.replaceAll("[\\/:*?\"'<>|]", "_");

@@ -647,6 +647,7 @@ public class AppState {
     public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;
     public boolean isEnableTextReplacement = false;
     public long textReplacementHash = 0;
+    public boolean isShowSeriesNumberInTitle = true;
 
 
     public static synchronized AppState get() {

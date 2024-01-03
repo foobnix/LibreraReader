@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">تنزيل المزيد من الخطوط</string>
    <string name="restore_search_query_when_the_application_starts">استعادة استعلام البحث عند بدء التشغيل</string>
    <string name="hide_read_books">إخفاء قراءة الكتب</string>
+   <string name="show_series_number_in_title">إظهار رقم السلسلة في العنوان</string>
    <string name="graphics_scale">مقياس الرسومات</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">إنشاء مجلد باسم الكتاب</string>
    <string name="memory">ذاكرة</string>

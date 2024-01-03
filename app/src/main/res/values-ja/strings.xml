@@ -642,6 +642,7 @@
    <string name="cd_download_more_fonts">より多くのフォントをダウンロードする</string>
    <string name="restore_search_query_when_the_application_starts">起動時に検索クエリを復元する</string>
    <string name="hide_read_books">読んだ本を隠す</string>
+   <string name="show_series_number_in_title">タイトルにシリーズ番号を表示</string>
    <string name="graphics_scale">画像の伸縮</string>
    <string name="сreate_a_folder_with_the_name_of_the_book">本の名前でフォルダを作成する</string>
    <string name="memory">内部記憶</string>

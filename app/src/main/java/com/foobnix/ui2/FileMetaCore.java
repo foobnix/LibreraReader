@@ -308,7 +308,7 @@ public class FileMetaCore {
         }
 
         if (ebookMeta.getsIndex() != null) {
-            ebookMeta.setTitle("[" + ebookMeta.getsIndex() + "] " + ebookMeta.getTitle());
+            //ebookMeta.setTitle("[" + ebookMeta.getsIndex() + "] " + ebookMeta.getTitle());
         }
 
         if (ExtUtils.isZip(path) && !unZipPath.endsWith("fb2")) {

@@ -1329,6 +1329,9 @@ public class PrefFragment2 extends UIFragment {
             final CheckBox isHideReadBook = new CheckBox(v.getContext());
             isHideReadBook.setText(R.string.hide_read_books);
 
+            final CheckBox isShowSeriesNumberInTitle = new CheckBox(v.getContext());
+            isShowSeriesNumberInTitle.setText(R.string.show_series_number_in_title);
+
             final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null,
                     isFirstSurname,
                     isSkipFolderWithNOMEDIA,
@@ -1336,7 +1339,9 @@ public class PrefFragment2 extends UIFragment {
                     isAuthorTitleFromMetaPDF,
                     isUseCalibreOpf,
                     isDisplayAnnotation,
-                    isHideReadBook);
+                    isHideReadBook,
+                    isShowSeriesNumberInTitle
+                    );
 
             isFirstSurname.setChecked(AppState.get().isFirstSurname);
             isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
@@ -1345,6 +1350,7 @@ public class PrefFragment2 extends UIFragment {
             isUseCalibreOpf.setChecked(AppState.get().isUseCalibreOpf);
             isDisplayAnnotation.setChecked(AppState.get().isDisplayAnnotation);
             isHideReadBook.setChecked(AppState.get().isHideReadBook);
+            isShowSeriesNumberInTitle.setChecked(AppState.get().isShowSeriesNumberInTitle);
 
 
             final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
@@ -1354,6 +1360,7 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
                 AppState.get().isUseCalibreOpf = isUseCalibreOpf.isChecked();
                 AppState.get().isDisplayAnnotation = isDisplayAnnotation.isChecked();
+                AppState.get().isShowSeriesNumberInTitle = isShowSeriesNumberInTitle.isChecked();
 
 
                 handler.removeCallbacksAndMessages(null);
@@ -1377,6 +1384,14 @@ public class PrefFragment2 extends UIFragment {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     AppState.get().isHideReadBook = isHideReadBook.isChecked();
+                    TempHolder.listHash++;
+                    notifyFragment();
+                }
+            });
+            isShowSeriesNumberInTitle.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    AppState.get().isShowSeriesNumberInTitle = isShowSeriesNumberInTitle.isChecked();
                     TempHolder.listHash++;
                     notifyFragment();
                 }
