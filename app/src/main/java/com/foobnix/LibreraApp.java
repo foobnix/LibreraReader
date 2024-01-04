@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
@@ -72,7 +73,9 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        LOG.isEnable = LibreraBuildConfig.DEBUG || AppsConfig.IS_LOG;
+        Log.d("Build", "Build.MODEL :" + Build.MODEL);
+        Log.d("Build", "Build.DEVICE:" + Build.DEVICE);
+        LOG.isEnable = Build.MODEL.startsWith("Android SDK") || Build.DEVICE.contains("emulator");
 
         TTSNotification.initChannels(this);
 
@@ -98,7 +101,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Height", Dips.screenHeight());
 
 
-        if(TxtUtils.isEmpty(AppsConfig.FLAVOR)){
+        if (TxtUtils.isEmpty(AppsConfig.FLAVOR)) {
             throw new RuntimeException("Application not configured correctly!");
         }
 
