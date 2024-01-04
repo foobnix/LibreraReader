@@ -156,7 +156,9 @@ public class TTSWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
             try {
-                textUpdate = intent.getExtras().getString(Intent.EXTRA_TEXT);
+                if(intent.getExtras()!=null) {
+                    textUpdate = intent.getExtras().getString(Intent.EXTRA_TEXT);
+                }
             } catch (Exception e) {
                 LOG.e(e);
             }

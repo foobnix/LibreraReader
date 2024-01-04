@@ -75,7 +75,7 @@ public class LibreraApp extends MultiDexApplication {
 
         Log.d("Build", "Build.MODEL :" + Build.MODEL);
         Log.d("Build", "Build.DEVICE:" + Build.DEVICE);
-        LOG.isEnable = Build.MODEL.startsWith("Android SDK") || Build.DEVICE.contains("emulator");
+        LOG.isEnable = AppsConfig.IS_LOG;
 
         TTSNotification.initChannels(this);
 

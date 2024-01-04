@@ -26,7 +26,7 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
 
     public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
-    public static final boolean IS_LOG = LibreraBuildConfig.DEBUG;
+    public static final boolean IS_LOG = Build.MODEL.startsWith("Android SDK") || Build.DEVICE.contains("emulator");;
     public static final boolean IS_WRITE_LOGS = IS_FDROID || LibreraBuildConfig.DEBUG;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
 
