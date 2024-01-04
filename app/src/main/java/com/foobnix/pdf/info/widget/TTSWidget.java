@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -65,6 +66,8 @@ public class TTSWidget extends AppWidgetProvider {
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
 
+            views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100,255,255,255));
+            views.setViewPadding(R.id.rootView,0,0,0,0);
             views.setViewVisibility(R.id.ttsDialog, View.GONE);
             views.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
             views.setViewVisibility(R.id.ttsNextTrack, View.GONE);
@@ -134,24 +137,25 @@ public class TTSWidget extends AppWidgetProvider {
                     File bookFile = new File(recentLast.getPath());
                     if (!bookFile.isFile()) {
                         LOG.d("Book not found", bookFile.getPath());
-                        return;
+
                     }
                     text = recentLast.getTitle();
+
+                    String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
+                    Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
+                            TTSNotification.resourceBitmap = image;
+                            onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+                    });
+
                 }
-                String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
-                Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
-                        TTSNotification.resourceBitmap = image;
-                        onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
-
             }
 
             isPlaying = intent.getExtras().getBoolean("isPlaying");
