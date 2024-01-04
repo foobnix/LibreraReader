@@ -55,6 +55,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -512,12 +513,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         onGridList();
 
-        if (AppDB.get().getCount() == 0) {
-            //detect crash here! not start second time!!!
-            seachAll();
-        } else {
-            checkForDeleteBooks();
+        if (Prefs.get().isErrorExist(SearchAllBooksWorker.SEARCH_ERRORS, 0)) {
             searchAndOrderAsync();
+        } else {
+            if (AppDB.get().getCount() == 0) {
+                seachAll();
+            } else {
+                checkForDeleteBooks();
+                searchAndOrderAsync();
+            }
         }
 
         initAutocomplition();

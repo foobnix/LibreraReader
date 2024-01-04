@@ -25,6 +25,7 @@ import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
@@ -40,6 +41,7 @@ import java.util.List;
 
 
 public class SearchAllBooksWorker extends MessageWorker {
+    public static final String SEARCH_ERRORS = "search_errors";
     Handler handler;
     List<FileMeta> itemsMeta;
 
@@ -60,6 +62,10 @@ public class SearchAllBooksWorker extends MessageWorker {
     }
 
     public void doWorkInner() {
+
+
+        Prefs.get().put(SEARCH_ERRORS, 0);
+
         itemsMeta = new LinkedList<FileMeta>();
 
         AppProfile.init(getApplicationContext());
@@ -76,6 +82,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
 
         AppDB.get().deleteAllData();
+
+
         itemsMeta.clear();
 
         handler.post(timer);
@@ -170,6 +178,10 @@ public class SearchAllBooksWorker extends MessageWorker {
         }
 
         updateBookAnnotations();
+
+
+
+        Prefs.get().remove(SEARCH_ERRORS, 0);
 
 
     }

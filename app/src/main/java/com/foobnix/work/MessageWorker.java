@@ -9,6 +9,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.ui2.BooksService;
 

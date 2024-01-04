@@ -61,6 +61,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -316,6 +317,7 @@ public class DragingDialogs {
                 add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
 
                 TxtUtils.underlineTextView(add);
+                add.setTag(false);
                 add.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -344,8 +346,22 @@ public class DragingDialogs {
                         h.addView(to);
                         root.addView(h, root.getChildCount() - 2);
 
+                        if (add.getTag().equals(true) && items.size() > 0) {
+                            SimpleMeta last = items.get(items.size() - 1);
+                            from.setText(last.name);
+                            to.setText(last.path);
+                        }
+
                         AppState.get().isEnableTextReplacement = true;
-                                isEnableTextReplacement.setChecked(true);
+                        isEnableTextReplacement.setChecked(true);
+                        add.setTag(false);
+                    }
+                });
+                add.setOnLongClickListener(new OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        add.setTag(true);
+                        return add.performClick();
                     }
                 });
 
@@ -367,7 +383,7 @@ public class DragingDialogs {
                                 EditText childFrom = (EditText) line.getChildAt(0);
                                 String from = childFrom.getText().toString();
                                 String to = ((EditText) line.getChildAt(2)).getText().toString();
-                                from = from.replace(" ","").trim();
+                                from = from.replace(" ", "").trim();
 
 
                                 LOG.d("TTS-add", from, to);
@@ -406,7 +422,13 @@ public class DragingDialogs {
                 root.addView(add);
                 root.addView(save);
 
-                return root;
+
+                ScrollView scroll = new ScrollView(activity);
+                scroll.setOverScrollMode(ScrollView.OVER_SCROLL_IF_CONTENT_SCROLLS);
+                scroll.setVerticalScrollBarEnabled(true);
+                scroll.addView(root);
+
+                return scroll;
             }
         };
         dialog.setOnCloseListener(new Runnable() {
