@@ -34,6 +34,8 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.widget.RecentBooksWidget;
+import com.foobnix.pdf.info.widget.TTSWidget;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
@@ -189,6 +191,7 @@ public class TTSNotification {
 
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+            final String extraText =  textLine;
 
             String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
 
@@ -197,7 +200,7 @@ public class TTSNotification {
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
                     remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
-
+                    resourceBitmap = resource;
 
                     builder.setContentIntent(contentIntent) //
                             .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
@@ -212,6 +215,12 @@ public class TTSNotification {
                     Notification n = builder.build(); //
 
                     nm.notify(NOT_ID, n);
+
+                    Intent intent = new Intent(LibreraApp.context, TTSWidget.class);
+                    intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                    intent.putExtra(Intent.EXTRA_TEXT, extraText);
+                    intent.putExtra("isPlaying",TTSEngine.get().isPlaying());
+                    LibreraApp.context.sendBroadcast(intent);
                 }
 
                 @Override
@@ -223,6 +232,7 @@ public class TTSNotification {
             LOG.e(e);
         }
     }
+    public static Bitmap resourceBitmap;
 
     public static void hideNotification() {
         try {

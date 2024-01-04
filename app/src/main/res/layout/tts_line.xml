@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      >
 
@@ -15,15 +15,16 @@
 
     <ImageView
         android:id="@+id/ttsPrev"
-        android:layout_width="@dimen/wh_tts_button"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:contentDescription="@string/previous_page"
-
         android:layout_marginLeft="10dp"
         android:background="@drawable/bg_clickable"
+        android:contentDescription="@string/previous_page"
         android:padding="2dp"
         android:src="@drawable/glyphicons_173_rewind" />
+
+
 
     <ImageView
         android:id="@+id/ttsPlay"
