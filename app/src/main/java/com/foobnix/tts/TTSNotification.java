@@ -200,7 +200,6 @@ public class TTSNotification {
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
                     remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
-                    resourceBitmap = resource;
 
                     builder.setContentIntent(contentIntent) //
                             .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
@@ -232,7 +231,6 @@ public class TTSNotification {
             LOG.e(e);
         }
     }
-    public static Bitmap resourceBitmap;
 
     public static void hideNotification() {
         try {

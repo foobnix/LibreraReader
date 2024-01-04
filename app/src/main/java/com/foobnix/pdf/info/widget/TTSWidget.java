@@ -34,8 +34,11 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSEngine;
@@ -53,21 +56,52 @@ import java.util.concurrent.ExecutionException;
 public class TTSWidget extends AppWidgetProvider {
 
 
-    String text = "";
-
-    boolean isPlaying = false;
+    String textUpdate;
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
+    public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        //super.onUpdate(context, appWidgetManager, appWidgetIds);
+        LOG.d("TTSWidget", "onUpdate");
+
+        AppProfile.init(context);
+        List<FileMeta> list = AppData.get().getAllRecent(false);
+        String text = "";
+        String path = "";
+        if (list != null && list.size() > 0) {
+            FileMeta fileMeta = list.get(0);
+            text = TxtUtils.getFileMetaBookName(fileMeta);
+            path = fileMeta.getPath();
+
+        }
+        if (textUpdate != null) {
+            text = textUpdate;
+        }
+        if (path != null) {
+            String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+            Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    for (int i = 0; i < appWidgetIds.length; i++) {
+                        int appWidgetId = appWidgetIds[i];
+                        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
+                        views.setImageViewBitmap(R.id.ttsIcon, resource);
+                        appWidgetManager.updateAppWidget(appWidgetId, views);
+                    }
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+                }
+            });
+        }
 
         for (int i = 0; i < appWidgetIds.length; i++) {
             int appWidgetId = appWidgetIds[i];
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
 
-            views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100,255,255,255));
-            views.setViewPadding(R.id.rootView,0,0,0,0);
+            views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100, 255, 255, 255));
+            views.setViewPadding(R.id.rootView, 0, 0, 0, 0);
             views.setViewVisibility(R.id.ttsDialog, View.GONE);
             views.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
             views.setViewVisibility(R.id.ttsNextTrack, View.GONE);
@@ -86,16 +120,17 @@ public class TTSWidget extends AppWidgetProvider {
             //views.setViewLayoutMargin(R.id.ttsPrev,RemoteViews.MARGIN_LEFT,0.0f,0);
 
 
-            if (isPlaying) {
+            if (TTSEngine.get().isPlaying()) {
                 views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
             } else {
                 views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
             }
-            if (TTSNotification.resourceBitmap != null) {
-                views.setImageViewBitmap(R.id.ttsIcon, TTSNotification.resourceBitmap);
-            }
 
+
+            int tab = UITab.getCurrentTabIndex(UITab.RecentFragment);
             Intent mainTabs = new Intent(context, MainTabs2.class);
+            mainTabs.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
+            mainTabs.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
             PendingIntent mainTabsIntent = PendingIntent.getActivity(
                     context,
                     0,
@@ -113,55 +148,22 @@ public class TTSWidget extends AppWidgetProvider {
             views.setInt(R.id.ttsPrev, "setColorFilter", color);
             views.setInt(R.id.ttsStop, "setColorFilter", color);
 
-
-            // Tell the AppWidgetManager to perform an update on the current app
-            // widget.
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, TTSWidget.class));
-        if (intent != null && intent.getExtras() != null) {
-
-            String textExtra = intent.getExtras().getString(Intent.EXTRA_TEXT);
-            if (textExtra != null) {
-                text = textExtra;
-                text = text.replace(")", ")\n");
-                text = text.replace("(", "(");
-            } else {
-                FileMeta recentLast = AppDB.get().getRecentLastNoFolder();
-                if (recentLast != null && TxtUtils.isNotEmpty(recentLast.getTitle())) {
-                    File bookFile = new File(recentLast.getPath());
-                    if (!bookFile.isFile()) {
-                        LOG.d("Book not found", bookFile.getPath());
-
-                    }
-                    text = recentLast.getTitle();
-
-                    String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
-                    Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
-                            TTSNotification.resourceBitmap = image;
-                            onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
-                        }
-
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                        }
-                    });
-
-                }
+        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
+            try {
+                textUpdate = intent.getExtras().getString(Intent.EXTRA_TEXT);
+            } catch (Exception e) {
+                LOG.e(e);
             }
+            int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, TTSWidget.class));
+            onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
 
-            isPlaying = intent.getExtras().getBoolean("isPlaying");
-            LOG.d("EXTRA_TEXT", text);
         }
-        onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
         super.onReceive(context, intent);
     }
 }

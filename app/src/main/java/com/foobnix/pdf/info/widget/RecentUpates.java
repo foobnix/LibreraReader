@@ -55,6 +55,12 @@ public class RecentUpates {
                 intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
                 c.sendBroadcast(intent);
             }
+            {
+                Intent intent = new Intent(c, TTSWidget.class);
+                intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                c.sendBroadcast(intent);
+            }
+
         } catch (Exception e) {
             LOG.e(e);
         }
