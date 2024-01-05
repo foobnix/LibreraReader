@@ -93,6 +93,10 @@ public class AppProfile {
             LOG.d("AppProfile init null");
             return;
         }
+        if (TxtUtils.isNotEmpty(profile)) {
+            LOG.d("AppProfile exist");
+            return;
+        }
         AppSP.get().init(c);
 
         if (!Android6.canWrite(c)) {
@@ -104,9 +108,8 @@ public class AppProfile {
             return;
         }
         profile = getCurrent(c);
-        AppDB.get().open(c, "db-"+AppSP.get().rootPath.hashCode()+"-"+profile);
+        AppDB.get().open(c, "db-" + AppSP.get().rootPath.hashCode() + "-" + profile);
         LOG.d("AppProfile init", profile);
-
 
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
@@ -142,7 +145,6 @@ public class AppProfile {
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
-
 
 
     }
@@ -418,15 +420,13 @@ public class AppProfile {
         create.show();
 
 
-
-
         create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
                 text = text.replace(" ", "");
-                text = text.replaceAll( "[|\\?*<\":>+/']","_");
+                text = text.replaceAll("[|\\?*<\":>+/']", "_");
 
                 if (TxtUtils.isEmpty(text)) {
                     Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();

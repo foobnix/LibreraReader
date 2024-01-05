@@ -800,7 +800,7 @@ public class TxtUtils {
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
             return fileMeta.getAuthor() + " " + LONG_DASH1 + " " + fileMeta.getTitle();
         } else {
-            return fileMeta.getTitle();
+            return TxtUtils.nullToEmpty(fileMeta.getTitle());
         }
 
     }
