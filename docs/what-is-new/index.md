@@ -4,6 +4,16 @@ layout: main
 
 # What is new
 
+
+
+### [8.9.155] TTS Desktop widget
+
+<img class="i" src="8.9.155.png" />
+
+### [8.9.153] Show library-excluded books in the favorite tab
+
+<img class="i" src="8.9.153.png" />
+
 ### [8.9.150] Changing words within the book
 
 <img class="i" src="8.9.150.png" />
