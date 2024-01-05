@@ -85,6 +85,55 @@ public class TTSWidget extends AppWidgetProvider {
                         int appWidgetId = appWidgetIds[i];
                         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
                         views.setImageViewBitmap(R.id.ttsIcon, resource);
+
+                        views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100, 255, 255, 255));
+                        views.setViewPadding(R.id.rootView, 0, 0, 0, 0);
+                        views.setViewVisibility(R.id.ttsDialog, View.GONE);
+                        views.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
+                        views.setViewVisibility(R.id.ttsNextTrack, View.GONE);
+                        views.setViewVisibility(R.id.ttsStop, View.GONE);
+                        //views.setViewVisibility(R.id.ttsPrev, View.GONE);
+
+                        PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
+                        PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
+                        PendingIntent playPause = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
+
+
+                        views.setOnClickPendingIntent(R.id.ttsPlay, playPause);
+                        views.setOnClickPendingIntent(R.id.ttsPrev, prev);
+                        views.setOnClickPendingIntent(R.id.ttsNext, next);
+                        views.setTextViewText(R.id.bookInfo, "" + textUpdate);
+                        //views.setViewLayoutMargin(R.id.ttsPrev,RemoteViews.MARGIN_LEFT,0.0f,0);
+
+
+                        if (TTSEngine.get().isPlaying()) {
+                            views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
+                        } else {
+                            views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
+                        }
+
+
+                        int tab = UITab.getCurrentTabIndex(UITab.RecentFragment);
+                        Intent mainTabs = new Intent(context, MainTabs2.class);
+                        mainTabs.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
+                        mainTabs.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
+                        PendingIntent mainTabsIntent = PendingIntent.getActivity(
+                                context,
+                                0,
+                                mainTabs,
+                                PendingIntent.FLAG_IMMUTABLE
+                        );
+                        views.setOnClickPendingIntent(R.id.ttsIcon, mainTabsIntent);
+
+
+                        final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
+
+
+                        views.setInt(R.id.ttsPlay, "setColorFilter", color);
+                        views.setInt(R.id.ttsNext, "setColorFilter", color);
+                        views.setInt(R.id.ttsPrev, "setColorFilter", color);
+                        views.setInt(R.id.ttsStop, "setColorFilter", color);
+
                         appWidgetManager.updateAppWidget(appWidgetId, views);
                     }
                 }
@@ -95,61 +144,7 @@ public class TTSWidget extends AppWidgetProvider {
             });
         }
 
-        for (int i = 0; i < appWidgetIds.length; i++) {
-            int appWidgetId = appWidgetIds[i];
 
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
-
-            views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100, 255, 255, 255));
-            views.setViewPadding(R.id.rootView, 0, 0, 0, 0);
-            views.setViewVisibility(R.id.ttsDialog, View.GONE);
-            views.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
-            views.setViewVisibility(R.id.ttsNextTrack, View.GONE);
-            views.setViewVisibility(R.id.ttsStop, View.GONE);
-            //views.setViewVisibility(R.id.ttsPrev, View.GONE);
-
-            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
-            PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
-            PendingIntent playPause = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
-
-
-            views.setOnClickPendingIntent(R.id.ttsPlay, playPause);
-            views.setOnClickPendingIntent(R.id.ttsPrev, prev);
-            views.setOnClickPendingIntent(R.id.ttsNext, next);
-            views.setTextViewText(R.id.bookInfo, ""+textUpdate);
-            //views.setViewLayoutMargin(R.id.ttsPrev,RemoteViews.MARGIN_LEFT,0.0f,0);
-
-
-            if (TTSEngine.get().isPlaying()) {
-                views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
-            } else {
-                views.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
-            }
-
-
-            int tab = UITab.getCurrentTabIndex(UITab.RecentFragment);
-            Intent mainTabs = new Intent(context, MainTabs2.class);
-            mainTabs.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
-            mainTabs.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
-            PendingIntent mainTabsIntent = PendingIntent.getActivity(
-                    context,
-                    0,
-                    mainTabs,
-                    PendingIntent.FLAG_IMMUTABLE
-            );
-            views.setOnClickPendingIntent(R.id.ttsIcon, mainTabsIntent);
-
-
-            final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
-
-
-            views.setInt(R.id.ttsPlay, "setColorFilter", color);
-            views.setInt(R.id.ttsNext, "setColorFilter", color);
-            views.setInt(R.id.ttsPrev, "setColorFilter", color);
-            views.setInt(R.id.ttsStop, "setColorFilter", color);
-
-            appWidgetManager.updateAppWidget(appWidgetId, views);
-        }
     }
 
     @Override
