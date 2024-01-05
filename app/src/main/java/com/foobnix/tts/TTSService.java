@@ -46,6 +46,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.widget.TTSWidget;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -305,8 +306,6 @@ public class TTSService extends Service {
         //setSessionToken(mMediaSessionCompat.getSessionToken());
 
 
-
-
         // mMediaSessionCompat.setPlaybackState(new
         // PlaybackStateCompat.Builder().setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).setState(PlaybackStateCompat.STATE_CONNECTING,
         // 0, 0f).build());
@@ -354,7 +353,7 @@ public class TTSService extends Service {
     }
 
     public void startMyForeground() {
-        if(true){
+        if (true) {
             if (!isStartForeground) {
                 startServiceWithNotification();
                 isStartForeground = true;
@@ -721,6 +720,7 @@ public class TTSService extends Service {
             EventBus.getDefault().post(new TtsStatus());
 
             TTSNotification.showLast();
+
 
             new Thread(() -> {
                 try {

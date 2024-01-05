@@ -191,7 +191,7 @@ public class TTSNotification {
 
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
-            final String extraText =  textLine;
+            final String extraText = textLine;
 
             String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
 
@@ -215,11 +215,7 @@ public class TTSNotification {
 
                     nm.notify(NOT_ID, n);
 
-                    Intent intent = new Intent(LibreraApp.context, TTSWidget.class);
-                    intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-                    intent.putExtra(Intent.EXTRA_TEXT, extraText);
-                    intent.putExtra("isPlaying",TTSEngine.get().isPlaying());
-                    LibreraApp.context.sendBroadcast(intent);
+
                 }
 
                 @Override
@@ -227,9 +223,17 @@ public class TTSNotification {
 
                 }
             });
+
+
+            Intent update = new Intent(LibreraApp.context, TTSWidget.class);
+            update.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+            update.putExtra(Intent.EXTRA_TEXT, extraText);
+            update.putExtra("bookPath", bookPath);
+            LibreraApp.context.sendBroadcast(update);
         } catch (Exception e) {
             LOG.e(e);
         }
+
     }
 
     public static void hideNotification() {

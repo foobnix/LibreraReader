@@ -57,27 +57,27 @@ public class TTSWidget extends AppWidgetProvider {
 
 
     String textUpdate;
+    String bookPath;
 
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         //super.onUpdate(context, appWidgetManager, appWidgetIds);
         LOG.d("TTSWidget", "onUpdate");
 
-        AppProfile.init(context);
-        List<FileMeta> list = AppData.get().getAllRecent(false);
-        String text = "";
-        String path = "";
-        if (list != null && list.size() > 0) {
-            FileMeta fileMeta = list.get(0);
-            text = TxtUtils.getFileMetaBookName(fileMeta);
-            path = fileMeta.getPath();
+        if (TxtUtils.isEmpty(bookPath)) {
+            AppProfile.init(context);
+            List<FileMeta> list = AppData.get().getAllRecent(false);
+            if (list != null && list.size() > 0) {
+                FileMeta fileMeta = list.get(0);
+                textUpdate = TxtUtils.getFileMetaBookName(fileMeta);
+                bookPath = fileMeta.getPath();
 
+            }
         }
-        if (textUpdate != null) {
-            text = textUpdate;
-        }
-        if (path != null) {
-            String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+        textUpdate = TxtUtils.nullToEmpty(textUpdate);
+
+        if (TxtUtils.isNotEmpty(bookPath)) {
+            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
             Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -116,7 +116,7 @@ public class TTSWidget extends AppWidgetProvider {
             views.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             views.setOnClickPendingIntent(R.id.ttsPrev, prev);
             views.setOnClickPendingIntent(R.id.ttsNext, next);
-            views.setTextViewText(R.id.bookInfo, text);
+            views.setTextViewText(R.id.bookInfo, ""+textUpdate);
             //views.setViewLayoutMargin(R.id.ttsPrev,RemoteViews.MARGIN_LEFT,0.0f,0);
 
 
@@ -156,8 +156,9 @@ public class TTSWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
             try {
-                if(intent.getExtras()!=null) {
+                if (intent.getExtras() != null) {
                     textUpdate = intent.getExtras().getString(Intent.EXTRA_TEXT);
+                    bookPath = intent.getExtras().getString("bookPath");
                 }
             } catch (Exception e) {
                 LOG.e(e);
