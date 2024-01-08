@@ -6,7 +6,7 @@ layout: main
 
 
 
-### [8.9.155] TTS Desktop widget
+### [8.9.155] TTS desktop widget
 
 <img class="i" src="8.9.155.png" />
 
