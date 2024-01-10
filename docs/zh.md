@@ -8,7 +8,7 @@ layout: main
 适用于在Android设备上阅读PDF，EPUB，MOBI，DjVu，FB2，TXT，RTF，AZW，AZW3，HTML，CBZ，CBR格式的图书。
 凭借其直观而强大的界面，Librera使电子书阅读的确令人愉悦。
 它甚至具有独特的自动滚动，免提音乐家模式。
-到今天为止，它可以为运行各种Android OS版本的设备提供超过**1000万{2}个下载。
+到今天为止，它可以为运行各种Android OS版本的设备提供超过**1000万次下载。
 
 ||||
 |-|-|-|
