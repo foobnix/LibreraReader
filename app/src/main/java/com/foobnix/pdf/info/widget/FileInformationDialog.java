@@ -349,7 +349,7 @@ public class FileInformationDialog {
             ));
 
             try {
-                final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "", 0, 0);
+                final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "");
 
                 if (BookType.DJVU.is(file.getPath())) {
                     list2.addAll(doc.getMetaKeys());

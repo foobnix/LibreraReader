@@ -169,7 +169,7 @@ public class ImageExtractor {
     }
 
     public static synchronized CodecDocument singleCodecContext(final String path, String
-            passw, int w, int h) {
+            passw) {
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
 
@@ -423,7 +423,7 @@ public class ImageExtractor {
 
         CodecDocument codeCache = null;
         if (isNeedDisableMagicInPDFDjvu) {
-            codeCache = singleCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
+            codeCache = singleCodecContext(path, "");
         } else {
             codeCache = getNewCodecContext(path, "", pageUrl.getWidth(), pageUrl.getHeight());
         }

@@ -529,7 +529,7 @@ public class TTSService extends Service {
                 cache = null;
             }
             path = AppSP.get().lastBookPath;
-            cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight);
+            cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "");
             if (cache == null) {
                 TTSNotification.hideNotification();
                 return null;

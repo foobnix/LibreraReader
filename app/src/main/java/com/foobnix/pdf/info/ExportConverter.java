@@ -160,7 +160,7 @@ public class ExportConverter {
                 } else {
                     if (!cache.containsKey(path)) {
                         if (new File(path).isFile() && (BookType.PDF.is(path) || BookType.DJVU.is(path)) ) {
-                            final CodecDocument doc = ImageExtractor.singleCodecContext(path, "", 0, 0);
+                            final CodecDocument doc = ImageExtractor.singleCodecContext(path, "");
                             int pageCount = doc.getPageCount();
                             cache.put(path, pageCount);
                             LOG.d("Page-counts update ", path, pageCount);
