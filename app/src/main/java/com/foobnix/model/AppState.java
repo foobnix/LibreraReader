@@ -201,6 +201,7 @@ public class AppState {
     public static final List<String> langCodes = Arrays.asList("ar"
             , "be"
             , "bg"
+            , "ca"
             , "cs"
             , "de"
             , "el"
