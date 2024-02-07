@@ -174,8 +174,8 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            if (line.length() == 0) {
-                continue;
+            if (!isValidXMLChecked && line.length() == 0) {
+               continue;
             }
 
             if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
