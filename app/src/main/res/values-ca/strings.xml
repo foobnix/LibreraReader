@@ -599,7 +599,7 @@
    <string name="new_file_txt">Nou fitxer (.txt)</string>
    <string name="paste_or_type_text_in_here">Enganxeu o escriviu el text aquí</string>
    <string name="go_to_the_folder">Ves a la carpeta</string>
-   <string name="you_should_enable_allow_battery">Hauries d\'activar «Bateria» > «Permetre l\'activitat en segon pla» per poder escoltar-ho en segon pla.</string>
+   <string name="you_should_enable_allow_battery">Hauries d\'activar \"Bateria\" > \"Permetre l\'activitat en segon pla\" per poder escoltar-ho en segon pla.</string>
    <string name="use_calibre_metadata">Utilitzar metadades del Calibre .opf</string>
    <string name="icons_only">Només icones</string>
    <string name="migration">Migració</string>
