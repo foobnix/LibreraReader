@@ -592,18 +592,18 @@
    <string name="next_track">Следующий трек</string>
    <string name="previous_track">Предыдущий трек</string>
    <string name="copied_text">Скопированный текст</string>
-   <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе Calibre)</string>
+   <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе \"Calibre\")</string>
    <string name="profile_root">Корневая папка</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показывать скрытое</string>
    <string name="new_file_txt">Новый файл (.txt)</string>
    <string name="paste_or_type_text_in_here">Вставьте сюда текст или введите его</string>
    <string name="go_to_the_folder">Перейти к папке</string>
-   <string name="you_should_enable_allow_battery">Чтобы слушать аудио в фоне, в разделе "Аккумулятор" нужно разрешить приложению работать в соответствующем режиме</string>
-   <string name="use_calibre_metadata">Использовать metadata.opf из Calibre</string>
+   <string name="you_should_enable_allow_battery">Чтобы слушать аудио в фоне, в разделе \"Аккумулятор\" нужно разрешить приложению работать в соответствующем режиме</string>
+   <string name="use_calibre_metadata">Использовать metadata.opf из \"Calibre\"</string>
    <string name="icons_only">Только иконки</string>
    <string name="migration">Перенос данных</string>
-   <string name="please_backup1">Перед переносом данных лучше выполнить резервное копирование (экспорт) настроек приложения</string>
+   <string name="please_backup1">Перед переносом данных лучше резервно скопировать (экспортировать) настройки приложения</string>
    <string name="start_migration">Начать перенос данных</string>
    <string name="new_path">Новое местоположение</string>
    <string name="old_path">Прежнее местоположение</string>
@@ -632,7 +632,7 @@
    <string name="welcome_accessibility">Добро пожаловать. Если у вас трудности со зрением, вы можете включить соответствующий режим для слабовидящих в боковом меню приложения</string>
    <string name="integration_in_the_context_menu">Интегрировать в контекстное меню</string>
    <string name="the_application_needs_storage_permission">Приложению требуется разрешение на доступ к хранилищу, чтобы найти все книги</string>
-   <string name="always_open_in_2_pages_mode">Всегда открывать в режиме "Две страницы"</string>
+   <string name="always_open_in_2_pages_mode">Всегда открывать в режиме \"Две страницы\"</string>
    <string name="text_encoding">Кодировка текста</string>
    <string name="minus">Минус</string>
    <string name="plus">Плюс</string>
@@ -659,6 +659,6 @@
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
    <string name="accent">Цвет акцента</string>
-   <string name="discarded_books">Выброшенные книги</string>
-   <string name="show_print_edition_page_numbers_epub3">Показать номера страниц печатного издания (epub3)</string>
+   <string name="discarded_books">Исключенные книги</string>
+   <string name="show_print_edition_page_numbers_epub3">Показывать номера страниц печатного издания (для EPUB3-формата)</string>
 </resources>
