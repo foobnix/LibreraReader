@@ -82,6 +82,7 @@ public class MobiContext extends PdfContext {
                         removeTempFiles();
 
                     } catch (Exception e) {
+                        notes =null;
                         LOG.e(e);
                     }
                 }
