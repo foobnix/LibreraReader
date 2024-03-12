@@ -494,7 +494,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             @Override
             public void run() {
 
-                TTSEngine.get().stop();
+                TTSEngine.get().stop(null);
                 TTSNotification.hideNotification();
 
                 LOG.d("closeActivity 1");

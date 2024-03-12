@@ -2,6 +2,7 @@ package com.foobnix.tts;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.IO;
@@ -30,6 +32,7 @@ import com.foobnix.sys.TempHolder;
 import com.github.axet.lamejni.Lame;
 
 import com.foobnix.LibreraApp;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedInputStream;
@@ -163,8 +166,21 @@ public class TTSEngine {
         return ttsEngine == null;
     }
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public void stop() {
+        stop(null);
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
+    public void stop(MediaSessionCompat mediaSessionCompat) {
+        if (mediaSessionCompat != null) {
+            mediaSessionCompat.setActive(false);
+        }
+        try {
+            AudioManager mAudioManager = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
+            mAudioManager.abandonAudioFocus(null);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
@@ -347,7 +363,6 @@ public class TTSEngine {
             }
 
             ttsEngine.synthesizeToFile(fileText, map, wav);
-
 
 
             TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
