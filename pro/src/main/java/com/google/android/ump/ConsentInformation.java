@@ -1,6 +1,18 @@
 package com.google.android.ump;
 
 public class ConsentInformation {
+    public enum PrivacyOptionsRequirementStatus{
+        REQUIRED, OBTAINED
+    }
+
+    public boolean canRequestAds() {
+        return false;
+    }
+
+    public PrivacyOptionsRequirementStatus getPrivacyOptionsRequirementStatus() {
+        return PrivacyOptionsRequirementStatus.OBTAINED;
+    }
+
     public enum ConsentStatus {
         REQUIRED, OBTAINED
     }

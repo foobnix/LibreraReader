@@ -762,6 +762,7 @@ public class PrefFragment2 extends UIFragment {
         boolean isPrivicyOptionRequired = consentInformation.getPrivacyOptionsRequirementStatus()
                 == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
 
+
         adsSettigns.setVisibility(TxtUtils.visibleIf(isPrivicyOptionRequired));
         TxtUtils.underlineTextView(adsSettigns);
 

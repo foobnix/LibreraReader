@@ -14,4 +14,7 @@ public class MobileAds {
 
     public static void setAppVolume(float v) {
     }
+
+    public static void setRequestConfiguration(RequestConfiguration configuration) {
+    }
 }
