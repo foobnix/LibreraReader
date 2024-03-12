@@ -3,6 +3,7 @@ package com.foobnix.android.utils;
 import android.util.Log;
 
 import com.foobnix.model.AppProfile;
+import com.foobnix.pdf.info.AppsConfig;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,17 +13,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 public class LOG {
-    public static boolean isEnable = false;
     public static String TAG = "DEBUG";
     public static String DELIMITER = "|";
 
     public static boolean writeCrashTofile = false;
-
-    public static void printlog(String statement) {
-        if (isEnable) {
-            Log.d(TAG, statement);
-        }
-    }
 
 
     public static String toString(Throwable e) {
@@ -32,7 +26,7 @@ public class LOG {
     }
 
     public static void d(Object msg1, Object... statement) {
-        if (isEnable) {
+        if (AppsConfig.IS_LOG) {
             if (statement.length == 0) {
                 Log.d(TAG, msg1.toString());
                 return;
@@ -68,7 +62,7 @@ public class LOG {
 
 
     private static void e(Throwable e, Boolean uncaughtException, Object... statement) {
-        if (isEnable) {
+        if (AppsConfig.IS_LOG) {
             Log.e(TAG, asString(statement), e);
         }
         if (writeCrashTofile) {
@@ -89,7 +83,7 @@ public class LOG {
     }
 
     public static void w(Throwable e, Object... statement) {
-        if (isEnable) {
+        if (AppsConfig.IS_LOG) {
             Log.w(TAG, asString(statement), e);
         }
     }
@@ -99,7 +93,7 @@ public class LOG {
     }
 
     public static String ojectAsString(Object obj) {
-        if (!isEnable) {
+        if (!AppsConfig.IS_LOG) {
             return null;
         }
         StringBuffer out = new StringBuffer();

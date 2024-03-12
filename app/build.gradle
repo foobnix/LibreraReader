@@ -340,7 +340,7 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
 
-    def messaging_ads = "com.google.android.ump:user-messaging-platform:2.1.0"
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:2.2.0"
     libreraImplementation messaging_ads
     pdf_v2Implementation messaging_ads
     ebookaImplementation messaging_ads

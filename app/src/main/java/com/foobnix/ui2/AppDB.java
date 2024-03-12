@@ -18,6 +18,7 @@ import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -125,7 +126,7 @@ public class AppDB {
 
         fileMetaDao = daoSession.getFileMetaDao();
 
-        if (LibreraBuildConfig.DEBUG) {
+        if (AppsConfig.IS_LOG) {
             QueryBuilder.LOG_SQL = true;
             QueryBuilder.LOG_VALUES = true;
         }

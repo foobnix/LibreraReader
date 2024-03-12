@@ -159,15 +159,6 @@ public class ADS {
     }
 
     public static AdRequest getAdRequest(Context a) {
-        if (LibreraBuildConfig.DEBUG) {
-            String myID = ADS.getByTestID(a);
-            return new AdRequest.Builder()//
-                    //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-                    //.addTestDevice(myID)//
-                    .build();//
-        } else {
             return new AdRequest.Builder().build();//
-
-        }
     }
 }

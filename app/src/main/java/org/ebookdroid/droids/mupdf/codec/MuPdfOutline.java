@@ -4,6 +4,7 @@ import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.OutlineLink;
@@ -74,7 +75,7 @@ public class MuPdfOutline {
 
             LOG.d("linkUri", linkUri, title, link);
 
-            if (LibreraBuildConfig.DEBUG && linkUri != null) {
+            if (AppsConfig.IS_LOG && linkUri != null) {
                 title = title + "[" + linkUri + "]";
 
 

@@ -15,12 +15,14 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
@@ -53,12 +55,12 @@ public class LibreraApp extends MultiDexApplication {
 
 
         context = getApplicationContext();
+        AppsConfig.init(this);
         Dips.init(this);
         Prefs.get().init(this);
 
         try {
             if (!AppsConfig.checkIsProInstalled(this)) {
-                //MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
                 MobileAds.initialize(this, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
@@ -68,14 +70,19 @@ public class LibreraApp extends MultiDexApplication {
                 });
             }
         } catch (Exception e) {
-            AppsConfig.IS_NO_ADS = true;
             LOG.e(e);
         }
 
+        LOG.d("AppsConfig.IS_TEST_DEVICE",AppsConfig.IS_TEST_DEVICE);
+        if (AppsConfig.IS_TEST_DEVICE) {
+            RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
+            MobileAds.setRequestConfiguration(configuration);
+        }
 
+
+        Log.d("Build", "Build.TestDeviceID :" + ADS.getByTestID(this));
         Log.d("Build", "Build.MODEL :" + Build.MODEL);
         Log.d("Build", "Build.DEVICE:" + Build.DEVICE);
-        LOG.isEnable = AppsConfig.IS_LOG;
 
         TTSNotification.initChannels(this);
 

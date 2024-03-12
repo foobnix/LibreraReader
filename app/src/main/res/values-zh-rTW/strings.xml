@@ -661,4 +661,5 @@
    <string name="accent">口音</string>
    <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
+   <string name="ad_privacy_settings">廣告隱私設定</string>
 </resources>

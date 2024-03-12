@@ -661,4 +661,5 @@
    <string name="accent">Accent</string>
    <string name="discarded_books">Discarded books</string>
    <string name="show_print_edition_page_numbers_epub3">Show print edition page numbers (epub3)</string>
+   <string name="ad_privacy_settings">Ad privacy settings</string>
 </resources>

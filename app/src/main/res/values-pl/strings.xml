@@ -661,4 +661,5 @@
    <string name="accent">Akcent</string>
    <string name="discarded_books">Wyrzucone książki</string>
    <string name="show_print_edition_page_numbers_epub3">Pokaż numery stron wydań drukowanych (epub3)</string>
+   <string name="ad_privacy_settings">Ustawienia prywatności reklam</string>
 </resources>

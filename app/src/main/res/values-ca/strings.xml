@@ -661,4 +661,5 @@
    <string name="accent">Accent</string>
    <string name="discarded_books">Llibres descartats</string>
    <string name="show_print_edition_page_numbers_epub3">Mostra els números de pàgina de l\'edició impresa (Epub3)</string>
+   <string name="ad_privacy_settings">Configuració de privadesa dels anuncis</string>
 </resources>

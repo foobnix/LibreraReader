@@ -661,4 +661,5 @@
    <string name="accent">着重色</string>
    <string name="discarded_books">废弃的书籍</string>
    <string name="show_print_edition_page_numbers_epub3">显示印刷版页码 (epub3)</string>
+   <string name="ad_privacy_settings">广告隐私设置</string>
 </resources>

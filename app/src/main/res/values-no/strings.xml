@@ -661,4 +661,5 @@
    <string name="accent">Aksent</string>
    <string name="discarded_books">Kasserte bøker</string>
    <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>
+   <string name="ad_privacy_settings">Personvern for annonser</string>
 </resources>

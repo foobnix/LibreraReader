@@ -596,10 +596,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         try {
             //ads
-            if (AppsConfig.IS_GDPR_ENABLE && !AppsConfig.checkIsProInstalled(this)) {
+            LOG.d(this, "TEST-ads-device ...");
+            if (!AppsConfig.checkIsProInstalled(this)) {
                 ConsentRequestParameters params;
 
-                if (LOG.isEnable) {
+                if (AppsConfig.IS_TEST_DEVICE) {
                     ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
                             .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
                             .addTestDeviceHashedId(ADS.getByTestID(this)).build();
@@ -607,17 +608,25 @@ public class MainTabs2 extends AdsFragmentActivity {
                     params = new ConsentRequestParameters.Builder()
                             .setConsentDebugSettings(debugSettings)
                             .setTagForUnderAgeOfConsent(false).build();
+                    LOG.d(this, "TEST-ads-device true", ADS.getByTestID(this));
                 } else {
                     params = new ConsentRequestParameters.Builder()
                             .setTagForUnderAgeOfConsent(false)
                             .build();
+                    LOG.d(this, "TEST-ads-device false", ADS.getByTestID(this));
                 }
                 ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(this);
+
+                if (AppsConfig.IS_TEST_DEVICE) {
+                    //consentInformation.reset();
+                }
+
                 consentInformation.requestConsentInfoUpdate(this, params, () -> {
                     if (consentInformation.isConsentFormAvailable()) {
                         loadForm(consentInformation);
                     }
                 }, formError -> {
+                    LOG.d("formError", formError.getErrorCode(), formError.getMessage());
                 });
             }
 
@@ -636,14 +645,17 @@ public class MainTabs2 extends AdsFragmentActivity {
                     consentForm.show(MainTabs2.this, formError -> {
                         if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.OBTAINED) {
                         }
-                        //loadForm(consentInformation);
+                        if (formError != null) {
+                            LOG.d("formError", formError.getErrorCode(), formError.getMessage());
+                        }
+                        activateAds();
                     });
                 }
             }
         }, new UserMessagingPlatform.OnConsentFormLoadFailureListener() {
             @Override
             public void onConsentFormLoadFailure(FormError formError) {
-                // Handle Error.
+                LOG.d("formError", formError.getErrorCode(), formError.getMessage());
             }
         });
     }

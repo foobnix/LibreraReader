@@ -661,4 +661,5 @@
    <string name="accent">Екпін</string>
    <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
+   <string name="ad_privacy_settings">Жарнаманың құпиялылық параметрлері</string>
 </resources>

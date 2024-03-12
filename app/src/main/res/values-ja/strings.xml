@@ -661,4 +661,5 @@
    <string name="accent">アクセント</string>
    <string name="discarded_books">捨てられた本</string>
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
+   <string name="ad_privacy_settings">広告のプライバシー設定</string>
 </resources>

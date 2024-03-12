@@ -16,6 +16,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import com.foobnix.LibreraApp;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.UserMessagingPlatform;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -44,7 +46,12 @@ public class MyADSProvider {
             LOG.d("PRO is installed or beta");
             return;
         }
-
+        ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(a);
+        if(!consentInformation.canRequestAds()){
+            LOG.d("ADS, can not Request Ads");
+            return;
+        }
+          LOG.d("ADS, can Request Ads");
 
 
         if (withInterstitial) {
@@ -93,14 +100,14 @@ public class MyADSProvider {
 
             };
             LOG.d("ADS post delay postDelayed", intetrstialTimeout);
-            if (LOG.isEnable) {
+            if (AppsConfig.IS_LOG) {
                 handler.postDelayed(r, 0);
             } else {
                 handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
             }
         }
 
-        if(!AppsConfig.ADS_ON_PAGE && !(a instanceof MainTabs2)) {
+        if (!AppsConfig.ADS_ON_PAGE && !(a instanceof MainTabs2)) {
             LOG.d("Skip ads in the book");
             return;
         }

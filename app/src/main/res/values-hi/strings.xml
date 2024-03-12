@@ -661,4 +661,5 @@
    <string name="accent">लहज़ा</string>
    <string name="discarded_books">छोड़ी गई किताबें</string>
    <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>
+   <string name="ad_privacy_settings">विज्ञापन गोपनीयता सेटिंग</string>
 </resources>

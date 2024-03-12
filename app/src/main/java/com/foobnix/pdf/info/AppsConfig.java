@@ -11,11 +11,14 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,19 +29,19 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
 
     public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
-    public static final boolean IS_LOG = Build.MODEL.startsWith("Android SDK") || Build.DEVICE.contains("emulator");;
-    public static final boolean IS_WRITE_LOGS = IS_FDROID || LibreraBuildConfig.DEBUG;
+    public static final List<String> testDevices = Arrays.asList(
+            "A55432A120DBEFA4C550628C53DA8D67",
+            "5A11AAB3D40A6E42F8BB4674C013B70D");
+    public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
-
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-
+    public static boolean IS_LOG = Build.MODEL.startsWith("Android SDK") || Build.DEVICE.contains("emulator");
+    public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
     public static String MUPDF_1_11 = "1.11";
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
-    public static boolean IS_NO_ADS = false;
-    public static boolean IS_GDPR_ENABLE = false;
 
     static {
         System.loadLibrary("MuPDF");
@@ -50,13 +53,14 @@ public class AppsConfig {
         return true;
     }
 
-    public static boolean checkIsProInstalled(final Context a) {
-        if (IS_NO_ADS || IS_LOG) {
-            LOG.d("no-ads error");
-
-            return true;
+    public static void init(Context c) {
+        IS_TEST_DEVICE = testDevices.contains(ADS.getByTestID(c));
+        if (IS_TEST_DEVICE) {
+            IS_LOG = true;
         }
+    }
 
+    public static boolean checkIsProInstalled(final Context a) {
         if (a == null) {
             LOG.d("no-ads error context null");
             return true;

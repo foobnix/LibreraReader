@@ -35,6 +35,7 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -163,7 +164,7 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if (LibreraBuildConfig.DEBUG) {
+        if (AppsConfig.IS_LOG) {
             pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
         }
 

@@ -661,4 +661,5 @@
    <string name="accent">악센트</string>
    <string name="discarded_books">버려진 책들</string>
    <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>
+   <string name="ad_privacy_settings">광고 개인정보 보호 설정</string>
 </resources>

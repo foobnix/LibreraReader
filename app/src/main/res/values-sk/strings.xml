@@ -661,4 +661,5 @@
    <string name="accent">Prízvuk</string>
    <string name="discarded_books">Vyradené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobraziť čísla strán tlačeného vydania (epub3)</string>
+   <string name="ad_privacy_settings">Nastavenia súkromia reklamy</string>
 </resources>

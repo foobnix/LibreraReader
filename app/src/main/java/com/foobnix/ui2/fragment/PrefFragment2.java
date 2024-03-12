@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -95,6 +97,10 @@ import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.foobnix.work.SearchAllBooksWorker;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.FormError;
+import com.google.android.ump.UserMessagingPlatform;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -734,6 +740,32 @@ public class PrefFragment2 extends UIFragment {
         });
         closeMenu.setVisibility(TxtUtils.visibleIf(AppState.get().isEnableAccessibility));
 
+
+        ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(getActivity());
+
+        TextView adsSettigns = inflate.findViewById(R.id.adsSettigns);
+        adsSettigns.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                UserMessagingPlatform.showPrivacyOptionsForm(getActivity(), new ConsentForm.OnConsentFormDismissedListener() {
+                    @Override
+                    public void onConsentFormDismissed(@Nullable FormError formError) {
+                        if (formError != null) {
+                            Toast.makeText(getActivity(), formError.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+            }
+        });
+        boolean isPrivicyOptionRequired = consentInformation.getPrivacyOptionsRequirementStatus()
+                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
+
+        adsSettigns.setVisibility(TxtUtils.visibleIf(isPrivicyOptionRequired));
+        TxtUtils.underlineTextView(adsSettigns);
+
+
         inflate.findViewById(R.id.onKeyCode).
 
                 setOnClickListener(new OnClickListener() {
@@ -944,7 +976,7 @@ public class PrefFragment2 extends UIFragment {
                                                          String name = all[0];
                                                          final String code = all[1];
 
-                                                         if (LibreraBuildConfig.DEBUG) {
+                                                         if (AppsConfig.IS_LOG) {
                                                              name += " [" + code + "]";
                                                          }
                                                          popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -1341,7 +1373,7 @@ public class PrefFragment2 extends UIFragment {
                     isDisplayAnnotation,
                     isHideReadBook,
                     isShowSeriesNumberInTitle
-                    );
+            );
 
             isFirstSurname.setChecked(AppState.get().isFirstSurname);
             isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);

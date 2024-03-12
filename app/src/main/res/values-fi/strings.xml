@@ -661,4 +661,5 @@
    <string name="accent">Aksentti</string>
    <string name="discarded_books">Hylätyt kirjat</string>
    <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
+   <string name="ad_privacy_settings">Mainosten tietosuoja-asetukset</string>
 </resources>

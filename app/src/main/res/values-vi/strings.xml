@@ -661,4 +661,5 @@
    <string name="accent">Giọng</string>
    <string name="discarded_books">Sách bỏ đi</string>
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
+   <string name="ad_privacy_settings">Cài đặt bảo mật quảng cáo</string>
 </resources>

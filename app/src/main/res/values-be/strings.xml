@@ -661,4 +661,5 @@
    <string name="accent">Акцэнт</string>
    <string name="discarded_books">Выкінутыя кнігі</string>
    <string name="show_print_edition_page_numbers_epub3">Паказаць нумары старонак друкаванага выдання (epub3)</string>
+   <string name="ad_privacy_settings">Налады прыватнасці рэкламы</string>
 </resources>
