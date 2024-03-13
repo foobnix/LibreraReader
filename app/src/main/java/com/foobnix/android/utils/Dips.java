@@ -108,6 +108,7 @@ public class Dips {
 
 
     public static boolean isEInk() {
+        
         boolean isEink = getRefreshRate() < 30.0;
         if (isEink) {
             return true;

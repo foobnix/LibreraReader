@@ -40,6 +40,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
@@ -391,6 +392,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                         Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_PAGES);
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_TITLE) {
                         Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_TITLE);
+                         Comparator.naturalOrder();
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_EXT) {
                         Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
                     } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
