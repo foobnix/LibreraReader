@@ -6,6 +6,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.google.common.collect.Comparators;
 
 import java.io.File;
 import java.util.Comparator;
@@ -148,13 +149,14 @@ public class FileMetaComparators {
             try {
                 String t2 = TxtUtils.nullToEmpty(o1.getTitle());
                 String t3 = TxtUtils.nullToEmpty(o2.getTitle());
-                return String.CASE_INSENSITIVE_ORDER.compare(t2, t3);
+                return naturalOrderComparator.compare(t2, t3);
             } catch (Exception e) {
                 LOG.e(e);
                 return 0;
             }
         }
     };
+
     public static Comparator<FileMeta> BR_BY_AUTHOR = new Comparator<FileMeta>() {
 
         @Override
