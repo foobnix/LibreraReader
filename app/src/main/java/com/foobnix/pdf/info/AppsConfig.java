@@ -61,6 +61,11 @@ public class AppsConfig {
     }
 
     public static boolean checkIsProInstalled(final Context a) {
+         if (IS_LOG) {
+            LOG.d("no-ads error context null");
+            return true;
+        }
+
         if (a == null) {
             LOG.d("no-ads error context null");
             return true;
