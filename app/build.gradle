@@ -306,8 +306,10 @@ dependencies {
     implementation 'com.squareup.okio:okio-parent:1.17.6'
 
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
-    implementation 'org.zwobble.mammoth:mammoth:1.7.0'
+
+    implementation 'org.zwobble.mammoth:mammoth:1.5.0'
     implementation 'javax.xml.stream:stax-api:1.0-2'
+
     implementation 'net.lingala.zip4j:zip4j:2.11.5'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'

@@ -5,7 +5,6 @@ import android.graphics.RectF;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
-import javax.xml.stream.events.Characters;
 
 public class TextWord extends RectF {
     public String w;

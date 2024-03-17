@@ -65,23 +65,21 @@ EpubContext extends PdfContext {
 
         String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
-        if (false) {//accelerate open books
+        if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");
-            if (!AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
                 try {
                     if (!out.isDirectory()) {
                         out.mkdirs();
                         new ZipFile(bookPath).extractAll(out.getPath());
-                        LOG.d("EpubContext unzip all");
+                        LOG.d("EpubContext unzip all",out.getPath());
 
                     }
-                    bookPath = out.getPath() + "/META-INF/container.xml";
+                    //bookPath = out.getPath() + "/META-INF/container.xml";
                     LOG.d("EpubContext open", bookPath);
                 } catch (ZipException e) {
                     LOG.e(e);
                 }
 
-            }
         }
 
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
