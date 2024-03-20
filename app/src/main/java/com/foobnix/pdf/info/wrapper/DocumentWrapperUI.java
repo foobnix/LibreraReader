@@ -509,6 +509,10 @@ public class DocumentWrapperUI {
             keyCode = event.getScanCode();
         }
 
+         if (keyCode == KeyEvent.KEYCODE_ESCAPE) {
+            return true;
+        }
+
         if (keyCode >= KeyEvent.KEYCODE_1 && keyCode <= KeyEvent.KEYCODE_9) {
             dc.onGoToPage(keyCode - KeyEvent.KEYCODE_1 + 1);
             return true;

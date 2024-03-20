@@ -2234,6 +2234,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (closeDialog()) {
             return true;
         }
+        if(KeyEvent.KEYCODE_ESCAPE == keyCode){
+            return true;
+        }
+
         if (keyCode >= KeyEvent.KEYCODE_1 && keyCode <= KeyEvent.KEYCODE_9) {
             dc.onGoToPage(keyCode - KeyEvent.KEYCODE_1 + 1);
             return true;
