@@ -92,6 +92,7 @@ public class OPDS {
 
         Request request = new Request.Builder()//
                 .header("User-Agent", USER_AGENT)
+                .header("Accept-Language", AppState.get().getAppLang())
 
                 .cacheControl(new CacheControl.Builder()//
                         .maxAge(10, TimeUnit.MINUTES)//
@@ -189,6 +190,7 @@ public class OPDS {
 
         Request request = new Request.Builder()//
                 .header("User-Agent", USER_AGENT)
+                .header("Accept-Language", AppState.get().getAppLang())
 
                 .cacheControl(new CacheControl.Builder()//
                         .maxAge(10, TimeUnit.MINUTES)//

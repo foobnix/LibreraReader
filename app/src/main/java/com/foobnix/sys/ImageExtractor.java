@@ -605,7 +605,9 @@ public class ImageExtractor {
         if (imageUri.startsWith("http")) {
 
             Request request = new Request.Builder()//
-                    .header("User-Agent", OPDS.USER_AGENT).url(imageUri)//
+                    .header("User-Agent", OPDS.USER_AGENT)
+                    .header("Accept-Language", AppState.get().getAppLang())
+                    .url(imageUri)//
                     .build();//
 
             LOG.d("https!!!", imageUri);

@@ -625,7 +625,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                                 // fix manybooks
                                 okhttp3.Request request = new okhttp3.Request.Builder()//
-                                        .header("User-Agent", OPDS.USER_AGENT).cacheControl(new CacheControl.Builder().noCache().build()).url(href)//
+                                        .header("User-Agent", OPDS.USER_AGENT)
+                                        .header("Accept-Language", AppState.get().getAppLang())
+                                        .cacheControl(new CacheControl.Builder().noCache().build()).url(href)//
                                         .build();//
 
                                 Response response = OPDS.client//

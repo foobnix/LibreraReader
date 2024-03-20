@@ -655,6 +655,10 @@ public class AppState {
         return instance;
     }
 
+    public String getAppLang(){
+        return AppState.get().appLang.equals(AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : AppState.get().appLang;
+    }
+
     public static String keyToString(final List<Integer> list) {
         Collections.sort(list);
         final StringBuilder line = new StringBuilder();
