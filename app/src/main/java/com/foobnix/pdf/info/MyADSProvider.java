@@ -46,11 +46,11 @@ public class MyADSProvider {
             LOG.d("PRO is installed or beta");
             return;
         }
-        ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(a);
-        if(!consentInformation.canRequestAds()){
-            LOG.d("ADS, can not Request Ads");
-            return;
-        }
+//        ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(a);
+//        if(!consentInformation.canRequestAds()){
+//            LOG.d("ADS, can not Request Ads");
+//            return;
+//        }
           LOG.d("ADS, can Request Ads");
 
 
