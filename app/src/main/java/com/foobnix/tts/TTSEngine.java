@@ -175,11 +175,14 @@ public class TTSEngine {
         if (mediaSessionCompat != null) {
             mediaSessionCompat.setActive(false);
         }
-        try {
-            AudioManager mAudioManager = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
-            mAudioManager.abandonAudioFocus(null);
-        } catch (Exception e) {
-            LOG.e(e);
+        if (!AppState.get().allowOtherMusic) {
+            try {
+
+                AudioManager mAudioManager = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
+                mAudioManager.abandonAudioFocus(null);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
 
         LOG.d(TAG, "stop");

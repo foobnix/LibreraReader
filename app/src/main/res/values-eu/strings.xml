@@ -662,4 +662,5 @@
    <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
    <string name="ad_privacy_settings">Iragarkien pribatutasun ezarpenak</string>
+   <string name="allow_other_music_to_play">Beste musikari erreproduzitzeko baimena eman</string>
 </resources>

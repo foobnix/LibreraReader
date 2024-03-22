@@ -226,6 +226,12 @@
 
         </LinearLayout>
 
+        <CheckBox
+            android:id="@+id/allowOtherMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/allow_other_music_to_play" />
+
 
         <CheckBox
             android:id="@+id/ttsTunnOnLastWord"

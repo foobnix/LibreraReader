@@ -662,4 +662,5 @@
    <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
    <string name="ad_privacy_settings">Setări de confidențialitate a anunțurilor</string>
+   <string name="allow_other_music_to_play">Permiteți să redea altă muzică</string>
 </resources>

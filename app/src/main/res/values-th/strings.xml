@@ -662,4 +662,5 @@
    <string name="discarded_books">หนังสือที่ถูกทิ้ง</string>
    <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
    <string name="ad_privacy_settings">การตั้งค่าความเป็นส่วนตัวของโฆษณา</string>
+   <string name="allow_other_music_to_play">อนุญาตให้เล่นเพลงอื่นได้</string>
 </resources>

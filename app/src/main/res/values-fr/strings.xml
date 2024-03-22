@@ -662,4 +662,5 @@
    <string name="discarded_books">Livres jetés</string>
    <string name="show_print_edition_page_numbers_epub3">Afficher les numéros de page de l\'édition imprimée (epub3)</string>
    <string name="ad_privacy_settings">Paramètres de confidentialité des annonces</string>
+   <string name="allow_other_music_to_play">Autoriser la lecture d\'autres musiques</string>
 </resources>

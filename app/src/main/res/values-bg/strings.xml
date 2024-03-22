@@ -662,4 +662,5 @@
    <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
    <string name="ad_privacy_settings">Настройки за поверителност на рекламите</string>
+   <string name="allow_other_music_to_play">Позволяват възпроизвеждането на друга музика</string>
 </resources>

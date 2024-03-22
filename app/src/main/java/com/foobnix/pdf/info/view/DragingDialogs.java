@@ -1134,7 +1134,15 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
-                        Dialogs.replaceTTSDialog(activity);
+                    }
+                });
+                CheckBox allowOtherMusic = view.findViewById(R.id.allowOtherMusic);
+                allowOtherMusic.setChecked(AppState.get().allowOtherMusic);
+                allowOtherMusic.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().allowOtherMusic = isChecked;
                     }
                 });
 

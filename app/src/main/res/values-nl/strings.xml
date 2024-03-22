@@ -662,4 +662,5 @@
    <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
    <string name="ad_privacy_settings">Privacy-instellingen voor advertenties</string>
+   <string name="allow_other_music_to_play">Laat andere muziek spelen</string>
 </resources>

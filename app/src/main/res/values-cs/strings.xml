@@ -662,4 +662,5 @@
    <string name="discarded_books">Vyřazené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
    <string name="ad_privacy_settings">Nastavení soukromí reklam</string>
+   <string name="allow_other_music_to_play">Povolit přehrávání jiné hudby</string>
 </resources>

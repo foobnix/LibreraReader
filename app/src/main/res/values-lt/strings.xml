@@ -662,4 +662,5 @@
    <string name="discarded_books">Išmestų knygų</string>
    <string name="show_print_edition_page_numbers_epub3">Rodyti spausdinto leidimo puslapių numerius (epub3)</string>
    <string name="ad_privacy_settings">Skelbimų privatumo nustatymai</string>
+   <string name="allow_other_music_to_play">Leisti groti kitai muzikai</string>
 </resources>

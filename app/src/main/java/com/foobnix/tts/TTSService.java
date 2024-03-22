@@ -547,10 +547,12 @@ public class TTSService extends Service {
     private void playPage(String preText, int pageNumber, String anchor) {
         mMediaSessionCompat.setActive(true);
 
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);
-        } else {
-            mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        if(!AppState.get().allowOtherMusic) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);
+            } else {
+                mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+            }
         }
 
 

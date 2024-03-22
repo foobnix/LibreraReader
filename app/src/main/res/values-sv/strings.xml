@@ -662,4 +662,5 @@
    <string name="discarded_books">Kasserade böcker</string>
    <string name="show_print_edition_page_numbers_epub3">Visa sidnummer i den tryckta utgåvan (epub3)</string>
    <string name="ad_privacy_settings">Annonssekretessinställningar</string>
+   <string name="allow_other_music_to_play">Låta annan musik spelas</string>
 </resources>

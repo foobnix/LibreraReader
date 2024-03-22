@@ -662,4 +662,5 @@
    <string name="discarded_books">ספרים שנזרקו</string>
    <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
    <string name="ad_privacy_settings">הגדרות פרטיות המודעה</string>
+   <string name="allow_other_music_to_play">לאפשר למוזיקה אחרת להתנגן</string>
 </resources>

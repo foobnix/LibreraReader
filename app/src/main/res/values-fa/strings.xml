@@ -662,4 +662,5 @@
    <string name="discarded_books">کتاب های دور ریخته شده</string>
    <string name="show_print_edition_page_numbers_epub3">نمایش شماره صفحات نسخه چاپی (epub3)</string>
    <string name="ad_privacy_settings">تنظیمات حریم خصوصی تبلیغات</string>
+   <string name="allow_other_music_to_play">اجازه پخش موسیقی دیگر را بدهید</string>
 </resources>

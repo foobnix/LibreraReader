@@ -305,6 +305,7 @@ public class AppState {
 
     }
 
+    public boolean allowOtherMusic = false;
     public boolean isSystemThemeColor = false;
     public String allOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;

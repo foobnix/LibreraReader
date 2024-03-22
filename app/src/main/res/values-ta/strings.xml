@@ -662,4 +662,5 @@
    <string name="discarded_books">நிராகரிக்கப்பட்ட புத்தகங்கள்</string>
    <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
    <string name="ad_privacy_settings">விளம்பர தனியுரிமை அமைப்புகள்</string>
+   <string name="allow_other_music_to_play">மற்ற இசையை இயக்க அனுமதிக்கவும்</string>
 </resources>
