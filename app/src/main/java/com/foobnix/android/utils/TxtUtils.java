@@ -1206,7 +1206,11 @@ public class TxtUtils {
 
         LOG.d("filterString-begin", txt);
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
-        replaceAll = replaceAll(replaceAll, "(\\w+)(-\\s)", "$1").trim();
+        if (!txt.contains("http")) {
+            replaceAll = replaceAll(replaceAll, "(\\w+)(-\\s)", "$1").trim();
+        } else {
+            replaceAll = replaceAll.replaceAll("\\s", "");
+        }
 
 
         if (!replaceAll.contains(" ")) {
