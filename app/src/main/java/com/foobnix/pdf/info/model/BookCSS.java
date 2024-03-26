@@ -657,6 +657,10 @@ public class BookCSS {
 
             builder.append("}");
             // </P> end
+            builder.append("sub, sup{");
+            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+            builder.append("}");
+
 
             builder.append("div {");
             builder.append("margin-right:0 !important;");
