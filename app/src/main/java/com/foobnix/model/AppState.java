@@ -103,7 +103,7 @@ public class AppState {
 
             //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
             "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;" + //
-            "http://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" + //
+            "https://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" + //
 //            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/opds.png;" + //
             //"http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/opds.png;" + //
 
@@ -287,12 +287,12 @@ public class AppState {
     private static AppState instance = new AppState();
 
     static {
-        CONVERTERS.put("PDF", "https://cloudconvert.com/anything-to-pdf, http://topdf.com".split(", "));
-        CONVERTERS.put("PDF Rotate", "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, http://www.rotatepdf.net".split(", "));
-        CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, http://toepub.com".split(", "));
-        CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, http://toepub.com".split(", "));
-        CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, http://toepub.com".split(", "));
-        CONVERTERS.put("DOCX", "https://cloudconvert.com/anything-to-docx, http://document.online-convert.com/convert-to-docx, http://pdf2docx.com/".split(", "));
+        CONVERTERS.put("PDF", "https://cloudconvert.com/anything-to-pdf, https://topdf.com, https://www.zamzar.com".split(", "));
+        CONVERTERS.put("PDF Rotate", "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, https://www.rotatepdf.net".split(", "));
+        CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, https://toepub.com".split(", "));
+        CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, https://toepub.com".split(", "));
+        CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, https://toepub.com".split(", "));
+        CONVERTERS.put("DOCX", "https://cloudconvert.com/anything-to-docx, https://document.online-convert.com/convert-to-docx, https://pdf2docx.com/".split(", "));
         CONVERTERS.put("FB2", "https://cloudconvert.com/anything-to-fb2, https://ebook.online-convert.com/convert-to-fb2".split(", "));
 
     }
