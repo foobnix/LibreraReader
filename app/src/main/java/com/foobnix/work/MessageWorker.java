@@ -32,16 +32,17 @@ abstract class MessageWorker extends Worker {
     @Override
     public Result doWork() {
 
-        LOG.d("MessageWorker-Status", "Run ",BooksService.isRunning, this.getClass());
 
         try {
             BooksService.isRunning = true;
+            LOG.d("MessageWorker-Status", "Start", BooksService.isRunning, this.getClass());
             doWorkInner();
         } catch (Exception e) {
             LOG.e(e);
         } finally {
             sendFinishMessage();
             BooksService.isRunning = false;
+            LOG.d("MessageWorker-Status", "Finish", BooksService.isRunning, this.getClass());
         }
         return Result.success();
     }
