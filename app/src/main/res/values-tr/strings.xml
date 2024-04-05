@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Basılı baskı sayfa numaralarını göster (epub3)</string>
    <string name="ad_privacy_settings">Reklam gizlilik ayarları</string>
    <string name="allow_other_music_to_play">Diğer müziğin çalmasına izin ver</string>
+   <string name="enable_image_scale">Görüntü ölçeğini etkinleştir</string>
 </resources>

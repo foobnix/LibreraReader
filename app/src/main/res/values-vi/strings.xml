@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
    <string name="ad_privacy_settings">Cài đặt bảo mật quảng cáo</string>
    <string name="allow_other_music_to_play">Cho phép phát nhạc khác</string>
+   <string name="enable_image_scale">Kích hoạt tỷ lệ hình ảnh</string>
 </resources>

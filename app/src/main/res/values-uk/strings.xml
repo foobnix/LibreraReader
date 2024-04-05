@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Показати номери сторінок друкованого видання (epub3)</string>
    <string name="ad_privacy_settings">Налаштування конфіденційності реклами</string>
    <string name="allow_other_music_to_play">Дозволити відтворення іншої музики</string>
+   <string name="enable_image_scale">Включити масштаб зображення</string>
 </resources>

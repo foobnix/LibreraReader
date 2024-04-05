@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
    <string name="ad_privacy_settings">広告のプライバシー設定</string>
    <string name="allow_other_music_to_play">他の音楽の再生を許可する</string>
+   <string name="enable_image_scale">画像の拡大縮小を有効にする</string>
 </resources>

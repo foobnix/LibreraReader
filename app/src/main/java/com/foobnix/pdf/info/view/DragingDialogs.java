@@ -4859,6 +4859,9 @@ public class DragingDialogs {
                     }
                 });
 
+
+
+
                 final CustomSeek imageScale = inflate.findViewById(R.id.imageScale);
                 imageScale.setFloatResult(true);
                 imageScale.init(1, 50, (int) (BookCSS.get().imageScale * 10), "x");
@@ -4868,6 +4871,19 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         BookCSS.get().imageScale = (float) result / 10;
                         return false;
+                    }
+                });
+
+                 CheckBox enableImageScale = inflate.findViewById(R.id.enableImageScale);
+                enableImageScale.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                enableImageScale.setChecked(AppState.get().enableImageScale);
+                imageScale.setEnabled(AppState.get().enableImageScale);
+                enableImageScale.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().enableImageScale = isChecked;
+                        imageScale.setEnabled(isChecked);
                     }
                 });
 

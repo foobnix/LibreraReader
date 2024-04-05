@@ -202,6 +202,12 @@
             android:background="@color/lt_grey_alpha" />
 
 
+<CheckBox
+            android:id="@+id/enableImageScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_image_scale" />
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/imageScale"
             android:layout_width="match_parent"

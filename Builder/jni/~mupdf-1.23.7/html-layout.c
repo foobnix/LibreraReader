@@ -700,23 +700,41 @@ static void layout_flow(fz_context *ctx, layout_data *ld, fz_html_box *box, fz_h
 		}
 		node->breaks_line = 0; /* reset line breaks from previous layout */
 
-		if (node->type == FLOW_IMAGE)
-		{
-			float max_w, max_h;
-			float xs = 1, ys = 1, s;
-			float aspect = 1;
+		if (node->type == FLOW_IMAGE) {
+          float max_w, max_h;
+          float xs = 1, ys = 1, s;
+          float aspect = 1;
 
-			max_w = top->s.layout.w;
-			max_h = ld->page_h;
+          max_w = top->s.layout.w;
+          max_h = ld->page_h;
 
-			/* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
-			node->w = node->content.image->w * 72.0f / 96.0f;
-			node->h = node->content.image->h * 72.0f / 96.0f;
-			//aspect = node->h ? node->w / node->h : 0;
+          /* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
+          node->w = node->content.image->w * 72.0f / 96.0f;
+          node->h = node->content.image->h * 72.0f / 96.0f;
 
 
+
+          if (ctx->is_image_scale == 1) {
             node->w = node->w * ctx->image_scale;
             node->h = node->h * ctx->image_scale;
+          } else {
+            aspect = node->h ? node->w / node->h : 0;
+
+            if (node->box->style->width.unit != N_AUTO)
+              node->w = fz_from_css_number(node->box->style->width,
+                                           top->s.layout.em,
+                                           top->s.layout.w,
+                                           node->w);
+            if (node->box->style->height.unit != N_AUTO)
+              node->h = fz_from_css_number(node->box->style->height,
+                                           top->s.layout.em,
+                                           ld->page_h,
+                                           node->h);
+            if (node->box->style->width.unit == N_AUTO && node->box->style->height.unit != N_AUTO)
+              node->w = node->h * aspect;
+            if (node->box->style->width.unit != N_AUTO && node->box->style->height.unit == N_AUTO)
+              node->h = (aspect == 0) ? 0 : (node->w / aspect);
+        }
 
 
 			/* Shrink image to fit on one page if needed */

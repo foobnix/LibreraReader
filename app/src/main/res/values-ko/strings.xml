@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>
    <string name="ad_privacy_settings">광고 개인정보 보호 설정</string>
    <string name="allow_other_music_to_play">다른 음악이 재생되도록 허용</string>
+   <string name="enable_image_scale">이미지 크기 활성화</string>
 </resources>

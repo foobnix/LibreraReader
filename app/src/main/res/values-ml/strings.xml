@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">പ്രിന്റ് എഡിഷൻ പേജ് നമ്പറുകൾ കാണിക്കുക (epub3)</string>
    <string name="ad_privacy_settings">പരസ്യ സ്വകാര്യതാ ക്രമീകരണങ്ങൾ</string>
    <string name="allow_other_music_to_play">മറ്റ് സംഗീതം പ്ലേ ചെയ്യാൻ അനുവദിക്കുക</string>
+   <string name="enable_image_scale">ഇമേജ് സ്കെയിൽ പ്രാപ്തമാക്കുക</string>
 </resources>

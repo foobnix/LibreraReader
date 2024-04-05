@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Mostra els números de pàgina de l\'edició impresa (Epub3)</string>
    <string name="ad_privacy_settings">Configuració de privadesa dels anuncis</string>
    <string name="allow_other_music_to_play">Permetre que es reprodueixi una altra música</string>
+   <string name="enable_image_scale">Habilitar l\'escala d\'imatge</string>
 </resources>

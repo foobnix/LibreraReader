@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Seitenzahlen der gedruckten Ausgabe anzeigen (epub3)</string>
    <string name="ad_privacy_settings">Datenschutzeinstellungen für Anzeigen</string>
    <string name="allow_other_music_to_play">Andere Musik abspielen lassen</string>
+   <string name="enable_image_scale">Bildskalierung aktivieren</string>
 </resources>

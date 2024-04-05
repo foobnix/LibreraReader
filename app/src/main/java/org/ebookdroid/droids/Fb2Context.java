@@ -26,6 +26,7 @@ public class Fb2Context extends PdfContext {
                 BookCSS.get().isAutoHypens +
                 AppSP.get().hypenLang +
                 AppState.get().isBionicMode +
+                AppState.get().enableImageScale +
                 AppSP.get().isDouble +
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +

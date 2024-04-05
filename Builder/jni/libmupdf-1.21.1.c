@@ -129,7 +129,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
                                                               jint format, jstring fname, jstring pwd,
                                                               jstring jcss, jint isDocCSS,
                                                               jfloat imageScale, jint antialias,
-                                                              jstring accelerate)
+                                                              jstring accelerate, jint is_image_scale)
 {
     renderdocument_t *doc;
     jboolean iscopy;
@@ -162,6 +162,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
         goto cleanup;
     }
     doc->ctx->image_scale = imageScale;
+    doc->ctx->is_image_scale = is_image_scale;
 
     fz_register_document_handlers(doc->ctx);
 

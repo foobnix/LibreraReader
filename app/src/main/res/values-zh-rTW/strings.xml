@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
    <string name="ad_privacy_settings">廣告隱私設定</string>
    <string name="allow_other_music_to_play">允許播放其他音樂</string>
+   <string name="enable_image_scale">啟用圖像縮放</string>
 </resources>

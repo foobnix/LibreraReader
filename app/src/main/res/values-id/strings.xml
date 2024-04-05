@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Tampilkan nomor halaman edisi cetak (epub3)</string>
    <string name="ad_privacy_settings">Pengaturan privasi iklan</string>
    <string name="allow_other_music_to_play">Izinkan musik lain diputar</string>
+   <string name="enable_image_scale">Aktifkan skala gambar</string>
 </resources>

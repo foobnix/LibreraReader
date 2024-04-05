@@ -663,4 +663,5 @@
    <string name="show_print_edition_page_numbers_epub3">Showe print edition page numbers (epub3)</string>
    <string name="ad_privacy_settings">Ad secretum occasus</string>
    <string name="allow_other_music_to_play">Alia musica ludere permittit</string>
+   <string name="enable_image_scale">Enable imaginem scale</string>
 </resources>

@@ -39,6 +39,7 @@ EpubContext extends PdfContext {
                 BookCSS.get().isAutoHypens +
                 AppState.get().isBionicMode +
                 AppSP.get().hypenLang +
+                AppState.get().enableImageScale +
                 AppState.get().textReplacementHash +
                 AppState.get().isExperimental)
                 .hashCode() + ".epub");

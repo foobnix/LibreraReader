@@ -650,6 +650,7 @@ public class AppState {
     public boolean isEnableTextReplacement = false;
     public long textReplacementHash = 0;
     public boolean isShowSeriesNumberInTitle = true;
+    public boolean enableImageScale = true;
 
 
     public static synchronized AppState get() {

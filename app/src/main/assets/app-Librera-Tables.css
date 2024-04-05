@@ -118,3 +118,5 @@ col{display:table-column}
 
 pn{font-size:0.8em;font-style:italic;color:blue}
 
+p>img{width:1em !important; height:1em !important;}
+

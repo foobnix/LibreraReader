@@ -1376,8 +1376,11 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 
 	style->text_indent = number_from_property(match, PRO_TEXT_INDENT, 0, N_LENGTH);
 
-	//style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
-	//style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
+    if(ctx->is_image_scale == 0) {
+      style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
+      style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
+    }
+
 
 	style->margin[0] = number_from_property(match, PRO_MARGIN_TOP, 0, N_LENGTH);
 	style->margin[1] = number_from_property(match, PRO_MARGIN_RIGHT, 0, N_LENGTH);
