@@ -877,6 +877,10 @@ static void gen2_image_common(fz_context *ctx, struct genstate *g, fz_html_box *
 
 static void gen2_image_html(fz_context *ctx, struct genstate *g, fz_html_box *root_box, fz_xml *node, int display, fz_css_style *style)
 {
+
+   if (display == DIS_NONE)
+		return;
+
 	char *src = fz_xml_att(node, "src");
 
 	if(!src){
