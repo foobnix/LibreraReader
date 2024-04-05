@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -758,7 +759,8 @@ public class GFile {
                     GFile.buildDriveService(a);
                     //BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
                     OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SynctornizatoinWorker.class).build();
-                    WorkManager.getInstance(a).enqueue(workRequest);
+//                    WorkManager.getInstance(a).enqueue(workRequest);
+                    WorkManager.getInstance(a).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
                 }
             }
         } catch (Exception e) {

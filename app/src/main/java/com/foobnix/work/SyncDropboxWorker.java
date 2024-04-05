@@ -3,6 +3,7 @@ package com.foobnix.work;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
@@ -16,7 +17,8 @@ public class SyncDropboxWorker extends MessageWorker{
 
     public static void run(Context context) {
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SyncDropboxWorker.class).build();
-        WorkManager.getInstance(context).enqueue(workRequest);
+        //WorkManager.getInstance(context).enqueue(workRequest);
+        WorkManager.getInstance(context).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
     }
 
 

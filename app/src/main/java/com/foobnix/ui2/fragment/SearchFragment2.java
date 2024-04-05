@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -382,7 +383,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
                             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
-                            WorkManager.getInstance(getContext()).enqueue(workRequest);
+                            //WorkManager.getInstance(getContext()).enqueue(workRequest);
+                            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
 
                         }
                     }, null);
@@ -663,8 +665,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void checkForDeleteBooks() {
         try {
             //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
-            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
-            WorkManager.getInstance(getContext()).enqueue(workRequest);
+            OneTimeWorkRequest workRequest = new OneTimeWorkRequest
+                    .Builder(CheckDeletedBooksWorker.class).build();
+            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
         } catch (Exception e) {
             LOG.e(e);
         }
