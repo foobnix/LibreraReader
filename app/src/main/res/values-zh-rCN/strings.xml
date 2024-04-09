@@ -186,7 +186,7 @@
    <string name="email">邮件</string>
    <string name="file">文件</string>
    <string name="filter">筛选</string>
-   <string name="bookmark_by_date">日期</string>
+   <string name="bookmark_by_date">时间</string>
    <string name="bookmark_by_book">书籍</string>
    <string name="network">网络</string>
    <string name="catalogs">目录</string>
@@ -265,7 +265,7 @@
    <string name="folder">文件夹</string>
    <string name="by_file_name">文件名</string>
    <string name="by_size">文件大小</string>
-   <string name="by_date">日期</string>
+   <string name="by_date">时间</string>
    <string name="by_title">标题</string>
    <string name="by_author">作者</string>
    <string name="by_series">丛书</string>
@@ -298,7 +298,7 @@
    <string name="two_pages">双页</string>
    <string name="two_pages_cover">封面，双页</string>
    <string name="half_page">半页</string>
-   <string name="by_pages">单页</string>
+   <string name="by_pages">页序</string>
    <string name="by_screans">屏幕</string>
    <string name="of_screen">屏幕</string>
    <string name="custom_value">自定义值</string>
@@ -554,7 +554,7 @@
    <string name="downloads">下载</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">文件夹不是空的。仍要删除？</string>
    <string name="synchronized_books">同步书籍</string>
-   <string name="publication_date">出版日期</string>
+   <string name="publication_date">出版时间</string>
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">显示快速书签</string>
    <string name="show_only_available_books">仅存在的书籍</string>
