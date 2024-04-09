@@ -1057,6 +1057,7 @@ public class ExtUtils {
         openIntent.setAction(android.content.Intent.ACTION_VIEW);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         openIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        openIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         openIntent.setDataAndType(getUriProvider(context, file), mimeType);
         return openIntent;
     }
@@ -1109,6 +1110,7 @@ public class ExtUtils {
             intent.putExtra(Intent.EXTRA_TEXT, "");
 
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(Intent.createChooser(intent, a.getString(R.string.send_file_to)));
         } catch (Exception e) {
