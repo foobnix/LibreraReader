@@ -12,6 +12,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.sys.TempHolder;
 
 import java.util.ArrayList;
@@ -161,7 +164,7 @@ public class DictsHelper {
         return items;
     }
 
-    public static void runIntent(Activity c, String selectedText) {
+    public static void runIntent(Activity c, FrameLayout anchor, String selectedText) {
         try {
             String dict = AppState.get().rememberDict1;
             LOG.d("runIntent-dict", selectedText, dict);
@@ -174,7 +177,8 @@ public class DictsHelper {
                     dictionaries = AppData.get().getWebSearch(selectedText);
                     url = dictionaries.get(dictName);
                 }
-                Urls.open(c, url);
+                //Urls.open(c, url);
+                DragingDialogs.webView(anchor, url);
             }
             if (dict.startsWith("type")) {
                 Intent intent = null;

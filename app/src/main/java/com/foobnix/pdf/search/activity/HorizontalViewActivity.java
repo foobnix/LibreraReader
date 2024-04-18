@@ -408,7 +408,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public void run() {
                 onMoveAction.run();
                 if (AppState.get().isRememberDictionary) {
-                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                    DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
                 } else {
                     DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
                 }
@@ -1710,7 +1710,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 if (AppState.get().isRememberDictionary) {
                     final String text = AppState.get().selectedText;
-                    DictsHelper.runIntent(dc.getActivity(), text);
+                    DictsHelper.runIntent(dc.getActivity(), anchor,text);
                     dc.clearSelectedText();
                 } else {
                     DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);

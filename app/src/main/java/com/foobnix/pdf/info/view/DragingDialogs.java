@@ -43,6 +43,8 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -101,6 +103,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -113,6 +116,7 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.BookCSS.FontPack;
@@ -167,6 +171,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -206,6 +211,49 @@ public class DragingDialogs {
         });
         dialog.show("Sample");
     }
+
+    public static void webView(final FrameLayout anchor, String url) {
+        if (anchor == null) {
+            return;
+        }
+        LOG.d("webView DragingDialog",url);
+
+        DragingPopup dialog = new DragingPopup(url, anchor, 300, 440) {
+
+            @Override
+            @SuppressLint("NewApi")
+            public View getContentView(LayoutInflater inflater) {
+                final WebView wv = new WebView(anchor.getContext());
+                wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
+                wv.getSettings().setJavaScriptEnabled(true);
+
+
+                wv.loadUrl(url);
+
+                wv.setFocusable(true);
+                wv.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.loadUrl(url);
+                        return true;
+                    }
+
+                });
+
+
+                return wv;
+            }
+        };
+        dialog.setOnCloseListener(new Runnable() {
+
+            @Override
+            public void run() {
+
+            }
+        });
+        dialog.show("WebView",false, true);
+    }
+
 
     public static void textReplaces(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
@@ -1815,7 +1863,11 @@ public class DragingDialogs {
                     final Map<String, String> providers = AppData.get().getWebDictionaries(editText.getText().toString().trim());
                     for (final String name : providers.keySet()) {
                         popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
-                            Urls.open(anchor.getContext(), providers.get(name).trim());
+                            String url = providers.get(name).trim();
+                            //Urls.open(anchor.getContext(), url);
+                            closeDialog();
+                            webView(anchor, url);
+
                             return false;
                         });
                     }
@@ -1828,7 +1880,10 @@ public class DragingDialogs {
                     final Map<String, String> providers = AppData.get().getWebSearch(editText.getText().toString().trim());
                     for (final String name : providers.keySet()) {
                         popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
-                            Urls.open(anchor.getContext(), providers.get(name).trim());
+                            String url = providers.get(name).trim();
+                            //Urls.open(anchor.getContext(), providers.get(name).trim());
+                            closeDialog();
+                            webView(anchor, url);
                             return false;
                         });
                     }
@@ -4860,8 +4915,6 @@ public class DragingDialogs {
                 });
 
 
-
-
                 final CustomSeek imageScale = inflate.findViewById(R.id.imageScale);
                 imageScale.setFloatResult(true);
                 imageScale.init(1, 50, (int) (BookCSS.get().imageScale * 10), "x");
@@ -4874,7 +4927,7 @@ public class DragingDialogs {
                     }
                 });
 
-                 CheckBox enableImageScale = inflate.findViewById(R.id.enableImageScale);
+                CheckBox enableImageScale = inflate.findViewById(R.id.enableImageScale);
                 enableImageScale.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 enableImageScale.setChecked(AppState.get().enableImageScale);
                 imageScale.setEnabled(AppState.get().enableImageScale);
