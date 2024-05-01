@@ -43,6 +43,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AbsListView;
@@ -226,6 +227,7 @@ public class DragingDialogs {
                 final WebView wv = new WebView(anchor.getContext());
                 wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
                 wv.getSettings().setJavaScriptEnabled(true);
+                wv.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
 
                 wv.loadUrl(url);
