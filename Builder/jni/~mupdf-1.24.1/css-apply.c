@@ -897,7 +897,7 @@ fz_css_strtof(char *s, char **endptr)
 }
 
 static fz_css_number
-number_from_value(fz_css_value *value, float initial, int initial_unit)
+number_from_value_in(fz_css_value *value, float initial, int initial_unit, int isFont)
 {
 	char *p;
 
@@ -915,7 +915,8 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 		float x = fz_css_strtof(value->data, &p);
 
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
-			return make_number(x, N_SCALE);
+			return isFont? make_number(x < 0.5 ? 0.5: x, N_SCALE) : make_number(x, N_SCALE);
+
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);
 
@@ -929,19 +930,19 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+            return isFont? make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE) :make_number(x, N_LENGTH);
+
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
 
-		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return make_number(x * 16, N_LENGTH);
+			return isFont? make_number(x <1.0 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
 
-		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
+
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
 			return make_number(x / 2, N_LENGTH);
 
-		return make_number(x, N_LENGTH);
+		return make_number(x, N_SCALE);
 	}
 
 	if (value->type == CSS_KEYWORD)
@@ -951,6 +952,16 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 	}
 
 	return make_number(initial, initial_unit);
+}
+
+
+static fz_css_number
+number_from_value(fz_css_value *value, float initial, int initial_unit){
+    return number_from_value_in(value, initial, initial_unit, 0);
+}
+static fz_css_number
+number_from_value_font(fz_css_value *value, float initial, int initial_unit){
+    return number_from_value_in(value, initial, initial_unit, 1);
 }
 
 static fz_css_number
@@ -1310,21 +1321,39 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	value = value_from_property(match, PRO_FONT_SIZE);
 	if (value)
 	{
-		if (!strcmp(value->data, "xx-large")) style->font_size = make_number(1.73f, N_SCALE);
-		else if (!strcmp(value->data, "x-large")) style->font_size = make_number(1.44f, N_SCALE);
+		if (!strcmp(value->data, "xx-large")) style->font_size = make_number(1.7f, N_SCALE);
+		else if (!strcmp(value->data, "x-large")) style->font_size = make_number(1.4f, N_SCALE);
+		else if (!strcmp(value->data, "xxx-large")) style->font_size = make_number(2.0f, N_SCALE);
 		else if (!strcmp(value->data, "large")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "medium")) style->font_size = make_number(1.0f, N_SCALE);
-		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.83f, N_SCALE);
-		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.69f, N_SCALE);
-		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.69f, N_SCALE);
+		else if (!strcmp(value->data, "normal")) style->font_size = make_number(1.0f, N_SCALE);
+		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.8f, N_SCALE);
+		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.6f, N_SCALE);
+		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.5f, N_SCALE);
 		else if (!strcmp(value->data, "larger")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
-		else style->font_size = number_from_value(value, 12, N_LENGTH);
+    	else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "initial")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "unset")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "revert")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "revert-layer")) style->font_size = make_number(1.0f, N_SCALE);
+    	else if (!strcmp(value->data, "math")) style->font_size = make_number(1.0f, N_SCALE);
+		else
+        		{
+        			if (value->type == CSS_PERCENT){
+        				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
+        			}else{
+        				//style->font_size = number_from_value(value, 12, N_LENGTH);
+ 						style->font_size = number_from_value_font(value, 12, N_LENGTH);
+
+
+        			}
+        		}
 	}
 	else
-	{
-		style->font_size = make_number(1, N_SCALE);
-	}
+    {
+        style->font_size = make_number(1, N_SCALE);
+    }
 
 	value = value_from_property(match, PRO_LIST_STYLE_TYPE);
 	if (value)
@@ -1359,8 +1388,11 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 
 	style->text_indent = number_from_property(match, PRO_TEXT_INDENT, 0, N_LENGTH);
 
-	style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
-	style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
+    if(ctx->is_image_scale == 0) {
+      style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
+      style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
+    }
+
 
 	style->margin[0] = number_from_property(match, PRO_MARGIN_TOP, 0, N_LENGTH);
 	style->margin[1] = number_from_property(match, PRO_MARGIN_RIGHT, 0, N_LENGTH);
@@ -1413,6 +1445,17 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		if (!style->font)
 			style->font = fz_load_html_font(ctx, set, "serif", is_bold, is_italic, style->small_caps);
 	}
+
+
+    style->padding[1].value = style->padding[1].value / 2;
+    style->padding[3].value = style->padding[3].value / 2;
+
+    style->margin[1].value = style->margin[1].value / 2;
+    style->margin[3].value =  style->margin[3].value / 2;
+
+
+    if (style->line_height.value < 0) style->line_height.value = 1.2f;
+
 }
 
 #ifdef DEBUG_CSS_SPLAY
