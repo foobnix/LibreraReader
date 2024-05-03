@@ -982,17 +982,17 @@ static char *convert_to_utf8(fz_context *ctx, unsigned char *s, size_t n, int *d
 		return dst;
 	}
 
-//	table = find_xml_encoding((char*)s);
-//	if (table) {
-//		dst = d = Memento_label(fz_malloc(ctx, n * FZ_UTFMAX), "utf8");
-//		while (*s) {
-//			c = table[*s++];
-//			d += fz_runetochar(d, c);
-//		}
-//		*d = 0;
-//		*dofree = 1;
-//		return dst;
-//	}
+	enc = find_xml_encoding((char*)s);
+	if (enc)
+	{
+		fz_init_text_decoder(ctx, &dec, enc);
+		// NOTE: use decode_size if memory is more important than speed
+		m = dec.decode_bound(&dec, s, n);
+		dst = Memento_label(fz_malloc(ctx, m), "utf8");
+		dec.decode(&dec, dst, s, n);
+		*dofree = 1;
+		return dst;
+	}
 
 	*dofree = 0;
 

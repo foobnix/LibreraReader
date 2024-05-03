@@ -537,13 +537,8 @@ static fz_buffer *read_zip_entry(fz_context *ctx, fz_archive *arch, const char *
 	fz_var(cbuf);
 
 	ent = lookup_zip_entry(ctx, zip, name);
-	if (!ent){
-	    //fz_throw(ctx, FZ_ERROR_GENERIC, "cannot find named zip archive entry");
-	    ubuf = fz_new_buffer(ctx, 1);
-	    ubuf->len = 1;
-		return ubuf;
-		}
-
+	if (!ent)
+		return NULL;
 
 	method = read_zip_entry_header(ctx, zip, ent);
 	ubuf = fz_new_buffer(ctx, ent->usize + 1); /* +1 because many callers will add a terminating zero */

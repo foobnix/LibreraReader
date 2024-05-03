@@ -546,11 +546,11 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 			fz_urldecode(path);
 			buf = fz_read_archive_entry(ctx, zip, path);
 		}
-
+#if FZ_ENABLE_SVG
 		if (strstr(src, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf, base_uri, zip);
 		else
-
+#endif
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
@@ -568,12 +568,15 @@ static fz_image *load_svg_image(fz_context *ctx, fz_archive *zip, const char *ba
 	fz_xml_doc *xmldoc, fz_xml *node)
 {
 	fz_image *img = NULL;
-
+#if FZ_ENABLE_SVG
 	fz_try(ctx)
 		img = fz_new_image_from_svg_xml(ctx, xmldoc, node, base_uri, zip);
 	fz_catch(ctx)
+	{
+		fz_ignore_error(ctx);
 		fz_warn(ctx, "html: cannot load embedded svg document");
-
+	}
+#endif
 	return img;
 }
 
@@ -588,8 +591,8 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 
 	if (!img)
 	{
-		//const char *alt = "[image]";
-		//add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
+		const char *alt = "[image]";
+		add_flow_word(ctx, pool, flow, box, alt, alt + 7, 0);
 	}
 	else
 	{
@@ -597,7 +600,7 @@ static void generate_image(fz_context *ctx, fz_html_box *box, fz_image *img, str
 		{
 			add_flow_sbreak(ctx, pool, flow, box);
 			add_flow_image(ctx, pool, flow, box, img);
-			//add_flow_sbreak(ctx, pool, flow, box);
+			add_flow_sbreak(ctx, pool, flow, box);
 		}
 		fz_always(ctx)
 		{
@@ -962,15 +965,7 @@ static void gen2_image_common(fz_context *ctx, struct genstate *g, fz_html_box *
 
 static void gen2_image_html(fz_context *ctx, struct genstate *g, fz_html_box *root_box, fz_xml *node, int display, fz_css_style *style)
 {
-	char *src = fz_xml_att(node, "src");
-
-	if(!src){
-	    src = fz_xml_att(node, "href");
-	 }
-	 if(!src){
-     	 src = fz_xml_att(node, "l:href");
-     }
-
+	const char *src = fz_xml_att(node, "src");
 	if (src)
 	{
 		fz_css_style local_style = *style;
@@ -1004,10 +999,6 @@ static void gen2_image_fb2(fz_context *ctx, struct genstate *g, fz_html_box *roo
 	{
 		fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
 		gen2_image_common(ctx, g, root_box, node, fz_keep_image(ctx, img), display, style);
-	}else{
-	        fz_css_style local_style = *style;
-	        fz_image *img = load_html_image(ctx, g->zip, g->base_uri, src);
-    		gen2_image_common(ctx, g, root_box, node, img, display, &local_style);
 	}
 }
 
@@ -1174,9 +1165,8 @@ static void gen2_children(fz_context *ctx, struct genstate *g, fz_html_box *root
 			{
 				gen2_image_html(ctx, g, root_box, node, display, &style);
 			}
-			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
-				gen2_image_html(ctx, g, root_box, node, display, &style);
 				gen2_image_fb2(ctx, g, root_box, node, display, &style);
 			}
 			else if (tag[0]=='s' && tag[1]=='v' && tag[2]=='g' && tag[3]==0)
@@ -1645,45 +1635,43 @@ xml_to_boxes(fz_context *ctx, fz_html_font_set *set, fz_archive *zip, const char
 		if (try_fictionbook && fz_xml_find(root, "FictionBook"))
 		{
 			g.is_fb2 = 1;
-
-		    //fz_parse_css(ctx, g.css, user_css, "<default:fb2>");
-			//if (fz_use_document_css(ctx))
-			//	fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
+			fz_parse_css(ctx, g.css, fb2_default_css, "<default:fb2>");
+			if (fz_use_document_css(ctx))
+				fb2_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 			g.images = load_fb2_images(ctx, root);
 		}
 		else if (is_mobi)
 		{
 			g.is_fb2 = 0;
-			//fz_parse_css(ctx, g.css, user_css, "<default:html>");
-			//fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
+			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
+			fz_parse_css(ctx, g.css, mobi_default_css, "<default:mobi>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 		else
 		{
 			g.is_fb2 = 0;
-			//fz_parse_css(ctx, g.css, user_css, "<default:html>");
+			fz_parse_css(ctx, g.css, html_default_css, "<default:html>");
 			if (fz_use_document_css(ctx))
 				html_load_css(ctx, g.set, g.zip, g.base_uri, g.css, root);
 		}
 
 		if (user_css)
 		{
-
+			fz_parse_css(ctx, g.css, user_css, "<user>");
+			fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 		}
-		fz_parse_css(ctx, g.css, user_css, "<user>");
-        fz_add_css_font_faces(ctx, g.set, g.zip, ".", g.css);
 	}
 	fz_catch(ctx)
 	{
 		fz_drop_tree(ctx, g.images, (void(*)(fz_context*,void*))fz_drop_image);
 		fz_drop_css(ctx, g.css);
-		g.css = fz_new_css(ctx);
-		g.images = NULL;
 		fz_rethrow_if(ctx, FZ_ERROR_TRYLATER);
 		fz_rethrow_if(ctx, FZ_ERROR_SYSTEM);
 		fz_report_error(ctx);
 		fz_warn(ctx, "ignoring styles");
+		g.css = fz_new_css(ctx);
+		g.images = NULL;
 	}
 
 #ifndef NDEBUG

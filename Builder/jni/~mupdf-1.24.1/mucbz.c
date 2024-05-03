@@ -49,6 +49,7 @@ static const char *cbz_ext_list[] = {
 	".tif",
 	".tiff",
 	".wdp",
+	".webp",
 	NULL
 };
 
@@ -128,6 +129,12 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 	for (i = 0; i < count; i++)
 	{
 		const char *name = fz_list_archive_entry(ctx, arch, i);
+
+		if (name[0]=='.' || strstr(name, "/.") != NULL) {
+		    //skip hidden files
+            continue;
+        }
+
 		const char *ext = name ? strrchr(name, '.') : NULL;
 		for (k = 0; cbz_ext_list[k]; k++)
 		{
@@ -310,6 +317,7 @@ static const char *cbz_extensions[] =
 	"cbz",
 	"tar",
 	"zip",
+	"ldir",
 	NULL
 };
 
