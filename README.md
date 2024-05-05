@@ -26,6 +26,8 @@ and OPDS Catalogs
 
 [Librera Online book reader](https://librera.mobi/online-book-reader/)
 
+https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.pdf
+
 ### Links
 
 [web: https://librera.mobi/](https://librera.mobi/)
