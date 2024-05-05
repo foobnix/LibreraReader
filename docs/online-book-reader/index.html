@@ -196,6 +196,12 @@ div.text ::selection {
 	background: rgba(0, 10, 240, 0.4);
 }
 
+@media screen and (max-width: 1000px) {
+    .document-title {
+        display: none !important;
+    }
+}
+
 div.searchHitList { position:absolute; }
 div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpink; background-color: lightpink; mix-blend-mode: multiply; }
 
@@ -206,11 +212,9 @@ div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpi
 
 <div id="grid-menubar">
 	<div class="menu">
-		<div class="menu-button" onclick="document.getElementById('open-file-input').click()">Open ...</div>
+		<div class="menu-button" onclick="document.getElementById('open-file-input').click()">Open...</div>
 	</div>
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
-	</div>
+
 		
 	<div class="menu">
 		<div class="menu-button">View</div>
@@ -227,14 +231,22 @@ div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpi
 		</div>
 	</div>
 	<div class="menu">
+		<div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
+	</div>
+	<div class="menu">
+		<div class="menu-button" onclick="documentViewer.toggleOutline()">Outline</div>
+	</div>
+
+	<div class="menu">
 		<div class="menu-button" onclick="documentViewer.zoomOut()">[ - ]</div>
 	</div>
 
 	<div class="menu">
 		<div class="menu-button" onclick="documentViewer.zoomIn()">[ + ]</div>
 	</div>
+
 	<div class="menu">
-		<div class="menu-button" id="document-title" onclick="documentViewer.toggleOutline()"></div>
+		<div class="menu-button document-title" id="document-title" onclick="documentViewer.toggleOutline()"></div>
 	</div>
 </div>
 
@@ -245,8 +257,7 @@ div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpi
 	</div>
 	<div id="placeholder">
 		<div>
-			Loading WASM, please wait...
-			<!-- TODO - improve placeholder message -->
+			Loading, please wait...
 		</div>
 	</div>
 </div>
