@@ -71,7 +71,7 @@ button:enabled:active:hover {
 
 .menu { float: left; }
 
-.menu-button { padding: 5pt 10pt; }
+.menu-button { padding: 5pt 8pt; }
 
 .menu-popup {
 	display: none;
@@ -215,26 +215,16 @@ div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpi
 		<div class="menu-button" onclick="document.getElementById('open-file-input').click()">Open...</div>
 	</div>
 
-		
-	<div class="menu">
-		<div class="menu-button">View</div>
-		<div class="menu-popup">
-			<div onclick="documentViewer.toggleFullscreen()">Fullscreen</div>
-			<div onclick="documentViewer.toggleOutline()">Outline</div>
-			<hr>
-			<div onclick="documentViewer?.setZoom(50)">50%</div>
-			<div onclick="documentViewer?.setZoom(75)">75% (72 dpi)</div>
-			<div onclick="documentViewer?.setZoom(100)">100% (96 dpi)</div>
-			<div onclick="documentViewer?.setZoom(125)">125%</div>
-			<div onclick="documentViewer?.setZoom(150)">150%</div>
-			<div onclick="documentViewer?.setZoom(200)">200%</div>
-		</div>
-	</div>
 	<div class="menu">
 		<div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
 	</div>
 	<div class="menu">
 		<div class="menu-button" onclick="documentViewer.toggleOutline()">Outline</div>
+	</div>
+
+
+	<div class="menu">
+		<div class="menu-button" onclick="documentViewer.toggleFullscreen()">[ F ]</div>
 	</div>
 
 	<div class="menu">

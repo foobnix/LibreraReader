@@ -438,7 +438,7 @@ class MupdfPageViewer {
 	}
 }
 
-let zoomLevels = [ 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 ]
+let zoomLevels = [ 5,10, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 ]
 
 // TODO - Split into separate file
 class MupdfDocumentHandler {
