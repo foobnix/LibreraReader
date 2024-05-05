@@ -24,6 +24,8 @@ and OPDS Catalogs
 
 [Application Fonts.zip](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts)
 
+[Librera Online book reader](https://librera.mobi/online-book-reader/)
+
 ### Links
 
 [web: https://librera.mobi/](https://librera.mobi/)
