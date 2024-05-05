@@ -227,6 +227,14 @@ class MupdfPageViewer {
 			this.canvasNode.width = imageData.width
 			this.canvasNode.height = imageData.height
 			this.canvasCtx.putImageData(imageData, 0, 0)
+
+			this.canvasCtx.font = "2em serif"
+			this.canvasCtx.fillStyle = "#E0CACA";
+			this.canvasCtx.fillText(""+(this.pageNumber + 1), 1, 25);
+
+			
+			
+
 		} catch (error) {
 			this.showError("_loadPageImg", error)
 		} finally {
