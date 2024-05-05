@@ -580,7 +580,7 @@ class MupdfDocumentHandler {
 		let outlineNode = viewerDivs.outlineNode
 		if (outline) {
 			handler._buildOutline(outlineNode, outline)
-			handler.showOutline()
+			//handler.showOutline()
 		} else {
 			handler.hideOutline()
 		}
