@@ -5,6 +5,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.tts.TtsStatus;
 
 import java.util.HashMap;
@@ -95,6 +96,10 @@ public class HypenUtils {
 
                 if (AppState.get().isBionicMode) {
                     res.append(TxtUtils.toBionicWord(w));
+                    return;
+                }
+                if (!BookCSS.get().isAutoHypens) {
+                    res.append(w);
                     return;
                 }
 

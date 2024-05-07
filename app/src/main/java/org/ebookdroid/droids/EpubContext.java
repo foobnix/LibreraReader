@@ -59,7 +59,7 @@ EpubContext extends PdfContext {
             cacheFile = getCacheFileName(fileName);
         }
 
-        if ( /** LibreraBuildConfig.DEBUG || **/(BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement ||BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -67,7 +67,7 @@ EpubContext extends PdfContext {
             return null;
         }
 
-        String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
+        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 
         if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");

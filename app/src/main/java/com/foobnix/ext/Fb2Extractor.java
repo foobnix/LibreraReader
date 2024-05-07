@@ -175,7 +175,7 @@ public class Fb2Extractor extends BaseExtractor {
                 break;
             }
             if (!isValidXMLChecked && line.length() == 0) {
-               continue;
+                continue;
             }
 
             if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
@@ -293,7 +293,9 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+             boolean isProcess = AppState.get().isEnableTextReplacement ||
+                            (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
+            if (isProcess) {
                 line = HypenUtils.applyHypnes(line, replacements);
             }
 
@@ -1204,7 +1206,9 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                    boolean isProcess = AppState.get().isEnableTextReplacement ||
+                            (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
+                    if (isProcess) {
                         line = HypenUtils.applyHypnes(line, replacements);
                     }
                 }
