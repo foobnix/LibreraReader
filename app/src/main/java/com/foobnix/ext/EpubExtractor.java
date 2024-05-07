@@ -163,8 +163,9 @@ public class EpubExtractor extends BaseExtractor {
                 boolean skipInvalidCss = false;
 
                 while ((line = in.readLine()) != null) {
-                    if (!skipInvalidCss && line.indexOf('.', 200) > 0) {
+                    if (line.indexOf('.', 200) > 0) {
                         skipInvalidCss = true;
+                        break;
                     }
                     writer.println(line);
                 }
