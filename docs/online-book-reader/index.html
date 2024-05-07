@@ -1,327 +1,333 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Librera Online Book Reader (EPUB, PDF, FB2, CBZ)</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<style>
+    <title>Librera Online Book Reader (EPUB, PDF, FB2, CBZ)</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
 
-:root {
-	--menubar-height: 22pt;
-	--sidebar-width: 250px;
-}
+        :root {
+            --menubar-height: 22pt;
+            --sidebar-width: 250px;
+        }
 
-html, body { margin: 0; padding: 0; }
+        html, body { margin: 0; padding: 0; }
 
-html { background-color: gray; }
+        html { background-color: gray; }
 
-input, button {
-	display: block;
-	border:none;
-	background-image:none;
-	background-color:transparent;
-	box-shadow: none;
-}
+        input, button {
+            display: block;
+            border:none;
+            background-image:none;
+            background-color:transparent;
+            box-shadow: none;
+        }
 
-input, button {
-	font-size: 16px;
-	line-height: 20px;
-	height: 30px;
-	margin: 0 4px;
-}
-input {
-	background-color: white;
-	padding: 0px 5px;
-	border: 1px solid black;
-}
-button {
-	font-family: monospace;
-	background-color: gainsboro;
-	border: 2px outset white;
-	outline: 1px solid black;
-	padding: 1px 10px 1px 10px;
-}
-button:disabled {
-	color: gray;
-	border: 2px solid gainsboro;
-	outline: 1px solid gray;
-}
-button:enabled:active:hover {
-	border: 2px inset white;
-	padding: 2px 9px 0px 11px;
-}
+        input, button {
+            font-size: 16px;
+            line-height: 20px;
+            height: 30px;
+            margin: 0 4px;
+        }
+        input {
+            background-color: white;
+            padding: 0px 5px;
+            border: 1px solid black;
+        }
+        button {
+            font-family: monospace;
+            background-color: gainsboro;
+            border: 2px outset white;
+            outline: 1px solid black;
+            padding: 1px 10px 1px 10px;
+        }
+        button:disabled {
+            color: gray;
+            border: 2px solid gainsboro;
+            outline: 1px solid gray;
+        }
+        button:enabled:active:hover {
+            border: 2px inset white;
+            padding: 2px 9px 0px 11px;
+        }
 
-/* MENUS */
+        /* MENUS */
 
-#grid-menubar { font-family: "Segoe UI", "Arial", "sans-serif"; }
+        #grid-menubar { font-family: "Segoe UI", "Arial", "sans-serif"; }
 
-#grid-menubar {
-	position: fixed;
-	z-index: 3;
-	top: 0;
-	left: 0;
-	font-size: 12pt;
-	line-height: 1;
-	height: var(--menubar-height);
-	width: 100%;
-	background-color: lightsteelblue;
-	user-select: none;
-	box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
-}
+        #grid-menubar {
+            position: fixed;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            font-size: 12pt;
+            line-height: 1;
+            height: var(--menubar-height);
+            width: 100%;
+            background-color: lightsteelblue;
+            user-select: none;
+            box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
+        }
 
-.menu { float: left; }
+        .menu { float: left; }
 
-.menu-button { padding: 5pt 8pt; }
+        .menu-button { padding: 5pt 8pt; }
 
-.menu-popup {
-	display: none;
-	position: absolute;
-	background-color: white;
-	min-width: 20ex;
-	white-space: nowrap;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 3;
-}
+        .menu-popup {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 20ex;
+            white-space: nowrap;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 3;
+        }
 
-.menu-popup hr { margin: 0; border-bottom: 0; border-top: 1px solid gray; }
-.menu-popup div { padding: 5pt 10pt; }
-.menu-popup div:hover { background-color: steelblue; color: white; }
+        .menu-popup hr { margin: 0; border-bottom: 0; border-top: 1px solid gray; }
+        .menu-popup div { padding: 5pt 10pt; }
+        .menu-popup div:hover { background-color: steelblue; color: white; }
 
-.menu:hover .menu-popup { display: block; }
-.menu:hover .menu-button { background-color: steelblue; color: white; }
+        .menu:hover .menu-popup { display: block; }
+        .menu:hover .menu-button { background-color: steelblue; color: white; }
 
-/* SIDEBAR */
+        /* SIDEBAR */
 
-#grid-sidebar { font-family: "Times New Roman", "serif"; }
+        #grid-sidebar { font-family: "Times New Roman", "serif"; }
 
-#grid-sidebar {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	top: var(--menubar-height);
-	left: 0;
-	width: var(--sidebar-width);
-	height: calc(100% - var(--menubar-height));
-	background-color: white;
-	overflow: auto;
-}
+        #grid-sidebar {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: var(--menubar-height);
+            left: 0;
+            width: var(--sidebar-width);
+            height: calc(100% - var(--menubar-height));
+            background-color: white;
+            overflow: auto;
+        }
 
-#outline { margin:0; padding:1ex; padding-left:2ex; list-style-type: none; font-size: 10pt; }
-#outline ul { margin:0; padding:0; padding-left:3ex; list-style-type: none; }
-#outline a { text-decoration:none; color: black; }
-#outline a:hover { text-decoration:underline; }
+        #outline { margin:0; padding:1ex; padding-left:2ex; list-style-type: none; font-size: 10pt; }
+        #outline ul { margin:0; padding:0; padding-left:3ex; list-style-type: none; }
+        #outline a { text-decoration:none; color: black; }
+        #outline a:hover { text-decoration:underline; }
 
-/* DIALOGS */
+        /* DIALOGS */
 
-div.dialog {
-	position:fixed;
-	top:22pt;
-	left:0;
-	right:0;
-	margin-left: auto;
-	width:max-content;
-	background-color:silver;
-	padding: 15px 12px;
-	z-index:2;
-	box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
-}
+        div.dialog {
+            position:fixed;
+            top:22pt;
+            left:0;
+            right:0;
+            margin-left: auto;
+            width:max-content;
+            background-color:silver;
+            padding: 15px 12px;
+            z-index:2;
+            box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+        }
 
-div.flex {
-	display: flex;
-	align-items: center;
-}
+        div.flex {
+            display: flex;
+            align-items: center;
+        }
 
-#search-status {
-	padding-top: 1ex;
-}
+        #search-status {
+            padding-top: 1ex;
+        }
 
-/* PAGES */
+        /* PAGES */
 
-#grid-main { padding-top: var(--menubar-height); }
-#grid-main.sidebarVisible { padding-left: var(--sidebar-width); }
-#grid-main.sidebarHidden { padding-left: 0; }
+        #grid-main { padding-top: var(--menubar-height); }
+        #grid-main.sidebarVisible { padding-left: var(--sidebar-width); }
+        #grid-main.sidebarHidden { padding-left: 0; }
 
-#pages { margin: 0 auto; }
-#placeholder { margin: 0 auto; }
+        #pages { margin: 0 auto; }
+        #placeholder { margin: 0 auto; }
 
-#placeholder div {
-	padding-top:3em;
-	text-align: center;
-	font-size: 24pt;
-	font-weight: bold;
-	color: silver;
-}
-#placeholder div.error {
-	text-align: left;
-	color: hotpink;
-}
+        #placeholder div {
+            padding-top:3em;
+            text-align: center;
+            font-size: 24pt;
+            font-weight: bold;
+            color: silver;
+        }
+        #placeholder div.error {
+            text-align: left;
+            color: hotpink;
+        }
 
-div.error {
-	padding: 1em;
-	color: hotpink;
-	font-size: 20pt;
-}
+        div.error {
+            padding: 1em;
+            color: hotpink;
+            font-size: 20pt;
+        }
 
-a.anchor {
-	display:block;
-	position:relative;
-	top:-22pt;
-	visibility:hidden;
-}
+        a.anchor {
+            display:block;
+            position:relative;
+            top:-22pt;
+            visibility:hidden;
+        }
 
-div.page {
-	position:relative;
-	background-color:white;
-	margin:16px auto;
-	box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
-}
+        div.page {
+            position:relative;
+            background-color:white;
+            margin:16px auto;
+            box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+        }
 
-div.page canvas {
-	position:absolute;
-	user-select:none;
-}
+        div.page canvas {
+            position:absolute;
+            user-select:none;
+        }
 
-div.links { position:absolute; }
-div.links a { position:absolute; }
-div.links a:hover { outline: 1px dotted blue; }
+        div.links { position:absolute; }
+        div.links a { position:absolute; }
+        div.links a:hover { outline: 1px dotted blue; }
 
-div.text { position:absolute; }
-div.text span {
-	position:absolute;
-	white-space:pre;
-	line-height:1;
-	color:transparent;
-}
-div.text ::selection {
-	background: rgba(0, 10, 240, 0.4);
-}
+        div.text { position:absolute; }
+        div.text span {
+            position:absolute;
+            white-space:pre;
+            line-height:1;
+            color:transparent;
+        }
+        div.text ::selection {
+            background: rgba(0, 10, 240, 0.4);
+        }
 
-@media screen and (max-width: 1000px) {
-    .document-title {
-        display: none !important;
-    }
-}
+        @media screen and (max-width: 1000px) {
+            .document-title {
+                display: none !important;
+            }
+        }
 
-div.searchHitList { position:absolute; }
-div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpink; background-color: lightpink; mix-blend-mode: multiply; }
+        div.searchHitList { position:absolute; }
+        div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpink; background-color: lightpink; mix-blend-mode: multiply; }
 
-</style>
+    </style>
 </head>
 
 <body>
 
 <div id="grid-menubar">
-	<div class="menu">
-		<div class="menu-button" onclick="document.getElementById('open-file-input').click()">Open...</div>
-	</div>
+    <div class="menu">
+        <div class="menu-button" onclick="document.getElementById('open-file-input').click()">
+            Open...
+        </div>
+    </div>
 
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
-	</div>
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.toggleOutline()">Outline</div>
-	</div>
+    <div class="menu">
+        <div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
+    </div>
+    <div class="menu">
+        <div class="menu-button" onclick="documentViewer.toggleOutline()">Outline</div>
+    </div>
 
 
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.toggleFullscreen()">[ F ]</div>
-	</div>
+    <div class="menu">
+        <div class="menu-button" onclick="documentViewer.toggleFullscreen()">[ F ]</div>
+    </div>
 
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.zoomOut()">[ - ]</div>
-	</div>
+    <div class="menu">
+        <div class="menu-button" onclick="documentViewer.zoomOut()">[ - ]</div>
+    </div>
 
-	<div class="menu">
-		<div class="menu-button" onclick="documentViewer.zoomIn()">[ + ]</div>
-	</div>
+    <div class="menu">
+        <div class="menu-button" onclick="documentViewer.zoomIn()">[ + ]</div>
+    </div>
 
-	<div class="menu">
-		<div class="menu-button document-title" id="document-title" onclick="documentViewer.toggleOutline()"></div>
-	</div>
+    <div class="menu">
+        <div class="menu-button document-title" id="document-title"
+             onclick="documentViewer.toggleOutline()"></div>
+    </div>
 </div>
 
-<div id="grid-sidebar"><ul id="outline"></ul></div>
+<div id="grid-sidebar">
+    <ul id="outline"></ul>
+</div>
 
 <div id="grid-main" class="sidebarHidden">
-	<div id="pages">
-	</div>
-	<div id="placeholder">
-		<div>
-			Loading, please wait...
-		</div>
-	</div>
+    <div id="pages">
+    </div>
+    <div id="placeholder">
+        <div>
+            Loading, please wait...
+        </div>
+    </div>
 </div>
 
 <div id="search-dialog" class="dialog" style="display:none">
 </div>
 
 <input type="file" id="open-file-input" style="display:none"
-	accept=".fb2,.epub,.cbz,.pdf,application/pdf"
-	onchange="documentViewer.openFile(event.target.files[0])" />
+       accept=".fb2,.epub,.cbz,.pdf,.mobi,.txt,application/pdf"
+       onchange="documentViewer.openFile(event.target.files[0])"/>
 
 </body>
 
 <script src="mupdf-view.js"></script>
 <script src="mupdf-view-page.js"></script>
 <script>
-"use strict";
+    "use strict";
 
-let params = new URLSearchParams(window.location.search);
+    let params = new URLSearchParams(window.location.search);
 
-let documentViewer = new MupdfDocumentViewer(mupdfView)
+    let documentViewer = new MupdfDocumentViewer(mupdfView)
 
-mupdfView.ready
-	.then(function () {
-		if (params.has("file")) {
-			documentViewer.openURL(params.get("file"), params.get("progressive") | 0, params.get("prefetch") | 0);
-		}
-		else {
-			documentViewer.openEmpty();
-		}
-	})
-	.catch(function (error) {
-		documentViewer.showDocumentError("Load", error);
-	});
+    mupdfView.ready
+        .then(function () {
+            if (params.has("file")) {
+                documentViewer.openURL(params.get("file"), params.get("progressive") | 0, params.get("prefetch") | 0);
+            }
+            else {
+                documentViewer.openEmpty();
+            }
+        })
+        .catch(function (error) {
+            documentViewer.showDocumentError("Load", error);
+        });
 
-window.addEventListener("keydown", function (event) {
-	if (event.key === "Escape") {
-		documentViewer.hideSearchBox();
-	}
+    window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            documentViewer.hideSearchBox();
+        }
 
-	if (event.ctrlKey || event.metaKey) {
-		switch (event.keyCode) {
-		// '=' / '+' on various keyboards
-		case 61:
-		case 107:
-		case 187:
-		case 171:
-			documentViewer.zoomIn();
-			event.preventDefault();
-			break;
-		// '-'
-		case 173:
-		case 109:
-		case 189:
-			documentViewer.zoomOut();
-			event.preventDefault();
-			break;
-		// '0'
-		case 48:
-		case 96:
-			documentViewer.setZoom(100);
-			break;
-		case 70: // 'F':
-			event.preventDefault();
-			documentViewer.showSearchBox();
-			break;
-		case 71: // 'G':
-			event.preventDefault();
-			documentViewer.showSearchBox();
-			runSearch(event.shiftKey ? -1 : 1);
-			break;
-		}
-	}
-});
+        if (event.ctrlKey || event.metaKey) {
+            switch (event.keyCode) {
+            // '=' / '+' on various keyboards
+            case 61:
+            case 107:
+            case 187:
+            case 171:
+                documentViewer.zoomIn();
+                event.preventDefault();
+                break;
+            // '-'
+            case 173:
+            case 109:
+            case 189:
+                documentViewer.zoomOut();
+                event.preventDefault();
+                break;
+            // '0'
+            case 48:
+            case 96:
+                documentViewer.setZoom(100);
+                break;
+            case 70: // 'F':
+                event.preventDefault();
+                documentViewer.showSearchBox();
+                break;
+            case 71: // 'G':
+                event.preventDefault();
+                documentViewer.showSearchBox();
+                runSearch(event.shiftKey ? -1 : 1);
+                break;
+            }
+        }
+    });
 
 </script>
 </html>
