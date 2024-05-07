@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 }
 
 
-rootProject.name = "pdfgadgets"
+rootProject.name = "Librera Desktop"
 include("common")
 include("decorated-window")
 include("mupdf")
