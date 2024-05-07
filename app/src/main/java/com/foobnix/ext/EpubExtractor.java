@@ -26,6 +26,7 @@ import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -152,7 +154,27 @@ public class EpubExtractor extends BaseExtractor {
                 continue;
             }
 
-            if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
+            if (nameLow.endsWith(".css")) {
+                InputStreamReader inputStreamReader = new InputStreamReader(zipInputStream);
+                BufferedReader in = new BufferedReader(inputStreamReader);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                PrintWriter writer = new PrintWriter(out);
+                String line;
+                boolean skipInvalidCss = false;
+
+                while ((line = in.readLine()) != null) {
+                    if (!skipInvalidCss && line.indexOf('.', 200) > 0) {
+                        skipInvalidCss = true;
+                    }
+                    writer.println(line);
+                }
+                writer.close();
+
+                LOG.d("Skip skipInvalidCss", name, skipInvalidCss);
+                if (!skipInvalidCss) {
+                    Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(out.toByteArray()));
+                }
+            } else if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
 
                 int count = 0;
                 if (AppState.get().isReferenceMode) {
