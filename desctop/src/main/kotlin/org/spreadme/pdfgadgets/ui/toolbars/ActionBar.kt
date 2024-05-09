@@ -33,7 +33,7 @@ fun ActionBar(
         ActionIcon(Modifier.padding(top = 16.dp), R.Icons.open) {
             FileDialog(
                 parent = applicationViewModel.composeWindow,
-                title = "打开文件",
+                title = "title",
                 exts = arrayListOf("pdf"),
                 onFileOpen = {
                     applicationViewModel.openFile(

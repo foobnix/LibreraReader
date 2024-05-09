@@ -10,8 +10,7 @@ import org.spreadme.pdfgadgets.repository.FileMetadataParser
 import org.spreadme.pdfgadgets.repository.FileMetadataRepository
 import java.io.File
 
-class RecentFileViewModel(
-    private val fileMetadataRepository: FileMetadataRepository
+class SearchFilesViewModel(
 ) : ViewModel() {
     private val logger = KotlinLogging.logger { }
 
@@ -20,21 +19,36 @@ class RecentFileViewModel(
     fun load() {
         viewModelScope.launch {
             fileMetadatas.clear()
-            fileMetadatas.addAll(fileMetadataRepository.query())
+            //fileMetadatas.addAll(fileMetadataRepository.query())
+            var root =
+                File("/Users/dev/Library/CloudStorage/Dropbox/Projects/BookTestingDB/UserBooks")
+
+            logger.debug("add root can read " + root.canRead())
+            logger.debug("add root " + root.listFiles().size)
+            root.listFiles().forEach {
+                if (it.name.endsWith(".pdf")
+                    || it.name.endsWith(".epub")
+                ) {
+                    logger.debug("add file " + it.name)
+                    fileMetadatas.add(FileMetadataParser().parse(it.toPath()))
+
+                }
+                if (fileMetadatas.size > 10) {
+                    return@forEach
+                }
+            }
         }
     }
 
     fun delete(fileMetadata: FileMetadata) {
         fileMetadatas.remove(fileMetadata)
         viewModelScope.launch {
-            fileMetadataRepository.deleteByPath(fileMetadata.path())
         }
     }
 
     fun reacquire() {
         fileMetadatas.clear()
         viewModelScope.launch {
-            fileMetadatas.addAll(fileMetadataRepository.query())
         }
     }
 

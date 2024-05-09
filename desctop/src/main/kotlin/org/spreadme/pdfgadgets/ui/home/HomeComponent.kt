@@ -3,6 +3,7 @@ package org.spreadme.pdfgadgets.ui.home
 import org.spreadme.pdfgadgets.ui.frame.AppFrameLoadProgress
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import mu.KotlinLogging
@@ -15,7 +16,7 @@ import org.spreadme.pdfgadgets.ui.frame.MainApplicationFrame
 
 class HomeComponent(
     private val applicationViewModel: ApplicationViewModel
-) : AppComponent("PDF Structure View") {
+) : AppComponent("Library") {
 
     private val logger = KotlinLogging.logger {}
 
@@ -23,6 +24,7 @@ class HomeComponent(
 
     private val loadProgressViewModel = getViewModel<LoadProgressViewModel>()
     private val recentFileViewModel = getViewModel<RecentFileViewModel>(fileMetadataRepository)
+    private val searchFilesViewModel = getViewModel<SearchFilesViewModel>()
 
     @Composable
     override fun onRender() {
@@ -35,9 +37,11 @@ class HomeComponent(
 
         MainApplicationFrame {
             logger.info("home component【${uid}】rendered")
+
             Column(Modifier.fillMaxSize()) {
-                recentFileViewModel.load()
-                RecentFiles(recentFileViewModel) {
+                searchFilesViewModel.load()
+
+                SearchFiles(searchFilesViewModel) {
                     applicationViewModel.openFile(
                         it.path(),
                         progressState

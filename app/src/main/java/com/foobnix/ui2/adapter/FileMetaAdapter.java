@@ -818,9 +818,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             IMG.updateImageSizeBig(holder.imageParent, sizeDP);
 
             LayoutParams lp = holder.image.getLayoutParams();
-            lp.width = Dips.dpToPx(sizeDP);
+
 
             if (AppState.get().isCropBookCovers) {
+                lp.width = Dips.dpToPx(sizeDP);
                 lp.height = (int) (lp.width * IMG.WIDTH_DK);
             } else {
                 lp.width = LayoutParams.WRAP_CONTENT;
@@ -834,11 +835,15 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             IMG.updateImageSizeSmall(holder.imageParent);
 
             LayoutParams lp = holder.image.getLayoutParams();
-            lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
+
             if (AppState.get().isCropBookCovers) {
+                lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
                 lp.height = (int) (lp.width * IMG.WIDTH_DK);
+
             } else {
+                lp.width = LayoutParams.WRAP_CONTENT;
                 lp.height = LayoutParams.WRAP_CONTENT;
+
             }
         }
         if (holder.date != null) {

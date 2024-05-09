@@ -23,6 +23,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.materialIconsExtended)
+    //implementation("androidx.compose.material3:material3:1.2.1")
 
     // Module dependencies
     implementation(project(":common"))
@@ -48,9 +49,13 @@ dependencies {
 
     testImplementation(kotlin("test-junit"))
     testImplementation("io.insert-koin:koin-test:3.5.3")
-
-  //  implementation(file("build/libs/libmupdf_java64.jnilib"))
 }
+
+
+tasks.register<Exec>("mupdf") {
+    commandLine("sh", "build-mupdf.sh")
+}
+
 
 tasks.test {
     useJUnit()
