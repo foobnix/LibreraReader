@@ -851,6 +851,12 @@
             android:layout_height="wrap_content"
             android:text="@string/opening_the_last_book_when_the_application_starts" />
 
+         <CheckBox
+            android:id="@+id/isAlwaysOpenOnPage1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_books_on_page_1" />
+
         <CheckBox
             android:id="@+id/isRestoreSearchQuery"
             android:layout_width="wrap_content"
@@ -896,6 +902,7 @@
 
         <CheckBox
             android:id="@+id/isDisplayAllFilesInFolder"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -904,6 +911,7 @@
 
         <CheckBox
             android:id="@+id/isShowWhatIsNewDialog"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

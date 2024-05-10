@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">A hirdetések adatvédelmi beállításait</string>
    <string name="allow_other_music_to_play">Engedélyezze más zenék lejátszását</string>
    <string name="enable_image_scale">Képméretezés engedélyezése</string>
+   <string name="open_books_on_page_1">Nyitott könyvek az 1. oldalon</string>
 </resources>

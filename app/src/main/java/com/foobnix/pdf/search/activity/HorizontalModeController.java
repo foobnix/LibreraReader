@@ -153,6 +153,9 @@ public abstract class HorizontalModeController extends DocumentController {
         } else if (pagesCount > 0) {
             currentPage = bs.getCurrentPage(getPageCount()).viewIndex;
         }
+        if(AppState.get().isAlwaysOpenOnPage1){
+            currentPage = 0;
+        }
 
         if (false) {
             PageImageState.get().needAutoFit = true;

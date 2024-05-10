@@ -52,23 +52,19 @@ public abstract class AbstractViewController extends AbstractComponentController
     public final DocumentModel model;
 
     public final DocumentViewMode mode;
-
+    protected final AtomicBoolean inZoom = new AtomicBoolean();
+    protected final AtomicBoolean inQuickZoom = new AtomicBoolean();
     protected volatile boolean isInitialized = false;
-
     protected boolean isShown = false;
 
-    protected final AtomicBoolean inZoom = new AtomicBoolean();
-
-    protected final AtomicBoolean inQuickZoom = new AtomicBoolean();
-
     //protected final PageIndex pageToGo;
-
     protected int firstVisiblePage;
 
     protected int lastVisiblePage;
 
     protected boolean layoutLocked;
-
+    float xLong;
+    float yLong;
     private List<IGestureDetector> detectors;
 
     public AbstractViewController(final IActivityController base, final DocumentViewMode mode) {
@@ -166,6 +162,11 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             PageIndex currentPage = bs.getCurrentPage(getBase().getDocumentModel().getPageCount());
             int toPage = currentPage != null ? currentPage.docIndex : 0;
+
+            if (AppState.get().isAlwaysOpenOnPage1) {
+                toPage = 0;
+            }
+
 
             goToPage(toPage, bs.x, bs.y);
 
@@ -352,10 +353,6 @@ public abstract class AbstractViewController extends AbstractComponentController
     public final void redrawView(final ViewState viewState) {
         getView().redrawView(viewState);
     }
-
-
-    float xLong;
-    float yLong;
 
     @Override
     public void clearSelectedText() {

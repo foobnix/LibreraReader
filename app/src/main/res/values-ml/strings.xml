@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">പരസ്യ സ്വകാര്യതാ ക്രമീകരണങ്ങൾ</string>
    <string name="allow_other_music_to_play">മറ്റ് സംഗീതം പ്ലേ ചെയ്യാൻ അനുവദിക്കുക</string>
    <string name="enable_image_scale">ഇമേജ് സ്കെയിൽ പ്രാപ്തമാക്കുക</string>
+   <string name="open_books_on_page_1">പേജ് 1-ൽ പുസ്തകങ്ങൾ തുറക്കുക</string>
 </resources>

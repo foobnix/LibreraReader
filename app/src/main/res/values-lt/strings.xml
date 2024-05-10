@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">Skelbimų privatumo nustatymai</string>
    <string name="allow_other_music_to_play">Leisti groti kitai muzikai</string>
    <string name="enable_image_scale">Įjungti vaizdo mastelį</string>
+   <string name="open_books_on_page_1">Atidaryti knygas 1 puslapyje</string>
 </resources>

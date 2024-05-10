@@ -1677,6 +1677,12 @@ public class PrefFragment2 extends UIFragment {
             AppState.get().isDisplayAllFilesInFolder = isChecked;
             TempHolder.listHash++;
         });
+
+              CheckBox isAlwaysOpenOnPage1 = inflate.findViewById(R.id.isAlwaysOpenOnPage1);
+        isAlwaysOpenOnPage1.setChecked(AppState.get().isAlwaysOpenOnPage1);
+        isAlwaysOpenOnPage1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            AppState.get().isAlwaysOpenOnPage1 = isChecked;
+        });
         // app password
         final CheckBox isAppPassword = inflate.findViewById(R.id.isAppPassword);
         isAppPassword.setChecked(PasswordState.get().hasPassword() && AppState.get().isAppPassword);

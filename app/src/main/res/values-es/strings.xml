@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">Configuración de privacidad de anuncios</string>
    <string name="allow_other_music_to_play">Permitir que se reproduzca otra música</string>
    <string name="enable_image_scale">Habilitar escala de imagen</string>
+   <string name="open_books_on_page_1">Libros abiertos en la página 1</string>
 </resources>

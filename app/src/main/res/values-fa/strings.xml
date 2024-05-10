@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">تنظیمات حریم خصوصی تبلیغات</string>
    <string name="allow_other_music_to_play">اجازه پخش موسیقی دیگر را بدهید</string>
    <string name="enable_image_scale">مقیاس تصویر را فعال کنید</string>
+   <string name="open_books_on_page_1">باز کردن کتابها در صفحه 1</string>
 </resources>

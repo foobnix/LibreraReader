@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">Настройки конфиденциальности рекламы</string>
    <string name="allow_other_music_to_play">Разрешить воспроизведение другой музыки</string>
    <string name="enable_image_scale">Включить масштаб изображения</string>
+   <string name="open_books_on_page_1">Открыть книги на странице 1</string>
 </resources>

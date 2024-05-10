@@ -664,4 +664,5 @@
    <string name="ad_privacy_settings">Annonssekretessinställningar</string>
    <string name="allow_other_music_to_play">Låta annan musik spelas</string>
    <string name="enable_image_scale">Aktivera bildskala</string>
+   <string name="open_books_on_page_1">Öppna böcker på sidan 1</string>
 </resources>
