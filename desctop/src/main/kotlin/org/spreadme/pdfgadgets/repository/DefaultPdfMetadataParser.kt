@@ -16,6 +16,7 @@ class DefaultPdfMetadataParser : PdfMetadataParser, KoinComponent {
             readerProperties.setPassword(it)
         }
         val document = PdfDocument(PdfReader(fileMetadata.file().absolutePath, readerProperties))
+
         val numberOfPages = document.numberOfPages
         val documentInfo = DocumentInfo(document.pdfVersion.toString(), document.documentInfo)
 

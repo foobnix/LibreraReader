@@ -15,21 +15,23 @@ class FileMetadataRepository {
     suspend fun save(fileMetadata: FileMetadata) {
         withContext(Dispatchers.IO) {
             transaction {
-                val ids = FileMetadatas.select { (FileMetadatas.path.eq(fileMetadata.path)) }
-                    .map { it[FileMetadatas.id] }
-                    .toList()
-                if (ids.isNotEmpty()) {
-                    FileMetadatas.deleteWhere { (FileMetadatas.id.inList(ids)) }
-                }
-                FileMetadatas.insert {
-                    it[uid] = fileMetadata.uid
-                    it[path] = fileMetadata.path
-                    it[name] = fileMetadata.name
-                    it[thumbnail] = fileMetadata.thumbnail
-                    it[length] = fileMetadata.length
-                    it[openTime] = fileMetadata.openTime.toInstant().atZone(ZoneId.systemDefault())
-                        .toLocalDateTime()
-                }
+//                val ids = FileMetadatas.select { (FileMetadatas.path.eq(fileMetadata.path)) }
+//                    .map { it[FileMetadatas.id] }
+//                    .toList()
+//                if (ids.isNotEmpty()) {
+//                    FileMetadatas.deleteWhere { (FileMetadatas.id.inList(ids)) }
+//                }
+                FileMetadatas.insertOrUpdate(fileMetadata)
+
+//                FileMetadatas.insert {
+//                    it[uid] = fileMetadata.uid
+//                    it[path] = fileMetadata.path
+//                    it[name] = fileMetadata.name
+//                    it[thumbnail] = fileMetadata.thumbnail
+//                    it[length] = fileMetadata.length
+//                    it[openTime] = fileMetadata.openTime.toInstant().atZone(ZoneId.systemDefault())
+//                        .toLocalDateTime()
+//                }
             }
         }
     }

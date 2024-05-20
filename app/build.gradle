@@ -335,7 +335,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:23.0.0"
+    def google_ads = "com.google.android.gms:play-services-ads:23.1.0"
     libreraImplementation google_ads
     pdf_v2Implementation google_ads
     ebookaImplementation google_ads

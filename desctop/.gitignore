@@ -40,3 +40,5 @@ bin/
 
 hs_err_*
 hs_err_**
+
+LOG_*

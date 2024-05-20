@@ -15,6 +15,7 @@ import org.spreadme.pdfgadgets.common.AppComponent
 import org.spreadme.pdfgadgets.common.ViewModel
 import org.spreadme.pdfgadgets.common.viewModelScope
 import org.spreadme.pdfgadgets.config.AppConfig
+import org.spreadme.pdfgadgets.model.FileMetadata
 import org.spreadme.pdfgadgets.model.OpenProperties
 import org.spreadme.pdfgadgets.model.PdfMetadata
 import org.spreadme.pdfgadgets.repository.AppConfigRepository
@@ -91,7 +92,8 @@ class ApplicationViewModel(
 
     fun calculateTabWidth(): Float {
         var tabWidth = 168f
-        val windowWidth = windowState.size.width.value - (tabbarPaddingStart + tabbarPaddingEnd + addIconSize)
+        val windowWidth =
+            windowState.size.width.value - (tabbarPaddingStart + tabbarPaddingEnd + addIconSize)
         if ((components.size + 1) * tabWidth > windowWidth) {
             tabWidth = (windowWidth / (components.size + 1))
         }
