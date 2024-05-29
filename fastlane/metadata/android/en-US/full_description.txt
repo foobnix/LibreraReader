@@ -35,6 +35,8 @@ is the absence of Google Play services and Google Drive book synchronization in 
 * Movable bookmarks, w/ a floating indicator
 * And a whole bunch of other features for you to check out.
 
+You can read books in your web browser with the Librera Book Reader
+https://librera.mobi/online-book-reader/
 
 The best way to fully appreciate Librera Reader, however,
 is to use our restriction-free Librera PRO version from Google Play.
