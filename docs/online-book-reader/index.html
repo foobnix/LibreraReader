@@ -224,10 +224,10 @@
     </div>
 
     <div class="menu">
-        <div class="menu-button" onclick="documentViewer.showSearchBox()">Search</div>
+        <div class="menu-button" onclick="documentViewer.showSearchBox()">[ S ]</div>
     </div>
     <div class="menu">
-        <div class="menu-button" onclick="documentViewer.toggleOutline()">Outline</div>
+        <div class="menu-button" onclick="documentViewer.toggleOutline()">[ O ]</div>
     </div>
 
 
@@ -286,6 +286,20 @@
 <script src="mupdf-view-page.js"></script>
 <script>
     "use strict";
+
+    var height = window.innerHeight;
+    var width = window.innerWidth;
+    //alert(height+"x"+width);
+
+    if(width >height){
+        width = height*0.75*0.75
+    }else {
+        width = width*0.75
+    }
+
+    document.getElementById("document-width").value=Math.round(width);
+    document.getElementById("document-height").value=Math.round(height*0.70);
+
 
     let params = new URLSearchParams(window.location.search);
 
