@@ -99,6 +99,9 @@ workerMethods.documentOutline = function () {
 workerMethods.countPages = function () {
 	return openDocument.countPages()
 }
+workerMethods.layout = function (w, h, em) {
+	return openDocument.layout(w, h, em)
+}
 
 // TODO - use hungarian notation for coord spaces
 // TODO - document the "- 1" better

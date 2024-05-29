@@ -449,6 +449,11 @@ class MupdfDocumentHandler {
 
 		const handler = new MupdfDocumentHandler()
 
+
+
+
+        await mupdfWorker.layout(viewerDivs.documentWidth.value, viewerDivs.documentHeight.value, viewerDivs.documentFontSize.value)
+
 		const pageCount = await mupdfWorker.countPages()
 		const title = await mupdfWorker.documentTitle()
 		
@@ -770,10 +775,14 @@ class MupdfDocumentViewer {
 			searchDialogDiv: document.getElementById("search-dialog"),
 			outlineNode: document.getElementById("outline"),
 			searchStatusDiv: document.getElementById("search-status"),
+			documentFontSize: document.getElementById("document-font-size"),
+			documentWidth: document.getElementById("document-width"),
+			documentHeight: document.getElementById("document-height"),
 		}
 	}
 
 	async openFile(file) {
+
 		try {
 			if (!(file instanceof File)) {
 				throw new Error(`Argument '${file}' is not a file`)
@@ -845,7 +854,7 @@ class MupdfDocumentViewer {
 
 		// Change tab title
 		//document.title = this.documentHandler.title || docName
-		document.getElementById("document-title").textContent = docName
+		//document.getElementById("document-title").textContent = docName
 	}
 
 	showDocumentError(functionName, error) {

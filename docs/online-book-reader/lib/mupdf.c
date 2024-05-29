@@ -86,6 +86,12 @@ void wasm_free(void *p)
 	fz_free(ctx, p);
 }
 
+EXPORT
+void wasm_set_user_css(char *text)
+{
+	VOID(fz_set_user_css, text)
+}
+
 // --- REFERENCE COUNTING ---
 
 #define KEEP_(WNAME,FNAME) EXPORT void * WNAME(void *p) { return FNAME(ctx, p); }

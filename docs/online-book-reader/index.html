@@ -207,6 +207,9 @@
         div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpink; background-color: lightpink; mix-blend-mode: multiply; }
 
     </style>
+    <script>
+        let fileName = ""
+    </script>
 </head>
 
 <body>
@@ -239,8 +242,18 @@
     </div>
 
     <div class="menu">
-        <div class="menu-button document-title" id="document-title"
+        <div class="menu-button document-title" id="document-title1"
              onclick="documentViewer.toggleOutline()"></div>
+    </div>
+
+    <div class="menu">
+        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-font-size" size="2" value="16" style="height:20px;margin-top:4px;"/>
+    </div>
+    <div class="menu">
+        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-width" size="3" value="500" style="height:20px;margin-top:4px;"/>
+    </div>
+      <div class="menu">
+        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-height" size="3" value="700" style="height:20px;margin-top:4px;"/>
     </div>
 </div>
 
@@ -263,7 +276,7 @@
 
 <input type="file" id="open-file-input" style="display:none"
        accept=".fb2,.epub,.cbz,.pdf,.mobi,.txt,application/pdf"
-       onchange="documentViewer.openFile(event.target.files[0])"/>
+       oninput="fileName=event.target.files[0]; documentViewer.openFile(fileName);"/>
 
 </body>
 

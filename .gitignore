@@ -24,3 +24,5 @@
 /Builder/mupdf-1.22.2/
 /Builder/Gemfile
 /Builder/Gemfile.lock
+/multiplatform
+.vscode
