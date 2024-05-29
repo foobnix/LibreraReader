@@ -1302,7 +1302,9 @@ class Document extends Userdata {
 
 		let pointer = 0
 
-		libmupdf._wasm_set_user_css(STRING("@page{margin:2em !important;}"))
+		libmupdf._wasm_set_user_css(STRING(
+		"@page{margin:1.5em !important;} body{display:block; padding:0 !important; margin:0 !important;}"
+		))
 
 		if (from instanceof ArrayBuffer || from instanceof Uint8Array)
 			from = new Buffer(from)
