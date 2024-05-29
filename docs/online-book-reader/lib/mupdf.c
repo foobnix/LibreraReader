@@ -86,11 +86,7 @@ void wasm_free(void *p)
 	fz_free(ctx, p);
 }
 
-EXPORT
-void wasm_set_user_css(char *text)
-{
-	VOID(fz_set_user_css, text)
-}
+
 
 // --- REFERENCE COUNTING ---
 
@@ -755,6 +751,13 @@ int wasm_search_stext_page(fz_stext_page *text, char *needle, int *marks, fz_qua
 }
 
 // --- Document ---
+
+EXPORT
+void wasm_set_user_css(char *text)
+{
+  VOID(fz_set_use_document_css, 1)
+  VOID(fz_set_user_css, text)
+}
 
 EXPORT
 fz_document * wasm_open_document_with_buffer(char *magic, fz_buffer *buffer)
