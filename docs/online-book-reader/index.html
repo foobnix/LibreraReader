@@ -210,14 +210,44 @@
     <script>
         let fileName = ""
 
+        let isShow = 1
+
+        function hide (elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'none';
+  }
+}
+function show (elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'block';
+  }
+}
+        function showHide(){
+            if(isShow){
+                hide(document.getElementById('grid-menubar'))
+                isShow = 0;
+            }else{
+               show(document.getElementById('grid-menubar'))
+               isShow = 1;
+            }
+
+
+        }
+
 
     </script>
 </head>
 
 <body>
 
+<p style="z-index:5; position:fixed; top:-10px; left:0;" onclick="showHide()">
+    	&hArr;
+</p>
+
 <div id="grid-menubar">
-    <div class="menu">
+    <div style="margin-left:20px;" class="menu">
         <div class="menu-button" onclick="document.getElementById('open-file-input').click()">
             Open...
         </div>
@@ -232,18 +262,23 @@
     </div>
 
     <div class="menu">
-        <input min="1" max="100"  onchange="if(fileName) documentViewer.openFile(fileName);" type="number" id="document-font-size" size="2" value="14" style="height:20px;margin-top:4px;"/>
+        <input min="1" max="100" onchange="if(fileName) documentViewer.openFile(fileName);"
+               type="number" id="document-font-size" size="2" value="14"
+               style="height:20px;margin-top:4px;"/>
     </div>
 
     <div class="menu">
-        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-width" size="3" value="500" style="height:20px;margin-top:4px;"/>
+        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text"
+               id="document-width" size="3" value="500" style="height:20px;margin-top:4px;"/>
     </div>
-      <div class="menu">
-        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-height" size="3" value="650" style="height:20px;margin-top:4px;"/>
+    <div class="menu">
+        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text"
+               id="document-height" size="3" value="650" style="height:20px;margin-top:4px;"/>
     </div>
 
 
 </div>
+
 
 <div id="grid-sidebar">
     <ul id="outline"></ul>
