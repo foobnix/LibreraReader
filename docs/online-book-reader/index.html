@@ -231,29 +231,18 @@
         <div class="menu-button" onclick="documentViewer.showSearchBox()">[ S ]</div>
     </div>
 
-
     <div class="menu">
-        <div class="menu-button" onclick="documentViewer.zoomOut()">[ - ]</div>
+        <input min="1" max="100"  onchange="if(fileName) documentViewer.openFile(fileName);" type="number" id="document-font-size" size="2" value="14" style="height:20px;margin-top:4px;"/>
     </div>
 
-    <div class="menu">
-        <div class="menu-button" onclick="documentViewer.zoomIn()">[ + ]</div>
-    </div>
-
-    <div class="menu">
-        <div class="menu-button document-title" id="document-title1"
-             onclick="documentViewer.toggleOutline()"></div>
-    </div>
-
-    <div class="menu">
-        <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-font-size" size="2" value="14" style="height:20px;margin-top:4px;"/>
-    </div>
     <div class="menu">
         <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-width" size="3" value="500" style="height:20px;margin-top:4px;"/>
     </div>
       <div class="menu">
         <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text" id="document-height" size="3" value="650" style="height:20px;margin-top:4px;"/>
     </div>
+
+
 </div>
 
 <div id="grid-sidebar">
