@@ -4,6 +4,7 @@ import android.graphics.RectF;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -14,7 +15,9 @@ import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.droids.EpubContext;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -99,7 +102,13 @@ public class MuPdfDocument extends AbstractCodecDocument {
             // int allocatedMemory = CoreSettings.get().pdfStorageSize;
             LOG.d("allocatedMemory", AppState.get().allocatedMemorySize, " MB " + allocatedMemory);
             int isImageScale = AppState.get().enableImageScale ? 1 : 0;
-            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, fname + "+accel", isImageScale);
+
+            LOG.d("accel cache1", fname);
+            String accel = new EpubContext().getCacheFileName(fname).getPath() + "+accel";
+            accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
+            LOG.d("accel cache2", accel, new File(accel).exists());
+
+            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, accel, isImageScale);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("TEST", "Open document isImageScale ", isImageScale);
