@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.24.1"
+VERSION_TAG="1.24.6"
 MUPDF_FOLDER=mupdf-$VERSION_TAG
 
 if [ "$1" == "fdroid" ]; then
@@ -107,7 +107,7 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 cd $MUPDF_JAVA
 
 
-NDK_VERSION="27.0.11718014"
+NDK_VERSION="27.0.12077973"
 FDRIOD_NDK_VERSION="21.4.7075529"
 if [ "$(uname)" == "Darwin" ]; then
   FDRIOD_NDK_VERSION=$NDK_VERSION
