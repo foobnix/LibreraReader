@@ -833,6 +833,8 @@ struct fz_context
 	fz_colorspace_context *colorspace;
 	fz_store *store;
 	fz_glyph_cache *glyph_cache;
+	float image_scale;
+    int is_image_scale;
 };
 
 fz_context *fz_new_context_imp(const fz_alloc_context *alloc, const fz_locks_context *locks, size_t max_store, const char *version);

@@ -73,6 +73,8 @@ LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(OPENJPEG_CFLAG
 
 ifdef USE_TESSERACT
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(TESSERACT_CFLAGS)))
+endif
+ifdef USE_LEPTONICA
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(LEPTONICA_CFLAGS)))
 endif
 
@@ -88,8 +90,11 @@ LOCAL_CFLAGS += $(filter-out -I%,$(MUJS_CFLAGS))
 LOCAL_CFLAGS += $(filter-out -I%,$(OPENJPEG_CFLAGS))
 
 ifdef USE_TESSERACT
-LOCAL_CFLAGS += -DHAVE_LEPTONICA -DHAVE_TESSERACT
+LOCAL_CFLAGS += -DHAVE_TESSERACT
 LOCAL_CFLAGS += $(filter-out -I%,$(TESSERACT_CFLAGS))
+endif
+ifdef USE_LEPTONICA
+LOCAL_CFLAGS += -DHAVE_LEPTONICA
 LOCAL_CFLAGS += $(filter-out -I%,$(LEPTONICA_CFLAGS))
 endif
 
@@ -259,7 +264,9 @@ LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 
 LOCAL_MODULE += mupdf_thirdparty_leptonica
+LOCAL_C_INCLUDES := $(MUPDF_PATH)/include
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(LEPTONICA_SRC))
+LOCAL_SRC_FILES += $(MUPDF_PATH)/source/fitz/leptonica-wrap.c
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(LEPTONICA_CFLAGS) $(LEPTONICA_BUILD_CFLAGS)))
 LOCAL_CFLAGS += $(filter-out -I%,$(LEPTONICA_CFLAGS) $(LEPTONICA_BUILD_CFLAGS))
 LOCAL_CFLAGS += -Wno-sign-compare -DANDROID_BUILD
@@ -318,15 +325,14 @@ LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_libjpeg
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_mujs
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_openjpeg
 
-
-ifdef USE_TESSERACT
+ifdef USE_LEPTONICA
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_leptonica
+endif
+ifdef USE_TESSERACT
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_tesseract
 endif
 
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_extract
-
-
 
 LOCAL_LDLIBS += $(MUPDF_EXTRA_LDLIBS)
 LOCAL_LDLIBS += -ljnigraphics

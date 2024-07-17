@@ -4,8 +4,9 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(MUPDF_ROOT "mupdf-1.23.7")
-set(JAVA_HOME "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home")
+set(MUPDF_ROOT "mupdf-1.24.6")
+set(JAVA_HOME1 "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home")
+set(JAVA_HOME "/usr/lib/jvm/java-21-openjdk-amd64")
 
 project("mupdf")
 
@@ -632,6 +633,7 @@ target_include_directories(mupdf PUBLIC
         "${MUPDF_ROOT}/platform/java/jni"
         "${JAVA_HOME}/include"
         "${JAVA_HOME}/include/darwin"
+        "${JAVA_HOME}/include/linux"
         #  "/opt/homebrew/Cellar/openssl@3/3.2.1/include"
 )
 target_compile_definitions(mupdf PUBLIC

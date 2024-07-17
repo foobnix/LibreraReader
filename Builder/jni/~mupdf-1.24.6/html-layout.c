@@ -1806,6 +1806,15 @@ fz_layout_html(fz_context *ctx, fz_html *html, float w, float h, float em)
 #endif
 }
 
+const fz_stroke_state librera_stroke_state = {
+	-2, /* -2 is the magic number we use when we have stroke states stored on the stack */
+	FZ_LINECAP_BUTT, FZ_LINECAP_BUTT, FZ_LINECAP_BUTT,
+	FZ_LINEJOIN_MITER,
+	3, 10,
+	0, 0, { 0 }
+};
+
+
 /* === DRAW === */
 
 static int draw_flow_box(fz_context *ctx, fz_html_box *box, float page_top, float page_bot, fz_device *dev, fz_matrix ctm, hb_buffer_t *hb_buf, fz_html_restarter *restart)
@@ -1899,13 +1908,13 @@ static int draw_flow_box(fz_context *ctx, fz_html_box *box, float page_top, floa
 						line = fz_new_path(ctx);
 					if (style->text_decoration & TD_UNDERLINE)
 					{
-						fz_moveto(ctx, line, node->x, node->y + 1.5f - page_top);
-						fz_lineto(ctx, line, node->x + node->w, node->y + 1.5f - page_top);
+						fz_moveto(ctx, line, node->x, node->y + 6.0f - page_top);
+						fz_lineto(ctx, line, node->x + node->w, node->y + 6.0f - page_top);
 					}
 					if (style->text_decoration & TD_LINE_THROUGH)
 					{
-						fz_moveto(ctx, line, node->x, node->y - em * 0.3f - page_top);
-						fz_lineto(ctx, line, node->x + node->w, node->y - em * 0.3f - page_top);
+						fz_moveto(ctx, line, node->x, node->y - em * 0.25f - page_top);
+						fz_lineto(ctx, line, node->x + node->w, node->y - em * 0.25f - page_top);
 					}
 				}
 
@@ -2010,7 +2019,7 @@ static int draw_flow_box(fz_context *ctx, fz_html_box *box, float page_top, floa
 
 		if (line)
 		{
-			fz_stroke_path(ctx, dev, line, &fz_default_stroke_state, ctm, fz_device_rgb(ctx), color, 1, fz_default_color_params);
+            fz_stroke_path(ctx, dev, line, &librera_stroke_state, ctm, fz_device_rgb(ctx), color, 10, fz_default_color_params);
 			fz_drop_path(ctx, line);
 			line = NULL;
 		}

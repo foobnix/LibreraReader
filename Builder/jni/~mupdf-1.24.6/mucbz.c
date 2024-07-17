@@ -49,6 +49,7 @@ static const char *cbz_ext_list[] = {
 	".tif",
 	".tiff",
 	".wdp",
+	".webp",
 	NULL
 };
 
@@ -128,6 +129,12 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 	for (i = 0; i < count; i++)
 	{
 		const char *name = fz_list_archive_entry(ctx, arch, i);
+
+		if (name[0]=='.' || strstr(name, "/.") != NULL) {
+		    //skip hidden files
+            continue;
+        }
+
 		const char *ext = name ? strrchr(name, '.') : NULL;
 		for (k = 0; cbz_ext_list[k]; k++)
 		{
@@ -140,6 +147,52 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 	}
 
 	qsort((char **)doc->page, doc->page_count, sizeof *doc->page, cbz_compare_page_names);
+}
+
+static void
+cbz_create_page_list_dir(fz_context *ctx, cbz_document *doc, char *ldir)
+{
+	fz_archive *arch = doc->arch;
+	int i, k, count;
+
+
+	fz_buffer *buf;
+	fz_xml *container_xml;
+
+	buf = fz_read_archive_entry(ctx, arch, ldir);
+	container_xml = fz_xml_root(fz_parse_xml(ctx, buf, 0));
+	fz_drop_buffer(ctx, buf);
+
+
+	fz_xml *container;
+	container = fz_xml_find(container_xml, "container");
+
+	const char *version;
+	version = fz_xml_att(container, "count");
+
+
+	count = fz_atoi(version);
+
+	fz_xml *itemref;
+	itemref = fz_xml_find_down(container_xml, "item");
+
+
+
+	doc->page_count = 0;
+	doc->page = fz_malloc_array(ctx, count, const char *);
+
+
+	while (itemref)
+	{
+		const char *path;
+		path = fz_xml_att(itemref, "path");
+
+		doc->page[doc->page_count++] = path;
+
+		itemref = fz_xml_find_next(itemref, "item");
+
+	}
+
 }
 
 static void
@@ -310,6 +363,7 @@ static const char *cbz_extensions[] =
 	"cbz",
 	"tar",
 	"zip",
+	"ldir",
 	NULL
 };
 
