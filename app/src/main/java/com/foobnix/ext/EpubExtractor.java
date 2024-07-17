@@ -154,7 +154,7 @@ public class EpubExtractor extends BaseExtractor {
                 continue;
             }
 
-            if (nameLow.endsWith(".css")) {
+            if (false && nameLow.endsWith(".css")) {
                 InputStreamReader inputStreamReader = new InputStreamReader(zipInputStream);
                 BufferedReader in = new BufferedReader(inputStreamReader);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
