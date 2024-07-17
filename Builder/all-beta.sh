@@ -16,7 +16,7 @@ fi
 
 
 
-./link_to_mupdf_1.23.7.sh fdroid
+./link_to_mupdf_1.24.6.sh fdroid
 cd ../
 
 
@@ -27,7 +27,7 @@ cd ../
 ####################################
 
 cd Builder
-./link_to_mupdf_1.23.7.sh
+./link_to_mupdf_1.24.6.sh
 cd ../
 
 ./gradlew assembleProRelease
