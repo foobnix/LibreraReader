@@ -13,7 +13,7 @@ if [ "$1" == "fdroid" ]; then
   MUPDF_FOLDER=$MUPDF_FOLDER-fdroid
 fi
 
-git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
+git clone --recursive https://github.com/ArtifexSoftware/mupdf.git --branch $VERSION_TAG --single-branch $MUPDF_FOLDER
 
 MUPDF_ROOT=$BUILD_DIR/$MUPDF_FOLDER
 

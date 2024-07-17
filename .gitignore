@@ -26,3 +26,4 @@
 /Builder/Gemfile.lock
 /multiplatform
 .vscode
+/epub/build/
