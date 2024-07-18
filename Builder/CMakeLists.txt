@@ -4,7 +4,7 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(MUPDF_ROOT "mupdf-1.24.6")
+set(MUPDF_ROOT "mupdf-1.23.7")
 set(JAVA_HOME1 "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home")
 set(JAVA_HOME "/usr/lib/jvm/java-21-openjdk-amd64")
 
