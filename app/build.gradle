@@ -297,7 +297,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.17.2'//bug in 1.17.1
+    implementation 'org.jsoup:jsoup:1.18.1'//bug in 1.17.1
 
     implementation 'com.github.albfernandez:juniversalchardet:2.5.0'
 
@@ -321,7 +321,7 @@ dependencies {
 
 
     implementation "androidx.work:work-runtime:2.9.0"
-    implementation "com.google.guava:guava:32.1.3-android"
+    implementation 'com.google.guava:guava:33.2.1-android'
 
     //implementation "it.unimi.dsi:fastutil-core:8.5.12"
 
@@ -335,7 +335,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:23.1.0"
+    def google_ads = "com.google.android.gms:play-services-ads:23.2.0"
     libreraImplementation google_ads
     pdf_v2Implementation google_ads
     ebookaImplementation google_ads
@@ -343,7 +343,7 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
 
-    def messaging_ads = "com.google.android.ump:user-messaging-platform:2.2.0"
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.0.0"
     libreraImplementation messaging_ads
     pdf_v2Implementation messaging_ads
     ebookaImplementation messaging_ads
@@ -354,7 +354,7 @@ dependencies {
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:runner:1.6.1'
     //androidTestImplementation 'androidx.test:core:1.5.2'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

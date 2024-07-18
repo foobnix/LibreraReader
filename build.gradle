@@ -9,7 +9,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'com.android.tools.build:gradle:8.5.1'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
     }
 }
@@ -22,9 +22,9 @@ allprojects {
     }
 }
 project.ext {
-    targetSdk = 34
+    targetSdk = 35
     minSdk = 21
-    compileSdk = 34
+    compileSdk = 35
    // compose_ui_version = '1.5.3'
 }
 
