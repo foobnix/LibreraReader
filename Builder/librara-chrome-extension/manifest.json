@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Epub Reader Librera",
-  "version": "1.0",
-  "description": "Open librera.mobi Epub Reader",
+  "name": "Epub Reader - Librera Reader",
+  "version": "1.1",
+  "description": "Book Reader: EPUB, PDF, CBZ, FB2",
   "permissions": ["tabs"],
   "background": {
     "service_worker": "background.js"

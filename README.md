@@ -29,6 +29,10 @@ and OPDS Catalogs
 
 https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.pdf
 
+[Google Chrome Extension](https://chromewebstore.google.com/detail/epub-reader-librera/kfpiokccdkdlbjmgiajpfcdefcbdbphe)
+
+[zip Chrome Extension](https://github.com/foobnix/LibreraReader/raw/master/Builder/librara-chrome-extension.zip)
+
 ### Links
 
 [web: https://librera.mobi/](https://librera.mobi/)
