@@ -16,7 +16,7 @@ fi
 
 
 
-./link_to_mupdf_1.24.7.sh fdroid
+./link_to_mupdf_1.23.7.sh fdroid
 cd ../
 
 
