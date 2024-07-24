@@ -45,6 +45,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppData;
@@ -112,7 +113,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     int readCount;
     private LinearLayout paths;
     private TextView stub;
-    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
+    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder, pasteFrom;
     private EditText editPath;
     private View pathContainer, onClose, onAction, openAsBook;
     private int fragmentType = TYPE_DEFAULT;
@@ -216,7 +217,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
-
+        pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
 
         sortOrder.setOnClickListener(new OnClickListener() {
 
@@ -1149,6 +1150,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 paths.addView(logout);
             }
 
+            pasteFrom.setOnClickListener(v -> ShareDialog.dirLongPress(getActivity(), displayPath, () -> resetFragment()));
+            Views.visible(pasteFrom, TempHolder.get().copyFromPath != null);
+
             for (int i = 0; i < split.length; i++) {
                 final int index = i;
                 String part = split[i];
@@ -1195,6 +1199,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         isRestorePos = true;
                     }
                 });
+
+
                 item.setOnLongClickListener(new OnLongClickListener() {
 
                     @Override
@@ -1209,25 +1215,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         String pathFull = prefix + itemPath;
                         pathFull = pathFull.replace("://", ":/");
 
-                        if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
-                            ShareDialog.dirLongPress(getActivity(), pathFull, new Runnable() {
 
-                                @Override
-                                public void run() {
-                                    resetFragment();
-                                }
-                            });
-                            return true;
-                        } else {
-                            //deleteFolderPopup(getActivity(), pathFull);
-                            Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
-                                @Override
-                                public boolean onResultRecive(String path1) {
-                                    displayAnyPath(path1);
-                                    return false;
-                                }
-                            });
-                        }
+                        //deleteFolderPopup(getActivity(), pathFull);
+                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
+                            @Override
+                            public boolean onResultRecive(String path1) {
+                                displayAnyPath(path1);
+                                return false;
+                            }
+                        });
 
 
                         return false;

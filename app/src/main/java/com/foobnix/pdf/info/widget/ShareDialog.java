@@ -147,6 +147,7 @@ public class ShareDialog {
 
         items.add(a.getString(R.string.paste));
         items.add(a.getString(R.string.move));
+        items.add(a.getString(R.string.cancel));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
@@ -212,6 +213,10 @@ public class ShareDialog {
                         Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                     }
                 }
+                 if (which == i++) {
+                     TempHolder.get().copyFromPath = null;
+                     onRefresh.run();
+                 }
             }
         });
         AlertDialog create = builder.create();
@@ -418,6 +423,7 @@ public class ShareDialog {
                 } else if (isMainTabs && canCopy && which == i++) {
                     TempHolder.get().copyFromPath = file.getPath();
                     Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (isMainTabs && which == i++) {
                     if (isRemovedFromLibrary) {
 
