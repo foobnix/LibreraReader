@@ -260,6 +260,8 @@ public class ExtUtils {
             result.add(".txt");
             result.add(".html");
             result.add(".xhtml");
+            result.add(".mhtml");
+            result.add(".shtml");
             result.add(".md");
             if (!AppState.get().supportZIP) {
                 result.add(".txt.zip");

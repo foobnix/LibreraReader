@@ -58,7 +58,7 @@ public enum BookType {
 
     HTML(HtmlContext.class, true, true, list("html", "htm", "xhtml", "xhtm", "xml"), list("text/html", "text/xml")),
 
-    MHT(MhtContext.class, true, true, list("mht", "mhtml","shtml"), list("message/rfc822")),
+    MHT(MhtContext.class, true, true, list("mht", "mhtml","xhtml","shtml"), list("message/rfc822")),
 
     DOCX(DocxContext.class, true, true, list(AppsConfig.isDOCXSupported ? "docx" : "xxx"), list("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
