@@ -1,7 +1,10 @@
 package com.foobnix.pdf.info.widget;
 
+import static android.app.ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.appwidget.AppWidgetManager;
@@ -38,6 +41,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
 import com.foobnix.LibreraApp;
+
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -63,7 +67,14 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
             Intent nintent = new Intent(Intent.ACTION_VIEW, (Uri) intent.getParcelableExtra("uri"));
             nintent.setClassName(context, clazz.getName());
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE);
+            PendingIntent pendingIntent;
+
+            if (Build.VERSION.SDK_INT >= 34) {
+                Bundle allow = ActivityOptions.makeBasic().setPendingIntentBackgroundActivityStartMode(MODE_BACKGROUND_ACTIVITY_START_ALLOWED).toBundle();
+                pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE, allow);
+            } else {
+                pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE);
+            }
             try {
                 pendingIntent.send();
             } catch (CanceledException e) {
@@ -170,7 +181,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
 
-                            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class: VerticalViewActivity.class;
+                            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
 
                             intent.setClassName(context, clazz.getName());
 
