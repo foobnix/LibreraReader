@@ -918,7 +918,8 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-            return isFont? make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE) :make_number(x, N_LENGTH);
+            return isFont ? make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE)
+                          : make_number( x / 20, N_SCALE);
 
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
 			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
