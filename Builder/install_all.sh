@@ -6,7 +6,11 @@ if [ "debug" == "$1" ]; then
 else
   if [ -z "$1" ]; then
     echo "==[Testing]=="
-    APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+      if [ "$(uname)" == "Darwin" ]; then
+       APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+        else
+       APK=/home/dev/Dropbox/FREE_PDF_APK/testing
+      fi
   else
     echo "==[$1]=="
       if [ "$(uname)" == "Darwin" ]; then
