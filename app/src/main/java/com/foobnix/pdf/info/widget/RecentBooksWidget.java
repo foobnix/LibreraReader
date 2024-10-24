@@ -71,7 +71,8 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
             if (Build.VERSION.SDK_INT >= 34) {
                 Bundle allow = ActivityOptions.makeBasic().setPendingIntentBackgroundActivityStartMode(MODE_BACKGROUND_ACTIVITY_START_ALLOWED).toBundle();
-                pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE, allow);
+                pendingIntent = PendingIntent.getActivity(context, 0, nintent,
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE, allow);
             } else {
                 pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE);
             }
