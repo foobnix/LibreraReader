@@ -334,7 +334,77 @@
 
         </activity>
 
-                <receiver
+        <activity
+            android:name="com.foobnix.pdf.info.ProgressTrackerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.ReadingGroupActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.SurveyManagerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.ReadingTimerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.ReminderManagerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.NightModeManagerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name="com.foobnix.pdf.info.BookRecommendationActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <service
+            android:name="com.foobnix.pdf.info.NotificationService"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync"
+            android:exported="false">
+        </service>
+
+        <service
+            android:name="com.foobnix.pdf.info.BackgroundTaskService"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync"
+            android:exported="false">
+        </service>
+
+        <receiver
             android:name=".widget.TTSWidget"
             android:exported="false"
             android:label="${appName}">

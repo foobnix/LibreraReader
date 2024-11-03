@@ -19,6 +19,15 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
+import com.foobnix.pdf.info.ProgressTracker;
+import com.foobnix.pdf.info.ReadingGroup;
+import com.foobnix.pdf.info.SurveyManager;
+import com.foobnix.pdf.info.ReadingTimer;
+import com.foobnix.pdf.info.ReminderManager;
+import com.foobnix.pdf.info.NightModeManager;
+import com.foobnix.pdf.info.BookRecommendation;
+import com.foobnix.pdf.info.NotificationService;
+import com.foobnix.pdf.info.BackgroundTaskService;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
@@ -58,6 +67,15 @@ public class LibreraApp extends MultiDexApplication {
         AppsConfig.init(this);
         Dips.init(this);
         Prefs.get().init(this);
+
+        // Initialize new features
+        ProgressTracker.init(this);
+        ReadingGroup.init(this);
+        SurveyManager.init(this);
+        ReadingTimer.init(this);
+        ReminderManager.init(this);
+        NightModeManager.init(this);
+        BookRecommendation.init(this);
 
         try {
             if (!AppsConfig.checkIsProInstalled(this)) {
@@ -146,5 +164,16 @@ public class LibreraApp extends MultiDexApplication {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
+    }
+
+    // Add methods to handle notifications and background tasks
+    public static void startNotificationService() {
+        Intent intent = new Intent(context, NotificationService.class);
+        context.startService(intent);
+    }
+
+    public static void startBackgroundTaskService() {
+        Intent intent = new Intent(context, BackgroundTaskService.class);
+        context.startService(intent);
     }
 }

@@ -724,7 +724,7 @@ public class TTSService extends Service {
 
             TTSEngine.get().speek(firstPart);
 
-            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
+            TTSNotification.updateNotification(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
             LOG.d("TtsStatus send");
             EventBus.getDefault().post(new TtsStatus());
 

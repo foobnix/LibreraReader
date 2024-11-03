@@ -142,7 +142,7 @@ public class TTSControlsView extends FrameLayout {
                 } catch (CanceledException e) {
                     LOG.d(e);
                 }
-
+                TTSNotification.updateNotification(context, "Next track");
             }
         });
         ttsPrev.setOnClickListener(new OnClickListener() {
@@ -155,7 +155,7 @@ public class TTSControlsView extends FrameLayout {
                 } catch (CanceledException e) {
                     LOG.d(e);
                 }
-
+                TTSNotification.updateNotification(context, "Previous track");
             }
         });
 
@@ -180,6 +180,7 @@ public class TTSControlsView extends FrameLayout {
                     Urls.openTTS(getContext());
                 } else {
                     TTSService.playPause(context, controller);
+                    TTSNotification.updateNotification(context, "Play/Pause");
                 }
             }
         });

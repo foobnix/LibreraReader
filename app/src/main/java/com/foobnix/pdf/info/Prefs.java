@@ -41,4 +41,21 @@ public class Prefs {
         sp.edit().remove(makeHash(path, page)).commit();
     }
 
+    // Add methods to store and retrieve progress tracking data
+    public void putProgress(String bookId, int progress) {
+        sp.edit().putInt("progress_" + bookId, progress).commit();
+    }
+
+    public int getProgress(String bookId) {
+        return sp.getInt("progress_" + bookId, 0);
+    }
+
+    // Add methods to store and retrieve reminder settings
+    public void putReminder(String reminderId, long time) {
+        sp.edit().putLong("reminder_" + reminderId, time).commit();
+    }
+
+    public long getReminder(String reminderId) {
+        return sp.getLong("reminder_" + reminderId, 0);
+    }
 }
