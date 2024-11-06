@@ -6,8 +6,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 6102
-    FDroidVersionNumber = "8.9.181"
+    FDroidCodeNumber = 6202
+    FDroidVersionNumber = "8.9.182"
 }
 
 
@@ -341,7 +341,7 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
 
-    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.0.0"
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.1.0"
     libreraImplementation messaging_ads
     pdf_v2Implementation messaging_ads
     ebookaImplementation messaging_ads

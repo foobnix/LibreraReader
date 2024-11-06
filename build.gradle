@@ -22,7 +22,7 @@ allprojects {
     }
 }
 project.ext {
-    targetSdk = 34
+    targetSdk = 34 //need to fix edge-to-edge in Android 15
     minSdk = 21
     compileSdk = 35
    // compose_ui_version = '1.5.3'
