@@ -105,7 +105,7 @@ fi
 
 start=`date +%s`
 
-NDK_VERSION="25.2.9519653"
+NDK_VERSION="27.2.12479018"
 for NDK in "/Users/dev/Library/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
 do 
   if [ -f "$NDK" ]; then
