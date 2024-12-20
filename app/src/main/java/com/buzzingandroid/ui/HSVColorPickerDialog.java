@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
@@ -55,6 +56,11 @@ public class HSVColorPickerDialog extends AlertDialog {
         LinearLayout layout = new LinearLayout(context);
         // layout.setMinimumWidth(Dips.dpToPx(1000));
         // layout.setMinimumHeight(Dips.dpToPx(1000));
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.setVerticalScrollBarEnabled(true);
+        scrollView.setHorizontalScrollBarEnabled(false);
+        scrollView.setScrollbarFadingEnabled(false);
+        scrollView.addView(layout);
 
         colorWheel.setListener(new OnColorSelectedListener() {
             @Override
@@ -154,7 +160,7 @@ public class HSVColorPickerDialog extends AlertDialog {
         setButton(BUTTON_NEGATIVE, context.getString(android.R.string.cancel), clickListener);
         setButton(BUTTON_POSITIVE, context.getString(android.R.string.ok), clickListener);
 
-        setView(layout, padding, padding, padding, padding);
+        setView(scrollView, padding, padding, padding, padding);
     }
 
     private OnClickListener clickListener = new DialogInterface.OnClickListener() {
