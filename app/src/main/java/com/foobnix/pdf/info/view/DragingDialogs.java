@@ -3819,8 +3819,8 @@ public class DragingDialogs {
                     }
                 });
 
-                statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
-                statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+//                statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
+//                statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 return inflate;
             }
@@ -5136,7 +5136,7 @@ public class DragingDialogs {
                         return true;
                     }
                 });
-                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
+//                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 final CustomColorView linkColorNight = inflate.findViewById(R.id.linkColorNight);
                 linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
@@ -5166,7 +5166,7 @@ public class DragingDialogs {
                         return true;
                     }
                 });
-                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+//                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 TxtUtils.underlineTextView(inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
