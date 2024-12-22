@@ -215,7 +215,8 @@ public class TintUtil {
 
     public static ImageView setTintImageWithAlpha(ImageView img, int color) {
         img.setColorFilter(color, Mode.SRC_ATOP);
-        img.setImageAlpha(230);
+        int alpha = ( color & 0xFF000000 ) >> 24;
+        img.setImageAlpha(alpha);
         return img;
     }
 

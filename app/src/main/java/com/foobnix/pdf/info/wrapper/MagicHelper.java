@@ -615,6 +615,14 @@ public class MagicHelper {
         return a << ALPHA_CHANNEL | r << RED_CHANNEL | g << GREEN_CHANNEL | b << BLUE_CHANNEL;
     }
 
+    public static String colorToStringWithAlpha(int intColor) {
+        return String.format("#%08X", intColor);
+    }
+
+    public static String colorToStringNoAlpha(int intColor) {
+        return String.format("#%06X", (0xFFFFFF & intColor));
+    }
+
     public static String colorToString(int intColor) {
         return String.format("#%06X", (0xFFFFFF & intColor));
     }

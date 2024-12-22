@@ -584,8 +584,8 @@ public class BookCSS {
             builder.append(css);
         }
 
-        String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
-        String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
+        String backgroundColor = MagicHelper.colorToStringNoAlpha(MagicHelper.getBgColor());
+        String textColor = MagicHelper.colorToStringNoAlpha(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
         builder.append("isAutoHypens1" + isAutoHypens + AppSP.get().hypenLang + "{}");
