@@ -70,8 +70,9 @@ public class BookmarkPanel {
 
             t.setSingleLine();
             t.setGravity(Gravity.CENTER);
-            t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            t.setTextSize(16);
+            t.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            t.setTextSize(11);
+            t.setTextColor( TintUtil.getStatusBarColor() );
             if (AppState.get().isDayNotInvert) {
                 t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
             } else {
