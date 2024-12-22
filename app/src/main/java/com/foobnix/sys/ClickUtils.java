@@ -17,16 +17,16 @@ public class ClickUtils {
         WIDHT_X = Dips.screenWidth();
         HEIGHT_Y = Dips.screenHeight();
 
-        border_side = Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
-        border_top = Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
+        border_side = Dips.screenWidth() * AppState.get().tapzoneSize / 100;
+        border_top = Dips.screenHeight() * AppState.get().tapzoneSize / 100;
     }
 
 
     public void initMusician() {
         WIDHT_X = Dips.screenWidth();
         HEIGHT_Y = Dips.screenHeight();
-        border_side = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
-        border_top = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
+        border_side = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenWidth() * AppState.get().tapzoneSize / 100;
+        border_top = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenHeight() * AppState.get().tapzoneSize / 100;
     }
 
     public boolean isClickCenter(float x, float y) {
@@ -36,20 +36,48 @@ public class ClickUtils {
 
     }
 
+    public boolean isClickLeftTop(float x, float y) {
+        boolean isX = x <= WIDHT_X / 3;
+        boolean isY = y <= HEIGHT_Y / 3;
+        return isX && isY;
+    }
+
+    public boolean isClickRightTop(float x, float y) {
+        boolean isX = (WIDHT_X - WIDHT_X / 3) <= x;
+        boolean isY = y <= HEIGHT_Y / 3;
+        return isX && isY;
+    }
+
+    public boolean isClickLeftBottom(float x, float y) {
+        boolean isX = x <= WIDHT_X / 3;
+        boolean isY = (HEIGHT_Y - HEIGHT_Y / 3) <= y;
+        return isX && isY;
+    }
+
+    public boolean isClickRightBottom(float x, float y) {
+        boolean isX = (WIDHT_X - WIDHT_X / 3) <= x;
+        boolean isY = (HEIGHT_Y - HEIGHT_Y / 3) <= y;
+        return isX && isY;
+    }
+
     public boolean isClickTop(float x, float y) {
-        return y < border_top;
+        return y <= border_top;
     }
 
     public boolean isClickBottom(float x, float y) {
-        return y > (HEIGHT_Y - border_top);
+        return y >= (HEIGHT_Y - border_top);
     }
 
     public boolean isClickLeft(float x, float y) {
-        return x < border_side;
+        boolean isX = x <= border_side;
+        boolean isY = HEIGHT_Y / 3 < y && y < (HEIGHT_Y - HEIGHT_Y / 3);
+        return isX && isY;
     }
 
     public boolean isClickRight(float x, float y) {
-        return x > (WIDHT_X - border_side);
+        boolean isX = x >= (WIDHT_X - border_side);
+        boolean isY = HEIGHT_Y / 3 < y && y < (HEIGHT_Y - HEIGHT_Y / 3);
+        return isX && isY;
     }
 
 }
