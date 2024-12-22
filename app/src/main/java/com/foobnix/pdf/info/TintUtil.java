@@ -78,7 +78,15 @@ public class TintUtil {
     }
 
     public static int getStatusBarColor() {
-        return AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : AppState.get().statusBarColorNight;
+        int color = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : AppState.get().statusBarColorNight;
+        color = ( color & 0xFFFFFF ) | ( AppState.get().statusBarTextAlpha << 24 );
+        return color;
+    }
+
+    public static int getStatusBarBackgroundColor() {
+        int color = AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg;
+        color = ( color & 0xFFFFFF ) | ( AppState.get().statusBarBackgroundAlpha << 24 );
+        return color;
     }
 
     public static int tintRandomColor() {
