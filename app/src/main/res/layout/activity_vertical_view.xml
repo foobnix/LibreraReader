@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dip"
+        android:layout_marginTop="50dip"
         android:orientation="horizontal"
         android:padding="2dip">
 
@@ -41,7 +41,7 @@
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray_dash2"
             android:src="@drawable/glyphicons_73_bookmark"
-            android:tint="@color/lt_grey_dima" />
+            app:tint="@color/lt_grey_dima" />
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +122,7 @@
         android:contentDescription="@string/text_to_speech"
         android:padding="7dip"
         android:src="@drawable/glyphicons_186_volume_up"
-        android:tint="@color/white"
+        app:tint="@color/white"
         android:visibility="gone" />
 
     <include
@@ -228,7 +228,7 @@
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="100dip"
         android:src="@drawable/glyphicons_299_circle_selected"
-        android:tint="@color/tint_blue" />
+        app:tint="@color/tint_blue" />
 
     <ImageView
         android:id="@+id/anchorY"
@@ -236,7 +236,7 @@
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="150dip"
         android:src="@drawable/glyphicons_298_circle_empty"
-        android:tint="@color/tint_blue" />
+        app:tint="@color/tint_blue" />
 
     <FrameLayout
         android:id="@+id/anchor"
