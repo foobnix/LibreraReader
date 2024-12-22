@@ -1316,18 +1316,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateSeekBarColorAndSize() {
+        int statusBarColor = TintUtil.getStatusBarColor();
+        int bgColor = TintUtil.getStatusBarBackgroundColor();
 
-        TintUtil.setTintText(pagesPower, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pagesTime, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pannelBookTitle, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pagesPower, statusBarColor);
+        TintUtil.setTintText(pagesTime, statusBarColor);
+        TintUtil.setTintText(pagesCountIndicator, statusBarColor);
+        TintUtil.setTintText(pannelBookTitle, statusBarColor);
+        TintUtil.setTintText(flippingIntervalView, statusBarColor);
 
         if (false) {
             GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
-            bg.setStroke(1, TintUtil.getStatusBarColor());
+            bg.setStroke(1, statusBarColor);
         } else {
-            pagesPower.setBackgroundColor(Color.TRANSPARENT);
+            pagesPower.setBackgroundColor(bgColor);
         }
 
         pagesPower.setTextSize(AppState.get().statusBarTextSizeEasy);
@@ -1339,6 +1341,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
+
+        pannelBookTitle.setBackgroundColor(bgColor);
+        bottomPanel.setBackgroundColor(bgColor);
+
+        pannelBookTitle.invalidate();
+        bottomPanel.invalidate();
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();

@@ -1338,27 +1338,28 @@ public class DocumentWrapperUI {
     }
 
     public void updateSeekBarColorAndSize() {
+        int statusBarColor = TintUtil.getStatusBarColor();
         lirbiLogo.setText(AppState.get().musicText);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
-        TintUtil.setTintText(bookName, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha(textToSpeachTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha(lockUnlockTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha(nextScreenType, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(currentTime, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(batteryLevel, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(reverseKeysIndicator, ColorUtils.setAlphaComponent(TintUtil.getStatusBarColor(), 200));
+        TintUtil.setTintText(bookName, statusBarColor);
+        TintUtil.setTintImageWithAlpha(textToSpeachTop, statusBarColor);
+        TintUtil.setTintImageWithAlpha(lockUnlockTop, statusBarColor);
+        TintUtil.setTintImageWithAlpha(nextScreenType, statusBarColor);
+        TintUtil.setTintText(pagesCountIndicator, statusBarColor);
+        TintUtil.setTintText(currentTime, statusBarColor);
+        TintUtil.setTintText(batteryLevel, statusBarColor);
+        TintUtil.setTintText(reverseKeysIndicator, statusBarColor);
 
-        TintUtil.setTintImageWithAlpha(goToPage1Top, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha((ImageView) closeTop, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha(toolBarButton, TintUtil.getStatusBarColor());
-        TintUtil.setTintImageWithAlpha(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
-        TintUtil.setTintImageWithAlpha(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
+        TintUtil.setTintImageWithAlpha(goToPage1Top, statusBarColor);
+        TintUtil.setTintImageWithAlpha((ImageView) closeTop, statusBarColor);
+        TintUtil.setTintImageWithAlpha(toolBarButton, statusBarColor);
+        TintUtil.setTintImageWithAlpha(clockIcon, statusBarColor);//.setAlpha(200);
+        TintUtil.setTintImageWithAlpha(batteryIcon, statusBarColor);//.setAlpha(200);
 
-        int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
-        titleBar.setBackgroundColor(titleColor);
+        int bgColor = TintUtil.getStatusBarBackgroundColor();
+        titleBar.setBackgroundColor(bgColor);
 
         int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
