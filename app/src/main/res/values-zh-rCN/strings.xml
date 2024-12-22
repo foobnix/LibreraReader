@@ -108,6 +108,10 @@
    <string name="rotate_default">默认</string>
    <string name="tap_zone_size">点按区域(边缘)</string>
    <string name="customize_tap_zones">自定义点按区域</string>
+   <string name="left_top_side">左上角</string>
+   <string name="right_top_side">右上角</string>
+   <string name="left_bottom_side">左下角</string>
+   <string name="right_bottom_side">右下角</string>
    <string name="left_side">左侧</string>
    <string name="right_side">右侧</string>
    <string name="top_side">顶部</string>

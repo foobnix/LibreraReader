@@ -108,6 +108,10 @@
    <string name="rotate_default">Default</string>
    <string name="tap_zone_size">Tap zones (edges)</string>
    <string name="customize_tap_zones">Configure Tap Zones</string>
+   <string name="left_top_side" tools:ignore="MissingTranslation">Left Top</string>
+   <string name="right_top_side" tools:ignore="MissingTranslation">Right Top</string>
+   <string name="left_bottom_side" tools:ignore="MissingTranslation">Left Bottom</string>
+   <string name="right_bottom_side" tools:ignore="MissingTranslation">Right Bottom</string>
    <string name="left_side">Left</string>
    <string name="right_side">Right</string>
    <string name="top_side">Top</string>
