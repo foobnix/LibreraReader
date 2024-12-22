@@ -36,15 +36,30 @@ public class TapZoneDialog {
 			}
 		};
 
+		final Spinner leftTopSide = (Spinner) inflate.findViewById(R.id.leftTopSide);
+		final Spinner rightTopSide = (Spinner) inflate.findViewById(R.id.rightTopSide);
+		final Spinner leftBottomSide = (Spinner) inflate.findViewById(R.id.leftBottomSide);
+		final Spinner rightBottomSide = (Spinner) inflate.findViewById(R.id.rightBottomSide);
+
 		final Spinner leftSide = (Spinner) inflate.findViewById(R.id.leftSide);
 		final Spinner rightSide = (Spinner) inflate.findViewById(R.id.rightSide);
 		final Spinner topSide = (Spinner) inflate.findViewById(R.id.topSide);
 		final Spinner bottomSide = (Spinner) inflate.findViewById(R.id.bottomSide);
 
+		leftTopSide.setAdapter(adapter);
+		rightTopSide.setAdapter(adapter);
+		leftBottomSide.setAdapter(adapter);
+		rightBottomSide.setAdapter(adapter);
+
 		leftSide.setAdapter(adapter);
 		rightSide.setAdapter(adapter);
 		topSide.setAdapter(adapter);
 		bottomSide.setAdapter(adapter);
+
+		leftTopSide.setSelection(AppState.get().tapZoneLeftTop, false);
+		rightTopSide.setSelection(AppState.get().tapZoneRightTop, false);
+		leftBottomSide.setSelection(AppState.get().tapZoneLeftBottom, false);
+		rightBottomSide.setSelection(AppState.get().tapZoneRightBottom, false);
 
 		leftSide.setSelection(AppState.get().tapZoneLeft, false);
 		rightSide.setSelection(AppState.get().tapZoneRight, false);
@@ -58,6 +73,11 @@ public class TapZoneDialog {
 		builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				AppState.get().tapZoneLeftTop = leftTopSide.getSelectedItemPosition();
+				AppState.get().tapZoneRightTop = rightTopSide.getSelectedItemPosition();
+				AppState.get().tapZoneLeftBottom = leftBottomSide.getSelectedItemPosition();
+				AppState.get().tapZoneRightBottom = rightBottomSide.getSelectedItemPosition();
+
 				AppState.get().tapZoneLeft = leftSide.getSelectedItemPosition();
 				AppState.get().tapZoneRight = rightSide.getSelectedItemPosition();
 				AppState.get().tapZoneTop = topSide.getSelectedItemPosition();
