@@ -546,6 +546,8 @@ public class AppState {
     public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
+    public volatile int statusBarTextAlpha = 128;
+    public volatile int statusBarBackgroundAlpha = 128;
     public String versionNew = "";
     public boolean isRTL = Urls.isRtl();
     public boolean isCutRTL = Urls.isRtl();

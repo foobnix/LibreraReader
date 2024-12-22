@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -131,7 +132,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_739_check"
-                android:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
         </LinearLayout>
         
         <CheckBox
@@ -251,6 +252,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/text_color_night" />
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/statusBarTextAlpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/status_bar_text_alpha" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/statusBarBackgroundAlpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/status_bar_background_alpha" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+
     </LinearLayout>
 
 </ScrollView>

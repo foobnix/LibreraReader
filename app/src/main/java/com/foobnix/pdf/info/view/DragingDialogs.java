@@ -117,7 +117,6 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.BookCSS.FontPack;
@@ -164,7 +163,6 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.greenrobot.eventbus.EventBus;
-import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -172,8 +170,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -3821,6 +3817,39 @@ public class DragingDialogs {
 
 //                statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
 //                statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+
+                final CustomSeek statusBarColorAlpha = inflate.findViewById(R.id.statusBarTextAlpha);
+                statusBarColorAlpha.setTitleTextWidth(Dips.dpToPx(100));
+                statusBarColorAlpha.init(0, 255, AppState.get().statusBarTextAlpha);
+                statusBarColorAlpha.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().statusBarTextAlpha = result;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+
+
+                final CustomSeek statusBarBackgroundAlpha = inflate.findViewById(R.id.statusBarBackgroundAlpha);
+                statusBarBackgroundAlpha.setTitleTextWidth(Dips.dpToPx(100));
+                statusBarBackgroundAlpha.init(0, 255, AppState.get().statusBarBackgroundAlpha);
+                statusBarBackgroundAlpha.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppState.get().statusBarBackgroundAlpha = result;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
 
                 return inflate;
             }

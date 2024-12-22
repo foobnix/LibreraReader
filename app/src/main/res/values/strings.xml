@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
@@ -142,6 +142,8 @@
    <string name="line_height">Progress bar height</string>
    <string name="text_color_day">Font color, day</string>
    <string name="text_color_night">Font color, night</string>
+   <string name="status_bar_text_alpha" tools:ignore="MissingTranslation">Text Alpha</string>
+   <string name="status_bar_background_alpha" tools:ignore="MissingTranslation">Background Alpha</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferences</string>
    <string name="language">Language</string>
