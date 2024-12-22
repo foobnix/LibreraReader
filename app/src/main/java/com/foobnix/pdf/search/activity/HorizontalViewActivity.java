@@ -1339,7 +1339,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pannelBookTitle.setTextSize((AppState.get().statusBarTextSizeEasy + 2));
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
 
-        int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        int progressColor = TintUtil.getStatusBarColor();
         progressDraw.updateColor(progressColor);
 
         pannelBookTitle.setBackgroundColor(bgColor);
@@ -1350,6 +1350,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
+
+        progressDraw.setBackgroundColor(bgColor);
+        progressDraw.invalidate();
 
     }
 

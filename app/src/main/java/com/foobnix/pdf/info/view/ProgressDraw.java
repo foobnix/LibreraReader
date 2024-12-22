@@ -75,7 +75,7 @@ public class ProgressDraw extends View {
     }
 
     public void updateColor(int color) {
-        this.color = ColorUtils.setAlphaComponent(color, ALPHA);
+        this.color = color;
         invalidate();
     }
 
@@ -88,12 +88,15 @@ public class ProgressDraw extends View {
         canvas.save();
         try {
             int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+            // int backgroundColor = TintUtil.getStatusBarBackgroundColor();
+            titleColor = ( titleColor & 0xFFFFFF ) | ( AppState.get().statusBarTextAlpha << 24 );
             // int titleColor = AppState.get().isInvert ? Color.WHITE :
             // Color.BLACK;
             if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
 
             } else {
-                canvas.drawColor(titleColor);
+                //canvas.drawColor(Color.TRANSPARENT);
+                //canvas.drawColor(backgroundColor);
             }
 
             paint.setColor(color);
@@ -105,6 +108,8 @@ public class ProgressDraw extends View {
 
             if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
                 int first = dividers.get(0).level;
+                List<Integer> posList = new ArrayList<>();
+
                 for (OutlineLinkWrapper item : dividers) {
                     int pos = item.targetPage - 1;
                     if (pos < 0 || item.level >= (AppState.get().isShowSubChaptersOnProgress ? 3 : 1) + first || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
@@ -114,9 +119,17 @@ public class ProgressDraw extends View {
                     if (pos <= progress) {
                         currentChapter = pos;
                     } else {
-                        canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                        // canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                        if ( posList.isEmpty() || pos > posList.get(posList.size()-1) ) {
+                            posList.add(pos);
+                        }
                     }
                 }
+
+                for ( Integer p2: posList) {
+                    canvas.drawLine(p2 * k, 0, p2 * k, h, paint);
+                }
+
             }
 
             canvas.drawRect(0, 0, progress * k, h, paint);

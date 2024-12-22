@@ -1361,10 +1361,13 @@ public class DocumentWrapperUI {
         int bgColor = TintUtil.getStatusBarBackgroundColor();
         titleBar.setBackgroundColor(bgColor);
 
-        int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
+        int progressColor = TintUtil.getStatusBarColor();
         progressDraw.updateColor(progressColor);
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
+
+        progressDraw.setBackgroundColor(bgColor);
+        progressDraw.invalidate();
 
         // textSize
         bookName.setTextSize(AppState.get().statusBarTextSizeAdv);
