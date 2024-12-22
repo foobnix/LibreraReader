@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import java.util.List;
@@ -46,6 +48,7 @@ public class BookmarkPanel {
             pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
         }
         pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
+        TintUtil.setTintImageWithAlpha(((ImageView) pagesBookmark), TintUtil.getStatusBarColor());
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {

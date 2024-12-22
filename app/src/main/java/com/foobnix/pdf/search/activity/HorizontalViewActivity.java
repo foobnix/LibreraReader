@@ -486,6 +486,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesBookmark = findViewById(R.id.pagesBookmark);
         pagesBookmark.setOnClickListener(onBookmarks);
         pagesBookmark.setOnLongClickListener(onBookmarksLong);
+        TintUtil.setTintImageWithAlpha(((ImageView)pagesBookmark), TintUtil.getStatusBarColor());
 
         final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
         onFullScreen.setOnClickListener(new OnClickListener() {
