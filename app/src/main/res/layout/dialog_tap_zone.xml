@@ -1,93 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="2dip" >
 
     <LinearLayout
-        android:id="@+id/fontNameSelectionLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dip"
+        android:weightSum="3"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="120dip"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:text="@string/left_side" />
-
-        <Spinner
-            android:id="@+id/leftSide"
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minWidth="500dip" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="40dip"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/left_top_side" />
 
         <TextView
-            android:layout_width="120dip"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:text="@string/right_side" />
-
-        <Spinner
-            android:id="@+id/rightSide"
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minWidth="500dip" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="40dip"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="120dip"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
+            android:gravity="center"
             android:text="@string/top_side" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/right_top_side" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+          <Spinner
+            android:id="@+id/leftTopSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
 
         <Spinner
             android:id="@+id/topSide"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="40dip"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:minWidth="500dip" />
+            android:minWidth="50dip" />
+
+        <Spinner
+            android:id="@+id/rightTopSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dip"
+        android:weightSum="3"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="120dip"
+            android:layout_weight="1"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:text="@string/bottom_side" />
+            android:gravity="center"
+            android:text="@string/left_side" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/center" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/right_side" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
         <Spinner
-            android:id="@+id/bottomSide"
-            android:layout_width="match_parent"
+            android:id="@+id/leftSide"
+            android:layout_width="0dip"
             android:layout_height="40dip"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:minWidth="500dip" />
+            android:minWidth="50dip" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu" />
+
+        <Spinner
+            android:id="@+id/rightSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/left_bottom_side" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/bottom_side" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/right_bottom_side" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:weightSum="3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/leftBottomSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
+
+        <Spinner
+            android:id="@+id/bottomSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
+
+        <Spinner
+            android:id="@+id/rightBottomSide"
+            android:layout_width="0dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minWidth="50dip" />
+
+    </LinearLayout>
+
+
 </LinearLayout>
+
+</ScrollView>
