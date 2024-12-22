@@ -592,6 +592,14 @@ public class AppState {
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
     @IgnoreHashCode
+    public int tapZoneLeftTop = TAP_PREV_PAGE;
+    @IgnoreHashCode
+    public int tapZoneLeftBottom = TAP_PREV_PAGE;
+    @IgnoreHashCode
+    public int tapZoneRightTop = TAP_NEXT_PAGE;
+    @IgnoreHashCode
+    public int tapZoneRightBottom = TAP_NEXT_PAGE;
+    @IgnoreHashCode
     public int tapZoneTop = TAP_PREV_PAGE;
     @IgnoreHashCode
     public int tapZoneBottom = TAP_NEXT_PAGE;

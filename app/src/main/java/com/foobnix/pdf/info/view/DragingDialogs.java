@@ -4608,6 +4608,11 @@ public class DragingDialogs {
                                 rtlText.setText(R.string.left_to_rigth);
                                 TxtUtils.underlineTextView(rtlText);
 
+                                AppState.get().tapZoneLeftTop = AppState.TAP_PREV_PAGE;
+                                AppState.get().tapZoneLeftBottom = AppState.TAP_PREV_PAGE;
+                                AppState.get().tapZoneRightTop = AppState.TAP_NEXT_PAGE;
+                                AppState.get().tapZoneRightBottom = AppState.TAP_NEXT_PAGE;
+
                                 AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
                                 AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
                                 AppState.get().tapZoneLeft = AppState.TAP_PREV_PAGE;
@@ -4623,6 +4628,11 @@ public class DragingDialogs {
                                 AppState.get().isRTL = true;
                                 rtlText.setText(R.string.right_to_left);
                                 TxtUtils.underlineTextView(rtlText);
+
+                                AppState.get().tapZoneLeftTop = AppState.TAP_PREV_PAGE;
+                                AppState.get().tapZoneLeftBottom = AppState.TAP_PREV_PAGE;
+                                AppState.get().tapZoneRightTop = AppState.TAP_NEXT_PAGE;
+                                AppState.get().tapZoneRightBottom = AppState.TAP_NEXT_PAGE;
 
                                 AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
                                 AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
