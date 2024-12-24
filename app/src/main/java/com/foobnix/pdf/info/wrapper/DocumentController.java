@@ -690,6 +690,50 @@ public abstract class DocumentController {
         AppProfile.save(activity);
     }
 
+    public void onLeftTopPress() {
+        if (AppState.get().tapZoneLeftTop == AppState.TAP_DO_NOTHING) {
+            return;
+        }
+        if (AppState.get().tapZoneLeftTop == AppState.TAP_PREV_PAGE) {
+            ui.prevChose(false);
+        } else {
+            ui.nextChose(false);
+        }
+    }
+
+    public void onLeftBottomPress() {
+        if (AppState.get().tapZoneLeftBottom == AppState.TAP_DO_NOTHING) {
+            return;
+        }
+        if (AppState.get().tapZoneLeftBottom == AppState.TAP_PREV_PAGE) {
+            ui.prevChose(false);
+        } else {
+            ui.nextChose(false);
+        }
+    }
+
+    public void onRightTopPress() {
+        if (AppState.get().tapZoneRightTop == AppState.TAP_DO_NOTHING) {
+            return;
+        }
+        if (AppState.get().tapZoneRightTop == AppState.TAP_PREV_PAGE) {
+            ui.prevChose(false);
+        } else {
+            ui.nextChose(false);
+        }
+    }
+
+    public void onRightBottomPress() {
+        if (AppState.get().tapZoneRightBottom == AppState.TAP_DO_NOTHING) {
+            return;
+        }
+        if (AppState.get().tapZoneRightBottom == AppState.TAP_PREV_PAGE) {
+            ui.prevChose(false);
+        } else {
+            ui.nextChose(false);
+        }
+    }
+
     public void onLeftPress() {
         if (AppState.get().tapZoneLeft == AppState.TAP_DO_NOTHING) {
             return;

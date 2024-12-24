@@ -1671,7 +1671,37 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             int x = (int) ev.getX();
             int y = (int) ev.getY();
-            if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
+
+            if (clickUtils.isClickCenter(x, y)) {
+                LOG.d("Click-center!", x, y);
+                handler.removeCallbacks(doShowHideWrapperControllsRunnable);
+                handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
+                // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
+            } else if (clickUtils.isClickLeftTop(x, y) && AppState.get().tapZoneLeftTop != AppState.TAP_DO_NOTHING) {
+                if (AppState.get().tapZoneLeftTop == AppState.TAP_NEXT_PAGE) {
+                    nextPage();
+                } else {
+                    prevPage();
+                }
+            } else if (clickUtils.isClickLeftBottom(x, y) && AppState.get().tapZoneLeftBottom != AppState.TAP_DO_NOTHING) {
+                if (AppState.get().tapZoneLeftBottom == AppState.TAP_PREV_PAGE) {
+                    prevPage();
+                } else {
+                    nextPage();
+                }
+            } else if (clickUtils.isClickRightTop(x, y) && AppState.get().tapZoneRightTop != AppState.TAP_DO_NOTHING) {
+                if (AppState.get().tapZoneRightTop == AppState.TAP_PREV_PAGE) {
+                    prevPage();
+                } else {
+                    nextPage();
+                }
+            } else if (clickUtils.isClickRightBottom(x, y) && AppState.get().tapZoneRightBottom != AppState.TAP_DO_NOTHING) {
+                if (AppState.get().tapZoneRightBottom == AppState.TAP_NEXT_PAGE) {
+                    nextPage();
+                } else {
+                    prevPage();
+                }
+            } else if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
                 if (AppState.get().tapZoneRight == AppState.TAP_NEXT_PAGE) {
                     nextPage();
                 } else {

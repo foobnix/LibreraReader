@@ -224,7 +224,23 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
         }
 
-        if (clickUtils.isClickRight(e.getX(), e.getY())) {
+        if (clickUtils.isClickCenter(e.getX(), e.getY())) {
+            // docCtrl.onSingleTap();
+            alowConfirm = true;
+            return false;
+        } else if (clickUtils.isClickLeftTop(e.getX(), e.getY())) {
+            docCtrl.onLeftTopPress();
+
+        } else if (clickUtils.isClickLeftBottom(e.getX(), e.getY())) {
+            docCtrl.onLeftBottomPress();
+
+        } else if (clickUtils.isClickRightTop(e.getX(), e.getY())) {
+            docCtrl.onRightTopPress();
+
+        } else if (clickUtils.isClickRightBottom(e.getX(), e.getY())) {
+            docCtrl.onRightBottomPress();
+
+        } else if (clickUtils.isClickRight(e.getX(), e.getY())) {
             docCtrl.onRightPress();
 
         } else if (clickUtils.isClickLeft(e.getX(), e.getY())) {
@@ -236,10 +252,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         } else if (clickUtils.isClickBottom(e.getX(), e.getY())) {
             docCtrl.onBottomPress();
 
-        } else if (clickUtils.isClickCenter(e.getX(), e.getY())) {
-            // docCtrl.onSingleTap();
-            alowConfirm = true;
-            return false;
         }
 
         return true;
