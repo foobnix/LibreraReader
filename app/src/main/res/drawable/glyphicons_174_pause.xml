@@ -4,6 +4,6 @@
     android:width="32dp"
     android:height="32dp"
     >
-<path android:fillColor="@color/black"
+<path android:fillColor="@color/alpa_90"
  android:pathData="M14,7V25a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V7A1,1,0,0,1,8,6h5A1,1,0,0,1,14,7Zm9-1H18a1,1,0,0,0-1,1V25a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V7A1,1,0,0,0,23,6Z"/>
 </vector>
