@@ -1572,9 +1572,15 @@ public class DragingDialogs {
                             return;
                         }
                         String searchString = searchEdit.getText().toString().trim();
-                        if (searchString.length() < 2) {
-                            Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
-                            return;
+                        int l=searchString.length();
+                        char c ='0'; // never allowed as a single search character
+                        if ( l == 1) c=searchString.charAt(0);
+                        // Allow Kanji/Hanzi as single search character. Other type of
+                        // characters may be added.
+                        if ( l < 2 && (c > '\u9FFF' || c < '\u4E00'))
+                        {
+                                Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
+                                return;
                         }
                         lastSearchText = searchString;
                         TempHolder.isSeaching = true;
