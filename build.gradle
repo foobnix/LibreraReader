@@ -19,6 +19,10 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        // maven { url "https://maven-central-asia.storage-download.googleapis.com/maven2/" }
     }
 }
 project.ext {
@@ -29,5 +33,6 @@ project.ext {
 }
 
 task clean(type: Delete) {
-    delete rootProject.buildDir
+    // delete rootProject.buildDir
+    delete rootProject.getLayout().getBuildDirectory().getAsFile().get()
 }

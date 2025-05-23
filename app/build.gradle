@@ -242,13 +242,13 @@ android {
                 output.versionCodeOverride = code
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk"
 
-                def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
+                def fullName = "Librera_${flavor}-${versionNumber}-${abiName}.apk"
 
                 output.outputFileName = fullName
             } else {
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk"
                 //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk"
-                def fullName = "Librera ${flavor}-${versionNumber}-uni.apk"
+                def fullName = "Librera_${flavor}-${versionNumber}-uni.apk"
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName
             }
@@ -351,9 +351,10 @@ dependencies {
 
 
 /** Testing **/
+    // 这里有版本号， https://developer.android.google.cn/jetpack/androidx/releases/test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.2'
-    //androidTestImplementation 'androidx.test:core:1.5.2'
+    //androidTestImplementation 'androidx.test:core:1.5.0'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 

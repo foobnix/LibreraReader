@@ -13,16 +13,31 @@ if [ "$1" == "fdroid" ]; then
   MUPDF_FOLDER=$MUPDF_FOLDER-fdroid
 fi
 
+# 克隆下载到
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/mupdf-1.23.7-fdroid
+
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
 
 MUPDF_ROOT=$BUILD_DIR/$MUPDF_FOLDER
 
+# 创建文件夹
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/mupdf-1.23.7-fdroid/platform
 
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 mkdir -p $MUPDF_JAVA/jni
 
+# 源码目录
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/jni/~mupdf-1.23.7
+
 SRC=jni/~mupdf-$VERSION_TAG
+
+# 目标目录
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/mupdf-1.23.7-fdroid/source
+
 DEST=$MUPDF_ROOT/source
+
+# lib 目录
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/app/src/main/jniLibs
 LIBS=$BUILD_DIR/../app/src/main/jniLibs
 
 echo "MUPDF :" $VERSION_TAG
@@ -35,6 +50,8 @@ cd $MUPDF_FOLDER
 
 echo "=================="
 
+# link_to_mupdf_1.23.7.sh  clean
+# 参数  clean  清除 mupdf make 的编译
 if [ "$1" == "clean" ]; then
   git reset --hard &&  git clean -f -d
   rm -rf generated
@@ -42,6 +59,7 @@ if [ "$1" == "clean" ]; then
   make clean
 fi
 
+# 没有 release 文件夹，则编译
 if [ ! -d "build/release" ]; then
   make generate
   make release
@@ -49,6 +67,9 @@ fi
 
 cd ..
 
+# 复制，从.到
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/jni/Android-1.23.7.mk
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/mupdf-1.23.7-fdroid/platform/librera/jni/Android.mk
 rm -rf  $MUPDF_JAVA/jni
 cp -Rp jni $MUPDF_JAVA/jni
 mv $MUPDF_JAVA/jni/Android-$VERSION_TAG.mk $MUPDF_JAVA/jni/Android.mk
@@ -56,6 +77,9 @@ mv $MUPDF_JAVA/jni/Android-$VERSION_TAG.mk $MUPDF_JAVA/jni/Android.mk
 
 rm -r $LIBS
 mkdir $LIBS
+
+# 软链接 so 文件
+# /mnt/d/wksp/OneDrive/Github/Code_Android/LibreraReader_work/Builder/mupdf-1.23.7-fdroid/platform/librera/libs/arm64-v8a/libMuPDF.so
 
 ln -s $MUPDF_JAVA/libs/armeabi-v7a $LIBS
 ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
@@ -106,6 +130,7 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 cd $MUPDF_JAVA
 
+# 设置 NDK 版本
 
 NDK_VERSION="27.2.12479018"
 FDRIOD_NDK_VERSION="21.4.7075529"
@@ -113,8 +138,13 @@ if [ "$(uname)" == "Darwin" ]; then
   FDRIOD_NDK_VERSION=$NDK_VERSION
 fi
 
+# 设置我的本地 NDK 目录
 PATH1=/Volumes/SSD-USB/Android/Sdk/ndk
-PATH2=/home/dev/Android/Sdk/ndk
+# PATH2=/home/dev/Android/Sdk/ndk
+PATH2=/mnt/d/0000_opt/Android/Sdk/ndk
+
+# 清除之前的编译
+# link_to_mupdf_1.23.7.sh  clean_ndk  fdroid
 
 if [ "$1" == "clean_ndk" ]; then
   if [ "$2" == "fdroid" ]; then
@@ -127,6 +157,8 @@ if [ "$1" == "clean_ndk" ]; then
 rm -rf $MUPDF_JAVA/obj
 fi
 
+# 编译， API 16 ， 可以不加参数，在 Windows 的 android studio 里面编译
+# link_to_mupdf_1.23.7.sh  fdroid
 if [ "$1" == "fdroid" ]; then
   for NDK in "$PATH1/$FDRIOD_NDK_VERSION/ndk-build" "$PATH2/$FDRIOD_NDK_VERSION/ndk-build";
     do
