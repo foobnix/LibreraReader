@@ -418,7 +418,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
         pagesTime1 = (TextView) findViewById(R.id.pagesTime1);
-        pagesTime1.setVisibility(AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL ? View.GONE : View.VISIBLE);
+        //pagesTime1.setVisibility(AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL ? View.GONE : View.VISIBLE);
 
 
         pagesPower = (TextView) findViewById(R.id.pagesPower);
@@ -1419,7 +1419,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void showHideInfoToolBar() {
         int isVisible = AppState.get().isShowToolBar ? View.VISIBLE : View.GONE;
         pagesTime.setVisibility(isVisible);
-        pagesTime1.setVisibility(AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL ? View.GONE : View.VISIBLE);
+        //pagesTime1.setVisibility(AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL ? View.GONE : View.VISIBLE);
 
         pagesCountIndicator.setVisibility(isVisible);
         pagesPower.setVisibility(isVisible);
@@ -1790,7 +1790,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         pagesTime.setText(UiSystemUtils.getSystemTime(this));
-        pagesTime1.setText(UiSystemUtils.getSystemTime(this));
+        //pagesTime1.setText(UiSystemUtils.getSystemTime(this));
 
         int myLevel = UiSystemUtils.getPowerLevel(this);
         pagesPower.setText(myLevel + "%");
