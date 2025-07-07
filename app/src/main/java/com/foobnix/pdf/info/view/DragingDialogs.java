@@ -1572,7 +1572,7 @@ public class DragingDialogs {
                             return;
                         }
                         String searchString = searchEdit.getText().toString().trim();
-                        if (searchString.length() < 2) {
+                        if (searchString.isEmpty()) {
                             Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
                             return;
                         }
