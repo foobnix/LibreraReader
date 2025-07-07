@@ -21,5 +21,6 @@
   {"name": "Lingvo.ru", "path": "http://www.lingvo-online.ru/en/Translate/%s-%s/%s"},
   {"name": "Wiktionary.org", "path": "https://%s.wiktionary.org/wiki/%s"},
   {"name": "Perseus Greek", "path": "http://www.perseus.tufts.edu/hopper/morph?l=%s&la=greek"},
-  {"name": "Słownik wsjp.pl", "path": "https://wsjp.pl/szukaj/podstawowe/wyniki?szukaj=%s"}
+  {"name": "Słownik wsjp.pl", "path": "https://wsjp.pl/szukaj/podstawowe/wyniki?szukaj=%s"},
+  {"name": "rae.es", "path": "https://dle.rae.es/?w=%s"}
 ]
