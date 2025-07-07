@@ -7,14 +7,14 @@ else
   if [ -z "$1" ]; then
     echo "==[Testing]=="
       if [ "$(uname)" == "Darwin" ]; then
-       APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
+       APK=/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
         else
        APK=/home/dev/Dropbox/FREE_PDF_APK/testing
       fi
   else
     echo "==[$1]=="
       if [ "$(uname)" == "Darwin" ]; then
-       APK=/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
+       APK=/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
         else
        APK=/home/dev/Dropbox/FREE_PDF_APK/testing/$1
       fi

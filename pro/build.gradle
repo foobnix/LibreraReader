@@ -6,7 +6,7 @@ android {
     compileSdk = project.compileSdk
 
     defaultConfig {
-        minSdk = project.minSdk
+        minSdk = project.minFDroidSdk
         targetSdk = project.targetSdk
     }
 
