@@ -502,7 +502,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEn
         fontSize = size;
         DEBUG("fontSize set %d", fontSize);
 
-        fz_layout_document(doc->ctx, doc->document, width, height, ssizeize);
+        fz_layout_document(doc->ctx, doc->document, width, height, size);
 
         int count = fz_count_pages(doc->ctx, doc->document);
         fz_save_accelerator(doc->ctx, doc->document, doc->accel);
