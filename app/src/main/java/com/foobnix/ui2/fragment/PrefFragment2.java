@@ -119,7 +119,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "https://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
-    View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay;
+    View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay, statusBarHack;
     TextView singIn, syncInfo, syncInfo2, syncHeader;
     CheckBox isEnableSync;
     private TextView curBrightness, themeColor, profileLetter;
@@ -185,6 +185,9 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section7, TintUtil.color);
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
         TintUtil.setBackgroundFillColor(section9, TintUtil.color);
+        if (statusBarHack != null) {
+            statusBarHack.setBackgroundColor(TintUtil.color);
+        }
 
         if (profileLetter != null && getActivity() != null) {
             final String p = AppProfile.getCurrent(getActivity());
@@ -1678,7 +1681,7 @@ public class PrefFragment2 extends UIFragment {
             TempHolder.listHash++;
         });
 
-              CheckBox isAlwaysOpenOnPage1 = inflate.findViewById(R.id.isAlwaysOpenOnPage1);
+        CheckBox isAlwaysOpenOnPage1 = inflate.findViewById(R.id.isAlwaysOpenOnPage1);
         isAlwaysOpenOnPage1.setChecked(AppState.get().isAlwaysOpenOnPage1);
         isAlwaysOpenOnPage1.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppState.get().isAlwaysOpenOnPage1 = isChecked;
@@ -2597,6 +2600,8 @@ public class PrefFragment2 extends UIFragment {
 
             }
         });
+
+        statusBarHack = getActivity().findViewById(R.id.systemBarHack);
 
         overlay =
 

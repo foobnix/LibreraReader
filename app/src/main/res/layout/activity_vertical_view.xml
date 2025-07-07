@@ -1,250 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/documentView"
+    <View
+        android:id="@+id/systemBarHack"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp" />
 
-    <LinearLayout
-        android:id="@+id/musicButtonPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dip"
-        android:orientation="horizontal"
-        android:padding="2dip">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:id="@+id/pageshelper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"></LinearLayout>
-        </HorizontalScrollView>
-
-        <ImageView
-            android:id="@+id/pagesBookmark"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
-            android:layout_marginLeft="4dip"
-            android:layout_weight="0"
-            android:background="@drawable/bg_border_ltgray_dash2"
-            android:src="@drawable/glyphicons_73_bookmark"
-            android:tint="@color/lt_grey_dima" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="94dip"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="220dip"
-            android:layout_weight="1"
-            android:background="@drawable/bg_border_ltgray_dash" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <com.foobnix.pdf.search.view.BgClickbaleView
-                android:id="@+id/lineClose"
-                android:layout_width="match_parent"
-                android:layout_height="105dip"
-                android:layout_weight="0"
-                app:text="x" />
-
-            <com.foobnix.pdf.search.view.BgClickbaleView
-                android:id="@+id/lineFirst"
-                android:layout_width="match_parent"
-                android:layout_height="105dip"
-                android:layout_marginTop="10dip"
-                android:layout_weight="0"
-                app:text="1" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="220dip"
-            android:layout_weight="1"
-            android:background="@drawable/bg_border_ltgray_dash" />
-    </LinearLayout>
-
-    <com.foobnix.pdf.info.view.DrawView
-        android:id="@+id/drawView"
+    <RelativeLayout
+        android:id="@+id/parentParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-    <include
-        android:id="@+id/document_title_bar"
-        layout="@layout/document_title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:elevation="2dip" />
-
-    <ImageView
-        android:id="@+id/ttsActive1"
-        style="@style/buttonWhite"
-        android:layout_width="@dimen/wh_button"
-        android:layout_height="@dimen/wh_button"
-        android:layout_below="@+id/document_title_bar"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="0dip"
-        android:background="@drawable/bg_search_second_clickable"
-        android:contentDescription="@string/text_to_speech"
-        android:padding="7dip"
-        android:src="@drawable/glyphicons_186_volume_up"
-        android:tint="@color/white"
-        android:visibility="gone" />
-
-    <include
-
-        android:id="@+id/menuLayout"
-        layout="@layout/document_title_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/document_title_bar"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/floatingBookmark"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/wh_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="4dip"
-        android:layout_marginBottom="20dip"
-        android:background="@drawable/bg_border_ltgray_dash2"
-        android:gravity="center"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:singleLine="true"
-        android:text="718"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-
-    <FrameLayout
-        android:id="@+id/adFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/menuLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
-
-    <include
-        android:id="@+id/includeEditPanel"
-        layout="@layout/edit_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/adFrame"
-        android:layout_margin="10dip"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/seekSpeedLayot"
-        layout="@layout/document_speed_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/speed_size"
-        android:layout_above="@+id/bottomBar1" />
-
-    <com.foobnix.tts.TTSControlsView
-        android:id="@+id/ttsActive"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/seekSpeedLayot"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dip" />
-
-    <FrameLayout
-        android:id="@+id/bottomBar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#0000ff">
 
         <FrameLayout
-            android:id="@+id/bottomBar"
+            android:id="@+id/documentView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent" />
 
-            <include layout="@layout/document_footer" />
+        <LinearLayout
+            android:id="@+id/musicButtonPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dip"
+            android:orientation="horizontal"
+            android:padding="2dip">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/pageshelper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"></LinearLayout>
+            </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/pagesBookmark"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray_dash2"
+                android:src="@drawable/glyphicons_73_bookmark"
+                android:tint="@color/lt_grey_dima" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="94dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="220dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_border_ltgray_dash" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.foobnix.pdf.search.view.BgClickbaleView
+                    android:id="@+id/lineClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="105dip"
+                    android:layout_weight="0"
+                    app:text="x" />
+
+                <com.foobnix.pdf.search.view.BgClickbaleView
+                    android:id="@+id/lineFirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="105dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="0"
+                    app:text="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="220dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_border_ltgray_dash" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.DrawView
+            android:id="@+id/drawView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/document_title_bar"
+            layout="@layout/document_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:elevation="2dip" />
+
+        <ImageView
+            android:id="@+id/ttsActive1"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_below="@+id/document_title_bar"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="0dip"
+            android:background="@drawable/bg_search_second_clickable"
+            android:contentDescription="@string/text_to_speech"
+            android:padding="7dip"
+            android:src="@drawable/glyphicons_186_volume_up"
+            android:tint="@color/white"
+            android:visibility="gone" />
+
+        <include
+
+            android:id="@+id/menuLayout"
+            layout="@layout/document_title_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/document_title_bar"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/floatingBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="4dip"
+            android:layout_marginBottom="20dip"
+            android:background="@drawable/bg_border_ltgray_dash2"
+            android:gravity="center"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:singleLine="true"
+            android:text="718"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <FrameLayout
+            android:id="@+id/adFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/menuLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp" />
+
+        <include
+            android:id="@+id/includeEditPanel"
+            layout="@layout/edit_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adFrame"
+            android:layout_margin="10dip"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/seekSpeedLayot"
+            layout="@layout/document_speed_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/speed_size"
+            android:layout_above="@+id/bottomBar1" />
+
+        <com.foobnix.tts.TTSControlsView
+            android:id="@+id/ttsActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/seekSpeedLayot"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dip" />
+
+        <FrameLayout
+            android:id="@+id/bottomBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#0000ff">
+
+            <FrameLayout
+                android:id="@+id/bottomBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/document_footer" />
+            </FrameLayout>
         </FrameLayout>
-    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        <FrameLayout
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/toastBrightnessText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/bg_my_toast"
-        android:drawableLeft="@drawable/glyphicons_232_sun"
-        android:drawablePadding="10dip"
-        android:drawableTint="@color/white"
-        android:padding="12dip"
-        android:text="@string/brightness"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        <TextView
+            android:id="@+id/toastBrightnessText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_my_toast"
+            android:drawableLeft="@drawable/glyphicons_232_sun"
+            android:drawablePadding="10dip"
+            android:drawableTint="@color/white"
+            android:padding="12dip"
+            android:text="@string/brightness"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/anchorX"
-        android:layout_width="@dimen/wh_button"
-        android:layout_height="@dimen/wh_button"
-        android:layout_marginTop="100dip"
-        android:src="@drawable/glyphicons_299_circle_selected"
-        android:tint="@color/tint_blue" />
+        <ImageView
+            android:id="@+id/anchorX"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginTop="100dip"
+            android:src="@drawable/glyphicons_299_circle_selected"
+            android:tint="@color/tint_blue" />
 
-    <ImageView
-        android:id="@+id/anchorY"
-        android:layout_width="@dimen/wh_button"
-        android:layout_height="@dimen/wh_button"
-        android:layout_marginTop="150dip"
-        android:src="@drawable/glyphicons_298_circle_empty"
-        android:tint="@color/tint_blue" />
+        <ImageView
+            android:id="@+id/anchorY"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginTop="150dip"
+            android:src="@drawable/glyphicons_298_circle_empty"
+            android:tint="@color/tint_blue" />
 
-    <FrameLayout
-        android:id="@+id/anchor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:minWidth="10dip"
-        android:minHeight="10dip"
-        android:visibility="gone" />
+        <FrameLayout
+            android:id="@+id/anchor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:minWidth="10dip"
+            android:minHeight="10dip"
+            android:visibility="gone" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -794,6 +794,7 @@
                 android:id="@+id/isRememberMode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:layout_weight="1"
                 android:text="@string/remember_reading_mode" />
 
@@ -829,6 +830,7 @@
 
             <CheckBox
                 android:id="@+id/isAppPassword"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -846,24 +848,28 @@
         </LinearLayout>
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isOpenLastBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/opening_the_last_book_when_the_application_starts" />
 
          <CheckBox
+             android:maxLines="1"
             android:id="@+id/isAlwaysOpenOnPage1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/open_books_on_page_1" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isRestoreSearchQuery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/restore_search_query_when_the_application_starts" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isShowCloseAppDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -877,6 +883,7 @@
             android:visibility="gone">
 
             <CheckBox
+                android:maxLines="1"
                 android:id="@+id/isRememberDictionary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -893,6 +900,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isLoopAutoplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -901,24 +909,25 @@
             android:visibility="gone" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isDisplayAllFilesInFolder"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:maxLines="2"
             android:text="@string/display_all_file_types_in_folders" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isShowWhatIsNewDialog"
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:maxLines="2"
             android:text="@string/show_the_dialog_what_is_new_for_updates" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isEnableAccessibility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -927,6 +936,7 @@
             android:text="@string/accessibility_mode" />
 
         <CheckBox
+            android:maxLines="1"
             android:id="@+id/isMenuIntegration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

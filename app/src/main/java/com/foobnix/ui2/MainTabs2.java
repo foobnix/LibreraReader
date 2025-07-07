@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -110,6 +109,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     Handler handler;
     MyProgressBar fab;
     SwipeRefreshLayout swipeRefreshLayout;
+
     boolean isMyKey = false;
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
         UIFragment uiFragment = null;
@@ -328,7 +328,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);
 
+
         setContentView(R.layout.main_tabs);
+        DocumentController.applyEdgeToEdge(this);
 
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
@@ -729,6 +731,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
+
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());

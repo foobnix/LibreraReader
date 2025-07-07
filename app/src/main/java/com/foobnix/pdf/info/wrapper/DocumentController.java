@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
@@ -18,8 +17,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -206,6 +208,7 @@ public abstract class DocumentController {
     public static void setNavBarTintColor(Activity a) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             a.getWindow().setNavigationBarColor(TintUtil.color);
+            a.getWindow().setStatusBarColor(TintUtil.color);
         }
     }
 
@@ -300,8 +303,13 @@ public abstract class DocumentController {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
             List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
 
+
             MyPopupMenu popup = new MyPopupMenu(a, v);
-            for (int id : ids)
+            for (int id : ids) {
+
+                if (Build.VERSION.SDK_INT >= 35 && id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+                    continue;
+                }
 
                 if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
@@ -318,13 +326,15 @@ public abstract class DocumentController {
                     });
 
                 }
-            popup.show();
+                popup.show();
+            }
         } else {
             if (currentMode == AppState.FULL_SCREEN_NORMAL) {
                 response.onResultRecive(AppState.FULL_SCREEN_FULLSCREEN);
             } else {
                 response.onResultRecive(AppState.FULL_SCREEN_NORMAL);
             }
+
         }
     }
 
@@ -335,6 +345,38 @@ public abstract class DocumentController {
             a.setTheme(R.style.StyledIndicatorsBlack);
         }
     }
+
+    public static void applyEdgeToEdge(final Activity a) {
+        if (Build.VERSION.SDK_INT >= 35) {
+            View parentParent = a.findViewById(R.id.parentParent);
+            View statusBarHack = a.findViewById(R.id.systemBarHack);
+
+            if (parentParent != null) {
+                ViewCompat.setOnApplyWindowInsetsListener(parentParent, (v, windowInsets) -> {
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                    mlp.leftMargin = insets.left;
+                    mlp.bottomMargin = insets.bottom;
+                    mlp.rightMargin = insets.right;
+                    v.setLayoutParams(mlp);
+
+                    if (statusBarHack != null) {
+                        ViewGroup.LayoutParams statusBarHackLayoutParams = statusBarHack.getLayoutParams();
+                        statusBarHackLayoutParams.height = insets.top;
+                        statusBarHack.setLayoutParams(statusBarHackLayoutParams);
+
+                        statusBarHack.setBackgroundColor(TintUtil.color);
+
+                    }
+
+
+                    return WindowInsetsCompat.CONSUMED;
+                });
+            }
+        }
+    }
+
 
     public static void doRotation(final Activity a) {
         try {
@@ -584,6 +626,7 @@ public abstract class DocumentController {
     public List<OutlineLinkWrapper> getCurrentOutline() {
         return outline;
     }
+
     public Boolean isEpub3;
 
     public String getCurrentChapter() {
@@ -743,7 +786,7 @@ public abstract class DocumentController {
     }
 
     public void showAnnotation(Annotation annotation) {
-        Dialogs.showTextDialog(activity,annotation.text);
+        Dialogs.showTextDialog(activity, annotation.text);
         //Toast.makeText(activity, "" + annotation.text, Toast.LENGTH_SHORT).show();
     }
 

@@ -12,7 +12,7 @@ Librera Reader is an e-book reader for Android devices;
 it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX,
 and OPDS Catalogs
 
-### Download application
+# Download application
 
 [Librera Reader on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 

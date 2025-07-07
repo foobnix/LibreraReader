@@ -307,12 +307,7 @@ public class TintUtil {
 
     @SuppressLint("NewApi")
     public static void setStatusBarColor(Activity activity, int color) {
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = activity.getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(MagicHelper.darkerColor(color));
-        }
+
     }
 
     public static void grayScaleImageView(ImageView v) {

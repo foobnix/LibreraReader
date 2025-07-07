@@ -107,14 +107,20 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 cd $MUPDF_JAVA
 
 
-NDK_VERSION="27.2.12479018"
+NDK_VERSION="28.0.12674087"
 FDRIOD_NDK_VERSION="21.4.7075529"
 if [ "$(uname)" == "Darwin" ]; then
   FDRIOD_NDK_VERSION=$NDK_VERSION
 fi
 
-PATH1=/Volumes/SSD-USB/Android/Sdk/ndk
+PATH1=/Users/ivanivanenko/Library/Android/sdk/ndk
 PATH2=/home/dev/Android/Sdk/ndk
+
+if [ ! -d "$PATH1/$NDK_VERSION" ]; then
+    echo "-- NDK ERROR --"
+    echo "$PATH1/$NDK_VERSION NDK NOT FOUND"
+    echo "----"
+fi
 
 if [ "$1" == "clean_ndk" ]; then
   if [ "$2" == "fdroid" ]; then
