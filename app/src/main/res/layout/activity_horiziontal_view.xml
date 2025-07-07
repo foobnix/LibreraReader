@@ -225,7 +225,6 @@
 
                 <TextView
                     android:id="@+id/pagesTime1"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -237,7 +236,8 @@
                     android:singleLine="true"
                     android:text="--:--"
                     android:textColor="@color/white"
-                    android:textSize="9sp" />
+                    android:textSize="9sp"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/bookClose"
