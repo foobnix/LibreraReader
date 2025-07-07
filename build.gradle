@@ -2,6 +2,8 @@
 
 buildscript {
     ext {
+        agp_version = '8.11.0'
+
         //compose_ui_version = '1.5.3'
     }
     repositories {
@@ -9,7 +11,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.3'
+        classpath "com.android.tools.build:gradle:$agp_version"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
     }
 }
@@ -18,14 +20,14 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url = 'https://jitpack.io' }
     }
 }
 project.ext {
-    targetSdk = 36 //need to fix edge-to-edge in Android 15
-    minSdk = 21
+    targetSdk = 36
+    minSdk = 24
+    minFDroidSdk = 16
     compileSdk = 36
-   // compose_ui_version = '1.5.3'
 }
 
 task clean(type: Delete) {

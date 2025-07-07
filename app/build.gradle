@@ -6,8 +6,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 6202
-    FDroidVersionNumber = "8.9.182"
+    FDroidCodeNumber = 6230
+    FDroidVersionNumber = "8.9.190"
 }
 
 
@@ -29,17 +29,17 @@ ext {
 }
 
 android {
-    compileSdk project.compileSdk
-    namespace "com.foobnix.pdf.info"
+    compileSdk = project.compileSdk
+    namespace = "com.foobnix.pdf.info"
 
     defaultConfig {
-        namespace "com.foobnix.pdf.info"
-        minSdk project.minSdk
-        targetSdk project.targetSdk
-        versionCode codeNumber
-        versionName versionNumber
+        namespace = "com.foobnix.pdf.info"
+        minSdk = project.minSdk
+        targetSdk = project.targetSdk
+        versionCode = codeNumber
+        versionName = versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        multiDexEnabled = true
     }
 
     configurations {
@@ -50,9 +50,9 @@ android {
     }
 
     lint {
-        abortOnError true
-        ignoreWarnings true
-        checkReleaseBuilds taskName.contains("Pro")
+        abortOnError = true
+        ignoreWarnings = true
+        checkReleaseBuilds = taskName.contains("Pro")
     }
 
     testOptions {
@@ -73,37 +73,37 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            signingConfig signingConfigs.release
-            debuggable false
+            minifyEnabled = false
+            signingConfig = signingConfigs.release
+            debuggable = false
         }
         debug {
-            debuggable true
+            debuggable = true
         }
     }
 
-    compileOptions {
+    //compileOptions {
         //coreLibraryDesugaringEnabled true
 
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+        //sourceCompatibility JavaVersion.VERSION_1_8
+        //targetCompatibility JavaVersion.VERSION_1_8
+    //}
 
     splits {
         abi {
-            enable true
+            enable = true
             reset()
             include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            universalApk true
+            universalApk = true
         }
     }
 
     flavorDimensions.add("version")
     productFlavors {
         fdroid {
-            minSdk 16
-            dimension "version"
-            applicationId "com.foobnix.pro.pdf.reader"
+            minSdk = project.minFDroidSdk
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
                     appName      : "Librera FD",
                     appIcon      : "@mipmap/icon_pdf_pro",
@@ -114,11 +114,11 @@ android {
                     admobFullId  : "",
                     appSafeMode  : "true"
             ]
-            versionNameSuffix '-fdroid'
+            versionNameSuffix = '-fdroid'
         }
         librera {
-            dimension "version"
-            applicationId "com.foobnix.pdf.reader"
+            dimension = "version"
+            applicationId = "com.foobnix.pdf.reader"
             manifestPlaceholders = [
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
@@ -132,8 +132,8 @@ android {
         }
 
         pro {
-            dimension "version"
-            applicationId "com.foobnix.pro.pdf.reader"
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
@@ -146,8 +146,8 @@ android {
             ]
         }
         pdf_classic {
-            dimension "version"
-            applicationId "classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
+            dimension = "version"
+            applicationId = "classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
             manifestPlaceholders = [
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_classic",
@@ -160,8 +160,8 @@ android {
             ]
         }
         ebooka {
-            dimension "version"
-            applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
+            dimension = "version"
+            applicationId = "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
                     appName      : "Book Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
@@ -174,8 +174,8 @@ android {
             ]
         }
         pdf_v2 {
-            dimension "version"
-            applicationId "pdf.pdf.reader"
+            dimension = "version"
+            applicationId = "pdf.pdf.reader"
             manifestPlaceholders = [
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_2",
@@ -188,8 +188,8 @@ android {
             ]
         }
         tts_reader {
-            dimension "version"
-            applicationId "tts.reader"
+            dimension = "version"
+            applicationId = "tts.reader"
             manifestPlaceholders = [
                     appName      : "TTS Reader",
                     appIcon      : "@mipmap/icon_tts_reader_app",
@@ -202,8 +202,8 @@ android {
             ]
         }
         epub_reader {
-            dimension "version"
-            applicationId "epub.reader"
+            dimension = "version"
+            applicationId = "epub.reader"
             manifestPlaceholders = [
                     appName      : "Epub Reader",
                     appIcon      : "@mipmap/icon_epub_reader",
@@ -282,10 +282,10 @@ dependencies {
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.work:work-runtime:2.10.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.work:work-runtime:2.10.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
 
 /** Third-party **/
     implementation 'com.github.axet:lame:1.0.9'
@@ -295,7 +295,7 @@ dependencies {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.18.1'
+    implementation 'org.jsoup:jsoup:1.21.1'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.5.0'
 
@@ -318,8 +318,8 @@ dependencies {
     implementation "commons-logging:commons-logging-api:1.1"
 
 
-    implementation 'androidx.work:work-runtime:2.10.0'
-    implementation 'com.google.guava:guava:33.3.1-android'
+    implementation 'androidx.work:work-runtime:2.10.2'
+    implementation 'com.google.guava:guava:33.4.8-android'
 
     //implementation "it.unimi.dsi:fastutil-core:8.5.12"
 
@@ -333,7 +333,7 @@ dependencies {
 
 
 /** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:23.5.0"
+    def google_ads = "com.google.android.gms:play-services-ads:24.4.0"
     libreraImplementation google_ads
     pdf_v2Implementation google_ads
     ebookaImplementation google_ads
@@ -341,7 +341,7 @@ dependencies {
     pdf_classicImplementation google_ads
     epub_readerImplementation google_ads
 
-    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.1.0"
+    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.2.0"
     libreraImplementation messaging_ads
     pdf_v2Implementation messaging_ads
     ebookaImplementation messaging_ads
@@ -362,12 +362,12 @@ task copyApks() {
     if (project.hasProperty('beta') || project.hasProperty("release")) {
         println "My Task: [copy apks]"
 
-        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
-        delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
-        delete fileTree("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        //delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
+        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
-        delete fileTree("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk")
-        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
+        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk")
+        //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
 
         android.applicationVariants.all { variant ->
             if ("release" == variant.buildType.name) {
@@ -378,15 +378,15 @@ task copyApks() {
                 def list = []
 
                 if (project.hasProperty("beta")) {
-                    list.add("/home/dev/Nextcloud/LibreraBeta")
-                    list.add("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing")
-                    list.add("/home/dev/Dropbox/FREE_PDF_APK/testing")
+                    //list.add("/home/dev/Nextcloud/LibreraBeta")
+                    list.add("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing")
+                    //list.add("/home/dev/Dropbox/FREE_PDF_APK/testing")
                 }
 
 
                 if (project.hasProperty("release")) {
-                    list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
-                    list.add("/Users/dev/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                    //list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                    list.add("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$versionNumber")
                 }
                 list.each { dest ->
 
@@ -458,3 +458,4 @@ if (!taskName.contains("Fdroid")) {
         }
     }
 }
+

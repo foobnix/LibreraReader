@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk project.compileSdk
+    compileSdk = project.compileSdk
 
     defaultConfig {
-        minSdk 14
-        targetSdk project.targetSdk
+        minSdk = project.minSdk
+        targetSdk = project.targetSdk
     }
 
     buildTypes {
@@ -16,7 +16,7 @@ android {
             //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.foobnix.pdf.pro'
+    namespace = 'com.foobnix.pdf.pro'
 }
 
 dependencies {
