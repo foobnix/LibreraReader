@@ -106,9 +106,9 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 cd $MUPDF_JAVA
 
-
-NDK_VERSION="28.0.12674087"
+NDK_VERSION="28.1.13356709"
 FDRIOD_NDK_VERSION="21.4.7075529"
+
 if [ "$(uname)" == "Darwin" ]; then
   FDRIOD_NDK_VERSION=$NDK_VERSION
 fi

@@ -31,6 +31,7 @@ cd Builder
 cd ../
 
 ./gradlew assembleProRelease
+./gradlew assembleLibreraRelease
 
 ####################################
 
