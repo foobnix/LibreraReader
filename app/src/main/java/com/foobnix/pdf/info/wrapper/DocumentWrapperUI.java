@@ -80,7 +80,6 @@ import org.ebookdroid.BookType;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.zwobble.mammoth.internal.documents.Text;
 
 import java.util.Arrays;
 import java.util.List;
@@ -244,14 +243,14 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.showContent(anchor, dc);
+            DragingDialogs.dialogShowContent(anchor, dc);
         }
     };
     public View.OnClickListener onBCclick = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.contrastAndBrigtness(anchor, dc, new Runnable() {
+            DragingDialogs.dialogContrastAndBrigtness(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -297,14 +296,14 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(View v) {
-            DragingDialogs.recentBooks(anchor, dc);
+            DragingDialogs.dialogRecentBooks(anchor, dc);
         }
     };
     View.OnClickListener onThumbnail = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
-            DragingDialogs.gotoPageDialog(anchor, dc);
+            DragingDialogs.dialogGoToPage(anchor, dc);
         }
     };
     SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {
@@ -333,7 +332,7 @@ public class DocumentWrapperUI {
                 onCrop.onClick(null);
             }
 
-            DragingDialogs.editColorsPanel(anchor, dc, drawView, false);
+            DragingDialogs.dialogEditColors(anchor, dc, drawView, false);
         }
     };
     SeekBar.OnSeekBarChangeListener onSpeed = new SeekBar.OnSeekBarChangeListener() {
@@ -415,7 +414,7 @@ public class DocumentWrapperUI {
 
     public void onLongPress(MotionEvent ev) {
         if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
-            DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
+            DragingDialogs.dialogFooterNotes(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -427,13 +426,13 @@ public class DocumentWrapperUI {
                 DictsHelper.runIntent(dc.getActivity(),anchor, AppState.get().selectedText);
                 dc.clearSelectedText();
             } else {
-                DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+                DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
             }
         }
     }
 
     public void showSelectTextMenu() {
-        DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+        DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
 
     }    Runnable updateTimePower = new Runnable() {
 
@@ -527,19 +526,19 @@ public class DocumentWrapperUI {
             return true;
         }
         if (KeyEvent.KEYCODE_L == keyCode) {
-            DragingDialogs.recentBooks(anchor, dc);
+            DragingDialogs.dialogRecentBooks(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_T == keyCode) {
-            DragingDialogs.textToSpeachDialog(anchor, dc);
+            DragingDialogs.dialogTextToSpeech(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_C == keyCode) {
-            DragingDialogs.showContent(anchor, dc);
+            DragingDialogs.dialogShowContent(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_B == keyCode) {
-            DragingDialogs.showBookmarksDialog(anchor, dc, null);
+            DragingDialogs.dialogShowBookmarks(anchor, dc, null);
             return true;
         }
 
@@ -683,7 +682,7 @@ public class DocumentWrapperUI {
                 onCut.onClick(null);
                 return;
             }
-            DragingDialogs.textToSpeachDialog(anchor, dc);
+            DragingDialogs.dialogTextToSpeech(anchor, dc);
         }
     };
 
@@ -1006,7 +1005,7 @@ public class DocumentWrapperUI {
                     dc.clearSelectedText();
 
                 } else {
-                    DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
+                    DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
                 }
 
             }
@@ -1117,7 +1116,7 @@ public class DocumentWrapperUI {
         fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
 
         onTextReplacement = a.findViewById(R.id.onTextReplacement);
-        onTextReplacement.setOnClickListener(v -> DragingDialogs.textReplaces(anchor, dc));
+        onTextReplacement.setOnClickListener(v -> DragingDialogs.dialogTextReplaces(anchor, dc));
 
 
         onCloseBook = a.findViewById(R.id.close);
@@ -1161,7 +1160,7 @@ public class DocumentWrapperUI {
             public void run() {
                 AppState.get().isEditMode = true;
                 hideShow();
-                DragingDialogs.textToSpeachDialog(anchor, dc);
+                DragingDialogs.dialogTextToSpeech(anchor, dc);
             }
         });
 
@@ -1412,7 +1411,7 @@ public class DocumentWrapperUI {
     }
 
     public void showEditDialogIfNeed() {
-        DragingDialogs.editColorsPanel(anchor, dc, drawView, true);
+        DragingDialogs.dialogEditColors(anchor, dc, drawView, true);
     }
 
     public void doDoubleTap(int x, int y) {
@@ -1554,7 +1553,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
+            DragingDialogs.dialogShowBookmarks(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -1614,7 +1613,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(final View arg0) {
-            DragingDialogs.addBookmarksLong(anchor, dc);
+            DragingDialogs.dialogAddBookmarksLong(anchor, dc);
             showPagesHelper();
             return true;
         }
@@ -1731,7 +1730,7 @@ public class DocumentWrapperUI {
             onCrop.onClick(null);
         }
 
-        DragingDialogs.searchMenu(anchor, dc, "");
+        DragingDialogs.dialogSearchText(anchor, dc, "");
     }
 
     public void onAutoScrollClick() {
@@ -1828,7 +1827,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
+            DragingDialogs.dialogCustomCrop(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -2011,7 +2010,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.preferences(anchor, dc, onRefresh, new Runnable() {
+            DragingDialogs.dialogPreferences(anchor, dc, onRefresh, new Runnable() {
 
                 @Override
                 public void run() {

@@ -117,7 +117,6 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.BookCSS.FontPack;
@@ -164,7 +163,6 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.greenrobot.eventbus.EventBus;
-import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -172,8 +170,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -213,7 +209,7 @@ public class DragingDialogs {
         dialog.show("Sample");
     }
 
-    public static void webView(final FrameLayout anchor, String url) {
+    public static void dialogWebView(final FrameLayout anchor, String url) {
         if (anchor == null) {
             return;
         }
@@ -257,7 +253,7 @@ public class DragingDialogs {
     }
 
 
-    public static void textReplaces(final FrameLayout anchor, final DocumentController controller) {
+    public static void dialogTextReplaces(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
@@ -497,7 +493,7 @@ public class DragingDialogs {
         dialog.show("Sample");
     }
 
-    public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
+    public static void dialogCustomCrop(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
         if (controller == null) {
             return;
         }
@@ -665,7 +661,7 @@ public class DragingDialogs {
 
     }
 
-    public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
+    public static void dialogContrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
         if (controller == null) {
             return;
         }
@@ -686,7 +682,7 @@ public class DragingDialogs {
 
     }
 
-    public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+    public static void dialogOnMove(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         if (controller == null) {
             return;
         }
@@ -799,14 +795,14 @@ public class DragingDialogs {
 
     }
 
-    public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller) {
+    public static void dialogTextToSpeech(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
-        textToSpeachDialog(anchor, controller, "");
+        dialogTextToSpeech(anchor, controller, "");
     }
 
-    public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller, final String textToRead) {
+    public static void dialogTextToSpeech(final FrameLayout anchor, final DocumentController controller, final String textToRead) {
         if (controller == null) {
             return;
         }
@@ -1442,7 +1438,7 @@ public class DragingDialogs {
 
     }
 
-    public static void searchMenu(final FrameLayout anchor, final DocumentController controller, String text) {
+    public static void dialogSearchText(final FrameLayout anchor, final DocumentController controller, String text) {
         if (controller == null) {
             return;
         }
@@ -1615,8 +1611,8 @@ public class DragingDialogs {
     }
 
     @SuppressLint("NewApi")
-    public static DragingPopup showFootNotes(final FrameLayout anchor, final DocumentController controller, final Runnable updateLinks) {
-        return new DragingPopup(R.string.foot_notes, anchor, 280, 300) {
+    public static void dialogFooterNotes(final FrameLayout anchor, final DocumentController controller, final Runnable updateLinks) {
+         new DragingPopup(R.string.foot_notes, anchor, 280, 300) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_footer_notes, null, false);
@@ -1688,18 +1684,9 @@ public class DragingDialogs {
         });
     }
 
-    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
-
+    public static void dialogSelectText(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
         final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() && withAnnotation1;
-
-        // try {
-        // int number = Integer.parseInt(AppState.get().selectedText);
-        // Dialogs.showDeltaPage(anchor, controller, number, reloadUI);
-        // return null;
-        // } catch (Exception e) {
-        // }
-
-        return new DragingPopup(R.string.text, anchor, 300, 400) {
+         new DragingPopup(R.string.text, anchor, 300, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
@@ -1868,7 +1855,7 @@ public class DragingDialogs {
                             String url = providers.get(name).trim();
                             //Urls.open(anchor.getContext(), url);
                             closeDialog();
-                            webView(anchor, url);
+                            dialogWebView(anchor, url);
 
                             return false;
                         });
@@ -1885,7 +1872,7 @@ public class DragingDialogs {
                             String url = providers.get(name).trim();
                             //Urls.open(anchor.getContext(), providers.get(name).trim());
                             closeDialog();
-                            webView(anchor, url);
+                            dialogWebView(anchor, url);
                             return false;
                         });
                     }
@@ -2002,7 +1989,7 @@ public class DragingDialogs {
                         @Override
                         public void onClick(View v) {
                             controller.clearSelectedText();
-                            searchMenu(anchor, controller, selectedText);
+                            dialogSearchText(anchor, controller, selectedText);
                         }
                     });
                 }
@@ -2191,7 +2178,7 @@ public class DragingDialogs {
                             @Override
                             public void run() {
                                 sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
-                                selectTextMenu(anchor, controller, withAnnotation, reloadUI);
+                                dialogSelectText(anchor, controller, withAnnotation, reloadUI);
                             }
                         }, true);
 
@@ -2255,9 +2242,9 @@ public class DragingDialogs {
     }
 
 
-    public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
+    public static void dialogGoToPage(final FrameLayout anchor, final DocumentController dc) {
         if (dc == null) {
-            return null;
+            return;
         }
         DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             View searchLayout;
@@ -2495,11 +2482,9 @@ public class DragingDialogs {
             }
 
         });
-        return popup;
-
     }
 
-    public static void editColorsPanel(final FrameLayout anchor, final DocumentController controller, final DrawView drawView, final boolean force) {
+    public static void dialogEditColors(final FrameLayout anchor, final DocumentController controller, final DrawView drawView, final boolean force) {
         if (controller == null) {
             return;
         }
@@ -2655,7 +2640,7 @@ public class DragingDialogs {
         }.show(EDIT_COLORS_PANEL, force);
     }
 
-    public static void recentBooks(final FrameLayout anchor, final DocumentController controller) {
+    public static void dialogRecentBooks(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
@@ -2752,7 +2737,7 @@ public class DragingDialogs {
         }.show("recentBooks");
     }
 
-    public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
+    public static void dialogAddBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
         }
@@ -2760,7 +2745,7 @@ public class DragingDialogs {
 
     }
 
-    public static void showBookmarksDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
+    public static void dialogShowBookmarks(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
         if (controller == null) {
             return;
         }
@@ -2904,7 +2889,7 @@ public class DragingDialogs {
                 show("addBookmarks", false, true);
     }
 
-    public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
+    public static void dialogShowContent(final FrameLayout anchor, final DocumentController controller) {
 
         final ItemClickListenerWithReference<DragingPopup> onClickContent = new ItemClickListenerWithReference<DragingPopup>() {
 
@@ -3079,11 +3064,9 @@ public class DragingDialogs {
 
         }.show("showContent", false, true);
         onClickContent.setReference(dragingPopup);
-        return dragingPopup;
-
     }
 
-    public static void sliceDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefreshDoc, final ResultResponse<Integer> onMoveCut) {
+    public static void dialogSlice(final FrameLayout anchor, final DocumentController controller, final Runnable onRefreshDoc, final ResultResponse<Integer> onMoveCut) {
 
         if (controller == null) {
             return;
@@ -3214,7 +3197,7 @@ public class DragingDialogs {
 
     }
 
-    public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
+    public static void dialogPageFlipping(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
         if (controller == null) {
             return;
         }
@@ -3302,7 +3285,7 @@ public class DragingDialogs {
 
     }
 
-    public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+    public static void dialogStatusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
 
         DragingPopup dialog = new DragingPopup(R.string.status_bar, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
@@ -3313,7 +3296,7 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
+                        dialogPreferences(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 };
             }
@@ -3827,11 +3810,9 @@ public class DragingDialogs {
         };
 
         dialog.show(DragingPopup.PREF + "_statusBarSettings");
-
-        return dialog;
     }
 
-    public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+    public static void dialogPerformanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         AppProfile.save(controller.getActivity());
 
         final int initHash = Objects.appHash();
@@ -3855,7 +3836,7 @@ public class DragingDialogs {
                             });
 
                         } else {
-                            preferences(anchor, controller, onRefresh, updateUIRefresh);
+                            dialogPreferences(anchor, controller, onRefresh, updateUIRefresh);
                         }
                     }
                 };
@@ -4653,10 +4634,9 @@ public class DragingDialogs {
                 }
             }
         });
-        return dialog;
     }
 
-    public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+    public static void dialogMoreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initHash = Objects.appHash();
 
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -4678,7 +4658,7 @@ public class DragingDialogs {
                             });
 
                         } else {
-                            preferences(anchor, controller, onRefresh, updateUIRefresh);
+                            dialogPreferences(anchor, controller, onRefresh, updateUIRefresh);
                         }
                     }
                 };
@@ -5226,10 +5206,9 @@ public class DragingDialogs {
                 }
             }
         });
-        return dialog;
     }
 
-    public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+    public static void dialogPreferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initHash = Objects.appHash();
 
         // LOG.d("ojectAsString1", Objects.ojectAsString(AppState.get()));
@@ -5244,7 +5223,7 @@ public class DragingDialogs {
                     return txt;
                 }
             };
-            return dialog;
+            return;
         }
 
         DragingPopup dialog = new DragingPopup(R.string.preferences, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -5269,7 +5248,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         closeDialog();
-                        DragingDialogs.recentBooks(anchor, controller);
+                        DragingDialogs.dialogRecentBooks(anchor, controller);
                     }
                 });
                 final View onRotate = inflate.findViewById(R.id.onRotate);
@@ -5288,7 +5267,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(final View v) {
                         closeDialog();
-                        DragingDialogs.pageFlippingDialog(anchor, controller, onRefresh);
+                        DragingDialogs.dialogPageFlipping(anchor, controller, onRefresh);
 
                     }
                 });
@@ -5327,7 +5306,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(final View v) {
                         closeDialog();
-                        DragingDialogs.sliceDialog(anchor, controller, updateUIRefresh, new ResultResponse<Integer>() {
+                        DragingDialogs.dialogSlice(anchor, controller, updateUIRefresh, new ResultResponse<Integer>() {
 
                             @Override
                             public boolean onResultRecive(Integer result) {
@@ -5362,7 +5341,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(final View v) {
                         closeDialog();
-                        DragingDialogs.textToSpeachDialog(anchor, controller);
+                        DragingDialogs.dialogTextToSpeech(anchor, controller);
                     }
                 });
 
@@ -5470,7 +5449,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        moreBookSettings(anchor, controller, onRefresh, updateUIRefresh);
+                        dialogMoreBookSettings(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
 
@@ -5479,7 +5458,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        performanceSettings(anchor, controller, onRefresh, updateUIRefresh);
+                        dialogPerformanceSettings(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
 
@@ -5488,7 +5467,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        statusBarSettings(anchor, controller, onRefresh, updateUIRefresh);
+                        dialogStatusBarSettings(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
 
@@ -6049,6 +6028,5 @@ public class DragingDialogs {
                 }
             }
         });
-        return dialog;
     }
 }

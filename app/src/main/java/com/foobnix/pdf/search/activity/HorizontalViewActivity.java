@@ -385,7 +385,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (AppState.get().isRememberDictionary) {
                     DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
                 } else {
-                    DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+                    DragingDialogs.dialogSelectText(anchor, dc, true, onRefresh);
                 }
 
             }
@@ -428,7 +428,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                DragingDialogs.onMoveDialog(anchor, dc, onRefresh, reloadDoc);
+                DragingDialogs.dialogOnMove(anchor, dc, onRefresh, reloadDoc);
             }
         });
 
@@ -475,7 +475,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                DragingDialogs.pageFlippingDialog(anchor, dc, onRefresh);
+                DragingDialogs.dialogPageFlipping(anchor, dc, onRefresh);
             }
         });
 
@@ -519,7 +519,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onTextReplacement.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                DragingDialogs.textReplaces(anchor, dc);
+                DragingDialogs.dialogTextReplaces(anchor, dc);
             }
         });
         Views.visible(onTextReplacement, isTextFomat);
@@ -550,7 +550,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.contrastAndBrigtness(anchor, dc, reloadDocBrigntness, reloadDoc);
+                DragingDialogs.dialogContrastAndBrigtness(anchor, dc, reloadDocBrigntness, reloadDoc);
             }
         });
 
@@ -575,7 +575,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.gotoPageDialog(anchor, dc);
+                DragingDialogs.dialogGoToPage(anchor, dc);
 
             }
         });
@@ -594,7 +594,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onClick(final View v) {
                 if (dc != null) {
-                    DragingDialogs.showContent(anchor, dc);
+                    DragingDialogs.dialogShowContent(anchor, dc);
                 }
             }
         });
@@ -607,7 +607,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onClick(final View v) {
 
-                DragingDialogs.recentBooks(anchor, dc);
+                DragingDialogs.dialogRecentBooks(anchor, dc);
             }
         });
 
@@ -621,7 +621,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     modeOnePage();
                     return;
                 }
-                DragingDialogs.textToSpeachDialog(anchor, dc);
+                DragingDialogs.dialogTextToSpeech(anchor, dc);
             }
         });
         textToSpeach.setOnLongClickListener(v -> {
@@ -814,7 +814,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onCrop.setVisibility(isTextFomat && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
 
 
-        onCrop.setOnClickListener(v -> DragingDialogs.customCropDialog(anchor, dc, onCropChange));
+        onCrop.setOnClickListener(v -> DragingDialogs.dialogCustomCrop(anchor, dc, onCropChange));
         onCrop.setOnLongClickListener(v -> {
             AppSP.get().isCrop = !AppSP.get().isCrop;
             onCropChange.run();
@@ -878,7 +878,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onClick(final View v) {
                 if (dc != null) {
-                    DragingDialogs.preferences(anchor, dc, onRefresh, reloadDoc);
+                    DragingDialogs.dialogPreferences(anchor, dc, onRefresh, reloadDoc);
                 }
             }
         });
@@ -1150,7 +1150,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         public void run() {
                             AppState.get().isEditMode = true;
                             hideShow();
-                            DragingDialogs.textToSpeachDialog(anchor, dc);
+                            DragingDialogs.dialogTextToSpeech(anchor, dc);
                         }
                     });
 
@@ -1459,7 +1459,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             onCrop.invalidate();
             reloadDoc.run();
         }
-        DragingDialogs.searchMenu(anchor, dc, "");
+        DragingDialogs.dialogSearchText(anchor, dc, "");
     }
 
     @Override
@@ -1703,7 +1703,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
-                DragingDialogs.showFootNotes(anchor, dc, new Runnable() {
+                DragingDialogs.dialogFooterNotes(anchor, dc, new Runnable() {
 
                     @Override
                     public void run() {
@@ -1717,7 +1717,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     DictsHelper.runIntent(dc.getActivity(), anchor, text);
                     dc.clearSelectedText();
                 } else {
-                    DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
+                    DragingDialogs.dialogSelectText(anchor, dc, true, onRefresh);
                 }
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK)) {
@@ -1978,7 +1978,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onClick(final View v) {
-            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
+            DragingDialogs.dialogShowBookmarks(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {
@@ -2246,7 +2246,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return true;
         }
         if (keyCode == KeyEvent.KEYCODE_0) {
-            DragingDialogs.gotoPageDialog(anchor, dc);
+            DragingDialogs.dialogGoToPage(anchor, dc);
             return true;
         }
 
@@ -2259,19 +2259,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return true;
         }
         if (KeyEvent.KEYCODE_L == keyCode) {
-            DragingDialogs.recentBooks(anchor, dc);
+            DragingDialogs.dialogRecentBooks(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_T == keyCode) {
-            DragingDialogs.textToSpeachDialog(anchor, dc);
+            DragingDialogs.dialogTextToSpeech(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_C == keyCode) {
-            DragingDialogs.showContent(anchor, dc);
+            DragingDialogs.dialogShowContent(anchor, dc);
             return true;
         }
         if (KeyEvent.KEYCODE_B == keyCode) {
-            DragingDialogs.showBookmarksDialog(anchor, dc, null);
+            DragingDialogs.dialogShowBookmarks(anchor, dc, null);
             return true;
         }
 
@@ -2432,7 +2432,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public boolean onLongClick(final View arg0) {
-            DragingDialogs.addBookmarksLong(anchor, dc);
+            DragingDialogs.dialogAddBookmarksLong(anchor, dc);
             showPagesHelper();
             return true;
         }

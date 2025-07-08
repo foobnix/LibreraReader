@@ -12,7 +12,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -178,7 +177,7 @@ public class DictsHelper {
                     url = dictionaries.get(dictName);
                 }
                 //Urls.open(c, url);
-                DragingDialogs.webView(anchor, url);
+                DragingDialogs.dialogWebView(anchor, url);
             }
             if (dict.startsWith("type")) {
                 Intent intent = null;
