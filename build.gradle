@@ -12,7 +12,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
+        //classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20'
     }
 }
 
@@ -24,6 +24,7 @@ allprojects {
     }
 }
 project.ext {
+
     targetSdk = 36
     minSdk = 24
     minFDroidSdk = 16

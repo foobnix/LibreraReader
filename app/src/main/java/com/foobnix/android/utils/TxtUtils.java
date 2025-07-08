@@ -1447,7 +1447,9 @@ public class TxtUtils {
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 
-                        if (imageView.getId() == R.id.closePopup && !AppState.get().isUiTextColor) {
+                        if ((imageView.getId() == R.id.closePopup ||
+                                imageView.getId() == R.id.onIconAction)
+                                && !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (accentImages || AppState.get().isUiTextColor) {
                             if (AppState.get().uiTextColor == AppState.get().tintColor) {
