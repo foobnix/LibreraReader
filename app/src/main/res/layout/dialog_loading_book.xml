@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="12dip" >
 
     <com.foobnix.pdf.info.view.MyProgressBar
         android:id="@+id/MyProgressBarLoading"

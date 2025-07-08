@@ -303,6 +303,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager = (VerticalViewPager) findViewById(R.id.pager2);
         viewPager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
+
+        viewPager.setBackgroundColor(MagicHelper.getBgColor());
+
         parentParent = findViewById(R.id.parentParent);
         pannelBookTitle = findViewById(R.id.pannelBookTitle);
 
@@ -952,7 +955,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 try {
                     LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
                     try {
-                        //Thread.sleep(5250);
+                        Thread.sleep(3000);
 
                         while (viewPager.getHeight() == 0) {
                             Thread.sleep(250);
