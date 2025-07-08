@@ -1435,6 +1435,8 @@ public class DocumentWrapperUI {
                 closeAndRunList();
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_HIDE_APP) {
                 Apps.showDesctop(a);
+            } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_SHARE_PAGE) {
+                ExtUtils.sharePage(dc,dc.getCurentPage()-1);
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_START_STOP_TTS) {
                 TTSService.playPause(dc.getActivity(), dc);
 

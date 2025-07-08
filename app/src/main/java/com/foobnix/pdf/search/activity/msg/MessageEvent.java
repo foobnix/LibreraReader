@@ -11,6 +11,7 @@ public class MessageEvent {
     public static final String MESSAGE_CLOSE_BOOK_APP = "MESSAGE_CLOSE_BOOK_APP";
     public static final String MESSAGE_PLAY_PAUSE = "MESSAGE_PLAY_PAUSE";
     public static final String MESSAGE_AUTO_SCROLL = "MESSAGE_AUTO_SCROLL";
+    public static final String MESSAGE_SHARE_PAGE = "MESSAGE_SHARE_PAGE";
 
     private String msgType = "";
     private int page;

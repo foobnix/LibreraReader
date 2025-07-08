@@ -1697,6 +1697,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PLAY_PAUSE)) {
             TTSService.playPause(HorizontalViewActivity.this, dc);
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SHARE_PAGE)) {
+
+            ExtUtils.sharePage(dc,dc.getCurentPage());
+
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
                 DragingDialogs.showFootNotes(anchor, dc, new Runnable() {

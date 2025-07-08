@@ -1146,7 +1146,12 @@ public class ExtUtils {
         return mime;
     }
 
-    public static void sharePage(final Activity a, final File file, int page, String pageUrl) {
+
+
+    public static void sharePage(final DocumentController dc, int page) {
+        sharePage(dc.getActivity(), dc.getCurrentBook(), page, dc.getPageUrl(page).toString());
+    }
+    private static void sharePage(final Activity a, final File file, int page, String pageUrl) {
 
 
         if (AppState.get().fileToDelete != null) {

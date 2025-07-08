@@ -2340,7 +2340,7 @@ public class DragingDialogs {
                             return true;
                         });
                         menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_38_picture).setOnMenuItemClickListener((it) -> {
-                            ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
+                            ExtUtils.sharePage(dc, position);
                             return true;
                         });
                         menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_614_copy).setOnMenuItemClickListener((it) -> {
@@ -4396,7 +4396,8 @@ public class DragingDialogs {
                         controller.getString(R.string.close_book_and_application), //
                         controller.getString(R.string.hide_app), //
                         controller.getString(R.string.db_do_nothing), //
-                        controller.getString(R.string.read_out_loud_with_tts) //
+                        controller.getString(R.string.read_out_loud_with_tts), //
+                        controller.getString(R.string.share_as_image) //
 
                 );
 
@@ -4409,7 +4410,8 @@ public class DragingDialogs {
                         AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP, //
                         AppState.DOUBLE_CLICK_CLOSE_HIDE_APP, //
                         AppState.DOUBLE_CLICK_NOTHING, //
-                        AppState.DOUBLE_CLICK_START_STOP_TTS //
+                        AppState.DOUBLE_CLICK_START_STOP_TTS, //
+                        AppState.DOUBLE_CLICK_SHARE_PAGE //
                 );//
                 final TextView doubleClickAction1 = inflate.findViewById(R.id.doubleTapValue);
                 doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
