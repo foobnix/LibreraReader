@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.foobnix.pdf.info.view.ProgressDraw
-        android:id="@+id/progressDraw"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/progress" />
+
 
     <LinearLayout
         android:id="@+id/underLayout"
@@ -205,5 +202,9 @@
 
 
     </LinearLayout>
+    <com.foobnix.pdf.info.view.ProgressDraw
+        android:id="@+id/progressDraw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progress" />
 
 </LinearLayout>

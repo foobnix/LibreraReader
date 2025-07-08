@@ -438,6 +438,14 @@ public class MagicHelper {
         return allpixels;
     }
 
+    public static int getTextOrIconColor(){
+        int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
+
+        if (AppState.get().uiTextColor == AppState.get().tintColor) {
+            textColor = Color.WHITE;
+        }
+        return textColor;
+    }
     public static boolean isLight(int color) {
         return color >= 200 && color <= 255;
     }

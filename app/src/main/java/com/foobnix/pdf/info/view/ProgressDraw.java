@@ -23,8 +23,7 @@ import java.util.List;
 
 public class ProgressDraw extends View {
 
-    private static final int max_count = 5;
-    private static final int ALPHA = 200;
+    private static final int ALPHA = 250;
     Paint paint = new Paint();
     {
         paint.setColor(Color.DKGRAY);
@@ -47,6 +46,7 @@ public class ProgressDraw extends View {
     int pageCount;
     int progress;
     int color = Color.BLACK;
+    int bgColor = Color.BLACK;
 
     public ProgressDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -76,7 +76,11 @@ public class ProgressDraw extends View {
 
     public void updateColor(int color) {
         this.color = ColorUtils.setAlphaComponent(color, ALPHA);
+        //this.color = color;
         invalidate();
+    }
+    public void setBgColor(int color){
+        bgColor = color;
     }
 
 
@@ -87,17 +91,16 @@ public class ProgressDraw extends View {
 
         canvas.save();
         try {
-            int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
             // int titleColor = AppState.get().isInvert ? Color.WHITE :
             // Color.BLACK;
             if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
 
             } else {
-                canvas.drawColor(titleColor);
+                canvas.drawColor(bgColor);
             }
 
             paint.setColor(color);
-            paint1.setColor(titleColor);
+            paint1.setColor(bgColor);
 
             float k = (float) getWidth() / pageCount;
             int h = getHeight();

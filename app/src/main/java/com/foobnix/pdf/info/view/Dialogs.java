@@ -705,12 +705,7 @@ public class Dialogs {
             pr.setSaveEnabled(false);
             pr.setSaveFromParentEnabled(false);
 
-            int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
-
-            if (AppState.get().uiTextColor == AppState.get().tintColor) {
-                textColor = Color.WHITE;
-            }
-
+            int textColor = MagicHelper.getTextOrIconColor();
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);
 
