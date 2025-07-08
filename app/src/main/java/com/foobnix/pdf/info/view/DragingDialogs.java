@@ -174,6 +174,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DragingDialogs {
@@ -213,7 +214,7 @@ public class DragingDialogs {
         if (anchor == null) {
             return;
         }
-        LOG.d("webView DragingDialog",url);
+        LOG.d("webView DragingDialog", url);
 
         DragingPopup dialog = new DragingPopup(url, anchor, 300, 440) {
 
@@ -249,7 +250,7 @@ public class DragingDialogs {
 
             }
         });
-        dialog.show("WebView",false, true);
+        dialog.show("WebView", false, true);
     }
 
 
@@ -1572,6 +1573,40 @@ public class DragingDialogs {
                             Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        if (!(searchString.contains("[") && searchString.contains(":"))) {
+                            searchString = searchString + "[1:" + controller.getPageCount() + "]";
+                            searchEdit.setText(searchString);
+                        }
+
+                        Pattern pattern = Pattern.compile("(.*?)\\[(\\d+):(\\d+)\\]");
+                        Matcher matcher = pattern.matcher(searchString);
+                        int firstPage = 1;
+                        int lastPage = controller.getPageCount();
+                        try {
+                            if (matcher.find()) {
+                                searchString = matcher.group(1);
+                                firstPage = Integer.parseInt(matcher.group(2));
+                                lastPage = Integer.parseInt(matcher.group(3));
+                            }else{
+                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (Exception ignored) {
+                            Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (firstPage > lastPage || firstPage < 1) {
+                            firstPage = 1;
+                        }
+                        if (lastPage < firstPage || lastPage > controller.getPageCount()) {
+                            lastPage = controller.getPageCount();
+                        }
+
+                        searchEdit.setText(searchString + "[" + firstPage + ":" + lastPage + "]");
+
+                        LOG.d("Searching", searchString, firstPage, lastPage);
+
+
                         lastSearchText = searchString;
                         TempHolder.isSeaching = true;
 
@@ -1591,7 +1626,7 @@ public class DragingDialogs {
                                 hMessage.sendEmptyMessage(pageNumber);
                                 return false;
                             }
-                        });
+                        }, firstPage-1, lastPage);
                     }
                 });
 
@@ -1612,7 +1647,7 @@ public class DragingDialogs {
 
     @SuppressLint("NewApi")
     public static void dialogFooterNotes(final FrameLayout anchor, final DocumentController controller, final Runnable updateLinks) {
-         new DragingPopup(R.string.foot_notes, anchor, 280, 300) {
+        new DragingPopup(R.string.foot_notes, anchor, 280, 300) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_footer_notes, null, false);
@@ -1686,7 +1721,7 @@ public class DragingDialogs {
 
     public static void dialogSelectText(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
         final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() && withAnnotation1;
-         new DragingPopup(R.string.text, anchor, 300, 400) {
+        new DragingPopup(R.string.text, anchor, 300, 400) {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);

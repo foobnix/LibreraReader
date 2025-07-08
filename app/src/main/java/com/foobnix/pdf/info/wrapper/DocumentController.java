@@ -819,7 +819,7 @@ public abstract class DocumentController {
         ui.onLongPress(ev);
     }
 
-    public abstract void doSearch(String text, ResultResponse<Integer> result);
+    public abstract void doSearch(String text, ResultResponse<Integer> result, int firstPage, int lastPage);
 
     public Activity getActivity() {
         return activity;

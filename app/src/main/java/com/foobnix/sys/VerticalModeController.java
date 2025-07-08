@@ -847,8 +847,8 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
-    public void doSearch(String text, ResultResponse<Integer> result) {
-        ctr.doSearch(text, result);
+    public void doSearch(String text, ResultResponse<Integer> result, int firstPage, int lastPage) {
+        ctr.doSearch(text, result, firstPage, lastPage);
     }
 
     @Override

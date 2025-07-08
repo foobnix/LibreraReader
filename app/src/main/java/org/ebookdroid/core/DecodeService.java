@@ -74,7 +74,7 @@ public interface DecodeService {
 
 	void processTextForPages(Page[] pages);
 
-	void searchText(String text, Page[] pages, ResultResponse<Integer> response, Runnable finish);
+	void searchText(String text, Page[] pages, ResultResponse<Integer> response, Runnable finish, int firstPage, int lastPage);
 
     TextWord[][] getTextForPage(int page);
 

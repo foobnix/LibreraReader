@@ -622,7 +622,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result) {
+    public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result, int firstPage, int lastPage) {
         if (searchTask != null && searchTask.getStatus() != CopyAsyncTask.Status.FINISHED) {
             return;
         }
@@ -662,7 +662,7 @@ public abstract class HorizontalModeController extends DocumentController {
                         }
                     });
 
-                    for (int i = 0; i < getPageCount(); i++) {
+                    for (int i = firstPage; i < lastPage; i++) {
                         if (!TempHolder.isSeaching) {
                             result.onResultRecive(Integer.MAX_VALUE);
                             return null;

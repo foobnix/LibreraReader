@@ -397,14 +397,14 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         return goToPage;
     }
 
-    public final void doSearch(final String text, final ResultResponse<Integer> result) {
+    public final void doSearch(final String text, final ResultResponse<Integer> result, int firstPage, int lastPage) {
         getDecodeService().searchText(text, documentModel.getPages(), result, new Runnable() {
 
             @Override
             public void run() {
                 getView().redrawView();
             }
-        });
+        },firstPage, lastPage);
     }
 
     public void showDialog(final ActionEx action) {

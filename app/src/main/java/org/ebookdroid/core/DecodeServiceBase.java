@@ -201,7 +201,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish) {
+    public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish,int firstPage, int lastPage) {
         Thread t = new Thread("@T searchText") {
             @Override
             public void run() {
@@ -222,10 +222,17 @@ public class DecodeServiceBase implements DecodeService {
                 });
                 for (Page page : pages) {
 
+
                     if (!TempHolder.isSeaching) {
                         response.onResultRecive(Integer.MAX_VALUE);
                         finish.run();
                         return;
+                    }
+                    if(page.index.docIndex < firstPage){
+                        continue;
+                    }
+                    if(page.index.docIndex > lastPage){
+                        continue;
                     }
 
                     if (page.index.docIndex > 1) {

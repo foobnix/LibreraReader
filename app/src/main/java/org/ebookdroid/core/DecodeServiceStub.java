@@ -42,7 +42,7 @@ public class DecodeServiceStub implements DecodeService {
 	}
 
 	@Override
-	public void searchText(String text, Page[] pages, ResultResponse<Integer> response, Runnable finish) {
+	public void searchText(String text, Page[] pages, ResultResponse<Integer> response, Runnable finish, int firstPage, int lastPage) {
 
 	}
 
