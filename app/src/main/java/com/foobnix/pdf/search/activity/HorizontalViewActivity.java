@@ -955,7 +955,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 try {
                     LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
                     try {
-                        Thread.sleep(3000);
+                        //Thread.sleep(3000);
 
                         while (viewPager.getHeight() == 0) {
                             Thread.sleep(250);

@@ -36,9 +36,9 @@ public class AppsConfig {
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static boolean IS_LOG = true||  Build.MODEL.startsWith("Android SDK")
-            || Build.DEVICE.contains("emulator")
-    || Build.MODEL.contains("sdk_gphone64_x86_64");
+    public static boolean IS_LOG =
+            Build.DEVICE.toLowerCase().contains("emu")
+                    || Build.MODEL.toLowerCase().contains("sdk");
     public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
     public static String MUPDF_1_11 = "1.11";
@@ -63,7 +63,7 @@ public class AppsConfig {
     }
 
     public static boolean checkIsProInstalled(final Context a) {
-         if (IS_LOG) {
+        if (IS_LOG) {
             LOG.d("no-ads error context null");
             return true;
         }
@@ -73,7 +73,7 @@ public class AppsConfig {
             LOG.d("no-ads error context null");
             return true;
         }
-        if ("529B167EE030328EDF84D143B2C81389".equals(ADS.getByTestID(a))){
+        if ("529B167EE030328EDF84D143B2C81389".equals(ADS.getByTestID(a))) {
             return true;
         }
 

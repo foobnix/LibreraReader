@@ -597,7 +597,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         @Override
         protected Throwable doInBackground(final String... params) {
             try {
-                Thread.sleep(3000);
+                //Thread.sleep(3000);
                 m_fileName = getActivity().getIntent().getData().getPath();
 
 
