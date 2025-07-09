@@ -588,7 +588,7 @@ public class AppState {
     public boolean isShowOnlyAvailabeBooks = false;
     public boolean isCropBookCovers = true;
     public boolean isBorderAndShadow = true;
-    public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
+    public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 110)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
     @IgnoreHashCode
     public int tapZoneTop = TAP_PREV_PAGE;

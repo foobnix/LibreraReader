@@ -556,7 +556,7 @@ public class PrefFragment2 extends UIFragment {
                     public void run() {
                         IMG.clearDiscCache();
                         IMG.clearMemoryCache();
-                        AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
+                        AppState.get().coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 110)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
                         AppState.get().coverSmallSize = 80;
                         TempHolder.listHash++;
 
