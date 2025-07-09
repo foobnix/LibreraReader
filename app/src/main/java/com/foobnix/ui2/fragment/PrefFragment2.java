@@ -119,7 +119,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "https://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
-    View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay, statusBarHack;
+    View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent, overlay, statusBarHack;
     TextView singIn, syncInfo, syncInfo2, syncHeader;
     CheckBox isEnableSync;
     private TextView curBrightness, themeColor, profileLetter;
@@ -185,6 +185,7 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section7, TintUtil.color);
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
         TintUtil.setBackgroundFillColor(section9, TintUtil.color);
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         if (statusBarHack != null) {
             statusBarHack.setBackgroundColor(TintUtil.color);
         }
@@ -327,6 +328,7 @@ public class PrefFragment2 extends UIFragment {
         //inflate.findViewById(R.id.sectionSync).setVisibility(View.GONE);//TODO GDIVE need to fix
 
         section9 = inflate.findViewById(R.id.section9);
+        panelRecent = inflate.findViewById(R.id.panelRecent);
 
 
         // tabs position
@@ -2748,7 +2750,7 @@ public class PrefFragment2 extends UIFragment {
 
 
         TxtUtils.updateAllLinks(inflate, true);
-        TintUtil.setBackgroundFillColor( inflate.findViewById(R.id.panelRecent), TintUtil.color);
+        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         return inflate;
 
     }

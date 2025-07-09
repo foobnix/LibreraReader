@@ -88,10 +88,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         if (myAds != null) myAds.pause();
     }
 
-    public void adsResume() {
-        if (myAds != null) myAds.resume();
-    }
-
     @Override
     protected void onDestroy() {
         myAds.destroy();

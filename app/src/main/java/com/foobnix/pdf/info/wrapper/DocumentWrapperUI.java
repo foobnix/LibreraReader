@@ -1262,19 +1262,6 @@ public class DocumentWrapperUI {
 
             @Override
             public void onGlobalLayout() {
-                if (anchor.getVisibility() == View.VISIBLE || dc.isMusicianMode()) {
-                    adFrame.setVisibility(View.GONE);
-                    adFrame.setClickable(false);
-                } else {
-                    if (AppState.get().isEditMode && adFrame.getTag() == null) {
-                        adFrame.setVisibility(View.VISIBLE);
-                        adFrame.setClickable(true);
-                    } else {
-                        adFrame.setVisibility(View.GONE);
-                        adFrame.setClickable(false);
-                    }
-                }
-
                 if (anchor.getX() < 0) {
                     anchor.setX(0);
                 }
@@ -1729,8 +1716,8 @@ public class DocumentWrapperUI {
     public void hide() {
         menuLayout.setVisibility(View.GONE);
         bottomBar.setVisibility(View.GONE);
-        adFrame.setVisibility(View.GONE);
-        adFrame.setClickable(false);
+        //adFrame.setVisibility(View.GONE);
+       // adFrame.setClickable(false);
         imageMenuArrow.setImageResource(android.R.drawable.arrow_down_float);
 
         // speedSeekBar.setVisibility(View.GONE);
@@ -1761,9 +1748,9 @@ public class DocumentWrapperUI {
         updateLock();
 
         bottomBar.setVisibility(View.VISIBLE);
-        adFrame.setVisibility(View.VISIBLE);
-        adFrame.setClickable(true);
-        adFrame.setTag(null);
+        //adFrame.setVisibility(View.VISIBLE);
+       // adFrame.setClickable(true);
+       // adFrame.setTag(null);
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
 
@@ -1814,8 +1801,8 @@ public class DocumentWrapperUI {
     }
 
     public void hideAds() {
-        adFrame.setTag("");
-        adFrame.setVisibility(View.GONE);
+       // adFrame.setTag("");
+      //  adFrame.setVisibility(View.GONE);
     }
 
     public void nextChose(boolean animate) {

@@ -30,14 +30,15 @@ public class AppsConfig {
 
     public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
-            "A55432A120DBEFA4C550628C53DA8D67",
+            "15B8E113746E8241A97A23D7F6FEAA2B",
             "5A11AAB3D40A6E42F8BB4674C013B70D");
+    //setTestDeviceIds
+
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static boolean IS_LOG = true ||
-            Build.DEVICE.toLowerCase().contains("emu")
+    public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu")
                     || Build.MODEL.toLowerCase().contains("sdk");
     public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
@@ -57,9 +58,6 @@ public class AppsConfig {
 
     public static void init(Context c) {
         IS_TEST_DEVICE = testDevices.contains(ADS.getByTestID(c));
-        if (IS_TEST_DEVICE) {
-            IS_LOG = true;
-        }
     }
 
     public static boolean checkIsProInstalled(final Context a) {

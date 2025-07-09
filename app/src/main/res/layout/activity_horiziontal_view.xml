@@ -10,6 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
+    <FrameLayout
+        android:id="@+id/adFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tint_red"
+         />
+
     <RelativeLayout
         android:id="@+id/parentParent"
         android:layout_width="match_parent"
@@ -71,16 +78,6 @@
             android:text="718"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <FrameLayout
-            android:id="@+id/adFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="160dip"
-            android:layout_weight="0"></FrameLayout>
 
 
         <TextView

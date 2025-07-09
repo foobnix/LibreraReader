@@ -10,6 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
+    <FrameLayout
+        android:id="@+id/adFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tint_red"
+        />
+
     <RelativeLayout
         android:id="@+id/parentParent"
         android:layout_width="match_parent"
@@ -162,14 +169,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-
-        <FrameLayout
-            android:id="@+id/adFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/menuLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp" />
 
         <include
             android:id="@+id/includeEditPanel"

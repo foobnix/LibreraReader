@@ -126,10 +126,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
-    View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
+    View  bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
-    FrameLayout anchor;
+    FrameLayout anchor, adFrame;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1, anchorX, anchorY;
     HorizontalModeController dc;
@@ -945,6 +945,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPreExecute() {
+
                 start = System.currentTimeMillis();
                 TempHolder.get().loadingCancelled = false;
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
@@ -1195,19 +1196,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             public void onGlobalLayout() {
 
-                if (anchor.getVisibility() == View.VISIBLE) {
-                    adFrame.setVisibility(View.GONE);
-                    adFrame.setClickable(false);
-                } else {
-                    if (AppState.get().isEditMode && adFrame.getTag() == null) {
-                        adFrame.setVisibility(View.VISIBLE);
-                        adFrame.setClickable(true);
-                    } else {
-                        adFrame.setVisibility(View.GONE);
-                        adFrame.setClickable(false);
-                    }
-                }
-
                 if (anchor.getX() < 0) {
                     anchor.setX(0);
                 }
@@ -1290,8 +1278,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void hideAds() {
-        adFrame.setTag("");
-        adFrame.setVisibility(View.GONE);
+        //adFrame.setTag("");
+        //adFrame.setVisibility(View.GONE);
     }
 
     public void updateIconMode() {
@@ -2004,7 +1992,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void onRotateScreen() {
-        // ADS.activate(this, adView);
         activateAds();
 
         AppProfile.save(this);
@@ -2089,7 +2076,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateBannnerTop() {
         try {
-            ((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(24);
+            //((RelativeLayout.LayoutParams) adFrame.getLayoutParams()).topMargin = actionBar.getHeight() + Dips.dpToPx(24);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -2118,7 +2105,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (!animated || AppState.get().appTheme == AppState.THEME_INK) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
-            adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
+            //adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
 
             DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
             ttsFixPosition();
@@ -2131,8 +2118,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         final TranslateAnimation showActoinBar = new TranslateAnimation(0, 0, -actionBar.getHeight(), 0);
         final TranslateAnimation showBottomBar = new TranslateAnimation(0, 0, bottomBar.getHeight(), 0);
 
-        final TranslateAnimation adsShow = new TranslateAnimation(-adFrame.getWidth(), 0, 0, 0);
-        final TranslateAnimation adsHide = new TranslateAnimation(0, -adFrame.getWidth(), 0, 0);
 
         updateAnimation(hideActionBar);
         updateAnimation(hideBottomBar);
@@ -2140,15 +2125,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         updateAnimation(showActoinBar);
         updateAnimation(showBottomBar);
 
-        updateAnimation(adsShow);
-        updateAnimation(adsHide);
 
         if (AppState.get().isEditMode) {
+
             DocumentController.turnOnButtons(this);
 
-            if (anchor.getVisibility() == View.GONE) {
-                adFrame.startAnimation(adsShow);
-            }
 
             actionBar.startAnimation(showActoinBar);
             bottomBar.startAnimation(showBottomBar);
@@ -2168,8 +2149,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     try {
                         actionBar.setVisibility(View.VISIBLE);
                         bottomBar.setVisibility(View.VISIBLE);
-                        adFrame.setVisibility(View.VISIBLE);
-                        adFrame.setTag(null);
+                        //adFrame.setVisibility(View.VISIBLE);
+                        ///adFrame.setTag(null);
 
                         Keyboards.invalidateEink(parentParent);
 
@@ -2184,9 +2165,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             DocumentController.turnOffButtons(this);
 
-            if (anchor.getVisibility() == View.GONE && adFrame.getVisibility() == View.VISIBLE) {
-                adFrame.startAnimation(adsHide);
-            }
+
             actionBar.startAnimation(hideActionBar);
             bottomBar.startAnimation(hideBottomBar);
 
@@ -2205,7 +2184,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     try {
                         actionBar.setVisibility(View.GONE);
                         bottomBar.setVisibility(View.GONE);
-                        adFrame.setVisibility(View.GONE);
+                        //adFrame.setVisibility(View.GONE);
 
                         Keyboards.invalidateEink(parentParent);
 

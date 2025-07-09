@@ -28,17 +28,17 @@ public class ADS {
 
 
     public static void hideAdsTemp(Activity a) {
-        try {
-            if (a == null) {
-                return;
-            }
-            View adFrame = a.findViewById(R.id.adFrame);
-            if (adFrame.getVisibility() == View.VISIBLE) {
-                adFrame.setVisibility(View.INVISIBLE);
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
+//        try {
+//            if (a == null) {
+//                return;
+//            }
+//            View adFrame = a.findViewById(R.id.adFrame);
+//            if (adFrame.getVisibility() == View.VISIBLE) {
+//                adFrame.setVisibility(View.INVISIBLE);
+//            }
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
     }
 
     public static void activateAdmobSmartBanner(final Activity a, AdView adView) {
@@ -76,6 +76,9 @@ public class ADS {
             } else {
                 adView.setAdSize(AdSize.FULL_BANNER);
             }
+
+            //adView.setAdSize(AdSize.BANNER);
+
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
             LOG.d("ads-metaData", metaData);
             adView.setAdUnitId(metaData);
