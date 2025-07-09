@@ -103,21 +103,7 @@ public class TTSControlsView extends FrameLayout {
         ttsDialog.setVisibility(View.GONE);
         trackName.setVisibility(View.GONE);
 
-        //colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
-        if (AppState.get().isUiTextColor) {
-            colorTint = AppState.get().uiTextColor;
-        } else {
-            colorTint = AppState.get().tintColor;
-        }
-        if (colorTint == Color.WHITE && AppState.get().isDayNotInvert) {
-            colorTint = Color.BLACK;
-        }
-        if (colorTint == Color.BLACK && !AppState.get().isDayNotInvert) {
-            colorTint = Color.WHITE;
-        }
-        if (colorTint == Color.WHITE) {
-            colorTint = MagicHelper.otherColor(Color.WHITE, 0.2f);
-        }
+        colorTint = MagicHelper.getTintColor();
 
 
         int alpha = 240;

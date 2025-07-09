@@ -1097,4 +1097,23 @@ public class MagicHelper {
 
     }
 
+    public static int getTintColor(){
+        int colorTint = 0;
+        if (AppState.get().isUiTextColor) {
+            colorTint = AppState.get().uiTextColor;
+        } else {
+            colorTint = AppState.get().tintColor;
+        }
+        if (colorTint == Color.WHITE && AppState.get().isDayNotInvert) {
+            colorTint = Color.BLACK;
+        }
+        if (colorTint == Color.BLACK && !AppState.get().isDayNotInvert) {
+            colorTint = Color.WHITE;
+        }
+        if (colorTint == Color.WHITE) {
+            colorTint = MagicHelper.otherColor(Color.WHITE, 0.2f);
+        }
+        return colorTint;
+    }
+
 }

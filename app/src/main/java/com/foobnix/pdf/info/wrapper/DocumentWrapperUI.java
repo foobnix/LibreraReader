@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Handler;
 import android.view.Gravity;
@@ -187,7 +188,8 @@ public class DocumentWrapperUI {
     };
     Activity a;
     String bookTitle;
-    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;    public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
+    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
+    public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -271,7 +273,8 @@ public class DocumentWrapperUI {
         }
     };
     UnderlineImageView crop, cut, onBC;
-    LinearLayout pageshelper;    public View.OnClickListener onShowSearch = new View.OnClickListener() {
+    LinearLayout pageshelper;
+    public View.OnClickListener onShowSearch = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -324,7 +327,8 @@ public class DocumentWrapperUI {
             Apps.accessibilityText(a, a.getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
             //updateUI();
         }
-    };    public View.OnClickListener onShowHideEditPanel = new View.OnClickListener() {
+    };
+    public View.OnClickListener onShowHideEditPanel = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -363,6 +367,7 @@ public class DocumentWrapperUI {
 
         }
     };
+
     public DocumentWrapperUI(final DocumentController controller) {
         AppState.get().annotationDrawColor = "";
         AppState.get().editWith = AppState.EDIT_NONE;
@@ -423,7 +428,7 @@ public class DocumentWrapperUI {
             });
         } else {
             if (AppState.get().isRememberDictionary) {
-                DictsHelper.runIntent(dc.getActivity(),anchor, AppState.get().selectedText);
+                DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
                 dc.clearSelectedText();
             } else {
                 DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
@@ -434,7 +439,9 @@ public class DocumentWrapperUI {
     public void showSelectTextMenu() {
         DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
 
-    }    Runnable updateTimePower = new Runnable() {
+    }
+
+    Runnable updateTimePower = new Runnable() {
 
         @Override
         public void run() {
@@ -508,7 +515,7 @@ public class DocumentWrapperUI {
             keyCode = event.getScanCode();
         }
 
-         if (keyCode == KeyEvent.KEYCODE_ESCAPE) {
+        if (keyCode == KeyEvent.KEYCODE_ESCAPE) {
             return true;
         }
 
@@ -673,7 +680,9 @@ public class DocumentWrapperUI {
         dc.onCloseActivityAdnShowInterstial();
         dc.closeActivity();
 
-    }    View.OnClickListener onTextToSpeach = new View.OnClickListener() {
+    }
+
+    View.OnClickListener onTextToSpeach = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -903,7 +912,9 @@ public class DocumentWrapperUI {
 
         }
 
-    }    Runnable onRefresh = new Runnable() {
+    }
+
+    Runnable onRefresh = new Runnable() {
 
         @Override
         public void run() {
@@ -1341,7 +1352,7 @@ public class DocumentWrapperUI {
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
-        int textColor =  MagicHelper.getTextOrIconColor();
+        int textColor = MagicHelper.getTextOrIconColor();
 
         TintUtil.setTintText(bookName, textColor);
         TintUtil.setTintImageWithAlpha(textToSpeachTop, textColor);
@@ -1397,7 +1408,9 @@ public class DocumentWrapperUI {
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
-    }    public View.OnClickListener onAutoScroll = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onAutoScroll = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -1407,12 +1420,15 @@ public class DocumentWrapperUI {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void tintSpeed() {
-        if (Build.VERSION.SDK_INT >= 16) {
-            // speedSeekBar.getProgressDrawable().getCurrent().setColorFilter(TintUtil.color,
-            // PorterDuff.Mode.SRC_IN);
-            // speedSeekBar.getThumb().setColorFilter(TintUtil.color,
-            // PorterDuff.Mode.SRC_IN);
+        try {
+            speedSeekBar.getProgressDrawable().getCurrent().setColorFilter(MagicHelper.getTintColor(),
+                    PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getThumb().setColorFilter(MagicHelper.getTintColor(),
+                    PorterDuff.Mode.SRC_IN);
+        } catch (Exception e) {
+            LOG.e(e);
         }
+
     }
 
     public void showEditDialogIfNeed() {
@@ -1440,7 +1456,7 @@ public class DocumentWrapperUI {
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_HIDE_APP) {
                 Apps.showDesctop(a);
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_SHARE_PAGE) {
-                ExtUtils.sharePage(dc,dc.getCurentPage()-1);
+                ExtUtils.sharePage(dc, dc.getCurentPage() - 1);
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_START_STOP_TTS) {
                 TTSService.playPause(dc.getActivity(), dc);
 
@@ -1455,7 +1471,9 @@ public class DocumentWrapperUI {
                 dc.closeActivity();
             }
         }
-    }    public View.OnClickListener onLinkHistory = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onLinkHistory = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -1554,7 +1572,9 @@ public class DocumentWrapperUI {
 
         popupMenu.show();
 
-    }    public View.OnClickListener onBookmarks = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onBookmarks = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -1588,9 +1608,9 @@ public class DocumentWrapperUI {
         }
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
-        if(AppState.get().isShowReadingProgress && AppState.get().isEditMode){
+        if (AppState.get().isShowReadingProgress && AppState.get().isEditMode) {
             progressDraw.setVisibility(View.GONE);
-        }else{
+        } else {
             progressDraw.setVisibility(View.VISIBLE);
         }
 
@@ -1619,7 +1639,9 @@ public class DocumentWrapperUI {
 
         }
 
-    }    public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+    }
+
+    public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(final View arg0) {
@@ -1702,7 +1724,9 @@ public class DocumentWrapperUI {
             handler.removeCallbacks(hideSeekBar);
             handler.postDelayed(hideSeekBar, 5000);
         }
-    }    public View.OnClickListener onMenu = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onMenu = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -1755,7 +1779,9 @@ public class DocumentWrapperUI {
         // changeAutoScrollButton();
         dc.onAutoScroll();
         updateUI();
-    }    public View.OnClickListener onReverseKeys = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onReverseKeys = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -1776,7 +1802,9 @@ public class DocumentWrapperUI {
 
     public void nextChose(boolean animate) {
         nextChose(animate, 0);
-    }    public View.OnClickListener onFull = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onFull = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -1836,7 +1864,9 @@ public class DocumentWrapperUI {
         }
 
         //updateUI();
-    }    public View.OnClickListener onCrop = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onCrop = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -1885,7 +1915,9 @@ public class DocumentWrapperUI {
 
     public DocumentController getController() {
         return dc;
-    }    public View.OnLongClickListener onCropLong = new View.OnLongClickListener() {
+    }
+
+    public View.OnLongClickListener onCropLong = new View.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(View v) {
@@ -1927,7 +1959,9 @@ public class DocumentWrapperUI {
         } catch (Exception e) {
             LOG.e(e);
         }
-    }    public View.OnClickListener onCut = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onCut = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -2019,7 +2053,9 @@ public class DocumentWrapperUI {
         LOG.d("DocumentWrapperUI", "onPause");
         handlerTimer.removeCallbacks(updateTimePower);
         dc.resetReadTimer();
-    }    public View.OnClickListener onPrefTop = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onPrefTop = new View.OnClickListener() {
 
         @Override
         public void onClick(final View arg0) {
@@ -2051,16 +2087,15 @@ public class DocumentWrapperUI {
 
     public void onLoadBookFinish() {
         onCloseBook.setVisibility(View.VISIBLE);
-    }    Runnable updateUIRunnable = new Runnable() {
+    }
+
+    Runnable updateUIRunnable = new Runnable() {
 
         @Override
         public void run() {
             updateUI();
         }
     };
-
-
-
 
 
     View.OnClickListener onItemMenu = new View.OnClickListener() {
@@ -2091,9 +2126,6 @@ public class DocumentWrapperUI {
     };
 
 
-
-
-
     View.OnClickListener onLirbiLogoClick = new View.OnClickListener() {
 
         @Override
@@ -2101,9 +2133,6 @@ public class DocumentWrapperUI {
             doShowHideWrapperControlls();
         }
     };
-
-
-
 
 
     View.OnClickListener onGoToPAge1 = new View.OnClickListener() {
@@ -2114,9 +2143,6 @@ public class DocumentWrapperUI {
             updateUI();
         }
     };
-
-
-
 
 
     public View.OnClickListener onNormalMode = new View.OnClickListener() {
@@ -2130,15 +2156,6 @@ public class DocumentWrapperUI {
     };
 
 
-
-
-
-
-
-
-
-
-
     // public void changeAutoScrollButton() {
     // if (AppState.get().isAutoScroll) {
     // autoScroll.setImageResource(android.R.drawable.ic_media_pause);
@@ -2149,16 +2166,6 @@ public class DocumentWrapperUI {
     // }
     //
     // }
-
-
-
-
-
-
-
-
-
-
 
 
 }
