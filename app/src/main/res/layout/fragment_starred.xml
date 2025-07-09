@@ -18,7 +18,7 @@
             android:id="@+id/favoritesName"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wh_button"
-            android:layout_marginLeft="4dip"
+            android:layout_marginLeft="@dimen/panel_title_padding"
             android:layout_weight="1"
             android:maxLines="1"
             android:gravity="center_vertical"

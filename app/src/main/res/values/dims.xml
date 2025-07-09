@@ -33,6 +33,7 @@
     <dimen name="progress">2dip</dimen>
 
     <dimen name="panel_padding">3dip</dimen>
+    <dimen name="panel_title_padding">8dip</dimen>
 
     
     

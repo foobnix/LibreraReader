@@ -34,7 +34,7 @@
             android:id="@+id/titleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
+            android:layout_marginLeft="@dimen/panel_title_padding"
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="left"

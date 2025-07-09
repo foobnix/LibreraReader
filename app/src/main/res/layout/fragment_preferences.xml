@@ -23,8 +23,9 @@
             android:id="@+id/recentName"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wh_button"
-            android:layout_marginLeft="4dip"
             android:layout_weight="1"
+            android:layout_marginLeft="@dimen/panel_title_padding"
+
             android:gravity="center_vertical"
             android:text="@string/preferences"
             android:textColor="@color/white"
