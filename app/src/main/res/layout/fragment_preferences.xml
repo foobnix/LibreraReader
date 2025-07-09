@@ -1,12 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/panelRecent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wh_button"
+        android:layout_margin="4dip"
+        android:background="@drawable/bg_search_second"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+
+        <TextView
+            android:id="@+id/recentName"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/preferences"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_marginLeft="10dip"
+            android:id="@+id/onCloseApp"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dip"
+            android:layout_weight="0"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/exit_application"
+            android:textSize="@dimen/text_title"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+<ScrollView
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    >
 
 
 
@@ -19,6 +65,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/closeMenu"
             style="@style/textLink"
             android:layout_width="wrap_content"
@@ -29,6 +76,7 @@
 
 
           <TextView
+              android:visibility="gone"
             android:id="@+id/adsSettigns"
             style="@style/textLink"
             android:layout_width="wrap_content"
@@ -39,6 +87,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/section9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,44 +102,30 @@
                 android:layout_weight="1"
                 android:text="@string/profile" />
 
-            <TextView
-                android:id="@+id/restoreDefaultProfile"
-                style="@style/textLinkWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dip"
-                android:layout_weight="0"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="@string/restore_defaults_short"
-                android:textSize="@dimen/text_title"
-                android:visibility="visible" />
 
-            <TextView
-                android:layout_marginLeft="10dip"
-                android:id="@+id/onCloseApp"
-                style="@style/textLinkWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dip"
-                android:layout_weight="0"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="@string/exit_application"
-                android:textSize="@dimen/text_title"
-                android:visibility="visible" />
+
+
 
         </LinearLayout>
 
-       " />
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:singleLine="true"
+                android:text="@string/profile"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="@dimen/wh_button"
@@ -133,6 +168,22 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/restoreDefaultProfile"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dip"
+            android:layout_weight="0"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/restore_defaults_short"
+            android:textSize="@dimen/text_title"
+            android:visibility="visible" />
+
+
 
 
 
@@ -1827,3 +1878,4 @@
     </LinearLayout>
 
 </ScrollView>
+</LinearLayout>
