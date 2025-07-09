@@ -235,10 +235,15 @@ public class TTSService extends Service {
         //mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
         Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
-        PendingIntent penginIntent = PendingIntent.getActivity(getApplicationContext(), 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(
+                getApplicationContext(),
+                0,
+                mediaButtonIntent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
 
 
-        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag", null, penginIntent);
+        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag", null, pendingIntent1);
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override
