@@ -1377,7 +1377,7 @@ public class TxtUtils {
                     TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     color = out.getColor(0, Color.WHITE);
                 }
-                if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+                if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
                     color = Color.WHITE;
                 }
 
@@ -1388,7 +1388,7 @@ public class TxtUtils {
             if (AppState.get().uiTextColor == AppState.get().tintColor) {
                 color = Color.WHITE;
             }
-            if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+            if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
                 color = Color.WHITE;
             }
 
