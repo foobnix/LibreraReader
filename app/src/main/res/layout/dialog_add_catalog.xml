@@ -8,17 +8,23 @@
 
     <EditText
         android:id="@+id/url"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="http://" />
+        android:text="https://" />
 
     <EditText
         android:id="@+id/name"
+        android:maxLines="1"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/name" />
 
     <EditText
+        android:maxLines="1"
+        android:inputType="text"
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

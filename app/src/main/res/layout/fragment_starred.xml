@@ -20,6 +20,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
+            android:maxLines="1"
             android:gravity="center_vertical"
             android:text="@string/favorite"
             android:textColor="@color/white"

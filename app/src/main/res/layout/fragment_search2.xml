@@ -11,7 +11,7 @@
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dip"
+        android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
         android:layout_marginTop="4dip"
         android:gravity="center_vertical"
@@ -22,7 +22,6 @@
             android:contentDescription="@string/cd_application_menu"
                 android:id="@+id/menu2"
             android:padding="4dip"
-
             android:background="@drawable/bg_search_edit"
             android:adjustViewBounds="true"
             android:cropToPadding="true"

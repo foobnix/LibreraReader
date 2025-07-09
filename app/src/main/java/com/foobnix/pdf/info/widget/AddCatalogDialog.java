@@ -124,7 +124,7 @@ public class AddCatalogDialog {
 
         final EditText url = (EditText) dialog.findViewById(R.id.url);
 
-        url.setText("http://");
+        url.setText("https://");
 
         url.setSelection(url.getText().length());
         url.setEnabled(validate);
