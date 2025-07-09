@@ -2748,6 +2748,7 @@ public class PrefFragment2 extends UIFragment {
 
 
         TxtUtils.updateAllLinks(inflate, true);
+        TintUtil.setBackgroundFillColor( inflate.findViewById(R.id.panelRecent), TintUtil.color);
         return inflate;
 
     }
