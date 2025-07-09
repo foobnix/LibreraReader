@@ -370,7 +370,7 @@ public class AppState {
     // persent
     public int tabPositionInRecentDialog = 0;
     public boolean tapPositionTop = false;
-    public boolean tabWithNames = false;
+    public boolean tabWithNames = true;
     public long fontExtractTime = 0;
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
     public int nextScreenScrollMyValue = 15;

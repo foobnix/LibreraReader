@@ -8,7 +8,7 @@
         android:id="@+id/panelRecent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_margin="4dip"
+        android:layout_margin="@dimen/panel_padding"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal">

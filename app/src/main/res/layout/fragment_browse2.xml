@@ -11,13 +11,11 @@
         android:id="@+id/pathContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_margin="@dimen/panel_padding"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/onBack"
@@ -40,14 +38,14 @@
             android:layout_marginLeft="2dip"
             android:layout_marginRight="2dip"
             android:layout_weight="1"
-            android:scrollbars="none" >
+            android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/paths"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,11 +58,11 @@
 
         <com.foobnix.pdf.info.view.MyProgressBar
             android:id="@+id/MyProgressBarBrowse"
-                    android:saveEnabled="false"
-            
             android:layout_width="@dimen/wh_button"
+
             android:layout_height="@dimen/wh_button"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:saveEnabled="false" />
 
         <ImageView
             android:id="@+id/pasteFrom"
@@ -100,7 +98,6 @@
             android:background="@color/tint_divider" />
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
@@ -108,12 +105,14 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="7dip"
             android:src="@drawable/glyphicons_50_star_empty"
-            android:tint="@color/tint_gray" />
+            android:tint="@color/tint_gray"
+            android:visibility="gone" />
 
         <View
             android:layout_width="1dip"
             android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
+            android:background="@color/tint_divider"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/onSort"
@@ -123,18 +122,18 @@
             android:layout_weight="0"
             android:contentDescription="@string/cd_sort_order"
             android:src="@drawable/glyphicons_476_sort_attributes" />
-        
+
         <ImageView
-                android:contentDescription="@string/cd_sort_order"
-                android:id="@+id/sortOrder"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_222_chevron_up"
-                android:tint="@color/white" />
+            android:id="@+id/sortOrder"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:contentDescription="@string/cd_sort_order"
+            android:padding="4dip"
+            android:src="@drawable/glyphicons_222_chevron_up"
+            android:tint="@color/white" />
 
         <View
             android:layout_width="1dip"
@@ -165,89 +164,85 @@
             android:src="@drawable/my_glyphicons_114_paragraph_justify" />
     </LinearLayout>
 
-   <androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dv"
-    android:id="@+id/openAsBook"
-    android:background="?android:attr/selectableItemBackground"
-    android:elevation="@dimen/dv"
-    card_view:cardCornerRadius="@dimen/radius" >
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/openAsBook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/panel_padding"
+        android:layout_marginRight="@dimen/panel_padding"
+        android:layout_marginBottom="@dimen/panel_padding"
         android:background="?android:attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:id="@+id/openAsBookBg"
-        android:orientation="horizontal"
-        android:padding="@dimen/dv" >
+        android:elevation="@dimen/dv"
+        card_view:cardCornerRadius="@dimen/radius">
 
-        <ImageView
-            android:id="@+id/openAsbookImage"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_margin="4dip"
-            android:padding="4dip"
-            android:layout_weight="0"
-            android:tintMode="@color/tint_blue"
-            android:src="@drawable/glyphicons_589_book_open" />
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/openAsBookBg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dip"
-            android:gravity="center_vertical" >
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dv">
 
-            <TextView
-                android:id="@+id/text1"
+            <ImageView
+                android:id="@+id/openAsbookImage"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_margin="4dip"
+                android:layout_weight="0"
+                android:padding="4dip"
+                android:src="@drawable/glyphicons_589_book_open"
+                android:tintMode="@color/tint_blue" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="8dip"
                 android:layout_weight="1"
-                android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="@string/open_folder_as_a_book"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/open_folder_as_a_book"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/starIconDir"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_marginRight="8dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="7dip"
+                android:src="@drawable/glyphicons_50_star_empty"
+                android:tint="@color/tint_gray" />
         </LinearLayout>
 
-
-
-        <ImageView
-            android:id="@+id/starIconDir"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:layout_marginRight="8dip"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="7dip"
-            android:src="@drawable/glyphicons_50_star_empty"
-            android:tint="@color/tint_gray" />
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <FrameLayout
+        android:id="@+id/bankSpace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/bankSpace"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <com.foobnix.ui2.fast.FastScrollRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="4dip" >
-        </com.foobnix.ui2.fast.FastScrollRecyclerView>
+            android:layout_height="match_parent" />
 
 
-        
     </FrameLayout>
-
 
 
     <EditText
@@ -258,14 +253,13 @@
         android:background="@drawable/bg_search_edit"
         android:ellipsize="end"
         android:lines="2"
-        android:paddingLeft="4dip" >
-    </EditText>
+        android:paddingLeft="4dip"></EditText>
 
     <LinearLayout
         android:id="@+id/onCloseActionPaner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0" >
+        android:layout_weight="0">
 
         <Button
             android:id="@+id/onClose"

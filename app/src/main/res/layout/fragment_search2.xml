@@ -11,9 +11,7 @@
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
-        android:layout_marginTop="4dip"
+        android:layout_margin="@dimen/panel_padding"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -176,7 +174,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="4dip"
             app:bubbleColor="#00bb00"
             app:bubbleTextColor="#ffffff"
             app:handleColor="#999999"

@@ -8,9 +8,7 @@
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_marginLeft="4dip"
-        android:layout_marginTop="4dip"
-        android:layout_marginRight="4dip"
+        android:layout_margin="@dimen/panel_padding"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -182,6 +180,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="4dip"></androidx.recyclerview.widget.RecyclerView>
+        />
 
 </LinearLayout>

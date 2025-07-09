@@ -31,7 +31,9 @@
     
     <dimen name="brigtness">15dip</dimen>
     <dimen name="progress">2dip</dimen>
-    
+
+    <dimen name="panel_padding">3dip</dimen>
+
     
     
     
