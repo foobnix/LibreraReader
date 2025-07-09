@@ -1423,16 +1423,19 @@ public class DocumentWrapperUI {
     public void tintSpeed() {
         try {
             int tintColor = MagicHelper.getTintColor();
-//            speedSeekBar.getProgressDrawable().getCurrent().setColorFilter(tintColor,
-//                    PorterDuff.Mode.SRC_IN);
-//            speedSeekBar.get
-//            speedSeekBar.getThumb().setColorFilter(tintColor,
-//                    PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getProgressDrawable().mutate().setColorFilter(tintColor,
+                    PorterDuff.Mode.SRC_IN);
 
-            speedSeekBar.setProgressBackgroundTintList(ColorStateList.valueOf(tintColor));
-            speedSeekBar.setThumbTintList(ColorStateList.valueOf(tintColor));
-            //speedSeekBar.setSecondaryProgressTintList(ColorStateList.valueOf(tintColor));
+            speedSeekBar.getThumb().setColorFilter(tintColor,
+                    PorterDuff.Mode.SRC_IN);
 
+            int color = MagicHelper.getTextOrIconColor();
+
+            seekBar.getProgressDrawable().mutate().setColorFilter(color,
+                    PorterDuff.Mode.SRC_IN);
+
+            seekBar.getThumb().setColorFilter(color,
+                    PorterDuff.Mode.SRC_IN);
 
 
             //line1.getBackground().

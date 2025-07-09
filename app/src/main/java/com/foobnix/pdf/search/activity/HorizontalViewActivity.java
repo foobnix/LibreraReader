@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -472,6 +473,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (AppState.get().isRTL) {
             seekBar.setRotation(180);
         }
+
+        int color = MagicHelper.getTextOrIconColor();
+
+        seekBar.getProgressDrawable().mutate().setColorFilter(color,
+                PorterDuff.Mode.SRC_IN);
+
+        seekBar.getThumb().setColorFilter(color,
+                PorterDuff.Mode.SRC_IN);
+
 
         onPageFlip1 = findViewById(R.id.autoScroll);
         onPageFlip1.setOnClickListener(new OnClickListener() {
