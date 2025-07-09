@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -1421,10 +1422,24 @@ public class DocumentWrapperUI {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void tintSpeed() {
         try {
-            speedSeekBar.getProgressDrawable().getCurrent().setColorFilter(MagicHelper.getTintColor(),
-                    PorterDuff.Mode.SRC_IN);
-            speedSeekBar.getThumb().setColorFilter(MagicHelper.getTintColor(),
-                    PorterDuff.Mode.SRC_IN);
+            int tintColor = MagicHelper.getTintColor();
+//            speedSeekBar.getProgressDrawable().getCurrent().setColorFilter(tintColor,
+//                    PorterDuff.Mode.SRC_IN);
+//            speedSeekBar.get
+//            speedSeekBar.getThumb().setColorFilter(tintColor,
+//                    PorterDuff.Mode.SRC_IN);
+
+            speedSeekBar.setProgressBackgroundTintList(ColorStateList.valueOf(tintColor));
+            speedSeekBar.setThumbTintList(ColorStateList.valueOf(tintColor));
+            //speedSeekBar.setSecondaryProgressTintList(ColorStateList.valueOf(tintColor));
+
+
+
+            //line1.getBackground().
+            TintUtil.setStrokeColorWithDash(line1,tintColor);
+            TintUtil.setStrokeColorWithDash(line2,tintColor);
+
+
         } catch (Exception e) {
             LOG.e(e);
         }

@@ -127,9 +127,15 @@ public class TintUtil {
         GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
         drawable.setStroke(STROKE, color);
         drawable.setCornerRadius(RADIUS);
+    }
 
+    public static void setStrokeColorWithDash(View textView, int color) {
+        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        drawable.setStroke(Dips.DP_2, color,Dips.DP_6,Dips.DP_6);
+        drawable.setCornerRadius(RADIUS);
 
     }
+
 
 
     public static void setUITextColor(TextView textView, int color) {

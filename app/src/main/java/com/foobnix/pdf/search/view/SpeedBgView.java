@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class SpeedBgView extends View {
         setBackgroundColor(Color.TRANSPARENT);
         paint.setStrokeWidth(Dips.dpToPx(1));
         LEN = Dips.dpToPx(10);
-        paint.setColor(Color.LTGRAY);
+        paint.setColor(MagicHelper.getTintColor());
     }
 
     public SpeedBgView(final Context context) {
@@ -39,7 +40,7 @@ public class SpeedBgView extends View {
         setBackgroundColor(Color.TRANSPARENT);
         paint.setStrokeWidth(Dips.dpToPx(1));
         LEN = Dips.dpToPx(10);
-        paint.setColor(Color.LTGRAY);
+        paint.setColor(MagicHelper.getTintColor());
     }
 
     @Override
