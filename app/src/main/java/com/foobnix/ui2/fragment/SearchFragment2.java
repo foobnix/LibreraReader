@@ -448,6 +448,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
+                        Prefs.get().remove(SearchAllBooksWorker.SEARCH_ERRORS,0);
                         recyclerView.scrollToPosition(0);
                         seachAll();
                     }

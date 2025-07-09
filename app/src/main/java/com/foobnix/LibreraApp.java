@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDexApplication;
+import androidx.work.Configuration;
+import androidx.work.WorkManager;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -55,6 +57,12 @@ public class LibreraApp extends MultiDexApplication {
 
 
         context = getApplicationContext();
+        if(!WorkManager.isInitialized()) {
+            WorkManager.initialize(this, new Configuration.Builder()
+                    .setMinimumLoggingLevel(Log.DEBUG)
+                    .build());
+        }
+
         AppsConfig.init(this);
         Dips.init(this);
         Prefs.get().init(this);
@@ -132,6 +140,8 @@ public class LibreraApp extends MultiDexApplication {
 
 
     }
+
+
 
     @Override
     public void onLowMemory() {

@@ -143,9 +143,13 @@ public class MagicHelper {
     }
 
     public static void applyBookEffectWithLogo(Bitmap dest) {
-        Canvas canvas = new Canvas(dest);
-        IMG.bookBGWithMark.setBounds(0, 0, dest.getWidth(), dest.getHeight());
-        IMG.bookBGWithMark.draw(canvas);
+        try {
+            Canvas canvas = new Canvas(dest);
+            IMG.bookBGWithMark.setBounds(0, 0, dest.getWidth(), dest.getHeight());
+            IMG.bookBGWithMark.draw(canvas);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static boolean isNeedMagic() {
@@ -438,7 +442,7 @@ public class MagicHelper {
         return allpixels;
     }
 
-    public static int getTextOrIconColor(){
+    public static int getTextOrIconColor() {
         int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
 
         if (AppState.get().uiTextColor == AppState.get().tintColor) {
@@ -446,6 +450,7 @@ public class MagicHelper {
         }
         return textColor;
     }
+
     public static boolean isLight(int color) {
         return color >= 200 && color <= 255;
     }
@@ -1097,7 +1102,7 @@ public class MagicHelper {
 
     }
 
-    public static int getTintColor(){
+    public static int getTintColor() {
         int colorTint = 0;
         if (AppState.get().isUiTextColor) {
             colorTint = AppState.get().uiTextColor;

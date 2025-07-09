@@ -23,7 +23,9 @@ public class Prefs {
     }
 
     public void put(String path, int page) {
-        sp.edit().putBoolean(makeHash(path, page), true).commit();
+        if(sp!=null) {
+            sp.edit().putBoolean(makeHash(path, page), true).commit();
+        }
     }
 
     @NonNull
@@ -32,13 +34,19 @@ public class Prefs {
     }
 
     public boolean isErrorExist(String path, int page) {
-        boolean isErrorExist = sp.contains(makeHash(path, page));
-        LOG.d("isErrorExist", isErrorExist, path + page);
-        return isErrorExist;
+        if (sp != null) {
+            boolean isErrorExist = sp.contains(makeHash(path, page));
+            LOG.d("isErrorExist", isErrorExist, path + page);
+            return isErrorExist;
+        } else {
+            return true;
+        }
     }
 
     public void remove(String path, int page) {
-        sp.edit().remove(makeHash(path, page)).commit();
+        if(sp!=null) {
+            sp.edit().remove(makeHash(path, page)).commit();
+        }
     }
 
 }

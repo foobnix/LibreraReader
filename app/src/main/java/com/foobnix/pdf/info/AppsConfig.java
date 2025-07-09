@@ -36,7 +36,7 @@ public class AppsConfig {
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static boolean IS_LOG =
+    public static boolean IS_LOG = true ||
             Build.DEVICE.toLowerCase().contains("emu")
                     || Build.MODEL.toLowerCase().contains("sdk");
     public static boolean IS_TEST_DEVICE = false;

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.work.Configuration;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
@@ -53,6 +55,8 @@ public class SearchAllBooksWorker extends MessageWorker {
     }
 
     public static void run(Context context) {
+
+
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest
                 .Builder(SearchAllBooksWorker.class).build();
 
@@ -69,121 +73,123 @@ public class SearchAllBooksWorker extends MessageWorker {
 
 
         Prefs.get().put(SEARCH_ERRORS, 0);
+        try {
 
-        itemsMeta = new LinkedList<FileMeta>();
+            itemsMeta = new LinkedList<FileMeta>();
 
-        AppProfile.init(getApplicationContext());
+            AppProfile.init(getApplicationContext());
 
-        ImageExtractor.clearErrors();
-        IMG.clearDiscCache();
+            ImageExtractor.clearErrors();
+            IMG.clearDiscCache();
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                IMG.clearMemoryCache();
-            }
-        });
-
-
-        AppDB.get().deleteAllData();
-
-
-        itemsMeta.clear();
-
-        handler.post(timer);
-
-
-        for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (path != null && path.trim().length() > 0) {
-                final File root = new File(path);
-                if (root.isDirectory()) {
-                    LOG.d("Search in: " + root.getPath());
-                    SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    IMG.clearMemoryCache();
                 }
-            }
-        }
+            });
 
 
-        for (FileMeta meta : itemsMeta) {
-            meta.setIsSearchBook(true);
-        }
+            AppDB.get().deleteAllData();
 
-        final List<SimpleMeta> allExcluded = AppData.get().getAllExcluded();
 
-        if (TxtUtils.isListNotEmpty(allExcluded)) {
-            for (FileMeta meta : itemsMeta) {
-                if (allExcluded.contains(SimpleMeta.SyncSimpleMeta(meta.getPath()))) {
-                    meta.setIsSearchBook(false);
-                }
-            }
-        }
+            itemsMeta.clear();
 
-        final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
-        if (TxtUtils.isListNotEmpty(allSyncBooks)) {
-            for (FileMeta meta : itemsMeta) {
-                for (FileMeta sync : allSyncBooks) {
-                    if (meta.getTitle().equals(sync.getTitle()) && !meta.getPath().equals(sync.getPath())) {
-                        meta.setIsSearchBook(false);
-                        LOG.d("Worker", "remove-dublicate", meta.getPath());
+            handler.post(timer);
+
+
+            for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+                if (path != null && path.trim().length() > 0) {
+                    final File root = new File(path);
+                    if (root.isDirectory()) {
+                        LOG.d("Search in: " + root.getPath());
+                        SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
                     }
                 }
-
             }
+
+
+            for (FileMeta meta : itemsMeta) {
+                meta.setIsSearchBook(true);
+            }
+
+            final List<SimpleMeta> allExcluded = AppData.get().getAllExcluded();
+
+            if (TxtUtils.isListNotEmpty(allExcluded)) {
+                for (FileMeta meta : itemsMeta) {
+                    if (allExcluded.contains(SimpleMeta.SyncSimpleMeta(meta.getPath()))) {
+                        meta.setIsSearchBook(false);
+                    }
+                }
+            }
+
+            final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
+            if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+                for (FileMeta meta : itemsMeta) {
+                    for (FileMeta sync : allSyncBooks) {
+                        if (meta.getTitle().equals(sync.getTitle()) && !meta.getPath().equals(sync.getPath())) {
+                            meta.setIsSearchBook(false);
+                            LOG.d("Worker", "remove-dublicate", meta.getPath());
+                        }
+                    }
+
+                }
+            }
+
+
+            itemsMeta.addAll(AppData.get().getAllFavoriteFiles(false));
+            itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
+
+
+            AppDB.get().saveAll(itemsMeta);
+
+            handler.removeCallbacks(timer);
+
+            sendFinishMessage();
+
+            handler.post(timer2);
+
+            for (FileMeta meta : itemsMeta) {
+                File file = new File(meta.getPath());
+                FileMetaCore.get().upadteBasicMeta(meta, file);
+            }
+
+            AppDB.get().updateAll(itemsMeta);
+            sendFinishMessage();
+
+
+            for (FileMeta meta : itemsMeta) {
+                //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
+                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
+                FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                //}
+            }
+
+            SharedBooks.updateProgress(itemsMeta, true, -1);
+            AppDB.get().updateAll(itemsMeta);
+
+
+            itemsMeta.clear();
+
+            handler.removeCallbacks(timer2);
+            sendFinishMessage();
+            CacheZipUtils.CacheDir.ZipService.removeCacheContent();
+
+            Clouds.get().syncronizeGet();
+
+            TagData.restoreTags();
+
+
+            List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
+            for (FileMeta m : allNone) {
+                LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
+                FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
+            }
+
+            updateBookAnnotations();
+        } catch (Exception e) {
+            LOG.e(e);
         }
-
-
-        itemsMeta.addAll(AppData.get().getAllFavoriteFiles(false));
-        itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
-
-
-        AppDB.get().saveAll(itemsMeta);
-
-        handler.removeCallbacks(timer);
-
-        sendFinishMessage();
-
-        handler.post(timer2);
-
-        for (FileMeta meta : itemsMeta) {
-            File file = new File(meta.getPath());
-            FileMetaCore.get().upadteBasicMeta(meta, file);
-        }
-
-        AppDB.get().updateAll(itemsMeta);
-        sendFinishMessage();
-
-
-        for (FileMeta meta : itemsMeta) {
-            //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
-            FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
-            //}
-        }
-
-        SharedBooks.updateProgress(itemsMeta, true, -1);
-        AppDB.get().updateAll(itemsMeta);
-
-
-        itemsMeta.clear();
-
-        handler.removeCallbacks(timer2);
-        sendFinishMessage();
-        CacheZipUtils.CacheDir.ZipService.removeCacheContent();
-
-        Clouds.get().syncronizeGet();
-
-        TagData.restoreTags();
-
-
-        List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
-        for (FileMeta m : allNone) {
-            LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
-            FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
-        }
-
-        updateBookAnnotations();
-
-
 
         Prefs.get().remove(SEARCH_ERRORS, 0);
 
