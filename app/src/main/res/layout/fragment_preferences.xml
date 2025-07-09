@@ -1629,7 +1629,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="left|center_vertical"
             android:orientation="horizontal"
             android:padding="4dip"
             android:visibility="visible">
@@ -1645,6 +1645,7 @@
             <TextView
                 android:id="@+id/downloadPRO"
                 style="@style/textLink"
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -1792,14 +1793,33 @@
             android:text="@string/telegram_channel"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/onRateIt"
-            style="@style/textLink"
+
+        <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="@string/rate_pdf_reader1" />
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:padding="4dip"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_margin="4dip"
+                app:tint="@color/tint_gray"
+                android:src="@drawable/glyphicons_13_heart" />
+
+            <TextView
+                android:id="@+id/onRateIt"
+                style="@style/textLink"
+                android:padding="2dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/rate_pdf_reader1" />
+        </LinearLayout>
 
 
 
