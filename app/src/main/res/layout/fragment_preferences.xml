@@ -25,7 +25,9 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/panel_title_padding"
-
+            android:lines="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:text="@string/preferences"
             android:textColor="@color/white"
@@ -578,7 +580,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:gravity="center_vertical">
@@ -586,13 +588,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="135dp"
+                android:layout_weight="1"
                 android:text="@string/theme_color"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:layout_weight="0"
                 android:id="@+id/colorsLine"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:orientation="horizontal">
@@ -617,21 +620,28 @@
             android:orientation="horizontal"
             android:layout_marginTop="4dip"
             android:layout_marginBottom="4dip"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minWidth="135dp"
+                android:layout_weight="1"
                 android:text="@string/accent"
                 android:textStyle="bold" />
 
+            <CheckBox
+                android:id="@+id/isAccentTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <LinearLayout
+                android:layout_weight="0"
                 android:id="@+id/colorsLine_a"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:orientation="horizontal">
@@ -650,11 +660,7 @@
                     android:layout_height="25dip"
                     android:layout_margin="1dip" />
             </LinearLayout>
-            <CheckBox
-                android:id="@+id/isAccentTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+
         </LinearLayout>
 
 

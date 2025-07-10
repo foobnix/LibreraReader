@@ -96,8 +96,8 @@ public class AppState {
             "#E3C800", //
             "#EA5964", //
             "#00897B", //
-            "#FFFFFF" //
-
+            "#FFFFFF", //
+            "#000000"
     );
     public final static String OPDS_DEFAULT = "" + //
 
@@ -128,7 +128,7 @@ public class AppState {
                     "'#bla':'bla disabled' , " +//
                     "'*(L|l)ibre.':'$1ibréra'}";//
     public static final String TTS_PUNCUATIONS = ".;:!?";
-    public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#1,7#0";
+    public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#0,6#0,7#0";
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
     public final static int MAX_SPEED = 149;
     public final static int MODE_GRID = 1;

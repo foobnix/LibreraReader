@@ -879,6 +879,7 @@ public class PrefFragment2 extends UIFragment {
                                                               AppState.get().bolderTextOnImage = false;
                                                               AppState.get().isEnableBC = false;
                                                               AppState.get().tintColor = Color.BLACK;
+                                                              AppState.get().isUiTextColor = false;
 
 
                                                               IMG.clearDiscCache();
@@ -2278,9 +2279,22 @@ public class PrefFragment2 extends UIFragment {
             isAccentTextColor.setChecked(AppState.get().isUiTextColor);
 
             for (String color : AppState.ACCENT_COLORS) {
+                final int intColor = Color.parseColor(color);
+                if (AppState.get().appTheme == AppState.THEME_LIGHT
+                    || AppState.get().appTheme == AppState.THEME_INK) {
+                    if (intColor == Color.WHITE) {
+                        continue;
+                    }
+                }
+                if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+                    if (intColor == Color.BLACK) {
+                        continue;
+                    }
+                }
+
                 View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
                 view.setBackgroundColor(Color.TRANSPARENT);
-                final int intColor = Color.parseColor(color);
+
                 final View img = view.findViewById(R.id.itColor);
                 img.setBackgroundColor(intColor);
                 img.setContentDescription(getString(R.string.color));
