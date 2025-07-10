@@ -172,6 +172,7 @@ public class AppState {
     public final static int CHAPTER_FORMAT_1 = 0;
     public final static int CHAPTER_FORMAT_2 = 1;
     public final static int CHAPTER_FORMAT_3 = 2;
+    public final static int CHAPTER_FORMAT_4 = 4;
     public final static int AUTO_BRIGTNESS = -1000;
     public final static int READING_MODE_SCROLL = 1;
     public final static int READING_MODE_BOOK = 2;

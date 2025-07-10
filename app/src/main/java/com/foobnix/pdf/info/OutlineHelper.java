@@ -20,12 +20,15 @@ public class OutlineHelper {
 
     public final static List<Integer> CHAPTER_FORMATS = Arrays.asList(//
             AppState.CHAPTER_FORMAT_1, //
+            AppState.CHAPTER_FORMAT_4, //
             AppState.CHAPTER_FORMAT_2, //
             AppState.CHAPTER_FORMAT_3 //
+             //
     );//
 
     public final static List<String> CHAPTER_STRINGS = Arrays.asList(//
             "50% 50 / 100 (20)", //
+            "50% 50 / 100", //
             "50 / 100", //
             "Chapter II " + TxtUtils.LONG_DASH1 + " 3 / 20" //
     );//
@@ -83,6 +86,13 @@ public class OutlineHelper {
             text += SP + "(" + leftPages + ")" + (!compact && leftPages < 10 ? "  " : "");
 
             info.chText = text;
+        }else  if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_4) {
+                String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
+
+               // int leftPages = getLeftPages(dc);
+                text += SP;
+
+                info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
             info.chText = textPage + DV + textMax;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_3) {
