@@ -150,13 +150,13 @@ else
   for NDK in "$PATH1/$NDK_VERSION/ndk-build" "$PATH2/$NDK_VERSION/ndk-build";
   do
     if [ -f "$NDK" ]; then
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-21 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-21 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-21 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-21
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
     echo "=================="
     echo "NDK:"  $NDK
-    echo "APP_PLATFORM=android-21"
+    echo "APP_PLATFORM=android-24"
     fi
   done
 
