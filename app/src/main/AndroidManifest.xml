@@ -34,27 +34,27 @@
             <action android:name="android.intent.action.SEARCH" />
         </intent>
         <intent>
-          <action android:name="android.intent.action.TTS_SERVICE" />
+            <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
     </queries>
 
     <application
-        tools:overrideLibrary="androidx.car.app"
         android:name="com.foobnix.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
         android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="${appRoundIcon}"
         android:theme="@style/StyledIndicatorsWhite"
         android:usesCleartextTraffic="true"
         android:vmSafeMode="${appSafeMode}"
-        android:networkSecurityConfig="@xml/network_security_config"
+        tools:overrideLibrary="androidx.car.app"
         tools:replace="label, icon, roundIcon">
 
-        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
-
-
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
 
 
         <meta-data
@@ -235,7 +235,6 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:resizeableActivity="true"
-            android:screenOrientation="behind"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
@@ -244,7 +243,6 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:resizeableActivity="true"
-            android:screenOrientation="behind"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
@@ -260,15 +258,16 @@
         <service
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"
-            android:foregroundServiceType="mediaPlayback"
-            android:exported="false">
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
 
         </service>
 
-        <receiver android:name="androidx.media.session.MediaButtonReceiver"
+        <receiver
+            android:name="androidx.media.session.MediaButtonReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -276,9 +275,9 @@
         </receiver>
 
         <activity
-            android:exported="true"
             android:name="com.foobnix.tts.TTSActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -287,10 +286,9 @@
 
 
         <activity
-            android:exported="true"
             android:name="com.foobnix.ui2.CloudrailActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:exported="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -303,10 +301,9 @@
         </activity>
 
 
-
         <activity
-            android:exported="true"
             android:name="test.SvgActivity"
+            android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN1" />
@@ -320,7 +317,7 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
-            android:screenOrientation="behind"
+
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -335,7 +332,7 @@
 
         </activity>
 
-                <receiver
+        <receiver
             android:name=".widget.TTSWidget"
             android:exported="false"
             android:label="${appName}">
