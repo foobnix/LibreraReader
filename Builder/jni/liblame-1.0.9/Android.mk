@@ -31,4 +31,6 @@ set_get.c \
 presets.c \
 jni.c \
 
+LOCAL_LDLIBS += -llog
+
 include $(BUILD_SHARED_LIBRARY)
