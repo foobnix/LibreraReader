@@ -106,7 +106,7 @@ cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 cd $MUPDF_JAVA
 
-NDK_VERSION="28.1.13356709"
+NDK_VERSION="28.2.13676358"
 FDRIOD_NDK_VERSION="21.4.7075529"
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -123,6 +123,8 @@ if [ ! -d "$PATH1/$NDK_VERSION" ]; then
 fi
 
 if [ "$1" == "clean_ndk" ]; then
+  rm -rf $MUPDF_JAVA/obj
+
   if [ "$2" == "fdroid" ]; then
    $PATH1/$FDRIOD_NDK_VERSION/ndk-build clean
    $PATH2/$FDRIOD_NDK_VERSION/ndk-build clean
@@ -130,7 +132,7 @@ if [ "$1" == "clean_ndk" ]; then
    $PATH1/$NDK_VERSION/ndk-build clean
    $PATH2/$NDK_VERSION/ndk-build clean
   fi
-rm -rf $MUPDF_JAVA/obj
+
 fi
 
 if [ "$1" == "fdroid" ]; then
@@ -153,7 +155,7 @@ else
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24 APP_SUPPORT_FLEXIBLE_PAGE_SIZES=ON ANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON
     echo "=================="
     echo "NDK:"  $NDK
     echo "APP_PLATFORM=android-24"
