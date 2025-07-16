@@ -13,6 +13,7 @@ sh ninja-adb.sh uninstall com.foobnix.pdf.reader.a1
 sh ninja-adb.sh uninstall com.artifex.mupdf.mini.app
 sh ninja-adb.sh uninstall com.artifex.mupdf.viewer.app
 sh ninja-adb.sh uninstall mobi.librera.epub
+sh ninja-adb.sh uninstall mobi.librera.appcompose
 echo "=================="
 
 
