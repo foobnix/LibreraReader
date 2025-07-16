@@ -14,6 +14,12 @@ import okio.Path.Companion.toPath
 import java.io.File
 
 class CustomApplication : Application(), SingletonImageLoader.Factory {
+    override fun onCreate() {
+        super.onCreate()
+
+
+    }
+
     override fun newImageLoader(context: Context): ImageLoader {
         val diskCache = File(context.externalCacheDir, "cache_pages")
         diskCache.listFiles()?.forEach { println("Cache file: $it") }
@@ -21,16 +27,16 @@ class CustomApplication : Application(), SingletonImageLoader.Factory {
         diskCache.mkdirs()
         println("Disk-Cache: $diskCache ${diskCache.isDirectory}")
         return ImageLoader.Builder(context).components {
-                add(PdfDecoder.Factory())
-            }.logger(DebugLogger()).diskCachePolicy(CachePolicy.ENABLED)
+            add(PdfDecoder.Factory())
+        }.logger(DebugLogger()).diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED).memoryCache {
                 MemoryCache.Builder().maxSizePercent(context, 0.50).build()
             }
 
             .diskCache {
                 DiskCache.Builder().directory(
-                        diskCache.toString().toPath()
-                    )
+                    diskCache.toString().toPath()
+                )
 
                     .maxSizeBytes(500L * 1024 * 1024) // 500 MB
                     .build()

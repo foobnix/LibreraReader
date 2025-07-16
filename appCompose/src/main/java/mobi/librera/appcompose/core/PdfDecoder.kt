@@ -8,6 +8,7 @@ import coil3.decode.Decoder
 import coil3.decode.ImageSource
 import coil3.fetch.SourceFetchResult
 import coil3.request.Options
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.runInterruptible
 import mobi.librera.mupdf.fz.lib.openDocument
 
@@ -25,7 +26,9 @@ class PdfDecoder(
             180 * 4,
             24
         )
-        val imageBitmap = muDoc.renderPage(0, 128 * 4)
+        val imageBitmap = runBlocking {
+            muDoc.renderPage(0, 128 * 4)
+        }
         println("Decode book ${source.file()}")
 
 

@@ -17,7 +17,7 @@ fun openDocument(
         override val pageCount = common.fzPagesCount
         override val title = common.fzTitle
 
-        override fun renderPage(page: Int, pageWidth: Int): Bitmap {
+        override suspend fun renderPage(page: Int, pageWidth: Int): Bitmap {
             println("Load page number  $page ")
             val (array, width1, height1) = common.renderPage(page, pageWidth)
 
@@ -56,7 +56,7 @@ data class Outline(
 abstract class MupdfDocument {
     abstract val pageCount: Int
     abstract val title: String
-    abstract fun renderPage(page: Int, pageWidth: Int): Bitmap
+    abstract suspend fun renderPage(page: Int, pageWidth: Int): Bitmap
     abstract fun close()
 
     abstract suspend fun getOutline(): List<Outline>
@@ -64,7 +64,7 @@ abstract class MupdfDocument {
     companion object EmptyDoc : MupdfDocument() {
         override val pageCount: Int = 0;
         override val title: String = "";
-        override fun renderPage(page: Int, pageWidth: Int): Bitmap =
+        override suspend fun renderPage(page: Int, pageWidth: Int): Bitmap =
             ImageBitmap(1, 1).asAndroidBitmap()
 
         override fun close() {}
