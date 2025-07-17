@@ -11,6 +11,7 @@ interface fz_library : Library {
         max_store: Int,
         version: String
     ): Pointer
+    
 
     fun fz_open_document(ctx: Pointer?, filename: String): Pointer
 

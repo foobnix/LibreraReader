@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val db = Room.databaseBuilder(
-            applicationContext, AppDatabase::class.java, "database-name1"
+            applicationContext, AppDatabase::class.java, "database"
         ).build()
 
 

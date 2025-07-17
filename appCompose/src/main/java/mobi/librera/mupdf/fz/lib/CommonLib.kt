@@ -8,8 +8,7 @@ import mobi.librera.mupdf.fz.fz_matrix
 import mobi.librera.mupdf.fz.fz_outline
 
 val fz: fz_library = Native.load(
-    "mupdf_java",
-    fz_library::class.java
+    "mupdf_java", fz_library::class.java
 )
 
 class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
@@ -20,13 +19,15 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
     private var fzMupdfVersion: String = "1.25.4"
 
     init {
-        println("Open document")
-        fzContext = fz.fz_new_context_imp(null, null, 2560000, fzMupdfVersion)
+        println("Open document 1")
+        fzContext = fz.fz_new_context_imp(null, null, 256000, fzMupdfVersion)
+        println("Open document 2")
         fz.fz_register_document_handlers(fzContext)
+        println("Open document 3")
 
         fz.fz_set_user_css(fzContext, "body, div,p {margin:0em !important;}")
         fz.fz_set_use_document_css(fzContext, 1)
-
+        println("Open document 4")
 
         //  val stream = fz.fz_open_memory(fzContext, document, document.size)
         // fzDocument = fz.fz_open_document_with_stream(fzContext, ".epub", stream)
@@ -35,19 +36,18 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
         //var buffer = fz.fz_new_buffer_from_data(fzContext, document, document.size)
         //fzDocument = fz.fz_open_document_with_buffer(fzContext, "epub", buffer)
 
+        
         fzDocument = fz.fz_open_document(fzContext, tempFile)
 
-        fz.fz_layout_document(
-            fzContext,
-            fzDocument,
-            width.toFloat(),
-            height.toFloat(),
-            fontSize.toFloat()
-        )
 
+        println("Open document 5")
+        fz.fz_layout_document(
+            fzContext, fzDocument, width.toFloat(), height.toFloat(), fontSize.toFloat()
+        )
+        println("Open document 6")
         fzPagesCount = fz.fz_count_pages(fzContext, fzDocument)
 
-        println("fzPagesCount $fzPagesCount")
+        println("Open document fzPagesCount $fzPagesCount")
 
 
     }
@@ -110,9 +110,11 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
 
 
     fun renderPage(page: Int, pageWidth: Int): Triple<IntArray, Int, Int> {
-
+        println("renderPage 1")
         val fzPage = fz.fz_load_page(fzContext, fzDocument, page)
+        println("renderPage 2")
         val fzBounds = fz.fz_bound_page(fzContext, fzPage);
+        println("renderPage 3")
         val fzColor: Pointer? = fz.fz_device_bgr(fzContext)
 
 
@@ -137,10 +139,9 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
             y1 = pHeight
         }
 
-
-        val fzPixmap =
-            fz.fz_new_pixmap_with_bbox(fzContext, fzColor, bbox, null, 1);
-
+        println("renderPage 4")
+        val fzPixmap = fz.fz_new_pixmap_with_bbox(fzContext, fzColor, bbox, null, 1);
+        println("renderPage 5")
 
         fz.fz_clear_pixmap_with_value(fzContext, fzPixmap, 0xff)
 
@@ -154,16 +155,17 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
 
         val samples = fz.fz_pixmap_samples(fzContext, fzPixmap)
 
+        println("renderPage 6")
         val array = samples.getIntArray(0, pWidth * pHeight)
 
-
+        println("renderPage 7")
 
         fz.fz_drop_page(fzContext, fzPage)
         fz.fz_drop_pixmap(fzContext, fzPixmap)
 
         fz.fz_close_device(fzContext, fzDev)
         fz.fz_drop_device(fzContext, fzDev)
-
+        println("renderPage 8")
         return Triple(array, pWidth, pHeight)
 
     }

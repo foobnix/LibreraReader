@@ -14,7 +14,7 @@ fun searchBooks(): List<String> {
         println(file)
         if (file.isFile) {
             when (file.extension.lowercase()) {
-                "pdf", "epub" -> foundFiles.add(file.absolutePath)
+                "pdf" -> foundFiles.add(file.absolutePath)
             }
         }
     }
