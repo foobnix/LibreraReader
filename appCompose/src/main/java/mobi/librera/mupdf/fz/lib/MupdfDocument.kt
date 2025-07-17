@@ -18,6 +18,7 @@ suspend fun openDocument(
     val common = mutex.withLock {
         CommonLib(temp, width, height, fontSize)
     }
+    println("openDocument $name")
     return object : MupdfDocument() {
         override val pageCount = common.fzPagesCount
         override val title = common.fzTitle
