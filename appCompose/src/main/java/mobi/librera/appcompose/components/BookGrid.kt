@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 
 @Composable
-fun BookGrid(foundFiles: List<String>) {
+fun BookGrid(foundFiles: List<String>, onBookOpen: (String) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp)
     ) {
@@ -27,6 +27,7 @@ fun BookGrid(foundFiles: List<String>) {
             val bookPath = foundFiles[it]
 
             Card(
+                onClick = { onBookOpen.invoke(bookPath) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)

@@ -2,6 +2,7 @@ package mobi.librera.appcompose.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -24,14 +25,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
 fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook: () -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier
+            .padding(top = 4.dp, bottom = 4.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
 
@@ -45,9 +51,11 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
             singleLine = true,
             modifier = Modifier
                 .weight(1f)
+                .height(50.dp)
                 .padding(start = 8.dp)
                 .minimumInteractiveComponentSize(),
             shape = CircleShape,
+            textStyle = TextStyle(fontSize = 14.sp),
 
             leadingIcon = {
                 Icon(
