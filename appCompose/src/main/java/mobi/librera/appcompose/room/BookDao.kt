@@ -28,4 +28,7 @@ interface BookDao {
 
     @Delete
     fun delete(user: Book)
+
+    @Query("DELETE FROM book")
+    fun deleteAllBooks()
 }

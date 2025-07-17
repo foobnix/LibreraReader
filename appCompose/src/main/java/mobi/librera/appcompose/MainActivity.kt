@@ -70,10 +70,27 @@ class MainActivity : ComponentActivity() {
                             Column {
                                 val scope = rememberCoroutineScope()
                                 var searchText by remember { mutableStateOf("") }
-                                BookSearchBar(foundFiles.size, onTextChanged = { text ->
-                                    searchText = text
-                                    title = searchText
-                                })
+                                BookSearchBar(
+                                    foundFiles.size, onTextChanged = { text ->
+                                        searchText = text
+                                        title = searchText
+                                    },
+                                    onSearchBook = {
+                                        foundFiles.clear()
+                                        val elements = searchBooks()
+                                        foundFiles.addAll(elements)
+
+                                        val users = elements.map { Book(it, "", "") }
+
+                                        scope.launch(Dispatchers.IO) {
+                                            db.userDao().deleteAllBooks()
+                                            db.userDao().insertAll(users)
+                                        }
+
+                                        title = "DISK"
+                                    }
+
+                                )
 
                                 LaunchedEffect(searchText) {
                                     snapshotFlow { searchText }
@@ -116,6 +133,7 @@ class MainActivity : ComponentActivity() {
                                         foundFiles.addAll(elements)
 
                                         val users = elements.map { Book(it, "", "") }
+                                        db.userDao().deleteAllBooks()
                                         db.userDao().insertAll(users)
 
                                         title = "DISK"

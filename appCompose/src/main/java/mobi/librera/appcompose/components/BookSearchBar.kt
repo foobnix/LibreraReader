@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
-fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit) {
+fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
     ) {
@@ -87,7 +87,7 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit) {
 
             )
 
-        IconButton(onClick = {}, modifier = Modifier) {
+        IconButton(onClick = onSearchBook, modifier = Modifier) {
             Icon(
                 imageVector = Icons.Outlined.Settings, contentDescription = ""
             )
@@ -103,6 +103,6 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit) {
 @Composable
 private fun BookSearchBarPreview() {
     LibreraTheme {
-        BookSearchBar(bookCount = 12, onTextChanged = {})
+        BookSearchBar(bookCount = 12, onTextChanged = {}, onSearchBook = {})
     }
 }

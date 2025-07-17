@@ -37,7 +37,7 @@ fun BookGrid(foundFiles: List<String>) {
 
                         contentDescription = "",
                         modifier = Modifier
-                            .height(150.dp)
+                            .height(180.dp)
                             .fillMaxWidth()
                             .background(Color.White)
                             .clip(RoundedCornerShape(8.dp)),
