@@ -36,9 +36,7 @@ class CustomApplication : Application(), SingletonImageLoader.Factory {
             .diskCache {
                 DiskCache.Builder().directory(
                     diskCache.toString().toPath()
-                )
-
-                    .maxSizeBytes(500L * 1024 * 1024) // 500 MB
+                ).maxSizeBytes(500L * 1024 * 1024) // 500 MB
                     .build()
             }.crossfade(true).build()
     }

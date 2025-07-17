@@ -21,7 +21,7 @@ class PdfDecoder(
 ) : Decoder {
     @OptIn(InternalCoilApi::class)
     override suspend fun decode(): DecodeResult {
-        var imageBitmap: Bitmap = mutex.withLock {
+        val imageBitmap: Bitmap = mutex.withLock {
             println("Decode book begin ${source.file()}  ${Thread.currentThread()}")
 
             val muDoc = openDocument(
@@ -46,8 +46,8 @@ class PdfDecoder(
 
 
         return DecodeResult(
-            image = imageBitmap.asImage(shareable = false),
-            isSampled = false
+            image = imageBitmap.asImage(shareable = true),
+            isSampled = false,
         )
 
     }

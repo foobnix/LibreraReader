@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val db = Room.databaseBuilder(
-            applicationContext, AppDatabase::class.java, "database"
+            applicationContext, AppDatabase::class.java, "database1"
         ).build()
 
 
@@ -82,9 +82,9 @@ class MainActivity : ComponentActivity() {
 
                                         val users = elements.map { Book(it, "", "") }
 
-                                        scope.launch(Dispatchers.IO) {
-                                            db.userDao().deleteAllBooks()
-                                            db.userDao().insertAll(users)
+                                        scope.launch(Dispatchers.Main) {
+                                            //db.userDao().deleteAllBooks()
+                                            // db.userDao().insertAll(users)
                                         }
 
                                         title = "DISK"
@@ -133,8 +133,10 @@ class MainActivity : ComponentActivity() {
                                         foundFiles.addAll(elements)
 
                                         val users = elements.map { Book(it, "", "") }
-                                        db.userDao().deleteAllBooks()
-                                        db.userDao().insertAll(users)
+                                        withContext(Dispatchers.IO) {
+                                            //db.userDao().deleteAllBooks()
+                                            db.userDao().insertAll(users)
+                                        }
 
                                         title = "DISK"
                                     } else {
