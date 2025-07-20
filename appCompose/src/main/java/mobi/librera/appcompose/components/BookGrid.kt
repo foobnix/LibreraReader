@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.room.Book
 import org.koin.androidx.compose.koinViewModel
@@ -67,6 +69,7 @@ fun BookGrid(onBookOpen: (Book) -> Unit) {
 
                         IconButton(
                             onClick = {
+                                dataModel.updateStar(book, !book.isSelected)
                             },
                             modifier = Modifier
                                 .clip(RoundedCornerShape(bottomEnd = roundShapeRadius))
@@ -74,21 +77,23 @@ fun BookGrid(onBookOpen: (Book) -> Unit) {
 
                         ) {
                             Icon(
-                                imageVector = Icons.Default.StarBorder,
+                                imageVector = book.isSelected.ifOr(
+                                    Icons.Default.Star, Icons.Default.StarBorder
+                                ),
                                 contentDescription = "Star",
                             )
                         }
                     }
-
-                    Text(
-                        book.path.substringAfterLast("/"),
-                        modifier = Modifier.padding(8.dp),
-                        maxLines = 1
-
-                    )
                 }
+
+                Text(
+                    book.path.substringAfterLast("/"),
+                    modifier = Modifier.padding(8.dp),
+                    maxLines = 1
+
+                )
             }
         }
     }
-
 }
+

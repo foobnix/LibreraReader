@@ -1,6 +1,7 @@
 package mobi.librera.appcompose.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
+import mobi.librera.appcompose.components.SelectedBooksBar
 import mobi.librera.appcompose.core.searchBooks
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.room.Book
@@ -41,6 +43,7 @@ fun BookListScreen(onBookOpen: (Book) -> Unit) {
 
 
     Column {
+        Text("Source: $title")
 
         BookSearchBar(foundFiles.size, onTextChanged = { text ->
             searchText = text
@@ -61,6 +64,8 @@ fun BookListScreen(onBookOpen: (Book) -> Unit) {
         }
 
         )
+
+        SelectedBooksBar(false)
 
         LaunchedEffect(searchText) {
             snapshotFlow { searchText }.debounce(500L).filterNotNull().collectLatest { query ->
