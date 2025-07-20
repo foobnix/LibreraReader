@@ -73,9 +73,11 @@ class MainActivity : ComponentActivity() {
                                 mutableStateMapOf<String, Int>()
                             }
 
+
+
                             if (openBookPath.isEmpty()) {
                                 BookListScreen(onBookOpen = {
-                                    openBookPath = it
+                                    openBookPath = it.path
                                 })
                             } else {
 
@@ -114,7 +116,7 @@ class MainActivity : ComponentActivity() {
                                             cache.forEach { (bookPath, page) ->
                                                 Row(
                                                     Modifier
-                                                        .width(150.dp)
+                                                        .width(140.dp)
                                                         .height(42.dp)
                                                         .padding(2.dp)
                                                         .clip(CircleShape)

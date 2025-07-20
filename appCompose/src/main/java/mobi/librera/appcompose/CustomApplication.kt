@@ -10,12 +10,17 @@ import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
 import mobi.librera.appcompose.core.PdfDecoder
+import mobi.librera.appcompose.di.initKoin
 import okio.Path.Companion.toPath
+import org.koin.android.ext.koin.androidContext
 import java.io.File
 
 class CustomApplication : Application(), SingletonImageLoader.Factory {
     override fun onCreate() {
         super.onCreate()
+        initKoin {
+            androidContext(this@CustomApplication)
+        }
 
 
     }

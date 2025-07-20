@@ -52,16 +52,37 @@ android {
 
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2025.06.01"))
-    implementation("androidx.activity:activity-compose:1.10.1")
-
-    implementation("androidx.core:core-ktx:1.16.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.1")
+    //BOM begin
+    implementation(platform("androidx.compose:compose-bom:2025.07.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+
+
+    //BOM end
+    implementation("androidx.activity:activity-compose:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
+
     implementation("io.coil-kt.coil3:coil-compose:3.2.0")
+    implementation("androidx.core:core-ktx:1.16.0")
+
+
+
+    implementation(platform("io.insert-koin:koin-bom:4.1.0"))
+    implementation("io.insert-koin:koin-core")
+    implementation("io.insert-koin:koin-androidx-compose")
+    implementation("io.insert-koin:koin-compose")
+    implementation("io.insert-koin:koin-compose-viewmodel")
+
+    // Kotlin Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+
 
     ksp("androidx.room:room-compiler:2.7.2")
     implementation("androidx.room:room-runtime:2.7.2")
@@ -74,7 +95,7 @@ dependencies {
     implementation("net.java.dev.jna:jna:5.17.0@aar")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2025.06.01"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
