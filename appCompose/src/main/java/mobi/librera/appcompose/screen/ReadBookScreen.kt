@@ -26,12 +26,38 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.components.SelectedBooksBar
+import mobi.librera.appcompose.model.DataModel
 import mobi.librera.mupdf.fz.lib.MupdfDocument
 import mobi.librera.mupdf.fz.lib.openDocument
 
+@Composable
+fun ReadBookScreen(dataModel: DataModel) {
+
+    Column(
+        modifier = Modifier
+            .padding(start = 4.dp, end = 4.dp)
+            .fillMaxWidth()
+    ) {
+
+        SelectedBooksBar(dataModel, true)
+
+        ReadBookScreenInner(
+            bookPath = dataModel.currentBookPath,
+            page = 0,
+            onBookClose = {
+                dataModel.currentBookPath = ""
+            },
+            onPageChanged = { page ->
+
+            })
+
+    }
+}
+
 @SuppressLint("WrongConstant")
 @Composable
-fun ReadBookScreen(
+fun ReadBookScreenInner(
     bookPath: String, page: Int, onBookClose: () -> Unit, onPageChanged: (Int) -> Unit
 ) {
 
@@ -91,5 +117,5 @@ fun ReadBookScreen(
 @Preview
 @Composable
 fun ReadBookScreenPreview() {
-    ReadBookScreen("Book Title", 0, onBookClose = {}, {})
+    //ReadBookScreen("Book Title", 0, onBookClose = {}, {})
 }

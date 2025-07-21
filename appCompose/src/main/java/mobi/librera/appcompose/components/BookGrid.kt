@@ -28,12 +28,10 @@ import coil3.compose.AsyncImage
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.room.Book
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun BookGrid(onBookOpen: (Book) -> Unit) {
+fun BookGrid(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
 
-    val dataModel: DataModel = koinViewModel()
     val books by dataModel.allBooks.collectAsState()
 
     LazyVerticalGrid(

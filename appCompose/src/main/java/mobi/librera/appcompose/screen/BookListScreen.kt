@@ -25,12 +25,10 @@ import mobi.librera.appcompose.components.SelectedBooksBar
 import mobi.librera.appcompose.core.searchBooks
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.room.Book
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun BookListScreen(onBookOpen: (Book) -> Unit) {
+fun BookListScreen(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
 
-    val dataModel: DataModel = koinViewModel()
     val books by dataModel.allBooks.collectAsState()
 
     val context = LocalContext.current
@@ -65,22 +63,21 @@ fun BookListScreen(onBookOpen: (Book) -> Unit) {
 
         )
 
-        SelectedBooksBar(false)
+        SelectedBooksBar(dataModel, false)
 
         LaunchedEffect(searchText) {
             snapshotFlow { searchText }.debounce(500L).filterNotNull().collectLatest { query ->
 
                 scope.launch {
-                    val filteredResults =
-                        if (query.isNotBlank()) {
-                            books.filter {
-                                it.path.contains(
-                                    query, ignoreCase = true
-                                )
-                            }
-                        } else {
-                            books
+                    val filteredResults = if (query.isNotBlank()) {
+                        books.filter {
+                            it.path.contains(
+                                query, ignoreCase = true
+                            )
                         }
+                    } else {
+                        books
+                    }
 
 
                     withContext(Dispatchers.Main) {
@@ -114,6 +111,6 @@ fun BookListScreen(onBookOpen: (Book) -> Unit) {
 
         }
 
-        BookGrid(onBookOpen = onBookOpen)
+        BookGrid(dataModel, onBookOpen = onBookOpen)
     }
 }

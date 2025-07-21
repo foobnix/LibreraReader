@@ -21,9 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,16 +31,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import mobi.librera.appcompose.model.DataModel
-import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun SelectedBooksBar(isHomeVisible: Boolean) {
-
-    val dataModel: DataModel = koinViewModel()
+fun SelectedBooksBar(dataModel: DataModel, isHomeVisible: Boolean) {
     val selectedBooks by dataModel.getAllSelected().collectAsState()
     val scrollState = rememberScrollState()
-    var openBookPath by remember { mutableStateOf("") }
 
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
 
@@ -54,7 +47,7 @@ fun SelectedBooksBar(isHomeVisible: Boolean) {
                     .size(42.dp)
                     .clip(CircleShape)
                     .background(Color.Blue.copy(alpha = 0.8f))
-                    .clickable { openBookPath = "" }) {
+                    .clickable { dataModel.currentBookPath = "" }) {
                 Icon(
                     imageVector = Icons.Filled.Home,
                     contentDescription = "",
@@ -88,7 +81,7 @@ fun SelectedBooksBar(isHomeVisible: Boolean) {
                             .width(42.dp)
                             .clip(CircleShape)
                             .clickable {
-                                openBookPath = book.path
+                                dataModel.currentBookPath = book.path
                             },
                         contentScale = ContentScale.Crop,
                     )
@@ -99,7 +92,7 @@ fun SelectedBooksBar(isHomeVisible: Boolean) {
                             .padding(start = 16.dp)
                             .weight(1f)
                             .clickable {
-                                openBookPath = book.path
+                                dataModel.currentBookPath = book.path
 
                             },
                         style = TextStyle(
