@@ -56,6 +56,7 @@ class MainActivity : ComponentActivity() {
                 ManageStoragePermissionScreen()
             } else {
                 val dataModel: DataModel = koinViewModel()
+                dataModel.getAllBooks
 
                 if (dataModel.currentBookPath.isEmpty()) {
                     BookListScreen(dataModel)

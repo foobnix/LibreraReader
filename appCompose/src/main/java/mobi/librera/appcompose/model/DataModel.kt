@@ -26,7 +26,8 @@ class DataModel(
     var currentBookPath by mutableStateOf("")
 
     private val _currentSearchQuery = MutableStateFlow("")
-    val currentSearchQuery: StateFlow<String> get() = _currentSearchQuery.asStateFlow()
+    val currentSearchQuery: StateFlow<String>
+        get() = _currentSearchQuery.asStateFlow()
 
     fun updateSearchQuery(query: String) {
         _currentSearchQuery.value = query
@@ -37,29 +38,27 @@ class DataModel(
     }
 
     private fun loadInitialBooks() = viewModelScope.launch {
-        // withContext(Dispatchers.IO) {
         val currentBooks = bookRepository.getAllBooks().first()
 
         if (currentBooks.isEmpty()) {
             val booksToInsert = filesRepository.getAllBooks().map { Book(it) }
             bookRepository.insertAll(booksToInsert)
         }
-        //  }
-
     }
-
-    fun getAllSelected() = bookRepository.getAllSelected().stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = emptyList()
-    )
 
     fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         bookRepository.updateStar(book.path, isSelected = isSelected)
     }
 
-    val getAllBooks: StateFlow<List<Book>> =
-        bookRepository.getAllBooks().combine(currentSearchQuery) { books, query ->
+    val getAllSelected = bookRepository.getAllSelected().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = emptyList()
+    )
+
+
+    val getAllBooks = bookRepository.getAllBooks()
+        .combine(currentSearchQuery) { books, query ->
             if (query.isNotEmpty()) {
                 books.filter { it.path.contains(query, ignoreCase = true) }
             } else {

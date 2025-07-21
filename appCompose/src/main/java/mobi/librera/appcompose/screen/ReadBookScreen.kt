@@ -80,6 +80,16 @@ fun ReadBookScreenInner(
         readModel.openDocument(bookPath, 0, 0, 0)
     }
 
+//    LaunchedEffect(sliderPosition.toInt()) {
+//        listState.scrollToItem(sliderPosition.toInt())
+//    }
+
+    LaunchedEffect(listState.firstVisibleItemIndex, listState.isScrollInProgress) {
+        if (listState.isScrollInProgress) {
+            sliderPosition = listState.firstVisibleItemIndex.toFloat()
+        }
+    }
+
     when (val state = documentState) {
         is ReadBookModel.DocumentState.Loading -> {
             Text("Loading....")
@@ -94,11 +104,6 @@ fun ReadBookScreenInner(
         }
 
         is ReadBookModel.DocumentState.Success -> {
-
-            LaunchedEffect(sliderPosition) {
-                listState.scrollToItem(sliderPosition.toInt())
-            }
-
 
             Box(modifier = Modifier.fillMaxSize()) {
                 LazyColumn(
@@ -153,15 +158,18 @@ fun ReadBookScreenInner(
                     Slider(
                         value = sliderPosition,
 
-                        onValueChange = { newValue ->
-                            sliderPosition = newValue
+                        onValueChange = { newPosition ->
+                            sliderPosition = newPosition
+                            coroutineScope.launch {
+                                listState.scrollToItem(newPosition.toInt())
+                            }
                         },
                         colors = SliderDefaults.colors(
                             thumbColor = Color.White,
                             activeTrackColor = Color.White,
                             inactiveTrackColor = Color.White,
                         ),
-                        valueRange = 1f..state.pageCount.toFloat(),
+                        valueRange = 1f..(state.pageCount - 1).toFloat(),
                         steps = 0,
                         modifier = Modifier.weight(1f),
                     )

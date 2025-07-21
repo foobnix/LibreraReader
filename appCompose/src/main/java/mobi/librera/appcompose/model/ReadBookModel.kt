@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import mobi.librera.appcompose.pdf.FormatRepository
-import java.lang.ref.WeakReference
 
 
 class ReadBookModel(private val source: FormatRepository) : ViewModel() {
@@ -19,7 +18,10 @@ class ReadBookModel(private val source: FormatRepository) : ViewModel() {
     sealed class DocumentState {
         data object Idle : DocumentState()
         data object Loading : DocumentState()
-        data class Success(val uri: String, val pageCount: Int) : DocumentState()
+        data class Success(
+            val uri: String, val firstPage: Int, val pageCount: Int
+        ) : DocumentState()
+
         data class Error(val message: String) : DocumentState()
     }
 
@@ -29,27 +31,26 @@ class ReadBookModel(private val source: FormatRepository) : ViewModel() {
             _documentState.value = DocumentState.Loading
             try {
                 source.openDocument(bookPath, 1200, 1800, 44)
-                _documentState.value = DocumentState.Success(bookPath, source.pagesCount())
+                _documentState.value = DocumentState.Success(bookPath, 0, source.pagesCount())
             } catch (e: Exception) {
-                _documentState.value =
-                    DocumentState.Error(e.message ?: "Failed to open document")
+                _documentState.value = DocumentState.Error(e.message ?: "Failed to open document")
             }
         }
     }
 
-    private val pageCache = mutableMapOf<Int, WeakReference<ImageBitmap>>()
+    private val pageCache = mutableMapOf<Int, ImageBitmap>()
 
 
     suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
 
         val res = pageCache[number]
-        if (res?.get() != null) {
-            return res.get()!!
+        if (res != null) {
+            return res
         }
 
         val page = source.renderPage(number, 1200)
 
-        pageCache[number] = WeakReference(page)
+        pageCache[number] = page
         return page
     }
 

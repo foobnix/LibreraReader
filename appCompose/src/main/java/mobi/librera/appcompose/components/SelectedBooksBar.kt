@@ -35,7 +35,8 @@ import mobi.librera.appcompose.model.DataModel
 
 @Composable
 fun SelectedBooksBar(dataModel: DataModel, isHomeVisible: Boolean) {
-    val selectedBooks by dataModel.getAllSelected().collectAsState()
+    
+    val selectedBooks by dataModel.getAllSelected.collectAsState()
     val scrollState = rememberScrollState()
 
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {

@@ -34,8 +34,8 @@
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher3"
-        android:roundIcon="@mipmap/ic_launcher3"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
 
         android:label="@string/app_name"
 
