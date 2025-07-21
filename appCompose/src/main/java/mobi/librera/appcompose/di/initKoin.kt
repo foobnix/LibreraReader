@@ -11,6 +11,7 @@ import coil3.util.DebugLogger
 import mobi.librera.appcompose.core.FilesRepository
 import mobi.librera.appcompose.core.NativePdfDecoder
 import mobi.librera.appcompose.model.DataModel
+import mobi.librera.appcompose.model.ReadBookModel
 import mobi.librera.appcompose.room.AppDatabase
 import mobi.librera.appcompose.room.BookDao
 import mobi.librera.appcompose.room.BookRepository
@@ -45,6 +46,7 @@ val appModule = module {
     single<Decoder.Factory> { NativePdfDecoder.Factory() }
 
     viewModelOf(::DataModel)
+    viewModelOf(::ReadBookModel)
 }
 
 val imageLoaderModule = module {

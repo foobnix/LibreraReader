@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import mobi.librera.appcompose.core.FilesRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
@@ -37,17 +36,16 @@ class DataModel(
         loadInitialBooks()
     }
 
-    private fun loadInitialBooks() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val currentBooks = bookRepository.getAllBooks().first()
+    private fun loadInitialBooks() = viewModelScope.launch {
+        // withContext(Dispatchers.IO) {
+        val currentBooks = bookRepository.getAllBooks().first()
 
-                if (currentBooks.isEmpty()) {
-                    val booksToInsert = filesRepository.getAllBooks().map { Book(it) }
-                    bookRepository.insertAll(booksToInsert)
-                }
-            }
+        if (currentBooks.isEmpty()) {
+            val booksToInsert = filesRepository.getAllBooks().map { Book(it) }
+            bookRepository.insertAll(booksToInsert)
         }
+        //  }
+
     }
 
     fun getAllSelected() = bookRepository.getAllSelected().stateIn(
@@ -56,21 +54,18 @@ class DataModel(
         initialValue = emptyList()
     )
 
-    fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            bookRepository.updateStar(book.path, isSelected = isSelected)
-        }
+    fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
+        bookRepository.updateStar(book.path, isSelected = isSelected)
     }
 
-    val getAllBooks: StateFlow<List<Book>> = bookRepository.getAllBooks()
-        .combine(currentSearchQuery) { books, query ->
+    val getAllBooks: StateFlow<List<Book>> =
+        bookRepository.getAllBooks().combine(currentSearchQuery) { books, query ->
             if (query.isNotEmpty()) {
                 books.filter { it.path.contains(query, ignoreCase = true) }
             } else {
                 books
             }
-        }
-        .stateIn(
+        }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = emptyList()
