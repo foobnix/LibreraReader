@@ -27,10 +27,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.model.DataModel
-import mobi.librera.appcompose.room.Book
 
 @Composable
-fun BookGrid(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
+fun BookGrid(dataModel: DataModel) {
 
     val books by dataModel.allBooks.collectAsState()
 
@@ -43,7 +42,7 @@ fun BookGrid(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
             val roundShapeRadius = 20.dp
 
             Card(
-                onClick = { onBookOpen.invoke(book) },
+                onClick = { dataModel.currentBookPath = book.path },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),

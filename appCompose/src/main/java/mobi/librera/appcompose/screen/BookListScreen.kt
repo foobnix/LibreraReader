@@ -27,7 +27,7 @@ import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.room.Book
 
 @Composable
-fun BookListScreen(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
+fun BookListScreen(dataModel: DataModel) {
 
     val books by dataModel.allBooks.collectAsState()
 
@@ -111,6 +111,6 @@ fun BookListScreen(dataModel: DataModel, onBookOpen: (Book) -> Unit) {
 
         }
 
-        BookGrid(dataModel, onBookOpen = onBookOpen)
+        BookGrid(dataModel)
     }
 }

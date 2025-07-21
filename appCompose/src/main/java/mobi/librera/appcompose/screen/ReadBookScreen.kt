@@ -2,6 +2,7 @@ package mobi.librera.appcompose.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,14 +35,11 @@ import mobi.librera.mupdf.fz.lib.openDocument
 @Composable
 fun ReadBookScreen(dataModel: DataModel) {
 
-    Column(
+    Box(
         modifier = Modifier
             .padding(start = 4.dp, end = 4.dp)
             .fillMaxWidth()
     ) {
-
-        SelectedBooksBar(dataModel, true)
-
         ReadBookScreenInner(
             bookPath = dataModel.currentBookPath,
             page = 0,
@@ -51,6 +49,8 @@ fun ReadBookScreen(dataModel: DataModel) {
             onPageChanged = { page ->
 
             })
+
+        SelectedBooksBar(dataModel, true)
 
     }
 }

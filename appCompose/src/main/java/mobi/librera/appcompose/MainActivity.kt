@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -36,6 +37,8 @@ class MainActivity : ComponentActivity() {
                     }, modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     MainScreen(innerPadding)
+
+
                 }
             }
         }
@@ -43,9 +46,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun MainScreen(innerPadding: PaddingValues) {
-        Surface(tonalElevation = 1.dp, modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)) {
+        Surface(
+            tonalElevation = 1.dp, modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
             val isManageStorageGranted = Environment.isExternalStorageManager()
             if (!isManageStorageGranted) {
                 ManageStoragePermissionScreen()
@@ -53,12 +58,14 @@ class MainActivity : ComponentActivity() {
                 val dataModel: DataModel = koinViewModel()
 
                 if (dataModel.currentBookPath.isEmpty()) {
-                    BookListScreen(dataModel, onBookOpen = {
-                        dataModel.currentBookPath = it.path
-                    })
+                    BookListScreen(dataModel)
                 } else {
                     ReadBookScreen(dataModel)
                 }
+
+                BackHandler(
+                    enabled = dataModel.currentBookPath.isNotEmpty(),
+                    onBack = { dataModel.currentBookPath = "" })
             }
         }
     }
