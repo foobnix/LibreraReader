@@ -4,21 +4,35 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import mobi.librera.appcompose.pdf.FormatRepository
 import java.lang.ref.WeakReference
 
-data class PageItem(val page: Int, val image: ImageBitmap)
 
-class ReadBookModel(val source: FormatRepository) : ViewModel() {
+class ReadBookModel(private val source: FormatRepository) : ViewModel() {
 
-    private var documentLoaded: Boolean = false
+    private val _documentState = MutableStateFlow<DocumentState>(DocumentState.Idle)
+    val documentState: StateFlow<DocumentState> = _documentState
+
+    sealed class DocumentState {
+        data object Idle : DocumentState()
+        data object Loading : DocumentState()
+        data class Success(val uri: String, val pageCount: Int) : DocumentState()
+        data class Error(val message: String) : DocumentState()
+    }
+
     fun openDocument(bookPath: String, width: Int, height: Int, fontSize: Int) {
-        if (!documentLoaded) {
-            pageCache.clear()
-            viewModelScope.launch(Dispatchers.IO) {
-                source.openDocument(bookPath, 1800, 1200, 44)
-                documentLoaded = true
+        pageCache.clear()
+        viewModelScope.launch(Dispatchers.IO) {
+            _documentState.value = DocumentState.Loading
+            try {
+                source.openDocument(bookPath, 1200, 1800, 44)
+                _documentState.value = DocumentState.Success(bookPath, source.pagesCount())
+            } catch (e: Exception) {
+                _documentState.value =
+                    DocumentState.Error(e.message ?: "Failed to open document")
             }
         }
     }
@@ -27,9 +41,6 @@ class ReadBookModel(val source: FormatRepository) : ViewModel() {
 
 
     suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
-        if (!documentLoaded) {
-            return ImageBitmap(1, 1)
-        }
 
         val res = pageCache[number]
         if (res?.get() != null) {

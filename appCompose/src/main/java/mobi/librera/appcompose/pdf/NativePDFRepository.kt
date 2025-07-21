@@ -23,6 +23,8 @@ class NativePDFRepository : FormatRepository {
             return ImageBitmap(0, 0);
         }
         val page = renderer!!.openPage(number)
+        //val k: Float = page.height.toFloat() / page.width.toFloat()
+        ///val bitmap = createBitmap(pageWidth, (pageWidth * k).toInt())
         val bitmap = createBitmap(page.width, page.height)
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
         page.close()
