@@ -147,7 +147,7 @@ fun ReadBookScreenInner(
                         "${sliderPosition.toInt() + 1}",
                         modifier = Modifier.padding(start = 8.dp, end = 4.dp),
                         style = TextStyle(
-                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 24.sp
+                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
                         )
                     )
                     Slider(
@@ -169,7 +169,7 @@ fun ReadBookScreenInner(
                         "${state.pageCount}",
                         modifier = Modifier.padding(start = 4.dp, end = 8.dp),
                         style = TextStyle(
-                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 24.sp
+                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
                         )
 
                     )

@@ -34,9 +34,11 @@
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher3"
+        android:roundIcon="@mipmap/ic_launcher3"
+
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.Librera">
         <activity

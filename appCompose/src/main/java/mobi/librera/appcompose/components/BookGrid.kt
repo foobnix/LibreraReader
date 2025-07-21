@@ -34,7 +34,7 @@ fun BookGrid(dataModel: DataModel) {
     val books by dataModel.getAllBooks.collectAsState()
 
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 128.dp)
+        columns = GridCells.Adaptive(minSize = 110.dp)
     ) {
         items(books.size) {
             val book = books[it]
@@ -45,7 +45,7 @@ fun BookGrid(dataModel: DataModel) {
                 onClick = { dataModel.currentBookPath = book.path },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(4.dp),
                 shape = RoundedCornerShape(roundShapeRadius)
 
             ) {
@@ -56,7 +56,7 @@ fun BookGrid(dataModel: DataModel) {
 
                             contentDescription = "",
                             modifier = Modifier
-                                .height(180.dp)
+                                .height(150.dp)
                                 .fillMaxWidth()
                                 .background(Color.White)
                                 .clip(RoundedCornerShape(8.dp)),

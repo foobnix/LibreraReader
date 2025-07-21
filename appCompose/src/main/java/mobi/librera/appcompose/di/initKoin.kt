@@ -9,11 +9,11 @@ import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
 import mobi.librera.appcompose.core.FilesRepository
-import mobi.librera.appcompose.core.NativePdfDecoder
+import mobi.librera.appcompose.core.MupdfPdfDecoder
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.model.ReadBookModel
 import mobi.librera.appcompose.pdf.FormatRepository
-import mobi.librera.appcompose.pdf.NativePDFRepository
+import mobi.librera.appcompose.pdf.MupdfRepository
 import mobi.librera.appcompose.room.AppDatabase
 import mobi.librera.appcompose.room.BookDao
 import mobi.librera.appcompose.room.BookRepository
@@ -44,11 +44,13 @@ val appModule = module {
     }
     single { FilesRepository() }
 
-//    single<Decoder.Factory> { MupdfPdfDecoder.Factory() }
-    single<Decoder.Factory> { NativePdfDecoder.Factory() }
 
-    single<FormatRepository> { NativePDFRepository() }
-    //single<FormatRepository> { MupdfRepository() }
+    //single<Decoder.Factory> { NativePdfDecoder.Factory() }
+    //single<FormatRepository> { NativePDFRepository() }
+
+    single<FormatRepository> { MupdfRepository() }
+    single<Decoder.Factory> { MupdfPdfDecoder.Factory() }
+
 
     viewModelOf(::DataModel)
     viewModelOf(::ReadBookModel)
