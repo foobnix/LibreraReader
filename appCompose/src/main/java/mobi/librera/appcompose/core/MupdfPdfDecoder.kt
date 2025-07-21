@@ -11,7 +11,7 @@ import coil3.request.Options
 import mobi.librera.mupdf.fz.lib.openDocument
 
 
-class PdfDecoder(
+class MupdfPdfDecoder(
     private val source: ImageSource,
     private val options: Options,
 ) : Decoder {
@@ -52,7 +52,7 @@ class PdfDecoder(
             options: Options,
             imageLoader: ImageLoader
         ): Decoder {
-            return PdfDecoder(result.source, options)
+            return MupdfPdfDecoder(result.source, options)
         }
     }
 

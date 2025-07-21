@@ -15,11 +15,14 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import mobi.librera.appcompose.core.searchBooks
+import mobi.librera.appcompose.core.FilesRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
 
-class DataModel(private val bookRepository: BookRepository) : ViewModel() {
+class DataModel(
+    private val bookRepository: BookRepository,
+    private val filesRepository: FilesRepository,
+) : ViewModel() {
 
     var currentBookPath by mutableStateOf("")
 
@@ -40,7 +43,7 @@ class DataModel(private val bookRepository: BookRepository) : ViewModel() {
                 val currentBooks = bookRepository.getAllBooks().first()
 
                 if (currentBooks.isEmpty()) {
-                    val booksToInsert = searchBooks().map { Book(it) }
+                    val booksToInsert = filesRepository.getAllBooks().map { Book(it) }
                     bookRepository.insertAll(booksToInsert)
                 }
             }
@@ -61,7 +64,11 @@ class DataModel(private val bookRepository: BookRepository) : ViewModel() {
 
     val getAllBooks: StateFlow<List<Book>> = bookRepository.getAllBooks()
         .combine(currentSearchQuery) { books, query ->
-            books.filter { it.path.contains(query, ignoreCase = true) }
+            if (query.isNotEmpty()) {
+                books.filter { it.path.contains(query, ignoreCase = true) }
+            } else {
+                books
+            }
         }
         .stateIn(
             scope = viewModelScope,
