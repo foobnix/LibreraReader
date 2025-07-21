@@ -31,7 +31,7 @@ import mobi.librera.appcompose.model.DataModel
 @Composable
 fun BookGrid(dataModel: DataModel) {
 
-    val books by dataModel.allBooks.collectAsState()
+    val books by dataModel.getAllBooks.collectAsState()
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp)

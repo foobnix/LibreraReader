@@ -17,11 +17,8 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,10 +26,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
-fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook: () -> Unit) {
+fun BookSearchBar(dataModel: DataModel) {
+    val books by dataModel.getAllBooks.collectAsState()
+    val searchQuery by dataModel.currentSearchQuery.collectAsState()
+
     Row(
         modifier = Modifier
             .padding(top = 4.dp, bottom = 4.dp)
@@ -41,13 +42,8 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
     ) {
 
 
-        var text by remember { mutableStateOf("") }
-        LaunchedEffect(text) {
-            onTextChanged(text)
-        }
-
         OutlinedTextField(
-            value = text,
+            value = searchQuery,
             singleLine = true,
             modifier = Modifier
                 .weight(1f)
@@ -66,9 +62,9 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
             },
             trailingIcon = {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (text.isNotEmpty()) {
+                    if (searchQuery.isNotEmpty()) {
                         IconButton(onClick = {
-                            text = ""
+                            dataModel.updateSearchQuery("")
                         }) {
                             Icon(
                                 imageVector = Icons.Default.Clear,
@@ -78,13 +74,13 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
                     }
 
                     Text(
-                        text = "$bookCount",
+                        text = "${books.size}",
                         modifier = Modifier.padding(16.dp),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             },
-            onValueChange = { text = it },
+            onValueChange = { dataModel.updateSearchQuery(it) },
             placeholder = { Text("Search...", style = MaterialTheme.typography.labelMedium) },
             colors = OutlinedTextFieldDefaults.colors(
                 unfocusedBorderColor = Color.Transparent,
@@ -95,7 +91,9 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
 
             )
 
-        IconButton(onClick = onSearchBook, modifier = Modifier) {
+        IconButton(onClick = {
+
+        }, modifier = Modifier) {
             Icon(
                 imageVector = Icons.Outlined.Settings, contentDescription = ""
             )
@@ -111,6 +109,6 @@ fun BookSearchBar(bookCount: Int, onTextChanged: (String) -> Unit, onSearchBook:
 @Composable
 private fun BookSearchBarPreview() {
     LibreraTheme {
-        BookSearchBar(bookCount = 12, onTextChanged = {}, onSearchBook = {})
+        ///BookSearchBar(bookCount = 12, onTextChanged = {}, onSearchBook = {})
     }
 }
