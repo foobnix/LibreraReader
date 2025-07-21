@@ -65,14 +65,13 @@ fun ReadBookScreen(dataModel: DataModel) {
 fun ReadBookScreenInner(
     bookPath: String, page: Int, onBookClose: () -> Unit, onPageChanged: (Int) -> Unit
 ) {
+    val readModel: ReadBookModel = koinViewModel()
 
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-
-    val readModel: ReadBookModel = koinViewModel()
     val context = LocalContext.current
-
     var sliderPosition by remember { mutableFloatStateOf(0f) }
+
 
     LaunchedEffect(sliderPosition) {
         listState.scrollToItem(sliderPosition.toInt())
@@ -119,8 +118,8 @@ fun ReadBookScreenInner(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "1",
-                modifier = Modifier.padding(4.dp),
+                "${sliderPosition.toInt() + 1}",
+                modifier = Modifier.padding(start = 8.dp, end = 4.dp),
                 style = TextStyle(
                     color = Color.White, fontWeight = FontWeight.Bold, fontSize = 24.sp
                 )
@@ -140,8 +139,8 @@ fun ReadBookScreenInner(
                 modifier = Modifier.weight(1f),
             )
             Text(
-                "${readModel.getPagesCount()}",
-                modifier = Modifier.padding(4.dp),
+                "${readModel.getPagesCount() + 1}",
+                modifier = Modifier.padding(start = 4.dp, end = 8.dp),
                 style = TextStyle(
                     color = Color.White, fontWeight = FontWeight.Bold, fontSize = 24.sp
                 )

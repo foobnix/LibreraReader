@@ -1,32 +1,51 @@
 package mobi.librera.appcompose.model
 
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import mobi.librera.mupdf.fz.lib.MupdfDocument
+import mobi.librera.appcompose.pdf.FormatRepository
+import java.lang.ref.WeakReference
 
-class ReadBookModel : ViewModel() {
+data class PageItem(val page: Int, val image: ImageBitmap)
 
-    private var doc: MupdfDocument = MupdfDocument.EmptyDoc
+class ReadBookModel(val source: FormatRepository) : ViewModel() {
 
-    fun openDocument(bookPath: String, width: Int, height: Int, fontSize: Int) =
-        viewModelScope.launch(Dispatchers.IO) {
-            doc = mobi.librera.mupdf.fz.lib.openDocument(bookPath, ByteArray(0), 1200, 1000, 44)
+    private var documentLoaded: Boolean = false
+    fun openDocument(bookPath: String, width: Int, height: Int, fontSize: Int) {
+        if (!documentLoaded) {
+            pageCache.clear()
+            viewModelScope.launch(Dispatchers.IO) {
+                source.openDocument(bookPath, 1800, 1200, 44)
+                documentLoaded = true
+            }
         }
+    }
+
+    private val pageCache = mutableMapOf<Int, WeakReference<ImageBitmap>>()
+
 
     suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
-        return doc.renderPage(number, 1200).asImageBitmap()
-    }
-
-    fun close() {
-        viewModelScope.launch(Dispatchers.IO) {
-            doc.close()
+        if (!documentLoaded) {
+            return ImageBitmap(1, 1)
         }
+
+        val res = pageCache[number]
+        if (res?.get() != null) {
+            return res.get()!!
+        }
+
+        val page = source.renderPage(number, 1200)
+
+        pageCache[number] = WeakReference(page)
+        return page
     }
 
-    fun getPagesCount(): Int = doc.pageCount
+    fun closeDocument() = viewModelScope.launch(Dispatchers.IO) {
+        source.closeDocument()
+    }
+
+    fun getPagesCount(): Int = source.pagesCount()
 
 }
