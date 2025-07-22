@@ -12,5 +12,11 @@ class BookRepository(private val bookDao: BookDao) {
 
     suspend fun updateStar(path: String, isSelected: Boolean) = bookDao.updateStar(path, isSelected)
 
+    fun deleteAllBooks() = bookDao.deleteAllBooks()
+
+    suspend fun getBookById(path: String): Book? = bookDao.getBookById(path)
+
+    suspend fun updateBook(book: Book) = bookDao.updateBook(book)
+
 
 }

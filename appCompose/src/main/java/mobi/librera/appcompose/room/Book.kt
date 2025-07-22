@@ -10,7 +10,7 @@ data class Book(
     @ColumnInfo(name = "fileName") val fileName: String = "",
     @ColumnInfo(name = "author") val author: String = "",
     @ColumnInfo(name = "title") val title: String = "",
-    @ColumnInfo(name = "page") val page: Int = 0,
+    @ColumnInfo(name = "progress") val progress: Float = 0.0f,
     @ColumnInfo(name = "time") val time: Long = 0,
     @ColumnInfo(name = "isRecent") val isRecent: Boolean = false,
     @ColumnInfo(name = "isSelected") val isSelected: Boolean = false

@@ -25,6 +25,11 @@ class DataModel(
 
     var currentBookPath by mutableStateOf("")
 
+
+    //val sharedPreferences = viewmo.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE) }
+    var isSearchPDF by mutableStateOf(true)
+    var isSearchEPUB by mutableStateOf(true)
+
     private val _currentSearchQuery = MutableStateFlow("")
     val currentSearchQuery: StateFlow<String>
         get() = _currentSearchQuery.asStateFlow()
@@ -41,13 +46,19 @@ class DataModel(
         val currentBooks = bookRepository.getAllBooks().first()
 
         if (currentBooks.isEmpty()) {
-            val booksToInsert = filesRepository.getAllBooks().map { Book(it) }
-            bookRepository.insertAll(booksToInsert)
+            searchBooks()
         }
     }
 
     fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         bookRepository.updateStar(book.path, isSelected = isSelected)
+    }
+
+    fun searchBooks() = viewModelScope.launch(Dispatchers.IO) {
+        bookRepository.deleteAllBooks()
+        val booksToInsert =
+            filesRepository.getAllBooks(isPDF = isSearchPDF, isEPUB = isSearchEPUB).map { Book(it) }
+        bookRepository.insertAll(booksToInsert)
     }
 
     val getAllSelected = bookRepository.getAllSelected().stateIn(

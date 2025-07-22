@@ -33,7 +33,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             LibreraTheme(darkTheme = false) {
                 Scaffold(
-                    topBar = { }, bottomBar = {//AppNavigationBar()
+                    topBar = { },
+
+                    bottomBar = {//AppNavigationBar()
                     }, modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     MainScreen(innerPadding)

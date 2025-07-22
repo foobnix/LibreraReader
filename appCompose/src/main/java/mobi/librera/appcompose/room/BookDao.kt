@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -25,4 +26,10 @@ interface BookDao {
 
     @Query("DELETE FROM books")
     fun deleteAllBooks()
+
+    @Query("SELECT * FROM books WHERE path = :path")
+    fun getBookById(path: String): Book?
+
+    @Update
+    fun updateBook(book: Book)
 }

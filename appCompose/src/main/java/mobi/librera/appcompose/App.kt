@@ -9,11 +9,11 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-class CustomApplication : Application(), KoinComponent, SingletonImageLoader.Factory {
+class App : Application(), KoinComponent, SingletonImageLoader.Factory {
     override fun onCreate() {
         super.onCreate()
         initKoin {
-            androidContext(this@CustomApplication)
+            androidContext(this@App)
         }
     }
 
