@@ -16,7 +16,7 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
     private var fzDocument: Pointer? = null
     var fzPagesCount: Int = 0
     var fzTitle: String = "title"
-    private var fzMupdfVersion: String = "1.25.4"
+    private var fzMupdfVersion: String = "1.26.3"
 
     init {
         println("Open document 1")
@@ -27,27 +27,30 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
 
         fz.fz_set_user_css(fzContext, "body, div,p {margin:0em !important;}")
         fz.fz_set_use_document_css(fzContext, 1)
-        println("Open document 4")
-
-        //  val stream = fz.fz_open_memory(fzContext, document, document.size)
-        // fzDocument = fz.fz_open_document_with_stream(fzContext, ".epub", stream)
 
 
-        //var buffer = fz.fz_new_buffer_from_data(fzContext, document, document.size)
-        //fzDocument = fz.fz_open_document_with_buffer(fzContext, "epub", buffer)
+        println("Open document 4 $tempFile")
 
-        
-        fzDocument = fz.fz_open_document(fzContext, tempFile)
+        if (fz.setjmp(fz.fz_push_try(fzContext)) == 0)
+            if (fz.fz_do_try(fzContext) == 1) {
+                println("Open document 4.1 $tempFile")
+                fzDocument = fz.fz_open_document(fzContext, tempFile)
+                println("Open document 4.2")
+            }
+        val res = fz.fz_do_catch(fzContext)
+        if (res == 0) {
+            println("Open-document 5 OK $tempFile")
 
+            fz.fz_layout_document(
+                fzContext, fzDocument, width.toFloat(), height.toFloat(), fontSize.toFloat()
+            )
+            println("Open-document 6")
+            fzPagesCount = fz.fz_count_pages(fzContext, fzDocument)
 
-        println("Open document 5")
-        fz.fz_layout_document(
-            fzContext, fzDocument, width.toFloat(), height.toFloat(), fontSize.toFloat()
-        )
-        println("Open document 6")
-        fzPagesCount = fz.fz_count_pages(fzContext, fzDocument)
-
-        println("Open document fzPagesCount $fzPagesCount")
+            println("Open-document fzPagesCount $fzPagesCount")
+        } else {
+            println("Open-document ERROR")
+        }
 
 
     }

@@ -11,7 +11,7 @@ interface fz_library : Library {
         max_store: Int,
         version: String
     ): Pointer
-    
+
 
     fun fz_open_document(ctx: Pointer?, filename: String): Pointer
 
@@ -39,6 +39,14 @@ interface fz_library : Library {
         un: Pointer?,
         alpha: Int
     ): Pointer?
+
+    fun fz_var_imp(variable: Pointer?)
+    fun fz_do_catch(fzContext: Pointer?): Int
+    fun fz_do_try(fzContext: Pointer?): Int
+    fun fz_push_try(fzContext: Pointer?): Pointer
+    
+    fun setjmp(fzPushTry: Pointer): Int
+    fun sigsetjmp(buf: Pointer, value: Int): Int
 
     fun fz_device_bgr(fzContext: Pointer?): Pointer?
 

@@ -24,6 +24,9 @@ suspend fun openDocument(
         override val title = common.fzTitle
 
         override suspend fun renderPage(page: Int, pageWidth: Int): Bitmap {
+            if (pageCount == 0) {
+                return ImageBitmap(0, 0).asAndroidBitmap()
+            }
 
             println("Load page number  $page ")
             val (array, width1, height1) =
