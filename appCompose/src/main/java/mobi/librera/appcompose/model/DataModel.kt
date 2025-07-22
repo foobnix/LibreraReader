@@ -1,6 +1,7 @@
 package mobi.librera.appcompose.model
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,10 @@ class DataModel(
     private val bookRepository: BookRepository,
     private val filesRepository: FilesRepository,
 ) : ViewModel() {
+
+
+    var initialFirstVisibleItemIndex: Int by mutableIntStateOf(0)
+    var initialFirstVisibleItemScrollOffset: Int by mutableIntStateOf(0)
 
     var currentBookPath by mutableStateOf("")
 

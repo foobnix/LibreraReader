@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -18,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -33,11 +35,20 @@ import mobi.librera.appcompose.model.DataModel
 
 @Composable
 fun BookGrid(dataModel: DataModel) {
-
     val books by dataModel.getAllBooks.collectAsState()
 
+    val state = rememberLazyGridState(
+        dataModel.initialFirstVisibleItemIndex,
+        dataModel.initialFirstVisibleItemScrollOffset
+    )
+
+    LaunchedEffect(state.firstVisibleItemIndex, dataModel.initialFirstVisibleItemScrollOffset) {
+        dataModel.initialFirstVisibleItemIndex = state.firstVisibleItemIndex
+        dataModel.initialFirstVisibleItemScrollOffset = state.firstVisibleItemScrollOffset
+    }
+
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 110.dp)
+        state = state, columns = GridCells.Adaptive(minSize = 110.dp)
     ) {
         items(books.size) {
             val book = books[it]
@@ -98,8 +109,10 @@ fun BookGrid(dataModel: DataModel) {
                             .background(color = Color.Blue.copy(alpha = 0.3f))
                     )
                     Text(
-                        book.path.substringAfterLast("/"), modifier = Modifier
-                            .padding(8.dp), maxLines = 1, style = TextStyle(fontSize = 14.sp)
+                        book.path.substringAfterLast("/"),
+                        modifier = Modifier.padding(8.dp),
+                        maxLines = 1,
+                        style = TextStyle(fontSize = 14.sp)
                     )
 
 

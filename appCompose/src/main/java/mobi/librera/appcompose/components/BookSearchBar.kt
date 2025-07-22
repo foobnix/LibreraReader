@@ -124,7 +124,12 @@ fun BookSearchBar(dataModel: DataModel) {
                     .padding(16.dp),
                 shape = RoundedCornerShape(16.dp),
             ) {
-                Column(Modifier.padding(10.dp)) {
+                Column(
+                    Modifier
+                        .padding(10.dp)
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text("Books", style = MaterialTheme.typography.labelMedium)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Checkbox(
@@ -136,7 +141,10 @@ fun BookSearchBar(dataModel: DataModel) {
                             dataModel.isSearchPDF, onCheckedChange = { dataModel.isSearchPDF = it })
                         Text("PDF")
                     }
-                    Button(onClick = { dataModel.searchBooks() }) {
+                    Button(onClick = {
+                        dataModel.searchBooks()
+                        showPopup = false
+                    }) {
                         Text("Update search")
                     }
 
