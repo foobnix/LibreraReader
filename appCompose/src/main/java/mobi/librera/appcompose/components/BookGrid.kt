@@ -3,6 +3,7 @@ package mobi.librera.appcompose.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,7 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.model.DataModel
@@ -58,8 +61,7 @@ fun BookGrid(dataModel: DataModel) {
                             modifier = Modifier
                                 .height(150.dp)
                                 .fillMaxWidth()
-                                .background(Color.White)
-                                .clip(RoundedCornerShape(8.dp)),
+                                .background(Color.White),
                             contentScale = ContentScale.Crop,
 
                             )
@@ -83,12 +85,26 @@ fun BookGrid(dataModel: DataModel) {
                     }
                 }
 
-                Text(
-                    book.path.substringAfterLast("/"),
-                    modifier = Modifier.padding(8.dp),
-                    maxLines = 1
+                val progress = book.progress
 
-                )
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .height(36.dp)
+                            .fillMaxWidth(progress)
+                            .background(color = Color.Blue.copy(alpha = 0.3f))
+                    )
+                    Text(
+                        book.path.substringAfterLast("/"), modifier = Modifier
+                            .padding(8.dp), maxLines = 1, style = TextStyle(fontSize = 14.sp)
+                    )
+
+
+                }
+
             }
         }
     }

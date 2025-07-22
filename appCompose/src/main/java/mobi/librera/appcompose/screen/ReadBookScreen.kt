@@ -228,61 +228,63 @@ fun ReadBookScreenInner(
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter)
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .height(42.dp)
-                                .padding(2.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .fillMaxWidth()
-                                .background(Color.Blue.copy(alpha = 0.8f)),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-
-                            Icon(
-                                imageVector = Icons.Filled.Remove,
+                        if (bookPath.endsWith(".epub")) {
+                            Row(
                                 modifier = Modifier
-                                    .padding(4.dp)
-                                    .clickable {
-                                        readModel.fontSize--
-                                    },
-                                contentDescription = "",
-                                tint = Color.White,
-                            )
+                                    .height(42.dp)
+                                    .padding(2.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .fillMaxWidth()
+                                    .background(Color.Blue.copy(alpha = 0.8f)),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
 
-                            Text(
-                                "${readModel.fontSize}",
-
-                                modifier = Modifier.clickable {
-                                    showNumberPicker = true
-                                }, style = TextStyle(
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp
+                                Icon(
+                                    imageVector = Icons.Filled.Remove,
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .clickable {
+                                            readModel.fontSize--
+                                        },
+                                    contentDescription = "",
+                                    tint = Color.White,
                                 )
-                            )
-                            NumberPickerDialog(
-                                showDialog = showNumberPicker,
-                                onDismissRequest = { showNumberPicker = false },
-                                onNumberSelected = {
-                                    readModel.fontSize = it
-                                    showNumberPicker = false
-                                },
-                                initialNumber = readModel.fontSize,
-                                range = 10..99
-                            )
 
+                                Text(
+                                    "${readModel.fontSize}",
 
-                            Icon(
-                                imageVector = Icons.Filled.Add,
-                                modifier = Modifier
-                                    .padding(4.dp)
-                                    .clickable {
-                                        readModel.fontSize++
+                                    modifier = Modifier.clickable {
+                                        showNumberPicker = true
+                                    }, style = TextStyle(
+                                        color = Color.White,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp
+                                    )
+                                )
+                                NumberPickerDialog(
+                                    showDialog = showNumberPicker,
+                                    onDismissRequest = { showNumberPicker = false },
+                                    onNumberSelected = {
+                                        readModel.fontSize = it
+                                        showNumberPicker = false
                                     },
-                                contentDescription = "",
-                                tint = Color.White,
-                            )
+                                    initialNumber = readModel.fontSize,
+                                    range = 10..99
+                                )
+
+
+                                Icon(
+                                    imageVector = Icons.Filled.Add,
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .clickable {
+                                            readModel.fontSize++
+                                        },
+                                    contentDescription = "",
+                                    tint = Color.White,
+                                )
+                            }
                         }
 
 

@@ -22,7 +22,7 @@ class ReadBookModel(
     private val _documentState = MutableStateFlow<DocumentState>(DocumentState.Idle)
     val documentState: StateFlow<DocumentState> = _documentState
 
-    var fontSize: Int by mutableIntStateOf(44)
+    var fontSize: Int by mutableIntStateOf(60)
     var progresss: Float by mutableFloatStateOf(0.0f)
 
 
