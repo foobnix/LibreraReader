@@ -1,29 +1,36 @@
 package mobi.librera.appcompose.core
 
 import android.os.Environment
+import java.io.File
 
-class FilesRepository {
+val DEFAULT_SEARCH_DIR = Environment.getExternalStoragePublicDirectory(
+    Environment.DIRECTORY_DOWNLOADS
+).resolve("Librera")
 
-    fun getAllBooks(isPDF: Boolean, isEPUB: Boolean): List<String> {
+class FilesRepository() {
+
+    fun getAllBooks(isPDF: Boolean, isEPUB: Boolean, searchDir: String): List<String> {
         val foundFiles = mutableListOf<String>()
 
-        val downloadsDir = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_DOWNLOADS
-        ).resolve("Librera")
+
+        val downloadsDir =
+            if (searchDir.toFile().isDirectory) searchDir.toFile() else DEFAULT_SEARCH_DIR
 
         println("Search Dir: $downloadsDir")
 
-        downloadsDir.walkTopDown()
-            .filter { it.isFile }
-            .forEach { file ->
-                val ext = file.extension.lowercase()
-                if (isPDF && ext == "pdf") {
-                    foundFiles.add(file.absolutePath)
-                } else if (isEPUB && ext == "epub") {
-                    foundFiles.add(file.absolutePath)
-                }
+        downloadsDir.walkTopDown().filter { it.isFile }.forEach { file ->
+            val ext = file.extension.lowercase()
+            if (isPDF && ext == "pdf") {
+                foundFiles.add(file.absolutePath)
+            } else if (isEPUB && ext == "epub") {
+                foundFiles.add(file.absolutePath)
             }
+        }
         return foundFiles
     }
 
 }
+
+fun String.toFile(): File = File(this)
+
+

@@ -42,8 +42,9 @@ import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
 fun BookSearchBar(dataModel: DataModel) {
-    val books by dataModel.getAllBooks.collectAsState()
     val searchQuery by dataModel.currentSearchQuery.collectAsState()
+    val books by dataModel.getAllBooks.collectAsState()
+
 
     var showPopup by remember { mutableStateOf(false) }
 
@@ -146,6 +147,18 @@ fun BookSearchBar(dataModel: DataModel) {
                         showPopup = false
                     }) {
                         Text("Update search")
+                    }
+
+                    val isDark by dataModel.isDarkModeEnabled.collectAsState()
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(
+                            isDark,
+                            onCheckedChange = {
+                                dataModel.updateDarkMode(it)
+                                showPopup = false
+                            })
+                        Text("Dark mode")
                     }
 
                 }

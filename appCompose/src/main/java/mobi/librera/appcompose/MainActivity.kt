@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.model.DataModel
@@ -31,14 +33,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LibreraTheme(darkTheme = false) {
+            val dataModel: DataModel = koinViewModel()
+            val isDark by dataModel.isDarkModeEnabled.collectAsState()
+
+            LibreraTheme(darkTheme = isDark) {
                 Scaffold(
                     topBar = { },
 
                     bottomBar = {//AppNavigationBar()
                     }, modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MainScreen(innerPadding)
+                    MainScreen(dataModel, innerPadding)
 
 
                 }
@@ -47,7 +52,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun MainScreen(innerPadding: PaddingValues) {
+    private fun MainScreen(dataModel: DataModel, innerPadding: PaddingValues) {
         Surface(
             tonalElevation = 1.dp, modifier = Modifier
                 .fillMaxSize()
@@ -57,8 +62,7 @@ class MainActivity : ComponentActivity() {
             if (!isManageStorageGranted) {
                 ManageStoragePermissionScreen()
             } else {
-                val dataModel: DataModel = koinViewModel()
-                dataModel.getAllBooks
+
 
                 if (dataModel.currentBookPath.isEmpty()) {
                     BookListScreen(dataModel)

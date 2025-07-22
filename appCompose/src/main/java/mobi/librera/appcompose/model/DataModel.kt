@@ -15,14 +15,39 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.core.DEFAULT_SEARCH_DIR
 import mobi.librera.appcompose.core.FilesRepository
+import mobi.librera.appcompose.datastore.UserPreferencesRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
 
 class DataModel(
     private val bookRepository: BookRepository,
     private val filesRepository: FilesRepository,
+    private val preferenecesRepository: UserPreferencesRepository,
 ) : ViewModel() {
+
+    val searchPath: StateFlow<String> = preferenecesRepository.userName
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = DEFAULT_SEARCH_DIR.path
+        )
+
+    val isDarkModeEnabled: StateFlow<Boolean> = preferenecesRepository.isDarkModeEnabled
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
+
+    fun updateDarkMode(value: Boolean) = viewModelScope.launch {
+        preferenecesRepository.setDarkModeEnabled(value)
+    }
+
+    fun updateSearchPath(name: String) = viewModelScope.launch {
+        preferenecesRepository.saveUserName(name)
+    }
 
 
     var initialFirstVisibleItemIndex: Int by mutableIntStateOf(0)
@@ -62,7 +87,11 @@ class DataModel(
     fun searchBooks() = viewModelScope.launch(Dispatchers.IO) {
         bookRepository.deleteAllBooks()
         val booksToInsert =
-            filesRepository.getAllBooks(isPDF = isSearchPDF, isEPUB = isSearchEPUB).map { Book(it) }
+            filesRepository.getAllBooks(
+                isPDF = isSearchPDF,
+                isEPUB = isSearchEPUB,
+                searchPath.first()
+            ).map { Book(it) }
         bookRepository.insertAll(booksToInsert)
     }
 
@@ -80,7 +109,8 @@ class DataModel(
             } else {
                 books
             }
-        }.stateIn(
+        }
+        .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = emptyList()
