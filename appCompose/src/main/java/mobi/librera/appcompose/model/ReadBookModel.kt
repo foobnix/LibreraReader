@@ -30,7 +30,7 @@ class ReadBookModel(private val source: FormatRepository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             _documentState.value = DocumentState.Loading
             try {
-                source.openDocument(bookPath, 1200, 1800, 44)
+                source.openDocument(bookPath, width, height, fontSize)
                 _documentState.value = DocumentState.Success(bookPath, 0, source.pagesCount())
             } catch (e: Exception) {
                 _documentState.value = DocumentState.Error(e.message ?: "Failed to open document")
@@ -45,7 +45,7 @@ class ReadBookModel(private val source: FormatRepository) : ViewModel() {
 
         val res = pageCache[number]
         if (res != null) {
-            return res
+            //return res
         }
 
         val page = source.renderPage(number, 1200)
