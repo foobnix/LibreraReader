@@ -41,6 +41,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -116,8 +117,10 @@ fun ReadBookScreenInner(
 
     val documentState by readModel.documentState.collectAsState()
 
+    val density = LocalDensity.current
     LaunchedEffect(bookPath, readModel.fontSize) {
-        readModel.openDocument(bookPath, boxSize.width, boxSize.height, readModel.fontSize)
+        val pixels = with(density) { readModel.fontSize.sp.toPx().toInt() }
+        readModel.openDocument(bookPath, boxSize.width, boxSize.height, pixels)
     }
 
 
