@@ -5,7 +5,7 @@ import java.io.File
 
 val DEFAULT_SEARCH_DIR = Environment.getExternalStoragePublicDirectory(
     Environment.DIRECTORY_DOWNLOADS
-).resolve("Librera")
+)
 
 class FilesRepository() {
 

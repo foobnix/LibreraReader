@@ -96,6 +96,9 @@ dependencies {
 
     implementation("net.java.dev.jna:jna:5.17.0@aar")
 
+    implementation("io.github.vinceglb:filekit-dialogs:0.10.0-beta04")
+    implementation("io.github.vinceglb:filekit-dialogs-compose:0.10.0-beta04")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

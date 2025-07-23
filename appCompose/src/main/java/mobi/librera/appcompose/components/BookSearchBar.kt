@@ -28,25 +28,32 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import mobi.librera.appcompose.core.DEFAULT_SEARCH_DIR
 import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
 fun BookSearchBar(dataModel: DataModel) {
+    val context = LocalContext.current
     val searchQuery by dataModel.currentSearchQuery.collectAsState()
     val books by dataModel.getAllBooks.collectAsState()
+    val searchPath by dataModel.searchPath.collectAsState()
 
+    val coroutineScope = rememberCoroutineScope()
 
     var showPopup by remember { mutableStateOf(false) }
+    var showFileChooser by remember { mutableStateOf(false) }
 
     Row(
         modifier = Modifier
@@ -114,6 +121,22 @@ fun BookSearchBar(dataModel: DataModel) {
         }
 
     }
+    if (showFileChooser) {
+        Dialog(onDismissRequest = { showFileChooser = false }) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+                    .padding(16.dp),
+                shape = RoundedCornerShape(16.dp),
+            ) {
+                CustomFolderChooser(onFolderSelected = {
+                    dataModel.updateSearchPath(it.path)
+                    showFileChooser = false
+                }, initialPath = DEFAULT_SEARCH_DIR)
+            }
+        }
+    }
 
 
     if (showPopup) {
@@ -121,7 +144,7 @@ fun BookSearchBar(dataModel: DataModel) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(400.dp)
                     .padding(16.dp),
                 shape = RoundedCornerShape(16.dp),
             ) {
@@ -153,13 +176,20 @@ fun BookSearchBar(dataModel: DataModel) {
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Checkbox(
-                            isDark,
-                            onCheckedChange = {
+                            isDark, onCheckedChange = {
                                 dataModel.updateDarkMode(it)
                                 showPopup = false
                             })
                         Text("Dark mode")
                     }
+
+
+                    Text("Folder: $searchPath")
+                    
+                    Button(onClick = { showFileChooser = true }) {
+                        Text("Choose Folder")
+                    }
+
 
                 }
             }
