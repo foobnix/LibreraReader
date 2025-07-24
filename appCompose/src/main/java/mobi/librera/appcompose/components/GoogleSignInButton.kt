@@ -21,10 +21,11 @@ import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
 fun GoogleSignInButton(
+    text: String,
     onClick: () -> Unit,
 ) {
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = Modifier.padding(4.dp),
         elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = 3.dp),
         colors = ButtonDefaults.buttonColors(
@@ -43,7 +44,7 @@ fun GoogleSignInButton(
                 contentDescription = ""
             )
             Spacer(Modifier.width(10.dp))
-            Text("Sing in with Google")
+            Text(text)
         }
 
     }
@@ -53,7 +54,7 @@ fun GoogleSignInButton(
 @Composable
 fun Preview() {
     LibreraTheme {
-        GoogleSignInButton { }
+        GoogleSignInButton("Hello", onClick = {})
     }
 }
 

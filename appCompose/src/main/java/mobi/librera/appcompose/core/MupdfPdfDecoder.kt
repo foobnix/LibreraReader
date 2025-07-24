@@ -21,6 +21,8 @@ class MupdfPdfDecoder(
     private val source: ImageSource,
     private val options: Options,
 ) : Decoder {
+
+
     @OptIn(InternalCoilApi::class)
     override suspend fun decode(): DecodeResult {
         if (!source.file().toFile().isFile) {
@@ -75,8 +77,13 @@ class MupdfPdfDecoder(
             result: SourceFetchResult,
             options: Options,
             imageLoader: ImageLoader
-        ): Decoder {
-            return MupdfPdfDecoder(result.source, options)
+        ): Decoder? {
+            println("Decoder.Factory mime: |${result.mimeType}|")
+            return if (result.mimeType == "application/pdf" || result.mimeType == "application/epub+zip") {
+                MupdfPdfDecoder(result.source, options)
+            } else {
+                null
+            }
         }
     }
 

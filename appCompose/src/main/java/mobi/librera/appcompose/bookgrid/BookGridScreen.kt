@@ -8,28 +8,22 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import kotlinx.coroutines.launch
-import mobi.librera.appcompose.booksync.GoogleSingInViewModel
+import mobi.librera.appcompose.booksync.GoogleSignInScreen
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
-import mobi.librera.appcompose.components.GoogleSignInButton
 import mobi.librera.appcompose.components.SelectedBooksBar
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BookListScreen(dataModel: BookGridViewModel) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        val googleModel: GoogleSingInViewModel = koinViewModel()
-        val context1 = LocalContext.current
+
+        val context = LocalContext.current
         val scope = rememberCoroutineScope()
 
         BookSearchBar(dataModel)
 
-        GoogleSignInButton(onClick = {
-            scope.launch {
-                googleModel.signInWithGoogle(context = context1)
-            }
-        })
+        GoogleSignInScreen()
 
         SelectedBooksBar(dataModel, false)
 
