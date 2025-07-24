@@ -30,12 +30,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import mobi.librera.appcompose.model.DataModel
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 
 
 @Composable
-fun SelectedBooksBar(dataModel: DataModel, isHomeVisible: Boolean) {
-    
+fun SelectedBooksBar(dataModel: BookGridViewModel, isHomeVisible: Boolean) {
+
     val selectedBooks by dataModel.getAllSelected.collectAsState()
     val scrollState = rememberScrollState()
 

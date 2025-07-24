@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -19,9 +19,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -31,21 +28,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import mobi.librera.appcompose.core.ifOr
-import mobi.librera.appcompose.model.DataModel
+import mobi.librera.appcompose.room.Book
 
 @Composable
-fun BookGrid(dataModel: DataModel) {
-    val books by dataModel.getAllBooks.collectAsState()
+fun BookGrid(
+    books: List<Book>,
+    state: LazyGridState,
+    onStarClicked: (Book) -> Unit,
+    onBookClicked: (Book) -> Unit,
+) {
+    //val books by dataModel.getAllBooks.collectAsState()
 
-    val state = rememberLazyGridState(
-        dataModel.initialFirstVisibleItemIndex,
-        dataModel.initialFirstVisibleItemScrollOffset
-    )
+    //val state = listGridState
 
-    LaunchedEffect(state.firstVisibleItemIndex, dataModel.initialFirstVisibleItemScrollOffset) {
-        dataModel.initialFirstVisibleItemIndex = state.firstVisibleItemIndex
-        dataModel.initialFirstVisibleItemScrollOffset = state.firstVisibleItemScrollOffset
-    }
+//    val state = rememberLazyGridState(
+//        dataModel.initialFirstVisibleItemIndex,
+//        dataModel.initialFirstVisibleItemScrollOffset
+//    )
+
+//    LaunchedEffect(state.firstVisibleItemIndex, dataModel.initialFirstVisibleItemScrollOffset) {
+//        dataModel.initialFirstVisibleItemIndex = state.firstVisibleItemIndex
+//        dataModel.initialFirstVisibleItemScrollOffset = state.firstVisibleItemScrollOffset
+//    }
 
     LazyVerticalGrid(
         state = state, columns = GridCells.Adaptive(minSize = 110.dp)
@@ -56,7 +60,10 @@ fun BookGrid(dataModel: DataModel) {
             val roundShapeRadius = 20.dp
 
             Card(
-                onClick = { dataModel.currentBookPath = book.path },
+                onClick = {
+                    onBookClicked(book)
+                    //dataModel.currentBookPath = book.path
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(4.dp),
@@ -79,7 +86,8 @@ fun BookGrid(dataModel: DataModel) {
 
                         IconButton(
                             onClick = {
-                                dataModel.updateStar(book, !book.isSelected)
+                                onStarClicked(book)
+                                //dataModel.updateStar(book, !book.isSelected)
                             },
                             modifier = Modifier
                                 .clip(RoundedCornerShape(bottomEnd = roundShapeRadius))

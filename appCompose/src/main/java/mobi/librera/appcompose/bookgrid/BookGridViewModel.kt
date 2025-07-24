@@ -1,5 +1,6 @@
-package mobi.librera.appcompose.model
+package mobi.librera.appcompose.bookgrid
 
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -21,25 +22,23 @@ import mobi.librera.appcompose.datastore.UserPreferencesRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
 
-class DataModel(
+class BookGridViewModel(
     private val bookRepository: BookRepository,
     private val filesRepository: FilesRepository,
     private val preferenecesRepository: UserPreferencesRepository,
 ) : ViewModel() {
 
-    val searchPath: StateFlow<String> = preferenecesRepository.userName
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = DEFAULT_SEARCH_DIR.path
-        )
+    val searchPath: StateFlow<String> = preferenecesRepository.userName.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = DEFAULT_SEARCH_DIR.path
+    )
 
-    val isDarkModeEnabled: StateFlow<Boolean> = preferenecesRepository.isDarkModeEnabled
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = false
-        )
+    val isDarkModeEnabled: StateFlow<Boolean> = preferenecesRepository.isDarkModeEnabled.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
 
     fun updateDarkMode(value: Boolean) = viewModelScope.launch {
         preferenecesRepository.setDarkModeEnabled(value)
@@ -49,6 +48,7 @@ class DataModel(
         preferenecesRepository.saveUserName(name)
     }
 
+    var listGridStates = LazyGridState(0, 0)
 
     var initialFirstVisibleItemIndex: Int by mutableIntStateOf(0)
     var initialFirstVisibleItemScrollOffset: Int by mutableIntStateOf(0)
@@ -56,7 +56,6 @@ class DataModel(
     var currentBookPath by mutableStateOf("")
 
 
-    //val sharedPreferences = viewmo.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE) }
     var isSearchPDF by mutableStateOf(true)
     var isSearchEPUB by mutableStateOf(true)
 
@@ -81,17 +80,16 @@ class DataModel(
     }
 
     fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
-        bookRepository.updateStar(book.path, isSelected = isSelected)
+        bookRepository.updateStar(
+            book.path, isSelected = isSelected, time = System.currentTimeMillis()
+        )
     }
 
     fun searchBooks() = viewModelScope.launch(Dispatchers.IO) {
         bookRepository.deleteAllBooks()
-        val booksToInsert =
-            filesRepository.getAllBooks(
-                isPDF = isSearchPDF,
-                isEPUB = isSearchEPUB,
-                searchPath.first()
-            ).map { Book(it) }
+        val booksToInsert = filesRepository.getAllBooks(
+            isPDF = isSearchPDF, isEPUB = isSearchEPUB, searchPath.first()
+        ).map { Book(it) }
         bookRepository.insertAll(booksToInsert)
     }
 
@@ -102,18 +100,16 @@ class DataModel(
     )
 
 
-    val getAllBooks = bookRepository.getAllBooks()
-        .combine(currentSearchQuery) { books, query ->
-            if (query.isNotEmpty()) {
-                books.filter { it.path.contains(query, ignoreCase = true) }
-            } else {
-                books
-            }
+    val getAllBooks = bookRepository.getAllBooks().combine(currentSearchQuery) { books, query ->
+        if (query.isNotEmpty()) {
+            books.filter { it.path.contains(query, ignoreCase = true) }
+        } else {
+            books
         }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = emptyList()
-        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = emptyList()
+    )
 
 }

@@ -10,10 +10,11 @@ import coil3.memory.MemoryCache
 import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.core.FilesRepository
 import mobi.librera.appcompose.core.MupdfPdfDecoder
 import mobi.librera.appcompose.datastore.UserPreferencesRepository
-import mobi.librera.appcompose.model.DataModel
+import mobi.librera.appcompose.model.GoogleModel
 import mobi.librera.appcompose.model.ReadBookModel
 import mobi.librera.appcompose.pdf.FormatRepository
 import mobi.librera.appcompose.pdf.MupdfRepository
@@ -56,6 +57,7 @@ val appModule = module {
         BookRepository(get())
     }
     single { FilesRepository() }
+    single { GoogleModel() }
     single { UserPreferencesRepository(get()) }
 
 
@@ -66,7 +68,7 @@ val appModule = module {
     single<Decoder.Factory> { MupdfPdfDecoder.Factory() }
 
 
-    viewModelOf(::DataModel)
+    viewModelOf(::BookGridViewModel)
     viewModelOf(::ReadBookModel)
 }
 

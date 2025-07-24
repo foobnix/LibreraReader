@@ -39,12 +39,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.core.DEFAULT_SEARCH_DIR
-import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 
 @Composable
-fun BookSearchBar(dataModel: DataModel) {
+fun BookSearchBar(dataModel: BookGridViewModel) {
     val context = LocalContext.current
     val searchQuery by dataModel.currentSearchQuery.collectAsState()
     val books by dataModel.getAllBooks.collectAsState()
@@ -185,7 +185,7 @@ fun BookSearchBar(dataModel: DataModel) {
 
 
                     Text("Folder: $searchPath")
-                    
+
                     Button(onClick = { showFileChooser = true }) {
                         Text("Choose Folder")
                     }

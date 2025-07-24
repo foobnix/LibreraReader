@@ -19,7 +19,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import mobi.librera.appcompose.model.DataModel
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.screen.BookListScreen
 import mobi.librera.appcompose.screen.ManageStoragePermissionScreen
 import mobi.librera.appcompose.screen.ReadBookScreen
@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val dataModel: DataModel = koinViewModel()
+            val dataModel: BookGridViewModel = koinViewModel()
             val isDark by dataModel.isDarkModeEnabled.collectAsState()
 
             LibreraTheme(darkTheme = isDark) {
@@ -43,6 +43,8 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {//AppNavigationBar()
                     }, modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
+
+
                     MainScreen(dataModel, innerPadding)
 
 
@@ -52,7 +54,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun MainScreen(dataModel: DataModel, innerPadding: PaddingValues) {
+    private fun MainScreen(dataModel: BookGridViewModel, innerPadding: PaddingValues) {
         Surface(
             tonalElevation = 1.dp, modifier = Modifier
                 .fillMaxSize()

@@ -50,14 +50,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
 import mobi.librera.appcompose.components.SelectedBooksBar
-import mobi.librera.appcompose.model.DataModel
 import mobi.librera.appcompose.model.ReadBookModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReadBookScreen(dataModel: DataModel) {
+fun ReadBookScreen(dataModel: BookGridViewModel) {
     var hideShow by remember { mutableStateOf(true) }
 
     val readModel: ReadBookModel = koinViewModel()
