@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.screen
+package mobi.librera.appcompose.bookgrid
 
 
 import android.content.Intent

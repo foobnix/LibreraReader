@@ -20,9 +20,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
-import mobi.librera.appcompose.screen.BookListScreen
-import mobi.librera.appcompose.screen.ManageStoragePermissionScreen
-import mobi.librera.appcompose.screen.ReadBookScreen
+import mobi.librera.appcompose.bookgrid.BookListScreen
+import mobi.librera.appcompose.bookread.ReadBookScreen
+import mobi.librera.appcompose.bookgrid.ManageStoragePermissionScreen
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 import org.koin.androidx.compose.koinViewModel
 

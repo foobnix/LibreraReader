@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.screen
+package mobi.librera.appcompose.bookread
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -53,14 +53,13 @@ import kotlinx.coroutines.launch
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
 import mobi.librera.appcompose.components.SelectedBooksBar
-import mobi.librera.appcompose.model.ReadBookModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ReadBookScreen(dataModel: BookGridViewModel) {
     var hideShow by remember { mutableStateOf(true) }
 
-    val readModel: ReadBookModel = koinViewModel()
+    val readModel: BookReadViewModel = koinViewModel()
 
     Box(
         modifier = Modifier
@@ -90,7 +89,7 @@ fun ReadBookScreen(dataModel: BookGridViewModel) {
 @SuppressLint("WrongConstant")
 @Composable
 fun ReadBookScreenInner(
-    readModel: ReadBookModel,
+    readModel: BookReadViewModel,
     hideShow: Boolean,
     bookPath: String,
     page: Int,
@@ -139,19 +138,19 @@ fun ReadBookScreenInner(
     }
 
     when (val state = documentState) {
-        is ReadBookModel.DocumentState.Loading -> {
+        is BookReadViewModel.DocumentState.Loading -> {
             Text("Loading....")
         }
 
-        is ReadBookModel.DocumentState.Error -> {
+        is BookReadViewModel.DocumentState.Error -> {
             Text("Loading Error....")
         }
 
-        ReadBookModel.DocumentState.Idle -> {
+        BookReadViewModel.DocumentState.Idle -> {
             Text("Loading Idle....")
         }
 
-        is ReadBookModel.DocumentState.Success -> {
+        is BookReadViewModel.DocumentState.Success -> {
             LaunchedEffect(Unit) {
                 val pageToOpen = readModel.getPagesCount() * readModel.progresss
                 listState.scrollToItem(pageToOpen.toInt())

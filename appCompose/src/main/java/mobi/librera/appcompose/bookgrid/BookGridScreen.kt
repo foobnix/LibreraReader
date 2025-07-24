@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.screen
+package mobi.librera.appcompose.bookgrid
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
@@ -9,20 +9,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
-import mobi.librera.appcompose.bookgrid.BookGridViewModel
+import mobi.librera.appcompose.booksync.GoogleSingInViewModel
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
 import mobi.librera.appcompose.components.GoogleSignInButton
 import mobi.librera.appcompose.components.SelectedBooksBar
-import mobi.librera.appcompose.model.GoogleModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BookListScreen(dataModel: BookGridViewModel) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-
-        val googleModel: GoogleModel = koinViewModel()
+        val googleModel: GoogleSingInViewModel = koinViewModel()
         val context1 = LocalContext.current
         val scope = rememberCoroutineScope()
 

@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.model
+package mobi.librera.appcompose.booksync
 
 import android.content.Context
 import androidx.credentials.CredentialManager
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import mobi.librera.appcompose.R
 
-class GoogleModel : ViewModel() {
+class GoogleSingInViewModel : ViewModel() {
 
 
     suspend fun signInWithGoogle(context: Context) {

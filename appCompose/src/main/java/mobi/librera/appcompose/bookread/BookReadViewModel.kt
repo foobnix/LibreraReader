@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.model
+package mobi.librera.appcompose.bookread
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -15,7 +15,7 @@ import mobi.librera.appcompose.pdf.FormatRepository
 import mobi.librera.appcompose.room.BookRepository
 
 
-class ReadBookModel(
+class BookReadViewModel(
     private val source: FormatRepository, private val bookRepository: BookRepository
 ) : ViewModel() {
 
