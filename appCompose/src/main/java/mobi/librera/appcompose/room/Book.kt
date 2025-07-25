@@ -3,8 +3,10 @@ package mobi.librera.appcompose.room
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = "books")
+@Serializable
 data class Book(
     @PrimaryKey val path: String,
     @ColumnInfo(name = "fileName") val fileName: String = "",

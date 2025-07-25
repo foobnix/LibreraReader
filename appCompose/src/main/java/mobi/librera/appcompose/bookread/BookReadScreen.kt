@@ -56,7 +56,12 @@ import mobi.librera.appcompose.components.SelectedBooksBar
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReadBookScreen(dataModel: BookGridViewModel) {
+fun ReadBookScreen(
+    dataModel: BookGridViewModel,
+    book: String,
+    onBookClose: () -> Unit,
+    onOpenBook: (String) -> Unit
+) {
     var hideShow by remember { mutableStateOf(true) }
 
     val readModel: BookReadViewModel = koinViewModel()
@@ -69,18 +74,20 @@ fun ReadBookScreen(dataModel: BookGridViewModel) {
         ReadBookScreenInner(
             readModel,
             hideShow,
-            bookPath = dataModel.currentBookPath,
+            bookPath = book,
             page = 0,
-            onBookClose = {
-                dataModel.currentBookPath = ""
-            },
+            onBookClose = onBookClose,
             onPageChanged = { page ->
 
             },
             onHideShow = { hideShow = !hideShow })
 
         if (hideShow) {
-            SelectedBooksBar(dataModel, true)
+            SelectedBooksBar(
+                dataModel, true,
+                onHomeClick = onBookClose,
+                onOpenBook = onOpenBook
+            )
         }
 
     }

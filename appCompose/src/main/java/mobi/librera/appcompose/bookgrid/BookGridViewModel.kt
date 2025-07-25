@@ -28,6 +28,13 @@ class BookGridViewModel(
     private val preferenecesRepository: UserPreferencesRepository,
 ) : ViewModel() {
 
+    private val _selectedBook = MutableStateFlow<String>("")
+    val selectedBook = _selectedBook.asStateFlow()
+
+    fun onSelectBook(book: String) {
+        _selectedBook.value = book
+    }
+
     val searchPath: StateFlow<String> = preferenecesRepository.userName.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
@@ -52,8 +59,6 @@ class BookGridViewModel(
 
     var initialFirstVisibleItemIndex: Int by mutableIntStateOf(0)
     var initialFirstVisibleItemScrollOffset: Int by mutableIntStateOf(0)
-
-    var currentBookPath by mutableStateOf("")
 
 
     var isSearchPDF by mutableStateOf(true)

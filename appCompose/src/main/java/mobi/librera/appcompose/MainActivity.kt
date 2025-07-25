@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -20,8 +19,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
-import mobi.librera.appcompose.bookgrid.BookListScreen
-import mobi.librera.appcompose.bookread.ReadBookScreen
 import mobi.librera.appcompose.bookgrid.ManageStoragePermissionScreen
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 import org.koin.androidx.compose.koinViewModel
@@ -39,14 +36,18 @@ class MainActivity : ComponentActivity() {
             LibreraTheme(darkTheme = isDark) {
                 Scaffold(
                     topBar = { },
-
                     bottomBar = {//AppNavigationBar()
                     }, modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
 
-
-                    MainScreen(dataModel, innerPadding)
-
+                    //MainScreen(dataModel, innerPadding)
+                    Surface(
+                        tonalElevation = 1.dp, modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    ) {
+                        NavigationRoot()
+                    }
 
                 }
             }
@@ -66,15 +67,16 @@ class MainActivity : ComponentActivity() {
             } else {
 
 
-                if (dataModel.currentBookPath.isEmpty()) {
-                    BookListScreen(dataModel)
-                } else {
-                    ReadBookScreen(dataModel)
-                }
+                // if (dataModel.currentBookPath.isEmpty()) {
+                //BookListScreen(dataModel)
+                //   } else {
+                //ReadBookScreen(dataModel)
+                //     }
 
-                BackHandler(
-                    enabled = dataModel.currentBookPath.isNotEmpty(),
-                    onBack = { dataModel.currentBookPath = "" })
+//                BackHandler(
+//                    enabled = dataModel.currentBookPath.isNotEmpty(),
+//                    onBack = { dataModel.currentBookPath = "" })
+//            }
             }
         }
     }

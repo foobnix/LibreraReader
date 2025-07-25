@@ -34,7 +34,12 @@ import mobi.librera.appcompose.bookgrid.BookGridViewModel
 
 
 @Composable
-fun SelectedBooksBar(dataModel: BookGridViewModel, isHomeVisible: Boolean) {
+fun SelectedBooksBar(
+    dataModel: BookGridViewModel,
+    isHomeVisible: Boolean,
+    onHomeClick: () -> Unit,
+    onOpenBook: (String) -> Unit,
+) {
 
     val selectedBooks by dataModel.getAllSelected.collectAsState()
     val scrollState = rememberScrollState()
@@ -48,7 +53,7 @@ fun SelectedBooksBar(dataModel: BookGridViewModel, isHomeVisible: Boolean) {
                     .size(42.dp)
                     .clip(CircleShape)
                     .background(Color.Blue.copy(alpha = 0.8f))
-                    .clickable { dataModel.currentBookPath = "" }) {
+                    .clickable { onHomeClick() }) {
                 Icon(
                     imageVector = Icons.Filled.Home,
                     contentDescription = "",
@@ -82,7 +87,7 @@ fun SelectedBooksBar(dataModel: BookGridViewModel, isHomeVisible: Boolean) {
                             .width(42.dp)
                             .clip(CircleShape)
                             .clickable {
-                                dataModel.currentBookPath = book.path
+                                onOpenBook(book.path)
                             },
                         contentScale = ContentScale.Crop,
                     )
@@ -93,7 +98,7 @@ fun SelectedBooksBar(dataModel: BookGridViewModel, isHomeVisible: Boolean) {
                             .padding(start = 16.dp)
                             .weight(1f)
                             .clickable {
-                                dataModel.currentBookPath = book.path
+                                onOpenBook(book.path)
 
                             },
                         style = TextStyle(

@@ -15,7 +15,11 @@ import mobi.librera.appcompose.components.SelectedBooksBar
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun BookListScreen(dataModel: BookGridViewModel) {
+fun BookGridScreen(
+    dataModel: BookGridViewModel,
+    onOpenBook: (String) -> Unit,
+    onHomeClick: () -> Unit
+) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
         val context = LocalContext.current
@@ -25,14 +29,18 @@ fun BookListScreen(dataModel: BookGridViewModel) {
 
         GoogleSignInScreen()
 
-        SelectedBooksBar(dataModel, false)
+        SelectedBooksBar(
+            dataModel, false,
+            onOpenBook = onOpenBook,
+            onHomeClick = onHomeClick
+        )
 
         val books by dataModel.getAllBooks.collectAsState()
 
         BookGrid(
             books, dataModel.listGridStates,
             onStarClicked = { dataModel.updateStar(it, !it.isSelected) },
-            onBookClicked = { dataModel.currentBookPath = it.path })
+            onBookClicked = { onOpenBook(it.path) })
     }
 }
 
@@ -40,5 +48,5 @@ fun BookListScreen(dataModel: BookGridViewModel) {
 @Composable
 fun Preview() {
     val dataModel: BookGridViewModel = koinViewModel()
-    BookListScreen(dataModel)
+    //BookListScreen(dataModel)
 }
