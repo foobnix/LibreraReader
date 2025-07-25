@@ -38,9 +38,17 @@ interface BookDao {
     @Query("DELETE FROM book_item")
     fun deleteAllBooks()
 
-    
+
     @Query("SELECT * FROM book_item WHERE path=:path")
     fun getBookByPath(path: String): BookItemAndState?
 
+
+//    @Transaction
+//    @Query("SELECT * FROM book_item WHERE path = :bookPath")
+//    suspend fun getBookWithTags(bookPath: String): BookWithTags?
+
+//    @Transaction
+//    @Query("SELECT * FROM book_tag WHERE name = :tagName")
+//    suspend fun getTagWithBooks(tagName: String): TagWithBooks?
 
 }

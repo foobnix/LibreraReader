@@ -3,6 +3,10 @@ package mobi.librera.appcompose.room
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.Companion.CASCADE
+import androidx.room.Index
+import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import mobi.librera.appcompose.core.toFile
@@ -65,8 +69,64 @@ data class BookItemAndState(
         parentColumn = "fileName",
         entityColumn = "fileName",
     )
-    val bookState: BookState?
+    val bookState: BookState?,
 )
+
+data class BookWithTags(
+    @Embedded val bookItem: BookItem,
+    @Relation(
+        parentColumn = "fileName",
+        entityColumn = "fileName",
+        associateBy = Junction(
+            BookItemTags::class,
+            parentColumn = "tagName",
+            entityColumn = "tagName"
+        )
+    )
+    val tags: List<BookTag>
+)
+
+data class TagWithBooks(
+    @Embedded val bookTag: BookTag,
+    @Relation(
+        parentColumn = "fileName",
+        entityColumn = "fileName",
+        associateBy = Junction(
+            BookItemTags::class,
+            parentColumn = "tagName",
+            entityColumn = "tagName"
+        )
+    )
+    val books: List<BookItem>
+)
+
+@Entity(
+    tableName = "book_item_tags",
+    primaryKeys = ["fileName", "tagName"],
+    foreignKeys = [
+        ForeignKey(
+            entity = BookItem::class,
+            parentColumns = ["fileName"],
+            childColumns = ["fileName"],
+            onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = BookTag::class,
+            parentColumns = ["tagName"],
+            childColumns = ["name"],
+            onDelete = CASCADE
+        )
+    ],
+    indices = [
+        Index(value = ["bookPath"]),
+        Index(value = ["tagName"])
+    ]
+)
+data class BookItemTags(
+    @ColumnInfo val fileName: String,
+    @ColumnInfo val tagName: String,
+)
+
 
 @Entity(tableName = "book_item")
 data class BookItem(
