@@ -23,7 +23,7 @@ fun buildDatabase(context: Context): AppDatabase {
     val db = Room.databaseBuilder(
         context,
         AppDatabase::class.java,
-        "book_database5"
+        "book_database6"
     )
     db.setQueryCallback(
         object : RoomDatabase.QueryCallback {

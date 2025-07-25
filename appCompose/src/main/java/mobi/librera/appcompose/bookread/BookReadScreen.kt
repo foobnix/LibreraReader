@@ -60,10 +60,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ReadBookScreen(
-    dataModel: BookGridViewModel,
-    book: String,
-    onBookClose: OnVoid,
-    onOpenBook: OnString
+    dataModel: BookGridViewModel, bookPath: String, onBookClose: OnVoid, onOpenBook: OnString
 ) {
     var hideShow by remember { mutableStateOf(true) }
 
@@ -76,8 +73,8 @@ fun ReadBookScreen(
     ) {
         ReadBookScreenInner(
             readModel,
+            bookPath = bookPath,
             hideShow,
-            bookPath = book,
             page = 0,
             onBookClose = onBookClose,
             onPageChanged = { page ->
@@ -87,9 +84,7 @@ fun ReadBookScreen(
 
         if (hideShow) {
             SelectedBooksBar(
-                dataModel, true,
-                onHomeClick = onBookClose,
-                onOpenBook = onOpenBook
+                dataModel, true, onHomeClick = onBookClose, onOpenBook = onOpenBook
             )
         }
 
@@ -104,8 +99,8 @@ fun ReadBookScreen(
 @Composable
 fun ReadBookScreenInner(
     readModel: BookReadViewModel,
-    hideShow: Boolean,
     bookPath: String,
+    hideShow: Boolean,
     page: Int,
     onBookClose: () -> Unit,
     onPageChanged: (Int) -> Unit,
@@ -129,11 +124,12 @@ fun ReadBookScreenInner(
     }
 
     val documentState by readModel.documentState.collectAsState()
+    val selectedBook by readModel.selectedBook.collectAsState()
 
     val density = LocalDensity.current
-    LaunchedEffect(bookPath, readModel.fontSize) {
-        val pixels = with(density) { readModel.fontSize.sp.toPx().toInt() }
-        readModel.openDocument(bookPath, boxSize.width, boxSize.height, pixels)
+    LaunchedEffect(Unit) {
+        val pixels = with(density) { selectedBook?.fontSize?.sp?.toPx()?.toInt() }
+        readModel.openDocument(bookPath, boxSize.width, boxSize.height, pixels ?: 50)
     }
 
 
@@ -147,7 +143,9 @@ fun ReadBookScreenInner(
         }
     }
     LaunchedEffect(listState.firstVisibleItemIndex) {
-        readModel.progresss = listState.firstVisibleItemIndex.toFloat() / readModel.getPagesCount()
+        readModel.updateBook(
+            selectedBook?.copy(progress = listState.firstVisibleItemIndex.toFloat() / readModel.getPagesCount())
+        )
 
     }
 
@@ -166,14 +164,12 @@ fun ReadBookScreenInner(
 
         is BookReadViewModel.DocumentState.Success -> {
             LaunchedEffect(Unit) {
-                val pageToOpen = readModel.getPagesCount() * readModel.progresss
+                val pageToOpen = readModel.getPagesCount() * (selectedBook?.progress ?: 0f)
                 listState.scrollToItem(pageToOpen.toInt())
-                sliderPosition = pageToOpen
+                sliderPosition = if (pageToOpen.isNaN()) 0f else pageToOpen
             }
 
-            LaunchedEffect(readModel.progresss) {
-                readModel.updateProgress(bookPath)
-            }
+
 
 
             Box(modifier = Modifier.fillMaxSize()) {
@@ -213,7 +209,7 @@ fun ReadBookScreenInner(
                     userScrollEnabled = true,
                 ) {
                     items(readModel.getPagesCount(), key = { index -> index }) { number ->
-                        var image by remember(bookPath + number) {
+                        var image by remember(selectedBook?.path + number) {
                             mutableStateOf(
                                 ImageBitmap(
                                     1, 1
@@ -221,7 +217,7 @@ fun ReadBookScreenInner(
                             )
                         }
 
-                        remember(bookPath + number) {
+                        remember(selectedBook?.path + number) {
                             coroutineScope.launch(Dispatchers.IO) {
                                 image = readModel.renderPage(number, boxSize.width)
                             }
@@ -244,7 +240,7 @@ fun ReadBookScreenInner(
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter)
                     ) {
-                        if (bookPath.endsWith(".epub")) {
+                        if (true) {
                             Row(
                                 modifier = Modifier
                                     .height(42.dp)
@@ -261,14 +257,14 @@ fun ReadBookScreenInner(
                                     modifier = Modifier
                                         .padding(4.dp)
                                         .clickable {
-                                            readModel.fontSize--
+                                            selectedBook?.fontSize
                                         },
                                     contentDescription = "",
                                     tint = Color.White,
                                 )
 
                                 Text(
-                                    "${readModel.fontSize}",
+                                    "${selectedBook?.fontSize}",
 
                                     modifier = Modifier.clickable {
                                         showNumberPicker = true
@@ -282,10 +278,10 @@ fun ReadBookScreenInner(
                                     showDialog = showNumberPicker,
                                     onDismissRequest = { showNumberPicker = false },
                                     onNumberSelected = {
-                                        readModel.fontSize = it
+                                        //selectedBook?.fontSize = it
                                         showNumberPicker = false
                                     },
-                                    initialNumber = readModel.fontSize,
+                                    initialNumber = 23,//readModel.fontSize,
                                     range = 10..99
                                 )
 
@@ -295,7 +291,7 @@ fun ReadBookScreenInner(
                                     modifier = Modifier
                                         .padding(4.dp)
                                         .clickable {
-                                            readModel.fontSize++
+                                            //readModel.fontSize++
                                         },
                                     contentDescription = "",
                                     tint = Color.White,

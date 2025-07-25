@@ -1,8 +1,6 @@
 package mobi.librera.appcompose
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,12 +32,16 @@ sealed class Route {
 @Composable
 fun NavigationRoot(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+
+    val viewModel = koinViewModel<BookGridViewModel>()
+
     NavHost(
         navController = navController,
         startDestination = Route.BookGridRoot
     ) {
+
         composable<Route.BookGridRoot> {
-            val viewModel = koinViewModel<BookGridViewModel>()
+
             BookGridScreen(
                 viewModel, onOpenBook = {
                     navController.navigate(Route.BookReadRoot(bookPath = it)) {
@@ -57,21 +59,18 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
         composable<Route.BookReadRoot> {
             val bookPath = it.toRoute<Route.BookReadRoot>().bookPath
 
-            val viewModel = koinViewModel<BookGridViewModel>()
-            viewModel.onSelectBook(bookPath)
-            val selectedBook by viewModel.selectedBook.collectAsState()
-
             ReadBookScreen(
                 viewModel,
-                selectedBook,
+                bookPath,
                 onBookClose = {
                     //navController.navigate(Route.BookGridRoot)
                     navController.popBackStack()
                 },
                 onOpenBook = { book ->
-                    viewModel.onSelectBook(book)
+                    //viewModel.onSelectBook(book)
                 }
             )
+
         }
     }
 }
