@@ -12,7 +12,14 @@ import kotlinx.serialization.Serializable
 import mobi.librera.appcompose.bookgrid.BookGridScreen
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.bookread.ReadBookScreen
+import mobi.librera.appcompose.room.Book
 import org.koin.androidx.compose.koinViewModel
+
+
+typealias OnString = (String) -> Unit
+typealias OnBook = (Book) -> Unit
+typealias OnVoid = () -> Unit
+typealias OnInt = (Int) -> Unit
 
 
 sealed class Route {

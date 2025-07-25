@@ -50,6 +50,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.OnString
+import mobi.librera.appcompose.OnVoid
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
 import mobi.librera.appcompose.components.SelectedBooksBar
@@ -59,8 +61,8 @@ import org.koin.androidx.compose.koinViewModel
 fun ReadBookScreen(
     dataModel: BookGridViewModel,
     book: String,
-    onBookClose: () -> Unit,
-    onOpenBook: (String) -> Unit
+    onBookClose: OnVoid,
+    onOpenBook: OnString
 ) {
     var hideShow by remember { mutableStateOf(true) }
 
