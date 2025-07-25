@@ -1,5 +1,6 @@
 package mobi.librera.appcompose.booksync
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -25,49 +27,55 @@ import org.koin.androidx.compose.koinViewModel
 fun GoogleSignInScreen(
 ) {
 
+
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
 
-    val googleModel: GoogleSingInViewModel = koinViewModel()
+    val viewModel: GoogleSingInViewModel = koinViewModel()
+    val singInState by viewModel.singInState.collectAsState()
 
-    val userMail by googleModel.userEmail.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModel.checkSingInState()
+    }
 
-    Column {
-        if (googleModel.singInErrorMsg.isNotEmpty()) {
-            Text(googleModel.singInErrorMsg)
-        }
-
-        if (userMail.isNullOrEmpty()) {
+    when (val state = singInState) {
+        is SingInState.NotSignIn -> {
             GoogleSignInButton(
                 "Sing in with Google", onClick = {
                     scope.launch {
-                        googleModel.signInWithGoogle(context)
+                        viewModel.signInWithGoogle(context)
                     }
                 })
-        } else {
+        }
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
+        is SingInState.Success -> {
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.Start
+            ) {
                 AsyncImage(
-                    model = googleModel.photoUrl,
+                    model = state.user.photoUrl,
                     modifier = Modifier
                         .size(40.dp)
                         .clip(CircleShape),
-                    contentDescription = googleModel.userName
+                    contentDescription = state.user.name
                 )
                 Column(Modifier.padding(start = 12.dp)) {
-                    Text(googleModel.userName)
-                    Text(userMail.orEmpty())
+                    Text(state.user.name)
+                    Text(state.user.email)
                 }
             }
             GoogleSignInButton(
                 "Sing out", onClick = {
                     scope.launch {
-                        googleModel.signOut(context)
+                        viewModel.signOut(context)
                     }
                 })
+        }
 
-
+        is SingInState.Error -> {
+            Text("Error: ${state.message}")
         }
     }
 

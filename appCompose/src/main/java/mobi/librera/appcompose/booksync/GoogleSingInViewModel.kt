@@ -1,9 +1,6 @@
 package mobi.librera.appcompose.booksync
 
 import android.content.Context
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
@@ -11,30 +8,51 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModel
+import coil3.Uri
+import coil3.toCoilUri
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import mobi.librera.appcompose.R
+
+data class User(val name: String, val email: String, val photoUrl: Uri?)
+
+fun FirebaseUser?.toUser(): User = User(
+    this?.displayName.orEmpty(),
+    this?.email.orEmpty(),
+    this?.photoUrl?.toCoilUri()
+)
+
+sealed class SingInState {
+    data object NotSignIn : SingInState()
+    data class Success(val user: User) : SingInState()
+    data class Error(val message: String) : SingInState()
+}
+
 
 class GoogleSingInViewModel() : ViewModel() {
 
-    val auth = Firebase.auth
-
-    var singInErrorMsg by mutableStateOf("")
-    var userName by mutableStateOf(auth.currentUser?.displayName.orEmpty())
-    var photoUrl by mutableStateOf(auth.currentUser?.photoUrl)
+    private val _state = MutableStateFlow<SingInState>(SingInState.NotSignIn)
+    val singInState: StateFlow<SingInState> = _state
 
 
-    private val _userEmailFlow = MutableStateFlow<String?>(auth.currentUser?.email)
-    val userEmail: StateFlow<String?> = _userEmailFlow.asStateFlow()
+    fun checkSingInState() {
+        val auth = Firebase.auth
 
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            _state.value = SingInState.NotSignIn
+        } else {
+            _state.value = SingInState.Success(currentUser.toUser())
+        }
+    }
 
     suspend fun signInWithGoogle(context: Context) {
         val credentialManager = CredentialManager.create(context)
@@ -59,13 +77,13 @@ class GoogleSingInViewModel() : ViewModel() {
                 handleSignInWithGoogleOption(result)
             } catch (e: GetCredentialException) {
                 e.printStackTrace()
-                singInErrorMsg = e.message.orEmpty()
+                _state.value = SingInState.Error(e.message.orEmpty())
             }
         }
 
     }
 
-    fun handleSignInWithGoogleOption(result: GetCredentialResponse) {
+    private fun handleSignInWithGoogleOption(result: GetCredentialResponse) {
         when (val credential = result.credential) {
             is CustomCredential -> {
                 if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
@@ -77,15 +95,16 @@ class GoogleSingInViewModel() : ViewModel() {
 
                     } catch (e: GoogleIdTokenParsingException) {
                         e.printStackTrace()
-                        singInErrorMsg = e.message.orEmpty()
+                        _state.value = SingInState.Error(e.message.orEmpty())
                     }
                 } else {
-                    singInErrorMsg = "Unexpected type of credential"
+                    _state.value = SingInState.Error("Unexpected type of credential")
                 }
             }
 
             else -> {
-                singInErrorMsg = "Unexpected type of credential"
+                _state.value = SingInState.Error("Unexpected Error")
+
             }
         }
     }
@@ -97,23 +116,23 @@ class GoogleSingInViewModel() : ViewModel() {
             if (task.isSuccessful) {
                 val user = auth.currentUser
                 println("current user $user")
-                //updateUI(user)
+                _state.value = SingInState.Success(user.toUser())
             } else {
-                singInErrorMsg = "Fail sing in with firebase ${task.exception}"
-                //updateUI(null)
+                _state.value = SingInState.Error(task.exception?.message.orEmpty())
             }
         }
     }
 
     suspend fun signOut(context: Context) {
-        auth.signOut()
+        val auth = Firebase.auth
+
         val credentialManager = CredentialManager.create(context)
 
         val clearRequest = ClearCredentialStateRequest()
         coroutineScope {
             credentialManager.clearCredentialState(clearRequest)
         }
-
+        _state.value = SingInState.NotSignIn
     }
 
 

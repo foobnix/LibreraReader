@@ -43,9 +43,10 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
             BookGridScreen(
                 viewModel, onOpenBook = {
                     navController.navigate(Route.BookReadRoot(bookPath = it)) {
-                        popUpTo(Route.BookGridRoot) {
-                            inclusive = true
-                        }
+//                        popUpTo(Route.BookGridRoot) {
+//                            inclusive = true
+//                        }
+                        launchSingleTop = true
                     }
 
                 },
@@ -64,7 +65,8 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                 viewModel,
                 selectedBook,
                 onBookClose = {
-                    navController.navigate(Route.BookGridRoot)
+                    //navController.navigate(Route.BookGridRoot)
+                    navController.popBackStack()
                 },
                 onOpenBook = { book ->
                     viewModel.onSelectBook(book)

@@ -1,6 +1,7 @@
 package mobi.librera.appcompose.bookread
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -93,6 +94,10 @@ fun ReadBookScreen(
         }
 
     }
+    BackHandler(
+        onBack = onBookClose
+    )
+
 }
 
 @SuppressLint("WrongConstant")
