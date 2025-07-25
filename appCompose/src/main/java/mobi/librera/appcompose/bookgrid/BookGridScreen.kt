@@ -9,16 +9,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import mobi.librera.appcompose.booksync.GoogleSignInScreen
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
 import mobi.librera.appcompose.components.SelectedBooksBar
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BookGridScreen(
@@ -27,10 +23,6 @@ fun BookGridScreen(
     onHomeClick: () -> Unit
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-        val context = LocalContext.current
-        val scope = rememberCoroutineScope()
-
         BookSearchBar(dataModel)
 
         var isManageStorageGranted by remember { mutableStateOf(Environment.isExternalStorageManager()) }
@@ -63,11 +55,4 @@ fun BookGridScreen(
                 onBookClicked = { onOpenBook(it.path) })
         }
     }
-}
-
-@Preview
-@Composable
-fun Preview() {
-    val dataModel: BookGridViewModel = koinViewModel()
-    //BookListScreen(dataModel)
 }

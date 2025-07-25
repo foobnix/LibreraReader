@@ -132,6 +132,9 @@ class GoogleSingInViewModel() : ViewModel() {
         coroutineScope {
             credentialManager.clearCredentialState(clearRequest)
         }
+        
+        auth.signOut()
+
         _state.value = SingInState.NotSignIn
     }
 
