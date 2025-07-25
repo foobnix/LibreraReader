@@ -76,7 +76,7 @@ class BookGridViewModel(
         loadInitialBooks()
     }
 
-    private fun loadInitialBooks() = viewModelScope.launch {
+    public fun loadInitialBooks() = viewModelScope.launch {
         val currentBooks = bookRepository.getAllBooks().first()
 
         if (currentBooks.isEmpty()) {

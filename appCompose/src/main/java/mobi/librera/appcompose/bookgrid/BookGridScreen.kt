@@ -1,10 +1,16 @@
 package mobi.librera.appcompose.bookgrid
 
+import android.os.Environment
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,20 +33,35 @@ fun BookGridScreen(
 
         BookSearchBar(dataModel)
 
-        GoogleSignInScreen()
+        var isManageStorageGranted by remember { mutableStateOf(Environment.isExternalStorageManager()) }
 
-        SelectedBooksBar(
-            dataModel, false,
-            onOpenBook = onOpenBook,
-            onHomeClick = onHomeClick
-        )
+        val launcher = rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.StartActivityForResult()
+        ) {
+            isManageStorageGranted = Environment.isExternalStorageManager()
+            if (isManageStorageGranted) {
+                dataModel.loadInitialBooks()
+            }
+        }
 
-        val books by dataModel.getAllBooks.collectAsState()
+        if (!isManageStorageGranted) {
+            ManageStoragePermissionScreen(launcher)
+        } else {
+            GoogleSignInScreen()
 
-        BookGrid(
-            books, dataModel.listGridStates,
-            onStarClicked = { dataModel.updateStar(it, !it.isSelected) },
-            onBookClicked = { onOpenBook(it.path) })
+            SelectedBooksBar(
+                dataModel, false,
+                onOpenBook = onOpenBook,
+                onHomeClick = onHomeClick
+            )
+
+            val books by dataModel.getAllBooks.collectAsState()
+
+            BookGrid(
+                books, dataModel.listGridStates,
+                onStarClicked = { dataModel.updateStar(it, !it.isSelected) },
+                onBookClicked = { onOpenBook(it.path) })
+        }
     }
 }
 
