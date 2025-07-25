@@ -51,7 +51,7 @@ fun BookGridScreen(
 
             BookGrid(
                 books, dataModel.listGridStates,
-                onStarClicked = { dataModel.updateStar(it, true) },
+                onStarClicked = { dataModel.updateStar(it, !it.isSelected) },
                 onBookClicked = { onOpenBook(it.path) })
         }
     }

@@ -85,9 +85,7 @@ class BookGridViewModel(
     }
 
     fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
-        bookRepository.updateStar(
-            book.path, isSelected = isSelected, time = System.currentTimeMillis()
-        )
+        bookRepository.updateBook(book.copy(isSelected = isSelected))
     }
 
     fun searchBooks() = viewModelScope.launch(Dispatchers.IO) {

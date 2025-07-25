@@ -12,7 +12,7 @@ interface BookDao {
 
     @Transaction
     @Query("SELECT * FROM book_item")
-    fun getAllMetaAndState(): Flow<List<BooItemAndState>>
+    fun getAllBookItemAndState(): Flow<List<BookItemAndState>>
 
     @Query("SELECT * FROM book_item")
     fun getAll(): Flow<List<BookItem>>
@@ -24,8 +24,10 @@ interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(users: List<BookItem>)
 
-    // @Query("UPDATE books SET isSelected = :isSelected, time = :time WHERE path = :path ")
-    //  fun updateStar(path: String, isSelected: Boolean, time: Long)
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertBookState(state: BookState)
+
 
     //@Query("DELETE FROM books WHERE path = :path")
     // fun delete(path: String)

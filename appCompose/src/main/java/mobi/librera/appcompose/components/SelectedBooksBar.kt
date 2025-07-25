@@ -108,7 +108,7 @@ fun SelectedBooksBar(
                     )
                     IconButton(
                         onClick = {
-                            dataModel.updateStar(book, false)
+                            dataModel.updateStar(book, !book.isSelected)
 
                         }) {
                         Icon(
