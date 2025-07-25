@@ -9,6 +9,7 @@ import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import mobi.librera.appcompose.bookgrid.BookGridScreen
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
+import mobi.librera.appcompose.bookread.BookReadViewModel
 import mobi.librera.appcompose.bookread.ReadBookScreen
 import mobi.librera.appcompose.room.Book
 import org.koin.androidx.compose.koinViewModel
@@ -33,7 +34,8 @@ sealed class Route {
 fun NavigationRoot(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
-    val viewModel = koinViewModel<BookGridViewModel>()
+    val gridModel = koinViewModel<BookGridViewModel>()
+    val readModel = koinViewModel<BookReadViewModel>()
 
     NavHost(
         navController = navController,
@@ -43,7 +45,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
         composable<Route.BookGridRoot> {
 
             BookGridScreen(
-                viewModel, onOpenBook = {
+                gridModel, onOpenBook = {
                     navController.navigate(Route.BookReadRoot(bookPath = it)) {
 //                        popUpTo(Route.BookGridRoot) {
 //                            inclusive = true
@@ -60,7 +62,8 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
             val bookPath = it.toRoute<Route.BookReadRoot>().bookPath
 
             ReadBookScreen(
-                viewModel,
+                gridModel,
+                readModel,
                 bookPath,
                 onBookClose = {
                     //navController.navigate(Route.BookGridRoot)

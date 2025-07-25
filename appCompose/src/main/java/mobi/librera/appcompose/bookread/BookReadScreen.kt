@@ -56,15 +56,16 @@ import mobi.librera.appcompose.OnVoid
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
 import mobi.librera.appcompose.components.SelectedBooksBar
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ReadBookScreen(
-    dataModel: BookGridViewModel, bookPath: String, onBookClose: OnVoid, onOpenBook: OnString
+    dataModel: BookGridViewModel,
+    readModel: BookReadViewModel,
+    bookPath: String,
+    onBookClose: OnVoid,
+    onOpenBook: OnString
 ) {
     var hideShow by remember { mutableStateOf(true) }
-
-    val readModel: BookReadViewModel = koinViewModel()
 
     Box(
         modifier = Modifier

@@ -15,6 +15,7 @@ data class Book(
     val progress: Float = 0.0f,
     val time: Long = 0,
     val fontSize: Int = 0,
+    val pageCount: Int = 0,
 )
 
 
