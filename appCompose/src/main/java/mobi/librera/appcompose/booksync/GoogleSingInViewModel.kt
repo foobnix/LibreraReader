@@ -25,9 +25,7 @@ import mobi.librera.appcompose.R
 data class User(val name: String, val email: String, val photoUrl: Uri?)
 
 fun FirebaseUser?.toUser(): User = User(
-    this?.displayName.orEmpty(),
-    this?.email.orEmpty(),
-    this?.photoUrl?.toCoilUri()
+    this?.displayName.orEmpty(), this?.email.orEmpty(), this?.photoUrl?.toCoilUri()
 )
 
 sealed class SingInState {
@@ -60,8 +58,7 @@ class GoogleSingInViewModel() : ViewModel() {
         val serverClientId = context.getString(R.string.default_web_client_id)
 
         val googleIdOption: GetGoogleIdOption =
-            GetGoogleIdOption.Builder()
-                .setFilterByAuthorizedAccounts(false)
+            GetGoogleIdOption.Builder().setFilterByAuthorizedAccounts(false)
                 .setServerClientId(serverClientId).build()
 
         val request: GetCredentialRequest =
@@ -132,7 +129,7 @@ class GoogleSingInViewModel() : ViewModel() {
         coroutineScope {
             credentialManager.clearCredentialState(clearRequest)
         }
-        
+
         auth.signOut()
 
         _state.value = SingInState.NotSignIn

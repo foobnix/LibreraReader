@@ -26,8 +26,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun GoogleSignInScreen(
 ) {
-
-
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 

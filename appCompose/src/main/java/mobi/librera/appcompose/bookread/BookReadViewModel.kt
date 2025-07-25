@@ -38,8 +38,8 @@ class BookReadViewModel(
 
     fun updateProgress(bookPath: String) = viewModelScope.launch(Dispatchers.IO) {
         val book = bookRepository.getBookById(bookPath)
-        val copy = book!!.copy(progress = progresss)
-        bookRepository.updateBook(copy)
+        val copy = book//book!!.copy(progress = progresss)
+        // bookRepository.updateBook(copy)
         println("Update progress $progresss")
     }
 
@@ -48,7 +48,7 @@ class BookReadViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             _documentState.value = DocumentState.Loading
             try {
-                progresss = bookRepository.getBookById(bookPath)?.progress!!
+                //progresss = bookRepository.getBookById(bookPath)?.progress!!
                 println("Get progress $progresss")
                 source.openDocument(bookPath, width, height, fontSize)
                 _documentState.value = DocumentState.Success(bookPath, 0, source.pagesCount())

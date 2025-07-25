@@ -1,8 +1,5 @@
 package mobi.librera.appcompose.di
 
-import android.util.Log
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import coil3.ImageLoader
 import coil3.decode.Decoder
 import coil3.disk.DiskCache
@@ -21,6 +18,7 @@ import mobi.librera.appcompose.pdf.MupdfRepository
 import mobi.librera.appcompose.room.AppDatabase
 import mobi.librera.appcompose.room.BookDao
 import mobi.librera.appcompose.room.BookRepository
+import mobi.librera.appcompose.room.buildDatabase
 import okio.Path.Companion.toOkioPath
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.context.startKoin
@@ -28,26 +26,10 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import java.io.File
-import java.util.concurrent.Executors
 
 val appModule = module {
 
-    single<AppDatabase> {
-        val db = Room.databaseBuilder(
-            androidApplication(),
-            AppDatabase::class.java,
-            "book_database3"
-        )
-        db.setQueryCallback(
-            object : RoomDatabase.QueryCallback {
-                override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
-                    Log.d("DB", "SQL Query: $sqlQuery, Args: $bindArgs")
-                }
-            },
-            Executors.newSingleThreadExecutor() // Use a background thread for logging
-        )
-        db.build()
-    }
+    single<AppDatabase> { buildDatabase(androidApplication()) }
 
     single<BookDao> {
         get<AppDatabase>().bookDao()

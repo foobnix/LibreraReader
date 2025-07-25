@@ -1,0 +1,75 @@
+package mobi.librera.appcompose.room
+
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.Relation
+import mobi.librera.appcompose.core.toFile
+
+data class Book(
+    val path: String,
+    val fileName: String = "",
+    val isSelected: Boolean = false,
+    val progress: Float = 0.0f
+)
+
+
+data class BookItemWithDetails(
+    val bookItem: BookItem,
+    val state: BookState,
+    val meta: BookMeta
+)
+
+fun Book.toBookDetails(): BookItemWithDetails {
+    val fileName = this.fileName.toFile().name
+    return BookItemWithDetails(
+        BookItem(this.path, fileName),
+        BookState(fileName = fileName),
+        BookMeta(this.path)
+    )
+}
+
+fun Book.toBookItem() = BookItem(this.path, this.fileName)
+fun BookItem.toBook() = Book(this.path, this.fileName)
+
+data class BooItemAndState(
+    @Embedded val bookItem: BookItem,
+    @Relation(
+        parentColumn = "fileName",
+        entityColumn = "fileName"
+    )
+    val bookState: BookState
+)
+
+@Entity(tableName = "book_item")
+data class BookItem(
+    @PrimaryKey val path: String,
+    @ColumnInfo val fileName: String,
+)
+
+@Entity(tableName = "book_state")
+data class BookState(
+    @PrimaryKey val fileName: String,
+    @ColumnInfo(name = "progress") val progress: Float = 0.0f,
+    @ColumnInfo(name = "time") val time: Long = 0,
+    @ColumnInfo(name = "is_recent") val isRecent: Boolean = false,
+    @ColumnInfo(name = "is_selected") val isSelected: Boolean = false
+)
+
+@Entity(tableName = "book_meta")
+data class BookMeta(
+    @PrimaryKey val path: String,
+    @ColumnInfo(name = "author") val author: String = "",
+    @ColumnInfo(name = "title") val title: String = "",
+    @ColumnInfo(name = "description") val description: String = "",
+    @ColumnInfo(name = "series") val series: String = "",
+    @ColumnInfo(name = "series_index") val seriesIndex: String = "",
+)
+
+@Entity(tableName = "book_tag")
+data class BookTag(
+    @PrimaryKey val name: String,
+    @ColumnInfo val order: Int = 0,
+    @ColumnInfo val color: Int = 0,
+)
