@@ -1,5 +1,6 @@
 package mobi.librera.appcompose.bookread
 
+import android.content.Context
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,11 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mobi.librera.appcompose.core.spToPx
 import mobi.librera.appcompose.pdf.FormatRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
+import mobi.librera.appcompose.room.DEFAULT_FONT_SIZE
 
 
 class BookReadViewModel(
@@ -32,30 +36,58 @@ class BookReadViewModel(
     private val _selectedBook = MutableStateFlow<Book?>(null)
     val selectedBook = _selectedBook.asStateFlow()
 
-    fun loadBook(bookPath: String, screenWidth: Int, screenHeight: Int) {
+
+    fun loadBook(context: Context, bookPath: String, screenWidth: Int, screenHeight: Int) {
         viewModelScope.launch {
             try {
                 _documentState.value = DocumentState.Loading
-                _selectedBook.value = null
-
-                var book = withContext(Dispatchers.IO) {
-                    bookRepository.getBookByPath(bookPath)
-                } ?: Book(bookPath, fontSize = 30)
 
 
-                withContext(Dispatchers.IO) {
-                    source.openDocument(bookPath, screenWidth, screenHeight, book.fontSize)
+                _selectedBook.value = withContext(Dispatchers.IO) {
+                    val currentBook = _selectedBook.value
+                        ?: bookRepository.getBookByPath(bookPath)
+                        ?: Book(bookPath, fontSize = DEFAULT_FONT_SIZE)
+
+                    source.openDocument(
+                        bookPath,
+                        screenWidth,
+                        screenHeight,
+                        currentBook.fontSize.spToPx(context)
+                    )
+                    currentBook.copy(pageCount = source.pagesCount())
                 }
-                book = book.copy(pageCount = source.pagesCount())
 
-                _selectedBook.value = book
                 _documentState.value = DocumentState.Success
 
             } catch (e: Exception) {
                 _documentState.value = DocumentState.Error(e.message.orEmpty())
             }
         }
+    }
 
+    fun upadteBook() = viewModelScope.launch(Dispatchers.IO) {
+        selectedBook.value?.let {
+            bookRepository.updateBook(it)
+        }
+    }
+
+
+    fun pageSizeInc() {
+        _selectedBook.update {
+            it?.copy(fontSize = it.fontSize + 1)
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            _selectedBook.value?.let { bookRepository.updateBook(it) }
+        }
+    }
+
+    fun pageSizeDec() {
+        _selectedBook.update {
+            it?.copy(fontSize = it.fontSize - 1)
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            _selectedBook.value?.let { bookRepository.updateBook(it) }
+        }
     }
 
     fun closeBook() {
@@ -86,5 +118,6 @@ class BookReadViewModel(
     }
 
     fun getPagesCount(): Int = source.pagesCount()
+
 
 }

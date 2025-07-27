@@ -45,7 +45,7 @@ interface BookDao {
 
 //    @Transaction
 //    @Query("SELECT * FROM book_item WHERE path = :bookPath")
-//    suspend fun getBookWithTags(bookPath: String): BookWithTags?
+//    fun getBookWithTags(bookPath: String): BookWithTags?
 
 //    @Transaction
 //    @Query("SELECT * FROM book_tag WHERE name = :tagName")

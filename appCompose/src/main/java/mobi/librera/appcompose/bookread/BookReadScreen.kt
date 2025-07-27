@@ -57,6 +57,7 @@ import mobi.librera.appcompose.OnVoid
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
 import mobi.librera.appcompose.components.SelectedBooksBar
+import mobi.librera.appcompose.room.Book
 
 @Composable
 fun ReadBookScreen(
@@ -67,22 +68,57 @@ fun ReadBookScreen(
     onOpenBook: OnString
 ) {
     var hideShow by remember { mutableStateOf(true) }
+    val documentState by readModel.documentState.collectAsState()
+    val selectedBook by readModel.selectedBook.collectAsState()
+    val context = LocalContext.current
+    val density = LocalDensity.current
+    var boxSize by remember { mutableStateOf(IntSize.Zero) }
 
     Box(
         modifier = Modifier
-            .padding(start = 4.dp, end = 4.dp)
-            .fillMaxWidth()
-    ) {
-        ReadBookScreenInner(
-            readModel,
-            bookPath = bookPath,
-            hideShow,
-            page = 0,
-            onBookClose = onBookClose,
-            onPageChanged = { page ->
+            .fillMaxSize()
+            .onSizeChanged { boxSize = it }) {
 
-            },
-            onHideShow = { hideShow = !hideShow })
+
+        LaunchedEffect(selectedBook?.path, selectedBook?.fontSize) {
+            println("LaunchedEffect ${selectedBook?.path} ${selectedBook?.fontSize}")
+            readModel.loadBook(context, bookPath, boxSize.width, boxSize.height)
+        }
+
+        when (documentState) {
+            is BookReadViewModel.DocumentState.Loading -> {
+                CircularProgressIndicator(Modifier.align(Alignment.Center))
+            }
+
+            is BookReadViewModel.DocumentState.Error -> {
+                Text("Loading Error....", Modifier.align(Alignment.Center))
+            }
+
+            BookReadViewModel.DocumentState.Idle -> {
+                Text("Loading Idle....", Modifier.align(Alignment.Center))
+            }
+
+            is BookReadViewModel.DocumentState.Success -> {
+                selectedBook?.let { book ->
+                    ReadBookScreenInner(
+                        book,
+                        readModel,
+                        bookPath = bookPath,
+                        hideShow,
+                        page = 0,
+                        onBookClose = onBookClose,
+                        onPageChanged = { page ->
+
+                        },
+                        onHideShow = { hideShow = !hideShow },
+                        pageWidth = boxSize.width
+                    )
+                }
+            }
+        }
+
+
+
 
         if (hideShow) {
             SelectedBooksBar(
@@ -94,270 +130,213 @@ fun ReadBookScreen(
     BackHandler(
         onBack = onBookClose
     )
-
 }
+
 
 @SuppressLint("WrongConstant")
 @Composable
 fun ReadBookScreenInner(
+    book: Book,
     readModel: BookReadViewModel,
     bookPath: String,
     hideShow: Boolean,
     page: Int,
     onBookClose: () -> Unit,
     onPageChanged: (Int) -> Unit,
-    onHideShow: () -> Unit
+    onHideShow: () -> Unit,
+    pageWidth: Int,
 ) {
 
-    val documentState by readModel.documentState.collectAsState()
-    val selectedBook by readModel.selectedBook.collectAsState()
 
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     var sliderPosition by remember { mutableFloatStateOf(0f) }
-    var boxSize by remember { mutableStateOf(IntSize.Zero) }
+
     var showNumberPicker by remember { mutableStateOf(false) }
-
-    val context = LocalContext.current
-    val density = LocalDensity.current
-
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .onSizeChanged { boxSize = it }) {
-
-    }
-
-
-
-
-    LaunchedEffect(bookPath) {
-        readModel.loadBook(bookPath, boxSize.width, boxSize.height)
-    }
-
-//    LaunchedEffect(sliderPosition.toInt()) {
-//        listState.scrollToItem(sliderPosition.toInt())
-//    }
 
     LaunchedEffect(listState.firstVisibleItemIndex, listState.isScrollInProgress) {
         if (listState.isScrollInProgress) {
             sliderPosition = listState.firstVisibleItemIndex.toFloat()
         }
     }
-    LaunchedEffect(listState.firstVisibleItemIndex) {
-        // readModel.updateBook(
-        //   book?.copy(progress = listState.firstVisibleItemIndex.toFloat() / readModel.getPagesCount())
-        // )
 
+    LaunchedEffect(Unit) {
+
+        val pageToOpen = readModel.getPagesCount() * (book.progress ?: 0f)
+        listState.scrollToItem(pageToOpen.toInt())
+        sliderPosition = if (pageToOpen.isNaN()) 0f else pageToOpen
+        println("RIN123 $pageToOpen")
     }
 
-    when (documentState) {
-        is BookReadViewModel.DocumentState.Loading -> {
-            CircularProgressIndicator()
-        }
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .pointerInput(Unit) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            val event = awaitPointerEvent()
 
-        is BookReadViewModel.DocumentState.Error -> {
-            Text("Loading Error....")
-        }
+                            if (event.type == PointerEventType.Press) {
 
-        BookReadViewModel.DocumentState.Idle -> {
-            Text("Loading Idle....")
-        }
-
-        is BookReadViewModel.DocumentState.Success -> {
-            selectedBook?.let { book ->
-                println("pages! ${book.pageCount}")
-
-                LaunchedEffect(Unit) {
-                    val pageToOpen = readModel.getPagesCount() * (book.progress ?: 0f)
-                    listState.scrollToItem(pageToOpen.toInt())
-                    sliderPosition = if (pageToOpen.isNaN()) 0f else pageToOpen
-                }
-
-                Box(modifier = Modifier.fillMaxSize()) {
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .pointerInput(Unit) {
-                                awaitPointerEventScope {
-                                    while (true) {
-                                        val event = awaitPointerEvent()
-
-                                        if (event.type == PointerEventType.Press) {
-
-                                            val position = event.changes.first().position
-                                            if (position.x < boxSize.width / 4) {
-                                                if (listState.firstVisibleItemIndex > 0) {
-                                                    coroutineScope.launch {
-                                                        listState.scrollToItem(listState.firstVisibleItemIndex - 1)
-                                                        sliderPosition =
-                                                            listState.firstVisibleItemIndex.toFloat()
-                                                    }
-                                                }
-                                            } else if (position.x > boxSize.width - boxSize.width / 4) {
-                                                coroutineScope.launch {
-                                                    listState.scrollToItem(listState.firstVisibleItemIndex + 1)
-                                                    sliderPosition =
-                                                        listState.firstVisibleItemIndex.toFloat()
-                                                }
-                                            } else {
-                                                onHideShow()
-                                            }
+                                val position = event.changes.first().position
+                                if (position.x < pageWidth / 4) {
+                                    if (listState.firstVisibleItemIndex > 0) {
+                                        coroutineScope.launch {
+                                            listState.scrollToItem(listState.firstVisibleItemIndex - 1)
+                                            sliderPosition =
+                                                listState.firstVisibleItemIndex.toFloat()
                                         }
                                     }
-                                }
-                            },
-                        state = listState,
-                        userScrollEnabled = true,
-                    ) {
-                        items(readModel.getPagesCount(), key = { index -> index }) { number ->
-                            var image by remember(book?.path + number) {
-                                mutableStateOf(
-                                    ImageBitmap(
-                                        1, 1
-                                    )
-                                )
-                            }
-
-                            remember(book?.path + number) {
-                                coroutineScope.launch(Dispatchers.IO) {
-                                    image = readModel.renderPage(number, boxSize.width)
+                                } else if (position.x > pageWidth - pageWidth / 4) {
+                                    coroutineScope.launch {
+                                        listState.scrollToItem(listState.firstVisibleItemIndex + 1)
+                                        sliderPosition = listState.firstVisibleItemIndex.toFloat()
+                                    }
+                                } else {
+                                    onHideShow()
                                 }
                             }
-
-
-                            Image(
-                                image,
-                                modifier = Modifier.fillMaxWidth(),
-
-                                contentScale = ContentScale.FillWidth,
-                                contentDescription = "Image $number"
-                            )
-
                         }
                     }
-                    if (hideShow) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.BottomCenter)
-                        ) {
-                            if (true) {
-                                Row(
-                                    modifier = Modifier
-                                        .height(42.dp)
-                                        .padding(2.dp)
-                                        .clip(RoundedCornerShape(12.dp))
-                                        .fillMaxWidth()
-                                        .background(Color.Blue.copy(alpha = 0.8f)),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.Center
-                                ) {
-
-                                    Icon(
-                                        imageVector = Icons.Filled.Remove,
-                                        modifier = Modifier
-                                            .padding(4.dp)
-                                            .clickable {
-                                                book?.fontSize
-                                            },
-                                        contentDescription = "",
-                                        tint = Color.White,
-                                    )
-
-                                    Text(
-                                        "${book?.fontSize}",
-
-                                        modifier = Modifier.clickable {
-                                            showNumberPicker = true
-                                        }, style = TextStyle(
-                                            color = Color.White,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 18.sp
-                                        )
-                                    )
-                                    NumberPickerDialog(
-                                        showDialog = showNumberPicker,
-                                        onDismissRequest = { showNumberPicker = false },
-                                        onNumberSelected = {
-                                            //selectedBook?.fontSize = it
-                                            showNumberPicker = false
-                                        },
-                                        initialNumber = 23,//readModel.fontSize,
-                                        range = 10..99
-                                    )
-
-
-                                    Icon(
-                                        imageVector = Icons.Filled.Add,
-                                        modifier = Modifier
-                                            .padding(4.dp)
-                                            .clickable {
-                                                //readModel.fontSize++
-                                            },
-                                        contentDescription = "",
-                                        tint = Color.White,
-                                    )
-                                }
-                            }
-
-
-                            Row(
-                                modifier = Modifier
-                                    .height(42.dp)
-                                    .padding(2.dp)
-                                    .clip(RoundedCornerShape(12.dp))
-                                    .fillMaxWidth()
-
-                                    .background(Color.Blue.copy(alpha = 0.8f)),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    "${sliderPosition.toInt() + 1}",
-                                    modifier = Modifier.padding(start = 8.dp, end = 4.dp),
-                                    style = TextStyle(
-                                        color = Color.White,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 18.sp
-                                    )
-                                )
-                                Slider(
-                                    value = sliderPosition,
-
-                                    onValueChange = { newPosition ->
-                                        sliderPosition = newPosition
-                                        coroutineScope.launch {
-                                            listState.scrollToItem(newPosition.toInt())
-                                        }
-                                    },
-                                    colors = SliderDefaults.colors(
-                                        thumbColor = Color.White,
-                                        activeTrackColor = Color.White,
-                                        inactiveTrackColor = Color.White,
-                                    ),
-                                    valueRange = 0f..(book.pageCount).toFloat(),
-                                    steps = 0,
-                                    modifier = Modifier.weight(1f),
-                                )
-                                Text(
-                                    "${book.pageCount}",
-                                    modifier = Modifier.padding(start = 4.dp, end = 8.dp),
-                                    style = TextStyle(
-                                        color = Color.White,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 18.sp
-                                    )
-
-                                )
-                            }
-                        }
-
-                    }
-
+                },
+            state = listState,
+            userScrollEnabled = true,
+        ) {
+            items(readModel.getPagesCount(), key = { index -> index }) { number ->
+                var image by remember(book?.path + number) {
+                    mutableStateOf(
+                        ImageBitmap(
+                            1, 1
+                        )
+                    )
                 }
 
+                remember(book?.path + number) {
+                    coroutineScope.launch(Dispatchers.IO) {
+                        image = readModel.renderPage(number, pageWidth)
+                    }
+                }
+
+
+                Image(
+                    image, modifier = Modifier.fillMaxWidth(),
+
+                    contentScale = ContentScale.FillWidth, contentDescription = "Image $number"
+                )
+
             }
+        }
+        if (hideShow) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+            ) {
+                if (true) {
+                    Row(
+                        modifier = Modifier
+                            .height(42.dp)
+                            .padding(2.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .fillMaxWidth()
+                            .background(Color.Blue.copy(alpha = 0.8f)),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Filled.Remove,
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .clickable {
+                                    readModel.pageSizeDec()
+                                },
+                            contentDescription = "",
+                            tint = Color.White,
+                        )
+
+                        Text(
+                            "${book.fontSize}",
+
+                            modifier = Modifier.clickable {
+                                showNumberPicker = true
+                            }, style = TextStyle(
+                                color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
+                            )
+                        )
+                        NumberPickerDialog(
+                            showDialog = showNumberPicker,
+                            onDismissRequest = { showNumberPicker = false },
+                            onNumberSelected = {
+                                //selectedBook?.fontSize = it
+                                showNumberPicker = false
+                            },
+                            initialNumber = 23,//readModel.fontSize,
+                            range = 10..99
+                        )
+
+
+                        Icon(
+                            imageVector = Icons.Filled.Add,
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .clickable {
+                                    readModel.pageSizeInc()
+                                },
+                            contentDescription = "",
+                            tint = Color.White,
+                        )
+                    }
+                }
+
+
+                Row(
+                    modifier = Modifier
+                        .height(42.dp)
+                        .padding(2.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .fillMaxWidth()
+
+                        .background(Color.Blue.copy(alpha = 0.8f)),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "${sliderPosition.toInt() + 1}",
+                        modifier = Modifier.padding(start = 8.dp, end = 4.dp),
+                        style = TextStyle(
+                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
+                        )
+                    )
+                    Slider(
+                        value = sliderPosition,
+
+                        onValueChange = { newPosition ->
+                            sliderPosition = newPosition
+                            coroutineScope.launch {
+                                listState.scrollToItem(newPosition.toInt())
+                            }
+                        },
+                        colors = SliderDefaults.colors(
+                            thumbColor = Color.White,
+                            activeTrackColor = Color.White,
+                            inactiveTrackColor = Color.White,
+                        ),
+                        valueRange = 0f..(book.pageCount).toFloat(),
+                        steps = 0,
+                        modifier = Modifier.weight(1f),
+                    )
+                    Text(
+                        "${book.pageCount}",
+                        modifier = Modifier.padding(start = 4.dp, end = 8.dp),
+                        style = TextStyle(
+                            color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp
+                        )
+
+                    )
+                }
+            }
+
         }
 
     }

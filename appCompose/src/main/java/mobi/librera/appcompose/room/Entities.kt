@@ -11,6 +11,9 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 import mobi.librera.appcompose.core.toFile
 
+val DEFAULT_FONT_SIZE = 24
+
+
 data class Book(
     val path: String,
     val fileName: String = "",
@@ -18,7 +21,7 @@ data class Book(
     val isRecent: Boolean = false,
     val progress: Float = 0.0f,
     val time: Long = 0,
-    val fontSize: Int = 0,
+    val fontSize: Int = DEFAULT_FONT_SIZE,
     val pageCount: Int = 0,
 )
 
@@ -76,10 +79,10 @@ data class BookWithTags(
     @Embedded val bookItem: BookItem,
     @Relation(
         parentColumn = "fileName",
-        entityColumn = "fileName",
+        entityColumn = "name",
         associateBy = Junction(
             BookItemTags::class,
-            parentColumn = "tagName",
+            parentColumn = "fileName",
             entityColumn = "tagName"
         )
     )
@@ -89,12 +92,12 @@ data class BookWithTags(
 data class TagWithBooks(
     @Embedded val bookTag: BookTag,
     @Relation(
-        parentColumn = "fileName",
+        parentColumn = "name",
         entityColumn = "fileName",
         associateBy = Junction(
             BookItemTags::class,
             parentColumn = "tagName",
-            entityColumn = "tagName"
+            entityColumn = "bookPath"
         )
     )
     val books: List<BookItem>
