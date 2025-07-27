@@ -25,6 +25,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -50,6 +51,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mobi.librera.appcompose.OnString
@@ -79,9 +83,8 @@ fun ReadBookScreen(
             .fillMaxSize()
             .onSizeChanged { boxSize = it }) {
 
-
-        LaunchedEffect(selectedBook?.path, selectedBook?.fontSize) {
-            println("LaunchedEffect ${selectedBook?.path} ${selectedBook?.fontSize}")
+        LaunchedEffect(bookPath) {
+            println("LaunchedEffect $bookPath ${boxSize.width}")
             readModel.loadBook(context, bookPath, boxSize.width, boxSize.height)
         }
 
@@ -100,29 +103,26 @@ fun ReadBookScreen(
 
             is BookReadViewModel.DocumentState.Success -> {
                 selectedBook?.let { book ->
-                    ReadBookScreenInner(
+                    println("DocumentState Success ${book.path}")
+                    RenderBookView(
                         book,
-                        readModel,
-                        bookPath = bookPath,
                         hideShow,
-                        page = 0,
-                        onBookClose = onBookClose,
-                        onPageChanged = { page ->
-
-                        },
                         onHideShow = { hideShow = !hideShow },
-                        pageWidth = boxSize.width
+                        pageWidth = boxSize.width,
+                        modelAction = readModel
                     )
                 }
             }
         }
-
-
-
-
         if (hideShow) {
             SelectedBooksBar(
-                dataModel, true, onHomeClick = onBookClose, onOpenBook = onOpenBook
+                dataModel, true, onHomeClick = {
+                    readModel.saveBookState()
+                    onBookClose()
+                }, onOpenBook = {
+                    readModel.saveBookState()
+                    onOpenBook(it)
+                }
             )
         }
 
@@ -135,16 +135,12 @@ fun ReadBookScreen(
 
 @SuppressLint("WrongConstant")
 @Composable
-fun ReadBookScreenInner(
+fun RenderBookView(
     book: Book,
-    readModel: BookReadViewModel,
-    bookPath: String,
     hideShow: Boolean,
-    page: Int,
-    onBookClose: () -> Unit,
-    onPageChanged: (Int) -> Unit,
-    onHideShow: () -> Unit,
+    onHideShow: OnVoid,
     pageWidth: Int,
+    modelAction: ModelActions
 ) {
 
 
@@ -158,14 +154,27 @@ fun ReadBookScreenInner(
         if (listState.isScrollInProgress) {
             sliderPosition = listState.firstVisibleItemIndex.toFloat()
         }
+        modelAction.onPageChanged(listState.firstVisibleItemIndex)
+    }
+    LaunchedEffect(Unit) {
+        listState.scrollToItem(modelAction.getCurrentPage())
+        sliderPosition = (modelAction.getCurrentPage() - 1).toFloat()
     }
 
-    LaunchedEffect(Unit) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE -> modelAction.saveBookState()
+                //Lifecycle.Event.ON_STOP -> modelAction.saveBookState()
+                else -> Unit
+            }
 
-        val pageToOpen = readModel.getPagesCount() * (book.progress ?: 0f)
-        listState.scrollToItem(pageToOpen.toInt())
-        sliderPosition = if (pageToOpen.isNaN()) 0f else pageToOpen
-        println("RIN123 $pageToOpen")
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -203,8 +212,8 @@ fun ReadBookScreenInner(
             state = listState,
             userScrollEnabled = true,
         ) {
-            items(readModel.getPagesCount(), key = { index -> index }) { number ->
-                var image by remember(book?.path + number) {
+            items(modelAction.getPagesCount(), key = { index -> index }) { number ->
+                var image by remember(book.path + number) {
                     mutableStateOf(
                         ImageBitmap(
                             1, 1
@@ -212,9 +221,9 @@ fun ReadBookScreenInner(
                     )
                 }
 
-                remember(book?.path + number) {
+                remember(book.path + number) {
                     coroutineScope.launch(Dispatchers.IO) {
-                        image = readModel.renderPage(number, pageWidth)
+                        image = modelAction.renderPage(number, pageWidth)
                     }
                 }
 
@@ -233,7 +242,7 @@ fun ReadBookScreenInner(
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
             ) {
-                if (true) {
+                if (book.path.endsWith(".epub")) {
                     Row(
                         modifier = Modifier
                             .height(42.dp)
@@ -250,7 +259,7 @@ fun ReadBookScreenInner(
                             modifier = Modifier
                                 .padding(4.dp)
                                 .clickable {
-                                    readModel.pageSizeDec()
+                                    //readModel.pageSizeDec()
                                 },
                             contentDescription = "",
                             tint = Color.White,
@@ -282,7 +291,7 @@ fun ReadBookScreenInner(
                             modifier = Modifier
                                 .padding(4.dp)
                                 .clickable {
-                                    readModel.pageSizeInc()
+                                    //readModel.pageSizeInc()
                                 },
                             contentDescription = "",
                             tint = Color.White,

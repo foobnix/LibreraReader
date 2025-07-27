@@ -18,10 +18,22 @@ import mobi.librera.appcompose.room.BookRepository
 import mobi.librera.appcompose.room.DEFAULT_FONT_SIZE
 
 
+interface ModelActions {
+    fun onPrintHello(string: String)
+    fun getPagesCount(): Int
+    fun getCurrentPage(): Int
+    suspend fun renderPage(page: Int, width: Int): ImageBitmap
+    fun onPageChanged(page: Int)
+    fun saveBookState()
+}
+
 class BookReadViewModel(
     private val source: FormatRepository, private val bookRepository: BookRepository
-) : ViewModel() {
+) : ViewModel(), ModelActions {
 
+    override fun onPrintHello(string: String) {
+        println("onPrintHello")
+    }
 
     sealed class DocumentState {
         data object Idle : DocumentState()
@@ -44,9 +56,13 @@ class BookReadViewModel(
 
 
                 _selectedBook.value = withContext(Dispatchers.IO) {
+                    val bookByPath = bookRepository.getBookByPath(bookPath)
+                    println("loadBook bookByPath ${bookByPath} ${bookPath}")
                     val currentBook = _selectedBook.value
-                        ?: bookRepository.getBookByPath(bookPath)
+                        ?: bookByPath
                         ?: Book(bookPath, fontSize = DEFAULT_FONT_SIZE)
+
+
 
                     source.openDocument(
                         bookPath,
@@ -65,9 +81,19 @@ class BookReadViewModel(
         }
     }
 
-    fun upadteBook() = viewModelScope.launch(Dispatchers.IO) {
-        selectedBook.value?.let {
-            bookRepository.updateBook(it)
+    override fun onPageChanged(page: Int) {
+        println("onPageChanged $page")
+        _selectedBook.update {
+            it?.copy(progress = page.toFloat() / it.pageCount)
+        }
+    }
+
+    override fun saveBookState() {
+        viewModelScope.launch(Dispatchers.IO) {
+            println("saveBookState ${selectedBook.value}")
+            selectedBook.value?.let {
+                bookRepository.updateBook(it)
+            }
         }
     }
 
@@ -76,18 +102,13 @@ class BookReadViewModel(
         _selectedBook.update {
             it?.copy(fontSize = it.fontSize + 1)
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            _selectedBook.value?.let { bookRepository.updateBook(it) }
-        }
     }
 
     fun pageSizeDec() {
         _selectedBook.update {
             it?.copy(fontSize = it.fontSize - 1)
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            _selectedBook.value?.let { bookRepository.updateBook(it) }
-        }
+
     }
 
     fun closeBook() {
@@ -100,7 +121,7 @@ class BookReadViewModel(
     private val pageCache = mutableMapOf<Int, ImageBitmap>()
 
 
-    suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
+    override suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
 
         val res = pageCache[number]
         if (res != null) {
@@ -117,7 +138,7 @@ class BookReadViewModel(
         source.closeDocument()
     }
 
-    fun getPagesCount(): Int = source.pagesCount()
-
-
+    override fun getPagesCount(): Int = source.pagesCount()
+    override fun getCurrentPage(): Int =
+        selectedBook.value?.let { (it.pageCount * it.progress).toInt() } ?: 0
 }
