@@ -4,25 +4,18 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.LruCache
-import androidx.compose.foundation.Image
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.layout.ContentScale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import mobi.librera.mupdf.fz.lib.openDocument
+import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.io.OutputStream
 import java.security.MessageDigest
 
 interface ImageCache {
@@ -49,7 +42,7 @@ class MemoryCache(maxSize: Int) : ImageCache {
 
 class DiskCache(private val context: Context) : ImageCache {
     private val cacheDir: File by lazy {
-        File(context.cacheDir, "image_cache2").apply { mkdirs() }
+        File(context.cacheDir, "image_cache3").apply { mkdirs() }
     }
 
     override fun get(key: String): ImageBitmap? {
@@ -68,9 +61,9 @@ class DiskCache(private val context: Context) : ImageCache {
 
     override fun put(key: String, bitmap: ImageBitmap) {
         val file = getFileForKey(key)
-        var fos: FileOutputStream? = null
+        var fos: OutputStream? = null
         try {
-            fos = FileOutputStream(file)
+            fos = BufferedOutputStream(FileOutputStream(file))
             bitmap.asAndroidBitmap().compress(Bitmap.CompressFormat.PNG, 100, fos)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -122,23 +115,42 @@ object ImageDecoder {
 val mutex = Mutex()
 
 class ImageLoader(private val memoryCache: MemoryCache, private val diskCache: DiskCache) {
+
+    fun getFromMemory(url: String): ImageBitmap? {
+        val cacheKey = url
+
+        memoryCache.get(cacheKey)?.let {
+            println("ImageLoader: Loaded from Memory Cache: $cacheKey")
+            return it
+        }
+
+        diskCache.get(cacheKey)?.let {
+            println("ImageLoader: Loaded from Disk Cache: $cacheKey")
+            memoryCache.put(cacheKey, it)
+            return it
+        }
+        return null
+    }
+
     suspend fun loadImage(
         imageUrl: String
     ): ImageBitmap? {
 
+        val cacheKey = imageUrl
+
+        memoryCache.get(cacheKey)?.let {
+            println("ImageLoader: Loaded from Memory Cache: $cacheKey")
+            return it
+        }
+
+        diskCache.get(cacheKey)?.let {
+            println("ImageLoader: Loaded from Disk Cache: $cacheKey")
+            memoryCache.put(cacheKey, it)
+            return it
+        }
+
         mutex.withLock {
-            val cacheKey = imageUrl
 
-            memoryCache.get(cacheKey)?.let {
-                println("ImageLoader: Loaded from Memory Cache: $cacheKey")
-                return it
-            }
-
-            diskCache.get(cacheKey)?.let {
-                println("ImageLoader: Loaded from Disk Cache: $cacheKey")
-                memoryCache.put(cacheKey, it)
-                return it
-            }
 
             val decodedBitmap = ImageDecoder.decodeFromFile(imageUrl)
 
@@ -171,53 +183,5 @@ object AppImageLoader {
             error("AppImageLoader must be initialized with a context before use. Call AppImageLoader.initialize(context) first.")
         }
         return imageLoader
-    }
-}
-
-@Composable
-fun MyAsyncImageView(
-    imageUrl: String,
-    modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Fit,
-    contentDescription: String? = null
-) {
-    var loadedImage by remember { mutableStateOf<ImageBitmap?>(null) }
-    var isLoading by remember { mutableStateOf(true) }
-
-    LaunchedEffect(imageUrl) {
-        isLoading = true
-        loadedImage = null
-
-        try {
-            val result = AppImageLoader.get().loadImage(imageUrl)
-            if (result != null) {
-                loadedImage = result
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            isLoading = false
-        }
-    }
-
-
-    when {
-        isLoading -> {
-            Image(
-                bitmap = ImageBitmap(1, 1),
-                contentDescription = contentDescription,
-                modifier = modifier,
-                contentScale = contentScale
-            )
-        }
-
-        loadedImage != null -> {
-            Image(
-                bitmap = loadedImage!!,
-                contentDescription = contentDescription,
-                modifier = modifier,
-                contentScale = contentScale
-            )
-        }
     }
 }
