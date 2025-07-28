@@ -25,7 +25,6 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -51,15 +50,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mobi.librera.appcompose.OnString
 import mobi.librera.appcompose.OnVoid
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.components.NumberPickerDialog
+import mobi.librera.appcompose.components.ObserveLifecycleEvents
 import mobi.librera.appcompose.components.SelectedBooksBar
 import mobi.librera.appcompose.room.Book
 
@@ -117,6 +113,7 @@ fun ReadBookScreen(
         if (hideShow) {
             SelectedBooksBar(
                 dataModel, true, onHomeClick = {
+                    
                     readModel.saveBookState()
                     onBookClose()
                 }, onOpenBook = {
@@ -161,21 +158,9 @@ fun RenderBookView(
         sliderPosition = (modelAction.getCurrentPage() - 1).toFloat()
     }
 
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_PAUSE -> modelAction.saveBookState()
-                //Lifecycle.Event.ON_STOP -> modelAction.saveBookState()
-                else -> Unit
-            }
+    ObserveLifecycleEvents(onPause = modelAction::saveBookState)
 
-        }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    }
+    val pageCount = remember { modelAction.getPagesCount() }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -212,7 +197,7 @@ fun RenderBookView(
             state = listState,
             userScrollEnabled = true,
         ) {
-            items(modelAction.getPagesCount(), key = { index -> index }) { number ->
+            items(pageCount, key = { index -> index }) { number ->
                 var image by remember(book.path + number) {
                     mutableStateOf(
                         ImageBitmap(
@@ -221,10 +206,8 @@ fun RenderBookView(
                     )
                 }
 
-                remember(book.path + number) {
-                    coroutineScope.launch(Dispatchers.IO) {
-                        image = modelAction.renderPage(number, pageWidth)
-                    }
+                LaunchedEffect(book.path, number, pageWidth) {
+                    image = modelAction.renderPage(number, pageWidth)
                 }
 
 

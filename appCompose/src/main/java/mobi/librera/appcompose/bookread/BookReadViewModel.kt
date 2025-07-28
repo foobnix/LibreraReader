@@ -122,16 +122,11 @@ class BookReadViewModel(
 
 
     override suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
-
-        val res = pageCache[number]
-        if (res != null) {
-            //return res
+        return pageCache[number] ?: run {
+            val rendered = source.renderPage(number, pageWidth)
+            pageCache[number] = rendered
+            rendered
         }
-
-        val page = source.renderPage(number, 1200)
-
-        pageCache[number] = page
-        return page
     }
 
     fun closeDocument() = viewModelScope.launch(Dispatchers.IO) {
