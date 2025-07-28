@@ -28,17 +28,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
-import coil3.request.CachePolicy
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import mobi.librera.appcompose.R
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
+import mobi.librera.appcompose.imageloader.MyAsyncImageView
 
 
 @Composable
@@ -48,6 +42,7 @@ fun SelectedBooksBar(
     onHomeClick: () -> Unit,
     onOpenBook: (String) -> Unit,
 ) {
+
 
     val selectedBooks by dataModel.getAllSelectedBooks.collectAsState()
     val recentBooks by dataModel.getAllRecentBooks.collectAsState()
@@ -80,14 +75,8 @@ fun SelectedBooksBar(
 
                 selectedBooks.forEach { book ->
 
-                    AsyncImage(
-                        model =
-                            ImageRequest.Builder(LocalContext.current)
-                                .data(book.path)
-                                .crossfade(true)
-                                .diskCacheKey(book.path)
-                                .diskCachePolicy(CachePolicy.ENABLED)
-                                .build(),
+                    MyAsyncImageView(
+                        imageUrl = book.path,
                         contentDescription = "",
                         modifier = Modifier
                             .height(60.dp)
@@ -97,7 +86,7 @@ fun SelectedBooksBar(
                             .clickable {
                                 onOpenBook(book.path)
                             },
-                        placeholder = painterResource(R.drawable.googleg_standard_color_18),
+
 
                         contentScale = ContentScale.Crop,
                     )
@@ -112,16 +101,8 @@ fun SelectedBooksBar(
                             verticalAlignment = Alignment.CenterVertically
 
                         ) {
-                            AsyncImage(
-                                model =
-                                    ImageRequest.Builder(LocalContext.current)
-                                        .data(book.path)
-                                        .crossfade(true)
-                                        .memoryCacheKey(book.path)
-                                        .memoryCachePolicy(CachePolicy.ENABLED)
-                                        .diskCacheKey(book.path)
-                                        .diskCachePolicy(CachePolicy.ENABLED)
-                                        .build(),
+                            MyAsyncImageView(
+                                imageUrl = book.path,
 
                                 contentDescription = "",
                                 modifier = Modifier
@@ -172,8 +153,8 @@ fun SelectedBooksBar(
 
         Row(modifier = Modifier.horizontalScroll(scrollState2)) {
             recentBooks.forEach { book ->
-                AsyncImage(
-                    model = book.path,
+                MyAsyncImageView(
+                    imageUrl = book.path,
                     contentDescription = "",
                     modifier = Modifier
                         .height(60.dp)
