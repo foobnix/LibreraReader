@@ -19,37 +19,29 @@ fun MyAsyncImageView(
     contentDescription: String? = null
 ) {
     var loadedImage by remember { mutableStateOf<ImageBitmap?>(null) }
-    var isLoading by remember { mutableStateOf(true) }
-
 
     LaunchedEffect(imageUrl) {
-        isLoading = true
         try {
             loadedImage = AppImageLoader.get().loadImage(imageUrl)
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            isLoading = false
         }
     }
 
-    when {
-        isLoading -> {
-            Image(
-                bitmap = ImageBitmap(1, 1),
-                contentDescription = contentDescription,
-                modifier = modifier,
-                contentScale = contentScale
-            )
-        }
+    if (loadedImage == null) {
+        Image(
+            bitmap = ImageBitmap(1, 1),
+            contentDescription = contentDescription,
+            modifier = modifier,
+            contentScale = contentScale
+        )
+    } else {
+        Image(
+            bitmap = loadedImage!!,
+            contentDescription = contentDescription,
+            modifier = modifier,
+            contentScale = contentScale
+        )
 
-        loadedImage != null -> {
-            Image(
-                bitmap = loadedImage!!,
-                contentDescription = contentDescription,
-                modifier = modifier,
-                contentScale = contentScale
-            )
-        }
     }
 }

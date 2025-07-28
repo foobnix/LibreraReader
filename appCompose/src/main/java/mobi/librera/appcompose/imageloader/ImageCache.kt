@@ -171,7 +171,7 @@ object AppImageLoader {
 
     fun initialize(context: Context) {
         if (!isInitialized) {
-            val memoryCache = MemoryCache(100)
+            val memoryCache = MemoryCache(64 * 1024 * 1024)
             val diskCache = DiskCache(context.applicationContext)
             imageLoader = ImageLoader(memoryCache, diskCache)
             isInitialized = true
