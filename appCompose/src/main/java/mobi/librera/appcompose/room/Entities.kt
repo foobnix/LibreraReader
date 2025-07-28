@@ -1,5 +1,6 @@
 package mobi.librera.appcompose.room
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -9,6 +10,7 @@ import androidx.room.Index
 import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import kotlinx.serialization.Serializable
 import mobi.librera.appcompose.core.toFile
 
 
@@ -125,14 +127,19 @@ data class BookItem(
 )
 
 @Entity(tableName = "book_state")
+@Serializable
+@Keep
 data class BookState(
-    @PrimaryKey val fileName: String,
-    @ColumnInfo(name = "book_path") val bookPath: String,
+    @PrimaryKey val fileName: String = "",
+    @ColumnInfo(name = "book_path") val bookPath: String = "",
     @ColumnInfo(name = "progress") val progress: Float = 0.0f,
     @ColumnInfo(name = "time") val time: Long = 0,
     @ColumnInfo(name = "is_recent") val isRecent: Boolean = false,
     @ColumnInfo(name = "is_selected") val isSelected: Boolean = false,
-    @ColumnInfo(name = "font_size") val fontSize: Int = 30
+    @ColumnInfo(name = "font_size") val fontSize: Int = 30,
+
+    val list: List<String> = listOf("one", "two"),
+    val map: Map<String, String> = mapOf("id" to "one", "id2" to "two")
 )
 
 @Entity(tableName = "book_meta")

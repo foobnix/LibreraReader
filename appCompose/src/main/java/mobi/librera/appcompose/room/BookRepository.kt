@@ -14,17 +14,25 @@ class BookRepository(private val bookDao: BookDao) {
         it.map { e -> e.toBook() }
     }
 
+    fun getAllBookState(): List<BookState> = bookDao.getAllBookState()
+
+
     fun getAllRecent(): Flow<List<Book>> = bookDao.getAllRecent().map {
         it.map { e -> e.toBook() }
     }
 
+    fun insertAllBookState(bookStates: List<BookState>) =
+        bookDao.insertAllBookState(bookStates)
 
     fun insertAll(books: List<Book>) {
         bookDao.insertAll(books.map { it.toBookItem() })
     }
 
-    fun updateBook(book: Book) =
-        bookDao.insertBookState(book.toBookState().copy(time = System.currentTimeMillis()))
+    fun updateBook(book: Book): BookState {
+        val bookToUpdate = book.toBookState().copy(time = System.currentTimeMillis())
+        bookDao.insertBookState(bookToUpdate)
+        return bookToUpdate
+    }
 
     fun deleteAllBooks() = bookDao.deleteAllBooks()
 

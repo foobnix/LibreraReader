@@ -25,6 +25,13 @@ interface BookDao {
     )
     fun getAllSelected(): Flow<List<BookState>>
 
+    @Query(
+        """
+        SELECT * FROM book_state
+    """
+    )
+    fun getAllBookState(): List<BookState>
+
 
     @Query(
         """
@@ -38,9 +45,12 @@ interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(users: List<BookItem>)
 
-    @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBookState(state: BookState)
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllBookState(bookStates: List<BookState>)
 
     @Query("DELETE FROM book_item")
     fun deleteAllBooks()

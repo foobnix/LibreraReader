@@ -12,10 +12,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mobi.librera.appcompose.booksync.FirestoreBooksRepository
 import mobi.librera.appcompose.core.spToPx
 import mobi.librera.appcompose.pdf.FormatRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
+import mobi.librera.appcompose.room.toBookState
 
 
 interface ModelActions {
@@ -115,6 +117,7 @@ class BookReadViewModel(
     override fun saveBookState() {
         viewModelScope.launch(Dispatchers.IO) {
             bookRepository.updateBook(_uiState.value.book)
+            FirestoreBooksRepository.syncBook(_uiState.value.book.toBookState())
         }
     }
 

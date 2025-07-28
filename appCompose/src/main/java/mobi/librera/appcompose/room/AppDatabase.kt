@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import java.util.concurrent.Executors
 
 @Database(
@@ -15,6 +16,7 @@ import java.util.concurrent.Executors
         BookTag::class
     ], version = 1
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
 }
@@ -23,7 +25,7 @@ fun buildDatabase(context: Context): AppDatabase {
     val db = Room.databaseBuilder(
         context,
         AppDatabase::class.java,
-        "book_database7"
+        "book_database121"
     )
     db.setQueryCallback(
         object : RoomDatabase.QueryCallback {

@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.booksync.FirestoreBooksRepository
 import mobi.librera.appcompose.core.DEFAULT_SEARCH_DIR
 import mobi.librera.appcompose.core.FilesRepository
 import mobi.librera.appcompose.datastore.UserPreferencesRepository
@@ -69,6 +70,7 @@ class BookGridViewModel(
         loadInitialBooks()
     }
 
+
     public fun loadInitialBooks() = viewModelScope.launch {
         val currentBooks = bookRepository.getAllBooks().first()
 
@@ -78,7 +80,8 @@ class BookGridViewModel(
     }
 
     fun updateStar(book: Book, isSelected: Boolean) = viewModelScope.launch(Dispatchers.IO) {
-        bookRepository.updateBook(book.copy(isSelected = isSelected))
+        val bookToUpdate = bookRepository.updateBook(book.copy(isSelected = isSelected))
+        FirestoreBooksRepository.syncBook(bookToUpdate)
     }
 
     fun searchBooks() = viewModelScope.launch(Dispatchers.IO) {
@@ -89,28 +92,33 @@ class BookGridViewModel(
         bookRepository.insertAll(booksToInsert)
     }
 
-    val getAllSelectedBooks = bookRepository.getAllSelected().stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = emptyList()
-    )
-    val getAllRecentBooks = bookRepository.getAllRecent().stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = emptyList()
-    )
-
-
-    val getAllBooks = bookRepository.getAllBooks().combine(currentSearchQuery) { books, query ->
-        if (query.isNotEmpty()) {
+    val getAllSelectedBooks = bookRepository.getAllSelected()
+        .combine(currentSearchQuery) { books, query ->
             books.filter { it.path.contains(query, ignoreCase = true) }
-        } else {
-            books
         }
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = emptyList()
-    )
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList()
+        )
+    val getAllRecentBooks = bookRepository.getAllRecent()
+        .combine(currentSearchQuery) { books, query ->
+            books.filter { it.path.contains(query, ignoreCase = true) }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList()
+        )
+
+
+    val getAllBooks = bookRepository.getAllBooks()
+        .combine(currentSearchQuery) { books, query ->
+            books.filter { it.path.contains(query, ignoreCase = true) }
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = emptyList()
+        )
 
 }

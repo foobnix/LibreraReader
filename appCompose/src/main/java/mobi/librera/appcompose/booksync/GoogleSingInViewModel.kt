@@ -8,6 +8,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import coil3.Uri
 import coil3.toCoilUri
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -17,10 +18,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import mobi.librera.appcompose.R
+import mobi.librera.appcompose.room.BookRepository
+import mobi.librera.appcompose.room.BookState
 
 data class User(val name: String, val email: String, val photoUrl: Uri?)
 
@@ -35,10 +40,62 @@ sealed class SingInState {
 }
 
 
-class GoogleSingInViewModel() : ViewModel() {
+class GoogleSingInViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
     private val _state = MutableStateFlow<SingInState>(SingInState.NotSignIn)
     val singInState: StateFlow<SingInState> = _state
+
+
+    private fun observeFirestoreAndSyncToRoom() {
+        FirestoreBooksRepository.listenToNotes { remoteBooks ->
+            println("observeFirestoreAndSyncToRoom size ${remoteBooks.size}")
+            viewModelScope.launch(Dispatchers.IO) {
+                val localBooks = bookRepository.getAllBookState()
+
+                val booksToUpdateLocally = mutableListOf<BookState>()
+
+                remoteBooks.forEach { remoteBook ->
+                    val localBook = localBooks.find { it.fileName == remoteBook.fileName }
+                    println("observeFirestoreAndSyncToRoom time ${remoteBook.time}")
+                    if (localBook == null || remoteBook.time > localBook.time) {
+                        println("observeFirestoreAndSyncToRoom ${remoteBook.fileName} ${remoteBook.time} ${localBook?.time}")
+                        booksToUpdateLocally.add(remoteBook)
+                    }
+                }
+                bookRepository.insertAllBookState(booksToUpdateLocally)
+            }
+        }
+    }
+
+    private fun saveAllToFirestore() {
+        FirestoreBooksRepository.listenToNotes { remoteBooks ->
+            println("saveAllToFirestore remoteBooks ${remoteBooks.size}")
+
+            viewModelScope.launch(Dispatchers.IO) {
+                val localBooks = bookRepository.getAllBookState()
+                println("saveAllToFirestore localBooks ${localBooks.size}")
+
+
+                val booksToUpdateRemotely = mutableListOf<BookState>()
+
+                localBooks.forEach { localBook ->
+                    val remoteBook = remoteBooks.find { it.fileName == localBook.fileName }
+                    if (remoteBook == null || remoteBook.time < localBook.time) {
+                        booksToUpdateRemotely.add(localBook)
+                    }
+                }
+                println("saveAllToFirestore booksToUpdateRemotely ${booksToUpdateRemotely.size}")
+                booksToUpdateRemotely.forEach { bookState ->
+                    FirestoreBooksRepository.syncBook(bookState)
+                }
+            }
+        }
+    }
+
+    init {
+        observeFirestoreAndSyncToRoom()
+        saveAllToFirestore()
+    }
 
 
     fun checkSingInState() {
@@ -49,6 +106,8 @@ class GoogleSingInViewModel() : ViewModel() {
             _state.value = SingInState.NotSignIn
         } else {
             _state.value = SingInState.Success(currentUser.toUser())
+
+
         }
     }
 
@@ -114,6 +173,10 @@ class GoogleSingInViewModel() : ViewModel() {
                 val user = auth.currentUser
                 println("current user $user")
                 _state.value = SingInState.Success(user.toUser())
+
+                observeFirestoreAndSyncToRoom()
+                saveAllToFirestore()
+                
             } else {
                 _state.value = SingInState.Error(task.exception?.message.orEmpty())
             }

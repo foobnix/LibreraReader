@@ -14,6 +14,7 @@ fun <T> Boolean.ifOr(valueIfTrue: T, valueIfFalse: T): T {
     return if (this) valueIfTrue else valueIfFalse
 }
 
+
 fun Int.spToPx(context: Context): Int {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_SP,

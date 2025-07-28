@@ -50,7 +50,7 @@ val appModule = module {
         BookRepository(get())
     }
     single { FilesRepository() }
-    single { GoogleSingInViewModel() }
+    single { GoogleSingInViewModel(get()) }
     single { UserPreferencesRepository(get()) }
 
 
