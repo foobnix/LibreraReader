@@ -1,12 +1,13 @@
 package mobi.librera.appcompose.bookread
 
 import android.content.Context
+import android.util.LruCache
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -15,125 +16,126 @@ import mobi.librera.appcompose.core.spToPx
 import mobi.librera.appcompose.pdf.FormatRepository
 import mobi.librera.appcompose.room.Book
 import mobi.librera.appcompose.room.BookRepository
-import mobi.librera.appcompose.room.DEFAULT_FONT_SIZE
 
 
 interface ModelActions {
-    fun onPrintHello(string: String)
-    fun getPagesCount(): Int
-    fun getCurrentPage(): Int
     suspend fun renderPage(page: Int, width: Int): ImageBitmap
     fun onPageChanged(page: Int)
     fun saveBookState()
+    fun onFontSizeChange(size: Int)
 }
+
+data class BookReadUiState(
+    val isLoading: Boolean = true,
+    val error: String? = null,
+    val book: Book = Book.Empty,
+    val bookPathToOpen: String = "",
+    val openPage: Int = 0,
+    val showControls: Boolean = true
+)
 
 class BookReadViewModel(
     private val source: FormatRepository, private val bookRepository: BookRepository
 ) : ViewModel(), ModelActions {
 
-    override fun onPrintHello(string: String) {
-        println("onPrintHello")
+    private val _uiState = MutableStateFlow(BookReadUiState())
+    val uiState = _uiState.asStateFlow()
+
+    private val pageCache = LruCache<Int, ImageBitmap>(10)
+    private var loadJob: Job? = null
+
+    fun openBook(path: String) {
+        _uiState.value.book.let { book ->
+            _uiState.update { it.copy(bookPathToOpen = path) }
+        }
+
     }
 
-    sealed class DocumentState {
-        data object Idle : DocumentState()
-        data object Loading : DocumentState()
-        data object Success : DocumentState()
-        data class Error(val message: String) : DocumentState()
-    }
-
-    private val _documentState = MutableStateFlow<DocumentState>(DocumentState.Idle)
-    val documentState: StateFlow<DocumentState> = _documentState
-
-    private val _selectedBook = MutableStateFlow<Book?>(null)
-    val selectedBook = _selectedBook.asStateFlow()
-
-
-    fun loadBook(context: Context, bookPath: String, screenWidth: Int, screenHeight: Int) {
-        viewModelScope.launch {
+    fun loadBook(context: Context, screenWidth: Int, screenHeight: Int) {
+        loadJob?.cancel()
+        loadJob = viewModelScope.launch {
             try {
-                _documentState.value = DocumentState.Loading
+
+                _uiState.update { it.copy(isLoading = true) }
 
 
-                _selectedBook.value = withContext(Dispatchers.IO) {
-                    val bookByPath = bookRepository.getBookByPath(bookPath)
-                    println("loadBook bookByPath ${bookByPath} ${bookPath}")
-                    val currentBook = _selectedBook.value
-                        ?: bookByPath
-                        ?: Book(bookPath, fontSize = DEFAULT_FONT_SIZE)
-
-
-
-                    source.openDocument(
-                        bookPath,
-                        screenWidth,
-                        screenHeight,
-                        currentBook.fontSize.spToPx(context)
-                    )
-                    currentBook.copy(pageCount = source.pagesCount())
+                val book = if (uiState.value.book == Book.Empty) {
+                    withContext(Dispatchers.IO) {
+                        bookRepository.getBookByPath(_uiState.value.bookPathToOpen)
+                    } ?: Book.Empty
+                } else {
+                    uiState.value.book
                 }
 
-                _documentState.value = DocumentState.Success
 
+                pageCache.evictAll()
+                source.closeDocument()
+                source.openDocument(
+                    _uiState.value.bookPathToOpen,
+                    screenWidth,
+                    screenHeight,
+                    book.fontSize.spToPx(context)
+                )
+
+                val updatedBook = book.copy(
+                    pageCount = source.pagesCount()
+                )
+
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        book = updatedBook,
+                        openPage = (updatedBook.pageCount * updatedBook.progress).toInt(),
+                        error = null
+                    )
+                }
             } catch (e: Exception) {
-                _documentState.value = DocumentState.Error(e.message.orEmpty())
+                _uiState.update { it.copy(isLoading = false, error = e.message) }
             }
         }
     }
 
+    override suspend fun renderPage(page: Int, width: Int): ImageBitmap {
+        return pageCache.get(page) ?: withContext(Dispatchers.IO) {
+            source.renderPage(page, width).also { pageCache.put(page, it) }
+        }
+    }
+
+
     override fun onPageChanged(page: Int) {
         println("onPageChanged $page")
-        _selectedBook.update {
-            it?.copy(progress = page.toFloat() / it.pageCount)
+        _uiState.value.book.let { book ->
+            val newProgress = (page + 1).toFloat() / book.pageCount
+            _uiState.update { it.copy(book = book.copy(progress = newProgress)) }
         }
     }
 
     override fun saveBookState() {
         viewModelScope.launch(Dispatchers.IO) {
-            println("saveBookState ${selectedBook.value}")
-            selectedBook.value?.let {
-                bookRepository.updateBook(it)
+            bookRepository.updateBook(_uiState.value.book)
+        }
+    }
+
+
+    override fun onFontSizeChange(size: Int) {
+        viewModelScope.launch {
+            _uiState.value.book.let { book ->
+                _uiState.update {
+                    it.copy(book = book.copy(fontSize = size))
+                }
+            }
+            withContext(Dispatchers.IO) {
+                bookRepository.updateBook(_uiState.value.book)
             }
         }
     }
 
 
-    fun pageSizeInc() {
-        _selectedBook.update {
-            it?.copy(fontSize = it.fontSize + 1)
-        }
-    }
-
-    fun pageSizeDec() {
-        _selectedBook.update {
-            it?.copy(fontSize = it.fontSize - 1)
-        }
-
-    }
-
-    fun closeBook() {
-        pageCache.clear()
-        _documentState.value = DocumentState.Idle
-        _selectedBook.value = null
-    }
-
-
-    private val pageCache = mutableMapOf<Int, ImageBitmap>()
-
-
-    override suspend fun renderPage(number: Int, pageWidth: Int): ImageBitmap {
-        return pageCache[number] ?: run {
-            val rendered = source.renderPage(number, pageWidth)
-            pageCache[number] = rendered
-            rendered
-        }
-    }
-
     fun closeDocument() = viewModelScope.launch(Dispatchers.IO) {
-        source.closeDocument()
+        //source.closeDocument()
+        _uiState.update { it.copy(book = Book.Empty) }
+
     }
 
-    override fun getPagesCount(): Int = source.pagesCount()
-    override fun getCurrentPage(): Int =
-        selectedBook.value?.let { (it.pageCount * it.progress).toInt() } ?: 0
+
 }

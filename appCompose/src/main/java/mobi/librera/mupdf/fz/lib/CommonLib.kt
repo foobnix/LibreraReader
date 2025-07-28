@@ -157,6 +157,9 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
         //val stride = fz.fz_pixmap_stride(fzContext, fzPixmap)
 
         val samples = fz.fz_pixmap_samples(fzContext, fzPixmap)
+        if (samples == null) {
+            return Triple(intArrayOf(), 0, 0)
+        }
 
         println("renderPage 6")
         val array = samples.getIntArray(0, pWidth * pHeight)

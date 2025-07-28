@@ -61,16 +61,18 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
         composable<Route.BookReadRoot> {
             val bookPath = it.toRoute<Route.BookReadRoot>().bookPath
 
+            readModel.openBook(bookPath)
+
             ReadBookScreen(
                 gridModel,
                 readModel,
-                bookPath,
                 onBookClose = {
                     //navController.navigate(Route.BookGridRoot)
                     navController.popBackStack()
                 },
                 onOpenBook = { book ->
-                    //viewModel.onSelectBook(book)
+                    readModel.openBook(book)
+                    //navController.navigate(Route.BookReadRoot(bookPath = book))
                 }
             )
 

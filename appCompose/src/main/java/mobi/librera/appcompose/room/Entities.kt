@@ -11,8 +11,6 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 import mobi.librera.appcompose.core.toFile
 
-val DEFAULT_FONT_SIZE = 24
-
 
 data class Book(
     val path: String,
@@ -23,38 +21,37 @@ data class Book(
     val time: Long = 0,
     val fontSize: Int = DEFAULT_FONT_SIZE,
     val pageCount: Int = 0,
-)
+) {
+    companion object {
+        const val DEFAULT_FONT_SIZE = 24
+        val Empty = Book("")
+    }
+}
 
 
 data class BookItemWithDetails(
-    val bookItem: BookItem,
-    val state: BookState,
-    val meta: BookMeta
+    val bookItem: BookItem, val state: BookState, val meta: BookMeta
 )
 
 fun Book.toBookDetails(): BookItemWithDetails {
     val fileName = this.fileName.toFile().name
     return BookItemWithDetails(
-        BookItem(this.path, fileName),
-        BookState(fileName = fileName),
-        BookMeta(this.path)
+        BookItem(this.path, fileName), BookState(fileName = fileName), BookMeta(this.path)
     )
 }
 
 fun Book.toBookItem() = BookItem(this.path, this.path.substringAfterLast("/"))
-fun Book.toBookState() =
-    BookState(
-        fileName = this.fileName,
-        progress = this.progress,
-        time = this.time,
-        isRecent = this.isRecent,
-        isSelected = this.isSelected,
-        fontSize = this.fontSize
-    )
+fun Book.toBookState() = BookState(
+    fileName = this.fileName,
+    progress = this.progress,
+    time = this.time,
+    isRecent = this.isRecent,
+    isSelected = this.isSelected,
+    fontSize = this.fontSize
+)
 
 fun BookItem.toBook() = Book(
-    path = this.path,
-    fileName = this.fileName
+    path = this.path, fileName = this.fileName
 )
 
 fun BookItemAndState.toBook() = Book(
@@ -71,59 +68,37 @@ data class BookItemAndState(
     @Relation(
         parentColumn = "fileName",
         entityColumn = "fileName",
-    )
-    val bookState: BookState?,
+    ) val bookState: BookState?,
 )
 
 data class BookWithTags(
-    @Embedded val bookItem: BookItem,
-    @Relation(
-        parentColumn = "fileName",
-        entityColumn = "name",
-        associateBy = Junction(
-            BookItemTags::class,
-            parentColumn = "fileName",
-            entityColumn = "tagName"
+    @Embedded val bookItem: BookItem, @Relation(
+        parentColumn = "fileName", entityColumn = "name", associateBy = Junction(
+            BookItemTags::class, parentColumn = "fileName", entityColumn = "tagName"
         )
-    )
-    val tags: List<BookTag>
+    ) val tags: List<BookTag>
 )
 
 data class TagWithBooks(
-    @Embedded val bookTag: BookTag,
-    @Relation(
-        parentColumn = "name",
-        entityColumn = "fileName",
-        associateBy = Junction(
-            BookItemTags::class,
-            parentColumn = "tagName",
-            entityColumn = "bookPath"
+    @Embedded val bookTag: BookTag, @Relation(
+        parentColumn = "name", entityColumn = "fileName", associateBy = Junction(
+            BookItemTags::class, parentColumn = "tagName", entityColumn = "bookPath"
         )
-    )
-    val books: List<BookItem>
+    ) val books: List<BookItem>
 )
 
 @Entity(
-    tableName = "book_item_tags",
-    primaryKeys = ["fileName", "tagName"],
-    foreignKeys = [
-        ForeignKey(
-            entity = BookItem::class,
-            parentColumns = ["fileName"],
-            childColumns = ["fileName"],
-            onDelete = CASCADE
-        ),
-        ForeignKey(
-            entity = BookTag::class,
-            parentColumns = ["tagName"],
-            childColumns = ["name"],
-            onDelete = CASCADE
-        )
-    ],
-    indices = [
-        Index(value = ["bookPath"]),
-        Index(value = ["tagName"])
-    ]
+    tableName = "book_item_tags", primaryKeys = ["fileName", "tagName"], foreignKeys = [ForeignKey(
+        entity = BookItem::class,
+        parentColumns = ["fileName"],
+        childColumns = ["fileName"],
+        onDelete = CASCADE
+    ), ForeignKey(
+        entity = BookTag::class,
+        parentColumns = ["tagName"],
+        childColumns = ["name"],
+        onDelete = CASCADE
+    )], indices = [Index(value = ["bookPath"]), Index(value = ["tagName"])]
 )
 data class BookItemTags(
     @ColumnInfo val fileName: String,

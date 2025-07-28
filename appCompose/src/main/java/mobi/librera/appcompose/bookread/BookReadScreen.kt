@@ -63,13 +63,11 @@ import mobi.librera.appcompose.room.Book
 fun ReadBookScreen(
     dataModel: BookGridViewModel,
     readModel: BookReadViewModel,
-    bookPath: String,
     onBookClose: OnVoid,
     onOpenBook: OnString
 ) {
     var hideShow by remember { mutableStateOf(true) }
-    val documentState by readModel.documentState.collectAsState()
-    val selectedBook by readModel.selectedBook.collectAsState()
+    val uiState by readModel.uiState.collectAsState()
     val context = LocalContext.current
     val density = LocalDensity.current
     var boxSize by remember { mutableStateOf(IntSize.Zero) }
@@ -79,48 +77,43 @@ fun ReadBookScreen(
             .fillMaxSize()
             .onSizeChanged { boxSize = it }) {
 
-        LaunchedEffect(bookPath) {
-            println("LaunchedEffect $bookPath ${boxSize.width}")
-            readModel.loadBook(context, bookPath, boxSize.width, boxSize.height)
+        LaunchedEffect(uiState.bookPathToOpen, uiState.book.fontSize) {
+            //println("LaunchedEffect $bookPath   ${uiState.book.fontSize}")
+            readModel.loadBook(context, boxSize.width, boxSize.height)
         }
 
-        when (documentState) {
-            is BookReadViewModel.DocumentState.Loading -> {
+        when {
+            uiState.isLoading -> {
                 CircularProgressIndicator(Modifier.align(Alignment.Center))
             }
 
-            is BookReadViewModel.DocumentState.Error -> {
+            uiState.error != null -> {
                 Text("Loading Error....", Modifier.align(Alignment.Center))
             }
 
-            BookReadViewModel.DocumentState.Idle -> {
-                Text("Loading Idle....", Modifier.align(Alignment.Center))
-            }
+            uiState.book != Book.Empty -> {
 
-            is BookReadViewModel.DocumentState.Success -> {
-                selectedBook?.let { book ->
-                    println("DocumentState Success ${book.path}")
-                    RenderBookView(
-                        book,
-                        hideShow,
-                        onHideShow = { hideShow = !hideShow },
-                        pageWidth = boxSize.width,
-                        modelAction = readModel
-                    )
-                }
+                RenderBookView(
+                    uiState.book,
+                    hideShow,
+                    uiState.openPage,
+                    onHideShow = { hideShow = !hideShow },
+                    pageWidth = boxSize.width,
+                    modelAction = readModel
+                )
             }
         }
         if (hideShow) {
-            SelectedBooksBar(
-                dataModel, true, onHomeClick = {
-                    
-                    readModel.saveBookState()
-                    onBookClose()
-                }, onOpenBook = {
-                    readModel.saveBookState()
-                    onOpenBook(it)
-                }
-            )
+            SelectedBooksBar(dataModel, true, onHomeClick = {
+                readModel.saveBookState()
+                readModel.closeDocument()
+                onBookClose()
+            }, onOpenBook = {
+                readModel.saveBookState()
+                readModel.closeDocument()
+                //uiState.book.path = it
+                onOpenBook(it)
+            })
         }
 
     }
@@ -133,11 +126,9 @@ fun ReadBookScreen(
 @SuppressLint("WrongConstant")
 @Composable
 fun RenderBookView(
-    book: Book,
-    hideShow: Boolean,
-    onHideShow: OnVoid,
-    pageWidth: Int,
-    modelAction: ModelActions
+    book: Book, hideShow: Boolean,
+    openPage: Int,
+    onHideShow: OnVoid, pageWidth: Int, modelAction: ModelActions
 ) {
 
 
@@ -151,16 +142,15 @@ fun RenderBookView(
         if (listState.isScrollInProgress) {
             sliderPosition = listState.firstVisibleItemIndex.toFloat()
         }
-        modelAction.onPageChanged(listState.firstVisibleItemIndex)
+        modelAction.onPageChanged(listState.firstVisibleItemIndex - 1)
     }
     LaunchedEffect(Unit) {
-        listState.scrollToItem(modelAction.getCurrentPage())
-        sliderPosition = (modelAction.getCurrentPage() - 1).toFloat()
+        listState.scrollToItem(openPage)
+        sliderPosition = (openPage).toFloat()
     }
 
     ObserveLifecycleEvents(onPause = modelAction::saveBookState)
 
-    val pageCount = remember { modelAction.getPagesCount() }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -197,7 +187,7 @@ fun RenderBookView(
             state = listState,
             userScrollEnabled = true,
         ) {
-            items(pageCount, key = { index -> index }) { number ->
+            items(book.pageCount, key = { index -> index }) { number ->
                 var image by remember(book.path + number) {
                     mutableStateOf(
                         ImageBitmap(
@@ -206,7 +196,7 @@ fun RenderBookView(
                     )
                 }
 
-                LaunchedEffect(book.path, number, pageWidth) {
+                LaunchedEffect(book.path, number, pageWidth, book.fontSize) {
                     image = modelAction.renderPage(number, pageWidth)
                 }
 
@@ -242,7 +232,7 @@ fun RenderBookView(
                             modifier = Modifier
                                 .padding(4.dp)
                                 .clickable {
-                                    //readModel.pageSizeDec()
+                                    modelAction.onFontSizeChange(book.fontSize - 1)
                                 },
                             contentDescription = "",
                             tint = Color.White,
@@ -261,7 +251,7 @@ fun RenderBookView(
                             showDialog = showNumberPicker,
                             onDismissRequest = { showNumberPicker = false },
                             onNumberSelected = {
-                                //selectedBook?.fontSize = it
+                                modelAction.onFontSizeChange(it)
                                 showNumberPicker = false
                             },
                             initialNumber = 23,//readModel.fontSize,
@@ -274,7 +264,7 @@ fun RenderBookView(
                             modifier = Modifier
                                 .padding(4.dp)
                                 .clickable {
-                                    //readModel.pageSizeInc()
+                                    modelAction.onFontSizeChange(book.fontSize + 1)
                                 },
                             contentDescription = "",
                             tint = Color.White,

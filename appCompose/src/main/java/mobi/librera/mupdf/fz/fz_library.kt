@@ -44,7 +44,7 @@ interface fz_library : Library {
     fun fz_do_catch(fzContext: Pointer?): Int
     fun fz_do_try(fzContext: Pointer?): Int
     fun fz_push_try(fzContext: Pointer?): Pointer
-    
+
     fun setjmp(fzPushTry: Pointer): Int
     fun sigsetjmp(buf: Pointer, value: Int): Int
 
@@ -73,7 +73,7 @@ interface fz_library : Library {
 
     fun fz_pixmap_stride(fzContext: Pointer?, pixmap: Pointer?): Int
 
-    fun fz_pixmap_samples(fzContext: Pointer?, pixmap: Pointer?): Pointer
+    fun fz_pixmap_samples(fzContext: Pointer?, pixmap: Pointer?): Pointer?
 
     fun fz_drop_page(fzContext: Pointer?, fzPage: Pointer)
     fun fz_drop_pixmap(fzContext: Pointer?, fzPixmap: Pointer?)
