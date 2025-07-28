@@ -52,7 +52,7 @@ class BookReadViewModel(
     }
 
     fun loadBook(context: Context, screenWidth: Int, screenHeight: Int) {
-        loadJob?.cancel()
+        //loadJob?.cancel()
         loadJob = viewModelScope.launch {
             try {
 
@@ -78,6 +78,8 @@ class BookReadViewModel(
                 )
 
                 val updatedBook = book.copy(
+                    time = System.currentTimeMillis(),
+                    isRecent = true,
                     pageCount = source.pagesCount()
                 )
 

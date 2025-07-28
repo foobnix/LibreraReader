@@ -17,16 +17,23 @@ interface BookDao {
     @Query("SELECT * FROM book_item")
     fun getAll(): Flow<List<BookItem>>
 
-    @Transaction
     @Query(
         """
-        SELECT *
-        FROM book_item AS a
-        INNER JOIN book_state AS b ON a.fileName = b.fileName 
-        WHERE b.is_selected = 1
+        SELECT * FROM book_state
+        WHERE is_selected = 1 ORDER BY time DESC
     """
     )
-    fun getAllSelected(): Flow<List<BookItemAndState>>
+    fun getAllSelected(): Flow<List<BookState>>
+
+
+    @Query(
+        """
+        SELECT * FROM book_state
+        WHERE is_recent = 1 ORDER BY time DESC
+    """
+    )
+    fun getAllRecent(): Flow<List<BookState>>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(users: List<BookItem>)

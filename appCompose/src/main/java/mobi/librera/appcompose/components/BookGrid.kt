@@ -23,10 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coil3.request.CachePolicy
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.room.Book
 
@@ -73,7 +77,15 @@ fun BookGrid(
                 Column {
                     Box {
                         AsyncImage(
-                            model = book.path,
+                            model =
+                                ImageRequest.Builder(LocalContext.current)
+                                    .data(book.path)
+                                    .crossfade(true)
+                                    .memoryCacheKey(book.path)
+                                    .memoryCachePolicy(CachePolicy.ENABLED)
+                                    .diskCacheKey(book.path)
+                                    .diskCachePolicy(CachePolicy.ENABLED)
+                                    .build(),
 
                             contentDescription = "",
                             modifier = Modifier

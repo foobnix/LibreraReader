@@ -89,7 +89,12 @@ class BookGridViewModel(
         bookRepository.insertAll(booksToInsert)
     }
 
-    val getAllSelected = bookRepository.getAllSelected().stateIn(
+    val getAllSelectedBooks = bookRepository.getAllSelected().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = emptyList()
+    )
+    val getAllRecentBooks = bookRepository.getAllRecent().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = emptyList()

@@ -31,7 +31,7 @@ class NativePdfDecoder(
 
         return DecodeResult(
             image = bitmap.asImage(shareable = true),
-            isSampled = false,
+            isSampled = true,
         )
 
     }

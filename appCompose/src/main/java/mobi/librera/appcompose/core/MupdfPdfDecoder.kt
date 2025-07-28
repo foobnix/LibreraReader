@@ -28,7 +28,7 @@ class MupdfPdfDecoder(
         if (!source.file().toFile().isFile) {
             return DecodeResult(
                 image = ImageBitmap(1, 1).asAndroidBitmap().asImage(shareable = true),
-                isSampled = false,
+                isSampled = true,
             )
         }
         mutex.withLock {
@@ -79,7 +79,7 @@ class MupdfPdfDecoder(
             imageLoader: ImageLoader
         ): Decoder? {
             println("Decoder.Factory mime: |${result.mimeType}|")
-            return if (result.mimeType == "application/pdf" || result.mimeType == "application/epub+zip") {
+            return if (true || result.mimeType == "application/pdf" || result.mimeType == "application/epub+zip") {
                 MupdfPdfDecoder(result.source, options)
             } else {
                 null

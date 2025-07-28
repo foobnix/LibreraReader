@@ -14,6 +14,11 @@ class BookRepository(private val bookDao: BookDao) {
         it.map { e -> e.toBook() }
     }
 
+    fun getAllRecent(): Flow<List<Book>> = bookDao.getAllRecent().map {
+        it.map { e -> e.toBook() }
+    }
+
+
     fun insertAll(books: List<Book>) {
         bookDao.insertAll(books.map { it.toBookItem() })
     }

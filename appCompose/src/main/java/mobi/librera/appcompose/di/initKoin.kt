@@ -1,11 +1,22 @@
 package mobi.librera.appcompose.di
 
+import android.util.LruCache
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.unit.dp
+import coil3.Image
 import coil3.ImageLoader
+import coil3.asImage
+import coil3.decode.DataSource
 import coil3.decode.Decoder
 import coil3.disk.DiskCache
+import coil3.intercept.Interceptor
 import coil3.memory.MemoryCache
 import coil3.request.CachePolicy
+import coil3.request.ImageResult
+import coil3.request.SuccessResult
 import coil3.request.crossfade
+import coil3.size.Precision
 import coil3.util.DebugLogger
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.bookread.BookReadViewModel
@@ -57,15 +68,16 @@ val appModule = module {
 val imageLoaderModule = module {
     single<ImageLoader> {
         val context = get<android.content.Context>()
-        val diskCache = File(context.externalCacheDir, "cache_pages").toOkioPath()
+        val diskCache = File(context.cacheDir, "cache_pages").toOkioPath()
+        diskCache.toFile().mkdirs()
+        println("imageLoaderModule $diskCache ${diskCache.toFile().isDirectory}")
 
         ImageLoader.Builder(context)
             .components {
+                //add(CustomCacheInterceptor())
                 add(get<Decoder.Factory>())
             }
             .logger(DebugLogger())
-            .diskCachePolicy(CachePolicy.ENABLED)
-            .memoryCachePolicy(CachePolicy.ENABLED)
             .memoryCache {
                 MemoryCache.Builder()
                     .maxSizePercent(context, 0.50)
@@ -77,9 +89,39 @@ val imageLoaderModule = module {
                     .maxSizeBytes(500L * 1024 * 1024) // 500 MB
                     .build()
             }
+            .placeholder(
+                ImageBitmap(42.dp.value.toInt(), 42.dp.value.toInt()).asAndroidBitmap()
+                    .asImage(true)
+            )
+            .precision(Precision.EXACT)
+            .networkCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .memoryCachePolicy(CachePolicy.ENABLED)
             .crossfade(true)
             .build()
 
+    }
+}
+
+class CustomCacheInterceptor(
+
+) : Interceptor {
+
+    private val cache: LruCache<String, Image> = LruCache<String, Image>(30)
+
+    override suspend fun intercept(chain: Interceptor.Chain): ImageResult {
+        println("intercept-chain ${chain.request.data}")
+
+
+        val value = cache.get(chain.request.data.toString())
+        if (value != null) {
+            return SuccessResult(
+                image = value,
+                request = chain.request,
+                dataSource = DataSource.MEMORY_CACHE,
+            )
+        }
+        return chain.proceed()
     }
 }
 

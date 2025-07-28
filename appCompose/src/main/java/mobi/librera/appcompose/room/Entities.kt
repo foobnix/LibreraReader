@@ -36,13 +36,16 @@ data class BookItemWithDetails(
 fun Book.toBookDetails(): BookItemWithDetails {
     val fileName = this.fileName.toFile().name
     return BookItemWithDetails(
-        BookItem(this.path, fileName), BookState(fileName = fileName), BookMeta(this.path)
+        BookItem(this.path, fileName),
+        BookState(fileName = fileName, bookPath = path),
+        BookMeta(this.path)
     )
 }
 
 fun Book.toBookItem() = BookItem(this.path, this.path.substringAfterLast("/"))
 fun Book.toBookState() = BookState(
     fileName = this.fileName,
+    bookPath = this.path,
     progress = this.progress,
     time = this.time,
     isRecent = this.isRecent,
@@ -61,6 +64,15 @@ fun BookItemAndState.toBook() = Book(
     this.bookState?.isRecent ?: false,
     this.bookState?.progress ?: 0f,
     this.bookState?.time ?: 0,
+)
+
+fun BookState.toBook() = Book(
+    this.bookPath,
+    this.fileName,
+    this.isSelected,
+    this.isRecent,
+    this.progress,
+    this.time,
 )
 
 data class BookItemAndState(
@@ -115,6 +127,7 @@ data class BookItem(
 @Entity(tableName = "book_state")
 data class BookState(
     @PrimaryKey val fileName: String,
+    @ColumnInfo(name = "book_path") val bookPath: String,
     @ColumnInfo(name = "progress") val progress: Float = 0.0f,
     @ColumnInfo(name = "time") val time: Long = 0,
     @ColumnInfo(name = "is_recent") val isRecent: Boolean = false,
