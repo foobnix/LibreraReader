@@ -3,6 +3,7 @@ package mobi.librera.appcompose
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.os.Build
 import android.provider.Settings
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
@@ -22,8 +23,9 @@ class App : Application(), KoinComponent, SingletonImageLoader.Factory {
             this.contentResolver,
             Settings.Secure.ANDROID_ID
         )
-        DEVICE_ID = androidId
+        DEVICE_ID = androidId + "_" + Build.VERSION.SDK_INT
         println("ANDROID_ID: $androidId")
+
 
         AppImageLoader.initialize(this)
         FirebaseApp.initializeApp(this)

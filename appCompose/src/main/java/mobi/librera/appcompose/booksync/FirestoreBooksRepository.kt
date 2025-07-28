@@ -3,6 +3,7 @@ package mobi.librera.appcompose.booksync
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
+import mobi.librera.appcompose.App
 import mobi.librera.appcompose.room.BookState
 
 val KEY_USERS = "users"
@@ -28,12 +29,12 @@ object FirestoreBooksRepository {
         }
     }
 
-    suspend fun syncBook(book: BookState) {
-        if (book.bookPath.isEmpty()) {
-            println("sync Book skip")
+    fun syncBook(book: BookState) {
+        if (book.bookPaths[App.DEVICE_ID].isNullOrEmpty()) {
+            println("Sync Book skip")
             return
         }
-        println("sync Book $book")
+        println("Sync Book $book")
 
         Firebase.auth.currentUser?.let { user ->
             db.collection(KEY_USERS)

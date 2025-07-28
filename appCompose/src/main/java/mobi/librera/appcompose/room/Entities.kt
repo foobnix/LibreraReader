@@ -10,7 +10,7 @@ import androidx.room.Index
 import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-import kotlinx.serialization.Serializable
+import mobi.librera.appcompose.App
 import mobi.librera.appcompose.core.toFile
 
 
@@ -39,7 +39,7 @@ fun Book.toBookDetails(): BookItemWithDetails {
     val fileName = this.fileName.toFile().name
     return BookItemWithDetails(
         BookItem(this.path, fileName),
-        BookState(fileName = fileName, bookPath = path),
+        BookState(fileName = fileName, bookPaths = mapOf(App.DEVICE_ID to this.path)),
         BookMeta(this.path)
     )
 }
@@ -47,11 +47,11 @@ fun Book.toBookDetails(): BookItemWithDetails {
 fun Book.toBookItem() = BookItem(this.path, this.path.substringAfterLast("/"))
 fun Book.toBookState() = BookState(
     fileName = this.fileName,
-    bookPath = this.path,
+    bookPaths = mapOf(App.DEVICE_ID to this.path),
     progress = this.progress,
     time = this.time,
-    isRecent = this.isRecent,
-    isSelected = this.isSelected,
+    recent = this.isRecent,
+    selected = this.isSelected,
     fontSize = this.fontSize
 )
 
@@ -62,17 +62,17 @@ fun BookItem.toBook() = Book(
 fun BookItemAndState.toBook() = Book(
     this.bookItem.path,
     this.bookItem.fileName,
-    this.bookState?.isSelected ?: false,
-    this.bookState?.isRecent ?: false,
+    this.bookState?.selected ?: false,
+    this.bookState?.recent ?: false,
     this.bookState?.progress ?: 0f,
     this.bookState?.time ?: 0,
 )
 
 fun BookState.toBook() = Book(
-    this.bookPath,
+    this.bookPaths[App.DEVICE_ID] ?: "",
     this.fileName,
-    this.isSelected,
-    this.isRecent,
+    this.selected,
+    this.recent,
     this.progress,
     this.time,
 )
@@ -127,19 +127,15 @@ data class BookItem(
 )
 
 @Entity(tableName = "book_state")
-@Serializable
 @Keep
 data class BookState(
     @PrimaryKey val fileName: String = "",
-    @ColumnInfo(name = "book_path") val bookPath: String = "",
+    @ColumnInfo(name = "book_paths") var bookPaths: Map<String, String> = mapOf(),
     @ColumnInfo(name = "progress") val progress: Float = 0.0f,
     @ColumnInfo(name = "time") val time: Long = 0,
-    @ColumnInfo(name = "is_recent") val isRecent: Boolean = false,
-    @ColumnInfo(name = "is_selected") val isSelected: Boolean = false,
+    @ColumnInfo(name = "is_recent") val recent: Boolean = false,
+    @ColumnInfo(name = "is_selected") val selected: Boolean = false,
     @ColumnInfo(name = "font_size") val fontSize: Int = 30,
-
-    val list: List<String> = listOf("one", "two"),
-    val map: Map<String, String> = mapOf("id" to "one", "id2" to "two")
 )
 
 @Entity(tableName = "book_meta")

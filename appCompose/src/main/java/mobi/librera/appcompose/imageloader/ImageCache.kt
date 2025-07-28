@@ -94,17 +94,20 @@ object ImageDecoder {
 
     suspend fun decodeFromFile(filePath: String): ImageBitmap? = withContext(Dispatchers.IO) {
         try {
-
-            val muDoc = openDocument(
-                filePath,
-                byteArrayOf(0),
-                128 * 4,
-                180 * 4,
-                24
-            )
-            val res = muDoc.renderPage(0, 400).asImageBitmap()
-            muDoc.close()
-            res
+            if (filePath.isNotEmpty()) {
+                val muDoc = openDocument(
+                    filePath,
+                    byteArrayOf(0),
+                    128 * 4,
+                    180 * 4,
+                    24
+                )
+                val res = muDoc.renderPage(0, 400).asImageBitmap()
+                muDoc.close()
+                res
+            } else {
+                null
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             null
@@ -171,7 +174,7 @@ object AppImageLoader {
 
     fun initialize(context: Context) {
         if (!isInitialized) {
-            val memoryCache = MemoryCache(64 * 1024 * 1024)
+            val memoryCache = MemoryCache(16 * 1024 * 1024)
             val diskCache = DiskCache(context.applicationContext)
             imageLoader = ImageLoader(memoryCache, diskCache)
             isInitialized = true

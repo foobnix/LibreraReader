@@ -33,7 +33,7 @@ class CommonLib(tempFile: String, width: Int, height: Int, fontSize: Int) {
 
         if (fz.setjmp(fz.fz_push_try(fzContext)) == 0)
             if (fz.fz_do_try(fzContext) == 1) {
-                println("Open document 4.1 $tempFile")
+                println("Open document 4.1 |$tempFile|")
                 fzDocument = fz.fz_open_document(fzContext, tempFile)
                 println("Open document 4.2")
             }

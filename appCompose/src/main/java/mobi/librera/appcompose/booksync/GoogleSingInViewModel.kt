@@ -23,9 +23,9 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import mobi.librera.appcompose.App
 import mobi.librera.appcompose.R
 import mobi.librera.appcompose.room.BookRepository
-import mobi.librera.appcompose.room.BookState
 
 data class User(val name: String, val email: String, val photoUrl: Uri?)
 
@@ -47,54 +47,55 @@ class GoogleSingInViewModel(private val bookRepository: BookRepository) : ViewMo
 
 
     private fun observeFirestoreAndSyncToRoom() {
+        println("Sync: ${App.DEVICE_ID}")
         FirestoreBooksRepository.listenToNotes { remoteBooks ->
-            println("observeFirestoreAndSyncToRoom size ${remoteBooks.size}")
             viewModelScope.launch(Dispatchers.IO) {
                 val localBooks = bookRepository.getAllBookState()
+                //val all = bookRepository.getAllBooks().last()
 
-                val booksToUpdateLocally = mutableListOf<BookState>()
+                println("Sync remoteBooks ${remoteBooks.size}")
+                println("Sync localBooks ${localBooks.size}")
 
-                remoteBooks.forEach { remoteBook ->
-                    val localBook = localBooks.find { it.fileName == remoteBook.fileName }
-                    println("observeFirestoreAndSyncToRoom time ${remoteBook.time}")
-                    if (localBook == null || remoteBook.time > localBook.time) {
-                        println("observeFirestoreAndSyncToRoom ${remoteBook.fileName} ${remoteBook.time} ${localBook?.time}")
-                        booksToUpdateLocally.add(remoteBook)
+                val allKeys = localBooks.map { it.fileName }.toMutableSet()
+                allKeys.addAll(remoteBooks.map { it.fileName })
+
+
+                allKeys.forEach { fileName ->
+                    val remoteBook = remoteBooks.find { it.fileName == fileName }
+                    val localBook = localBooks.find { it.fileName == fileName }
+                    if (remoteBook == null && localBook == null) {
+                        println("Sync skip")
+                    } else if (remoteBook == null && localBook != null) {
+                        FirestoreBooksRepository.syncBook(localBook)
+                        println("Sync Remote syncBook $localBook")
+                    } else if (localBook == null && remoteBook != null) {
+
+
+                        bookRepository.insertBookState(remoteBook)
+                        println("Sync Local insertBook $remoteBook")
+                    }
+                    if (remoteBook != null && localBook != null) {
+                        if (remoteBook.time == localBook.time) {
+                            println("Sync skip by time")
+                        } else if (remoteBook.time > localBook.time) {
+                            remoteBook.bookPaths = remoteBook.bookPaths.plus(localBook.bookPaths)
+                            bookRepository.insertBookState(remoteBook)
+                            println("Sync Local insertBook2 $localBook")
+                        } else {
+                            localBook.bookPaths = localBook.bookPaths.plus(remoteBook.bookPaths)
+                            FirestoreBooksRepository.syncBook(localBook)
+                            println("Sync Remote syncBook2 $localBook")
+                        }
                     }
                 }
-                bookRepository.insertAllBookState(booksToUpdateLocally)
+
             }
         }
     }
 
-    private fun saveAllToFirestore() {
-        FirestoreBooksRepository.listenToNotes { remoteBooks ->
-            println("saveAllToFirestore remoteBooks ${remoteBooks.size}")
-
-            viewModelScope.launch(Dispatchers.IO) {
-                val localBooks = bookRepository.getAllBookState()
-                println("saveAllToFirestore localBooks ${localBooks.size}")
-
-
-                val booksToUpdateRemotely = mutableListOf<BookState>()
-
-                localBooks.forEach { localBook ->
-                    val remoteBook = remoteBooks.find { it.fileName == localBook.fileName }
-                    if (remoteBook == null || remoteBook.time < localBook.time) {
-                        booksToUpdateRemotely.add(localBook)
-                    }
-                }
-                println("saveAllToFirestore booksToUpdateRemotely ${booksToUpdateRemotely.size}")
-                booksToUpdateRemotely.forEach { bookState ->
-                    FirestoreBooksRepository.syncBook(bookState)
-                }
-            }
-        }
-    }
 
     init {
         observeFirestoreAndSyncToRoom()
-        saveAllToFirestore()
     }
 
 
@@ -175,8 +176,7 @@ class GoogleSingInViewModel(private val bookRepository: BookRepository) : ViewMo
                 _state.value = SingInState.Success(user.toUser())
 
                 observeFirestoreAndSyncToRoom()
-                saveAllToFirestore()
-                
+
             } else {
                 _state.value = SingInState.Error(task.exception?.message.orEmpty())
             }

@@ -24,6 +24,10 @@ class BookRepository(private val bookDao: BookDao) {
     fun insertAllBookState(bookStates: List<BookState>) =
         bookDao.insertAllBookState(bookStates)
 
+
+    fun insertBookState(bookState: BookState) =
+        bookDao.insertBookState(bookState)
+
     fun insertAll(books: List<Book>) {
         bookDao.insertAll(books.map { it.toBookItem() })
     }
