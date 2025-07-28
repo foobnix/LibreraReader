@@ -55,8 +55,8 @@ fun SelectedBooksBar(
             if (isHomeVisible) {
                 Box(
                     modifier = Modifier
+                        .size(60.dp)
                         .padding(4.dp)
-                        .size(42.dp)
                         .clip(CircleShape)
                         .background(Color.Blue.copy(alpha = 0.8f))
                         .clickable { onHomeClick() }) {

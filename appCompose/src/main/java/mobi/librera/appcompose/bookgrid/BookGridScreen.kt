@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import mobi.librera.appcompose.booksync.GoogleSignInScreen
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
-import mobi.librera.appcompose.components.SelectedBooksBar
 
 @Composable
 fun BookGridScreen(
@@ -41,15 +40,16 @@ fun BookGridScreen(
         } else {
             GoogleSignInScreen()
 
-            SelectedBooksBar(
-                dataModel, false,
-                onOpenBook = onOpenBook,
-                onHomeClick = onHomeClick
-            )
+//            SelectedBooksBar(
+//                dataModel, false,
+//                onOpenBook = onOpenBook,
+//                onHomeClick = onHomeClick
+//            )
 
             val books by dataModel.getAllBooks.collectAsState()
 
             BookGrid(
+                dataModel,
                 books, dataModel.listGridStates,
                 onStarClicked = { dataModel.updateStar(it, !it.isSelected) },
                 onBookClicked = { onOpenBook(it.path) })

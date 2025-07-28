@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,12 +27,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.imageloader.MyAsyncImageView
 import mobi.librera.appcompose.room.Book
 
 @Composable
 fun BookGrid(
+    dataModel: BookGridViewModel,
     books: List<Book>,
     state: LazyGridState,
     onStarClicked: (Book) -> Unit,
@@ -54,6 +57,15 @@ fun BookGrid(
     LazyVerticalGrid(
         state = state, columns = GridCells.Adaptive(minSize = 110.dp)
     ) {
+
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            SelectedBooksBar(
+                dataModel, false,
+                onOpenBook = { onBookClicked(Book(it)) },
+                onHomeClick = { }
+            )
+        }
+
         items(books.size) {
             val book = books[it]
 
