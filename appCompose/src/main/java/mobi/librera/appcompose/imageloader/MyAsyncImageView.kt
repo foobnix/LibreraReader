@@ -19,6 +19,7 @@ import mobi.librera.appcompose.room.BookState
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
+val client = OkHttpClient()
 
 @Composable
 fun MyAsyncImageView(
@@ -40,18 +41,20 @@ fun MyAsyncImageView(
         withContext(Dispatchers.IO) {
             if (bookPath.isEmpty() && bookState.imageUrl.isNotEmpty()) {
                 println("MyAsyncImageView ${bookState.fileName} ${bookState.imageUrl}")
-
-                val client = OkHttpClient()
-                val request = Request.Builder()
-                    .url(bookState.imageUrl)
-                    .build();
-                val response = client.newCall(request).execute()
-                val out = AppImageLoader.get().getCacheFile(bookState.fileName)
-                out.writeBytes(response.body.bytes())
-                loadedImage = AppImageLoader.get().getCacheImageBitmap(bookState.fileName)
+                loadedImage = AppImageLoader.get().getCacheImageBitmap(bookState.fileName) ?: run {
+                    val request = Request.Builder()
+                        .url(bookState.imageUrl)
+                        .build();
+                    val response = client.newCall(request).execute()
+                    val out = AppImageLoader.get().getCacheFile(bookState.fileName)
+                    out.writeBytes(response.body.bytes())
+                    AppImageLoader.get().getCacheImageBitmap(bookState.fileName)
+                }
                 println("MyAsyncImageView loaded}")
             } else {
-                loadedImage = AppImageLoader.get().loadImage(bookPath)
+                withContext(Dispatchers.Default) {
+                    loadedImage = AppImageLoader.get().loadImage(bookPath)
+                }
             }
 
         }

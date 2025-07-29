@@ -22,8 +22,8 @@ data class Book(
     val progress: Float = 0.0f,
     val time: Long = 0,
     val fontSize: Int = DEFAULT_FONT_SIZE,
-    val pageCount: Int = 0,
     val imageUrl: String = "",
+    val pageCount: Int = 0,
 ) {
     companion object {
         const val DEFAULT_FONT_SIZE = 24
@@ -31,6 +31,18 @@ data class Book(
     }
 }
 
+@Entity(tableName = "book_state")
+@Keep
+data class BookState(
+    @PrimaryKey val fileName: String = "",
+    @ColumnInfo(name = "book_paths") var bookPaths: Map<String, String> = mapOf(),
+    @ColumnInfo(name = "progress") val progress: Float = 0.0f,
+    @ColumnInfo(name = "time") val time: Long = 0,
+    @ColumnInfo(name = "is_recent") val recent: Boolean = false,
+    @ColumnInfo(name = "is_selected") val selected: Boolean = false,
+    @ColumnInfo(name = "font_size") val fontSize: Int = 30,
+    @ColumnInfo(name = "imageUrl") var imageUrl: String = "",
+)
 
 data class BookItemWithDetails(
     val bookItem: BookItem, val state: BookState, val meta: BookMeta
@@ -130,18 +142,6 @@ data class BookItem(
     @ColumnInfo val fileName: String,
 )
 
-@Entity(tableName = "book_state")
-@Keep
-data class BookState(
-    @PrimaryKey val fileName: String = "",
-    @ColumnInfo(name = "book_paths") var bookPaths: Map<String, String> = mapOf(),
-    @ColumnInfo(name = "progress") val progress: Float = 0.0f,
-    @ColumnInfo(name = "time") val time: Long = 0,
-    @ColumnInfo(name = "is_recent") val recent: Boolean = false,
-    @ColumnInfo(name = "is_selected") val selected: Boolean = false,
-    @ColumnInfo(name = "font_size") val fontSize: Int = 30,
-    @ColumnInfo(name = "imageUrl") var imageUrl: String = "",
-)
 
 @Entity(tableName = "book_meta")
 data class BookMeta(
