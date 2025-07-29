@@ -23,6 +23,7 @@ data class Book(
     val time: Long = 0,
     val fontSize: Int = DEFAULT_FONT_SIZE,
     val pageCount: Int = 0,
+    val imageUrl: String = "",
 ) {
     companion object {
         const val DEFAULT_FONT_SIZE = 24
@@ -52,7 +53,8 @@ fun Book.toBookState() = BookState(
     time = this.time,
     recent = this.isRecent,
     selected = this.isSelected,
-    fontSize = this.fontSize
+    fontSize = this.fontSize,
+    imageUrl = this.imageUrl
 )
 
 fun BookItem.toBook() = Book(
@@ -75,6 +77,8 @@ fun BookState.toBook() = Book(
     this.recent,
     this.progress,
     this.time,
+    this.fontSize,
+    imageUrl = this.imageUrl
 )
 
 data class BookItemAndState(
@@ -136,6 +140,7 @@ data class BookState(
     @ColumnInfo(name = "is_recent") val recent: Boolean = false,
     @ColumnInfo(name = "is_selected") val selected: Boolean = false,
     @ColumnInfo(name = "font_size") val fontSize: Int = 30,
+    @ColumnInfo(name = "imageUrl") var imageUrl: String = "",
 )
 
 @Entity(tableName = "book_meta")

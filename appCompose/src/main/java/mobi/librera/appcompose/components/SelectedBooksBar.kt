@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.imageloader.MyAsyncImageView
+import mobi.librera.appcompose.room.toBookState
 
 
 @Composable
@@ -76,7 +77,7 @@ fun SelectedBooksBar(
                 selectedBooks.forEach { book ->
 
                     MyAsyncImageView(
-                        imageUrl = book.path,
+                        bookState = book.toBookState(),
                         contentDescription = "",
                         modifier = Modifier
                             .height(60.dp)
@@ -102,7 +103,7 @@ fun SelectedBooksBar(
 
                         ) {
                             MyAsyncImageView(
-                                imageUrl = book.path,
+                                bookState = book.toBookState(),
 
                                 contentDescription = "",
                                 modifier = Modifier
@@ -154,7 +155,7 @@ fun SelectedBooksBar(
         Row(modifier = Modifier.horizontalScroll(scrollState2)) {
             recentBooks.forEach { book ->
                 MyAsyncImageView(
-                    imageUrl = book.path,
+                    bookState = book.toBookState(),
                     contentDescription = "",
                     modifier = Modifier
                         .height(60.dp)

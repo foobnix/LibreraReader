@@ -31,6 +31,7 @@ import mobi.librera.appcompose.bookgrid.BookGridViewModel
 import mobi.librera.appcompose.core.ifOr
 import mobi.librera.appcompose.imageloader.MyAsyncImageView
 import mobi.librera.appcompose.room.Book
+import mobi.librera.appcompose.room.toBookState
 
 @Composable
 fun BookGrid(
@@ -85,7 +86,7 @@ fun BookGrid(
                 Column {
                     Box {
                         MyAsyncImageView(
-                            imageUrl = book.path,
+                            bookState = book.toBookState(),
                             contentDescription = "",
                             modifier = Modifier
                                 .height(150.dp)

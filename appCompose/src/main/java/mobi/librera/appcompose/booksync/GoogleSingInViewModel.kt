@@ -51,7 +51,7 @@ class GoogleSingInViewModel(private val bookRepository: BookRepository) : ViewMo
         FirestoreBooksRepository.listenToNotes { remoteBooks ->
             viewModelScope.launch(Dispatchers.IO) {
                 val localBooks = bookRepository.getAllBookState()
-                //val all = bookRepository.getAllBooks().last()
+                //val all = bookRepository.getAllBooks().collect()
 
                 println("Sync remoteBooks ${remoteBooks.size}")
                 println("Sync localBooks ${localBooks.size}")
@@ -67,7 +67,8 @@ class GoogleSingInViewModel(private val bookRepository: BookRepository) : ViewMo
                         println("Sync skip")
                     } else if (remoteBook == null && localBook != null) {
                         FirestoreBooksRepository.syncBook(localBook)
-                        println("Sync Remote syncBook $localBook")
+
+
                     } else if (localBook == null && remoteBook != null) {
 
 

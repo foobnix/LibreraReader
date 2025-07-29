@@ -77,7 +77,7 @@ class DiskCache(private val context: Context) : ImageCache {
         cacheDir.mkdirs()
     }
 
-    private fun getFileForKey(key: String): File {
+    fun getFileForKey(key: String): File {
         val file = File(cacheDir, md5(key))
         println("getFileForKey $file")
         return file
@@ -135,11 +135,19 @@ class ImageLoader(private val memoryCache: MemoryCache, private val diskCache: D
         return null
     }
 
+    fun getCacheFile(url: String): File {
+        return diskCache.getFileForKey(url)
+    }
+
+    fun getCacheImageBitmap(url: String): ImageBitmap? {
+        return diskCache.get(url)
+    }
+
     suspend fun loadImage(
         imageUrl: String
     ): ImageBitmap? {
 
-        val cacheKey = imageUrl
+        val cacheKey = imageUrl.substringAfterLast("/")
 
         memoryCache.get(cacheKey)?.let {
             println("ImageLoader: Loaded from Memory Cache: $cacheKey")
@@ -179,6 +187,10 @@ object AppImageLoader {
             imageLoader = ImageLoader(memoryCache, diskCache)
             isInitialized = true
         }
+    }
+
+    fun getCacheFile(book: String): File {
+        return imageLoader.getCacheFile(book)
     }
 
     fun get(): ImageLoader {
