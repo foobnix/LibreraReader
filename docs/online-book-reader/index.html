@@ -8,7 +8,7 @@
     <style>
 
         :root {
-            --menubar-height: 22pt;
+            --menubar-height: 32pt;
             --sidebar-width: 250px;
         }
 
@@ -27,13 +27,29 @@
         input, button {
             font-size: 16px;
             line-height: 20px;
-            height: 30px;
+            height: 24px;
             margin: 0 4px;
         }
         input {
             background-color: white;
-            padding: 0px 5px;
-            border: 1px solid black;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3f51b5;
+            box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+            background-color: #fafafa;
+        }
+        
+        input:hover {
+            border-color: #999;
+            background-color: #f9f9f9;
         }
         button {
             font-family: monospace;
@@ -68,9 +84,15 @@
             background-color: lightsteelblue;
             user-select: none;
             box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding-left: 32px;
         }
 
-        .menu { float: left; }
+        .menu { 
+            display: flex;
+            align-items: center;
+        }
 
         .menu-button { padding: 5pt 8pt; }
 
@@ -90,10 +112,24 @@
 
         .menu:hover .menu-popup { display: block; }
         .menu:hover .menu-button { background-color: steelblue; color: white; }
+        
+        /* Enhanced hover effects for menu buttons */
+        .menu-button {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .menu-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-button:active {
+            transform: scale(0.95);
+        }
 
-        /* SIDEBAR */
-
-        #grid-sidebar { font-family: "Times New Roman", "serif"; }
+        /* SIDEBAR - Local Design */
 
         #grid-sidebar {
             display: none;
@@ -103,37 +139,309 @@
             left: 0;
             width: var(--sidebar-width);
             height: calc(100% - var(--menubar-height));
-            background-color: white;
-            overflow: auto;
+            background-color: #f4f4f9;
+            border-right: 2px solid #ddd;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
 
-        #outline { margin:0; padding:1ex; padding-left:2ex; list-style-type: none; font-size: 10pt; }
-        #outline ul { margin:0; padding:0; padding-left:3ex; list-style-type: none; }
-        #outline a { text-decoration:none; color: black; }
-        #outline a:hover { text-decoration:underline; }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f8f8f8;
+        }
+        
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #333;
+        }
+        
+        .sidebar-close {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+        }
+        
+        .sidebar-close:hover {
+            background-color: #e0e0e0;
+            color: #333;
+        }
 
-        /* DIALOGS */
+        #outline {
+            margin: 0;
+            padding: 10px 0;
+            list-style-type: none;
+            font-size: 15px;
+        }
+
+        #outline ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #outline a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-left: 3px solid transparent;
+            transition: background-color 0.3s, border-left 0.3s;
+        }
+
+        #outline a:hover {
+            background-color: #e0e0e0;
+            border-left: 3px solid #3f51b5;
+            color: #3f51b5;
+        }
+
+        #outline a.active {
+            background-color: #d1d1d1;
+            border-left: 3px solid #3f51b5;
+            color: #3f51b5;
+        }
+
+        .outline-item-expandable {
+            position: relative;
+        }
+
+        .outline-item-expandable::after {
+            content: '\25BA';
+            position: absolute;
+            right: 15px;
+            font-size: 12px;
+            color: #444;
+            transition: transform 0.3s;
+        }
+
+        .outline-item-expandable.expanded::after {
+            transform: rotate(90deg);
+        }
+
+        /* DIALOGS - Modern Local Design */
 
         div.dialog {
-            position:fixed;
-            top:22pt;
-            left:0;
-            right:0;
-            margin-left: auto;
-            width:max-content;
-            background-color:silver;
-            padding: 15px 12px;
-            z-index:2;
-            box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 370px;
+            max-width: 90vw;
+            background-color: #e0f2f1;
+            border-radius: 8px;
+            padding: 16px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24), 0 4px 16px rgba(0, 0, 0, 0.12);
+            border: 1px solid #b2dfdb;
+        }
+        
+        @media screen and (max-width: 480px) {
+            div.dialog {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                width: auto;
+                max-width: none;
+                transform: none;
+                padding: 12px;
+            }
+        }
+
+        div.dialog::backdrop,
+        div.dialog-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .dialog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .dialog-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .dialog-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .dialog-close:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .dialog-content {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #3f51b5;
+            box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+        }
+        
+        @media screen and (max-width: 480px) {
+            #search-text {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+
+        .search-options {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .search-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .search-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #3f51b5;
         }
 
         div.flex {
             display: flex;
             align-items: center;
+            gap: 12px;
+        }
+
+        .dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #b2dfdb;
+            background-color: transparent;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            min-width: 100px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3f51b5 0%, #5c6bc0 100%);
+            color: #ffffff;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #3949ab 0%, #5e35b1 100%);
+            border: 2px solid #fff;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            color: #3f51b5;
+            border: 2px solid #3f51b5;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #3949ab;
+            border: 2px solid #3949ab;
         }
 
         #search-status {
-            padding-top: 1ex;
+            padding: 12px 0;
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .search-results {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+
+        .search-result-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
         }
 
         /* PAGES */
@@ -206,6 +514,45 @@
         div.searchHitList { position:absolute; }
         div.searchHit { position:absolute; pointer-events:none; outline: 1px solid hotpink; background-color: lightpink; mix-blend-mode: multiply; }
 
+        /* ICON HOVER EFFECTS */
+        
+        #menu-toggle {
+            transition: all 0.2s ease;
+        }
+        
+        #menu-toggle:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            padding: 2px;
+        }
+        
+        #menu-toggle:hover span {
+            background: #000 !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .icon-button {
+            transition: all 0.2s ease;
+        }
+        
+        .icon-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon-button:hover svg {
+            stroke: #000;
+            stroke-width: 2.5;
+        }
+        
+        .icon-button:active {
+            transform: scale(0.95);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
     </style>
     <script>
         let fileName = ""
@@ -221,7 +568,12 @@
 function show (elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
-    elements[index].style.display = 'block';
+    // Preserve original display style for menubar
+    if (elements[index].id === 'grid-menubar') {
+      elements[index].style.display = 'flex';
+    } else {
+      elements[index].style.display = 'block';
+    }
   }
 }
         function showHide(){
@@ -232,8 +584,11 @@ function show (elements) {
                show(document.getElementById('grid-menubar'))
                isShow = 1;
             }
-
-
+        }
+        
+        function closeSidebar(){
+            hide(document.getElementById('grid-sidebar'))
+            document.getElementById('grid-main').className = 'sidebarHidden';
         }
 
 
@@ -242,38 +597,110 @@ function show (elements) {
 
 <body>
 
-<p style="z-index:5; position:fixed; top:-10px; left:0;" onclick="showHide()">
-    	&hArr;
-</p>
+<button id="menu-toggle" onclick="showHide()" style="
+    z-index: 10;
+    position: fixed;
+    top: 13px;
+    left: 8px;
+    width: 16px;
+    height: 14px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+">
+    <span style="
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: #333;
+    "></span>
+    <span style="
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: #333;
+    "></span>
+    <span style="
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: #333;
+    "></span>
+</button>
 
 <div id="grid-menubar">
-    <div style="margin-left:20px;" class="menu">
+    <div class="menu">
         <div class="menu-button" onclick="document.getElementById('open-file-input').click()">
             Open...
         </div>
     </div>
 
     <div class="menu">
-        <div class="menu-button" onclick="documentViewer.toggleOutline()">[ O ]</div>
+        <button class="icon-button" onclick="documentViewer.toggleOutline()" title="Toggle Outline" style="
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        ">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+        </button>
     </div>
 
     <div class="menu">
-        <div class="menu-button" onclick="documentViewer.showSearchBox()">[ S ]</div>
+        <button class="icon-button" onclick="documentViewer.showSearchBox()" title="Search" style="
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        ">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
     </div>
 
     <div class="menu">
         <input min="1" max="100" onchange="if(fileName) documentViewer.openFile(fileName);"
                type="number" id="document-font-size" size="2" value="14"
-               style="height:20px;margin-top:4px;"/>
+               placeholder="Font size" title="Font Size"/>
     </div>
 
     <div class="menu">
         <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text"
-               id="document-width" size="3" value="500" style="height:20px;margin-top:4px;"/>
+               id="document-width" size="3" value="500" placeholder="Width" title="Document Width"/>
     </div>
     <div class="menu">
         <input onchange="if(fileName) documentViewer.openFile(fileName);" type="text"
-               id="document-height" size="3" value="650" style="height:20px;margin-top:4px;"/>
+               id="document-height" size="3" value="650" placeholder="Height" title="Document Height"/>
     </div>
 
 
@@ -281,6 +708,10 @@ function show (elements) {
 
 
 <div id="grid-sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-title">Outline</span>
+        <button class="sidebar-close" onclick="closeSidebar()" title="Close outline">×</button>
+    </div>
     <ul id="outline"></ul>
 </div>
 

@@ -526,10 +526,15 @@ class MupdfDocumentHandler {
 			return element.tagName === "CANVAS" && element.closest("div.page") != null
 		}
 
-		const searchDivInput = document.createElement("input")
-		searchDivInput.id = "search-text"
-		searchDivInput.type = "search"
-		searchDivInput.size = 40
+	const searchDivInput = document.createElement("input")
+	searchDivInput.id = "search-text"
+	searchDivInput.type = "search"
+	searchDivInput.size = 20
+	
+	// Adjust size for mobile devices
+	if (window.innerWidth <= 480) {
+		searchDivInput.size = 10
+	}
 		searchDivInput.addEventListener("input", () => {
 			let newNeedle = searchDivInput.value ?? ""
 			handler.setSearch(newNeedle)
@@ -538,24 +543,42 @@ class MupdfDocumentHandler {
 			if (event.key == "Enter")
 				handler.runSearch(event.shiftKey ? -1 : 1)
 		})
-		const ltButton = document.createElement("button")
-		ltButton.innerText = "<"
-		ltButton.addEventListener("click", () => handler.runSearch(-1))
-		const gtButton = document.createElement("button")
-		gtButton.innerText = ">"
-		gtButton.addEventListener("click", () => handler.runSearch(1))
-		const hideButton = document.createElement("button")
-		hideButton.innerText = "X"
-		hideButton.addEventListener("click", () => handler.hideSearchBox())
 		const searchStatusDiv = document.createElement("div")
 		searchStatusDiv.id = "search-status"
 		searchStatusDiv.innerText = "-"
 
-		const searchFlex = document.createElement("div")
-		searchFlex.classList = [ "flex" ]
-		searchFlex.append(searchDivInput, ltButton, gtButton, hideButton)
+	// Create search dialog header
+	const searchHeader = document.createElement("div")
+	searchHeader.classList.add("dialog-header")
+	
+	const searchTitle = document.createElement("h3")
+	searchTitle.classList.add("dialog-title")
+	searchTitle.textContent = "Search"
+	
+	const dialogCloseButton = document.createElement("button")
+	dialogCloseButton.classList.add("sidebar-close")
+	dialogCloseButton.innerHTML = "×"
+	dialogCloseButton.title = "Close search"
+	dialogCloseButton.addEventListener("click", () => handler.hideSearchBox())
+	
+	searchHeader.append(searchTitle, dialogCloseButton)
+	
+	const searchFlex = document.createElement("div")
+	searchFlex.classList = [ "flex" ]
+	const ltButton = document.createElement("button")
+	ltButton.classList.add("sidebar-close")
+	ltButton.innerText = "<"
+	ltButton.title = "Previous search result"
+	ltButton.addEventListener("click", () => handler.runSearch(-1))
+	const gtButton = document.createElement("button")
+	gtButton.classList.add("sidebar-close")
+	gtButton.innerText = ">"
+	gtButton.title = "Next search result"
+	gtButton.addEventListener("click", () => handler.runSearch(1))
+	
+	searchFlex.append(searchDivInput, ltButton, gtButton)
 
-		handler.searchDialogDiv.append(searchFlex, searchStatusDiv)
+	handler.searchDialogDiv.append(searchHeader, searchFlex, searchStatusDiv)
 
 		handler.searchStatusDiv = searchStatusDiv
 		handler.searchDivInput = searchDivInput
