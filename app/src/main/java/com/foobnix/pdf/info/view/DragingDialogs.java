@@ -1292,7 +1292,7 @@ public class DragingDialogs {
                         MyProgressBar1.setVisibility(View.GONE);
                         progressText.setText("");
 
-                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>", Html.FROM_HTML_MODE_LEGACY));
                         ttsSpeakPath.setOnClickListener(new OnClickListener() {
 
                             @Override
@@ -1302,7 +1302,7 @@ public class DragingDialogs {
                                     @Override
                                     public boolean onResultRecive(String nPath, Dialog dialog) {
                                         BookCSS.get().ttsSpeakPath = nPath;
-                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>", Html.FROM_HTML_MODE_LEGACY));
                                         dialog.dismiss();
                                         return false;
                                     }
@@ -2590,7 +2590,7 @@ public class DragingDialogs {
 
                                     try {
                                         TextView textView = (TextView) spinner.getChildAt(0);
-                                        textView.setTextAppearance(controller.getActivity(), R.style.textLinkStyle);
+                                        textView.setTextAppearance(R.style.textLinkStyle);
                                     } catch (Exception e) {
                                     }
 
@@ -2722,7 +2722,7 @@ public class DragingDialogs {
                 indicator.setVisibility(View.VISIBLE);
                 indicator.init();
 
-                indicator.setDividerColors(controller.getActivity().getResources().getColor(R.color.tint_divider));
+                indicator.setDividerColors(controller.getColor(R.color.tint_divider));
                 indicator.setSelectedIndicatorColors(Color.WHITE);
                 indicator.setBackgroundColor(TintUtil.color);
 
@@ -5701,7 +5701,7 @@ public class DragingDialogs {
                                 IMG.clearDiscCache();
 
                                 if (AppState.get().isUseBGImageDay) {
-                                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
+                                    textDayColor.setBackground(MagicHelper.getBgImageDayDrawable(true));
                                 }
                             }
                         });
@@ -5727,7 +5727,7 @@ public class DragingDialogs {
                                 AppState.get().colorNigthBg = colorBg;
 
                                 if (AppState.get().isUseBGImageNight) {
-                                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
+                                    textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(true));
                                 }
 
                             }
@@ -5747,12 +5747,12 @@ public class DragingDialogs {
 
                 if (AppState.get().isUseBGImageDay) {
                     textDayColor.setTextColor(Color.BLACK);
-                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
+                    textDayColor.setBackground(MagicHelper.getBgImageDayDrawable(true));
 
                 }
                 if (AppState.get().isUseBGImageNight) {
                     textNigthColor.setTextColor(Color.WHITE);
-                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
+                    textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(true));
                 }
 
 // lc.setVisibility(controller.isTextFormat() ||
@@ -5842,7 +5842,7 @@ public class DragingDialogs {
                                     AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
                                     textDayColor.setTextColor(Color.BLACK);
-                                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
+                                    textDayColor.setBackground(MagicHelper.getBgImageDayDrawable(false));
                                     AppState.get().isUseBGImageDay = true;
 
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
@@ -5871,7 +5871,7 @@ public class DragingDialogs {
                                     AppState.get().colorNigthBg = AppState.COLOR_BLACK;
 
                                     textNigthColor.setTextColor(Color.WHITE);
-                                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
+                                    textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(false));
                                     AppState.get().isUseBGImageNight = true;
                                     TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
 

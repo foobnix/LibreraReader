@@ -141,6 +141,10 @@ public abstract class DocumentController {
         return ContextCompat.getDrawable(activity, res);
     }
 
+    public int getColor(int res) {
+        return ContextCompat.getColor(activity, res);
+    }
+
     public void resetReadTimer() {
         readTimeStart = System.currentTimeMillis();
         LOG.d("resetReadTimer");
