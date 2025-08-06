@@ -287,13 +287,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    proImplementation project(':pro')
-    fdroidImplementation project(':pro')
-    implementation project(':smartreflow')
+    proImplementation project(':libPro')
+    fdroidImplementation project(':libPro')
+    implementation project(':libReflow')
 
     //compose
-    implementation 'androidx.compose.ui:ui'
-    implementation project(":googleDrive")
+
+    implementation project(':appLibDrive')
 
 
 /** AndroidX **/

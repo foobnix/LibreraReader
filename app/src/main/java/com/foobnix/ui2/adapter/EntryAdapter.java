@@ -71,7 +71,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         if (TxtUtils.isNotEmpty(body)) {
             holder.content.setVisibility(View.VISIBLE);
             String text = TxtUtils.replaceLast(body, "\n", "");
-            holder.content.setText(Html.fromHtml(text));
+            holder.content.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
 
             if (body.length() >= 200) {
                 holder.expand.setVisibility(View.VISIBLE);
@@ -184,7 +184,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     public void onClick(View v) {
                         if (TxtUtils.isNotEmpty(search.toString())) {
                             String encode = Urls.encode(search.getText().toString());
-                            encode = encode.replace(" ","+");
+                            encode = encode.replace(" ", "+");
 
                             String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
                             Link l = new Link(replace);
@@ -290,7 +290,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     } else {
                         t.setVisibility(View.GONE);
                     }
-                    t.setTextColor(context.getResources().getColor(R.color.tint_blue));
+                    t.setTextColor(ContextCompat.getColor(context, R.color.tint_blue));
 
                     if (AppState.get().isUiTextColor) {
                         TintUtil.setUITextColor(t, AppState.get().uiTextColor);

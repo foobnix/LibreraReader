@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.foobnix.LibreraBuildConfig;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -30,7 +30,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
-import com.foobnix.ext.PdfExtract;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
@@ -43,7 +42,6 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
@@ -58,9 +56,6 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
-
-import com.foobnix.LibreraApp;
-
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -368,7 +363,7 @@ public class FileInformationDialog {
                 doc.recycle();
 
                 String text = TxtUtils.replaceLast(meta.toString(), "<br>", "");
-                metaTagsInfo.setText(Html.fromHtml(text));
+                metaTagsInfo.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
 
             } catch (Exception e) {
                 LOG.e(e);
@@ -539,7 +534,7 @@ public class FileInformationDialog {
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
-        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(),true, author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
+        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(), true, author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
             PdfContext codecContex = new PdfContext();
             CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
             doc.setMeta(key, result);

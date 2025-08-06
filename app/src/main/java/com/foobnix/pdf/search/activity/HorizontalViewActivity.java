@@ -126,7 +126,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
-    View  bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
+    View bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor, adFrame;
@@ -1208,7 +1208,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
 
-    }    Runnable flippingRunnable = new Runnable() {
+    }
+
+    Runnable flippingRunnable = new Runnable() {
 
         @Override
         public void run() {
@@ -1380,7 +1382,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onPageFlip1.setVisibility(View.VISIBLE);
         onPageFlip1.setImageResource(R.drawable.glyphicons_174_pause);
-    }    Runnable updateTimePower = new Runnable() {
+    }
+
+    Runnable updateTimePower = new Runnable() {
 
         @Override
         public void run() {
@@ -1605,7 +1609,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         lastClick = System.currentTimeMillis();
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
-    }    Runnable onRefresh = new Runnable() {
+    }
+
+    Runnable onRefresh = new Runnable() {
 
         @Override
         public void run() {
@@ -1700,7 +1706,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             TTSService.playPause(HorizontalViewActivity.this, dc);
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SHARE_PAGE)) {
 
-            ExtUtils.sharePage(dc,dc.getCurentPage());
+            ExtUtils.sharePage(dc, dc.getCurentPage());
 
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SELECTED_TEXT)) {
             if (dc.isTextFormat() && TxtUtils.isFooterNote(AppState.get().selectedText)) {
@@ -1975,7 +1981,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         return super.onCreateView(parent, name, context, attrs);
-    }    public View.OnClickListener onBookmarks = new View.OnClickListener() {
+    }
+
+    public View.OnClickListener onBookmarks = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
@@ -2216,20 +2224,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
-        LOG.d("getChildCount", anchor.getChildCount(),anchor.getVisibility()==View.VISIBLE, keyCode, isMyKey);
+        LOG.d("getChildCount", anchor.getChildCount(), anchor.getVisibility() == View.VISIBLE, keyCode, isMyKey);
         if (isMyKey) {
             return true;
         }
 
-        if (anchor.getVisibility()==View.VISIBLE &&
+        if (anchor.getVisibility() == View.VISIBLE &&
                 (KeyEvent.KEYCODE_ESCAPE == keyCode ||
-                KeyEvent.KEYCODE_BACK == keyCode)
+                        KeyEvent.KEYCODE_BACK == keyCode)
         ) {
             closeDialog();
             return true;
         }
 
-        if (anchor.getVisibility()==View.VISIBLE){
+        if (anchor.getVisibility() == View.VISIBLE) {
             return false;
         }
 
@@ -2420,7 +2428,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return true;
         }
         return false;
-    }    View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+    }
+
+    View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(final View arg0) {
@@ -2479,16 +2489,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     private void updateAnimation(final TranslateAnimation a) {
         a.setDuration(250);
     }
-
-
-
-
-
-
-
-
-
-
 
 
     SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {

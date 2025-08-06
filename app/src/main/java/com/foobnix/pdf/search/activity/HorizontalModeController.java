@@ -153,7 +153,7 @@ public abstract class HorizontalModeController extends DocumentController {
         } else if (pagesCount > 0) {
             currentPage = bs.getCurrentPage(getPageCount()).viewIndex;
         }
-        if(AppState.get().isAlwaysOpenOnPage1){
+        if (AppState.get().isAlwaysOpenOnPage1) {
             currentPage = 0;
         }
 
@@ -352,7 +352,7 @@ public abstract class HorizontalModeController extends DocumentController {
             return codeDocument.getPage(page).getPageLinks();
         } catch (Exception e) {
             LOG.e(e);
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 
@@ -421,7 +421,7 @@ public abstract class HorizontalModeController extends DocumentController {
             return codeDocument.getMediaAttachments();
         } catch (Exception e) {
             LOG.e(e);
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 

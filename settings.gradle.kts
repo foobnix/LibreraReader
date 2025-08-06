@@ -30,9 +30,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Librera"
 include(":app")
-include(":pro")
-include(":smartreflow")
-include(":Builder")
-
+include(":libPro")
+include(":libReflow")
 include(":appCompose")
-include(":googleDrive")
+include(":appLibDrive")
+
+include(":Builder")

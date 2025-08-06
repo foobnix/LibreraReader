@@ -32,6 +32,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -499,7 +501,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                     | Intent.FLAG_GRANT_WRITE_URI_PERMISSION//
                             );
 
-                            getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
+                            ActivityCompat.startActivityForResult(getActivity(), intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE, new Bundle());
                             return true;
                         }
                     }).setIcon(R.drawable.glyphicons_145_folder_open);
@@ -1087,7 +1089,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             TextView slash = new TextView(getActivity());
             slash.setText(id);
-            slash.setTextColor(getResources().getColor(R.color.white));
+            slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
             paths.addView(slash);
         } else {
 
@@ -1103,7 +1105,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             } else {
                 nameView.setText(name + ":");
             }
-            nameView.setTextColor(getResources().getColor(R.color.white));
+            nameView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
             nameView.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -1116,7 +1118,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             if (split.length == 0 && Clouds.isCloud(displayPath)) {
                 TextView logout = new TextView(getActivity());
                 logout.setText(TxtUtils.underline(getActivity().getString(R.string.logout)));
-                logout.setTextColor(getResources().getColor(R.color.white));
+                logout.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                 logout.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1161,12 +1163,12 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
                 TextView slash = new TextView(getActivity());
                 slash.setText(" / ");
-                slash.setTextColor(getResources().getColor(R.color.white));
+                slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
 
                 TextView item = new TextView(getActivity());
                 item.setText(part);
                 item.setGravity(Gravity.CENTER);
-                item.setTextColor(getResources().getColor(R.color.white));
+                item.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                 item.setSingleLine();
                 TypedValue outValue = new TypedValue();
                 getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
@@ -1242,7 +1244,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             } else {
                 stub.setText(" (" + itemsCount + ") ");
             }
-            stub.setTextColor(getResources().getColor(R.color.white));
+            stub.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
             stub.setSingleLine();
             paths.addView(stub);
 

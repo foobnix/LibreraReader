@@ -86,7 +86,7 @@ public class Fb2Extractor extends BaseExtractor {
             "   \n" + //
             " </navMap>\n" + //
             "</ncx>";//
-    public static Map<Integer, String> epub3Pages = new HashMap();
+    public static Map<Integer, String> epub3Pages = new HashMap<>();
     static Fb2Extractor inst = new Fb2Extractor();
     static Pattern pattern = Pattern.compile("<a id=\"page(\\d+)\"");
     public Map<String, String> genresRus = new HashMap<>();
@@ -293,8 +293,8 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-             boolean isProcess = AppState.get().isEnableTextReplacement ||
-                            (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
+            boolean isProcess = AppState.get().isEnableTextReplacement ||
+                    (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
             if (isProcess) {
                 line = HypenUtils.applyHypnes(line, replacements);
             }

@@ -80,10 +80,9 @@ kotlin {
 
 dependencies {
 
+    implementation(project(":appLibDrive"))
     // Firebase BOM
 
-
-    implementation(project(":googleDrive"))
 
     //BOM begin
     implementation(platform("androidx.compose:compose-bom:2025.07.00"))

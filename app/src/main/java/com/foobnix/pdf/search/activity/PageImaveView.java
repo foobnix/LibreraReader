@@ -184,7 +184,7 @@ public class PageImaveView extends View {
 
     public synchronized Pair<List<PageLink>, List<Annotation>> getPageLinks(int number) {
         if (AppSP.get().isCut || AppSP.get().isCrop) {
-            return new Pair(Collections.emptyList(), Collections.emptyList());
+            return new Pair<>(Collections.emptyList(), Collections.emptyList());
         }
         return getPageLinksInner(number);
 
@@ -228,7 +228,7 @@ public class PageImaveView extends View {
             if (a == null) {
                 a = Collections.emptyList();
             }
-            return new Pair(t, a);
+            return new Pair<>(t, a);
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -580,7 +580,7 @@ public class PageImaveView extends View {
             }
         }
 
-        return new Pair(p, a);
+        return new Pair<>(p, a);
 
     }
 

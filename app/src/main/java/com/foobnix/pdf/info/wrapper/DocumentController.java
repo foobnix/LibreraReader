@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -133,6 +135,10 @@ public abstract class DocumentController {
         TTSEngine.get().mp3Destroy();
         resetReadTimer();
         LOG.d("readTimeStart");
+    }
+
+    public Drawable getDrawable(int res) {
+        return ContextCompat.getDrawable(activity, res);
     }
 
     public void resetReadTimer() {

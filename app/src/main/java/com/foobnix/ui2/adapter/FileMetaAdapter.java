@@ -642,7 +642,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.tags.removeAllViews();
                 for (final String tag : StringDB.asList(fileMeta.getTag())) {
                     TextView t = new TextView(holder.tags.getContext());
-                    t.setTextAppearance(holder.tags.getContext(), R.style.textLink);
+                    t.setTextAppearance(R.style.textLink);
                     TxtUtils.bold(t);
                     t.setText(tag + " ");
                     t.setSingleLine();

@@ -17,6 +17,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -25,6 +26,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -32,8 +34,6 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.MainTabs2;
-
-import com.foobnix.LibreraApp;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -56,8 +56,8 @@ public class IMG {
 
         IMG.context = context;
 
-        bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
-        bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
+        bookBGWithMark = ContextCompat.getDrawable(context, R.drawable.bookeffect2);
+        bookBGNoMark = ContextCompat.getDrawable(context, R.drawable.bookeffect1);
 
     }
 
