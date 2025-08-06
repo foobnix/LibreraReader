@@ -82,11 +82,20 @@ android {
         }
     }
 
-    //compileOptions {
-        //coreLibraryDesugaringEnabled true
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
 
-        //sourceCompatibility JavaVersion.VERSION_1_8
-        //targetCompatibility JavaVersion.VERSION_1_8
+    //compileOptions {
+    //coreLibraryDesugaringEnabled true
+
+    //sourceCompatibility JavaVersion.VERSION_1_8
+    //targetCompatibility JavaVersion.VERSION_1_8
     //}
 
     splits {
@@ -446,16 +455,7 @@ task incVersion() {
 if (!taskName.contains("Fdroid")) {
     dependencies {
         implementation "com.github.junrar:junrar:4.0.0"
-
-        /** Google Drive Sync **/
-        implementation 'com.google.http-client:google-http-client-gson:1.42.2'
-        implementation 'com.google.android.gms:play-services-auth:20.3.0'
-        implementation('com.google.api-client:google-api-client-android:1.30.2') {
-            exclude group: 'org.apache.httpcomponents'
-        }
-        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
-            exclude group: 'org.apache.httpcomponents'
-        }
+        implementation project(":googleDrive")
     }
 }
 

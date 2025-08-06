@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -2281,7 +2280,7 @@ public class PrefFragment2 extends UIFragment {
             for (String color : AppState.ACCENT_COLORS) {
                 final int intColor = Color.parseColor(color);
                 if (AppState.get().appTheme == AppState.THEME_LIGHT
-                    || AppState.get().appTheme == AppState.THEME_INK) {
+                        || AppState.get().appTheme == AppState.THEME_INK) {
                     if (intColor == Color.WHITE) {
                         continue;
                     }

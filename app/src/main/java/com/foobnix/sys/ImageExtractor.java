@@ -286,7 +286,7 @@ public class ImageExtractor {
                         return BitmapFactory.decodeResource(LibreraApp.context.getResources(), R.drawable.gitbook);
                     }
                 }
-                List<FileMeta> list = new ArrayList();
+                List<FileMeta> list = new ArrayList<>();
                 for (File file : listFiles) {
                     list.add(new FileMeta(file.getPath()));
                 }

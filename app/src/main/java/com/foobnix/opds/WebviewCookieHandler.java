@@ -1,11 +1,8 @@
 package com.foobnix.opds;
 
-import android.os.Build;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.IMG;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,9 +18,6 @@ public final class WebviewCookieHandler implements CookieJar {
 
     public WebviewCookieHandler() {
         try {
-            if (Build.VERSION.SDK_INT <= 19) {
-                CookieSyncManager.createInstance(IMG.context);
-            }
             webviewCookieManager = CookieManager.getInstance();
         } catch (Exception e) {
             LOG.e(e);

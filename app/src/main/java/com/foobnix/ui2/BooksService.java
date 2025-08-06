@@ -42,7 +42,6 @@ import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -189,11 +188,8 @@ public class BooksService extends IntentService {
                         AppSP.get().syncTime = System.currentTimeMillis();
                         AppSP.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
-                    } catch (UserRecoverableAuthIOException e) {
-                        GFile.logout(this);
-                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
-                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                     } catch (Exception e) {
+                        GFile.logout(this);
                         AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                         LOG.e(e);
@@ -259,7 +255,7 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService","STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
+                    LOG.d("BooksService", "STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 

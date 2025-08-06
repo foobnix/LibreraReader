@@ -22,8 +22,8 @@ public class SmartReflow implements SmartReflowInterface {
     public boolean isDrawResultUsingWords = true;
     float averageTop = 0;
     int averageTopCount = 0;
-    List<Column> columns = new ArrayList();
-    List<Line> lines = new ArrayList();
+    List<Column> columns = new ArrayList<>();
+    List<Line> lines = new ArrayList<>();
     List<Word> words = new ArrayList<Word>();
     List<Word> wordsLong = new ArrayList<Word>();
     boolean isDrawResult = true;
