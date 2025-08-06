@@ -137,6 +137,12 @@ class GoogleSingInViewModel() : ViewModel() {
         }
     }
 
+    fun gdirveSingIn(context: Context) {
+
+
+    }
+
+
     suspend fun signOut(context: Context) {
         val auth = Firebase.auth
 
