@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
+
+    <androidx.compose.ui.platform.ComposeView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/compose_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
     <LinearLayout
@@ -13,12 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/panel_padding"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ImageView
             android:visibility="visible"
             android:contentDescription="@string/cd_application_menu"
-                android:id="@+id/menu2"
+            android:id="@+id/menu2"
             android:padding="4dip"
             android:background="@drawable/bg_search_edit"
             android:adjustViewBounds="true"
@@ -29,14 +35,13 @@
             android:src="@drawable/glyphicons_600_menu" />
 
 
-
         <RelativeLayout
             android:layout_marginLeft="2dip"
             android:layout_marginRight="2dip"
             android:layout_width="match_parent"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="1"
-            android:focusableInTouchMode="true" >
+            android:focusableInTouchMode="true">
 
             <AutoCompleteTextView
                 android:id="@+id/filterLine"
@@ -107,7 +112,7 @@
             android:layout_height="@dimen/wh_button"
             android:background="@drawable/bg_search_second"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:contentDescription="@string/cd_sort_results"
@@ -167,8 +172,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-     >
+        android:layout_height="match_parent">
 
         <com.foobnix.ui2.fast.FastScrollRecyclerView
             android:id="@+id/recyclerView"
@@ -179,8 +183,7 @@
             app:handleColor="#999999"
             app:hideScrollbar="true"
             app:showTrack="false"
-            app:trackColor="#bbbbbb" >
-        </com.foobnix.ui2.fast.FastScrollRecyclerView>
+            app:trackColor="#bbbbbb"></com.foobnix.ui2.fast.FastScrollRecyclerView>
     </FrameLayout>
 
 </LinearLayout>

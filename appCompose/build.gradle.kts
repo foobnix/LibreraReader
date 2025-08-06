@@ -50,6 +50,26 @@ android {
     room {
         schemaDirectory("$projectDir/schemas")
     }
+
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/DEPENDENCIES",
+                "META-INF/NOTICE",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE.txt",
+                "META-INF/INDEX.LIST",
+                "META-INF/io.netty.versions.properties"
+            )
+            pickFirsts += setOf(
+                "google/protobuf/*.proto",
+                "META-INF/services/io.grpc.LoadBalancerProvider",
+                "META-INF/services/io.grpc.ManagedChannelProvider",
+                "META-INF/services/io.grpc.NameResolverProvider"
+            )
+        }
+    }
 }
 
 kotlin {
@@ -60,29 +80,10 @@ kotlin {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    //implementation("com.google.firebase:firebase-database") realtime
-    implementation("com.google.firebase:firebase-storage")
+    // Firebase BOM
 
-    implementation("androidx.credentials:credentials:1.5.0")
-    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
-    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
-    //google drive
-    implementation("com.google.android.gms:play-services-auth:21.4.0")
-    implementation("com.google.api-client:google-api-client-android:2.8.0") {
-        exclude(group = "org.apache.httpcomponents")
-    }
-    implementation("com.google.http-client:google-http-client-gson:1.47.1") {
-        exclude(group = "org.apache.httpcomponents")
-    }
-    implementation("com.google.apis:google-api-services-drive:v3-rev20230822-2.0.0") {
-        exclude(group = "org.apache.httpcomponents")
-    }
-    //end google drive
-
+    implementation(project(":googleDrive"))
 
     //BOM begin
     implementation(platform("androidx.compose:compose-bom:2025.07.00"))
@@ -94,25 +95,23 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     //BOM end
 
-    implementation("androidx.datastore:datastore:1.1.7")
-    implementation("androidx.datastore:datastore-preferences:1.1.7")
 
     implementation("androidx.activity:activity-compose:1.10.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
+    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.navigation:navigation-compose:2.9.3")
+
 
     implementation("io.coil-kt.coil3:coil-compose:3.3.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
     implementation("com.squareup.okhttp3:okhttp:5.1.0")
 
 
-    implementation("androidx.core:core-ktx:1.16.0")
-
-    implementation("androidx.navigation:navigation-compose:2.9.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-
-
+    implementation("androidx.datastore:datastore:1.1.7")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
 
 
     implementation(platform("io.insert-koin:koin-bom:4.1.0"))
@@ -137,13 +136,13 @@ dependencies {
 
     implementation("net.java.dev.jna:jna:5.17.0@aar")
 
-    implementation("io.github.vinceglb:filekit-dialogs:0.10.0-beta04")
-    implementation("io.github.vinceglb:filekit-dialogs-compose:0.10.0-beta04")
+    implementation("io.github.vinceglb:filekit-dialogs:0.10.0")
+    implementation("io.github.vinceglb:filekit-dialogs-compose:0.10.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")

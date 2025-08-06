@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.booksync
+package mobi.librera.lib.gdrive
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,20 +17,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.launch
-import mobi.librera.lib.gdrive.GoogleSignInButton
-import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 fun GoogleSignInScreen(
+    clientId: String
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
 
-    val viewModel: GoogleSingInViewModel = koinViewModel()
+    val viewModel: GoogleSingInViewModel = viewModel()
     val singInState by viewModel.singInState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -42,7 +42,7 @@ fun GoogleSignInScreen(
             GoogleSignInButton(
                 "Sing in with Google", onClick = {
                     scope.launch {
-                        viewModel.signInWithGoogle(context)
+                        viewModel.signInWithGoogle(context, clientId)
                     }
                 })
         }

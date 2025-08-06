@@ -1,4 +1,4 @@
-package mobi.librera.appcompose.components
+package mobi.librera.lib.gdrive
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -14,10 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import mobi.librera.appcompose.R
-import mobi.librera.appcompose.ui.theme.LibreraTheme
+import com.foobnix.googledrive.R
 
 @Composable
 fun GoogleSignInButton(
@@ -50,11 +48,4 @@ fun GoogleSignInButton(
     }
 }
 
-@Preview
-@Composable
-fun Preview() {
-    LibreraTheme {
-        GoogleSignInButton("Hello", onClick = {})
-    }
-}
 

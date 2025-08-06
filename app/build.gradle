@@ -81,12 +81,16 @@ android {
             debuggable = true
         }
     }
+    buildFeatures {
+        compose true
+    }
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    
+
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
@@ -287,6 +291,10 @@ dependencies {
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
 
+    //compose
+    implementation 'androidx.compose.ui:ui'
+    implementation project(":googleDrive")
+
 
 /** AndroidX **/
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -455,7 +463,7 @@ task incVersion() {
 if (!taskName.contains("Fdroid")) {
     dependencies {
         implementation "com.github.junrar:junrar:4.0.0"
-        implementation project(":googleDrive")
+
     }
 }
 
