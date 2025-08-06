@@ -13,6 +13,7 @@
 /smartreflow/bin/
 /pro/bin/
 /app/bin/
+/bin
 /Builder/.vscode/
 /Builder/mupdf*
 /docs/Gemfile

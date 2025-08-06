@@ -21,10 +21,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-// TODO: These imports should be injected or passed as parameters to avoid circular dependency
-// import mobi.librera.appcompose.App
-// import mobi.librera.appcompose.R
-// import mobi.librera.appcompose.room.BookRepository
 
 data class User(val name: String, val email: String, val photoUrl: Uri?)
 

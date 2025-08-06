@@ -6,16 +6,11 @@ object GoogleSignInComposeHelper {
 
     @JvmStatic
     fun createSimpleGoogleSignInButton(
-        composeView: ComposeView,
-        buttonText: String,
-        onSignInClick: Runnable
+        composeView: ComposeView, clientId: String
     ) {
         composeView.setContent {
-            GoogleSignInButton(
-                text = buttonText,
-                onClick = {
-                    onSignInClick.run()
-                }
+            GoogleSignInScreen(
+                clientId
             )
         }
     }

@@ -363,12 +363,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         ComposeView composeView = (ComposeView) view.findViewById(R.id.compose_view);
 
         GoogleSignInComposeHelper.createSimpleGoogleSignInButton(
-                composeView,
-                "Sign in with Google",
-                () -> {
-                    // Handle sign-in click
-                    LOG.d("Google Sign-In button clicked");
-                }
+                composeView, getString(R.string.default_web_client_id)
+
         );
 
         secondTopPanel = view.findViewById(R.id.secondTopPanel);

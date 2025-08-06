@@ -49,7 +49,8 @@ fun GoogleSignInScreen(
 
         is SingInState.Success -> {
             Row(
-                verticalAlignment = Alignment.Top,
+                modifier = Modifier.padding(4.dp),
+                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
             ) {
                 AsyncImage(
@@ -63,13 +64,15 @@ fun GoogleSignInScreen(
                     Text(state.user.name)
                     Text(state.user.email)
                 }
+
+                GoogleSignInButton(
+                    "Sing out", onClick = {
+                        scope.launch {
+                            viewModel.signOut(context)
+                        }
+                    })
             }
-            GoogleSignInButton(
-                "Sing out", onClick = {
-                    scope.launch {
-                        viewModel.signOut(context)
-                    }
-                })
+
         }
 
         is SingInState.Error -> {
