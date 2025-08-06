@@ -65,6 +65,19 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
+    //google drive
+    implementation("com.google.android.gms:play-services-auth:21.4.0")
+    implementation("com.google.api-client:google-api-client-android:2.8.0") {
+        exclude(group = "org.apache.httpcomponents")
+    }
+    implementation("com.google.http-client:google-http-client-gson:1.47.1") {
+        exclude(group = "org.apache.httpcomponents")
+    }
+    implementation("com.google.apis:google-api-services-drive:v3-rev20230822-2.0.0") {
+        exclude(group = "org.apache.httpcomponents")
+    }
+    //end google drive
+
 
     //BOM begin
     implementation(platform("androidx.compose:compose-bom:2025.07.00"))
@@ -90,7 +103,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.16.0")
 
-    implementation("androidx.navigation:navigation-compose:2.9.2")
+    implementation("androidx.navigation:navigation-compose:2.9.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
 
