@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -25,7 +26,6 @@ import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
@@ -34,7 +34,6 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.widget.TTSWidget;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
@@ -76,7 +75,7 @@ public class TTSNotification {
     @TargetApi(26)
     public static void initChannels(Context context) {
         TTSNotification.context = context;
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
 
         if (Build.VERSION.SDK_INT < 26) {
             return;

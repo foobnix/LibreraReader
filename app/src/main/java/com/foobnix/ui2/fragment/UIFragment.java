@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -43,7 +45,6 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import com.foobnix.ui2.fast.FastScrollStateChangeListener;
 
-import com.foobnix.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -79,7 +80,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -137,7 +138,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     public abstract void resetFragment();
 
-    public void onDoubleClick(){
+    public void onDoubleClick() {
 
     }
 

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -62,7 +63,7 @@ public class ColorsDialog {
         super();
         final View view = LayoutInflater.from(c).inflate(R.layout.dialog_colors, null, false);
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
 
         int colorText = magicBlackColor(colorTextDef);
         int colorBg = magicBlackColor(colorBgDef);

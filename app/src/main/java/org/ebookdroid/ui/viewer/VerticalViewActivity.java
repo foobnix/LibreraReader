@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -20,7 +21,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
@@ -159,7 +159,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         // ADS.activate(this, adView);
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
 
         getController().onBookLoaded(new Runnable() {
 
@@ -176,8 +176,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
             }
         });
-
-
 
 
     }

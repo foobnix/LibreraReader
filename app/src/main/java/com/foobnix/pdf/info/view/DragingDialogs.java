@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.text.Html;
 import android.text.format.DateFormat;
@@ -1521,7 +1522,7 @@ public class DragingDialogs {
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
 
-                final Handler hMessage = new Handler() {
+                final Handler hMessage = new Handler(Looper.getMainLooper()) {
                     @Override
                     public void handleMessage(android.os.Message msg) {
                         int pageNumber = msg.what;
@@ -1587,7 +1588,7 @@ public class DragingDialogs {
                                 searchString = matcher.group(1);
                                 firstPage = Integer.parseInt(matcher.group(2));
                                 lastPage = Integer.parseInt(matcher.group(3));
-                            }else{
+                            } else {
                                 Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -1626,7 +1627,7 @@ public class DragingDialogs {
                                 hMessage.sendEmptyMessage(pageNumber);
                                 return false;
                             }
-                        }, firstPage-1, lastPage);
+                        }, firstPage - 1, lastPage);
                     }
                 });
 

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -321,7 +322,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         isEink = Dips.isEInk();
 
         TintUtil.setStatusBarColor(this);

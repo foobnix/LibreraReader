@@ -2,22 +2,19 @@ package com.foobnix.pdf.info;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdView;
-
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-
-import com.foobnix.LibreraApp;
-import com.google.android.ump.ConsentInformation;
-import com.google.android.ump.UserMessagingPlatform;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +29,7 @@ public class MyADSProvider {
     private Activity a;
 
     public void createHandler() {
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         try {
             Class.forName("android.os.AsyncTask");
         } catch (Throwable ignore) {
@@ -51,7 +48,7 @@ public class MyADSProvider {
 //            LOG.d("ADS, can not Request Ads");
 //            return;
 //        }
-          LOG.d("ADS, can Request Ads");
+        LOG.d("ADS, can Request Ads");
 
 
         if (withInterstitial) {

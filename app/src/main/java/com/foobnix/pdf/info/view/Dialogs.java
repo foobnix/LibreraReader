@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -48,7 +49,6 @@ import com.foobnix.android.utils.Views;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
-import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
@@ -937,7 +937,7 @@ public class Dialogs {
         l.setPadding(Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5), Dips.dpToPx(5));
         l.setOrientation(LinearLayout.VERTICAL);
 
-        final Handler handler = new Handler();
+        final Handler handler = new Handler(Looper.getMainLooper());
 
         final Runnable actionWrapper = new Runnable() {
 

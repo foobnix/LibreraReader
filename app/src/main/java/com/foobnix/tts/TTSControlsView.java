@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -180,7 +180,7 @@ public class TTSControlsView extends FrameLayout {
             }
         });
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         seekMp3 = (SeekBar) view.findViewById(R.id.seekMp3);
         seekCurrent = (TextView) view.findViewById(R.id.seekCurrent);
         seekMax = (TextView) view.findViewById(R.id.seekMax);

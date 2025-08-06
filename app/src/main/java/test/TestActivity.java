@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -29,7 +30,8 @@ public class TestActivity extends Activity implements View.OnTouchListener,
     static int dx = 0;
     static int dy = 0;
     ScaleGestureDetector scaleGestureDetector;
-    static float zoom =1;
+    static float zoom = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class TestActivity extends Activity implements View.OnTouchListener,
 
         setContentView(mSurface);
 
-        Handler h = new Handler();
+        Handler h = new Handler(Looper.getMainLooper());
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -49,10 +51,10 @@ public class TestActivity extends Activity implements View.OnTouchListener,
             }
         }, 200);
 
-         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.OnScaleGestureListener() {
+        scaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.OnScaleGestureListener() {
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
-                zoom =zoom* detector.getScaleFactor();
+                zoom = zoom * detector.getScaleFactor();
                 LOG.d("ScaleGestureDetector onScale", detector.getScaleFactor(), detector.getCurrentSpan(), detector.getPreviousSpan());
 
                 return true;
@@ -79,7 +81,6 @@ public class TestActivity extends Activity implements View.OnTouchListener,
     int initX, initY;
 
 
-
     public boolean onTouch(View v, MotionEvent event) {
         boolean res = scaleGestureDetector.onTouchEvent(event);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -89,8 +90,8 @@ public class TestActivity extends Activity implements View.OnTouchListener,
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             // mThread.addItem((int) event.getX(), (int) event.getY());
-            dx = (int) event.getX()-initX;
-            dy = (int)event.getY()-initY;
+            dx = (int) event.getX() - initX;
+            dy = (int) event.getY() - initY;
         }
         return res;
     }
@@ -200,12 +201,12 @@ public class TestActivity extends Activity implements View.OnTouchListener,
                     // Clear Canvas first
                     c.drawColor(Color.BLACK);
 
-                    c.translate(dx*3,dy*3);
-                    c.scale(zoom,zoom);
+                    c.translate(dx * 3, dy * 3);
+                    c.scale(zoom, zoom);
                     //c.getMatrix().postTranslate(dx,dy);
                     //c.getMatrix().preScale(2,2);
 
-                    c.drawRect(1,1,mDrawingWidth-1, mDrawingHeight-1,bPaint);
+                    c.drawRect(1, 1, mDrawingWidth - 1, mDrawingHeight - 1, bPaint);
 
                     // Draw each item
                     for (DrawingItem item : mLocations) {
@@ -228,7 +229,6 @@ public class TestActivity extends Activity implements View.OnTouchListener,
 
 
                     c.restore();
-
 
 
                     // Release to be rendered to the screen

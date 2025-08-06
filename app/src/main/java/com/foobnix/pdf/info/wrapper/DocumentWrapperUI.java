@@ -8,11 +8,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -94,8 +94,8 @@ import java.util.concurrent.TimeUnit;
 public class DocumentWrapperUI {
 
     final DocumentController dc;
-    final Handler handler = new Handler();
-    final Handler handlerTimer = new Handler();
+    final Handler handler = new Handler(Looper.getMainLooper());
+    final Handler handlerTimer = new Handler(Looper.getMainLooper());
 
 
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
@@ -1426,8 +1426,8 @@ public class DocumentWrapperUI {
 
 
             //line1.getBackground().
-            TintUtil.setStrokeColorWithDash(line1,tintColor);
-            TintUtil.setStrokeColorWithDash(line2,tintColor);
+            TintUtil.setStrokeColorWithDash(line1, tintColor);
+            TintUtil.setStrokeColorWithDash(line2, tintColor);
 
 
         } catch (Exception e) {
@@ -1717,7 +1717,7 @@ public class DocumentWrapperUI {
         menuLayout.setVisibility(View.GONE);
         bottomBar.setVisibility(View.GONE);
         //adFrame.setVisibility(View.GONE);
-       // adFrame.setClickable(false);
+        // adFrame.setClickable(false);
         imageMenuArrow.setImageResource(android.R.drawable.arrow_down_float);
 
         // speedSeekBar.setVisibility(View.GONE);
@@ -1749,8 +1749,8 @@ public class DocumentWrapperUI {
 
         bottomBar.setVisibility(View.VISIBLE);
         //adFrame.setVisibility(View.VISIBLE);
-       // adFrame.setClickable(true);
-       // adFrame.setTag(null);
+        // adFrame.setClickable(true);
+        // adFrame.setTag(null);
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
 
@@ -1801,8 +1801,8 @@ public class DocumentWrapperUI {
     }
 
     public void hideAds() {
-       // adFrame.setTag("");
-      //  adFrame.setVisibility(View.GONE);
+        // adFrame.setTag("");
+        //  adFrame.setVisibility(View.GONE);
     }
 
     public void nextChose(boolean animate) {

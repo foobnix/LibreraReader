@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -99,7 +100,7 @@ public class BooksService extends IntentService {
 
     public BooksService() {
         super("BooksService");
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         LOG.d("BooksService", "Create");
     }
 

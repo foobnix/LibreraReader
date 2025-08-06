@@ -15,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
@@ -1147,10 +1148,10 @@ public class ExtUtils {
     }
 
 
-
     public static void sharePage(final DocumentController dc, int page) {
         sharePage(dc.getActivity(), dc.getCurrentBook(), page, dc.getPageUrl(page).toString());
     }
+
     private static void sharePage(final Activity a, final File file, int page, String pageUrl) {
 
 
@@ -1421,7 +1422,7 @@ public class ExtUtils {
                 View view = LayoutInflater.from(a).inflate(R.layout.dialog_loading_book, null, false);
                 final TextView text = (TextView) view.findViewById(R.id.text1);
 
-                handler = new Handler() {
+                handler = new Handler(Looper.getMainLooper()) {
                     @Override
                     public void handleMessage(android.os.Message msg) {
                         text.setText(a.getString(R.string.please_wait) + " " + msg.what + "%");

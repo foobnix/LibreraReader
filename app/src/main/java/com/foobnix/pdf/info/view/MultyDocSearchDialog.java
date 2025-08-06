@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -161,7 +162,7 @@ public class MultyDocSearchDialog {
         });
         editPath.setText(Model.get().path);
 
-        final Handler updater2 = new Handler() {
+        final Handler updater2 = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
                 adapter.notifyDataSetChanged();
@@ -169,7 +170,7 @@ public class MultyDocSearchDialog {
 
         };
 
-        final Handler updater1 = new Handler() {
+        final Handler updater1 = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
                 infoView1.setText((Model.get().currentPage + 1) + "/" + Model.get().currentPagesCount + " " + Model.get().currentDoc);
@@ -302,7 +303,7 @@ public class MultyDocSearchDialog {
                 if (!Model.get().isSearcingRun) {
                     return -1;
                 }
-                Model.get().currentDoc = String.format("[%s/%s]", num, books) +new File(filePath).getName();
+                Model.get().currentDoc = String.format("[%s/%s]", num, books) + new File(filePath).getName();
                 final int page = searchInThePDF(filePath, Model.get().text, updater1);
 
                 if (page != -1) {

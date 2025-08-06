@@ -10,6 +10,7 @@ import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Pair;
 import android.view.GestureDetector;
@@ -19,6 +20,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
 import android.widget.Toast;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -26,7 +28,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -41,8 +42,6 @@ import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
-
-import com.foobnix.LibreraApp;
 
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
@@ -112,7 +111,7 @@ public class PageImaveView extends View {
     public PageImaveView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         scroller = new Scroller(getContext(), new AccelerateDecelerateInterpolator());
         imageGestureListener = new ImageSimpleGestureListener();
         gestureDetector = new GestureDetector(context, imageGestureListener);

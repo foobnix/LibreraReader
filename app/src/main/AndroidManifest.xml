@@ -49,8 +49,7 @@
         android:theme="@style/StyledIndicatorsWhite"
         android:usesCleartextTraffic="true"
         android:vmSafeMode="${appSafeMode}"
-        tools:overrideLibrary="androidx.car.app"
-        tools:replace="label, icon, roundIcon">
+        tools:overrideLibrary="androidx.car.app">
 
         <meta-data
             android:name="android.webkit.WebView.MetricsOptOut"

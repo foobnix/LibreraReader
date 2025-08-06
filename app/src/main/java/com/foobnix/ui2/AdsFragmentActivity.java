@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -14,7 +15,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 
@@ -49,7 +49,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onCreate(arg0);
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
     }
 
     @Override

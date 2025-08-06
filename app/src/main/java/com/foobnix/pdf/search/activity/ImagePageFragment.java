@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -81,7 +81,7 @@ public class ImagePageFragment extends Fragment {
         text.setTextColor(MagicHelper.getTextColor());
         //TxtUtils.setLinkTextColor(text);
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
 
             @Override

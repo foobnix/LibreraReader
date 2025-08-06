@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -353,7 +354,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
 
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
 
         secondTopPanel = view.findViewById(R.id.secondTopPanel);
         countBooks = (TextView) view.findViewById(R.id.countBooks);
@@ -448,7 +449,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
-                        Prefs.get().remove(SearchAllBooksWorker.SEARCH_ERRORS,0);
+                        Prefs.get().remove(SearchAllBooksWorker.SEARCH_ERRORS, 0);
                         recyclerView.scrollToPosition(0);
                         seachAll();
                     }

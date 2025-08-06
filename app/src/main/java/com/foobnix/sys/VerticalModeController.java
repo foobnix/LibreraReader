@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.util.Pair;
 import android.view.KeyEvent;
@@ -76,7 +77,7 @@ public class VerticalModeController extends DocumentController {
         super(activity);
         this.ctr = ctr;
         CoreSettings.getInstance().fullScreen = AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN;
-        handler = new Handler();
+        handler = new Handler(Looper.getMainLooper());
         TempHolder.get().loadingCancelled = false;
     }
 
@@ -649,7 +650,7 @@ public class VerticalModeController extends DocumentController {
     }
 
     public void commit() {
-        new Handler().postDelayed(new Runnable() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 
             @Override
             public void run() {
@@ -688,7 +689,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityFinal(Runnable run) {
-         TempHolder.get().loadingCancelled = true;
+        TempHolder.get().loadingCancelled = true;
         stopTimer();
         ctr.closeActivityFinal(run);
     }
