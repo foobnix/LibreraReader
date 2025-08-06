@@ -128,7 +128,7 @@ public class AppState {
                     "'#bla':'bla disabled' , " +//
                     "'*(L|l)ibre.':'$1ibréra'}";//
     public static final String TTS_PUNCUATIONS = ".;:!?";
-    public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#0,6#0,7#0";
+    public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#0,6#0,7#0,8#1";
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
     public final static int MAX_SPEED = 149;
     public final static int MODE_GRID = 1;
@@ -315,7 +315,7 @@ public class AppState {
     public String readColors = READ_COLORS_DEAFAUL;
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA
-    public String tabsOrder7 = DEFAULTS_TABS_ORDER;
+    public String tabsOrder8 = DEFAULTS_TABS_ORDER;
     public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
     public boolean isUiTextColor = false;
     public int uiTextColor = Color.BLUE;
@@ -660,7 +660,7 @@ public class AppState {
         return instance;
     }
 
-    public String getAppLang(){
+    public String getAppLang() {
         return AppState.get().appLang.equals(AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : AppState.get().appLang;
     }
 
@@ -733,7 +733,7 @@ public class AppState {
         AppState.get().isScrollAnimation = false;
         AppSP.get().isFirstTimeVertical = false;
         AppSP.get().isFirstTimeHorizontal = false;
-        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+        AppState.get().tabsOrder8 = AppState.get().tabsOrder8.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
 
     }
 

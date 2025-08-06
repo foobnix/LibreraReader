@@ -375,8 +375,8 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
             }
             if (tabFragments.size() == 0) {
-                synchronized (AppState.get().tabsOrder7) {
-                    AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
+                synchronized (AppState.get().tabsOrder8) {
+                    AppState.get().tabsOrder8 = AppState.DEFAULTS_TABS_ORDER;
                 }
                 for (UITab tab : UITab.getOrdered()) {
                     if (tab.isVisible()) {

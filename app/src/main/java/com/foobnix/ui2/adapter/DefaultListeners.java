@@ -146,7 +146,7 @@ public class DefaultListeners {
 
                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, currentTabIndex);//
 
-                    LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder7, currentTabIndex);
+                    LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder8, currentTabIndex);
 
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 

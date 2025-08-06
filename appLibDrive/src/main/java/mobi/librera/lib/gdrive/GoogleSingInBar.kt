@@ -76,6 +76,7 @@ fun GDriveButton(
 
     if (!isSignedIn) {
         Button(
+            modifier = Modifier.padding(start = 12.dp),
             onClick = {
                 val signInIntent = googleSignInClient.signInIntent
                 googleSignInLauncher.launch(signInIntent)
@@ -87,6 +88,7 @@ fun GDriveButton(
         }
     } else {
         Button(
+            modifier = Modifier.padding(start = 12.dp),
             onClick = {
                 scope.launch {
                     val result = googleDriveHelper.signOut()
@@ -143,7 +145,7 @@ fun GoogleSignInScreen(
         }
 
         is SingInState.Success -> {
-            Column {
+            Column(Modifier.padding(4.dp)) {
                 Row(
                     modifier = Modifier.padding(4.dp),
                     verticalAlignment = Alignment.CenterVertically,

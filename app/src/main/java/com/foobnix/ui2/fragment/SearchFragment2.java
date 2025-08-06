@@ -31,7 +31,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.compose.ui.platform.ComposeView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Pair;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -94,8 +93,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.Stack;
-
-import mobi.librera.lib.gdrive.GoogleSignInComposeHelper;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
@@ -358,14 +355,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
 
         handler = new Handler(Looper.getMainLooper());
-
-
-        ComposeView composeView = (ComposeView) view.findViewById(R.id.compose_view);
-
-        GoogleSignInComposeHelper.createSimpleGoogleSignInButton(
-                composeView, getString(R.string.default_web_client_id)
-
-        );
 
         secondTopPanel = view.findViewById(R.id.secondTopPanel);
         countBooks = (TextView) view.findViewById(R.id.countBooks);

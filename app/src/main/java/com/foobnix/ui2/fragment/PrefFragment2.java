@@ -414,15 +414,15 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
                 handler.removeCallbacks(ask2);
-                synchronized (AppState.get().tabsOrder7) {
-                    AppState.get().tabsOrder7 = "";
+                synchronized (AppState.get().tabsOrder8) {
+                    AppState.get().tabsOrder8 = "";
                     for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
                         View child = dragLinearLayout.getChildAt(i);
                         boolean isVisible = ((CheckBox) child.findViewById(R.id.isVisible)).isChecked();
-                        AppState.get().tabsOrder7 += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
+                        AppState.get().tabsOrder8 += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
                     }
-                    AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
-                    LOG.d("tabsApply", AppState.get().tabsOrder7);
+                    AppState.get().tabsOrder8 = TxtUtils.replaceLast(AppState.get().tabsOrder8, ",", "");
+                    LOG.d("tabsApply", AppState.get().tabsOrder8);
                 }
 
                 if (UITab.isShowCloudsPreferences()) {
@@ -432,18 +432,18 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#0"));
+        isshowPrefAsMenu.setChecked(AppState.get().tabsOrder8.contains(UITab.PrefFragment.index + "#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 handler.removeCallbacks(ask2);
                 handler.postDelayed(ask2, timeout);
-                synchronized (AppState.get().tabsOrder7) {
+                synchronized (AppState.get().tabsOrder8) {
                     if (isChecked) {
-                        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
+                        AppState.get().tabsOrder8 = AppState.get().tabsOrder8.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
                     } else {
-                        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+                        AppState.get().tabsOrder8 = AppState.get().tabsOrder8.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
                     }
                 }
                 dragLinear.run();
@@ -460,8 +460,8 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void run() {
-                        synchronized (AppState.get().tabsOrder7) {
-                            AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
+                        synchronized (AppState.get().tabsOrder8) {
+                            AppState.get().tabsOrder8 = AppState.DEFAULTS_TABS_ORDER;
                         }
                         onTheme();
                     }
