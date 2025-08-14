@@ -79,6 +79,7 @@ class GoogleDriveHelper(private val context: Context) {
     @Suppress("DEPRECATION")
     suspend fun signOut(): Result<Unit> = withContext(Dispatchers.IO) {
         try {
+
             val signInClient = GoogleSignIn.getClient(context, getGoogleSignInOptions())
             signInClient.signOut()
             driveService = null

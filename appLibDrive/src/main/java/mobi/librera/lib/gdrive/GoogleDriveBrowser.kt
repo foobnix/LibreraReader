@@ -38,9 +38,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,10 +53,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.launch
 
+
+@Composable
+fun GoogleDriveBrowserScreen() {
+    GoogleDriveBrowser()
+}
+
+
 @Composable
 fun GoogleDriveBrowser(
-    googleDriveHelper: GoogleDriveHelper,
-    isSignedIn: Boolean,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -66,6 +73,10 @@ fun GoogleDriveBrowser(
         remember { mutableStateOf<List<Pair<String, String>>>(listOf("Drive" to "root")) }
     val isLoading = remember { mutableStateOf(false) }
     val errorMessage = remember { mutableStateOf<String?>(null) }
+
+    val googleDriveHelper = remember { GoogleDriveHelper(context) }
+    var isSignedIn by remember { mutableStateOf(googleDriveHelper.isSignedIn()) }
+
 
     fun loadFiles(folderId: String = currentFolderId.value) {
         if (!isSignedIn) {

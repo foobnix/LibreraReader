@@ -175,7 +175,7 @@ fun GoogleSignInScreen(
                 GDriveButton(
                     googleDriveHelper, isSignedIn,
                     onSingIn = { isSignedIn = true }, onSingOut = { isSignedIn = false })
-                GoogleDriveBrowser(googleDriveHelper, isSignedIn)
+                //GoogleDriveBrowser(googleDriveHelper, isSignedIn)
             }
 
         }

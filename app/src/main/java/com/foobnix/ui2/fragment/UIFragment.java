@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -72,7 +71,7 @@ public abstract class UIFragment<T> extends Fragment {
             }
         }
     };
-    AsyncTask<Object, Object, List<T>> execute;
+
     volatile boolean inProgress = false;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
@@ -205,9 +204,11 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public void sendNotifyTintChanged() {
-        Intent itent = new Intent(INTENT_TINT_CHANGE);
-        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(itent);
-        DocumentController.setNavBarTintColor(getActivity());
+        if (getActivity() != null) {
+            Intent intent = new Intent(INTENT_TINT_CHANGE);
+            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+            DocumentController.setNavBarTintColor(getActivity());
+        }
     }
 
     @Override
@@ -227,16 +228,20 @@ public abstract class UIFragment<T> extends Fragment {
             LOG.e(e);
         }
         notifyFragment();
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
-        EventBus.getDefault().register(this);
+        if (getActivity() != null) {
+            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
+            EventBus.getDefault().register(this);
+        }
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
-        EventBus.getDefault().unregister(this);
+        if (getActivity() != null) {
+            LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Subscribe

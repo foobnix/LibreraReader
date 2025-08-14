@@ -14,6 +14,7 @@ sh ninja-adb.sh uninstall com.artifex.mupdf.mini.app
 sh ninja-adb.sh uninstall com.artifex.mupdf.viewer.app
 sh ninja-adb.sh uninstall mobi.librera.epub
 sh ninja-adb.sh uninstall mobi.librera.appcompose
+sh ninja-adb.sh uninstall com.example.fileviewerapp
 echo "=================="
 
 

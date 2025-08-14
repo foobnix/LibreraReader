@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
@@ -13,25 +14,77 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+
+        <ImageView
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_weight="0"
+            android:padding="2dip"
+            android:src="@drawable/gdrive"
+            android:visibility="gone" />
+
         <TextView
-            android:id="@+id/favoritesName"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/wh_button"
-            android:layout_marginLeft="@dimen/panel_title_padding"
+            android:id="@+id/syncHeader"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:text="@string/clouds"
-            android:textColor="@color/white"
-            android:textStyle="normal" />
+            android:text="@string/clouds" />
+
+
+        <TextView
+            android:id="@+id/signIn"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:singleLine="true"
+            android:text="@string/sign_in" />
+
 
     </LinearLayout>
 
-    <androidx.compose.ui.platform.ComposeView
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/compose_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/syncInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:text="ivan@gmail.com" />
+
+    <TextView
+        android:id="@+id/syncInfo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:text="ivan@gmail.com" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+
+        <CheckBox
+            android:id="@+id/isEnableSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/enable" />
+
+
+        <ImageView
+            android:id="@+id/isEnableSyncSettings"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:padding="4dip"
+            android:src="@drawable/glyphicons_137_cogwheel" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

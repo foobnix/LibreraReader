@@ -294,7 +294,7 @@ dependencies {
 
     //compose
 
-    implementation project(':appLibDrive')
+    //implementation project(':appLibDrive')
 
 
 /** AndroidX **/
@@ -463,8 +463,12 @@ task incVersion() {
 
 if (!taskName.contains("Fdroid")) {
     dependencies {
-        implementation "com.github.junrar:junrar:4.0.0"
-
+        implementation("com.github.junrar:junrar:4.0.0")
+        implementation("com.google.android.gms:play-services-auth:21.4.0")
+        implementation("com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0")
+        implementation("com.google.api-client:google-api-client-android:2.8.0")
+        implementation("com.google.oauth-client:google-oauth-client-jetty:1.39.0")
+        implementation("com.google.http-client:google-http-client-gson:1.47.1")
     }
 }
 

@@ -11,9 +11,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import mobi.librera.appcompose.booksync.GoogleSignInScreen
+import androidx.compose.ui.res.stringResource
+import mobi.librera.appcompose.R
 import mobi.librera.appcompose.components.BookGrid
 import mobi.librera.appcompose.components.BookSearchBar
+import mobi.librera.lib.gdrive.GoogleDriveBrowserScreen
+import mobi.librera.lib.gdrive.GoogleSignInScreen
 
 @Composable
 fun BookGridScreen(
@@ -38,7 +41,8 @@ fun BookGridScreen(
         if (!isManageStorageGranted) {
             ManageStoragePermissionScreen(launcher)
         } else {
-            GoogleSignInScreen()
+            GoogleSignInScreen(stringResource(R.string.default_web_client_id))
+            GoogleDriveBrowserScreen()
 
 //            SelectedBooksBar(
 //                dataModel, false,

@@ -77,7 +77,7 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
     implementation("com.squareup.okhttp3:okhttp:5.1.0")
 
-    api(platform("com.google.firebase:firebase-bom:34.0.0"))
+    api(platform("com.google.firebase:firebase-bom:34.1.0"))
     api("com.google.firebase:firebase-auth")
     api("com.google.firebase:firebase-firestore")
     api("com.google.firebase:firebase-storage")//optional to remove

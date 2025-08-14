@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "mobi.librera.appcompose"
-        minSdk = rootProject.extra["minSdk"] as Int
+        minSdk = 30
         targetSdk = rootProject.extra["targetSdk"] as Int
         versionCode = 1
         versionName = "1.0"

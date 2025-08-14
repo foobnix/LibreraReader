@@ -14,11 +14,6 @@ import kotlin.coroutines.resumeWithException
 val KEY_USERS = "users"
 val KEY_BOOKS = "books"
 
-data class BookState(
-    val bookPath: String,
-    val fileName: String,
-    val progress: Float,
-)
 
 object FirestoreBooksRepository {
     @SuppressLint("StaticFieldLeak")

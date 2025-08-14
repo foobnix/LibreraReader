@@ -23,7 +23,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
-import com.foobnix.work.SearchAllBooksWorker;
 import com.foobnix.work.SynctornizatoinWorker;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -183,7 +182,7 @@ public class GFile {
     }
 
     public static List<File> exeQ(String q) throws IOException {
-        //LOG.d(TAG, "exeQ", q);
+        LOG.d(TAG, "exeQ", q);
         String nextPageToken = "";
         List<File> res = new ArrayList<File>();
         do {
@@ -545,7 +544,6 @@ public class GFile {
 
 
             TagData.restoreTags();
-
 
 
         } catch (IOException e) {
