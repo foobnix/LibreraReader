@@ -64,9 +64,9 @@ public class AppBook implements CurrentPageListener {
         }
     }
 
-    public boolean getLock(boolean isTextFormat) {
+    public boolean getLock(boolean isTextFormat, boolean lockedByDefault) {
         if (lk == LOCK_NONE) {
-            return isTextFormat;
+            return isTextFormat || lockedByDefault;
         }
         return lk == LOCK_YES;
     }

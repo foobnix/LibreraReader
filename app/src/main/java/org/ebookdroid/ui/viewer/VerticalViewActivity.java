@@ -109,7 +109,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 AppSP.get().isCrop = bs.cp;
                 AppSP.get().isDouble = false;
                 AppSP.get().isDoubleCoverAlone = false;
-                AppSP.get().isLocked = bs.getLock(isTextFormat);
+                AppSP.get().isLocked = bs.getLock(isTextFormat, AppState.get().lockBooksByDefault);
                 TempHolder.get().pageDelta = bs.d;
                 if (AppState.get().isCropPDF && !AppSP.get().isCut && !isTextFormat) {
                     AppSP.get().isCrop = true;
