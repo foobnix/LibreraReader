@@ -104,7 +104,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static int NONE = -1;
     public static List<FileMeta> cacheItems;
     final Set<String> autocomplitions = new HashSet<String>();
-    public int prevLibModeFileMeta = AppState.MODE_GRID;
     public int prevLibModeAuthors = NONE;
     public int rememberPos = 0;
     FileMetaAdapter searchAdapter;
@@ -644,7 +643,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         searchEditText.setText(mode.getDotPrefix() + " " + result);
-        AppState.get().libraryMode = prevLibModeFileMeta;
+        AppState.get().libraryMode = AppState.get().previousLibraryMode;
         onGridList();
         searchAndOrderAsync();
     }
@@ -893,7 +892,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
-            prevLibModeFileMeta = AppState.get().libraryMode;
+            AppState.get().previousLibraryMode = AppState.get().libraryMode;
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
             sortOrder.setEnabled(true);
@@ -1127,7 +1126,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             searchEditText.setText("");
             if (prevLibModeAuthors == NONE) {
-                prevLibModeAuthors = prevLibModeFileMeta;
+                prevLibModeAuthors = AppState.get().previousLibraryMode;
             }
             AppState.get().libraryMode = prevLibModeAuthors;
             onGridList();
@@ -1135,7 +1134,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return true;
 
         } else {
-            AppState.get().libraryMode = prevLibModeFileMeta;
+            AppState.get().libraryMode = AppState.get().previousLibraryMode;
             onGridList();
             searchAndOrderAsync();
             return true;
