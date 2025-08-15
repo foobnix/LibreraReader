@@ -213,9 +213,17 @@ public class FileInformationDialog {
         final TextView expand = (TextView) dialog.findViewById(R.id.expand);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
-
-        expand.setVisibility(TxtUtils.isNotEmpty(bookOverview) && bookOverview.length() > 200 ? View.VISIBLE : View.GONE);
-
+        
+        infoView.post(new Runnable() {
+            @Override
+            public void run() {
+                int lineCount = infoView.getLineCount();
+                boolean showExpandView = lineCount > 0 && infoView.getLayout().getEllipsisCount(lineCount - 1) > 0;
+                expand.setVisibility(showExpandView ? View.VISIBLE : View.GONE);
+                infoView.setTextIsSelectable(!showExpandView);
+            }
+        });
+        
         expand.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
