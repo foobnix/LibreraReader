@@ -93,7 +93,7 @@ public abstract class HorizontalModeController extends DocumentController {
             AppSP.get().isCrop = bs.cp;
             AppSP.get().isDouble = bs.dp;
             AppSP.get().isDoubleCoverAlone = bs.dc;
-            AppSP.get().isLocked = bs.getLock(isTextFormat);
+            AppSP.get().isLocked = bs.getLock(isTextFormat, AppState.get().lockBooksByDefault);
             TempHolder.get().pageDelta = bs.d;
 
             if (AppState.get().isCropPDF && !isTextFormat) {

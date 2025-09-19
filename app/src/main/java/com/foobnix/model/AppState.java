@@ -627,6 +627,7 @@ public class AppState {
     public String bookTags = "";
     public String recentTag = "";
     public boolean isRestoreSearchQuery = false;
+    public boolean lockBooksByDefault = false;
     public String searchQuery = "";
     @IgnoreHashCode
     public int hashCode = 0;
