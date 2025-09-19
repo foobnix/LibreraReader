@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Visa menyn</string>
    <string name="cd_download_more_fonts">Ladda ner fler typsnitt</string>
    <string name="restore_search_query_when_the_application_starts">Återställ sökfrågan vid start</string>
+   <string name="lock_books_by_default">Lås böcker som standard</string>
    <string name="hide_read_books">Göm läsa böcker</string>
    <string name="show_series_number_in_title">Visa serienummer i titeln</string>
    <string name="graphics_scale">Grafisk skala</string>

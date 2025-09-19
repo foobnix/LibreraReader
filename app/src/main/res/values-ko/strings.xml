@@ -641,6 +641,7 @@
    <string name="cd_view_menu">메뉴보기</string>
    <string name="cd_download_more_fonts">글꼴 다운로드</string>
    <string name="restore_search_query_when_the_application_starts">시작 시 검색어 복원</string>
+   <string name="lock_books_by_default">기본적으로 책 잠금</string>
    <string name="hide_read_books">읽은 책 숨기기</string>
    <string name="show_series_number_in_title">제목에 시리즈 번호 표시</string>
    <string name="graphics_scale">그래픽 스케일</string>

@@ -65,7 +65,7 @@ public class SyncTranslations {
     }
 
     private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");//Linux
-    private static Config IVAN = new Config("ivan", "", "/Users/dev/git/LibreraReader/app/src/main/res/");//MAC
+    private static Config IVAN = new Config("ivan", "", "/Users/ivanivanenko/git/LibreraReader/app/src/main/res/");//MAC
 
 
     // run as "SyncTranslations user_name"

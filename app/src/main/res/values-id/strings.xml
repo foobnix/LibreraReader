@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Lihat menu</string>
    <string name="cd_download_more_fonts">Unduh lebih banyak font</string>
    <string name="restore_search_query_when_the_application_starts">Pulihkan permintaan pencarian saat startup</string>
+   <string name="lock_books_by_default">Mengunci buku secara default</string>
    <string name="hide_read_books">Sembunyikan buku yang sudah dibaca</string>
    <string name="show_series_number_in_title">Tampilkan nomor seri di judul</string>
    <string name="graphics_scale">Skala grafis</string>

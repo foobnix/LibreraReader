@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Προβολή μενού</string>
    <string name="cd_download_more_fonts">Κατεβάστε περισσότερες γραμματοσειρές</string>
    <string name="restore_search_query_when_the_application_starts">Επαναφορά ερωτήματος αναζήτησης κατά την εκκίνηση</string>
+   <string name="lock_books_by_default">Κλειδώστε τα βιβλία από προεπιλογή</string>
    <string name="hide_read_books">Κρύψτε τα διαβασμένα βιβλία</string>
    <string name="show_series_number_in_title">Εμφάνιση του αριθμού σειράς στον τίτλο</string>
    <string name="graphics_scale">Κλίμακα γραφικών</string>

@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import mobi.librera.appcompose.bookgrid.BookGridViewModel
+import mobi.librera.appcompose.media.DirectoryPickerScreen
 import mobi.librera.appcompose.ui.theme.LibreraTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -41,7 +42,8 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        NavigationRoot()
+                        //NavigationRoot()
+                        DirectoryPickerScreen()
                     }
 
                 }

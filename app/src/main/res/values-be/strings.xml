@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Меню прагляду</string>
    <string name="cd_download_more_fonts">Спампаваць больш шрыфтоў</string>
    <string name="restore_search_query_when_the_application_starts">Аднавіць пошукавы запыт пры запуску</string>
+   <string name="lock_books_by_default">Блакіроўка кніг па змаўчанні</string>
    <string name="hide_read_books">Схаваць прачытаныя кнігі</string>
    <string name="show_series_number_in_title">Паказаць нумар серыі ў назве</string>
    <string name="graphics_scale">Графічны маштаб</string>

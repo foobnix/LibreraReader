@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Nézet menü</string>
    <string name="cd_download_more_fonts">Több betűtípus letöltése</string>
    <string name="restore_search_query_when_the_application_starts">A keresési lekérdezés visszaállítása indításkor</string>
+   <string name="lock_books_by_default">Alapértelmezés szerint zárolja a könyveket</string>
    <string name="hide_read_books">Elrejteni olvasott könyveket</string>
    <string name="show_series_number_in_title">Sorozatszámot mutasd a címben</string>
    <string name="graphics_scale">Grafikus skála</string>

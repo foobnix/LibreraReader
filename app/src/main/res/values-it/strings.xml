@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Menu di visualizzazione</string>
    <string name="cd_download_more_fonts">Scarica più caratteri</string>
    <string name="restore_search_query_when_the_application_starts">Ripristinare la query di ricerca all\'avvio</string>
+   <string name="lock_books_by_default">Blocca i libri per impostazione predefinita</string>
    <string name="hide_read_books">Nascondere leggere libri</string>
    <string name="show_series_number_in_title">Mostra il numero di serie nel titolo</string>
    <string name="graphics_scale">Scala grafica</string>

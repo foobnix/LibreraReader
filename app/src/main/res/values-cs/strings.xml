@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Zobrazit menu</string>
    <string name="cd_download_more_fonts">Stáhnout více písem</string>
    <string name="restore_search_query_when_the_application_starts">Obnovit vyhledávací dotaz při spuštění</string>
+   <string name="lock_books_by_default">Zamykání knih ve výchozím nastavení</string>
    <string name="hide_read_books">Skrýt přečtené knihy</string>
    <string name="show_series_number_in_title">Zobrazit číslo série v názvu</string>
    <string name="graphics_scale">Grafické měřítko</string>

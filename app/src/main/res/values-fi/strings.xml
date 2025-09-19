@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Näytä valikko</string>
    <string name="cd_download_more_fonts">Lataa lisää kirjasimia</string>
    <string name="restore_search_query_when_the_application_starts">Palauta hakukysely käynnistyksen yhteydessä</string>
+   <string name="lock_books_by_default">Lukitse kirjat oletuksena</string>
    <string name="hide_read_books">Piilottaa luetut kirjat</string>
    <string name="show_series_number_in_title">Näytä sarjanumero otsikossa</string>
    <string name="graphics_scale">Graafinen mittakaava</string>

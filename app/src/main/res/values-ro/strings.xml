@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Vizualiza meniul</string>
    <string name="cd_download_more_fonts">Descărcați mai multe fonturi</string>
    <string name="restore_search_query_when_the_application_starts">Restabiliți interogarea de căutare la pornire</string>
+   <string name="lock_books_by_default">Blochează cărțile în mod implicit</string>
    <string name="hide_read_books">Ascunde cărțile citite</string>
    <string name="show_series_number_in_title">Arata numarul seriei in titlu</string>
    <string name="graphics_scale">Scara grafica</string>

@@ -641,6 +641,7 @@
    <string name="cd_view_menu">查看菜單</string>
    <string name="cd_download_more_fonts">下載更多字體</string>
    <string name="restore_search_query_when_the_application_starts">在啟動時恢復搜索查詢</string>
+   <string name="lock_books_by_default">預設鎖定書籍</string>
    <string name="hide_read_books">隱藏讀過的書</string>
    <string name="show_series_number_in_title">在標題中顯示系列號</string>
    <string name="graphics_scale">圖形比例</string>

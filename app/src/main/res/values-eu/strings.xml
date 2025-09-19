@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Ikusi menua</string>
    <string name="cd_download_more_fonts">Deskargatu letra-tipo gehiago</string>
    <string name="restore_search_query_when_the_application_starts">Berrezarri bilaketa-kontsulta abiarazteko</string>
+   <string name="lock_books_by_default">Blokeatu liburuak lehenespenez</string>
    <string name="hide_read_books">Ezkutatu irakurritako liburuak</string>
    <string name="show_series_number_in_title">Serie zenbakia izenburuan erakutsi</string>
    <string name="graphics_scale">Eskala grafikoa</string>

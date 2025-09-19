@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Roghchlár amharc</string>
    <string name="cd_download_more_fonts">Íosluchtaigh clónna níos mó</string>
    <string name="restore_search_query_when_the_application_starts">Ceist chuardaigh a chur ar ais ag am tosaithe</string>
+   <string name="lock_books_by_default">Leabhair a ghlasáil de réir réamhshocraithe</string>
    <string name="hide_read_books">Hide léamh leabhair</string>
    <string name="show_series_number_in_title">Taispeáin uimhir na sraithe i dteideal</string>
    <string name="graphics_scale">Scála grafach</string>

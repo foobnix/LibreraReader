@@ -45,7 +45,7 @@
    <string name="crop_images_in_the_book_cover">Orezať obrázok obálky knihy</string>
    <string name="borders_and_shadow_around_the_book_cover">Zobraziť okraje a tiene</string>
    <string name="tabs_position">Karty</string>
-   <string name="show_preferences_tab_in_the_left_menu">Animovať vysunutie ponuky vľavo </string>
+   <string name="show_preferences_tab_in_the_left_menu">Animovať vysunutie ponuky vľavo</string>
    <string name="visible">Zobrazené</string>
    <string name="application_user_guide_">Používateľská príručka</string>
    <string name="import_or_export_application_settings_to_json_file">Zálohovanie</string>
@@ -154,7 +154,7 @@
    <string name="color">Farba</string>
    <string name="horizontal">Horizontálne</string>
    <string name="vertical">Vertikálne</string>
-   <string name="minutes">min.</string>
+   <string name="minutes">Min.</string>
    <string name="close_book">Zavrieť knihu</string>
    <string name="background">Pozadie</string>
    <string name="dialog_color_picker">Výber farby</string>
@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Zobraziť ponuku</string>
    <string name="cd_download_more_fonts">Stiahnuť ďalšie písma</string>
    <string name="restore_search_query_when_the_application_starts">Obnoviť vyhľadávací dopyt pri spustení</string>
+   <string name="lock_books_by_default">Predvolene uzamknúť knihy</string>
    <string name="hide_read_books">Skryť prečítané knihy</string>
    <string name="show_series_number_in_title">V názve zobraziť číslo série</string>
    <string name="graphics_scale">Mierka obrázkov</string>

@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Xem menu</string>
    <string name="cd_download_more_fonts">Tải thêm phông chữ</string>
    <string name="restore_search_query_when_the_application_starts">Khôi phục truy vấn tìm kiếm khi khởi động</string>
+   <string name="lock_books_by_default">Khóa sách theo mặc định</string>
    <string name="hide_read_books">Giấu những cuốn sách đã đọc</string>
    <string name="show_series_number_in_title">Hiển thị số sê-ri trong tiêu đề</string>
    <string name="graphics_scale">Quy mô đồ họa</string>

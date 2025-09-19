@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Menüyü görüntüle</string>
    <string name="cd_download_more_fonts">Daha fazla yazı tipi indir</string>
    <string name="restore_search_query_when_the_application_starts">Başlangıçta arama sorgusunu geri yükle</string>
+   <string name="lock_books_by_default">Kitapları varsayılan olarak kilitle</string>
    <string name="hide_read_books">Okunan kitapları gizle</string>
    <string name="show_series_number_in_title">Başlıkta seri numarasını göster</string>
    <string name="graphics_scale">Grafik ölçeği</string>

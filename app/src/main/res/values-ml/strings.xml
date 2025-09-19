@@ -641,6 +641,7 @@
    <string name="cd_view_menu">കാഴ്ച മെനു</string>
    <string name="cd_download_more_fonts">കൂടുതൽ ഫോണ്ടുകൾ ഡൗൺലോഡ് ചെയ്യുക</string>
    <string name="restore_search_query_when_the_application_starts">ആരംഭത്തിൽ തിരയൽ ചോദ്യം പുനഃസ്ഥാപിക്കുക</string>
+   <string name="lock_books_by_default">സ്ഥിരസ്ഥിതിയായി പുസ്തകങ്ങൾ ലോക്ക് ചെയ്യുക</string>
    <string name="hide_read_books">വായിച്ച പുസ്തകങ്ങൾ മറയ്ക്കുക</string>
    <string name="show_series_number_in_title">ശീർഷകത്തിൽ സീരീസ് നമ്പർ കാണിക്കുക</string>
    <string name="graphics_scale">ഗ്രാഫിക്സ് സ്കെയിൽ</string>

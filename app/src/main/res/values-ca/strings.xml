@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Menú de visualització</string>
    <string name="cd_download_more_fonts">Baixa més fonts</string>
    <string name="restore_search_query_when_the_application_starts">Restaura la consulta de cerca a l\'inici</string>
+   <string name="lock_books_by_default">Bloqueja els llibres per defecte</string>
    <string name="hide_read_books">Oculta els llibres llegits</string>
    <string name="show_series_number_in_title">Mostra el número de la sèrie al títol</string>
    <string name="graphics_scale">Escala de les imatges</string>

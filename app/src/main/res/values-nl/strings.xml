@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Bekijk menu</string>
    <string name="cd_download_more_fonts">Meer lettertypen downloaden</string>
    <string name="restore_search_query_when_the_application_starts">Zoekopdracht herstellen bij opstarten</string>
+   <string name="lock_books_by_default">Boeken standaard vergrendelen</string>
    <string name="hide_read_books">Verberg gelezen boeken</string>
    <string name="show_series_number_in_title">Toon serienummer in titel</string>
    <string name="graphics_scale">Grafische schaal</string>

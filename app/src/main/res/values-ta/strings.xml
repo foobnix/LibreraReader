@@ -641,6 +641,7 @@
    <string name="cd_view_menu">பார்வை மெனு</string>
    <string name="cd_download_more_fonts">மேலும் எழுத்துருக்களைப் பதிவிறக்கவும்</string>
    <string name="restore_search_query_when_the_application_starts">தொடக்கத்தில் தேடல் வினவலை மீட்டமை</string>
+   <string name="lock_books_by_default">முன்னிருப்பாக புத்தகங்களைப் பூட்டு.</string>
    <string name="hide_read_books">படித்த புத்தகங்களை மறைக்கவும்</string>
    <string name="show_series_number_in_title">தலைப்பில் தொடர் எண்ணைக் காட்டு</string>
    <string name="graphics_scale">கிராபிக்ஸ் அளவுகோல்</string>

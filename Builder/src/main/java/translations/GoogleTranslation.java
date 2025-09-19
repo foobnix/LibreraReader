@@ -26,7 +26,7 @@ public class GoogleTranslation {
 
     public static String translate(String inputOriginal, String from, String toLang) throws JSONException, IOException {
         String input = URLEncoder.encode(inputOriginal, "UTF-8");
-        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY.replace("-","") + "&q=" + input + "&source=" + from + "&target=" + toLang;
+        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY.replace("-", "") + "&q=" + input + "&source=" + from + "&target=" + toLang;
 
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);
@@ -40,7 +40,7 @@ public class GoogleTranslation {
         // System.out.println(translate);
 
         try {
-            Thread.sleep(250);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
 

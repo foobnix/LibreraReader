@@ -641,6 +641,7 @@
    <string name="cd_view_menu">Меню просмотра</string>
    <string name="cd_download_more_fonts">Скачать больше шрифтов</string>
    <string name="restore_search_query_when_the_application_starts">Восстанавливать поисковый запрос при запуске</string>
+   <string name="lock_books_by_default">Блокировать книги по умолчанию</string>
    <string name="hide_read_books">Скрывать прочитанные книги</string>
    <string name="show_series_number_in_title">Показывать номер серии в названии</string>
    <string name="graphics_scale">Масштаб изображений</string>
