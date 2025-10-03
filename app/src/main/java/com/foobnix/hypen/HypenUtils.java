@@ -6,7 +6,6 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.tts.TtsStatus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -226,6 +225,7 @@ public class HypenUtils {
         ignore1 = false;
     }
 
+
     public static void tokenize(String in, TokensListener listener) {
 
         StringBuilder res = new StringBuilder();
@@ -261,6 +261,9 @@ public class HypenUtils {
 
             if (Character.isLetter(ch)) {
                 res.append(ch);
+                if (AppState.get().isExperimental && (res.length() >= 30 && res.length() % 30 == 0)) {
+                    res.append(" ");
+                }
             } else {
                 if (res.length() > 0) {
                     listener.findText(res.toString());

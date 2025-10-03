@@ -95,11 +95,11 @@ dependencies {
     //BOM end
 
 
-    implementation("androidx.activity:activity-compose:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
-    implementation("androidx.core:core-ktx:1.16.0")
-    implementation("androidx.navigation:navigation-compose:2.9.3")
+    implementation("androidx.activity:activity-compose:1.11.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.4")
+    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("androidx.navigation:navigation-compose:2.9.5")
 
 
     implementation("io.coil-kt.coil3:coil-compose:3.3.0")
@@ -113,7 +113,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.7")
 
 
-    implementation(platform("io.insert-koin:koin-bom:4.1.0"))
+    implementation(platform("io.insert-koin:koin-bom:4.1.1"))
     implementation("io.insert-koin:koin-core")
     implementation("io.insert-koin:koin-androidx-compose")
     implementation("io.insert-koin:koin-compose")
@@ -126,21 +126,21 @@ dependencies {
 
 
 
-    ksp("androidx.room:room-compiler:2.7.2")
-    implementation("androidx.room:room-runtime:2.7.2")
-    implementation("androidx.room:room-ktx:2.7.2")
+    ksp("androidx.room:room-compiler:2.8.1")
+    implementation("androidx.room:room-runtime:2.8.1")
+    implementation("androidx.room:room-ktx:2.8.1")
 
-    implementation("androidx.sqlite:sqlite-bundled:2.5.2")
+    implementation("androidx.sqlite:sqlite-bundled:2.6.1")
 
 
 
-    implementation("net.java.dev.jna:jna:5.17.0@aar")
+    implementation("net.java.dev.jna:jna:5.18.0@aar")
 
-    implementation("io.github.vinceglb:filekit-dialogs:0.10.0")
-    implementation("io.github.vinceglb:filekit-dialogs-compose:0.10.0")
+    implementation("io.github.vinceglb:filekit-dialogs:0.11.0")
+    implementation("io.github.vinceglb:filekit-dialogs-compose:0.11.0")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2025.09.01"))
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
