@@ -14,9 +14,9 @@ import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SharedBooks {
 
@@ -47,7 +47,7 @@ public class SharedBooks {
         LOG.d("updateProgress-time:", list.size(), b / 1000.0);
     }
 
-    public static Map<String, AppBook> cache = new HashMap<>();
+    public static Map<String, AppBook> cache = new ConcurrentHashMap<>();
 
     public static void deleteProgress(String path) {
         cache.clear();
