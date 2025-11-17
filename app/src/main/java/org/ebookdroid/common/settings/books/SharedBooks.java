@@ -75,9 +75,12 @@ public class SharedBooks {
 
         for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
             final AppBook load = load(IO.readJsonObject(file), fileName);
+            if (TxtUtils.isEmpty(load.path)) {
+                continue;
+            }
             load.path = fileName;
 
-            if (file.equals(AppProfile.syncProgress) && load != null) {
+            if (file.equals(AppProfile.syncProgress)) {
                 original = load;
             }
 
@@ -120,9 +123,17 @@ public class SharedBooks {
         save(bs, true);
     }
 
+    public static void saveAsync(AppBook bs) {
+        save(bs, false);
+    }
+
     static int phash = -1;
 
-    public static void save(AppBook bs, boolean inThread) {
+    private static void save(AppBook bs, boolean inThread) {
+        if (bs == null) {
+            LOG.d("SharedBooks-Save", "null");
+            return;
+        }
 
         int hash = bs.hashCode();
         if (phash == hash) {
@@ -133,7 +144,7 @@ public class SharedBooks {
         LOG.d("SharedBooks-Save", "inThread " + inThread);
 
 
-        if (bs == null || TxtUtils.isEmpty(bs.path)) {
+        if (TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
             return;
         }
@@ -141,7 +152,7 @@ public class SharedBooks {
         try {
             final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
 
-            if (bs.p > 1) {
+            if (bs.p > 1 || bs.p < 0) {
                 bs.p = 0;
             }
 

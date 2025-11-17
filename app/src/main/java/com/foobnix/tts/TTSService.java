@@ -37,7 +37,6 @@ import androidx.media.session.MediaButtonReceiver;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
@@ -46,7 +45,6 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.widget.TTSWidget;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -227,9 +225,6 @@ public class TTSService extends Service {
         AppProfile.init(getApplicationContext());
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-
-
 
 
         //mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
@@ -552,7 +547,7 @@ public class TTSService extends Service {
     private void playPage(String preText, int pageNumber, String anchor) {
         mMediaSessionCompat.setActive(true);
 
-        if(!AppState.get().allowOtherMusic) {
+        if (!AppState.get().allowOtherMusic) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);
             } else {
@@ -744,7 +739,7 @@ public class TTSService extends Service {
                 AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
                 load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
 
-                SharedBooks.save(load, false);
+                SharedBooks.saveAsync(load);
                 AppProfile.save(this);
             }, "@T TTS Save").start();
 
