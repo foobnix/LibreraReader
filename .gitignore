@@ -25,4 +25,4 @@
 .vscode
 /epub/build/
 /Builder/build-cmake/
-google-services.json
+google-services.*

@@ -12,6 +12,7 @@ import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
 import androidx.work.WorkManager;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -27,6 +28,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 public class LibreraApp extends MultiDexApplication {
@@ -57,11 +59,17 @@ public class LibreraApp extends MultiDexApplication {
 
 
         context = getApplicationContext();
-        if(!WorkManager.isInitialized()) {
+        if (!WorkManager.isInitialized()) {
             WorkManager.initialize(this, new Configuration.Builder()
                     .setMinimumLoggingLevel(Log.DEBUG)
                     .build());
         }
+
+
+        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
+        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
+        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
+
 
         AppsConfig.init(this);
         Dips.init(this);
@@ -81,7 +89,7 @@ public class LibreraApp extends MultiDexApplication {
             LOG.e(e);
         }
 
-        LOG.d("AppsConfig.IS_TEST_DEVICE",AppsConfig.IS_TEST_DEVICE);
+        LOG.d("AppsConfig.IS_TEST_DEVICE", AppsConfig.IS_TEST_DEVICE);
         if (AppsConfig.IS_TEST_DEVICE) {
             RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
             MobileAds.setRequestConfiguration(configuration);
@@ -140,7 +148,6 @@ public class LibreraApp extends MultiDexApplication {
 
 
     }
-
 
 
     @Override
