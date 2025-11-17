@@ -119,6 +119,7 @@ public class TTSService extends Service {
         }
     };
     private WakeLock wakeLock;
+    private static final long WAKE_LOCK_TIMEOUT = 60 * 60 * 1000L; // 1 hour timeout
 
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -221,6 +222,7 @@ public class TTSService extends Service {
 
         PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = myPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Librera:TTSServiceLock");
+        wakeLock.setReferenceCounted(false);
 
         AppProfile.init(getApplicationContext());
 
@@ -404,9 +406,7 @@ public class TTSService extends Service {
 
             TTSEngine.get().stopDestroy();
 
-            if (wakeLock.isHeld()) {
-                wakeLock.release();
-            }
+            releaseWakeLock();
             EventBus.getDefault().post(new TtsStatus());
 
             TTSNotification.hideNotification();
@@ -428,9 +428,7 @@ public class TTSService extends Service {
             } else {
                 playPage("", AppSP.get().lastBookPage, null);
             }
-            if (wakeLock.isHeld()) {
-                wakeLock.release();
-            }
+            releaseWakeLock();
             TTSNotification.showLast();
 
         }
@@ -441,9 +439,7 @@ public class TTSService extends Service {
             }
 
             TTSEngine.get().stop(mMediaSessionCompat);
-            if (wakeLock.isHeld()) {
-                wakeLock.release();
-            }
+            releaseWakeLock();
             TTSNotification.showLast();
 
         }
@@ -458,9 +454,7 @@ public class TTSService extends Service {
             TTSEngine.get().stop(mMediaSessionCompat);
 
             playPage("", AppSP.get().lastBookPage, null);
-            if (!wakeLock.isHeld()) {
-                wakeLock.acquire();
-            }
+            acquireWakeLock();
             TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
@@ -473,9 +467,7 @@ public class TTSService extends Service {
             AppSP.get().lastBookParagraph = 0;
             TTSEngine.get().stop(mMediaSessionCompat);
             playPage("", AppSP.get().lastBookPage + 1, null);
-            if (!wakeLock.isHeld()) {
-                wakeLock.acquire();
-            }
+            acquireWakeLock();
         }
         if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
 
@@ -487,9 +479,7 @@ public class TTSService extends Service {
             AppSP.get().lastBookParagraph = 0;
             TTSEngine.get().stop(mMediaSessionCompat);
             playPage("", AppSP.get().lastBookPage - 1, null);
-            if (!wakeLock.isHeld()) {
-                wakeLock.acquire();
-            }
+            acquireWakeLock();
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
@@ -506,9 +496,7 @@ public class TTSService extends Service {
             if (pageNumber != -1) {
                 playPage("", pageNumber, anchor);
             }
-            if (!wakeLock.isHeld()) {
-                wakeLock.acquire();
-            }
+            acquireWakeLock();
 
         }
 
@@ -555,6 +543,8 @@ public class TTSService extends Service {
             }
         }
 
+        // Ensure wake lock is acquired when playing
+        acquireWakeLock();
 
         LOG.d("playPage", preText, pageNumber, anchor);
         if (pageNumber != -1) {
@@ -565,6 +555,7 @@ public class TTSService extends Service {
             if (dc == null) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
                 TTSNotification.hideNotification();
+                releaseWakeLock();
                 return;
             }
 
@@ -584,6 +575,7 @@ public class TTSService extends Service {
 
                 EventBus.getDefault().post(new TtsStatus());
 
+                releaseWakeLock();
                 stopSelf();
                 return;
             }
@@ -610,6 +602,8 @@ public class TTSService extends Service {
                 emptyPageCount++;
                 if (emptyPageCount < 3) {
                     playPage("", AppSP.get().lastBookPage + 1, null);
+                } else {
+                    releaseWakeLock();
                 }
                 return;
             }
@@ -646,7 +640,7 @@ public class TTSService extends Service {
                         }
                         TTSEngine.get().stop(mMediaSessionCompat);
                         EventBus.getDefault().post(new TtsStatus());
-
+                        releaseWakeLock();
                     }
 
                     @Override
@@ -654,6 +648,7 @@ public class TTSService extends Service {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
                         if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
                             TTSEngine.get().stop(mMediaSessionCompat);
+                            releaseWakeLock();
                             return;
                         }
                         if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
@@ -672,6 +667,7 @@ public class TTSService extends Service {
 
                         if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Update-timer-Stop1");
+                            releaseWakeLock();
                             stopSelf();
                             return;
                         }
@@ -689,6 +685,7 @@ public class TTSService extends Service {
                     public void onUtteranceCompleted(String utteranceId) {
                         if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
                             TTSEngine.get().stop(mMediaSessionCompat);
+                            releaseWakeLock();
                             return;
                         }
                         if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
@@ -708,6 +705,7 @@ public class TTSService extends Service {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
                         if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Update-timer-Stop2");
+                            releaseWakeLock();
                             stopSelf();
                             return;
                         }
@@ -752,10 +750,12 @@ public class TTSService extends Service {
         super.onDestroy();
 
         isStartForeground = false;
-        unregisterReceiver(blueToothReceiver);
-        if (wakeLock.isHeld()) {
-            wakeLock.release();
+        try {
+            unregisterReceiver(blueToothReceiver);
+        } catch (Exception e) {
+            LOG.e(e);
         }
+        releaseWakeLock();
 
         TTSEngine.get().stop(mMediaSessionCompat);
         TTSEngine.get().shutdown();
@@ -782,6 +782,32 @@ public class TTSService extends Service {
         }
         path = null;
         LOG.d(TAG, "onDestroy");
+    }
+
+    private void acquireWakeLock() {
+        try {
+            if (wakeLock != null && !wakeLock.isHeld()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    wakeLock.acquire(WAKE_LOCK_TIMEOUT);
+                } else {
+                    wakeLock.acquire();
+                }
+                LOG.d(TAG, "WakeLock acquired");
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    private void releaseWakeLock() {
+        try {
+            if (wakeLock != null && wakeLock.isHeld()) {
+                wakeLock.release();
+                LOG.d(TAG, "WakeLock released");
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 }
