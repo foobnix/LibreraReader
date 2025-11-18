@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
@@ -68,6 +67,7 @@ import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
@@ -1409,10 +1409,15 @@ public class ExtUtils {
             return;
         }
 
-        new AsyncTask() {
+        new ProgressTask<Object>() {
             AlertDialog dialog;
 
             Handler handler;
+
+            @Override
+            public Context getContext() {
+                return a;
+            }
 
             @Override
             protected void onPreExecute() {

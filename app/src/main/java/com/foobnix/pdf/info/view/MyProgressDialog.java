@@ -24,7 +24,7 @@ public class MyProgressDialog {
             pr.setSaveEnabled(false);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
         } catch (Exception e) {
-            LOG.e(e);
+            //LOG.e(e);
         }
 
         handler.postDelayed(() -> {

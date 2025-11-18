@@ -40,18 +40,8 @@ public class LibreraApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         if (false) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .detectNetwork()
-                    .penaltyLog()
-                    .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects()
-                    .penaltyLog()
-                    .penaltyDeath()
-                    .build());
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
         }
         super.onCreate();
 
@@ -60,15 +50,15 @@ public class LibreraApp extends MultiDexApplication {
 
         context = getApplicationContext();
         if (!WorkManager.isInitialized()) {
-            WorkManager.initialize(this, new Configuration.Builder()
-                    .setMinimumLoggingLevel(Log.DEBUG)
-                    .build());
+            WorkManager.initialize(this, new Configuration.Builder().setMinimumLoggingLevel(Log.DEBUG).build());
         }
 
 
         FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
         analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
         analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
+
+        Log.d("IS_LOG", "IS_LOG Enable " + AppsConfig.IS_LOG);
 
 
         AppsConfig.init(this);

@@ -25,12 +25,20 @@ public abstract class ProgressTask<T> {
     protected void onPostExecute(T result) {
     }
 
+    protected void onPreExecute() {
+        dialog = MyProgressDialog.show(getContext(),
+                getContext().getString(R.string.please_wait));
+    }
+
     protected void onCancelled() {
     }
 
     public final void execute(final Object... params) {
+        LOG.d("ProgressTask", "ProgressTask run");
+        //   onPreExecute();
         dialog = MyProgressDialog.show(getContext(),
                 getContext().getString(R.string.please_wait));
+
 
         executor.execute(() -> {
             try {

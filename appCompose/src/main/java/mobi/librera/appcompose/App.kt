@@ -33,6 +33,7 @@ class App : Application(), KoinComponent, SingletonImageLoader.Factory {
             androidContext(this@App)
         }
 
+
     }
 
     override fun newImageLoader(context: Context): ImageLoader {
