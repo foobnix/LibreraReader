@@ -3,7 +3,6 @@ package com.foobnix.pdf.search.view;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
@@ -13,7 +12,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
-public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Object, Boolean> {
+public abstract class AsyncProgressResultToastTask extends ProgressTask<Boolean> {
 
     ProgressDialog dialog;
     Context c;
@@ -24,13 +23,17 @@ public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Obj
         this.onResult = onResult;
     }
 
+    @Override
+    public Context getContext() {
+        return c;
+    }
+
     public AsyncProgressResultToastTask(Context c) {
         this.c = c;
     }
 
     @Override
     protected void onPreExecute() {
-        dialog = ProgressDialog.show(c, "", c.getString(R.string.please_wait));
 
         try {
             android.widget.ProgressBar pr = (android.widget.ProgressBar) Objects.getInstanceValue(dialog, "mProgress");
