@@ -3,7 +3,6 @@ package com.foobnix.pdf.info;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,6 +16,7 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyProgressDialog;
+import com.foobnix.pdf.search.view.ProgressTask;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -52,7 +52,7 @@ public class FontExtractor {
 
                         //critically important copy CSS
                         String[] rootFiles = c.getAssets().list("");
-                        LOG.d("rootFiles", rootFiles!=null);
+                        LOG.d("rootFiles", rootFiles != null);
                         for (String name : rootFiles) {
                             if (name.startsWith("app-")) {
                                 LOG.d("getAssets", name);
@@ -95,7 +95,7 @@ public class FontExtractor {
                         }
 
                         try {
-                            File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath() );
+                            File temp = new File(AppProfile.FONT_LOCAL_ZIP.getPath());
                             if (!temp.isFile()) {
                                 IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(temp));
                                 copyFontsFromZip(temp);
@@ -173,7 +173,13 @@ public class FontExtractor {
 
             @Override
             public void run() {
-                new AsyncTask() {
+                new ProgressTask<>() {
+
+                    @Override
+                    public Context getContext() {
+                        return a;
+                    }
+
                     ProgressDialog progressDialog;
 
                     @Override

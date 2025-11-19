@@ -93,10 +93,6 @@ public class DecodeServiceBase implements DecodeService {
         switch (cfg) {
             case ALPHA_8:
                 return PixelFormat.A_8;
-            case ARGB_4444:
-                return PixelFormat.RGBA_4444;
-            case RGB_565:
-                return PixelFormat.RGB_565;
             case ARGB_8888:
                 return PixelFormat.RGBA_8888;
             default:
@@ -201,7 +197,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish,int firstPage, int lastPage) {
+    public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish, int firstPage, int lastPage) {
         Thread t = new Thread("@T searchText") {
             @Override
             public void run() {
@@ -228,10 +224,10 @@ public class DecodeServiceBase implements DecodeService {
                         finish.run();
                         return;
                     }
-                    if(page.index.docIndex < firstPage){
+                    if (page.index.docIndex < firstPage) {
                         continue;
                     }
-                    if(page.index.docIndex > lastPage){
+                    if (page.index.docIndex > lastPage) {
                         continue;
                     }
 

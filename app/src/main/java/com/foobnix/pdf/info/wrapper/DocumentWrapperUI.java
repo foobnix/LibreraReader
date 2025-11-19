@@ -1354,8 +1354,8 @@ public class DocumentWrapperUI {
         TintUtil.setTintImageWithAlpha(goToPage1Top, textColor);
         TintUtil.setTintImageWithAlpha((ImageView) closeTop, textColor);
         TintUtil.setTintImageWithAlpha(toolBarButton, textColor);
-        TintUtil.setTintImageWithAlpha(clockIcon, textColor).setAlpha(200);
-        TintUtil.setTintImageWithAlpha(batteryIcon, textColor).setAlpha(200);
+        TintUtil.setTintImageWithAlpha(clockIcon, textColor).setImageAlpha(200);
+        TintUtil.setTintImageWithAlpha(batteryIcon, textColor).setImageAlpha(200);
 
         //int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         titleBar.setBackgroundColor(TintUtil.color);

@@ -219,12 +219,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 });
 
 
-
-
-
-
-
-
             }
         }));
     }
@@ -404,12 +398,13 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             public void run() {
                 getView().redrawView();
             }
-        },firstPage, lastPage);
+        }, firstPage, lastPage);
     }
 
     public void showDialog(final ActionEx action) {
         final Integer dialogId = action.getParameter("dialogId");
         getManagedComponent().showDialog(dialogId);
+
     }
 
     public void toggleNightMode() {

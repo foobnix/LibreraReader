@@ -497,7 +497,7 @@ public class CacheZipUtils {
     public static class FilerByDate implements Comparator<File> {
         @Override
         public int compare(final File lhs, final File rhs) {
-            return new Long(lhs.lastModified()).compareTo(new Long(rhs.lastModified()));
+            return Long.compare(lhs.lastModified(), rhs.lastModified());
         }
     }
 

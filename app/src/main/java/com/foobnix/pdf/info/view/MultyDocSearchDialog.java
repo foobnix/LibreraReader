@@ -2,9 +2,9 @@ package com.foobnix.pdf.info.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.ui2.fragment.SearchFragment2;
 
 import org.ebookdroid.BookType;
@@ -250,7 +251,12 @@ public class MultyDocSearchDialog {
 
     }
 
-    static class MyTask extends AsyncTask {
+    static class MyTask extends ProgressTask<Object> {
+
+        @Override
+        public Context getContext() {
+            return a;
+        }
 
         private Handler updater1, updater2;
         private FragmentActivity a;
@@ -258,6 +264,7 @@ public class MultyDocSearchDialog {
         private boolean isSearchInLibrary;
 
         public MyTask(Handler h1, Handler h2, FragmentActivity a, boolean isReqursiveSearch, boolean isSearchInLibrary) {
+            super(false);
             this.updater1 = h1;
             this.updater2 = h2;
             this.a = a;

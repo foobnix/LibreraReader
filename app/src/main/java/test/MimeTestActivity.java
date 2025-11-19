@@ -37,7 +37,7 @@ public class MimeTestActivity extends Activity {
             assert extras != null;
             Set<String> keySet = extras.keySet();
             for (String key : keySet) {
-                builder.append("\n Extra: ").append(key).append(" : ").append(extras.get(key));
+                builder.append("\n Extra: ").append(key).append(" : ").append(extras.getString(key));
             }
         } catch (Exception e) {
             builder.append("\n Extras:");

@@ -25,9 +25,19 @@ public abstract class ProgressTask<T> {
     protected void onPostExecute(T result) {
     }
 
+    private boolean withDialog = true;
+
+    public ProgressTask() {
+
+    }
+
+    public ProgressTask(Boolean withDialog) {
+        this.withDialog = withDialog;
+    }
+
+
     protected void onPreExecute() {
-        dialog = MyProgressDialog.show(getContext(),
-                getContext().getString(R.string.please_wait));
+
     }
 
     protected void onCancelled() {
@@ -36,8 +46,10 @@ public abstract class ProgressTask<T> {
     public final void execute(final Object... params) {
         LOG.d("ProgressTask", "ProgressTask run");
         //   onPreExecute();
-        dialog = MyProgressDialog.show(getContext(),
-                getContext().getString(R.string.please_wait));
+        if (withDialog) {
+            dialog = MyProgressDialog.show(getContext(),
+                    getContext().getString(R.string.please_wait));
+        }
 
 
         executor.execute(() -> {
@@ -46,13 +58,17 @@ public abstract class ProgressTask<T> {
 
                 if (!cancelled) {
                     mainHandler.post(() -> {
-                        dialog.dismiss();
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
                         onPostExecute(result);
                     });
                 }
             } catch (Exception e) {
                 LOG.d("ProgressTask", e.toString());
-                mainHandler.post(() -> dialog.dismiss());
+                mainHandler.post(() -> {
+                    if (dialog != null) dialog.dismiss();
+                });
             }
         });
     }

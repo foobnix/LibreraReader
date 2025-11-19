@@ -3,10 +3,10 @@ package com.foobnix.ui2.fragment;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
@@ -54,6 +54,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.EntryAdapter;
@@ -565,7 +566,11 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 @Override
                 public void run() {
 
-                    new AsyncTask() {
+                    new ProgressTask<>() {
+                        @Override
+                        public Context getContext() {
+                            return getContext();
+                        }
 
                         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                         @Override

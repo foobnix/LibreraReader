@@ -25,7 +25,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -142,6 +141,7 @@ import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
+import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
@@ -2993,7 +2993,12 @@ public class DragingDialogs {
                             @Override
                             public void onClick(View v) {
 
-                                new AsyncTask<Void, Void, File>() {
+                                new ProgressTask<File>() {
+                                    @Override
+                                    public Context getContext() {
+                                        return controller.getActivity();
+                                    }
+
                                     ProgressDialog dialog;
 
                                     @Override
@@ -3002,7 +3007,7 @@ public class DragingDialogs {
                                     }
 
                                     @Override
-                                    protected File doInBackground(Void... params) {
+                                    protected File doInBackground(Object... params) {
                                         return EpubExtractor.extractAttachment(controller.getCurrentBook(), nameFull);
                                     }
 

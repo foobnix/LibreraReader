@@ -386,7 +386,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     public boolean onGenericMotionEvent(final MotionEvent event) {
-        if (Integer.parseInt(Build.VERSION.SDK) >= 12) {
+        if (Build.VERSION.SDK_INT >= 12) {
             return GenericMotionEvent12.onGenericMotionEvent(event, this);
         }
         return false;
