@@ -1989,7 +1989,7 @@ public class ExtUtils {
         for (ActivityManager.AppTask task : tasks) {
             ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
 
-            // LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
+            LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
 
             if (taskInfo.baseActivity != null &&
                     taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {

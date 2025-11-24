@@ -578,9 +578,13 @@ public class MainTabs2 extends AdsFragmentActivity {
                 LOG.d("Open Last book not found");
                 return;
             }
-
+            boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+//            if (isEasyMode) {
+//                finishOtherViewer(this, VerticalViewActivity.class);
+//            } else {
+//                finishOtherViewer(this, HorizontalViewActivity.class);
+//            }
             Safe.run(() -> {
-                boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
 
                 Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));

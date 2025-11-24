@@ -314,7 +314,7 @@
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:resizeableActivity="true"
 
             android:windowSoftInputMode="stateHidden">
