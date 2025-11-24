@@ -35,6 +35,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     public abstract void onFinishActivity();
 
+
     @Override
     protected void onCreate(Bundle arg0) {
         if (AppState.get().isSystemThemeColor) {

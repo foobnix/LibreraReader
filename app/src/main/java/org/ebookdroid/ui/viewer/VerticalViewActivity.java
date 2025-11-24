@@ -1,5 +1,7 @@
 package org.ebookdroid.ui.viewer;
 
+import static com.foobnix.pdf.info.ExtUtils.finishOtherViewer;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,6 +36,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
@@ -61,6 +64,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        finishOtherViewer(this, HorizontalViewActivity.class);
         LOG.d("VerticalViewActivity", "onNewIntent");
         if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
             return;
@@ -90,6 +94,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        finishOtherViewer(this, HorizontalViewActivity.class);
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);

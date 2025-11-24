@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
@@ -1978,6 +1979,36 @@ public class ExtUtils {
             return false;
         }
         return true;
+    }
+
+    public static void finishOtherViewer(Activity a, Class<? extends Activity> otherActivityClass) {
+        ActivityManager am = (ActivityManager) a.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.AppTask> tasks = am.getAppTasks();
+
+
+        for (ActivityManager.AppTask task : tasks) {
+            ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
+
+            // LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
+
+            if (taskInfo.baseActivity != null &&
+                    taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {
+
+                // This task belongs to the other viewer → finish it
+                task.finishAndRemoveTask();
+                LOG.d("finishAndRemoveTask 1", otherActivityClass);
+                break;
+            }
+
+            // Alternative (simpler but slightly slower): check top activity
+            if (taskInfo.topActivity != null &&
+                    taskInfo.topActivity.getClassName().equals(otherActivityClass.getName())) {
+
+                LOG.d("finishAndRemoveTask 2", otherActivityClass);
+                task.finishAndRemoveTask();
+                break;
+            }
+        }
     }
 
 }

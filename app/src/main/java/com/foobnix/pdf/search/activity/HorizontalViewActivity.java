@@ -1,5 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
+import static com.foobnix.pdf.info.ExtUtils.finishOtherViewer;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -112,6 +114,7 @@ import com.foobnix.ui2.MyContextWrapper;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -233,7 +236,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onNewIntent(final Intent intent) {
-
+        finishOtherViewer(this, VerticalViewActivity.class);
         if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
             return;
         }
@@ -252,6 +255,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        finishOtherViewer(this, VerticalViewActivity.class);
         quickBookmark = getString(R.string.fast_bookmark);
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         LOG.d("getRequestedOrientation", AppState.get().orientation, getRequestedOrientation());
