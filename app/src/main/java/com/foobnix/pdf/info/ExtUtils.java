@@ -732,8 +732,7 @@ public class ExtUtils {
         if (true) {
             return Formatter.formatFileSize(LibreraApp.context, size).replace(" ", "");
         }
-        if (size <= 0)
-            return "0";
+        if (size <= 0) return "0";
         final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
         int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
         return new DecimalFormat("#,##0").format(size / Math.pow(1024, digitGroups)) + "" + units[digitGroups];
@@ -1982,33 +1981,36 @@ public class ExtUtils {
     }
 
     public static void finishOtherViewer(Activity a, Class<? extends Activity> otherActivityClass) {
-        ActivityManager am = (ActivityManager) a.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.AppTask> tasks = am.getAppTasks();
+        try {
+            ActivityManager am = (ActivityManager) a.getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.AppTask> tasks = am.getAppTasks();
 
 
-        for (ActivityManager.AppTask task : tasks) {
-            ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
+            for (ActivityManager.AppTask task : tasks) {
+                ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
 
-            LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
+                LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
 
-            if (taskInfo.baseActivity != null &&
-                    taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {
+                if (taskInfo.baseActivity != null && taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {
 
-                // This task belongs to the other viewer → finish it
-                task.finishAndRemoveTask();
-                LOG.d("finishAndRemoveTask 1", otherActivityClass);
-                break;
+                    // This task belongs to the other viewer → finish it
+                    task.finishAndRemoveTask();
+                    LOG.d("finishAndRemoveTask 1", otherActivityClass);
+                    break;
+                }
+
+                // Alternative (simpler but slightly slower): check top activity
+                if (taskInfo.topActivity != null && taskInfo.topActivity.getClassName().equals(otherActivityClass.getName())) {
+
+                    LOG.d("finishAndRemoveTask 2", otherActivityClass);
+                    task.finishAndRemoveTask();
+                    break;
+                }
             }
-
-            // Alternative (simpler but slightly slower): check top activity
-            if (taskInfo.topActivity != null &&
-                    taskInfo.topActivity.getClassName().equals(otherActivityClass.getName())) {
-
-                LOG.d("finishAndRemoveTask 2", otherActivityClass);
-                task.finishAndRemoveTask();
-                break;
-            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
+
     }
 
 }
