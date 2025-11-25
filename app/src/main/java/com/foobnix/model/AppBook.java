@@ -3,6 +3,7 @@ package com.foobnix.model;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.PageIndex;
@@ -32,9 +33,11 @@ public class AppBook implements CurrentPageListener {
     public long t;//time
     public String ln;
 
+    public boolean rtl = Urls.isRtl();
+
     @Override
     public int hashCode() {
-        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + ln;
+        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + ln + rtl;
         LOG.d("hashCode-appbook", s);
         return s.hashCode();
     }
@@ -53,6 +56,7 @@ public class AppBook implements CurrentPageListener {
         dc = AppSP.get().isDoubleCoverAlone;
         d = TempHolder.get().pageDelta;
         s = AppState.get().autoScrollSpeed;
+        rtl = AppSP.get().isRTL;
         setLock(AppSP.get().isLocked);
     }
 
@@ -83,7 +87,7 @@ public class AppBook implements CurrentPageListener {
         this.p = MyMath.percent(page, pages);
         LOG.d("currentPageChanged", page, pages, p);
         t = System.currentTimeMillis();
-        if(page==pages){
+        if (page == pages) {
             LOG.d("currentPageChanged listHash", page, pages, p);
             TempHolder.listHash++;
         }

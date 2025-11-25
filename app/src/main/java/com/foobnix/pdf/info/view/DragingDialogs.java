@@ -4584,7 +4584,7 @@ public class DragingDialogs {
                 // rtl
                 final TextView rtlText = inflate.findViewById(R.id.rtlText);
                 ((ViewGroup) rtlText.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                if (AppState.get().isRTL) {
+                if (AppSP.get().isRTL) {
                     rtlText.setText(R.string.right_to_left);
                 } else {
                     rtlText.setText(R.string.left_to_rigth);
@@ -4599,7 +4599,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().isRTL = false;
+                                AppSP.get().isRTL = false;
                                 rtlText.setText(R.string.left_to_rigth);
                                 TxtUtils.underlineTextView(rtlText);
 
@@ -4615,7 +4615,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().isRTL = true;
+                                AppSP.get().isRTL = true;
                                 rtlText.setText(R.string.right_to_left);
                                 TxtUtils.underlineTextView(rtlText);
 

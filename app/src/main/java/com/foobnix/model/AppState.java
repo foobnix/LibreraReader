@@ -550,7 +550,7 @@ public class AppState {
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
     public String versionNew = "";
-    public boolean isRTL = Urls.isRtl();
+
     public boolean isCutRTL = Urls.isRtl();
     // perofrmance
     public int pagesInMemory = 3;

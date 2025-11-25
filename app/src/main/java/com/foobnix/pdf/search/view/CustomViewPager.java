@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 
 public class CustomViewPager extends RtlViewPager {
@@ -38,7 +39,7 @@ public class CustomViewPager extends RtlViewPager {
 
     @Override
     protected boolean isRtl() {
-        return AppState.get().isRTL;
+        return AppSP.get().isRTL;
     }
 
 }

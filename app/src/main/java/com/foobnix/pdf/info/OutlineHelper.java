@@ -7,6 +7,7 @@ import android.view.View;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -23,7 +24,7 @@ public class OutlineHelper {
             AppState.CHAPTER_FORMAT_4, //
             AppState.CHAPTER_FORMAT_2, //
             AppState.CHAPTER_FORMAT_3 //
-             //
+            //
     );//
 
     public final static List<String> CHAPTER_STRINGS = Arrays.asList(//
@@ -71,7 +72,7 @@ public class OutlineHelper {
         String textPage = TxtUtils.deltaPage(dc.getCurentPageFirst1(), max);
         String textMax = TxtUtils.deltaPageMax(max);
 
-        if (AppState.get().isRTL) {
+        if (AppSP.get().isRTL) {
             info.textPage = textPage;
             info.textMax = textMax;
         } else {
@@ -86,13 +87,13 @@ public class OutlineHelper {
             text += SP + "(" + leftPages + ")" + (!compact && leftPages < 10 ? "  " : "");
 
             info.chText = text;
-        }else  if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_4) {
-                String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
+        } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_4) {
+            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
 
-               // int leftPages = getLeftPages(dc);
-                text += SP;
+            // int leftPages = getLeftPages(dc);
+            text += SP;
 
-                info.chText = text;
+            info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
             info.chText = textPage + DV + textMax;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_3) {
@@ -179,7 +180,7 @@ public class OutlineHelper {
         if (outline.size() > root) {
             OutlineLinkWrapper item = outline.get(root);
             String linkUri = item.linkUri;
-            LOG.d("currentChapterFile-linkUri",linkUri);
+            LOG.d("currentChapterFile-linkUri", linkUri);
             return linkUri;
         } else {
             return null;

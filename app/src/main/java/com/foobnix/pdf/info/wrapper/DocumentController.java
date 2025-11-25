@@ -740,6 +740,10 @@ public abstract class DocumentController {
     }
 
     public void saveAppState() {
+        AppBook bs = SettingsManager.getBookSettings();
+        bs.updateFromAppState();
+        SharedBooks.save(bs);
+
         AppProfile.save(activity);
     }
 

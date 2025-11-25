@@ -88,7 +88,10 @@ public abstract class HorizontalModeController extends DocumentController {
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
 
+
         if (bs != null) {
+            LOG.d("isRTL", "AppBook.rtl", bs.rtl);
+            AppSP.get().isRTL = bs.rtl;
             AppSP.get().isCut = bs.sp;
             AppSP.get().isCrop = bs.cp;
             AppSP.get().isDouble = bs.dp;
@@ -100,6 +103,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 AppSP.get().isCrop = true;
             }
         }
+
         if (AppState.get().alwaysTwoPages) {
             AppSP.get().isDouble = true;
             AppSP.get().isCut = false;

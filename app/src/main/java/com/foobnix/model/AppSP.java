@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
-import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Urls;
 
 import java.io.File;
 
@@ -34,6 +34,7 @@ public class AppSP {
     public String hypenLang = null;
     public boolean isCut = false;
     public boolean isDouble = false;
+    public boolean isRTL = Urls.isRtl();
     public boolean isDoubleCoverAlone = false;
     public boolean isCrop = false;
     public boolean isCropSymetry = false;

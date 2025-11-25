@@ -422,6 +422,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             modeName.setText(AppState.get().nameHorizontalMode);
         }
 
+
         pagesCountIndicator = (TextView) findViewById(R.id.pagesCountIndicator);
         flippingIntervalView = (TextView) findViewById(R.id.flippingIntervalView);
         pagesTime = (TextView) findViewById(R.id.pagesTime);
@@ -474,9 +475,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         seekBar = (SeekBar) findViewById(R.id.seekBar1);
 
-        if (AppState.get().isRTL) {
-            seekBar.setRotation(180);
-        }
+        applyRTL();
+
 
         int color = MagicHelper.getTextOrIconColor();
 
@@ -503,6 +503,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesBookmark = findViewById(R.id.pagesBookmark);
         pagesBookmark.setOnClickListener(onBookmarks);
         pagesBookmark.setOnLongClickListener(onBookmarksLong);
+
 
         final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
         onFullScreen.setOnClickListener(new OnClickListener() {
@@ -1027,7 +1028,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (AppsConfig.IS_LOG) {
                     long time = System.currentTimeMillis() - start;
                     float sec = (float) time / 1000;
-                    modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
+                    //modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
                 }
                 try {
                     // onClose.setVisibility(View.VISIBLE);
@@ -1426,6 +1427,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void showHideInfoToolBar() {
+
         int isVisible = AppState.get().isShowToolBar ? View.VISIBLE : View.GONE;
         pagesTime.setVisibility(isVisible);
         //pagesTime1.setVisibility(AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL ? View.GONE : View.VISIBLE);
@@ -1833,6 +1835,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             floatingBookmarkTextView.setVisibility(View.GONE);
         }
 
+        applyRTL();
+
     }
 
     public void loadUI() {
@@ -2214,6 +2218,35 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
             pagerAdapter.notifyDataSetChanged();
         }
+
+
+    }
+
+    public void applyRTL() {
+
+        // updateUI(dc.getCurrentPage());
+
+        LOG.d("isRTL", "AppSP.isRTL", AppSP.get().isRTL);
+        if (AppSP.get().isRTL) {
+            seekBar.setRotation(180);
+            modeName.setText(AppState.get().nameHorizontalMode + " RTL");
+
+            AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
+            AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
+            AppState.get().tapZoneLeft = AppState.TAP_NEXT_PAGE;
+            AppState.get().tapZoneRight = AppState.TAP_PREV_PAGE;
+
+        } else {
+            seekBar.setRotation(0);
+            modeName.setText(AppState.get().nameHorizontalMode);
+
+            AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
+            AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
+            AppState.get().tapZoneLeft = AppState.TAP_PREV_PAGE;
+            AppState.get().tapZoneRight = AppState.TAP_NEXT_PAGE;
+        }
+
+
     }
 
     private void ttsFixPosition() {
@@ -2276,6 +2309,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         if (KeyEvent.KEYCODE_B == keyCode) {
             DragingDialogs.dialogShowBookmarks(anchor, dc, null);
+            return true;
+        }
+        if (KeyEvent.KEYCODE_R == keyCode) {
+            AppSP.get().isRTL = !AppSP.get().isRTL;
+            nullAdapter();
+            dc.restartActivity();
             return true;
         }
 
