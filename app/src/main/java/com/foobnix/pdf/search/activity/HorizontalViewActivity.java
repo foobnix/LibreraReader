@@ -2230,20 +2230,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (AppSP.get().isRTL) {
             seekBar.setRotation(180);
             modeName.setText(AppState.get().nameHorizontalMode + " RTL");
-
-            AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
-            AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
-            AppState.get().tapZoneLeft = AppState.TAP_NEXT_PAGE;
-            AppState.get().tapZoneRight = AppState.TAP_PREV_PAGE;
-
         } else {
             seekBar.setRotation(0);
             modeName.setText(AppState.get().nameHorizontalMode);
-
-            AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
-            AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
-            AppState.get().tapZoneLeft = AppState.TAP_PREV_PAGE;
-            AppState.get().tapZoneRight = AppState.TAP_NEXT_PAGE;
         }
 
 
