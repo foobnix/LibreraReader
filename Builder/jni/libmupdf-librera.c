@@ -573,9 +573,9 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jcla
     fz_catch(ctx)
     {
 
-        fz_drop_display_list(ctx, page->pageList);
-        fz_drop_page(ctx, page->page);
-        fz_free(ctx, page);
+        //fz_drop_display_list(ctx, page->pageList);
+        //fz_drop_page(ctx, page->page);
+        //fz_free(ctx, page);
         // fz_free_device(dev);
         // fz_free_display_list(ctx, page->pageList);
         // fz_free_page(doc->document, page->page);
