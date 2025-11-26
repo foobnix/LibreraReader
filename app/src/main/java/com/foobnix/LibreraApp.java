@@ -12,7 +12,6 @@ import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
 import androidx.work.WorkManager;
 
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -28,7 +27,6 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 public class LibreraApp extends MultiDexApplication {
@@ -54,9 +52,9 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
-        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
-        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
+//        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
+//        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
+//        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
 
         Log.d("IS_LOG", "IS_LOG Enable " + AppsConfig.IS_LOG);
 
