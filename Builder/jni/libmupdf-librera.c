@@ -808,7 +808,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *en
     {
         return NULL;
     }
-    if (doc->ctx && outline && outline != NULL)
+    if (doc->ctx && outline && outline->title && outline->title[0] != '\0')
     {
         char st[4048];
         fz_try(doc->ctx)
