@@ -550,12 +550,17 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jcla
     page->pageList = NULL;
     // page->annot_list = NULL;
 
-    fz_rect mediabox;
+    //fz_rect mediabox = fz_empty_rect;
     fz_try(ctx)
     {
-        page->pageList = fz_new_display_list(ctx, mediabox);
-        dev = fz_new_list_device(ctx, page->pageList);
+
         page->page = fz_load_page(ctx, doc->document, pageno - 1);
+        fz_rect mediabox = fz_bound_page(ctx, page->page);
+
+        page->pageList = fz_new_display_list(ctx, mediabox);
+
+        dev = fz_new_list_device(ctx, page->pageList);
+
         fz_run_page(ctx, page->page, dev, fz_identity, NULL);
     }
     fz_always(ctx)
@@ -567,6 +572,10 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jcla
     }
     fz_catch(ctx)
     {
+
+        fz_drop_display_list(ctx, page->pageList);
+        fz_drop_page(ctx, page->page);
+        fz_free(ctx, page);
         // fz_free_device(dev);
         // fz_free_display_list(ctx, page->pageList);
         // fz_free_page(doc->document, page->page);
@@ -1681,7 +1690,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv *
     fz_try(ctx)
     {
         int b, l, s, c;
-        fz_rect mediabox;
+        //fz_rect mediabox;
 
         ctm = fz_identity;
 
