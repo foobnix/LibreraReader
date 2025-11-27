@@ -193,13 +193,20 @@ public class TTSService extends Service {
 
 
         Intent intent = playBookIntent(page, path, anchor);
-
-
-        if (Build.VERSION.SDK_INT >= 26) {
-            LibreraApp.context.startForegroundService(intent);
-        } else {
-            LibreraApp.context.startService(intent);
+        //UserDefinedFileAttributeView
+        PendingIntent play = PendingIntent.getService(LibreraApp.context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        try {
+            play.send();
+        } catch (CanceledException e) {
+            LOG.e(e);
         }
+
+
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            LibreraApp.context.startForegroundService(intent);
+//        } else {
+//            LibreraApp.context.startService(intent);
+//        }
 
     }
 
@@ -350,13 +357,12 @@ public class TTSService extends Service {
         return null;
     }
 
-    public void startMyForeground() {
-        if (true) {
-            if (!isStartForeground) {
-                startServiceWithNotification();
-                isStartForeground = true;
-            }
+    public boolean startMyForeground() {
+        if (!isStartForeground) {
+            startServiceWithNotification();
+            isStartForeground = true;
         }
+        return isStartForeground;
     }
 
     private void startServiceWithNotification() {
@@ -381,15 +387,17 @@ public class TTSService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        updateTimer();
         startMyForeground();
 
-
-        MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
         LOG.d(TAG, "onStartCommand", intent);
         if (intent == null) {
             return START_STICKY;
         }
+
+        updateTimer();
+        MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
+
+
         LOG.d(TAG, "onStartCommand", intent.getAction());
         if (intent.getExtras() != null) {
             LOG.d(TAG, "onStartCommand", intent.getAction(), intent.getExtras());
