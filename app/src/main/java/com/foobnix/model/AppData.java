@@ -293,7 +293,7 @@ public class AppData {
         for (SimpleMeta s : favorites) {
             s = SimpleMeta.SyncSimpleMeta(s);
 
-            if (new File(s.getPath()).isFile() || Clouds.isCloudFile(s.getPath())) {
+            if (new File(s.getPath()).exists() || Clouds.isCloudFile(s.getPath())) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
@@ -377,7 +377,7 @@ public class AppData {
         for (SimpleMeta it : recent) {
             SimpleMeta s = SimpleMeta.SyncSimpleMeta(it);
 
-            if (!new File(s.getPath()).isFile()) {
+            if (!new File(s.getPath()).exists()) {
                 LOG.d("getAllRecent can't find file", s.getPath());
                 continue;
             }

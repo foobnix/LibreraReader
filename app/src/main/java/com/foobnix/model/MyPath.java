@@ -53,7 +53,7 @@ public class MyPath {
             return null;
         }
         final File syncBook = new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path));
-        return syncBook.isFile() ? syncBook.getPath() : path;
+        return syncBook.exists() ? syncBook.getPath() : path;
     }
 
 
