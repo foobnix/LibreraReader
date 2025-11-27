@@ -181,7 +181,7 @@ public class TTSService extends Service {
 
     @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
-        LOG.d(TAG, "playBookPage", page, path, width, height);
+        LOG.d(TAG, "playBookPage1", page, path, width, height);
 
         TTSEngine.get().stop(null);
 
@@ -193,6 +193,7 @@ public class TTSService extends Service {
 
 
         Intent intent = playBookIntent(page, path, anchor);
+
 
         if (Build.VERSION.SDK_INT >= 26) {
             LibreraApp.context.startForegroundService(intent);
@@ -213,7 +214,7 @@ public class TTSService extends Service {
 
     @Override
     public void onCreate() {
-        LOG.d(TAG, "Create");
+        LOG.d(TAG, "onCreate:TTS playBookPage1");
         startMyForeground();
         //
 
@@ -740,6 +741,7 @@ public class TTSService extends Service {
     public void onDestroy() {
         super.onDestroy();
 
+
         isStartForeground = false;
         try {
             unregisterReceiver(blueToothReceiver);
@@ -772,7 +774,7 @@ public class TTSService extends Service {
             cache.recycle();
         }
         path = null;
-        LOG.d(TAG, "onDestroy");
+        LOG.d(TAG, "onDestroy:TTS playBookPage1");
     }
 
     private void acquireWakeLock() {
