@@ -1956,7 +1956,9 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
                         AppSP.get().lastBookParagraph = 0;
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                        if (TTSService.isTTSGranted(controller.getActivity())) {
+                            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                        }
                     }
                 });
 

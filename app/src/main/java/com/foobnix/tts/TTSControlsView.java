@@ -122,6 +122,9 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (!TTSService.isTTSGranted(context)) {
+                    return;
+                }
                 PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
@@ -135,6 +138,9 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (!TTSService.isTTSGranted(context)) {
+                    return;
+                }
                 PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
@@ -149,6 +155,9 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (!TTSService.isTTSGranted(context)) {
+                    return;
+                }
                 PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
@@ -162,6 +171,10 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (!TTSService.isTTSGranted(context)) {
+                    return;
+                }
+
                 if (TTSEngine.get().getEngineCount() == 0) {
                     Urls.openTTS(getContext());
                 } else {

@@ -150,22 +150,20 @@ public class TTSService extends Service {
         LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);
     }
 
-    public static void playPause(Context context, DocumentController controller) {
-
-
+    public static boolean isTTSGranted(Context context) {
         if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.POST_NOTIFICATIONS)) {
-//                final Intent i = new Intent();
-//                i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//                i.setData( Uri.fromParts("package", context.getPackageName(), null));
-//                context.startActivity(i);
-            } else {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
-                return;
-            }
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
+            return false;
 
         }
+        return true;
+    }
 
+    public static void playPause(Context context, DocumentController controller) {
+
+        if (!isTTSGranted(context)) {
+            return;
+        }
 
         if (TTSEngine.get().isPlaying()) {
             PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
