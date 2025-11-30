@@ -279,11 +279,9 @@ public class TTSService extends Service {
                             }
                         }
                     } else if (KeyEvent.KEYCODE_MEDIA_NEXT == event.getKeyCode()) {
-                        stopMediaSesstionAndReleaweWakeLock();
                         playPage("", AppSP.get().lastBookPage + 1, null);
 
                     } else if (KeyEvent.KEYCODE_MEDIA_PREVIOUS == event.getKeyCode()) {
-                        stopMediaSesstionAndReleaweWakeLock();
                         playPage("", AppSP.get().lastBookPage - 1, null);
 
 
