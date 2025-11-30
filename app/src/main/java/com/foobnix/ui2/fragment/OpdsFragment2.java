@@ -569,7 +569,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     new ProgressTask<>() {
                         @Override
                         public Context getContext() {
-                            return getContext();
+                            return OpdsFragment2.this.getContext();
                         }
 
                         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
