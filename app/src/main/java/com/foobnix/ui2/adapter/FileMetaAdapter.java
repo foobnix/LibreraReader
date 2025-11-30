@@ -380,7 +380,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             }
 
-            if (fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
+            if (fileMeta.getCusType() != null && fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
                 holder.image.setImageResource(R.drawable.glyphicons_160_playlist);
                 holder.starIcon.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);

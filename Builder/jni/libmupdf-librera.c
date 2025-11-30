@@ -808,7 +808,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *en
     {
         return NULL;
     }
-    if (doc->ctx && outline && outline->title && outline->title[0] != '\0')
+    if (outline->title && outline->title[0] != '\0')
     {
         char st[4048];
         fz_try(doc->ctx)
@@ -816,11 +816,15 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *en
 
             snprintf(st, sizeof(st), "%s", outline->title);
         }
-        fz_catch(doc->ctx) return NULL;
+        fz_catch(doc->ctx)
+        {
+            return NULL;
+        }
         // return (*env)->NewStringUTF(env, st);
-        jbyteArray trackIDArray = (*env)->NewByteArray(env, strlen(st));
-        (*env)->SetByteArrayRegion(env, trackIDArray, 0, strlen(st), (const jbyte *)st);
-        return trackIDArray;
+//        jbyteArray trackIDArray = (*env)->NewByteArray(env, strlen(st));
+//        (*env)->SetByteArrayRegion(env, trackIDArray, 0, strlen(st), (const jbyte *)st);
+//        return trackIDArray;
+        return (*env)->NewStringUTF(env, st);
     }
 
     return NULL;
