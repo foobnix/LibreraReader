@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #./fonts.sh
 
-if [ "$(uname)" != "Darwin" ]; then
-  git reset --hard
-  git pull
-fi
+#if [ "$(uname)" != "Darwin" ]; then
+#  git reset --hard
+#  git pull
+#fi
 
 #/usr/libexec/java_home -V
 if [ "$(uname)" == "Darwin" ]; then

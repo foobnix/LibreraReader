@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-git reset --hard
-git pull
+#git reset --hard
+#git pull
 
 ./fonts.sh
 
