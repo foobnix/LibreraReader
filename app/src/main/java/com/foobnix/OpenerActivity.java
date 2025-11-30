@@ -161,7 +161,7 @@ public class OpenerActivity extends Activity {
             LOG.d(TAG, "File:", file.getPath());
         }
 
-        if (!file.isFile()) {
+        if (!file.isFile() && id != null) {
             LOG.d(TAG, "Find file in all Downloads by name and id", name, id);
             String documentID = id.replaceAll("\\D", "");
             LOG.d(TAG, "documentID", documentID);
