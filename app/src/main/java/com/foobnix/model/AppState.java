@@ -552,6 +552,7 @@ public class AppState {
     public String versionNew = "";
 
     public boolean isCutRTL = Urls.isRtl();
+    public boolean isRTLByDefault = Urls.isRtl();
     // perofrmance
     public int pagesInMemory = 3;
     public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? 1.6f : 1.4f;

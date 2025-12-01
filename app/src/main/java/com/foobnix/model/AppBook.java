@@ -47,6 +47,7 @@ public class AppBook implements CurrentPageListener {
 
     public AppBook(final String path) {
         this.path = path;
+        this.rtl = AppState.get().isRTLByDefault;
     }
 
     public void updateFromAppState() {
