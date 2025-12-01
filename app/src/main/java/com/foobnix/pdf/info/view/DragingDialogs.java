@@ -5932,8 +5932,8 @@ public class DragingDialogs {
                                 AppState.get().colorDayText = AppState.COLOR_BLACK;
                                 AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.get().colorDayText);
-                                AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.get().colorDayBg);
+                                AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.COLOR_WHITE);
+                                AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.COLOR_BLACK);
 
                                 textDayColor.setTextColor(AppState.get().colorDayText);
                                 textDayColor.setBackgroundColor(AppState.get().colorDayBg);

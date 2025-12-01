@@ -401,6 +401,12 @@ public class MagicHelper {
         if (color == colorCacheInput) {
             return colorCache;
         }
+        if (color == Color.WHITE) {
+            return Color.WHITE;
+        }
+        if (color == Color.BLACK) {
+            return Color.BLACK;
+        }
 
         int r1 = Color.red(color);
         int g1 = Color.green(color);
@@ -636,8 +642,7 @@ public class MagicHelper {
     }
 
     public static int getDominantColor(Bitmap bitmap) {
-        if (null == bitmap)
-            return Color.TRANSPARENT;
+        if (null == bitmap) return Color.TRANSPARENT;
 
         int redBucket = 0;
         int greenBucket = 0;
@@ -674,8 +679,7 @@ public class MagicHelper {
                         break;
                     }
                 }
-            } else
-                break;
+            } else break;
         }
 
         // TRIM WIDTH - RIGHT
@@ -688,8 +692,7 @@ public class MagicHelper {
                         break;
                     }
                 }
-            } else
-                break;
+            } else break;
         }
 
         // TRIM HEIGHT - TOP
@@ -702,8 +705,7 @@ public class MagicHelper {
                         break;
                     }
                 }
-            } else
-                break;
+            } else break;
         }
 
         // TRIM HEIGHT - BOTTOM
@@ -716,8 +718,7 @@ public class MagicHelper {
                         break;
                     }
                 }
-            } else
-                break;
+            } else break;
         }
 
         return Bitmap.createBitmap(bmp, startWidth, startHeight, endWidth - startWidth, endHeight - startHeight);
@@ -742,8 +743,7 @@ public class MagicHelper {
         }
     }
 
-    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast,
-                                                          int brigtness) {
+    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast, int brigtness) {
         int[] arr = new int[src.getWidth() * src.getHeight()];
         src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
         quickContrast3(arr, contrast, brigtness);

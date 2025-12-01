@@ -520,7 +520,7 @@ public class AppState {
     public int colorDayForeground = COLOR_WHITE;
     public int colorNigthText = COLOR_WHITE_2;
     public int colorNigthBg = COLOR_BLACK_2;
-    public int colorNigthForeground = COLOR_BLACK_2;
+    public int colorNigthForeground = COLOR_BLACK;
     public boolean supportPDF = true;
     public boolean supportXPS = false;
     public boolean supportDJVU = true;
@@ -704,6 +704,7 @@ public class AppState {
         nameHorizontalMode = a.getString(R.string.mode_horizontally);
         nameMusicianMode = a.getString(R.string.mode_musician);
         musicText = a.getString(R.string.musician);
+
 
         appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
         if (Dips.isEInk()) {
