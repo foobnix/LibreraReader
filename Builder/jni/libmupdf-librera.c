@@ -796,40 +796,36 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv
     }
 }
 
-JNIEXPORT jstring
-JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
-                                                                 jclass clazz, jlong dochandle,
-                                                                 jlong outlinehandle)
+JNIEXPORT jstring JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(
+        JNIEnv *env, jclass clazz, jlong dochandle, jlong outlinehandle)
 {
     fz_outline *outline = (fz_outline *)(long)outlinehandle;
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
 
-    if (!doc || !doc->ctx || !outline)
-    {
+    if (!doc || !doc->ctx || !outline) {
         return NULL;
     }
-    if (outline->title && outline->title[0] != '\0')
-    {
-        char st[4048];
-        fz_try(doc->ctx)
-        {
 
-            snprintf(st, sizeof(st), "%s", outline->title);
-        }
-        fz_catch(doc->ctx)
-        {
-            return NULL;
-        }
-        // return (*env)->NewStringUTF(env, st);
-//        jbyteArray trackIDArray = (*env)->NewByteArray(env, strlen(st));
-//        (*env)->SetByteArrayRegion(env, trackIDArray, 0, strlen(st), (const jbyte *)st);
-//        return trackIDArray;
-        return (*env)->NewStringUTF(env, st);
+    if (!outline->title || outline->title[0] == '\0') {
+        return NULL;
     }
 
-    return NULL;
-}
+    jstring result = NULL;
 
+    fz_try(doc->ctx) {
+        result = (*env)->NewStringUTF(env, outline->title);
+
+        if ((*env)->ExceptionCheck(env)) {
+            (*env)->ExceptionClear(env);
+            result = NULL;
+        }
+    }
+    fz_catch(doc->ctx) {
+        result = NULL;
+    }
+
+    return result;
+}
 JNIEXPORT jstring
 JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,jclass clazz, jlong outlinehandle,
                                                                 jlong dochandle)

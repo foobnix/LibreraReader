@@ -254,7 +254,7 @@ public class AppState {
     public static int COLOR_BLACK = Color.BLACK;
     public static int COLOR_BLACK_2 = Color.parseColor("#3a3a3a");
 
-    public static int COLOR_DAY_FG = Color.parseColor("#DDDDDD");
+    public static int COLOR_DAY_FG = Color.parseColor("#F2F2F2");
     public static int COLOR_NIGHT_FG = Color.parseColor("#0B0B0B");
     public static int WIDGET_LIST = 1;
     public static int WIDGET_GRID = 2;
