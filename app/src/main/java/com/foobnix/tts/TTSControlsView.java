@@ -315,7 +315,7 @@ public class TTSControlsView extends FrameLayout {
 
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    if (fromUser) {
+                    if (fromUser && TTSEngine.get().mp != null) {
                         LOG.d("Seek-onProgressChanged", progress);
                         TTSEngine.get().mp.seekTo(progress);
                     }
