@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">La annen musikk spilles</string>
    <string name="enable_image_scale">Aktiver bildeskala</string>
    <string name="open_books_on_page_1">Åpne bøker på side 1</string>
+   <string name="foreground">Forgrunnen</string>
 </resources>

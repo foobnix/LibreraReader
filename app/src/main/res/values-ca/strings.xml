@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Permetre que es reprodueixi una altra música</string>
    <string name="enable_image_scale">Habilitar l\'escala d\'imatge</string>
    <string name="open_books_on_page_1">Llibres oberts a la pàgina 1</string>
+   <string name="foreground">Primer pla</string>
 </resources>

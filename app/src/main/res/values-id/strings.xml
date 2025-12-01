@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Izinkan musik lain diputar</string>
    <string name="enable_image_scale">Aktifkan skala gambar</string>
    <string name="open_books_on_page_1">Buka buku di halaman 1</string>
+   <string name="foreground">Latar depan</string>
 </resources>

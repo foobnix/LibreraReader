@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Kuruhusu muziki mwingine kucheza</string>
    <string name="enable_image_scale">Wezesha kiwango cha picha</string>
    <string name="open_books_on_page_1">Fungua vitabu kwenye ukurasa wa 1</string>
+   <string name="foreground">Mbele</string>
 </resources>

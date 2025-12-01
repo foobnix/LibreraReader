@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Laat andere muziek spelen</string>
    <string name="enable_image_scale">Schakel afbeeldingsschaal in</string>
    <string name="open_books_on_page_1">Open boeken op pagina 1</string>
+   <string name="foreground">Voorgrond</string>
 </resources>

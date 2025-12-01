@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Povoliť prehrávanie inej hudby</string>
    <string name="enable_image_scale">Povoliť mierku obrázkov</string>
    <string name="open_books_on_page_1">Otvoriť knihy na strane 1</string>
+   <string name="foreground">Popredí</string>
 </resources>

@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">다른 음악이 재생되도록 허용</string>
    <string name="enable_image_scale">이미지 크기 활성화</string>
    <string name="open_books_on_page_1">1페이지의 책을 펴세요</string>
+   <string name="foreground">전경</string>
 </resources>

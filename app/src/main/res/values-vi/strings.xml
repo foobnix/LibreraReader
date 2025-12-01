@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Cho phép phát nhạc khác</string>
    <string name="enable_image_scale">Kích hoạt tỷ lệ hình ảnh</string>
    <string name="open_books_on_page_1">Mở sách ở trang 1</string>
+   <string name="foreground">Tiền cảnh</string>
 </resources>

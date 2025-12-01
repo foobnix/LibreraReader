@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">允許播放其他音樂</string>
    <string name="enable_image_scale">啟用圖像縮放</string>
    <string name="open_books_on_page_1">打開第1頁的書</string>
+   <string name="foreground">前景</string>
 </resources>

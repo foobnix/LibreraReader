@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Permiteți să redea altă muzică</string>
    <string name="enable_image_scale">Activați scara imaginii</string>
    <string name="open_books_on_page_1">Cărți deschise de la pagina 1</string>
+   <string name="foreground">Prim plan</string>
 </resources>

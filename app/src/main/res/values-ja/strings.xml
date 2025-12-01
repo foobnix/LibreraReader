@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">他の音楽の再生を許可する</string>
    <string name="enable_image_scale">画像の拡大縮小を有効にする</string>
    <string name="open_books_on_page_1">1ページの本を開く</string>
+   <string name="foreground">前景</string>
 </resources>

@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">לאפשר למוזיקה אחרת להתנגן</string>
    <string name="enable_image_scale">אפשר קנה מידה תמונה</string>
    <string name="open_books_on_page_1">פתח ספרים בעמוד 1</string>
+   <string name="foreground">חֲזִית</string>
 </resources>

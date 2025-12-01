@@ -666,4 +666,5 @@
    <string name="allow_other_music_to_play">Дазволіць прайграваць іншую музыку</string>
    <string name="enable_image_scale">Уключыць маштаб выявы</string>
    <string name="open_books_on_page_1">Адкрытыя кнігі на старонцы 1</string>
+   <string name="foreground">Пярэдні план</string>
 </resources>
