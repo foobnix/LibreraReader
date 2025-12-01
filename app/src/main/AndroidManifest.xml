@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
 
     android:installLocation="auto"
     android:versionCode="941"
     android:versionName="7.12.87">
-
-    <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
@@ -48,8 +45,7 @@
         android:roundIcon="${appRoundIcon}"
         android:theme="@style/StyledIndicatorsWhite"
         android:usesCleartextTraffic="true"
-        android:vmSafeMode="${appSafeMode}"
-        tools:overrideLibrary="androidx.car.app">
+        android:vmSafeMode="${appSafeMode}">
 
         <meta-data
             android:name="android.webkit.WebView.MetricsOptOut"
