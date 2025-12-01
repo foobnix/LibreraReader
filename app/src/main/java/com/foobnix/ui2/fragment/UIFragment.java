@@ -358,6 +358,10 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public int getSpanSize(int pos) {
+                    if (pos < 0 || pos >= searchAdapter.getItemCount()) {
+                        return 1;
+                    }
+
                     int type = searchAdapter.getItemViewType(pos);
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
                         return num;
@@ -408,6 +412,10 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public int getSpanSize(int pos) {
+
+                    if (pos < 0 || pos >= searchAdapter.getItemCount()) {
+                        return 1;
+                    }
 
                     int type = searchAdapter.getItemViewType(pos);
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
