@@ -5819,7 +5819,7 @@ public class DragingDialogs {
 
                                         AppState.get().colorDayBg = bg;
                                         textDayColor.setBackgroundColor(bg);
-                                        AppState.get().colorDayForeground = MagicHelper.ligtherColor(bg);
+                                        AppState.get().colorDayForeground = AppState.COLOR_DAY_FG;
 
 
                                         AppState.get().isUseBGImageDay = false;
@@ -5832,7 +5832,7 @@ public class DragingDialogs {
 
                                         AppState.get().colorNigthBg = bg;
                                         textNigthColor.setBackgroundColor(bg);
-                                        AppState.get().colorNigthForeground = MagicHelper.ligtherColor(bg);
+                                        AppState.get().colorNigthForeground = AppState.COLOR_NIGHT_FG;
                                         AppState.get().isUseBGImageNight = false;
                                     }
 
@@ -5843,7 +5843,7 @@ public class DragingDialogs {
                             });
                             lc.addView(t1);
                         }
-                        // add DayBG
+                        // add DayBG image
                         {
                             ImageView t1 = new ImageView(controller.getActivity());
                             t1.setTag(controller.getString(R.string.no_tint));
@@ -5861,8 +5861,7 @@ public class DragingDialogs {
                                     AppState.get().colorDayText = AppState.COLOR_BLACK;
                                     AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                    AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.get().colorDayText);
-                                    AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.get().colorDayBg);
+                                    AppState.get().colorDayForeground = AppState.COLOR_DAY_FG;
 
 
                                     textDayColor.setTextColor(Color.BLACK);
@@ -5876,7 +5875,7 @@ public class DragingDialogs {
                             lc.addView(t1, AppState.get().readColors.split(";").length / 2);
                         }
 
-                        // add Night
+                        // add Night image
                         {
                             ImageView t2 = new ImageView(controller.getActivity());
                             t2.setTag(controller.getString(R.string.no_tint));
@@ -5893,6 +5892,7 @@ public class DragingDialogs {
                                 public void onClick(View v) {
                                     AppState.get().colorNigthText = AppState.COLOR_WHITE;
                                     AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                    AppState.get().colorNigthForeground = AppState.COLOR_NIGHT_FG;
 
                                     textNigthColor.setTextColor(Color.WHITE);
                                     textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(false));
@@ -5932,8 +5932,8 @@ public class DragingDialogs {
                                 AppState.get().colorDayText = AppState.COLOR_BLACK;
                                 AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.COLOR_WHITE);
-                                AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.COLOR_BLACK);
+                                AppState.get().colorDayForeground = AppState.COLOR_DAY_FG;
+                                AppState.get().colorNigthForeground = AppState.COLOR_NIGHT_FG;
 
                                 textDayColor.setTextColor(AppState.get().colorDayText);
                                 textDayColor.setBackgroundColor(AppState.get().colorDayBg);

@@ -68,6 +68,7 @@ public class ColorsDialog {
 
         colorTextChoose = colorText;
         colorBgChoose = colorBg;
+        colorForegroundChoose = colorFgDef;
 
         textPreview = (TextView) view.findViewById(R.id.textView1);
         textPreview2 = (TextView) view.findViewById(R.id.textView2);

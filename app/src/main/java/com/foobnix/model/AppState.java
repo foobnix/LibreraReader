@@ -253,6 +253,9 @@ public class AppState {
     // public static int COLOR_BLACK = Color.parseColor("#030303");
     public static int COLOR_BLACK = Color.BLACK;
     public static int COLOR_BLACK_2 = Color.parseColor("#3a3a3a");
+
+    public static int COLOR_DAY_FG = Color.parseColor("#DDDDDD");
+    public static int COLOR_NIGHT_FG = Color.parseColor("#0B0B0B");
     public static int WIDGET_LIST = 1;
     public static int WIDGET_GRID = 2;
     public static int EDIT_NONE = 0;
@@ -517,10 +520,12 @@ public class AppState {
     public int mp3seek = 0;
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
-    public int colorDayForeground = COLOR_WHITE;
+
     public int colorNigthText = COLOR_WHITE_2;
     public int colorNigthBg = COLOR_BLACK_2;
-    public int colorNigthForeground = COLOR_BLACK;
+
+    public int colorDayForeground = COLOR_DAY_FG;
+    public int colorNigthForeground = COLOR_NIGHT_FG;
     public boolean supportPDF = true;
     public boolean supportXPS = false;
     public boolean supportDJVU = true;
