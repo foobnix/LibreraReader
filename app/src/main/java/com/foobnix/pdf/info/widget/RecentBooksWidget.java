@@ -1,10 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
-import static android.app.ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ActivityOptions;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.appwidget.AppWidgetManager;
@@ -19,6 +16,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
@@ -27,6 +26,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
@@ -40,12 +40,13 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
-import com.foobnix.LibreraApp;
-
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RecentBooksWidget extends AppWidgetProvider {
 
@@ -53,6 +54,11 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private static final String ACTION_MY = "my";
     private Context context;
 
+    private static final ExecutorService BG_EXECUTOR = Executors.newSingleThreadExecutor();
+    // Flag to know if we are already loading data
+    private volatile boolean isLoading = false;
+
+    Handler handler = new Handler(Looper.getMainLooper());
 
     @SuppressLint("NewApi")
     @Override
@@ -69,8 +75,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
             nintent.setClassName(context, clazz.getName());
             PendingIntent pendingIntent;
 
-            pendingIntent = PendingIntent.getActivity(context, 0, nintent,
-                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             try {
                 pendingIntent.send();
@@ -135,77 +140,104 @@ public class RecentBooksWidget extends AppWidgetProvider {
     }
 
     private void updateList(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
-        List<FileMeta> recent = null;
+
+        if (isLoading) {
+            LOG.d("RecentBooksWidget update skipped – load already running");
+            return;
+        }
+        BG_EXECUTOR.execute(() -> loadAndUpdateWidget(remoteViews, appWidgetManager, appWidgetId));
+    }
+
+    private void loadAndUpdateWidget(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
+        isLoading = true;
+
+        final List<FileMeta> recent;
+
         if (AppState.get().isStarsInWidget) {
-            recent = AppData.get().getAllFavoriteFiles(false);
+            recent = new ArrayList<>(AppData.get().getAllFavoriteFiles(false));
         } else {
-            recent = AppData.get().getAllRecent(false);
+            recent = new ArrayList<>(AppData.get().getAllRecent(false));
         }
         AppDB.removeClouds(recent);
+        //recent = Collections.unmodifiableList(recent);
 
-        String className = VerticalViewActivity.class.getName();
-        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-            className = HorizontalViewActivity.class.getName();
-        }
-        remoteViews.removeAllViews(R.id.linearLayout);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
-        if (recent.size() == 0) {
+                    String className = VerticalViewActivity.class.getName();
+                    if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
+                        className = HorizontalViewActivity.class.getName();
+                    }
+                    remoteViews.removeAllViews(R.id.linearLayout);
 
-            RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-            v.setImageViewResource(R.id.imageView1, R.drawable.books_widget);
+                    if (recent.size() == 0) {
 
-            Intent intent = new Intent(context, MainTabs2.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-            v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+                        RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
+                        v.setImageViewResource(R.id.imageView1, R.drawable.books_widget);
 
-            remoteViews.addView(R.id.linearLayout, v);
+                        Intent intent = new Intent(context, MainTabs2.class);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                        v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
-        } else {
+                        remoteViews.addView(R.id.linearLayout, v);
 
-            for (int i = 0; i < recent.size() && i < AppState.get().widgetItemsCount; i++) {
-                FileMeta fileMeta = recent.get(i);
+                    } else {
 
-                RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-                String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                        for (int i = 0; i < recent.size() && i < AppState.get().widgetItemsCount; i++) {
+                            FileMeta fileMeta = recent.get(i);
 
-
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        try {
                             RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-                            v.setImageViewBitmap(R.id.imageView1, resource);
+                            String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+                            Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
 
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
 
-                            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
+                                @Override
+                                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                    try {
+                                        RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
+                                        v.setImageViewBitmap(R.id.imageView1, resource);
 
-                            intent.setClassName(context, clazz.getName());
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
 
-                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-                            v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+                                        Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
 
-                            remoteViews.addView(R.id.linearLayout, v);
+                                        intent.setClassName(context, clazz.getName());
 
-                            //for (int widgetId : appWidgetIds) {
-                            if (appWidgetManager != null) {
-                                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-                            }
-                            //}
+                                        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                                        v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
-                        } catch (Exception e) {
-                            LOG.e(e);
+                                        remoteViews.addView(R.id.linearLayout, v);
+
+                                        //for (int widgetId : appWidgetIds) {
+                                        if (appWidgetManager != null) {
+                                            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                                        }
+                                        //}
+
+                                    } catch (Exception e) {
+                                        LOG.e(e);
+                                    }
+                                }
+
+                                @Override
+                                public void onLoadCleared(Drawable placeholder) {
+
+                                }
+
+                            });
                         }
                     }
+                } finally {
+                    isLoading = false;
+                }
 
-                    @Override
-                    public void onLoadCleared(Drawable placeholder) {
 
-                    }
-
-                });
             }
-        }
+
+        });
+
 
     }
 
