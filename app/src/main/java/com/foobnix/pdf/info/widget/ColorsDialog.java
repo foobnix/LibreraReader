@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,16 +37,13 @@ import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 public class ColorsDialog {
-    int colorTextChoose;
-    int colorBgChoose;
-    private TextView fontRGB;
-    private TextView bgRGB;
-    private HSVColorWheel hsvColorWheel1;
-    private HSVValueSlider hsvValueSlider1;
-    private HSVColorWheel hsvColorWheel2;
-    private HSVValueSlider hsvValueSlider2;
+    int colorTextChoose, colorBgChoose, colorForegroundChoose;
+    final private TextView fontRGB, bgRGB, fontRGBForeground;
+    final private HSVColorWheel hsvColorWheelFont, hsvColorWheelBackground;
+    final private HSVValueSlider hsvValueSliderFont, hsvValueSliderBackground, hsvValueSliderForeground;
     private TextView textPreview;
     private TextView textPreview2;
+    private RelativeLayout foregroundLayout;
 
     TextView isColor, isImage;
     CustomSeek imageTransparency;
@@ -54,12 +52,12 @@ public class ColorsDialog {
     ImageView bg1, bg2, bg3, bg4;
 
     public static interface ColorsDialogResult {
-        public void onChooseColor(int colorText, int colorBg);
+        public void onChooseColor(int colorText, int colorBg, int colorForeground);
     }
 
     Handler handler;
 
-    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, final int colorTextDef, final int colorBgDef, boolean onlyColorBg, final boolean soligBG, final ColorsDialogResult colorsDialogResult) {
+    public ColorsDialog(final FragmentActivity c, final boolean isDayMode, final int colorTextDef, final int colorBgDef, final int colorFgDef, boolean onlyColorBg, final boolean soligBG, final ColorsDialogResult colorsDialogResult) {
         super();
         final View view = LayoutInflater.from(c).inflate(R.layout.dialog_colors, null, false);
 
@@ -86,14 +84,18 @@ public class ColorsDialog {
         textPreview2.setTextColor(colorText);
         textPreview2.setBackgroundColor(colorBg);
 
-        hsvColorWheel1 = (HSVColorWheel) view.findViewById(R.id.HSVColorWheel1);
-        hsvValueSlider1 = (HSVValueSlider) view.findViewById(R.id.HSVValueSlider1);
+        hsvColorWheelFont = (HSVColorWheel) view.findViewById(R.id.HSVColorWheel1);
+        hsvColorWheelBackground = (HSVColorWheel) view.findViewById(R.id.HSVColorWheel2);
 
-        hsvColorWheel2 = (HSVColorWheel) view.findViewById(R.id.HSVColorWheel2);
-        hsvValueSlider2 = (HSVValueSlider) view.findViewById(R.id.HSVValueSlider2);
+        hsvValueSliderFont = (HSVValueSlider) view.findViewById(R.id.HSVValueSlider1);
+        hsvValueSliderBackground = (HSVValueSlider) view.findViewById(R.id.HSVValueSlider2);
+        hsvValueSliderForeground = (HSVValueSlider) view.findViewById(R.id.HSVValueSlider3);
 
         fontRGB = (TextView) view.findViewById(R.id.fontRGB);
         bgRGB = (TextView) view.findViewById(R.id.bgRGB);
+        fontRGBForeground = (TextView) view.findViewById(R.id.fontRGBForeground);
+
+        foregroundLayout = view.findViewById(R.id.foregroundLayout);
 
         imageTransparency = (CustomSeek) view.findViewById(R.id.bgTransparency);
         imageTransparency.init(10, 255, isDayMode ? AppState.get().bgImageDayTransparency : AppState.get().bgImageNightTransparency);
@@ -228,8 +230,8 @@ public class ColorsDialog {
                 configBGLayout.setVisibility(View.GONE);
                 configBGLayout2.setVisibility(View.GONE);
                 ((ViewGroup) bgRGB.getParent()).setVisibility(View.VISIBLE);
-                hsvValueSlider2.setVisibility(View.VISIBLE);
-                hsvColorWheel2.setVisibility(View.VISIBLE);
+                hsvValueSliderBackground.setVisibility(View.VISIBLE);
+                hsvColorWheelBackground.setVisibility(View.VISIBLE);
 
                 textPreview2.setBackgroundColor(colorBgChoose);
 
@@ -263,8 +265,8 @@ public class ColorsDialog {
                 configBGLayout.setVisibility(View.VISIBLE);
                 configBGLayout2.setVisibility(View.VISIBLE);
                 ((ViewGroup) bgRGB.getParent()).setVisibility(View.GONE);
-                hsvValueSlider2.setVisibility(View.GONE);
-                hsvColorWheel2.setVisibility(View.GONE);
+                hsvValueSliderBackground.setVisibility(View.GONE);
+                hsvColorWheelBackground.setVisibility(View.GONE);
 
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), MagicHelper.getImagePath(isDayMode));
                 textPreview.setText("");
@@ -299,8 +301,8 @@ public class ColorsDialog {
                     @Override
                     public void onClick(View v) {
                         try {
-                            int parseColor = Color.parseColor(input.getText().toString());
-                            updateAll(parseColor, colorBgChoose);
+                            colorForegroundChoose = Color.parseColor(input.getText().toString());
+                            updateAll(colorTextChoose, colorBgChoose, colorForegroundChoose);
                             dialog.dismiss();
                         } catch (Exception e) {
                             dialog.setTitle("Invalid color value");
@@ -337,8 +339,8 @@ public class ColorsDialog {
                     @Override
                     public void onClick(View v) {
                         try {
-                            int parseColor = Color.parseColor(input.getText().toString());
-                            updateAll(colorTextChoose, parseColor);
+                            colorBgChoose = Color.parseColor(input.getText().toString());
+                            updateAll(colorTextChoose, colorBgChoose, colorForegroundChoose);
                             dialog.dismiss();
                         } catch (Exception e) {
                             dialog.setTitle(R.string.invalid_color_value);
@@ -348,25 +350,73 @@ public class ColorsDialog {
             }
         });
 
-        hsvColorWheel1.setListener(new OnColorSelectedListener() {
+        fontRGBForeground.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                builder.setTitle(R.string.dialog_color_picker);
+                final EditText input = new EditText(c);
+                input.setSingleLine();
+                input.setText(fontRGBForeground.getText());
+                builder.setView(input);
+                builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                final AlertDialog dialog = builder.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            colorForegroundChoose = Color.parseColor(input.getText().toString());
+
+                            updateAll(colorTextChoose, colorBgChoose, colorForegroundChoose);
+
+                            hsvValueSliderForeground.setColor(colorForegroundChoose, true);
+                            foregroundLayout.setBackgroundColor(colorForegroundChoose);
+
+                            dialog.dismiss();
+                        } catch (Exception e) {
+                            dialog.setTitle(R.string.invalid_color_value);
+                        }
+                    }
+                });
+            }
+        });
+
+        hsvColorWheelFont.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(Integer color) {
                 LOG.d("hsvColorWheel1 colorSelected", MagicHelper.colorToString(color));
-                hsvValueSlider1.setColor(color, true);
+                hsvValueSliderFont.setColor(color, true);
                 updateRGB(fontRGB, color);
             }
         });
 
-        hsvColorWheel2.setListener(new OnColorSelectedListener() {
+        hsvColorWheelBackground.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(Integer color) {
                 LOG.d("hsvColorWheel2 colorSelected", MagicHelper.colorToString(color));
-                hsvValueSlider2.setColor(color, true);
+                hsvValueSliderBackground.setColor(color, true);
                 updateRGB(bgRGB, color);
+
+                colorForegroundChoose = MagicHelper.ligtherColor(color);
+                hsvValueSliderForeground.setColor(colorForegroundChoose, true);
+                foregroundLayout.setBackgroundColor(colorForegroundChoose);
+                updateRGB(fontRGBForeground, colorForegroundChoose);
             }
         });
 
-        hsvValueSlider1.setListener(new OnColorSelectedListener() {
+        hsvValueSliderFont.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(final Integer color) {
                 textPreview.setTextColor(color);
@@ -377,7 +427,7 @@ public class ColorsDialog {
             }
         });
 
-        hsvValueSlider2.setListener(new OnColorSelectedListener() {
+        hsvValueSliderBackground.setListener(new OnColorSelectedListener() {
             @Override
             public void colorSelected(final Integer color) {
                 textPreview.setBackgroundColor(color);
@@ -385,6 +435,23 @@ public class ColorsDialog {
 
                 colorBgChoose = color;
                 updateRGB(bgRGB, color);
+
+                colorForegroundChoose = MagicHelper.ligtherColor(colorBg);
+                hsvValueSliderForeground.setColor(colorForegroundChoose, true);
+                foregroundLayout.setBackgroundColor(colorForegroundChoose);
+                updateRGB(fontRGBForeground, colorForegroundChoose);
+
+            }
+        });
+
+        hsvValueSliderForeground.setListener(new OnColorSelectedListener() {
+            @Override
+            public void colorSelected(final Integer color) {
+                //textPreview.setBackgroundColor(color);
+                // textPreview2.setBackgroundColor(color);
+                foregroundLayout.setBackgroundColor(color);
+                colorForegroundChoose = color;
+                updateRGB(fontRGBForeground, color);
 
             }
         });
@@ -405,7 +472,7 @@ public class ColorsDialog {
                 colorTextChoose = magicBlackColor(colorTextChoose);
                 colorBgChoose = magicBlackColor(colorBgChoose);
 
-                colorsDialogResult.onChooseColor(colorTextChoose, colorBgChoose);
+                colorsDialogResult.onChooseColor(colorTextChoose, colorBgChoose, colorForegroundChoose);
 
                 AppProfile.save(c);
             }
@@ -426,7 +493,7 @@ public class ColorsDialog {
                     AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_2;
                     imageTransparency.reset(AppState.get().bgImageNightTransparency);
                 }
-                updateAll(colorTextDef, colorBgDef);
+                updateAll(colorTextDef, colorBgDef, colorFgDef);
                 handler.postDelayed(new Runnable() {
 
                     @Override
@@ -453,13 +520,13 @@ public class ColorsDialog {
 
         if (!(BookCSS.get().isTextFormat() || AppState.get().isCustomizeBgAndColors)) {
             fontRGB.setVisibility(View.GONE);
-            hsvColorWheel1.setVisibility(View.GONE);
-            hsvValueSlider1.setVisibility(View.GONE);
+            hsvColorWheelFont.setVisibility(View.GONE);
+            hsvValueSliderFont.setVisibility(View.GONE);
             view.findViewById(R.id.textFont).setVisibility(View.GONE);
             view.findViewById(R.id.fontLayout).setVisibility(View.GONE);
         }
 
-        updateAll(colorTextChoose, colorBgChoose);
+        updateAll(colorTextChoose, colorBgChoose, colorForegroundChoose);
         handler.postDelayed(new Runnable() {
 
             @Override
@@ -495,24 +562,27 @@ public class ColorsDialog {
         return color;
     }
 
-    public void updateAll(int defText, int defBg) {
-        int colorText = defText;
-        int colorBg = defBg;
+    public void updateAll(int textColor, int backgroundColor, int foregroundColor) {
 
-        hsvColorWheel1.setColor(colorText);
-        hsvColorWheel2.setColor(colorBg);
 
-        textPreview.setTextColor(colorText);
-        textPreview2.setTextColor(colorText);
+        hsvColorWheelFont.setColor(textColor);
+        hsvColorWheelBackground.setColor(backgroundColor);
 
-        textPreview.setBackgroundColor(colorBg);
-        textPreview2.setBackgroundColor(colorBg);
+        textPreview.setTextColor(textColor);
+        textPreview2.setTextColor(textColor);
 
-        hsvValueSlider1.setColor(colorText, false);
-        hsvValueSlider2.setColor(colorBg, false);
 
-        updateRGB(fontRGB, colorText);
-        updateRGB(bgRGB, colorBg);
+        textPreview.setBackgroundColor(backgroundColor);
+        textPreview2.setBackgroundColor(backgroundColor);
+        foregroundLayout.setBackgroundColor(foregroundColor);
+
+        hsvValueSliderFont.setColor(textColor, false);
+        hsvValueSliderBackground.setColor(backgroundColor, false);
+        hsvValueSliderForeground.setColor(foregroundColor, false);
+
+        updateRGB(fontRGB, textColor);
+        updateRGB(bgRGB, backgroundColor);
+        updateRGB(fontRGBForeground, foregroundColor);
     }
 
     public void updateRGB(TextView font, Integer intColor) {

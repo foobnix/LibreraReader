@@ -4158,6 +4158,9 @@ public class DragingDialogs {
 
                             AppState.get().colorNigthText = AppState.COLOR_WHITE;
                             AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+
+                            AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.get().colorDayBg);
+                            AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.get().colorNigthBg);
                         }
                     }
                 });
@@ -5695,16 +5698,18 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         boolean isSolid = !AppState.get().isUseBGImageDay;
 
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, isSolid, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), true,
+                                AppState.get().colorDayText, AppState.get().colorDayBg, AppState.get().colorDayForeground, false, isSolid, new ColorsDialogResult() {
 
                             @Override
-                            public void onChooseColor(int colorText, int colorBg) {
+                            public void onChooseColor(int colorText, int colorBg, int colorForeground) {
                                 textDayColor.setTextColor(colorText);
                                 textDayColor.setBackgroundColor(colorBg);
                                 TintUtil.setTintImageWithAlpha(onDayColorImage, colorText);
 
                                 AppState.get().colorDayText = colorText;
                                 AppState.get().colorDayBg = colorBg;
+                                AppState.get().colorDayForeground = colorForeground;
 
                                 IMG.clearMemoryCache();
                                 IMG.clearDiscCache();
@@ -5724,16 +5729,18 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         boolean isSolid = !AppState.get().isUseBGImageNight;
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, isSolid, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(),
+                                false, AppState.get().colorNigthText, AppState.get().colorNigthBg, AppState.get().colorNigthForeground, false, isSolid, new ColorsDialogResult() {
 
                             @Override
-                            public void onChooseColor(int colorText, int colorBg) {
+                            public void onChooseColor(int colorText, int colorBg, int colorForeground) {
                                 textNigthColor.setTextColor(colorText);
                                 textNigthColor.setBackgroundColor(colorBg);
                                 TintUtil.setTintImageWithAlpha(onNigthColorImage, colorText);
 
                                 AppState.get().colorNigthText = colorText;
                                 AppState.get().colorNigthBg = colorBg;
+                                AppState.get().colorNigthForeground = colorForeground;
 
                                 if (AppState.get().isUseBGImageNight) {
                                     textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(true));
@@ -5812,6 +5819,9 @@ public class DragingDialogs {
 
                                         AppState.get().colorDayBg = bg;
                                         textDayColor.setBackgroundColor(bg);
+                                        AppState.get().colorDayForeground = MagicHelper.ligtherColor(bg);
+
+
                                         AppState.get().isUseBGImageDay = false;
 
                                     } else {
@@ -5822,6 +5832,7 @@ public class DragingDialogs {
 
                                         AppState.get().colorNigthBg = bg;
                                         textNigthColor.setBackgroundColor(bg);
+                                        AppState.get().colorNigthForeground = MagicHelper.ligtherColor(bg);
                                         AppState.get().isUseBGImageNight = false;
                                     }
 
@@ -5849,6 +5860,10 @@ public class DragingDialogs {
                                 public void onClick(View v) {
                                     AppState.get().colorDayText = AppState.COLOR_BLACK;
                                     AppState.get().colorDayBg = AppState.COLOR_WHITE;
+
+                                    AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.get().colorDayText);
+                                    AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.get().colorDayBg);
+
 
                                     textDayColor.setTextColor(Color.BLACK);
                                     textDayColor.setBackground(MagicHelper.getBgImageDayDrawable(false));
@@ -5916,6 +5931,9 @@ public class DragingDialogs {
 
                                 AppState.get().colorDayText = AppState.COLOR_BLACK;
                                 AppState.get().colorDayBg = AppState.COLOR_WHITE;
+
+                                AppState.get().colorDayForeground = MagicHelper.ligtherColor(AppState.get().colorDayText);
+                                AppState.get().colorNigthForeground = MagicHelper.ligtherColor(AppState.get().colorDayBg);
 
                                 textDayColor.setTextColor(AppState.get().colorDayText);
                                 textDayColor.setBackgroundColor(AppState.get().colorDayBg);
@@ -6001,10 +6019,12 @@ public class DragingDialogs {
 
                                 @Override
                                 public void onClick(View v) {
-                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), true, true, new ColorsDialogResult() {
+                                    new ColorsDialog((FragmentActivity) controller.getActivity(),
+                                            (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(),
+                                            MagicHelper.ligtherColor((Integer) t2BG.getTag()), true, true, new ColorsDialogResult() {
 
                                         @Override
-                                        public void onChooseColor(int colorText, int colorBg) {
+                                        public void onChooseColor(int colorText, int colorBg, int colorForeground) {
                                             t1Img.setTextColor(colorText);
                                             t1Img.setBackgroundColor(colorBg);
 

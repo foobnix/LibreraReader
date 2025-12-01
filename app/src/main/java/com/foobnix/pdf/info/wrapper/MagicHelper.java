@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
@@ -25,8 +26,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
-
-import com.foobnix.LibreraApp;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -375,6 +374,10 @@ public class MagicHelper {
         }
 
         return AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg;
+    }
+
+    public static int getForegroundColor() {
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayForeground : AppState.get().colorNigthForeground;
     }
 
     public static float[] getHSV(int color) {

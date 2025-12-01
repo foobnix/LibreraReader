@@ -517,8 +517,10 @@ public class AppState {
     public int mp3seek = 0;
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
+    public int colorDayForeground = COLOR_WHITE;
     public int colorNigthText = COLOR_WHITE_2;
     public int colorNigthBg = COLOR_BLACK_2;
+    public int colorNigthForeground = COLOR_BLACK_2;
     public boolean supportPDF = true;
     public boolean supportXPS = false;
     public boolean supportDJVU = true;

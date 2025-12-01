@@ -11,6 +11,7 @@ import android.text.TextPaint;
 
 import androidx.core.graphics.ColorUtils;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
@@ -19,7 +20,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
-import com.foobnix.LibreraApp;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.ui.viewer.IActivityController;
 import org.emdev.utils.LengthUtils;
@@ -80,11 +80,12 @@ public class EventDraw implements IEvent {
     public ViewState process() {
         try {
 
-            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
-                viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
-            } else {
-                viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
-            }
+//            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && MagicHelper.getBgColor() == Color.BLACK */) {
+//                viewState.paint.backgroundFillPaint.setColor(Color.BLACK);
+//            } else {
+//                viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
+//            }
+            viewState.paint.backgroundFillPaint.setColor(MagicHelper.getForegroundColor());
             if (canvas != null) {
                 canvas.drawRect(canvas.getClipBounds(), viewState.paint.backgroundFillPaint);
             }
