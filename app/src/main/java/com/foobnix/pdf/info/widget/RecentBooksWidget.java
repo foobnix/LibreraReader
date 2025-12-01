@@ -151,15 +151,21 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private void loadAndUpdateWidget(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
         isLoading = true;
 
-        final List<FileMeta> recent;
+        final List<FileMeta> recent = new ArrayList<>();
 
-        if (AppState.get().isStarsInWidget) {
-            recent = new ArrayList<>(AppData.get().getAllFavoriteFiles(false));
-        } else {
-            recent = new ArrayList<>(AppData.get().getAllRecent(false));
+        try {
+            if (AppState.get().isStarsInWidget) {
+                recent.addAll(AppData.get().getAllFavoriteFiles(false));
+            } else {
+                recent.addAll(AppData.get().getAllRecent(false));
+            }
+            AppDB.removeClouds(recent);
+            //recent = Collections.unmodifiableList(recent);
+        } catch (Exception e) {
+            LOG.e(e);
+            isLoading = false;
+            return;
         }
-        AppDB.removeClouds(recent);
-        //recent = Collections.unmodifiableList(recent);
 
         handler.post(new Runnable() {
             @Override

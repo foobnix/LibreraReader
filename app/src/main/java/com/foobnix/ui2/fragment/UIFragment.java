@@ -352,6 +352,8 @@ public abstract class UIFragment<T> extends Fragment {
             final int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
 
             GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+
+
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
@@ -388,10 +390,11 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
 
-            recyclerView.setLayoutManager(mGridManager);
 
             searchAdapter.setAdapterType(mode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
+            recyclerView.setLayoutManager(mGridManager);
             recyclerView.setAdapter(searchAdapter);
+
 
         } else if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(mode)) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -400,10 +403,12 @@ public abstract class UIFragment<T> extends Fragment {
         } else if (mode == AppState.MODE_LIST_COMPACT) {
             final int num = Math.max(2, Dips.screenWidthDP() / Dips.dpToPx(300));
             GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
                 public int getSpanSize(int pos) {
+
                     int type = searchAdapter.getItemViewType(pos);
                     if (type == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_FOLDERS) {
                         return num;
@@ -423,9 +428,11 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
 
-            recyclerView.setLayoutManager(mGridManager);
             searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST_COMPACT);
+            recyclerView.setLayoutManager(mGridManager);
             recyclerView.setAdapter(searchAdapter);
+
+
         }
 
         if (recyclerView instanceof FastScrollRecyclerView) {
