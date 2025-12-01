@@ -4204,6 +4204,7 @@ public class DragingDialogs {
                 isSaveAnnotatationsAutomatically.setVisibility(!(AppSP.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 CheckBox isCutRTL = inflate.findViewById(R.id.isCutRTL);
+                isCutRTL.setVisibility(View.GONE);
                 isCutRTL.setChecked(AppState.get().isCutRTL);
                 isCutRTL.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
