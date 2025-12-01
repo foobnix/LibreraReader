@@ -31,6 +31,7 @@ import android.view.KeyEvent;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 import androidx.media.session.MediaButtonReceiver;
 
@@ -195,19 +196,19 @@ public class TTSService extends Service {
 
         Intent intent = playBookIntent(page, path, anchor);
         //UserDefinedFileAttributeView
-        PendingIntent play = PendingIntent.getService(LibreraApp.context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        try {
-            play.send();
-        } catch (CanceledException e) {
-            LOG.e(e);
-        }
-
-
-//        if (Build.VERSION.SDK_INT >= 26) {
-//            LibreraApp.context.startForegroundService(intent);
-//        } else {
-//            LibreraApp.context.startService(intent);
+//        PendingIntent play = PendingIntent.getService(LibreraApp.context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+//        try {
+//            play.send();
+//        } catch (CanceledException e) {
+//            LOG.e(e);
 //        }
+
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            LibreraApp.context.startForegroundService(intent);
+        } else {
+            LibreraApp.context.startService(intent);
+        }
 
     }
 
@@ -223,7 +224,7 @@ public class TTSService extends Service {
     @Override
     public void onCreate() {
         LOG.d(TAG, "onCreate:TTS playBookPage1");
-        startMyForeground();
+        //startMyForeground();
         //
 
         //try without wakeLock
@@ -375,11 +376,13 @@ public class TTSService extends Service {
                 .build();
 
 
-        if (Build.VERSION.SDK_INT >= 29) {
-            startForeground(TTSNotification.NOT_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-        } else {
-            startForeground(TTSNotification.NOT_ID, notification);
-        }
+//        if (Build.VERSION.SDK_INT >= 29) {
+//            startForeground(TTSNotification.NOT_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+//        } else {
+//            startForeground(TTSNotification.NOT_ID, notification);
+//
+//        }
+        ServiceCompat.startForeground(this, TTSNotification.NOT_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
