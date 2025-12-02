@@ -746,13 +746,15 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_open(JNIEnv *env,
     {
         fz_context *ctx = doc->ctx;
         // doc->outline = fz_load_outline(ctx, doc->document);
-
         // fz_count_chapters(ctx, doc->document);
-
         fz_try(ctx)
+        {
             doc->outline = fz_load_outline(ctx, doc->document);
+        }
         fz_catch(ctx)
+        {
             doc->outline = NULL;
+        }
     }
     // DEBUG("PdfOutline.open(): return handle = %p", doc->outline);
     return (jlong)(long)doc->outline;
@@ -1128,8 +1130,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_setMetaData(JNIEnv *env, jc
 		return;
 	}
 
-	fz_try(ctx)
-		fz_set_metadata(ctx, doc, key, value);
+	fz_try(ctx){
+            fz_set_metadata(ctx, doc, key, value);
+    }
 	fz_always(ctx)
 	{
 		(*env)->ReleaseStringUTFChars(env, jkey, key);
