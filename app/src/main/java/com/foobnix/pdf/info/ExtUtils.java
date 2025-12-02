@@ -1416,11 +1416,6 @@ public class ExtUtils {
 
             @Override
             public Context getContext() {
-                return a;
-            }
-
-            @Override
-            protected void onPreExecute() {
                 TempHolder.get().isConverting = true;
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -1453,10 +1448,14 @@ public class ExtUtils {
 
                 dialog = builder.show();
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
+                return a;
             }
 
-            ;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
 
             @Override
             protected Object doInBackground(Object... params) {
