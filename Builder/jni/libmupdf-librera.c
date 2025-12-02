@@ -71,51 +71,25 @@ void mupdf_throw_exception(JNIEnv *env, char *message)
 
 static void mupdf_free_document(renderdocument_t *doc)
 {
-    // LOGE("mupdf_free_document 1");
     if (!doc)
     {
         return;
     }
-    if (!doc->ctx)
+
+    if (doc->ctx)
     {
-        return;
+        if (doc->document)
+        {
+            fz_drop_document(doc->ctx, doc->document);
+            doc->document = NULL;
+        }
+
+        fz_drop_context(doc->ctx);
+        doc->ctx = NULL;
     }
 
-    // LOGE("mupdf_free_document 2");
-    // fz_locks_context *locks = doc->ctx->locks;
-
-//    if (doc->outline)
-//    {
-//        //outline drop once
-//        //fz_drop_outline(doc->ctx, doc->outline);
-//    }
-//    doc->outline = NULL;
-    // LOGE("mupdf_free_document 3");
-
-    if (doc->document)
-    {
-        fz_drop_document(doc->ctx, doc->document);
-    }
-    // LOGE("mupdf_free_document 4");
-
-    doc->document = NULL;
-
-    // fz_flush_warnings(doc->ctx);
-
-    // LOGE("mupdf_free_document 5");
-
-    fz_drop_context(doc->ctx);
-    doc->ctx = NULL;
     doc->accel = NULL;
-    // LOGE("mupdf_free_document 6");
-    // jni_free_locks(locks);
-
-    if(doc && doc != NULL) {
-      free(doc);
-    }
-    doc = NULL;
-
-    // LOGE("mupdf_free_document 7");
+    free(doc);
 }
 
 JNIEXPORT jstring
@@ -263,7 +237,7 @@ cleanup:
 
     (*env)->ReleaseStringUTFChars(env, fname, filename);
     (*env)->ReleaseStringUTFChars(env, pwd, password);
-    (*env)->ReleaseStringUTFChars(env, accelerate, accel);
+   // (*env)->ReleaseStringUTFChars(env, accelerate, accel);
     (*env)->ReleaseStringUTFChars(env, jcss, css);
 
     return (jlong)(long)doc;
@@ -517,7 +491,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEn
     }
     fz_catch(doc->ctx)
     {
-        mupdf_free_document(doc);
+        //mupdf_free_document(doc);
         mupdf_throw_exception(env, "page count 0");
         return 0;
     }
