@@ -256,6 +256,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
         mupdf_throw_exception(env, "PDF file not found or corrupted");
         mupdf_free_document(doc);
         doc = NULL;
+        goto cleanup;
     }
 
 cleanup:
