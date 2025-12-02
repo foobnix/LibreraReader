@@ -384,7 +384,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
                             //WorkManager.getInstance(getContext()).enqueue(workRequest);
-                            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
+                            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
 
                         }
                     }, null);

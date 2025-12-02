@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.work.Configuration;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
@@ -61,7 +59,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 .Builder(SearchAllBooksWorker.class).build();
 
         WorkManager.getInstance(context)
-                .enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
+                .enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
     }
 
     public static void sendFinishMessage(Context c) {
