@@ -322,16 +322,28 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageInfo(JNIEnv
 }
 
 JNIEXPORT jlong
-JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getFirstPageLink(JNIEnv *env,
-                                                                       jclass clazz, jlong handle,
-                                                                       jlong pagehandle)
+JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getFirstPageLink(JNIEnv *env,
+        jclass clazz, jlong handle,
+        jlong pagehandle)
 {
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
     renderpage_t *page = (renderpage_t *)(long)pagehandle;
-    if(!doc || !page){
-      return -1;
+
+    if (!doc || !doc->ctx || !page || !page->page) {
+        return 0;  // Return 0 (NULL) instead of -1 for pointer types
     }
-    return (jlong)(long)((page && doc) ? fz_load_links(doc->ctx, page->page) : NULL);
+
+    fz_link *links = NULL;
+    fz_try(doc->ctx)
+    {
+        links = fz_load_links(doc->ctx, page->page);
+    }
+    fz_catch(doc->ctx)
+    {
+        links = NULL;
+    }
+
+    return (jlong)(long)links;
 }
 
 JNIEXPORT jlong
@@ -343,33 +355,40 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getNextPageLink(JNIEn
 }
 
 JNIEXPORT jint
-JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkType(JNIEnv *env,
-                                                                      jclass clazz, jlong handle,
-                                                                      jlong linkhandle)
+JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkType(JNIEnv *env,
+        jclass clazz, jlong handle,
+        jlong linkhandle)
 {
-
-    fz_link *link = (fz_link *)(long)linkhandle;
     renderdocument_t *doc = (renderdocument_t *)(long)handle;
-    if(!doc || !doc->ctx || !link){
-      return -1;
+    fz_link *link = (fz_link *)(long)linkhandle;
+
+    if (!doc || !doc->ctx || !link || !link->uri) {
+        return -1;
     }
-    return (jint) fz_is_external_link(doc->ctx, link->uri);
+
+    int result = -1;
+    fz_try(doc->ctx)
+    {
+        result = (jint)fz_is_external_link(doc->ctx, link->uri);
+    }
+    fz_catch(doc->ctx)
+    {
+        result = -1;
+    }
+
+    return result;
 }
 
 JNIEXPORT jstring
-JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkUrl(JNIEnv *env,
-                                                                     jclass clazz, jlong linkhandle)
+JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkUrl(JNIEnv *env,
+        jclass clazz, jlong linkhandle)
 {
     fz_link *link = (fz_link *)(long)linkhandle;
 
-    // if (!link || link->dest.kind != FZ_LINK_URI) {
-    // 	return NULL;
-    // }
+    if (!link || !link->uri) {
+        return NULL;
+    }
 
-    // char linkbuf[2048];
-    // snprintf(linkbuf, 1023, "%s", link->dest.ld.uri.uri);
-
-    // return (*env)->NewStringUTF(env, linkbuf);
     char linkbuf[4048];
     snprintf(linkbuf, sizeof(linkbuf), "%s", link->uri);
 

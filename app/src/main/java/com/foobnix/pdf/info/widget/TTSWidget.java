@@ -52,7 +52,7 @@ public class TTSWidget extends AppWidgetProvider {
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         if (isLoading) {
-            LOG.d("RecentBooksWidget update skipped – load already running");
+            LOG.d("TTSWidget update skipped – load already running");
             return;
         }
         BG_EXECUTOR.execute(() -> onUpdateAsync(context, appWidgetManager, appWidgetIds));

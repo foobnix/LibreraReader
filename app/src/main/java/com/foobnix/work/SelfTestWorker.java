@@ -3,7 +3,6 @@ package com.foobnix.work;
 import android.content.Context;
 import android.graphics.RectF;
 import android.os.Build;
-import android.os.Vibrator;
 
 import androidx.annotation.NonNull;
 import androidx.work.WorkerParameters;
@@ -13,7 +12,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppData;
@@ -33,7 +31,6 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
-import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -97,6 +94,11 @@ public class SelfTestWorker extends MessageWorker {
             sendNotifyAll();
 
             for (FileMeta item : all) {
+                if (isStopped()) {
+                    return;
+                }
+
+
                 n++;
 
                 writeLine(out, item.getPath());

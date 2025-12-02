@@ -35,7 +35,9 @@ public class AlertDialogs {
         Toast.makeText(c, result ? R.string.success : R.string.fail, Toast.LENGTH_LONG).show();
     }
 
-    public static void openUrl(final Activity c, final String url) {
+    public static void openUrl(final Activity c, String url) {
+
+        
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.open_web_page);
         builder.setMessage(url);

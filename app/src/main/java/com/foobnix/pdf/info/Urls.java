@@ -34,15 +34,17 @@ public class Urls {
     }
 
     public static void open(final Context a, String url) {
+
         if (a == null || url == null) {
             return;
         }
         LOG.d(">>> open", url);
+        url = url.replace("file://", "https://");
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(browserIntent);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
@@ -87,7 +89,7 @@ public class Urls {
         alert.setPositiveButton(R.string.open_in_browser, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                open(a,url);
+                open(a, url);
                 dialog.dismiss();
             }
         });
@@ -125,9 +127,9 @@ public class Urls {
 
     public static void rateIT(Context a) {
         try {
-            if(AppsConfig.IS_FDROID){
+            if (AppsConfig.IS_FDROID) {
                 Urls.open(a, "https://github.com/foobnix/LibreraReader");
-            }else {
+            } else {
                 Urls.open(a, "market://details?id=" + a.getPackageName());
             }
         } catch (Exception e) {
