@@ -216,6 +216,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
         printf("%s \n", filename);
         mupdf_throw_exception(env, "PDF file not found or corrupted");
         mupdf_free_document(doc);
+        doc = NULL;
         goto cleanup;
     }
 
@@ -234,6 +235,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
                     mupdf_free_document(doc);
                     mupdf_throw_exception_ex(env,
                                              WRONG_PASSWORD_EXCEPTION, "Wrong password given");
+                    doc = NULL;
                     goto cleanup;
                 }
             }
@@ -242,6 +244,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
                 mupdf_free_document(doc);
                 mupdf_throw_exception_ex(env,
                                          PASSWORD_REQUIRED_EXCEPTION, "Document needs a password!");
+                doc = NULL;
                 goto cleanup;
             }
         }
@@ -252,14 +255,16 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
         printf("%s \n", filename);
         mupdf_throw_exception(env, "PDF file not found or corrupted");
         mupdf_free_document(doc);
+        doc = NULL;
     }
 
 cleanup:
 
     (*env)->ReleaseStringUTFChars(env, fname, filename);
     (*env)->ReleaseStringUTFChars(env, pwd, password);
+    (*env)->ReleaseStringUTFChars(env, accelerate, accel);
+    (*env)->ReleaseStringUTFChars(env, jcss, css);
 
-    // DEBUG("MuPdfDocument.nativeOpen(): return handle = %p", doc);
     return (jlong)(long)doc;
 }
 
