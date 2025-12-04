@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ClipData;
@@ -77,6 +78,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemAdapter;
@@ -827,8 +829,7 @@ public class DragingDialogs {
 
                 textBGwarning.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= 28) {
-                    ActivityManager activityManager = (ActivityManager)
-                            controller.getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+                    ActivityManager activityManager = (ActivityManager) controller.getActivity().getSystemService(Context.ACTIVITY_SERVICE);
                     if (activityManager.isBackgroundRestricted()) {
 
                         textBGwarning.setVisibility(View.VISIBLE);
@@ -837,8 +838,7 @@ public class DragingDialogs {
                             @Override
                             public void onClick(View v) {
                                 try {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                            Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     controller.getActivity().startActivity(intent);
                                     closeDialog();
@@ -1957,64 +1957,78 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                         AppSP.get().lastBookParagraph = 0;
                         if (TTSService.isTTSGranted(controller.getActivity())) {
-                            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                            if (!TTSService.isServiceRunning(TTSService.class, controller.getActivity())) {
+                                Intent intent = new Intent(LibreraApp.context, TTSService.class);
+                                intent.setAction("TTSService.ACTION_INIT");
+
+                                PendingIntent play = PendingIntent.getService(LibreraApp.context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                                try {
+                                    play.send();
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+
+                            } else {
+                                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(),
+                                        editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                            }
                         }
                     }
                 });
 
                 View onShare = view.findViewById(R.id.onShare);
-                onShare.setOnClickListener(new OnClickListener() {
+                onShare.setOnClickListener(new
 
-                    @Override
-                    public void onClick(View v) {
+                                                   OnClickListener() {
+
+                                                       @Override
+                                                       public void onClick(View v) {
 
 
-                        final Intent intent = new Intent(Intent.ACTION_SEND);
-                        intent.setType("text/plain");
-                        String trimText = editText.getText().toString().trim();
-                        FileMeta meta = controller.getBookFileMeta();
+                                                           final Intent intent = new Intent(Intent.ACTION_SEND);
+                                                           intent.setType("text/plain");
+                                                           String trimText = editText.getText().toString().trim();
+                                                           FileMeta meta = controller.getBookFileMeta();
 
-                        List<String> list = Arrays.asList(
-                                "Format: Quote",
-                                "Format: \"Quote\"\n-- Author",
-                                "Format: \"Quote\"\n-- Author\nTitle"
-                        );
+                                                           List<String> list = Arrays.asList("Format: Quote", "Format: \"Quote\"\n-- Author", "Format: \"Quote\"\n-- Author\nTitle");
 
-                        MyPopupMenu menu = new MyPopupMenu(v);
-                        for (String line : list) {
-                            menu.getMenu().add(line).setOnMenuItemClickListener(menuItem -> {
-                                String res = line.replace("Format: ", "");
-                                res = res.replace("Author", meta.getAuthor());
-                                res = res.replace("Title", meta.getTitle());
-                                res = res.replace("Quote", trimText);
-                                intent.putExtra(Intent.EXTRA_TEXT, res);
+                                                           MyPopupMenu menu = new MyPopupMenu(v);
+                                                           for (String line : list) {
+                                                               menu.getMenu().add(line).setOnMenuItemClickListener(menuItem -> {
+                                                                   String res = line.replace("Format: ", "");
+                                                                   res = res.replace("Author", meta.getAuthor());
+                                                                   res = res.replace("Title", meta.getTitle());
+                                                                   res = res.replace("Quote", trimText);
+                                                                   intent.putExtra(Intent.EXTRA_TEXT, res);
 
-                                controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
+                                                                   controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
+                                                                   controller.clearSelectedText();
+                                                                   closeDialog();
+                                                                   return false;
+                                                               });
+                                                           }
+                                                           menu.show();
+
+
+                                                       }
+                                                   });
+
+                view.findViewById(R.id.onCopy).
+
+                        setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
                                 controller.clearSelectedText();
+                                Context c = anchor.getContext();
+                                String trim = editText.getText().toString().trim();
+                                ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
+                                clipboard.setPrimaryClip(clip);
+                                Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
                                 closeDialog();
-                                return false;
-                            });
-                        }
-                        menu.show();
-
-
-                    }
-                });
-
-                view.findViewById(R.id.onCopy).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.clearSelectedText();
-                        Context c = anchor.getContext();
-                        String trim = editText.getText().toString().trim();
-                        ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
-                        clipboard.setPrimaryClip(clip);
-                        Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
-                        closeDialog();
-                    }
-                });
+                            }
+                        });
 
                 View onBookSearch = view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
@@ -2199,6 +2213,7 @@ public class DragingDialogs {
                     }
 
                 }
+
                 ImageView image = new ImageView(anchor.getContext());
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
                 image.setLayoutParams(layoutParams);
@@ -2207,21 +2222,23 @@ public class DragingDialogs {
 
                 TintUtil.setTintImageWithAlpha(image, Color.LTGRAY);
 
-                image.setOnClickListener(new OnClickListener() {
+                image.setOnClickListener(new
 
-                    @Override
-                    public void onClick(View v) {
-                        DialogTranslateFromTo.show(controller.getActivity(), true, new Runnable() {
+                                                 OnClickListener() {
 
-                            @Override
-                            public void run() {
-                                sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
-                                dialogSelectText(anchor, controller, withAnnotation, reloadUI);
-                            }
-                        }, true);
+                                                     @Override
+                                                     public void onClick(View v) {
+                                                         DialogTranslateFromTo.show(controller.getActivity(), true, new Runnable() {
 
-                    }
-                });
+                                                             @Override
+                                                             public void run() {
+                                                                 sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
+                                                                 dialogSelectText(anchor, controller, withAnnotation, reloadUI);
+                                                             }
+                                                         }, true);
+
+                                                     }
+                                                 });
 
                 FrameLayout fr = new FrameLayout(controller.getActivity());
                 image.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
@@ -2229,35 +2246,43 @@ public class DragingDialogs {
 
                 dictLayout.addView(fr);
 
-                view.findViewById(R.id.onUnderline).setOnClickListener(new OnClickListener() {
+                view.findViewById(R.id.onUnderline).
 
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
-                });
-                view.findViewById(R.id.onStrike).setOnClickListener(new OnClickListener() {
+                        setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
-                });
-                view.findViewById(R.id.onSelection).setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
+                                closeDialog();
+                                controller.saveAnnotationsToFile();
+                            }
+                        });
+                view.findViewById(R.id.onStrike).
 
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
-                });
+                        setOnClickListener(new OnClickListener() {
 
-                if (!BookType.PDF.is(controller.getCurrentBook().getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity || controller.isPasswordProtected()) {
+                            @Override
+                            public void onClick(View v) {
+                                controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
+                                closeDialog();
+                                controller.saveAnnotationsToFile();
+                            }
+                        });
+                view.findViewById(R.id.onSelection).
+
+                        setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
+                                closeDialog();
+                                controller.saveAnnotationsToFile();
+                            }
+                        });
+
+                if (!BookType.PDF.is(controller.getCurrentBook().
+
+                        getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity || controller.isPasswordProtected()) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -2269,13 +2294,17 @@ public class DragingDialogs {
                 return view;
             }
 
-        }.show("text", true).setOnCloseListener(new Runnable() {
+        }.
 
-            @Override
-            public void run() {
-                AppState.get().selectedText = null;
-            }
-        });
+                show("text", true).
+
+                setOnCloseListener(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        AppState.get().selectedText = null;
+                    }
+                });
 
     }
 
@@ -2885,40 +2914,31 @@ public class DragingDialogs {
                 setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_578_share, R.string.share,
-                        () -> ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook())
-                );
+                titlePopupMenu.getMenu(R.drawable.glyphicons_578_share, R.string.share, () -> ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook()));
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages,
-                        () -> {
-                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
-                            Collections.sort(objects, cmp);
-                            bookmarksAdapter.notifyDataSetChanged();
-                        });
+                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages, () -> {
+                    AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
+                    Collections.sort(objects, cmp);
+                    bookmarksAdapter.notifyDataSetChanged();
+                });
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages,
-                        () -> {
-                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
-                            Collections.sort(objects, cmp);
-                            bookmarksAdapter.notifyDataSetChanged();
-                        }
-                );
+                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages, () -> {
+                    AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
+                    Collections.sort(objects, cmp);
+                    bookmarksAdapter.notifyDataSetChanged();
+                });
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date,
-                        () -> {
-                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
-                            Collections.sort(objects, cmp);
-                            bookmarksAdapter.notifyDataSetChanged();
-                        }
-                );
+                titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date, () -> {
+                    AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
+                    Collections.sort(objects, cmp);
+                    bookmarksAdapter.notifyDataSetChanged();
+                });
 
-                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date,
-                        () -> {
-                            AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
-                            Collections.sort(objects, cmp);
-                            bookmarksAdapter.notifyDataSetChanged();
-                        }
-                );
+                titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date, () -> {
+                    AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
+                    Collections.sort(objects, cmp);
+                    bookmarksAdapter.notifyDataSetChanged();
+                });
 
                 return a;
             }
@@ -4733,9 +4753,7 @@ public class DragingDialogs {
 // begin styles
                 final List<String> docStyles = Arrays.asList(//
                         controller.getString(R.string.document_styles) + " + " + controller.getString(R.string.user_styles), //
-                        controller.getString(R.string.document_styles),
-                        controller.getString(R.string.user_styles)
-                );
+                        controller.getString(R.string.document_styles), controller.getString(R.string.user_styles));
 
                 final TextView docStyle = inflate.findViewById(R.id.documentStyle);
 
@@ -5699,8 +5717,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         boolean isSolid = !AppState.get().isUseBGImageDay;
 
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), true,
-                                AppState.get().colorDayText, AppState.get().colorDayBg, AppState.get().colorDayForeground, false, isSolid, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, AppState.get().colorDayForeground, false, isSolid, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg, int colorForeground) {
@@ -5730,8 +5747,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         boolean isSolid = !AppState.get().isUseBGImageNight;
-                        new ColorsDialog((FragmentActivity) controller.getActivity(),
-                                false, AppState.get().colorNigthText, AppState.get().colorNigthBg, AppState.get().colorNigthForeground, false, isSolid, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, AppState.get().colorNigthForeground, false, isSolid, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg, int colorForeground) {
@@ -6020,9 +6036,7 @@ public class DragingDialogs {
 
                                 @Override
                                 public void onClick(View v) {
-                                    new ColorsDialog((FragmentActivity) controller.getActivity(),
-                                            (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(),
-                                            MagicHelper.ligtherColor((Integer) t2BG.getTag()), true, true, new ColorsDialogResult() {
+                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), MagicHelper.ligtherColor((Integer) t2BG.getTag()), true, true, new ColorsDialogResult() {
 
                                         @Override
                                         public void onChooseColor(int colorText, int colorBg, int colorForeground) {
