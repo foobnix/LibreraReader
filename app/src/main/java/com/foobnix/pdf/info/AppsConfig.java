@@ -11,7 +11,6 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -30,7 +29,7 @@ public class AppsConfig {
 
     public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
-            "15B8E113746E8241A97A23D7F6FEAA2B",
+            "394FC2536F98E69D313F47CA4B26AB2D",
             "5A11AAB3D40A6E42F8BB4674C013B70D");
     //setTestDeviceIds
 
@@ -39,7 +38,7 @@ public class AppsConfig {
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
     public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu")
-                    || Build.MODEL.toLowerCase().contains("sdk");
+            || Build.MODEL.toLowerCase().contains("sdk");
     public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
     public static String MUPDF_1_11 = "1.11";
@@ -57,7 +56,15 @@ public class AppsConfig {
     }
 
     public static void init(Context c) {
-        IS_TEST_DEVICE = testDevices.contains(ADS.getByTestID(c));
+        String deviceID = ADS.getByTestID(c);
+        IS_TEST_DEVICE = testDevices.contains(deviceID);
+        if (IS_TEST_DEVICE) {
+            IS_LOG = true;
+        }
+        Log.d("DEVICE_ID", "DEVICE_ID " + deviceID);
+        Log.d("IS_TEST_DEVICE", "IS_TEST_DEVICE  " + AppsConfig.IS_TEST_DEVICE);
+        Log.d("IS_LOG", "IS_LOG " + AppsConfig.IS_LOG);
+
     }
 
     public static boolean checkIsProInstalled(final Context a) {

@@ -56,8 +56,6 @@ public class LibreraApp extends MultiDexApplication {
 //        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
 //        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
 
-        Log.d("IS_LOG", "IS_LOG Enable " + AppsConfig.IS_LOG);
-
 
         AppsConfig.init(this);
         Dips.init(this);

@@ -6,12 +6,13 @@ public class MemoryUtils {
     public static long RECOMENDED_MEMORY_SIZE = getRecomendedAllocatedSizeInMB();
 
     public static long getRecomendedAllocatedSizeInMB() {
-        long recomended = getMaxSizeInMB() / 3;
+        long recomended = getMaxSizeInMB() / 2;
+
         if (recomended <= 16) {
             return 16;
         }
-        if (recomended >= 128) {
-            return 128;
+        if (recomended >= 96) {
+            return 96;
         }
         return recomended;
     }
