@@ -48,7 +48,10 @@ public class SelfTestWorker extends MessageWorker {
 
     @Override
     public void doWorkInner() {
+        long begin = System.currentTimeMillis();
         try {
+
+
             AppProfile.init(getApplicationContext());
             AppProfile.syncTestFolder.mkdirs();
             File logFile = AppData.getTestFileName();
@@ -167,12 +170,17 @@ public class SelfTestWorker extends MessageWorker {
 
             }
             writeLine(out, "Errors: " + errors);
-            writeLine(out, "Finish");
+            long end = System.currentTimeMillis();
+            long res = (end - begin) / 1000L;
+
+            writeLine(out, "Finish in second: " + res);
             out.close();
         } catch (Exception e) {
             LOG.e(e);
         }
         sendNotifyAll();
+
+
     }
 
     public void writeLine(BufferedWriter out, String line) throws IOException {
