@@ -101,7 +101,7 @@ public class SelfTestWorker extends MessageWorker {
 
             n++;
 
-            writeLine(out, item.getPath());
+            writeLine(out, n + ":" + item.getPath());
 
             if (TxtUtils.isEmpty(item.getPath())) {
                 writeLine(out, "Skip");
