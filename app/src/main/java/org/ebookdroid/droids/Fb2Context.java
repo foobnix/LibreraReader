@@ -49,9 +49,7 @@ public class Fb2Context extends PdfContext {
 
         if (cacheFile.isFile()) {
             outName = cacheFile.getPath();
-        } else
-
-        if (outName == null) {
+        } else if (outName == null) {
             outName = cacheFile.getPath();
             Fb2Extractor.get().convert(fileName, outName, false, notes);
             LOG.d("Fb2Context create", fileName, "to", outName);
@@ -79,9 +77,15 @@ public class Fb2Context extends PdfContext {
             new Thread("@T fb2 set footnotes") {
                 @Override
                 public void run() {
-                    muPdfDocument.setFootNotes(getNotes(fileName));
-                    removeTempFiles();
-                };
+                    try {
+                        muPdfDocument.setFootNotes(getNotes(fileName));
+                        removeTempFiles();
+                    } catch (Throwable e) {
+                        LOG.e(e);
+                    }
+                }
+
+                ;
             }.start();
         }
 

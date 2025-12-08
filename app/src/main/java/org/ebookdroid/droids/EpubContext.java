@@ -59,7 +59,7 @@ EpubContext extends PdfContext {
             cacheFile = getCacheFileName(fileName);
         }
 
-        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement ||BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -104,7 +104,7 @@ EpubContext extends PdfContext {
                     muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
 
                     //removeTempFiles();
-                } catch (Exception e) {
+                } catch (Throwable e) {
                     LOG.e(e);
                 }
             }

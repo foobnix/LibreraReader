@@ -1,9 +1,11 @@
 #include <android/bitmap.h>
 #include <android/log.h>
 #include <jni.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 
 #include "../ebookdroid.h"
 #include "../javahelpers.h"
@@ -51,6 +53,49 @@ struct renderpage_s
 extern fz_locks_context *jni_new_locks();
 
 extern void jni_free_locks(fz_locks_context *locks);
+
+
+///////////////////
+static struct sigaction old_sa[32]; // Using fixed size instead of NSIG
+
+void signal_handler(int sig, siginfo_t *info, void *context) {
+    // Log the crash
+    __android_log_print(ANDROID_LOG_ERROR, "NDK",
+            "Signal %d caught, preventing crash propagation", sig);
+
+    // Restore original handler before exit to avoid recursion
+    sigaction(sig, &old_sa[sig], NULL);
+
+    // Exit gracefully
+    exit(0);
+}
+
+void setup_signal_handlers() {
+    struct sigaction sa;
+
+    // Clear the structure
+    memset(&sa, 0, sizeof(struct sigaction));
+
+    // Setup signal handler
+    sa.sa_sigaction = signal_handler;
+    sa.sa_flags = SA_SIGINFO | SA_RESETHAND; // SA_RESETHAND resets to default after first call
+
+    // Initialize the mask (block no signals during handler)
+    sigemptyset(&sa.sa_mask);
+
+    // Set up backup array for original handlers
+    memset(old_sa, 0, sizeof(old_sa));
+
+    // Catch critical signals
+    sigaction(SIGSEGV, &sa, &old_sa[SIGSEGV]);  // Segmentation fault
+    sigaction(SIGABRT, &sa, &old_sa[SIGABRT]);  // Abort
+    sigaction(SIGILL, &sa, &old_sa[SIGILL]);    // Illegal instruction
+    sigaction(SIGFPE, &sa, &old_sa[SIGFPE]);    // Floating point exception
+    sigaction(SIGBUS, &sa, &old_sa[SIGBUS]);    // Bus error
+    sigaction(SIGTRAP, &sa, &old_sa[SIGTRAP]);  // Trace/breakpoint trap
+}
+
+//////////////
 
 void mupdf_throw_exception_ex(JNIEnv *env, const char *exception, char *message)
 {
@@ -106,6 +151,11 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
                                                               jfloat imageScale, jint antialias,
                                                               jstring accelerate, jint is_image_scale)
 {
+
+//try this
+    //setup_signal_handlers();
+    ///
+
     renderdocument_t *doc;
     jboolean iscopy;
     jclass cls;
@@ -238,7 +288,7 @@ cleanup:
 
     (*env)->ReleaseStringUTFChars(env, fname, filename);
     (*env)->ReleaseStringUTFChars(env, pwd, password);
-   // (*env)->ReleaseStringUTFChars(env, accelerate, accel);
+    (*env)->ReleaseStringUTFChars(env, accelerate, accel);
     (*env)->ReleaseStringUTFChars(env, jcss, css);
 
     return (jlong)(long)doc;

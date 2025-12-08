@@ -382,9 +382,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         public void run() {
                             // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
                             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
+                            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SelfTestWorker.class)
+                                    .build();
+
                             //WorkManager.getInstance(getContext()).enqueue(workRequest);
-                            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
+                            WorkManager.getInstance(getContext())
+
+                                    .enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
 
                         }
                     }, null);

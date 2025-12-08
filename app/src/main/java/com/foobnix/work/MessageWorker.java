@@ -39,6 +39,11 @@ abstract class MessageWorker extends Worker {
         } catch (Exception e) {
             LOG.e(e);
             return Result.failure();
+        } catch (OutOfMemoryError e) {
+            System.gc();
+            return Result.failure();
+        } catch (Throwable e) {
+            return Result.failure();
         } finally {
             sendFinishMessage();
             BooksService.isRunning = false;

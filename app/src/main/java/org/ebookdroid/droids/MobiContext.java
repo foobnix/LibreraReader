@@ -1,6 +1,5 @@
 package org.ebookdroid.droids;
 
-import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
@@ -82,8 +81,12 @@ public class MobiContext extends PdfContext {
 
                         removeTempFiles();
 
+                    } catch (OutOfMemoryError e) {
+                        System.gc();
+                        notes = null;
+                        LOG.e(e);
                     } catch (Exception e) {
-                        notes =null;
+                        notes = null;
                         LOG.e(e);
                     }
                 }
