@@ -14,8 +14,7 @@
         android:id="@+id/adFrame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tint_red"
-        />
+        android:background="@color/tint_red" />
 
     <RelativeLayout
         android:id="@+id/parentParent"
@@ -48,7 +47,7 @@
                     android:id="@+id/pageshelper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal" />
             </HorizontalScrollView>
 
             <ImageView

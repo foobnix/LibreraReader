@@ -667,4 +667,5 @@
    <string name="enable_image_scale">אפשר קנה מידה תמונה</string>
    <string name="open_books_on_page_1">פתח ספרים בעמוד 1</string>
    <string name="foreground">חֲזִית</string>
+   <string name="warning_this_document_has_unsaved_changes">אזהרה: במסמך זה יש שינויים שלא נשמרו</string>
 </resources>

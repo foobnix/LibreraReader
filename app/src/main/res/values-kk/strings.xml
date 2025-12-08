@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Кескін масштабын қосыңыз</string>
    <string name="open_books_on_page_1">1 беттегі кітаптарды ашыңыз</string>
    <string name="foreground">Алдыңғы жоспар</string>
+   <string name="warning_this_document_has_unsaved_changes">Ескерту: бұл құжатта сақталмаған өзгерістер бар</string>
 </resources>

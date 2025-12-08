@@ -468,6 +468,8 @@ public abstract class DocumentController {
 
     public abstract void onCrop();
 
+    public abstract boolean hasPDFAnnotations();
+
     public abstract void onFullScreen();
 
     public abstract int getCurentPage();

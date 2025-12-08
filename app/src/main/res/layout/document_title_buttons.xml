@@ -120,7 +120,7 @@
                 android:contentDescription="@string/full_screen"
                 android:src="@drawable/glyphicons_216_fullscreen" />
 
-                <ImageView
+            <ImageView
                 android:id="@+id/onTextReplacement"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
@@ -162,5 +162,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="visible" />
+
+    <TextView
+        android:background="#F44336"
+        android:visibility="gone"
+        android:id="@+id/onSaveAnnotation"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:layout_weight="0"
+        android:textColor="@color/white"
+        android:text="@string/warning_this_document_has_unsaved_changes" />
+
 
 </LinearLayout>

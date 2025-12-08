@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Aktifkan skala gambar</string>
    <string name="open_books_on_page_1">Buka buku di halaman 1</string>
    <string name="foreground">Latar depan</string>
+   <string name="warning_this_document_has_unsaved_changes">Peringatan: dokumen ini memiliki perubahan yang belum disimpan</string>
 </resources>

@@ -2551,7 +2551,7 @@ public class DragingDialogs {
         });
     }
 
-    public static void dialogEditColors(final FrameLayout anchor, final DocumentController controller, final DrawView drawView, final boolean force) {
+    public static void dialogEditColors(final FrameLayout anchor, final DocumentController controller, final DrawView drawView, final boolean force, Runnable onClose) {
         if (controller == null) {
             return;
         }
@@ -2567,6 +2567,8 @@ public class DragingDialogs {
                 controller.saveChanges(drawView.getPoints(), Color.parseColor(annotationDrawColor));
                 drawView.clear();
                 controller.saveAnnotationsToFile();
+                controller.handler.postDelayed(onClose, 500);
+
             }
 
         });
@@ -2580,6 +2582,8 @@ public class DragingDialogs {
                 AppState.get().annotationDrawColor = "";
                 drawView.setVisibility(View.GONE);
                 drawView.clear();
+                controller.handler.postDelayed(onClose, 500);
+
             }
 
             @Override

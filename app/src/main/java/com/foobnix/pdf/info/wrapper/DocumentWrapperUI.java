@@ -189,7 +189,7 @@ public class DocumentWrapperUI {
     };
     Activity a;
     String bookTitle;
-    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
+    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
         @Override
@@ -337,7 +337,12 @@ public class DocumentWrapperUI {
                 onCrop.onClick(null);
             }
 
-            DragingDialogs.dialogEditColors(anchor, dc, drawView, false);
+            DragingDialogs.dialogEditColors(anchor, dc, drawView, false, new Runnable() {
+                @Override
+                public void run() {
+                    hideShowAnnotationLine();
+                }
+            });
         }
     };
     SeekBar.OnSeekBarChangeListener onSpeed = new SeekBar.OnSeekBarChangeListener() {
@@ -709,6 +714,7 @@ public class DocumentWrapperUI {
     }
 
     public void updateUI() {
+        hideShowAnnotationLine();
         final int max = dc.getPageCount();
         final int current = dc.getCurentPage();
 
@@ -1059,6 +1065,8 @@ public class DocumentWrapperUI {
 
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
+
+        onSaveAnnotation = (TextView) a.findViewById(R.id.onSaveAnnotation);
 
         lirbiLogo = (TextView) a.findViewById(R.id.lirbiLogo);
         lirbiLogo.setText(AppState.get().musicText);
@@ -1437,7 +1445,12 @@ public class DocumentWrapperUI {
     }
 
     public void showEditDialogIfNeed() {
-        DragingDialogs.dialogEditColors(anchor, dc, drawView, true);
+        DragingDialogs.dialogEditColors(anchor, dc, drawView, true, new Runnable() {
+            @Override
+            public void run() {
+                hideShowAnnotationLine();
+            }
+        });
     }
 
     public void doDoubleTap(int x, int y) {
@@ -1656,7 +1669,18 @@ public class DocumentWrapperUI {
         }
     };
 
+    public void hideShowAnnotationLine() {
+        boolean hasNotSave = getController().hasPDFAnnotations();
+        if (hasNotSave) {
+            onSaveAnnotation.setVisibility(View.VISIBLE);
+        } else {
+            onSaveAnnotation.setVisibility(View.GONE);
+        }
+    }
+
     public void hideShow() {
+        hideShowAnnotationLine();
+
         if (AppState.get().isEnableAccessibility) {
             //AppState.get().isEditMode = true;
         }

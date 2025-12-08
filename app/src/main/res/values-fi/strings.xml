@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Ota kuvan mittakaava käyttöön</string>
    <string name="open_books_on_page_1">Avaa kirjat sivulla 1</string>
    <string name="foreground">Etualalla</string>
+   <string name="warning_this_document_has_unsaved_changes">Varoitus: tässä asiakirjassa on tallentamattomia muutoksia</string>
 </resources>

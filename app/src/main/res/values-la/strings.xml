@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Enable imaginem scale</string>
    <string name="open_books_on_page_1">Libri aperti in pagina 1</string>
    <string name="foreground">Primum planum</string>
+   <string name="warning_this_document_has_unsaved_changes">Monitum: hoc documentum mutationes non servatas habet.</string>
 </resources>

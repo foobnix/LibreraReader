@@ -667,4 +667,5 @@
    <string name="enable_image_scale">이미지 크기 활성화</string>
    <string name="open_books_on_page_1">1페이지의 책을 펴세요</string>
    <string name="foreground">전경</string>
+   <string name="warning_this_document_has_unsaved_changes">경고: 이 문서에는 저장되지 않은 변경 사항이 있습니다.</string>
 </resources>

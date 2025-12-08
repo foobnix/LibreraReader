@@ -64,6 +64,11 @@ public abstract class HorizontalModeController extends DocumentController {
     private SharedPreferences matrixSP;
     private volatile boolean isClosed = false;
 
+    @Override
+    public boolean hasPDFAnnotations() {
+        return false;
+    }
+
     public HorizontalModeController(Activity activity, int w, int h) {
         super(activity);
 

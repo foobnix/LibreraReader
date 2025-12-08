@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Ενεργοποίηση κλίμακας εικόνας</string>
    <string name="open_books_on_page_1">Ανοίξτε τα βιβλία στη σελίδα 1</string>
    <string name="foreground">Προσκήνιο</string>
+   <string name="warning_this_document_has_unsaved_changes">Προειδοποίηση: αυτό το έγγραφο έχει μη αποθηκευμένες αλλαγές</string>
 </resources>

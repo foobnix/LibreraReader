@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Habilitar escala de imagen</string>
    <string name="open_books_on_page_1">Libros abiertos en la página 1</string>
    <string name="foreground">Primer plano</string>
+   <string name="warning_this_document_has_unsaved_changes">Advertencia: este documento tiene cambios sin guardar.</string>
 </resources>

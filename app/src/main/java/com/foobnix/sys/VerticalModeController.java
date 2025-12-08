@@ -175,6 +175,11 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public boolean hasPDFAnnotations() {
+        return ctr.getDecodeService().hasAnnotationChanges();
+    }
+
+    @Override
     public void clearSelectedText() {
         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         ctr.getDocumentController().clearSelectedText();

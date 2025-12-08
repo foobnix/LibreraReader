@@ -667,4 +667,5 @@
    <string name="enable_image_scale">啟用圖像縮放</string>
    <string name="open_books_on_page_1">打開第1頁的書</string>
    <string name="foreground">前景</string>
+   <string name="warning_this_document_has_unsaved_changes">警告：此文件有未儲存的更改</string>
 </resources>

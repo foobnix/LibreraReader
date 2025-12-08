@@ -667,4 +667,5 @@
    <string name="enable_image_scale">เปิดใช้งานขนาดภาพ</string>
    <string name="open_books_on_page_1">เปิดหนังสือในหน้า 1</string>
    <string name="foreground">พื้นหน้า</string>
+   <string name="warning_this_document_has_unsaved_changes">คำเตือน: เอกสารนี้มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
 </resources>

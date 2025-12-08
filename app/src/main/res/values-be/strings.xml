@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Уключыць маштаб выявы</string>
    <string name="open_books_on_page_1">Адкрытыя кнігі на старонцы 1</string>
    <string name="foreground">Пярэдні план</string>
+   <string name="warning_this_document_has_unsaved_changes">Папярэджанне: у гэтым дакуменце ёсць незахаваныя змены</string>
 </resources>

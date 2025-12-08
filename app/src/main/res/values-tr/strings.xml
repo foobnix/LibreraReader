@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Görüntü ölçeğini etkinleştir</string>
    <string name="open_books_on_page_1">1. sayfadaki kitapları açın</string>
    <string name="foreground">Ön plan</string>
+   <string name="warning_this_document_has_unsaved_changes">Uyarı: bu belgede kaydedilmemiş değişiklikler var</string>
 </resources>

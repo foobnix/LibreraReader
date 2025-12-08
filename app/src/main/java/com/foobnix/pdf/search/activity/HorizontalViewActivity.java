@@ -234,6 +234,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     private int currentScrollState;
     private volatile boolean isMyKey = false;
 
+
     @Override
     protected void onNewIntent(final Intent intent) {
         finishOtherViewer(this, VerticalViewActivity.class);

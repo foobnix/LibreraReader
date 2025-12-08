@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Aktiver bildeskala</string>
    <string name="open_books_on_page_1">Åpne bøker på side 1</string>
    <string name="foreground">Forgrunnen</string>
+   <string name="warning_this_document_has_unsaved_changes">Advarsel: dette dokumentet har ulagrede endringer</string>
 </resources>

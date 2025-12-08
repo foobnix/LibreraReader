@@ -667,4 +667,5 @@
    <string name="enable_image_scale">Schakel afbeeldingsschaal in</string>
    <string name="open_books_on_page_1">Open boeken op pagina 1</string>
    <string name="foreground">Voorgrond</string>
+   <string name="warning_this_document_has_unsaved_changes">Waarschuwing: dit document bevat niet-opgeslagen wijzigingen</string>
 </resources>
