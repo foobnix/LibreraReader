@@ -70,10 +70,99 @@ public:
         valid = cls && midToLowerCase && midIndexOf;
     }
 
-    jstring toString(const char* str)
-    {
-        return jenv->NewStringUTF(str);
+  jstring toString(const char* str) {
+    if (!str) {
+        return jenv->NewStringUTF("");
     }
+
+    // First pass: calculate the size needed for the filtered string
+    size_t len = 0;
+    const unsigned char* p = (const unsigned char*)str;
+
+    while (*p) {
+        unsigned char c = *p;
+
+        if (c < 0x80) {
+            // 1-byte sequence (0xxxxxxx)
+            len++;
+            p++;
+        } else if ((c & 0xE0) == 0xC0) {
+            // 2-byte sequence (110xxxxx 10xxxxxx)
+            if ((p[1] & 0xC0) == 0x80) {
+                len += 2;
+                p += 2;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else if ((c & 0xF0) == 0xE0) {
+            // 3-byte sequence (1110xxxx 10xxxxxx 10xxxxxx)
+            if ((p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80) {
+                len += 3;
+                p += 3;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else if ((c & 0xF8) == 0xF0) {
+            // 4-byte sequence (11110xxx 10xxxxxx 10xxxxxx 10xxxxxx)
+            if ((p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80 && (p[3] & 0xC0) == 0x80) {
+                len += 4;
+                p += 4;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else {
+            // Invalid start byte
+            p++;
+        }
+    }
+
+    // Allocate buffer for filtered string
+    char* filtered = new char[len + 1];
+    char* dest = filtered;
+    p = (const unsigned char*)str;
+
+    // Second pass: copy valid UTF-8 sequences
+    while (*p) {
+        unsigned char c = *p;
+
+        if (c < 0x80) {
+            *dest++ = *p++;
+        } else if ((c & 0xE0) == 0xC0) {
+            if ((p[1] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else if ((c & 0xF0) == 0xE0) {
+            if ((p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else if ((c & 0xF8) == 0xF0) {
+            if ((p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80 && (p[3] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else {
+            p++;
+        }
+    }
+
+    *dest = '\0';
+
+    jstring result = jenv->NewStringUTF(filtered);
+    delete[] filtered;
+
+    return result;
+}
 
     void release(jstring str)
     {
