@@ -787,15 +787,30 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv
 {
     renderdocument_t *doc = (renderdocument_t *)(long)dochandle;
 
-    if (doc->ctx && doc)
-    {
-        if (doc->outline && doc->outline != NULL){
-              fz_drop_outline(doc->ctx,doc->outline);
+        if (!doc) {
+            DEBUG("MuPdfOutline_free: NULL document");
+        return;
+        }
+        if (!doc->ctx) {
+            DEBUG("MuPdfOutline_free: NULL context");
+        return;
+        }
+
+
+        if (doc->outline){
+
+            fz_try(doc->ctx){
+                fz_drop_outline(doc->ctx,doc->outline);
+            }
+            fz_catch(doc->ctx){
+                DEBUG("MuPdfOutline_free: error dropping outline");
+            }
+
         }
         DEBUG("MuPdfOutline_free");
 
         doc->outline = NULL;
-    }
+
 }
 
 JNIEXPORT jstring JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(
