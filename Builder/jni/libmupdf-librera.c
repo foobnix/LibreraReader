@@ -95,6 +95,107 @@ void setup_signal_handlers() {
     sigaction(SIGTRAP, &sa, &old_sa[SIGTRAP]);  // Trace/breakpoint trap
 }
 
+
+jstring safeNewStringUTF(JNIEnv* env, const char* str) {
+    if (!str) {
+        return (*env)->NewStringUTF(env, "");
+    }
+
+    // First pass: calculate the size needed for the filtered string
+    size_t len = 0;
+    const unsigned char* p = (const unsigned char*)str;
+
+    while (*p) {
+        unsigned char c = *p;
+
+        if (c < 0x80) {
+            // 1-byte sequence (0xxxxxxx)
+            len++;
+            p++;
+        } else if ((c & 0xE0) == 0xC0) {
+            // 2-byte sequence (110xxxxx 10xxxxxx)
+            if (p[1] && (p[1] & 0xC0) == 0x80) {
+                len += 2;
+                p += 2;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else if ((c & 0xF0) == 0xE0) {
+            // 3-byte sequence (1110xxxx 10xxxxxx 10xxxxxx)
+            if (p[1] && p[2] && (p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80) {
+                len += 3;
+                p += 3;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else if ((c & 0xF8) == 0xF0) {
+            // 4-byte sequence (11110xxx 10xxxxxx 10xxxxxx 10xxxxxx)
+            if (p[1] && p[2] && p[3] &&
+                    (p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80 && (p[3] & 0xC0) == 0x80) {
+                len += 4;
+                p += 4;
+            } else {
+                p++; // Skip invalid byte
+            }
+        } else {
+            // Invalid start byte
+            p++;
+        }
+    }
+
+    // Allocate buffer for filtered string
+    char* filtered = (char*)malloc(len + 1);
+    if (!filtered) {
+        return (*env)->NewStringUTF(env, "");
+    }
+
+    char* dest = filtered;
+    p = (const unsigned char*)str;
+
+    // Second pass: copy valid UTF-8 sequences
+    while (*p) {
+        unsigned char c = *p;
+
+        if (c < 0x80) {
+            *dest++ = *p++;
+        } else if ((c & 0xE0) == 0xC0) {
+            if (p[1] && (p[1] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else if ((c & 0xF0) == 0xE0) {
+            if (p[1] && p[2] && (p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else if ((c & 0xF8) == 0xF0) {
+            if (p[1] && p[2] && p[3] &&
+                    (p[1] & 0xC0) == 0x80 && (p[2] & 0xC0) == 0x80 && (p[3] & 0xC0) == 0x80) {
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+                *dest++ = *p++;
+            } else {
+                p++;
+            }
+        } else {
+            p++;
+        }
+    }
+
+    *dest = '\0';
+
+    jstring result = (*env)->NewStringUTF(env, filtered);
+    free(filtered);
+
+    return result;
+}
+
 //////////////
 
 void mupdf_throw_exception_ex(JNIEnv *env, const char *exception, char *message)
@@ -140,7 +241,7 @@ static void mupdf_free_document(renderdocument_t *doc)
 JNIEXPORT jstring
 JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getFzVersion(JNIEnv *env, jclass clazz)
 {
-    return (*env)->NewStringUTF(env, FZ_VERSION);
+    return safeNewStringUTF(env, FZ_VERSION);
 }
 
 JNIEXPORT jlong
@@ -315,7 +416,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMeta(JNIEnv *en
 
     fz_lookup_metadata(doc->ctx, doc->document, options, info, sizeof(info));
 
-    return (*env)->NewStringUTF(env, info);
+    return safeNewStringUTF(env, info);
 }
 
 JNIEXPORT jint
@@ -443,7 +544,7 @@ JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkUrl(JNIEnv 
     char linkbuf[4048];
     snprintf(linkbuf, sizeof(linkbuf), "%s", link->uri);
 
-    return (*env)->NewStringUTF(env, linkbuf);
+    return safeNewStringUTF(env, linkbuf);
 }
 
 JNIEXPORT jboolean
@@ -880,12 +981,7 @@ JNIEXPORT jstring JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_ge
     jstring result = NULL;
 
     fz_try(doc->ctx) {
-        result = (*env)->NewStringUTF(env, outline->title);
-
-        if ((*env)->ExceptionCheck(env)) {
-            (*env)->ExceptionClear(env);
-            result = NULL;
-        }
+        result = safeNewStringUTF(env, outline->title);
     }
     fz_catch(doc->ctx) {
         result = NULL;
@@ -909,7 +1005,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env
 
     snprintf(linkbuf, sizeof(linkbuf), "#%d", pageNo + 1);
 
-    return (*env)->NewStringUTF(env, linkbuf);
+    return safeNewStringUTF(env, linkbuf);
 }
 
 JNIEXPORT jstring
@@ -927,7 +1023,7 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(JNIEnv *
     // DEBUG("PdfOutline_getLink(%p)",outline);
     if (outline && outline->uri)
     {
-        return (*env)->NewStringUTF(env, outline->uri);
+        return safeNewStringUTF(env, outline->uri);
     }
     else
     {
@@ -955,7 +1051,7 @@ fillInOutlineItems(JNIEnv *env, jclass olClass, jmethodID ctor, jobjectArray arr
         if (page >= 0 && outline->title)
         {
             jobject ol;
-            jstring title = (*env)->NewStringUTF(env, outline->title);
+            jstring title = safeNewStringUTF(env, outline->title);
             if (title == NULL)
                 return -1;
             ol = (*env)->NewObject(env, olClass, ctor, level, title, page);
