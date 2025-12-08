@@ -129,7 +129,10 @@ public class AppData {
     }
 
     public static File getTestFileName() {
-        File logFile = new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" + AppsConfig.MUPDF_FZ_VERSION + ".txt");
+
+        File logFile = new File(AppProfile.syncTestFolder,
+                Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" +
+                        AppsConfig.MUPDF_FZ_VERSION + "t+_" + System.currentTimeMillis() + ".txt");
         return logFile;
 
 

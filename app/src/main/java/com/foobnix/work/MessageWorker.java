@@ -9,12 +9,12 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.ui2.BooksService;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.IOException;
 import java.util.Collection;
 
 abstract class MessageWorker extends Worker {
@@ -31,23 +31,23 @@ abstract class MessageWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-
-
         try {
             BooksService.isRunning = true;
             LOG.d("MessageWorker-Status", "Start", BooksService.isRunning, this.getClass());
             doWorkInner();
+            return Result.success();
         } catch (Exception e) {
             LOG.e(e);
+            return Result.failure();
         } finally {
             sendFinishMessage();
             BooksService.isRunning = false;
             LOG.d("MessageWorker-Status", "Finish", BooksService.isRunning, this.getClass());
         }
-        return Result.success();
+
     }
 
-    abstract void doWorkInner();
+    abstract void doWorkInner() throws IOException;
 
     protected void sendFinishMessage() {
         try {

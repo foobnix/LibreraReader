@@ -102,6 +102,9 @@ public class SearchAllBooksWorker extends MessageWorker {
                     if (root.isDirectory()) {
                         LOG.d("Search in: " + root.getPath());
                         SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
+                        if (isStopped()) {
+                            return;
+                        }
                     }
                 }
             }
@@ -115,6 +118,9 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             if (TxtUtils.isListNotEmpty(allExcluded)) {
                 for (FileMeta meta : itemsMeta) {
+                    if (isStopped()) {
+                        return;
+                    }
                     if (allExcluded.contains(SimpleMeta.SyncSimpleMeta(meta.getPath()))) {
                         meta.setIsSearchBook(false);
                     }
@@ -125,6 +131,9 @@ public class SearchAllBooksWorker extends MessageWorker {
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
                 for (FileMeta meta : itemsMeta) {
                     for (FileMeta sync : allSyncBooks) {
+                        if (isStopped()) {
+                            return;
+                        }
                         if (meta.getTitle().equals(sync.getTitle()) && !meta.getPath().equals(sync.getPath())) {
                             meta.setIsSearchBook(false);
                             LOG.d("Worker", "remove-dublicate", meta.getPath());
@@ -148,6 +157,9 @@ public class SearchAllBooksWorker extends MessageWorker {
             handler.post(timer2);
 
             for (FileMeta meta : itemsMeta) {
+                if (isStopped()) {
+                    return;
+                }
                 File file = new File(meta.getPath());
                 FileMetaCore.get().upadteBasicMeta(meta, file);
             }
@@ -157,6 +169,9 @@ public class SearchAllBooksWorker extends MessageWorker {
 
 
             for (FileMeta meta : itemsMeta) {
+                if (isStopped()) {
+                    return;
+                }
                 //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
                 EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
                 FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
@@ -180,16 +195,17 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
             for (FileMeta m : allNone) {
+                if (isStopped()) {
+                    return;
+                }
                 LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
                 FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
             }
 
             updateBookAnnotations();
-        } catch (Exception e) {
-            LOG.e(e);
+        } finally {
+            Prefs.get().remove(SEARCH_ERRORS, 0);
         }
-
-        Prefs.get().remove(SEARCH_ERRORS, 0);
 
 
     }
