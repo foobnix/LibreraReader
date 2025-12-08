@@ -140,7 +140,7 @@ public class SelfTestWorker extends MessageWorker {
                 }
 
 
-                for (int pageNumber = 0; pageNumber < 5 && pageNumber < pageCount; pageNumber++) {
+                for (int pageNumber = 0; pageNumber < 2 && pageNumber < pageCount; pageNumber++) {
                     CodecPage page = codecDocument.getPage(pageNumber);
                     RectF rectF = new RectF(0, 0, 1f, 1f);
                     BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);

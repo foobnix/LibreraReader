@@ -288,7 +288,7 @@ cleanup:
 
     (*env)->ReleaseStringUTFChars(env, fname, filename);
     (*env)->ReleaseStringUTFChars(env, pwd, password);
-    (*env)->ReleaseStringUTFChars(env, accelerate, accel);
+    //(*env)->ReleaseStringUTFChars(env, accelerate, accel);
     (*env)->ReleaseStringUTFChars(env, jcss, css);
 
     return (jlong)(long)doc;
