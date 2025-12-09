@@ -30,7 +30,7 @@ ext {
 }
 
 android {
-    compileSdk = project.compileSdk
+    compileSdk 36
     namespace = "com.foobnix.pdf.info"
 
     defaultConfig {
@@ -81,9 +81,6 @@ android {
         debug {
             debuggable = true
         }
-    }
-    buildFeatures {
-        compose true
     }
 
 
@@ -339,40 +336,29 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.10.2'
     implementation 'com.google.guava:guava:33.4.8-android'
 
-    //implementation "it.unimi.dsi:fastutil-core:8.5.12"
+    def google_free = project(':libGoogleFree')
 
-    //implementation "androidx.car.app:app:1.4.0-rc01"
-    //implementation("androidx.media3:media3-ui:1.1.1")
+    libreraImplementation google_free
+    pdf_v2Implementation google_free
+    ebookaImplementation google_free
+    tts_readerImplementation google_free
+    pdf_classicImplementation google_free
+    epub_readerImplementation google_free
 
-    //implementation('androidx.media3:media3-session:1.3.0')
+    def google_pro = project(':libGooglePro')
 
-
-    //implementation "org.nanohttpd:nanohttpd:2.3.1"
-
-
-/** Ads **/
-    def google_ads = "com.google.android.gms:play-services-ads:24.7.0"
-    libreraImplementation google_ads
-    pdf_v2Implementation google_ads
-    ebookaImplementation google_ads
-    tts_readerImplementation google_ads
-    pdf_classicImplementation google_ads
-    epub_readerImplementation google_ads
-
-    def messaging_ads = "com.google.android.ump:user-messaging-platform:3.2.0"
-    libreraImplementation messaging_ads
-    pdf_v2Implementation messaging_ads
-    ebookaImplementation messaging_ads
-    tts_readerImplementation messaging_ads
-    pdf_classicImplementation messaging_ads
-    epub_readerImplementation messaging_ads
+    libreraImplementation google_pro
+    pdf_v2Implementation google_pro
+    ebookaImplementation google_pro
+    tts_readerImplementation google_pro
+    pdf_classicImplementation google_pro
+    epub_readerImplementation google_pro
+    proImplementation google_pro
 
 
 /** Testing **/
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.2'
-    //androidTestImplementation 'androidx.test:core:1.5.2'
-    //androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
 
@@ -460,18 +446,3 @@ task incVersion() {
         println "My Task: [incVersion]"
     }
 }
-
-if (!taskName.contains("Fdroid")) {
-    dependencies {
-        implementation("com.github.junrar:junrar:4.0.0")
-        implementation("com.google.android.gms:play-services-auth:21.4.0")
-        implementation("com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0")
-        implementation("com.google.api-client:google-api-client-android:2.8.0")
-        implementation("com.google.oauth-client:google-oauth-client-jetty:1.39.0")
-        implementation("com.google.http-client:google-http-client-gson:1.47.1")
-
-        //implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-        //implementation("com.google.firebase:firebase-analytics")
-    }
-}
-

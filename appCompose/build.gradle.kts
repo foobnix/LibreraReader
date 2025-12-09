@@ -12,7 +12,7 @@ plugins {
 
 android {
     namespace = "mobi.librera.appcompose"
-    compileSdk = rootProject.extra["compileSdk"] as Int
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "mobi.librera.appcompose"
@@ -85,7 +85,7 @@ dependencies {
 
 
     //BOM begin
-    implementation(platform("androidx.compose:compose-bom:2025.07.00"))
+    implementation(platform("androidx.compose:compose-bom:2025.12.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.material:material-icons-core")

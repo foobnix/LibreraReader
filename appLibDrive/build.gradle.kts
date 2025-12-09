@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.foobnix.googledrive"
-    compileSdk = rootProject.extra["compileSdk"] as Int
+    compileSdk = 36
 
     defaultConfig {
         minSdk = rootProject.extra["minSdk"] as Int

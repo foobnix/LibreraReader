@@ -28,6 +28,8 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import mobi.librera.libgoogle.BillingManager;
+
 
 public class LibreraApp extends MultiDexApplication {
 
@@ -132,6 +134,8 @@ public class LibreraApp extends MultiDexApplication {
             });
         }
 
+
+        BillingManager billingManager = new BillingManager(this);
 
     }
 

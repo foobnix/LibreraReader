@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk = project.compileSdk
+    compileSdk 36
 
     defaultConfig {
         minSdk = project.minFDroidSdk
@@ -17,6 +17,10 @@ android {
         }
     }
     namespace = 'com.foobnix.pdf.pro'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 }
 
 dependencies {

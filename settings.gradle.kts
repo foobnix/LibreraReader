@@ -36,3 +36,5 @@ include(":appCompose")
 include(":appLibDrive")
 
 include(":Builder")
+include(":libGoogleFree")
+include(":libGooglePro")
