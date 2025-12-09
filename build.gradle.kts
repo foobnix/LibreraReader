@@ -13,6 +13,5 @@ plugins {
 project.extra.apply {
     set("targetSdk", 36)
     set("minSdk", 24)
-    set("minFDroidSdk", 21)
     set("compileSdk", 36)
 }

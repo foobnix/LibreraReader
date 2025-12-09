@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "mobi.librera.libgoogle"
+    namespace = "mobi.librera.libgoogleFree"
     compileSdk {
         version = release(36)
     }

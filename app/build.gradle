@@ -112,7 +112,7 @@ android {
     flavorDimensions.add("version")
     productFlavors {
         fdroid {
-            minSdk = project.minFDroidSdk
+            minSdk = project.minSdk
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
