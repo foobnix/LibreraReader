@@ -135,7 +135,8 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        BillingManager billingManager = new BillingManager(this);
+        BillingManager billingManager = BillingManager.get();
+        billingManager.init(this);
 
     }
 

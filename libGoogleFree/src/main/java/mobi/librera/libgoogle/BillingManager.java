@@ -14,48 +14,33 @@ import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryPurchasesParams;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BillingManager {
 
     private BillingClient billingClient;
-    private final Context context;
+    List<ProductDetails> productDetails;
 
-    // Callbacks
-    public interface OnSubscriptionsLoadedListener {
-        void onSubscriptionsLoaded(List<ProductDetails> productDetailsList);
+
+    static BillingManager INSTANCE = new BillingManager();
+
+    public void init(Context context) {
+        setupBillingClient(context);
     }
 
-    public interface OnPurchaseFinishedListener {
-        void onPurchaseSuccess(String productId);
-
-        void onPurchaseFailed(String errorMessage);
+    public static BillingManager get() {
+        return INSTANCE;
     }
 
-    private OnSubscriptionsLoadedListener loadedListener;
-    private OnPurchaseFinishedListener purchaseListener;
-
-    public BillingManager(Context context) {
-        this.context = context.getApplicationContext();
-        setupBillingClient();
-    }
-
-    private void setupBillingClient() {
-        billingClient = BillingClient.newBuilder(context)
-                .setListener(purchasesUpdatedListener)
-                .enablePendingPurchases(
-                        PendingPurchasesParams.newBuilder()
-                                .enableOneTimeProducts()  // Required even for subscriptions only
-                                .enablePrepaidPlans()
-                                .build()
-                )
-                .enableAutoServiceReconnection()
-                .build();
+    private void setupBillingClient(Context context) {
+        billingClient = BillingClient.newBuilder(context).setListener(purchasesUpdatedListener).enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts()  // Required even for subscriptions only
+                .enablePrepaidPlans().build()).enableAutoServiceReconnection().build();
 
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
@@ -63,6 +48,8 @@ public class BillingManager {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     Log.d("BillingManager", "Billing Client Ready");
                     // Optionally auto-query can go here if needed
+
+                    loadAllSubscriptions();
                 } else {
                     Log.e("BillingManager", "Setup failed: " + billingResult.getDebugMessage());
                 }
@@ -81,13 +68,9 @@ public class BillingManager {
                 handlePurchase(purchase);
             }
         } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
-            if (purchaseListener != null) {
-                purchaseListener.onPurchaseFailed("User canceled the purchase");
-            }
+
         } else {
-            if (purchaseListener != null) {
-                purchaseListener.onPurchaseFailed(billingResult.getDebugMessage());
-            }
+
         }
     };
 
@@ -97,85 +80,100 @@ public class BillingManager {
                 acknowledgePurchase(purchase);
             }
 
-            // Notify success – you can send any product ID from purchase.getProducts()
-            if (purchaseListener != null && !purchase.getProducts().isEmpty()) {
-                purchaseListener.onPurchaseSuccess(purchase.getProducts().get(0));
-            }
+
         }
     }
 
     private void acknowledgePurchase(Purchase purchase) {
-        AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder()
-                .setPurchaseToken(purchase.getPurchaseToken())
-                .build();
+        AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build();
 
         billingClient.acknowledgePurchase(params, acknowledgeResult -> {
             // Acknowledged
         });
     }
 
+    public void launchSubscription(Activity a) {
+
+        ProductDetails subDetails = productDetails.get(0);
+
+        ProductDetails.SubscriptionOfferDetails selectedOffer = null;
+
+        if (subDetails.getSubscriptionOfferDetails() != null && !subDetails.getSubscriptionOfferDetails().isEmpty()) {
+            selectedOffer = subDetails.getSubscriptionOfferDetails().get(0);
+        }
+
+
+        String offerToken = selectedOffer.getOfferToken();
+        Log.e("BillingManager", "offerToken" + offerToken);
+
+
+        BillingFlowParams.ProductDetailsParams productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(productDetails.get(0)) // The ProductDetails object
+                .setOfferToken(offerToken).build();
+
+        BillingFlowParams params = BillingFlowParams.newBuilder().setProductDetailsParamsList(List.of(productDetailsParams)).build();
+
+        BillingResult billingResult = billingClient.launchBillingFlow(a, params);
+        Log.e("BillingManager", "getResponseCode" + billingResult.getResponseCode());
+        //BillingClient.BillingResponseCode.OK
+
+    }
+
+    public boolean isHasSubscription() {
+        if (productDetails == null || productDetails.isEmpty()) {
+            return false;
+        }
+        ProductDetails subDetails = productDetails.get(0);
+        return subDetails.getSubscriptionOfferDetails() != null && !subDetails.getSubscriptionOfferDetails().isEmpty();
+
+    }
+
+    public String getFormattedPrice() {
+        try {
+            return String.valueOf(productDetails.get(0).getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice());
+        } catch (Exception e) {
+            return "1$";
+        }
+    }
+
+
     // Load ALL subscription plans (including all base plans and offers)
-    public void loadAllSubscriptions(OnSubscriptionsLoadedListener listener) {
-        this.loadedListener = listener;
+    public void loadAllSubscriptions() {
+
 
         List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
-        productList.add(QueryProductDetailsParams.Product.newBuilder()
-                .setProductId("subscription_month_id")   // Your subscription product IDs
-                .setProductType(BillingClient.ProductType.SUBS)
-                .build());
+        productList.add(QueryProductDetailsParams.Product.newBuilder().setProductId("subscription_month_id").setProductType(BillingClient.ProductType.SUBS).build());
 
-        // Add more subscriptions here
 
-        QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
-                .setProductList(productList)
-                .build();
+        QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder().setProductList(productList).build();
 
         billingClient.queryProductDetailsAsync(params, (billingResult, productDetailsList) -> {
+
+            Log.d("BillingManager", "RES");
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                List<ProductDetails> subsOnly = new ArrayList<>();
-                for (ProductDetails details : productDetailsList.getProductDetailsList()) {
+                productDetails = productDetailsList.getProductDetailsList();
+                for (ProductDetails details : productDetails) {
                     if (details.getProductType().equals(BillingClient.ProductType.SUBS)) {
-                        subsOnly.add(details);
+                        Log.d("BillingManager", details.getDescription());
+                        Log.d("BillingManager", details.getProductId());
+                        Log.d("BillingManager", details.getName());
+
+                        Log.d("BillingManager", String.valueOf(details.getSubscriptionOfferDetails().get(0).getPricingPhases().getPricingPhaseList().get(0).getFormattedPrice()));
                     }
-                }
-                if (loadedListener != null) {
-                    loadedListener.onSubscriptionsLoaded(subsOnly);
                 }
             } else {
                 Log.e("BillingManager", "Query failed: " + billingResult.getDebugMessage());
             }
         });
-    }
 
-    // Launch subscription purchase when user clicks "Subscribe"
-    public void launchSubscriptionFlow(Activity activity, ProductDetails productDetails,
-                                       OnPurchaseFinishedListener listener) {
-        this.purchaseListener = listener;
+        QueryPurchasesParams queryPurchasesParams = QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build();
 
-        // Pick the offer (usually first one, or let user choose)
-        List<ProductDetails.SubscriptionOfferDetails> offerDetails =
-                productDetails.getSubscriptionOfferDetails();
-
-        if (offerDetails == null || offerDetails.isEmpty()) {
-            Log.e("BillingManager", "No offers found for " + productDetails.getProductId());
-            return;
-        }
-
-        String offerToken = offerDetails.get(0).getOfferToken(); // or show UI to pick
-
-        BillingFlowParams.ProductDetailsParams params = BillingFlowParams.ProductDetailsParams.newBuilder()
-                .setProductDetails(productDetails)
-                .setOfferToken(offerToken)
-                .build();
-
-        BillingFlowParams flowParams = BillingFlowParams.newBuilder()
-                .setProductDetailsParamsList(Collections.singletonList(params))
-                .build();
-
-        BillingResult result = billingClient.launchBillingFlow(activity, flowParams);
-        if (result.getResponseCode() != BillingClient.BillingResponseCode.OK) {
-            Log.e("BillingManager", "Launch failed: " + result.getDebugMessage());
-        }
+        billingClient.queryPurchasesAsync(queryPurchasesParams, new PurchasesResponseListener() {
+            @Override
+            public void onQueryPurchasesResponse(@NonNull BillingResult billingResult, @NonNull List<Purchase> list) {
+                Log.d("BillingManager", "Purchases BillingResult:" + billingResult.getResponseCode());
+                Log.d("BillingManager", "Purchases BillingResult list:" + list);
+            }
+        });
     }
 
     public void destroy() {

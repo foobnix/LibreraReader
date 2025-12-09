@@ -91,6 +91,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mobi.librera.libgoogle.BillingManager;
+
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
@@ -106,7 +108,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     TabsAdapter2 adapter;
     ImageView imageMenu;
     View imageMenuParent, overlay;
-    TextView toastBrightnessText;
+    TextView toastBrightnessText, onSubscribe;
     Handler handler;
     MyProgressBar fab;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -360,6 +362,19 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
 
         overlay = findViewById(R.id.overlay);
+
+        onSubscribe = findViewById(R.id.onSubscribe);
+        onSubscribe.setText(onSubscribe.getText().toString().replace("_", BillingManager.get().getFormattedPrice()));
+        onSubscribe.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BillingManager.get().launchSubscription(MainTabs2.this);
+                Toast.makeText(MainTabs2.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (BillingManager.get().isHasSubscription()) {
+            onSubscribe.setVisibility(View.GONE);
+        }
 
         toastBrightnessText = findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);

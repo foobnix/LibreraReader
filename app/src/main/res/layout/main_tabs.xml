@@ -9,13 +9,29 @@
     <View
         android:id="@+id/systemBarHack"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp" />
 
-    <FrameLayout
-        android:id="@+id/adFrame"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/adFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/onSubscribe"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/tint_red"
+            android:text="Subscribe _ to remove ads"
+            android:layout_height="42dp" />
+
+    </LinearLayout>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -23,6 +39,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -66,7 +83,7 @@
                             android:layout_weight="0"
                             android:background="#3949ab"
                             android:elevation="2dip"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
@@ -85,9 +102,10 @@
                         android:layout_weight="0"
                         android:background="#3949ab"
                         android:elevation="2dip"
-                        android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+                        android:visibility="gone" />
 
                 </LinearLayout>
+
 
                 <FrameLayout
                     android:id="@+id/left_drawer"
@@ -96,6 +114,7 @@
                     android:layout_gravity="start"
                     android:background="#ffffff" />
             </androidx.drawerlayout.widget.DrawerLayout>
+
 
             <FrameLayout
                 android:id="@+id/overlay"
