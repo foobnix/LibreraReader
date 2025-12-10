@@ -372,9 +372,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Toast.makeText(MainTabs2.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
-        if (BillingManager.get().isHasSubscription()) {
-            onSubscribe.setVisibility(View.GONE);
-        }
+
 
         toastBrightnessText = findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
@@ -738,6 +736,12 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (BillingManager.get().isHasSubscription()) {
+            onSubscribe.setVisibility(View.GONE);
+        } else {
+            onSubscribe.setVisibility(View.VISIBLE);
+        }
 
 
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
