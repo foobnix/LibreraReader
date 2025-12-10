@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    api("com.github.junrar:junrar:4.0.0")
+    api("com.github.junrar:junrar:7.5.7")
     api("com.google.android.gms:play-services-auth:21.4.0")
     api("com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0")
     api("com.google.api-client:google-api-client-android:2.8.0")

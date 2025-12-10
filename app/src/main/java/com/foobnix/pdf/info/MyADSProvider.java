@@ -20,7 +20,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MyADSProvider {
-
     public int intetrstialTimeout = 0;
     Random random = new Random();
     InterstitialAd mInterstitialAd;
@@ -43,13 +42,13 @@ public class MyADSProvider {
             LOG.d("PRO is installed or beta");
             return;
         }
+
 //        ConsentInformation consentInformation = UserMessagingPlatform.getConsentInformation(a);
 //        if(!consentInformation.canRequestAds()){
 //            LOG.d("ADS, can not Request Ads");
 //            return;
 //        }
         LOG.d("ADS, can Request Ads");
-
 
         if (withInterstitial) {
             if (handler == null) {
@@ -59,11 +58,8 @@ public class MyADSProvider {
             handler.removeCallbacksAndMessages(null);
 
             Runnable r = new Runnable() {
-
-                @Override
-                public void run() {
+                @Override public void run() {
                     try {
-
 
                         try {
                             if (Apps.isNight(a)) {
@@ -76,25 +72,27 @@ public class MyADSProvider {
                             LOG.e(e);
                         }
 
-                        InterstitialAd.load(LibreraApp.context, Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"), ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
-                            @Override
-                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                super.onAdFailedToLoad(loadAdError);
-                                LOG.d("LoadAdError", loadAdError);
-                                mInterstitialAd = null;
-                            }
+                        InterstitialAd.load(LibreraApp.context,
+                                            Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"),
+                                            ADS.getAdRequest(a),
+                                            new InterstitialAdLoadCallback() {
+                                                @Override
+                                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                                    super.onAdFailedToLoad(loadAdError);
+                                                    LOG.d("LoadAdError", loadAdError);
+                                                    mInterstitialAd = null;
+                                                }
 
-                            @Override
-                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                super.onAdLoaded(interstitialAd);
-                                mInterstitialAd = interstitialAd;
-                            }
-                        });
+                                                @Override
+                                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                                    super.onAdLoaded(interstitialAd);
+                                                    mInterstitialAd = interstitialAd;
+                                                }
+                                            });
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
-
             };
             LOG.d("ADS post delay postDelayed", intetrstialTimeout);
             if (AppsConfig.IS_LOG) {
@@ -109,8 +107,6 @@ public class MyADSProvider {
             return;
         }
         ADS.activateAdmobSmartBanner(a, adView);
-
-
     }
 
     public boolean showInterstial(Activity a) {
@@ -133,5 +129,4 @@ public class MyADSProvider {
         ADS.destoryAll(adView);
         a = null;
     }
-
 }

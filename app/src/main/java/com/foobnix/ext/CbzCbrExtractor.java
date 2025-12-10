@@ -4,12 +4,10 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 import com.github.junrar.Archive;
-import com.github.junrar.impl.FileVolumeManager;
 import com.github.junrar.rarfile.FileHeader;
 
 import org.ebookdroid.BookType;
@@ -25,9 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-
 public class CbzCbrExtractor {
-
     public static boolean isZip(String path) {
         try {
             byte[] buffer = new byte[2];
@@ -79,9 +75,8 @@ public class CbzCbrExtractor {
                     count++;
                 }
                 zipInputStream.close();
-
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                Archive archive = new Archive(new File(path));
 
                 for (FileHeader it : archive.getFileHeaders()) {
                     if (it.isDirectory()) {
@@ -98,7 +93,6 @@ public class CbzCbrExtractor {
 
                 archive.close();
             }
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -128,7 +122,7 @@ public class CbzCbrExtractor {
                     return "";
                 }
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                Archive archive = new Archive(new File(path));
                 byteArrayStream = new ByteArrayOutputStream();
 
                 for (FileHeader it : archive.getFileHeaders()) {
@@ -215,7 +209,7 @@ public class CbzCbrExtractor {
                     return EbookMeta.Empty();
                 }
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                Archive archive = new Archive(new File(path));
                 byteArrayStream = new ByteArrayOutputStream();
 
                 for (FileHeader it : archive.getFileHeaders()) {
@@ -264,16 +258,12 @@ public class CbzCbrExtractor {
                         genre = xpp.nextText();
                     }
 
-                    if ("Writer".equals(xpp.getName()) ||
-                            "Penciller".equals(xpp.getName()) ||
-                            "Inker".equals(xpp.getName()) ||
-                            "Colorist".equals(xpp.getName()) ||
-                            "Letterer".equals(xpp.getName()) ||
-                            "CoverArtist".equals(xpp.getName()) ||
-                            "Editor".equals(xpp.getName())) {
+                    if ("Writer".equals(xpp.getName()) || "Penciller".equals(xpp.getName()) ||
+                        "Inker".equals(xpp.getName()) || "Colorist".equals(xpp.getName()) ||
+                        "Letterer".equals(xpp.getName()) || "CoverArtist".equals(xpp.getName()) ||
+                        "Editor".equals(xpp.getName())) {
                         author = author + ", " + xpp.nextText();
                     }
-
 
                     if (date == null && "Year".equals(xpp.getName())) {
                         date = xpp.nextText();
@@ -385,7 +375,6 @@ public class CbzCbrExtractor {
                     LOG.e(e);
                 }
 
-
                 zipInputStream = new ZipArchiveInputStream(path);
                 nextEntry = null;
 
@@ -403,15 +392,12 @@ public class CbzCbrExtractor {
                     }
                 }
                 zipInputStream.close();
-
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                Archive archive = new Archive(new File(path));
 
                 List<FileHeader> fileHeaders = archive.getFileHeaders();
                 Collections.sort(fileHeaders, new Comparator<FileHeader>() {
-
-                    @Override
-                    public int compare(FileHeader o1, FileHeader o2) {
+                    @Override public int compare(FileHeader o1, FileHeader o2) {
                         return o1.getFileNameString().compareTo(o2.getFileNameString());
                     }
                 });
@@ -420,7 +406,6 @@ public class CbzCbrExtractor {
 
                 if (fileHeader.isDirectory()) {
                     fileHeader = fileHeaders.get(1);
-
                 }
 
                 for (FileHeader it : fileHeaders) {
@@ -444,11 +429,9 @@ public class CbzCbrExtractor {
                 archive.extractFile(fileHeader, out);
                 archive.close();
             }
-
         } catch (Exception e) {
             LOG.e(e);
         }
         return out.toByteArray();
     }
-
 }

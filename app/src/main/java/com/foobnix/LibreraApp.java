@@ -28,36 +28,34 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
-import mobi.librera.libgoogle.BillingManager;
-
-
 public class LibreraApp extends MultiDexApplication {
-
-
     public static Context context;
 
-
-    @Override
-    public void onCreate() {
+    @Override public void onCreate() {
         if (false) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads()
+                                                                            .detectDiskWrites()
+                                                                            .detectNetwork()
+                                                                            .penaltyLog()
+                                                                            .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects()
+                                                                    .detectLeakedClosableObjects()
+                                                                    .penaltyLog()
+                                                                    .penaltyDeath()
+                                                                    .build());
         }
         super.onCreate();
 
         //AppsConfig.loadEngine(this);
-
 
         context = getApplicationContext();
         if (!WorkManager.isInitialized()) {
             WorkManager.initialize(this, new Configuration.Builder().setMinimumLoggingLevel(Log.DEBUG).build());
         }
 
-
 //        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
 //        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
 //        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
-
 
         AppsConfig.init(this);
         Dips.init(this);
@@ -66,10 +64,8 @@ public class LibreraApp extends MultiDexApplication {
         try {
             if (!AppsConfig.checkIsProInstalled(this)) {
                 MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                    @Override
-                    public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+                    @Override public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
                         LOG.d("ads-complete");
-
                     }
                 });
             }
@@ -79,17 +75,16 @@ public class LibreraApp extends MultiDexApplication {
 
         LOG.d("AppsConfig.IS_TEST_DEVICE", AppsConfig.IS_TEST_DEVICE);
         if (AppsConfig.IS_TEST_DEVICE) {
-            RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
+            RequestConfiguration configuration =
+                    new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
             MobileAds.setRequestConfiguration(configuration);
         }
-
 
         Log.d("Build", "Build.TestDeviceID :" + ADS.getByTestID(this));
         Log.d("Build", "Build.MODEL :" + Build.MODEL);
         Log.d("Build", "Build.DEVICE:" + Build.DEVICE);
 
         TTSNotification.initChannels(this);
-
 
         CacheZipUtils.init(this);
 
@@ -111,7 +106,6 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
         LOG.d("Build.Height", Dips.screenHeight());
 
-
         if (TxtUtils.isEmpty(AppsConfig.FLAVOR)) {
             throw new RuntimeException("Application not configured correctly!");
         }
@@ -119,8 +113,7 @@ public class LibreraApp extends MultiDexApplication {
         if (AppsConfig.IS_WRITE_LOGS) {
             LOG.writeCrashTofile = true;
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-                @Override
-                public void uncaughtException(Thread thread, final Throwable e) {
+                @Override public void uncaughtException(Thread thread, final Throwable e) {
                     LOG.uncaughtException(e);
 
                     Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -129,20 +122,12 @@ public class LibreraApp extends MultiDexApplication {
                     startActivity(intent);
 
                     System.exit(0);
-
                 }
             });
         }
-
-
-        BillingManager billingManager = BillingManager.get();
-        billingManager.init(this);
-
     }
 
-
-    @Override
-    public void onLowMemory() {
+    @Override public void onLowMemory() {
         super.onLowMemory();
         LOG.d("AppState save onLowMemory");
         IMG.clearMemoryCache();
@@ -150,8 +135,7 @@ public class LibreraApp extends MultiDexApplication {
         HypenUtils.cache.clear();
     }
 
-    @Override
-    public void onTrimMemory(int level) {
+    @Override public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
     }

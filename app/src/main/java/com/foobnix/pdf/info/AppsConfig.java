@@ -22,23 +22,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AppsConfig {
-
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
-
-    public static final boolean IS_FDROID = LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
-    public static final List<String> testDevices = Arrays.asList(
-            "394FC2536F98E69D313F47CA4B26AB2D",
-            "5A11AAB3D40A6E42F8BB4674C013B70D");
+    public static final boolean IS_FDROID =
+            LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
+    public static final List<String> testDevices = Arrays.asList("394FC2536F98E69D313F47CA4B26AB2D",
+                                                                 "5A11AAB3D40A6E42F8BB4674C013B70D");
     //setTestDeviceIds
-
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu")
-            || Build.MODEL.toLowerCase().contains("sdk");
+    public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu") || Build.MODEL.toLowerCase().contains(
+            "sdk");
     public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
     public static String MUPDF_1_11 = "1.11";
@@ -64,7 +61,6 @@ public class AppsConfig {
         Log.d("DEVICE_ID", "DEVICE_ID " + deviceID);
         Log.d("IS_TEST_DEVICE", "IS_TEST_DEVICE  " + AppsConfig.IS_TEST_DEVICE);
         Log.d("IS_LOG", "IS_LOG " + AppsConfig.IS_LOG);
-
     }
 
     public static boolean checkIsProInstalled(final Context a) {
@@ -72,7 +68,6 @@ public class AppsConfig {
             LOG.d("no-ads error context null");
             return true;
         }
-
 
         if (a == null) {
             LOG.d("no-ads error context null");
@@ -100,7 +95,10 @@ public class AppsConfig {
         }
 
         boolean is_pro = isPackageExisted(a, PRO_LIBRERA_READER);
-        return is_pro;
+        if (is_pro) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isGooglePlayServicesAvailable(Context context) {
@@ -118,5 +116,4 @@ public class AppsConfig {
         }
         return true;
     }
-
 }
