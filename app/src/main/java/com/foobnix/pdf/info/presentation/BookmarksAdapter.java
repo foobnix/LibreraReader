@@ -24,27 +24,33 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import java.util.List;
 
 public class BookmarksAdapter extends BaseAdapter {
-
     private final List<AppBookmark> objects;
+    private final List<AppBookmark> allData;
     private final boolean submenu;
     private final Context context;
-
     private int muxnumberOfLines = 3;
     private String higlightText;
     private DocumentController controller;
     private Runnable onRefresh;
 
-    public BookmarksAdapter(Context context, List<AppBookmark> objects, boolean submenu, DocumentController controller, Runnable onRefresh) {
+    public BookmarksAdapter(Context context,
+                            List<AppBookmark> objects,
+                            List<AppBookmark> allData,
+                            boolean submenu,
+                            DocumentController controller,
+                            Runnable onRefresh) {
         this.context = context;
         this.objects = objects;
+        this.allData = allData;
         this.submenu = submenu;
         this.controller = controller;
         this.onRefresh = onRefresh;
     }
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = convertView == null ? LayoutInflater.from(context).inflate(R.layout.bookmark_item, parent, false) : convertView;
+    @Override public View getView(final int position, View convertView, ViewGroup parent) {
+        View view = convertView == null ?
+                    LayoutInflater.from(context).inflate(R.layout.bookmark_item, parent, false) :
+                    convertView;
 
         final AppBookmark bookmark = objects.get(position);
 
@@ -58,12 +64,13 @@ public class BookmarksAdapter extends BaseAdapter {
         deleteView.setVisibility(View.VISIBLE);
         view.findViewById(R.id.remove).setVisibility(View.GONE);
 
-
         ((View) image.getParent()).setVisibility(View.GONE);
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
 
-        String pageNumber = TxtUtils.deltaPage(AppSP.get().isCut ? bookmark.getPage(controller.getPageCount()) * 2 : bookmark.getPage(controller.getPageCount()));
+        String pageNumber = TxtUtils.deltaPage(AppSP.get().isCut ?
+                                               bookmark.getPage(controller.getPageCount()) * 2 :
+                                               bookmark.getPage(controller.getPageCount()));
         titleView.setVisibility(View.GONE);
 
         if (bookmark.isF) {
@@ -89,17 +96,15 @@ public class BookmarksAdapter extends BaseAdapter {
         pageView.setTextColor(textView.getCurrentTextColor());
 
         deleteView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 if (bookmark.isF) {
                     controller.floatingBookmark = null;
                 }
 
                 BookmarksData.get().remove(bookmark);
 
-
                 objects.remove(bookmark);
+                allData.remove(bookmark);
                 notifyDataSetChanged();
 
                 if (onRefresh != null) {
@@ -111,19 +116,16 @@ public class BookmarksAdapter extends BaseAdapter {
         return view;
     }
 
-    @Override
-    public int getCount() {
+    @Override public int getCount() {
         return objects.size();
     }
 
-    @Override
-    public Object getItem(int position) {
+    @Override public Object getItem(int position) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public long getItemId(int position) {
+    @Override public long getItemId(int position) {
         // TODO Auto-generated method stub
         return 0;
     }
@@ -143,5 +145,4 @@ public class BookmarksAdapter extends BaseAdapter {
     public void setHiglightText(String higlightText) {
         this.higlightText = higlightText;
     }
-
 }
