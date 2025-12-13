@@ -42,29 +42,23 @@ import java.util.Date;
 import java.util.List;
 
 public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.clouds, R.drawable.glyphicons_544_cloud);
+    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.clouds,
+                                                                                 R.drawable.glyphicons_544_cloud);
 
-    @Override
-    public Pair<Integer, Integer> getNameAndIconRes() {
+    @Override public Pair<Integer, Integer> getNameAndIconRes() {
         return PAIR;
     }
 
     View topPanel;
     TextView singIn, syncInfo, syncInfo2, syncHeader;
-
     CheckBox isEnableSync;
     FileMetaAdapter recentAdapter;
-
     String currentId;
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_google_drive, container, false);
 
-
         topPanel = inflate.findViewById(R.id.topPanel);
-
 
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
@@ -73,12 +67,10 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
 
         recyclerView = (RecyclerView) inflate.findViewById(R.id.recyclerView);
 
-
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
-
 
         isEnableSync = inflate.findViewById(R.id.isEnableSync);
         isEnableSync.setChecked(AppSP.get().isEnableSync);
@@ -97,29 +89,30 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             final CheckBox isSyncPullToRefresh = new CheckBox(getActivity());
             isSyncPullToRefresh.setText(R.string.pull_to_start_sync);
             isSyncPullToRefresh.setChecked(BookCSS.get().isSyncPullToRefresh);
-            isSyncPullToRefresh.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncPullToRefresh = isChecked);
+            isSyncPullToRefresh.setOnCheckedChangeListener((buttonView, isChecked) ->
+                                                                   BookCSS.get().isSyncPullToRefresh = isChecked);
 
             final CheckBox isSyncWifiOnly = new CheckBox(getActivity());
             isSyncWifiOnly.setText(R.string.wifi_sync_only);
             isSyncWifiOnly.setChecked(BookCSS.get().isSyncWifiOnly);
-            isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
+            isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly =
+                    isChecked);
 
             final CheckBox isShowSyncWheel = new CheckBox(getActivity());
             isShowSyncWheel.setText(getString(R.string.animate_sync_progress));
             isShowSyncWheel.setChecked(BookCSS.get().isSyncAnimation);
-            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncAnimation = isChecked);
+            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncAnimation =
+                    isChecked);
 
             AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly, isShowSyncWheel);
         });
-
 
         updateSyncInfo(null);
 
         recentAdapter = new FileMetaAdapter();
         recentAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
-            @Override
-            public boolean onResultRecive(FileMeta result) {
-                if (result.getCusType() == DISPLAY_TYPE_DIRECTORY) {
+            @Override public boolean onResultRecive(FileMeta result) {
+                if (result != null && result.getCusType() == DISPLAY_TYPE_DIRECTORY) {
                     currentId = result.getPath();
                     populate();
                 }
@@ -137,8 +130,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
         return inflate;
     }
 
-    @Subscribe
-    public void updateSyncInfo(GDriveSycnEvent event) {
+    @Subscribe public void updateSyncInfo(GDriveSycnEvent event) {
         String gdriveInfo = GFile.getDisplayInfo(getActivity());
 
         if (TxtUtils.isEmpty(gdriveInfo)) {
@@ -147,8 +139,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             singIn.setText(R.string.sign_in);
             TxtUtils.underlineTextView(singIn);
             singIn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                @Override public void onClick(View v) {
                     GFile.init(getActivity());
                     updateSyncInfo(null);
                 }
@@ -160,8 +151,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             TxtUtils.underlineTextView(singIn);
 
             singIn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                @Override public void onClick(View v) {
                     AppSP.get().isEnableSync = false;
                     AppSP.get().syncRootID = "";
                     AppSP.get().syncTime = 0;
@@ -174,24 +164,18 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
         isEnableSync.setChecked(AppSP.get().isEnableSync);
 
         onSync(null);
-
-
     }
 
-
-    @Override
-    public void populateDataInUI(List<FileMeta> items) {
+    @Override public void populateDataInUI(List<FileMeta> items) {
         LOG.d("GDrive", items);
         if (recentAdapter != null) {
             recentAdapter.getItemsList().clear();
             recentAdapter.getItemsList().addAll(items);
             recentAdapter.notifyDataSetChanged();
         }
-
     }
 
-    @Override
-    public List<FileMeta> prepareDataInBackground() {
+    @Override public List<FileMeta> prepareDataInBackground() {
         try {
             if (TxtUtils.isEmpty(AppSP.get().syncRootID)) {
                 return Collections.emptyList();
@@ -222,17 +206,14 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
                     m.setPathTxt(f.getName());
                     items.add(m);
                 }
-
             }
             return items;
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSync(MessageSync msg) {
+    @Subscribe(threadMode = ThreadMode.MAIN) public void onSync(MessageSync msg) {
 
         populate();
 
@@ -246,7 +227,9 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
                 format = DateFormat.getDateTimeInstance().format(date);
             }
 
-            String status = AppSP.get().syncTimeStatus == MessageSync.STATE_SUCCESS ? getString(R.string.success) : getString(R.string.fail);
+            String status = AppSP.get().syncTimeStatus == MessageSync.STATE_SUCCESS ?
+                            getString(R.string.success) :
+                            getString(R.string.fail);
             if (AppSP.get().syncTimeStatus == MessageSync.STATE_VISIBLE) {
                 status = "...";
             }
@@ -257,27 +240,19 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             syncInfo2.setText("");
             syncInfo2.setVisibility(View.GONE);
             syncHeader.setText(R.string.clouds);
-
         }
-
     }
 
-
-    @Override
-    public void onTintChanged() {
+    @Override public void onTintChanged() {
         TintUtil.setBackgroundFillColor(topPanel, TintUtil.color);
-
     }
 
-    @Override
-    public void notifyFragment() {
+    @Override public void notifyFragment() {
         //populate();
 
     }
 
-    @Override
-    public void resetFragment() {
+    @Override public void resetFragment() {
         populate();
     }
-
 }
