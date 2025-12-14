@@ -145,7 +145,7 @@ if [ "$1" == "fdroid" ]; then
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
       echo "=================="
       echo "NDK:"  $NDK
-      echo "APP_PLATFORM=android-16"
+      echo "APP_PLATFORM=android-24"
       fi
     done
 else
