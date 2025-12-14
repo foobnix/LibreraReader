@@ -160,10 +160,6 @@ import java.util.List;
             if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
                                                                     Manifest.permission.POST_NOTIFICATIONS)) {
 
-                ActivityCompat.requestPermissions((Activity) context,
-                                                  new String[]{Manifest.permission.POST_NOTIFICATIONS},
-                                                  11);
-            } else {
                 try {
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
@@ -172,6 +168,10 @@ import java.util.List;
                 } catch (Exception e) {
                     LOG.e(e);
                 }
+            } else {
+                ActivityCompat.requestPermissions((Activity) context,
+                                                  new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                                                  11);
             }
             return false;
         }
