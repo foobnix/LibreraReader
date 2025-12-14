@@ -170,7 +170,7 @@ import java.util.List;
                     intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
                     context.startActivity(intent);
                 } catch (Exception e) {
-
+                    LOG.e(e);
                 }
             }
             return false;
