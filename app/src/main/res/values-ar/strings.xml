@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">افتح الكتب في الصفحة 1</string>
    <string name="foreground">المقدمة</string>
    <string name="warning_this_document_has_unsaved_changes">تحذير: هذا المستند يحتوي على تغييرات غير محفوظة</string>
+   <string name="bold_headings">عناوين بارزة</string>
 </resources>

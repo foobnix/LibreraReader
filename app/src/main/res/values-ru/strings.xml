@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Открыть книги на странице 1</string>
    <string name="foreground">Передний план</string>
    <string name="warning_this_document_has_unsaved_changes">Предупреждение: в этом документе есть несохраненные изменения</string>
+   <string name="bold_headings">Жирные заголовки</string>
 </resources>

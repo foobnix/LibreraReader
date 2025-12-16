@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">باز کردن کتابها در صفحه 1</string>
    <string name="foreground">پیش‌زمینه</string>
    <string name="warning_this_document_has_unsaved_changes">هشدار: این سند تغییرات ذخیره نشده‌ای دارد</string>
+   <string name="bold_headings">عنوان‌های پررنگ</string>
 </resources>

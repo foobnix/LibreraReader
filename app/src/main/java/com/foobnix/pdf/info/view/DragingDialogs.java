@@ -5233,8 +5233,20 @@ public class DragingDialogs {
 
                 isLineBreaksText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
-                //
+                //isLineTitleBoldText
 
+                CheckBox isLineTitleBoldText = inflate.findViewById(R.id.isLineTitleBoldText);
+                isLineTitleBoldText.setChecked(AppState.get().isLineTitleBoldText);
+                isLineTitleBoldText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isLineTitleBoldText = isChecked;
+                    }
+                });
+
+                isLineTitleBoldText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+
+                //~isLineTitleBoldText
+                
                 //charsets
 
                 CheckBox isCharacterEncoding = inflate.findViewById(R.id.isCharacterEncoding);

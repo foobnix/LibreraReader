@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Nyitott könyvek az 1. oldalon</string>
    <string name="foreground">Előtér</string>
    <string name="warning_this_document_has_unsaved_changes">Figyelmeztetés: ez a dokumentum nem mentett módosításokat tartalmaz</string>
+   <string name="bold_headings">Félkövér címsorok</string>
 </resources>

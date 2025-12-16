@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Ireki liburuak 1. orrialdean</string>
    <string name="foreground">Lehen planoan</string>
    <string name="warning_this_document_has_unsaved_changes">Abisua: dokumentu honek gorde gabeko aldaketak ditu</string>
+   <string name="bold_headings">Izenburu lodiak</string>
 </resources>

@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Öppna böcker på sidan 1</string>
    <string name="foreground">Förgrund</string>
    <string name="warning_this_document_has_unsaved_changes">Varning: det här dokumentet har osparade ändringar</string>
+   <string name="bold_headings">Fetstilta rubriker</string>
 </resources>

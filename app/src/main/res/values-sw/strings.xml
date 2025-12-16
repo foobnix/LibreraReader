@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Fungua vitabu kwenye ukurasa wa 1</string>
    <string name="foreground">Mbele</string>
    <string name="warning_this_document_has_unsaved_changes">Onyo: hati hii ina mabadiliko ambayo hayajahifadhiwa</string>
+   <string name="bold_headings">Vichwa vyenye herufi nzito</string>
 </resources>

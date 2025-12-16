@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">പേജ് 1-ൽ പുസ്തകങ്ങൾ തുറക്കുക</string>
    <string name="foreground">മുൻഭാഗം</string>
    <string name="warning_this_document_has_unsaved_changes">മുന്നറിയിപ്പ്: ഈ പ്രമാണത്തിൽ സംരക്ഷിക്കാത്ത മാറ്റങ്ങളുണ്ട്.</string>
+   <string name="bold_headings">ബോൾഡ് തലക്കെട്ടുകൾ</string>
 </resources>

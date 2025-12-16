@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Open books on page 1</string>
    <string name="foreground">Foreground</string>
    <string name="warning_this_document_has_unsaved_changes">Warning: This document has unsaved changes</string>
+   <string name="bold_headings">Bold Headings</string>
 </resources>

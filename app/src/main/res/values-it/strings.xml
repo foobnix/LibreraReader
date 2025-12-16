@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Aprire i libri a pagina 1</string>
    <string name="foreground">Primo piano</string>
    <string name="warning_this_document_has_unsaved_changes">Attenzione: questo documento contiene modifiche non salvate</string>
+   <string name="bold_headings">Titoli in grassetto</string>
 </resources>

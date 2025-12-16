@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Livros abertos na página 1</string>
    <string name="foreground">Primeiro plano</string>
    <string name="warning_this_document_has_unsaved_changes">Aviso: este documento contém alterações não salvas.</string>
+   <string name="bold_headings">Títulos em negrito</string>
 </resources>

@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Atidaryti knygas 1 puslapyje</string>
    <string name="foreground">Priekinis planas</string>
    <string name="warning_this_document_has_unsaved_changes">Įspėjimas: šiame dokumente yra neišsaugotų pakeitimų</string>
+   <string name="bold_headings">Paryškintos antraštės</string>
 </resources>

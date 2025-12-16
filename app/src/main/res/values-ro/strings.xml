@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Cărți deschise de la pagina 1</string>
    <string name="foreground">Prim plan</string>
    <string name="warning_this_document_has_unsaved_changes">Atenție: acest document are modificări nesalvate</string>
+   <string name="bold_headings">Titluri îngroșate</string>
 </resources>

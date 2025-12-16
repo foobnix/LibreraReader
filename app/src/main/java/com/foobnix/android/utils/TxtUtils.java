@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -30,8 +31,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
-
-import com.foobnix.LibreraApp;
 
 import org.librera.LinkedJSONObject;
 
@@ -56,18 +55,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TxtUtils {
-
     public static final String TTS_PAUSE = "ttsPAUSE";
     public static final String TTS_NEXT = "ttsNEXT";
     public static final String TTS_SKIP = "ttsSKIP";
     public static final String TTS_PAUSE_VIEW = "[-]\n";
     public static final String TTS_STOP = "ttsSTOP";
-
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
     public static final Pattern EMAIL_PATTERN = Pattern.compile(
             "(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*:(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)(?:,\\s*(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*))*)?;\\s*)");
-    public static final Pattern SIMPLE_EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9_\\+-]+(\\.[A-Za-z0-9_\\+-]+)*@[a-z0-9]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$");
+    public static final Pattern SIMPLE_EMAIL_PATTERN = Pattern.compile(
+            "^[A-Za-z0-9_\\+-]+(\\.[A-Za-z0-9_\\+-]+)*@[a-z0-9]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$");
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
@@ -89,7 +87,9 @@ public class TxtUtils {
     }
 
     public static String formatInt(Integer in) {
-        if (in == null) return "0";
+        if (in == null) {
+            return "0";
+        }
         return in.toString();
     }
 
@@ -208,7 +208,6 @@ public class TxtUtils {
             return str;
         }
         return str.toLowerCase(Locale.US);
-
     }
 
     public static String encode(String string, String from, String to) {
@@ -295,7 +294,6 @@ public class TxtUtils {
                 }
             }
         }
-
     }
 
     public static void addFilteredTags(String item, List<String> result) {
@@ -327,7 +325,6 @@ public class TxtUtils {
                 }
             }
         }
-
     }
 
     public static String[] getParts(String text) {
@@ -346,7 +343,6 @@ public class TxtUtils {
         String secondPart = max > 0 ? text.substring(max + 1) : "";
 
         return new String[]{firstPart, secondPart};
-
     }
 
     public static String replacePDFEndLine(String pageHTML) {
@@ -397,8 +393,17 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("</b></i></p>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE).replace("</i></p></b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
+        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE)
+                           .replace("</b></i></p>", TTS_PAUSE)
+                           .replace("<i><p><b>",
+                                    TTS_PAUSE)
+                           .replace("</i></p></b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b>", "")
+                           .replace("</b>", "")
+                           .replace("<i>", "")
+                           .replace("</i>", "")
+                           .replace("<tt>", "")
+                           .replace("</tt>", "");
 
         pageHTML = pageHTML.replace("...", " " + TTS_PAUSE);
         pageHTML = pageHTML.replace("…", " " + TTS_PAUSE);
@@ -408,9 +413,12 @@ public class TxtUtils {
 
         LOG.d("pageHTML [1]", pageHTML);
 
-
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
-        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&").replace("&quot;", "\"");
+        pageHTML = pageHTML.replace("&nbsp;", " ")
+                           .replace("&lt;", "<")
+                           .replace("&gt;", ">")
+                           .replace("&amp;", "&")
+                           .replace("&quot;", "\"");
         pageHTML = pageHTML.replace("[image]", "[image]");
 
         LOG.d("pageHTML [2]", pageHTML);
@@ -419,7 +427,9 @@ public class TxtUtils {
 
         if (AppState.get().isShowFooterNotesInText && AppSP.get().hypenLang != null) {
             try {
-                String string = getLocaleStringResource(new Locale(AppSP.get().hypenLang), R.string.foot_notes, LibreraApp.context);
+                String string = getLocaleStringResource(new Locale(AppSP.get().hypenLang),
+                                                        R.string.foot_notes,
+                                                        LibreraApp.context);
                 pageHTML = replaceAll(pageHTML, "[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);
@@ -428,7 +438,6 @@ public class TxtUtils {
             pageHTML = replaceAll(pageHTML, "[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
         }
         //pageHTML = pageHTML.replaceAll("(\\p{Alpha}{3,})\\d+", "$1");//replace1
-
 
         LOG.d("pageHTML [3]", pageHTML);
 
@@ -444,7 +453,6 @@ public class TxtUtils {
                         pageHTML = pageHTML.replace(key, value);
                         LOG.d("System-replace", key, value);
                     }
-
                 }
             } catch (Exception e) {
                 LOG.e(e);
@@ -453,14 +461,12 @@ public class TxtUtils {
 
         pageHTML = replaceEndLine(pageHTML);
 
-
         pageHTML = replaceAll(pageHTML, "(\\w+)-\\s+", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
         LOG.d("pageHTML [4]", pageHTML);
 
         if (AppState.get().isEnalbeTTSReplacements) {
-
 
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
@@ -477,14 +483,10 @@ public class TxtUtils {
                             pageHTML = pageHTML.replace(key, value);
                             LOG.d("pageHTML-dict-replace", key, value, pageHTML);
                         }
-
-
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
-
-
             }
 
             try {
@@ -513,20 +515,14 @@ public class TxtUtils {
                         pageHTML = pageHTML.replace(key, value);
                     }
                     LOG.d("pageHTML [8]", pageHTML);
-
                 }
 
-
                 LOG.d("pageHTML [8]", pageHTML);
-
-
             } catch (Exception e) {
                 LOG.e(e);
             }
 
-
             LOG.d("pageHTML [after replacments] ", pageHTML);
-
         }
 
         pageHTML = pageHTML.replace(" ,", ",");
@@ -557,9 +553,12 @@ public class TxtUtils {
             }
             LOG.d("pageHTML [8c]", pageHTML);
 
-
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
+            pageHTML = replaceAll(pageHTML,
+                                  " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.",
+                                  " $1{dot}$2{dot}$3{dot}$4{dot}");
+            pageHTML = replaceAll(pageHTML,
+                                  " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.",
+                                  " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
@@ -569,14 +568,12 @@ public class TxtUtils {
 
             pageHTML = replaceAll(pageHTML, " (\\p{Digit}*)\\.(\\p{Digit}+)", " $1{dot}$2"); //skip numbers 3.3 .343
 
-
             LOG.d("pageHTML [8f]", pageHTML);
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
                 String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
                 pageHTML = pageHTML.replace(s, s + TTS_PAUSE + " ");
             }
-
 
             LOG.d("pageHTML [9]", pageHTML);
 
@@ -622,15 +619,12 @@ public class TxtUtils {
 
                     LOG.d("loadShotList-line", line);
                 }
-
-
             }
             input.close();
         } catch (IOException e) {
             LOG.e(e);
         }
     }
-
 
     public static void loadReplayceDict() {
         if (dictHash.equals(BookCSS.get().dictPath)) {
@@ -652,22 +646,18 @@ public class TxtUtils {
                 AppDB.get().openDictDB(LibreraApp.context, dict);
                 hasDB = true;
                 continue;
-
             }
-
 
             LOG.d("pageHTML-dict", dict);
             LOG.d("pageHTML-dict", dict);
             try {
                 processDict(new FileInputStream(dict), new ReplaceRule() {
-                    @Override
-                    public void replace(String from, String to) {
+                    @Override public void replace(String from, String to) {
 
                         dictRegEx.put(from, to);
                     }
 
-                    @Override
-                    public void replaceAll(String from, String to) {
+                    @Override public void replaceAll(String from, String to) {
 
                         dictRegEx.put("*" + from, to);
                     }
@@ -676,8 +666,6 @@ public class TxtUtils {
                 LOG.e(e);
             }
         }
-
-
     }
 
     public static void processDict(InputStream io, ReplaceRule rule) {
@@ -699,7 +687,6 @@ public class TxtUtils {
                     LOG.d("pageHTML-replaceAll", r1, r2);
 
                     rule.replaceAll(r1, r2);
-
                 } else if (line.startsWith("\"")) {
                     String parts[] = line.split("\" \"");
                     String r1 = parts[0].substring(1);
@@ -712,7 +699,6 @@ public class TxtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -757,13 +743,11 @@ public class TxtUtils {
         }
         fileName = fileName.replaceAll("[\\/:*?\"'<>|]", "_");
         return fileName;
-
     }
 
     public static String fixFilePath(String fileName) {
         fileName = fileName.replaceAll("[':*?\"<>|]", "_");
         return fileName;
-
     }
 
     public static String getHostUrl(String url) {
@@ -772,7 +756,6 @@ public class TxtUtils {
             return url.substring(0, indexOf);
         }
         return url;
-
     }
 
     public static String getHostLongUrl(String url) {
@@ -781,7 +764,6 @@ public class TxtUtils {
             return url.substring(0, indexOf);
         }
         return url;
-
     }
 
     public static String replaceLast(String input, String from, String to) {
@@ -802,7 +784,6 @@ public class TxtUtils {
         } else {
             return TxtUtils.nullToEmpty(fileMeta.getTitle());
         }
-
     }
 
     public static String replaceLastFirstNameSplit(String name) {
@@ -823,7 +804,6 @@ public class TxtUtils {
         }
 
         return replaceLastFirstName(name);
-
     }
 
     private static String replaceLastFirstName(String name) {
@@ -843,7 +823,6 @@ public class TxtUtils {
             res.append(split[i]);
         }
         return res.toString().trim();
-
     }
 
     public static String space() {
@@ -864,8 +843,7 @@ public class TxtUtils {
         }
     }
 
-    @TargetApi(24)
-    public static Spanned fromHtml(final String text) {
+    @TargetApi(24) public static Spanned fromHtml(final String text) {
         try {
             return Html.fromHtml(text);
         } catch (Exception e) {
@@ -877,12 +855,11 @@ public class TxtUtils {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static boolean isCJK2(int ch) {
+    @TargetApi(Build.VERSION_CODES.KITKAT) public static boolean isCJK2(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
         if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) || //
-                Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || //
-                Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block) //
+            Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || //
+            Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block) //
         ) {
             return true;
         }
@@ -893,21 +870,20 @@ public class TxtUtils {
         return false;
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static boolean isCJK(int ch) {
+    @TargetApi(Build.VERSION_CODES.KITKAT) public static boolean isCJK(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
         List<Character.UnicodeBlock> blocks = Arrays.asList(//
-                //
-                UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS, //
-                UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS, //
-                UnicodeBlock.CJK_COMPATIBILITY_FORMS, //
-                UnicodeBlock.CJK_RADICALS_SUPPLEMENT, //
-                UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION, //
-                UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A, //
-                UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B, //
-                UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS, //
-                UnicodeBlock.HIRAGANA, //
-                UnicodeBlock.KATAKANA//
+                                                            //
+                                                            UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS, //
+                                                            UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS, //
+                                                            UnicodeBlock.CJK_COMPATIBILITY_FORMS, //
+                                                            UnicodeBlock.CJK_RADICALS_SUPPLEMENT, //
+                                                            UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION, //
+                                                            UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A, //
+                                                            UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B, //
+                                                            UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS, //
+                                                            UnicodeBlock.HIRAGANA, //
+                                                            UnicodeBlock.KATAKANA//
         );
         if (blocks.contains(block)) {
             return true;
@@ -953,7 +929,6 @@ public class TxtUtils {
             return str.substring(0, len);
         }
         return str;
-
     }
 
     public static String substringSmart(String str, int len) {
@@ -966,7 +941,6 @@ public class TxtUtils {
             }
         }
         return str;
-
     }
 
     public static Pair<String, String> getTitleAuthorByPath(String name) {
@@ -1011,7 +985,6 @@ public class TxtUtils {
             } else {
                 title = filterTitle(firstUppercase(title.trim()));
             }
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1027,7 +1000,6 @@ public class TxtUtils {
             title = title.replace(it, " ");
         }
         return title.trim();
-
     }
 
     public static TextView underlineTextView(View view) {
@@ -1128,6 +1100,9 @@ public class TxtUtils {
 
     public static boolean isLineStartEndUpperCase(String line) {
         try {
+            if (!AppState.get().isLineTitleBoldText) {
+                return false;
+            }
             if (line == null || line.length() <= 4) {
                 return false;
             }
@@ -1154,17 +1129,14 @@ public class TxtUtils {
             return "";
         }
 
-
         try {
             String id = getFooterNoteNumber(input);
-
 
             if (TxtUtils.isNotEmpty(id)) {
                 if (chapter.contains("#")) {
                     chapter = chapter.substring(0, chapter.indexOf("#"));
                 }
                 id = id + "#" + chapter;
-
 
                 LOG.d("getFooterNote", id);
                 String string = footNotes.get(id);
@@ -1174,14 +1146,12 @@ public class TxtUtils {
                     return string;
                 }
             }
-
         } catch (Exception e) {
             LOG.e(e);
             return "";
         }
 
         return "";
-
     }
 
     public static String getFooterNoteNumber(String input) {
@@ -1196,7 +1166,6 @@ public class TxtUtils {
             return m.group(0).trim();
         }
         return "";
-
     }
 
     public static String filterString(String txt) {
@@ -1212,7 +1181,6 @@ public class TxtUtils {
             replaceAll = replaceAll.replaceAll("\\s", "");
         }
 
-
         if (!replaceAll.contains(" ")) {
             String regexp = "[^\\w\\[\\]\\{\\}’']+";
             replaceAll = replaceAll(replaceAll, regexp + "$", "").replaceAll("^" + regexp, "");
@@ -1226,7 +1194,6 @@ public class TxtUtils {
         if (replaceAll.startsWith("[") && !replaceAll.endsWith("]")) {
             replaceAll = replaceAll.replace("[", "");
         }
-
 
         LOG.d("filterString-end", replaceAll.trim());
         return replaceAll.trim();
@@ -1343,7 +1310,6 @@ public class TxtUtils {
 
     public static void bold(TextView text) {
         text.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
-
     }
 
     public static String ellipsize(String title, int size) {
@@ -1359,9 +1325,7 @@ public class TxtUtils {
             return substring;
         }
         return substring + " ...";
-
     }
-
 
     public static void updateAllLinks(View parent) {
         updateAllLinks(parent, false);
@@ -1374,7 +1338,9 @@ public class TxtUtils {
                 if (AppState.get().isUiTextColor) {
                     color = AppState.get().uiTextColor;
                 } else {
-                    TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+                    TypedArray out = parent.getContext()
+                                           .getTheme()
+                                           .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     color = out.getColor(0, Color.WHITE);
                 }
                 if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
@@ -1392,25 +1358,22 @@ public class TxtUtils {
                 color = Color.WHITE;
             }
 
-
-            List<Integer> ids = Arrays.asList(
-                    R.id.restoreDefaultProfile,
-                    R.id.onCloseApp,
-                    R.id.title,
-                    R.id.chapter,
-                    R.id.currentSeek,
-                    R.id.maxSeek,
-                    R.id.modeName,
-                    R.id.nextTypeBootom
-            );
+            List<Integer> ids = Arrays.asList(R.id.restoreDefaultProfile,
+                                              R.id.onCloseApp,
+                                              R.id.title,
+                                              R.id.chapter,
+                                              R.id.currentSeek,
+                                              R.id.maxSeek,
+                                              R.id.modeName,
+                                              R.id.nextTypeBootom);
             if (AppState.get().isUiTextColor) {
                 for (int id : ids) {
                     TextView view = parent.findViewById(id);
-                    if (view != null) view.setTextColor(color);
+                    if (view != null) {
+                        view.setTextColor(color);
+                    }
                 }
             }
-
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1422,12 +1385,12 @@ public class TxtUtils {
         if (AppState.get().isUiTextColor) {
             color = AppState.get().uiTextColor;
         } else {
-            TypedArray out = txt.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+            TypedArray out =
+                    txt.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
             color = out.getColor(0, Color.WHITE);
         }
         txt.setTextColor(color);
     }
-
 
     public static void updateAllLinks(ViewGroup parent, int color, boolean accentImages) {
 
@@ -1455,9 +1418,8 @@ public class TxtUtils {
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 
-                        if ((imageView.getId() == R.id.closePopup ||
-                                imageView.getId() == R.id.onIconAction)
-                                && !AppState.get().isUiTextColor) {
+                        if ((imageView.getId() == R.id.closePopup || imageView.getId() == R.id.onIconAction) &&
+                            !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (accentImages || AppState.get().isUiTextColor) {
                             if (AppState.get().uiTextColor == AppState.get().tintColor) {
@@ -1465,7 +1427,6 @@ public class TxtUtils {
                             } else {
                                 imageView.setImageTintList(tint);
                             }
-
                         } else {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         }
@@ -1478,20 +1439,17 @@ public class TxtUtils {
                             seekBar.setProgressTintList(tint);
                             seekBar.setThumbTintList(tint);
                             seekBar.setIndeterminateTintList(tint);
-
                         } else {
                             seekBar.setProgressTintList(ColorStateList.valueOf(Color.WHITE));
                             seekBar.setThumbTintList(ColorStateList.valueOf(Color.WHITE));
                             seekBar.setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));
                         }
-
                     }
                 }
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     public static int visibleIf(boolean isVisible) {
@@ -1549,9 +1507,5 @@ public class TxtUtils {
         void replace(String from, String to);
 
         void replaceAll(String from, String to);
-
-
     }
-
-
 }

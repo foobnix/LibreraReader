@@ -7,13 +7,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <View
                 android:layout_width="1dip"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/onRecent"
@@ -111,7 +111,7 @@
                 android:contentDescription="@string/recent"
                 android:padding="9dip"
                 android:src="@drawable/glyphicons_175_play"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/bookCut"
@@ -124,7 +124,7 @@
                 android:contentDescription="@string/preferences"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_588_book_open_text"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -137,7 +137,7 @@
                 android:contentDescription="@string/recent"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_86_reload"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -149,7 +149,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_232_sun"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -161,7 +161,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_94_crop"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -173,7 +173,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_216_fullscreen"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <ImageView
                 android:id="@+id/onTTS"
@@ -184,7 +184,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_186_volume_up"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
 
             <ImageView
@@ -196,20 +196,18 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_415_push_pin"
-                  app:tint="@color/tint_gray"
+                app:tint="@color/tint_gray"
                 android:visibility="gone" />
         </LinearLayout>
 
-       
-        
-        
+
         <LinearLayout
             android:id="@+id/onScreenMode"
             android:layout_width="match_parent"
             android:minHeight="@dimen/wh_button_big"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -217,7 +215,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_522_monitors"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -235,15 +233,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/orientation" />
         </LinearLayout>
-        
+
         <View
             android:id="@+id/topPanelLineDiv"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
             android:background="@color/lt_grey_alpha" />
-        
-         <CheckBox
+
+        <CheckBox
             android:id="@+id/isPreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -255,6 +253,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/continuous_text"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/isLineTitleBoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bold_headings"
             android:visibility="gone" />
 
 
@@ -279,14 +284,14 @@
                 android:text="UTF-8" />
 
         </LinearLayout>
-        
+
 
         <LinearLayout
             android:id="@+id/fontSizeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -294,14 +299,14 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_106_text_height"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/fontSizeSamle"
@@ -314,8 +319,7 @@
                     android:id="@+id/fontSizeSp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-                </com.foobnix.pdf.info.view.CustomSeek>
+                    android:layout_weight="1"></com.foobnix.pdf.info.view.CustomSeek>
             </LinearLayout>
         </LinearLayout>
 
@@ -324,7 +328,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -332,7 +336,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_101_text"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <TextView
                 android:id="@+id/fontNamePreview"
@@ -363,7 +367,7 @@
                 android:padding="8dip"
                 android:contentDescription="@string/cd_download_more_fonts"
                 android:src="@drawable/glyphicons_399_import"
-                  app:tint="@color/tint_red" />
+                app:tint="@color/tint_red" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"
@@ -376,7 +380,7 @@
                 android:background="@drawable/bg_border_ltgray"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_140_adjust"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
         </LinearLayout>
 
         <View
@@ -390,7 +394,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
             android:clickable="true"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -398,20 +402,20 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_232_sun"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -432,8 +436,7 @@
                     android:id="@+id/customBrightness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-                </com.foobnix.pdf.info.view.CustomSeek>
+                    android:layout_weight="1"></com.foobnix.pdf.info.view.CustomSeek>
             </LinearLayout>
         </LinearLayout>
 
@@ -444,7 +447,7 @@
             android:layout_marginTop="5dip"
             android:clickable="true"
             android:gravity="center_vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -452,7 +455,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_94_crop"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -473,7 +476,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -481,13 +484,13 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_77_headphones"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <CheckBox
                     android:id="@+id/isUseVolumeKeys"
@@ -509,7 +512,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -517,7 +520,7 @@
                 android:layout_weight="0"
                 android:padding="5dip"
                 android:src="@drawable/glyphicons_580_translate"
-                  app:tint="@color/tint_gray" />
+                app:tint="@color/tint_gray" />
 
             <CheckBox
                 android:id="@+id/isRememberDictionary"
@@ -549,7 +552,7 @@
             android:id="@+id/allBGConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"
@@ -562,7 +565,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/isEnableBlueFilter"
@@ -587,13 +590,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
-                    android:background="@drawable/bg_border_ltgray" >
+                    android:background="@drawable/bg_border_ltgray">
 
                     <TextView
                         android:id="@+id/onDayColor"
@@ -613,14 +616,14 @@
                         android:layout_height="@dimen/wh_button"
                         android:padding="6dip"
                         android:src="@drawable/glyphicons_232_sun"
-                          app:tint="#000000" />
+                        app:tint="#000000" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
-                    android:background="@drawable/bg_border_ltgray" >
+                    android:background="@drawable/bg_border_ltgray">
 
                     <TextView
                         android:id="@+id/onNigthColor"
@@ -640,7 +643,7 @@
                         android:layout_height="@dimen/wh_button"
                         android:padding="6dip"
                         android:src="@drawable/glyphicons_231_moon"
-                          app:tint="#ffffff" />
+                        app:tint="#ffffff" />
                 </RelativeLayout>
 
                 <ImageView
@@ -653,7 +656,7 @@
                     android:background="@drawable/bg_border_ltgray"
                     android:padding="8dip"
                     android:src="@drawable/glyphicons_140_adjust"
-                      app:tint="@color/tint_gray" />
+                    app:tint="@color/tint_gray" />
 
                 <TextView
                     android:id="@+id/onDefaultColor"
@@ -673,7 +676,7 @@
                 android:layout_marginTop="3dip"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="2dip" >
+                android:paddingLeft="2dip">
 
                 <TextView
                     android:id="@+id/t1"

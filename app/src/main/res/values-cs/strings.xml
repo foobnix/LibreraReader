@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">Otevřené knihy na straně 1</string>
    <string name="foreground">Popředí</string>
    <string name="warning_this_document_has_unsaved_changes">Varování: tento dokument obsahuje neuložené změny</string>
+   <string name="bold_headings">Tučné nadpisy</string>
 </resources>

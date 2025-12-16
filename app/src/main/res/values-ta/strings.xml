@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">பக்கம் 1 இல் புத்தகங்களைத் திறக்கவும்</string>
    <string name="foreground">முன்புறம்</string>
    <string name="warning_this_document_has_unsaved_changes">எச்சரிக்கை: இந்த ஆவணத்தில் சேமிக்கப்படாத மாற்றங்கள் உள்ளன.</string>
+   <string name="bold_headings">தடித்த தலைப்புகள்</string>
 </resources>

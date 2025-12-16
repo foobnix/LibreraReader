@@ -668,4 +668,5 @@
    <string name="open_books_on_page_1">पृष्ठ 1 पर खुली किताबें</string>
    <string name="foreground">अग्रभूमि</string>
    <string name="warning_this_document_has_unsaved_changes">चेतावनी: इस दस्तावेज़ में सहेजे नहीं गए परिवर्तन हैं</string>
+   <string name="bold_headings">बोल्ड हेडिंग्स</string>
 </resources>
