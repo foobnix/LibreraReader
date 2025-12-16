@@ -101,7 +101,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class ExtUtils {
-
     public static final String REFLOW_EPUB = "-reflow.epub";
     public static final String REFLOW_HTML = "-reflow.html";
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
@@ -117,13 +116,22 @@ public class ExtUtils {
     private static final String IMAGE_END = "<image-end>";
     public static Map<String, String> mimeCache = new HashMap<String, String>();
     public static List<String> seachExts = new ArrayList<String>();
-    static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
+    static List<String> video = Arrays.asList(".webm",
+                                              ".m3u8",
+                                              ".ts",
+                                              ".flv",
+                                              ".mp4",
+                                              ".3gp",
+                                              ".mov",
+                                              ".avi",
+                                              ".wmv",
+                                              ".mp4",
+                                              ".m4v");
     private static java.text.DateFormat dateFormat;
     private static java.text.DateFormat timeFormat;
     private static Context context;
     private static FileFilter filter = new FileFilter() {
-        @Override
-        public boolean accept(final File pathname) {
+        @Override public boolean accept(final File pathname) {
             for (final String s : browseExts) {
                 if (pathname.getName().endsWith(s)) {
                     return true;
@@ -296,14 +304,12 @@ public class ExtUtils {
             if (!AppsConfig.isDOCXSupported) {
                 result.add(".docx");
             }
-
         }
 
         for (String ext : result) {
             seachExts.add(ext);
             seachExts.add(ext.toUpperCase());
         }
-
     }
 
     public static void openFile(Activity a, FileMeta meta) {
@@ -356,8 +362,7 @@ public class ExtUtils {
         return path.startsWith("content:/");
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static String getExtSDDisplayName(Context c, String path) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static String getExtSDDisplayName(Context c, String path) {
         String id;
         Uri uri = Uri.parse(path);
         try {
@@ -373,8 +378,7 @@ public class ExtUtils {
         return id;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static Uri getChildUri(Context c, Uri uri) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static Uri getChildUri(Context c, Uri uri) {
         if (DocumentsContract.isDocumentUri(c, uri)) {
             return DocumentsContract.buildChildDocumentsUriUsingTree(uri, DocumentsContract.getDocumentId(uri));
         } else {
@@ -539,7 +543,6 @@ public class ExtUtils {
             }
         }
         return false;
-
     }
 
     public static boolean isFileArchive(String name) {
@@ -621,7 +624,6 @@ public class ExtUtils {
 
     public static boolean isEqualFileNames(String name1, String name2) {
         return getFileName(name1).equals(getFileName(name2));
-
     }
 
     public static String getFileName(String name) {
@@ -654,7 +656,6 @@ public class ExtUtils {
             Toast.makeText(c, c.getString(R.string.file_not_found) + " " + file.getPath(), Toast.LENGTH_LONG).show();
         }
         return false;
-
     }
 
     public static boolean doifFileExists(Context c, String path) {
@@ -686,7 +687,6 @@ public class ExtUtils {
         return BookType.getByUri(path).hasTitle();
     }
 
-
     public static synchronized boolean isZip(File path) {
         return isZip(path.getPath());
     }
@@ -703,7 +703,8 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) || BookType.PDF.is(path) || BookType.DJVU.is(path) || BookType.CBZ.is(path);
+        return BookType.TXT.is(path) || BookType.RTF.is(path) || BookType.HTML.is(path) || BookType.MHT.is(path) ||
+               BookType.PDF.is(path) || BookType.DJVU.is(path) || BookType.CBZ.is(path);
     }
 
     public static String getDateTimeFormat(File file) {
@@ -732,7 +733,9 @@ public class ExtUtils {
         if (true) {
             return Formatter.formatFileSize(LibreraApp.context, size).replace(" ", "");
         }
-        if (size <= 0) return "0";
+        if (size <= 0) {
+            return "0";
+        }
         final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
         int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
         return new DecimalFormat("#,##0").format(size / Math.pow(1024, digitGroups)) + "" + units[digitGroups];
@@ -766,7 +769,6 @@ public class ExtUtils {
             return false;
         }
 
-
         if (AppState.get().isPrefFormatMode) {
 
             String ext = getFileExtension(file.getName().toLowerCase());
@@ -789,7 +791,6 @@ public class ExtUtils {
             showDocumentWithoutDialog(c, file, null);
             return true;
         }
-
 
         View view = LayoutInflater.from(c).inflate(R.layout.choose_mode_dialog, null, false);
 
@@ -815,9 +816,7 @@ public class ExtUtils {
         TxtUtils.underlineTextView(editNames);
 
         editNames.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
+            @Override public boolean onLongClick(View v) {
                 AppState.get().nameVerticalMode = c.getString(R.string.mode_vertical);
                 AppState.get().nameHorizontalMode = c.getString(R.string.mode_horizontally);
                 AppState.get().nameMusicianMode = c.getString(R.string.mode_musician);
@@ -839,8 +838,7 @@ public class ExtUtils {
         editNames.setOnClickListener(new View.OnClickListener() {
             boolean isEdit = true;
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
 
                 String vText = verticalEdit.getText().toString().trim();
                 String hText = horizontalEdit.getText().toString().trim();
@@ -868,7 +866,6 @@ public class ExtUtils {
                     Views.gone(vertical, horizontal, music);
 
                     AppProfile.save(c);
-
                 } else { // text view
                     editNames.setText(R.string.edit);
                     Views.visible(vertical, horizontal, music);
@@ -894,7 +891,6 @@ public class ExtUtils {
             }
         });
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.select_the_reading_mode);
 
@@ -907,18 +903,14 @@ public class ExtUtils {
         final AlertDialog dialog = builder.show();
 
         vertical.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
         horizontal.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
@@ -926,9 +918,7 @@ public class ExtUtils {
         });
 
         music.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, null);
@@ -940,39 +930,34 @@ public class ExtUtils {
         }
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);
         checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isRememberMode = isChecked;
             }
         });
 
         IMG.pauseRequests(c);
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 IMG.resumeRequests(c);
             }
         });
 
         return true;
-
     }
 
     public static void showDocumentWithoutDialog(final Context c, final File file, String playlist) {
         showDocumentWithoutDialog2(c, Uri.fromFile(file), 0.0f, playlist);
     }
 
-
-    public static void showDocumentWithoutDialog2(final Context c, final Uri uri, final float percent, final String playList) {
+    public static void showDocumentWithoutDialog2(final Context c,
+                                                  final Uri uri,
+                                                  final float percent,
+                                                  final String playList) {
         Safe.run(new Runnable() {
-
-            @Override
-            public void run() {
+            @Override public void run() {
                 showDocumentInner(c, uri, percent, playList);
             }
         }, true);
-
     }
 
     public static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist) {
@@ -989,8 +974,10 @@ public class ExtUtils {
 
         final Intent intent = new Intent(c, VerticalViewActivity.class);
         try {
-            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-            intent.putExtra(DocumentController.EXTRA_PASSWORD, ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
+            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
+                            ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+            intent.putExtra(DocumentController.EXTRA_PASSWORD,
+                            ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
 
             if (percent > 0f) {
                 Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
@@ -999,7 +986,6 @@ public class ExtUtils {
             LOG.e(e);
         }
         intent.setData(checkPlaylisturi(uri, intent, playlist));
-
 
         c.startActivity(intent);
     }
@@ -1033,8 +1019,10 @@ public class ExtUtils {
         intent.setData(checkPlaylisturi(uri, intent, playlist));
 
         try {
-            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-            intent.putExtra(DocumentController.EXTRA_PASSWORD, ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
+            intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
+                            ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+            intent.putExtra(DocumentController.EXTRA_PASSWORD,
+                            ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1047,7 +1035,6 @@ public class ExtUtils {
         // FileMetaDB.get().addRecent(file.getPath());
 
         return;
-
     }
 
     public static Intent createOpenFileIntent(Context context, File file) {
@@ -1147,13 +1134,11 @@ public class ExtUtils {
         return mime;
     }
 
-
     public static void sharePage(final DocumentController dc, int page) {
         sharePage(dc.getActivity(), dc.getCurrentBook(), page, dc.getPageUrl(page).toString());
     }
 
     private static void sharePage(final Activity a, final File file, int page, String pageUrl) {
-
 
         if (AppState.get().fileToDelete != null) {
             new File(AppState.get().fileToDelete).delete();
@@ -1168,7 +1153,6 @@ public class ExtUtils {
             @Override
             public void onResourceReady(@NonNull Bitmap imageBitmap, @Nullable Transition<? super Bitmap> transition) {
                 try {
-
 
                     String title = file.getName() + "." + (page + 1) + ".jpg";
 
@@ -1190,24 +1174,16 @@ public class ExtUtils {
                     shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
                     shareIntent.setType("image/jpeg");
                     a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
-
-
                 } catch (Exception e) {
                     Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
                 }
-
             }
 
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
+            @Override public void onLoadCleared(@Nullable Drawable placeholder) {
 
             }
-
-
         });
-
-
     }
 
     public static void sendBookmarksTo(final Activity a, final File file) {
@@ -1229,7 +1205,6 @@ public class ExtUtils {
             int number = 1;
             for (final AppBookmark book : bookmarksByBook) {
                 result.append(String.format("%s. %s\n", number++, book.getText().trim()));
-
             }
             intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         }
@@ -1244,7 +1219,6 @@ public class ExtUtils {
         for (AppBookmark appBookmark : all) {
             files.add(appBookmark.getPath());
         }
-
 
         final StringBuilder result = new StringBuilder();
         for (String path : files) {
@@ -1268,8 +1242,7 @@ public class ExtUtils {
         String sampleName = "Bookmarks-All-" + ExportSettingsManager.getSampleJsonConfigName(a, ".TXT.txt");
 
         ChooserDialogFragment.createFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-            @Override
-            public boolean onResultRecive(String nPath, Dialog dialog) {
+            @Override public boolean onResultRecive(String nPath, Dialog dialog) {
                 File toFile = new File(nPath);
                 LOG.d("exportAllBookmarksToFile 1", toFile);
                 if (toFile == null || toFile.getName().trim().length() == 0) {
@@ -1291,7 +1264,6 @@ public class ExtUtils {
                 return false;
             }
         });
-
     }
 
     public static void importAllBookmarksFromJson(final FragmentActivity a, final Runnable onSuccess) {
@@ -1301,8 +1273,7 @@ public class ExtUtils {
 
         String sampleName = "Bookmarks-All-" + ExportSettingsManager.getSampleJsonConfigName(a, ".JSON.txt");
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-            @Override
-            public boolean onResultRecive(String nPath, Dialog dialog) {
+            @Override public boolean onResultRecive(String nPath, Dialog dialog) {
                 File toFile = new File(nPath);
                 LOG.d("importAllBookmarksFromJson", toFile);
                 if (toFile == null || !toFile.isFile() || toFile.getName().trim().length() == 0) {
@@ -1328,7 +1299,6 @@ public class ExtUtils {
                 return false;
             }
         });
-
     }
 
     public static void exportAllBookmarksToJson(final FragmentActivity a, final File book) {
@@ -1342,10 +1312,8 @@ public class ExtUtils {
         }
         sampleName = TxtUtils.fixFileName(sampleName);
 
-
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-            @Override
-            public boolean onResultRecive(String nPath, Dialog dialog) {
+            @Override public boolean onResultRecive(String nPath, Dialog dialog) {
                 File toFile = new File(nPath);
                 if (toFile == null || toFile.getName().trim().length() == 0) {
                     Toast.makeText(a, "Invalid File name", Toast.LENGTH_LONG).show();
@@ -1367,7 +1335,6 @@ public class ExtUtils {
                 return false;
             }
         });
-
     }
 
     public static String getAllExportString(final Activity a, BookmarksData viewerPreferences) {
@@ -1390,7 +1357,6 @@ public class ExtUtils {
                 out.append(String.format("%s. %s \n", item.p, item.getText()));
             }
             out.append("\n");
-
         }
         return out.toString();
     }
@@ -1403,19 +1369,20 @@ public class ExtUtils {
         a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 
-    public static void openPDFInTextReflow(final Activity a, final File file, final int page, final DocumentController dc) {
+    public static void openPDFInTextReflow(final Activity a,
+                                           final File file,
+                                           final int page,
+                                           final DocumentController dc) {
         if (ExtUtils.isNotValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        new ProgressTask<Object>() {
+        new ProgressTask<Object>(false) {
             AlertDialog dialog;
-
             Handler handler;
 
-            @Override
-            public Context getContext() {
+            @Override public Context getContext() {
                 TempHolder.get().isConverting = true;
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -1423,8 +1390,7 @@ public class ExtUtils {
                 final TextView text = (TextView) view.findViewById(R.id.text1);
 
                 handler = new Handler(Looper.getMainLooper()) {
-                    @Override
-                    public void handleMessage(android.os.Message msg) {
+                    @Override public void handleMessage(android.os.Message msg) {
                         text.setText(a.getString(R.string.please_wait) + " " + msg.what + "%");
                     }
 
@@ -1434,9 +1400,7 @@ public class ExtUtils {
                 ImageView image = (ImageView) view.findViewById(R.id.onCancel);
                 TintUtil.setTintImageWithAlpha(image);
                 image.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
+                    @Override public void onClick(View v) {
                         LOG.d("loadingBook Cancel");
                         TempHolder.get().isConverting = false;
                         dialog.dismiss();
@@ -1451,14 +1415,11 @@ public class ExtUtils {
                 return a;
             }
 
-            @Override
-            protected void onPreExecute() {
+            @Override protected void onPreExecute() {
                 super.onPreExecute();
             }
 
-
-            @Override
-            protected Object doInBackground(Object... params) {
+            @Override protected Object doInBackground(Object... params) {
                 try {
                     return openPDFInTextReflowAsync(a, file, handler);
                 } catch (RuntimeException e) {
@@ -1469,8 +1430,7 @@ public class ExtUtils {
 
             ;
 
-            @Override
-            protected void onPostExecute(final Object result) {
+            @Override protected void onPostExecute(final Object result) {
                 if (dialog != null) {
                     try {
                         dialog.dismiss();
@@ -1483,13 +1443,10 @@ public class ExtUtils {
                 }
                 if (result != null) {
                     Runnable run = new Runnable() {
-
-                        @Override
-                        public void run() {
+                        @Override public void run() {
                             if (a instanceof VerticalViewActivity) {
                                 AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                                 showDocumentWithoutDialog(a, (File) result, null);
-
                             } else if (a instanceof HorizontalViewActivity) {
                                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                                 showDocumentWithoutDialog(a, (File) result, null);
@@ -1503,12 +1460,10 @@ public class ExtUtils {
                     } else {
                         Safe.run(run);
                     }
-
                 }
             }
 
             ;
-
         }.execute();
     }
 
@@ -1594,7 +1549,8 @@ public class ExtUtils {
                         imgStream.write(decode);
                         imgStream.close();
 
-                        html = html.substring(0, startImage) + "<img src=\"" + imageName + "\"/>" + html.substring(endImage + IMAGE_END.length());
+                        html = html.substring(0, startImage) + "<img src=\"" + imageName + "\"/>" + html.substring(
+                                endImage + IMAGE_END.length());
                         startImage = html.indexOf(IMAGE_BEGIN);
                         LOG.d("startImage", startImage);
                     }
@@ -1614,7 +1570,6 @@ public class ExtUtils {
                         bookTempRoot.delete();
                         break;
                     }
-
                 }
                 doc.recycle();
 
@@ -1650,7 +1605,6 @@ public class ExtUtils {
             LOG.e(e);
             return null;
         }
-
     }
 
     public static String escapeHTML(String s) {
@@ -1683,40 +1637,40 @@ public class ExtUtils {
 
     public static String getSDPath() {
         String[] strPath = { //
-                "/storage/sdcard1", //
-                "/storage/extsdcard", //
-                "/storage/extSdCard", //
-                "/storage/sdcard0/external_sdcard", //
-                "/storage/external_SD", //
-                "/storage/ext_sd", //
-                "/storage/removable/sdcard1", //
+                             "/storage/sdcard1", //
+                             "/storage/extsdcard", //
+                             "/storage/extSdCard", //
+                             "/storage/sdcard0/external_sdcard", //
+                             "/storage/external_SD", //
+                             "/storage/ext_sd", //
+                             "/storage/removable/sdcard1", //
 
-                "/data/sdext", //
-                "/data/sdext2", //
-                "/data/sdext3", //
-                "/data/sdext4", //
+                             "/data/sdext", //
+                             "/data/sdext2", //
+                             "/data/sdext3", //
+                             "/data/sdext4", //
 
-                "/removable/microsd", //
-                "/Removable/MicroSD", //
-                "/emmc", //
-                "/sdcard/sd", //
+                             "/removable/microsd", //
+                             "/Removable/MicroSD", //
+                             "/emmc", //
+                             "/sdcard/sd", //
 
-                "/mnt/extsdcard", //
-                "/mnt/sdcard/external_sd", //
-                "/mnt/external_sd", //
-                "/mnt/emmc", //
-                "/mnt/media_rw/sdcard1", //
-                "/mnt/sdcard/bpemmctest", //
-                "/mnt/sdcard/_ExternalSD", //
-                "/mnt/sdcard-ext", //
-                "/mnt/Removable/MicroSD", //
-                "/mnt/external1", //
-                "/mnt/extsd", //
-                "/mnt/usb_storage", //
-                "/mnt/extSdCard", //
-                "/mnt/UsbDriveA", //
-                "/mnt/UsbDriveB",//
-                "/mnt/shared"//
+                             "/mnt/extsdcard", //
+                             "/mnt/sdcard/external_sd", //
+                             "/mnt/external_sd", //
+                             "/mnt/emmc", //
+                             "/mnt/media_rw/sdcard1", //
+                             "/mnt/sdcard/bpemmctest", //
+                             "/mnt/sdcard/_ExternalSD", //
+                             "/mnt/sdcard-ext", //
+                             "/mnt/Removable/MicroSD", //
+                             "/mnt/external1", //
+                             "/mnt/extsd", //
+                             "/mnt/usb_storage", //
+                             "/mnt/extSdCard", //
+                             "/mnt/UsbDriveA", //
+                             "/mnt/UsbDriveB",//
+                             "/mnt/shared"//
         };
 
         for (String value : strPath) {
@@ -1742,7 +1696,6 @@ public class ExtUtils {
         }
 
         return extFolders;
-
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -1772,7 +1725,6 @@ public class ExtUtils {
 
                     LOG.d("getExternalFilesDirs Removable", addPath, file.getPath());
 
-
                     if (addPath) {
                         results.add(path);
                     }
@@ -1782,7 +1734,9 @@ public class ExtUtils {
             if (results.isEmpty()) {
                 String output = "";
                 try {
-                    final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold").redirectErrorStream(true).start();
+                    final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold")
+                                                                .redirectErrorStream(true)
+                                                                .start();
                     process.waitFor();
                     final InputStream is = process.getInputStream();
                     final byte[] buffer = new byte[1024];
@@ -1809,12 +1763,12 @@ public class ExtUtils {
                 }
             } else {
                 for (int i = 0; i < results.size(); i++) {
-                    if (!results.get(i).toLowerCase(Locale.US).contains("ext") && !results.get(i).toLowerCase(Locale.US).contains("sdcard")) {
+                    if (!results.get(i).toLowerCase(Locale.US).contains("ext") &&
+                        !results.get(i).toLowerCase(Locale.US).contains("sdcard")) {
                         results.remove(i--);
                     }
                 }
             }
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1852,7 +1806,6 @@ public class ExtUtils {
                 if (count >= 100) {
                     break;
                 }
-
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -1863,16 +1816,13 @@ public class ExtUtils {
         LOG.d("determineHtmlEncoding auto", encdogin);
 
         return encdogin;
-
     }
 
     public static String determineTxtEncoding(InputStream fis) {
         String encoding = null;
         try {
 
-
             UniversalDetector detector = new UniversalDetector(null);
-
 
             int nread;
             byte[] buf = new byte[4096];
@@ -1885,14 +1835,12 @@ public class ExtUtils {
             detector.reset();
             fis.close();
             LOG.d("File Encoding", encoding);
-
         } catch (Exception e) {
             LOG.e(e);
         }
 
         return encoding == null ? AppState.get().characterEncoding : encoding;
     }
-
 
 //
 //    public static String determineTxtEncodingTika(InputStream fis) {
@@ -1934,7 +1882,6 @@ public class ExtUtils {
             return 0;
         }
 
-
         List<FileMeta> withProgress = AppDB.get().getAllWithProgress();
         int count = 0;
         for (File file : listFiles) {
@@ -1944,8 +1891,6 @@ public class ExtUtils {
         }
 
         return count;
-
-
     }
 
     public static void removeNotFound(List<FileMeta> all) {
@@ -1957,7 +1902,6 @@ public class ExtUtils {
             }
         }
     }
-
 
     public static boolean deleteRecursive(File fileOrDirectory) {
         try {
@@ -1984,13 +1928,13 @@ public class ExtUtils {
             ActivityManager am = (ActivityManager) a.getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.AppTask> tasks = am.getAppTasks();
 
-
             for (ActivityManager.AppTask task : tasks) {
                 ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
 
                 LOG.d("finishAndRemoveTask", taskInfo.baseActivity, taskInfo.topActivity);
 
-                if (taskInfo.baseActivity != null && taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {
+                if (taskInfo.baseActivity != null &&
+                    taskInfo.baseActivity.getClassName().equals(otherActivityClass.getName())) {
 
                     // This task belongs to the other viewer → finish it
                     task.finishAndRemoveTask();
@@ -1999,7 +1943,8 @@ public class ExtUtils {
                 }
 
                 // Alternative (simpler but slightly slower): check top activity
-                if (taskInfo.topActivity != null && taskInfo.topActivity.getClassName().equals(otherActivityClass.getName())) {
+                if (taskInfo.topActivity != null &&
+                    taskInfo.topActivity.getClassName().equals(otherActivityClass.getName())) {
 
                     LOG.d("finishAndRemoveTask 2", otherActivityClass);
                     task.finishAndRemoveTask();
@@ -2009,7 +1954,5 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
-
 }
