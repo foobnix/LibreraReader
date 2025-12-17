@@ -126,9 +126,9 @@
    <string name="enhancements_for_oled_display">Ulepszenie trybu nocnego dla wyświetlaczy AMOLED</string>
    <string name="ignore_annotations_on_click">Ignoruj dotknięcie adnotacji</string>
    <string name="save_new_annotations_automatically">Automatycznie zapisuj adnotacje przy wyjściu</string>
-   <string name="selecting_text_by_letters">Wybierz tekst litera po literze (języki azjatyckie)</string>
+   <string name="selecting_text_by_letters">Zaznaczanie  litera po literze (języki azjatyckie)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Zmień szybkość przewijania automatycznego za pomocą przycisków głośności</string>
-   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Dostosuj jasność za pomocą slajdów po lewej stronie</string>
+   <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Dostosuj jasność: dotknij i przeciągnij po lewej stronie</string>
    <string name="scroll_speed">Prędkość przewijania</string>
    <string name="page_quality">Jakość stron</string>
    <string name="pages_in_memory">Zapisane strony</string>
@@ -445,9 +445,9 @@
    <string name="line_spacing">Odstępy między wierszami</string>
    <string name="paragraph_spacing">Odstępy między akapitami</string>
    <string name="indent">Wcięcie</string>
-   <string name="allow_text_highlight">Pozwól na podświetlenie tekstu</string>
-   <string name="text_highlight_mode_is_enable">Tryb podświetlania tekstu jest włączony</string>
-   <string name="text_highlight_mode_is_disable">Tryb podświetlania tekstu jest wyłączony</string>
+   <string name="allow_text_highlight">Zezwalaj na zaznaczanie tekstu</string>
+   <string name="text_highlight_mode_is_enable">Tryb zaznaczania tekstu jest włączony</string>
+   <string name="text_highlight_mode_is_disable">Tryb zaznaczania tekstu jest wyłączony</string>
    <string name="application_error_please_send_this_report_by_emial">Coś poszło nie tak! Prześlij ten raportu pocztą e-mail, abyśmy mogli jak najszybciej naprawić błąd.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Wstrzymaj połączenia przychodzące, wiadomości itp.</string>
    <string name="add_resource">Dodaj zasób</string>
@@ -546,7 +546,7 @@
    <string name="sign_out">Wyloguj się</string>
    <string name="wifi_sync_only">Synchronizuj tylko przez Wi-Fi</string>
    <string name="sync_google_drive">Synchronizuj (Dysk Google)</string>
-   <string name="single_tap_to_select_text">Jednym dotknięciem wybierz tekst</string>
+   <string name="single_tap_to_select_text">Zaznaczanie tekstu jednym dotykiem</string>
    <string name="sync_book">Synchronizuj</string>
    <string name="sync">Synchronizacja</string>
    <string name="synchronized_folder">Zsynchronizowany katalog</string>
