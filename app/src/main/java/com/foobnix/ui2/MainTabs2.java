@@ -199,6 +199,7 @@ import java.util.List;
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         }
 
+        maybeOpenLastBook(intent);
         checkGoToPage(intent);
     }
 
@@ -536,31 +537,7 @@ import java.util.List;
 
         EventBus.getDefault().register(this);
 
-        boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-
-        if (!showTabs && AppState.get().isOpenLastBook) {
-            LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
-            if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
-                LOG.d("Open Last book not found");
-                return;
-            }
-            boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
-//            if (isEasyMode) {
-//                finishOtherViewer(this, VerticalViewActivity.class);
-//            } else {
-//                finishOtherViewer(this, HorizontalViewActivity.class);
-//            }
-            Safe.run(() -> {
-
-                Intent intent = new Intent(MainTabs2.this,
-                                           isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
-                                getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-                intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                startActivity(intent);
-            });
-        }
-
+        maybeOpenLastBook(getIntent());
         checkGoToPage(getIntent());
 
         if (!AppState.get().isEnableAccessibility && once) {
@@ -718,6 +695,34 @@ import java.util.List;
         IMG.resumeRequests(this);
         //AppSP.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         //LOG.d("lasta save", AppSP.get().lastClosedActivity);
+
+    }
+
+    private void maybeOpenLastBook(Intent intent) {
+        boolean showTabs = intent.getBooleanExtra(EXTRA_SHOW_TABS, false);
+
+        if (!showTabs && AppState.get().isOpenLastBook) {
+            LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
+            if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
+                LOG.d("Open Last book not found");
+                return;
+            }
+            boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+//            if (isEasyMode) {
+//                finishOtherViewer(this, VerticalViewActivity.class);
+//            } else {
+//                finishOtherViewer(this, HorizontalViewActivity.class);
+//            }
+            Safe.run(() -> {
+
+                Intent openIntent = new Intent(MainTabs2.this,
+                        isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                openIntent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
+                        getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                openIntent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
+                startActivity(openIntent);
+            });
+        }
 
     }
 
