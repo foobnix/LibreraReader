@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "mobi.librera.libgooglePro"
+    namespace = "mobi.librera.libdepro"
     compileSdk {
         version = release(36)
     }
@@ -29,5 +29,5 @@ dependencies {
     api("com.google.apis:google-api-services-drive:v3-rev20220815-2.0.0")
     api("com.google.api-client:google-api-client-android:2.8.1")
     api("com.google.oauth-client:google-oauth-client-jetty:1.39.0")
-    api("com.google.http-client:google-http-client-gson:2.0.2")
+    api("com.google.http-client:google-http-client-gson:2.0.3")
 }

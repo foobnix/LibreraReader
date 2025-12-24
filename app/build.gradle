@@ -335,25 +335,25 @@ dependencies {
 
     implementation 'androidx.work:work-runtime:2.10.2'
     implementation 'com.google.guava:guava:33.4.8-android'
+    def dep_free = project(':libDepFree')
 
-    def google_free = project(':libGoogleFree')
 
-    libreraImplementation google_free
-    pdf_v2Implementation google_free
-    ebookaImplementation google_free
-    tts_readerImplementation google_free
-    pdf_classicImplementation google_free
-    epub_readerImplementation google_free
+    libreraImplementation dep_free
+    pdf_v2Implementation dep_free
+    ebookaImplementation dep_free
+    tts_readerImplementation dep_free
+    pdf_classicImplementation dep_free
+    epub_readerImplementation dep_free
+    def dep_pro = project(':libDepPro')
 
-    def google_pro = project(':libGooglePro')
 
-    libreraImplementation google_pro
-    pdf_v2Implementation google_pro
-    ebookaImplementation google_pro
-    tts_readerImplementation google_pro
-    pdf_classicImplementation google_pro
-    epub_readerImplementation google_pro
-    proImplementation google_pro
+    libreraImplementation dep_pro
+    pdf_v2Implementation dep_pro
+    ebookaImplementation dep_pro
+    tts_readerImplementation dep_pro
+    pdf_classicImplementation dep_pro
+    epub_readerImplementation dep_pro
+    proImplementation dep_pro
 
 
 /** Testing **/

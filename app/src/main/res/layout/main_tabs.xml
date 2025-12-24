@@ -75,7 +75,8 @@
                         android:layout_weight="1" />
 
                     <FrameLayout
-                        android:layout_margin="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
                         android:id="@+id/adFrame"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
