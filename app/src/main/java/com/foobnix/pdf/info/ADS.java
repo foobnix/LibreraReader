@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -20,12 +19,10 @@ import com.google.android.gms.ads.LoadAdError;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
 
 public class ADS {
     private static final String TAG = "ADS";
     public static int FULL_SCREEN_TIMEOUT_SEC = 10;
-
 
     public static void hideAdsTemp(Activity a) {
 //        try {
@@ -63,21 +60,25 @@ public class ADS {
 
             //LOG.d("getCurrentOrientationBannerAdSizeWithWidth", size.getWidth(), size.getHeight(), size.getHeightInPixels(a));
 
-            if (Dips.isVertical()) {
-                if (new Random().nextBoolean()) {
-                    if (Dips.screenHeightDP() >= 720) {
-                        adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
-                    } else {
-                        adView.setAdSize(AdSize.BANNER);
-                    }
-                } else {
-                    adView.setAdSize(AdSize.BANNER);
-                }
-            } else {
-                adView.setAdSize(AdSize.FULL_BANNER);
-            }
+            AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
+            //AdSize size = AdSize.getPortraitAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
 
-            //adView.setAdSize(AdSize.BANNER);
+//            if (Dips.isVertical()) {
+//                if (new Random().nextBoolean()) {
+//                    if (Dips.screenHeightDP() >= 720) {
+//                        adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
+//                    } else {
+//                        adView.setAdSize(AdSize.BANNER);
+//                    }
+//                } else {
+//                    adView.setAdSize(AdSize.BANNER);
+//                }
+//            } else {
+//                adView.setAdSize(AdSize.FULL_BANNER);
+//            }
+
+            LOG.d("AddSize", size, AdSize.BANNER);
+            adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
             LOG.d("ads-metaData", metaData);
@@ -86,23 +87,19 @@ public class ADS {
             adView.loadAd(getAdRequest(a));
 
             adView.setAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(LoadAdError arg0) {
+                @Override public void onAdFailedToLoad(LoadAdError arg0) {
                     LOG.d("ads-LoadAdError ads", arg0);
                     frame.removeAllViews();
                     frame.setVisibility(View.GONE);
                 }
 
-                @Override
-                public void onAdLoaded() {
+                @Override public void onAdLoaded() {
                     frame.setVisibility(View.VISIBLE);
                 }
-
             });
 
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                                                             FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             adView.setLayoutParams(params);
 
@@ -110,7 +107,6 @@ public class ADS {
         } catch (Throwable e) {
             LOG.e(e);
         }
-
     }
 
     public static void onPauseAll(AdView adView) {
@@ -150,18 +146,18 @@ public class ADS {
             StringBuffer hexString = new StringBuffer();
             for (int i = 0; i < messageDigest.length; i++) {
                 String h = Integer.toHexString(0xFF & messageDigest[i]);
-                while (h.length() < 2)
+                while (h.length() < 2) {
                     h = "0" + h;
+                }
                 hexString.append(h);
             }
             return hexString.toString();
-
         } catch (NoSuchAlgorithmException e) {
         }
         return "";
     }
 
     public static AdRequest getAdRequest(Context a) {
-            return new AdRequest.Builder().build();//
+        return new AdRequest.Builder().build();//
     }
 }

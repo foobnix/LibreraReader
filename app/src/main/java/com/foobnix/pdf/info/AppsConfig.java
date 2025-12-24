@@ -73,7 +73,7 @@ public class AppsConfig {
             LOG.d("no-ads error context null");
             return true;
         }
-        if ("529B167EE030328EDF84D143B2C81389".equals(ADS.getByTestID(a))) {
+        if ("529B167EE030328EDF84D143B2C81389-".equals(ADS.getByTestID(a))) {
             return true;
         }
 

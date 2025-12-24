@@ -25,7 +25,7 @@ android {
 
 dependencies {
 
-    api("com.google.android.gms:play-services-ads:24.8.0")
+    api("com.google.android.gms:play-services-ads:24.9.0")
     api("com.google.android.ump:user-messaging-platform:4.0.0")
     //implementation("com.android.billingclient:billing:8.1.0")
 }
