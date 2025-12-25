@@ -6,10 +6,9 @@ plugins {
 
 android {
     namespace = "mobi.librera.libgoogleFree"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
-    }
+
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -36,8 +35,5 @@ dependencies {
     api(libs.user.messaging.platform)
 
     //implementation(libs.billing)
-
-
-
 
 }

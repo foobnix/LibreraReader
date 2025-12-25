@@ -4,9 +4,8 @@ plugins {
 
 android {
     namespace = "mobi.librera.libPro"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
-    }
+    compileSdk =libs.versions.compileSdk.get().toInt()
+
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
