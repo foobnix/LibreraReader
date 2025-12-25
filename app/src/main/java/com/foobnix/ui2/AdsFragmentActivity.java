@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
@@ -21,7 +22,6 @@ import com.foobnix.tts.TTSNotification;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
     private final MyADSProvider myAds = new MyADSProvider();
-    protected int intetrstialTimeoutSec = 0;
     protected boolean withInterstitial = true;
     Handler handler;
     Runnable onFinish = new Runnable() {
@@ -35,7 +35,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     public abstract void onFinishActivity();
 
-
     @Override
     protected void onCreate(Bundle arg0) {
         if (AppState.get().isSystemThemeColor) {
@@ -48,9 +47,15 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(arg0);
-        myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
         handler = new Handler(Looper.getMainLooper());
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                showInterstial();
+            }
+        });
     }
 
     @Override

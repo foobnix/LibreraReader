@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class ADS {
     private static final String TAG = "ADS";
-    public static int FULL_SCREEN_TIMEOUT_SEC = 10;
+    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
 
     public static void hideAdsTemp(Activity a) {
 //        try {
@@ -88,19 +88,23 @@ public class ADS {
             adView.loadAd(getAdRequest(a));
 
             adView.setAdListener(new AdListener() {
-                @Override public void onAdFailedToLoad(LoadAdError arg0) {
+                @Override
+                public void onAdFailedToLoad(LoadAdError arg0) {
                     LOG.d("ads-LoadAdError ads", arg0);
                     frame.removeAllViews();
                     frame.setVisibility(View.GONE);
                 }
 
-                @Override public void onAdLoaded() {
+                @Override
+                public void onAdLoaded() {
                     frame.setVisibility(View.VISIBLE);
                 }
             });
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                                             FrameLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams
+                    params =
+                    new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                            FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             adView.setLayoutParams(params);
 

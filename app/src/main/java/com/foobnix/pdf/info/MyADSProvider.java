@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import static com.foobnix.pdf.info.ADS.FULL_SCREEN_TIMEOUT_SEC;
+
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,7 +22,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MyADSProvider {
-    public int intetrstialTimeout = 0;
+    public int intetrstialTimeout = FULL_SCREEN_TIMEOUT_SEC;
     Random random = new Random();
     InterstitialAd mInterstitialAd;
     Handler handler;
@@ -58,14 +60,16 @@ public class MyADSProvider {
             handler.removeCallbacksAndMessages(null);
 
             Runnable r = new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     try {
+                        LOG.d("postDelayed load started");
 
                         try {
                             if (Apps.isNight(a)) {
                                 MobileAds.setAppVolume(0.1f);
                             } else {
-                                MobileAds.setAppVolume(0.8f);
+                                MobileAds.setAppVolume(0.6f);
                             }
                             //Toast.makeText(a,"isNight: "+Apps.isNight(a),Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
@@ -73,33 +77,35 @@ public class MyADSProvider {
                         }
 
                         InterstitialAd.load(LibreraApp.context,
-                                            Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"),
-                                            ADS.getAdRequest(a),
-                                            new InterstitialAdLoadCallback() {
-                                                @Override
-                                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                                    super.onAdFailedToLoad(loadAdError);
-                                                    LOG.d("LoadAdError", loadAdError);
-                                                    mInterstitialAd = null;
-                                                }
+                                Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"),
+                                ADS.getAdRequest(a),
+                                new InterstitialAdLoadCallback() {
+                                    @Override
+                                    public void onAdFailedToLoad(
+                                            @NonNull
+                                            LoadAdError loadAdError) {
+                                        super.onAdFailedToLoad(loadAdError);
+                                        LOG.d("LoadAdError", loadAdError);
+                                        mInterstitialAd = null;
+                                    }
 
-                                                @Override
-                                                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                                    super.onAdLoaded(interstitialAd);
-                                                    mInterstitialAd = interstitialAd;
-                                                }
-                                            });
+                                    @Override
+                                    public void onAdLoaded(
+                                            @NonNull
+                                            InterstitialAd interstitialAd) {
+                                        super.onAdLoaded(interstitialAd);
+                                        mInterstitialAd = interstitialAd;
+                                    }
+                                });
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
             };
             LOG.d("ADS post delay postDelayed", intetrstialTimeout);
-            if (AppsConfig.IS_LOG) {
-                handler.postDelayed(r, 0);
-            } else {
-                handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
-            }
+
+            handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
+
         }
 
         if (!AppsConfig.ADS_ON_PAGE && !(a instanceof MainTabs2)) {

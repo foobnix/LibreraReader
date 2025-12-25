@@ -28,7 +28,6 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -95,10 +94,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         finishOtherViewer(this, HorizontalViewActivity.class);
-        intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);
-
 
         FileMetaCore.checkOrCreateMetaInfo(this);
 
@@ -120,7 +117,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                     AppSP.get().isCrop = true;
                 }
             }
-
 
             BookCSS.get().detectLang(path);
         }
@@ -149,16 +145,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
-
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 
-
         view = new PdfSurfaceView(getController());
 
-
         frameLayout.addView(view.getView());
-
 
         getController().afterCreate(this);
 
@@ -182,9 +174,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             }
         });
 
-
     }
-
 
     @Override
     protected void attachBaseContext(Context context) {
@@ -224,14 +214,16 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             }, 50);
         }
 
-
     }
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data, DocumentController.EXTRA_PERCENT));
+            int
+                    page =
+                    Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data,
+                            DocumentController.EXTRA_PERCENT));
             getController().getDocumentController().goToPage(page);
         }
     }
@@ -407,7 +399,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         return super.onKeyLongPress(keyCode, event);
     }
 
-
     @Override
     public void onBackPressedFinishImpl() {
         getController().closeActivityFinal(null);
@@ -421,13 +412,17 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             getController().closeActivityFinal(null);
             return;
         }
-        if (getController().getWrapperControlls().checkBack(new KeyEvent(KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_BACK))) {
+        if (getController()
+                .getWrapperControlls()
+                .checkBack(new KeyEvent(KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_BACK))) {
             return;
         }
 
         try {
             if (AppState.get().isShowLongBackDialog) {
-                CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
+                CloseAppDialog.showOnLongClickDialog(getController().getActivity(),
+                        null,
+                        getController().getListener());
             } else {
                 //showInterstial();
                 getController().getListener().onCloseActivityAdnShowInterstial();
@@ -472,7 +467,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
 
         keyTimeout = System.currentTimeMillis();
-
 
         if (getController().getWrapperControlls().dispatchKeyEventDown(event)) {
             isMyKey = true;
