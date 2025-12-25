@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 public class AdView extends View {
-
     public AdView(Context context) {
         super(context);
         setVisibility(View.GONE);
@@ -22,7 +21,7 @@ public class AdView extends View {
 
     }
 
-    public void setAdSize(int size) {
+    public void setAdSize(AdSize size) {
 
     }
 
@@ -41,5 +40,4 @@ public class AdView extends View {
     public void loadAd(AdRequest id) {
 
     }
-
 }
