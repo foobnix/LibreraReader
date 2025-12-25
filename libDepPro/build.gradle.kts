@@ -30,5 +30,5 @@ dependencies {
     api("com.google.api-client:google-api-client-android:2.8.1")
     api("com.google.oauth-client:google-oauth-client-jetty:1.39.0")
     api("com.google.http-client:google-http-client-gson:2.0.3")
-    api("com.google.android.play:review:2.0.2")
+    implementation("com.google.android.play:review:2.0.2")
 }

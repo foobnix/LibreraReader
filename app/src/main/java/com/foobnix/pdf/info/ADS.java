@@ -142,8 +142,7 @@ public class ADS {
 
             LinearLayout.LayoutParams
                     params =
-                    new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                            FrameLayout.LayoutParams.WRAP_CONTENT);
+                    new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             adView.setLayoutParams(params);
 
@@ -169,6 +168,9 @@ public class ADS {
         if (adView != null) {
             adView.destroy();
             adView = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
         }
     }
 

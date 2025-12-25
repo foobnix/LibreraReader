@@ -73,10 +73,6 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.tasks.Task;
-import com.google.android.play.core.review.ReviewInfo;
-import com.google.android.play.core.review.ReviewManager;
-import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -94,6 +90,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import mobi.librera.libgooglepro.RefiewForm;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
@@ -868,24 +866,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
                 return;
             }
-            ReviewManager manager = ReviewManagerFactory.create(this);
-            Task<ReviewInfo> request = manager.requestReviewFlow();
-            request.addOnCompleteListener(task -> {
-
-                if (task.isSuccessful()) {
-                    ReviewInfo reviewInfo = task.getResult();
-                    if (reviewInfo == null) return;
-                    Task<Void> flow = manager.launchReviewFlow(this, reviewInfo);
-                    flow.addOnCompleteListener(task2 -> {
-                        closeActivityRunnable.run();
-                    });
-
-                } else {
-                    //CloseAppDialog.show(this, closeActivityRunnable);
-                    closeActivityRunnable.run();
-                }
-            });
-
+            RefiewForm.show(this, closeActivityRunnable);
         } else {
             closeActivityRunnable.run();
         }
