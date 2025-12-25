@@ -3,6 +3,7 @@ package com.foobnix.pdf.info;
 import android.app.Activity;
 import android.content.Context;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -131,7 +132,7 @@ public class ADS {
     public static String getByTestID(Context c) {
         String android_id = Settings.Secure.getString(c.getContentResolver(), Settings.Secure.ANDROID_ID);
         String upperCase = md5_2(android_id).toUpperCase();
-        LOG.d("test-MY_ADS_ID", upperCase);
+        Log.d("device_id", upperCase);
         return upperCase;
     }
 

@@ -27,8 +27,7 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
     public static final boolean IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
-    public static final List<String> testDevices = Arrays.asList("394FC2536F98E69D313F47CA4B26AB2D",
-                                                                 "5A11AAB3D40A6E42F8BB4674C013B70D");
+    public static final List<String> testDevices = Arrays.asList("15B8E113746E8241A97A23D7F6FEAA2B");
     //setTestDeviceIds
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
@@ -64,6 +63,9 @@ public class AppsConfig {
     }
 
     public static boolean checkIsProInstalled(final Context a) {
+        if (IS_TEST_DEVICE) {
+            return false;
+        }
         if (IS_LOG) {
             LOG.d("no-ads error context null");
             return true;
@@ -71,9 +73,6 @@ public class AppsConfig {
 
         if (a == null) {
             LOG.d("no-ads error context null");
-            return true;
-        }
-        if ("529B167EE030328EDF84D143B2C81389-".equals(ADS.getByTestID(a))) {
             return true;
         }
 
