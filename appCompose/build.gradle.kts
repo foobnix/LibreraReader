@@ -12,12 +12,12 @@ plugins {
 
 android {
     namespace = "mobi.librera.appcompose"
-    compileSdk = 36
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "mobi.librera.appcompose"
-        minSdk = 30
-        targetSdk = rootProject.extra["targetSdk"] as Int
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 

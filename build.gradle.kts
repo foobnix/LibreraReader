@@ -1,17 +1,25 @@
+import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
+
 plugins {
-    id("com.android.application") version "8.13.0" apply false
-    id("com.android.library") version "8.13.0" apply false
-    id("org.jetbrains.kotlin.android") version "2.2.21" apply false
-    id("org.jetbrains.kotlin.plugin.compose") version "2.2.21" apply false
-    id("androidx.room") version "2.7.2" apply false
-    id("com.google.devtools.ksp") version "2.3.0" apply false
-    id("com.google.gms.google-services") version "4.4.4" apply false
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.21" apply false
-    id("org.jetbrains.kotlin.jvm") version "2.2.21" apply false
+    id("nl.littlerobots.version-catalog-update") version "1.0.1"
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
+    alias(libs.plugins.kotlinCompose) apply false
+    alias(libs.plugins.androidxRoom) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.kotlinSerialization) apply false
+    alias(libs.plugins.kotlinJvm) apply false
 }
 
-project.extra.apply {
-    set("targetSdk", 36)
-    set("minSdk", 24)
-    set("compileSdk", 36)
+versionCatalogUpdate {
+    versionSelector(VersionSelectors.STABLE)
+
 }
+
+//project.extra.apply {
+//    set("targetSdk", 36)
+//    set("minSdk", 24)
+//    set("compileSdk", 36)
+//}

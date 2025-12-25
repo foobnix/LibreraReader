@@ -8,18 +8,18 @@ plugins {
 
 android {
     namespace = "com.foobnix.googledrive"
-    compileSdk = 36
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = rootProject.extra["minSdk"] as Int
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     lint {
-        targetSdk = rootProject.extra["targetSdk"] as Int
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 
     testOptions {
-        targetSdk = rootProject.extra["targetSdk"] as Int
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 
     compileOptions {

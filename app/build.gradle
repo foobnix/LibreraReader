@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.googleServices)
 }
 
 def taskName = getGradle().getStartParameter().getTaskRequests().toString()
@@ -8,7 +8,7 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 ext {
     FDroidCodeNumber = 6506
-    FDroidVersionNumber = "9.1.35"
+    FDroidVersionNumber = "9.2.0"
 }
 
 
@@ -30,13 +30,14 @@ ext {
 }
 
 android {
-    compileSdk 36
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
     namespace = "com.foobnix.pdf.info"
 
     defaultConfig {
         namespace = "com.foobnix.pdf.info"
-        minSdk = project.minSdk
-        targetSdk = project.targetSdk
+        minSdk = libs.versions.minSdk.get().toInteger()
+        targetSdk = libs.versions.targetSdk.get().toInteger()
         versionCode = codeNumber
         versionName = versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -112,7 +113,7 @@ android {
     flavorDimensions.add("version")
     productFlavors {
         fdroid {
-            minSdk = project.minSdk
+            minSdk = libs.versions.minSdk.get().toInteger()
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -295,46 +296,40 @@ dependencies {
 
 
 /** AndroidX **/
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.4.0'
-    implementation 'androidx.work:work-runtime:2.10.2'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation(libs.cardview)
+    implementation(libs.multidex)
+    implementation(libs.recyclerview)
+    implementation(libs.work.runtime)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.appcompat)
 
-/** Third-party **/
-    //implementation 'com.github.axet:lame:1.0.9'
-
-    implementation 'org.greenrobot:eventbus:3.3.1'
-    implementation('org.greenrobot:greendao:3.3.0') {
-        exclude group: 'org.greenrobot.greendao.rx'
-    }
-    implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.21.1'
-
-    implementation 'com.github.albfernandez:juniversalchardet:2.5.0'
-
-    implementation 'com.squareup.okhttp3:okhttp:3.12.6'
-    implementation 'io.github.rburgst:okhttp-digest:1.21'
-    implementation 'com.squareup.okio:okio-parent:1.17.6'
-
-    implementation 'com.github.joniles:rtfparserkit:1.16.0'
-
-    implementation 'org.zwobble.mammoth:mammoth:1.5.0'
-    implementation 'javax.xml.stream:stax-api:1.0-2'
-
-    implementation 'net.lingala.zip4j:zip4j:2.11.5'
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-
-    //implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    //conflict with worker
-
-    implementation "commons-logging:commons-logging-api:1.1"
+    implementation(libs.eventbus)
+    implementation(libs.greenrobot.greendao)
+    implementation(libs.greendao.api)
 
 
-    implementation 'androidx.work:work-runtime:2.10.2'
-    implementation 'com.google.guava:guava:33.4.8-android'
+    implementation(libs.jsoup)
+    implementation(libs.juniversalchardet)
+
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp.digest)
+    implementation(libs.okio.parent)
+
+
+
+
+    implementation(libs.rtfparserkit)
+
+    implementation(libs.mammoth)
+    implementation(libs.stax.api)
+
+    implementation(libs.zip4j)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+    implementation(libs.commons.logging.api)
+    implementation(libs.guava)
+
     def dep_free = project(':libDepFree')
 
 
@@ -355,10 +350,10 @@ dependencies {
     epub_readerImplementation dep_pro
     proImplementation dep_pro
 
-
 /** Testing **/
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.6.2'
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.runner)
+
 }
 
 

@@ -1,0 +1,98 @@
+[versions]
+agp = "8.13.2"
+appcompat = "1.7.1"
+billing = "8.3.0"
+cardview = "1.0.0"
+commonsLoggingApi = "1.1"
+compiler = "5.0.5"
+eventbus = "3.3.1"
+firebaseBom = "34.7.0"
+glide = "5.0.5"
+googleApiServicesDrive = "v3-rev20220815-2.0.0"
+googleApiClientAndroid = "2.8.1"
+googleHttpClientGson = "2.0.3"
+googleOauthClientJetty = "1.39.0"
+googleServices = "4.4.4"
+greendao = "3.3.0"
+greendaoApi = "3.3.0"
+greendaoVersion = "3.3.0"
+guava = "33.5.0-android"
+jsoup = "1.21.2"
+junit = "4.13.2"
+juniversalchardet = "2.5.0"
+junrar = "7.5.7"
+kotlin = "2.3.0"
+ksp = "2.3.4"
+legacySupportV4 = "1.0.0"
+mammoth = "1.11.0"
+multidex = "2.0.1"
+playServicesAds = "24.9.0"
+playServicesAuth = "21.4.0"
+recyclerview = "1.4.0"
+review = "2.0.2"
+room = "2.8.4"
+rtfparserkit = "1.16.0"
+runner = "1.7.0"
+staxApi = "1.0-2"
+userMessagingPlatform = "4.0.0"
+workRuntime = "2.11.0"
+zip4j = "2.11.5"
+
+okioParent="1.17.6"
+okhttpDigest="3.1.1"
+
+targetSdk="36"
+minSdk="24"
+compileSdk="36"
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidxRoom = { id = "androidx.room", version.ref = "room" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+
+[libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
+cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+commons-logging-api = { module = "commons-logging:commons-logging-api", version.ref = "commonsLoggingApi" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+google-api-client-android = { module = "com.google.api-client:google-api-client-android", version.ref = "googleApiClientAndroid" }
+google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
+google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version.ref = "googleHttpClientGson" }
+google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version.ref = "googleOauthClientJetty" }
+greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendaoApi" }
+greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendaoVersion" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+junit = { module = "junit:junit", version.ref = "junit" }
+juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
+junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
+legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+mammoth = { module = "org.zwobble.mammoth:mammoth", version.ref = "mammoth" }
+multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+review = { module = "com.google.android.play:review", version.ref = "review" }
+rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
+runner = { module = "androidx.test:runner", version.ref = "runner" }
+stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
+user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
+work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+
+okio-parent = { module = "com.squareup.okio:okio-parent", version.ref = "okioParent" }
+okhttp3 = { module = "com.squareup.okhttp3:okhttp", version = "3.12.6" }
+okhttp-digest = { module = "io.github.rburgst:okhttp-digest", version.ref = "okhttpDigest" }

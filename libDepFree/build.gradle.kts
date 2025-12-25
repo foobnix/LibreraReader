@@ -1,15 +1,18 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
 }
 
 android {
     namespace = "mobi.librera.libgoogleFree"
     compileSdk {
-        version = release(36)
+        version = release(libs.versions.compileSdk.get().toInt())
+
     }
 
     defaultConfig {
-        minSdk = rootProject.extra["minSdk"] as Int
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     buildTypes {
@@ -25,10 +28,17 @@ android {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
-    api("com.google.android.gms:play-services-ads:24.9.0")
-    api("com.google.android.ump:user-messaging-platform:4.0.0")
-    //implementation("com.android.billingclient:billing:8.1.0")
+    api(libs.play.services.ads)
+    api(libs.user.messaging.platform)
+    //implementation(libs.billing)
+
+    implementation(libs.eventbus)
+    implementation(libs.greendao.api)
+    implementation(libs.greenrobot.greendao)
+
+
+
 }
