@@ -57,8 +57,6 @@ public class MyADSProvider {
                 return;
             }
 
-            handler.removeCallbacksAndMessages(null);
-
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
@@ -102,8 +100,8 @@ public class MyADSProvider {
                     }
                 }
             };
-            LOG.d("ADS post delay postDelayed", intetrstialTimeout);
 
+            handler.removeCallbacksAndMessages(null);
             handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
 
         }
