@@ -173,7 +173,7 @@ public class DialogTranslateFromTo {
     }
 
     public static Spanned getSelectedDictionaryUnderline() {
-        return Html.fromHtml("<u>" + getSelectedDictionary() + "</u>");
+        return Html.fromHtml("<u>" + getSelectedDictionary() + "</u>", Html.FROM_HTML_MODE_LEGACY);
     }
 
     public static String getSelectedDictionary() {

@@ -2881,7 +2881,7 @@ public class PrefFragment2 extends UIFragment {
 
     public View underline(View text) {
         CharSequence myText = ((TextView) text).getText();
-        ((TextView) text).setText(Html.fromHtml("<u>" + myText + "</u>"));
+        ((TextView) text).setText(Html.fromHtml("<u>" + myText + "</u>", Html.FROM_HTML_MODE_LEGACY));
         return text;
     }
 

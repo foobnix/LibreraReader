@@ -228,7 +228,7 @@ public class Views {
             textView.setText("");
         } else {
             if (htmlText.contains("<")) {
-                textView.setText(Html.fromHtml(htmlText));
+                textView.setText(Html.fromHtml(htmlText, Html.FROM_HTML_MODE_LEGACY));
             } else {
                 textView.setText(htmlText);
             }

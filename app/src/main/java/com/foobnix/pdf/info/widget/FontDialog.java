@@ -133,7 +133,7 @@ public class FontDialog {
         final TextView textFontCapital = (TextView) inflate.findViewById(R.id.textFontCapital);
 
         String text = textFontCapital.getText().toString();
-        textFontCapital.setText(Html.fromHtml("<b>" + text.substring(0, 1) + "</b>" + text.substring(1)));
+        textFontCapital.setText(Html.fromHtml("<b>" + text.substring(0, 1) + "</b>" + text.substring(1), Html.FROM_HTML_MODE_LEGACY));
 
         boolean isFB2 = BookType.FB2.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
         int visibleFB2 = TxtUtils.visibleIf(isFB2);
