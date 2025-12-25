@@ -86,20 +86,13 @@ android {
 
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
     }
 
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
-
-    //compileOptions {
-    //coreLibraryDesugaringEnabled true
-
-    //sourceCompatibility JavaVersion.VERSION_1_8
-    //targetCompatibility JavaVersion.VERSION_1_8
-    //}
 
     splits {
         abi {

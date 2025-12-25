@@ -14,8 +14,7 @@ googleHttpClientGson = "2.0.3"
 googleOauthClientJetty = "1.39.0"
 googleServices = "4.4.4"
 greendao = "3.3.0"
-greendaoApi = "3.3.0"
-greendaoVersion = "3.3.0"
+
 guava = "33.5.0-android"
 jsoup = "1.21.2"
 junit = "4.13.2"
@@ -44,6 +43,7 @@ okhttpDigest="3.1.1"
 targetSdk="36"
 minSdk="24"
 compileSdk="36"
+jvmTarget = "11"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -71,8 +71,8 @@ google-api-client-android = { module = "com.google.api-client:google-api-client-
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version.ref = "googleHttpClientGson" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version.ref = "googleOauthClientJetty" }
-greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendaoApi" }
-greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendaoVersion" }
+greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
+greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
