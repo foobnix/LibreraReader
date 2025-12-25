@@ -125,8 +125,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
-            Apps.accessibilityText(MainTabs2.this,
-                    adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
+            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
         }
 
         @Override
@@ -175,8 +174,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
-        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
-                c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
@@ -529,9 +527,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         List<String>
                 actions =
-                Arrays.asList("android.intent.action.PROCESS_TEXT",
-                        "android.intent.action.SEARCH",
-                        "android.intent.action.SEND");
+                Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
         List<String>
                 extras =
                 Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY,
@@ -579,10 +575,8 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                 Intent
                         intent =
-                        new Intent(MainTabs2.this,
-                                isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
-                        getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                        new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                 startActivity(intent);
             });
@@ -600,7 +594,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         try {
             //ads
             LOG.d(this, "TEST-ads-device ...");
-            if (!AppsConfig.checkIsProInstalled(this)) {
+            if (AppsConfig.isShowAdsInApp(this)) {
                 ConsentRequestParameters params;
 
                 if (AppsConfig.IS_TEST_DEVICE) {

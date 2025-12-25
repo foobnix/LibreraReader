@@ -14,6 +14,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -58,10 +59,13 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        ads.showBanner(this);
 
-        if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
-            ads.activateInterstitial(this);
+        if (AppsConfig.isShowAdsInApp(this)) {
+            ads.showBanner(this);
+
+            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+                ads.activateInterstitial(this);
+            }
         }
     }
 

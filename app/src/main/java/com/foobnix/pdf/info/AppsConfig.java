@@ -25,7 +25,8 @@ public class AppsConfig {
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
-    public static final boolean IS_FDROID =
+    public static final boolean
+            IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList("15B8E113746E8241A97A23D7F6FEAA2B");
     //setTestDeviceIds
@@ -33,8 +34,7 @@ public class AppsConfig {
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu") || Build.MODEL.toLowerCase().contains(
-            "sdk");
+    public static boolean IS_LOG = Build.DEVICE.toLowerCase().contains("emu") || Build.MODEL.toLowerCase().contains("sdk");
     public static boolean IS_TEST_DEVICE = false;
     public static String MUPDF_FZ_VERSION = "";
     public static String MUPDF_1_11 = "1.11";
@@ -62,42 +62,35 @@ public class AppsConfig {
         Log.d("IS_LOG", "IS_LOG " + AppsConfig.IS_LOG);
     }
 
-    public static boolean checkIsProInstalled(final Context a) {
-        if (IS_TEST_DEVICE) {
-            return false;
-        }
-        if (IS_LOG) {
-            LOG.d("no-ads error context null");
-            return true;
-        }
-
+    public static boolean isShowAdsInApp(final Context a) {
         if (a == null) {
             LOG.d("no-ads error context null");
-            return true;
+            return false;
         }
 
         if (!isGooglePlayServicesAvailable(a)) {
             //no ads for old android and eink
             LOG.d("no-ads isGooglePlayServicesAvailable not available");
-            return true;
+            return false;
         }
         if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk()) {
             LOG.d("no-ads old device or eink");
             //no ads for old android and eink
-            return true;
+            return false;
         }
         if (AppState.get().isEnableAccessibility) {
-            return true;
+            return false;
         }
         if (Apps.isAccessibilityEnable(a)) {
-            return true;
+            return false;
         }
 
         boolean is_pro = isPackageExisted(a, PRO_LIBRERA_READER);
+        LOG.d("isPackageExisted", is_pro);
         if (is_pro) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public static boolean isGooglePlayServicesAvailable(Context context) {

@@ -54,27 +54,15 @@ public class PopupHelper {
         } else if (libraryMode == AppState.MODE_PUBLISHER) {
             gridList.setImageResource(R.drawable.glyphicons_451_hand_like);
             stringId = R.string.publisher;
-        }else if (libraryMode == AppState.MODE_PUBLICATION_DATE) {
+        } else if (libraryMode == AppState.MODE_PUBLICATION_DATE) {
             gridList.setImageResource(R.drawable.glyphicons_589_book_open);
             stringId = R.string.publication_date;
         }
 
-        gridList.setContentDescription(gridList.getContext().getString(R.string.cd_view_menu)+" "+gridList.getContext().getString(stringId));
+        gridList.setContentDescription(gridList.getContext().getString(R.string.cd_view_menu) + " " + gridList
+                .getContext()
+                .getString(stringId));
 
-
-    }
-
-    public static void addPROIcon(final PopupMenu menu, final Context c) {
-        if (!AppsConfig.checkIsProInstalled(c)) {
-            menu.getMenu().add("Librera PRO").setIcon(R.mipmap.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Urls.openPdfPro(c);
-                    return false;
-                }
-            });
-        }
     }
 
     public static void addPROIcon(final MyPopupMenu menu, final Context c) {
@@ -83,15 +71,19 @@ public class PopupHelper {
             return;
 
         }
-        if (!AppsConfig.checkIsProInstalled(c)) {
-            menu.getMenu().add(R.string.app_name_pro).setIcon(R.mipmap.icon_pdf_pro).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+        if (AppsConfig.isShowAdsInApp(c)) {
+            menu
+                    .getMenu()
+                    .add(R.string.app_name_pro)
+                    .setIcon(R.mipmap.icon_pdf_pro)
+                    .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Urls.openPdfPro(c);
-                    return false;
-                }
-            });
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Urls.openPdfPro(c);
+                            return false;
+                        }
+                    });
         }
     }
 

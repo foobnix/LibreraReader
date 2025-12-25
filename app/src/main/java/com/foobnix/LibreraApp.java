@@ -31,18 +31,21 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class LibreraApp extends MultiDexApplication {
     public static Context context;
 
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         if (false) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads()
-                                                                            .detectDiskWrites()
-                                                                            .detectNetwork()
-                                                                            .penaltyLog()
-                                                                            .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects()
-                                                                    .detectLeakedClosableObjects()
-                                                                    .penaltyLog()
-                                                                    .penaltyDeath()
-                                                                    .build());
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
         }
         super.onCreate();
 
@@ -62,22 +65,27 @@ public class LibreraApp extends MultiDexApplication {
         Prefs.get().init(this);
 
         try {
-            if (!AppsConfig.checkIsProInstalled(this)) {
+            if (AppsConfig.isShowAdsInApp(this)) {
+                LOG.d("ADS1", "MobileAds.initialize");
                 MobileAds.initialize(this, new OnInitializationCompleteListener() {
-                    @Override public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+                    @Override
+                    public void onInitializationComplete(
+                            @NonNull
+                            InitializationStatus initializationStatus) {
                         LOG.d("ads-complete");
                     }
                 });
+
+                LOG.d("AppsConfig.IS_TEST_DEVICE", AppsConfig.IS_TEST_DEVICE);
+                if (AppsConfig.IS_TEST_DEVICE) {
+                    RequestConfiguration
+                            configuration =
+                            new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
+                    MobileAds.setRequestConfiguration(configuration);
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
-        }
-
-        LOG.d("AppsConfig.IS_TEST_DEVICE", AppsConfig.IS_TEST_DEVICE);
-        if (AppsConfig.IS_TEST_DEVICE) {
-            RequestConfiguration configuration =
-                    new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
-            MobileAds.setRequestConfiguration(configuration);
         }
 
         Log.d("Build", "Build.TestDeviceID :" + ADS.getByTestID(this));
@@ -113,7 +121,8 @@ public class LibreraApp extends MultiDexApplication {
         if (AppsConfig.IS_WRITE_LOGS) {
             LOG.writeCrashTofile = true;
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-                @Override public void uncaughtException(Thread thread, final Throwable e) {
+                @Override
+                public void uncaughtException(Thread thread, final Throwable e) {
                     LOG.uncaughtException(e);
 
                     Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -127,7 +136,8 @@ public class LibreraApp extends MultiDexApplication {
         }
     }
 
-    @Override public void onLowMemory() {
+    @Override
+    public void onLowMemory() {
         super.onLowMemory();
         LOG.d("AppState save onLowMemory");
         IMG.clearMemoryCache();
@@ -135,7 +145,8 @@ public class LibreraApp extends MultiDexApplication {
         HypenUtils.cache.clear();
     }
 
-    @Override public void onTrimMemory(int level) {
+    @Override
+    public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
     }
