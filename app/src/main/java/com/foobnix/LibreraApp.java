@@ -28,8 +28,6 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
-import javax.xml.parsers.SAXParserFactory;
-
 public class LibreraApp extends MultiDexApplication {
     public static Context context;
 
@@ -58,9 +56,12 @@ public class LibreraApp extends MultiDexApplication {
             WorkManager.initialize(this, new Configuration.Builder().setMinimumLoggingLevel(Log.DEBUG).build());
         }
 
+
 //        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
 //        analytics.setUserProperty("APP_NAME", Apps.getApplicationName(this));
 //        analytics.setUserProperty("APP_VERSION", Apps.getVersionName(this));
+
+
 
         AppsConfig.init(this);
         Dips.init(this);

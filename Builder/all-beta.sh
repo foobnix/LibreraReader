@@ -25,11 +25,9 @@ cd ../
 
 ####################################
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm.apk
 
-rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
-rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.apk
+#rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
+#rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.apk
 
 cd Builder
 ./remove_all.sh

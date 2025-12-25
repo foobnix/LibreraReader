@@ -29,7 +29,7 @@ android {
 dependencies {
 
     //implementation(platform(libs.firebase.bom))
-    //implementation(libs.firebase.analytics)
+    //api(libs.firebase.analytics)
     //api("com.google.ads.mediation:facebook:6.21.0.0")
 
     api(libs.play.services.ads)
