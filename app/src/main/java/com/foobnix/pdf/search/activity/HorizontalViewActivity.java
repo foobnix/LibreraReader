@@ -924,7 +924,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public void onClick(final View v) {
                 nullAdapter();
                 closeDialogs();
-                showInterstial();
+                showInterstitial();
             }
 
         });
@@ -1667,7 +1667,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         clickUtils.init();
         LOG.d("MessageEvent", ev.getMessage(), ev.getX(), ev.getY());
         if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK)) {
-            showInterstial();
+            showInterstitial();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK_APP)) {
             dc.onCloseActivityFinal(new Runnable() {
 
@@ -1788,7 +1788,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void showInterstialAndClose() {
-                showInterstial();
+                showInterstitial();
             }
 
         };
@@ -2018,7 +2018,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public void onRotateScreen() {
-        activateAds();
+        //activateAds();
 
         AppProfile.save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
@@ -2447,7 +2447,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onBackPressedFinishImpl() {
-        showInterstial();
+        showInterstitial();
     }
 
     public boolean closeDialog() {
@@ -2476,10 +2476,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onBackPressedImpl() {
         // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
-        if (isInterstialShown()) {
-            onFinishActivity();
-            return;
-        }
+      
         if (dc != null && dc.floatingBookmark != null) {
             dc.floatingBookmark = null;
             onRefresh.run();
@@ -2499,7 +2496,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (AppState.get().isShowLongBackDialog) {
             CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, null, dc);
         } else {
-            showInterstial();
+            showInterstitial();
         }
     }
 

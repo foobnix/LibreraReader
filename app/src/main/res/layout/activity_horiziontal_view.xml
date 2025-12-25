@@ -10,12 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
-    <FrameLayout
-        android:id="@+id/adFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/tint_red"
-         />
 
     <RelativeLayout
         android:id="@+id/parentParent"

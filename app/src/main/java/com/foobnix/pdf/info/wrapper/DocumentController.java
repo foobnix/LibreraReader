@@ -42,7 +42,6 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -83,7 +82,7 @@ public abstract class DocumentController {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT//
-    );
+                                                                    );
 
     public final static List<Integer> orientationTexts = Arrays.asList(//
             R.string.system, //
@@ -91,8 +90,8 @@ public abstract class DocumentController {
             R.string.landscape, //
             R.string.portrait, //
             R.string.landscape_180, //
-            R.string.portrait_180////
-    );
+            R.string.portrait_180);
+    
     protected final Activity activity;
     private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
     public Handler handler = new Handler(Looper.getMainLooper());
@@ -174,12 +173,12 @@ public abstract class DocumentController {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
             }
 
             Keyboards.hideNavigation(a);
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -193,22 +192,19 @@ public abstract class DocumentController {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
-
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
                 a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
-
 
             }
 
-
             Keyboards.hideNavigation(a);
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -234,10 +230,10 @@ public abstract class DocumentController {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
+                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
             }
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -245,7 +241,6 @@ public abstract class DocumentController {
     }
 
     public static void chooseFullScreen(final Activity a, final int mode) {
-
 
         if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
             runFullScreen(a);
@@ -309,10 +304,16 @@ public abstract class DocumentController {
 
     public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-            List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a
+                .getWindow()
+                .getDecorView()
+                .getRootWindowInsets()
+                .getDisplayCutout() != null) {
+            List<Integer>
+                    ids =
+                    Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT,
+                            AppState.FULL_SCREEN_FULLSCREEN,
+                            AppState.FULL_SCREEN_NORMAL);
 
             MyPopupMenu popup = new MyPopupMenu(a, v);
             for (int id : ids) {
@@ -324,16 +325,22 @@ public abstract class DocumentController {
                 if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
                     // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
-                        response.onResultRecive(id);
-                        return false;
-                    });
+                    popup
+                            .getMenu()
+                            .add(DocumentController.getFullScreenName(a, id))
+                            .setOnMenuItemClickListener(item -> {
+                                response.onResultRecive(id);
+                                return false;
+                            });
                     //}
                 } else {
-                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
-                        response.onResultRecive(id);
-                        return false;
-                    });
+                    popup
+                            .getMenu()
+                            .add(DocumentController.getFullScreenName(a, id))
+                            .setOnMenuItemClickListener(item -> {
+                                response.onResultRecive(id);
+                                return false;
+                            });
 
                 }
                 popup.show();
@@ -380,13 +387,11 @@ public abstract class DocumentController {
 
                     }
 
-
                     return WindowInsetsCompat.CONSUMED;
                 });
             }
         }
     }
-
 
     public static void doRotation(final Activity a) {
         try {
@@ -401,12 +406,18 @@ public abstract class DocumentController {
 
     public static void doContextMenu(Activity a) {
         PackageManager pm = a.getApplicationContext().getPackageManager();
-        ComponentName compName = new ComponentName(a.getPackageName(), "com.foobnix.zipmanager.SendReceiveActivityAlias");
+        ComponentName
+                compName =
+                new ComponentName(a.getPackageName(), "com.foobnix.zipmanager.SendReceiveActivityAlias");
         if (AppState.get().isMenuIntegration) {
-            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(compName,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP);
             LOG.d("COMPONENT_ENABLED_STATE_ENABLED");
         } else {
-            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(compName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
             LOG.d("COMPONENT_ENABLED_STATE_DISABLED");
         }
 
@@ -514,10 +525,6 @@ public abstract class DocumentController {
         return MyMath.percent(getCurentPageFirst1(), getPageCount());
     }
 
-    public MyADSProvider getAdsProvider() {
-        return null;
-    }
-
     public abstract void updateRendering();
 
     public void goToPageByTTS() {
@@ -539,7 +546,6 @@ public abstract class DocumentController {
     public abstract void cleanImageMatrix();
 
     AlertDialog alertDialog;
-
 
     public void closeActivity() {
         handler2.removeCallbacksAndMessages(null);
@@ -581,7 +587,6 @@ public abstract class DocumentController {
         }
 
     }
-
 
     public boolean isBookMode() {
         return AppSP.get().readingMode == AppState.READING_MODE_BOOK;
@@ -670,7 +675,6 @@ public abstract class DocumentController {
             LOG.d("closeDialogs", "anchor false");
             return false;
         }
-
 
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
         LOG.d("closeDialogs", "isVisible", isVisible);
@@ -818,7 +822,6 @@ public abstract class DocumentController {
 
     public abstract String getPageHtml();
 
-
     public abstract List<PageLink> getLinksForPage(int page);
 
     public void onAnnotationTap(long pageHander, int page, int index) {
@@ -890,23 +893,23 @@ public abstract class DocumentController {
     public boolean checkReadingTimer() {
         long timeout = System.currentTimeMillis() - readTimeStart;
         LOG.d("readTimeStart  checkReadingTimer", timeout, TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime));
-        boolean needToRest = AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime);
+        boolean
+                needToRest =
+                AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime);
         if (alertDialog != null && alertDialog.isShowing()) {
             return needToRest;
         }
         if (needToRest) {
-            alertDialog = AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), R.string.read_a_book,
-                    () -> {
+            alertDialog =
+                    AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), R.string.read_a_book, () -> {
                         LOG.d("checkReadingTimer action");
                         resetReadTimer();
-                    },
-                    () -> {
+                    }, () -> {
                         LOG.d("checkReadingTimer dismiss");
                     });
         }
         return needToRest;
 
     }
-
 
 }

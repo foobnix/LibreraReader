@@ -2,6 +2,8 @@ package com.foobnix.pdf.info;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
@@ -9,6 +11,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -17,29 +22,89 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.TimeUnit;
 
 public class ADS {
-    private static final String TAG = "ADS";
+    InterstitialAd mInterstitialAd;
+
+    AdView adView;
     public static int FULL_SCREEN_TIMEOUT_SEC = 30;
 
     public static void hideAdsTemp(Activity a) {
-//        try {
-//            if (a == null) {
-//                return;
-//            }
-//            View adFrame = a.findViewById(R.id.adFrame);
-//            if (adFrame.getVisibility() == View.VISIBLE) {
-//                adFrame.setVisibility(View.INVISIBLE);
-//            }
-//        } catch (Exception e) {
-//            LOG.e(e);
-//        }
     }
 
-    public static void activateAdmobSmartBanner(final Activity a, AdView adView) {
+    Handler handler;
+
+    public boolean showInterstitial(Activity a) {
+        if (mInterstitialAd != null) {
+            LOG.d("ADS1 showInterstitial");
+            mInterstitialAd.show(a);
+            return true;
+        }
+        return false;
+    }
+
+    public void activateInterstitial(Activity a) {
+        LOG.d("ADS1 activateInterstitial");
+        handler = new Handler(Looper.getMainLooper());
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (a == null || a.isDestroyed() || a.isFinishing()) {
+                        LOG.d("ADS1 run destroyed");
+                        return;
+                    }
+                    LOG.d("ADS1 run");
+                    try {
+                        if (Apps.isNight(a)) {
+                            MobileAds.setAppVolume(0.1f);
+                        } else {
+                            MobileAds.setAppVolume(0.6f);
+                        }
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+
+                    InterstitialAd.load(LibreraApp.context,
+                            Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"),
+                            ADS.getAdRequest(a),
+                            new InterstitialAdLoadCallback() {
+                                @Override
+                                public void onAdFailedToLoad(
+                                        @NonNull
+                                        LoadAdError loadAdError) {
+                                    super.onAdFailedToLoad(loadAdError);
+                                    LOG.d("LoadAdError", loadAdError);
+                                    mInterstitialAd = null;
+                                }
+
+                                @Override
+                                public void onAdLoaded(
+                                        @NonNull
+                                        InterstitialAd interstitialAd) {
+                                    super.onAdLoaded(interstitialAd);
+                                    mInterstitialAd = interstitialAd;
+                                }
+                            });
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        };
+
+        handler.removeCallbacksAndMessages(null);
+        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(FULL_SCREEN_TIMEOUT_SEC));
+
+    }
+
+    public void showBanner(final Activity a) {
         try {
             LOG.d("postDelayed activateAdmobSmartBanner");
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
@@ -54,31 +119,7 @@ public class ADS {
                 adView = null;
             }
             adView = new AdView(a);
-            //adView.setAdSize(AdSize.SMART_BANNER);
-            //AdSize adSize = new AdSize(Dips.screenWidth(), Dips.DP_80);
-
-            //final AdSize size = AdSize.getCurrentOrientationBannerAdSizeWithWidth(a, Dips.screenWidth());
-
-            //LOG.d("getCurrentOrientationBannerAdSizeWithWidth", size.getWidth(), size.getHeight(), size.getHeightInPixels(a));
-
             AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
-            //AdSize size = AdSize.getPortraitAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
-
-//            if (Dips.isVertical()) {
-//                if (new Random().nextBoolean()) {
-//                    if (Dips.screenHeightDP() >= 720) {
-//                        adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
-//                    } else {
-//                        adView.setAdSize(AdSize.BANNER);
-//                    }
-//                } else {
-//                    adView.setAdSize(AdSize.BANNER);
-//                }
-//            } else {
-//                adView.setAdSize(AdSize.FULL_BANNER);
-//            }
-
-            LOG.d("AddSize", size, AdSize.BANNER);
             adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
@@ -114,19 +155,19 @@ public class ADS {
         }
     }
 
-    public static void onPauseAll(AdView adView) {
+    public void onPauseBanner() {
         if (adView != null) {
             adView.pause();
         }
     }
 
-    public static void onResumeAll(AdView adView) {
+    public void onResumeBanner() {
         if (adView != null) {
             adView.resume();
         }
     }
 
-    public static void destoryAll(AdView adView) {
+    public void onDestroyBanner() {
         if (adView != null) {
             adView.destroy();
             adView = null;

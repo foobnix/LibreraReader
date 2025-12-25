@@ -406,12 +406,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     public void onBackPressedImpl() {
-        // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
 
-        if (isInterstialShown()) {
-            getController().closeActivityFinal(null);
-            return;
-        }
         if (getController()
                 .getWrapperControlls()
                 .checkBack(new KeyEvent(KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_BACK))) {

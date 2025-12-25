@@ -57,13 +57,14 @@ import java.io.File;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ViewerActivityController extends ActionController<VerticalViewActivity> implements IActivityController, DecodingProgressListener, CurrentPageListener, IBookSettingsChangeListener {
-
+public class ViewerActivityController extends ActionController<VerticalViewActivity> implements IActivityController,
+        DecodingProgressListener,
+        CurrentPageListener,
+        IBookSettingsChangeListener {
 
     private final AtomicReference<IViewController> ctrl = new AtomicReference<IViewController>(ViewContollerStub.STUB);
 
     private ZoomModel zoomModel;
-
 
     private DocumentModel documentModel;
 
@@ -136,10 +137,13 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             }
             LOG.d("Book-title", title);
 
-
             if (codecType == null) {
                 if (getActivity() != null) {
-                    Toast.makeText(getActivity(), Apps.getApplicationName(getActivity()) + " " + getActivity().getString(R.string.application_cannot_open_the_book), Toast.LENGTH_LONG).show();
+                    Toast
+                            .makeText(getActivity(),
+                                    Apps.getApplicationName(getActivity()) + " " + getActivity().getString(R.string.application_cannot_open_the_book),
+                                    Toast.LENGTH_LONG)
+                            .show();
                     getActivity().finish();
                 }
                 return;
@@ -152,7 +156,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             final Uri uri = Uri.fromFile(file);
             controller.setCurrentBook(file);
             wrapperControlls.hideShowEditIcon();
-
 
             controller.addRecent(uri);
             SettingsManager.getBookSettings(uri.getPath());
@@ -169,7 +172,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         wrapperControlls.updateUI();
 
     }
-
 
     public void afterPostCreate() {
 
@@ -193,11 +195,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
                 intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
 
-
                 if (onBookLoaded != null) {
                     onBookLoaded.run();
                 }
-
 
                 pageCount = controller.getPageCount();
                 float percent = Intents.getFloatAndClear(intent, DocumentController.EXTRA_PERCENT);
@@ -217,7 +217,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         return false;
                     }
                 });
-
 
             }
         }));
@@ -333,7 +332,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         wrapperControlls.updateUI();
 
-
         wrapperControlls.setTitle(title);
         controller.setTitle(title);
 
@@ -344,7 +342,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             String file = a.getIntent().getData().getPath();
 
             AppSP.get().lastBookPath = file;
-
 
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(file)) {
@@ -373,7 +370,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void onConfigChanged() {
         wrapperControlls.onConfigChanged();
     }
-
 
     @Override
     public ViewState jumpToPage(final int viewIndex, final float offsetX, final float offsetY, boolean addToHistory) {
@@ -409,7 +405,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     public void toggleNightMode() {
         getDocumentController().toggleRenderingEffects();
-        currentPageChanged(documentModel.getCurrentIndex().docIndex, getDocumentController().getBase().getDocumentModel().getPageCount());
+        currentPageChanged(documentModel.getCurrentIndex().docIndex,
+                getDocumentController().getBase().getDocumentModel().getPageCount());
     }
 
     public void toggleCrop(boolean isCrop) {
@@ -419,7 +416,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         newDc.init(null);
         newDc.show();
 
-        currentPageChanged(documentModel.getCurrentIndex().docIndex, getDocumentController().getBase().getDocumentModel().getPageCount());
+        currentPageChanged(documentModel.getCurrentIndex().docIndex,
+                getDocumentController().getBase().getDocumentModel().getPageCount());
 
     }
 
@@ -478,7 +476,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void closeActivity(final ActionEx action) {
-        viewerActivity.showInterstial();
+        viewerActivity.showInterstitial();
         LOG.d("ViewerActivityController closeActivity");
     }
 
@@ -521,7 +519,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         LOG.d("ViewerActivityController closeActivity1");
     }
-
 
     @Override
     public void onBookSettingsChanged(final AppBook oldSettings, final AppBook newSettings, final AppBook.Diff diff) {
@@ -595,7 +592,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 //Thread.sleep(3000);
                 m_fileName = getActivity().getIntent().getData().getPath();
 
-
                 documentModel.open(m_fileName, m_password);
                 getDocumentController().init(this);
                 return null;
@@ -621,7 +617,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     return;
                 }
 
-
                 wrapperControlls.onLoadBookFinish();
                 if (result == null) {
                     try {
@@ -640,7 +635,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
                 if (result instanceof MuPdfPasswordException) {
                     final MuPdfPasswordException pex = (MuPdfPasswordException) result;
-                    final int promptId = pex.isWrongPasswordEntered() ? R.string.msg_wrong_password : R.string.msg_password_required;
+                    final int
+                            promptId =
+                            pex.isWrongPasswordEntered() ? R.string.msg_wrong_password : R.string.msg_password_required;
 
                     askPassword(m_fileName, promptId);
 

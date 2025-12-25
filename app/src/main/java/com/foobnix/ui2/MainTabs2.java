@@ -91,7 +91,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressLint("NewApi") public class MainTabs2 extends AdsFragmentActivity {
+@SuppressLint("NewApi")
+public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
@@ -113,21 +114,24 @@ import java.util.List;
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
         UIFragment uiFragment = null;
 
-        @Override public void onPageSelected(int pos) {
+        @Override
+        public void onPageSelected(int pos) {
             uiFragment = tabFragments.get(pos);
             uiFragment.onSelectFragment();
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
             Apps.accessibilityText(MainTabs2.this,
-                                   adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
+                    adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
         }
 
-        @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
 
         }
 
-        @Override public void onPageScrollStateChanged(int state) {
+        @Override
+        public void onPageScrollStateChanged(int state) {
             if (isPullToRefreshEnable()) {
                 swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
@@ -144,7 +148,8 @@ import java.util.List;
         }
     };
     Runnable closeActivityRunnable = new Runnable() {
-        @Override public void run() {
+        @Override
+        public void run() {
 //            TTSNotification.hideNotification();
 //            TTSEngine.get().shutdown();
 //            adsPause();
@@ -159,8 +164,7 @@ import java.util.List;
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null &&
-               BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
@@ -168,7 +172,7 @@ import java.util.List;
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
         intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
-                        c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
@@ -181,7 +185,8 @@ import java.util.List;
         EventBus.getDefault().post(new MsgCloseMainTabs());
     }
 
-    @Override protected void onNewIntent(final Intent intent) {
+    @Override
+    protected void onNewIntent(final Intent intent) {
         LOG.d(TAG, "onNewIntent");
         // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
@@ -193,8 +198,7 @@ import java.util.List;
             LOG.d("CloudRail response", intent);
 
             Intent intent1 = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                                                      .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
-                                                                                UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         }
@@ -202,7 +206,8 @@ import java.util.List;
         checkGoToPage(intent);
     }
 
-    @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
@@ -218,8 +223,7 @@ import java.util.List;
 
         if (requestCode == REQUEST_CODE_ADD_RESOURCE && resultCode == Activity.RESULT_OK) {
             getContentResolver().takePersistableUriPermission(data.getData(),
-                                                              Intent.FLAG_GRANT_READ_URI_PERMISSION |
-                                                              Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             Uri uri = data.getData();
 
             String pathSAF = uri.toString();
@@ -257,8 +261,9 @@ import java.util.List;
         return isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout);
     }
 
-    @Override protected void onPostCreate(Bundle savedInstanceState) {
-        withInterstitial = false;
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
 
@@ -269,11 +274,13 @@ import java.util.List;
         GFile.runSyncService(this);
     }
 
-    @Override protected void attachBaseContext(Context context) {
+    @Override
+    protected void attachBaseContext(Context context) {
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
 //        if (AppState.get().isSystemThemeColor) {
 //            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
@@ -324,7 +331,8 @@ import java.util.List;
         fab = findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
         fab.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 Dialogs.showSyncLOGDialog(MainTabs2.this);
             }
         });
@@ -335,7 +343,8 @@ import java.util.List;
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override public void onRefresh() {
+            @Override
+            public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
                 GFile.runSyncService(MainTabs2.this, true);
             }
@@ -383,7 +392,8 @@ import java.util.List;
         drawerLayout = findViewById(R.id.drawer_layout);
 
         imageMenu.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
                 } else {
@@ -418,25 +428,29 @@ import java.util.List;
         pager.addOnPageChangeListener(onPageChangeListener);
 
         drawerLayout.addDrawerListener(new DrawerListener() {
-            @Override public void onDrawerStateChanged(int arg0) {
+            @Override
+            public void onDrawerStateChanged(int arg0) {
                 LOG.d("drawerLayout-onDrawerStateChanged", arg0);
             }
 
-            @Override public void onDrawerSlide(View arg0, float arg1) {
+            @Override
+            public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
                 if (AppSP.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
             }
 
-            @Override public void onDrawerOpened(View arg0) {
+            @Override
+            public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
                 if (AppSP.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
             }
 
-            @Override public void onDrawerClosed(View arg0) {
+            @Override
+            public void onDrawerClosed(View arg0) {
                 LOG.d("drawerLayout-onDrawerClosed");
                 try {
                     tabFragments.get(pager.getCurrentItem()).onSelectFragment();
@@ -462,7 +476,8 @@ import java.util.List;
         indicator.init();
 
         indicator.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override public void onFocusChange(View v, boolean hasFocus) {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
                 LOG.d("OnFocusChangeListener", hasFocus);
             }
         });
@@ -479,7 +494,8 @@ import java.util.List;
             for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
                 View child = indicator.getmTabStrip().getChildAt(i);
                 child.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override public boolean onLongClick(View v) {
+                    @Override
+                    public boolean onLongClick(View v) {
                         imageMenu.performClick();
                         return true;
                     }
@@ -507,20 +523,25 @@ import java.util.List;
         Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
 
-        List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT",
-                                             "android.intent.action.SEARCH",
-                                             "android.intent.action.SEND");
-        List<String> extras = Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY,
-                                            Intent.EXTRA_PROCESS_TEXT,
-                                            SearchManager.QUERY,
-                                            Intent.EXTRA_TEXT);
+        List<String>
+                actions =
+                Arrays.asList("android.intent.action.PROCESS_TEXT",
+                        "android.intent.action.SEARCH",
+                        "android.intent.action.SEND");
+        List<String>
+                extras =
+                Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY,
+                        Intent.EXTRA_PROCESS_TEXT,
+                        SearchManager.QUERY,
+                        Intent.EXTRA_TEXT);
         if (getIntent() != null && getIntent().getAction() != null) {
             if (actions.contains(getIntent().getAction())) {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
                         pager.postDelayed(new Runnable() {
-                            @Override public void run() {
+                            @Override
+                            public void run() {
                                 ((SearchFragment2) tabFragments.get(0)).searchAndOrderExteral(text);
                             }
                         }, 250);
@@ -552,10 +573,12 @@ import java.util.List;
 //            }
             Safe.run(() -> {
 
-                Intent intent = new Intent(MainTabs2.this,
-                                           isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                Intent
+                        intent =
+                        new Intent(MainTabs2.this,
+                                isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
-                                getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                        getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                 startActivity(intent);
             });
@@ -577,16 +600,18 @@ import java.util.List;
                 ConsentRequestParameters params;
 
                 if (AppsConfig.IS_TEST_DEVICE) {
-                    ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this).setDebugGeography(
-                                                                                                       ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                                                                                               .addTestDeviceHashedId(
-                                                                                                       ADS.getByTestID(
-                                                                                                               this))
-                                                                                               .build();
+                    ConsentDebugSettings
+                            debugSettings =
+                            new ConsentDebugSettings.Builder(this)
+                                    .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                                    .addTestDeviceHashedId(ADS.getByTestID(this))
+                                    .build();
 
-                    params = new ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings)
-                                                                   .setTagForUnderAgeOfConsent(false)
-                                                                   .build();
+                    params =
+                            new ConsentRequestParameters.Builder()
+                                    .setConsentDebugSettings(debugSettings)
+                                    .setTagForUnderAgeOfConsent(false)
+                                    .build();
                     LOG.d(this, "TEST-ads-device true", ADS.getByTestID(this));
                 } else {
                     params = new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build();
@@ -614,7 +639,8 @@ import java.util.List;
     public void loadForm(ConsentInformation consentInformation) {
         // Loads a consent form. Must be called on the main thread.
         UserMessagingPlatform.loadConsentForm(this, new UserMessagingPlatform.OnConsentFormLoadSuccessListener() {
-            @Override public void onConsentFormLoadSuccess(ConsentForm consentForm) {
+            @Override
+            public void onConsentFormLoadSuccess(ConsentForm consentForm) {
                 if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
                     consentForm.show(MainTabs2.this, formError -> {
                         if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.OBTAINED) {
@@ -622,18 +648,20 @@ import java.util.List;
                         if (formError != null) {
                             LOG.d("formError", formError.getErrorCode(), formError.getMessage());
                         }
-                        activateAds();
+                        //activateAds();
                     });
                 }
             }
         }, new UserMessagingPlatform.OnConsentFormLoadFailureListener() {
-            @Override public void onConsentFormLoadFailure(FormError formError) {
+            @Override
+            public void onConsentFormLoadFailure(FormError formError) {
                 LOG.d("formError", formError.getErrorCode(), formError.getMessage());
             }
         });
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN) public void onShowSycn(MessageSync msg) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onShowSycn(MessageSync msg) {
 
         try {
             if (msg.state == MessageSync.STATE_VISIBLE) {
@@ -654,7 +682,8 @@ import java.util.List;
         }
     }
 
-    @Subscribe public void onMessegeBrightness(MessegeBrightness msg) {
+    @Subscribe
+    public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
     }
 
@@ -669,7 +698,8 @@ import java.util.List;
         }
     }
 
-    @Override protected void onPause() {
+    @Override
+    protected void onPause() {
         super.onPause();
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
@@ -681,7 +711,8 @@ import java.util.List;
         }
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
 
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
@@ -697,8 +728,9 @@ import java.util.List;
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
-                                                                 new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
+        LocalBroadcastManager
+                .getInstance(this)
+                .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
@@ -725,7 +757,8 @@ import java.util.List;
         tabFragments.get(pager.getCurrentItem()).onSelectFragment();
     }
 
-    @Override public boolean onKeyDown(int keyCode1, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode1, KeyEvent event) {
         if (!isEink) {
             return super.onKeyDown(keyCode1, event);
         }
@@ -743,7 +776,8 @@ import java.util.List;
         return super.onKeyDown(keyCode1, event);
     }
 
-    @Override public boolean onKeyUp(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (!isEink) {
             return super.onKeyUp(keyCode, event);
         }
@@ -755,12 +789,14 @@ import java.util.List;
         return super.onKeyUp(keyCode, event);
     }
 
-    @Override protected void onStop() {
+    @Override
+    protected void onStop() {
         super.onStop();
         SharedBooks.cache.clear();
     }
 
-    @Override public void onDestroy() {
+    @Override
+    public void onDestroy() {
         GFile.timeout = 0;
         GFile.runSyncService(this);
 
@@ -786,7 +822,8 @@ import java.util.List;
         super.onDestroy();
     }
 
-    @Override public void onConfigurationChanged(final Configuration newConfig) {
+    @Override
+    public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         String language = newConfig.locale.getLanguage();
@@ -800,14 +837,16 @@ import java.util.List;
             pager.setCurrentItem(currentItem);
             IMG.clearMemoryCache();
         }
-        activateAds();
+        //activateAds();
     }
 
-    @Override public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
-    @Override public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
+    @Override
+    public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
         if (CloseAppDialog.checkLongPress(this, event)) {
             CloseAppDialog.show(this, closeActivityRunnable);
             return true;
@@ -815,11 +854,13 @@ import java.util.List;
         return super.onKeyLongPress(keyCode, event);
     }
 
-    @Override public void onFinishActivity() {
+    @Override
+    public void onFinishActivity() {
         finish();
     }
 
-    @Override public void onBackPressedImpl() {
+    @Override
+    public void onBackPressedImpl() {
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
             return;
@@ -835,16 +876,19 @@ import java.util.List;
         }
     }
 
-    @Override public void onBackPressedFinishImpl() {
+    @Override
+    public void onBackPressedFinishImpl() {
         closeActivityRunnable.run();
     }
 
-    @Subscribe public void onCloseAppMsg(MsgCloseMainTabs event) {
+    @Subscribe
+    public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override public void onReceive(Context context, Intent intent) {
+        @Override
+        public void onReceive(Context context, Intent intent) {
             int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
             if (pos != -1) {
                 if (pos >= 0) {

@@ -13,25 +13,22 @@ import androidx.fragment.app.FragmentActivity;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
-    private final MyADSProvider myAds = new MyADSProvider();
-    protected boolean withInterstitial = true;
-    Handler handler;
-    Runnable onFinish = new Runnable() {
 
-        @Override
-        public void run() {
-            onFinishActivity();
-        }
-    };
+    Handler handler;
+
     boolean doubleBackToExitPressedOnce = false;
+    private ADS ads = new ADS();
 
     public abstract void onFinishActivity();
 
@@ -47,13 +44,13 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(arg0);
-        myAds.createHandler();
+
         handler = new Handler(Looper.getMainLooper());
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                showInterstial();
+                showInterstitial();
             }
         });
     }
@@ -61,49 +58,34 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        activateAds();
-    }
+        ads.showBanner(this);
 
-    public void activateAds() {
-        myAds.activate(this, withInterstitial, onFinish);
+        if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+            ads.activateInterstitial(this);
+        }
     }
 
     @Override
     protected void onResume() {
-        try {
-            myAds.resume();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
         super.onResume();
-        //WebServer.init(this);
+        ads.onResumeBanner();
     }
 
     @Override
     protected void onPause() {
-
-        try {
-            myAds.pause();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
         super.onPause();
-    }
-
-    public void adsPause() {
-        if (myAds != null) myAds.pause();
+        ads.onPauseBanner();
     }
 
     @Override
     protected void onDestroy() {
-        myAds.destroy();
         super.onDestroy();
+        ads.onDestroyBanner();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // myAds.activate(this, onFinish);
     }
 
     @Override
@@ -130,25 +112,15 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    public void showInterstial() {
+    public void showInterstitial() {
         IMG.pauseRequests(this);
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
-        adsPause();
-        if (myAds.showInterstial(this)) {
-            onFinish.run();
-        } else {
-            onFinish.run();
-        }
-
+        ads.showInterstitial(this);
+        onFinishActivity();
     }
 
-    public boolean isInterstialShown() {
-        return false;
-    }
-
-    @Override
-    public void onBackPressed() {
+    public void onBackPressed1() {
         LOG.d("onBackPressed", doubleBackToExitPressedOnce);
         if (doubleBackToExitPressedOnce) {
             handler.removeCallbacksAndMessages(null);
