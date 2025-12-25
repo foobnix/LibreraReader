@@ -118,6 +118,7 @@ public class ADS {
             }
             adView = new AdView(a);
             AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
+            //AdSize size = AdSize.BANNER;
             adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");

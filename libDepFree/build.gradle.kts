@@ -28,16 +28,15 @@ android {
 
 dependencies {
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
+    //implementation(platform(libs.firebase.bom))
+    //implementation(libs.firebase.analytics)
+    //api("com.google.ads.mediation:facebook:6.21.0.0")
 
     api(libs.play.services.ads)
     api(libs.user.messaging.platform)
+
     //implementation(libs.billing)
 
-    implementation(libs.eventbus)
-    implementation(libs.greendao.api)
-    implementation(libs.greenrobot.greendao)
 
 
 

@@ -28,6 +28,8 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import javax.xml.parsers.SAXParserFactory;
+
 public class LibreraApp extends MultiDexApplication {
     public static Context context;
 
@@ -82,6 +84,9 @@ public class LibreraApp extends MultiDexApplication {
                             configuration =
                             new RequestConfiguration.Builder().setTestDeviceIds(AppsConfig.testDevices).build();
                     MobileAds.setRequestConfiguration(configuration);
+
+                    //AdSettings.addTestDevice("be454c77-6dd2-4931-933c-d279f5da225d");
+                    //AdSettings.addTestDevice("72a461e0-9268-4d1f-80f4-f9b45a692124");
                 }
             }
         } catch (Exception e) {
@@ -134,6 +139,9 @@ public class LibreraApp extends MultiDexApplication {
                 }
             });
         }
+
+
+
     }
 
     @Override
