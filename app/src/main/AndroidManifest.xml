@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    
+
 
     <queries>
         <intent>
@@ -309,19 +309,33 @@
         </activity>
 
         <activity
+            android:name="com.foobnix.test.ActivityA"
+            android:launchMode="singleTop"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name="com.foobnix.test.ActivityB"
+            android:launchMode="singleTask"
+            android:exported="false" />
+
+        <activity
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:exported="true"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:resizeableActivity="true"
 
             android:windowSoftInputMode="stateHidden">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH1" />
                 <category android:name="android.intent.category.DEFAULT1" />

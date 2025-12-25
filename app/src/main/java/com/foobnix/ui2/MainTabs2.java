@@ -123,7 +123,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
-            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
+            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos)
+                                                          .toString() + " " + getString(R.string.tab_selected));
         }
 
         @Override
@@ -172,7 +173,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
-        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent()
+                                                            .getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
@@ -198,7 +200,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             LOG.d("CloudRail response", intent);
 
             Intent intent1 = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                                                                      .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
         }
@@ -222,8 +224,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         if (requestCode == REQUEST_CODE_ADD_RESOURCE && resultCode == Activity.RESULT_OK) {
-            getContentResolver().takePersistableUriPermission(data.getData(),
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            getContentResolver().takePersistableUriPermission(data.getData(), Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             Uri uri = data.getData();
 
             String pathSAF = uri.toString();
@@ -281,17 +282,13 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-//        if (AppState.get().isSystemThemeColor) {
-//            AppState.get().appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
-//        }
-//
-//        if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
-//            setTheme(R.style.StyledIndicatorsWhite);
-//        } else {
-//            setTheme(R.style.StyledIndicatorsBlack);
-//        }
         super.onCreate(savedInstanceState);
+
+        if (!isTaskRoot() && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
+                && Intent.ACTION_MAIN.equals(getIntent().getAction())) {
+            finish();
+            return;
+        }
 
         if (!Android6.canWrite(this)) {
             Android6.checkPermissions(this, true);
@@ -528,10 +525,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");
         List<String>
                 extras =
-                Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY,
-                        Intent.EXTRA_PROCESS_TEXT,
-                        SearchManager.QUERY,
-                        Intent.EXTRA_TEXT);
+                Arrays.asList(Intent.EXTRA_PROCESS_TEXT_READONLY, Intent.EXTRA_PROCESS_TEXT, SearchManager.QUERY, Intent.EXTRA_TEXT);
         if (getIntent() != null && getIntent().getAction() != null) {
             if (actions.contains(getIntent().getAction())) {
                 for (String extra : extras) {
@@ -598,16 +592,14 @@ public class MainTabs2 extends AdsFragmentActivity {
                 if (AppsConfig.IS_TEST_DEVICE) {
                     ConsentDebugSettings
                             debugSettings =
-                            new ConsentDebugSettings.Builder(this)
-                                    .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                                    .addTestDeviceHashedId(ADS.getByTestID(this))
-                                    .build();
+                            new ConsentDebugSettings.Builder(this).setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                                                                  .addTestDeviceHashedId(ADS.getByTestID(this))
+                                                                  .build();
 
                     params =
-                            new ConsentRequestParameters.Builder()
-                                    .setConsentDebugSettings(debugSettings)
-                                    .setTagForUnderAgeOfConsent(false)
-                                    .build();
+                            new ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings)
+                                                                  .setTagForUnderAgeOfConsent(false)
+                                                                  .build();
                     LOG.d(this, "TEST-ads-device true", ADS.getByTestID(this));
                 } else {
                     params = new ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build();
@@ -724,9 +716,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
 
-        LocalBroadcastManager
-                .getInstance(this)
-                .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
+        LocalBroadcastManager.getInstance(this)
+                             .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
