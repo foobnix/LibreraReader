@@ -34,20 +34,18 @@ public class ADS {
     InterstitialAd mInterstitialAd;
 
     AdView adView;
-    public static int FULL_SCREEN_TIMEOUT_SEC = 5;
+    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
 
     public static void hideAdsTemp(Activity a) {
     }
 
     Handler handler;
 
-    public boolean showInterstitial(Activity a) {
+    public void showInterstitial(Activity a) {
         if (mInterstitialAd != null) {
             LOG.d("ADS1 showInterstitial");
             mInterstitialAd.show(a);
-            return true;
         }
-        return false;
     }
 
     public void activateInterstitial(Activity a) {
