@@ -34,7 +34,7 @@ public class ADS {
     InterstitialAd mInterstitialAd;
 
     AdView adView;
-    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
+    public static int FULL_SCREEN_TIMEOUT_SEC = 5;
 
     public static void hideAdsTemp(Activity a) {
     }

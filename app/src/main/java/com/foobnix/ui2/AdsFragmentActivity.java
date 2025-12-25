@@ -50,7 +50,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                showInterstitial();
+                onBackPressedAction();
             }
         });
     }
@@ -120,12 +120,11 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         onFinishActivity();
     }
 
-    public void onBackPressed1() {
+    public void onBackPressedAction() {
         LOG.d("onBackPressed", doubleBackToExitPressedOnce);
         if (doubleBackToExitPressedOnce) {
             handler.removeCallbacksAndMessages(null);
             onBackPressedFinishImpl();
-            super.onBackPressed();
             return;
         }
         this.doubleBackToExitPressedOnce = true;

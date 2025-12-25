@@ -401,7 +401,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     public void onBackPressedFinishImpl() {
-        getController().closeActivityFinal(null);
+        //getController().closeActivityFinal(null);
+        showInterstitial();
     }
 
     @Override
