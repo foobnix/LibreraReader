@@ -17,6 +17,7 @@ import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -45,6 +46,7 @@ public class ADS {
         if (mInterstitialAd != null) {
             LOG.d("ADS1 showInterstitial");
             mInterstitialAd.show(a);
+            mInterstitialAd = null;
         }
     }
 
@@ -59,7 +61,7 @@ public class ADS {
                         LOG.d("ADS1 run destroyed");
                         return;
                     }
-                    LOG.d("ADS1 run");
+                    LOG.d("ADS1 loading...");
                     try {
                         if (Apps.isNight(a)) {
                             MobileAds.setAppVolume(0.1f);
@@ -70,27 +72,26 @@ public class ADS {
                         LOG.e(e);
                     }
 
-                    InterstitialAd.load(LibreraApp.context,
-                            Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"),
-                            ADS.getAdRequest(a),
-                            new InterstitialAdLoadCallback() {
-                                @Override
-                                public void onAdFailedToLoad(
-                                        @NonNull
-                                        LoadAdError loadAdError) {
-                                    super.onAdFailedToLoad(loadAdError);
-                                    LOG.d("LoadAdError", loadAdError);
-                                    mInterstitialAd = null;
-                                }
+                    InterstitialAd.load(LibreraApp.context, Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"), ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
+                        @Override
+                        public void onAdFailedToLoad(
+                                @NonNull
+                                LoadAdError loadAdError) {
+                            super.onAdFailedToLoad(loadAdError);
+                            LOG.d("ADS1","LoadAdError", loadAdError);
+                            mInterstitialAd = null;
+                        }
 
-                                @Override
-                                public void onAdLoaded(
-                                        @NonNull
-                                        InterstitialAd interstitialAd) {
-                                    super.onAdLoaded(interstitialAd);
-                                    mInterstitialAd = interstitialAd;
-                                }
-                            });
+                        @Override
+                        public void onAdLoaded(
+                                @NonNull
+                                InterstitialAd interstitialAd) {
+                            super.onAdLoaded(interstitialAd);
+                            LOG.d("ADS1 loaded :)");
+                            mInterstitialAd = interstitialAd;
+
+                        }
+                    });
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -104,7 +105,7 @@ public class ADS {
 
     public void showBanner(final Activity a) {
         try {
-            LOG.d("postDelayed activateAdmobSmartBanner");
+            LOG.d("ADS1 showBanner");
             final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
@@ -130,11 +131,11 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(LoadAdError arg0) {
-                    LOG.d("ads-LoadAdError ads", arg0);
+                    LOG.d("ADS1 adsBanner-LoadAdError ads", arg0);
                     try {
                         frame.removeAllViews();
                         frame.setVisibility(View.GONE);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
@@ -142,16 +143,17 @@ public class ADS {
                 @Override
                 public void onAdLoaded() {
                     try {
+                        LOG.d("ADS1 Banner loaded");
                         frame.setVisibility(View.VISIBLE);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
             });
 
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.WRAP_CONTENT);
+            FrameLayout.LayoutParams
+                    params =
+                    new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
 
             adView.setLayoutParams(params);
@@ -165,23 +167,24 @@ public class ADS {
     public void onPauseBanner() {
         if (adView != null) {
             adView.pause();
+            LOG.d("ADS1 Banner pause");
         }
     }
 
     public void onResumeBanner() {
         if (adView != null) {
             adView.resume();
+            LOG.d("ADS1 Banner resume");
         }
     }
 
     public void onDestroyBanner() {
+        LOG.d("ADS1 Banner destroy");
         if (adView != null) {
             adView.destroy();
             adView = null;
         }
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
+
     }
 
     public static String getByTestID(Context c) {

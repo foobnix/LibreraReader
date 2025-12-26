@@ -125,7 +125,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void onBackPressedAction() {
-        LOG.d("onBackPressed", doubleBackToExitPressedOnce);
+        LOG.d("onBackPressed", "doubleBackToExitPressedOnce", doubleBackToExitPressedOnce);
         if (doubleBackToExitPressedOnce) {
             handler.removeCallbacksAndMessages(null);
             onBackPressedFinishImpl();
