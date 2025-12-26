@@ -66,6 +66,11 @@
             android:name="librera.GOOGLE_DRIVE_KEY"
             android:value="${appGdriveKey}" />
 
+        <meta-data
+            android:name="librera.ADMOB_REWARD"
+            android:value="${admobRewardId}" />
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

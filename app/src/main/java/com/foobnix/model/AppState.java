@@ -541,7 +541,10 @@ public class AppState {
     @IgnoreHashCode public boolean isLockPDF = false;
     @IgnoreHashCode public boolean isCropPDF = false;
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
-    public long installationDate = System.currentTimeMillis();
+    @IgnoreHashCode public long installationDate = System.currentTimeMillis();
+
+    @IgnoreHashCode public long rewardShowedDate = 0;
+
     @IgnoreHashCode public boolean isShowLongBackDialog = false;
     @IgnoreHashCode public boolean isZoomInOutWithVolueKeys = false;
     @IgnoreHashCode public boolean isZoomInOutWithLock = true;

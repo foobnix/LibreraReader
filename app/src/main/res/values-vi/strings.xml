@@ -669,4 +669,5 @@
    <string name="foreground">Tiền cảnh</string>
    <string name="warning_this_document_has_unsaved_changes">Cảnh báo: tài liệu này có những thay đổi chưa được lưu</string>
    <string name="bold_headings">Tiêu đề in đậm</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Hãy xem video ngắn này để tắt tất cả quảng cáo trong 1 giờ.</string>
 </resources>

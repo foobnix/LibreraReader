@@ -669,4 +669,5 @@
    <string name="foreground">Primer pla</string>
    <string name="warning_this_document_has_unsaved_changes">Avís: aquest document té canvis no desats</string>
    <string name="bold_headings">Encapçalaments en negreta</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Mira aquest vídeo curt per desactivar tots els anuncis durant 1 hora</string>
 </resources>

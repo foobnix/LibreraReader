@@ -669,4 +669,5 @@
    <string name="foreground">前景</string>
    <string name="warning_this_document_has_unsaved_changes">警告: このドキュメントには保存されていない変更があります</string>
    <string name="bold_headings">太字の見出し</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">この短いビデオを見ると、1時間すべての広告がオフになります</string>
 </resources>

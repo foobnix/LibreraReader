@@ -669,4 +669,5 @@
    <string name="foreground">前景</string>
    <string name="warning_this_document_has_unsaved_changes">警告：此文件有未儲存的更改</string>
    <string name="bold_headings">粗體標題</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">觀看此短視頻，即可在 1 小時內關閉所有廣告。</string>
 </resources>

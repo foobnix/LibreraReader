@@ -669,4 +669,5 @@
    <string name="foreground">Алдыңғы жоспар</string>
    <string name="warning_this_document_has_unsaved_changes">Ескерту: бұл құжатта сақталмаған өзгерістер бар</string>
    <string name="bold_headings">Қалың шрифтпен жазылған тақырыптар</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Барлық жарнамаларды 1 сағатқа өшіру үшін осы қысқа бейнені көріңіз</string>
 </resources>

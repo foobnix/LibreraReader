@@ -13,13 +13,17 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/wh_button_big"
             android:layout_marginRight="@dimen/wh_button_big"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="2dip">
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="12dip"
+            android:paddingBottom="2dip"
+            >
 
             <ImageView
                 android:id="@+id/goToPage1"
@@ -153,6 +157,15 @@
             android:src="@drawable/glyphicons_599_menu_close" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/showRewardVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:gravity="center"
+        android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_1_hour"
+        android:textColor="@color/white_alpha"/>
 
 
     <include

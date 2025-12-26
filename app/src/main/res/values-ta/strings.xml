@@ -669,4 +669,5 @@
    <string name="foreground">முன்புறம்</string>
    <string name="warning_this_document_has_unsaved_changes">எச்சரிக்கை: இந்த ஆவணத்தில் சேமிக்கப்படாத மாற்றங்கள் உள்ளன.</string>
    <string name="bold_headings">தடித்த தலைப்புகள்</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">1 மணி நேரத்திற்கு அனைத்து விளம்பரங்களையும் அணைக்க இந்த சிறிய வீடியோவைப் பாருங்கள்.</string>
 </resources>

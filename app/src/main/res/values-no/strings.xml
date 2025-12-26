@@ -669,4 +669,5 @@
    <string name="foreground">Forgrunnen</string>
    <string name="warning_this_document_has_unsaved_changes">Advarsel: dette dokumentet har ulagrede endringer</string>
    <string name="bold_headings">Fet skrift</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Se denne korte videoen for å slå av all reklame i 1 time</string>
 </resources>

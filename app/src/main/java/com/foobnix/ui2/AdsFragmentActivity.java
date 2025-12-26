@@ -6,8 +6,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
@@ -20,6 +22,11 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -72,10 +79,23 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         }
     }
 
+    public void showRewardVideo(OnUserEarnedRewardListener listener){
+        if (AppsConfig.isShowAdsInApp(this)) {
+                ads.showRewardedAd(this,listener);
+        }
+    }
+    public boolean isRewardActivated(){
+        if(!AppsConfig.isShowAdsInApp(this)){
+            return true;
+        }
+        return ads.isRewardActivated();
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
-        ads.onResumeBanner();
+        ads.onResumeBanner(this);
     }
 
     @Override
@@ -86,8 +106,9 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         ads.onDestroyBanner();
+        super.onDestroy();
+
     }
 
     @Override

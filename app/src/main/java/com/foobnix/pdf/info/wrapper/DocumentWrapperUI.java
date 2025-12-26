@@ -66,6 +66,7 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.search.activity.ViewBinder;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -75,6 +76,7 @@ import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TtsStatus;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
@@ -187,9 +189,10 @@ public class DocumentWrapperUI {
             dc.onZoomDec();
         }
     };
-    Activity a;
+    AdsFragmentActivity a;
     String bookTitle;
-    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
+    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek
+            , currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
         @Override
@@ -937,7 +940,7 @@ public class DocumentWrapperUI {
         }
     };
 
-    public void initUI(final Activity a) {
+    public void initUI(final AdsFragmentActivity a) {
         this.a = a;
         quickBookmark = a.getString(R.string.fast_bookmark);
 
@@ -1200,6 +1203,10 @@ public class DocumentWrapperUI {
         View bookmarks = a.findViewById(R.id.onBookmarks);
         bookmarks.setOnClickListener(onBookmarks);
         bookmarks.setOnLongClickListener(onBookmarksLong);
+
+        showRewardVideo = ViewBinder.initRewardButton(a, R.id.showRewardVideo);
+
+
 
         toastBrightnessText = (TextView) a.findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
@@ -1699,6 +1706,7 @@ public class DocumentWrapperUI {
 
 
         initToolBarPlusMinus();
+        ViewBinder.hideShowRewardButton(a,showRewardVideo);
 
         if (AppState.get().isAutoScroll) {
             autoScroll.setImageResource(R.drawable.glyphicons_174_pause);

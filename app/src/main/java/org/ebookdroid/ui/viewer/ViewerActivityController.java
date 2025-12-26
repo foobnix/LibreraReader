@@ -31,6 +31,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.VerticalModeController;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
@@ -337,7 +338,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     }
 
-    public void createWrapper(Activity a) {
+    public void createWrapper(AdsFragmentActivity a) {
         try {
             String file = a.getIntent().getData().getPath();
 

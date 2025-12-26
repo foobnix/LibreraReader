@@ -40,6 +40,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
@@ -58,6 +59,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -109,6 +111,8 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -127,7 +131,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public boolean prev = true;
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
+    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
             flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
     View bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
@@ -327,6 +331,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         anchorX = (ImageView) findViewById(R.id.anchorX);
         anchorY = (ImageView) findViewById(R.id.anchorY);
+
+        showRewardVideo = ViewBinder.initRewardButton(this, R.id.showRewardVideo);
+
         floatingBookmarkTextView = findViewById(R.id.floatingBookmark);
         floatingBookmarkTextView.setOnClickListener(new OnClickListener() {
             @Override
@@ -369,14 +376,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 float x1 = anchorY.getX();
                 float y1 = anchorY.getY();
-                EventBus
-                        .getDefault()
-                        .post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT,
-                                viewPager.getCurrentItem(),
-                                x,
-                                y,
-                                x1,
-                                y1));
+                EventBus.getDefault()
+                        .post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, viewPager.getCurrentItem(), x, y, x1, y1));
             }
         };
 
@@ -515,8 +516,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
                     AppState.get().fullScreenMode = id;
                     DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().fullScreenMode);
-                    onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this,
-                            AppState.get().fullScreenMode));
+                    onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
                     if (dc.isTextFormat()) {
                         if (onRefresh != null) {
                             onRefresh.run();
@@ -529,8 +529,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             }
         });
-        onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this,
-                AppState.get().fullScreenMode));
+        onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
 
         final ImageView onTextReplacement = (ImageView) findViewById(R.id.onTextReplacement);
         onTextReplacement.setOnClickListener(new OnClickListener() {
@@ -665,161 +664,156 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
 
                 MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-                p
-                        .getMenu()
-                        .add(R.string.one_page)
-                        .setIcon(R.drawable.my_glyphicons_two_page_one)
-                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu()
+                 .add(R.string.one_page)
+                 .setIcon(R.drawable.my_glyphicons_two_page_one)
+                 .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                closeDialogs();
-                                onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
-                                AppSP.get().isDouble = false;
-                                AppSP.get().isDoubleCoverAlone = false;
-                                AppSP.get().isCut = false;
-                                AppSP.get().isSmartReflow = false;
+                     @Override
+                     public boolean onMenuItemClick(MenuItem item) {
+                         closeDialogs();
+                         onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
+                         AppSP.get().isDouble = false;
+                         AppSP.get().isDoubleCoverAlone = false;
+                         AppSP.get().isCut = false;
+                         AppSP.get().isSmartReflow = false;
 
-                                SettingsManager.getBookSettings().updateFromAppState();
-                                SharedBooks.save(SettingsManager.getBookSettings());
+                         SettingsManager.getBookSettings().updateFromAppState();
+                         SharedBooks.save(SettingsManager.getBookSettings());
 
-                                if (dc.isTextFormat()) {
-                                    nullAdapter();
-                                    dc.restartActivity();
-                                    dc.cleanImageMatrix();
-                                } else {
-                                    TTSEngine.get().stop();
-                                    dc.cleanImageMatrix();
-                                    reloadDoc.run();
-                                    authoFit();
-                                }
-                                return false;
-                            }
-                        });
-                p
-                        .getMenu()
-                        .add(R.string.two_pages)
-                        .setIcon(R.drawable.my_glyphicons_two_pages_12)
-                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                         if (dc.isTextFormat()) {
+                             nullAdapter();
+                             dc.restartActivity();
+                             dc.cleanImageMatrix();
+                         } else {
+                             TTSEngine.get().stop();
+                             dc.cleanImageMatrix();
+                             reloadDoc.run();
+                             authoFit();
+                         }
+                         return false;
+                     }
+                 });
+                p.getMenu()
+                 .add(R.string.two_pages)
+                 .setIcon(R.drawable.my_glyphicons_two_pages_12)
+                 .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
+                     @Override
+                     public boolean onMenuItemClick(MenuItem item) {
 
-                                closeDialogs();
-                                onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
-                                AppSP.get().isDouble = true;
-                                AppSP.get().isCut = false;
-                                AppSP.get().isDoubleCoverAlone = false;
-                                AppSP.get().isSmartReflow = false;
+                         closeDialogs();
+                         onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
+                         AppSP.get().isDouble = true;
+                         AppSP.get().isCut = false;
+                         AppSP.get().isDoubleCoverAlone = false;
+                         AppSP.get().isSmartReflow = false;
 
-                                SettingsManager.getBookSettings().updateFromAppState();
-                                SharedBooks.save(SettingsManager.getBookSettings());
+                         SettingsManager.getBookSettings().updateFromAppState();
+                         SharedBooks.save(SettingsManager.getBookSettings());
 
-                                if (dc.isTextFormat()) {
-                                    nullAdapter();
-                                    dc.restartActivity();
-                                    dc.cleanImageMatrix();
-                                } else {
-                                    TTSEngine.get().stop();
-                                    dc.cleanImageMatrix();
-                                    reloadDoc.run();
-                                    authoFit();
-                                }
-                                return false;
-                            }
-                        });
+                         if (dc.isTextFormat()) {
+                             nullAdapter();
+                             dc.restartActivity();
+                             dc.cleanImageMatrix();
+                         } else {
+                             TTSEngine.get().stop();
+                             dc.cleanImageMatrix();
+                             reloadDoc.run();
+                             authoFit();
+                         }
+                         return false;
+                     }
+                 });
                 if (!dc.isTextFormat()) {
-                    p
-                            .getMenu()
-                            .add(R.string.two_pages_cover)
-                            .setIcon(R.drawable.my_glyphicons_two_pages_23)
-                            .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    p.getMenu()
+                     .add(R.string.two_pages_cover)
+                     .setIcon(R.drawable.my_glyphicons_two_pages_23)
+                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
+                         @Override
+                         public boolean onMenuItemClick(MenuItem item) {
 
-                                    closeDialogs();
-                                    onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
-                                    AppSP.get().isDouble = true;
-                                    AppSP.get().isCut = false;
-                                    AppSP.get().isDoubleCoverAlone = true;
-                                    AppSP.get().isSmartReflow = false;
-                                    SettingsManager.getBookSettings().updateFromAppState();
-                                    SharedBooks.save(SettingsManager.getBookSettings());
+                             closeDialogs();
+                             onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
+                             AppSP.get().isDouble = true;
+                             AppSP.get().isCut = false;
+                             AppSP.get().isDoubleCoverAlone = true;
+                             AppSP.get().isSmartReflow = false;
+                             SettingsManager.getBookSettings().updateFromAppState();
+                             SharedBooks.save(SettingsManager.getBookSettings());
 
-                                    if (dc.isTextFormat()) {
-                                        nullAdapter();
-                                        dc.restartActivity();
-                                        dc.cleanImageMatrix();
-                                    } else {
-                                        TTSEngine.get().stop();
-                                        dc.cleanImageMatrix();
-                                        reloadDoc.run();
-                                        authoFit();
-                                    }
-                                    return false;
-                                }
-                            });
+                             if (dc.isTextFormat()) {
+                                 nullAdapter();
+                                 dc.restartActivity();
+                                 dc.cleanImageMatrix();
+                             } else {
+                                 TTSEngine.get().stop();
+                                 dc.cleanImageMatrix();
+                                 reloadDoc.run();
+                                 authoFit();
+                             }
+                             return false;
+                         }
+                     });
                 }
                 if (!dc.isTextFormat()) {
-                    p
-                            .getMenu()
-                            .add(R.string.half_page)
-                            .setIcon(R.drawable.my_glyphicons_page_split)
-                            .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    p.getMenu()
+                     .add(R.string.half_page)
+                     .setIcon(R.drawable.my_glyphicons_page_split)
+                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
+                         @Override
+                         public boolean onMenuItemClick(MenuItem item) {
 
-                                    closeDialogs();
-                                    onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-                                    AppSP.get().isDouble = false;
-                                    AppSP.get().isCut = true;
-                                    AppSP.get().isSmartReflow = false;
-                                    // AppSP.get().isCrop = false;
-                                    SettingsManager.getBookSettings().updateFromAppState();
-                                    SharedBooks.save(SettingsManager.getBookSettings());
+                             closeDialogs();
+                             onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
+                             AppSP.get().isDouble = false;
+                             AppSP.get().isCut = true;
+                             AppSP.get().isSmartReflow = false;
+                             // AppSP.get().isCrop = false;
+                             SettingsManager.getBookSettings().updateFromAppState();
+                             SharedBooks.save(SettingsManager.getBookSettings());
 
-                                    TTSEngine.get().stop();
+                             TTSEngine.get().stop();
 
-                                    // onCrop.underline(AppSP.get().isCrop);
+                             // onCrop.underline(AppSP.get().isCrop);
 
-                                    dc.cleanImageMatrix();
-                                    reloadDoc.run();
-                                    authoFit();
-                                    return false;
-                                }
-                            });
+                             dc.cleanImageMatrix();
+                             reloadDoc.run();
+                             authoFit();
+                             return false;
+                         }
+                     });
                 }
                 if ((AppsConfig.IS_FDROID || AppState.get().isExperimental) && !dc.isTextFormat()) {
-                    p
-                            .getMenu()
-                            .add(getString(R.string.smart_reflow))
-                            .setIcon(R.drawable.glyphicons_108_text_resize)
-                            .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    p.getMenu()
+                     .add(getString(R.string.smart_reflow))
+                     .setIcon(R.drawable.glyphicons_108_text_resize)
+                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    closeDialogs();
-                                    onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
-                                    AppSP.get().isDouble = false;
-                                    AppSP.get().isCut = false;
-                                    AppSP.get().isCrop = false;
-                                    AppSP.get().isSmartReflow = true;
+                         @Override
+                         public boolean onMenuItemClick(MenuItem item) {
+                             closeDialogs();
+                             onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
+                             AppSP.get().isDouble = false;
+                             AppSP.get().isCut = false;
+                             AppSP.get().isCrop = false;
+                             AppSP.get().isSmartReflow = true;
 
-                                    SettingsManager.getBookSettings().updateFromAppState();
-                                    SharedBooks.save(SettingsManager.getBookSettings());
+                             SettingsManager.getBookSettings().updateFromAppState();
+                             SharedBooks.save(SettingsManager.getBookSettings());
 
-                                    TTSEngine.get().stop();
+                             TTSEngine.get().stop();
 
-                                    // onCrop.underline(AppSP.get().isCrop);
+                             // onCrop.underline(AppSP.get().isCrop);
 
-                                    dc.cleanImageMatrix();
-                                    reloadDoc.run();
-                                    authoFit();
-                                    return false;
-                                }
-                            });
+                             dc.cleanImageMatrix();
+                             reloadDoc.run();
+                             authoFit();
+                             return false;
+                         }
+                     });
                 }
                 p.getMenu().add(getString(R.string.rotate)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -979,9 +973,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             @Override
             protected Object doInBackground(Object... params) {
                 try {
-                    LOG.d("doRotation(this)",
-                            AppState.get().orientation,
-                            HorizontalViewActivity.this.getRequestedOrientation());
+                    LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
                     try {
                         //Thread.sleep(3000);
 
@@ -1056,9 +1048,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     return;
                 }
                 if ((Integer) result == -2) {
-                    Toast
-                            .makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
+                         .show();
                     AppState.get().isEditMode = true;
                     hideShow();
                     onClose.setVisibility(View.VISIBLE);
@@ -1152,10 +1143,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     updateUI(pageFromUri);
                     hideShow();
 
-                    Apps.accessibilityText(HorizontalViewActivity.this,
-                            getString(R.string.book_is_open),
-                            getString(R.string.m_current_page),
-                            " " + dc.getCurentPageFirst1());
+                    Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.book_is_open), getString(R.string.m_current_page), " " + dc.getCurentPageFirst1());
 
                     EventBus.getDefault().post(new MessageAutoFit(pageFromUri));
                     seekBar.setOnSeekBarChangeListener(onSeek);
@@ -1358,8 +1346,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         int
                 progressColor =
-                AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight,
-                        +0.2f);
+                AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
         progressDraw.updateColor(progressColor);
 
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
@@ -2060,9 +2047,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 try {
                     return super.saveState();
                 } catch (Exception e) {
-                    Toast
-                            .makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
-                            .show();
+                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
+                         .show();
                     LOG.e(e);
                     return null;
                 }
@@ -2073,9 +2059,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 try {
                     super.restoreState(arg0, arg1);
                 } catch (Exception e) {
-                    Toast
-                            .makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
-                            .show();
+                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
+                         .show();
                     LOG.e(e);
                 }
             }
@@ -2117,6 +2102,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             //AppState.get().isEditMode = true;
             ttsFixPosition();
         }
+        ViewBinder.hideShowRewardButton(this,showRewardVideo);
+
 
         updateBannnerTop();
         showPagesHelper();
@@ -2475,7 +2462,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onBackPressedImpl() {
         // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
-      
+
         if (dc != null && dc.floatingBookmark != null) {
             dc.floatingBookmark = null;
             onRefresh.run();
@@ -2584,8 +2571,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
 
             if (!TTSEngine.get().isPlaying()) {
-                Apps.accessibilityText(HorizontalViewActivity.this,
-                        getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
+                Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
                 dc.checkReadingTimer();
             }
 
