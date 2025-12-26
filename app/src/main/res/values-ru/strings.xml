@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Предупреждение: в этом документе есть несохраненные изменения</string>
    <string name="bold_headings">Жирные заголовки</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Посмотрите это короткое видео, чтобы отключить всю рекламу на 1 час.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Посмотрите это короткое видео, чтобы отключить всю рекламу на 2 часа.</string>
 </resources>

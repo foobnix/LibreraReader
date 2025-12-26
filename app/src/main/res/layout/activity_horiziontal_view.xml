@@ -333,7 +333,7 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:gravity="center"
-                android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_1_hour"
+                android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
                 android:textColor="@color/white_alpha"/>
 
 

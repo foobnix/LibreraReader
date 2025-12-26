@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Uyarı: bu belgede kaydedilmemiş değişiklikler var</string>
    <string name="bold_headings">Kalın başlıklar</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Bu kısa videoyu izleyerek 1 saat boyunca tüm reklamları kapatabilirsiniz.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bu kısa videoyu izleyerek 2 saat boyunca tüm reklamları kapatabilirsiniz.</string>
 </resources>

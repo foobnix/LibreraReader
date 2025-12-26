@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Папярэджанне: у гэтым дакуменце ёсць незахаваныя змены</string>
    <string name="bold_headings">Тлустыя загалоўкі</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Паглядзіце гэта кароткае відэа, каб адключыць усю рэкламу на 1 гадзіну</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Паглядзіце гэта кароткае відэа, каб адключыць усю рэкламу на 2 гадзіны</string>
 </resources>

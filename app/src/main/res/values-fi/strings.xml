@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Varoitus: tässä asiakirjassa on tallentamattomia muutoksia</string>
    <string name="bold_headings">Lihavoidut otsikot</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset 1 tunniksi</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset kahdeksi tunniksi</string>
 </resources>

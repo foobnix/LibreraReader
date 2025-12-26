@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">אזהרה: במסמך זה יש שינויים שלא נשמרו</string>
    <string name="bold_headings">כותרות מודגשות</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">צפו בסרטון הקצר הזה כדי לכבות את כל הפרסומות למשך שעה</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">צפו בסרטון הקצר הזה כדי לכבות את כל הפרסומות למשך שעתיים</string>
 </resources>

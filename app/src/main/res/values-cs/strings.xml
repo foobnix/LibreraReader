@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Varování: tento dokument obsahuje neuložené změny</string>
    <string name="bold_headings">Tučné nadpisy</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Podívejte se na toto krátké video a vypněte všechny reklamy na 1 hodinu</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Podívejte se na toto krátké video a vypněte všechny reklamy na 2 hodiny</string>
 </resources>

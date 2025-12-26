@@ -670,4 +670,5 @@
    <string name="warning_this_document_has_unsaved_changes">Waarschuwing: dit document bevat niet-opgeslagen wijzigingen</string>
    <string name="bold_headings">Vetgedrukte koppen</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Bekijk dit korte filmpje om alle advertenties 1 uur lang uit te schakelen.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bekijk dit korte filmpje om alle advertenties 2 uur lang uit te schakelen.</string>
 </resources>
