@@ -542,7 +542,7 @@ public class AppState {
     @IgnoreHashCode public boolean isCropPDF = false;
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
     public long installationDate = System.currentTimeMillis();
-    @IgnoreHashCode public boolean isShowLongBackDialog = true;
+    @IgnoreHashCode public boolean isShowLongBackDialog = false;
     @IgnoreHashCode public boolean isZoomInOutWithVolueKeys = false;
     @IgnoreHashCode public boolean isZoomInOutWithLock = true;
     public String customConfigColors = "";

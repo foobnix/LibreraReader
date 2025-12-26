@@ -132,13 +132,18 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        if (handler != null) {
-            handler.postDelayed(() -> {
-                doubleBackToExitPressedOnce = false;
-                LOG.d("onBackPressed", "timer", doubleBackToExitPressedOnce);
-                onBackPressedImpl();
-            }, 500);
 
+        if(this instanceof MainTabs2) {
+            if (handler != null) {
+                handler.postDelayed(() -> {
+                    doubleBackToExitPressedOnce = false;
+                    LOG.d("onBackPressed", "timer", doubleBackToExitPressedOnce);
+                    onBackPressedImpl();
+                }, 500);
+
+            }
+        }else{
+            onBackPressedImpl();
         }
     }
 

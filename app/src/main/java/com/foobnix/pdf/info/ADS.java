@@ -34,7 +34,7 @@ public class ADS {
     InterstitialAd mInterstitialAd;
 
     AdView adView;
-    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
+    public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
     public static void hideAdsTemp(Activity a) {
     }
@@ -105,7 +105,7 @@ public class ADS {
     public void showBanner(final Activity a) {
         try {
             LOG.d("postDelayed activateAdmobSmartBanner");
-            final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
+            final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
             }
@@ -131,20 +131,29 @@ public class ADS {
                 @Override
                 public void onAdFailedToLoad(LoadAdError arg0) {
                     LOG.d("ads-LoadAdError ads", arg0);
-                    frame.removeAllViews();
-                    frame.setVisibility(View.GONE);
+                    try {
+                        frame.removeAllViews();
+                        frame.setVisibility(View.GONE);
+                    }catch (Exception e){
+                        LOG.e(e);
+                    }
                 }
 
                 @Override
                 public void onAdLoaded() {
-                    frame.setVisibility(View.VISIBLE);
+                    try {
+                        frame.setVisibility(View.VISIBLE);
+                    }catch (Exception e){
+                        LOG.e(e);
+                    }
                 }
             });
 
-            LinearLayout.LayoutParams
-                    params =
-                    new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
+
             adView.setLayoutParams(params);
 
             frame.addView(adView);
