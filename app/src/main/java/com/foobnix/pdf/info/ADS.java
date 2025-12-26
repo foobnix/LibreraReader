@@ -51,17 +51,17 @@ public class ADS {
     }
 
     public void activateInterstitial(Activity a) {
-        LOG.d("ADS1 activateInterstitial");
+        LOG.d("ADS1 Interstitial try show");
         handler = new Handler(Looper.getMainLooper());
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 try {
                     if (a == null || a.isDestroyed() || a.isFinishing()) {
-                        LOG.d("ADS1 run destroyed");
+                        LOG.d("ADS1 Interstitial destroyed");
                         return;
                     }
-                    LOG.d("ADS1 loading...");
+                    LOG.d("ADS1 Interstitial loading...");
                     try {
                         if (Apps.isNight(a)) {
                             MobileAds.setAppVolume(0.1f);
@@ -78,7 +78,7 @@ public class ADS {
                                 @NonNull
                                 LoadAdError loadAdError) {
                             super.onAdFailedToLoad(loadAdError);
-                            LOG.d("ADS1","LoadAdError", loadAdError);
+                            LOG.d("ADS1","Interstitial LoadAdError", loadAdError);
                             mInterstitialAd = null;
                         }
 
@@ -87,7 +87,7 @@ public class ADS {
                                 @NonNull
                                 InterstitialAd interstitialAd) {
                             super.onAdLoaded(interstitialAd);
-                            LOG.d("ADS1 loaded :)");
+                            LOG.d("ADS1 Interstitial loaded");
                             mInterstitialAd = interstitialAd;
 
                         }
@@ -105,7 +105,7 @@ public class ADS {
 
     public void showBanner(final Activity a) {
         try {
-            LOG.d("ADS1 showBanner");
+            LOG.d("ADS1 Banner try show");
             final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
@@ -117,13 +117,13 @@ public class ADS {
                 adView.destroy();
                 adView = null;
             }
+            LOG.d("ADS1 Banner show");
             adView = new AdView(a);
             AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
             //AdSize size = AdSize.BANNER;
             adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
-            LOG.d("ads-metaData", metaData);
             adView.setAdUnitId(metaData);
 
             adView.loadAd(getAdRequest(a));
@@ -131,7 +131,7 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(LoadAdError arg0) {
-                    LOG.d("ADS1 adsBanner-LoadAdError ads", arg0);
+                    LOG.d("ADS1 Banner LoadAdError", arg0);
                     try {
                         frame.removeAllViews();
                         frame.setVisibility(View.GONE);
@@ -179,8 +179,9 @@ public class ADS {
     }
 
     public void onDestroyBanner() {
-        LOG.d("ADS1 Banner destroy");
+
         if (adView != null) {
+            LOG.d("ADS1 Banner destroy");
             adView.destroy();
             adView = null;
         }
@@ -217,6 +218,7 @@ public class ADS {
     }
 
     public static AdRequest getAdRequest(Context a) {
-        return new AdRequest.Builder().build();//
+        return new AdRequest.Builder()
+                .build();//
     }
 }

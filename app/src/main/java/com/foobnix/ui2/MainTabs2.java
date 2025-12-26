@@ -264,7 +264,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
-
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
 
@@ -784,6 +783,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         GFile.timeout = 0;
         GFile.runSyncService(this);
 
@@ -813,6 +813,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
+
         String language = newConfig.locale.getLanguage();
         float fontScale = newConfig.fontScale;
 
@@ -824,7 +825,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             pager.setCurrentItem(currentItem);
             IMG.clearMemoryCache();
         }
-        //activateAds();
+        showBannerAds();
     }
 
     @Override

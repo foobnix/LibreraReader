@@ -59,7 +59,10 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        showBannerAds();
 
+    }
+    public void showBannerAds(){
         if (AppsConfig.isShowAdsInApp(this)) {
             ads.showBanner(this);
 
