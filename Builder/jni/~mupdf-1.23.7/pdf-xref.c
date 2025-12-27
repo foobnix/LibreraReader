@@ -1833,7 +1833,7 @@ pdf_init_document(fz_context *ctx, pdf_document *doc)
 		fz_rethrow_if(ctx, FZ_ERROR_TRYLATER);
 		doc->file_reading_linearly = 0;
 		fz_warn(ctx, "trying to repair broken xref");
-		repaired = 0;
+		repaired = 1;
 	}
 
 	fz_try(ctx)
@@ -1857,7 +1857,7 @@ pdf_init_document(fz_context *ctx, pdf_document *doc)
 
 		if (repaired)
 		{
-			pdf_repair_trailer(ctx, doc);
+			//pdf_repair_trailer(ctx, doc);
 		}
 	}
 	fz_catch(ctx)

@@ -106,6 +106,10 @@ cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
 cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
+cp -rpv $SRC/j2k.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/j2k.c
+
+#/Users/ivanivanenko/git/LibreraReader/Builder/mupdf-1.23.7/thirdparty/openjpeg/src/lib/openjp2/j2k.c
+
 cd $MUPDF_JAVA
 
 NDK_VERSION="29.0.14206865"
