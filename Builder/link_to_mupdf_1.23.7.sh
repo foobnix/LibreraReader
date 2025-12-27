@@ -78,6 +78,7 @@ cp -rpv $DEST/fitz/unzip.c        $SRC/unzip.c
 cp -rpv $DEST/fitz/directory.c    $SRC/directory.c
 cp -rpv $DEST/fitz/xml.c          $SRC/xml.c
 cp -rpv $DEST/fitz/list-device.c  $SRC/list-device.c
+cp -rpv $DEST/fitz/pdf-xref.c  $SRC/pdf-xref.c
 
 cp -rpv $DEST/fitz/image-imp.h                              $SRC/image-imp.h
 cp -rpv $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h  $SRC/compressed-buffer.h
@@ -99,6 +100,7 @@ cp -rpv $SRC/unzip.c             $DEST/fitz/unzip.c
 cp -rpv $SRC/directory.c         $DEST/fitz/directory.c
 cp -rpv $SRC/xml.c               $DEST/fitz/xml.c
 cp -rpv $SRC/list-device.c       $DEST/fitz/list-device.c
+cp -rpv $SRC/pdf-xref.c          $DEST/pdf/pdf-xref.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
