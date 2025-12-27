@@ -1236,10 +1236,29 @@ JNICALL  Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_hasChangesInternal
                                                                             jclass clazz,
                                                                             jlong handle)
 {
+
+    if (handle == 0)
+        return JNI_FALSE;
+
     renderdocument_t *doc_t = (renderdocument_t *)(long)handle;
+
+    if (!doc_t || !doc_t->ctx || !doc_t->document)
+        return JNI_FALSE;
+
     fz_context *ctx = doc_t->ctx;
 
-    pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
+    pdf_document *idoc = NULL;
+
+    fz_try(ctx)
+    {
+        idoc = pdf_specifics(ctx, doc_t->document);
+    }
+    fz_catch(ctx)
+    {
+        return JNI_FALSE;
+    }
+    if (!idoc)
+        return JNI_FALSE;
 
     return (idoc && pdf_has_unsaved_changes(ctx, idoc)) ? JNI_TRUE : JNI_FALSE;
 }
