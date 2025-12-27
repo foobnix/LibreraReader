@@ -107,7 +107,9 @@ cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffe
 cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
 cp -rpv $SRC/j2k.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/j2k.c
+cp -rpv $SRC/pi.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c
 
+#/Users/ivanivanenko/git/LibreraReader/Builder/mupdf-1.23.7/thirdparty/openjpeg/src/lib/openjp2/pi.c
 #/Users/ivanivanenko/git/LibreraReader/Builder/mupdf-1.23.7/thirdparty/openjpeg/src/lib/openjp2/j2k.c
 
 cd $MUPDF_JAVA

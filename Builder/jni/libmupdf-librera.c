@@ -267,7 +267,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(
   }
   DEBUG("MuPdfDocument.nativeOpen(): storememory = %d", storememory);
 
-  doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_DEFAULT);
+  doc->ctx = fz_new_context(NULL, NULL,FZ_STORE_DEFAULT);
   //doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_DEFAULT);
   // doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_UNLIMITED);
 
