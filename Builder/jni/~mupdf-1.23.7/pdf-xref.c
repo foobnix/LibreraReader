@@ -1830,11 +1830,10 @@ pdf_init_document(fz_context *ctx, pdf_document *doc)
 	fz_catch(ctx)
 	{
 		pdf_drop_xref_sections(ctx, doc);
-		//fz_rethrow_if(ctx, FZ_ERROR_TRYLATER);
+		fz_rethrow_if(ctx, FZ_ERROR_TRYLATER);
 		doc->file_reading_linearly = 0;
 		fz_warn(ctx, "trying to repair broken xref");
-		repaired = 0;
-        fz_rethrow(ctx);
+		repaired = 1;
 	}
 
 	fz_try(ctx)
