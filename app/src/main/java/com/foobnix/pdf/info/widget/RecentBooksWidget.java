@@ -33,6 +33,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -45,8 +46,6 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class RecentBooksWidget extends AppWidgetProvider {
 
@@ -54,7 +53,6 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private static final String ACTION_MY = "my";
     private Context context;
 
-    private static final ExecutorService BG_EXECUTOR = Executors.newSingleThreadExecutor();
     // Flag to know if we are already loading data
     private volatile boolean isLoading = false;
 
@@ -145,7 +143,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
             LOG.d("RecentBooksWidget update skipped – load already running");
             return;
         }
-        BG_EXECUTOR.execute(() -> loadAndUpdateWidget(remoteViews, appWidgetManager, appWidgetId));
+        AppsConfig.executorService.execute(() -> loadAndUpdateWidget(remoteViews, appWidgetManager, appWidgetId));
     }
 
     private void loadAndUpdateWidget(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {

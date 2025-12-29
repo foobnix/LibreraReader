@@ -240,19 +240,19 @@ public class ImageExtractor {
     public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
             LOG.d("Cover-PDF-navite");
-            PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY));
-            PdfRenderer.Page page = renderer.openPage(0);
+            try (PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY))) {
+                try(PdfRenderer.Page page = renderer.openPage(0)) {
 
-            final float k = (float) page.getHeight() / page.getWidth();
-            int width = pageUrl.getWidth();
-            int height = (int) (width * k);
+                    final float k = (float) page.getHeight() / page.getWidth();
+                    int width = pageUrl.getWidth();
+                    int height = (int) (width * k);
 
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-            page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                    page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
-            page.close();
-            renderer.close();
-            return bitmap;
+                    return bitmap;
+                }
+            }
         } catch (Exception e) {
             LOG.e(e);
             return null;
@@ -712,7 +712,7 @@ public class ImageExtractor {
                     }
 
                     int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
-                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, Bitmap.Config.RGB_565);
+                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, android.graphics.Bitmap.Config.RGB_565);
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 

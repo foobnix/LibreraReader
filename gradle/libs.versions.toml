@@ -4,10 +4,9 @@ appcompat = "1.7.1"
 billing = "8.3.0"
 cardview = "1.0.0"
 commonsLoggingApi = "1.1"
-compiler = "5.0.5"
 eventbus = "3.3.1"
 firebaseBom = "34.7.0"
-glide = "5.0.5"
+
 googleApiServicesDrive = "v3-rev20220815-2.0.0"
 googleApiClientAndroid = "2.8.1"
 googleHttpClientGson = "2.0.3"
@@ -61,11 +60,12 @@ appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat"
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
 cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 commons-logging-api = { module = "commons-logging:commons-logging-api", version.ref = "commonsLoggingApi" }
-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.16.0" }#not update
+glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version.ref = "googleApiClientAndroid" }
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version.ref = "googleHttpClientGson" }

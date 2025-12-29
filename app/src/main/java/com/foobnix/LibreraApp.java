@@ -33,7 +33,8 @@ public class LibreraApp extends MultiDexApplication {
 
     @Override
     public void onCreate() {
-        if (false) {
+
+        if (true) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
                     .detectDiskWrites()

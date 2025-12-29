@@ -26,6 +26,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -45,7 +46,6 @@ public class TTSWidget extends AppWidgetProvider {
     String textUpdate;
     String bookPath;
 
-    private static final ExecutorService BG_EXECUTOR = Executors.newSingleThreadExecutor();
     private volatile boolean isLoading = false;
     Handler handler = new Handler(Looper.getMainLooper());
 
@@ -55,7 +55,7 @@ public class TTSWidget extends AppWidgetProvider {
             LOG.d("TTSWidget update skipped – load already running");
             return;
         }
-        BG_EXECUTOR.execute(() -> onUpdateAsync(context, appWidgetManager, appWidgetIds));
+        AppsConfig.executorService.execute(() -> onUpdateAsync(context, appWidgetManager, appWidgetIds));
     }
 
     public synchronized void onUpdateAsync(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

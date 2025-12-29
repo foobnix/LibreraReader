@@ -28,7 +28,7 @@ public class AppsConfig {
     public static final boolean
             IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
-    public static final List<String> testDevices = Arrays.asList("-15B8E113746E8241A97A23D7F6FEAA2B");
+    public static final List<String> testDevices = Arrays.asList("15B8E113746E8241A97A23D7F6FEAA2B");
     //setTestDeviceIds
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;

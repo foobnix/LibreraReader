@@ -14,10 +14,14 @@ import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppBook;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -26,6 +30,8 @@ import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -41,10 +47,13 @@ import java.util.List;
 
 public class SelfTestWorker extends MessageWorker {
 
-    public SelfTestWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+    public SelfTestWorker(
+            @NonNull
+            Context context,
+            @NonNull
+            WorkerParameters workerParams) {
         super(context, workerParams);
     }
-
 
     @Override
     public void doWorkInner() throws IOException {
@@ -56,8 +65,9 @@ public class SelfTestWorker extends MessageWorker {
 
         BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
 
-
-        List<FileMeta> all = AppDB.get().searchBy("", AppDB.SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
+        List<FileMeta>
+                all =
+                AppDB.get().searchBy("", AppDB.SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
 
         int w = Dips.screenWidth();
         int h = Dips.screenHeight();
@@ -87,9 +97,7 @@ public class SelfTestWorker extends MessageWorker {
         writeLine(out, "[AppState]");
         writeLine(out, Objects.toJSONString(AppState.get()).replace(",", ",\n"));
 
-
         writeLine(out, "Books: " + count);
-
 
         sendNotifyAll();
 
@@ -97,7 +105,6 @@ public class SelfTestWorker extends MessageWorker {
             if (isStopped()) {
                 return;
             }
-
 
             n++;
 
@@ -139,7 +146,6 @@ public class SelfTestWorker extends MessageWorker {
                     }
                 }
 
-
                 for (int pageNumber = 0; pageNumber < 2 && pageNumber < pageCount; pageNumber++) {
                     CodecPage page = codecDocument.getPage(pageNumber);
                     RectF rectF = new RectF(0, 0, 1f, 1f);
@@ -157,10 +163,21 @@ public class SelfTestWorker extends MessageWorker {
                         page.recycle();
                     }
                 }
+                AppBook bs = SettingsManager.getBookSettings(item.getPath());
+                bs.currentPageChanged(pageCount - 1, pageCount + 1);
+                SharedBooks.save(bs);
 
                 if (!BookType.DJVU.is(item.getPath())) {
                     codecDocument.recycle();
                 }
+
+                AppData.get().addRecent(new SimpleMeta(item.getPath()));
+                AppData.get().addFavorite(new SimpleMeta(item.getPath()));
+                for (int i = 0; i < 5; i++) {
+                    BookmarksData.get().add(new AppBookmark(item.getPath(), i + " : " + item.getPath(), i / 10f));
+                }
+
+                //AppData.get().addFavorite(new SimpleMeta(item.getPath()));
             } catch (Exception e) {
                 LOG.e(e, "Error:" + item.getPath());
                 writeLine(out, "Error");
@@ -177,7 +194,6 @@ public class SelfTestWorker extends MessageWorker {
         out.close();
 
         sendNotifyAll();
-
 
     }
 

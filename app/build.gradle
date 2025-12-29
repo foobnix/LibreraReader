@@ -327,7 +327,7 @@ dependencies {
 
     implementation(libs.zip4j)
     implementation(libs.glide)
-    annotationProcessor(libs.compiler)
+    annotationProcessor(libs.glide.compiler)
 
     implementation(libs.commons.logging.api)
     implementation(libs.guava)

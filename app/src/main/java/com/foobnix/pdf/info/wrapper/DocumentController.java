@@ -557,6 +557,7 @@ public abstract class DocumentController {
         if (bs != null) {
             bs.updateFromAppState();
             bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
+
             handler2.removeCallbacks(saveCurrentPageRunnable);
             handler2.postDelayed(saveCurrentPageRunnable, 1000);
         }

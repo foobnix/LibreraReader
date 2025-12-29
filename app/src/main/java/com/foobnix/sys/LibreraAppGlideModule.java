@@ -70,6 +70,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                                 if (bitmap == null) {
                                     LOG.d("Bitmap-test-1-cancel", bitmap, s);
                                     callback.onDataReady(ImageExtractor.messageFileBitmap("#error null", ""));
+                                    stream.close();
                                     return;
                                 }
                             }
@@ -77,6 +78,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                             if (isCanced) {
                                 LOG.d("Bitmap-test-1-cancel", bitmap, s);
                                 bitmap.recycle();
+                                stream.close();
                                 return;
                             }
 
@@ -87,11 +89,13 @@ public class LibreraAppGlideModule extends AppGlideModule {
                             cache = bitmap;
                         } else {
                             callback.onDataReady(BitmapFactory.decodeStream(stream));
+                            stream.close();
                         }
                         LOG.d("LibreraAppGlideModule onDataReady", stream);
 
                     } catch (Exception e) {
                         callback.onDataReady(ImageExtractor.messageFileBitmap("#error", ""));
+
                         LOG.e(e);
                     }
 

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyProgressDialog;
 
@@ -14,7 +15,6 @@ import java.util.concurrent.Executors;
 
 public abstract class ProgressTask<T> {
     private ProgressDialog dialog;
-    private final Executor executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private volatile boolean cancelled = false;
 
@@ -50,7 +50,7 @@ public abstract class ProgressTask<T> {
             dialog = MyProgressDialog.show(context, context.getString(R.string.please_wait));
         }
 
-        executor.execute(() -> {
+        AppsConfig.executorService.execute(() -> {
             try {
                 final T result = doInBackground(params);
 

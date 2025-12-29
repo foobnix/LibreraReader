@@ -19,9 +19,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class IO {
-
+    static ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     static HashMap<Integer, Object> locks = new HashMap<>();
 
@@ -36,8 +38,10 @@ public class IO {
         return l;
     }
 
+
     public static void writeObj(File file, Object o) {
-        new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
+        //new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
+        executorService.execute(() -> writeObjAsync(file, o));
     }
 
     public static void writeObjAsync(File file, Object o) {
