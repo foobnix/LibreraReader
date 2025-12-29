@@ -34,17 +34,19 @@ public class LibreraApp extends MultiDexApplication {
     @Override
     public void onCreate() {
 
-        if (true) {
+        if (AppsConfig.IS_EMULATOR) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
                     .detectDiskWrites()
                     .detectNetwork()
+                    .detectAll()
                     .penaltyLog()
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
                     .penaltyLog()
+                              .detectAll()
                     .penaltyDeath()
                     .build());
         }

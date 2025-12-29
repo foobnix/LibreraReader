@@ -740,43 +740,46 @@ public class Fb2Extractor extends BaseExtractor {
         byte[] decode = null;
         try {
             XmlPullParser xpp = XmlParser.buildPullParser();
-            final FileInputStream inputStream = new FileInputStream(path);
-            xpp.setInput(inputStream, "UTF-8");
+            try(final FileInputStream inputStream = new FileInputStream(path)) {
+                xpp.setInput(inputStream, "UTF-8");
 
-            int eventType = xpp.getEventType();
-            String imageID = null;
-            String imageCover = null;
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                if (eventType == XmlPullParser.START_TAG) {
+                int eventType = xpp.getEventType();
+                String imageID = null;
+                String imageCover = null;
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (eventType == XmlPullParser.START_TAG) {
 
-                    if (xpp.getName().equals("image")) {
-                        if (imageID == null) {
-                            imageID = xpp.getAttributeValue(0);
-                            if (TxtUtils.isNotEmpty(imageID)) {
-                                imageID = imageID.replace("#", "");
+                        if (xpp.getName().equals("image")) {
+                            if (imageID == null) {
+                                imageID = xpp.getAttributeValue(0);
+                                if (TxtUtils.isNotEmpty(imageID)) {
+                                    imageID = imageID.replace("#", "");
+                                }
+                            }
+                            if (imageCover == null) {
+                                imageCover = xpp.getAttributeValue(0);
+                                if (TxtUtils.isNotEmpty(imageCover) && imageCover.toLowerCase(Locale.US)
+                                                                                 .contains("cover")) {
+                                    imageCover = imageID = imageCover.replace("#", "");
+                                } else {
+                                    imageCover = null;
+                                }
                             }
                         }
-                        if (imageCover == null) {
-                            imageCover = xpp.getAttributeValue(0);
-                            if (TxtUtils.isNotEmpty(imageCover) && imageCover.toLowerCase(Locale.US).contains("cover")) {
-                                imageCover = imageID = imageCover.replace("#", "");
-                            } else {
-                                imageCover = null;
-                            }
-                        }
-                    }
 
-                    if (imageID != null && xpp.getName().equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
-                        String text = xpp.nextText();
-                        if (text != null) {
-                            decode = Base64.decode(text, Base64.DEFAULT);
+                        if (imageID != null && xpp.getName()
+                                                  .equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
+                            String text = xpp.nextText();
+                            if (text != null) {
+                                decode = Base64.decode(text, Base64.DEFAULT);
+                            }
+                            break;
                         }
-                        break;
                     }
+                    eventType = xpp.next();
                 }
-                eventType = xpp.next();
             }
-            inputStream.close();
+
         } catch (Exception e) {
             LOG.e(e, path);
         }
