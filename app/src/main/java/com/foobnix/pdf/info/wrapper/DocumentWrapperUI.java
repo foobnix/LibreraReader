@@ -99,7 +99,6 @@ public class DocumentWrapperUI {
     final Handler handler = new Handler(Looper.getMainLooper());
     final Handler handlerTimer = new Handler(Looper.getMainLooper());
 
-
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
 
         @Override
@@ -191,46 +190,55 @@ public class DocumentWrapperUI {
     };
     AdsFragmentActivity a;
     String bookTitle;
-    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek
-            , currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
+    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek,
+            currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
             MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
 
-            p.getMenu().add(R.string.one_page).setIcon(R.drawable.my_glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            p.getMenu()
+             .add(R.string.one_page)
+             .setIcon(R.drawable.my_glyphicons_two_page_one)
+             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    closeDialogs();
-                    onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
-                    AppSP.get().isCut = !false;
-                    onCut.onClick(null);
-                    hideShowEditIcon();
-                    return false;
-                }
-            });
-            p.getMenu().add(R.string.half_page).setIcon(R.drawable.my_glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                 @Override
+                 public boolean onMenuItemClick(MenuItem item) {
+                     closeDialogs();
+                     onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
+                     AppSP.get().isCut = !false;
+                     onCut.onClick(null);
+                     hideShowEditIcon();
+                     return false;
+                 }
+             });
+            p.getMenu()
+             .add(R.string.half_page)
+             .setIcon(R.drawable.my_glyphicons_page_split)
+             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    closeDialogs();
-                    onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-                    AppSP.get().isCut = !true;
-                    onCut.onClick(null);
-                    hideShowEditIcon();
-                    return false;
-                }
-            });
+                 @Override
+                 public boolean onMenuItemClick(MenuItem item) {
+                     closeDialogs();
+                     onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
+                     AppSP.get().isCut = !true;
+                     onCut.onClick(null);
+                     hideShowEditIcon();
+                     return false;
+                 }
+             });
             p.show();
             Keyboards.hideNavigation(dc.getActivity());
 
         }
     };
-    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen, onTextReplacement;
-    ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
-    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
+    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon,
+            batteryIcon, fullscreen, onTextReplacement;
+    ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2,
+            goToPage1, goToPage1Top;
+    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus,
+            zoomMinus;
     public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
 
         @Override
@@ -803,7 +811,6 @@ public class DocumentWrapperUI {
             pagesBookmark.setVisibility(View.VISIBLE);
         }
 
-
         dc.saveCurrentPage();
         //SharedBooks.save(bs);
 
@@ -873,7 +880,6 @@ public class DocumentWrapperUI {
             bookName.setText("");
             bookName.setVisibility(View.GONE);
         }
-
 
     }
 
@@ -1002,7 +1008,8 @@ public class DocumentWrapperUI {
 
                 float x1 = anchorY.getX();
                 float y1 = anchorY.getY();
-                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, dc.getCurentPage(), x, y, x1, y1));
+                EventBus.getDefault()
+                        .post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, dc.getCurentPage(), x, y, x1, y1));
             }
         };
         final Runnable onMoveAction = new Runnable() {
@@ -1086,7 +1093,6 @@ public class DocumentWrapperUI {
         toolBarButton = (ImageView) a.findViewById(R.id.imageToolbar);
         toolBarButton.setOnClickListener(onHideShowToolBar);
 
-
         // nextPage.setOnClickListener(onNextPage);
         // prevPage.setOnClickListener(onPrevPage);
 
@@ -1140,7 +1146,6 @@ public class DocumentWrapperUI {
 
         onTextReplacement = a.findViewById(R.id.onTextReplacement);
         onTextReplacement.setOnClickListener(v -> DragingDialogs.dialogTextReplaces(anchor, dc));
-
 
         onCloseBook = a.findViewById(R.id.close);
         Apps.accessibilityButtonSize(onCloseBook);
@@ -1205,8 +1210,6 @@ public class DocumentWrapperUI {
         bookmarks.setOnLongClickListener(onBookmarksLong);
 
         showRewardVideo = ViewBinder.initRewardButton(a, R.id.showRewardVideo);
-
-
 
         toastBrightnessText = (TextView) a.findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
@@ -1393,7 +1396,6 @@ public class DocumentWrapperUI {
 
         int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
 
-
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
         nextScreenType.getLayoutParams().height = nextScreenType.getLayoutParams().width = iconSize;
@@ -1425,25 +1427,19 @@ public class DocumentWrapperUI {
     public void tintSpeed() {
         try {
             int tintColor = MagicHelper.getTintColor();
-            speedSeekBar.getProgressDrawable().mutate().setColorFilter(tintColor,
-                    PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getProgressDrawable().mutate().setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
 
-            speedSeekBar.getThumb().setColorFilter(tintColor,
-                    PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getThumb().setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
 
             int color = MagicHelper.getTextOrIconColor();
 
-            seekBar.getProgressDrawable().mutate().setColorFilter(color,
-                    PorterDuff.Mode.SRC_IN);
+            seekBar.getProgressDrawable().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
-            seekBar.getThumb().setColorFilter(color,
-                    PorterDuff.Mode.SRC_IN);
-
+            seekBar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
             //line1.getBackground().
             TintUtil.setStrokeColorWithDash(line1, tintColor);
             TintUtil.setStrokeColorWithDash(line2, tintColor);
-
 
         } catch (Exception e) {
             LOG.e(e);
@@ -1677,11 +1673,32 @@ public class DocumentWrapperUI {
     };
 
     public void hideShowAnnotationLine() {
-        boolean hasNotSave = getController().hasPDFAnnotations();
-        if (hasNotSave) {
-            onSaveAnnotation.setVisibility(View.VISIBLE);
-        } else {
-            onSaveAnnotation.setVisibility(View.GONE);
+        handler.removeCallbacks(checkPDFAnotations);
+        handler.postDelayed(checkPDFAnotations, 500);
+    }
+
+    Runnable checkPDFAnotations = new Runnable() {
+        @Override
+        public void run() {
+            hideShowAnnotationLineInt();
+        }
+    };
+
+    private void hideShowAnnotationLineInt() {
+
+        try {
+            if (!dc.getCurrentBook().getPath().endsWith(".pdf")) {
+                LOG.d("not-PDF");
+                return;
+            }
+            boolean hasNotSave = getController().hasPDFAnnotations();
+            if (hasNotSave) {
+                onSaveAnnotation.setVisibility(View.VISIBLE);
+            } else {
+                onSaveAnnotation.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
@@ -1696,7 +1713,6 @@ public class DocumentWrapperUI {
             DocumentController.turnOnButtons(a);
             show();
 
-
         } else {
             DocumentController.turnOffButtons(a);
 
@@ -1704,9 +1720,8 @@ public class DocumentWrapperUI {
 
         }
 
-
         initToolBarPlusMinus();
-        ViewBinder.hideShowRewardButton(a,showRewardVideo);
+        ViewBinder.hideShowRewardButton(a, showRewardVideo);
 
         if (AppState.get().isAutoScroll) {
             autoScroll.setImageResource(R.drawable.glyphicons_174_pause);
@@ -1739,9 +1754,7 @@ public class DocumentWrapperUI {
         DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().fullScreenMode);
         showPagesHelper();
 
-
         //try eink fix
-
 
     }
 
@@ -1785,7 +1798,6 @@ public class DocumentWrapperUI {
         // adFrame.setTag(null);
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
-
 
         // if (AppState.get().isAutoScroll &&
         // AppState.get().isEditMode) {
@@ -2008,7 +2020,6 @@ public class DocumentWrapperUI {
 
             crop.setVisibility(AppSP.get().isCut ? View.GONE : View.VISIBLE);
 
-
             dc.onCrop();// crop false
             dc.updateRendering();
             dc.alignDocument();
@@ -2060,7 +2071,6 @@ public class DocumentWrapperUI {
 
                     DialogsPlaylist.dispalyPlaylist(a, dc);
                     HypenPanelHelper.init(parentParent, dc);
-
 
                     showPagesHelper();
 
@@ -2134,7 +2144,6 @@ public class DocumentWrapperUI {
         }
     };
 
-
     View.OnClickListener onItemMenu = new View.OnClickListener() {
 
         @Override
@@ -2162,7 +2171,6 @@ public class DocumentWrapperUI {
         }
     };
 
-
     View.OnClickListener onLirbiLogoClick = new View.OnClickListener() {
 
         @Override
@@ -2170,7 +2178,6 @@ public class DocumentWrapperUI {
             doShowHideWrapperControlls();
         }
     };
-
 
     View.OnClickListener onGoToPAge1 = new View.OnClickListener() {
 
@@ -2180,7 +2187,6 @@ public class DocumentWrapperUI {
             updateUI();
         }
     };
-
 
     public View.OnClickListener onNormalMode = new View.OnClickListener() {
 
@@ -2192,7 +2198,6 @@ public class DocumentWrapperUI {
         }
     };
 
-
     // public void changeAutoScrollButton() {
     // if (AppState.get().isAutoScroll) {
     // autoScroll.setImageResource(android.R.drawable.ic_media_pause);
@@ -2203,6 +2208,5 @@ public class DocumentWrapperUI {
     // }
     //
     // }
-
 
 }

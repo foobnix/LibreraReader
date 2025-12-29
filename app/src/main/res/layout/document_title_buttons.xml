@@ -162,7 +162,9 @@
         android:id="@+id/showRewardVideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:padding="3dp"
+        android:background="@drawable/bg_clickable_white"
+        android:layout_margin="1dp"
         android:gravity="center"
         android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
         android:textColor="@color/white_alpha"/>
