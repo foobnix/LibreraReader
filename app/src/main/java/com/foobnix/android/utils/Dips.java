@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.view.Display;
@@ -55,7 +56,7 @@ public class Dips {
 
     public static void init(Context context) {
         Dips.context = context;
-        wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        //wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
 
     public static int spToPx(final int dp) {
@@ -72,22 +73,15 @@ public class Dips {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static int screenWidth() {
-        if (Build.VERSION.SDK_INT >= 17) {
-            try {
-                Point size = new Point();
-                wm.getDefaultDisplay().getRealSize(size);
-                return size.x;
-            } catch (Exception e) {
-                return Resources.getSystem().getDisplayMetrics().widthPixels;
-            }
-        } else {
-            return Resources.getSystem().getDisplayMetrics().widthPixels;
-        }
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
     public static float getRefreshRate() {
         try {
-            final Display display = wm.getDefaultDisplay();
+            DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+
+            Display display = dm.getDisplay(Display.DEFAULT_DISPLAY);
+
             float refreshRate = display.getRefreshRate();
             LOG.d("RefreshRate", refreshRate);
             return refreshRate;
@@ -99,53 +93,30 @@ public class Dips {
 
     public static boolean isDarkThemeOn() {
         try {
-            return (Resources.getSystem().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+            return (Resources.getSystem()
+                             .getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
         } catch (Exception e) {
             return false;
         }
 
     }
 
-
     public static boolean isEInk() {
-        
+
         boolean isEink = getRefreshRate() < 30.0;
         if (isEink) {
             return true;
         }
 
         String brand = Build.BRAND.toLowerCase(Locale.US);
-        if (
-                brand.contains("unknown") ||
-                        brand.contains("icarus") ||
-                        brand.contains("nook") ||
-                        brand.contains("inkbook") ||
-                        brand.contains("boyue") ||
-                        brand.contains("boeye") ||
-                        brand.contains("energysistem") ||
-                        brand.contains("crema") ||
-                        brand.contains("energy") ||
-                        brand.contains("onyx") ||
-                        brand.contains("tolino") ||
-                        brand.contains("likebook")) {
+        if (brand.contains("unknown") || brand.contains("icarus") || brand.contains("nook") || brand.contains("inkbook") || brand.contains("boyue") || brand.contains("boeye") || brand.contains("energysistem") || brand.contains("crema") || brand.contains("energy") || brand.contains("onyx") || brand.contains("tolino") || brand.contains("likebook")) {
             return true;
         }
         return false;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static int screenHeight() {
-        if (Build.VERSION.SDK_INT >= 17) {
-            try {
-                Point size = new Point();
-                wm.getDefaultDisplay().getRealSize(size);
-                return size.y;
-            } catch (Exception e) {
-                return Resources.getSystem().getDisplayMetrics().heightPixels;
-            }
-        } else {
-            return Resources.getSystem().getDisplayMetrics().heightPixels;
-        }
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
     public static int screenWidthDP() {
