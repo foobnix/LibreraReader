@@ -80,12 +80,17 @@ public class ADS {
         }
     }
 
+    public boolean isRewardsLoaded() {
+        return rewardedAd != null;
+    }
+
     public void loadRewardedAd(Activity a) {
         if (isRewardActivated()) {
             return;
         }
         LOG.d("ADS1 RewardedAd load");
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
+        rewardedAd = null;
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
             @Override
             public void onAdLoaded(

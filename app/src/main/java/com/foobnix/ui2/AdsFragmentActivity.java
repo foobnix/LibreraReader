@@ -84,6 +84,9 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
                 ads.showRewardedAd(this,listener);
         }
     }
+    public boolean isRewardLoaded(){
+        return ads.isRewardsLoaded();
+    }
     public boolean isRewardActivated(){
         if(!AppsConfig.isShowAdsInApp(this)){
             return true;

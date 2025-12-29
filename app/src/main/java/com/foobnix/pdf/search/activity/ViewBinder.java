@@ -13,7 +13,7 @@ public class ViewBinder {
 
     public static void hideShowRewardButton(AdsFragmentActivity a, TextView button) {
         try {
-            if (a.isRewardActivated()) {
+            if (a.isRewardActivated() || !a.isRewardLoaded()) {
                 button.setVisibility(View.GONE);
             } else {
                 button.setVisibility(View.VISIBLE);
@@ -28,7 +28,7 @@ public class ViewBinder {
 
         try {
 
-            if (a.isRewardActivated()) {
+            if (a.isRewardActivated() || !a.isRewardLoaded()) {
                 showRewardVideo.setVisibility(View.GONE);
             } else {
                 showRewardVideo.setVisibility(View.VISIBLE);
