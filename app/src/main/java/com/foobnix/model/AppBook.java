@@ -98,7 +98,8 @@ public class AppBook implements CurrentPageListener {
 
     public PageIndex getCurrentPage(int pages) {
         if (pages <= 0) {
-            throw new RuntimeException("Error!!! " + pages);
+            //throw new RuntimeException("Error!!! " + pages);
+            return new PageIndex(0,0);
         }
         if (this.p > 2) {//old import support
             LOG.d("AppBook-getCurrentPage old", p, pages);
