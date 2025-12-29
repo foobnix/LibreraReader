@@ -13,6 +13,9 @@ public class ViewBinder {
 
     public static void hideShowRewardButton(AdsFragmentActivity a, TextView button) {
         try {
+            if (a == null || button == null) {
+                return;
+            }
             if (a.isRewardActivated() || !a.isRewardLoaded()) {
                 button.setVisibility(View.GONE);
             } else {

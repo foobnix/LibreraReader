@@ -66,14 +66,25 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        showBannerAds();
+        showBannerAds(onRewardLoaded);
 
     }
-    public void showBannerAds(){
+    Runnable onRewardLoaded = new Runnable() {
+        @Override
+        public void run() {
+            onRewardLoaded();
+        }
+    };
+
+    public void onRewardLoaded(){
+
+    }
+    public void showBannerAds(Runnable runnable){
         if (AppsConfig.isShowAdsInApp(this)) {
             ads.showBanner(this);
 
             if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+                ads.loadRewardedAd(this,runnable);
                 ads.activateInterstitial(this);
             }
         }

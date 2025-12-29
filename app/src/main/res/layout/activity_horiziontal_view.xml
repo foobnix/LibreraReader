@@ -327,6 +327,8 @@
                     android:src="@drawable/glyphicons_137_cogwheel" />
             </LinearLayout>
 
+
+
             <TextView
                 android:id="@+id/showRewardVideo"
                 android:layout_width="match_parent"

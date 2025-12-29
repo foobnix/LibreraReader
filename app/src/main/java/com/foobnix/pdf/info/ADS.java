@@ -84,19 +84,22 @@ public class ADS {
         return rewardedAd != null;
     }
 
-    public void loadRewardedAd(Activity a) {
+    public void loadRewardedAd(Activity a, Runnable onRewardLoaded) {
         if (isRewardActivated()) {
             return;
         }
-        LOG.d("ADS1 RewardedAd load");
+        LOG.d("ADS1 RewardedAd load started...");
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
-        rewardedAd = null;
+       // rewardedAd = null;
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
             @Override
             public void onAdLoaded(
                     @NonNull
                     RewardedAd rewardedAdLoaded) {
                 rewardedAd = rewardedAdLoaded;
+                if(onRewardLoaded!=null) {
+                    onRewardLoaded.run();
+                }
                 LOG.d("ADS1 RewardedAd loaded");
             }
 
@@ -105,7 +108,7 @@ public class ADS {
                     @NonNull
                     LoadAdError loadAdError) {
                 rewardedAd = null;
-                LOG.d("ADS1 RewardedAd failed");
+                LOG.d("ADS1 RewardedAd failed",loadAdError);
             }
         });
     }
@@ -116,7 +119,7 @@ public class ADS {
         }
 
         LOG.d("ADS1 Interstitial try show");
-        loadRewardedAd(a);
+
         handler = new Handler(Looper.getMainLooper());
         Runnable r = new Runnable() {
             @Override

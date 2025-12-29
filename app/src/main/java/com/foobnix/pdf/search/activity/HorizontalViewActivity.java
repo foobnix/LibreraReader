@@ -97,6 +97,7 @@ import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
+import com.foobnix.pdf.search.view.BookshelfView;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
@@ -2082,6 +2083,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager.setSaveEnabled(false);
         viewPager.setSaveFromParentEnabled(false);
 
+    }
+
+    @Override
+    public void onRewardLoaded() {
+        super.onRewardLoaded();
+        ViewBinder.hideShowRewardButton(this,showRewardVideo);
     }
 
     public void hideShow() {
