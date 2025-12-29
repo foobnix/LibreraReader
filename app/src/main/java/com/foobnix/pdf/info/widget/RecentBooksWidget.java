@@ -147,11 +147,13 @@ public class RecentBooksWidget extends AppWidgetProvider {
     }
 
     private void loadAndUpdateWidget(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
+
         isLoading = true;
 
         final List<FileMeta> recent = new ArrayList<>();
 
         try {
+            Thread.sleep(250);
             if (AppState.get().isStarsInWidget) {
                 recent.addAll(AppData.get().getAllFavoriteFiles(false));
             } else {
