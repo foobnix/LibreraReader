@@ -3762,6 +3762,13 @@ public class DragingDialogs {
 
                 //statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
                 //statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+                if(AppState.get().isDayNotInvert){
+                    statusBarColorDay.setVisibility(View.VISIBLE);
+                    statusBarColorNight.setVisibility(View.GONE);
+                }else{
+                    statusBarColorDay.setVisibility(View.GONE);
+                    statusBarColorNight.setVisibility(View.VISIBLE);
+                }
 
                 return inflate;
             }
