@@ -386,6 +386,11 @@ public class MagicHelper {
         return hsv;
     }
 
+    public static int alpha(int alpha,int colorInt ) {
+        Color color = Color.valueOf(colorInt);
+        return Color.argb(alpha,color.red(),color.green(),color.blue());
+    }
+
     private static float lightness(int color) {
         int R = Color.red(color);
         int G = Color.green(color);

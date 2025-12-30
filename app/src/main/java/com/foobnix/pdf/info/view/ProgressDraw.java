@@ -23,10 +23,11 @@ import java.util.List;
 
 public class ProgressDraw extends View {
 
-    private static final int ALPHA = 250;
+    private static final int ALPHA = 240;
     Paint paint = new Paint();
+
     {
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(Color.YELLOW);
         paint.setStyle(Style.FILL);
         paint.setStrokeWidth(Dips.dpToPx(1));
         paint.setAntiAlias(true);
@@ -34,8 +35,9 @@ public class ProgressDraw extends View {
     }
 
     Paint paint1 = new Paint();
+
     {
-        paint1.setColor(Color.DKGRAY);
+        paint1.setColor(Color.RED);
         paint1.setStyle(Style.FILL);
         paint1.setStrokeWidth(Dips.dpToPx(1));
         paint1.setAntiAlias(true);
@@ -46,7 +48,8 @@ public class ProgressDraw extends View {
     int pageCount;
     int progress;
     int color = Color.BLACK;
-    int bgColor = Color.BLACK;
+    int color1 = Color.BLACK;
+    //int bgColor = Color.BLACK;
 
     public ProgressDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -76,14 +79,17 @@ public class ProgressDraw extends View {
 
     public void updateColor(int color) {
         this.color = ColorUtils.setAlphaComponent(color, ALPHA);
+        this.color1 = MagicHelper.alpha(40, MagicHelper.getForegroundColor());
+
+        paint.setColor(color);
+        paint1.setColor(color1);
         //this.color = color;
         invalidate();
     }
-    public void setBgColor(int color){
-        bgColor = color;
+
+    public void setBgColor(int color) {
+        //bgColor =  MagicHelper.alpha(ALPHA,color);
     }
-
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -91,33 +97,32 @@ public class ProgressDraw extends View {
 
         canvas.save();
         try {
-            // int titleColor = AppState.get().isInvert ? Color.WHITE :
-            // Color.BLACK;
-            if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-
-            } else {
-                canvas.drawColor(bgColor);
-            }
-
             paint.setColor(color);
-            paint1.setColor(bgColor);
+            paint1.setColor(color1);
 
             float k = (float) getWidth() / pageCount;
             int h = getHeight();
             int currentChapter = 0;
 
+            int prevX = -1;
             if (AppState.get().isShowChaptersOnProgress && dividers != null && !dividers.isEmpty()) {
                 int first = dividers.get(0).level;
                 for (OutlineLinkWrapper item : dividers) {
                     int pos = item.targetPage - 1;
-                    if (pos < 0 || item.level >= (AppState.get().isShowSubChaptersOnProgress ? 3 : 1) + first || item.getTitleRaw().endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
+                    if (pos < 0 || item.level >= (AppState.get().isShowSubChaptersOnProgress ? 3 : 1) + first || item.getTitleRaw()
+                                                                                                                     .endsWith(Fb2Extractor.FOOTER_AFTRER_BOODY)) {
                         continue;
                     }
 
                     if (pos <= progress) {
                         currentChapter = pos;
                     } else {
-                        canvas.drawLine(pos * k, 0, pos * k, h, paint);
+                        int posX = (int) (pos * k);
+                        if (posX != prevX) {
+                            canvas.drawLine(posX, 0, posX, h, paint);
+                            LOG.d("Skip-line", posX);
+                            prevX = posX;
+                        }
                     }
                 }
             }
