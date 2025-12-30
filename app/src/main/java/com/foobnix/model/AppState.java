@@ -37,8 +37,8 @@ import java.util.concurrent.TimeUnit;
 public class AppState {
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
-    public static final String TEXT_COLOR_DAY = "#5b5b5b";
-    public static final String TEXT_COLOR_NIGHT = "#8e8e8e";
+    public static final String TEXT_COLOR_DAY = "#888888";
+    public static final String TEXT_COLOR_NIGHT = "#888888";
     public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(500);// SECONDS, MINUTES
     public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(30);
     // public static final long APP_CLOSE_AUTOMATIC =
@@ -337,8 +337,8 @@ public class AppState {
     public int uiTextColorUser = Color.MAGENTA;
     public int statusBarColorDay = Color.parseColor(TEXT_COLOR_DAY);
     public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
-    @IgnoreHashCode public String statusBarColorDays = "#5B5B5B, #000000";
-    @IgnoreHashCode public String statusBarColorNights = "#767676, #e2e2e2";
+    @IgnoreHashCode public String statusBarColorDays = "#888888, #000000";
+    @IgnoreHashCode public String statusBarColorNights = "#888888, #e2e2e2";
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;

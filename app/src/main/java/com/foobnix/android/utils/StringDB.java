@@ -31,7 +31,7 @@ public class StringDB {
 
     public static List<Integer> converToColor(String db, int last) {
         List<Integer> res = converToColor(db);
-        res.add(last);
+            res.add(last);
         return res;
 
     }

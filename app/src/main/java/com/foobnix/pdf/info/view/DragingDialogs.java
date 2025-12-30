@@ -3690,7 +3690,7 @@ public class DragingDialogs {
 
                 final CustomColorView statusBarColorDay = inflate.findViewById(R.id.statusBarColorDay);
                 statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays,
-                                                                           AppState.get().tintColor));
+                        MagicHelper.getTextOrIconColor()));
                 statusBarColorDay.init(AppState.get().statusBarColorDay);
                 statusBarColorDay.setOnColorChanged(new StringResponse() {
                     @Override public boolean onResultRecive(String string) {
@@ -3716,7 +3716,7 @@ public class DragingDialogs {
                                                        AppState.get().statusBarColorDays = result;
                                                        statusBarColorDay.withDefaultColors(StringDB.converToColor(
                                                                AppState.get().statusBarColorDays,
-                                                               AppState.get().tintColor));
+                                                               MagicHelper.getTextOrIconColor()));
                                                        return true;
                                                    }
                                                });
@@ -3726,7 +3726,7 @@ public class DragingDialogs {
 
                 final CustomColorView statusBarColorNight = inflate.findViewById(R.id.statusBarColorNight);
                 statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights,
-                                                                             AppState.get().tintColor));
+                        MagicHelper.getTextOrIconColor()));
                 statusBarColorNight.init(AppState.get().statusBarColorNight);
                 statusBarColorNight.setOnColorChanged(new StringResponse() {
                     @Override public boolean onResultRecive(String string) {
@@ -3752,7 +3752,7 @@ public class DragingDialogs {
                                                        AppState.get().statusBarColorNights = result;
                                                        statusBarColorNight.withDefaultColors(StringDB.converToColor(
                                                                AppState.get().statusBarColorNights,
-                                                               AppState.get().tintColor));
+                                                               MagicHelper.getTextOrIconColor()));
                                                        return true;
                                                    }
                                                });

@@ -1358,7 +1358,8 @@ public class DocumentWrapperUI {
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
-        int textColor = MagicHelper.getTextOrIconColor();
+        //int textColor = MagicHelper.getTextOrIconColor();
+        int textColor = TintUtil.getStatusBarColor();
 
         TintUtil.setTintText(bookName, textColor);
         TintUtil.setTintImageWithAlpha(textToSpeachTop, textColor);
