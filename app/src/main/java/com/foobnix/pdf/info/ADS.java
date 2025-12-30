@@ -41,7 +41,7 @@ public class ADS {
     RewardedAd rewardedAd;
 
     AdView adView;
-    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
+
 
     public static void hideAdsTemp(Activity a) {
     }
@@ -61,7 +61,7 @@ public class ADS {
 
     public boolean isRewardActivated() {
         try {
-            long oneHourMillis = TimeUnit.HOURS.toMillis(2);
+            long oneHourMillis = TimeUnit.HOURS.toMillis(AppsConfig.REWARS_HOURS);
             long delta = System.currentTimeMillis() - AppState.get().rewardShowedDate;
             boolean activated = delta < oneHourMillis;
             LOG.d("ADS1", "isRewardActivated", activated, new SimpleDateFormat("HH:mm:ss").format(AppState.get().rewardShowedDate + oneHourMillis));
@@ -168,7 +168,7 @@ public class ADS {
         };
 
         handler.removeCallbacksAndMessages(null);
-        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(FULL_SCREEN_TIMEOUT_SEC));
+        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(AppsConfig.FULL_SCREEN_TIMEOUT_SEC));
 
     }
 

@@ -211,7 +211,7 @@ public class EventDraw implements IEvent {
         textPaint.setTextSize(Dips.spToPx(16));
         textPaint.setColor(MagicHelper.getTextColor());
 
-        final String text = " " + (page.index.viewIndex + 1);
+        final String text = LibreraApp.context.getString(R.string.page) + " " + (page.index.viewIndex + 1);
         canvas.drawText(text, fixedPageBounds.centerX(), fixedPageBounds.centerY(), textPaint);
 
     }
