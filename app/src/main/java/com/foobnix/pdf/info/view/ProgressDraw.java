@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ProgressDraw extends View {
 
-    private static final int ALPHA = 220;
+    private static final int ALPHA = 245;
     Paint paint = new Paint();
 
     {
