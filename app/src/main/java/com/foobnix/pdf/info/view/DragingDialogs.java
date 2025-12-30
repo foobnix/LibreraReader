@@ -3760,8 +3760,8 @@ public class DragingDialogs {
                     }
                 });
 
-                statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
-                statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
+                //statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
+                //statusBarColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 return inflate;
             }

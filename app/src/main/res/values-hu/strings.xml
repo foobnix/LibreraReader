@@ -142,6 +142,8 @@
    <string name="line_height">Folyamatjelző sáv magassága</string>
    <string name="text_color_day">Betű színe, nappal</string>
    <string name="text_color_night">Betű színe, éjjel</string>
+   <string name="st_color_day">Szín (nappal)</string>
+   <string name="st_color_night">Szín (éjszaka)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Beállítások</string>
    <string name="language">Nyelv</string>

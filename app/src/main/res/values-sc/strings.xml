@@ -142,6 +142,8 @@
    <string name="line_height">Artària de sa barra de progressu</string>
    <string name="text_color_day">Colore de su caràtere (die)</string>
    <string name="text_color_night">Colore de su caràtere (note)</string>
+   <string name="st_color_day">Color (day)</string>
+   <string name="st_color_night">Color (night)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferèntzias</string>
    <string name="language">Limba</string>

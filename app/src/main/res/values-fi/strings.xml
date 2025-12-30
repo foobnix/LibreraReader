@@ -142,6 +142,8 @@
    <string name="line_height">Korkeus</string>
    <string name="text_color_day">Tekstin väri (päivä)</string>
    <string name="text_color_night">Tekstin väri (yö)</string>
+   <string name="st_color_day">Väri (päivä)</string>
+   <string name="st_color_night">Väri (yö)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Asetukset</string>
    <string name="language">Kieli</string>

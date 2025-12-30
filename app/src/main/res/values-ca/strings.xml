@@ -142,6 +142,8 @@
    <string name="line_height">Alçada de la barra de progrés</string>
    <string name="text_color_day">Color de la lletra, dia</string>
    <string name="text_color_night">Color de la lletra, nit</string>
+   <string name="st_color_day">Color (dia)</string>
+   <string name="st_color_night">Color (nit)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferències</string>
    <string name="language">Idioma</string>

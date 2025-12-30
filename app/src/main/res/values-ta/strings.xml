@@ -142,6 +142,8 @@
    <string name="line_height">முன்னேற்றப் பட்டியின் உயரம்</string>
    <string name="text_color_day">எழுத்துரு நிறம்,பகல் நிலை</string>
    <string name="text_color_night">எழுத்துரு நிறம்,இரவு நிலை</string>
+   <string name="st_color_day">நிறம் (நாள்)</string>
+   <string name="st_color_night">நிறம் (இரவு)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">விருப்பத்தேர்வுகள்</string>
    <string name="language">மொழி</string>

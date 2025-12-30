@@ -142,6 +142,8 @@
    <string name="line_height">Chiều cao giữa các dòng</string>
    <string name="text_color_day">Màu văn bản (ngày)</string>
    <string name="text_color_night">Màu văn bản (ban đêm)</string>
+   <string name="st_color_day">Màu sắc (ngày)</string>
+   <string name="st_color_night">Màu sắc (ban đêm)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Sở thích</string>
    <string name="language">Ngôn ngữ</string>

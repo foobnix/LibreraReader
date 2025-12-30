@@ -142,6 +142,8 @@
    <string name="line_height">Товщина лінії</string>
    <string name="text_color_day">Колір тексту (день)</string>
    <string name="text_color_night">Колір тексту (ніч)</string>
+   <string name="st_color_day">Колір (денний)</string>
+   <string name="st_color_night">Колір (ніч)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Налаштування</string>
    <string name="language">Мова</string>

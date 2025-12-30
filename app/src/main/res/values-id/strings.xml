@@ -142,6 +142,8 @@
    <string name="line_height">Tinggi garis</string>
    <string name="text_color_day">Warna teks (hari)</string>
    <string name="text_color_night">Warna teks (malam)</string>
+   <string name="st_color_day">Warna (siang)</string>
+   <string name="st_color_night">Warna (malam)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferensi</string>
    <string name="language">Bahasa</string>

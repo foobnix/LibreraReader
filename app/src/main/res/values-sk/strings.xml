@@ -142,6 +142,8 @@
    <string name="line_height">Výška riadka</string>
    <string name="text_color_day">Farba písma (deň)</string>
    <string name="text_color_night">Farba písma (noc)</string>
+   <string name="st_color_day">Farba (deň)</string>
+   <string name="st_color_night">Farba (noc)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Nastavenia</string>
    <string name="language">Jazyk</string>

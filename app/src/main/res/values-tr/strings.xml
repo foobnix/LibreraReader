@@ -142,6 +142,8 @@
    <string name="line_height">Durum çubuğu yüksekliği</string>
    <string name="text_color_day">Metin rengi, gündüz</string>
    <string name="text_color_night">Metin rengi, gece</string>
+   <string name="st_color_day">Renk (gün)</string>
+   <string name="st_color_night">Renk (gece)</string>
    <string name="___MULTIPLE___SECTIONS___">Çoklu Bölümler</string>
    <string name="preferences">Seçenekler</string>
    <string name="language">Dil</string>

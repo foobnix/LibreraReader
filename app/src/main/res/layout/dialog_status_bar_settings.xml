@@ -10,6 +10,20 @@
         android:orientation="vertical"
         android:padding="2dip" >
 
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/statusBarColorDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/st_color_day" />
+
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/statusBarColorNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/st_color_night" />
+
         <CheckBox
             android:id="@+id/isShowToolBar"
             android:layout_width="wrap_content"
@@ -238,19 +252,7 @@
             myseek:text="@string/line_height" >
         </com.foobnix.pdf.info.view.CustomSeek>
 
-        <com.foobnix.pdf.info.view.CustomColorView
-            android:id="@+id/statusBarColorDay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            myseek:text="@string/text_color_day" />
 
-        <com.foobnix.pdf.info.view.CustomColorView
-            android:id="@+id/statusBarColorNight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            myseek:text="@string/text_color_night" />
     </LinearLayout>
 
 </ScrollView>

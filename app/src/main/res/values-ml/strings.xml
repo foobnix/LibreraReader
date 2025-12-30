@@ -142,6 +142,8 @@
    <string name="line_height">പുരോഗതി ബാർ ഉയരം</string>
    <string name="text_color_day">ഫോണ്ട് നിറം, ദിവസം</string>
    <string name="text_color_night">ഫോണ്ട് നിറം, രാത്രി</string>
+   <string name="st_color_day">നിറം (ദിവസം)</string>
+   <string name="st_color_night">നിറം (രാത്രി)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">മുൻ‌ഗണനകൾ</string>
    <string name="language">ഭാഷ</string>

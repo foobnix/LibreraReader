@@ -142,6 +142,8 @@
    <string name="line_height">Ύψος ράβδου προόδου</string>
    <string name="text_color_day">Χρώμα γραμματοσειράς, ημέρα</string>
    <string name="text_color_night">Χρώμα γραμματοσειράς, νύχτα</string>
+   <string name="st_color_day">Χρώμα (ημέρα)</string>
+   <string name="st_color_night">Χρώμα (νύχτα)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Προτιμήσεις</string>
    <string name="language">Γλώσσα</string>

@@ -142,6 +142,8 @@
    <string name="line_height">进度条高度</string>
    <string name="text_color_day">字体颜色(白天)</string>
    <string name="text_color_night">字体颜色(夜晚)</string>
+   <string name="st_color_day">颜色（白天）</string>
+   <string name="st_color_night">颜色（夜晚）</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">偏好</string>
    <string name="language">语言</string>

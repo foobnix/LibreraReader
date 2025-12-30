@@ -142,6 +142,8 @@
    <string name="line_height">ความสูงของบรรทัด</string>
    <string name="text_color_day">สีข้อความ (กลางวัน)</string>
    <string name="text_color_night">สีข้อความ (กลางคืน)</string>
+   <string name="st_color_day">สี (กลางวัน)</string>
+   <string name="st_color_night">สี (กลางคืน)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">การตั้งค่า</string>
    <string name="language">ภาษา</string>

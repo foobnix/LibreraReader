@@ -142,6 +142,8 @@
    <string name="line_height">Inaltimea liniei</string>
    <string name="text_color_day">Culoarea textului (zi)</string>
    <string name="text_color_night">Culoarea textului (noapte)</string>
+   <string name="st_color_day">Culoare (zi)</string>
+   <string name="st_color_night">Culoare (noapte)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferințe</string>
    <string name="language">Limba</string>

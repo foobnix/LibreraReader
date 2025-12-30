@@ -142,6 +142,8 @@
    <string name="line_height">行の高さ</string>
    <string name="text_color_day">テキストの色（昼）</string>
    <string name="text_color_night">テキストの色（夜）</string>
+   <string name="st_color_day">色（昼）</string>
+   <string name="st_color_night">色（夜）</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">設定</string>
    <string name="language">言語</string>

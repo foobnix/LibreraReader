@@ -142,6 +142,8 @@
    <string name="line_height">Zeilenhöhe</string>
    <string name="text_color_day">Textfarbe (Tag)</string>
    <string name="text_color_night">Textfarbe (Nacht)</string>
+   <string name="st_color_day">Farbe (Tag)</string>
+   <string name="st_color_night">Farbe (Nacht)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Einstellungen</string>
    <string name="language">Sprache</string>

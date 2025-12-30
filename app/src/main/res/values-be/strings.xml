@@ -142,6 +142,8 @@
    <string name="line_height">Вышыня панэлі прагрэсу</string>
    <string name="text_color_day">Колер шрыфта, дзень</string>
    <string name="text_color_night">Колер шрыфта, нач</string>
+   <string name="st_color_day">Колер (дзень)</string>
+   <string name="st_color_night">Колер (ноч)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Перавагі</string>
    <string name="language">Мове</string>

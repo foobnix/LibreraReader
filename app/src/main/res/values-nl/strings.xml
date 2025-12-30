@@ -142,6 +142,8 @@
    <string name="line_height">Voortgangsbalk hoogte</string>
    <string name="text_color_day">Tekst kleur (dag)</string>
    <string name="text_color_night">Tekst kleur (nacht)</string>
+   <string name="st_color_day">Kleur (dag)</string>
+   <string name="st_color_night">Kleur (nacht)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Voorkeuren</string>
    <string name="language">Taal</string>

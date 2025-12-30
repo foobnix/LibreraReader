@@ -142,6 +142,8 @@
    <string name="line_height">रेख की ऊंचाई</string>
    <string name="text_color_day">पाठ रंग (दिन)</string>
    <string name="text_color_night">पाठ रंग (रात)</string>
+   <string name="st_color_day">रंग (दिन)</string>
+   <string name="st_color_night">रंग (रात)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">पसंद</string>
    <string name="language">भाषा</string>

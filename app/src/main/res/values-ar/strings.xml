@@ -142,6 +142,8 @@
    <string name="line_height">ارتفاع خط</string>
    <string name="text_color_day">لون النص (اليوم)</string>
    <string name="text_color_night">لون النص (ليل)</string>
+   <string name="st_color_day">اللون (نهارًا)</string>
+   <string name="st_color_night">اللون (ليلاً)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">الإعدادات</string>
    <string name="language">لغة</string>

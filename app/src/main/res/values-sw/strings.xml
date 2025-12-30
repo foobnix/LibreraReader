@@ -142,6 +142,8 @@
    <string name="line_height">Urefu wa mstari</string>
    <string name="text_color_day">Rangi ya maandishi (siku)</string>
    <string name="text_color_night">Rangi ya maandishi (usiku)</string>
+   <string name="st_color_day">Rangi (siku)</string>
+   <string name="st_color_night">Rangi (usiku)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Mapendekezo</string>
    <string name="language">Lugha</string>

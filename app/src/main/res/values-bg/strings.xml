@@ -142,6 +142,8 @@
    <string name="line_height">Височина на лентата на прогреса</string>
    <string name="text_color_day">Цвят на шрифта, ден</string>
    <string name="text_color_night">Цвят на шрифта, нощ</string>
+   <string name="st_color_day">Цвят (ден)</string>
+   <string name="st_color_night">Цвят (нощ)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Предпочитания</string>
    <string name="language">Език</string>

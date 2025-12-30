@@ -142,6 +142,8 @@
    <string name="line_height">진행 바 놑이</string>
    <string name="text_color_day">텍스트 색상 (주간)</string>
    <string name="text_color_night">텍스트 색상 (야간)</string>
+   <string name="st_color_day">색상(낮)</string>
+   <string name="st_color_night">색상 (야간)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">환경 설정</string>
    <string name="language">언어</string>

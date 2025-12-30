@@ -142,6 +142,8 @@
    <string name="line_height">Орындалу жолының биіктігі</string>
    <string name="text_color_day">Қаріп түсі, күн</string>
    <string name="text_color_night">Қаріп түсі, түн</string>
+   <string name="st_color_day">Түс (күн)</string>
+   <string name="st_color_night">Түс (түн)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Теңшелімдер</string>
    <string name="language">Тіл</string>

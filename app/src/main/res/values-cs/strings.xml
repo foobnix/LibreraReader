@@ -142,6 +142,8 @@
    <string name="line_height">Výška ukazatele průběhu</string>
    <string name="text_color_day">Barva písma, den</string>
    <string name="text_color_night">Barva písma, noc</string>
+   <string name="st_color_day">Barva (den)</string>
+   <string name="st_color_night">Barva (noc)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Předvolby</string>
    <string name="language">Jazyk</string>

@@ -142,6 +142,8 @@
    <string name="line_height">ارتفاع خط</string>
    <string name="text_color_day">رنگ متن (روز)</string>
    <string name="text_color_night">رنگ متن (شب)</string>
+   <string name="st_color_day">رنگ (روز)</string>
+   <string name="st_color_night">رنگ (شب)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">تنظیمات</string>
    <string name="language">زبان</string>

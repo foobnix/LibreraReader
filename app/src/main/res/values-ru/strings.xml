@@ -142,6 +142,8 @@
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="text_color_day">Цвет текста (\"День\")</string>
    <string name="text_color_night">Цвет текста (\"Ночь\")</string>
+   <string name="st_color_day">Цвет (день)</string>
+   <string name="st_color_night">Цвет (ночь)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Настройки</string>
    <string name="language">Язык</string>

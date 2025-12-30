@@ -142,6 +142,8 @@
    <string name="line_height">Linjehøyde</string>
    <string name="text_color_day">Tekstfarge (dag)</string>
    <string name="text_color_night">Tekstfarge (natt)</string>
+   <string name="st_color_day">Farge (dag)</string>
+   <string name="st_color_night">Farge (natt)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferanser</string>
    <string name="language">Språk</string>

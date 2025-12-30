@@ -142,6 +142,8 @@
    <string name="line_height">Altezza della linea</string>
    <string name="text_color_day">Colore del testo (giorno)</string>
    <string name="text_color_night">Colore del testo (notte)</string>
+   <string name="st_color_day">Colore (giorno)</string>
+   <string name="st_color_night">Colore (notte)</string>
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferenze</string>
    <string name="language">Lingua</string>
