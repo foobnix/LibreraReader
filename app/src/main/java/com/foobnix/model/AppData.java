@@ -74,7 +74,6 @@ public class AppData {
             return;
         }
 
-
         String in = IO.readString(file);
         if (TxtUtils.isEmpty(in)) {
             return;
@@ -95,7 +94,6 @@ public class AppData {
             LOG.e(e);
         }
 
-
     }
 
     public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
@@ -115,7 +113,6 @@ public class AppData {
 
         IO.writeObjAsync(file, array);
 
-
     }
 
     public static List<SimpleMeta> convert(List<String> list) {
@@ -125,16 +122,14 @@ public class AppData {
         }
         return res;
 
-
     }
 
     public static File getTestFileName() {
 
-        File logFile = new File(AppProfile.syncTestFolder,
-                Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" +
-                        AppsConfig.MUPDF_FZ_VERSION + "t+_" + System.currentTimeMillis() + ".txt");
+        File
+                logFile =
+                new File(AppProfile.syncTestFolder, Apps.getApplicationName(LibreraApp.context) + "_" + Apps.getVersionName(LibreraApp.context) + "_" + AppsConfig.MUPDF_FZ_VERSION + "t+_" + System.currentTimeMillis() + ".txt");
         return logFile;
-
 
     }
 
@@ -287,6 +282,9 @@ public class AppData {
     }
 
     public List<FileMeta> getAllFavoriteFiles(boolean updateProgress) {
+
+        LOG.d("getAllFavoriteFiles", "getAllFavoriteFiles-check", updateProgress);
+
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -325,7 +323,6 @@ public class AppData {
 
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
-
 
             if (new File(s.getPath()).isDirectory() || Clouds.isCloudDir(s.getPath())) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
@@ -370,7 +367,17 @@ public class AppData {
         return getAll(AppProfile.APP_RECENT_JSON);
     }
 
-    public List<FileMeta> getAllRecent(boolean updateProgress) {
+    List<FileMeta> recentCache = new ArrayList<FileMeta>();
+    long recentCacheTime = 0;
+
+    public synchronized List<FileMeta> getAllRecent(boolean updateProgress) {
+
+        if (System.currentTimeMillis() - recentCacheTime < 2000) {
+            LOG.d("getAllRecent", "getAllRecent-check cache");
+            return recentCache;
+        }
+        LOG.d("getAllRecent", "getAllRecent-check update", updateProgress);
+
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
         Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
 
@@ -400,6 +407,8 @@ public class AppData {
         if (updateProgress) {
             SharedBooks.updateProgress(res, false, LIMIT);
         }
+        recentCacheTime = System.currentTimeMillis();
+        recentCache = res;
         return res;
     }
 
@@ -429,10 +438,8 @@ public class AppData {
             LOG.e(e);
         }
 
-
         return res;
     }
-
 
 }
 

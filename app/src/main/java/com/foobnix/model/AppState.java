@@ -737,6 +737,7 @@ public class AppState {
     }
 
     public void save(final Context a) {
+        LOG.d("AppState-save");
         if (a == null) {
             return;
         }
