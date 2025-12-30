@@ -23,7 +23,9 @@ public class SyncDropboxWorker extends MessageWorker{
 
 
     @Override
-    void doWorkInner() {
+    boolean doWorkInner() {
+
         Clouds.get().syncronizeGet();
+        return true;
     }
 }

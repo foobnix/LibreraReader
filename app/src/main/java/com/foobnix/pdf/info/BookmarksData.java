@@ -70,6 +70,8 @@ public class BookmarksData {
     }
 
     public synchronized List<AppBookmark> getAll(Context c) {
+        LOG.d("AppBookmark-get","getAll");
+
         final List<AppBookmark> all = getAll();
         final Iterator<AppBookmark> iterator = all.iterator();
         String fast = c.getString(R.string.fast_bookmark);

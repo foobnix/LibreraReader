@@ -654,6 +654,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     private void seachAll() {
         try {
+            LOG.d("SeachFragment2","seachAll");
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
             IMG.clearMemoryCache();
@@ -693,6 +694,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void searchAndOrderAsync() {
+        LOG.d("SeachFragment2","searchAndOrderAsync");
+
         if (Apps.isDestroyedActivity(getActivity())) {
             return;
         }
@@ -720,6 +723,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
+        LOG.d("SeachFragment2","prepareDataInBackground");
         String txt = searchEditText.getText().toString().trim();
         countTitles = 0;
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
@@ -1147,6 +1151,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void notifyFragment() {
+        LOG.d("SeachFragment2","notifyFragment");
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
             sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
@@ -1164,6 +1169,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void resetFragment() {
+        LOG.d("SeachFragment2","resetFragment");
         if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override

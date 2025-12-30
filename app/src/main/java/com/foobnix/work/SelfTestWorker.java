@@ -56,7 +56,7 @@ public class SelfTestWorker extends MessageWorker {
     }
 
     @Override
-    public void doWorkInner() throws IOException {
+    public boolean doWorkInner() throws IOException {
         long begin = System.currentTimeMillis();
         AppProfile.init(getApplicationContext());
         AppProfile.syncTestFolder.mkdirs();
@@ -103,7 +103,7 @@ public class SelfTestWorker extends MessageWorker {
 
         for (FileMeta item : all) {
             if (isStopped()) {
-                return;
+                return false;
             }
 
             n++;
@@ -133,7 +133,7 @@ public class SelfTestWorker extends MessageWorker {
                 }
                 for (OutlineLink ol : codecDocument.getOutline()) {
                     if (TempHolder.get().loadingCancelled || isStopped()) {
-                        return;
+                        return false;
                     }
                     List<OutlineLinkWrapper> outline = new ArrayList<>();
                     if (!codecDocument.isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
@@ -194,6 +194,7 @@ public class SelfTestWorker extends MessageWorker {
         out.close();
 
         sendNotifyAll();
+        return true;
 
     }
 

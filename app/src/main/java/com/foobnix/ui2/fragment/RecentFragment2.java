@@ -142,6 +142,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
+        LOG.d("RecentFragment2","prepareDataInBackground");
         List<FileMeta> allRecent = AppData.get().getAllRecent(true);
         int oldSize = allRecent.size();
         ExtUtils.removeReadBooks(allRecent);
@@ -207,11 +208,13 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void notifyFragment() {
+        LOG.d("RecentFragment2","notifyFragment");
         populate();
     }
 
     @Override
     public void resetFragment() {
+        LOG.d("RecentFragment2","resetFragment");
         onGridList();
         populate();
     }

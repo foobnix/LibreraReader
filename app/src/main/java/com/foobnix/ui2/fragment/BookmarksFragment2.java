@@ -342,6 +342,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     @Override
     public List<AppBookmark> prepareDataInBackground() {
+        LOG.d("AppBookmark- prepareDataInBackground");
         handler.removeCallbacks(timer);
 
         String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();

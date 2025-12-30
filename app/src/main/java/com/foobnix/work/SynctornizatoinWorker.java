@@ -25,7 +25,7 @@ public class SynctornizatoinWorker extends MessageWorker{
 
 
     @Override
-    void doWorkInner() {
+    boolean doWorkInner() {
         if (AppSP.get().isEnableSync) {
             AppProfile.save(getApplicationContext());
             try {
@@ -52,5 +52,6 @@ public class SynctornizatoinWorker extends MessageWorker{
             }
 
         }
+        return true;
     }
 }

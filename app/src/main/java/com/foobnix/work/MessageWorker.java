@@ -31,10 +31,11 @@ abstract class MessageWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+        boolean notifyResult = false;
         try {
             BooksService.isRunning = true;
             LOG.d("MessageWorker-Status", "Start", BooksService.isRunning, this.getClass());
-            doWorkInner();
+            notifyResult = doWorkInner();
             return Result.success();
         } catch (Exception e) {
             LOG.e(e);
@@ -45,14 +46,16 @@ abstract class MessageWorker extends Worker {
         } catch (Throwable e) {
             return Result.failure();
         } finally {
-            sendFinishMessage();
+            if(notifyResult) {
+                sendFinishMessage();
+            }
             BooksService.isRunning = false;
             LOG.d("MessageWorker-Status", "Finish", BooksService.isRunning, this.getClass());
         }
 
     }
 
-    abstract void doWorkInner() throws IOException;
+    abstract boolean doWorkInner() throws IOException;
 
     protected void sendFinishMessage() {
         try {

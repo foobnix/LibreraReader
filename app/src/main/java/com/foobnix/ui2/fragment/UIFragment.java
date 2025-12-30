@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -85,7 +86,6 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         //TxtUtils.updateAllLinks(view);
         if (AppState.get().appTheme == AppState.THEME_INK) {
@@ -188,6 +188,7 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     private List<T> prepareDataInBackgroundSync() {
+        LOG.d("UI-Fragment","prepareDataInBackground",getString(getNameAndIconRes().first));
         return prepareDataInBackground();
     }
 
@@ -218,20 +219,28 @@ public abstract class UIFragment<T> extends Fragment {
         onSelectFragment();
     }
 
+    boolean isSecondTime = false;
+
     @Override
     public void onResume() {
         super.onResume();
-        //Safe.clearAll();
-        try {
-            Glide.with(LibreraApp.context).resumeRequests();
-        } catch (Exception e) {
-            LOG.e(e);
+        if (isSecondTime) {
+            try {
+                Glide.with(LibreraApp.context).resumeRequests();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+            notifyFragment();
+            isSecondTime = true;
         }
-        notifyFragment();
+
         if (getActivity() != null) {
-            LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
+            LocalBroadcastManager.getInstance(getActivity())
+                                 .registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
             EventBus.getDefault().register(this);
         }
+
 
     }
 
@@ -300,7 +309,6 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
 
-
             final List<T> result;
             try {
                 inProgress = true;
@@ -334,7 +342,10 @@ public abstract class UIFragment<T> extends Fragment {
         AppsConfig.executorService.submit(target);
     }
 
-    public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {
+    public void onGridList(int mode,
+                           ImageView onGridlList,
+                           final FileMetaAdapter searchAdapter,
+                           AuthorsAdapter2 authorsAdapter) {
         if (searchAdapter == null) {
             return;
         }
@@ -352,7 +363,6 @@ public abstract class UIFragment<T> extends Fragment {
             final int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
 
             GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
-
 
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
@@ -394,13 +404,12 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
 
-
             searchAdapter.setAdapterType(mode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
             recyclerView.setLayoutManager(mGridManager);
             recyclerView.setAdapter(searchAdapter);
 
-
-        } else if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(mode)) {
+        } else if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES)
+                         .contains(mode)) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(authorsAdapter);
@@ -439,7 +448,6 @@ public abstract class UIFragment<T> extends Fragment {
             searchAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST_COMPACT);
             recyclerView.setLayoutManager(mGridManager);
             recyclerView.setAdapter(searchAdapter);
-
 
         }
 

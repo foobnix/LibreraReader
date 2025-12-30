@@ -67,7 +67,7 @@ public class SearchAllBooksWorker extends MessageWorker {
         LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
     }
 
-    public void doWorkInner() {
+    public boolean doWorkInner() {
 
 
         Prefs.get().put(SEARCH_ERRORS, 0);
@@ -103,7 +103,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                         LOG.d("Search in: " + root.getPath());
                         SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
                         if (isStopped()) {
-                            return;
+                            return false;
                         }
                     }
                 }
@@ -119,7 +119,7 @@ public class SearchAllBooksWorker extends MessageWorker {
             if (TxtUtils.isListNotEmpty(allExcluded)) {
                 for (FileMeta meta : itemsMeta) {
                     if (isStopped()) {
-                        return;
+                        return false;
                     }
                     if (allExcluded.contains(SimpleMeta.SyncSimpleMeta(meta.getPath()))) {
                         meta.setIsSearchBook(false);
@@ -132,7 +132,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 for (FileMeta meta : itemsMeta) {
                     for (FileMeta sync : allSyncBooks) {
                         if (isStopped()) {
-                            return;
+                            return false;
                         }
                         if (meta.getTitle().equals(sync.getTitle()) && !meta.getPath().equals(sync.getPath())) {
                             meta.setIsSearchBook(false);
@@ -158,7 +158,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             for (FileMeta meta : itemsMeta) {
                 if (isStopped()) {
-                    return;
+                    return false;
                 }
                 File file = new File(meta.getPath());
                 FileMetaCore.get().upadteBasicMeta(meta, file);
@@ -170,7 +170,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             for (FileMeta meta : itemsMeta) {
                 if (isStopped()) {
-                    return;
+                    return false;
                 }
                 //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
                 EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
@@ -196,7 +196,7 @@ public class SearchAllBooksWorker extends MessageWorker {
             List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
             for (FileMeta m : allNone) {
                 if (isStopped()) {
-                    return;
+                    return false;
                 }
                 LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(), m.getPath(), m.getTitle());
                 FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
@@ -206,6 +206,7 @@ public class SearchAllBooksWorker extends MessageWorker {
         } finally {
             Prefs.get().remove(SEARCH_ERRORS, 0);
         }
+        return true;
 
 
     }

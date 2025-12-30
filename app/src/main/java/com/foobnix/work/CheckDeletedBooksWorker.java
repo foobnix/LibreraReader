@@ -27,7 +27,8 @@ public class CheckDeletedBooksWorker extends MessageWorker {
     }
 
     @Override
-    public void doWorkInner() {
+    public boolean doWorkInner() {
+
 
         List<FileMeta> all = AppDB.get().getAll();
 
@@ -53,7 +54,7 @@ public class CheckDeletedBooksWorker extends MessageWorker {
         List<FileMeta> localMeta = new LinkedList<FileMeta>();
         if (JsonDB.isEmpty(BookCSS.get().searchPathsJson)) {
             sendFinishMessage();
-            return;
+            return true;
         }
 
         for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
@@ -66,21 +67,26 @@ public class CheckDeletedBooksWorker extends MessageWorker {
             }
         }
 
+        boolean notifyResults =  false;
 
         for (FileMeta meta : localMeta) {
             if (!all.contains(meta)) {
                 FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
-                LOG.d("BooksService", "Add book", meta.getPath());
+                LOG.d("CheckDeletedBooksWorker", "Add book", meta.getPath());
+                notifyResults = true;
             }
         }
 
 
         List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
         for (FileMeta m : allNone) {
-            LOG.d("BooksService", "STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
+            LOG.d("CheckDeletedBooksWorker", "STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
             FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
+            notifyResults = true;
         }
 
         Clouds.get().syncronizeGet();
+        LOG.d("CheckDeletedBooksWorker",notifyResults);
+        return notifyResults;
     }
 }
