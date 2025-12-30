@@ -1383,7 +1383,6 @@ public class DocumentWrapperUI {
 
         //progressDraw.setBackgroundColor(TintUtil.color);
         progressDraw.updateColor(progressColor);
-        progressDraw.setBgColor(MagicHelper.getBgColor());
         progressDraw.getLayoutParams().height = Dips.dpToPx(AppState.get().progressLineHeight);
         progressDraw.requestLayout();
 

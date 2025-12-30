@@ -13,7 +13,6 @@ import androidx.core.graphics.ColorUtils;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -23,7 +22,7 @@ import java.util.List;
 
 public class ProgressDraw extends View {
 
-    private static final int ALPHA = 240;
+    private static final int ALPHA = 220;
     Paint paint = new Paint();
 
     {
@@ -34,15 +33,6 @@ public class ProgressDraw extends View {
         paint.setDither(true);
     }
 
-    Paint paint1 = new Paint();
-
-    {
-        paint1.setColor(Color.RED);
-        paint1.setStyle(Style.FILL);
-        paint1.setStrokeWidth(Dips.dpToPx(1));
-        paint1.setAntiAlias(true);
-        paint1.setDither(true);
-    }
 
     List<OutlineLinkWrapper> dividers = new ArrayList<OutlineLinkWrapper>();
     int pageCount;
@@ -82,13 +72,7 @@ public class ProgressDraw extends View {
         this.color1 = MagicHelper.alpha(40, MagicHelper.getForegroundColor());
 
         paint.setColor(color);
-        paint1.setColor(color1);
-        //this.color = color;
         invalidate();
-    }
-
-    public void setBgColor(int color) {
-        //bgColor =  MagicHelper.alpha(ALPHA,color);
     }
 
     @Override
@@ -98,7 +82,7 @@ public class ProgressDraw extends View {
         canvas.save();
         try {
             paint.setColor(color);
-            paint1.setColor(color1);
+
 
             float k = (float) getWidth() / pageCount;
             int h = getHeight();
@@ -127,9 +111,15 @@ public class ProgressDraw extends View {
                 }
             }
 
-            canvas.drawRect(0, 0, progress * k, h, paint);
+            float progressLine = progress * k;
+            //canvas.drawRect(0, 0, progressLine, h, paint);
             if (currentChapter != 0) {
-                canvas.drawLine(currentChapter * k, 0, currentChapter * k, h, paint1);
+                float chapterLine = currentChapter * k;
+                //canvas.drawLine(chapterLine, 0, chapterLine, h, paint1);
+                canvas.drawRect(0, 0, chapterLine - Dips.dpToPx(1), h, paint);
+                canvas.drawRect(chapterLine, 0, progressLine, h, paint);
+            } else {
+                canvas.drawRect(0, 0, progressLine, h, paint);
             }
 
         } catch (Exception e) {
