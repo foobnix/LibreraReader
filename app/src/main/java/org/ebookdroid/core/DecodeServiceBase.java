@@ -102,7 +102,7 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public boolean hasAnnotationChanges() {
-        return codecDocument != null ? codecDocument.hasChanges() : false;
+        return codecDocument != null && !codecDocument.isRecycled() && codecDocument.hasChanges();
     }
 
     @Override

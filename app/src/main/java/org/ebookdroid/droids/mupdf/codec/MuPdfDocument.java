@@ -53,7 +53,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
         bookType = BookType.getByUri(fname);
     }
 
-    static void normalizeLinkTargetRect(final long docHandle, final int targetPage, final RectF targetRect, final int flags) {
+    static void normalizeLinkTargetRect(final long docHandle,
+                                        final int targetPage,
+                                        final RectF targetRect,
+                                        final int flags) {
 
         if ((flags & 0x0F) == 0) {
             targetRect.right = targetRect.left = 0;
@@ -108,12 +111,13 @@ public class MuPdfDocument extends AbstractCodecDocument {
             accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
             LOG.d("accel cache2", accel, new File(accel).exists());
 
-            final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, accel, isImageScale);
+            final long
+                    open =
+                    open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, accel, isImageScale);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("TEST", "Open document isImageScale ", isImageScale);
             LOG.d("MUPDF! >>> open [document]", open, ExtUtils.getFileName(fname));
-
 
             if (open == -1) {
                 throw new RuntimeException("Document is corrupted");
@@ -128,7 +132,16 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     public static native String getFzVersion();
 
-    private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle, float scale, int antialias, String accel, int isImageScale);
+    private static native long open(int storememory,
+                                    int format,
+                                    String fname,
+                                    String pwd,
+                                    String css,
+                                    int useDocStyle,
+                                    float scale,
+                                    int antialias,
+                                    String accel,
+                                    int isImageScale);
 
     private static native void free(long handle);
 
@@ -339,11 +352,20 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private native boolean hasChangesInternal(long handle);
 
+    boolean isHasChanges = false;
+
     @Override
     public boolean hasChanges() {
+
+        if (isHasChanges) {
+            LOG.d("hasChanges cache");
+            return true;
+        }
         TempHolder.lock.lock();
         try {
-            return hasChangesInternal(documentHandle);
+            LOG.d("hasChanges internal");
+            isHasChanges = hasChangesInternal(documentHandle);
+            return isHasChanges;
         } finally {
             TempHolder.lock.unlock();
         }

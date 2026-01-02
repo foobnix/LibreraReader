@@ -725,7 +725,7 @@ public class DocumentWrapperUI {
     }
 
     public void updateUI() {
-        hideShowAnnotationLine();
+        //hideShowAnnotationLine();
         final int max = dc.getPageCount();
         final int current = dc.getCurentPage();
 
@@ -1674,7 +1674,7 @@ public class DocumentWrapperUI {
 
     public void hideShowAnnotationLine() {
         handler.removeCallbacks(checkPDFAnotations);
-        handler.postDelayed(checkPDFAnotations, 500);
+        handler.postDelayed(checkPDFAnotations, 1000);
     }
 
     Runnable checkPDFAnotations = new Runnable() {

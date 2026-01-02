@@ -179,6 +179,7 @@ public class AppData {
     }
 
     public void add(SimpleMeta s, File file) {
+        recentCacheTime = 0;
         List<SimpleMeta> current = getSimpleMeta(file);
 
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
@@ -198,6 +199,7 @@ public class AppData {
     }
 
     public void removeAll(FileMeta meta, String name) {
+        recentCacheTime = 0;
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
             List<SimpleMeta> res = getSimpleMeta(file);
@@ -231,6 +233,7 @@ public class AppData {
     }
 
     public void clearAll(String name) {
+        recentCacheTime = 0;
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
             writeSimpleMeta(new ArrayList<>(), file);
