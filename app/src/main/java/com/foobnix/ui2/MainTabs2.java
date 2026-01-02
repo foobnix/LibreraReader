@@ -149,7 +149,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
     };
-    int count
     Runnable closeActivityRunnable = new Runnable() {
         @Override
         public void run() {
