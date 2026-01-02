@@ -337,6 +337,7 @@
                 android:layout_margin="1dp"
                 android:background="@drawable/bg_clickable_white"
                 android:gravity="center"
+                android:lines="2"
                 android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
                 android:textColor="@color/white_alpha"/>
 
