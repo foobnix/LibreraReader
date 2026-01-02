@@ -8,6 +8,7 @@ import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.OutlineLink;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class MuPdfOutline {
     private long docHandle;
 
     private static native String getTitle(long dochandle, long outlinehandle);
+
+    private static native byte[] getTitleArray(long dochandle, long outlinehandle);
 
     private static native String getLink(long outlinehandle, long dochandle);
 
@@ -34,12 +37,11 @@ public class MuPdfOutline {
 
     private static native void free(long dochandle);
 
-    public List<OutlineLink> getOutline(final long dochandle) {
+    public synchronized List<OutlineLink> getOutline(final long dochandle) {
         final List<OutlineLink> ls = new ArrayList<OutlineLink>();
         docHandle = dochandle;
         TempHolder.lock.lock();
         try {
-
 
             final long outline = open(dochandle);
             ttOutline(ls, outline, 0);
@@ -60,15 +62,28 @@ public class MuPdfOutline {
         return ls;
     }
 
+    public String getTitleMod(long outline) {
+
+        try {
+            byte[] titleArray = getTitleArray(docHandle, outline);
+            if (titleArray == null) {
+                return "";
+            }
+            return new String(titleArray, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+                return "";
+            }
+        }
+
+
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
-            String title = getTitle(docHandle, outline);
+            String title = getTitleMod(outline);
             if (title == null) {
                 break;
             }
             // String title = new String(res);
             String linkUri = getLinkUri(outline, docHandle);
-
 
             final String link = getLink(outline, docHandle);
 
@@ -76,7 +91,6 @@ public class MuPdfOutline {
 
             if (AppsConfig.IS_LOG && linkUri != null) {
                 title = title + "[" + linkUri + "]";
-
 
             }
 
