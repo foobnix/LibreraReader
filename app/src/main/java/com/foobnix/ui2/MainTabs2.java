@@ -153,7 +153,12 @@ public class MainTabs2 extends AdsFragmentActivity {
         @Override
         public void run() {
             if (drawerLayout != null) {
-                drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    finish();
+                }else {
+                    drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+                }
+
             }
         }
     };
@@ -848,10 +853,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onBackPressedImpl() {
-        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
-            return;
-        }
+//        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+//            return;
+//        }
 
         if (tabFragments != null) {
             if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
