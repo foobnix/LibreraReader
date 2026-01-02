@@ -224,6 +224,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        LOG.d("isSecondTime",isSecondTime);
         if (isSecondTime) {
             try {
                 Glide.with(LibreraApp.context).resumeRequests();
@@ -232,7 +233,6 @@ public abstract class UIFragment<T> extends Fragment {
             }
 
             notifyFragment();
-            isSecondTime = true;
         }
 
         if (getActivity() != null) {
@@ -241,6 +241,7 @@ public abstract class UIFragment<T> extends Fragment {
             EventBus.getDefault().register(this);
         }
 
+        isSecondTime = true;
 
     }
 

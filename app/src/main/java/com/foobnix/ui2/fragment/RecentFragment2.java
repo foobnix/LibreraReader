@@ -206,6 +206,8 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         p.show();
     }
 
+
+
     @Override
     public void notifyFragment() {
         LOG.d("RecentFragment2","notifyFragment");
