@@ -149,13 +149,13 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
     };
+    int count
     Runnable closeActivityRunnable = new Runnable() {
         @Override
         public void run() {
-//            TTSNotification.hideNotification();
-//            TTSEngine.get().shutdown();
-//            adsPause();
-            finish();
+            if (drawerLayout != null) {
+                drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+            }
         }
     };
     boolean once = true;
@@ -861,6 +861,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             RefiewForm.show(this, closeActivityRunnable);
         } else {
             closeActivityRunnable.run();
+
         }
     }
 
