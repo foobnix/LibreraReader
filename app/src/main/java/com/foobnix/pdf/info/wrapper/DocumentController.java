@@ -91,7 +91,7 @@ public abstract class DocumentController {
             R.string.portrait, //
             R.string.landscape_180, //
             R.string.portrait_180);
-    
+
     protected final Activity activity;
     private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
     public Handler handler = new Handler(Looper.getMainLooper());
@@ -304,16 +304,13 @@ public abstract class DocumentController {
 
     public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a
-                .getWindow()
-                .getDecorView()
-                .getRootWindowInsets()
-                .getDisplayCutout() != null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow()
+                                                               .getDecorView()
+                                                               .getRootWindowInsets()
+                                                               .getDisplayCutout() != null) {
             List<Integer>
                     ids =
-                    Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT,
-                            AppState.FULL_SCREEN_FULLSCREEN,
-                            AppState.FULL_SCREEN_NORMAL);
+                    Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
 
             MyPopupMenu popup = new MyPopupMenu(a, v);
             for (int id : ids) {
@@ -325,22 +322,20 @@ public abstract class DocumentController {
                 if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
                     // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-                    popup
-                            .getMenu()
-                            .add(DocumentController.getFullScreenName(a, id))
-                            .setOnMenuItemClickListener(item -> {
-                                response.onResultRecive(id);
-                                return false;
-                            });
+                    popup.getMenu()
+                         .add(DocumentController.getFullScreenName(a, id))
+                         .setOnMenuItemClickListener(item -> {
+                             response.onResultRecive(id);
+                             return false;
+                         });
                     //}
                 } else {
-                    popup
-                            .getMenu()
-                            .add(DocumentController.getFullScreenName(a, id))
-                            .setOnMenuItemClickListener(item -> {
-                                response.onResultRecive(id);
-                                return false;
-                            });
+                    popup.getMenu()
+                         .add(DocumentController.getFullScreenName(a, id))
+                         .setOnMenuItemClickListener(item -> {
+                             response.onResultRecive(id);
+                             return false;
+                         });
 
                 }
                 popup.show();
@@ -410,14 +405,10 @@ public abstract class DocumentController {
                 compName =
                 new ComponentName(a.getPackageName(), "com.foobnix.zipmanager.SendReceiveActivityAlias");
         if (AppState.get().isMenuIntegration) {
-            pm.setComponentEnabledSetting(compName,
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                    PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
             LOG.d("COMPONENT_ENABLED_STATE_ENABLED");
         } else {
-            pm.setComponentEnabledSetting(compName,
-                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                    PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             LOG.d("COMPONENT_ENABLED_STATE_DISABLED");
         }
 
@@ -807,7 +798,9 @@ public abstract class DocumentController {
     }
 
     public void showAnnotation(Annotation annotation) {
-        Dialogs.showTextDialog(activity, annotation.text);
+        if (TxtUtils.isNotEmpty(annotation.text)) {
+            Dialogs.showTextDialog(activity, annotation.text);
+        }
         //Toast.makeText(activity, "" + annotation.text, Toast.LENGTH_SHORT).show();
     }
 
