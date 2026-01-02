@@ -3717,6 +3717,10 @@ public class DragingDialogs {
                                                        statusBarColorDay.withDefaultColors(StringDB.converToColor(
                                                                AppState.get().statusBarColorDays,
                                                                MagicHelper.getTextOrIconColor()));
+
+                                                       if (onRefresh != null) {
+                                                           onRefresh.run();
+                                                       }
                                                        return true;
                                                    }
                                                });
@@ -3753,6 +3757,10 @@ public class DragingDialogs {
                                                        statusBarColorNight.withDefaultColors(StringDB.converToColor(
                                                                AppState.get().statusBarColorNights,
                                                                MagicHelper.getTextOrIconColor()));
+
+                                                       if (onRefresh != null) {
+                                                           onRefresh.run();
+                                                       }
                                                        return true;
                                                    }
                                                });
