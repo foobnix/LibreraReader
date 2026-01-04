@@ -129,10 +129,11 @@ public class TintUtil {
         drawable.setCornerRadius(RADIUS);
     }
 
-    public static void setStrokeColorWithDash(View textView, int color) {
+    public static GradientDrawable setStrokeColorWithDash(View textView, int color) {
         GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
         drawable.setStroke(Dips.DP_2, color,Dips.DP_6,Dips.DP_6);
         drawable.setCornerRadius(RADIUS);
+        return drawable;
 
     }
 

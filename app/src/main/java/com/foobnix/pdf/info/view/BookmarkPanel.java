@@ -1,12 +1,15 @@
 package com.foobnix.pdf.info.view;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager.LayoutParams;
 
 import com.foobnix.android.utils.Dips;
@@ -15,7 +18,9 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import java.util.List;
 
@@ -23,11 +28,15 @@ public class BookmarkPanel {
 
     private static final int SIZE = Dips.DP_40;
 
-    public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel, final DocumentController dc, final View pagesBookmark, final String quickBookmark, final Runnable onRefresh) {
+    public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel,
+                                       final DocumentController dc, final ImageView pagesBookmark,
+                                       final String quickBookmark, final Runnable onRefresh) {
         pageshelper.removeAllViews();
         if (dc == null) {
             return;
         }
+        int tintColor = MagicHelper.getTintColor();
+        int colorWhite = ColorUtils.setAlphaComponent(Color.WHITE,240);
 
         if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
             musicButtonPanel.setVisibility(View.VISIBLE);
@@ -40,11 +49,14 @@ public class BookmarkPanel {
             return;
         }
 
-        if (AppState.get().isDayNotInvert) {
-            pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
-        } else {
-            pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
-        }
+
+        TintUtil.setTintImageNoAlpha(pagesBookmark, tintColor);
+        pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+        TintUtil.setStrokeColorWithDash(pagesBookmark, tintColor).setColor(colorWhite);
+
+
+
+
         pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
@@ -69,11 +81,14 @@ public class BookmarkPanel {
             t.setGravity(Gravity.CENTER);
             t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             t.setTextSize(16);
-            if (AppState.get().isDayNotInvert) {
-                t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
-            } else {
-                t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
-            }
+            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+            t.setTextColor(tintColor);
+
+
+
+            TintUtil.setStrokeColorWithDash(t, tintColor).setColor(colorWhite);
+
+
             t.setOnClickListener(new View.OnClickListener() {
 
                 @Override

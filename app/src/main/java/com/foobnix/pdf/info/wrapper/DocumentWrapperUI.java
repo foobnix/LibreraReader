@@ -249,7 +249,8 @@ public class DocumentWrapperUI {
             return true;
         }
     };
-    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent, documentTitleBar;
+    ImageView pagesBookmark;
+    View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
