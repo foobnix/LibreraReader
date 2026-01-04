@@ -76,6 +76,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -2789,6 +2790,7 @@ public class PrefFragment2 extends UIFragment {
                 @Override
                 public void run() {
                     //AppProfile.clear();
+                    DragingPopup.resetCache(getActivity());
 
                     final BookCSS b = new BookCSS();
                     b.resetToDefault(getActivity());

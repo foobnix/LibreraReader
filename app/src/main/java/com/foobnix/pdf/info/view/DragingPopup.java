@@ -130,6 +130,16 @@ public abstract class DragingPopup {
         }
     }
 
+    public static void resetCache(final Context c) {
+        try {
+            cache.clear();
+            SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
+            sp.edit().clear().commit();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static void saveCache(final Context c) {
         try {
             SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
