@@ -44,7 +44,7 @@ public class AppsConfig {
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
 
-    public static int FULL_SCREEN_TIMEOUT_SEC = 15;
+
     public static int REWARS_HOURS = 2;
 
     static {

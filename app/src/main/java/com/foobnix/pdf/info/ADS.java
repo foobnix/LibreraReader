@@ -34,6 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 public class ADS {
+    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
+    public static int ADS_LIVE_SEC = 60 * 60;
+
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
 
@@ -117,7 +120,7 @@ public class ADS {
         if (isRewardActivated()) {
             return;
         }
-        if (rewardedAd != null && secondsRemain(rewardedAdLoadedTime) < 60 * 60) {
+        if (rewardedAd != null && secondsRemain(rewardedAdLoadedTime) < ADS_LIVE_SEC) {
             LOG.d("ADS1", "loadRewardedAd in cache", secondsRemain(rewardedAdLoadedTime));
             if (onRewardLoaded != null) {
                 onRewardLoaded.run();
@@ -153,7 +156,7 @@ public class ADS {
             LOG.d("ADS1", "Interstitial destroyed");
             return;
         }
-        if (interstitialAd != null && secondsRemain(interstitialAdTime) < 60 * 60) {
+        if (interstitialAd != null && secondsRemain(interstitialAdTime) < ADS_LIVE_SEC) {
             LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(interstitialAdTime));
             return;
         }

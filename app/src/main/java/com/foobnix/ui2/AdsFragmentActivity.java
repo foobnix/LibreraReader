@@ -1,6 +1,7 @@
 package com.foobnix.ui2;
 
-import static com.foobnix.pdf.info.AppsConfig.FULL_SCREEN_TIMEOUT_SEC;
+
+import static com.foobnix.pdf.info.ADS.FULL_SCREEN_TIMEOUT_SEC;
 
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
@@ -64,10 +65,10 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         });
     }
 
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
         if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
             if (this instanceof MainTabs2) {
                 showBannerAds();
@@ -77,7 +78,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
                 ADS.get().loadInterstitial(this);
             }
         }
-
     }
 
     Runnable onRewardLoaded = new Runnable() {
@@ -115,8 +115,15 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (this instanceof MainTabs2 && Android6.canWrite(this)) {
-            ADS.get().onResumeBanner(this);
+        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
+
+            if (this instanceof MainTabs2) {
+                ADS.get().onResumeBanner(this);
+            }
+            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+                ADS.get().loadRewardedAd(this, onRewardLoaded);
+                ADS.get().loadInterstitial(this);
+            }
         }
 
     }
