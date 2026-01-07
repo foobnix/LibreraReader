@@ -386,9 +386,16 @@ public class MagicHelper {
         return hsv;
     }
 
-    public static int alpha(int alpha,int colorInt ) {
-        Color color = Color.valueOf(colorInt);
-        return Color.argb(alpha,color.red(),color.green(),color.blue());
+//   public static int alpha1(int alpha,int colorInt ) {
+// Color color = Color.valueOf(colorInt);
+//  return Color.argb(alpha,color.red(),color.green(),color.blue());
+//  }
+
+    public static int alpha(int alpha, int colorInt) {
+        int red = (colorInt >> 16) & 0xFF;
+        int green = (colorInt >> 8) & 0xFF;
+        int blue = colorInt & 0xFF;
+        return android.graphics.Color.argb(alpha, red, green, blue);
     }
 
     private static float lightness(int color) {

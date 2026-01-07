@@ -72,7 +72,7 @@ public class ADS {
         }
 
         if (interstitialAd != null) {
-            LOG.d("ADS1","showInterstitial");
+            LOG.d("ADS1", "showInterstitial");
             interstitialAd.show(a);
             interstitialAd = null;
             loadInterstitial(a);
@@ -98,7 +98,7 @@ public class ADS {
         }
 
         if (rewardedAd != null) {
-            LOG.d("ADS1","showRewardedAd");
+            LOG.d("ADS1", "showRewardedAd");
             rewardedAd.show(a, listener);
             rewardedAd = null;
         }
@@ -118,13 +118,13 @@ public class ADS {
             return;
         }
         if (rewardedAd != null && secondsRemain(rewardedAdLoadedTime) < 60 * 60) {
-            LOG.d("ADS1","loadRewardedAd in cache",secondsRemain(rewardedAdLoadedTime));
+            LOG.d("ADS1", "loadRewardedAd in cache", secondsRemain(rewardedAdLoadedTime));
             if (onRewardLoaded != null) {
                 onRewardLoaded.run();
             }
             return;
         }
-        LOG.d("ADS1","RewardedAd load started...");
+        LOG.d("ADS1", "RewardedAd load started...");
 
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
@@ -135,34 +135,34 @@ public class ADS {
                 if (onRewardLoaded != null) {
                     onRewardLoaded.run();
                 }
-                LOG.d("ADS1","RewardedAd loaded");
+                LOG.d("ADS1", "RewardedAd loaded");
             }
 
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 rewardedAd = null;
-                LOG.d("ADS1","RewardedAd failed", loadAdError);
+                LOG.d("ADS1", "RewardedAd failed", loadAdError);
             }
         });
     }
 
     public void loadInterstitial(Activity a) {
         if (a == null || a.isDestroyed() || a.isFinishing()) {
-            LOG.d("ADS1","Interstitial destroyed");
+            LOG.d("ADS1", "Interstitial destroyed");
             return;
         }
-        if (interstitialAd != null && secondsRemain(interstitialAdTime) < 60*60) {
-            LOG.d("ADS1","loadInterstitial in cache",secondsRemain(interstitialAdTime));
+        if (interstitialAd != null && secondsRemain(interstitialAdTime) < 60 * 60) {
+            LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(interstitialAdTime));
             return;
         }
         if (isRewardActivated()) {
             return;
         }
 
-        LOG.d("ADS1","Interstitial try show");
+        LOG.d("ADS1", "Interstitial try show");
 
         try {
-            LOG.d("ADS1","Interstitial loading...");
+            LOG.d("ADS1", "Interstitial loading...");
             try {
                 if (Apps.isNight(a)) {
                     MobileAds.setAppVolume(0.1f);
@@ -185,7 +185,7 @@ public class ADS {
                 @Override
                 public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     super.onAdLoaded(interstitialAd);
-                    LOG.d("ADS1","Interstitial loaded");
+                    LOG.d("ADS1", "Interstitial loaded");
                     ADS.this.interstitialAd = interstitialAd;
                     interstitialAdTime = System.currentTimeMillis();
 
@@ -197,7 +197,7 @@ public class ADS {
 
     }
 
-    public void showBanner(final Activity a) {
+    public synchronized void showBanner(final Activity a) {
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             return;
         }
@@ -205,7 +205,7 @@ public class ADS {
             return;
         }
         try {
-            LOG.d("ADS1","Banner try show");
+
             final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
@@ -213,7 +213,7 @@ public class ADS {
             frame.removeAllViews();
             onDestroyBanner();
 
-            LOG.d("ADS1","Banner show");
+            LOG.d("ADS1", "Banner show");
             adView = new AdView(a);
             AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
             //AdSize size = AdSize.BANNER;
@@ -227,7 +227,7 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(LoadAdError arg0) {
-                    LOG.d("ADS1","Banner LoadAdError", arg0);
+                    LOG.d("ADS1", "Banner LoadAdError", arg0);
                     try {
                         frame.setVisibility(View.GONE);
                     } catch (Exception e) {
@@ -239,8 +239,7 @@ public class ADS {
                 public void onAdLoaded() {
                     try {
                         frame.setVisibility(View.VISIBLE);
-                        adView.setVisibility(View.VISIBLE);
-                        LOG.d("ADS1","Banner loaded");
+                        LOG.d("ADS1", "Banner loaded");
                     } catch (Exception e) {
                         LOG.e(e);
                     }
@@ -263,7 +262,7 @@ public class ADS {
     public void onPauseBanner() {
         if (adView != null) {
             adView.pause();
-            LOG.d("ADS1","Banner pause");
+            LOG.d("ADS1", "Banner pause");
         }
     }
 
@@ -272,14 +271,14 @@ public class ADS {
             return;
         }
         if (isRewardActivated()) {
-            LOG.d("ADS1","isRewardActivated");
+            LOG.d("ADS1", "isRewardActivated");
             onDestroyBanner();
             return;
         }
 
         if (adView != null) {
             adView.resume();
-            LOG.d("ADS1","Banner resume");
+            LOG.d("ADS1", "Banner resume");
         } else {
             if (AppsConfig.isShowAdsInApp(a)) {
                 showBanner(a);
@@ -291,7 +290,7 @@ public class ADS {
         try {
             if (adView != null) {
                 adView.setVisibility(View.GONE);
-                LOG.d("ADS1","Banner destroy");
+                LOG.d("ADS1", "Banner destroy");
                 adView.destroy();
                 adView = null;
             }
