@@ -1,34 +1,33 @@
 package com.foobnix.ui2;
 
+import static com.foobnix.pdf.info.AppsConfig.FULL_SCREEN_TIMEOUT_SEC;
+
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
-import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
+
+import java.util.concurrent.TimeUnit;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
@@ -36,9 +35,10 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     Handler handler;
 
     boolean doubleBackToExitPressedOnce = false;
-    private ADS ads = new ADS();
 
     public abstract void onFinishActivity();
+
+    long timeActivityCreated = 0;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -54,6 +54,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onCreate(arg0);
 
         handler = new Handler(Looper.getMainLooper());
+        timeActivityCreated = System.currentTimeMillis();
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
@@ -66,9 +67,16 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        showBannerAds(onRewardLoaded);
+        if (this instanceof MainTabs2) {
+            showBannerAds();
+        }
+        if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+            ADS.get().loadRewardedAd(this, onRewardLoaded);
+            ADS.get().loadInterstitial(this);
+        }
 
     }
+
     Runnable onRewardLoaded = new Runnable() {
         @Override
         public void run() {
@@ -76,53 +84,57 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         }
     };
 
-    public void onRewardLoaded(){
+    public void onRewardLoaded() {
 
     }
-    public void showBannerAds(Runnable runnable){
-        if (AppsConfig.isShowAdsInApp(this)) {
-            ads.showBanner(this);
 
-            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
-                ads.loadRewardedAd(this,runnable);
-                ads.activateInterstitial(this);
-            }
+    public void showBannerAds() {
+        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
+            ADS.get().showBanner(this);
         }
     }
 
-    public void showRewardVideo(OnUserEarnedRewardListener listener){
+    public void showRewardVideo(OnUserEarnedRewardListener listener) {
         if (AppsConfig.isShowAdsInApp(this)) {
-                ads.showRewardedAd(this,listener);
+            ADS.get().showRewardedAd(this, listener);
         }
     }
-    public boolean isRewardLoaded(){
-        return ads.isRewardsLoaded();
+
+    public boolean isRewardLoaded() {
+        return ADS.get().isRewardsLoaded();
     }
-    public boolean isRewardActivated(){
-        if(!AppsConfig.isShowAdsInApp(this)){
+
+    public boolean isRewardActivated() {
+        if (!AppsConfig.isShowAdsInApp(this)) {
             return true;
         }
-        return ads.isRewardActivated();
+        return ADS.get().isRewardActivated();
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        ads.onResumeBanner(this);
+        if (this instanceof MainTabs2 && Android6.canWrite(this)) {
+            ADS.get().onResumeBanner(this);
+        }
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        ads.onPauseBanner();
+        if (this instanceof MainTabs2 && Android6.canWrite(this)) {
+            ADS.get().onPauseBanner();
+        }
     }
 
     @Override
     protected void onDestroy() {
-        ads.onDestroyBanner();
         super.onDestroy();
 
+    }
+    protected void onDestroyBanner(){
+        ADS.get().onDestroyBanner();
     }
 
     @Override
@@ -158,7 +170,11 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         IMG.pauseRequests(this);
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
-        ads.showInterstitial(this);
+        if (ADS.secondsRemain(timeActivityCreated) > FULL_SCREEN_TIMEOUT_SEC) {
+            ADS.get().showInterstitial(this);
+        } else {
+            LOG.d("ADS1 showInterstitial skip",ADS.secondsRemain(timeActivityCreated));
+        }
         onFinishActivity();
     }
 
@@ -171,7 +187,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         }
         this.doubleBackToExitPressedOnce = true;
 
-        if(this instanceof MainTabs2) {
+        if (this instanceof MainTabs2) {
             if (handler != null) {
                 handler.postDelayed(() -> {
                     doubleBackToExitPressedOnce = false;
@@ -180,7 +196,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
                 }, 500);
 
             }
-        }else{
+        } else {
             onBackPressedImpl();
         }
     }

@@ -3,7 +3,6 @@ package com.foobnix.pdf.info;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
@@ -31,17 +30,32 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class ADS {
-    InterstitialAd mInterstitialAd;
-    RewardedAd rewardedAd;
+    private InterstitialAd interstitialAd;
+    private RewardedAd rewardedAd;
 
-    AdView adView;
+    private AdView adView;
 
+    private long rewardedAdLoadedTime = 0;
+    private long interstitialAdTime = 0;
+
+    private final static ADS instance = new ADS();
+
+    public static synchronized ADS get() {
+        return instance;
+    }
+
+    private ADS() {
+
+    }
+
+    public static long secondsRemain(long time) {
+        return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - time);
+
+    }
 
     public static void hideAdsTemp(Activity a) {
     }
@@ -49,13 +63,19 @@ public class ADS {
     Handler handler;
 
     public void showInterstitial(Activity a) {
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            return;
+        }
+
         if (isRewardActivated()) {
             return;
         }
-        if (mInterstitialAd != null) {
-            LOG.d("ADS1 showInterstitial");
-            mInterstitialAd.show(a);
-            mInterstitialAd = null;
+
+        if (interstitialAd != null) {
+            LOG.d("ADS1","showInterstitial");
+            interstitialAd.show(a);
+            interstitialAd = null;
+            loadInterstitial(a);
         }
     }
 
@@ -73,8 +93,12 @@ public class ADS {
     }
 
     public void showRewardedAd(Activity a, OnUserEarnedRewardListener listener) {
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            return;
+        }
+
         if (rewardedAd != null) {
-            LOG.d("ADS1 showRewardedAd");
+            LOG.d("ADS1","showRewardedAd");
             rewardedAd.show(a, listener);
             rewardedAd = null;
         }
@@ -85,106 +109,111 @@ public class ADS {
     }
 
     public void loadRewardedAd(Activity a, Runnable onRewardLoaded) {
+
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            return;
+        }
+
         if (isRewardActivated()) {
             return;
         }
-        LOG.d("ADS1 RewardedAd load started...");
+        if (rewardedAd != null && secondsRemain(rewardedAdLoadedTime) < 60 * 60) {
+            LOG.d("ADS1","loadRewardedAd in cache",secondsRemain(rewardedAdLoadedTime));
+            if (onRewardLoaded != null) {
+                onRewardLoaded.run();
+            }
+            return;
+        }
+        LOG.d("ADS1","RewardedAd load started...");
+
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
-       // rewardedAd = null;
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
             @Override
-            public void onAdLoaded(
-                    @NonNull
-                    RewardedAd rewardedAdLoaded) {
+            public void onAdLoaded(@NonNull RewardedAd rewardedAdLoaded) {
                 rewardedAd = rewardedAdLoaded;
-                if(onRewardLoaded!=null) {
+                rewardedAdLoadedTime = System.currentTimeMillis();
+                if (onRewardLoaded != null) {
                     onRewardLoaded.run();
                 }
-                LOG.d("ADS1 RewardedAd loaded");
+                LOG.d("ADS1","RewardedAd loaded");
             }
 
             @Override
-            public void onAdFailedToLoad(
-                    @NonNull
-                    LoadAdError loadAdError) {
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 rewardedAd = null;
-                LOG.d("ADS1 RewardedAd failed",loadAdError);
+                LOG.d("ADS1","RewardedAd failed", loadAdError);
             }
         });
     }
 
-    public void activateInterstitial(Activity a) {
+    public void loadInterstitial(Activity a) {
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            LOG.d("ADS1","Interstitial destroyed");
+            return;
+        }
+        if (interstitialAd != null && secondsRemain(interstitialAdTime) < 60*60) {
+            LOG.d("ADS1","loadInterstitial in cache",secondsRemain(interstitialAdTime));
+            return;
+        }
         if (isRewardActivated()) {
             return;
         }
 
-        LOG.d("ADS1 Interstitial try show");
+        LOG.d("ADS1","Interstitial try show");
 
-        handler = new Handler(Looper.getMainLooper());
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if (a == null || a.isDestroyed() || a.isFinishing()) {
-                        LOG.d("ADS1 Interstitial destroyed");
-                        return;
-                    }
-                    LOG.d("ADS1 Interstitial loading...");
-                    try {
-                        if (Apps.isNight(a)) {
-                            MobileAds.setAppVolume(0.1f);
-                        } else {
-                            MobileAds.setAppVolume(0.6f);
-                        }
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-
-                    String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID");
-                    InterstitialAd.load(LibreraApp.context, adUnitId, ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
-                        @Override
-                        public void onAdFailedToLoad(
-                                @NonNull
-                                LoadAdError loadAdError) {
-                            super.onAdFailedToLoad(loadAdError);
-                            LOG.d("ADS1", "Interstitial LoadAdError", loadAdError);
-                            mInterstitialAd = null;
-                        }
-
-                        @Override
-                        public void onAdLoaded(
-                                @NonNull
-                                InterstitialAd interstitialAd) {
-                            super.onAdLoaded(interstitialAd);
-                            LOG.d("ADS1 Interstitial loaded");
-                            mInterstitialAd = interstitialAd;
-
-                        }
-                    });
-                } catch (Exception e) {
-                    LOG.e(e);
+        try {
+            LOG.d("ADS1","Interstitial loading...");
+            try {
+                if (Apps.isNight(a)) {
+                    MobileAds.setAppVolume(0.1f);
+                } else {
+                    MobileAds.setAppVolume(0.6f);
                 }
+            } catch (Exception e) {
+                LOG.e(e);
             }
-        };
 
-        handler.removeCallbacksAndMessages(null);
-        handler.postDelayed(r, TimeUnit.SECONDS.toMillis(AppsConfig.FULL_SCREEN_TIMEOUT_SEC));
+            String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID");
+            InterstitialAd.load(LibreraApp.context, adUnitId, ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    super.onAdFailedToLoad(loadAdError);
+                    LOG.d("ADS1", "Interstitial LoadAdError", loadAdError);
+                    interstitialAd = null;
+                }
+
+                @Override
+                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                    super.onAdLoaded(interstitialAd);
+                    LOG.d("ADS1","Interstitial loaded");
+                    ADS.this.interstitialAd = interstitialAd;
+                    interstitialAdTime = System.currentTimeMillis();
+
+                }
+            });
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 
     public void showBanner(final Activity a) {
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            return;
+        }
         if (isRewardActivated()) {
             return;
         }
         try {
-            LOG.d("ADS1 Banner try show");
+            LOG.d("ADS1","Banner try show");
             final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
             }
             frame.removeAllViews();
             onDestroyBanner();
-            LOG.d("ADS1 Banner show");
+
+            LOG.d("ADS1","Banner show");
             adView = new AdView(a);
             AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
             //AdSize size = AdSize.BANNER;
@@ -198,7 +227,7 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(LoadAdError arg0) {
-                    LOG.d("ADS1 Banner LoadAdError", arg0);
+                    LOG.d("ADS1","Banner LoadAdError", arg0);
                     try {
                         frame.setVisibility(View.GONE);
                     } catch (Exception e) {
@@ -210,7 +239,8 @@ public class ADS {
                 public void onAdLoaded() {
                     try {
                         frame.setVisibility(View.VISIBLE);
-                        LOG.d("ADS1 Banner loaded");
+                        adView.setVisibility(View.VISIBLE);
+                        LOG.d("ADS1","Banner loaded");
                     } catch (Exception e) {
                         LOG.e(e);
                     }
@@ -233,19 +263,23 @@ public class ADS {
     public void onPauseBanner() {
         if (adView != null) {
             adView.pause();
-            LOG.d("ADS1 Banner pause");
+            LOG.d("ADS1","Banner pause");
         }
     }
 
     public void onResumeBanner(Activity a) {
+        if (a == null || a.isDestroyed() || a.isFinishing()) {
+            return;
+        }
         if (isRewardActivated()) {
+            LOG.d("ADS1","isRewardActivated");
             onDestroyBanner();
             return;
         }
 
         if (adView != null) {
             adView.resume();
-            LOG.d("ADS1 Banner resume");
+            LOG.d("ADS1","Banner resume");
         } else {
             if (AppsConfig.isShowAdsInApp(a)) {
                 showBanner(a);
@@ -257,7 +291,7 @@ public class ADS {
         try {
             if (adView != null) {
                 adView.setVisibility(View.GONE);
-                LOG.d("ADS1 Banner destroy");
+                LOG.d("ADS1","Banner destroy");
                 adView.destroy();
                 adView = null;
             }

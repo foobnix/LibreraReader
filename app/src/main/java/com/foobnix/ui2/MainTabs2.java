@@ -154,6 +154,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         public void run() {
             if (drawerLayout != null) {
                 if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    onDestroyBanner();
                     finish();
                 }else {
                     drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
@@ -829,7 +830,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             pager.setCurrentItem(currentItem);
             IMG.clearMemoryCache();
         }
-        showBannerAds(null);
+        showBannerAds();
     }
 
     @Override

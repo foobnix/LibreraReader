@@ -177,6 +177,8 @@ public class PrefFragment2 extends UIFragment {
 
     @Override
     public void onTintChanged() {
+
+
         TintUtil.setStatusBarColor(getActivity(), TintUtil.color);
         TintUtil.setBackgroundFillColor(section1, TintUtil.color);
         TintUtil.setBackgroundFillColor(section2, TintUtil.color);
@@ -2349,6 +2351,13 @@ public class PrefFragment2 extends UIFragment {
             Runnable onAccent = new Runnable() {
                 @Override
                 public void run() {
+                    if( AppState.get().isUiTextColor) {
+                        AppState.get().statusBarColorDay = AppState.get().uiTextColorUser;
+                        AppState.get().statusBarColorNight = AppState.get().uiTextColorUser;
+                    }else{
+                        AppState.get().statusBarColorDay =  Color.parseColor(AppState.TEXT_COLOR_DAY);
+                        AppState.get().statusBarColorNight =  Color.parseColor(AppState.TEXT_COLOR_NIGHT);
+                    }
 
                     TempHolder.listHash++;
                     onTintChanged();
