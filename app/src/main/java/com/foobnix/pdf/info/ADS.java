@@ -147,6 +147,8 @@ public class ADS {
     }
 
     public void loadInterstitial(Activity a) {
+
+
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             LOG.d("ADS1", "Interstitial destroyed");
             return;

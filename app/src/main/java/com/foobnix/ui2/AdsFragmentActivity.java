@@ -67,12 +67,15 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (this instanceof MainTabs2) {
-            showBannerAds();
-        }
-        if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
-            ADS.get().loadRewardedAd(this, onRewardLoaded);
-            ADS.get().loadInterstitial(this);
+
+        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
+            if (this instanceof MainTabs2) {
+                showBannerAds();
+            }
+            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+                ADS.get().loadRewardedAd(this, onRewardLoaded);
+                ADS.get().loadInterstitial(this);
+            }
         }
 
     }
@@ -89,9 +92,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void showBannerAds() {
-        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
             ADS.get().showBanner(this);
-        }
     }
 
     public void showRewardVideo(OnUserEarnedRewardListener listener) {
