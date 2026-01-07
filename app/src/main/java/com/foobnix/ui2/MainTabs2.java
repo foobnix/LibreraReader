@@ -39,6 +39,8 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.model.AppBook;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -153,10 +155,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         @Override
         public void run() {
             if (drawerLayout != null) {
-                if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     onDestroyBanner();
                     finish();
-                }else {
+                } else {
                     drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
                 }
 
@@ -288,8 +290,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!isTaskRoot() && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
-                && Intent.ACTION_MAIN.equals(getIntent().getAction())) {
+        if (!isTaskRoot() && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(getIntent().getAction())) {
             finish();
             return;
         }
@@ -547,9 +548,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
 
-//        if (Android6.canWrite(this)) {
-//            FontExtractor.extractFonts(this);
-//        }
+
 
         EventBus.getDefault().register(this);
 
@@ -557,16 +556,24 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (!showTabs && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
+
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
+
+            try {
+                AppBook book = SharedBooks.load(AppSP.get().lastBookPath);
+                if (book.p > 0.9999) {
+                    LOG.d("Open Last book skipped", book.p);
+                    Toast.makeText(MainTabs2.this, R.string.the_book_is_complete, Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }catch (Exception e){
+                LOG.e(e);
+            }
+
             boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
-//            if (isEasyMode) {
-//                finishOtherViewer(this, VerticalViewActivity.class);
-//            } else {
-//                finishOtherViewer(this, HorizontalViewActivity.class);
-//            }
             Safe.run(() -> {
 
                 Intent
@@ -817,7 +824,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
 
         String language = newConfig.locale.getLanguage();
         float fontScale = newConfig.fontScale;
