@@ -1688,6 +1688,9 @@ public class DocumentWrapperUI {
     private void hideShowAnnotationLineInt() {
 
         try {
+            if(!AppState.get().isSaveAnnotatationsAutomatically){
+                return;
+            }
             if (!dc.getCurrentBook().getPath().endsWith(".pdf")) {
                 LOG.d("not-PDF");
                 return;
