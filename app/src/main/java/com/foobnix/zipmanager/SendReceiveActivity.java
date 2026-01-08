@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.foobnix.OpenerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -22,6 +23,11 @@ import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.CacheControl;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class SendReceiveActivity extends Activity {
     @Override
@@ -80,30 +86,57 @@ public class SendReceiveActivity extends Activity {
 
     private void updateIntent() throws Exception {
         Bundle extras = getIntent().getExtras();
-        LOG.d("updateIntent()-", getIntent());
-        LOG.d("updateIntent()-getExtras", getIntent().getExtras());
-        LOG.d("updateIntent()-getScheme", getIntent().getScheme());
+        LOG.d("SendReceiveActivity", "updateIntent()-", getIntent());
+        LOG.d("SendReceiveActivity", "updateIntent()-getExtras", getIntent().getExtras());
+        LOG.d("SendReceiveActivity", "updateIntent()-getScheme", getIntent().getScheme());
 
         if (extras != null && getIntent().getData() == null) {
             Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
             final Object text = res != null ? res : extras.get(Intent.EXTRA_TEXT);
 
-            LOG.d("updateIntent res", res);
-            LOG.d("updateIntent()-text", text);
+            LOG.d("SendReceiveActivity", "updateIntent res", res);
+            LOG.d("SendReceiveActivity", "updateIntent()-text", text);
 
             if (text == null) {
                 return;
             }
-            if (text instanceof Uri) {
-                getIntent().setData((Uri) text);
-            }
-            Uri uri = Uri.parse((String) text);
-            LOG.d("updateIntent uri", uri);
 
-            if (text instanceof String && uri != null && uri.getScheme() != null && (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"))) {
+            Uri uri = Uri.parse((String) text);
+
+            if (uri != null && ((String) text).endsWith(".pdf")) {
+                LOG.d("SendReceiveActivity", "updateIntent is Uri", uri);
+
+                File file = new File(BookCSS.get().downlodsPath, uri.getLastPathSegment());
+                file.delete();
+
+                Request
+                        request =
+                        new Request.Builder().cacheControl(new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
+                                                                                     .build())
+                                             .url(text.toString())
+                                             .build();//
+
+                Response response = OPDS.client//
+                                          .newCall(request)//
+                                          .execute();
+
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+                fileOutputStream.write(response.body().bytes());
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                getIntent().setData(Uri.fromFile(file));
+
+                return;
+            }
+
+            LOG.d("SendReceiveActivity", "updateIntent uri", uri);
+
+            if (text instanceof String && uri != null && uri.getScheme() != null && (uri.getScheme()
+                                                                                        .equalsIgnoreCase("http") || uri.getScheme()
+                                                                                                                        .equalsIgnoreCase("https"))) {
 
                 LOG.d("updateIntent uri getScheme", uri.getScheme());
-
 
                 final String httpResponse = OPDS.getHttpResponse((String) text, "", "");
 
@@ -115,8 +148,7 @@ public class SendReceiveActivity extends Activity {
                 //Document document = Jsoup.connect((String) text).userAgent("Mozilla/5.0 (jsoup)").timeout(30000).get();
                 if (isText) {
                     new File(BookCSS.get().downlodsPath).mkdirs();
-                    String
-                            title = TxtUtils.fixFileName(TxtUtils.substringSmart(httpResponse, 30));
+                    String title = TxtUtils.fixFileName(TxtUtils.substringSmart(httpResponse, 30));
                     File file = new File(BookCSS.get().downlodsPath, title + ".txt");
                     file.delete();
                     LOG.d("outerHtml-file", file);
@@ -130,7 +162,6 @@ public class SendReceiveActivity extends Activity {
                     LOG.d("updateIntent save ready", file, file.getAbsolutePath());
                 } else {
                     Document document = Jsoup.parse(httpResponse);
-
 
                     String title = (document.title() + text).replaceAll("[^\\w]+", " ");
                     if (title.length() > 31) {
@@ -154,7 +185,6 @@ public class SendReceiveActivity extends Activity {
 
                 }
 
-
             } else {
 
                 File root = new File(BookCSS.get().downlodsPath, "temp");
@@ -176,6 +206,5 @@ public class SendReceiveActivity extends Activity {
         }
 
     }
-
 
 }
