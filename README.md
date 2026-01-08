@@ -4,7 +4,15 @@
 Ukraine.**
 [Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
 
+To help Ukraine, please donate to these funds.
+
 [OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
+
+[Повернись Живим](https://savelife.in.ua/)
+
+[Фонд Сергія Стерненка](https://www.sternenkofund.org/)
+
+[Фонд Сергія Притули](https://prytulafoundation.org/)
 
 # Librera Reader
 
@@ -45,7 +53,7 @@ https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.p
 
 [Telegram Chat](https://t.me/librera_reader_chat)
 
-[Support/Donations on Patreon](https://www.patreon.com/librera)
+♥︎♥︎♥︎ [Support & Donation on Patreon](https://www.patreon.com/librera) ♥︎♥︎♥︎
 
 [Email: librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
@@ -115,7 +123,7 @@ F-Droid build does also not need a **google-services.json**
 
 ## Librera depends on:
 
-MuPDF - (AGPL License) https://mupdf.com/downloads/archive/
+MuPDF - (AGPL License) https://github.com/ArtifexSoftware/mupdf
 
 * ebookdroid
 * djvulibre
