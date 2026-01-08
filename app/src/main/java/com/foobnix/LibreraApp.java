@@ -148,6 +148,8 @@ public class LibreraApp extends MultiDexApplication {
 
     }
 
+
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();
@@ -161,5 +163,11 @@ public class LibreraApp extends MultiDexApplication {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        AppsConfig.executorService.shutdown();
     }
 }
