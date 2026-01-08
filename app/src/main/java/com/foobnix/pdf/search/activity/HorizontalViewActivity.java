@@ -133,15 +133,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
-            flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName,
-            pannelBookTitle;
-    View bottomBar, bottomIndicators, onClose, overlay,  musicButtonPanel, parentParent;
+            flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
+    View bottomBar, bottomIndicators, onClose, overlay, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor, adFrame;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
-            anchorX, anchorY,pagesBookmark;
+            anchorX, anchorY, pagesBookmark;
     HorizontalModeController dc;
     Handler handler = new Handler(Looper.getMainLooper());
     Handler flippingHandler = new Handler(Looper.getMainLooper());
@@ -2089,7 +2088,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onRewardLoaded() {
         super.onRewardLoaded();
-        ViewBinder.hideShowRewardButton(this,showRewardVideo);
+        ViewBinder.hideShowRewardButton(this, showRewardVideo);
     }
 
     public void hideShow() {
@@ -2110,8 +2109,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             //AppState.get().isEditMode = true;
             ttsFixPosition();
         }
-        ViewBinder.hideShowRewardButton(this,showRewardVideo);
-
+        ViewBinder.hideShowRewardButton(this, showRewardVideo);
 
         updateBannnerTop();
         showPagesHelper();
@@ -2251,6 +2249,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
+        if (anchor == null) {
+            return false;
+        }
         LOG.d("getChildCount", anchor.getChildCount(), anchor.getVisibility() == View.VISIBLE, keyCode, isMyKey);
         if (isMyKey) {
             return true;
