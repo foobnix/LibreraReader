@@ -1857,7 +1857,7 @@ pdf_init_document(fz_context *ctx, pdf_document *doc)
 
 		if (repaired)
 		{
-			//pdf_repair_trailer(ctx, doc);
+			pdf_repair_trailer(ctx, doc);
 		}
 	}
 	fz_catch(ctx)
