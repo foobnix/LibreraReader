@@ -185,7 +185,7 @@ public class IMG {
 
     public static void clearDiscCache() {
 
-        new Thread("@T clearDiscCache") {
+        AppsConfig.executorService.execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -196,13 +196,12 @@ public class IMG {
                     LOG.e(e);
                 }
             }
-        }.start();
+        });
 
     }
 
     public static void clearCache(String path) {
         try {
-
 
             String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
             //Glide.get(LibreraApp.context).clearMemory();
@@ -242,32 +241,33 @@ public class IMG {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
         LOG.d("Bitmap-test-load", path);
         IMG.with(img.getContext())
-                .asBitmap()
-                .load(url)
-                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .listener(new RequestListener<Bitmap>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        LOG.d("Bitmap-test-2", "failed");
+           .asBitmap()
+           .load(url)
+           .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+           .listener(new RequestListener<Bitmap>() {
+               @Override
+               public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
+                                           boolean isFirstResource) {
+                   LOG.d("Bitmap-test-2", "failed");
 
-                        return false;
-                    }
+                   return false;
+               }
 
-                    @Override
-                    public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        target.onResourceReady(bitmap, null);
-                        LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+               @Override
+               public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource,
+                                              boolean isFirstResource) {
+                   target.onResourceReady(bitmap, null);
+                   LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
-                        if (run != null) {
-                            run.onResourceReady(null);
-                        }
-                        return true;
-                    }
-                })
-                .into(img);
+                   if (run != null) {
+                       run.onResourceReady(null);
+                   }
+                   return true;
+               }
+           })
+           .into(img);
     }
-
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos) {
         final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
@@ -283,7 +283,8 @@ public class IMG {
         pdfUrl.setUnic(0);
         //pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
 
-        pdfUrl.hash = ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
+        pdfUrl.hash =
+                ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
 
         return pdfUrl.toString();
     }

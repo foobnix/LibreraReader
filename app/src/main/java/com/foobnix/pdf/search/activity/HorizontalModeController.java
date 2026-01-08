@@ -18,6 +18,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -93,7 +94,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
 
-
         if (bs != null) {
             LOG.d("isRTL", "AppBook.rtl", bs.rtl);
             AppSP.get().isRTL = bs.rtl;
@@ -118,7 +118,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
         BookCSS.get().detectLang(bookPath);
-
 
         String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
@@ -151,11 +150,9 @@ public abstract class HorizontalModeController extends DocumentController {
             throw new IllegalArgumentException("Pages count = -1");
         }
 
-
         AppDB.get().addRecent(bookPath);
 
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
-
 
         if (percent > 0.0f) {
             currentPage = Math.round(pagesCount * percent) - 1;
@@ -184,7 +181,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
             }
         }
-
 
     }
 
@@ -221,8 +217,10 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public void udpateImageSize(boolean isTextFormat, int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
-        imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
-        imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        imageWidth =
+                isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        imageHeight =
+                isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
     }
 
     @Override
@@ -460,7 +458,9 @@ public abstract class HorizontalModeController extends DocumentController {
                 }
                 try {
                     if (!ExtUtils.isTextFomat(bookPath)) {
-                        matrixSP.edit().putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString()).commit();
+                        matrixSP.edit()
+                                .putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString())
+                                .commit();
                         LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
                     }
                 } catch (Exception e) {
@@ -554,7 +554,8 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public synchronized void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
+    public synchronized void getOutline(
+            final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
         if (codeDocument == null) {
             outlineResonse.onResultRecive(outline);
             return;
@@ -567,8 +568,8 @@ public abstract class HorizontalModeController extends DocumentController {
                 return;
             }
 
-            outline = new ArrayList<OutlineLinkWrapper>();
-            Thread thread = new Thread("@T getOutlineH") {
+            outline = new ArrayList<>();
+            AppsConfig.executorService.execute(new Runnable() {
                 @Override
                 public void run() {
 
@@ -579,7 +580,8 @@ public abstract class HorizontalModeController extends DocumentController {
                                 return;
                             }
                             if (!codeDocument.isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
-                                if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
+                                if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink()
+                                                                                               .startsWith("#0")) {
                                     outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                                 } else {
                                     int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
@@ -606,11 +608,8 @@ public abstract class HorizontalModeController extends DocumentController {
                     }
 
                 }
+            });
 
-
-            };
-            thread.setPriority(Thread.MIN_PRIORITY);
-            thread.start();
         } else {
             outlineResonse.onResultRecive(outline);
         }
@@ -631,7 +630,8 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result, int firstPage, int lastPage) {
+    public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result,
+                         int firstPage, int lastPage) {
         if (searchTask != null && searchTask.getStatus() != CopyAsyncTask.Status.FINISHED) {
             return;
         }
@@ -656,8 +656,7 @@ public abstract class HorizontalModeController extends DocumentController {
                     pageSearcher.setListener(new PageSearcher.OnWordSearched() {
                         @Override
                         public void onSearch(TextWord word, Object data) {
-                            if (!(data instanceof Integer))
-                                return;
+                            if (!(data instanceof Integer)) return;
                             Integer pageNumber = (Integer) data;
                             LOG.d("Find on page_", pageNumber, text, word);
                             List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);

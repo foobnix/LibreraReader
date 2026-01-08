@@ -11,6 +11,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.Colors;
@@ -479,24 +480,21 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void getOutline(final ResultResponse<List<OutlineLink>> response) {
-        if (true) {
 
-            Thread t = new Thread("@T getOutlineV") {
-                @Override
-                public void run() {
-
-                    if (codecDocument == null) {
-                        response.onResultRecive(null);
-                        return;
-                    }
-                    response.onResultRecive(codecDocument.getOutline());
-                }
-            };
-            t.setPriority(Thread.MIN_PRIORITY);
-            t.start();
-
-            return;//STOP
-        }
+//        if (true) {
+//            AppsConfig.executorService.execute(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (codecDocument == null) {
+//                        response.onResultRecive(null);
+//                        return;
+//                    }
+//                    response.onResultRecive(codecDocument.getOutline());
+//                }
+//            });
+//
+//            return;//STOP
+//        }
         executor.addAny(new Task(0) {
 
             @Override
@@ -636,9 +634,10 @@ public class DecodeServiceBase implements DecodeService {
         final AtomicBoolean run = new AtomicBoolean(true);
 
         ExecutorRunnable() {
-            Thread t = new Thread(this, "@T Decoding");
-            t.setPriority(CoreSettings.getInstance().decodingThreadPriority);
-            t.start();
+            //Thread t = new Thread(this, "@T Decoding");
+            //t.setPriority(CoreSettings.getInstance().decodingThreadPriority);
+            //t.start();
+            AppsConfig.executorService.execute(this);
         }
 
         @Override
