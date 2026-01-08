@@ -78,7 +78,7 @@ public class ADS {
             LOG.d("ADS1", "showInterstitial");
             interstitialAd.show(a);
             interstitialAd = null;
-            loadInterstitial(a);
+            //loadInterstitial(a);
         }
     }
 

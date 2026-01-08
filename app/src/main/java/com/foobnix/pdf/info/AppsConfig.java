@@ -35,8 +35,7 @@ public class AppsConfig {
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
 
-
-//    static int cpuCores = Math.max(1, Runtime.getRuntime().availableProcessors());
+    static int cpuCores = Math.max(2, Runtime.getRuntime().availableProcessors() / 2);
 //    public final static ExecutorService executorService = Executors.newFixedThreadPool(2, r -> {
 //        Thread t = new Thread(r);
 //        t.setPriority(Thread.MAX_PRIORITY);
@@ -44,7 +43,7 @@ public class AppsConfig {
 //        return t;
 //    });
 
-    public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
+    public final static ExecutorService executorService = Executors.newFixedThreadPool(cpuCores);
 
     public static boolean
             IS_LOG =
