@@ -8,11 +8,11 @@ To help Ukraine, please donate to these funds.
 
 [OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
 
-[Повернись Живим](https://savelife.in.ua/)
+[Повернись Живим - Come Back Alive](https://savelife.in.ua/en/)
 
-[Фонд Сергія Стерненка](https://www.sternenkofund.org/)
+[Фонд Сергія Стерненка - Foundation Sternenko Community](https://www.sternenkofund.org/en)
 
-[Фонд Сергія Притули](https://prytulafoundation.org/)
+[Фонд Сергія Притули - Serhiy Prytula Charity Foundation](https://prytulafoundation.org/en/)
 
 # Librera Reader
 
