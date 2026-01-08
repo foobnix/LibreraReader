@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -16,6 +17,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.widget.ImageViewCompat;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -210,7 +213,8 @@ public class TintUtil {
         if (img == null) {
             return null;
         }
-        img.setColorFilter(color, Mode.SRC_ATOP);
+        //img.setColorFilter(color, Mode.SRC_ATOP);
+        ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
         img.setImageAlpha(230);
         return img;
     }
@@ -221,13 +225,15 @@ public class TintUtil {
     }
 
     public static ImageView setTintImageWithAlpha(ImageView img, int color) {
-        img.setColorFilter(color, Mode.SRC_ATOP);
+        //img.setColorFilter(color, Mode.SRC_ATOP);
+        ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
         img.setImageAlpha(230);
         return img;
     }
 
     public static ImageView setTintImageWithAlpha(ImageView img, int color, int alpha) {
-        img.setColorFilter(color, Mode.SRC_ATOP);
+        //img.setColorFilter(color, Mode.SRC_ATOP);
+        ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
         if (alpha > 0) {
             img.setImageAlpha(alpha);
         }
@@ -235,7 +241,8 @@ public class TintUtil {
     }
 
     public static ImageView setTintImageNoAlpha(ImageView img, int color) {
-        img.setColorFilter(color, Mode.SRC_ATOP);
+        //img.setColorFilter(color, Mode.SRC_ATOP);
+        ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
         return img;
     }
 
@@ -275,6 +282,7 @@ public class TintUtil {
             return;
         }
         txtView.getBackground().setColorFilter(color, Mode.SRC_ATOP);
+
     }
 
     @SuppressLint("NewApi")
