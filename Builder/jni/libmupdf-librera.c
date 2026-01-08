@@ -377,8 +377,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(
     //(*env)->ReleaseStringUTFChars(env, accelerate, accel);
     (*env)->ReleaseStringUTFChars(env, jcss, css);
 
-    return (jlong)(
-    long)doc;
+    return (jlong)(long)doc;
 }
 
 JNIEXPORT void JNICALL
