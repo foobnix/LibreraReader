@@ -4,7 +4,7 @@
 Ukraine.**
 [Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
 
-To help Ukraine, please donate to these funds.
+🇺🇦 To help Ukraine, please donate to these funds 💙💛
 
 [OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
 
