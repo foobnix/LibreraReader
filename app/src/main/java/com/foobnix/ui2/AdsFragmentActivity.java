@@ -1,6 +1,7 @@
 package com.foobnix.ui2;
 
 
+
 import static com.foobnix.pdf.info.ADS.FULL_SCREEN_TIMEOUT_SEC;
 
 import android.annotation.TargetApi;
@@ -178,11 +179,12 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         IMG.pauseRequests(this);
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
-        if (ADS.secondsRemain(timeActivityCreated) > FULL_SCREEN_TIMEOUT_SEC) {
-            ADS.get().showInterstitial(this);
-        } else {
-            LOG.d("ADS1 showInterstitial skip",ADS.secondsRemain(timeActivityCreated));
-        }
+//        if (ADS.secondsRemain(timeActivityCreated) > FULL_SCREEN_TIMEOUT_SEC) {
+//
+//        } else {
+//            LOG.d("ADS1 showInterstitial skip",ADS.secondsRemain(timeActivityCreated));
+//        }
+        ADS.get().showInterstitial(this);
         onFinishActivity();
     }
 

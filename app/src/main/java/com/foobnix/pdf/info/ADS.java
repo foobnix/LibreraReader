@@ -34,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 public class ADS {
-    public static int FULL_SCREEN_TIMEOUT_SEC = 30;
+    public static int FULL_SCREEN_TIMEOUT_SEC = 5;
     public static int ADS_LIVE_SEC = 60 * 60;
 
     private InterstitialAd interstitialAd;
