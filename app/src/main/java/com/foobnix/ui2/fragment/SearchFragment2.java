@@ -70,10 +70,12 @@ import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.BooksService;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.work.CheckDeletedBooksWorker;
@@ -433,10 +435,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                if (true) {
-                    // test();
-                    // return;
-                }
+                ((AdsFragmentActivity)SearchFragment2.this.getActivity()).loadInterstitial();
 
                 if (!onRefresh.isActivated()) {
                     Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG).show();
@@ -455,6 +454,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         Prefs.get().remove(SearchAllBooksWorker.SEARCH_ERRORS, 0);
                         recyclerView.scrollToPosition(0);
                         seachAll();
+                        ((AdsFragmentActivity)SearchFragment2.this.getActivity()).showInterstitialNoFinish();
                     }
                 });
             }

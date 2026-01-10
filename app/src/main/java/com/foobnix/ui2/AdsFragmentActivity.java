@@ -80,6 +80,11 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             }
         }
     }
+    public void loadInterstitial(){
+        if (AppsConfig.isShowAdsInApp(this)) {
+            ADS.get().loadInterstitial(this);
+        }
+    }
 
     Runnable onRewardLoaded = new Runnable() {
         @Override
@@ -186,6 +191,11 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 //        }
         ADS.get().showInterstitial(this);
         onFinishActivity();
+    }
+    public void showInterstitialNoFinish(){
+        if (AppsConfig.isShowAdsInApp(this)) {
+            ADS.get().showInterstitial(this);
+        }
     }
 
     public void onBackPressedAction() {

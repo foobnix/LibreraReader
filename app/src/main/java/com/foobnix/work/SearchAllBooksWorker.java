@@ -154,7 +154,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             sendFinishMessage();
 
-            handler.post(timer2);
+            handler.post(refreshTimer);
 
             for (FileMeta meta : itemsMeta) {
                 if (isStopped()) {
@@ -184,7 +184,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             itemsMeta.clear();
 
-            handler.removeCallbacks(timer2);
+            handler.removeCallbacks(refreshTimer);
             sendFinishMessage();
             CacheZipUtils.CacheDir.ZipService.removeCacheContent();
 
@@ -204,6 +204,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             updateBookAnnotations();
         } finally {
+            handler.removeCallbacks(refreshTimer);
             Prefs.get().remove(SEARCH_ERRORS, 0);
         }
         return true;
@@ -241,13 +242,13 @@ public class SearchAllBooksWorker extends MessageWorker {
     };
 
 
-    Runnable timer2 = new Runnable() {
+    Runnable refreshTimer = new Runnable() {
 
         @Override
         public void run() {
             LOG.d("timer2");
             sendBuildingLibrary();
-            handler.postDelayed(timer2, 250);
+            handler.postDelayed(refreshTimer, 500);
         }
     };
 
