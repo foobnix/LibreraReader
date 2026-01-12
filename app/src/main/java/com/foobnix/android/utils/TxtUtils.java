@@ -1363,7 +1363,7 @@ public class TxtUtils {
             List<Integer>
                     ids =
                     Arrays.asList(R.id.restoreDefaultProfile, R.id.onCloseApp, R.id.title, R.id.chapter, R.id.currentSeek, R.id.maxSeek,
-                            R.id.modeName, R.id.nextTypeBootom,R.id.playListName);
+                            R.id.modeName, R.id.nextTypeBootom,R.id.playListName, R.id.playListNameEdit);
             if (AppState.get().isUiTextColor) {
                 for (int id : ids) {
                     TextView view = parent.findViewById(id);

@@ -30,6 +30,7 @@ public class Playlists {
     final public static String L_PLAYLIST_RECENT = ".recent";
     final public static String L_PLAYLIST_FAVORITES = ".favorites";
     final public static String L_PLAYLIST_FOLDER = ".folder";
+    final public static String L_PLAYLIST_TAGS = ".tags";
 
     public static void createPlayList(String name) {
         LOG.d("Playlists", "createPlayList", name);
@@ -145,6 +146,10 @@ public class Playlists {
         if (name.startsWith(L_PLAYLIST_FOLDER)) {
             String folderName = " [" + ExtUtils.getFileName(name) + "]";
             return ((Activity) a).getString(R.string.folder) + folderName;
+        }
+        if (name.startsWith(L_PLAYLIST_TAGS)) {
+            String tag = name.replace(L_PLAYLIST_TAGS,"") ;
+            return tag;
         }
         name = ExtUtils.getFileName(name);
         return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";

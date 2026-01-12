@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FAVORITES;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FOLDER;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_TAGS;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -40,6 +41,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
@@ -51,6 +53,7 @@ import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
@@ -402,7 +405,7 @@ public class DialogsPlaylist {
 
         List<String> res = new ArrayList<String>();
 
-        playListNameEdit.setVisibility(View.GONE);
+
 
         LOG.d("getFilesAndDirs","init",playlistPath);
         if (playlistPath.equals(L_PLAYLIST_RECENT)) {
@@ -415,7 +418,14 @@ public class DialogsPlaylist {
             BrowseFragment2.sortItems(filesAndDirs);
             res = convert(filesAndDirs,100);
 
-        } else {
+        }else if(playlistPath.startsWith(L_PLAYLIST_TAGS)) {
+            List<FileMeta>
+                    allTags =
+                    AppDB.get()
+                         .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""), AppDB.SORT_BY.FILE_NAME, false);
+            res = convert(allTags, 100);
+        }
+        else {
             playListNameEdit.setVisibility(View.VISIBLE);
             res = Playlists.getPlaylistItems(playlistPath);
         }
@@ -494,6 +504,15 @@ public class DialogsPlaylist {
                 if (!folders.isEmpty()) {
                     for (FileMeta folder : folders) {
                         items.add(L_PLAYLIST_FOLDER + folder.getPath());
+                    }
+                }
+                final List<String> tags = TagData.getAllTagsByFile();
+                if (!tags.isEmpty()) {
+                    for(String tag:tags) {
+                        if(TxtUtils.isEmpty(tag)){
+                            continue;
+                        }
+                        items.add(L_PLAYLIST_TAGS + tag);
                     }
                 }
 
