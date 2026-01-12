@@ -124,6 +124,7 @@ public class SearchCore {
     }
 
     public static List<FileMeta> getFilesAndDirs(String path, boolean filterEmpty, boolean isDisplayAllFilesInFolder) {
+        LOG.d("getFilesAndDirs",path);
         File file = new File(path);
         if (!file.isDirectory()) {
             return Collections.emptyList();

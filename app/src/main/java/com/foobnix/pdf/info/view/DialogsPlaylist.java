@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.view;
 
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FAVORITES;
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FOLDER;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
 
 import android.annotation.TargetApi;
@@ -43,12 +44,15 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.drag.OnStartDragListener;
 import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
 import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -82,7 +86,7 @@ public class DialogsPlaylist {
                     @Override
                     public void populateView(View layout, final int position, final String tagName) {
                         TextView text = (TextView) layout.findViewById(R.id.text1);
-                        text.setText(Playlists.formatPlaylistName(a,tagName));
+                        text.setText(Playlists.formatPlaylistName(a, tagName));
                         if (file == null) {
                             TxtUtils.underlineTextView(text);
                         }
@@ -328,6 +332,9 @@ public class DialogsPlaylist {
         List<String> res = new ArrayList<>();
         int count = 0;
         for (FileMeta meta : list) {
+            if(meta.getCusType()!=null && meta.getCusType().equals(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)){
+                continue;
+            }
             res.add(meta.getPath());
             if (count > limit) {
                 break;
@@ -395,15 +402,25 @@ public class DialogsPlaylist {
 
         List<String> res = new ArrayList<String>();
 
+        playListNameEdit.setVisibility(View.GONE);
+
+        LOG.d("getFilesAndDirs","init",playlistPath);
         if (playlistPath.equals(L_PLAYLIST_RECENT)) {
             res = convert(AppData.get().getAllRecent(false), 50);
         } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
             res = convert(AppData.get().getAllFavoriteFiles(false), 50);
+        } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER)) {
+            List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(playlistPath.replace(L_PLAYLIST_FOLDER,""),false,
+                    AppState.get().isDisplayAllFilesInFolder);
+            BrowseFragment2.sortItems(filesAndDirs);
+            res = convert(filesAndDirs,100);
+
         } else {
+            playListNameEdit.setVisibility(View.VISIBLE);
             res = Playlists.getPlaylistItems(playlistPath);
         }
 
-        playListName.setText("☰ " + Playlists.formatPlaylistName(a,playlistPath));
+        playListName.setText("☰ " + Playlists.formatPlaylistName(a, playlistPath));
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
 
         final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
@@ -473,11 +490,17 @@ public class DialogsPlaylist {
                 final List<String> items = Playlists.getAllPlaylists();
                 items.add(L_PLAYLIST_RECENT);
                 items.add(L_PLAYLIST_FAVORITES);
+                final List<FileMeta> folders = AppData.get().getAllFavoriteFolders();
+                if (!folders.isEmpty()) {
+                    for (FileMeta folder : folders) {
+                        items.add(L_PLAYLIST_FOLDER + folder.getPath());
+                    }
+                }
 
                 MyPopupMenu menu = new MyPopupMenu(v);
                 for (final String item : items) {
                     menu.getMenu()
-                        .add(Playlists.formatPlaylistName(a,item))
+                        .add(Playlists.formatPlaylistName(a, item))
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override

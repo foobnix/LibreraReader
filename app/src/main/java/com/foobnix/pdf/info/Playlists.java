@@ -29,6 +29,7 @@ public class Playlists {
     final public static String L_PLAYLIST = ".playlist";
     final public static String L_PLAYLIST_RECENT = ".recent";
     final public static String L_PLAYLIST_FAVORITES = ".favorites";
+    final public static String L_PLAYLIST_FOLDER = ".folder";
 
     public static void createPlayList(String name) {
         LOG.d("Playlists", "createPlayList", name);
@@ -135,11 +136,15 @@ public class Playlists {
     }
 
     public static String formatPlaylistName(android.content.Context a, String name) {
-        if(name.startsWith(L_PLAYLIST_RECENT)){
-            return ((Activity)a).getString(R.string.recent);
+        if (name.startsWith(L_PLAYLIST_RECENT)) {
+            return ((Activity) a).getString(R.string.recent);
         }
-        if(name.startsWith(L_PLAYLIST_FAVORITES)){
-            return ((Activity)a).getString(R.string.favorites);
+        if (name.startsWith(L_PLAYLIST_FAVORITES)) {
+            return ((Activity) a).getString(R.string.favorites);
+        }
+        if (name.startsWith(L_PLAYLIST_FOLDER)) {
+            String folderName = " [" + ExtUtils.getFileName(name) + "]";
+            return ((Activity) a).getString(R.string.folder) + folderName;
         }
         name = ExtUtils.getFileName(name);
         return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";
@@ -150,7 +155,7 @@ public class Playlists {
 
         for (String s : getAllPlaylists()) {
             FileMeta meta = new FileMeta(getFile(s).getPath());
-            meta.setPathTxt(formatPlaylistName(a,s));
+            meta.setPathTxt(formatPlaylistName(a, s));
             meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
             res.add(meta);
         }
@@ -161,8 +166,6 @@ public class Playlists {
 
     public static List<String> getAllPlaylists() {
         List<String> res = new ArrayList<String>();
-
-
 
         File root = AppProfile.syncPlaylist;
 
