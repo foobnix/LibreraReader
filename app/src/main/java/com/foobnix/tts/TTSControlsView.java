@@ -341,8 +341,11 @@ public class TTSControlsView extends FrameLayout {
         ttsPrevTrack.setVisibility(TxtUtils.visibleIf(isMulty));
         ttsNextTrack.setVisibility(TxtUtils.visibleIf(isMulty));
 
-        TintUtil.setTintImageWithAlpha(ttsPrevTrack, TTSTracks.getPrevTrack() != null ? colorTint : Color.GRAY);
-        TintUtil.setTintImageWithAlpha(ttsNextTrack, TTSTracks.getNextTrack() != null ? colorTint : Color.GRAY);
+        //TintUtil.setTintImageWithAlpha(ttsPrevTrack, TTSTracks.getPrevTrack() != null ? colorTint : Color.GRAY);
+        //TintUtil.setTintImageWithAlpha(ttsNextTrack, TTSTracks.getNextTrack() != null ? colorTint : Color.GRAY);
+
+        //TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint, 240);
+        //TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint, 240);
 
     }
 
