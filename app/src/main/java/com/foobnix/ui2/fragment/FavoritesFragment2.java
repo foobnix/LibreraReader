@@ -164,6 +164,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
+                        getActivity().getString(R.string.time), //
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //
@@ -175,6 +176,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                                                   );//
 
                 final List<Integer> ids = Arrays.asList(//
+                        AppState.BR_SORT_BY_STAR_TIME, //
                         AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_SIZE, //
@@ -462,6 +464,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
+                }else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_STAR_TIME) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_SORT_BY_STAR_TIME);
                 }
                 if (AppState.get().sortByFavoriteReverse) {
                     Collections.reverse(allFavoriteFiles);

@@ -674,4 +674,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset 1 tunniksi</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset kahdeksi tunniksi</string>
    <string name="the_book_is_complete">Kirja on valmis.</string>
+   <string name="time">Aika</string>
 </resources>

@@ -127,6 +127,17 @@ public class FileMetaComparators {
             }
         }
     };
+
+    public static Comparator<FileMeta> BR_SORT_BY_STAR_TIME = new Comparator<FileMeta>() {
+        @Override public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return o1.getIsStarTime().compareTo(o2.getIsStarTime());
+            } catch (Exception e) {
+                LOG.e(e);
+                return 1;
+            }
+        }
+    };
     public static Comparator<FileMeta> BR_BY_AUTHOR = new Comparator<FileMeta>() {
         @Override public int compare(FileMeta o1, FileMeta o2) {
             try {

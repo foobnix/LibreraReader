@@ -674,4 +674,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Гледайте това кратко видео, за да изключите всички реклами за 1 час</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Гледайте това кратко видео, за да изключите всички реклами за 2 часа</string>
    <string name="the_book_is_complete">Книгата е завършена.</string>
+   <string name="time">Време</string>
 </resources>

@@ -674,4 +674,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Titta på den här korta videon för att stänga av alla annonser i 1 timme</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Titta på den här korta videon för att stänga av all reklam i två timmar</string>
    <string name="the_book_is_complete">Boken är komplett.</string>
+   <string name="time">Tid</string>
 </resources>

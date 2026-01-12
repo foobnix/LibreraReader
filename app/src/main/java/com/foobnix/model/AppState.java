@@ -169,6 +169,7 @@ public class AppState {
     public final static int BR_SORT_BY_PAGES = 5;// not possible
     public final static int BR_SORT_BY_EXT = 6;// not possible
     public final static int BR_SORT_BY_AUTHOR = 7;// not possible
+    public final static int BR_SORT_BY_STAR_TIME = 8;
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
@@ -395,7 +396,7 @@ public class AppState {
     public int sortBy = AppDB.SORT_BY.DATA.ordinal();
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
-    public int sortByFavorite = BR_SORT_BY_DATE;
+    public int sortByFavorite = BR_SORT_BY_STAR_TIME;
     public boolean sortByFavoriteReverse = false;
     @IgnoreHashCode public boolean isBrighrnessEnable = false;
     @IgnoreHashCode public boolean isAllowMinBrigthness = false;

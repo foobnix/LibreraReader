@@ -674,4 +674,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">观看此短视频，即可在 1 小时内关闭所有广告。</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">观看此短视频，即可在 2 小时内关闭所有广告。</string>
    <string name="the_book_is_complete">这本书已经完成了。</string>
+   <string name="time">时间</string>
 </resources>
