@@ -54,7 +54,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
         handler = new Handler(Looper.getMainLooper());
         timeActivityCreated = System.currentTimeMillis();
-        LibreraApp.openCounter++;
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override

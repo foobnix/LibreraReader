@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 public class ADS {
     //public static int FULL_SCREEN_TIMEOUT_SEC = 15;
     public static int ADS_LIVE_SEC = 60 * 60;//60 min
-    public static int INTERSTITIAL_DELAY_SEC = 60 * 10;//10 min
+    public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//10 min
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
@@ -71,11 +71,6 @@ public class ADS {
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             return;
         }
-        if (LibreraApp.openCounter <= 5) {
-            LOG.d("ADS1", "showInterstitial openCounter", LibreraApp.openCounter);
-            return;
-        }
-
         if (isRewardActivated()) {
             return;
         }

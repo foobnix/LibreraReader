@@ -31,11 +31,9 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class LibreraApp extends MultiDexApplication {
     public static Context context;
 
-    public static int openCounter = 0;
 
     @Override
     public void onCreate() {
-        openCounter = 0;
 
 //        if (AppsConfig.IS_EMULATOR) {
 //            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -171,7 +169,6 @@ public class LibreraApp extends MultiDexApplication {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        openCounter = 0;
         AppsConfig.executorService.shutdown();
     }
 }
