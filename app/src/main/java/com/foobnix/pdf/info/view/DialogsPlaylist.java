@@ -56,6 +56,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.BrowseFragment2;
+import com.foobnix.ui2.fragment.FavoritesFragment2;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -65,7 +66,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogsPlaylist {
-    private static final int SIZE = Dips.isLargeOrXLargeScreen() ? Dips.DP_80 : Dips.DP_60;
+    public static final int LIMIT_MAX_BOOKS = 50;
     static AlertDialog create;
 
     public static void showPlaylistsDialog(final Context a, final Runnable refresh, final File file) {
@@ -408,22 +409,22 @@ public class DialogsPlaylist {
 
         LOG.d("getFilesAndDirs", "init", playlistPath);
         if (playlistPath.equals(L_PLAYLIST_RECENT)) {
-            res = convert(AppData.get().getAllRecent(false), 50);
+            res = convert(AppData.get().getAllRecent(false), LIMIT_MAX_BOOKS);
         } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
-            res = convert(AppData.get().getAllFavoriteFiles(false), 50);
+            res = convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS);
         } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER)) {
             List<FileMeta>
                     filesAndDirs =
                     SearchCore.getFilesAndDirs(playlistPath.replace(L_PLAYLIST_FOLDER, ""), false, AppState.get().isDisplayAllFilesInFolder);
             BrowseFragment2.sortItems(filesAndDirs);
-            res = convert(filesAndDirs, 100);
+            res = convert(filesAndDirs, LIMIT_MAX_BOOKS);
 
         } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
             List<FileMeta>
                     allTags =
                     AppDB.get()
                          .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""), AppDB.SORT_BY.FILE_NAME, false);
-            res = convert(allTags, 100);
+            res = convert(allTags, LIMIT_MAX_BOOKS);
         } else {
             playListNameEdit.setVisibility(View.VISIBLE);
             res = Playlists.getPlaylistItems(playlistPath);
