@@ -332,6 +332,7 @@ public class DialogsPlaylist {
     }
 
     public static List<String> convert(List<FileMeta> list, int limit) {
+
         List<String> res = new ArrayList<>();
         int count = 0;
         for (FileMeta meta : list) {
@@ -405,29 +406,29 @@ public class DialogsPlaylist {
 
         List<String> res = new ArrayList<String>();
 
+        if(AppState.get().isPlayListVisible) {
+            LOG.d("getFilesAndDirs", "init", playlistPath);
+            if (playlistPath.equals(L_PLAYLIST_RECENT)) {
+                res = convert(AppData.get().getAllRecent(false), 50);
+            } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
+                res = convert(AppData.get().getAllFavoriteFiles(false), 50);
+            } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER)) {
+                List<FileMeta>
+                        filesAndDirs =
+                        SearchCore.getFilesAndDirs(playlistPath.replace(L_PLAYLIST_FOLDER, ""), false, AppState.get().isDisplayAllFilesInFolder);
+                BrowseFragment2.sortItems(filesAndDirs);
+                res = convert(filesAndDirs, 100);
 
-
-        LOG.d("getFilesAndDirs","init",playlistPath);
-        if (playlistPath.equals(L_PLAYLIST_RECENT)) {
-            res = convert(AppData.get().getAllRecent(false), 50);
-        } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
-            res = convert(AppData.get().getAllFavoriteFiles(false), 50);
-        } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER)) {
-            List<FileMeta> filesAndDirs = SearchCore.getFilesAndDirs(playlistPath.replace(L_PLAYLIST_FOLDER,""),false,
-                    AppState.get().isDisplayAllFilesInFolder);
-            BrowseFragment2.sortItems(filesAndDirs);
-            res = convert(filesAndDirs,100);
-
-        }else if(playlistPath.startsWith(L_PLAYLIST_TAGS)) {
-            List<FileMeta>
-                    allTags =
-                    AppDB.get()
-                         .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""), AppDB.SORT_BY.FILE_NAME, false);
-            res = convert(allTags, 100);
-        }
-        else {
-            playListNameEdit.setVisibility(View.VISIBLE);
-            res = Playlists.getPlaylistItems(playlistPath);
+            } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
+                List<FileMeta>
+                        allTags =
+                        AppDB.get()
+                             .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""), AppDB.SORT_BY.FILE_NAME, false);
+                res = convert(allTags, 100);
+            } else {
+                playListNameEdit.setVisibility(View.VISIBLE);
+                res = Playlists.getPlaylistItems(playlistPath);
+            }
         }
 
         playListName.setText("☰ " + Playlists.formatPlaylistName(a, playlistPath));
