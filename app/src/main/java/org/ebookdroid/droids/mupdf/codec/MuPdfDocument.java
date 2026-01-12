@@ -53,9 +53,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         bookType = BookType.getByUri(fname);
     }
 
-    static void normalizeLinkTargetRect(final long docHandle,
-                                        final int targetPage,
-                                        final RectF targetRect,
+    static void normalizeLinkTargetRect(final long docHandle, final int targetPage, final RectF targetRect,
                                         final int flags) {
 
         if ((flags & 0x0F) == 0) {
@@ -132,16 +130,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     public static native String getFzVersion();
 
-    private static native long open(int storememory,
-                                    int format,
-                                    String fname,
-                                    String pwd,
-                                    String css,
-                                    int useDocStyle,
-                                    float scale,
-                                    int antialias,
-                                    String accel,
-                                    int isImageScale);
+    private static native long open(int storememory, int format, String fname, String pwd, String css, int useDocStyle,
+                                    float scale, int antialias, String accel, int isImageScale);
 
     private static native void free(long handle);
 
