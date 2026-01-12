@@ -93,6 +93,7 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
@@ -3030,6 +3031,8 @@ public class PrefFragment2 extends UIFragment {
                 .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
+        ((AdsFragmentActivity)PrefFragment2.this.getActivity()).showInterstitialNoFinish();
     }
 
     private void closeLeftMenu() {

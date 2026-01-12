@@ -1,9 +1,5 @@
 package com.foobnix.ui2;
 
-
-
-import static com.foobnix.pdf.info.ADS.FULL_SCREEN_TIMEOUT_SEC;
-
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -14,6 +10,7 @@ import android.os.Looper;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentActivity;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -57,6 +54,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
         handler = new Handler(Looper.getMainLooper());
         timeActivityCreated = System.currentTimeMillis();
+        LibreraApp.openCounter++;
 
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
@@ -66,7 +64,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         });
     }
 
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -74,16 +71,12 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             if (this instanceof MainTabs2) {
                 showBannerAds();
             }
-            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
-                ADS.get().loadRewardedAd(this, onRewardLoaded);
-                ADS.get().loadInterstitial(this);
-            }
         }
-    }
-    public void loadInterstitial(){
-        if (AppsConfig.isShowAdsInApp(this)) {
-            ADS.get().loadInterstitial(this);
-        }
+//           // if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
+//                ADS.get().loadRewardedAd(this, onRewardLoaded);
+//                ADS.get().loadInterstitial(this);
+//            //}
+//        }
     }
 
     Runnable onRewardLoaded = new Runnable() {
@@ -98,7 +91,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void showBannerAds() {
-            ADS.get().showBanner(this);
+        ADS.get().showBanner(this);
     }
 
     public void showRewardVideo(OnUserEarnedRewardListener listener) {
@@ -126,10 +119,10 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
             if (this instanceof MainTabs2) {
                 ADS.get().onResumeBanner(this);
             }
-            if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
-                ADS.get().loadRewardedAd(this, onRewardLoaded);
-                ADS.get().loadInterstitial(this);
-            }
+
+            ADS.get().loadRewardedAd(this, onRewardLoaded);
+            ADS.get().loadInterstitial(this);
+
         }
 
     }
@@ -147,7 +140,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onDestroy();
 
     }
-    protected void onDestroyBanner(){
+
+    protected void onDestroyBanner() {
         ADS.get().onDestroyBanner();
     }
 
@@ -192,7 +186,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         ADS.get().showInterstitial(this);
         onFinishActivity();
     }
-    public void showInterstitialNoFinish(){
+
+    public void showInterstitialNoFinish() {
         if (AppsConfig.isShowAdsInApp(this)) {
             ADS.get().showInterstitial(this);
         }

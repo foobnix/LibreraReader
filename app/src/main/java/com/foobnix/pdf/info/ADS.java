@@ -34,8 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 public class ADS {
-    public static int FULL_SCREEN_TIMEOUT_SEC = 5;
-    public static int ADS_LIVE_SEC = 60 * 60;
+    //public static int FULL_SCREEN_TIMEOUT_SEC = 15;
+    public static int ADS_LIVE_SEC = 60 * 60;//60 min
+    public static int INTERSTITIAL_DELAY_SEC = 60 * 10;//10 min
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
@@ -44,6 +45,7 @@ public class ADS {
 
     private long rewardedAdLoadedTime = 0;
     private long interstitialAdTime = 0;
+    private long interstitialAdShowTime = 0;
 
     private final static ADS instance = new ADS();
 
@@ -69,14 +71,24 @@ public class ADS {
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             return;
         }
+        if (LibreraApp.openCounter <= 5) {
+            LOG.d("ADS1", "showInterstitial openCounter", LibreraApp.openCounter);
+            return;
+        }
 
         if (isRewardActivated()) {
+            return;
+        }
+
+        if (secondsRemain(interstitialAdShowTime) < INTERSTITIAL_DELAY_SEC) {
+            LOG.d("ADS1", "showInterstitial delay timeout");
             return;
         }
 
         if (interstitialAd != null) {
             LOG.d("ADS1", "showInterstitial");
             interstitialAd.show(a);
+            interstitialAdShowTime = System.currentTimeMillis();
             interstitialAd = null;
             //loadInterstitial(a);
         }
@@ -150,7 +162,6 @@ public class ADS {
     }
 
     public void loadInterstitial(Activity a) {
-
 
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             LOG.d("ADS1", "Interstitial destroyed");

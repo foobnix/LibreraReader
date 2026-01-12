@@ -435,7 +435,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                ((AdsFragmentActivity)SearchFragment2.this.getActivity()).loadInterstitial();
 
                 if (!onRefresh.isActivated()) {
                     Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG).show();
