@@ -709,7 +709,11 @@ public abstract class DocumentController {
     }
 
     public String getString(int resId) {
-        return activity.getString(resId);
+        try {
+            return activity.getString(resId);
+        }catch (Exception e){
+            return  "";
+        }
     }
 
     public void onLinkHistory() {

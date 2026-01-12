@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
+
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -365,6 +367,9 @@ public class AppState {
     public int fullScreenMainMode = FULL_SCREEN_NORMAL;
     public boolean isShowImages = true;
     public boolean isShowToolBar = true;
+
+    public boolean isPlayListVisible = true;
+    public String playlistDefault = L_PLAYLIST_RECENT;
     public boolean isConvertToMp3 = true;
     public boolean isShowPanelBookNameScrollMode = true;
     public boolean isShowPanelBookNameBookMode = false;

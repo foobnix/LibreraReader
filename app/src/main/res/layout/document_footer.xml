@@ -8,45 +8,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/playListParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/playListName"
+                style="@style/textLinkWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="Playlists"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:visibility="gone"
-             />
+                android:layout_weight="0"
+                android:text=""
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/playListNameEdit"
                 style="@style/textLinkWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
                 android:tag="textLink"
-                android:text="@string/edit"
-                android:visibility="gone" />
+                android:text=""
+
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/closePlaylist"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_margin="2dip"
+                android:layout_weight="0"
+                android:contentDescription="@string/close"
+                android:src="@drawable/glyphicons_599_menu_close"
+                android:tint="@color/tint_white" />
+
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
             android:id="@+id/playlistRecycleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dip" >
-        </androidx.recyclerview.widget.RecyclerView>
+            android:padding="5dip"
+            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,9 +68,9 @@
             android:clickable="true"
             android:gravity="center"
             android:paddingLeft="2dip"
-            android:paddingRight="2dip"
             android:paddingTop="2dip"
-            android:visibility="visible" >
+            android:paddingRight="2dip"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/linkHistory"
@@ -125,10 +139,10 @@
             <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
-                android:contentDescription="@string/one_page"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
+                android:contentDescription="@string/one_page"
                 android:src="@drawable/my_glyphicons_two_page_one"
                 android:visibility="visible" />
 
@@ -156,7 +170,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="2dip"
-            android:paddingRight="2dip" >
+            android:paddingRight="2dip">
 
             <TextView
                 android:id="@+id/currentSeek"
@@ -177,11 +191,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginBottom="2dip"
                 android:layout_marginTop="2dip"
+                android:layout_marginBottom="2dip"
                 android:layout_weight="1"
-                android:paddingBottom="3dip"
                 android:paddingTop="3dip"
+                android:paddingBottom="3dip"
                 android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 
@@ -206,9 +220,9 @@
             android:clickable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="2dip"
             android:paddingLeft="2dip"
-            android:paddingRight="2dip" >
+            android:paddingRight="2dip"
+            android:paddingBottom="2dip">
 
             <ImageView
                 android:id="@+id/autoScroll"

@@ -1,5 +1,8 @@
 package com.foobnix.pdf.info.view;
 
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FAVORITES;
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,12 +30,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
@@ -47,6 +54,7 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DialogsPlaylist {
@@ -68,58 +76,60 @@ public class DialogsPlaylist {
 
         final List<String> items = Playlists.getAllPlaylists();
 
-        final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item_text, items) {
-            @Override
-            public void populateView(View layout, final int position, final String tagName) {
-                TextView text = (TextView) layout.findViewById(R.id.text1);
-                text.setText(Playlists.formatPlaylistName(tagName));
-                if (file == null) {
-                    TxtUtils.underlineTextView(text);
-                }
-
-                layout.setOnClickListener(new OnClickListener() {
-
+        final BaseItemLayoutAdapter<String>
+                adapter =
+                new BaseItemLayoutAdapter<String>(a, R.layout.tag_item_text, items) {
                     @Override
-                    public void onClick(View v) {
-                        if (file != null) {
-                            Playlists.addMetaToPlaylist(tagName, file);
-                            create.dismiss();
-                        } else {
-                            showPlayList(a, tagName, null);
+                    public void populateView(View layout, final int position, final String tagName) {
+                        TextView text = (TextView) layout.findViewById(R.id.text1);
+                        text.setText(Playlists.formatPlaylistName(a,tagName));
+                        if (file == null) {
+                            TxtUtils.underlineTextView(text);
                         }
-                    }
-                });
 
-                ImageView img = layout.findViewById(R.id.delete1);
-                if (file != null) {
-                    img.setVisibility(View.GONE);
-                }
-                TintUtil.setTintImageWithAlpha(img, Color.GRAY);
-                img.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.are_you_sure_to_delete_playlist_), new Runnable() {
+                        layout.setOnClickListener(new OnClickListener() {
 
                             @Override
-                            public void run() {
-                                Playlists.deletePlaylist(tagName);
-                                items.clear();
-                                items.addAll(Playlists.getAllPlaylists());
-                                notifyDataSetChanged();
-
-                                if (refresh != null) {
-                                    refresh.run();
+                            public void onClick(View v) {
+                                if (file != null) {
+                                    Playlists.addMetaToPlaylist(tagName, file);
+                                    create.dismiss();
+                                } else {
+                                    showPlayList(a, tagName, null);
                                 }
+                            }
+                        });
+
+                        ImageView img = layout.findViewById(R.id.delete1);
+                        if (file != null) {
+                            img.setVisibility(View.GONE);
+                        }
+                        TintUtil.setTintImageWithAlpha(img, Color.GRAY);
+                        img.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.are_you_sure_to_delete_playlist_), new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        Playlists.deletePlaylist(tagName);
+                                        items.clear();
+                                        items.addAll(Playlists.getAllPlaylists());
+                                        notifyDataSetChanged();
+
+                                        if (refresh != null) {
+                                            refresh.run();
+                                        }
+
+                                    }
+                                });
 
                             }
                         });
 
                     }
-                });
-
-            }
-        };
+                };
 
         add.setOnClickListener(new OnClickListener() {
 
@@ -229,7 +239,7 @@ public class DialogsPlaylist {
 
     public static void showPlayList(final Context a, final String file, final Runnable refresh) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(Playlists.formatPlaylistName(file));
+        builder.setTitle(Playlists.formatPlaylistName(a, file));
 
         RecyclerView recyclerView = new RecyclerView(a);
         //recyclerView.setHasFixedSize(true);
@@ -314,6 +324,19 @@ public class DialogsPlaylist {
         builder.show();
     }
 
+    public static List<String> convert(List<FileMeta> list, int limit) {
+        List<String> res = new ArrayList<>();
+        int count = 0;
+        for (FileMeta meta : list) {
+            res.add(meta.getPath());
+            if (count > limit) {
+                break;
+            }
+
+        }
+        return res;
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);
@@ -326,27 +349,62 @@ public class DialogsPlaylist {
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
         final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
         final View playListParent = a.findViewById(R.id.playListParent);
+        final ImageView closePlaylist = a.findViewById(R.id.closePlaylist);
 
+        playListName.setVisibility(View.VISIBLE);
 
-        // TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
-
-
-        playListName.setVisibility(View.GONE);
         playListNameEdit.setVisibility(View.GONE);
-        playlistRecycleView.setVisibility(View.GONE);
-        playListParent.setVisibility(View.GONE);
+        playlistRecycleView.setVisibility(View.VISIBLE);
+        playListParent.setVisibility(View.VISIBLE);
 
-        final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        Runnable updateVisible = new Runnable() {
+            @Override
+            public void run() {
+                if (AppState.get().isPlayListVisible) {
+                    playlistRecycleView.setVisibility(View.VISIBLE);
+                    closePlaylist.setVisibility(View.VISIBLE);
+                } else {
+                    playlistRecycleView.setVisibility(View.GONE);
+                    closePlaylist.setVisibility(View.GONE);
+                }
+            }
+        };
+        closePlaylist.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppState.get().isPlayListVisible = false;
+                updateVisible.run();
+            }
+        });
+        updateVisible.run();
+        playListParent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppState.get().isPlayListVisible = !AppState.get().isPlayListVisible;
+                updateVisible.run();
+            }
+        });
 
-        if (TxtUtils.isNotEmpty(palylistPath)) {
-            playListName.setText(Playlists.formatPlaylistName(palylistPath));
-            playListName.setVisibility(View.VISIBLE);
-            playListParent.setVisibility(View.VISIBLE);
-            playListNameEdit.setVisibility(View.VISIBLE);
-            playlistRecycleView.setVisibility(View.VISIBLE);
+        //a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST,dc.getString(R.string.recent));
+
+        String palylistPathCheck = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        if (TxtUtils.isEmpty(palylistPathCheck)) {
+            palylistPathCheck = AppState.get().playlistDefault;
+        }
+        final String playlistPath = palylistPathCheck;
+
+        List<String> res = new ArrayList<String>();
+
+        if (playlistPath.equals(L_PLAYLIST_RECENT)) {
+            res = convert(AppData.get().getAllRecent(false), 50);
+        } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
+            res = convert(AppData.get().getAllFavoriteFiles(false), 50);
+        } else {
+            res = Playlists.getPlaylistItems(playlistPath);
         }
 
-        final List<String> res = Playlists.getPlaylistItems(palylistPath);
+        playListName.setText("☰ " + Playlists.formatPlaylistName(a,playlistPath));
+        TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
 
         final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
 
@@ -367,7 +425,7 @@ public class DialogsPlaylist {
 
                         @Override
                         public void run() {
-                            ExtUtils.showDocumentWithoutDialog(a, new File(s), palylistPath);
+                            ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
                         }
                     });
                 }
@@ -390,11 +448,11 @@ public class DialogsPlaylist {
 
             @Override
             public void onClick(View v) {
-                showPlayList(a, palylistPath, new Runnable() {
+                showPlayList(a, playlistPath, new Runnable() {
                     @Override
                     public void run() {
                         adapter.getItems().clear();
-                        adapter.getItems().addAll(Playlists.getPlaylistItems(palylistPath));
+                        adapter.getItems().addAll(Playlists.getPlaylistItems(playlistPath));
                         adapter.notifyDataSetChanged();
 
                     }
@@ -406,19 +464,30 @@ public class DialogsPlaylist {
 
             @Override
             public void onClick(View v) {
+                if (!AppState.get().isPlayListVisible) {
+                    AppState.get().isPlayListVisible = true;
+                    updateVisible.run();
+                    return;
+                }
+
                 final List<String> items = Playlists.getAllPlaylists();
+                items.add(L_PLAYLIST_RECENT);
+                items.add(L_PLAYLIST_FAVORITES);
 
                 MyPopupMenu menu = new MyPopupMenu(v);
                 for (final String item : items) {
-                    menu.getMenu().add(Playlists.formatPlaylistName(item)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu()
+                        .add(Playlists.formatPlaylistName(a,item))
+                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem m) {
-                            a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
-                            dispalyPlaylist(a, dc);
-                            return false;
-                        }
-                    });
+                            @Override
+                            public boolean onMenuItemClick(MenuItem m) {
+                                AppState.get().playlistDefault = item;
+                                a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
+                                dispalyPlaylist(a, dc);
+                                return false;
+                            }
+                        });
                 }
 
                 if (false) {

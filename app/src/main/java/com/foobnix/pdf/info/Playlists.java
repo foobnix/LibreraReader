@@ -1,10 +1,15 @@
 package com.foobnix.pdf.info;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.MyPath;
+import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import java.io.BufferedReader;
@@ -22,6 +27,8 @@ import java.util.List;
 
 public class Playlists {
     final public static String L_PLAYLIST = ".playlist";
+    final public static String L_PLAYLIST_RECENT = ".recent";
+    final public static String L_PLAYLIST_FAVORITES = ".favorites";
 
     public static void createPlayList(String name) {
         LOG.d("Playlists", "createPlayList", name);
@@ -82,6 +89,7 @@ public class Playlists {
 
     public static List<String> getPlaylistItems(String name) {
         List<String> res = new ArrayList<String>();
+
         try {
             if (TxtUtils.isEmpty(name)) {
                 return res;
@@ -126,17 +134,23 @@ public class Playlists {
         }
     }
 
-    public static String formatPlaylistName(String name) {
+    public static String formatPlaylistName(android.content.Context a, String name) {
+        if(name.startsWith(L_PLAYLIST_RECENT)){
+            return ((Activity)a).getString(R.string.recent);
+        }
+        if(name.startsWith(L_PLAYLIST_FAVORITES)){
+            return ((Activity)a).getString(R.string.favorites);
+        }
         name = ExtUtils.getFileName(name);
         return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";
     }
 
-    public static List<FileMeta> getAllPlaylistsMeta() {
+    public static List<FileMeta> getAllPlaylistsMeta(Context a) {
         List<FileMeta> res = new ArrayList<FileMeta>();
 
         for (String s : getAllPlaylists()) {
             FileMeta meta = new FileMeta(getFile(s).getPath());
-            meta.setPathTxt(formatPlaylistName(s));
+            meta.setPathTxt(formatPlaylistName(a,s));
             meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
             res.add(meta);
         }
@@ -147,6 +161,9 @@ public class Playlists {
 
     public static List<String> getAllPlaylists() {
         List<String> res = new ArrayList<String>();
+
+
+
         File root = AppProfile.syncPlaylist;
 
         String[] list = root.list(new FilenameFilter() {

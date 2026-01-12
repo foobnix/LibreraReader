@@ -443,7 +443,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
 
-            final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta();
+            final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta(holder.c);
 
             final String STARRED = holder.getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
 

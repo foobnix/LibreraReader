@@ -360,7 +360,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().isShowFavPlaylist) {
-            all.addAll(Playlists.getAllPlaylistsMeta());
+            all.addAll(Playlists.getAllPlaylistsMeta(getActivity()));
         }
 
         if (AppState.get().isShowFavFolders) {
