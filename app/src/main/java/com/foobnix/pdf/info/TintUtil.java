@@ -232,8 +232,8 @@ public class TintUtil {
     }
 
     public static ImageView setTintImageWithAlpha(ImageView img, int color, int alpha) {
-        //img.setColorFilter(color, Mode.SRC_ATOP);
-        ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
+        img.setColorFilter(color, Mode.SRC_ATOP);
+        //ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
         if (alpha > 0) {
             img.setImageAlpha(alpha);
         }

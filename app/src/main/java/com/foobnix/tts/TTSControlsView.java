@@ -81,11 +81,18 @@ public class TTSControlsView extends FrameLayout {
         }
     };
 
+    @Override
+    public void setBackgroundColor(int color) {
+        if(view!=null) {
+            view.setBackgroundColor(color);
+        }
+    }
+    View view;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public TTSControlsView(final Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.tts_mp3_line, this, false);
+         view = LayoutInflater.from(getContext()).inflate(R.layout.tts_mp3_line, this, false);
         addView(view);
 
         final ImageView ttsStop = (ImageView) view.findViewById(R.id.ttsStop);
@@ -245,6 +252,8 @@ public class TTSControlsView extends FrameLayout {
             ttsNextTrack.setVisibility(View.GONE);
 
         }
+
+
         trackName.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -326,7 +335,7 @@ public class TTSControlsView extends FrameLayout {
     }
 
     public void udateButtons() {
-        trackName.setText(TTSTracks.getCurrentTrackName());
+        trackName.setText("☰ "+TTSTracks.getCurrentTrackName());
 
         boolean isMulty = TTSTracks.isMultyTracks();
         ttsPrevTrack.setVisibility(TxtUtils.visibleIf(isMulty));

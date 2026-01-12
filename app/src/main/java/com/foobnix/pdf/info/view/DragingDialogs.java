@@ -803,6 +803,7 @@ public class DragingDialogs {
 
                 final TextView timerStart = view.findViewById(R.id.timerStart);
                 final TextView ttsPlayMusicFile = view.findViewById(R.id.ttsPlayMusicFile);
+                ttsPlayMusicFile.setText("▶ " + ttsPlayMusicFile.getText());
 
                 view.findViewById(R.id.onHelp).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(final View v) {
@@ -827,7 +828,9 @@ public class DragingDialogs {
                 });
 
                 final TTSControlsView tts = view.findViewById(R.id.ttsActive);
+                tts.setBackgroundColor(Color.TRANSPARENT);
                 tts.setDC(controller);
+
 
                 TextView ttsSkeakToFile = view.findViewById(R.id.ttsSkeakToFile);
 
@@ -2963,8 +2966,8 @@ public class DragingDialogs {
                         long size = Long.parseLong(split[1]);
 
                         TextView t = new TextView(anchor.getContext());
-                        t.setText(TxtUtils.underline(name + " (" + ExtUtils.readableFileSize(size) + ")"));
-                        t.setPadding(Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2));
+                        t.setText(TxtUtils.underline("▶ " + name + " (" + ExtUtils.readableFileSize(size) + ")"));
+                        t.setPadding(Dips.dpToPx(4), Dips.dpToPx(4), Dips.dpToPx(4), Dips.dpToPx(4));
                         t.setBackgroundResource(R.drawable.bg_clickable);
                         attachemnts.addView(t);
                         t.setOnClickListener(new OnClickListener() {
@@ -2988,7 +2991,7 @@ public class DragingDialogs {
 
                                     @Override protected void onPostExecute(File aPath) {
                                         try {
-                                            dialog.dismiss();
+                                            //dialog.dismiss();
                                             if (aPath != null && aPath.isFile()) {
                                                 LOG.d("Try to open path", aPath);
                                                 if (ExtUtils.isAudioContent(aPath.getPath())) {
