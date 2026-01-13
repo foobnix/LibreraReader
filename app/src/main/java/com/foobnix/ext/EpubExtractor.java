@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -684,7 +685,7 @@ public class EpubExtractor extends BaseExtractor {
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (TempHolder.get().loadingCancelled) {
-                        break;
+                        return new HashMap<String, String>();
                     }
                     String name = nextEntry.getName();
                     String nameLow = name.toLowerCase(Locale.US);
@@ -695,7 +696,7 @@ public class EpubExtractor extends BaseExtractor {
 
                         for (int i = 0; i < select.size(); i++) {
                             if (TempHolder.get().loadingCancelled) {
-                                break;
+                                return new HashMap<String, String>();
                             }
                             Element item = select.get(i);
                             String text = item.text();
@@ -737,12 +738,12 @@ public class EpubExtractor extends BaseExtractor {
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (TempHolder.get().loadingCancelled) {
-                        break;
+                        return new HashMap<String, String>();
                     }
                     String name = nextEntry.getName();
                     for (String fileName : files) {
                         if (TempHolder.get().loadingCancelled) {
-                            break;
+                            return new HashMap<String, String>();
                         }
                         LOG.d("PARSE FILE NAME begin", name);
                         if (ExtUtils.getFileName(name).endsWith(ExtUtils.getFileName(fileName))) {
@@ -754,7 +755,7 @@ public class EpubExtractor extends BaseExtractor {
                             Elements ids = parse.select("[id]");
                             for (int i = 0; i < ids.size(); i++) {
                                 if (TempHolder.get().loadingCancelled) {
-                                    break;
+                                    return new HashMap<String, String>();
                                 }
                                 Element item = ids.get(i);
                                 String id = item.attr("id");

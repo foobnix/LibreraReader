@@ -20,6 +20,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
@@ -174,6 +175,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void showInterstitial() {
+        TempHolder.get().loadingCancelled = true;
         IMG.pauseRequests(this);
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();
@@ -193,6 +195,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void onBackPressedAction() {
+
         LOG.d("onBackPressed", "doubleBackToExitPressedOnce", doubleBackToExitPressedOnce);
         if (doubleBackToExitPressedOnce) {
             handler.removeCallbacksAndMessages(null);

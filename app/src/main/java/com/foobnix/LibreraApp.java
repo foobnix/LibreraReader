@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
@@ -164,11 +165,13 @@ public class LibreraApp extends MultiDexApplication {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
+        TempHolder.get().loadingCancelled = true;
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
+        TempHolder.get().loadingCancelled = true;
         AppsConfig.executorService.shutdown();
     }
 }
