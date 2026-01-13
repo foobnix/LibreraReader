@@ -675,4 +675,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Guarda questo breve video per disattivare tutti gli annunci per 2 ore</string>
    <string name="the_book_is_complete">Il libro è completo.</string>
    <string name="time">Tempo</string>
+   <string name="current_folder">Cartella corrente</string>
 </resources>

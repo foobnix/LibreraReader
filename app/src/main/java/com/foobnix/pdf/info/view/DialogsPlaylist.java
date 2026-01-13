@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info.view;
 
+import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_CURRENT_FOLDER;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FAVORITES;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_FOLDER;
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
@@ -412,10 +413,19 @@ public class DialogsPlaylist {
             res = convert(AppData.get().getAllRecent(false), LIMIT_MAX_BOOKS);
         } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
             res = convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS);
-        } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER)) {
+        } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+            String showPath = "";
+            if( playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)){
+                showPath = AppState.get().displayPath;
+            }else{
+                showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
+            }
+
             List<FileMeta>
                     filesAndDirs =
-                    SearchCore.getFilesAndDirs(playlistPath.replace(L_PLAYLIST_FOLDER, ""), false, AppState.get().isDisplayAllFilesInFolder);
+                    SearchCore.getFilesAndDirs(showPath, true,
+                            AppState.get().isDisplayAllFilesInFolder);
+            ExtUtils.removeReadBooks(filesAndDirs);
             BrowseFragment2.sortItems(filesAndDirs);
             res = convert(filesAndDirs, LIMIT_MAX_BOOKS);
 
@@ -500,6 +510,7 @@ public class DialogsPlaylist {
                 final List<String> items = Playlists.getAllPlaylists();
                 items.add(L_PLAYLIST_RECENT);
                 items.add(L_PLAYLIST_FAVORITES);
+                items.add(L_PLAYLIST_CURRENT_FOLDER);
                 final List<FileMeta> folders = AppData.get().getAllFavoriteFolders();
                 if (!folders.isEmpty()) {
                     for (FileMeta folder : folders) {

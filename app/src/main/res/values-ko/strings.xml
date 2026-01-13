@@ -675,4 +675,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">이 짧은 영상을 시청하시면 2시간 동안 모든 광고가 차단됩니다.</string>
    <string name="the_book_is_complete">책이 완성되었습니다.</string>
    <string name="time">시간</string>
+   <string name="current_folder">현재 폴더</string>
 </resources>

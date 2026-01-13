@@ -8,6 +8,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -31,6 +32,7 @@ public class Playlists {
     final public static String L_PLAYLIST_FAVORITES = ".favorites";
     final public static String L_PLAYLIST_FOLDER = ".folder";
     final public static String L_PLAYLIST_TAGS = ".tags";
+    final public static String L_PLAYLIST_CURRENT_FOLDER = ".currentFolder";
 
     public static void createPlayList(String name) {
         LOG.d("Playlists", "createPlayList", name);
@@ -150,6 +152,10 @@ public class Playlists {
         if (name.startsWith(L_PLAYLIST_TAGS)) {
             String tag = name.replace(L_PLAYLIST_TAGS,"") ;
             return tag;
+        }
+        if (name.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+            String folderName = " :" + ExtUtils.getFileName(AppState.get().displayPath);
+            return ((Activity) a).getString(R.string.current_folder) + folderName;
         }
         name = ExtUtils.getFileName(name);
         return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";

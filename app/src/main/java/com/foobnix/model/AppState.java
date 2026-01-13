@@ -463,6 +463,10 @@ public class AppState {
     public String annotationDrawColor = "";
     public String annotationTextColor = COLORS.get(2);
     public int editAlphaColor = 100;
+
+    public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
+
+
     public float editLineWidth = 3;
     @IgnoreHashCode public boolean isRememberMode = false;
     public volatile boolean isAutoScroll = false;
@@ -621,7 +625,7 @@ public class AppState {
     }
 
     public String getAppLang() {
-        return AppState.get().appLang.equals(AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : AppState.get().appLang;
+        return AppState.get().appLang.equals(com.foobnix.model.AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : com.foobnix.model.AppState.get().appLang;
     }
 
     public static String keyToString(final List<Integer> list) {
@@ -660,7 +664,9 @@ public class AppState {
         nameMusicianMode = a.getString(R.string.mode_musician);
         musicText = a.getString(R.string.musician);
 
-        appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : AppState.THEME_LIGHT;
+        displayPath = AppProfile.DOWNLOADS_DIR.getPath();
+
+        appTheme = Dips.isDarkThemeOn() ? AppState.THEME_DARK : com.foobnix.model.AppState.THEME_LIGHT;
         if (Dips.isEInk()) {
             appTheme = AppState.THEME_INK;
             isDayNotInvert = true;
@@ -692,7 +698,7 @@ public class AppState {
         AppState.get().isScrollAnimation = false;
         AppSP.get().isFirstTimeVertical = false;
         AppSP.get().isFirstTimeHorizontal = false;
-        AppState.get().tabsOrder9 = AppState.get().tabsOrder9.replace(UITab.PrefFragment.index + "#0",
+        AppState.get().tabsOrder9 = com.foobnix.model.AppState.get().tabsOrder9.replace(UITab.PrefFragment.index + "#0",
                                                                       UITab.PrefFragment.index + "#1");
     }
 
@@ -704,7 +710,7 @@ public class AppState {
 
             load(a);
             if (AppState.get().isShowPanelBookNameBookMode &&
-                AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP) {
+                AppState.get().statusBarPosition == com.foobnix.model.AppState.STATUSBAR_POSITION_TOP) {
                 AppState.get().isShowPanelBookNameBookMode = false;
             }
 

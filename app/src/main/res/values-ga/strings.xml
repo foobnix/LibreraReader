@@ -675,4 +675,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Féach ar an bhfíseán gearr seo chun na fógraí go léir a mhúchadh ar feadh 2 uair an chloig</string>
    <string name="the_book_is_complete">Tá an leabhar críochnaithe.</string>
    <string name="time">Am</string>
+   <string name="current_folder">Fillteán reatha</string>
 </resources>

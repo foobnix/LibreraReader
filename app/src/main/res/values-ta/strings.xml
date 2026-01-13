@@ -675,4 +675,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">2 மணி நேரம் அனைத்து விளம்பரங்களையும் அணைக்க இந்த சிறிய வீடியோவைப் பாருங்கள்.</string>
    <string name="the_book_is_complete">புத்தகம் முடிந்தது.</string>
    <string name="time">நேரம்</string>
+   <string name="current_folder">தற்போதைய கோப்புறை</string>
 </resources>

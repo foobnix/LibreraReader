@@ -675,4 +675,5 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Se denne korte videoen for å slå av all reklame i to timer</string>
    <string name="the_book_is_complete">Boken er komplett.</string>
    <string name="time">Tid</string>
+   <string name="current_folder">Gjeldende mappe</string>
 </resources>
