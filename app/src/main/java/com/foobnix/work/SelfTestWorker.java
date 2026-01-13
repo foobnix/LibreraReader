@@ -132,7 +132,7 @@ public class SelfTestWorker extends MessageWorker {
                     continue;
                 }
                 for (OutlineLink ol : codecDocument.getOutline()) {
-                    if (TempHolder.get().loadingCancelled || isStopped()) {
+                    if (TempHolder.get().loadingCancelled.get() || isStopped()) {
                         return false;
                     }
                     List<OutlineLinkWrapper> outline = new ArrayList<>();

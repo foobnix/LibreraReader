@@ -583,7 +583,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         public void onBookCancel() {
             super.onBookCancel();
             LOG.d("onBookCancel");
-            TempHolder.get().loadingCancelled = true;
             closeActivity(null);
         }
 
@@ -612,7 +611,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         protected void onPostExecute(Throwable result) {
             try {
                 LOG.d("onPostExecute");
-                if (TempHolder.get().loadingCancelled) {
+                if (TempHolder.get().loadingCancelled.get()) {
                     super.onPostExecute(result);
                     closeActivity(null);
                     return;

@@ -555,7 +555,7 @@ public abstract class DocumentController {
     }
 
     public void saveCurrentPageAsync() {
-        if (TempHolder.get().loadingCancelled) {
+        if (TempHolder.get().loadingCancelled.get()) {
             LOG.d("Loading cancelled");
             return;
         }

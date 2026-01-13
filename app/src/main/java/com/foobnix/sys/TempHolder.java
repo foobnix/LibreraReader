@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
 
-    public static TempHolder inst = new TempHolder();
+    public static final TempHolder inst = new TempHolder();
     public static volatile int listHash = 0;
 
     public static volatile int listHashTemp;
@@ -37,7 +37,9 @@ public class TempHolder {
 
     public int pageDelta = 0;
 
-    public volatile boolean loadingCancelled = false;
+    //public static volatile boolean loadingCancelled = false;
+
+    public final AtomicBoolean loadingCancelled = new AtomicBoolean(false);
     public boolean forseAppLang = false;
 
     public volatile long lastRecycledDocument = 0;

@@ -958,13 +958,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             protected void onPreExecute() {
 
                 start = System.currentTimeMillis();
-                TempHolder.get().loadingCancelled = false;
+
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
 
                     @Override
                     public void run() {
                         isCancelled = true;
-                        TempHolder.get().loadingCancelled = true;
                         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                         finish();
                     }

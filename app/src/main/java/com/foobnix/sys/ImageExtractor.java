@@ -178,8 +178,6 @@ public class ImageExtractor {
             if (codecContex == null) {
                 return null;
             }
-
-            TempHolder.get().loadingCancelled = false;
             return codecContex.openDocument(path, passw);
         } catch (RuntimeException e) {
             LOG.e(e);
@@ -217,7 +215,6 @@ public class ImageExtractor {
             return null;
         }
 
-        TempHolder.get().loadingCancelled = false;
         codeCache = codecContex.openDocument(path, passw);
         if (codeCache == null) {
             LOG.d("getNewCodecContext [Open doc is null 1", path);

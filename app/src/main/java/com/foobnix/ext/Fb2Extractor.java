@@ -171,8 +171,8 @@ public class Fb2Extractor extends BaseExtractor {
 
 
         while ((line = input.readLine()) != null) {
-            if (TempHolder.get().loadingCancelled) {
-                break;
+            if (TempHolder.get().loadingCancelled.get()) {
+               return;
             }
             if (!isValidXMLChecked && line.length() == 0) {
                 continue;
@@ -418,7 +418,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         while ((line = input.readLine()) != null) {
             LOG.d("gen0-in", line);
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
 
@@ -514,7 +514,7 @@ public class Fb2Extractor extends BaseExtractor {
         String dividerLine = null;
         boolean secondBody = false;
         while (eventType != XmlPullParser.END_DOCUMENT) {
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
             if (eventType == XmlPullParser.START_TAG) {
@@ -1000,7 +1000,7 @@ public class Fb2Extractor extends BaseExtractor {
             String key = "";
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                if (TempHolder.get().loadingCancelled) {
+                if (TempHolder.get().loadingCancelled.get()) {
                     break;
                 }
                 if (eventType == XmlPullParser.START_TAG) {
@@ -1144,7 +1144,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean ready = true;
         HypenUtils.resetTokenizer();
         while ((line = input.readLine()) != null) {
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
             if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || fixXML) {

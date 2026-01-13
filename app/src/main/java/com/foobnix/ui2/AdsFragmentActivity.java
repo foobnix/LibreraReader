@@ -175,7 +175,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void showInterstitial() {
-        TempHolder.get().loadingCancelled = true;
+        TempHolder.get().loadingCancelled.set(true);
         IMG.pauseRequests(this);
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();

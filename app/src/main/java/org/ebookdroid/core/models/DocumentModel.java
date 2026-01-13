@@ -191,7 +191,7 @@ public class DocumentModel extends ListenerProxy {
             final CodecPageInfo[] infos = retrievePagesInfo(base, bs, task);
 
             for (int docIndex = 0; docIndex < infos.length; docIndex++) {
-                if (TempHolder.get().loadingCancelled) {
+                if (TempHolder.get().loadingCancelled.get()) {
                     return;
                 }
                 if (!AppSP.get().isCut) {
@@ -247,7 +247,7 @@ public class DocumentModel extends ListenerProxy {
         final CodecPageInfo unified = decodeService.getUnifiedPageInfo();
 
         for (int i = 0; i < infos.length; i++) {
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 return null;
             }
             infos[i] = unified != null ? unified : decodeService.getPageInfo(i);

@@ -697,6 +697,7 @@ public class Dialogs {
 
     public static AlertDialog loadingBook(Context c, final Runnable onCancel) {
         try {
+            TempHolder.get().loadingCancelled.set(false);
             final AlertDialog.Builder builder = new AlertDialog.Builder(c);
             View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
             final TextView text = (TextView) view.findViewById(R.id.text1);
@@ -720,6 +721,7 @@ public class Dialogs {
                 @Override
                 public void onClick(View v) {
                     LOG.d("loadingBook Cancel");
+                    TempHolder.get().loadingCancelled.set(true);
                     onCancel.run();
                 }
             });

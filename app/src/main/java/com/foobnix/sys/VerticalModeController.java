@@ -78,7 +78,6 @@ public class VerticalModeController extends DocumentController {
         this.ctr = ctr;
         CoreSettings.getInstance().fullScreen = AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN;
         handler = new Handler(Looper.getMainLooper());
-        TempHolder.get().loadingCancelled = false;
     }
 
     @Override
@@ -694,13 +693,13 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityFinal(Runnable run) {
-        TempHolder.get().loadingCancelled = true;
         stopTimer();
         ctr.closeActivityFinal(run);
     }
 
     @Override
     public synchronized void onCloseActivityAdnShowInterstial() {
+        TempHolder.get().loadingCancelled.set(true);
         handler.removeCallbacksAndMessages(null);
         if (ctr == null || ctr.getDecodeService() == null) {
             return;
@@ -935,7 +934,7 @@ public class VerticalModeController extends DocumentController {
                 }
 
                 for (OutlineLink ol : outlineLinks) {
-                    if (TempHolder.get().loadingCancelled) {
+                    if (TempHolder.get().loadingCancelled.get()) {
                         return false;
                     }
 

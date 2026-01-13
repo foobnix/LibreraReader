@@ -442,7 +442,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityFinal(final Runnable run) {
-        TempHolder.get().loadingCancelled = true;
         stopTimer();
         TTSEngine.get().stop();
         TTSNotification.hideNotification();
@@ -575,7 +574,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
                     try {
                         for (OutlineLink ol : codeDocument.getOutline()) {
-                            if (TempHolder.get().loadingCancelled) {
+                            if (TempHolder.get().loadingCancelled.get()) {
 
                                 return;
                             }

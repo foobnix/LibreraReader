@@ -139,7 +139,7 @@ public class EpubExtractor extends BaseExtractor {
         List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
 
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
             String name = nextEntry.getName();
@@ -199,7 +199,7 @@ public class EpubExtractor extends BaseExtractor {
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
-                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
+                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
                 Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
             }
 
@@ -245,7 +245,7 @@ public class EpubExtractor extends BaseExtractor {
 
             ZipEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled) {
+                if (TempHolder.get().loadingCancelled.get()) {
                     break;
                 }
                 if (nextEntry.getName().equals(attachmentName)) {
@@ -287,11 +287,11 @@ public class EpubExtractor extends BaseExtractor {
             ArchiveEntry nextEntry = null;
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled) {
-                    break;
+                if (TempHolder.get().loadingCancelled.get()) {
+                    return new ArrayList<>();
                 }
                 String name = nextEntry.getName();
-                LOG.d("getAttachments", name);
+                LOG.d("getAttachments", name,"finished",TempHolder.get().loadingCancelled.get());
                 if (ExtUtils.isMediaContent(name)) {
                     if (nextEntry.getSize() > 0) {
                         name = name + "," + nextEntry.getSize();
@@ -322,20 +322,20 @@ public class EpubExtractor extends BaseExtractor {
         zos.setLevel(0);
 
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-            if (TempHolder.get().loadingCancelled) {
+            if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
             String name = nextEntry.getName();
             String nameLow = name.toLowerCase(Locale.US);
 
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
+                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled.get(), name);
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
                 Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null, 0, new ArrayList<>());
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
-                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
+                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
                 Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
 
             }
@@ -684,7 +684,7 @@ public class EpubExtractor extends BaseExtractor {
                 // CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (TempHolder.get().loadingCancelled) {
+                    if (TempHolder.get().loadingCancelled.get()) {
                         return new HashMap<String, String>();
                     }
                     String name = nextEntry.getName();
@@ -695,7 +695,8 @@ public class EpubExtractor extends BaseExtractor {
                         Elements select = parse.select("a[href]");
 
                         for (int i = 0; i < select.size(); i++) {
-                            if (TempHolder.get().loadingCancelled) {
+                            if (TempHolder.get().loadingCancelled.get()) {
+
                                 return new HashMap<String, String>();
                             }
                             Element item = select.get(i);
@@ -709,7 +710,7 @@ public class EpubExtractor extends BaseExtractor {
                                 if (attr.startsWith("#")) {
                                     attr = name + attr;
                                 }
-                                LOG.d("link-item-text", attr, text);
+                                LOG.d("link-item-text", attr, text,"finished",TempHolder.get().loadingCancelled.get());
                                 if (!TxtUtils.isFooterNote(text)) {
                                     LOG.d("Skip text", text);
                                     continue;
@@ -737,12 +738,12 @@ public class EpubExtractor extends BaseExtractor {
                 zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (TempHolder.get().loadingCancelled) {
+                    if (TempHolder.get().loadingCancelled.get()) {
                         return new HashMap<String, String>();
                     }
                     String name = nextEntry.getName();
                     for (String fileName : files) {
-                        if (TempHolder.get().loadingCancelled) {
+                        if (TempHolder.get().loadingCancelled.get()) {
                             return new HashMap<String, String>();
                         }
                         LOG.d("PARSE FILE NAME begin", name);
@@ -754,7 +755,7 @@ public class EpubExtractor extends BaseExtractor {
 
                             Elements ids = parse.select("[id]");
                             for (int i = 0; i < ids.size(); i++) {
-                                if (TempHolder.get().loadingCancelled) {
+                                if (TempHolder.get().loadingCancelled.get()) {
                                     return new HashMap<String, String>();
                                 }
                                 Element item = ids.get(i);
@@ -786,7 +787,7 @@ public class EpubExtractor extends BaseExtractor {
                                 }
 
 
-                                LOG.d("put text >>", TempHolder.get().loadingCancelled, textKey, value);
+                                LOG.d("put text >>", TempHolder.get().loadingCancelled.get(), textKey, value);
                                 notes.put(textKey, value.trim());
 
 

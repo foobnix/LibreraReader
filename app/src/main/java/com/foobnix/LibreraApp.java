@@ -108,6 +108,7 @@ public class LibreraApp extends MultiDexApplication {
         CacheZipUtils.init(this);
 
         IMG.init(this);
+        TempHolder.get().loadingCancelled.set(true);
 
         LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);
         LOG.d("Build", "Build.PRODUCT", Build.PRODUCT);
@@ -159,19 +160,21 @@ public class LibreraApp extends MultiDexApplication {
         IMG.clearMemoryCache();
         TintUtil.clean();
         HypenUtils.cache.clear();
+        TempHolder.get().loadingCancelled.set(true);
     }
 
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
-        TempHolder.get().loadingCancelled = true;
+        TempHolder.get().loadingCancelled.set(true);
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-        TempHolder.get().loadingCancelled = true;
+        LOG.d("onTerminate", "onTerminate APP");
+        TempHolder.get().loadingCancelled.set(true);
         AppsConfig.executorService.shutdown();
     }
 }
