@@ -97,7 +97,7 @@ public class MuPdfOutline {
 
             LOG.d("linkUri", linkUri, title, link);
 
-            if (AppsConfig.IS_LOG && linkUri != null) {
+            if (AppState.get().isShowTestBooks && linkUri != null) {
                 title = title + "[" + linkUri + "]";
 
             }

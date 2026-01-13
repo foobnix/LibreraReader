@@ -1068,7 +1068,7 @@ JNIEXPORT jbyteArray
 
     fz_try(doc->ctx)
     {
-        if (outline->title == NULL) {
+        if (outline->title != NULL) {
             int alen = strlen(outline->title);
             result = (*env)->NewByteArray(env, alen);
             if (result != NULL) {
