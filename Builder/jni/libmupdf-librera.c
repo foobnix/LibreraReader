@@ -1077,13 +1077,17 @@ JNICALL Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitleArray(JNIEnv
     long)outlinehandle;
     renderdocument_t *doc = (renderdocument_t *) (long) dochandle;
 
-    if (!doc || !doc->ctx || !outline || outline->title == NULL) {
+    if (!doc || !doc->ctx || !outline) {
         return NULL;
     }
 
     jbyteArray result = NULL;
 
     fz_try(doc->ctx) {
+        if (outline->title == NULL) {
+            return NULL;
+        }
+
         int alen = strlen(outline->title);
         result = (*env)->NewByteArray(env, alen);
         if (result != NULL) {
@@ -1132,10 +1136,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(
         return NULL;
     }
 
-    // DEBUG("PdfOutline_getLink(%p)",outline);
-    if (outline && outline->uri) {
-        return safeNewStringUTF(env, outline->uri);
-    } else {
+    fz_try(doc->ctx)
+    {
+        // DEBUG("PdfOutline_getLink(%p)",outline);
+        if (outline && outline->uri) {
+            return safeNewStringUTF(env, outline->uri);
+        } else {
+            return NULL;
+        }
+    }
+    fz_catch(doc->ctx) {
         return NULL;
     }
 }

@@ -209,7 +209,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     @Override
-    public List<OutlineLink> getOutline() {
+    public synchronized List<OutlineLink> getOutline() {
         final MuPdfOutline ou = new MuPdfOutline();
         return ou.getOutline(documentHandle);
     }

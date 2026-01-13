@@ -154,7 +154,7 @@ public class Playlists {
             return tag;
         }
         if (name.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
-            String folderName = " :" + ExtUtils.getFileName(AppState.get().displayPath);
+            String folderName = " [" + ExtUtils.getFileName(AppState.get().displayPath)+"]";
             return ((Activity) a).getString(R.string.current_folder) + folderName;
         }
         name = ExtUtils.getFileName(name);

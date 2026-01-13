@@ -37,14 +37,22 @@ public class MuPdfOutline {
 
     private static native void free(long dochandle);
 
-    public synchronized List<OutlineLink> getOutline(final long dochandle) {
+    public List<OutlineLink> getOutline(final long dochandle) {
+        LOG.d("getOutline","getOutline",dochandle);
         final List<OutlineLink> ls = new ArrayList<OutlineLink>();
         docHandle = dochandle;
         TempHolder.lock.lock();
         try {
 
             final long outline = open(dochandle);
-            ttOutline(ls, outline, 0);
+
+            try {
+                Thread.sleep(150);
+                ttOutline(ls, outline, 0);
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             free(dochandle);
 
             ls.add(new OutlineLink("", "", -1, dochandle, ""));
@@ -65,16 +73,16 @@ public class MuPdfOutline {
     public String getTitleMod(long outline) {
 
         try {
+
             byte[] titleArray = getTitleArray(docHandle, outline);
             if (titleArray == null) {
                 return "";
             }
             return new String(titleArray, StandardCharsets.UTF_8);
         } catch (Exception e) {
-                return "";
-            }
+            return "";
         }
-
+    }
 
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
