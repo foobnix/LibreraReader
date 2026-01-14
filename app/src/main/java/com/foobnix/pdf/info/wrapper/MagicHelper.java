@@ -24,6 +24,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -271,13 +272,13 @@ public class MagicHelper {
         if (name.startsWith("/")) {
 
             BitmapFactory.Options opt = new BitmapFactory.Options();
-            opt.inPreferredConfig = Config.RGB_565;
+            opt.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
             return BitmapFactory.decodeFile(name, opt);
         }
         try {
             InputStream oldBook = LibreraApp.context.getAssets().open(name);
             Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
-            Bitmap res = decodeStream.copy(Config.RGB_565, false);
+            Bitmap res = decodeStream.copy(AppsConfig.CURRENT_BITMAP_ARGB, false);
             decodeStream.recycle();
             return res;
         } catch (Exception e) {

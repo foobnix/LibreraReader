@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -148,14 +149,14 @@ public class DjvuPage extends AbstractCodecPage {
         final int renderMode = CoreSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
         if (width > 0 && height > 0) {
-            bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.ARGB_8888);
+            bmp = BitmapManager.getBitmap("Djvu page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             final int[] buffer = new int[width * height];
             renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
             bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);
             return bmp;
         }
         if (bmp == null) {
-            bmp = BitmapManager.getBitmap("Djvu page", 100, 100, Bitmap.Config.ARGB_8888);
+            bmp = BitmapManager.getBitmap("Djvu page", 100, 100, AppsConfig.CURRENT_BITMAP_ARGB);
         }
         return bmp;
     }
@@ -166,7 +167,7 @@ public class DjvuPage extends AbstractCodecPage {
         final int renderMode = CoreSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
         if (width > 0 && height > 0) {
-            bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.ARGB_8888);
+            bmp = BitmapManager.getBitmap("Djvu page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             final int[] buffer = new int[width * height];
             renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
 
@@ -181,7 +182,7 @@ public class DjvuPage extends AbstractCodecPage {
             return bmp;
         }
         if (bmp == null) {
-            bmp = BitmapManager.getBitmap("Djvu page", 100, 1000, Bitmap.Config.ARGB_8888);
+            bmp = BitmapManager.getBitmap("Djvu page", 100, 1000,  AppsConfig.CURRENT_BITMAP_ARGB);
         }
         return bmp;
     }

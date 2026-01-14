@@ -31,11 +31,15 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.foobnix.android.utils.LOG;
 
 import com.foobnix.LibreraApp;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 
 import java.io.InputStream;
 import java.security.MessageDigest;
 
 import static com.bumptech.glide.load.engine.executor.GlideExecutor.newSourceBuilder;
+import static com.foobnix.pdf.info.AppsConfig.CURRENT_BITMAP;
+import static com.foobnix.pdf.info.AppsConfig.CURRENT_BITMAP_ARGB;
 
 @GlideModule
 public class LibreraAppGlideModule extends AppGlideModule {
@@ -71,7 +75,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
                             if (bitmap == null) {
-                                Thread.sleep(250);
+                                //Thread.sleep(250);
                                 bitmap = ImageExtractor.getInstance(LibreraApp.context).proccessOtherPage(s);
                                 if (bitmap == null) {
                                     LOG.d("Bitmap-test-1-cancel", bitmap, s);
@@ -146,7 +150,8 @@ public class LibreraAppGlideModule extends AppGlideModule {
     public class WhiteBackgroundTransformation extends BitmapTransformation {
         @Override
         protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
-            Bitmap result = pool.get(toTransform.getWidth(), toTransform.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap result = pool.get(toTransform.getWidth(), toTransform.getHeight(), CURRENT_BITMAP_ARGB);
+
             if(result.hasAlpha()) {
                 Canvas canvas = new Canvas(result);
                 Paint paint = new Paint();
@@ -169,7 +174,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
         super.applyOptions(context, builder);
         builder.setDefaultRequestOptions(new RequestOptions()
                                                             .transform(new WhiteBackgroundTransformation())
-                                                             .format(DecodeFormat.PREFER_ARGB_8888));
+                                                             .format(CURRENT_BITMAP));
         builder.setSourceExecutor(
                 newSourceBuilder()
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)

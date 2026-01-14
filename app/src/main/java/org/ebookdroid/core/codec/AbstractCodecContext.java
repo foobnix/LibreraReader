@@ -100,6 +100,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             String fileName = CacheZipUtils.extracIfNeed(fileNameOriginal, CacheDir.ZipApp).unZipPath;
             LOG.d("Open-Document extract", fileName);
             if (!ExtUtils.isValidFile(fileName)) {
+                LOG.d( "isValidFile",fileName);
                 return null;
             }
             try {

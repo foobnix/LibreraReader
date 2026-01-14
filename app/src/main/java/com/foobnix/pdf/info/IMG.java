@@ -43,7 +43,6 @@ public class IMG {
 
     public static final float WIDTH_DK = 1.4f;
     public static final int DP5 = -Dips.dpToPx(40);
-    public static final Config BMP_CFG = Config.RGB_565;
     public static final int TWO_LINE_COVER_SIZE = 74;
     private static final ColorDrawable COLOR_DRAWABLE = new ColorDrawable(Color.LTGRAY);
     public static boolean RESET_VIEW_BEFORE_LOADING = true;

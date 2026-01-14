@@ -40,6 +40,7 @@ import com.foobnix.ext.RtfExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -64,6 +65,7 @@ import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.MdContext;
+import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
@@ -173,12 +175,16 @@ public class ImageExtractor {
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
 
+
             LOG.d("CodecContext", codecContex);
 
             if (codecContex == null) {
                 return null;
             }
-            return codecContex.openDocument(path, passw);
+            LOG.d("CodecContext", "path12",path,passw);
+            CodecDocument codecDocument = codecContex.openDocument(path, passw);
+            LOG.d("CodecContext", "codecDocument",codecDocument);
+            return  codecDocument;
         } catch (RuntimeException e) {
             LOG.e(e);
             return null;
@@ -244,7 +250,7 @@ public class ImageExtractor {
                     int width = pageUrl.getWidth();
                     int height = (int) (width * k);
 
-                    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB);
                     page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
                     return bitmap;
@@ -274,7 +280,7 @@ public class ImageExtractor {
                         Drawable drawable = LibreraApp.context.getDrawable(R.drawable.glyphicons_145_folder_open);
                         drawable.setTint(TintUtil.getColorInDayNighth());
                         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                                drawable.getIntrinsicHeight(), AppsConfig.CURRENT_BITMAP_ARGB);
                         Canvas canvas = new Canvas(bitmap);
                         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                         drawable.draw(canvas);
@@ -341,7 +347,8 @@ public class ImageExtractor {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath)) {
-            if (Build.VERSION.SDK_INT >= 29 && Arrays.asList(COVER_PAGE, COVER_PAGE_NO_EFFECT, COVER_PAGE_WITH_EFFECT).contains(pageUrl.getPage())) {
+            if (Build.VERSION.SDK_INT >= 29 && Arrays.asList(COVER_PAGE, COVER_PAGE_NO_EFFECT, COVER_PAGE_WITH_EFFECT)
+                                                     .contains(pageUrl.getPage())) {
                 LOG.d("Native-PDF-cover", pageUrl);
                 cover = coverPDFNative(pageUrl);
                 if (cover == null) {
@@ -353,6 +360,7 @@ public class ImageExtractor {
             }
         } else if (BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
             cover = proccessOtherPage(pageUrl);
+            LOG.d("BookType.DJVU", cover, pageUrl);
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FOLDER.is(unZipPath)) {
@@ -407,7 +415,7 @@ public class ImageExtractor {
         String path = pageUrl.getPath();
 
         boolean isNeedDisableMagicInPDFDjvu = false;
-        LOG.d("Page Number", pageUrl.getPage());
+        LOG.d("Page-Number OTHER", pageUrl.getPage());
         if (pageUrl.getPage() == COVER_PAGE || pageUrl.getPage() == COVER_PAGE_NO_EFFECT || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
             isNeedDisableMagicInPDFDjvu = true;
         }
@@ -711,7 +719,7 @@ public class ImageExtractor {
                     }
 
                     int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
-                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, android.graphics.Bitmap.Config.RGB_565);
+                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, AppsConfig.CURRENT_BITMAP_ARGB);
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 
