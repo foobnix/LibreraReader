@@ -24,7 +24,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -272,13 +271,13 @@ public class MagicHelper {
         if (name.startsWith("/")) {
 
             BitmapFactory.Options opt = new BitmapFactory.Options();
-            opt.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
+            opt.inPreferredConfig = Config.RGB_565;
             return BitmapFactory.decodeFile(name, opt);
         }
         try {
             InputStream oldBook = LibreraApp.context.getAssets().open(name);
             Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
-            Bitmap res = decodeStream.copy(AppsConfig.CURRENT_BITMAP_ARGB, false);
+            Bitmap res = decodeStream.copy(Config.RGB_565, false);
             decodeStream.recycle();
             return res;
         } catch (Exception e) {
@@ -756,16 +755,7 @@ public class MagicHelper {
         }
     }
 
-    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast, int brigtness) {
-        int[] arr = new int[src.getWidth() * src.getHeight()];
-        src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
-        quickContrast3(arr, contrast, brigtness);
-        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), AppsConfig.CURRENT_BITMAP_ARGB);
-        LOG.d("Bitmap config", "RGB_565", src.getConfig() == Config.RGB_565, "ARGB_8888", src.getConfig() == Config.ARGB_8888);
-        bmOut.setPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
-        return bmOut;
 
-    }
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
         if (AppState.get().isEnableBC) {

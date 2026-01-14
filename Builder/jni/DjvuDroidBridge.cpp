@@ -545,12 +545,8 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPage(JN
     targetRect.y = pageSliceY * targetHeight / pageSliceHeight;
     targetRect.w = targetWidth;
     targetRect.h = targetHeight;
-    //unsigned int masks[] = { 0xFF0000, 0x00FF00, 0x0000FF };
-    //ddjvu_format_t* pixelFormat = ddjvu_format_create(DDJVU_FORMAT_RGBMASK32, 3, masks);
-    unsigned int masks[4] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
+    unsigned int masks[] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
     ddjvu_format_t* pixelFormat = ddjvu_format_create(DDJVU_FORMAT_RGBMASK32, 4, masks);
-
-
     ddjvu_format_set_row_order(pixelFormat, TRUE);
     ddjvu_format_set_y_direction(pixelFormat, TRUE);
 
@@ -595,13 +591,6 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPageBit
         return 0;
     }
 
-    DEBUG_WRITE("Checking format");
- //   //if (info.format != ANDROID_BITMAP_FORMAT_RGB_565)
- //   {
-    //    DEBUG_WRITE("Bitmap format is not RGB_565 !");
-  //      return 0;
-  //  }
-
     DEBUG_WRITE("locking pixels");
     if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0)
     {
@@ -620,13 +609,8 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPageBit
     targetRect.y = pageSliceY * targetHeight / pageSliceHeight;
     targetRect.w = targetWidth;
     targetRect.h = targetHeight;
-    //unsigned int masks[] = { 0xF800, 0x07E0, 0x001F };
     unsigned int masks[4] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
     ddjvu_format_t* pixelFormat = ddjvu_format_create(DDJVU_FORMAT_RGBMASK32, 4, masks);
-
-
-
-    //ddjvu_format_set_row_order(pixelFormat, 1);
 
     ddjvu_format_set_row_order(pixelFormat, TRUE);
     ddjvu_format_set_y_direction(pixelFormat, TRUE);
@@ -637,7 +621,7 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPageBit
     }
 
     jboolean result = ddjvu_page_render(page, (ddjvu_render_mode_t) rendermode, &pageRect, &targetRect, pixelFormat,
-        targetWidth * 2, (char*) pixels);
+        targetWidth * 4, (char*) pixels);
 
     ddjvu_format_release(pixelFormat);
 

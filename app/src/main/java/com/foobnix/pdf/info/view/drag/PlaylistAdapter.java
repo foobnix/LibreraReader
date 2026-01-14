@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.view.drag;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -69,6 +70,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         });
 
         int size = (int) (IMG.getImageSize() * 0.7);
+
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
 
@@ -82,6 +84,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         holder.imageView.setLeftPadding(false);
         holder.imageView.setUnderlineValue(Dips.DP_3);
         holder.imageView.underline(item.equals(currentPath));
+
+
 
         IMG.getCoverPage(holder.imageView, item, IMG.getImageSize());
 
