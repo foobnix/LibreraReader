@@ -2,17 +2,12 @@ package com.foobnix.pdf.info;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
@@ -22,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.EncodeStrategy;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -50,6 +46,8 @@ public class IMG {
     public static Drawable bookBGNoMark;
     public static Context context;
     private static String pattern = Pattern.quote("||");
+
+    private static DiskCacheStrategy COVER_DISK_STRATEGY = DiskCacheStrategy.RESOURCE;
 
     public static void init(Context context) {
 
@@ -200,7 +198,7 @@ public class IMG {
             final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
             Glide.with(LibreraApp.context)
                  .asBitmap()
-                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                 .diskCacheStrategy(COVER_DISK_STRATEGY)
                  .load(url)
                  .into(img);
         } catch (Exception e) {
@@ -218,13 +216,10 @@ public class IMG {
         IMG.with(img.getContext())
            .asBitmap()
            .load(url)
-           .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+           .diskCacheStrategy(COVER_DISK_STRATEGY)
            .listener(new RequestListener<Bitmap>() {
                @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
                                                      boolean isFirstResource) {
-                   LOG.d("Bitmap-test-2", "failed");
-
                    return false;
                }
 
@@ -232,7 +227,8 @@ public class IMG {
                public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource,
                                               boolean isFirstResource) {
                    target.onResourceReady(bitmap, null);
-                   LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                   LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig(),
+                           dataSource);
 
                    if (run != null) {
                        run.onResourceReady(null);
@@ -248,6 +244,7 @@ public class IMG {
         try {
             Glide.with(LibreraApp.context)
                  .asBitmap()
+                 .diskCacheStrategy(COVER_DISK_STRATEGY)
                  .load(url)
                  .into(img);
         } catch (Exception e) {

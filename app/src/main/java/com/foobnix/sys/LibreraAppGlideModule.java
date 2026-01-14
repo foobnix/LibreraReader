@@ -175,10 +175,13 @@ public class LibreraAppGlideModule extends AppGlideModule {
         builder.setDefaultRequestOptions(new RequestOptions()
                                                             .transform(new WhiteBackgroundTransformation())
                                                              .format(CURRENT_BITMAP));
+
+
         builder.setSourceExecutor(
                 newSourceBuilder()
+
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
-                        .setThreadCount(4)
+                        .setThreadCount(2)
                         //.setThreadTimeoutMillis(2000)
                         .build());
 
