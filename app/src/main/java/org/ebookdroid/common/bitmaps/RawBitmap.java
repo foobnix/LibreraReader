@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -72,7 +73,7 @@ public final class RawBitmap {
     }
 
     public BitmapRef toBitmap() {
-        BitmapRef bitmap = BitmapManager.getBitmap("RawBitmap", width, height, Bitmap.Config.RGB_565);
+        BitmapRef bitmap = BitmapManager.getBitmap("RawBitmap", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
         bitmap.getBitmap().setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
     }

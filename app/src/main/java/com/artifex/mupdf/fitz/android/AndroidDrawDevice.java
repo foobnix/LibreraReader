@@ -30,6 +30,7 @@ import com.artifex.mupdf.fitz.NativeDevice;
 import com.artifex.mupdf.fitz.Page;
 import com.artifex.mupdf.fitz.Rect;
 import com.artifex.mupdf.fitz.RectI;
+import com.foobnix.pdf.info.AppsConfig;
 
 public final class AndroidDrawDevice extends NativeDevice
 {
@@ -68,7 +69,7 @@ public final class AndroidDrawDevice extends NativeDevice
 		RectI ibox = new RectI(page.getBounds().transform(ctm));
 		int w = ibox.x1 - ibox.x0;
 		int h = ibox.y1 - ibox.y0;
-		Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+		Bitmap bmp = Bitmap.createBitmap(w, h, AppsConfig.CURRENT_BITMAP_ARGB);
 		AndroidDrawDevice dev = new AndroidDrawDevice(bmp, ibox.x0, ibox.y0);
 		try {
 			page.run(dev, ctm, null);

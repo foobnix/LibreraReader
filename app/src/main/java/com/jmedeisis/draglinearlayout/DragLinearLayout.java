@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
+import com.foobnix.pdf.info.AppsConfig;
+
 /**
  * copy from github:https://github.com/justasm/DragLinearLayout
  * <p/>
@@ -815,7 +817,7 @@ public class DragLinearLayout extends LinearLayout {
      * @return a bitmap showing a screenshot of the mView passed in.
      */
     private static Bitmap getBitmapFromView(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), AppsConfig.CURRENT_BITMAP_ARGB);
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
         return bitmap;

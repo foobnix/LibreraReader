@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.emdev.utils.LengthUtils;
@@ -14,7 +15,7 @@ public class BitmapManager {
     static int partSize = 1 << CoreSettings.getInstance().bitmapSize;
 
     public static BitmapRef getBitmap(final String name, final int width, final int height, final Bitmap.Config config) {
-        return new BitmapRef(Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565), 0l);
+        return new BitmapRef(Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB), 0l);
     }
 
     public static void release(final BitmapRef ref) {

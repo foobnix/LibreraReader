@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.graphics.Region;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 
 import org.ebookdroid.core.PagePaint;
 import org.emdev.utils.LengthUtils;
@@ -20,7 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class Bitmaps {
 
 
-    private static final Config DEF_BITMAP_TYPE = Bitmap.Config.RGB_565;
+    private static final Config DEF_BITMAP_TYPE = AppsConfig.CURRENT_BITMAP_ARGB;
 
     private static boolean useDefaultBitmapType = true;
 

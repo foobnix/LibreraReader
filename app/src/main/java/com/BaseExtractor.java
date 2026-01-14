@@ -14,6 +14,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -59,7 +60,7 @@ public abstract class BaseExtractor {
         pBold.setTextSize(h / 14);
         pBold.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(w, h, AppsConfig.CURRENT_BITMAP_ARGB);
         Canvas c = new Canvas(bitmap);
         c.save();
         c.drawColor(TintUtil.randomColor((title + author).hashCode()));

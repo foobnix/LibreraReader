@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 
+import com.foobnix.pdf.info.AppsConfig;
+
 public class AndroidPlatformImage implements PlatformImage<Bitmap> {
 
 
@@ -28,7 +30,7 @@ public class AndroidPlatformImage implements PlatformImage<Bitmap> {
 
     @Override
     public void create(int width, int height) {
-        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        bitmap = Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB);
     }
 
     @Override

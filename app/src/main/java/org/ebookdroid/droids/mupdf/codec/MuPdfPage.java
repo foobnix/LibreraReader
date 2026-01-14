@@ -214,7 +214,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
             renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
 
-            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
             return b;
         } finally {
@@ -279,9 +279,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
             BitmapRef b;
             if (false) {
-                b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+                b = BitmapManager.getBitmap("PDF page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             } else {
-                b = new BitmapRef(Bitmap.createBitmap(width, height, Config.RGB_565), 0l);
+                b = new BitmapRef(Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB), 0l);
             }
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
             if (AppState.get().isMirrorImage) {

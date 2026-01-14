@@ -3,9 +3,11 @@ package com.foobnix.pdf.info;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 
+import com.bumptech.glide.load.DecodeFormat;
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -23,6 +25,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 public class AppsConfig {
+
+    public static final DecodeFormat CURRENT_BITMAP = DecodeFormat.PREFER_ARGB_8888;
+    public static final Bitmap.Config CURRENT_BITMAP_ARGB = Bitmap.Config.ARGB_8888;
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;

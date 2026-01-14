@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 
 public class HSVColorWheel extends View {
 
@@ -106,7 +107,7 @@ public class HSVColorWheel extends View {
 
         try {
             rect = new Rect(innerPadding, innerPadding, w - innerPadding, h - innerPadding);
-            bitmap = Bitmap.createBitmap(w - 2 * innerPadding, h - 2 * innerPadding, Config.ARGB_8888);
+            bitmap = Bitmap.createBitmap(w - 2 * innerPadding, h - 2 * innerPadding, AppsConfig.CURRENT_BITMAP_ARGB);
 
             fullCircleRadius = Math.min(rect.width(), rect.height()) / 2;
             innerCircleRadius = fullCircleRadius * (1 - FADE_OUT_FRACTION);

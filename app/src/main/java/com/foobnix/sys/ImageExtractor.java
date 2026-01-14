@@ -40,6 +40,7 @@ import com.foobnix.ext.RtfExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -244,7 +245,7 @@ public class ImageExtractor {
                     int width = pageUrl.getWidth();
                     int height = (int) (width * k);
 
-                    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB);
                     page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
                     return bitmap;
@@ -274,7 +275,7 @@ public class ImageExtractor {
                         Drawable drawable = LibreraApp.context.getDrawable(R.drawable.glyphicons_145_folder_open);
                         drawable.setTint(TintUtil.getColorInDayNighth());
                         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                                drawable.getIntrinsicHeight(), AppsConfig.CURRENT_BITMAP_ARGB);
                         Canvas canvas = new Canvas(bitmap);
                         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                         drawable.draw(canvas);
@@ -709,7 +710,7 @@ public class ImageExtractor {
                     }
 
                     int maxH = Math.max(bitmap1.getHeight(), bitmap2.getHeight());
-                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, android.graphics.Bitmap.Config.RGB_565);
+                    Bitmap bitmap = Bitmap.createBitmap(bitmap1.getWidth() + bitmap2.getWidth(), maxH, AppsConfig.CURRENT_BITMAP_ARGB);
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 

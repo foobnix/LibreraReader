@@ -6,6 +6,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppSP;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.TempHolder;
 
@@ -187,7 +188,7 @@ public abstract class AbstractCodecContext implements CodecContext {
      */
     @Override
     public Bitmap.Config getBitmapConfig() {
-        return Bitmap.Config.RGB_565;
+        return AppsConfig.CURRENT_BITMAP_ARGB;
     }
 
     public static int getSizeInPixels(final float pdfHeight, float dpi) {

@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 
 public class HSVValueSlider extends View {
 
@@ -70,7 +71,7 @@ public class HSVValueSlider extends View {
 
         srcRect = new Rect(0, 0, w, 1);
         dstRect = new Rect(0, 0, w, h);
-        bitmap = Bitmap.createBitmap(w, 1, Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(w, 1, AppsConfig.CURRENT_BITMAP_ARGB);
         pixels = new int[w];
 
         createBitmap();

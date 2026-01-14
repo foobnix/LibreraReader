@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import com.foobnix.pdf.info.AppsConfig;
+
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 
@@ -25,7 +27,7 @@ public class PageCropper2 {
 
     private static RawBitmap CENTER = new RawBitmap(BMP_SIZE / 5, BMP_SIZE / 5, false);
 
-    private static Bitmap BITMAP = Bitmap.createBitmap(BMP_SIZE, BMP_SIZE, Bitmap.Config.RGB_565);
+    private static Bitmap BITMAP = Bitmap.createBitmap(BMP_SIZE, BMP_SIZE, AppsConfig.CURRENT_BITMAP_ARGB);
 
     private static final Rect RECT = new Rect(0, 0, BMP_SIZE, BMP_SIZE);
 

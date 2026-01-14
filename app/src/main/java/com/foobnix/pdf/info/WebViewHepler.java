@@ -47,7 +47,7 @@ public class WebViewHepler {
                 timeout = System.currentTimeMillis() - init;
                 LOG.d("WebView onPageFinished", url, timeout);
 
-                final Bitmap bitmap = Bitmap.createBitmap(Dips.screenWidth(), Dips.screenHeight() / 2, Bitmap.Config.ARGB_8888);
+                final Bitmap bitmap = Bitmap.createBitmap(Dips.screenWidth(), Dips.screenHeight() / 2, AppsConfig.CURRENT_BITMAP_ARGB);
                 final Canvas c = new Canvas(bitmap);
                 // webView.scrollTo(0, Dips.screenHeight() / 2 * -1);
                 webView.draw(c);

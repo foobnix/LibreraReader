@@ -6,6 +6,7 @@ import android.graphics.PointF;
 import android.util.Pair;
 
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
 
 import org.ebookdroid.core.codec.Annotation;
@@ -206,7 +207,7 @@ public class DecodeServiceStub implements DecodeService {
 	 */
 	@Override
 	public Config getBitmapConfig() {
-		return Config.ARGB_8888;
+		return AppsConfig.CURRENT_BITMAP_ARGB;
 	}
 
 	@Override

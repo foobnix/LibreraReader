@@ -10,6 +10,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.sys.ImageExtractor;
 
 import java.io.OutputStream;
@@ -104,7 +105,7 @@ public class WebViewUtils {
                 try {
                     LOG.d("web.getContentHeight()", web.getContentHeight());
 
-                    Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
+                    Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), AppsConfig.CURRENT_BITMAP_ARGB);
                     if (bitmap.getHeight() > 0 && bitmap.getWidth() > 0) {
                         Canvas c = new Canvas(bitmap);
                         web.draw(c);

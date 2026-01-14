@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.WebViewUtils;
+import com.foobnix.pdf.info.AppsConfig;
 
 public class SvgActivity extends Activity {
 
@@ -506,7 +507,7 @@ public class SvgActivity extends Activity {
         float scale = webview.getScale();
         int webViewHeight = Math.round(webview.getContentHeight() * scale);
         LOG.d("SvgActivity ", scale, webViewHeight);
-        Bitmap bitmap = Bitmap.createBitmap(webview.getWidth(), webViewHeight, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(webview.getWidth(), webViewHeight, AppsConfig.CURRENT_BITMAP_ARGB);
         Canvas canvas = new Canvas(bitmap);
         webview.draw(canvas);
         return bitmap;
