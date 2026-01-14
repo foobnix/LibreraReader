@@ -938,9 +938,12 @@ public class VerticalModeController extends DocumentController {
                         return false;
                     }
 
-                    try {
-                        if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
 
+                    try {
+                        if(ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled()){
+                            return false;
+                        }
+                        if (TxtUtils.isNotEmpty(ol.getTitle())) {
                             if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
                                 outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                             } else {

@@ -337,6 +337,7 @@ public class ImageExtractor {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
             LOG.d("Calibre-image", pageUrl);
         } else if (BookType.EPUB.is(unZipPath)) {
+            LOG.d("getBookCover-Epub","EPUB",pageUrl.getWidth(),pageUrl.getPath());
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath != null && unZipPath.endsWith(".docx"))) {
             cover = BaseExtractor.arrayToBitmap(OdtExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());

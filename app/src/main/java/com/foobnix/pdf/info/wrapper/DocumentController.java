@@ -726,7 +726,7 @@ public abstract class DocumentController {
     }
 
     public void restartActivity() {
-        IMG.clearMemoryCache();
+        //IMG.clearMemoryCache();
         saveAppState();
         TTSEngine.get().stop();
 

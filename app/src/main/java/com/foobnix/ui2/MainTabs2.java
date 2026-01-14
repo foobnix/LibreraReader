@@ -817,7 +817,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearCodeDocument();
 
         EventBus.getDefault().unregister(this);
-        IMG.clearMemoryCache();
+        //IMG.clearMemoryCache();
         super.onDestroy();
     }
 

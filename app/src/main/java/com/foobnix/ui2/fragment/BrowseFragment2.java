@@ -997,8 +997,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public boolean onBackAction() {
         if (AppState.get().isHideReadBook) {
-            IMG.clearMemoryCache();
-            IMG.clearDiscCache();
+            //IMG.clearMemoryCache();
+            //IMG.clearDiscCache();
         }
         if (ExtUtils.isExteralSD(BookCSS.get().dirLastPath)) {
             String path = BookCSS.get().dirLastPath;

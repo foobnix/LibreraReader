@@ -167,12 +167,14 @@ public class LibreraApp extends MultiDexApplication {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
+        IMG.clearMemoryCache();
         TempHolder.get().loadingCancelled.set(true);
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
+        IMG.clearMemoryCache();
         LOG.d("onTerminate", "onTerminate APP");
         TempHolder.get().loadingCancelled.set(true);
         AppsConfig.executorService.shutdown();

@@ -558,6 +558,7 @@ public class EpubExtractor extends BaseExtractor {
 
     @Override
     public byte[] getBookCover(String path) {
+
         byte[] cover = null;
         try {
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);

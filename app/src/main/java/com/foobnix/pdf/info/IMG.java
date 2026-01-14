@@ -116,6 +116,7 @@ public class IMG {
 
     public static void clearMemoryCache() {
         if (LibreraApp.context != null) {
+            LOG.d("clearMemoryCache", "clearMemoryCache");
             Glide.get(LibreraApp.context)
                  .clearMemory();
         }
