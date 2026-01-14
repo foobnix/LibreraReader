@@ -20,6 +20,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
@@ -174,6 +175,9 @@ public class LibreraAppGlideModule extends AppGlideModule {
         builder.setDefaultRequestOptions(new RequestOptions()
                                                             .transform(new WhiteBackgroundTransformation())
                                                              .format(CURRENT_BITMAP));
+
+        int diskCacheSizeBytes = 1024 * 1024 * 500; // 500 MB
+        builder.setDiskCache(new InternalCacheDiskCacheFactory(context, diskCacheSizeBytes));
 
 
         builder.setSourceExecutor(
