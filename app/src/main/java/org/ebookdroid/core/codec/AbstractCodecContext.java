@@ -41,12 +41,10 @@ public abstract class AbstractCodecContext implements CodecContext {
         CodecDocument openDocument = openDocumentInner(fileName, password);
         LOG.d("openDocumentInner-time", (float) (System.currentTimeMillis() - t) / 1000, fileName);
         LOG.d("removeTempFiles1", TempHolder.get().loadingCancelled.get());
-        if (TempHolder.get().loadingCancelled.get()) {
-            removeTempFiles();
-            return null;
-        }
-
-
+//        if (TempHolder.get().loadingCancelled.get()) {
+//            removeTempFiles();
+//            return null;
+//        }
 
 
         return openDocument;
