@@ -244,7 +244,7 @@ public class ImageExtractor {
                     int width = pageUrl.getWidth();
                     int height = (int) (width * k);
 
-                    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                     page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
 
                     return bitmap;
@@ -412,7 +412,7 @@ public class ImageExtractor {
             isNeedDisableMagicInPDFDjvu = true;
         }
         if (page < 0) {
-            page = 0;
+            page = 1;
         }
         if (pageUrl.isCrop()) {
             // isNeedDisableMagicInPDFDjvu = true;
@@ -455,10 +455,12 @@ public class ImageExtractor {
         rectF = new RectF(0, 0, 1f, 1f);
 
         if (isNeedDisableMagicInPDFDjvu) {
-            bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
+            //bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
+            //bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
         } else {
-            bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
+
         }
+        bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
 
         bitmap = bitmapRef.getBitmap();
 

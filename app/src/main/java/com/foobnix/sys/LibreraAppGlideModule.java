@@ -3,6 +3,9 @@ package com.foobnix.sys;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +19,12 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
@@ -28,6 +33,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.LibreraApp;
 
 import java.io.InputStream;
+import java.security.MessageDigest;
 
 import static com.bumptech.glide.load.engine.executor.GlideExecutor.newSourceBuilder;
 
@@ -137,11 +143,33 @@ public class LibreraAppGlideModule extends AppGlideModule {
         }
     };
 
+    public class WhiteBackgroundTransformation extends BitmapTransformation {
+        @Override
+        protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+            Bitmap result = pool.get(toTransform.getWidth(), toTransform.getHeight(), Bitmap.Config.ARGB_8888);
+            if(result.hasAlpha()) {
+                Canvas canvas = new Canvas(result);
+                Paint paint = new Paint();
+                canvas.drawColor(Color.WHITE);
+                canvas.drawBitmap(toTransform, 0f, 0f, paint);
+                return result;
+            }else{
+                return result;
+            }
+        }
+
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+            messageDigest.update("white_bg_transform".getBytes());
+        }
+    }
+
     @Override
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
         super.applyOptions(context, builder);
-        builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
-
+        builder.setDefaultRequestOptions(new RequestOptions()
+                                                            .transform(new WhiteBackgroundTransformation())
+                                                             .format(DecodeFormat.PREFER_ARGB_8888));
         builder.setSourceExecutor(
                 newSourceBuilder()
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)

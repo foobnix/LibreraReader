@@ -755,16 +755,7 @@ public class MagicHelper {
         }
     }
 
-    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast, int brigtness) {
-        int[] arr = new int[src.getWidth() * src.getHeight()];
-        src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
-        quickContrast3(arr, contrast, brigtness);
-        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.RGB_565);
-        LOG.d("Bitmap config", "RGB_565", src.getConfig() == Config.RGB_565, "ARGB_8888", src.getConfig() == Config.ARGB_8888);
-        bmOut.setPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
-        return bmOut;
 
-    }
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
         if (AppState.get().isEnableBC) {
