@@ -456,7 +456,7 @@ public class FileInformationDialog {
         coverImage.setBackgroundColor(Color.WHITE);
         coverImage.getLayoutParams().width = Dips.screenMinWH() / 2;
 
-        IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
+        IMG.getCoverPageWithEffect(a, file.getPath(), null).into(coverImage);
 
         coverImage.setOnClickListener(new OnClickListener() {
 
@@ -577,9 +577,10 @@ public class FileInformationDialog {
 
             }
         });
-        final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_NO_EFFECT, Dips.screenWidth());
+        //final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_NO_EFFECT, Dips.screenWidth());
+       // final String url = IMG.getCoverUrl(path);
 
-        Glide.with(LibreraApp.context).asBitmap().load(url).into(imageView);
+        IMG.getCoverPageWithEffect(imageView.getContext(), path, null).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
@@ -605,7 +606,7 @@ public class FileInformationDialog {
 
             }
         });
-        Glide.with(LibreraApp.context).asBitmap().load(path).into(imageView);
+        IMG.getCoverPageWithEffect(LibreraApp.context,path,null).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);

@@ -179,7 +179,7 @@ public class BrowserAdapter extends BaseAdapter {
             }
 
 
-            IMG.getCoverPageWithEffect(imageView, file.getPath(), IMG.getImageSize(),null);
+            IMG.getCoverPageWithEffect(imageView.getContext(), file.getPath(), null).into(imageView);
 
             textPath.setText(file.getPathTxt());
             infoLayout.setVisibility(View.VISIBLE);

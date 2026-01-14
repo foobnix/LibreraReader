@@ -229,27 +229,22 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             //AppDB.get().getDao().detach(fileMeta);
             //}
 
-            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new IMG.ResourceReady() {
+            IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(), bitmap -> {
 
+                try {
+                    if (position < items.size() && needRefresh) {
+                        FileMeta it = AppDB.get().load(fileMeta.getPath());
 
-                @Override
-                public void onResourceReady(Bitmap bitmap) {
-
-                    try {
-                        if (position < items.size() && needRefresh) {
-                            FileMeta it = AppDB.get().load(fileMeta.getPath());
-
-                            if (it != null) {
-                                items.set(position, it);
-                                bindFileMetaView(holder, position);
-                            }
+                        if (it != null) {
+                            items.set(position, it);
+                            bindFileMetaView(holder, position);
                         }
-                    } catch (Exception e) {
-                        LOG.e(e);
                     }
-
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
-            });
+
+            }).into(holder.image);
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
 
@@ -323,7 +318,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             } else {
                 if (AppState.get().isFolderPreview) {
                     IMG.updateImageSizeSmallDir(holder.image);
-                    IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new IMG.ResourceReady() {
+                    IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(),  new IMG.ResourceReady() {
                         @Override
                         public void onResourceReady(Bitmap bitmap) {
                             try {
@@ -347,7 +342,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
 
                         }
-                    });
+                    }).into(holder.image);
                 } else {
                     holder.image.setImageResource(R.drawable.glyphicons_145_folder_open);
                     TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());

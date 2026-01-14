@@ -195,8 +195,8 @@ public class RecentBooksWidget extends AppWidgetProvider {
                             FileMeta fileMeta = recent.get(i);
 
                             RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-                            String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                            Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                            IMG.getCoverPageWithEffect(context,fileMeta.getPath(),null)
+                                 .into(new CustomTarget<Bitmap>() {
 
 
                                 @Override

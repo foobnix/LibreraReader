@@ -82,8 +82,9 @@ public class TTSWidget extends AppWidgetProvider {
                     textUpdate = TxtUtils.nullToEmpty(textUpdate);
 
                     if (TxtUtils.isNotEmpty(bookPath)) {
-                        String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                        Glide.with(context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                        //String url = IMG.getCoverUrl(bookPath);
+
+                        IMG.getCoverPageWithEffect(context,bookPath,null).into(new CustomTarget<Bitmap>() {
                             @Override
                             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                                 for (int i = 0; i < appWidgetIds.length; i++) {

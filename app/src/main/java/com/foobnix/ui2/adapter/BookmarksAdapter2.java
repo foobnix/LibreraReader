@@ -82,7 +82,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             //holder.remove.setVisibility(View.GONE);
         }
 
-        IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position);
+        IMG.getCoverPageWithEffect(holder.image.getContext(), item.getPath(),  null).into(holder.image);
 
         Clouds.showHideCloudImage(holder.cloudImage, item.getPath());
 

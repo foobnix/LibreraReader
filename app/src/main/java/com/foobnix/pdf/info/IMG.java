@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
@@ -15,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.EncodeStrategy;
@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.signature.ObjectKey;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -38,16 +39,10 @@ import java.util.regex.Pattern;
 public class IMG {
 
     public static final float WIDTH_DK = 1.4f;
-    public static final int DP5 = -Dips.dpToPx(40);
     public static final int TWO_LINE_COVER_SIZE = 74;
-    private static final ColorDrawable COLOR_DRAWABLE = new ColorDrawable(Color.LTGRAY);
-    public static boolean RESET_VIEW_BEFORE_LOADING = true;
     public static Drawable bookBGWithMark;
     public static Drawable bookBGNoMark;
     public static Context context;
-    private static String pattern = Pattern.quote("||");
-
-    private static DiskCacheStrategy COVER_DISK_STRATEGY = DiskCacheStrategy.RESOURCE;
 
     public static void init(Context context) {
 
@@ -114,7 +109,7 @@ public class IMG {
 
     public static void clearMemoryCache() {
         if (LibreraApp.context != null) {
-            LOG.d("clearMemoryCache", "clearMemoryCache");
+            LOG.d("clearMemoryCache", "Bitmap-test-2 clearMemoryCache");
             Glide.get(LibreraApp.context)
                  .clearMemory();
         }
@@ -165,7 +160,7 @@ public class IMG {
     }
 
     public static void clearDiscCache() {
-
+        LOG.d("clearDiscCache", "Bitmap-test-2 clearDiscCache");
         AppsConfig.executorService.execute(new Runnable() {
             @Override public void run() {
                 try {
@@ -193,31 +188,55 @@ public class IMG {
         }
     }
 
-    public static void getCoverPage(ImageView img, String path, int width) {
-        try {
-            final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-            Glide.with(LibreraApp.context)
-                 .asBitmap()
-                 .diskCacheStrategy(COVER_DISK_STRATEGY)
-                 .load(url)
-                 .into(img);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
 
     public static interface ResourceReady {
         void onResourceReady(Bitmap bitmap);
     }
 
-    public static void getCoverPageWithEffect(ImageView img, String path, int width, ResourceReady run) {
-        String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        LOG.d("Bitmap-test-load", path);
-        IMG.with(img.getContext())
+
+    private static String getCoverUrl(String path){
+        return toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
+    }
+    public static String getCoverUrl1(String path){
+        return toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
+    }
+    public static final DiskCacheStrategy AUTOMATIC1 =
+            new DiskCacheStrategy() {
+                @Override
+                public boolean isDataCacheable(DataSource dataSource) {
+                    return dataSource == DataSource.LOCAL;
+                }
+
+                @Override
+                public boolean isResourceCacheable(
+                        boolean isFromAlternateCacheKey, DataSource dataSource, EncodeStrategy encodeStrategy) {
+                    return dataSource == DataSource.LOCAL;
+                }
+
+                @Override
+                public boolean decodeCachedResource() {
+                    return true;
+                }
+
+                @Override
+                public boolean decodeCachedData() {
+                    return true;
+                }
+            };
+
+
+    public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run) {
+        int imageSize = IMG.getImageSize();
+        String url = toUrl(path, ImageExtractor.COVER_PAGE, imageSize);
+        return IMG.with(context)
            .asBitmap()
            .load(url)
-           .diskCacheStrategy(COVER_DISK_STRATEGY)
-           .listener(new RequestListener<Bitmap>() {
+           .override(Target.SIZE_ORIGINAL)
+                .onlyRetrieveFromCache(false)
+           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+           //.override(imageSize)
+              .signature(new ObjectKey(url.hashCode()))
+           .listener(new RequestListener<>() {
                @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
                                                      boolean isFirstResource) {
                    return false;
@@ -227,45 +246,27 @@ public class IMG {
                public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource,
                                               boolean isFirstResource) {
                    target.onResourceReady(bitmap, null);
-                   LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig(),
-                           dataSource);
+                   LOG.d("Bitmap-test-2", bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig(),
+                           dataSource,isFirstResource,model);
 
                    if (run != null) {
                        run.onResourceReady(null);
                    }
                    return true;
                }
-           })
-           .into(img);
+           });
+
     }
 
-    public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos) {
-        final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
-        try {
-            Glide.with(LibreraApp.context)
-                 .asBitmap()
-                 .diskCacheStrategy(COVER_DISK_STRATEGY)
-                 .load(url)
-                 .into(img);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
 
-    public static String toUrl(final String path, final int page, final int width) {
+    private static String toUrl(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         pdfUrl.setUnic(0);
-        //pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
-
         pdfUrl.hash =
                 ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
         return pdfUrl.toString();
     }
 
-    public static String toUrlPos(final String path, final int page, final int width, int pos) {
-        PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
-        return pdfUrl.toString();
-    }
 
     public static String toUrlWithContext(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);

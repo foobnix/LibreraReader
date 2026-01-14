@@ -87,7 +87,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
 
 
 
-        IMG.getCoverPage(holder.imageView, item, IMG.getImageSize());
+        IMG.getCoverPageWithEffect(holder.imageView.getContext(), item, null).into(holder.imageView);
 
         // Start a drag whenever the handle view it touched
         if (holder.imageDrag != null) {

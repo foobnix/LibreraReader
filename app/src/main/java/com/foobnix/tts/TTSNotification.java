@@ -192,9 +192,11 @@ public class TTSNotification {
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
             final String extraText = textLine;
 
-            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
+            //final String url = IMG.getCoverUrl(bookPath);
+            //String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
 
-            Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+
+            IMG.getCoverPageWithEffect(LibreraApp.context,bookPath,null).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);

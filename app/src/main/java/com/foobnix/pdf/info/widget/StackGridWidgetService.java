@@ -77,10 +77,9 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
         FileMeta uri = recent.get(position);
 
-        String url = IMG.toUrl(uri.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-
         try {
-            Bitmap image = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+            Bitmap image =
+                    Glide.with(LibreraApp.context).asBitmap().load(IMG.getCoverUrl1(uri.getPath())).submit().get();
             v.setImageViewBitmap(R.id.imageView1, image);
         } catch (ExecutionException e) {
             e.printStackTrace();

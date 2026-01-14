@@ -77,10 +77,10 @@ public class RecentUpates {
                     }
 
                     ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
-                    String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
+                   // String url = IMG.getCoverUrl(recentLast.getPath());
                     //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 
-                    Glide.with(c).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
+                    IMG.getCoverPageWithEffect(c,recentLast.getPath(),null).into(new CustomTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
 

@@ -24,6 +24,7 @@ import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
+import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
@@ -53,8 +54,6 @@ public class LibreraAppGlideModule extends AppGlideModule {
         public LoadData<Bitmap> buildLoadData(@NonNull final String s, int width, int height, @NonNull Options options) {
 
             final ObjectKey sourceKey = new ObjectKey(s);
-            LOG.d("LibreraAppGlideModule sourceKey", s, sourceKey.hashCode());
-
 
             return new LoadData<>(sourceKey, new DataFetcher<Bitmap>() {
                 volatile boolean isCanced = false;
@@ -181,7 +180,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 newSourceBuilder()
 
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
-                        .setThreadCount(2)
+                        .setThreadCount(1)
                         //.setThreadTimeoutMillis(2000)
                         .build());
 
@@ -190,13 +189,15 @@ public class LibreraAppGlideModule extends AppGlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide, Registry registry) {
-        LOG.d("LibreraAppGlideModule registerComponents");
+        //registry.append(Bitmap.class, new BitmapEncoder(glide.getArrayPool()));
+        //registry.prepend(Bitmap.class, new BitmapEncoder(glide.getArrayPool()));
         registry.prepend(String.class, Bitmap.class, new ModelLoaderFactory<String, Bitmap>() {
             @NonNull
             @Override
             public ModelLoader<String, Bitmap> build(@NonNull MultiModelLoaderFactory multiFactory) {
                 return modelLoader;
             }
+
 
             @Override
             public void teardown() {
