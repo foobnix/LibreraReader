@@ -65,24 +65,6 @@ public class IMG {
         return Dips.dpToPx(Math.max(AppState.get().coverSmallSize, AppState.get().coverBigSize));
     }
 
-    public static void updateLayoutHeightSizeSmall(ViewGroup imageView) {
-        if (imageView == null || imageView.getLayoutParams() == null) {
-            return;
-        }
-        int widht = Dips.dpToPx(AppState.get().coverSmallSize);
-        LayoutParams lp = imageView.getLayoutParams();
-        lp.height = (int) (widht * WIDTH_DK);
-    }
-
-    public static void updateLayoutHeightSizeBig(ViewGroup imageView) {
-        if (imageView == null || imageView.getLayoutParams() == null) {
-            return;
-        }
-        int widht = Dips.dpToPx(AppState.get().coverBigSize);
-        LayoutParams lp = imageView.getLayoutParams();
-        lp.height = (int) (widht * WIDTH_DK);
-    }
-
     public static LayoutParams updateImageSizeSmall(View imageView) {
         if (imageView == null || imageView.getLayoutParams() == null) {
             return null;
@@ -135,7 +117,8 @@ public class IMG {
 
     public static void clearMemoryCache() {
         if (LibreraApp.context != null) {
-            Glide.get(LibreraApp.context).clearMemory();
+            Glide.get(LibreraApp.context)
+                 .clearMemory();
         }
     }
 
@@ -186,11 +169,11 @@ public class IMG {
     public static void clearDiscCache() {
 
         AppsConfig.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
+            @Override public void run() {
                 try {
                     if (LibreraApp.context != null) {
-                        Glide.get(LibreraApp.context).clearDiskCache();
+                        Glide.get(LibreraApp.context)
+                             .clearDiskCache();
                     }
                 } catch (Exception e) {
                     LOG.e(e);
@@ -212,22 +195,14 @@ public class IMG {
         }
     }
 
-    public static String getRealPathFromURI(final Context c, final Uri contentURI) {
-        final Cursor cursor = c.getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file
-            // path
-            return contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            final int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            return cursor.getString(idx);
-        }
-    }
-
     public static void getCoverPage(ImageView img, String path, int width) {
         try {
             final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-            Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+            Glide.with(LibreraApp.context)
+                 .asBitmap()
+                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                 .load(url)
+                 .into(img);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -246,9 +221,8 @@ public class IMG {
            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
            .listener(new RequestListener<Bitmap>() {
-               @Override
-               public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
-                                           boolean isFirstResource) {
+               @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
+                                                     boolean isFirstResource) {
                    LOG.d("Bitmap-test-2", "failed");
 
                    return false;
@@ -272,7 +246,10 @@ public class IMG {
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos) {
         final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
         try {
-            Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+            Glide.with(LibreraApp.context)
+                 .asBitmap()
+                 .load(url)
+                 .into(img);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -285,7 +262,6 @@ public class IMG {
 
         pdfUrl.hash =
                 ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
-
         return pdfUrl.toString();
     }
 
@@ -294,28 +270,9 @@ public class IMG {
         return pdfUrl.toString();
     }
 
-    public static PageUrl toPageUrl(final String path, final int page, final int width) {
-        return new PageUrl(path, page, width, 0, false, false, 0);
-    }
-
     public static String toUrlWithContext(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         return pdfUrl.toString();
     }
 
-    public static String toUrl(final String path, final int page, final int width, int heigth) {
-        return new PageUrl(path, page, width, 0, false, false, 0, heigth).toString();
-    }
-
-    public static String toUrl(final Uri path, final int page, final int width) {
-        return toUrl(path.getPath(), page, width);
-    }
-
-    public static String toUrl(final Uri path, final int page, final int width, final int number) {
-        return new PageUrl(path.getPath(), page, width, number, false, false, 0).toString();
-    }
-
-    public static String[] fromUrl(final String url) {
-        return url.split(pattern);
-    }
 }

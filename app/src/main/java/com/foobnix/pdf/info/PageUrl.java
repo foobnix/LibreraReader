@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -129,6 +130,7 @@ public class PageUrl {
     @Override
     public String toString() {
         try {
+           // LOG.d("toUrl", "width:", width);
             final LinkedJSONObject obj = new LinkedJSONObject();
             obj.put("path", path);
             obj.put("page", page);

@@ -264,7 +264,7 @@
    <string name="read_a_book">Читати книгу</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Шлях до файлу</string>
-   <string name="folder">Теки</string>
+   <string name="folder">Тека</string>
    <string name="by_file_name">Назва файлу</string>
    <string name="by_size">Розмір</string>
    <string name="by_date">Дата створення файлу</string>

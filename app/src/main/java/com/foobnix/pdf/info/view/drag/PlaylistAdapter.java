@@ -23,17 +23,18 @@ import com.foobnix.pdf.info.view.UnderlineImageView;
 import java.util.Collections;
 import java.util.List;
 
-public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
+public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder> implements
+        ItemTouchHelperAdapter {
 
     private final List<String> mItems;
-    private static final int SIZE = Dips.isLargeOrXLargeScreen() ? Dips.DP_80 : Dips.DP_60;
 
     private final OnStartDragListener mDragStartListener;
     private boolean horizontal;
 
     private String currentPath;
 
-    public PlaylistAdapter(Context context, List<String> mItems, OnStartDragListener dragStartListener, boolean horizontal) {
+    public PlaylistAdapter(Context context, List<String> mItems, OnStartDragListener dragStartListener,
+                           boolean horizontal) {
         mDragStartListener = dragStartListener;
         this.mItems = mItems;
         this.horizontal = horizontal;
@@ -67,7 +68,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             }
         });
 
-        int size = SIZE;
+        int size = (int) (IMG.getImageSize() * 0.7);
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
 
@@ -82,7 +83,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         holder.imageView.setUnderlineValue(Dips.DP_3);
         holder.imageView.underline(item.equals(currentPath));
 
-        IMG.getCoverPage(holder.imageView, item, SIZE);
+        IMG.getCoverPage(holder.imageView, item, IMG.getImageSize());
 
         // Start a drag whenever the handle view it touched
         if (holder.imageDrag != null) {
