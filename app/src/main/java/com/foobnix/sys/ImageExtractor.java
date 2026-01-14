@@ -412,7 +412,7 @@ public class ImageExtractor {
             isNeedDisableMagicInPDFDjvu = true;
         }
         if (page < 0) {
-            page = 1;
+            page = 0;
         }
         if (pageUrl.isCrop()) {
             // isNeedDisableMagicInPDFDjvu = true;
