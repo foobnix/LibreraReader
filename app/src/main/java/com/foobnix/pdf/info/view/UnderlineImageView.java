@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 public class UnderlineImageView extends ImageView {
 
@@ -38,8 +40,13 @@ public class UnderlineImageView extends ImageView {
         super.onDraw(canvas);
         canvas.save();
         if (isUnderline) {
-            p.setColor(Color.WHITE);
+
             p.setStrokeWidth(dp1);
+
+            int color = MagicHelper.getTextOrIconColor();
+
+            p.setColor(color);
+
             int padding = leftPadding ? dp1 * 2 : 0;
             canvas.drawLine(padding, getHeight() - dp1, getWidth() - padding, getHeight() - dp1, p);
         }

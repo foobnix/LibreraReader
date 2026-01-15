@@ -57,6 +57,7 @@ public class SelfTestWorker extends MessageWorker {
 
     @Override
     public boolean doWorkInner() throws IOException {
+        TempHolder.get().loadingCancelled.set(false);
         long begin = System.currentTimeMillis();
         AppProfile.init(getApplicationContext());
         AppProfile.syncTestFolder.mkdirs();
@@ -119,7 +120,7 @@ public class SelfTestWorker extends MessageWorker {
                 writeLine(out, "Skip");
                 continue;
             }
-            sendTextMessage("Test: " + n + "/" + count);
+            sendTextMessage(n + "/" + count);
             try {
                 CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
                 CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");

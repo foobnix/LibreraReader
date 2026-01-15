@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:tag="no_tint"
             android:padding="5dip"
             android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 

@@ -470,8 +470,12 @@ public class MagicHelper {
         if (AppState.get().uiTextColor == AppState.get().tintColor) {
             textColor = Color.WHITE;
         }
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
+            textColor = Color.WHITE;
+        }
         return textColor;
     }
+
 
     public static boolean isLight(int color) {
         return color >= 200 && color <= 255;
