@@ -84,7 +84,7 @@ public class TTSControlsView extends FrameLayout {
     @Override
     public void setBackgroundColor(int color) {
         if(view!=null) {
-            view.setBackgroundColor(color);
+            //view.setBackgroundColor(color);
         }
     }
     View view;
@@ -307,6 +307,7 @@ public class TTSControlsView extends FrameLayout {
         if (TTSEngine.get().isMp3() && layoutMp3.getVisibility() == View.GONE) {
             layoutMp3.setVisibility(View.VISIBLE);
             trackName.setVisibility(View.VISIBLE);
+            view.setBackgroundColor(Color.parseColor("#ddffffff"));
 
             udateButtons();
 
