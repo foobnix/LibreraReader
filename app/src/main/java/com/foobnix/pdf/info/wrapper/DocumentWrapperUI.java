@@ -1629,12 +1629,13 @@ public class DocumentWrapperUI {
             titleBar.setVisibility(View.GONE);
         }
 
-        progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
+
         if (AppState.get().isShowReadingProgress && AppState.get().isEditMode) {
             progressDraw.setVisibility(View.GONE);
         } else {
-            progressDraw.setVisibility(View.VISIBLE);
+            progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
         }
+
 
         toolBarButton.setVisibility(View.VISIBLE);
 

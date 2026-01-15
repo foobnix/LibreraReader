@@ -249,7 +249,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="2dip">
+                android:paddingTop="2dip"
+                android:paddingLeft="2dip"
+                android:paddingRight="2dip"
+                android:paddingBottom="6dip">
 
                 <ImageView
                     android:id="@+id/moveCenter"

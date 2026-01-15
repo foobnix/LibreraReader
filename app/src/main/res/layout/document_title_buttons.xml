@@ -21,8 +21,8 @@
             android:orientation="horizontal"
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
-            android:paddingTop="12dip"
-            android:paddingBottom="2dip"
+            android:paddingTop="14dip"
+            android:paddingBottom="6dip"
             >
 
             <ImageView
