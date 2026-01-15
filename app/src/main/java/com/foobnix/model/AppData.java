@@ -373,7 +373,7 @@ public class AppData {
     List<FileMeta> recentCache = new ArrayList<FileMeta>();
     long recentCacheTime = 0;
 
-    public synchronized List<FileMeta> getAllRecent(boolean updateProgress) {
+    public List<FileMeta> getAllRecent(boolean updateProgress) {
 
         if (System.currentTimeMillis() - recentCacheTime < 1000) {
             LOG.d("getAllRecent", "getAllRecent-check cache");

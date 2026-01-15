@@ -93,26 +93,24 @@ public class FileInformationDialog {
         showFileInfoDialog(a, file, onDeleteAction, true);
     }
 
-    public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction, boolean firstTime) {
+    public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction,
+                                          boolean firstTime) {
         ADS.hideAdsTemp(a);
 
-        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
-
+        final FileMeta fileMeta = AppDB.get()
+                                       .getOrCreate(file.getPath());
 
         LOG.d("FileMeta-State", fileMeta.getState(), fileMeta.getTitle());
-
 
         if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
 
             new AsyncProgressResultToastTask(a, new ResultResponse<Boolean>() {
-                @Override
-                public boolean onResultRecive(Boolean result) {
+                @Override public boolean onResultRecive(Boolean result) {
                     showFileInfoDialog(a, file, onDeleteAction, false);
                     return false;
                 }
             }) {
-                @Override
-                protected Boolean doInBackground(Object... objects) {
+                @Override protected Boolean doInBackground(Object... objects) {
                     FileMetaCore.reUpdateIfNeed(fileMeta);
                     return true;
                 }
@@ -123,8 +121,8 @@ public class FileInformationDialog {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
-
-        final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
+        final View dialog = LayoutInflater.from(a)
+                                          .inflate(R.layout.dialog_file_info, null, false);
 
         final ImageView image = (ImageView) dialog.findViewById(R.id.cloudImage);
         boolean isCloud = Clouds.showHideCloudImage(image, fileMeta.getPath());
@@ -134,8 +132,7 @@ public class FileInformationDialog {
             TintUtil.setTintImageWithAlpha(image);
             image.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
+                @Override public void onClick(View v) {
                     ShareDialog.showAddToCloudDialog(a, new File(fileMeta.getPath()));
 
                 }
@@ -154,7 +151,6 @@ public class FileInformationDialog {
             author.setText(showKeys(fileMeta.getAuthor()));
         }
 
-
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
@@ -163,7 +159,6 @@ public class FileInformationDialog {
             pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
         }
 
-
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
 
@@ -171,7 +166,8 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.isbn)).setText(showKeys(fileMeta.getIsbn()));
 
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
+            ((TextView) dialog.findViewById(R.id.size)).setText(
+                    fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
         } else {
             ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
         }
@@ -184,7 +180,8 @@ public class FileInformationDialog {
             ((View) hypenLang.getParent()).setVisibility(View.GONE);
         }
 
-        List<AppBookmark> objects = BookmarksData.get().getBookmarksByBook(file);
+        List<AppBookmark> objects = BookmarksData.get()
+                                                 .getBookmarksByBook(file);
         StringBuilder lines = new StringBuilder();
         String fast = a.getString(R.string.fast_bookmark);
         if (TxtUtils.isListNotEmpty(objects)) {
@@ -202,8 +199,7 @@ public class FileInformationDialog {
 
         bookmarks.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 // AlertDialogs.showOkDialog(a, bookmarks.getText().toString(), null);
                 bookmarks.setMaxLines(Integer.MAX_VALUE);
             }
@@ -213,20 +209,19 @@ public class FileInformationDialog {
         final TextView expand = (TextView) dialog.findViewById(R.id.expand);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
-        
+
         infoView.post(new Runnable() {
-            @Override
-            public void run() {
+            @Override public void run() {
                 int lineCount = infoView.getLineCount();
-                boolean showExpandView = lineCount > 0 && infoView.getLayout().getEllipsisCount(lineCount - 1) > 0;
+                boolean showExpandView = lineCount > 0 && infoView.getLayout()
+                                                                  .getEllipsisCount(lineCount - 1) > 0;
                 expand.setVisibility(showExpandView ? View.VISIBLE : View.GONE);
                 infoView.setTextIsSelectable(!showExpandView);
             }
         });
-        
+
         expand.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
                 infoView.setMaxLines(Integer.MAX_VALUE);
                 infoView.setEllipsize(null);
@@ -245,7 +240,9 @@ public class FileInformationDialog {
             }
 
             metaSeries.setText(sequence);
-            List<FileMeta> result = AppDB.get().searchBy(SEARCH_IN.SERIES.getDotPrefix() + " " + fileMeta.getSequence(), SORT_BY.SERIES_INDEX, true);
+            List<FileMeta> result = AppDB.get()
+                                         .searchBy(SEARCH_IN.SERIES.getDotPrefix() + " " + fileMeta.getSequence(),
+                                                 SORT_BY.SERIES_INDEX, true);
             if (TxtUtils.isListNotEmpty(result) && result.size() > 1) {
 
                 RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
@@ -258,14 +255,14 @@ public class FileInformationDialog {
                 FileMetaAdapter adapter = new FileMetaAdapter();
                 adapter.tempValue = FileMetaAdapter.TEMP_VALUE_SERIES;
                 adapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
-                adapter.getItemsList().addAll(result);
+                adapter.getItemsList()
+                       .addAll(result);
                 recyclerView.setAdapter(adapter);
 
                 DefaultListeners.bindAdapter(a, adapter);
                 adapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
 
-                    @Override
-                    public boolean onResultRecive(FileMeta result) {
+                    @Override public boolean onResultRecive(FileMeta result) {
                         return true;
                     }
                 });
@@ -297,12 +294,12 @@ public class FileInformationDialog {
 
         final Runnable tagsRunnable = new Runnable() {
 
-            @Override
-            public void run() {
+            @Override public void run() {
                 String tag = fileMeta.getTag();
                 if (TxtUtils.isNotEmpty(tag)) {
                     String replace = tag.replace("#", " ");
-                    replace = TxtUtils.replaceLast(replace, ",", "").trim();
+                    replace = TxtUtils.replaceLast(replace, ",", "")
+                                      .trim();
                     ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
                     // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
                     ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
@@ -315,20 +312,20 @@ public class FileInformationDialog {
         };
         tagsRunnable.run();
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags))
+                .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
+                    @Override public void onClick(View v) {
+                        Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
 
-                    @Override
-                    public void run() {
-                        tagsRunnable.run();
-                        EventBus.getDefault().post(new NotifyAllFragments());
+                            @Override public void run() {
+                                tagsRunnable.run();
+                                EventBus.getDefault()
+                                        .post(new NotifyAllFragments());
+                            }
+                        });
                     }
                 });
-            }
-        });
 
         TextView metaTags = (TextView) dialog.findViewById(R.id.metaTags);
         TextView metaTagsInfo = (TextView) dialog.findViewById(R.id.metaTagsInfo);
@@ -350,7 +347,7 @@ public class FileInformationDialog {
                     "info:ModDate", //
                     "info:Edition", //
                     "info:Trapped" //
-            ));
+                                                                          ));
 
             try {
                 final CodecDocument doc = ImageExtractor.singleCodecContext(file.getPath(), "");
@@ -365,7 +362,10 @@ public class FileInformationDialog {
 
                     if (TxtUtils.isNotEmpty(metaValue)) {
                         id = id.replace("info:", "");
-                        meta.append("<b>" + id).append(": " + "</b>").append(metaValue).append("<br>");
+                        meta.append("<b>" + id)
+                            .append(": " + "</b>")
+                            .append(metaValue)
+                            .append("<br>");
                     }
                 }
                 doc.recycle();
@@ -382,8 +382,7 @@ public class FileInformationDialog {
         TextView convertFile = (TextView) dialog.findViewById(R.id.convertFile);
         convertFile.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 ShareDialog.showsItemsDialog(a, file.getPath(), AppState.CONVERTERS.get("EPUB"));
             }
         });
@@ -391,31 +390,31 @@ public class FileInformationDialog {
         convertFile.setVisibility(ExtUtils.isImageOrEpub(file) ? View.GONE : View.VISIBLE);
         convertFile.setVisibility(View.GONE);
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith))
+                .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.openWith(a, file);
+                    @Override public void onClick(View v) {
+                        if (infoDialog != null) {
+                            infoDialog.dismiss();
+                            infoDialog = null;
+                        }
+                        ExtUtils.openWith(a, file);
 
-            }
-        });
+                    }
+                });
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile))
+                .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.sendFileTo(a, file);
+                    @Override public void onClick(View v) {
+                        if (infoDialog != null) {
+                            infoDialog.dismiss();
+                            infoDialog = null;
+                        }
+                        ExtUtils.sendFileTo(a, file);
 
-            }
-        });
+                    }
+                });
 
         TextView delete = TxtUtils.underlineTextView(dialog.findViewById(R.id.delete));
         if (onDeleteAction == null) {
@@ -423,8 +422,7 @@ public class FileInformationDialog {
         }
         delete.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 if (infoDialog != null) {
                     infoDialog.dismiss();
                     infoDialog = null;
@@ -456,12 +454,12 @@ public class FileInformationDialog {
         coverImage.setBackgroundColor(Color.WHITE);
         coverImage.getLayoutParams().width = Dips.screenMinWH() / 2;
 
-        IMG.getCoverPageWithEffect(a, file.getPath(), null).into(coverImage);
+        IMG.getCoverPageWithEffect(a, file.getPath(), null)
+           .into(coverImage);
 
         coverImage.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 showImage(a, file.getPath());
             }
         });
@@ -472,9 +470,9 @@ public class FileInformationDialog {
 
         starIcon.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                DefaultListeners.getOnStarClick(a).onResultRecive(fileMeta, null);
+            @Override public void onClick(View v) {
+                DefaultListeners.getOnStarClick(a)
+                                .onResultRecive(fileMeta, null);
 
                 if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
                     starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
@@ -504,9 +502,15 @@ public class FileInformationDialog {
         if (BookType.PDF.is(file.getPath())) {
             Views.visible(editTitle, editAuthor, editAnnotation);
 
-            TxtUtils.underline(editTitle, editTitle.getText().toString().toLowerCase());
-            TxtUtils.underline(editAuthor, editTitle.getText().toString().toLowerCase());
-            TxtUtils.underline(editAnnotation, editTitle.getText().toString().toLowerCase());
+            TxtUtils.underline(editTitle, editTitle.getText()
+                                                   .toString()
+                                                   .toLowerCase());
+            TxtUtils.underline(editAuthor, editTitle.getText()
+                                                    .toString()
+                                                    .toLowerCase());
+            TxtUtils.underline(editAnnotation, editTitle.getText()
+                                                        .toString()
+                                                        .toLowerCase());
 
             editMeta(fileMeta, editAuthor, author, MuPdfDocument.META_INFO_AUTHOR);
             editMeta(fileMeta, editTitle, title, MuPdfDocument.META_INFO_TITLE);
@@ -516,15 +520,13 @@ public class FileInformationDialog {
         builder.setView(dialog);
 
         builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
+            @Override public void onClick(DialogInterface dialog, int id) {
 
             }
         });
 
         builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
+            @Override public void onClick(DialogInterface dialog, int id) {
                 ExtUtils.showDocumentWithoutDialog2(a, file);
             }
         });
@@ -532,8 +534,7 @@ public class FileInformationDialog {
         infoDialog = builder.create();
         infoDialog.setOnDismissListener(new OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 Keyboards.hideNavigation(a);
             }
         });
@@ -542,25 +543,30 @@ public class FileInformationDialog {
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
-        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(), true, author.getContext().getString(R.string.edit), author.getText().toString(), result -> {
-            PdfContext codecContex = new PdfContext();
-            CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
-            doc.setMeta(key, result);
-            doc.saveAnnotations(fileMeta.getPath());
-            doc.recycle();
-            author.setText(result);
-            update(fileMeta);
-            return false;
-        }));
+        click.setOnClickListener(v -> Dialogs.showEditDialog(author.getContext(), true, author.getContext()
+                                                                                              .getString(R.string.edit),
+                author.getText()
+                      .toString(), result -> {
+                    PdfContext codecContex = new PdfContext();
+                    CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
+                    if (doc != null) {
+                        doc.setMeta(key, result);
+                        doc.saveAnnotations(fileMeta.getPath());
+                        doc.recycle();
+                    }
+                    author.setText(result);
+                    update(fileMeta);
+                    return false;
+                }));
     }
 
     public static void showImage(Activity a, String path) {
         final Dialog builder = new Dialog(a);
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.getWindow()
+               .setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
+            @Override public void onDismiss(DialogInterface dialogInterface) {
             }
         });
 
@@ -571,18 +577,19 @@ public class FileInformationDialog {
 
         imageView.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 builder.dismiss();
 
             }
         });
         //final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_NO_EFFECT, Dips.screenWidth());
-       // final String url = IMG.getCoverUrl(path);
+        // final String url = IMG.getCoverUrl(path);
 
-        IMG.getCoverPageWithEffect(imageView.getContext(), path, null).into(imageView);
+        IMG.getCoverPageWithEffect(imageView.getContext(), path, null)
+           .into(imageView);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
         builder.show();
     }
@@ -590,25 +597,26 @@ public class FileInformationDialog {
     public static void showImageHttpPath(Context a, String path) {
         final Dialog builder = new Dialog(a);
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.getWindow()
+               .setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
+            @Override public void onDismiss(DialogInterface dialogInterface) {
             }
         });
 
         final ScaledImageView imageView = new ScaledImageView(a);
         imageView.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 builder.dismiss();
 
             }
         });
-        IMG.getCoverPageWithEffect(LibreraApp.context,path,null).into(imageView);
+        IMG.getCoverPageWithEffect(LibreraApp.context, path, null)
+           .into(imageView);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
         builder.show();
     }
@@ -627,43 +635,41 @@ public class FileInformationDialog {
             }
         }
 
-        builder.setMessage(a.getString(R.string.do_you_want_to_delete_this_file_) + "\n\"" + name + "\"").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
+        builder.setMessage(a.getString(R.string.do_you_want_to_delete_this_file_) + "\n\"" + name + "\"")
+               .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                   @Override public void onClick(final DialogInterface dialog, final int id) {
 
+                       if (Clouds.isLibreraSyncRootFolder(file.getPath())) {
 
-                if (Clouds.isLibreraSyncRootFolder(file.getPath())) {
+                           new AsyncProgressResultToastTask(a) {
 
+                               @Override protected Boolean doInBackground(Object... objects) {
+                                   try {
+                                       GFile.deleteRemoteFile(file);
+                                       a.runOnUiThread(onDeleteAction);
+                                       //GFile.runSyncService(a);
+                                   } catch (Exception e) {
+                                       LOG.e(e);
+                                       return false;
+                                   }
+                                   return true;
+                               }
 
-                    new AsyncProgressResultToastTask(a) {
+                           }.execute();
 
-                        @Override
-                        protected Boolean doInBackground(Object... objects) {
-                            try {
-                                GFile.deleteRemoteFile(file);
-                                a.runOnUiThread(onDeleteAction);
-                                //GFile.runSyncService(a);
-                            } catch (Exception e) {
-                                LOG.e(e);
-                                return false;
-                            }
-                            return true;
-                        }
+                       } else {
+                           onDeleteAction.run();
+                           AppData.get()
+                                  .removeRecent(new FileMeta(file.getPath()));
+                       }
 
-                    }.execute();
-
-                } else {
-                    onDeleteAction.run();
-                    AppData.get().removeRecent(new FileMeta(file.getPath()));
-                }
-
-            }
-        }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
-                dialog.dismiss();
-            }
-        });
+                   }
+               })
+               .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                   @Override public void onClick(final DialogInterface dialog, final int id) {
+                       dialog.dismiss();
+                   }
+               });
         builder.show();
     }
 
@@ -674,10 +680,11 @@ public class FileInformationDialog {
         fileMeta.setState(FileMetaCore.STATE_NONE);
         FileMetaCore.reUpdateIfNeed(fileMeta);
 
-        AppDB.get().save(fileMeta);
-
+        AppDB.get()
+             .save(fileMeta);
 
         TempHolder.listHash++;
-        EventBus.getDefault().post(new UpdateAllFragments());
+        EventBus.getDefault()
+                .post(new UpdateAllFragments());
     }
 }

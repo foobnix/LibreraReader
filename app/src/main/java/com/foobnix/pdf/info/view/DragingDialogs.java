@@ -3713,20 +3713,18 @@ public class DragingDialogs {
                         Dialogs.showEditDialog(v.getContext(),
                                                false,
                                                statusBarColorDay.getTextString(),
-                                               AppState.get().statusBarColorDays,
-                                               new ResultResponse<String>() {
-                                                   @Override public boolean onResultRecive(String result) {
-                                                       AppState.get().statusBarColorDays = result;
-                                                       statusBarColorDay.withDefaultColors(StringDB.converToColor(
-                                                               AppState.get().statusBarColorDays,
-                                                               MagicHelper.getTextOrIconColor()));
+                                               AppState.get().statusBarColorDays, new ResultResponse<>() {
+                                    @Override public boolean onResultRecive(String result) {
+                                        AppState.get().statusBarColorDays = result;
+                                        statusBarColorDay.withDefaultColors(
+                                                StringDB.converToColor(AppState.get().statusBarColorDays, MagicHelper.getTextOrIconColor()));
 
-                                                       if (onRefresh != null) {
-                                                           onRefresh.run();
-                                                       }
-                                                       return true;
-                                                   }
-                                               });
+                                        if (onRefresh != null) {
+                                            onRefresh.run();
+                                        }
+                                        return true;
+                                    }
+                                });
                         return true;
                     }
                 });
