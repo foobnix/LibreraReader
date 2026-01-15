@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Environment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.ModelLoader;
@@ -36,6 +38,7 @@ import com.foobnix.LibreraApp;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 
+import java.io.File;
 import java.io.InputStream;
 import java.security.MessageDigest;
 
@@ -176,8 +179,11 @@ public class LibreraAppGlideModule extends AppGlideModule {
                                                             .transform(new WhiteBackgroundTransformation())
                                                              .format(CURRENT_BITMAP));
 
-        int diskCacheSizeBytes = 1024 * 1024 * 500; // 500 MB
-        builder.setDiskCache(new InternalCacheDiskCacheFactory(context, diskCacheSizeBytes));
+
+//        int diskCacheSizeBytes = 1024 * 1024 * 1500; // 500 MB
+//        File f =  new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_DOWNLOADS),"LibreraCache");
+//        builder.setDiskCache(new DiskLruCacheFactory(f.getPath(), diskCacheSizeBytes));
 
 
         builder.setSourceExecutor(

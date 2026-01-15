@@ -1145,7 +1145,7 @@ public class ExtUtils {
         }
 
         if (TxtUtils.isEmpty(pageUrl)) {
-            pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
+            pageUrl = IMG.toUrl(file.getPath(), page, (int) (Dips.screenWidth() * 1.5),true);
         }
         // Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
 

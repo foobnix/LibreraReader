@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
+import static android.util.TypedValue.COMPLEX_UNIT_PX;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,14 +10,16 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import androidx.core.util.TypedValueCompat;
+
 import com.bumptech.glide.Glide;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
 import com.foobnix.LibreraApp;
@@ -79,8 +83,10 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
         try {
             Bitmap image =
-                    Glide.with(LibreraApp.context).asBitmap().load(IMG.getCoverUrl1(uri.getPath())).submit().get();
+                    Glide.with(LibreraApp.context).asBitmap().load(IMG.getCoverUrl(uri.getPath())).submit().get();
             v.setImageViewBitmap(R.id.imageView1, image);
+            v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
+            v.setViewPadding(R.id.imageView1, Dips.DP_2,Dips.DP_2,Dips.DP_2,Dips.DP_2);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

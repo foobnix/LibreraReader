@@ -34,8 +34,6 @@ import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
-import java.util.regex.Pattern;
-
 public class IMG {
 
     public static final float WIDTH_DK = 1.4f;
@@ -179,10 +177,6 @@ public class IMG {
     public static void clearCache(String path) {
         try {
 
-            String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
-            //Glide.get(LibreraApp.context).clearMemory();
-            //Glide.get(LibreraApp.context).getRegistry()
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -194,11 +188,9 @@ public class IMG {
     }
 
 
-    private static String getCoverUrl(String path){
-        return toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
-    }
-    public static String getCoverUrl1(String path){
-        return toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
+
+    public static String getCoverUrl(String path){
+        return toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize(), false);
     }
     public static final DiskCacheStrategy AUTOMATIC1 =
             new DiskCacheStrategy() {
@@ -227,11 +219,11 @@ public class IMG {
 
     public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run) {
         int imageSize = IMG.getImageSize();
-        String url = toUrl(path, ImageExtractor.COVER_PAGE, imageSize);
+        String url = toUrl(path, ImageExtractor.COVER_PAGE, imageSize,false);
         return IMG.with(context)
            .asBitmap()
            .load(url)
-           .override(Target.SIZE_ORIGINAL)
+           .override(imageSize)
                 .onlyRetrieveFromCache(false)
            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
            //.override(imageSize)
@@ -259,18 +251,17 @@ public class IMG {
     }
 
 
-    private static String toUrl(final String path, final int page, final int width) {
+    public static String toUrl(final String path, final int page, final int width, boolean withHash) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         pdfUrl.setUnic(0);
-        pdfUrl.hash =
-                ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
+        if(withHash) {
+            pdfUrl.hash =
+                    ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
+        }else{
+            pdfUrl.hash = 0;
+        }
         return pdfUrl.toString();
     }
 
-
-    public static String toUrlWithContext(final String path, final int page, final int width) {
-        PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
-        return pdfUrl.toString();
-    }
 
 }

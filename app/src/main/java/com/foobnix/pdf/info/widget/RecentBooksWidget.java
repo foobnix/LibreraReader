@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
+import static android.util.TypedValue.COMPLEX_UNIT_PX;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
@@ -27,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.LibreraApp;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
@@ -213,6 +216,11 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                                         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
                                         v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+
+                                        //v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
+                                        v.setViewLayoutHeight(R.id.imageView1, IMG.getImageSize(),
+                                                COMPLEX_UNIT_PX);
+                                        v.setViewPadding(R.id.imageView1, Dips.DP_2,Dips.DP_2,Dips.DP_2,Dips.DP_2);
 
                                         remoteViews.addView(R.id.linearLayout, v);
 
