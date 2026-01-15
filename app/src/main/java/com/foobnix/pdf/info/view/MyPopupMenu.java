@@ -42,6 +42,7 @@ import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.MainTabs2;
 
 import java.util.ArrayList;
@@ -138,19 +139,16 @@ public class MyPopupMenu {
                     } else if (Boolean.FALSE.equals(item.active)) {
                         TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                     } else {
+
                         if (isTabsActivity) {
-                            if (AppState.get().appTheme == AppState.THEME_INK || AppState.get().appTheme == AppState.THEME_LIGHT) {
+                            if (AppState.get().appTheme == AppState.THEME_INK ||
+                                    AppState.get().appTheme == AppState.THEME_LIGHT) {
                                 TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                             } else {
-                                TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
+                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
                             }
                         } else {
-
-                            if (AppState.get().isDayNotInvert) {
-                                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
-                            } else {
-                                TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
-                            }
+                            TintUtil.setTintImageWithAlpha(imageView, MagicHelper.getTextOrIconColor());
                         }
                     }
                 } else if (item.drawable != null) {
