@@ -3,9 +3,11 @@ package com.foobnix.zipmanager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 
 import androidx.core.content.FileProvider;
 
@@ -25,6 +27,9 @@ import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.CacheControl;
@@ -32,19 +37,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SendReceiveActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         try {
             new AsyncProgressTask<Object>() {
-                @Override
-                public Context getContext() {
+                @Override public Context getContext() {
                     return SendReceiveActivity.this;
                 }
 
-                @Override
-                protected Object doInBackground(Object... objects) {
+                @Override protected Object doInBackground(Object... objects) {
                     try {
                         updateIntent();
                     } catch (Exception e) {
@@ -53,8 +55,7 @@ public class SendReceiveActivity extends Activity {
                     return null;
                 }
 
-                @Override
-                protected void onPostExecute(Object result) {
+                @Override protected void onPostExecute(Object result) {
                     super.onPostExecute(result);
                     startShareIntent();
                 }
@@ -66,8 +67,7 @@ public class SendReceiveActivity extends Activity {
 
     }
 
-    @Override
-    protected void attachBaseContext(Context context) {
+    @Override protected void attachBaseContext(Context context) {
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
@@ -87,15 +87,63 @@ public class SendReceiveActivity extends Activity {
     }
 
     private void updateIntent() throws Exception {
+        Intent intent = getIntent();
         Bundle extras = getIntent().getExtras();
         LOG.d("SendReceiveActivity", "updateIntent()-", getIntent());
         LOG.d("SendReceiveActivity", "updateIntent()-getExtras", getIntent().getExtras());
         LOG.d("SendReceiveActivity", "updateIntent()-getType", getIntent().getType());
         LOG.d("SendReceiveActivity", "updateIntent()-getScheme", getIntent().getScheme());
-        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData().getDescription());
-        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData().getItemCount());
+        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
+                                                                              .getDescription());
+        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
+                                                                              .getItemCount());
+
+        Uri fileUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        LOG.d("SendReceiveActivity", "fileUri 1", fileUri);
+        if (fileUri == null && intent.getClipData() != null) {
+            fileUri = intent.getClipData().getItemAt(0).getUri();
+        }
+        LOG.d("SendReceiveActivity", "fileUri 2", fileUri);
 
 
+        String fileName = "downloaded_file.pdf";
+        if (fileUri != null) {
+            Cursor cursor = getContentResolver().query(fileUri, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                fileName = cursor.getString(nameIndex);
+                cursor.close();
+            }
+        }
+        LOG.d("SendReceiveActivity", "fileName", fileName);
+
+        if (fileUri != null) {
+            try {
+                // Create a local file in your app's internal "files" directory
+                File localFile = new File(BookCSS.get().downlodsPath, fileName);
+
+                InputStream inputStream = getContentResolver().openInputStream(fileUri);
+                OutputStream outputStream = new FileOutputStream(localFile);
+
+                byte[] buffer = new byte[4096];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+
+                outputStream.flush();
+                outputStream.close();
+                inputStream.close();
+
+                getIntent().setData(Uri.fromFile(localFile));
+
+                return;
+
+                // Success! The file is now at localFile.getAbsolutePath()
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         if (extras != null && getIntent().getData() == null) {
@@ -111,22 +159,20 @@ public class SendReceiveActivity extends Activity {
 
             Uri uri = Uri.parse((String) text);
 
-            if(uri!=null){
-                Request
-                        request =
-                        new Request.Builder().cacheControl(new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
-                                                                                     .build())
-                                             .url(text.toString())
-                                             .build();//
+            if (uri != null) {
+                Request request = new Request.Builder().cacheControl(
+                                                               new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
+                                                                                         .build())
+                                                       .url(text.toString())
+                                                       .build();//
 
                 Response response = OPDS.client//
                                                .newCall(request)//
                                                .execute();
-                LOG.d("SendReceiveActivity","Headers",response.headers());
+                LOG.d("SendReceiveActivity", "Headers", response.headers());
                 //String contentType = response.header("Content-Type");
                 String contentDisposition = response.header("content-disposition");
-                if (contentDisposition != null && contentDisposition.contains(
-                        "filename=")) {
+                if (contentDisposition != null && contentDisposition.contains("filename=")) {
                     String filename = contentDisposition.split("filename=")[1].replaceAll("\"", "");
 
                     File file = new File(BookCSS.get().downlodsPath, filename);
@@ -134,7 +180,8 @@ public class SendReceiveActivity extends Activity {
 
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
 
-                    fileOutputStream.write(response.body().bytes());
+                    fileOutputStream.write(response.body()
+                                                   .bytes());
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     getIntent().setData(Uri.fromFile(file));
@@ -142,8 +189,6 @@ public class SendReceiveActivity extends Activity {
                     return;
 
                 }
-
-
 
             }
 
@@ -153,20 +198,20 @@ public class SendReceiveActivity extends Activity {
                 File file = new File(BookCSS.get().downlodsPath, uri.getLastPathSegment());
                 file.delete();
 
-                Request
-                        request =
-                        new Request.Builder().cacheControl(new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
-                                                                                     .build())
-                                             .url(text.toString())
-                                             .build();//
+                Request request = new Request.Builder().cacheControl(
+                                                               new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
+                                                                                         .build())
+                                                       .url(text.toString())
+                                                       .build();//
 
                 Response response = OPDS.client//
-                                          .newCall(request)//
-                                          .execute();
+                                               .newCall(request)//
+                                               .execute();
 
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
 
-                fileOutputStream.write(response.body().bytes());
+                fileOutputStream.write(response.body()
+                                               .bytes());
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 getIntent().setData(Uri.fromFile(file));
@@ -176,11 +221,11 @@ public class SendReceiveActivity extends Activity {
 
             LOG.d("SendReceiveActivity", "updateIntent uri", uri);
 
-
-
             if (text instanceof String && uri != null && uri.getScheme() != null && (uri.getScheme()
-                                                                                        .equalsIgnoreCase("http") || uri.getScheme()
-                                                                                                                        .equalsIgnoreCase("https"))) {
+                                                                                        .equalsIgnoreCase(
+                                                                                                "http") || uri.getScheme()
+                                                                                                              .equalsIgnoreCase(
+                                                                                                                      "https"))) {
 
                 LOG.d("updateIntent uri getScheme", uri.getScheme());
 
@@ -237,9 +282,11 @@ public class SendReceiveActivity extends Activity {
                 root.mkdirs();
                 try {
                     File file = new File(root, "temp-" + text.hashCode() + ".txt");
-                    file.getParentFile().mkdirs();
+                    file.getParentFile()
+                        .mkdirs();
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
-                    fileOutputStream.write(text.toString().getBytes());
+                    fileOutputStream.write(text.toString()
+                                               .getBytes());
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     getIntent().setData(Uri.fromFile(file));
