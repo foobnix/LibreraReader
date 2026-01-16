@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.content.FileProvider;
+
 import com.foobnix.OpenerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -88,7 +90,13 @@ public class SendReceiveActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         LOG.d("SendReceiveActivity", "updateIntent()-", getIntent());
         LOG.d("SendReceiveActivity", "updateIntent()-getExtras", getIntent().getExtras());
+        LOG.d("SendReceiveActivity", "updateIntent()-getType", getIntent().getType());
         LOG.d("SendReceiveActivity", "updateIntent()-getScheme", getIntent().getScheme());
+        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData().getDescription());
+        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData().getItemCount());
+
+
+
 
         if (extras != null && getIntent().getData() == null) {
             Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
@@ -102,6 +110,42 @@ public class SendReceiveActivity extends Activity {
             }
 
             Uri uri = Uri.parse((String) text);
+
+            if(uri!=null){
+                Request
+                        request =
+                        new Request.Builder().cacheControl(new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
+                                                                                     .build())
+                                             .url(text.toString())
+                                             .build();//
+
+                Response response = OPDS.client//
+                                               .newCall(request)//
+                                               .execute();
+                LOG.d("SendReceiveActivity","Headers",response.headers());
+                //String contentType = response.header("Content-Type");
+                String contentDisposition = response.header("content-disposition");
+                if (contentDisposition != null && contentDisposition.contains(
+                        "filename=")) {
+                    String filename = contentDisposition.split("filename=")[1].replaceAll("\"", "");
+
+                    File file = new File(BookCSS.get().downlodsPath, filename);
+                    file.delete();
+
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+                    fileOutputStream.write(response.body().bytes());
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                    getIntent().setData(Uri.fromFile(file));
+
+                    return;
+
+                }
+
+
+
+            }
 
             if (uri != null && ((String) text).endsWith(".pdf")) {
                 LOG.d("SendReceiveActivity", "updateIntent is Uri", uri);
@@ -131,6 +175,8 @@ public class SendReceiveActivity extends Activity {
             }
 
             LOG.d("SendReceiveActivity", "updateIntent uri", uri);
+
+
 
             if (text instanceof String && uri != null && uri.getScheme() != null && (uri.getScheme()
                                                                                         .equalsIgnoreCase("http") || uri.getScheme()
