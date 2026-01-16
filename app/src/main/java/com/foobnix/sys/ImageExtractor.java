@@ -724,7 +724,7 @@ public class ImageExtractor {
                     Canvas canvas = new Canvas(bitmap);
                     canvas.drawColor(MagicHelper.getBgColor());
 
-                    if (AppState.get().isCutRTL) {
+                    if (AppState.get().isRTLByDefault) {
                         canvas.drawBitmap(bitmap2, 0, (maxH - bitmap2.getHeight()) / 2, null);
                         canvas.drawBitmap(bitmap1, bitmap2.getWidth(), (maxH - bitmap1.getHeight()) / 2, null);
                     } else {
