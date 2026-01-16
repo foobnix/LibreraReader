@@ -168,7 +168,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
-        android:textColor="@color/white_alpha"/>
+        android:textColor="@color/white_alpha_dd"/>
 
 
     <include
