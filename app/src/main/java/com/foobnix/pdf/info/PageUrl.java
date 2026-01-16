@@ -27,7 +27,8 @@ public class PageUrl {
 
     public boolean tempWithWatermakr = false;
 
-    public PageUrl(final String path, final int page, final int width, final int number, final boolean invert, final boolean crop, final int rotate) {
+    public PageUrl(final String path, final int page, final int width, final int number, final boolean invert,
+                   final boolean crop, final int rotate, boolean withHash) {
         this.path = path;
         this.page = page;
         this.width = width;
@@ -35,10 +36,11 @@ public class PageUrl {
         this.invert = invert;
         this.crop = crop;
         this.rotate = rotate;
-        init();
+        init(withHash);
     }
 
-    public PageUrl(final String path, final int page, final int width, final int number, final boolean invert, final boolean crop, final int rotate, int heigth) {
+    public PageUrl(final String path, final int page, final int width, final int number, final boolean invert,
+                   final boolean crop, final int rotate, int heigth, boolean withHash) {
         this.path = path;
         this.page = page;
         this.width = width;
@@ -47,16 +49,18 @@ public class PageUrl {
         this.crop = crop;
         this.rotate = rotate;
         this.height = heigth;
-        init();
+        init(withHash);
 
     }
-    public void init(){
+    public void init(boolean withHash){
         unic = Dips.screenWidth();
-        hash = MagicHelper.hash();
+        if(withHash) {
+            hash = MagicHelper.hash();
+        }
     }
 
     public PageUrl() {
-        init();
+        init(true);
     }
 
     public static PageUrl buildSmall(String path, int page) {

@@ -252,7 +252,7 @@ public class IMG {
 
 
     public static String toUrl(final String path, final int page, final int width, boolean withHash) {
-        PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
+        PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0,false);
         pdfUrl.setUnic(0);
         if(withHash) {
             pdfUrl.hash =
