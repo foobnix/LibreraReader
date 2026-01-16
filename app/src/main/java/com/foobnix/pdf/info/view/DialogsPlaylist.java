@@ -15,6 +15,8 @@ import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -65,6 +67,8 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DialogsPlaylist {
     public static final int LIMIT_MAX_BOOKS = 50;
@@ -349,9 +353,11 @@ public class DialogsPlaylist {
         }
         return res;
     }
-
+    private final static ExecutorService executor = Executors.newSingleThreadExecutor();
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
+        final Handler mainHandler = new Handler(Looper.getMainLooper());
+
         final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);
 
         //playlistRecycleView.setHasFixedSize(true);
@@ -406,163 +412,168 @@ public class DialogsPlaylist {
         }
         final String playlistPath = palylistPathCheck;
 
-        List<String> res = new ArrayList<String>();
+        final List<String> res = new ArrayList<String>();
 
-        LOG.d("getFilesAndDirs", "init", playlistPath);
-        if (playlistPath.equals(L_PLAYLIST_RECENT)) {
-            res = convert(AppData.get().getAllRecent(false), LIMIT_MAX_BOOKS);
-        } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
-            res = convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS);
-        } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
-            String showPath = "";
-            if( playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)){
-                showPath = AppState.get().displayPath;
-            }else{
-                showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
-            }
 
-            List<FileMeta>
-                    filesAndDirs =
-                    SearchCore.getFilesAndDirs(showPath, true,
-                            AppState.get().isDisplayAllFilesInFolder);
-            ExtUtils.removeReadBooks(filesAndDirs);
-            BrowseFragment2.sortItems(filesAndDirs);
-            res = convert(filesAndDirs, LIMIT_MAX_BOOKS);
+        executor.execute(() -> {
+                    LOG.d("getFilesAndDirs", "init", playlistPath);
+                    if (playlistPath.equals(L_PLAYLIST_RECENT)) {
+                        res.addAll(convert(AppData.get()
+                                             .getAllRecent(false), LIMIT_MAX_BOOKS));
+                    } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
+                        res.addAll(convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS));
+                    } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(
+                            L_PLAYLIST_CURRENT_FOLDER)) {
+                        String showPath = "";
+                        if (playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+                            showPath = AppState.get().displayPath;
+                        } else {
+                            showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
+                        }
 
-        } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
-            List<FileMeta>
-                    allTags =
-                    AppDB.get()
-                         .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""), AppDB.SORT_BY.FILE_NAME, false);
-            res = convert(allTags, LIMIT_MAX_BOOKS);
-        } else {
-            playListNameEdit.setVisibility(View.VISIBLE);
-            res = Playlists.getPlaylistItems(playlistPath);
-        }
+                        List<FileMeta> filesAndDirs =
+                                SearchCore.getFilesAndDirs(showPath, true, AppState.get().isDisplayAllFilesInFolder);
+                        ExtUtils.removeReadBooks(filesAndDirs);
+                        BrowseFragment2.sortItems(filesAndDirs);
+                        res.addAll(convert(filesAndDirs, LIMIT_MAX_BOOKS));
+
+                    } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
+                        List<FileMeta> allTags = AppDB.get()
+                                                      .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""),
+                                                              AppDB.SORT_BY.FILE_NAME, false);
+                        res.addAll(convert(allTags, LIMIT_MAX_BOOKS));
+                    } else {
+                        playListNameEdit.setVisibility(View.VISIBLE);
+                        res.addAll(Playlists.getPlaylistItems(playlistPath));
+                    }
+
+                    mainHandler.post(() -> {
+
+                        final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
+
+                            @Override
+                            public void onStartDrag(ViewHolder viewHolder) {
+                            }
+
+                            @Override
+                            public void onRevemove() {
+                            }
+
+                            @Override
+                            public void onItemClick(final String s) {
+                                LOG.d("onItemClick", s);
+                                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
+
+                                    dc.onCloseActivityFinal(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
+                                        }
+                                    });
+                                }
+
+                            }
+
+                        }, true);
+                        if (dc != null && dc.getCurrentBook() != null) {
+                            String path = dc.getCurrentBook().getPath();
+                            adapter.setCurrentPath(path);
+                            int indexOf = res.indexOf(path);
+                            if (indexOf > 3) {
+                                playlistRecycleView.scrollToPosition(indexOf - 3);
+                            }
+
+                        }
+                        playlistRecycleView.setAdapter(adapter);
+
+                        playListNameEdit.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                showPlayList(a, playlistPath, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.getItems().clear();
+                                        adapter.getItems().addAll(Playlists.getPlaylistItems(playlistPath));
+                                        adapter.notifyDataSetChanged();
+
+                                    }
+                                });
+                            }
+                        });
+
+
+                    });
+
+                });
 
         playListName.setText("☰ " + Playlists.formatPlaylistName(a, playlistPath));
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
 
-        final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
 
-            @Override
-            public void onStartDrag(ViewHolder viewHolder) {
+        playListName.setOnClickListener(v -> {
+            if (!AppState.get().isPlayListVisible) {
+                AppState.get().isPlayListVisible = true;
+                updateVisible.run();
+                return;
             }
 
-            @Override
-            public void onRevemove() {
+            final List<String> items = Playlists.getAllPlaylists();
+            items.add(L_PLAYLIST_RECENT);
+            items.add(L_PLAYLIST_FAVORITES);
+            items.add(L_PLAYLIST_CURRENT_FOLDER);
+            final List<FileMeta> folders = AppData.get().getAllFavoriteFolders();
+            if (!folders.isEmpty()) {
+                for (FileMeta folder : folders) {
+                    items.add(L_PLAYLIST_FOLDER + folder.getPath());
+                }
+            }
+            final List<String> tags = TagData.getAllTagsByFile();
+            if (!tags.isEmpty()) {
+                for (String tag : tags) {
+                    if (TxtUtils.isEmpty(tag)) {
+                        continue;
+                    }
+                    items.add(L_PLAYLIST_TAGS + tag);
+                }
             }
 
-            @Override
-            public void onItemClick(final String s) {
-                LOG.d("onItemClick", s);
-                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
-
-                    dc.onCloseActivityFinal(new Runnable() {
+            MyPopupMenu menu = new MyPopupMenu(v);
+            for (final String item : items) {
+                menu.getMenu()
+                    .add(Playlists.formatPlaylistName(a, item))
+                    .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
-                        public void run() {
-                            ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
-                        }
-                    });
-                }
-
-            }
-
-        }, true);
-        if (dc != null && dc.getCurrentBook() != null) {
-            String path = dc.getCurrentBook().getPath();
-            adapter.setCurrentPath(path);
-            int indexOf = res.indexOf(path);
-            if (indexOf > 3) {
-                playlistRecycleView.scrollToPosition(indexOf - 3);
-            }
-
-        }
-        playlistRecycleView.setAdapter(adapter);
-
-        playListNameEdit.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                showPlayList(a, playlistPath, new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.getItems().clear();
-                        adapter.getItems().addAll(Playlists.getPlaylistItems(playlistPath));
-                        adapter.notifyDataSetChanged();
-
-                    }
-                });
-            }
-        });
-
-        playListName.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (!AppState.get().isPlayListVisible) {
-                    AppState.get().isPlayListVisible = true;
-                    updateVisible.run();
-                    return;
-                }
-
-                final List<String> items = Playlists.getAllPlaylists();
-                items.add(L_PLAYLIST_RECENT);
-                items.add(L_PLAYLIST_FAVORITES);
-                items.add(L_PLAYLIST_CURRENT_FOLDER);
-                final List<FileMeta> folders = AppData.get().getAllFavoriteFolders();
-                if (!folders.isEmpty()) {
-                    for (FileMeta folder : folders) {
-                        items.add(L_PLAYLIST_FOLDER + folder.getPath());
-                    }
-                }
-                final List<String> tags = TagData.getAllTagsByFile();
-                if (!tags.isEmpty()) {
-                    for (String tag : tags) {
-                        if (TxtUtils.isEmpty(tag)) {
-                            continue;
-                        }
-                        items.add(L_PLAYLIST_TAGS + tag);
-                    }
-                }
-
-                MyPopupMenu menu = new MyPopupMenu(v);
-                for (final String item : items) {
-                    menu.getMenu()
-                        .add(Playlists.formatPlaylistName(a, item))
-                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem m) {
-                                AppState.get().playlistDefault = item;
-                                a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
-                                dispalyPlaylist(a, dc);
-                                return false;
-                            }
-                        });
-                }
-
-                if (false) {
-                    menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            showPlaylistsDialog(a, new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    dispalyPlaylist(a, dc);
-                                }
-                            }, null);
+                        public boolean onMenuItemClick(MenuItem m) {
+                            AppState.get().playlistDefault = item;
+                            a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
+                            dispalyPlaylist(a, dc);
                             return false;
                         }
                     });
-                }
-
-                menu.show();
-
             }
+
+            if (false) {
+                menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        showPlaylistsDialog(a, new Runnable() {
+
+                            @Override
+                            public void run() {
+                                dispalyPlaylist(a, dc);
+                            }
+                        }, null);
+                        return false;
+                    }
+                });
+            }
+
+            menu.show();
+
         });
 
     }

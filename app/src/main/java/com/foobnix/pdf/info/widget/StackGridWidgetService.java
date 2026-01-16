@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -14,6 +15,7 @@ import androidx.core.util.TypedValueCompat;
 
 import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
@@ -85,12 +87,12 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
             Bitmap image =
                     Glide.with(LibreraApp.context).asBitmap().load(IMG.getCoverUrl(uri.getPath())).submit().get();
             v.setImageViewBitmap(R.id.imageView1, image);
-            v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
+            }
             v.setViewPadding(R.id.imageView1, Dips.DP_2,Dips.DP_2,Dips.DP_2,Dips.DP_2);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
 

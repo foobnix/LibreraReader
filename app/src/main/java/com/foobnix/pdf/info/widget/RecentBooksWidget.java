@@ -218,8 +218,11 @@ public class RecentBooksWidget extends AppWidgetProvider {
                                         v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
                                         //v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
-                                        v.setViewLayoutHeight(R.id.imageView1, IMG.getImageSize(),
-                                                COMPLEX_UNIT_PX);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                            v.setViewLayoutHeight(R.id.imageView1, IMG.getImageSize(),
+                                                    COMPLEX_UNIT_PX);
+
+                                        }
                                         v.setViewPadding(R.id.imageView1, Dips.DP_2,Dips.DP_2,Dips.DP_2,Dips.DP_2);
 
                                         remoteViews.addView(R.id.linearLayout, v);
