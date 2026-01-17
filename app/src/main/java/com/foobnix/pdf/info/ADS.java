@@ -74,7 +74,7 @@ public class ADS {
         if (isRewardActivated()) {
             return;
         }
-        if (secondsRemain(interstitialLoadAdTime) > ADS_LIVE_SEC) {
+        if (secondsRemain(interstitialLoadAdTime) > ADS_LIVE_SEC * 2L) {
             interstitialAd = null;
             LOG.d("ADS1", "showInterstitial interstitialLoadAdTime > ADS_LIVE_SEC");
             return;

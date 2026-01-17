@@ -969,20 +969,18 @@ JNIEXPORT jlong
 {
     renderdocument_t* doc = (renderdocument_t*)(long)dochandle;
 
-    if (doc && doc->ctx && !doc->outline) {
-        fz_context* ctx = doc->ctx;
+    if (doc && doc->ctx) {
         // doc->outline = fz_load_outline(ctx, doc->document);
         // fz_count_chapters(ctx, doc->document);
-        fz_try(ctx)
+        fz_try(doc->ctx)
         {
-            doc->outline = fz_load_outline(ctx, doc->document);
+            doc->outline = fz_load_outline(doc->ctx, doc->document);
         }
-        fz_catch(ctx)
+        fz_catch(doc->ctx)
         {
             doc->outline = NULL;
         }
     }
-    // DEBUG("PdfOutline.open(): return handle = %p", doc->outline);
     return (jlong)(long)doc->outline;
 }
 
