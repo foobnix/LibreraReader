@@ -44,7 +44,7 @@ public class ADS {
     private AdView adView;
 
     private long rewardedAdLoadedTime = 0;
-    private long interstitialAdTime = 0;
+    private long interstitialLoadAdTime = 0;
     private long interstitialAdShowTime = 0;
 
     private final static ADS instance = new ADS();
@@ -72,6 +72,11 @@ public class ADS {
             return;
         }
         if (isRewardActivated()) {
+            return;
+        }
+        if (secondsRemain(interstitialLoadAdTime) > ADS_LIVE_SEC) {
+            interstitialAd = null;
+            LOG.d("ADS1", "showInterstitial interstitialLoadAdTime > ADS_LIVE_SEC");
             return;
         }
 
@@ -162,8 +167,8 @@ public class ADS {
             LOG.d("ADS1", "Interstitial destroyed");
             return;
         }
-        if (interstitialAd != null && secondsRemain(interstitialAdTime) < ADS_LIVE_SEC) {
-            LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(interstitialAdTime));
+        if (interstitialAd != null && secondsRemain(interstitialLoadAdTime) < ADS_LIVE_SEC) {
+            LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(interstitialLoadAdTime));
             return;
         }
         if (isRewardActivated()) {
@@ -198,7 +203,7 @@ public class ADS {
                     super.onAdLoaded(interstitialAd);
                     LOG.d("ADS1", "Interstitial loaded");
                     ADS.this.interstitialAd = interstitialAd;
-                    interstitialAdTime = System.currentTimeMillis();
+                    interstitialLoadAdTime = System.currentTimeMillis();
 
                 }
             });
