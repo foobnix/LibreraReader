@@ -238,7 +238,11 @@ public class MyPopupMenu {
             //p1.setWidth(ListPopupWindow.MATCH_PARENT);
             //p1.setDropDownGravity(Gravity.CENTER);
 
-            p1.show();
+            try {
+                p1.show();
+            }catch (Exception e) {
+                LOG.e(e);
+            }
 
             if (pos != -1) {
                 p1.setSelection(pos - 2);
