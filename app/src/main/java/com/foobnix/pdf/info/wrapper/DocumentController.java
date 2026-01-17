@@ -555,10 +555,6 @@ public abstract class DocumentController {
     }
 
     public void saveCurrentPageAsync() {
-        if (TempHolder.get().loadingCancelled.get()) {
-            LOG.d("Loading cancelled");
-            return;
-        }
         // int page = PageUrl.fakeToReal(currentPage);
         LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
         try {
