@@ -545,7 +545,8 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPage(JN
     targetRect.y = pageSliceY * targetHeight / pageSliceHeight;
     targetRect.w = targetWidth;
     targetRect.h = targetHeight;
-    unsigned int masks[] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
+    //unsigned int masks[] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
+    unsigned int masks[] = { 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000 };
     ddjvu_format_t* pixelFormat = ddjvu_format_create(DDJVU_FORMAT_RGBMASK32, 4, masks);
     ddjvu_format_set_row_order(pixelFormat, TRUE);
     ddjvu_format_set_y_direction(pixelFormat, TRUE);
@@ -609,7 +610,8 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPageBit
     targetRect.y = pageSliceY * targetHeight / pageSliceHeight;
     targetRect.w = targetWidth;
     targetRect.h = targetHeight;
-    unsigned int masks[4] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
+    //unsigned int masks[4] = { 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000 };
+    unsigned int masks[] = { 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000 };
     ddjvu_format_t* pixelFormat = ddjvu_format_create(DDJVU_FORMAT_RGBMASK32, 4, masks);
 
     ddjvu_format_set_row_order(pixelFormat, TRUE);
