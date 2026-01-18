@@ -929,7 +929,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             @Override
             public boolean onLongClick(View v) {
-                onItemLongClickListener.onResultRecive(fileMeta);
+                if(onItemLongClickListener!=null) {
+                    onItemLongClickListener.onResultRecive(fileMeta);
+                }
                 return true;
             }
         });
