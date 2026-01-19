@@ -49,7 +49,7 @@ public class MuPdfOutline {
             try {
                 Thread.sleep(150);
                 ttOutline(ls, outline, 0);
-                Thread.sleep(250);
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -1871,19 +1871,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         progressDraw.updatePageCount(dc.getPageCount());
 
-        dc.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-
-            @Override
-            public boolean onResultRecive(List<OutlineLinkWrapper> result) {
-                onClose.setVisibility(View.VISIBLE);
-                progressDraw.updateDivs(result);
-                updateUI(dc.getCurrentPage());
-//                if (TxtUtils.isListEmpty(result)) {
-//                    TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
-//                }
-                showPagesHelper();
-                return false;
-            }
+        dc.getOutline(result -> {
+            onClose.setVisibility(View.VISIBLE);
+            progressDraw.updateDivs(result);
+            updateUI(dc.getCurrentPage());
+            showPagesHelper();
+            return false;
         }, false);
 
         showHelp();

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.LOG;
@@ -555,6 +556,11 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public synchronized void getOutline(
             final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
+
+        if(Apps.isDestroyedActivity(activity)){
+            return;
+        }
+
         if (codeDocument == null) {
             outlineResonse.onResultRecive(outline);
             return;
@@ -575,6 +581,10 @@ public abstract class HorizontalModeController extends DocumentController {
                     try {
                         for (OutlineLink ol : codeDocument.getOutline()) {
                             if (TempHolder.get().loadingCancelled.get()) {
+                                return;
+                            }
+
+                            if(Apps.isDestroyedActivity(activity)){
                                 return;
                             }
                             if(codeDocument.isRecycled()){
