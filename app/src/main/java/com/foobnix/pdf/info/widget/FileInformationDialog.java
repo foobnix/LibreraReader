@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,6 +60,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
+import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordRequiredException;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -547,15 +549,19 @@ public class FileInformationDialog {
                                                                                               .getString(R.string.edit),
                 author.getText()
                       .toString(), result -> {
-                    PdfContext codecContex = new PdfContext();
-                    CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
-                    if (doc != null) {
-                        doc.setMeta(key, result);
-                        doc.saveAnnotations(fileMeta.getPath());
-                        doc.recycle();
+                    try {
+                        PdfContext codecContex = new PdfContext();
+                        CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
+                        if (doc != null) {
+                            doc.setMeta(key, result);
+                            doc.saveAnnotations(fileMeta.getPath());
+                            doc.recycle();
+                        }
+                        author.setText(result);
+                        update(fileMeta);
+                    } catch (MuPdfPasswordRequiredException e) {
+                        Toast.makeText(author.getContext(),R.string.msg_password_required,Toast.LENGTH_LONG).show();
                     }
-                    author.setText(result);
-                    update(fileMeta);
                     return false;
                 }));
     }

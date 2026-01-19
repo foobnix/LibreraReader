@@ -293,14 +293,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         Toast.makeText(getManagedComponent(), msgId, Toast.LENGTH_SHORT).show();
     }
 
-    public void redecodingWithPassword(final ActionEx action) {
-        final PasswordEditable value = action.getParameter("input");
-        final String password = value.getPassword();
-        final String fileName = action.getParameter("path");
-
-        intent.putExtra(DocumentController.EXTRA_PASSWORD, password);
-        startDecoding(fileName, password);
-    }
 
     protected IViewController switchDocumentController(final AppBook bs) {
         if (bs != null) {
@@ -632,7 +624,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 }
 
                 super.onPostExecute(result);
-
                 if (result instanceof MuPdfPasswordException) {
                     final MuPdfPasswordException pex = (MuPdfPasswordException) result;
                     final int

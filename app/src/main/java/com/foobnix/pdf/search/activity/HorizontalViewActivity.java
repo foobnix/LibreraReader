@@ -1055,7 +1055,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onClose.setVisibility(View.VISIBLE);
                     return;
                 }
-
                 if ((Integer) result == -1) {
                     final EditText input = new EditText(HorizontalViewActivity.this);
                     input.setSingleLine(true);
@@ -1065,18 +1064,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     dialog.setTitle(R.string.enter_password);
                     dialog.setView(input);
                     dialog.setCancelable(false);
-                    dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            if (dc != null) {
-                                dc.onCloseActivityFinal(null);
-                            } else {
-                                HorizontalViewActivity.this.finish();
-                            }
+                    dialog.setNegativeButton(R.string.cancel, (dialog1, which) -> {
+                        dialog1.dismiss();
+                        if (dc != null) {
+                            dc.onCloseActivityFinal(null);
+                        } else {
+                            HorizontalViewActivity.this.finish();
                         }
-
                     });
                     dialog.setPositiveButton(R.string.open_file, new DialogInterface.OnClickListener() {
 
