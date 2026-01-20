@@ -1830,15 +1830,7 @@ public class PrefFragment2 extends UIFragment {
 
         searchPaths = inflate.findViewById(R.id.searchPaths);
         searchPaths.setText(JsonDB.fromHtml(BookCSS.get().searchPathsJson));
-        searchPaths.setOnClickListener(new
-
-                                               OnClickListener() {
-
-                                                   @Override
-                                                   public void onClick(View v) {
-                                                       onFolderConfigDialog();
-                                                   }
-                                               });
+        searchPaths.setOnClickListener(v -> onFolderConfigDialog());
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
         TxtUtils.underlineTextView(addFolder);

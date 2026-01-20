@@ -242,6 +242,21 @@ public class BookCSS {
 
     }
 
+    public static List<String> filtered(List<String> objects) {
+        if (objects == null || objects.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<String> res = new ArrayList<>();
+        for (String item : objects) {
+            if (TxtUtils.isNotEmpty(item) && new File(item).isDirectory()) {
+                res.add(item);
+            }
+        }
+        return  res;
+
+    }
+
     public void load1(Context c) {
         if (c == null) {
             return;
@@ -251,7 +266,12 @@ public class BookCSS {
         IO.readObj(AppProfile.syncCSS, instance);
 
         try {
-            if (TxtUtils.isEmpty(instance.searchPathsJson)) {
+            List<String> filtered = filtered(JsonDB.get(instance.searchPathsJson));
+            instance.searchPathsJson = JsonDB.set(filtered);
+
+            LOG.d("searchPaths-all", 1, instance.searchPathsJson,filtered);
+
+            if (TxtUtils.isListEmpty(filtered)) {
                 List<String> extFolders = ExtUtils.getAllExternalStorages(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
@@ -259,7 +279,7 @@ public class BookCSS {
                 }
 
                 instance.searchPathsJson = JsonDB.set(extFolders);
-                LOG.d("searchPaths-all", instance.searchPathsJson);
+                LOG.d("searchPaths-all", 2, instance.searchPathsJson);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -267,7 +287,7 @@ public class BookCSS {
 
     }
 
-    public void save(Context c) {
+    public  void save(Context c) {
         if (c == null) {
             return;
         }

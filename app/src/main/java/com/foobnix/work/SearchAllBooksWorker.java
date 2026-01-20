@@ -23,6 +23,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -37,6 +38,7 @@ import com.foobnix.ui2.FileMetaCore;
 import org.ebookdroid.common.settings.books.SharedBooks;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -94,10 +96,9 @@ public class SearchAllBooksWorker extends MessageWorker {
             itemsMeta.clear();
 
             handler.post(timer);
-
-
+            LOG.d("SearchAllBooksWorker","searchPaths-all", 3, BookCSS.get().searchPathsJson);
             for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-                if (path != null && path.trim().length() > 0) {
+                if (path != null) {
                     final File root = new File(path);
                     if (root.isDirectory()) {
                         LOG.d("Search in: " + root.getPath());
@@ -106,6 +107,14 @@ public class SearchAllBooksWorker extends MessageWorker {
                             return false;
                         }
                     }
+                }
+            }
+            if(AppState.get().isExperimental) {
+                if (itemsMeta.isEmpty()) {
+                    File path = AppProfile.DOWNLOADS_DIR;
+                    BookCSS.get().searchPathsJson = JsonDB.set(List.of(path.getPath()));
+                    SearchCore.search(itemsMeta, AppProfile.DOWNLOADS_DIR, ExtUtils.seachExts);
+                    LOG.d("SearchAllBooksWorker", "Files-emtpy", "DOWNLOADS_DIR");
                 }
             }
 

@@ -35,6 +35,7 @@ import com.foobnix.ui2.AppDB;
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -62,11 +63,9 @@ public class TxtUtils {
     public static final String TTS_STOP = "ttsSTOP";
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
-    public static final Pattern
-            EMAIL_PATTERN =
-            Pattern.compile("(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*:(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)(?:,\\s*(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*))*)?;\\s*)");
-    public static final Pattern
-            SIMPLE_EMAIL_PATTERN =
+    public static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*:(?:(?:\\r\\n)?[ \\t])*(?:(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*)(?:,\\s*(?:(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*|(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)*\\<(?:(?:\\r\\n)?[ \\t])*(?:@(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*(?:,@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*)*:(?:(?:\\r\\n)?[ \\t])*)?(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\"(?:[^\\\"\\r\\\\]|\\\\.|(?:(?:\\r\\n)?[ \\t]))*\"(?:(?:\\r\\n)?[ \\t])*))*@(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*)(?:\\.(?:(?:\\r\\n)?[ \\t])*(?:[^()<>@,;:\\\\\".\\[\\] \\000-\\031]+(?:(?:(?:\\r\\n)?[ \\t])+|\\Z|(?=[\\[\"()<>@,;:\\\\\".\\[\\]]))|\\[([^\\[\\]\\r\\\\]|\\\\.)*\\](?:(?:\\r\\n)?[ \\t])*))*\\>(?:(?:\\r\\n)?[ \\t])*))*)?;\\s*)");
+    public static final Pattern SIMPLE_EMAIL_PATTERN =
             Pattern.compile("^[A-Za-z0-9_\\+-]+(\\.[A-Za-z0-9_\\+-]+)*@[a-z0-9]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$");
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
@@ -113,7 +112,8 @@ public class TxtUtils {
         if (string == null) {
             return null;
         }
-        return string.replaceAll("\\s", " ").trim();
+        return string.replaceAll("\\s", " ")
+                     .trim();
     }
 
     public static boolean contains(String line, List<String> items) {
@@ -136,7 +136,8 @@ public class TxtUtils {
             builder.append(" ");
         }
 
-        return builder.toString().trim();
+        return builder.toString()
+                      .trim();
     }
 
     public static String toBionicWord(String w) {
@@ -198,7 +199,9 @@ public class TxtUtils {
     }
 
     public static String encode1251(String string) {
-        if (Charset.forName("8859_1").newEncoder().canEncode(string)) {
+        if (Charset.forName("8859_1")
+                   .newEncoder()
+                   .canEncode(string)) {
             return encode(string, "8859_1", "Windows-1251");
         } else {
             return string;
@@ -394,19 +397,18 @@ public class TxtUtils {
         }
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
-        pageHTML =
-                pageHTML.replace("<b><p><i>", TTS_PAUSE)
-                        .replace("</b></i></p>", TTS_PAUSE)
-                        .replace("<i><p><b>", TTS_PAUSE)
-                        .replace("</i></p></b>", TTS_PAUSE);
-        pageHTML =
-                pageHTML.replace("<b>", "")
-                        .replace("</b>", "")
-                        .replace("<i>", "")
-                        .replace("</i>", "")
-                        .replace("<tt>", "")
-                        .replace("</tt>", "");
+        pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE)
+                           .replace("<i><end-line><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE)
+                           .replace("</b></i></p>", TTS_PAUSE)
+                           .replace("<i><p><b>", TTS_PAUSE)
+                           .replace("</i></p></b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b>", "")
+                           .replace("</b>", "")
+                           .replace("<i>", "")
+                           .replace("</i>", "")
+                           .replace("<tt>", "")
+                           .replace("</tt>", "");
 
         pageHTML = pageHTML.replace("...", " " + TTS_PAUSE);
         pageHTML = pageHTML.replace("…", " " + TTS_PAUSE);
@@ -416,13 +418,13 @@ public class TxtUtils {
 
         LOG.d("pageHTML [1]", pageHTML);
 
-        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
-        pageHTML =
-                pageHTML.replace("&nbsp;", " ")
-                        .replace("&lt;", "<")
-                        .replace("&gt;", ">")
-                        .replace("&amp;", "&")
-                        .replace("&quot;", "\"");
+        pageHTML = pageHTML.replace("<p>", " ")
+                           .replace("</p>", " ");
+        pageHTML = pageHTML.replace("&nbsp;", " ")
+                           .replace("&lt;", "<")
+                           .replace("&gt;", ">")
+                           .replace("&amp;", "&")
+                           .replace("&quot;", "\"");
         pageHTML = pageHTML.replace("[image]", "[image]");
 
         LOG.d("pageHTML [2]", pageHTML);
@@ -431,9 +433,8 @@ public class TxtUtils {
 
         if (AppState.get().isShowFooterNotesInText && AppSP.get().hypenLang != null) {
             try {
-                String
-                        string =
-                        getLocaleStringResource(new Locale(AppSP.get().hypenLang), R.string.foot_notes, LibreraApp.context);
+                String string = getLocaleStringResource(new Locale(AppSP.get().hypenLang), R.string.foot_notes,
+                        LibreraApp.context);
                 pageHTML = replaceAll(pageHTML, "[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);
@@ -557,10 +558,11 @@ public class TxtUtils {
             }
             LOG.d("pageHTML [8c]", pageHTML);
 
-            pageHTML =
-                    replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
-            pageHTML =
-                    replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
+            pageHTML = replaceAll(pageHTML,
+                    " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.",
+                    " $1{dot}$2{dot}$3{dot}$4{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.",
+                    " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
@@ -582,7 +584,8 @@ public class TxtUtils {
             pageHTML = pageHTML.replace("{dot}", ".");
         }
 
-        pageHTML = pageHTML.replaceAll("[\\s]*(" + TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE).trim();
+        pageHTML = pageHTML.replaceAll("[\\s]*(" + TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE)
+                           .trim();
 
         return pageHTML;
     }
@@ -590,13 +593,19 @@ public class TxtUtils {
     public static String replaceAll(String input, String regex, String replacement) {
         try {
             if (Build.VERSION.SDK_INT >= 26) {
-                return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
+                return Pattern.compile(regex, Pattern.UNICODE_CASE)
+                              .matcher(input)
+                              .replaceAll(replacement);
             } else {
-                return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+                return Pattern.compile(regex)
+                              .matcher(input)
+                              .replaceAll(replacement);
             }
         } catch (Exception e) {
             LOG.e(e);
-            return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+            return Pattern.compile(regex)
+                          .matcher(input)
+                          .replaceAll(replacement);
         }
     }
 
@@ -606,7 +615,8 @@ public class TxtUtils {
                 return;
             }
 
-            final InputStream open = LibreraApp.context.getAssets().open("dict/Librera_Сокращения.txt");
+            final InputStream open = LibreraApp.context.getAssets()
+                                                       .open("dict/Librera_Сокращения.txt");
             BufferedReader input = new BufferedReader(new InputStreamReader(open));
             String line;
             while ((line = input.readLine()) != null) {
@@ -645,7 +655,8 @@ public class TxtUtils {
             }
 
             if (dict.endsWith(".db")) {
-                AppDB.get().openDictDB(LibreraApp.context, dict);
+                AppDB.get()
+                     .openDictDB(LibreraApp.context, dict);
                 hasDB = true;
                 continue;
             }
@@ -654,14 +665,12 @@ public class TxtUtils {
             LOG.d("pageHTML-dict", dict);
             try {
                 processDict(new FileInputStream(dict), new ReplaceRule() {
-                    @Override
-                    public void replace(String from, String to) {
+                    @Override public void replace(String from, String to) {
 
                         dictRegEx.put(from, to);
                     }
 
-                    @Override
-                    public void replaceAll(String from, String to) {
+                    @Override public void replaceAll(String from, String to) {
 
                         dictRegEx.put("*" + from, to);
                     }
@@ -709,9 +718,12 @@ public class TxtUtils {
     public static String getLocaleStringResource(Locale requestedLocale, int resourceId, Context context) {
         String result;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { // use latest api
-            Configuration config = new Configuration(context.getResources().getConfiguration());
+            Configuration config = new Configuration(context.getResources()
+                                                            .getConfiguration());
             config.setLocale(requestedLocale);
-            result = context.createConfigurationContext(config).getText(resourceId).toString();
+            result = context.createConfigurationContext(config)
+                            .getText(resourceId)
+                            .toString();
         } else { // support older android versions
             Resources resources = context.getResources();
             Configuration conf = resources.getConfiguration();
@@ -731,14 +743,19 @@ public class TxtUtils {
     }
 
     public static String fixAppState(TextView text) {
-        return text.getText().toString().trim().replace(",", "");
+        return text.getText()
+                   .toString()
+                   .trim()
+                   .replace(",", "");
     }
 
     public static String fixAppState(String text) {
         if (text == null) {
             return "";
         }
-        return text.trim().replace(",", "").replace(";", "");
+        return text.trim()
+                   .replace(",", "")
+                   .replace(";", "");
     }
 
     public static String fixFileName(String fileName) {
@@ -804,7 +821,8 @@ public class TxtUtils {
                     res.append(",");
                 }
             }
-            return TxtUtils.replaceLast(res.toString(), ",", "").trim();
+            return TxtUtils.replaceLast(res.toString(), ",", "")
+                           .trim();
         }
 
         return replaceLastFirstName(name);
@@ -826,7 +844,8 @@ public class TxtUtils {
             res.append(" ");
             res.append(split[i]);
         }
-        return res.toString().trim();
+        return res.toString()
+                  .trim();
     }
 
     public static String space() {
@@ -853,8 +872,7 @@ public class TxtUtils {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static boolean isCJK2(int ch) {
+    @TargetApi(Build.VERSION_CODES.KITKAT) public static boolean isCJK2(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
         if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) || //
                 Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || //
@@ -869,8 +887,7 @@ public class TxtUtils {
         return false;
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static boolean isCJK(int ch) {
+    @TargetApi(Build.VERSION_CODES.KITKAT) public static boolean isCJK(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
         List<Character.UnicodeBlock> blocks = Arrays.asList(//
                 //
@@ -900,28 +917,32 @@ public class TxtUtils {
         if (isEmpty(str) || str.length() <= 1) {
             return str;
         }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
+        return str.substring(0, 1)
+                  .toUpperCase() + str.substring(1);
     }
 
     public static String secondUppercase(String str) {
         if (isEmpty(str) || str.length() <= 2) {
             return str;
         }
-        return str.substring(0, 1) + str.substring(1, 2).toUpperCase() + str.substring(2);
+        return str.substring(0, 1) + str.substring(1, 2)
+                                        .toUpperCase() + str.substring(2);
     }
 
     public static String firstLowerCase(String str) {
         if (isEmpty(str) || str.length() <= 1) {
             return str;
         }
-        return str.substring(0, 1).toLowerCase(Locale.US) + str.substring(1);
+        return str.substring(0, 1)
+                  .toLowerCase(Locale.US) + str.substring(1);
     }
 
     public static String filterDoubleSpaces(String str) {
         if (str == null) {
             return str;
         }
-        return str.replace("   ", " ").replace("  ", " ");
+        return str.replace("   ", " ")
+                  .replace("  ", " ");
     }
 
     public static String substring(String str, int len) {
@@ -1007,7 +1028,8 @@ public class TxtUtils {
             return null;
         }
         TextView textView = (TextView) view;
-        String text = textView.getText().toString();
+        String text = textView.getText()
+                              .toString();
         textView.setText(underline(text));
         return textView;
     }
@@ -1051,7 +1073,8 @@ public class TxtUtils {
         }
         Pattern p = Pattern.compile("[\\[{][0-9]+[}\\]]");
         text = text.trim();
-        return text.length() < 30 && (p.matcher(text).find());
+        return text.length() < 30 && (p.matcher(text)
+                                       .find());
     }
 
     public static String escapeHtml(CharSequence text) {
@@ -1076,11 +1099,15 @@ public class TxtUtils {
                     if (d >= 0xDC00 && d <= 0xDFFF) {
                         i++;
                         int codepoint = 0x010000 | c - 0xD800 << 10 | d - 0xDC00;
-                        out.append("&#").append(codepoint).append(";");
+                        out.append("&#")
+                           .append(codepoint)
+                           .append(";");
                     }
                 }
             } else if (c > 0x7E || c < ' ') {
-                out.append("&#").append((int) c).append(";");
+                out.append("&#")
+                   .append((int) c)
+                   .append(";");
             } else if (c == ' ') {
                 while (i + 1 < end && text.charAt(i + 1) == ' ') {
                     out.append("&nbsp;");
@@ -1142,7 +1169,8 @@ public class TxtUtils {
                 String string = footNotes.get(id);
                 if (TxtUtils.isNotEmpty(string)) {
                     LOG.d("Find note for id", string);
-                    string = string.trim().replaceAll("^[0-9]+ ", "");
+                    string = string.trim()
+                                   .replaceAll("^[0-9]+ ", "");
                     return string;
                 }
             }
@@ -1160,10 +1188,12 @@ public class TxtUtils {
         }
         String patternString = "[\\[{]([0-9]+)[\\]}]";
 
-        Matcher m = Pattern.compile(patternString).matcher(input);
+        Matcher m = Pattern.compile(patternString)
+                           .matcher(input);
 
         if (m.find()) {
-            return m.group(0).trim();
+            return m.group(0)
+                    .trim();
         }
         return "";
     }
@@ -1174,7 +1204,11 @@ public class TxtUtils {
         }
 
         LOG.d("filterString-begin", txt);
-        String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
+        String replaceAll = txt.trim()
+                               .replace("   ", " ")
+                               .replace("  ", " ")
+                               .replaceAll("\\s", " ")
+                               .trim();
         if (!txt.contains("http")) {
             replaceAll = replaceAll(replaceAll, "(\\w+)(-\\s)", "$1").trim();
         } else {
@@ -1207,14 +1241,16 @@ public class TxtUtils {
     }
 
     public static String nullNullToEmpty(String txt) {
-        if (txt == null || txt.trim().equals("null")) {
+        if (txt == null || txt.trim()
+                              .equals("null")) {
             return "";
         }
         return txt.trim();
     }
 
     public static boolean isEmpty(String txt) {
-        return txt == null || txt.trim().length() == 0;
+        return txt == null || txt.trim()
+                                 .length() == 0;
     }
 
     public static boolean isNotEmpty(String txt) {
@@ -1243,7 +1279,8 @@ public class TxtUtils {
     }
 
     public static String joinTrim(String delim, Object... items) {
-        return join(delim, false, items).replace(NON_BREAKE_SPACE, " ").trim();
+        return join(delim, false, items).replace(NON_BREAKE_SPACE, " ")
+                                        .trim();
     }
 
     public static String join(String delim, boolean withNull, Object... items) {
@@ -1293,11 +1330,13 @@ public class TxtUtils {
     }
 
     public static boolean isEmailValidRFC(String email) {
-        return EMAIL_PATTERN.matcher(email).matches();
+        return EMAIL_PATTERN.matcher(email)
+                            .matches();
     }
 
     public static boolean isEmailValid(String email) {
-        return SIMPLE_EMAIL_PATTERN.matcher(email).matches();
+        return SIMPLE_EMAIL_PATTERN.matcher(email)
+                                   .matches();
     }
 
     public static boolean isListNotEmpty(Collection<?> objects) {
@@ -1307,6 +1346,8 @@ public class TxtUtils {
     public static boolean isListEmpty(List<?> objects) {
         return objects == null || objects.size() <= 0;
     }
+
+
 
     public static void bold(TextView text) {
         text.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD);
@@ -1338,11 +1379,9 @@ public class TxtUtils {
                 if (AppState.get().isUiTextColor) {
                     color = AppState.get().uiTextColor;
                 } else {
-                    TypedArray
-                            out =
-                            parent.getContext()
-                                  .getTheme()
-                                  .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+                    TypedArray out = parent.getContext()
+                                           .getTheme()
+                                           .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     color = out.getColor(0, Color.WHITE);
                 }
                 if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
@@ -1360,10 +1399,9 @@ public class TxtUtils {
                 color = Color.WHITE;
             }
 
-            List<Integer>
-                    ids =
-                    Arrays.asList(R.id.restoreDefaultProfile, R.id.onCloseApp, R.id.title, R.id.chapter, R.id.currentSeek, R.id.maxSeek,
-                            R.id.modeName, R.id.nextTypeBootom,R.id.playListName, R.id.playListNameEdit);
+            List<Integer> ids = Arrays.asList(R.id.restoreDefaultProfile, R.id.onCloseApp, R.id.title, R.id.chapter,
+                    R.id.currentSeek, R.id.maxSeek, R.id.modeName, R.id.nextTypeBootom, R.id.playListName,
+                    R.id.playListNameEdit);
             if (AppState.get().isUiTextColor) {
                 for (int id : ids) {
                     TextView view = parent.findViewById(id);
@@ -1383,9 +1421,9 @@ public class TxtUtils {
         if (AppState.get().isUiTextColor) {
             color = AppState.get().uiTextColor;
         } else {
-            TypedArray
-                    out =
-                    txt.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+            TypedArray out = txt.getContext()
+                                .getTheme()
+                                .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
             color = out.getColor(0, Color.WHITE);
         }
         txt.setTextColor(color);
@@ -1462,11 +1500,14 @@ public class TxtUtils {
         int seconds = (int) (((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000);
 
         if (hours > 0) {
-            buf.append(String.format("%02d", hours)).append(":");
+            buf.append(String.format("%02d", hours))
+               .append(":");
         }
         ;
 
-        buf.append(String.format("%02d", minutes)).append(":").append(String.format("%02d", seconds));
+        buf.append(String.format("%02d", minutes))
+           .append(":")
+           .append(String.format("%02d", seconds));
 
         return buf.toString();
     }
@@ -1479,7 +1520,8 @@ public class TxtUtils {
                 updateinks((ViewGroup) child, color);
             } else if (child instanceof TextView) {
                 final TextView it = (TextView) child;
-                if (it.getTextColors().getDefaultColor() != Color.WHITE) {
+                if (it.getTextColors()
+                      .getDefaultColor() != Color.WHITE) {
                     it.setTextColor(color);
                 }
             } else if (child instanceof CheckBox) {

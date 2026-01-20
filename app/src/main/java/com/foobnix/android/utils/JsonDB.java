@@ -16,7 +16,8 @@ public class JsonDB {
     public static Spanned fromHtml(String db) {
         StringBuilder res = new StringBuilder();
         for (String item : get(db)) {
-            res.append(item.replace(MyPath.INTERNAL_ROOT, "...") + "<br>");
+            //res.append(item.replace(MyPath.INTERNAL_ROOT, "...") + "<br>");
+            res.append(item + "<br>");
         }
         String text = res.toString();
         text = TxtUtils.replaceLast(text, "<br>", "");
