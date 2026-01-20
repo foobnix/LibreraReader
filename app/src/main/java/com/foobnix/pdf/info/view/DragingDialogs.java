@@ -3031,26 +3031,24 @@ public class DragingDialogs {
 
                 final Runnable showOutline = new Runnable() {
                     @Override public void run() {
-                        controller.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-                            @Override public boolean onResultRecive(final List<OutlineLinkWrapper> outline) {
-                                contentList.post(new Runnable() {
-                                    @Override public void run() {
-                                        if (outline != null && outline.size() > 0) {
-                                            contentList.clearChoices();
-                                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentChapter(
-                                                    controller);
-                                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(),
-                                                                                              outline,
-                                                                                              currentByPageNumber,
-                                                                                              controller.getPageCount());
-                                            contentList.setAdapter(adapter);
-                                            contentList.setOnItemClickListener(onClickContent);
-                                            contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
-                                        }
+                        controller.getOutline(outline -> {
+                            contentList.post(new Runnable() {
+                                @Override public void run() {
+                                    if (outline != null && outline.size() > 0) {
+                                        contentList.clearChoices();
+                                        OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentChapter(
+                                                controller);
+                                        final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(),
+                                                                                          outline,
+                                                                                          currentByPageNumber,
+                                                                                          controller.getPageCount());
+                                        contentList.setAdapter(adapter);
+                                        contentList.setOnItemClickListener(onClickContent);
+                                        contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
                                     }
-                                });
-                                return false;
-                            }
+                                }
+                            });
+                            return false;
                         }, true);
                     }
                 };

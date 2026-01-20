@@ -574,51 +574,49 @@ public abstract class HorizontalModeController extends DocumentController {
             }
 
             outline = new ArrayList<>();
-            AppsConfig.executorService.execute(new Runnable() {
-                @Override
-                public void run() {
+            AppsConfig.executorService.execute(() -> {
 
-                    try {
-                        for (OutlineLink ol : codeDocument.getOutline()) {
-                            if (TempHolder.get().loadingCancelled.get()) {
-                                return;
-                            }
-
-                            if(Apps.isDestroyedActivity(activity)){
-                                return;
-                            }
-                            if(codeDocument.isRecycled()){
-                                return;
-                            }
-                            if (TxtUtils.isNotEmpty(ol.getTitle())) {
-                                if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink()
-                                                                                               .startsWith("#0")) {
-                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
-                                } else {
-                                    int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                    outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
-                                }
-                            }
+                try {
+                    for (OutlineLink ol : codeDocument.getOutline()) {
+                        if (TempHolder.get().loadingCancelled.get()) {
+                            return;
                         }
 
-                        CacheZipUtils.savaJavaCache(outline, getCurrentBook());
-
-                        // setOutline(outline);
-                        if (outlineResonse != null) {
-                            getActivity().runOnUiThread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    outlineResonse.onResultRecive(outline);
-                                }
-                            });
-
+                        if(Apps.isDestroyedActivity(activity)){
+                            return;
                         }
-                    } catch (Exception e) {
-                        LOG.e(e);
+
+                        if(codeDocument.isRecycled()){
+                            return;
+                        }
+                        if (TxtUtils.isNotEmpty(ol.getTitle())) {
+                            if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink()
+                                                                                           .startsWith("#0")) {
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                            } else {
+                                int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                            }
+                        }
                     }
 
+                    CacheZipUtils.savaJavaCache(outline, getCurrentBook());
+
+                    // setOutline(outline);
+                    if (outlineResonse != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                outlineResonse.onResultRecive(outline);
+                            }
+                        });
+
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
+
             });
 
         } else {
