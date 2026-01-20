@@ -50,6 +50,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -554,7 +555,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     @Override
-    public synchronized void getOutline(
+    public  void getOutline(
             final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
 
         if(Apps.isDestroyedActivity(activity)){
@@ -562,7 +563,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
         if (codeDocument == null) {
-            outlineResonse.onResultRecive(outline);
+            outlineResonse.onResultRecive(Collections.emptyList());
             return;
         }
 
