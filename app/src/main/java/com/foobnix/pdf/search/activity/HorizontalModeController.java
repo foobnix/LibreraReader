@@ -575,7 +575,7 @@ public abstract class HorizontalModeController extends DocumentController {
             }
 
             outline = new ArrayList<>();
-            AppsConfig.executorService.execute(() -> {
+            AppsConfig.executorServiceSingle.execute(() -> {
 
                 try {
                     for (OutlineLink ol : codeDocument.getOutline()) {

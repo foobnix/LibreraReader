@@ -1184,7 +1184,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             ;
         };
-        loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
+        loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
         updateIconMode();
         BrightnessHelper.updateOverlay(overlay);
 

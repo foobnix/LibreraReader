@@ -12,7 +12,7 @@ import java.util.Map;
 
 public abstract class AbstractCodecDocument implements CodecDocument {
 
-    protected final CodecContext context;
+    protected CodecContext context;
 
     protected final long documentHandle;
 
@@ -91,6 +91,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     }
 
     protected void freeDocument() {
+        context.recycle();
+        context = null;
     }
 
     @Override

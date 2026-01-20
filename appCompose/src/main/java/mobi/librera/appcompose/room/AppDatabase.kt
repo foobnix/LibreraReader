@@ -6,6 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.foobnix.pdf.info.AppsConfig
 import java.util.concurrent.Executors
 
 @Database(
@@ -33,7 +34,7 @@ fun buildDatabase(context: Context): AppDatabase {
                 Log.d("DB", "SQL Query: $sqlQuery, Args: $bindArgs")
             }
         },
-        Executors.newSingleThreadExecutor()
+        AppsConfig.executorServiceSingle
     )
     return db.build()
 }

@@ -49,6 +49,7 @@ public class AppsConfig {
 //    });
 
     public final static ExecutorService executorService = Executors.newFixedThreadPool(cpuCores);
+    public final static ExecutorService executorServiceSingle = Executors.newSingleThreadExecutor();
 
     public static boolean
             IS_LOG =

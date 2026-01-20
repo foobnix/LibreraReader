@@ -45,6 +45,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
@@ -353,7 +354,6 @@ public class DialogsPlaylist {
         }
         return res;
     }
-    private final static ExecutorService executor = Executors.newSingleThreadExecutor();
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -415,7 +415,7 @@ public class DialogsPlaylist {
         final List<String> res = new ArrayList<String>();
 
 
-        executor.execute(() -> {
+        AppsConfig.executorServiceSingle.execute(() -> {
                     LOG.d("getFilesAndDirs", "init", playlistPath);
                     if (playlistPath.equals(L_PLAYLIST_RECENT)) {
                         res.addAll(convert(AppData.get()

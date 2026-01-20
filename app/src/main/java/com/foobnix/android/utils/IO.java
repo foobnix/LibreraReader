@@ -3,6 +3,8 @@ package com.foobnix.android.utils;
 import com.foobnix.mobi.parser.IOUtils;
 
 import com.foobnix.LibreraApp;
+import com.foobnix.pdf.info.AppsConfig;
+
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
@@ -23,7 +25,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class IO {
-    static ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     static HashMap<Integer, Object> locks = new HashMap<>();
 
@@ -41,7 +42,7 @@ public class IO {
 
     public static void writeObj(File file, Object o) {
         //new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
-        executorService.execute(() -> writeObjAsync(file, o));
+        AppsConfig.executorServiceSingle.execute(() -> writeObjAsync(file, o));
     }
 
     public static void writeObjAsync(File file, Object o) {

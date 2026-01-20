@@ -23,13 +23,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ImageExtractor;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 
@@ -37,7 +36,6 @@ public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";
     public static final String PAGE_PATH = "pagePath";
     public static final String IS_TEXTFORMAT = "isTEXT";
-    final static ExecutorService executorService = Executors.newSingleThreadExecutor();
     public static volatile int count = 0;
     int page;
     Handler handler;
@@ -107,7 +105,7 @@ public class ImagePageFragment extends Fragment {
 
     public void loadImageGlide21() {
 
-        submit = executorService.submit(new Runnable() {
+        submit = AppsConfig.executorServiceSingle.submit(new Runnable() {
             @Override
             public void run() {
                 if (submit.isCancelled()) {

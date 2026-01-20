@@ -18,6 +18,8 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.EpubContext;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -47,7 +49,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private String fname;
 
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
-        super(context, openFile(format, fname, pwd, BookCSS.get().toCssString(fname)));
+        super(context, openFile(format, fname, pwd, BookCSS.get()
+                                                           .toCssString(fname)));
         this.fname = fname;
         isEpub = ExtUtils.isTextFomat(fname);
         bookType = BookType.getByUri(fname);
@@ -105,13 +108,14 @@ public class MuPdfDocument extends AbstractCodecDocument {
             int isImageScale = AppState.get().enableImageScale ? 1 : 0;
 
             LOG.d("accel cache1", fname);
-            String accel = new EpubContext().getCacheFileName(fname).getPath() + "+accel";
+            String accel = new EpubContext().getCacheFileName(fname)
+                                            .getPath() + "+accel";
             accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
             LOG.d("accel cache2", accel, new File(accel).exists());
 
-            final long
-                    open =
-                    open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale, AppState.get().antiAliasLevel, accel, isImageScale);
+            final long open = open(allocatedMemory, format, fname, pwd, css,
+                    BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1, BookCSS.get().imageScale,
+                    AppState.get().antiAliasLevel, accel, isImageScale);
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("TEST", "Open document isImageScale ", isImageScale);
@@ -135,7 +139,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private static native void free(long handle);
 
-    private static int getPageCountWithException(final long handle, int w, int h, int size) {
+    private int getPageCountWithException(final long handle, int w, int h, int size) {
         final int count = getPageCountSafe(handle, w, h, Dips.spToPx(size));
 //        if (count == 0) {
 //            throw new RuntimeException("Document is corrupted");
@@ -143,7 +147,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return count;
     }
 
-    private static int getPageCountSafe(long handle, int w, int h, int size) {
+    private int getPageCountSafe(long handle, int w, int h, int size) {
+
         LOG.d("getPageCountSafe w h size", w, h, size);
 
         if (handle == cacheHandle && size == cacheSize && w + h == cacheWH) {
@@ -155,6 +160,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
             cacheHandle = handle;
             cacheSize = size;
             cacheWH = w + h;
+            if(isRecycled()){
+                LOG.d("getPageCount","getPageCount isRecycled");
+                return 0;
+            }
             cacheCount = getPageCount(handle, w, h, size);
             LOG.d("getPageCount put to  cache", cacheCount);
             return cacheCount;
@@ -171,8 +180,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return fname;
     }
 
-    @Override
-    public void setMeta(String key, String value) {
+    @Override public void setMeta(String key, String value) {
         TempHolder.lock.lock();
         try {
             LOG.d(this.getClass(), "setMetaData", key, value);
@@ -182,13 +190,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    public BookType getBookType() {
+    @Override public BookType getBookType() {
         return bookType;
     }
 
-    @Override
-    public String documentToHtml() {
+    @Override public String documentToHtml() {
         StringBuilder out = new StringBuilder();
         int pages = getPageCount();
         for (int i = 0; i < pages; i++) {
@@ -199,8 +205,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return out.toString();
     }
 
-    @Override
-    public Map<String, String> getFootNotes() {
+    @Override public Map<String, String> getFootNotes() {
         return footNotes;
     }
 
@@ -208,26 +213,26 @@ public class MuPdfDocument extends AbstractCodecDocument {
         this.footNotes = footNotes;
     }
 
-    @Override
-    public synchronized List<OutlineLink> getOutline() {
+    @Override public synchronized List<OutlineLink> getOutline() {
+        if (isRecycled()) {
+            LOG.d("getOutline doc isRecycled");
+            return Collections.emptyList();
+        }
         final MuPdfOutline ou = new MuPdfOutline();
-        return ou.getOutline(documentHandle);
+        return ou.getOutline(this);
     }
 
-    @Override
-    public CodecPage getPageInner(final int pageNumber) {
+    @Override public CodecPage getPageInner(final int pageNumber) {
         MuPdfPage createPage = MuPdfPage.createPage(this, pageNumber + 1);
         return createPage;
     }
 
-    @Override
-    public int getPageCount() {
+    @Override public int getPageCount() {
         LOG.d("MuPdfDocument,getPageCount", getW(), getH(), BookCSS.get().fontSizeSp);
         return getPageCountWithException(documentHandle, getW(), getH(), BookCSS.get().fontSizeSp);
     }
 
-    @Override
-    public CodecPageInfo getUnifiedPageInfo() {
+    @Override public CodecPageInfo getUnifiedPageInfo() {
         if (isEpub) {
             LOG.d("MuPdfDocument, getUnifiedPageInfo");
             return new CodecPageInfo(getW(), getH());
@@ -236,8 +241,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    public int getPageCount(int w, int h, int size) {
+    @Override public int getPageCount(int w, int h, int size) {
         this.w = w;
         this.h = h;
         int pageCountWithException = getPageCountWithException(documentHandle, w, h, size);
@@ -253,8 +257,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return h > 0 ? h : Dips.screenHeight();
     }
 
-    @Override
-    public CodecPageInfo getPageInfo(final int pageNumber) {
+    @Override public CodecPageInfo getPageInfo(final int pageNumber) {
         final CodecPageInfo info = new CodecPageInfo();
         TempHolder.lock.lock();
         try {
@@ -271,8 +274,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    protected void freeDocument() {
+    @Override protected void freeDocument() {
         TempHolder.lock.lock();
         try {
             cacheHandle = -1;
@@ -284,8 +286,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         LOG.d("MUPDF! <<< recycle [document]", documentHandle, ExtUtils.getFileName(fname));
     }
 
-    @Override
-    public String getMeta(final String option) {
+    @Override public String getMeta(final String option) {
         TempHolder.lock.lock();
         try {
 
@@ -297,8 +298,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             final StringBuilder info = new StringBuilder();
 
             new Thread("@T extract meta") {
-                @Override
-                public void run() {
+                @Override public void run() {
 
                     try {
                         LOG.d("getMeta", option);
@@ -328,13 +328,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    public String getBookTitle() {
+    @Override public String getBookTitle() {
         return getMeta("info:Title");
     }
 
-    @Override
-    public String getBookAuthor() {
+    @Override public String getBookAuthor() {
         return getMeta("info:Author");
     }
 
@@ -344,8 +342,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     boolean isHasChanges = false;
 
-    @Override
-    public boolean hasChanges() {
+    @Override public boolean hasChanges() {
 
         if (isHasChanges) {
             LOG.d("hasChanges cache");
@@ -361,8 +358,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    public void saveAnnotations(String path) {
+    @Override public void saveAnnotations(String path) {
         LOG.d("Save Annotations saveInternal 1");
         TempHolder.lock.lock();
         try {
@@ -373,13 +369,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override
-    public List<RectF> searchText(final int pageNuber, final String pattern) throws DocSearchNotSupported {
+    @Override public List<RectF> searchText(final int pageNuber, final String pattern) throws DocSearchNotSupported {
         throw new DocSearchNotSupported();
     }
 
-    @Override
-    public void deleteAnnotation(long pageHandle, int index) {
+    @Override public void deleteAnnotation(long pageHandle, int index) {
         TempHolder.lock.lock();
         try {
             deleteAnnotationInternal(documentHandle, pageHandle, index);
@@ -395,8 +389,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         this.mediaAttachment = mediaAttachment;
     }
 
-    @Override
-    public List<String> getMediaAttachments() {
+    @Override public List<String> getMediaAttachments() {
         return mediaAttachment;
     }
 

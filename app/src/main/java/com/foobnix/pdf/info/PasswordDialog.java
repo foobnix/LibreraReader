@@ -48,7 +48,7 @@ public class PasswordDialog {
                 promptInfo.setTitle(Apps.getApplicationName(a));
                 //promptInfo.setSubtitle("Subtitle goes here");
                 //promptInfo.setDescription("This is the description");
-                promptInfo.setNegativeButton(a.getString(R.string.exit_application), Executors.newSingleThreadExecutor(), new DialogInterface.OnClickListener() {
+                promptInfo.setNegativeButton(a.getString(R.string.exit_application), AppsConfig.executorServiceSingle, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         a.finish();

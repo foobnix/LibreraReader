@@ -60,7 +60,11 @@ public class MuPdfPage extends AbstractCodecPage {
     static MuPdfPage createPage(final MuPdfDocument dochandle, final int pageno) {
         TempHolder.lock.lock();
         try {
-            LOG.d("MUPDF! +create page", dochandle, pageno);
+            if(dochandle.isRecycled()){
+                LOG.d("MUPDF! +create page isRecycled");
+                return null;
+            }
+            LOG.d("MUPDF! +create page",  pageno,dochandle.getDocumentHandle());
             final long open = open(dochandle.getDocumentHandle(), pageno);
             return new MuPdfPage(open, dochandle, pageno);
         } finally {
