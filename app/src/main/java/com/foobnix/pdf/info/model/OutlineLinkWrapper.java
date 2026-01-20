@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info.model;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.PageUrl;
 
@@ -28,7 +29,7 @@ public class OutlineLinkWrapper implements Serializable {
                     targetPage = PageUrl.realToFake(targetPage);
 
                 } catch (final Exception e) {
-                    e.printStackTrace();
+                    LOG.e(e);
                     targetPage = -1;
                 }
             } else if (link.startsWith("http:")) {
@@ -45,7 +46,7 @@ public class OutlineLinkWrapper implements Serializable {
                     return PageUrl.realToFake(page);
 
                 } catch (final Exception e) {
-                    e.printStackTrace();
+                    LOG.e(e);
                 }
             }
         }
