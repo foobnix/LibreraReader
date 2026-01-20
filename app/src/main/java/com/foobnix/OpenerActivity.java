@@ -106,6 +106,8 @@ public class OpenerActivity extends Activity {
         LOG.d(TAG, " Scheme", getIntent().getScheme());
         LOG.d(TAG, " Mime", getIntent().getType());
 
+        new File(BookCSS.get().downlodsPath).mkdirs();
+
         File file = new File("");
 
         if ("file".equals(uri.getScheme())) {

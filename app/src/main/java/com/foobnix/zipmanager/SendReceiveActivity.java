@@ -98,6 +98,8 @@ public class SendReceiveActivity extends Activity {
         LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
                                                                               .getItemCount());
 
+        new File(BookCSS.get().downlodsPath).mkdirs();
+
         Uri fileUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         LOG.d("SendReceiveActivity", "fileUri 1", fileUri);
         if (fileUri == null && intent.getClipData() != null) {
