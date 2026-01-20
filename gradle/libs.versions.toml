@@ -4,6 +4,7 @@ appcompat = "1.7.1"
 billing = "8.3.0"
 cardview = "1.0.0"
 commonsLoggingApi = "1.1"
+coreKtx = "1.17.0"
 eventbus = "3.3.1"
 firebaseBom = "34.7.0"
 
@@ -61,6 +62,7 @@ billing = { module = "com.android.billingclient:billing", version.ref = "billing
 cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 commons-logging-api = { module = "commons-logging:commons-logging-api", version.ref = "commonsLoggingApi" }
 
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
