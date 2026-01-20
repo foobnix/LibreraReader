@@ -282,6 +282,7 @@ public class BookCSS {
                 LOG.d("searchPaths-all", 2, instance.searchPathsJson);
             }
         } catch (Exception e) {
+            instance.searchPathsJson = JsonDB.set(List.of(AppProfile.DOWNLOADS_DIR.getPath()));
             LOG.e(e);
         }
 
