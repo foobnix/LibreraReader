@@ -46,12 +46,6 @@ public class AppDB {
     private DaoSession daoSession;
     private DictMetaDao dictMetaDao;
 
-    {
-        //my custom method
-        //return obj != null && path.equals(((FileMeta) obj).path);
-        new FileMeta().equals(null);
-    }
-
 
     public static AppDB get() {
         return in;

@@ -70,7 +70,7 @@ public class SearchAllBooksWorker extends MessageWorker {
     }
 
     public boolean doWorkInner() {
-
+        LOG.d("worker-starts","SearchAllBooksWorker");
 
         Prefs.get().put(SEARCH_ERRORS, 0);
         try {

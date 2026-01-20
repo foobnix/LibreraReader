@@ -522,7 +522,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (Prefs.get().isErrorExist(SearchAllBooksWorker.SEARCH_ERRORS, 0)) {
             searchAndOrderAsync();
         } else {
-            if (AppDB.get().getCount() == 0) {
+            long count = AppDB.get()
+                              .getCount();
+            LOG.d("worker-starts","cound-db",count);
+            if (count == 0) {
                 seachAll();
             } else {
                 checkForDeleteBooks();

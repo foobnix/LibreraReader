@@ -8,6 +8,7 @@ import androidx.work.WorkerParameters;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -28,7 +29,7 @@ public class CheckDeletedBooksWorker extends MessageWorker {
 
     @Override
     public boolean doWorkInner() {
-
+        LOG.d("worker-starts","CheckDeletedBooksWorker");
 
         List<FileMeta> all = AppDB.get().getAll();
 
@@ -87,6 +88,9 @@ public class CheckDeletedBooksWorker extends MessageWorker {
 
         Clouds.get().syncronizeGet();
         LOG.d("CheckDeletedBooksWorker",notifyResults);
+
+        TagData.restoreTags();
+
         return notifyResults;
     }
 }
