@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.foobnix.pdf.info.AppsConfig
 import java.util.concurrent.Executors
+import java.util.concurrent.Executors.newSingleThreadExecutor
 
 @Database(
     entities = [
@@ -33,8 +34,7 @@ fun buildDatabase(context: Context): AppDatabase {
             override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
                 Log.d("DB", "SQL Query: $sqlQuery, Args: $bindArgs")
             }
-        },
-        AppsConfig.executorServiceSingle
+        }, newSingleThreadExecutor()
     )
     return db.build()
 }

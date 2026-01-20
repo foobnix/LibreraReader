@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.foobnix.LibreraApp;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -82,7 +83,8 @@ public class DialogsPlaylist {
             builder.setTitle(R.string.add_to_playlist);
         }
 
-        View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_tags, null, false);
+        View inflate = LayoutInflater.from(a)
+                                     .inflate(R.layout.dialog_tags, null, false);
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
@@ -90,11 +92,9 @@ public class DialogsPlaylist {
 
         final List<String> items = Playlists.getAllPlaylists();
 
-        final BaseItemLayoutAdapter<String>
-                adapter =
+        final BaseItemLayoutAdapter<String> adapter =
                 new BaseItemLayoutAdapter<String>(a, R.layout.tag_item_text, items) {
-                    @Override
-                    public void populateView(View layout, final int position, final String tagName) {
+                    @Override public void populateView(View layout, final int position, final String tagName) {
                         TextView text = (TextView) layout.findViewById(R.id.text1);
                         text.setText(Playlists.formatPlaylistName(a, tagName));
                         if (file == null) {
@@ -103,8 +103,7 @@ public class DialogsPlaylist {
 
                         layout.setOnClickListener(new OnClickListener() {
 
-                            @Override
-                            public void onClick(View v) {
+                            @Override public void onClick(View v) {
                                 if (file != null) {
                                     Playlists.addMetaToPlaylist(tagName, file);
                                     create.dismiss();
@@ -121,23 +120,22 @@ public class DialogsPlaylist {
                         TintUtil.setTintImageWithAlpha(img, Color.GRAY);
                         img.setOnClickListener(new OnClickListener() {
 
-                            @Override
-                            public void onClick(View v) {
-                                AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.are_you_sure_to_delete_playlist_), new Runnable() {
+                            @Override public void onClick(View v) {
+                                AlertDialogs.showOkDialog((Activity) a,
+                                        a.getString(R.string.are_you_sure_to_delete_playlist_), new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        Playlists.deletePlaylist(tagName);
-                                        items.clear();
-                                        items.addAll(Playlists.getAllPlaylists());
-                                        notifyDataSetChanged();
+                                            @Override public void run() {
+                                                Playlists.deletePlaylist(tagName);
+                                                items.clear();
+                                                items.addAll(Playlists.getAllPlaylists());
+                                                notifyDataSetChanged();
 
-                                        if (refresh != null) {
-                                            refresh.run();
-                                        }
+                                                if (refresh != null) {
+                                                    refresh.run();
+                                                }
 
-                                    }
-                                });
+                                            }
+                                        });
 
                             }
                         });
@@ -147,12 +145,10 @@ public class DialogsPlaylist {
 
         add.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 addPlaylistDialog(a, new Runnable() {
 
-                    @Override
-                    public void run() {
+                    @Override public void run() {
                         items.clear();
                         items.addAll(Playlists.getAllPlaylists());
                         adapter.notifyDataSetChanged();
@@ -167,8 +163,7 @@ public class DialogsPlaylist {
 
         builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
 
             }
         });
@@ -176,8 +171,7 @@ public class DialogsPlaylist {
         create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 create = null;
                 if (refresh != null) {
                     refresh.run();
@@ -202,16 +196,14 @@ public class DialogsPlaylist {
 
         builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 Keyboards.close(edit);
             }
         });
 
         builder.setPositiveButton(R.string.add, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 Keyboards.close(edit);
             }
         });
@@ -219,34 +211,36 @@ public class DialogsPlaylist {
         final AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
             }
         });
         create.show();
 
-        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new OnClickListener() {
+        create.getButton(AlertDialog.BUTTON_POSITIVE)
+              .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                String text = edit.getText().toString().trim();
+                  @Override public void onClick(View v) {
+                      String text = edit.getText()
+                                        .toString()
+                                        .trim();
 
-                if (TxtUtils.isEmpty(text)) {
-                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                      if (TxtUtils.isEmpty(text)) {
+                          Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT)
+                               .show();
+                          return;
+                      }
 
-                Playlists.createPlayList(text);
+                      Playlists.createPlayList(text);
 
-                Keyboards.close(edit);
-                Keyboards.hideNavigation((Activity) a);
+                      Keyboards.close(edit);
+                      Keyboards.hideNavigation((Activity) a);
 
-                if (onRefresh != null) {
-                    onRefresh.run();
-                }
-                create.dismiss();
-            }
-        });
+                      if (onRefresh != null) {
+                          onRefresh.run();
+                      }
+                      create.dismiss();
+                  }
+              });
     }
 
     static ItemTouchHelper mItemTouchHelper;
@@ -265,20 +259,18 @@ public class DialogsPlaylist {
 
         final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
 
-            @Override
-            public void onStartDrag(ViewHolder viewHolder) {
+            @Override public void onStartDrag(ViewHolder viewHolder) {
                 mItemTouchHelper.startDrag(viewHolder);
             }
 
-            @Override
-            public void onRevemove() {
+            @Override public void onRevemove() {
                 Playlists.updatePlaylist(file, res);
             }
 
-            @Override
-            public void onItemClick(String result) {
+            @Override public void onItemClick(String result) {
                 Playlists.updatePlaylist(file, res);
-                EventBus.getDefault().post(new UpdateAllFragments());
+                EventBus.getDefault()
+                        .post(new UpdateAllFragments());
 
                 ExtUtils.showDocumentWithoutDialog2(a, Uri.fromFile(new File(result)), -1, file);
             }
@@ -288,11 +280,11 @@ public class DialogsPlaylist {
 
         final Runnable update = new Runnable() {
 
-            @Override
-            public void run() {
+            @Override public void run() {
                 List<String> list = adapter.getItems();
                 Playlists.updatePlaylist(file, list);
-                EventBus.getDefault().post(new UpdateAllFragments());
+                EventBus.getDefault()
+                        .post(new UpdateAllFragments());
                 if (refresh != null) {
                     refresh.run();
                 }
@@ -311,8 +303,7 @@ public class DialogsPlaylist {
 
         builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 update.run();
                 if (refresh != null) {
                     refresh.run();
@@ -322,12 +313,12 @@ public class DialogsPlaylist {
         if (res.size() > 0 && refresh == null) {
             builder.setPositiveButton(R.string.play, new AlertDialog.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                @Override public void onClick(DialogInterface dialog, int which) {
                     LOG.d("play-click", file);
                     update.run();
 
-                    FileMeta f = new FileMeta(Playlists.getFile(file).getPath());
+                    FileMeta f = new FileMeta(Playlists.getFile(file)
+                                                       .getPath());
                     LOG.d("play-click meta", f.getPath());
 
                     ExtUtils.openFile((Activity) a, f);
@@ -343,7 +334,8 @@ public class DialogsPlaylist {
         List<String> res = new ArrayList<>();
         int count = 0;
         for (FileMeta meta : list) {
-            if (meta.getCusType() != null && meta.getCusType().equals(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)) {
+            if (meta.getCusType() != null && meta.getCusType()
+                                                 .equals(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)) {
                 continue;
             }
             res.add(meta.getPath());
@@ -354,6 +346,7 @@ public class DialogsPlaylist {
         }
         return res;
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -377,8 +370,7 @@ public class DialogsPlaylist {
         playListParent.setVisibility(View.VISIBLE);
 
         Runnable updateVisible = new Runnable() {
-            @Override
-            public void run() {
+            @Override public void run() {
                 if (AppState.get().isPlayListVisible) {
                     playlistRecycleView.setVisibility(View.VISIBLE);
                     closePlaylist.setVisibility(View.VISIBLE);
@@ -389,16 +381,14 @@ public class DialogsPlaylist {
             }
         };
         closePlaylist.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 AppState.get().isPlayListVisible = false;
                 updateVisible.run();
             }
         });
         updateVisible.run();
         playListParent.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 AppState.get().isPlayListVisible = !AppState.get().isPlayListVisible;
                 updateVisible.run();
             }
@@ -406,7 +396,8 @@ public class DialogsPlaylist {
 
         //a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST,dc.getString(R.string.recent));
 
-        String palylistPathCheck = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        String palylistPathCheck = a.getIntent()
+                                    .getStringExtra(DocumentController.EXTRA_PLAYLIST);
         if (TxtUtils.isEmpty(palylistPathCheck)) {
             palylistPathCheck = AppState.get().playlistDefault;
         }
@@ -414,103 +405,113 @@ public class DialogsPlaylist {
 
         final List<String> res = new ArrayList<String>();
 
-
         AppsConfig.executorServiceSingle.execute(() -> {
-                    LOG.d("getFilesAndDirs", "init", playlistPath);
-                    if (playlistPath.equals(L_PLAYLIST_RECENT)) {
-                        res.addAll(convert(AppData.get()
-                                             .getAllRecent(false), LIMIT_MAX_BOOKS));
-                    } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
-                        res.addAll(convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS));
-                    } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(
-                            L_PLAYLIST_CURRENT_FOLDER)) {
-                        String showPath = "";
-                        if (playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
-                            showPath = AppState.get().displayPath;
-                        } else {
-                            showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
-                        }
 
-                        List<FileMeta> filesAndDirs =
-                                SearchCore.getFilesAndDirs(showPath, true, AppState.get().isDisplayAllFilesInFolder);
-                        ExtUtils.removeReadBooks(filesAndDirs);
-                        BrowseFragment2.sortItems(filesAndDirs);
-                        res.addAll(convert(filesAndDirs, LIMIT_MAX_BOOKS));
+            if (Apps.isDestroyedActivity(a)) {
+                return;
+            }
+            LOG.d("getFilesAndDirs", "init", playlistPath);
+            if (playlistPath.equals(L_PLAYLIST_RECENT)) {
+                res.addAll(convert(AppData.get()
+                                          .getAllRecent(false), LIMIT_MAX_BOOKS));
+            } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
+                res.addAll(convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS));
+            } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(
+                    L_PLAYLIST_CURRENT_FOLDER)) {
+                String showPath = "";
+                if (playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+                    showPath = AppState.get().displayPath;
+                } else {
+                    showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
+                }
 
-                    } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
-                        List<FileMeta> allTags = AppDB.get()
-                                                      .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""),
-                                                              AppDB.SORT_BY.FILE_NAME, false);
-                        res.addAll(convert(allTags, LIMIT_MAX_BOOKS));
-                    } else {
-                        playListNameEdit.setVisibility(View.VISIBLE);
-                        res.addAll(Playlists.getPlaylistItems(playlistPath));
+                List<FileMeta> filesAndDirs =
+                        SearchCore.getFilesAndDirs(showPath, true, AppState.get().isDisplayAllFilesInFolder);
+                ExtUtils.removeReadBooks(filesAndDirs);
+                BrowseFragment2.sortItems(filesAndDirs);
+                res.addAll(convert(filesAndDirs, LIMIT_MAX_BOOKS));
+
+            } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
+                List<FileMeta> allTags = AppDB.get()
+                                              .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""),
+                                                      AppDB.SORT_BY.FILE_NAME, false);
+                res.addAll(convert(allTags, LIMIT_MAX_BOOKS));
+            } else {
+                mainHandler.post(() -> {
+                            playListNameEdit.setVisibility(View.VISIBLE);
+                        });
+                res.addAll(Playlists.getPlaylistItems(playlistPath));
+            }
+
+            if (Apps.isDestroyedActivity(a)) {
+                return;
+            }
+
+            mainHandler.post(() -> {
+
+                if (Apps.isDestroyedActivity(a)) {
+                    return;
+                }
+
+                final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
+
+                    @Override public void onStartDrag(ViewHolder viewHolder) {
                     }
 
-                    mainHandler.post(() -> {
+                    @Override public void onRevemove() {
+                    }
 
-                        final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
+                    @Override public void onItemClick(final String s) {
+                        LOG.d("onItemClick", s);
+                        if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook()
+                                                                            .getPath()
+                                                                            .equals(s)) {
 
-                            @Override
-                            public void onStartDrag(ViewHolder viewHolder) {
-                            }
+                            dc.onCloseActivityFinal(new Runnable() {
 
-                            @Override
-                            public void onRevemove() {
-                            }
-
-                            @Override
-                            public void onItemClick(final String s) {
-                                LOG.d("onItemClick", s);
-                                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
-
-                                    dc.onCloseActivityFinal(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
-                                        }
-                                    });
+                                @Override public void run() {
+                                    ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
                                 }
-
-                            }
-
-                        }, true);
-                        if (dc != null && dc.getCurrentBook() != null) {
-                            String path = dc.getCurrentBook().getPath();
-                            adapter.setCurrentPath(path);
-                            int indexOf = res.indexOf(path);
-                            if (indexOf > 3) {
-                                playlistRecycleView.scrollToPosition(indexOf - 3);
-                            }
-
+                            });
                         }
-                        playlistRecycleView.setAdapter(adapter);
 
-                        playListNameEdit.setOnClickListener(new OnClickListener() {
+                    }
 
-                            @Override
-                            public void onClick(View v) {
-                                showPlayList(a, playlistPath, new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        adapter.getItems().clear();
-                                        adapter.getItems().addAll(Playlists.getPlaylistItems(playlistPath));
-                                        adapter.notifyDataSetChanged();
+                }, true);
+                if (dc != null && dc.getCurrentBook() != null) {
+                    String path = dc.getCurrentBook()
+                                    .getPath();
+                    adapter.setCurrentPath(path);
+                    int indexOf = res.indexOf(path);
+                    if (indexOf > 3) {
+                        playlistRecycleView.scrollToPosition(indexOf - 3);
+                    }
 
-                                    }
-                                });
+                }
+                playlistRecycleView.setAdapter(adapter);
+
+                playListNameEdit.setOnClickListener(new OnClickListener() {
+
+                    @Override public void onClick(View v) {
+                        showPlayList(a, playlistPath, new Runnable() {
+                            @Override public void run() {
+                                adapter.getItems()
+                                       .clear();
+                                adapter.getItems()
+                                       .addAll(Playlists.getPlaylistItems(playlistPath));
+                                adapter.notifyDataSetChanged();
+
                             }
                         });
-
-
-                    });
-
+                    }
                 });
+
+            });
+
+        });
 
         playListName.setText("☰ " + Playlists.formatPlaylistName(a, playlistPath));
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
-
 
         playListName.setOnClickListener(v -> {
             if (!AppState.get().isPlayListVisible) {
@@ -523,7 +524,8 @@ public class DialogsPlaylist {
             items.add(L_PLAYLIST_RECENT);
             items.add(L_PLAYLIST_FAVORITES);
             items.add(L_PLAYLIST_CURRENT_FOLDER);
-            final List<FileMeta> folders = AppData.get().getAllFavoriteFolders();
+            final List<FileMeta> folders = AppData.get()
+                                                  .getAllFavoriteFolders();
             if (!folders.isEmpty()) {
                 for (FileMeta folder : folders) {
                     items.add(L_PLAYLIST_FOLDER + folder.getPath());
@@ -545,10 +547,10 @@ public class DialogsPlaylist {
                     .add(Playlists.formatPlaylistName(a, item))
                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem m) {
+                        @Override public boolean onMenuItemClick(MenuItem m) {
                             AppState.get().playlistDefault = item;
-                            a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
+                            a.getIntent()
+                             .putExtra(DocumentController.EXTRA_PLAYLIST, item);
                             dispalyPlaylist(a, dc);
                             return false;
                         }
@@ -556,20 +558,20 @@ public class DialogsPlaylist {
             }
 
             if (false) {
-                menu.getMenu().add(R.string.playlists).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu()
+                    .add(R.string.playlists)
+                    .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        showPlaylistsDialog(a, new Runnable() {
+                        @Override public boolean onMenuItemClick(MenuItem item) {
+                            showPlaylistsDialog(a, new Runnable() {
 
-                            @Override
-                            public void run() {
-                                dispalyPlaylist(a, dc);
-                            }
-                        }, null);
-                        return false;
-                    }
-                });
+                                @Override public void run() {
+                                    dispalyPlaylist(a, dc);
+                                }
+                            }, null);
+                            return false;
+                        }
+                    });
             }
 
             menu.show();
