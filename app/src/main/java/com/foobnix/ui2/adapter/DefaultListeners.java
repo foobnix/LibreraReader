@@ -71,17 +71,13 @@ public class DefaultListeners {
 
     public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter) {
         searchAdapter.setOnItemClickListener(getOnItemClickListener(a));
-        searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
+        //searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
+        searchAdapter.setOnItemLongClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
-        searchAdapter.setOnTagClickListner(new ResultResponse<String>() {
-
-            @Override
-            public boolean onResultRecive(String result) {
-                showBooksByTag(a, result);
-                return false;
-            }
-
+        searchAdapter.setOnTagClickListner(result -> {
+            showBooksByTag(a, result);
+            return false;
         });
     }
 
