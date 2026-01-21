@@ -1215,6 +1215,9 @@ public class Dialogs {
                         tags.clear();
                         tags.addAll(getAllTags(tag));
                         adapter.notifyDataSetChanged();
+                        if(refresh!=null) {
+                            refresh.run();
+                        }
                     }
                 });
             }

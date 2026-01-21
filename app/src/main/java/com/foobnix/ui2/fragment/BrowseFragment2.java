@@ -750,7 +750,7 @@ import java.util.Map;
                                             .isStarFolderByFiles(AppState.get().displayPath);
                 if (!isStarFolder) {
                     menu.getMenu()
-                        .add(R.string.add_to_favorites)
+                        .add("★ "+getString(R.string.add_to_favorites))
                         .setOnMenuItemClickListener(item -> {
                             AppData.get()
                                    .addFavorite(new SimpleMeta(AppState.get().displayPath, System.currentTimeMillis()));
@@ -760,7 +760,8 @@ import java.util.Map;
                         });
                 } else {
                     menu.getMenu()
-                        .add(R.string.remove_from_favorites)
+                        .add("☆ "+getString(R.string.remove_from_favorites))
+                        //.add(R.string.remove_from_favorites)
                         .setOnMenuItemClickListener(item -> {
                             AppData.get().removeFavorite(AppState.get().displayPath);
                                    TempHolder.listHash++;

@@ -46,6 +46,7 @@ import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -481,7 +482,13 @@ public class ShareDialog {
                     EventBus.getDefault()
                             .post(new UpdateAllFragments());
                 } else if (!isExternalOrCloud && which == i++) {
-                    Dialogs.showTagsDialog(a, file, false, null);
+                    Dialogs.showTagsDialog(a, file, false, new Runnable() {
+                        @Override public void run() {
+                            TempHolder.listHash++;
+                            EventBus.getDefault()
+                                    .post(new UpdateAllFragments());
+                        }
+                    });
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
                     showAddToCloudDialog(a, file);
                 } else if (!isPlaylist && which == i++) {
