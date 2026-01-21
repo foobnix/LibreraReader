@@ -6,6 +6,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
 import org.librera.JSONException;

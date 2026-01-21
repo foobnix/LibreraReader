@@ -1,5 +1,7 @@
 package com.foobnix.work;
 
+import static com.foobnix.ui2.fragment.SearchFragment2.WORKER_NAME;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -61,7 +63,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 .Builder(SearchAllBooksWorker.class).build();
 
         WorkManager.getInstance(context)
-                .enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
+                .enqueueUniqueWork(WORKER_NAME, ExistingWorkPolicy.REPLACE, workRequest);
     }
 
     public static void sendFinishMessage(Context c) {

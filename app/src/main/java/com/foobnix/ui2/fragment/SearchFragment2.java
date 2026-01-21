@@ -53,6 +53,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -103,6 +104,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
     private static final String CMD_MARGIN = "@@keycode_margin";
+    public static final String WORKER_NAME = "search";
     public static int NONE = -1;
     public static List<FileMeta> cacheItems;
     final Set<String> autocomplitions = new HashSet<String>();
@@ -390,7 +392,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             //WorkManager.getInstance(getContext()).enqueue(workRequest);
                             WorkManager.getInstance(getContext())
 
-                                    .enqueueUniqueWork("search", ExistingWorkPolicy.REPLACE, workRequest);
+                                    .enqueueUniqueWork(WORKER_NAME, ExistingWorkPolicy.REPLACE, workRequest);
 
                         }
                     }, null);
@@ -522,8 +524,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (Prefs.get().isErrorExist(SearchAllBooksWorker.SEARCH_ERRORS, 0)) {
             searchAndOrderAsync();
         } else {
-            long count = AppDB.get()
-                              .getCount();
+            long count = AppProfile.bookCount;
             LOG.d("worker-starts","cound-db",count);
             if (count == 0) {
                 seachAll();
@@ -675,7 +676,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
             OneTimeWorkRequest workRequest = new OneTimeWorkRequest
                     .Builder(CheckDeletedBooksWorker.class).build();
-            WorkManager.getInstance(getContext()).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
+            WorkManager.getInstance(getContext()).enqueueUniqueWork(WORKER_NAME, ExistingWorkPolicy.REPLACE, workRequest);
             LOG.d("MessageWorker-Status checkForDeleteBooks");
         } catch (Exception e) {
             LOG.e(e);

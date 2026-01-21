@@ -45,7 +45,8 @@ public class AppProfile {
 
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
-    public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    public static final File DOWNLOADS_DIR =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
     public static final String APP_CSS_JSON = "app-CSS.json";
@@ -62,7 +63,6 @@ public class AppProfile {
 
     public static final String SYNC_FOLDER_ROOT_KEY = "syncFolderRoot";
     public static final String APP_PROFILE_SP = "AppProfile";
-
 
     public static File SYNC_FOLDER_ROOT;
     public static File SYNC_FOLDER_BOOKS;
@@ -86,6 +86,7 @@ public class AppProfile {
     public static File FONT_LOCAL_ZIP;
 
     public static String profile = "";
+    public static long bookCount;
 
     public synchronized static void init(Context c) {
 
@@ -97,7 +98,8 @@ public class AppProfile {
             LOG.d("AppProfile exist");
             return;
         }
-        AppSP.get().init(c);
+        AppSP.get()
+             .init(c);
 
         if (!Android6.canWrite(c)) {
             return;
@@ -108,9 +110,13 @@ public class AppProfile {
             return;
         }
         profile = getCurrent(c);
-        AppDB.get().open(c, "db-" + AppSP.get().rootPath.hashCode() + "-" + profile);
-        LOG.d("AppProfile init", profile);
+        String appDB = "db-" + AppSP.get().rootPath.hashCode() + "-" + profile;
+        AppDB.get()
+             .open(c, appDB);
 
+        bookCount = AppDB.get()
+                         .getCount();
+        LOG.d("AppProfile init bookCount", profile, bookCount,appDB);
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
         SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
@@ -135,23 +141,24 @@ public class AppProfile {
         syncState = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_STATE_JSON);
         syncCSS = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_CSS_JSON);
 
-        final boolean isLoaded = AppState.get().loadInit(c);
+        final boolean isLoaded = AppState.get()
+                                         .loadInit(c);
         if (isLoaded) {
-            AppState.get().load(c);
+            AppState.get()
+                    .load(c);
         }
         TintUtil.init();
-        BookCSS.get().load1(c);
+        BookCSS.get()
+               .load1(c);
 
-        PasswordState.get().load(c);
+        PasswordState.get()
+                     .load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
 
-
     }
 
-
     public static List<File> getAllFiles(String name) {
-
 
         List<File> list = new ArrayList<>();
         if (AppProfile.SYNC_FOLDER_PROFILE == null) {
@@ -163,7 +170,8 @@ public class AppProfile {
             return list;
         }
         for (File f : files) {
-            if (f.isDirectory() && f.getName().startsWith(DEVICE_PREFIX)) {
+            if (f.isDirectory() && f.getName()
+                                    .startsWith(DEVICE_PREFIX)) {
                 File file = new File(f, name);
                 if (file.isFile()) {
                     list.add(file);
@@ -176,20 +184,22 @@ public class AppProfile {
     }
 
     public static Drawable getProfileColorDrawable(Context c, String profile) {
-        GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
+        GradientDrawable background = (GradientDrawable) c.getResources()
+                                                          .getDrawable(R.drawable.bg_circular);
         AppState s = new AppState();
-        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
+        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT,
+                PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
         IO.readObj(syncState, s);
         background.setColor(s.tintColor);
         return background;
     }
 
     public static Drawable getProfileColorDrawable(Context c, int color) {
-        GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
+        GradientDrawable background = (GradientDrawable) c.getResources()
+                                                          .getDrawable(R.drawable.bg_circular);
         background.setColor(color);
         return background;
     }
-
 
     public static synchronized void save(Context a) {
         if (a == null) {
@@ -200,10 +210,14 @@ public class AppProfile {
         }
         if (TxtUtils.isNotEmpty(profile)) {
             DragingPopup.saveCache(a);
-            PasswordState.get().save(a);
-            AppState.get().save(a);
-            BookCSS.get().save(a);
-            AppSP.get().save();
+            PasswordState.get()
+                         .save(a);
+            AppState.get()
+                    .save(a);
+            BookCSS.get()
+                   .save(a);
+            AppSP.get()
+                 .save();
         }
     }
 
@@ -217,7 +231,6 @@ public class AppProfile {
 
     }
 
-
     public static List<String> getAllProfiles() {
         final File[] files = SYNC_FOLDER_ROOT.listFiles();
         if (files == null) {
@@ -225,8 +238,10 @@ public class AppProfile {
         }
         List<String> res = new ArrayList<>();
         for (File file : files) {
-            if (file.getName().startsWith(PROFILE_PREFIX)) {
-                res.add(file.getName().replace(PROFILE_PREFIX, ""));
+            if (file.getName()
+                    .startsWith(PROFILE_PREFIX)) {
+                res.add(file.getName()
+                            .replace(PROFILE_PREFIX, ""));
             }
         }
         Collections.sort(res, String.CASE_INSENSITIVE_ORDER);
@@ -237,7 +252,6 @@ public class AppProfile {
         name = name.replace(" ", "");
         final File profileFolder = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name + "/" + DEVICE_MODEL);
         profileFolder.mkdirs();
-
 
         File state = new File(profileFolder, APP_STATE_JSON);
         File css = new File(profileFolder, APP_CSS_JSON);
@@ -252,12 +266,10 @@ public class AppProfile {
 
     }
 
-    public static void deleteProfiles(Activity a, String
-            name, ResultResponse<Boolean> result) {
+    public static void deleteProfiles(Activity a, String name, ResultResponse<Boolean> result) {
         new AsyncProgressResultToastTask(a, result) {
 
-            @Override
-            protected Boolean doInBackground(Object... objects) {
+            @Override protected Boolean doInBackground(Object... objects) {
                 try {
                     final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
                     GFile.deleteRemoteFile(file);
@@ -274,13 +286,13 @@ public class AppProfile {
 
     }
 
-
     public static void showDialog(Activity a, ResultResponse<String> onclick) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.tag);
 
-        View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_tags, null, false);
+        View inflate = LayoutInflater.from(a)
+                                     .inflate(R.layout.dialog_tags, null, false);
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
@@ -288,59 +300,53 @@ public class AppProfile {
 
         final List<String> profiles = getAllProfiles();
 
+        final BaseItemLayoutAdapter<String> adapter =
+                new BaseItemLayoutAdapter<String>(a, R.layout.tag_item_text, profiles) {
+                    @Override public void populateView(View layout, final int position, final String tagName) {
+                        TextView text = layout.findViewById(R.id.text1);
+                        text.setText(tagName);
 
-        final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item_text, profiles) {
-            @Override
-            public void populateView(View layout, final int position, final String tagName) {
-                TextView text = layout.findViewById(R.id.text1);
-                text.setText(tagName);
+                        ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
+                        TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
+                        if (tagName.equals(getCurrent(a))) {
+                            delete.setVisibility(View.GONE);
+                        } else {
+                            delete.setVisibility(View.VISIBLE);
+                        }
 
-                ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
-                TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
-                if (tagName.equals(getCurrent(a))) {
-                    delete.setVisibility(View.GONE);
-                } else {
-                    delete.setVisibility(View.VISIBLE);
-                }
+                        delete.setOnClickListener(new View.OnClickListener() {
 
+                            @Override public void onClick(View v) {
+                                AlertDialogs.showOkDialog(a,
+                                        a.getString(R.string.do_you_want_to_delete_) + " " + tagName, new Runnable() {
 
-                delete.setOnClickListener(new View.OnClickListener() {
+                                            @Override public void run() {
 
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_) + " " + tagName, new Runnable() {
+                                                deleteProfiles(a, tagName, new ResultResponse<Boolean>() {
+                                                    @Override public boolean onResultRecive(Boolean result) {
+                                                        if (result) {
+                                                            profiles.clear();
+                                                            profiles.addAll(getAllProfiles());
+                                                            notifyDataSetChanged();
+                                                        }
+                                                        return false;
+                                                    }
+                                                });
 
-                            @Override
-                            public void run() {
-
-                                deleteProfiles(a, tagName, new ResultResponse<Boolean>() {
-                                    @Override
-                                    public boolean onResultRecive(Boolean result) {
-                                        if (result) {
-                                            profiles.clear();
-                                            profiles.addAll(getAllProfiles());
-                                            notifyDataSetChanged();
-                                        }
-                                        return false;
-                                    }
-                                });
+                                            }
+                                        });
 
                             }
                         });
 
                     }
-                });
-
-            }
-        };
+                };
         add.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 addDialog(a, new Runnable() {
 
-                    @Override
-                    public void run() {
+                    @Override public void run() {
                         profiles.clear();
                         profiles.addAll(getAllProfiles());
                         adapter.notifyDataSetChanged();
@@ -353,8 +359,7 @@ public class AppProfile {
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 onclick.onResultRecive(profiles.get(position));
             }
         });
@@ -363,25 +368,21 @@ public class AppProfile {
 
         builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
 
             }
         });
 
-
         AlertDialog create = builder.create();
         create.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 Keyboards.close(a);
                 Keyboards.hideNavigation(a);
 
             }
         });
         create.show();
-
 
     }
 
@@ -396,16 +397,14 @@ public class AppProfile {
 
         builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 Keyboards.close(edit);
             }
         });
 
         builder.setPositiveButton(R.string.add, new AlertDialog.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 Keyboards.close(edit);
             }
         });
@@ -413,43 +412,44 @@ public class AppProfile {
         final AlertDialog create = builder.create();
         create.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
             }
         });
         create.show();
 
+        create.getButton(AlertDialog.BUTTON_POSITIVE)
+              .setOnClickListener(new View.OnClickListener() {
 
-        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                  @Override public void onClick(View v) {
+                      String text = edit.getText()
+                                        .toString()
+                                        .trim();
+                      text = text.replace(" ", "");
+                      text = text.replaceAll("[|\\?*<\":>+/']", "_");
 
-            @Override
-            public void onClick(View v) {
-                String text = edit.getText().toString().trim();
-                text = text.replace(" ", "");
-                text = text.replaceAll("[|\\?*<\":>+/']", "_");
+                      if (TxtUtils.isEmpty(text)) {
+                          Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT)
+                               .show();
+                          return;
+                      }
 
-                if (TxtUtils.isEmpty(text)) {
-                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                      if (getAllProfiles().contains(text)) {
+                          Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT)
+                               .show();
+                          return;
+                      }
+                      create.dismiss();
 
-                if (getAllProfiles().contains(text)) {
-                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                create.dismiss();
+                      ceateProfiles(a, text);
+                      GFile.runSyncService(a);
 
-                ceateProfiles(a, text);
-                GFile.runSyncService(a);
+                      onRefresh.run();
 
-                onRefresh.run();
+                      Keyboards.close(edit);
+                      Keyboards.hideNavigation((Activity) a);
 
-                Keyboards.close(edit);
-                Keyboards.hideNavigation((Activity) a);
-
-
-            }
-        });
+                  }
+              });
     }
 
     public static void clear() {
