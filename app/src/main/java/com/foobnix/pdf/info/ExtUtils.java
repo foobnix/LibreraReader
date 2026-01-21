@@ -806,9 +806,9 @@ public class ExtUtils {
         horizontalEdit.setText(AppState.get().nameHorizontalMode);
         musicEdit.setText(AppState.get().nameMusicianMode);
 
-        vertical.setText(AppState.get().nameVerticalMode);
-        horizontal.setText(AppState.get().nameHorizontalMode);
-        music.setText(AppState.get().nameMusicianMode);
+        vertical.setText("① "+ AppState.get().nameVerticalMode);
+        horizontal.setText("② "+AppState.get().nameHorizontalMode);
+        music.setText("Ⓜ "+AppState.get().nameMusicianMode);
 
         Views.gone(verticalEdit, horizontalEdit, musicEdit);
 
@@ -817,7 +817,7 @@ public class ExtUtils {
 
         editNames.setOnLongClickListener(new OnLongClickListener() {
             @Override public boolean onLongClick(View v) {
-                AppState.get().nameVerticalMode = c.getString(R.string.mode_vertical);
+                AppState.get().nameVerticalMode =c.getString(R.string.mode_vertical);
                 AppState.get().nameHorizontalMode = c.getString(R.string.mode_horizontally);
                 AppState.get().nameMusicianMode = c.getString(R.string.mode_musician);
 

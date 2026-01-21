@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.widget;
 
+import static com.foobnix.android.utils.TxtUtils.iconText;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -70,7 +72,8 @@ public class ShareDialog {
 
     public static void showArchive(final Activity a, final File file, final Runnable onDeleteAction) {
         if (ExtUtils.isNotValidFile(file)) {
-            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG)
+                 .show();
             return;
         }
 
@@ -98,30 +101,29 @@ public class ShareDialog {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(R.string.choose_)//
-                .setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int which) {
-                        int i = 0;
-                        if (!ExtUtils.isImageOrEpub(file)) {
-                            if (which == i++) {
-                                showsItemsDialog(a, chooseTitle, AppState.CONVERTERS.get("EPUB"));
-                            }
-                            if (which == i++) {
-                                showsItemsDialog(a, chooseTitle, AppState.CONVERTERS.get("PDF"));
-                            }
-                        }
-                        if (which == i++) {
-                            ExtUtils.openWith(a, file);
-                        } else if (which == i++) {
-                            ExtUtils.sendFileTo(a, file);
-                        } else if (canDelete && which == i++) {
-                            FileInformationDialog.dialogDelete(a, file, onDeleteAction);
-                        } else if (isShowInfo && which == i++) {
-                            FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                        }
+               .setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
+                   @Override public void onClick(final DialogInterface dialog, final int which) {
+                       int i = 0;
+                       if (!ExtUtils.isImageOrEpub(file)) {
+                           if (which == i++) {
+                               showsItemsDialog(a, chooseTitle, AppState.CONVERTERS.get("EPUB"));
+                           }
+                           if (which == i++) {
+                               showsItemsDialog(a, chooseTitle, AppState.CONVERTERS.get("PDF"));
+                           }
+                       }
+                       if (which == i++) {
+                           ExtUtils.openWith(a, file);
+                       } else if (which == i++) {
+                           ExtUtils.sendFileTo(a, file);
+                       } else if (canDelete && which == i++) {
+                           FileInformationDialog.dialogDelete(a, file, onDeleteAction);
+                       } else if (isShowInfo && which == i++) {
+                           FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+                       }
 
-                    }
-                });
+                   }
+               });
         builder.show();
     }
 
@@ -130,12 +132,11 @@ public class ShareDialog {
     public static void showsItemsDialog(final Activity a, String title, final String[] items) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(title)//
-                .setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int which) {
-                        Urls.open(a, items[which]);
-                    }
-                });
+               .setItems(items, new DialogInterface.OnClickListener() {
+                   @Override public void onClick(final DialogInterface dialog, final int which) {
+                       Urls.open(a, items[which]);
+                   }
+               });
 
         AlertDialog dialog = builder.show();
 
@@ -144,15 +145,13 @@ public class ShareDialog {
     public static void dirLongPress(final Activity a, final String to, final Runnable onRefresh) {
         List<String> items = new ArrayList<String>();
 
-
         items.add(a.getString(R.string.paste));
         items.add(a.getString(R.string.move));
         items.add(a.getString(R.string.cancel));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int which) {
+            @Override public void onClick(final DialogInterface dialog, final int which) {
                 int i = 0;
                 if (which == i++) {
                     try {
@@ -161,7 +160,8 @@ public class ShareDialog {
                         File toFile = new File(to, fromFile.getName());
 
                         if (toFile.exists()) {
-                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT)
+                                 .show();
                             return;
                         }
 
@@ -172,15 +172,16 @@ public class ShareDialog {
 
                         IOUtils.copyClose(input, output);
 
-
                         TempHolder.get().listHash++;
 
-                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT)
+                             .show();
                         TempHolder.get().copyFromPath = null;
                         onRefresh.run();
                     } catch (Exception e) {
                         LOG.e(e);
-                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
+                             .show();
                     }
                 }
                 if (which == i++) {
@@ -191,7 +192,8 @@ public class ShareDialog {
                         LOG.d("Copy from to", from, ">>", to);
 
                         if (toFile.exists()) {
-                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT)
+                                 .show();
                             return;
                         }
 
@@ -200,46 +202,49 @@ public class ShareDialog {
 
                         IOUtils.copyClose(input, output);
 
-
                         fromFile.delete();
-                        AppDB.get().delete(new FileMeta(fromFile.getPath()));
+                        AppDB.get()
+                             .delete(new FileMeta(fromFile.getPath()));
                         TempHolder.get().listHash++;
 
-                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT)
+                             .show();
                         TempHolder.get().copyFromPath = null;
                         onRefresh.run();
                     } catch (Exception e) {
                         LOG.e(e);
-                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
+                             .show();
                     }
                 }
-                 if (which == i++) {
-                     TempHolder.get().copyFromPath = null;
-                     onRefresh.run();
-                 }
+                if (which == i++) {
+                    TempHolder.get().copyFromPath = null;
+                    onRefresh.run();
+                }
             }
         });
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 Keyboards.hideNavigation(a);
             }
         });
         create.show();
     }
 
-    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
-
+    public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page,
+                            final DocumentController dc, final Runnable hideShow) {
 
         if (file == null) {
-            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG)
+                 .show();
             return;
         }
 
         if (!ExtUtils.isExteralSD(file.getPath()) && ExtUtils.isNotValidFile(file)) {
-            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG)
+                 .show();
             return;
         }
         final boolean isPDF = BookType.PDF.is(file.getPath());
@@ -260,93 +265,106 @@ public class ShareDialog {
 
         if (dc != null) {
             if (a instanceof VerticalViewActivity || dc.isMusicianMode()) {
-                items.add(AppState.get().nameHorizontalMode);
+                items.add("② "+AppState.get().nameHorizontalMode);
             }
             if (a instanceof HorizontalViewActivity || dc.isMusicianMode()) {
-                items.add(AppState.get().nameVerticalMode);
+                items.add("① "+AppState.get().nameVerticalMode);
             }
 
             if (dc.isMusicianMode() == false) {
-                items.add(AppState.get().nameMusicianMode);
+                items.add("Ⓜ "+AppState.get().nameMusicianMode);
             }
         }
 
         if (isPDF) {
-            items.add(a.getString(R.string.make_text_reflow));
+           // items.add(a.getString(R.string.make_text_reflow));
+            items.add(iconText(a, "⌘", R.string.make_text_reflow));
         }
 
         if (dc != null) {
-            items.add(a.getString(R.string.fast_reading));
+            //items.add(a.getString(R.string.fast_reading));
+            items.add(iconText(a, "▶▶", R.string.fast_reading));
         }
 
-        items.add(a.getString(R.string.open_with));
-        items.add(a.getString(R.string.send_file));
+        //items.add(a.getString(R.string.open_with));
+        //items.add(a.getString(R.string.send_file));
+
+        items.add(iconText(a, "⎘", R.string.open_with));
+        items.add(iconText(a, "➥", R.string.send_file));
+
         final boolean isExternalOrCloud = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath());
-        boolean canDelete1 = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
+        boolean canDelete1 =
+                ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
-        final boolean isRemovedFromLibrary = AppData.get().getAllExcluded().contains(new SimpleMeta(file.getPath()));
+        final boolean isRemovedFromLibrary = AppData.get()
+                                                    .getAllExcluded()
+                                                    .contains(new SimpleMeta(file.getPath()));
 
-        if (file.getPath().contains(AppProfile.PROFILE_PREFIX)) {
+        if (file.getPath()
+                .contains(AppProfile.PROFILE_PREFIX)) {
             canDelete1 = false;
         }
         final boolean canDelete = canDelete1;
 
         if (isMainTabs) {
             if (canDelete) {
-                items.add(a.getString(R.string.delete));
+                //items.add(a.getString(R.string.delete));
+                items.add(iconText(a, "⊗", R.string.delete));
             }
             if (canCopy) {
-                items.add(a.getString(R.string.copy));
+                //items.add(a.getString(R.string.copy));
+                items.add(iconText(a, "⧉", R.string.copy));
             }
             if (!isRemovedFromLibrary) {
-                items.add(a.getString(R.string.remove_from_library));
+                items.add(iconText(a,"-",R.string.remove_from_library));
             } else {
-                items.add(a.getString(R.string.add_to_library));
+                items.add(iconText(a,"+",R.string.add_to_library));
             }
         }
 
         if (!isExternalOrCloud) {
-            items.add(a.getString(R.string.add_tags));
+            items.add(iconText(a, "#", R.string.add_tags));
         }
 
         if (AppsConfig.isCloudsEnable) {
             items.add(a.getString(R.string.upload_to_cloud));
         }
-        final boolean isPlaylist = file.getName().endsWith(Playlists.L_PLAYLIST);
+        final boolean isPlaylist = file.getName()
+                                       .endsWith(Playlists.L_PLAYLIST);
         if (!isPlaylist) {
-            items.add(a.getString(R.string.add_to_playlist));
+            items.add(iconText(a, "\uD834\uDD1E", R.string.add_to_playlist));
         }
 
         final boolean isSyncronized = AppsConfig.IS_FDROID || Clouds.isLibreraSyncFile(file);
         if (!isSyncronized) {
-            items.add(a.getString(R.string.sync_book));
+            //items.add(a.getString(R.string.sync_book));
+            items.add(iconText(a, "↻", R.string.sync_book));
         }
 
         if (isMainTabs) {
-            items.add(a.getString(R.string.delete_reading_progress));
+            //items.add(a.getString(R.string.delete_reading_progress));
+            items.add(iconText(a, "↶", R.string.delete_reading_progress));
+
         }
 
         if (isShowInfo) {
-            items.add(a.getString(R.string.file_info));
+            items.add(iconText(a, "ⓘ", R.string.file_info));
         }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int which) {
+            @Override public void onClick(final DialogInterface dialog, final int which) {
                 int i = 0;
 
                 if (isTxt && which == i++) {
                     AlertDialogs.editFileTxt(a, file, AppProfile.DOWNLOADS_DIR, new StringResponse() {
-                        @Override
-                        public boolean onResultRecive(String string) {
+                        @Override public boolean onResultRecive(String string) {
                             if ((a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity) && dc != null) {
                                 dc.onCloseActivityFinal(new Runnable() {
 
-                                    @Override
-                                    public void run() {
+                                    @Override public void run() {
                                         ExtUtils.openFile(a, new FileMeta(string));
 
                                     }
@@ -366,14 +384,15 @@ public class ShareDialog {
                 if (dc != null && (a instanceof HorizontalViewActivity || dc.isMusicianMode()) && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {
 
-                        @Override
-                        public void run() {
+                        @Override public void run() {
                             if (dc.isMusicianMode()) {
                                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                             } else {
                                 AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                             }
-                            ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                            ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent()
+                                                                         .getStringExtra(
+                                                                                 DocumentController.EXTRA_PLAYLIST));
 
                         }
                     });
@@ -383,14 +402,15 @@ public class ShareDialog {
                     if (dc != null) {
                         dc.onCloseActivityFinal(new Runnable() {
 
-                            @Override
-                            public void run() {
+                            @Override public void run() {
                                 if (dc.isMusicianMode()) {
                                     AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                                 } else {
                                     AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                                 }
-                                ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                                ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent()
+                                                                             .getStringExtra(
+                                                                                     DocumentController.EXTRA_PLAYLIST));
                             }
                         });
                     }
@@ -398,10 +418,11 @@ public class ShareDialog {
                 if (dc != null && dc.isMusicianMode() == false && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {
 
-                        @Override
-                        public void run() {
+                        @Override public void run() {
                             AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                            ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                            ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent()
+                                                                         .getStringExtra(
+                                                                                 DocumentController.EXTRA_PLAYLIST));
                         }
                     });
                 }
@@ -422,34 +443,43 @@ public class ShareDialog {
                     FileInformationDialog.dialogDelete(a, file, onDeleteAction);
                 } else if (isMainTabs && canCopy && which == i++) {
                     TempHolder.get().copyFromPath = file.getPath();
-                    Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT).show();
-                    EventBus.getDefault().post(new UpdateAllFragments());
+                    Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT)
+                         .show();
+                    EventBus.getDefault()
+                            .post(new UpdateAllFragments());
                 } else if (isMainTabs && which == i++) {
                     if (isRemovedFromLibrary) {
 
-                        FileMeta load = AppDB.get().load(file.getPath());
+                        FileMeta load = AppDB.get()
+                                             .load(file.getPath());
                         if (load != null) {
                             load.setIsSearchBook(true);
-                            AppDB.get().update(load);
-                            AppData.get().removeExcluded(load);
+                            AppDB.get()
+                                 .update(load);
+                            AppData.get()
+                                   .removeExcluded(load);
                         }
 
                     } else {
-                        FileMeta load = AppDB.get().load(file.getPath());
+                        FileMeta load = AppDB.get()
+                                             .load(file.getPath());
                         if (load != null) {
                             load.setIsSearchBook(false);
                             load.setIsStar(false);
                             load.setTag(null);
-                            AppDB.get().update(load);
+                            AppDB.get()
+                                 .update(load);
 
-                            AppData.get().removeFavorite(load);
-                            AppData.get().addExclue(load.getPath());
+                            AppData.get()
+                                   .removeFavorite(load);
+                            AppData.get()
+                                   .addExclue(load.getPath());
 
                         }
                     }
 
-
-                    EventBus.getDefault().post(new UpdateAllFragments());
+                    EventBus.getDefault()
+                            .post(new UpdateAllFragments());
                 } else if (!isExternalOrCloud && which == i++) {
                     Dialogs.showTagsDialog(a, file, false, null);
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
@@ -461,42 +491,51 @@ public class ShareDialog {
                     boolean result = IO.copyFile(file, to);
                     if (result && AppSP.get().isEnableSync) {
 
-                        AppDB.get().setIsSearchBook(file.getPath(), false);
+                        AppDB.get()
+                             .setIsSearchBook(file.getPath(), false);
                         FileMetaCore.createMetaIfNeed(to.getPath(), true);
 
                         String tags = TagData.getTags(file.getPath());
                         TagData.saveTags(to.getPath(), tags);
 
-                        boolean isRecent = AppData.contains(AppData.get().getAllRecent(false), file.getPath());
+                        boolean isRecent = AppData.contains(AppData.get()
+                                                                   .getAllRecent(false), file.getPath());
                         LOG.d("isRecent", isRecent, file.getPath());
 
                         if (isRecent) {
-                            AppData.get().removeRecent(new FileMeta(file.getPath()));
+                            AppData.get()
+                                   .removeRecent(new FileMeta(file.getPath()));
 
-                            final FileMeta load = AppDB.get().load(file.getPath());
+                            final FileMeta load = AppDB.get()
+                                                       .load(file.getPath());
                             if (load != null && load.getIsRecentTime() != null) {
-                                AppData.get().addRecent(new SimpleMeta(to.getPath(), load.getIsRecentTime()));
+                                AppData.get()
+                                       .addRecent(new SimpleMeta(to.getPath(), load.getIsRecentTime()));
                             } else {
-                                AppData.get().addRecent(new SimpleMeta(to.getPath()));
+                                AppData.get()
+                                       .addRecent(new SimpleMeta(to.getPath()));
                             }
                         }
 
-                        final List<AppBookmark> bookmarks = BookmarksData.get().getBookmarksByBook(file.getPath());
+                        final List<AppBookmark> bookmarks = BookmarksData.get()
+                                                                         .getBookmarksByBook(file.getPath());
                         for (AppBookmark appBookmark : bookmarks) {
                             appBookmark.path = MyPath.toRelative(to.getPath());
-                            BookmarksData.get().add(appBookmark);
+                            BookmarksData.get()
+                                         .add(appBookmark);
                         }
 
                         GFile.runSyncService(a);
                     }
 
-
                     TempHolder.listHash++;
-                    EventBus.getDefault().post(new UpdateAllFragments());
+                    EventBus.getDefault()
+                            .post(new UpdateAllFragments());
 
                 } else if (isMainTabs && which == i++) {
                     SharedBooks.deleteProgress(file.getPath());
-                    EventBus.getDefault().post(new UpdateAllFragments());
+                    EventBus.getDefault()
+                            .post(new UpdateAllFragments());
 
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
@@ -507,12 +546,10 @@ public class ShareDialog {
         });
         AlertDialog create = builder.create();
 
-
         IMG.pauseRequests(a);
         create.setOnDismissListener(new OnDismissListener() {
 
-            @Override
-            public void onDismiss(DialogInterface dialog) {
+            @Override public void onDismiss(DialogInterface dialog) {
                 IMG.resumeRequests(a);
                 Keyboards.hideNavigation(a);
             }
@@ -527,7 +564,6 @@ public class ShareDialog {
 //        menu.show();
     }
 
-
     public static void showAddToCloudDialog(final Activity a, final File file) {
         final AlertDialog.Builder inner = new AlertDialog.Builder(a);
         inner.setTitle(R.string.upload_to_cloud);
@@ -536,26 +572,28 @@ public class ShareDialog {
                 new Pair<Integer, Integer>(R.string.dropbox, R.drawable.dropbox), //
                 new Pair<Integer, Integer>(R.string.google_drive, R.drawable.gdrive), //
                 new Pair<Integer, Integer>(R.string.one_drive, R.drawable.onedrive)//
-        );
+                                                         );
 
         inner.setAdapter(new BaseItemLayoutAdapter<Pair<Integer, Integer>>(a, R.layout.item_dict_line, list) {
-            @Override
-            public void populateView(View layout, int position, Pair<Integer, Integer> item) {
+            @Override public void populateView(View layout, int position, Pair<Integer, Integer> item) {
                 ((TextView) layout.findViewById(R.id.text1)).setText(item.first);
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 imageView.setImageResource(item.second);
 
                 TintUtil.setNoTintImage(imageView);
 
-                if (R.string.dropbox == item.first && !Clouds.get().isDropbox()) {
+                if (R.string.dropbox == item.first && !Clouds.get()
+                                                             .isDropbox()) {
                     TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
                 }
 
-                if (R.string.google_drive == item.first && !Clouds.get().isGoogleDrive()) {
+                if (R.string.google_drive == item.first && !Clouds.get()
+                                                                  .isGoogleDrive()) {
                     TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
 
                 }
-                if (R.string.one_drive == item.first && !Clouds.get().isOneDrive()) {
+                if (R.string.one_drive == item.first && !Clouds.get()
+                                                               .isOneDrive()) {
                     TintUtil.setTintImageNoAlpha(imageView, Color.LTGRAY);
 
                 }
@@ -563,43 +601,51 @@ public class ShareDialog {
             }
         }, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+            @Override public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    if (Clouds.get().isDropbox()) {
-                        Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
+                    if (Clouds.get()
+                              .isDropbox()) {
+                        Clouds.get()
+                              .syncronizeAdd(a, file, Clouds.get().dropbox);
                     } else {
-                        Clouds.get().loginToDropbox(a, new Runnable() {
-                            @Override
-                            public void run() {
-                                Clouds.get().syncronizeAdd(a, file, Clouds.get().dropbox);
-                            }
-                        });
+                        Clouds.get()
+                              .loginToDropbox(a, new Runnable() {
+                                  @Override public void run() {
+                                      Clouds.get()
+                                            .syncronizeAdd(a, file, Clouds.get().dropbox);
+                                  }
+                              });
                     }
                 } else if (which == 1) {
 
-                    if (Clouds.get().isGoogleDrive()) {
-                        Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
+                    if (Clouds.get()
+                              .isGoogleDrive()) {
+                        Clouds.get()
+                              .syncronizeAdd(a, file, Clouds.get().googleDrive);
                     } else {
-                        Clouds.get().loginToDropbox(a, new Runnable() {
-                            @Override
-                            public void run() {
-                                Clouds.get().syncronizeAdd(a, file, Clouds.get().googleDrive);
-                            }
-                        });
+                        Clouds.get()
+                              .loginToDropbox(a, new Runnable() {
+                                  @Override public void run() {
+                                      Clouds.get()
+                                            .syncronizeAdd(a, file, Clouds.get().googleDrive);
+                                  }
+                              });
                     }
 
                 } else if (which == 2) {
-                    if (Clouds.get().isOneDrive()) {
-                        Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
+                    if (Clouds.get()
+                              .isOneDrive()) {
+                        Clouds.get()
+                              .syncronizeAdd(a, file, Clouds.get().oneDrive);
                     } else {
-                        Clouds.get().loginToDropbox(a, new Runnable() {
+                        Clouds.get()
+                              .loginToDropbox(a, new Runnable() {
 
-                            @Override
-                            public void run() {
-                                Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
-                            }
-                        });
+                                  @Override public void run() {
+                                      Clouds.get()
+                                            .syncronizeAdd(a, file, Clouds.get().oneDrive);
+                                  }
+                              });
                     }
                 }
 

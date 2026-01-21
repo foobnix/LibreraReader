@@ -158,7 +158,9 @@ public class Playlists {
             return ((Activity) a).getString(R.string.current_folder) + folderName;
         }
         name = ExtUtils.getFileName(name);
-        return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(name).size() + ")";
+        String res = TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(
+                name).size() + ")";
+        return "\uD834\uDD1E "+res;
     }
 
     public static List<FileMeta> getAllPlaylistsMeta(Context a) {

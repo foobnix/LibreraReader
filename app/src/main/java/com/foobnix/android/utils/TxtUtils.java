@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
+import com.github.axet.lamejni.Config;
 
 import org.librera.LinkedJSONObject;
 
@@ -85,6 +86,10 @@ public class TxtUtils {
         } else {
             return fileMeta.getTitle();
         }
+    }
+
+    public static String iconText(Context c, String icon, int textID){
+        return icon + " " + c.getText(textID);
     }
 
     public static String formatInt(Integer in) {

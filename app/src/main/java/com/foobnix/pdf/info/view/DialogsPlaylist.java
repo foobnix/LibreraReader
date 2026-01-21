@@ -401,7 +401,7 @@ public class DialogsPlaylist {
         if (TxtUtils.isEmpty(palylistPathCheck)) {
             palylistPathCheck = AppState.get().playlistDefault;
         }
-        final String playlistPath = palylistPathCheck;
+        final String displayPath = palylistPathCheck;
 
         final List<String> res = new ArrayList<String>();
 
@@ -410,19 +410,19 @@ public class DialogsPlaylist {
             if (Apps.isDestroyedActivity(a)) {
                 return;
             }
-            LOG.d("getFilesAndDirs", "init", playlistPath);
-            if (playlistPath.equals(L_PLAYLIST_RECENT)) {
+            LOG.d("getFilesAndDirs", "init", displayPath);
+            if (displayPath.equals(L_PLAYLIST_RECENT)) {
                 res.addAll(convert(AppData.get()
                                           .getAllRecent(false), LIMIT_MAX_BOOKS));
-            } else if (playlistPath.equals(L_PLAYLIST_FAVORITES)) {
+            } else if (displayPath.equals(L_PLAYLIST_FAVORITES)) {
                 res.addAll(convert(FavoritesFragment2.getFavoritesSorted(false), LIMIT_MAX_BOOKS));
-            } else if (playlistPath.startsWith(L_PLAYLIST_FOLDER) || playlistPath.startsWith(
+            } else if (displayPath.startsWith(L_PLAYLIST_FOLDER) || displayPath.startsWith(
                     L_PLAYLIST_CURRENT_FOLDER)) {
                 String showPath = "";
-                if (playlistPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+                if (displayPath.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
                     showPath = AppState.get().displayPath;
                 } else {
-                    showPath = playlistPath.replace(L_PLAYLIST_FOLDER, "");
+                    showPath = displayPath.replace(L_PLAYLIST_FOLDER, "");
                 }
 
                 List<FileMeta> filesAndDirs =
@@ -431,16 +431,16 @@ public class DialogsPlaylist {
                 BrowseFragment2.sortItems(filesAndDirs);
                 res.addAll(convert(filesAndDirs, LIMIT_MAX_BOOKS));
 
-            } else if (playlistPath.startsWith(L_PLAYLIST_TAGS)) {
+            } else if (displayPath.startsWith(L_PLAYLIST_TAGS)) {
                 List<FileMeta> allTags = AppDB.get()
-                                              .searchBy("@tags " + playlistPath.replace(L_PLAYLIST_TAGS, ""),
+                                              .searchBy("@tags " + displayPath.replace(L_PLAYLIST_TAGS, ""),
                                                       AppDB.SORT_BY.FILE_NAME, false);
                 res.addAll(convert(allTags, LIMIT_MAX_BOOKS));
             } else {
                 mainHandler.post(() -> {
                             playListNameEdit.setVisibility(View.VISIBLE);
                         });
-                res.addAll(Playlists.getPlaylistItems(playlistPath));
+                res.addAll(Playlists.getPlaylistItems(displayPath));
             }
 
             if (Apps.isDestroyedActivity(a)) {
@@ -470,7 +470,7 @@ public class DialogsPlaylist {
                             dc.onCloseActivityFinal(new Runnable() {
 
                                 @Override public void run() {
-                                    ExtUtils.showDocumentWithoutDialog(a, new File(s), playlistPath);
+                                    ExtUtils.showDocumentWithoutDialog(a, new File(s), displayPath);
                                 }
                             });
                         }
@@ -493,12 +493,12 @@ public class DialogsPlaylist {
                 playListNameEdit.setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
-                        showPlayList(a, playlistPath, new Runnable() {
+                        showPlayList(a, displayPath, new Runnable() {
                             @Override public void run() {
                                 adapter.getItems()
                                        .clear();
                                 adapter.getItems()
-                                       .addAll(Playlists.getPlaylistItems(playlistPath));
+                                       .addAll(Playlists.getPlaylistItems(displayPath));
                                 adapter.notifyDataSetChanged();
 
                             }
@@ -510,7 +510,7 @@ public class DialogsPlaylist {
 
         });
 
-        playListName.setText("☰ " + Playlists.formatPlaylistName(a, playlistPath));
+        playListName.setText("☰ " + Playlists.formatPlaylistName(a, displayPath));
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
 
         playListName.setOnClickListener(v -> {
@@ -520,10 +520,13 @@ public class DialogsPlaylist {
                 return;
             }
 
-            final List<String> items = Playlists.getAllPlaylists();
+            final List<String> items = new ArrayList<>();
             items.add(L_PLAYLIST_RECENT);
             items.add(L_PLAYLIST_FAVORITES);
             items.add(L_PLAYLIST_CURRENT_FOLDER);
+
+
+
             final List<FileMeta> folders = AppData.get()
                                                   .getAllFavoriteFolders();
             if (!folders.isEmpty()) {
@@ -531,6 +534,9 @@ public class DialogsPlaylist {
                     items.add(L_PLAYLIST_FOLDER + folder.getPath());
                 }
             }
+
+            items.addAll(Playlists.getAllPlaylists());
+
             final List<String> tags = TagData.getAllTagsByFile();
             if (!tags.isEmpty()) {
                 for (String tag : tags) {
