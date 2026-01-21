@@ -106,6 +106,7 @@ public class DefaultListeners {
                     return false;
                 }
 
+
                 if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
                     DialogsPlaylist.showPlayList(a, result.getPath(), null);
                     return true;
@@ -373,44 +374,45 @@ public class DefaultListeners {
     }
 
     public static ResultResponse<FileMeta> getOnMenuClick(final Activity a, final FileMetaAdapter searchAdapter) {
-        return new ResultResponse<FileMeta>() {
+        return result -> {
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
-
-                ADS.hideAdsTemp(a);
-
-                File file = new File(result.getPath());
-
-                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
-                    file = Clouds.getCacheFile(file.getPath());
-                }
-
-                Runnable onDeleteAction = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        deleteFile(a, searchAdapter, result);
-                    }
-
-                };
-
-                if (ExtUtils.isExteralSD(result.getPath())) {
-                    ShareDialog.show(a, file, onDeleteAction, -1, null, null);
-                } else {
-
-                    if (ExtUtils.doifFileExists(a, result.getPath())) {
-
-                        if (ExtUtils.isNotSupportedFile(file)) {
-                            ShareDialog.showArchive(a, file, onDeleteAction);
-                        } else {
-                            ShareDialog.show(a, file, onDeleteAction, -1, null, null);
-                        }
-                    }
-                }
-
+            if (result.getPath() != null && result.getPath()
+                                                  .endsWith(Playlists.L_PLAYLIST)) {
+                ExtUtils.openFile(a, result);
                 return false;
             }
+
+            ADS.hideAdsTemp(a);
+
+            File file = new File(result.getPath());
+
+            if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                file = Clouds.getCacheFile(file.getPath());
+            }
+
+            Runnable onDeleteAction = new Runnable() {
+
+                @Override public void run() {
+                    deleteFile(a, searchAdapter, result);
+                }
+
+            };
+
+            if (ExtUtils.isExteralSD(result.getPath())) {
+                ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+            } else {
+
+                if (ExtUtils.doifFileExists(a, result.getPath())) {
+
+                    if (ExtUtils.isNotSupportedFile(file)) {
+                        ShareDialog.showArchive(a, file, onDeleteAction);
+                    } else {
+                        ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+                    }
+                }
+            }
+
+            return false;
         };
     }
 
@@ -461,9 +463,6 @@ public class DefaultListeners {
 
                 if (isStar == null) {
                     isStar = AppDB.get().isStarFolder(fileMeta.getPath());
-
-                } else {
-
                 }
 
 

@@ -227,6 +227,9 @@ public class AppData {
     public void removeFavorite(FileMeta meta) {
         removeAll(meta, AppProfile.APP_FAVORITE_JSON);
     }
+    public void removeFavorite(String path) {
+        removeAll(new FileMeta(path), AppProfile.APP_FAVORITE_JSON);
+    }
 
     public void removeExcluded(FileMeta meta) {
         removeAll(meta, AppProfile.APP_EXCLUDE_JSON);

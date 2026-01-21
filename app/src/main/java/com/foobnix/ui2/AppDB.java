@@ -414,6 +414,14 @@ public class AppDB {
         return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)).orderAsc(FileMetaDao.Properties.PathTxt).list();
     }
 
+
+
+    public boolean isStarFolderByFiles(String path) {
+        final List<FileMeta> folders = AppData.get()
+                                              .getAllFavoriteFolders();
+        return TxtUtils.isListNotEmpty(folders) && folders.contains(new FileMeta(path));
+
+    }
     public boolean isStarFolder(String path) {
         try {
             FileMeta load = fileMetaDao.load(path);
