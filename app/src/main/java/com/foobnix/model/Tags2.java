@@ -78,7 +78,11 @@ public class Tags2 {
             return Collections.emptyList();
         }
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
-        JSONArray array = obj.getJSONArray(tag);
+        JSONArray array = obj.optJSONArray(tag);
+        if(array==null){
+            return Collections.emptyList();
+        }
+
 
         return array.toList()
                     .stream()

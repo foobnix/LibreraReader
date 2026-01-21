@@ -18,6 +18,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -162,6 +163,7 @@ public class DefaultListeners {
 
                             @Override
                             public void run() {
+                                Tags2.updateTagsDB();
                                 EventBus.getDefault().post(new NotifyAllFragments());
                             }
                         });
