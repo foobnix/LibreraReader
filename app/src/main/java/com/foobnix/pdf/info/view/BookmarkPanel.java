@@ -35,8 +35,8 @@ public class BookmarkPanel {
         if (dc == null) {
             return;
         }
-        int tintColor = MagicHelper.getTintColor();
-        int colorWhite = ColorUtils.setAlphaComponent(Color.WHITE,240);
+        int tintColor = TintUtil.color;
+        int colorWhite = ColorUtils.setAlphaComponent(Color.WHITE,50);
 
         if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
             musicButtonPanel.setVisibility(View.VISIBLE);
