@@ -54,6 +54,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -1099,20 +1100,15 @@ public class Dialogs {
                     text = "#" + text;
                 }
 
-                if (StringDB.contains(AppState.get().bookTags, text)) {
-                    Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 Keyboards.close(edit);
                 Keyboards.hideNavigation((Activity) a);
 
-                StringDB.add(AppState.get().bookTags, text, (db) -> AppState.get().bookTags = db);
+                Tags2.createTag(text);
+
                 if (onRefresh != null) {
                     onRefresh.run();
                 }
                 create.dismiss();
-                AppProfile.save(a);
 
             }
         });
@@ -1120,13 +1116,7 @@ public class Dialogs {
 
     public static void showTagsDialog(final Activity a, final File file,
                                       final boolean isReadBookOption, final Runnable refresh) {
-        final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
-        final String tag = file == null ? "" : fileMeta.getTag();
-
-        LOG.d("showTagsDialog book tags", tag);
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        // builder.setTitle(R.string.tag);
 
         View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_tags, null, false);
 
@@ -1134,16 +1124,17 @@ public class Dialogs {
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_tag));
 
-        final List<String> tags = getAllTags(tag);
+        final List<String> allTags = Tags2.getAllTags();
+        final List<String> fileTags = Tags2.getAllTagsByFile(file);
 
         final Set<Integer> checked = new HashSet<>();
 
-        final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item, tags) {
+        final BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(a, R.layout.tag_item, allTags) {
             @Override
             public void populateView(View layout, final int position, final String tagName) {
                 CheckBox text = (CheckBox) layout.findViewById(R.id.tagName);
                 text.setText(tagName);
-                if (fileMeta == null) {
+                if (file == null) {
                     text.setEnabled(false);
                 }
 
@@ -1159,7 +1150,7 @@ public class Dialogs {
                     }
                 });
 
-                text.setChecked(StringDB.contains(tag, tagName));
+                text.setChecked(fileTags.contains(tagName));
 
                 ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
                 TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
@@ -1173,27 +1164,12 @@ public class Dialogs {
                             public void run() {
                                 checked.clear();
 
-                                LOG.d("AppState.get().bookTags before", AppState.get().bookTags);
-                                StringDB.delete(AppState.get().bookTags, tagName, (db) -> AppState.get().bookTags = db);
+                                Tags2.deleteTag(tagName);
 
-                                tags.clear();
-                                tags.addAll(getAllTags(tag));
+                                allTags.clear();
+                                allTags.addAll(Tags2.getAllTags());
 
                                 notifyDataSetChanged();
-
-                                List<FileMeta> allWithTag = AppDB.get().getAllWithTag(tagName);
-                                for (FileMeta meta : allWithTag) {
-                                    StringDB.delete(meta.getTag(), tagName, (db) -> meta.setTag(db));
-                                    TagData.saveTags(meta);
-                                }
-                                AppDB.get().updateAll(allWithTag);
-
-
-                                if (refresh != null) {
-                                    refresh.run();
-                                }
-
-                                LOG.d("AppState.get().bookTags after", AppState.get().bookTags);
 
                             }
                         });
@@ -1204,24 +1180,16 @@ public class Dialogs {
             }
         };
 
-        add.setOnClickListener(new OnClickListener() {
+        add.setOnClickListener(v -> addTagsDialog(a, new Runnable() {
 
             @Override
-            public void onClick(View v) {
-                addTagsDialog(a, new Runnable() {
+            public void run() {
+                allTags.clear();
+                allTags.addAll(Tags2.getAllTags());
+                adapter.notifyDataSetChanged();
 
-                    @Override
-                    public void run() {
-                        tags.clear();
-                        tags.addAll(getAllTags(tag));
-                        adapter.notifyDataSetChanged();
-                        if(refresh!=null) {
-                            refresh.run();
-                        }
-                    }
-                });
             }
-        });
+        }));
 
         list.setAdapter(adapter);
 
@@ -1235,27 +1203,22 @@ public class Dialogs {
             }
         });
 
-        if (fileMeta != null) {
+        if (file != null) {
 
             builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
-                String res = "";
-
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    res = "";
+                    List<String> tags = new ArrayList<>();
                     for (int i : checked) {
-                        StringDB.add(res, tags.get(i), (db) -> res = db);
+                        tags.add(allTags.get(i));
+
                     }
-                    LOG.d("showTagsDialog", res);
-                    if (fileMeta != null) {
-                        fileMeta.setTag(res);
-                        AppDB.get().update(fileMeta);
-                        TagData.saveTags(fileMeta);
-                    }
+                    Tags2.setTags(file,tags);
+
                     if (refresh != null) {
                         refresh.run();
                     }
-                    TempHolder.listHash++;
+
                 }
 
             });
@@ -1263,21 +1226,15 @@ public class Dialogs {
 
         if (isReadBookOption) {
             builder.setNeutralButton(R.string.read_a_book, new AlertDialog.OnClickListener() {
-                String res = "";
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    res = "";
-                    for (int i : checked) {
-                        StringDB.add(res, tags.get(i), (db) -> res = db);
-                    }
-                    LOG.d("showTagsDialog", res);
-                    if (fileMeta != null) {
-                        fileMeta.setTag(res);
-                        AppDB.get().update(fileMeta);
-                        TagData.saveTags(fileMeta);
-                    }
 
+                    List<String> tags = new ArrayList<>();
+                    for (int i : checked) {
+                        tags.add(allTags.get(i));
+                        Tags2.setTags(file,tags);
+                    }
                     ExtUtils.openFile(a, new FileMeta(file.getPath()));
                 }
 
@@ -1292,7 +1249,7 @@ public class Dialogs {
                 if (refresh != null) {
                     refresh.run();
                 }
-                TempHolder.listHash++;
+
                 Keyboards.close(a);
                 Keyboards.hideNavigation(a);
 
@@ -1302,7 +1259,7 @@ public class Dialogs {
 
     }
 
-    private static List<String> getAllTags(final String tag) {
+    private  List<String> getAllTags(final String tag) {
         Collection<String> res = new LinkedHashSet<String>();
 
         res.addAll(StringDB.asList(AppState.get().bookTags));

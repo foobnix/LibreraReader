@@ -25,6 +25,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -201,7 +202,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             Clouds.get().syncronizeGet();
 
-            TagData.restoreTags();
+            //TagData.restoreTags();
+            Tags2.updateTagsDB();
 
 
             List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);

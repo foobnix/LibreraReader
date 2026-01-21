@@ -56,6 +56,7 @@ public class AppProfile {
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
+    public static final String APP_TAGS_JSON2 = "app-Tags2.json";
 
     public static final String APP_WEB_DICT = "app-WebDict.json";
     public static final String APP_WEB_SEARCH = "app-WebSearch.json";
@@ -74,6 +75,7 @@ public class AppProfile {
     public static File syncExclude;
     public static File syncState;
     public static File syncTags;
+    public static File syncTags2;
     public static File syncCSS;
     public static File syncPlaylist;
     public static File syncProgress;
@@ -132,6 +134,7 @@ public class AppProfile {
         syncFavorite = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_FAVORITE_JSON);
         syncExclude = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_EXCLUDE_JSON);
         syncTags = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_TAGS_JSON);
+        syncTags2 = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_TAGS_JSON2);
 
         syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
         syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);

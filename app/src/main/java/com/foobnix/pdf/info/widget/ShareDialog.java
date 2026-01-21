@@ -30,6 +30,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
@@ -52,6 +53,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.adapter.TabsAdapter2;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -484,9 +486,8 @@ public class ShareDialog {
                 } else if (!isExternalOrCloud && which == i++) {
                     Dialogs.showTagsDialog(a, file, false, new Runnable() {
                         @Override public void run() {
-                            TempHolder.listHash++;
-                            EventBus.getDefault()
-                                    .post(new UpdateAllFragments());
+                            Tags2.updateTagsDB();
+                            EventBus.getDefault().post(new NotifyAllFragments());
                         }
                     });
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
@@ -502,8 +503,8 @@ public class ShareDialog {
                              .setIsSearchBook(file.getPath(), false);
                         FileMetaCore.createMetaIfNeed(to.getPath(), true);
 
-                        String tags = TagData.getTags(file.getPath());
-                        TagData.saveTags(to.getPath(), tags);
+                        //String tags = TagData.getTags(file.getPath());
+                        //TagData.saveTags(to.getPath(), tags);
 
                         boolean isRecent = AppData.contains(AppData.get()
                                                                    .getAllRecent(false), file.getPath());

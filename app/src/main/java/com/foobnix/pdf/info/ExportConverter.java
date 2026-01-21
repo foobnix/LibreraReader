@@ -78,7 +78,7 @@ public class ExportConverter {
             LinkedJSONObject it = tags.getJSONObject(i);
             String path = it.getString("path");
             String tag = it.getString("tag");
-            TagData.saveTags(path, tag);
+            //TagData.saveTags(path, tag);
         }
 
         TagData.restoreTags();

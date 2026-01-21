@@ -23,49 +23,52 @@ import java.util.Set;
 public class TagData {
 
 
-    public static void saveTags(FileMeta meta) {
-        saveTags(meta.getPath(), meta.getTag());
-    }
+//    public static void saveTags(FileMeta meta) {
+//        saveTags(meta.getPath(), meta.getTag());
+//    }
+//
+//    public static void saveTags(String path, String tags) {
+//        try {
+//            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+//            obj.put(MyPath.toRelative(path), tags);
+//            IO.writeObjAsync(AppProfile.syncTags, obj);
+//            LOG.d("saveTags", tags, path);
+//            restoreTags();
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
+//    }
 
-    public static void saveTags(String path, String tags) {
-        try {
-            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
-            obj.put(MyPath.toRelative(path), tags);
-            IO.writeObjAsync(AppProfile.syncTags, obj);
-            LOG.d("saveTags", tags, path);
-            restoreTags();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
+//    public static String getTags(String path) {
+//        try {
+//            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+//            return obj.getString(MyPath.toRelative(path));
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
+//        return "";
+//    }
 
-    public static String getTags(String path) {
-        try {
-            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
-            return obj.getString(MyPath.toRelative(path));
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return "";
-    }
-
-    public static List<String> getAllTagsByFile() {
-        Set<String> all = new HashSet<>();
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_TAGS_JSON)) {
-            LinkedJSONObject obj = IO.readJsonObject(file);
-            final Iterator<String> keys = obj.keys();
-            while (keys.hasNext()) {
-                final String key = keys.next();
-                String tags =  obj.getString(key);
-                List<String> ids = StringDB.asList(tags);
-                all.addAll(ids);
-            }
-        }
-        return new ArrayList<>(all);
-
-    }
+//    public static List<String> getAllTagsByFile() {
+//        Set<String> all = new HashSet<>();
+//        for (File file : AppProfile.getAllFiles(AppProfile.APP_TAGS_JSON)) {
+//            LinkedJSONObject obj = IO.readJsonObject(file);
+//            final Iterator<String> keys = obj.keys();
+//            while (keys.hasNext()) {
+//                final String key = keys.next();
+//                String tags =  obj.getString(key);
+//                List<String> ids = StringDB.asList(tags);
+//                all.addAll(ids);
+//            }
+//        }
+//        return new ArrayList<>(all);
+//
+//    }
 
     public static void restoreTags() {
+        if(true){
+            return;
+        }
         LOG.d("restoreTags");
 
         final List<FileMeta> allWithTag = AppDB.get().getAllWithTag();

@@ -301,6 +301,12 @@ public class AppDB {
         }
 
     }
+    public void updateUpdate(FileMeta load) {
+        if (fileMetaDao != null) {
+            fileMetaDao.update(load);
+        }
+
+    }
 
     public FileMeta load(String path) {
         if (fileMetaDao == null) {

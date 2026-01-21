@@ -46,6 +46,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
@@ -432,10 +433,13 @@ public class DialogsPlaylist {
                 res.addAll(convert(filesAndDirs, LIMIT_MAX_BOOKS));
 
             } else if (displayPath.startsWith(L_PLAYLIST_TAGS)) {
-                List<FileMeta> allTags = AppDB.get()
-                                              .searchBy("@tags " + displayPath.replace(L_PLAYLIST_TAGS, ""),
-                                                      AppDB.SORT_BY.FILE_NAME, false);
-                res.addAll(convert(allTags, LIMIT_MAX_BOOKS));
+//                List<FileMeta> allTags = AppDB.get()
+//                                              .searchBy("@tags " + displayPath.replace(L_PLAYLIST_TAGS, ""),
+//                                                      AppDB.SORT_BY.FILE_NAME, false);
+                //Tags2.getAllTags()
+                String tag = displayPath.replace(L_PLAYLIST_TAGS, "");
+
+                res.addAll(Tags2.getAllFilesByTag(tag));
             } else {
                 mainHandler.post(() -> {
                             playListNameEdit.setVisibility(View.VISIBLE);
@@ -537,7 +541,7 @@ public class DialogsPlaylist {
 
             items.addAll(Playlists.getAllPlaylists());
 
-            final List<String> tags = TagData.getAllTagsByFile();
+            final List<String> tags = Tags2.getAllTags();
             if (!tags.isEmpty()) {
                 for (String tag : tags) {
                     if (TxtUtils.isEmpty(tag)) {

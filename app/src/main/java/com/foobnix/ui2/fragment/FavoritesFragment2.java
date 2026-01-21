@@ -22,6 +22,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
@@ -43,9 +44,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import io.opencensus.tags.Tags;
+
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer>
-            PAIR =
+    public static final Pair<Integer, Integer> PAIR =
             new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_49_star);
 
     FileMetaAdapter recentAdapter;
@@ -53,13 +55,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     View panelRecent;
     String syncronizedBooksTitle;
 
-    @Override
-    public Pair<Integer, Integer> getNameAndIconRes() {
+    @Override public Pair<Integer, Integer> getNameAndIconRes() {
         return PAIR;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_starred, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -75,93 +75,97 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
 
-        view.findViewById(R.id.onShowMenu).setOnClickListener(v -> {
+        view.findViewById(R.id.onShowMenu)
+            .setOnClickListener(v -> {
 
-            MyPopupMenu p = new MyPopupMenu(getActivity(), v);
-            p.getMenu()
-             .addCheckbox(getString(R.string.tags), AppState.get().isShowFavTags, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowFavTags = isChecked;
-                     populate();
-                 }
-             });
-            p.getMenu()
-             .addCheckbox(getString(R.string.playlists), AppState.get().isShowFavPlaylist, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowFavPlaylist = isChecked;
-                     populate();
-                 }
-             });
-            p.getMenu()
-             .addCheckbox(getString(R.string.folders), AppState.get().isShowFavFolders, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowFavFolders = isChecked;
-                     populate();
-                 }
-             });
-            p.getMenu()
-             .addCheckbox(getString(R.string.books), AppState.get().isShowFavBooks, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowFavBooks = isChecked;
-                     populate();
-                 }
-             });
-            p.getMenu()
-             .addCheckbox(getString(R.string.synced_books), AppState.get().isShowSyncBooks, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowSyncBooks = isChecked;
-                     populate();
-                 }
-             });
+                MyPopupMenu p = new MyPopupMenu(getActivity(), v);
+                p.getMenu()
+                 .addCheckbox(getString(R.string.tags), AppState.get().isShowFavTags,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowFavTags = isChecked;
+                                 populate();
+                             }
+                         });
+                p.getMenu()
+                 .addCheckbox(getString(R.string.playlists), AppState.get().isShowFavPlaylist,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowFavPlaylist = isChecked;
+                                 populate();
+                             }
+                         });
+                p.getMenu()
+                 .addCheckbox(getString(R.string.folders), AppState.get().isShowFavFolders,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowFavFolders = isChecked;
+                                 populate();
+                             }
+                         });
+                p.getMenu()
+                 .addCheckbox(getString(R.string.books), AppState.get().isShowFavBooks,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowFavBooks = isChecked;
+                                 populate();
+                             }
+                         });
+                p.getMenu()
+                 .addCheckbox(getString(R.string.synced_books), AppState.get().isShowSyncBooks,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowSyncBooks = isChecked;
+                                 populate();
+                             }
+                         });
 
-            p.getMenu()
-             .addCheckbox(getString(R.string.discarded_books), AppState.get().isShowDiscardedBooks, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowDiscardedBooks = isChecked;
-                     populate();
-                 }
-             });
+                p.getMenu()
+                 .addCheckbox(getString(R.string.discarded_books), AppState.get().isShowDiscardedBooks,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowDiscardedBooks = isChecked;
+                                 populate();
+                             }
+                         });
 
-            p.getMenu()
-             .addCheckbox("Testing books", AppState.get().isShowTestBooks, new CompoundButton.OnCheckedChangeListener() {
-                 @Override
-                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                     AppState.get().isShowTestBooks = isChecked;
-                     populate();
-                 }
-             });
-            p.show();
-        });
+                p.getMenu()
+                 .addCheckbox("Testing books", AppState.get().isShowTestBooks,
+                         new CompoundButton.OnCheckedChangeListener() {
+                             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                 AppState.get().isShowTestBooks = isChecked;
+                                 populate();
+                             }
+                         });
+                p.show();
+            });
 
         sortOrder.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
-                onSort.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
-                sortOrder.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
+                onSort.setImageResource(
+                        AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
+                                R.drawable.glyphicons_476_sort_attributes);
+                sortOrder.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_222_chevron_up :
+                        R.drawable.glyphicons_221_chevron_down);
 
                 populate();
 
             }
         });
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt : R.drawable.glyphicons_476_sort_attributes);
-        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up : R.drawable.glyphicons_221_chevron_down);
+        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
+                R.drawable.glyphicons_476_sort_attributes);
+        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up :
+                R.drawable.glyphicons_221_chevron_down);
 
         sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         onSort.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
                         getActivity().getString(R.string.time), //
@@ -191,89 +195,93 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 for (int i = 0; i < names.size(); i++) {
                     String name = names.get(i);
                     final int j = i;
-                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu()
+                        .add(name)
+                        .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().sortByFavorite = ids.get(j);
-                            populate();
-                            return false;
-                        }
-                    });
+                            @Override public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().sortByFavorite = ids.get(j);
+                                populate();
+                                return false;
+                            }
+                        });
                 }
                 menu.show();
             }
         });
 
-        TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent))
+                .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
+                    @Override public void onClick(View v) {
+                        AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_),
+                                getString(R.string.ok), new Runnable() {
 
-                    @Override
-                    public void run() {
-                        for (FileMeta f : AppDB.get().getStarsFilesDeprecated()) {
-                            f.setIsStar(false);
-                            AppDB.get().update(f);
-                        }
-                        for (FileMeta f : AppDB.get().getStarsFoldersDeprecated()) {
-                            f.setIsStar(false);
-                            AppDB.get().update(f);
-                        }
-                        AppData.get().clearFavorites();
+                                    @Override public void run() {
+                                        for (FileMeta f : AppDB.get()
+                                                               .getStarsFilesDeprecated()) {
+                                            f.setIsStar(false);
+                                            AppDB.get()
+                                                 .update(f);
+                                        }
+                                        for (FileMeta f : AppDB.get()
+                                                               .getStarsFoldersDeprecated()) {
+                                            f.setIsStar(false);
+                                            AppDB.get()
+                                                 .update(f);
+                                        }
+                                        AppData.get()
+                                               .clearFavorites();
 
-                        populate();
+                                        populate();
+                                    }
+                                });
+
                     }
                 });
-
-            }
-        });
 
         onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
         onListGrid.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 popupMenu(onListGrid);
             }
         });
 
-        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists))
+                .setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
+                    @Override public void onClick(View v) {
+                        DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
 
-                    @Override
-                    public void run() {
-                        resetFragment();
-                        EventBus.getDefault().post(new NotifyAllFragments());
+                            @Override public void run() {
+                                resetFragment();
+                                EventBus.getDefault()
+                                        .post(new NotifyAllFragments());
+                            }
+                        }, null);
+
                     }
-                }, null);
+                });
+        TxtUtils.underlineTextView(view.findViewById(R.id.onTags))
+                .setOnClickListener(new OnClickListener() {
 
-            }
-        });
-        TxtUtils.underlineTextView(view.findViewById(R.id.onTags)).setOnClickListener(new OnClickListener() {
+                    @Override public void onClick(View v) {
+                        Dialogs.showTagsDialog((FragmentActivity) v.getContext(), null, false, new Runnable() {
 
-            @Override
-            public void onClick(View v) {
-                Dialogs.showTagsDialog((FragmentActivity) v.getContext(), null, false, new Runnable() {
+                            @Override public void run() {
+                                resetFragment();
+                                EventBus.getDefault()
+                                        .post(new NotifyAllFragments());
+                            }
+                        });
 
-                    @Override
-                    public void run() {
-                        resetFragment();
-                        EventBus.getDefault().post(new NotifyAllFragments());
                     }
                 });
 
-            }
-        });
-
         recentAdapter.setOnGridOrList(new ResultResponse<ImageView>() {
 
-            @Override
-            public boolean onResultRecive(ImageView result) {
+            @Override public boolean onResultRecive(ImageView result) {
                 popupMenu(result);
                 return false;
             }
@@ -303,8 +311,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_157_thumbnails, //
                 R.drawable.glyphicons_158_thumbnails_small //
                                                  );
-        final List<Integer>
-                actions =
+        final List<Integer> actions =
                 Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
         for (int i = 0; i < names.size(); i++) {
@@ -314,8 +321,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
              .setIcon(icons.get(i))
              .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                 @Override
-                 public boolean onMenuItemClick(MenuItem item) {
+                 @Override public boolean onMenuItemClick(MenuItem item) {
                      AppState.get().starsMode = actions.get(index);
                      image.setImageResource(icons.get(index));
 
@@ -330,8 +336,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
     }
 
-    @Override
-    public void onTintChanged() {
+    @Override public void onTintChanged() {
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
 
     }
@@ -340,24 +345,24 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         return false;
     }
 
-    @Override
-    public List<FileMeta> prepareDataInBackground() {
+    @Override public List<FileMeta> prepareDataInBackground() {
 
         List<FileMeta> all = new ArrayList<FileMeta>();
 
         if (AppState.get().isShowFavTags) {
-            List<String> tags = TagData.getAllTagsByFile();
-            Collections.sort(tags, String.CASE_INSENSITIVE_ORDER);
+            List<Pair<String, Integer>> tags = Tags2.getAllTagsWithCount();
 
             if (TxtUtils.isListNotEmpty(tags)) {
-                for (String tag : tags) {
-                    if (TxtUtils.isEmpty(tag)) {
+                for (Pair<String, Integer> pair : tags) {
+                    if (pair.second == 0) {
                         continue;
                     }
                     FileMeta m = new FileMeta("");
                     m.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG);
-                    int count = AppDB.get().getAllWithTag(tag).size();
-                    m.setPathTxt(tag + " (" + count + ")");
+//                    int count = AppDB.get()
+//                                     .getAllWithTag(tag)
+//                                     .size();
+                    m.setPathTxt(pair.first + " (" + pair.second + ")");
                     all.add(m);
                 }
 
@@ -380,7 +385,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 all.add(empy);
             }
 
-            all.addAll(AppData.get().getAllFavoriteFolders());
+            all.addAll(AppData.get()
+                              .getAllFavoriteFolders());
         }
 
         if (AppState.get().isShowFavBooks) {
@@ -397,7 +403,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         }
 
         if (AppState.get().isShowSyncBooks) {
-            final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
+            final List<FileMeta> allSyncBooks = AppData.get()
+                                                       .getAllSyncBooks();
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
 
                 FileMeta empy = new FileMeta();
@@ -409,10 +416,12 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             }
         }
         if (AppState.get().isShowDiscardedBooks) {
-            final List<SimpleMeta> allSyncBooks = AppData.get().getAllExcluded();
+            final List<SimpleMeta> allSyncBooks = AppData.get()
+                                                         .getAllExcluded();
             List<FileMeta> discardedBooks = new ArrayList<>();
             for (SimpleMeta s : allSyncBooks) {
-                discardedBooks.add(AppDB.get().getOrCreate(s.getPath()));
+                discardedBooks.add(AppDB.get()
+                                        .getOrCreate(s.getPath()));
             }
 
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
@@ -426,7 +435,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             }
         }
         if (AppState.get().isShowTestBooks) {
-            final List<FileMeta> allSyncBooks = AppData.get().getAllTestedBooks();
+            final List<FileMeta> allSyncBooks = AppData.get()
+                                                       .getAllTestedBooks();
             if (TxtUtils.isListNotEmpty(allSyncBooks)) {
 
                 FileMeta empy = new FileMeta();
@@ -442,7 +452,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     }
 
     public static List<FileMeta> getFavoritesSorted(boolean updateProgrss) {
-        final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(updateProgrss);
+        final List<FileMeta> allFavoriteFiles = AppData.get()
+                                                       .getAllFavoriteFiles(updateProgrss);
 
         if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
 
@@ -464,7 +475,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_EXT);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_AUTHOR) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_AUTHOR);
-                }else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_STAR_TIME) {
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_STAR_TIME) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_SORT_BY_STAR_TIME);
                 }
                 if (AppState.get().sortByFavoriteReverse) {
@@ -479,10 +490,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         return allFavoriteFiles;
     }
 
-    @Override
-    public void populateDataInUI(List<FileMeta> items) {
-        recentAdapter.getItemsList().clear();
-        recentAdapter.getItemsList().addAll(items);
+    @Override public void populateDataInUI(List<FileMeta> items) {
+        recentAdapter.getItemsList()
+                     .clear();
+        recentAdapter.getItemsList()
+                     .addAll(items);
         recentAdapter.notifyDataSetChanged();
     }
 
@@ -491,13 +503,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
     }
 
-    @Override
-    public void notifyFragment() {
+    @Override public void notifyFragment() {
         populate();
     }
 
-    @Override
-    public void resetFragment() {
+    @Override public void resetFragment() {
         onGridList();
         populate();
     }
