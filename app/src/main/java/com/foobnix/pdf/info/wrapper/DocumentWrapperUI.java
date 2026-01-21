@@ -766,10 +766,10 @@ public class DocumentWrapperUI {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
-        moveLeft.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
-        moveRight.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
-        zoomPlus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
-        zoomMinus.setVisibility(Dips.isSmallScreen() && Dips.isVertical() ? View.GONE : View.VISIBLE);
+        moveLeft.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
+        moveRight.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomPlus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
+        zoomMinus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
 
         onTextReplacement.setVisibility(View.GONE);
         if (dc.isTextFormat()) {
