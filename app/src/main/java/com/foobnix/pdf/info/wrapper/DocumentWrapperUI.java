@@ -770,6 +770,10 @@ public class DocumentWrapperUI {
         moveRight.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomPlus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomMinus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
+        onBC.setVisibility(View.GONE);
+        if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
+            onBC.setVisibility(View.VISIBLE);
+        }
 
         onTextReplacement.setVisibility(View.GONE);
         if (dc.isTextFormat()) {
@@ -781,11 +785,7 @@ public class DocumentWrapperUI {
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
             onTextReplacement.setVisibility(View.VISIBLE);
-            if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
-                onBC.setVisibility(View.VISIBLE);
-            } else {
-                onBC.setVisibility(View.GONE);
-            }
+
             if (AppSP.get().isCrop) {
                 crop.setVisibility(View.VISIBLE);
             }

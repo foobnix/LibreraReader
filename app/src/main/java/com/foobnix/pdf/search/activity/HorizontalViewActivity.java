@@ -1142,8 +1142,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
-                    onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBCOptional) {
+                    onBC.setVisibility(View.GONE );
+                    if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
