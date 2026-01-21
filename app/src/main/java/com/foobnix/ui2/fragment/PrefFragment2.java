@@ -838,7 +838,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBC = false;
+                                                               AppState.get().isEnableBCOptional = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -860,7 +860,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBC = false;
+                                                               AppState.get().isEnableBCOptional = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -881,7 +881,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBC = false;
+                                                               AppState.get().isEnableBCOptional = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -902,7 +902,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBC = false;
+                                                               AppState.get().isEnableBCOptional = false;
                                                                AppState.get().tintColor = Color.BLACK;
                                                                AppState.get().isUiTextColor = false;
 

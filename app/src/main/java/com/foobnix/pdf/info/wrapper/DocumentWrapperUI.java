@@ -269,7 +269,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
-                    onBC.underline(AppState.get().isEnableBC);
+                    onBC.underline(AppState.get().isEnableBCOptional);
                     dc.updateRendering();
                 }
             }, null);
@@ -781,7 +781,7 @@ public class DocumentWrapperUI {
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
             onTextReplacement.setVisibility(View.VISIBLE);
-            if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
+            if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
                 onBC.setVisibility(View.GONE);
@@ -1117,7 +1117,7 @@ public class DocumentWrapperUI {
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);
-        onBC.underline(AppState.get().isEnableBC);
+        onBC.underline(AppState.get().isEnableBCOptional);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 

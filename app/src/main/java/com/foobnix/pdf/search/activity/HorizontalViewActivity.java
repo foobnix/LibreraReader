@@ -40,7 +40,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
@@ -49,7 +48,6 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
@@ -59,7 +57,6 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -72,7 +69,6 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BookmarkPanel;
@@ -97,7 +93,6 @@ import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
-import com.foobnix.pdf.search.view.BookshelfView;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
@@ -112,8 +107,6 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-import com.google.android.gms.ads.OnUserEarnedRewardListener;
-import com.google.android.gms.ads.rewarded.RewardItem;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -123,8 +116,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class HorizontalViewActivity extends AdsFragmentActivity {
@@ -160,7 +151,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBC);
+            onBC.underline(AppState.get().isEnableBCOptional);
             IMG.clearMemoryCache();
             int position = viewPager.getCurrentItem();
             ImagePageFragment
@@ -561,7 +552,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
-        onBC.underline(AppState.get().isEnableBC);
+        onBC.underline(AppState.get().isEnableBCOptional);
         onBC.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -580,11 +571,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        onBC.setVisibility(isTextFomat ? View.GONE : View.VISIBLE);
+        onBC.setVisibility(View.GONE);
 
-        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBC) {
+        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBCOptional) {
             onBC.setVisibility(View.VISIBLE);
         }
+
         onMove.setVisibility(DocumentController.isEinkOrMode(this) && !isTextFomat ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.thumbnail).setOnClickListener(new View.OnClickListener() {
@@ -1151,7 +1143,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
+                    if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBCOptional) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -2588,7 +2580,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBC);
+            onBC.underline(AppState.get().isEnableBCOptional);
             // dc.getOutline(null, false);
             //dc.saveCurrentPageAsync();
             createAdapter();

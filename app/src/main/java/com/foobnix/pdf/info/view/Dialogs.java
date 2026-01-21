@@ -952,12 +952,12 @@ public class Dialogs {
 
         final CheckBox isEnableBC = new CheckBox(c);
         isEnableBC.setText(R.string.enable_contrast_and_brightness);
-        isEnableBC.setChecked(AppState.get().isEnableBC);
+        isEnableBC.setChecked(AppState.get().isEnableBCOptional);
         isEnableBC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isEnableBC = isChecked;
+                AppState.get().isEnableBCOptional = isChecked;
                 actionWrapper.run();
             }
         });

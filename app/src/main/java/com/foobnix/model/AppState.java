@@ -407,7 +407,7 @@ public class AppState {
     public int contrastImage = 0;
     public int brigtnessImage = 0;
     public boolean bolderTextOnImage = false;
-    public boolean isEnableBC = false;
+    public boolean isEnableBCOptional = false;
     @IgnoreHashCode public boolean stopReadingOnCall = true;
     @IgnoreHashCode public int appBrightness = AUTO_BRIGTNESS;
     @IgnoreHashCode public int appBrightnessNight = AUTO_BRIGTNESS;
@@ -676,7 +676,7 @@ public class AppState {
             isScrollAnimation = false;
             tintColor = Color.BLACK;
             bolderTextOnImage = true;
-            isEnableBC = true;
+            isEnableBCOptional = true;
             brigtnessImage = -50;
             isZoomInOutWithLock = false;
         }
