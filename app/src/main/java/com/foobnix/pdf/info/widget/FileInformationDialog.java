@@ -667,6 +667,7 @@ public class FileInformationDialog {
                            onDeleteAction.run();
                            AppData.get()
                                   .removeRecent(new FileMeta(file.getPath()));
+
                        }
 
                    }

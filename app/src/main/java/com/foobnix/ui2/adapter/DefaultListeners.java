@@ -66,6 +66,7 @@ public class DefaultListeners {
 
         });
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
+        //searchAdapter.setOnItemLongClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
     }
@@ -164,7 +165,7 @@ public class DefaultListeners {
                             @Override
                             public void run() {
                                 Tags2.updateTagsDB();
-                                EventBus.getDefault().post(new NotifyAllFragments());
+
                             }
                         });
                     } else {
@@ -258,6 +259,8 @@ public class DefaultListeners {
         if (delete) {
             TempHolder.listHash++;
             AppDB.get().delete(result);
+            Tags2.updateTagsDB();
+
             searchAdapter.getItemsList().remove(result);
             searchAdapter.notifyDataSetChanged();
 

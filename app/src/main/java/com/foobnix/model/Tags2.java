@@ -6,8 +6,10 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
 
+import org.greenrobot.eventbus.EventBus;
 import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
 
@@ -50,8 +52,8 @@ public class Tags2 {
         LOG.d("Tags2", "getAllTags", obj.length());
         ArrayList<Pair<String, Integer>> res = new ArrayList<>();
         for (String key : obj.keySet()) {
-            res.add(new Pair<>(key, obj.getJSONArray(key)
-                                       .length()));
+            long count = obj.getJSONArray(key).toList().stream().filter(o->new File(o.toString()).exists()).count();
+            res.add(new Pair<>(key, (int) count));
         }
 
         return res;
@@ -140,6 +142,9 @@ public class Tags2 {
             }
         }
         for (File file : mapTags.keySet()) {
+            if(!file.exists()){
+                continue;
+            }
             FileMeta load = AppDB.get()
                                  .getOrCreate(file.getPath());
             load.setIsSearchBook(true);
@@ -151,6 +156,9 @@ public class Tags2 {
             AppDB.get()
                  .updateUpdate(load);
         }
+
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
 
 }

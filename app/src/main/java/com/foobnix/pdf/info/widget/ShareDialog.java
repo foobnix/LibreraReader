@@ -469,7 +469,7 @@ public class ShareDialog {
                         if (load != null) {
                             load.setIsSearchBook(false);
                             load.setIsStar(false);
-                            load.setTag(null);
+
                             AppDB.get()
                                  .update(load);
 
@@ -477,6 +477,8 @@ public class ShareDialog {
                                    .removeFavorite(load);
                             AppData.get()
                                    .addExclue(load.getPath());
+
+                            Tags2.updateTagsDB();
 
                         }
                     }
@@ -487,7 +489,7 @@ public class ShareDialog {
                     Dialogs.showTagsDialog(a, file, false, new Runnable() {
                         @Override public void run() {
                             Tags2.updateTagsDB();
-                            EventBus.getDefault().post(new NotifyAllFragments());
+
                         }
                     });
                 } else if (AppsConfig.isCloudsEnable && which == i++) {

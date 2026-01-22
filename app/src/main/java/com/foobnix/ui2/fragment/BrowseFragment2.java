@@ -654,8 +654,10 @@ import java.util.Map;
                         deleteFolderPopup(getActivity(), result.getPath());
                     }
                 } else {
-                    DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter)
-                                    .onResultRecive(result);
+//                    DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter)
+//                                    .onResultRecive(result);
+                    DefaultListeners.getOnMenuClick(getActivity(),searchAdapter).onResultRecive(result);
+
                 }
                 return false;
             }
