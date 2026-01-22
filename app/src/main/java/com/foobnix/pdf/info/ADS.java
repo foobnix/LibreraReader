@@ -15,6 +15,7 @@ import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -36,16 +37,15 @@ import java.util.concurrent.TimeUnit;
 public class ADS {
     //public static int FULL_SCREEN_TIMEOUT_SEC = 15;
     public static int ADS_LIVE_SEC = 60 * 60;//60 min
-    public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//10 min
+    public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//4 min
+
+    public static int REWARDS_HOURS_IN_SECONDS = 2 * 60 * 60;//2 hours
+
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
 
     private AdView adView;
-
-    private long rewardedAdLoadedTime = 0;
-    private long interstitialLoadAdTime = 0;
-    private long interstitialAdShowTime = 0;
 
     private final static ADS instance = new ADS();
 
@@ -74,13 +74,13 @@ public class ADS {
         if (isRewardActivated()) {
             return;
         }
-        if (secondsRemain(interstitialLoadAdTime) > ADS_LIVE_SEC * 2L) {
+        if (secondsRemain(AppSP.get().interstitialLoadAdTime) > ADS_LIVE_SEC * 2L) {
             interstitialAd = null;
             LOG.d("ADS1", "showInterstitial interstitialLoadAdTime > ADS_LIVE_SEC");
             return;
         }
 
-        if (secondsRemain(interstitialAdShowTime) < INTERSTITIAL_DELAY_SEC) {
+        if (secondsRemain(AppSP.get().interstitialAdShowTime) < INTERSTITIAL_DELAY_SEC) {
             LOG.d("ADS1", "showInterstitial delay timeout");
             return;
         }
@@ -88,7 +88,7 @@ public class ADS {
         if (interstitialAd != null) {
             LOG.d("ADS1", "showInterstitial");
             interstitialAd.show(a);
-            interstitialAdShowTime = System.currentTimeMillis();
+            AppSP.get().interstitialAdShowTime = System.currentTimeMillis();
             interstitialAd = null;
             //loadInterstitial(a);
         }
@@ -96,10 +96,8 @@ public class ADS {
 
     public boolean isRewardActivated() {
         try {
-            long oneHourMillis = TimeUnit.HOURS.toMillis(AppsConfig.REWARS_HOURS);
-            long delta = System.currentTimeMillis() - AppState.get().rewardShowedDate;
-            boolean activated = delta < oneHourMillis;
-            LOG.d("ADS1", "isRewardActivated", activated, new SimpleDateFormat("HH:mm:ss").format(AppState.get().rewardShowedDate + oneHourMillis));
+            boolean activated = secondsRemain(AppSP.get().rewardShowTime) < REWARDS_HOURS_IN_SECONDS;
+            LOG.d("ADS1", "isRewardActivated", activated);
             return activated;
         } catch (Exception e) {
             LOG.e(e);
@@ -116,6 +114,7 @@ public class ADS {
             LOG.d("ADS1", "showRewardedAd");
             rewardedAd.show(a, listener);
             rewardedAd = null;
+            AppSP.get().rewardShowTime = System.currentTimeMillis();
         }
     }
 
@@ -132,8 +131,8 @@ public class ADS {
         if (isRewardActivated()) {
             return;
         }
-        if (rewardedAd != null && secondsRemain(rewardedAdLoadedTime) < ADS_LIVE_SEC) {
-            LOG.d("ADS1", "loadRewardedAd in cache", secondsRemain(rewardedAdLoadedTime));
+        if (rewardedAd != null && secondsRemain(AppSP.get().rewardedAdLoadedTime) < ADS_LIVE_SEC) {
+            LOG.d("ADS1", "loadRewardedAd in cache", secondsRemain(AppSP.get().rewardedAdLoadedTime));
             if (onRewardLoaded != null) {
                 onRewardLoaded.run();
             }
@@ -143,18 +142,16 @@ public class ADS {
 
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull RewardedAd rewardedAdLoaded) {
+            @Override public void onAdLoaded(@NonNull RewardedAd rewardedAdLoaded) {
                 rewardedAd = rewardedAdLoaded;
-                rewardedAdLoadedTime = System.currentTimeMillis();
+                AppSP.get().rewardedAdLoadedTime = System.currentTimeMillis();
                 if (onRewardLoaded != null) {
                     onRewardLoaded.run();
                 }
                 LOG.d("ADS1", "RewardedAd loaded");
             }
 
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+            @Override public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 rewardedAd = null;
                 LOG.d("ADS1", "RewardedAd failed", loadAdError);
             }
@@ -167,8 +164,8 @@ public class ADS {
             LOG.d("ADS1", "Interstitial destroyed");
             return;
         }
-        if (interstitialAd != null && secondsRemain(interstitialLoadAdTime) < ADS_LIVE_SEC) {
-            LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(interstitialLoadAdTime));
+        if (interstitialAd != null && secondsRemain(AppSP.get().interstitialLoadAdTime) < ADS_LIVE_SEC) {
+            LOG.d("ADS1", "loadInterstitial in cache", secondsRemain(AppSP.get().interstitialLoadAdTime));
             return;
         }
         if (isRewardActivated()) {
@@ -191,19 +188,17 @@ public class ADS {
 
             String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID");
             InterstitialAd.load(LibreraApp.context, adUnitId, ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                @Override public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
                     LOG.d("ADS1", "Interstitial LoadAdError", loadAdError);
                     interstitialAd = null;
                 }
 
-                @Override
-                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                @Override public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     super.onAdLoaded(interstitialAd);
                     LOG.d("ADS1", "Interstitial loaded");
                     ADS.this.interstitialAd = interstitialAd;
-                    interstitialLoadAdTime = System.currentTimeMillis();
+                    AppSP.get().interstitialLoadAdTime = System.currentTimeMillis();
 
                 }
             });
@@ -241,8 +236,7 @@ public class ADS {
             adView.loadAd(getAdRequest(a));
 
             adView.setAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(LoadAdError arg0) {
+                @Override public void onAdFailedToLoad(LoadAdError arg0) {
                     LOG.d("ADS1", "Banner LoadAdError", arg0);
                     try {
                         frame.setVisibility(View.GONE);
@@ -251,8 +245,7 @@ public class ADS {
                     }
                 }
 
-                @Override
-                public void onAdLoaded() {
+                @Override public void onAdLoaded() {
                     try {
                         frame.setVisibility(View.VISIBLE);
                         LOG.d("ADS1", "Banner loaded");
@@ -262,9 +255,8 @@ public class ADS {
                 }
             });
 
-            FrameLayout.LayoutParams
-                    params =
-                    new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
 
             adView.setLayoutParams(params);
@@ -287,7 +279,7 @@ public class ADS {
             return;
         }
         if (isRewardActivated()) {
-            LOG.d("ADS1", "isRewardActivated");
+            LOG.d("ADS1", "RewardActivated");
             onDestroyBanner();
             return;
         }

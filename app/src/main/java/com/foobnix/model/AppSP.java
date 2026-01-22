@@ -47,6 +47,14 @@ public class AppSP {
 
     transient SharedPreferences sp;
 
+
+
+    public long interstitialLoadAdTime = 0;
+    public long interstitialAdShowTime = 0;
+
+    public long rewardedAdLoadedTime = 0;
+    public long rewardShowTime = 0;
+
     public static AppSP get() {
         return instance;
     }

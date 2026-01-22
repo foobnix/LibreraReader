@@ -67,7 +67,7 @@ public class AppsConfig {
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
 
-    public static int REWARS_HOURS = 2;
+
 
     static {
         System.loadLibrary("MuPDF");

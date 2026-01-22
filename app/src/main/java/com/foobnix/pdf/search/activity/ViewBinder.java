@@ -42,7 +42,7 @@ public class ViewBinder {
                 @Override
                 public void onClick(View v) {
                     a.showRewardVideo(rewardItem -> {
-                        AppState.get().rewardShowedDate = System.currentTimeMillis();
+
                         showRewardVideo.setVisibility(View.GONE);
                     });
                 }
