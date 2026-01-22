@@ -2,7 +2,7 @@
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
-   <string name="add_folder">New folder</string>
+   <string name="add_folder">Add folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
    <string name="you_need_to_update_the_library">Now update Library to apply changes</string>

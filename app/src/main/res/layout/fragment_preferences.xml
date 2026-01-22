@@ -229,9 +229,9 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
             android:layout_weight="0"
-            android:padding="0dip"
+            android:padding="4dip"
+            android:textAllCaps="true"
             android:text="@string/add_folder" />
 
         <LinearLayout

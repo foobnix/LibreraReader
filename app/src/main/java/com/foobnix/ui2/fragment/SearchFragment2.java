@@ -71,6 +71,7 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
 import com.foobnix.sys.TempHolder;
@@ -87,6 +88,7 @@ import com.foobnix.work.SelfTestWorker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -575,6 +577,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         return view;
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showResult(MessageSyncFinish event) {
+        if (AppDB.get()
+                 .getCount() == 0) {
+            layoutError.setVisibility(View.VISIBLE);
+        }
     }
 
     public void showAutoCompleteDialog() {

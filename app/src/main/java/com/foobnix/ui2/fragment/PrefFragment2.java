@@ -1833,63 +1833,43 @@ public class PrefFragment2 extends UIFragment {
         searchPaths.setOnClickListener(v -> onFolderConfigDialog());
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
-        TxtUtils.underlineTextView(addFolder);
-        addFolder.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                onFolderConfigDialog();
-            }
-        });
+       addFolder.setText(TxtUtils.notAndUnderline("+ ", getString(R.string.add_folder)));
+        addFolder.setOnClickListener(v -> onFolderConfigDialog());
 
         TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).
-
                 setOnClickListener(v -> PrefDialogs.importDialog(
-
                 getActivity()));
 
         TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).
-
                 setOnClickListener(v -> PrefDialogs.exportDialog(
-
                 getActivity()));
 
         TxtUtils.underlineTextView(inflate.findViewById(R.id.migrationButton)).
-
                 setOnClickListener(v -> PrefDialogs.migrationDialog(
-
                 getActivity()));
 
         // folders
 
         final TextView rootFolder = inflate.findViewById(R.id.rootFolder);
         TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(AppSP.get().rootPath));
-        rootFolder.setOnClickListener(new
-
-                                              OnClickListener() {
-
-                                                  @Override
-                                                  public void onClick(View v) {
-                                                      ChooserDialogFragment.chooseFolder(getActivity(), AppSP.get().rootPath)
-                                                                           .setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                                                                               @Override
-                                                                               public boolean onResultRecive(
-                                                                                       String nPath, Dialog dialog) {
-                                                                                   if (new File(nPath).canWrite()) {
-                                                                                       AppSP.get().rootPath = nPath;
-                                                                                       new File(nPath, "Fonts").mkdirs();
-                                                                                       TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(nPath));
-                                                                                       onTheme();
-                                                                                   } else {
-                                                                                       Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG)
-                                                                                            .show();
-                                                                                   }
-                                                                                   dialog.dismiss();
-                                                                                   return false;
-                                                                               }
-                                                                           });
-                                                  }
-                                              });
+        rootFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder(getActivity(), AppSP.get().rootPath)
+                  .setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                 @Override
+                                 public boolean onResultRecive(
+                                         String nPath, Dialog dialog) {
+                                     if (new File(nPath).canWrite()) {
+                                         AppSP.get().rootPath = nPath;
+                                         new File(nPath, "Fonts").mkdirs();
+                                         TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(nPath));
+                                         onTheme();
+                                     } else {
+                                         Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG)
+                                              .show();
+                                     }
+                                     dialog.dismiss();
+                                     return false;
+                                 }
+                             }));
 
         final TextView fontFolder = inflate.findViewById(R.id.fontFolder);
         TxtUtils.underline(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));

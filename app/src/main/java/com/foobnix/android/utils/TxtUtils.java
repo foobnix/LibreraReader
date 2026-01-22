@@ -31,12 +31,10 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
-import com.github.axet.lamejni.Config;
 
 import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -864,6 +862,14 @@ public class TxtUtils {
             return Html.fromHtml("<u>" + text + "</u>", Html.FROM_HTML_MODE_LEGACY);
         } catch (Exception e) {
             return new SpannedString(text);
+
+        }
+    }
+    public static Spanned notAndUnderline(final String not, final String underline) {
+        try {
+            return Html.fromHtml(not+"<u>" + underline + "</u>", Html.FROM_HTML_MODE_LEGACY);
+        } catch (Exception e) {
+            return new SpannedString(underline);
 
         }
     }
