@@ -77,7 +77,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
         Prefs.get().put(SEARCH_ERRORS, 0);
         try {
-
+            Tags2.migration();
             itemsMeta = new LinkedList<FileMeta>();
 
             AppProfile.init(getApplicationContext());

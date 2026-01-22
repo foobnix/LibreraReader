@@ -21,6 +21,8 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.opencensus.tags.Tags;
+
 public class CheckDeletedBooksWorker extends MessageWorker {
 
 
@@ -31,6 +33,7 @@ public class CheckDeletedBooksWorker extends MessageWorker {
     @Override
     public boolean doWorkInner() {
         LOG.d("worker-starts","CheckDeletedBooksWorker");
+        Tags2.migration();
 
         List<FileMeta> all = AppDB.get().getAll();
 

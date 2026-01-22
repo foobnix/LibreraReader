@@ -15,12 +15,17 @@ import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Tags2 {
@@ -52,7 +57,11 @@ public class Tags2 {
         LOG.d("Tags2", "getAllTags", obj.length());
         ArrayList<Pair<String, Integer>> res = new ArrayList<>();
         for (String key : obj.keySet()) {
-            long count = obj.getJSONArray(key).toList().stream().filter(o->new File(o.toString()).exists()).count();
+            long count = obj.getJSONArray(key)
+                            .toList()
+                            .stream()
+                            .filter(o -> new File(o.toString()).exists())
+                            .count();
             res.add(new Pair<>(key, (int) count));
         }
 
@@ -81,10 +90,9 @@ public class Tags2 {
         }
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
         JSONArray array = obj.optJSONArray(tag);
-        if(array==null){
+        if (array == null) {
             return Collections.emptyList();
         }
-
 
         return array.toList()
                     .stream()
@@ -122,7 +130,51 @@ public class Tags2 {
         return -1;
     }
 
+    public static void migration() {
+        if (AppProfile.syncTags.exists() && !AppProfile.syncTags2.exists()) {
+            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+
+            final Iterator<String> keys = obj.keys();
+            Map<String, HashSet<File>> outMap =new HashMap<>();
+            while (keys.hasNext()) {
+                final String key = keys.next();
+                if(key.isEmpty()){
+                    continue;
+                }
+                final String file = MyPath.toAbsolute(key);
+                String tagsLine = obj.getString(key);
+                if (tagsLine.isEmpty()) {
+                    continue;
+                }
+                List<String> tags = Arrays.stream(tagsLine.split(","))
+                                         .map(String::trim)
+                                         .filter(o -> !o.isEmpty())
+                                         .collect(Collectors.toList());
+                if (tags.isEmpty()) {
+                    continue;
+                }
+
+                tags.forEach(it->{
+                    outMap.computeIfAbsent(it, k -> new HashSet<>())
+                          .add(new File(file));
+                });
+
+                LOG.d("migrationTag", file, tags,tags.size());
+            }
+            LinkedJSONObject objOut  = new LinkedJSONObject();
+            outMap.forEach((key, value) -> {
+                LOG.d("migrationTagRes", key, value);
+                objOut.put(key,new JSONArray(value));
+            });
+            IO.writeObjAsync(AppProfile.syncTags2, objOut);
+            LOG.d("migrationTag", "Success");
+        }else{
+            LOG.d("migrationTag", "No Need");
+        }
+    }
+
     public static void updateTagsDB() {
+
         LOG.d("Tags2", "updateTagsDB");
         final List<FileMeta> allWithTag = AppDB.get()
                                                .getAllWithTag();
@@ -142,7 +194,7 @@ public class Tags2 {
             }
         }
         for (File file : mapTags.keySet()) {
-            if(!file.exists()){
+            if (!file.exists()) {
                 continue;
             }
             FileMeta load = AppDB.get()

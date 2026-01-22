@@ -325,6 +325,7 @@ public class AppDB {
         try {
             load = fileMetaDao.load(path);
 
+
             if (load == null) {
                 load = new FileMeta(path);
                 fileMetaDao.insert(load);
