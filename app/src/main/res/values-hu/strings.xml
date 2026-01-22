@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">A könyv teljes.</string>
    <string name="time">Idő</string>
    <string name="current_folder">Aktuális mappa</string>
+   <string name="search_error_msg">Hiba történt a keresés során. Kérjük, válasszon egy másik, könyveket tartalmazó mappát, és próbálja újra.</string>
 </resources>

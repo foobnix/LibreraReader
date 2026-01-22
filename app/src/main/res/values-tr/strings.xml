@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Kitap tamamlandı.</string>
    <string name="time">Zaman</string>
    <string name="current_folder">Mevcut klasör</string>
+   <string name="search_error_msg">Arama sırasında bir hata oluştu. Lütfen kitapların bulunduğu farklı bir klasör seçip tekrar deneyin.</string>
 </resources>

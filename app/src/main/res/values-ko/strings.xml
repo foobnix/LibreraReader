@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">책이 완성되었습니다.</string>
    <string name="time">시간</string>
    <string name="current_folder">현재 폴더</string>
+   <string name="search_error_msg">검색 중 오류가 발생했습니다. 책이 들어 있는 다른 폴더를 선택하여 다시 시도해 주세요.</string>
 </resources>

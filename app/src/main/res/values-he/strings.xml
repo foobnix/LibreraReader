@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">הספר שלם.</string>
    <string name="time">זְמַן</string>
    <string name="current_folder">התיקייה הנוכחית</string>
+   <string name="search_error_msg">אירעה שגיאה בעת החיפוש. אנא בחר תיקייה אחרת המכילה ספרים ונסה שוב.</string>
 </resources>

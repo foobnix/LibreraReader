@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Kitabu kimekamilika.</string>
    <string name="time">Wakati</string>
    <string name="current_folder">Folda ya sasa</string>
+   <string name="search_error_msg">Hitilafu imetokea wakati wa kutafuta. Tafadhali chagua folda tofauti iliyo na vitabu na ujaribu tena.</string>
 </resources>

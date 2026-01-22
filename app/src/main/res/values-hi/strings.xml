@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">पुस्तक पूर्ण हो गई है।</string>
    <string name="time">समय</string>
    <string name="current_folder">वर्तमान फ़ोल्डर</string>
+   <string name="search_error_msg">खोजते समय एक त्रुटि हुई। कृपया पुस्तकों वाला कोई दूसरा फ़ोल्डर चुनें और पुनः प्रयास करें।</string>
 </resources>

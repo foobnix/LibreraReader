@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Tá an leabhar críochnaithe.</string>
    <string name="time">Am</string>
    <string name="current_folder">Fillteán reatha</string>
+   <string name="search_error_msg">Tharla earráid agus cuardach á dhéanamh. Roghnaigh fillteán eile ina bhfuil leabhair agus déan iarracht arís.</string>
 </resources>

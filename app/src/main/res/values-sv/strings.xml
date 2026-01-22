@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Boken är komplett.</string>
    <string name="time">Tid</string>
    <string name="current_folder">Aktuell mapp</string>
+   <string name="search_error_msg">Ett fel uppstod under sökningen. Välj en annan mapp som innehåller böcker och försök igen.</string>
 </resources>

@@ -163,6 +163,35 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:background="#F44336"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/hypenLangLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="@string/search_error_msg" />
+
+        <TextView
+            android:id="@+id/layoutErrorOnRestart"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="0"
+            android:textAllCaps="true"
+            android:text="@string/search" />
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

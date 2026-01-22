@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Kniha je kompletní.</string>
    <string name="time">Čas</string>
    <string name="current_folder">Aktuální složka</string>
+   <string name="search_error_msg">Při vyhledávání došlo k chybě. Vyberte prosím jinou složku s knihami a zkuste to znovu.</string>
 </resources>

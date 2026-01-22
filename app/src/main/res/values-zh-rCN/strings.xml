@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">这本书已经完成了。</string>
    <string name="time">时间</string>
    <string name="current_folder">当前文件夹</string>
+   <string name="search_error_msg">搜索时出错。请选择其他包含书籍的文件夹，然后重试。</string>
 </resources>

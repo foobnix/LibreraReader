@@ -149,8 +149,10 @@ public class LibreraApp extends MultiDexApplication {
             });
         }
 
-//        WorkManager.getInstance(context)
-//                   .cancelUniqueWork(SEARCH_FRAGMENT_WORKER_NAME);
+        WorkManager.getInstance(context).pruneWork();
+        WorkManager.getInstance(context).cancelAllWork();
+
+
 
     }
 

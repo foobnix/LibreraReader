@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Knyga baigta.</string>
    <string name="time">Laikas</string>
    <string name="current_folder">Dabartinis aplankas</string>
+   <string name="search_error_msg">Ieškant įvyko klaida. Pasirinkite kitą aplanką su knygomis ir bandykite dar kartą.</string>
 </resources>

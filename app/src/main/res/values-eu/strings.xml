@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Liburua osatuta dago.</string>
    <string name="time">Denbora</string>
    <string name="current_folder">Uneko karpeta</string>
+   <string name="search_error_msg">Errore bat gertatu da bilaketan zehar. Mesedez, hautatu liburuak dituen beste karpeta bat eta saiatu berriro.</string>
 </resources>

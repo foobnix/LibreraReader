@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">புத்தகம் முடிந்தது.</string>
    <string name="time">நேரம்</string>
    <string name="current_folder">தற்போதைய கோப்புறை</string>
+   <string name="search_error_msg">தேடும்போது பிழை ஏற்பட்டது. புத்தகங்களைக் கொண்ட வேறு கோப்புறையைத் தேர்ந்தெடுத்து மீண்டும் முயற்சிக்கவும்.</string>
 </resources>

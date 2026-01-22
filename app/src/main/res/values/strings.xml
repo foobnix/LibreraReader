@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">The book is complete.</string>
    <string name="time">Time</string>
    <string name="current_folder">Current Folder</string>
+   <string name="search_error_msg">An error occurred while searching. Please select a different folder containing books and try again.</string>
 </resources>

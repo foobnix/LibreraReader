@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Het boek is af.</string>
    <string name="time">Tijd</string>
    <string name="current_folder">Huidige map</string>
+   <string name="search_error_msg">Er is een fout opgetreden tijdens het zoeken. Selecteer een andere map met boeken en probeer het opnieuw.</string>
 </resources>

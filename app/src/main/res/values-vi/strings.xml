@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Cuốn sách đã hoàn thành.</string>
    <string name="time">Thời gian</string>
    <string name="current_folder">Thư mục hiện tại</string>
+   <string name="search_error_msg">Đã xảy ra lỗi trong quá trình tìm kiếm. Vui lòng chọn một thư mục khác chứa sách và thử lại.</string>
 </resources>

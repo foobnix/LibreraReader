@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Книга завершена.</string>
    <string name="time">Время</string>
    <string name="current_folder">Текущая папка</string>
+   <string name="search_error_msg">Произошла ошибка при поиске. Пожалуйста, выберите другую папку с книгами и попробуйте снова.</string>
 </resources>

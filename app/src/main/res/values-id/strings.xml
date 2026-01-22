@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Buku ini sudah selesai.</string>
    <string name="time">Waktu</string>
    <string name="current_folder">Folder saat ini</string>
+   <string name="search_error_msg">Terjadi kesalahan saat pencarian. Silakan pilih folder buku lain dan coba lagi.</string>
 </resources>

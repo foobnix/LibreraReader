@@ -1,7 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-
-
 import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
 import static com.foobnix.pdf.info.AppsConfig.WORKER_POLICY;
 
@@ -117,10 +115,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public int rememberPos = 0;
     FileMetaAdapter searchAdapter;
     AuthorsAdapter2 authorsAdapter;
-    TextView countBooks, sortBy;
+    TextView countBooks, sortBy, layoutErrorOnRestart;
     Handler handler;
     ImageView sortOrder, myAutoCompleteImage, cleanFilter, menu2;
-    View onRefresh, secondTopPanel;
+    View onRefresh, secondTopPanel, layoutError;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
     Runnable hideKeyboard = new Runnable() {
@@ -370,6 +368,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
+        layoutError = view.findViewById(R.id.layoutError);
+        layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);
+        TxtUtils.underlineTextView(layoutErrorOnRestart);
+        layoutError.setVisibility(View.GONE);
+
+        layoutError.setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                onRefresh.performClick();
+            }
+        });
+
         onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
             @Override public boolean onLongClick(View v) {
                 if (BooksService.isRunning) {
@@ -392,8 +401,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                                     //WorkManager.getInstance(getContext()).enqueue(workRequest);
                                     WorkManager.getInstance(getContext())
 
-                                               .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME,
-                                                       WORKER_POLICY, workRequest);
+                                               .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY,
+                                                       workRequest);
 
                                 }
                             }, null);
@@ -448,7 +457,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override public void run() {
                         Prefs.get()
-                             .remove(SearchAllBooksWorker.SEARCH_ERRORS, 0);
+                             .remove(AppProfile.getCurrent(), 0);
+                        layoutError.setVisibility(View.GONE);
                         recyclerView.scrollToPosition(0);
                         seachAll();
                         ((AdsFragmentActivity) SearchFragment2.this.getActivity()).showInterstitialNoFinish();
@@ -512,8 +522,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         onGridList();
 
-        if (Prefs.get()
-                 .isErrorExist(SearchAllBooksWorker.SEARCH_ERRORS, 0)) {
+        boolean errorExist = Prefs.get()
+                                  .isErrorExist(AppProfile.getCurrent(), 0);
+
+        layoutError.setVisibility(errorExist ? View.VISIBLE : View.GONE);
+
+        if (errorExist) {
             searchAndOrderAsync();
         } else {
             long count = AppProfile.bookCount;

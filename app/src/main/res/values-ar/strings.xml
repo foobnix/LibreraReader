@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">الكتاب مكتمل.</string>
    <string name="time">وقت</string>
    <string name="current_folder">المجلد الحالي</string>
+   <string name="search_error_msg">حدث خطأ أثناء البحث. يرجى تحديد مجلد آخر يحتوي على كتب والمحاولة مرة أخرى.</string>
 </resources>

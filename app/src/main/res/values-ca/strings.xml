@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">El llibre està complet.</string>
    <string name="time">Temps</string>
    <string name="current_folder">Carpeta actual</string>
+   <string name="search_error_msg">S\'ha produït un error durant la cerca. Seleccioneu una carpeta diferent que contingui llibres i torneu-ho a intentar.</string>
 </resources>

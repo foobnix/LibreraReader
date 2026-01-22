@@ -197,7 +197,7 @@ public class PrefFragment2 extends UIFragment {
         }
 
         if (profileLetter != null && getActivity() != null) {
-            final String p = AppProfile.getCurrent(getActivity());
+            final String p = AppProfile.getCurrent();
             profileLetter.setText(TxtUtils.getFirstLetter(p));
             profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
             profileLetter.setContentDescription(p + " " + getString(R.string.profile));
@@ -2693,7 +2693,7 @@ public class PrefFragment2 extends UIFragment {
 
         profileLetter = inflate.findViewById(R.id.profileLetter);
 
-        final String p = AppProfile.getCurrent(getActivity());
+        final String p = AppProfile.getCurrent();
 
         profileLetter.setText(TxtUtils.getFirstLetter(p));
         profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(
@@ -2727,7 +2727,7 @@ public class PrefFragment2 extends UIFragment {
                      .add(profile)
                      .setOnMenuItemClickListener(menu -> {
                          {
-                             if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
+                             if (!profile.equals(AppProfile.getCurrent())) {
 
                                  AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
 
@@ -2813,7 +2813,7 @@ public class PrefFragment2 extends UIFragment {
             }
 
             AppProfile.showDialog(getActivity(), profile -> {
-                if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
+                if (!profile.equals(AppProfile.getCurrent())) {
                     AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
 
                         @Override

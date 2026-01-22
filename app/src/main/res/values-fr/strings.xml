@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Le livre est terminé.</string>
    <string name="time">Temps</string>
    <string name="current_folder">Dossier actuel</string>
+   <string name="search_error_msg">Une erreur s\'est produite lors de la recherche. Veuillez sélectionner un autre dossier contenant des livres et réessayer.</string>
 </resources>

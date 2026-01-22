@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">O livro está completo.</string>
    <string name="time">Tempo</string>
    <string name="current_folder">Pasta atual</string>
+   <string name="search_error_msg">Ocorreu um erro durante a pesquisa. Selecione uma pasta diferente que contenha livros e tente novamente.</string>
 </resources>

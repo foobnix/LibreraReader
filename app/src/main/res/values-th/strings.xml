@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">หนังสือเล่มนี้เขียนเสร็จสมบูรณ์แล้ว</string>
    <string name="time">เวลา</string>
    <string name="current_folder">โฟลเดอร์ปัจจุบัน</string>
+   <string name="search_error_msg">เกิดข้อผิดพลาดขณะค้นหา โปรดเลือกโฟลเดอร์อื่นที่มีหนังสือและลองใหม่อีกครั้ง</string>
 </resources>

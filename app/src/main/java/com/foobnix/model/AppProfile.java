@@ -107,11 +107,11 @@ public class AppProfile {
             return;
         }
 
-        if (profile.equals(getCurrent(c))) {
+        if (profile.equals(getCurrent())) {
             LOG.d("AppProfile skip", profile);
             return;
         }
-        profile = getCurrent(c);
+        profile = getCurrent();
         String appDB = "db-" + AppSP.get().rootPath.hashCode() + "-" + profile;
         AppDB.get()
              .open(c, appDB);
@@ -127,7 +127,7 @@ public class AppProfile {
         syncFontFolder = new File(SYNC_FOLDER_ROOT, "Fonts");
         syncTestFolder = new File(SYNC_FOLDER_ROOT, "Test");
 
-        SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
+        SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent());
         SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);
         SYNC_FOLDER_DEVICE_PROFILE.mkdirs();
 
@@ -224,7 +224,7 @@ public class AppProfile {
         }
     }
 
-    public static String getCurrent(Context c) {
+    public static String getCurrent() {
         return AppSP.get().currentProfile;
     }
 
@@ -311,7 +311,7 @@ public class AppProfile {
 
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
                         TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
-                        if (tagName.equals(getCurrent(a))) {
+                        if (tagName.equals(getCurrent())) {
                             delete.setVisibility(View.GONE);
                         } else {
                             delete.setVisibility(View.VISIBLE);

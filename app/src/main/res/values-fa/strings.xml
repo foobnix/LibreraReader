@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">کتاب کامل است.</string>
    <string name="time">زمان</string>
    <string name="current_folder">پوشه فعلی</string>
+   <string name="search_error_msg">هنگام جستجو خطایی رخ داد. لطفاً پوشه دیگری حاوی کتاب‌ها را انتخاب کرده و دوباره امتحان کنید.</string>
 </resources>

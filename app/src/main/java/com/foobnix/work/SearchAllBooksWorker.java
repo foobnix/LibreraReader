@@ -45,7 +45,7 @@ import java.util.List;
 
 
 public class SearchAllBooksWorker extends MessageWorker {
-    public static final String SEARCH_ERRORS = "search_errors";
+
     Handler handler;
     List<FileMeta> itemsMeta;
 
@@ -67,8 +67,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
     public boolean doWorkInner() {
         LOG.d("worker-starts","SearchAllBooksWorker");
-
-        Prefs.get().put(SEARCH_ERRORS, 0);
+        String errorID = AppProfile.getCurrent();
+        Prefs.get().put(errorID, 0);
         try {
             Tags2.migration();
             itemsMeta = new LinkedList<FileMeta>();
@@ -221,7 +221,7 @@ public class SearchAllBooksWorker extends MessageWorker {
             }
             updateBookAnnotations();
         } finally {
-            Prefs.get().remove(SEARCH_ERRORS, 0);
+            Prefs.get().remove(errorID, 0);
             handler.removeCallbacksAndMessages(null);
         }
         return true;

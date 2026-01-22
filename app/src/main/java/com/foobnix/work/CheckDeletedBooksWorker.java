@@ -8,10 +8,12 @@ import androidx.work.WorkerParameters;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.TagData;
 import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.AppDB;
@@ -114,5 +116,6 @@ public class CheckDeletedBooksWorker extends MessageWorker {
         Tags2.updateTagsDB();
 
         return true;
+
     }
 }

@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Το βιβλίο είναι ολοκληρωμένο.</string>
    <string name="time">Φορά</string>
    <string name="current_folder">Τρέχων φάκελος</string>
+   <string name="search_error_msg">Παρουσιάστηκε σφάλμα κατά την αναζήτηση. Επιλέξτε διαφορετικό φάκελο που περιέχει βιβλία και προσπαθήστε ξανά.</string>
 </resources>

@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Liber completus est.</string>
    <string name="time">Tempus</string>
    <string name="current_folder">Fasciculus praesens</string>
+   <string name="search_error_msg">Error inquisitione accidit. Quaeso, aliam fasciculam libros continentem elige et iterum conare.</string>
 </resources>

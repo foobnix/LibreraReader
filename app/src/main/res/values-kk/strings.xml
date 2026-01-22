@@ -676,4 +676,5 @@
    <string name="the_book_is_complete">Кітап толықтай дайын.</string>
    <string name="time">Уақыт</string>
    <string name="current_folder">Ағымдағы қалта</string>
+   <string name="search_error_msg">Іздеу кезінде қате пайда болды. Кітаптар бар басқа қалтаны таңдап, қайталап көріңіз.</string>
 </resources>
