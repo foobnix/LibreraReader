@@ -30,6 +30,15 @@ public class CheckDeletedBooksWorker extends MessageWorker {
     }
 
     @Override public boolean doWorkInner() {
+        String errorID = AppProfile.getCurrent();
+        try {
+            Prefs.get().put(errorID, 0);
+            return doWork1();
+        }finally {
+            Prefs.get().remove(errorID, 0);
+        }
+    }
+     private boolean doWork1() {
         LOG.d("worker-starts", "CheckDeletedBooksWorker start");
         Tags2.migration();
 
