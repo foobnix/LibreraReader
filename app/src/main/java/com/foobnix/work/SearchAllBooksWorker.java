@@ -1,6 +1,8 @@
 package com.foobnix.work;
 
-import static com.foobnix.ui2.fragment.SearchFragment2.WORKER_NAME;
+
+import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
+import static com.foobnix.pdf.info.AppsConfig.WORKER_POLICY;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +11,6 @@ import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
@@ -24,9 +25,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
-import com.foobnix.model.TagData;
 import com.foobnix.model.Tags2;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -41,7 +40,6 @@ import com.foobnix.ui2.FileMetaCore;
 import org.ebookdroid.common.settings.books.SharedBooks;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -64,12 +62,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 .Builder(SearchAllBooksWorker.class).build();
 
         WorkManager.getInstance(context)
-                .enqueueUniqueWork(WORKER_NAME, ExistingWorkPolicy.REPLACE, workRequest);
-    }
-
-    public static void sendFinishMessage(Context c) {
-        Intent intent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_FINISH);
-        LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
+                .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, workRequest);
     }
 
     public boolean doWorkInner() {
@@ -217,7 +210,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             updateBookAnnotations();
         } finally {
-            handler.removeCallbacks(refreshTimer);
+            handler.removeCallbacksAndMessages(null);
             Prefs.get().remove(SEARCH_ERRORS, 0);
         }
         return true;

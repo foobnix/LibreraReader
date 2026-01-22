@@ -113,7 +113,7 @@ public class MobiParserIS {
     }
 
     public static byte[] copyOfRange(InputStream is, long offset, int len) {
-        LOG.d("copyOfRange", offset, (offset / 1024 / 1024));
+        //LOG.d("copyOfRange", offset, (offset / 1024 / 1024));
         try {
             byte[] res = new byte[len];
             is.reset();

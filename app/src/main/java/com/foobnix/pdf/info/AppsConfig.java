@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.work.ExistingWorkPolicy;
+
 import com.bumptech.glide.load.DecodeFormat;
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
@@ -22,7 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 public class AppsConfig {
 
@@ -39,6 +40,9 @@ public class AppsConfig {
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
+
+    public static final String SEARCH_FRAGMENT_WORKER_NAME = "search";
+    public static final ExistingWorkPolicy WORKER_POLICY = ExistingWorkPolicy.KEEP;
 
     static int cpuCores = Math.max(2, Runtime.getRuntime().availableProcessors() / 2);
 //    public final static ExecutorService executorService = Executors.newFixedThreadPool(2, r -> {
