@@ -203,8 +203,9 @@ public class Tags2 {
             String tags = mapTags.get(file)
                                  .stream()
                                  .collect(Collectors.joining(","));
-            load.setTag(tags + ",");
-            LOG.d("Tags2", "set", tags, load.getPath());
+            String tagLine = tags + ",";
+            load.setTag(tagLine);
+            LOG.d("Tags2", "set", tagLine, load.getPath());
             AppDB.get()
                  .updateUpdate(load);
         }
