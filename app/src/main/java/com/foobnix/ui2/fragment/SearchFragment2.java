@@ -526,6 +526,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                                   .isErrorExist(AppProfile.getCurrent(), 0);
 
         layoutError.setVisibility(errorExist ? View.VISIBLE : View.GONE);
+        if (BooksService.isRunning) {
+            layoutError.setVisibility(View.GONE);
+        }
 
         if (errorExist) {
             searchAndOrderAsync();
