@@ -44,8 +44,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import io.opencensus.tags.Tags;
-
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR =
             new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_49_star);

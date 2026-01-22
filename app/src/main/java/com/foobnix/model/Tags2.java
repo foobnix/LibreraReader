@@ -112,7 +112,9 @@ public class Tags2 {
                     array.put(file.getPath());
                 }
             } else {
-                array.remove(index);
+                if (index >= 0) {
+                    array.remove(index);
+                }
             }
 
         }
@@ -135,10 +137,10 @@ public class Tags2 {
             LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
 
             final Iterator<String> keys = obj.keys();
-            Map<String, HashSet<File>> outMap =new HashMap<>();
+            Map<String, HashSet<File>> outMap = new HashMap<>();
             while (keys.hasNext()) {
                 final String key = keys.next();
-                if(key.isEmpty()){
+                if (key.isEmpty()) {
                     continue;
                 }
                 final String file = MyPath.toAbsolute(key);
@@ -147,28 +149,28 @@ public class Tags2 {
                     continue;
                 }
                 List<String> tags = Arrays.stream(tagsLine.split(","))
-                                         .map(String::trim)
-                                         .filter(o -> !o.isEmpty())
-                                         .collect(Collectors.toList());
+                                          .map(String::trim)
+                                          .filter(o -> !o.isEmpty())
+                                          .collect(Collectors.toList());
                 if (tags.isEmpty()) {
                     continue;
                 }
 
-                tags.forEach(it->{
+                tags.forEach(it -> {
                     outMap.computeIfAbsent(it, k -> new HashSet<>())
                           .add(new File(file));
                 });
 
-                LOG.d("migrationTag", file, tags,tags.size());
+                LOG.d("migrationTag", file, tags, tags.size());
             }
-            LinkedJSONObject objOut  = new LinkedJSONObject();
+            LinkedJSONObject objOut = new LinkedJSONObject();
             outMap.forEach((key, value) -> {
                 LOG.d("migrationTagRes", key, value);
-                objOut.put(key,new JSONArray(value));
+                objOut.put(key, new JSONArray(value));
             });
             IO.writeObjAsync(AppProfile.syncTags2, objOut);
             LOG.d("migrationTag", "Success");
-        }else{
+        } else {
             LOG.d("migrationTag", "No Need");
         }
     }
