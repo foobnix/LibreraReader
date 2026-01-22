@@ -23,17 +23,16 @@ import java.util.List;
 
 public class CheckDeletedBooksWorker extends MessageWorker {
 
-
     public CheckDeletedBooksWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
 
-    @Override
-    public boolean doWorkInner() {
-        LOG.d("worker-starts","CheckDeletedBooksWorker");
+    @Override public boolean doWorkInner() {
+        LOG.d("worker-starts", "CheckDeletedBooksWorker start");
         Tags2.migration();
 
-        List<FileMeta> all = AppDB.get().getAll();
+        List<FileMeta> all = AppDB.get()
+                                  .getAll();
 
         for (FileMeta meta : all) {
             if (meta == null) {
@@ -47,7 +46,8 @@ public class CheckDeletedBooksWorker extends MessageWorker {
             File bookFile = new File(meta.getPath());
             if (ExtUtils.isMounted(bookFile)) {
                 if (!bookFile.exists()) {
-                    AppDB.get().delete(meta);
+                    AppDB.get()
+                         .delete(meta);
                     LOG.d("BooksService", "Delete-setIsSearchBook", meta.getPath());
                 }
             }
@@ -59,9 +59,12 @@ public class CheckDeletedBooksWorker extends MessageWorker {
             sendFinishMessage();
             return true;
         }
-
+        if (isStopped()) {
+            return false;
+        }
         for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (path != null && path.trim().length() > 0) {
+            if (path != null && path.trim()
+                                    .length() > 0) {
                 final File root = new File(path);
                 if (root.isDirectory()) {
                     LOG.d("Worker", "Search in " + root.getPath());
@@ -69,10 +72,16 @@ public class CheckDeletedBooksWorker extends MessageWorker {
                 }
             }
         }
+        if (isStopped()) {
+            return false;
+        }
 
-        boolean notifyResults =  false;
+        boolean notifyResults = false;
 
         for (FileMeta meta : localMeta) {
+            if (isStopped()) {
+                return false;
+            }
             if (!all.contains(meta)) {
                 FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
                 LOG.d("CheckDeletedBooksWorker", "Add book", meta.getPath());
@@ -80,20 +89,30 @@ public class CheckDeletedBooksWorker extends MessageWorker {
             }
         }
 
-
-        List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
+        List<FileMeta> allNone = AppDB.get()
+                                      .getAllByState(FileMetaCore.STATE_NONE);
         for (FileMeta m : allNone) {
+            if (isStopped()) {
+                return false;
+            }
             LOG.d("CheckDeletedBooksWorker", "STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
             FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
             notifyResults = true;
         }
 
-        Clouds.get().syncronizeGet();
-        LOG.d("CheckDeletedBooksWorker",notifyResults);
+        if (isStopped()) {
+            return false;
+        }
+        Clouds.get()
+              .syncronizeGet();
+        if (isStopped()) {
+            return false;
+        }
+        LOG.d("CheckDeletedBooksWorker", notifyResults);
 
         //TagData.restoreTags();
         Tags2.updateTagsDB();
 
-        return notifyResults;
+        return true;
     }
 }

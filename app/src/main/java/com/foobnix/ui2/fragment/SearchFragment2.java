@@ -664,7 +664,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
             WorkManager.getInstance(getContext())
                        .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, workRequest);
-            LOG.d("MessageWorker-Status checkForDeleteBooks");
+            //LOG.d("MessageWorker-Status checkForDeleteBooks");
         } catch (Exception e) {
             LOG.e(e);
         }

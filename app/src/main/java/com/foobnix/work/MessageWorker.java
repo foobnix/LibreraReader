@@ -24,19 +24,19 @@ abstract class MessageWorker extends Worker {
         super(context, workerParams);
     }
 
-
     public static void sendFinishMessage(Context c) {
-        Intent intent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_FINISH);
-        LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
+        Intent intent =
+                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_FINISH);
+        LocalBroadcastManager.getInstance(c)
+                             .sendBroadcast(intent);
     }
 
-    @NonNull
-    @Override
-    public Result doWork() {
+    @NonNull @Override public Result doWork() {
         boolean notifyResult = false;
         try {
+
+            LOG.d("MessageWorker-Status", "Status: #1 Started", this.getClass(), Thread.currentThread());
             BooksService.isRunning = true;
-            LOG.d("MessageWorker-Status", "Start", BooksService.isRunning, this.getClass());
             notifyResult = doWorkInner();
             return Result.success();
         } catch (Exception e) {
@@ -48,11 +48,13 @@ abstract class MessageWorker extends Worker {
         } catch (Throwable e) {
             return Result.failure();
         } finally {
-            if(notifyResult) {
+            if (notifyResult) {
                 sendFinishMessage();
+            } else {
+                LOG.d("MessageWorker-Status", "Status: #0 Cancelled", this.getClass(), Thread.currentThread());
             }
             BooksService.isRunning = false;
-            LOG.d("MessageWorker-Status", "Finish", BooksService.isRunning, this.getClass());
+            LOG.d("MessageWorker-Status", "Status: #2 Finished", this.getClass(), Thread.currentThread());
         }
 
     }
@@ -67,27 +69,37 @@ abstract class MessageWorker extends Worker {
         }
 
         sendFinishMessage(getApplicationContext());
-        EventBus.getDefault().post(new MessageSyncFinish());
+        EventBus.getDefault()
+                .post(new MessageSyncFinish());
     }
 
     protected void sendTextMessage(String text) {
-        Intent itent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_MESSAGE_TXT).putExtra("TEXT", text);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(itent);
+        Intent itent =
+                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_MESSAGE_TXT)
+                                                    .putExtra("TEXT", text);
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                             .sendBroadcast(itent);
     }
 
     protected void sendNotifyAll() {
         Intent itent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_NOTIFY_ALL);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(itent);
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                             .sendBroadcast(itent);
     }
 
     protected void sendProggressMessage(Collection<?> itemsMeta) {
-        Intent itent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_COUNT).putExtra("android.intent.extra.INDEX", itemsMeta.size());
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(itent);
+        Intent itent =
+                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_COUNT)
+                                                    .putExtra("android.intent.extra.INDEX", itemsMeta.size());
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                             .sendBroadcast(itent);
     }
 
     protected void sendBuildingLibrary() {
-        Intent itent = new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_BUILD_LIBRARY);
-        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(itent);
+        Intent itent =
+                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_BUILD_LIBRARY);
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                             .sendBroadcast(itent);
     }
 
 }

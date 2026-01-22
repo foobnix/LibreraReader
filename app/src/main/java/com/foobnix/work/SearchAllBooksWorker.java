@@ -193,7 +193,15 @@ public class SearchAllBooksWorker extends MessageWorker {
             sendFinishMessage();
             CacheZipUtils.CacheDir.ZipService.removeCacheContent();
 
+            if (isStopped()) {
+                return false;
+            }
+
             Clouds.get().syncronizeGet();
+
+            if (isStopped()) {
+                return false;
+            }
 
             //TagData.restoreTags();
             Tags2.updateTagsDB();
@@ -208,10 +216,13 @@ public class SearchAllBooksWorker extends MessageWorker {
                 FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
             }
 
+            if (isStopped()) {
+                return false;
+            }
             updateBookAnnotations();
         } finally {
-            handler.removeCallbacksAndMessages(null);
             Prefs.get().remove(SEARCH_ERRORS, 0);
+            handler.removeCallbacksAndMessages(null);
         }
         return true;
 

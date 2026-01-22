@@ -42,7 +42,7 @@ public class AppsConfig {
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
 
     public static final String SEARCH_FRAGMENT_WORKER_NAME = "search";
-    public static final ExistingWorkPolicy WORKER_POLICY = ExistingWorkPolicy.KEEP;
+    public static final ExistingWorkPolicy WORKER_POLICY = ExistingWorkPolicy.REPLACE;
 
     static int cpuCores = Math.max(2, Runtime.getRuntime().availableProcessors() / 2);
 //    public final static ExecutorService executorService = Executors.newFixedThreadPool(2, r -> {

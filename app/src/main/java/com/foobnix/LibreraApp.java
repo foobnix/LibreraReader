@@ -1,5 +1,7 @@
 package com.foobnix;
 
+import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -147,9 +149,11 @@ public class LibreraApp extends MultiDexApplication {
             });
         }
 
-
+//        WorkManager.getInstance(context)
+//                   .cancelUniqueWork(SEARCH_FRAGMENT_WORKER_NAME);
 
     }
+
 
 
 

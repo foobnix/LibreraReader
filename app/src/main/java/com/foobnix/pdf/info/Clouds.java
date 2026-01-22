@@ -295,6 +295,7 @@ public class Clouds {
         // IMG.clearDiscCache();
 
         syncronizeGet(dropbox, BookCSS.get().syncDropboxPath);
+
         syncronizeGet(googleDrive, BookCSS.get().syncGdrivePath);
         syncronizeGet(oneDrive, BookCSS.get().syncOneDrivePath);
 
