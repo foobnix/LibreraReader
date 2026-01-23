@@ -47,34 +47,22 @@ import java.io.File;
 
 public class DefaultListeners {
 
-    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc, final Runnable onClick) {
-        searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
+    public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc,
+                                   final Runnable onClick) {
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
-                onClick.run();
-                dc.onCloseActivityFinal(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null);
-
-                    }
-                });
-                return false;
-            }
-
+        searchAdapter.setOnItemClickListener(result -> {
+            onClick.run();
+            dc.onCloseActivityFinal(() -> ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null));
+            return false;
         });
-        searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
-        //searchAdapter.setOnItemLongClickListener(getOnMenuClick(a, searchAdapter));
+        searchAdapter.setOnItemLongClickListener(onLongClickChooser(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
     }
 
     public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter) {
         searchAdapter.setOnItemClickListener(getOnItemClickListener(a));
-        //searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
-        searchAdapter.setOnItemLongClickListener(getOnMenuClick(a, searchAdapter));
+        searchAdapter.setOnItemLongClickListener(onLongClickChooser(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
         searchAdapter.setOnTagClickListner(result -> {
@@ -83,12 +71,28 @@ public class DefaultListeners {
         });
     }
 
+    public static ResultResponse<FileMeta> onLongClickChooser(final Activity a,FileMetaAdapter searchAdapter) {
+        return fileMeta -> {
+            if(AppState.get().defaultLongClick == AppState.ACTION_BOOK_INFORMATION){
+                return getOnItemLongClickListenerFileInfo(a, searchAdapter).onResultRecive(fileMeta);
+            }else if(AppState.get().defaultLongClick == AppState.ACTION_BOOK_MENU){
+                return getOnMenuClick(a, searchAdapter).onResultRecive(fileMeta);
+            }
+            return false;
+        };
+
+    }
+
     public static void showBooksByTag(final Activity a, String result) {
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
-        LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                                                                 .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                         UITab.getCurrentTabIndex(
+                                                                                 UITab.SearchFragment));//
+        LocalBroadcastManager.getInstance(a)
+                             .sendBroadcast(intent);
 
-        EventBus.getDefault().post(new OpenTagMessage(result));
+        EventBus.getDefault()
+                .post(new OpenTagMessage(result));
     }
 
     public static void bindAdapterAuthorSerias(Activity a, final FileMetaAdapter searchAdapter) {
@@ -100,34 +104,39 @@ public class DefaultListeners {
     public static ResultResponse<FileMeta> getOnItemClickListener(final Activity a) {
         return new ResultResponse<FileMeta>() {
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
+            @Override public boolean onResultRecive(final FileMeta result) {
 
                 if (false) {
                     Dialogs.testWebView(a, result.getPath());
                     return false;
                 }
 
-
-                if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
+                if (result.getPath()
+                          .endsWith(Playlists.L_PLAYLIST)) {
                     DialogsPlaylist.showPlayList(a, result.getPath(), null);
                     return true;
                 }
 
-                boolean isFolder = AppDB.get().isFolder(result);
+                boolean isFolder = AppDB.get()
+                                        .isFolder(result);
 
-                if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
+                if (!isFolder && result.getPath()
+                                       .startsWith(Clouds.PREFIX_CLOUD)) {
 
                     Downloader.openOrDownload(a, result, new Runnable() {
 
-                        @Override
-                        public void run() {
+                        @Override public void run() {
                             IMG.clearCache(result.getPath());
 
                             Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, -2);//
-                            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                                                                                     .putExtra(
+                                                                                             MainTabs2.EXTRA_NOTIFY_REFRESH,
+                                                                                             true)//
+                                                                                     .putExtra(
+                                                                                             MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                                             -2);//
+                            LocalBroadcastManager.getInstance(a)
+                                                 .sendBroadcast(intent);
                         }
                     });
 
@@ -143,27 +152,32 @@ public class DefaultListeners {
                     final int currentTabIndex = UITab.getCurrentTabIndex(UITab.BrowseFragment);
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
 
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, currentTabIndex);//
+                                                                             .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                                     currentTabIndex);//
 
                     LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder9, currentTabIndex);
 
-                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                    LocalBroadcastManager.getInstance(a)
+                                         .sendBroadcast(intent);
 
-                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+                    EventBus.getDefault()
+                            .post(new OpenDirMessage(result.getPath()));
 
                 } else {
                     if (AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH) {
-                        AppData.get().addRecent(new SimpleMeta(result.getPath()));
-                        EventBus.getDefault().post(new NotifyAllFragments());
+                        AppData.get()
+                               .addRecent(new SimpleMeta(result.getPath()));
+                        EventBus.getDefault()
+                                .post(new NotifyAllFragments());
                         ExtUtils.openWith(a, new File(result.getPath()));
                         return false;
                     }
 
-                    if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
+                    if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(
+                            result.getPath())) {
                         Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 
-                            @Override
-                            public void run() {
+                            @Override public void run() {
                                 Tags2.updateTagsDB();
 
                             }
@@ -188,54 +202,55 @@ public class DefaultListeners {
         return false;
     }
 
-    public static ResultResponse<FileMeta> getOnItemLongClickListener(final Activity a, final FileMetaAdapter searchAdapter) {
-        return new ResultResponse<FileMeta>() {
+    public static ResultResponse<FileMeta> getOnItemLongClickListenerFileInfo(final Activity a,
+                                                                              final FileMetaAdapter searchAdapter) {
+        return result -> {
+            LOG.d("getOnItemLongClickListener");
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
-                LOG.d("getOnItemLongClickListener");
+            if (result.getPath() != null && result.getPath()
+                                                  .endsWith(Playlists.L_PLAYLIST)) {
+                ExtUtils.openFile(a, result);
+                return false;
+            }
 
-                if (result.getPath() != null && result.getPath().endsWith(Playlists.L_PLAYLIST)) {
-                    ExtUtils.openFile(a, result);
-                    return false;
-                }
+            if (ExtUtils.isExteralSD(result.getPath())) {
+                return false;
+            }
 
-                if (ExtUtils.isExteralSD(result.getPath())) {
-                    return false;
-                }
-
-                if (isTagCicked(a, result)) {
-                    return true;
-                }
-
-                File file = new File(result.getPath());
-
-                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
-                    file = Clouds.getCacheFile(file.getPath());
-                }
-
-                if (file.isDirectory()) {
-                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-
-                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
-                    return true;
-                }
-
-                Runnable onDeleteAction = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        deleteFile(a, searchAdapter, result);
-                    }
-
-                };
-                if (ExtUtils.doifFileExists(a, file)) {
-                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                }
+            if (isTagCicked(a, result)) {
                 return true;
             }
+
+            File file = new File(result.getPath());
+
+            if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                file = Clouds.getCacheFile(file.getPath());
+            }
+
+            if (file.isDirectory()) {
+                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                                                         .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                                 UITab.getCurrentTabIndex(
+                                                                                         UITab.BrowseFragment));//
+                LocalBroadcastManager.getInstance(a)
+                                     .sendBroadcast(intent);
+
+                EventBus.getDefault()
+                        .post(new OpenDirMessage(result.getPath()));
+                return true;
+            }
+
+            Runnable onDeleteAction = new Runnable() {
+
+                @Override public void run() {
+                    deleteFile(a, searchAdapter, result);
+                }
+
+            };
+            if (ExtUtils.doifFileExists(a, file)) {
+                FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+            }
+            return true;
         };
     }
 
@@ -258,15 +273,18 @@ public class DefaultListeners {
 
         if (delete) {
             TempHolder.listHash++;
-            AppDB.get().delete(result);
+            AppDB.get()
+                 .delete(result);
             Tags2.updateTagsDB();
 
-            searchAdapter.getItemsList().remove(result);
+            searchAdapter.getItemsList()
+                         .remove(result);
             searchAdapter.notifyDataSetChanged();
 
         } else {
             if (!Clouds.isCloud(result.getPath())) {
-                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG)
+                     .show();
             }
         }
     }
@@ -274,13 +292,11 @@ public class DefaultListeners {
     private static void removeSyncFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
         new AsyncProgressTask<Boolean>() {
 
-            @Override
-            public Context getContext() {
+            @Override public Context getContext() {
                 return a;
             }
 
-            @Override
-            protected Boolean doInBackground(Object... params) {
+            @Override protected Boolean doInBackground(Object... params) {
                 try {
                     String cloudFile = Clouds.LIBRERA_SYNC_ONLINE_FOLDER + "/" + ExtUtils.getFileName(result.getPath());
                     LOG.d("delete dropbox", cloudFile);
@@ -295,15 +311,16 @@ public class DefaultListeners {
                 return true;
             }
 
-            @Override
-            protected void onPostExecute(Boolean status) {
+            @Override protected void onPostExecute(Boolean status) {
                 super.onPostExecute(status);
                 LOG.d("Delete status", status);
                 if (status != null && status == true) {
 
                     TempHolder.listHash++;
-                    AppDB.get().delete(result);
-                    searchAdapter.getItemsList().remove(result);
+                    AppDB.get()
+                         .delete(result);
+                    searchAdapter.getItemsList()
+                                 .remove(result);
                     searchAdapter.notifyDataSetChanged();
 
                     new File(result.getPath()).delete();
@@ -312,12 +329,15 @@ public class DefaultListeners {
                     if (cacheFile != null && cacheFile.delete()) {
 
                         FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
-                        AppDB.get().delete(cacheMeta);
-                        searchAdapter.getItemsList().remove(cacheMeta);
+                        AppDB.get()
+                             .delete(cacheMeta);
+                        searchAdapter.getItemsList()
+                                     .remove(cacheMeta);
                     }
 
                 } else {
-                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG)
+                         .show();
                 }
             }
 
@@ -329,17 +349,17 @@ public class DefaultListeners {
     private static void removeCloudFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
         new AsyncProgressTask<Boolean>() {
 
-            @Override
-            public Context getContext() {
+            @Override public Context getContext() {
                 return a;
             }
 
-            @Override
-            protected Boolean doInBackground(Object... params) {
+            @Override protected Boolean doInBackground(Object... params) {
                 try {
                     String path = Clouds.getPath(result.getPath());
                     LOG.d("Delete file", result.getPath(), path);
-                    Clouds.get().cloud(result.getPath()).delete(path);
+                    Clouds.get()
+                          .cloud(result.getPath())
+                          .delete(path);
                 } catch (Exception e) {
                     LOG.e(e);
                     return false;
@@ -347,15 +367,16 @@ public class DefaultListeners {
                 return true;
             }
 
-            @Override
-            protected void onPostExecute(Boolean status) {
+            @Override protected void onPostExecute(Boolean status) {
                 super.onPostExecute(status);
                 LOG.d("Delete status", status);
                 if (status != null && status == true) {
 
                     TempHolder.listHash++;
-                    AppDB.get().delete(result);
-                    searchAdapter.getItemsList().remove(result);
+                    AppDB.get()
+                         .delete(result);
+                    searchAdapter.getItemsList()
+                                 .remove(result);
                     searchAdapter.notifyDataSetChanged();
 
                     File cacheFile = Clouds.getCacheFile(result.getPath());
@@ -363,13 +384,16 @@ public class DefaultListeners {
                     if (cacheFile != null && cacheFile.delete()) {
 
                         FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
-                        AppDB.get().delete(cacheMeta);
-                        searchAdapter.getItemsList().remove(cacheMeta);
+                        AppDB.get()
+                             .delete(cacheMeta);
+                        searchAdapter.getItemsList()
+                                     .remove(cacheMeta);
                     }
 
                     Clouds.runSync(a);
                 } else {
-                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                    Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG)
+                         .show();
                 }
             }
 
@@ -426,16 +450,18 @@ public class DefaultListeners {
     public static ResultResponse<String> getOnAuthorClickListener(final Activity a) {
         return new ResultResponse<String>() {
 
-            @Override
-            public boolean onResultRecive(String result) {
+            @Override public boolean onResultRecive(String result) {
 
                 result = AppDB.SEARCH_IN.AUTHOR.getDotPrefix() + " " + result;
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                        .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
+                                                                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
+                                                                         .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                                 UITab.getCurrentTabIndex(
+                                                                                         UITab.SearchFragment));//
 
-                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(a)
+                                     .sendBroadcast(intent);
                 return false;
             }
         };
@@ -444,16 +470,18 @@ public class DefaultListeners {
     public static ResultResponse<String> getOnSeriesClickListener(final Activity a) {
         return new ResultResponse<String>() {
 
-            @Override
-            public boolean onResultRecive(String result) {
+            @Override public boolean onResultRecive(String result) {
 
                 result = AppDB.SEARCH_IN.SERIES.getDotPrefix() + " " + result;
 
                 Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                        .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
+                                                                         .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
+                                                                         .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                                                                 UITab.getCurrentTabIndex(
+                                                                                         UITab.SearchFragment));//
 
-                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(a)
+                                     .sendBroadcast(intent);
                 return false;
             }
         };
@@ -462,27 +490,27 @@ public class DefaultListeners {
     public static ResultResponse2<FileMeta, FileMetaAdapter> getOnStarClick(final Activity a) {
         return new ResultResponse2<FileMeta, FileMetaAdapter>() {
 
-            @Override
-            public boolean onResultRecive(FileMeta fileMeta, FileMetaAdapter adapter) {
+            @Override public boolean onResultRecive(FileMeta fileMeta, FileMetaAdapter adapter) {
                 Boolean isStar = fileMeta.getIsStar();
 
                 if (isStar == null) {
-                    isStar = AppDB.get().isStarFolder(fileMeta.getPath());
+                    isStar = AppDB.get()
+                                  .isStarFolder(fileMeta.getPath());
                 }
-
 
                 fileMeta.setIsStar(!isStar);
 
-
                 if (fileMeta.getIsStar()) {
-                    AppData.get().addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
+                    AppData.get()
+                           .addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
                 } else {
-                    AppData.get().removeFavorite(fileMeta);
+                    AppData.get()
+                           .removeFavorite(fileMeta);
                 }
 
                 fileMeta.setIsStarTime(System.currentTimeMillis());
-                AppDB.get().save(fileMeta);
-
+                AppDB.get()
+                     .save(fileMeta);
 
                 if (adapter != null) {
                     adapter.notifyDataSetChanged();

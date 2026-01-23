@@ -2,11 +2,11 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:myseek="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:my="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="?android:attr/colorBackground"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,29 +16,29 @@
         android:layout_margin="@dimen/panel_padding"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
 
         <TextView
             android:id="@+id/recentName"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wh_button"
-            android:layout_weight="1"
             android:layout_marginLeft="@dimen/panel_title_padding"
-            android:lines="1"
-            android:maxLines="1"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="center_vertical"
+            android:lines="1"
+            android:maxLines="1"
             android:text="@string/preferences"
             android:textColor="@color/white"
             android:textStyle="normal" />
 
         <TextView
-            android:layout_marginLeft="10dip"
             android:id="@+id/onCloseApp"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dip"
             android:layout_marginRight="5dip"
             android:layout_weight="0"
             android:ellipsize="end"
@@ -51,746 +51,629 @@
 
     </LinearLayout>
 
-<ScrollView
-    android:id="@+id/scroll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
-
-
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="3dip">
-
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/closeMenu"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:layout_weight="0"
-            android:text="@string/close_menu" />
-
-
-          <TextView
-              android:visibility="gone"
-            android:id="@+id/adsSettigns"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:layout_weight="0"
-            android:text="@string/ad_privacy_settings" />
-
-
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/section9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:gravity="center_vertical">
-
-
-            <TextView
-                style="@style/textLinkWhite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/profile" />
-
-
-
-
-
-        </LinearLayout>
-
-
-
-
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="4dip">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="3dip">
+
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:singleLine="true"
-                android:text="@string/profile"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:padding="8dip"
-                android:visibility="invisible" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/profileLetter"
-                style="@style/textCircle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/onProfile"
+                android:id="@+id/closeMenu"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BETA"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/onProfileEdit"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:contentDescription="@string/settings"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                app:tint="@color/tint_gray" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/restoreDefaultProfile"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dip"
-            android:layout_weight="0"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/restore_defaults_short"
-            android:textSize="@dimen/text_title"
-            android:visibility="visible" />
-
-
-
-
-
-        <LinearLayout
-            android:id="@+id/section1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second">
-
-            <TextView
-                style="@style/textLinkWhite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/library_settings" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:singleLine="true"
-            android:text="@string/scan_device_for_new_books"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/searchPaths"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:padding="0dip"
-            android:singleLine="false"
-            android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
-
-        <TextView
-            android:id="@+id/onConfigPath"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:padding="4dip"
-            android:textAllCaps="true"
-            android:text="@string/add_folder" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/supportPDF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="0dip"
-                android:minWidth="110dp"
-                android:padding="-5dip"
-                android:text="PDF"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportDJVU"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="90dp"
-                android:text="DJVU"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportFB2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="FB2"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/supportMOBI"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="MOBI/AZW"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportEPUB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="90dp"
-                android:text="EPUB"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportXPS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="XPS"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/supportDOCX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="DOC/DOCX"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportRTF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="90dp"
-                android:text="RTF"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportODT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="ODT"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/supportCBZ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="CBZ/CBR"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportZIP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="90dip"
-                android:text="ZIP"
-                android:textSize="11sp" />
-
-            <CheckBox
-                android:id="@+id/supportTXT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="HTML/TXT"
-                android:textSize="11sp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/search_not_supported_formats"
+                android:layout_margin="5dip"
+                android:layout_weight="0"
+                android:text="@string/close_menu"
                 android:visibility="gone" />
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/adsSettigns"
+                style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_margin="5dip"
+                android:layout_weight="0"
+                android:text="@string/ad_privacy_settings"
+                android:visibility="gone" />
 
-
-                <CheckBox
-                    android:id="@+id/supportArch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="@string/archives"
-                    android:textSize="11sp" />
-
-                <CheckBox
-                    android:id="@+id/supportOther"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="110dp"
-                    android:text="@string/other"
-                    android:textSize="11sp" />
-            </LinearLayout>
 
             <LinearLayout
-
+                android:id="@+id/section9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:background="@drawable/bg_search_second"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+
+                <TextView
+                    style="@style/textLinkWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/profile" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="4dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:singleLine="true"
+                    android:text="@string/profile"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
-                    android:layout_weight="0"
-                    android:padding="4dip"
-                    android:src="@drawable/glyphicons_140_adjust"
-                     app:tint="@color/tint_gray"
-                    android:visibility="visible" />
+                    android:padding="8dip"
+                    android:visibility="invisible" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/moreLybraryettings"
+                    android:id="@+id/profileLetter"
+                    style="@style/textCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/onProfile"
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="BETA"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/onProfileEdit"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:contentDescription="@string/settings"
+                    android:padding="4dip"
+                    android:src="@drawable/glyphicons_137_cogwheel"
+                    app:tint="@color/tint_gray" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/restoreDefaultProfile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dip"
+                android:layout_weight="0"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/restore_defaults_short"
+                android:textSize="@dimen/text_title"
+                android:visibility="visible" />
+
+
+            <LinearLayout
+                android:id="@+id/section1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_second">
+
+                <TextView
+                    style="@style/textLinkWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/library_settings" />
 
 
             </LinearLayout>
 
-
-
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/section2"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/general_settings" />
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/tabs_position"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tapPositionTop"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/top" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/screen"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/fullscreen"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/orientation"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/screenOrientation"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="@string/automatic" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/language"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/appLang"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="Russian" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/font_size"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/appFontScale"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dip"
-                android:text="Normal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/theme"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/themeColor"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/light" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="135dp"
-                android:text="@string/engine"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/appEngine"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Librera_111" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/theme_color"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_weight="0"
-                android:id="@+id/colorsLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:orientation="horizontal">
-
-                <include
-                    android:id="@+id/color1"
-                    layout="@layout/item_color"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip" />
-
-                <include
-                    android:id="@+id/color2"
-                    layout="@layout/item_color"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="4dip"
-            android:layout_marginBottom="4dip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/accent"
-                android:textStyle="bold" />
-
-            <CheckBox
-                android:id="@+id/isAccentTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-
-            <LinearLayout
-                android:layout_weight="0"
-                android:id="@+id/colorsLine_a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:orientation="horizontal">
-
-                <include
-                    android:id="@+id/color1_a"
-                    layout="@layout/item_color"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip" />
-
-                <include
-                    android:id="@+id/color2_a"
-                    layout="@layout/item_color"
-                    android:layout_width="25dip"
-                    android:layout_height="25dip"
-                    android:layout_margin="1dip" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/linksColor"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/link_color" />
-
-        <LinearLayout
-            android:id="@+id/onColorChoser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:visibility="gone">
-
-            <ImageView
-                style="@style/wpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_gallery" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="Color Preferences"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:text="Book Text and Background colors" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="1dip"
-            android:layout_marginBottom="1dip"
-            android:background="@color/lt_grey_alpha" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:text="@string/brightness"
+                android:singleLine="true"
+                android:text="@string/scan_device_for_new_books"
                 android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/autoSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="0"
-                android:singleLine="true"
-                android:text="@string/system_brightness"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <com.foobnix.pdf.info.view.CustomSeek
-            android:id="@+id/customBrightness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/isEnableBlueFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="0"
-                android:text="" />
-
             <TextView
-                android:id="@+id/onBlueFilter"
+                android:id="@+id/searchPaths"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:text="@string/bluelight_filter" />
-        </LinearLayout>
+                android:layout_marginLeft="5dip"
+                android:padding="0dip"
+                android:singleLine="false"
+                android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
 
-        <LinearLayout
-            android:id="@+id/onKeyCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:visibility="gone">
-
-            <ImageView
+            <TextView
+                android:id="@+id/onConfigPath"
+                style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_5_settings"
-                 app:tint="@color/tint_gray" />
+                android:padding="4dip"
+                android:text="@string/add_folder"
+                android:textAllCaps="true" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/supportPDF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dip"
+                    android:minWidth="110dp"
+                    android:padding="-5dip"
+                    android:text="PDF"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportDJVU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="90dp"
+                    android:text="DJVU"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportFB2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="FB2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/supportMOBI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="MOBI/AZW"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportEPUB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="90dp"
+                    android:text="EPUB"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportXPS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="XPS"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/supportDOCX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="DOC/DOCX"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportRTF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="90dp"
+                    android:text="RTF"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportODT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="ODT"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/supportCBZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="CBZ/CBR"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportZIP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="90dip"
+                    android:text="ZIP"
+                    android:textSize="11sp" />
+
+                <CheckBox
+                    android:id="@+id/supportTXT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="110dp"
+                    android:text="HTML/TXT"
+                    android:textSize="11sp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/search_not_supported_formats"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <CheckBox
+                        android:id="@+id/supportArch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="110dp"
+                        android:text="@string/archives"
+                        android:textSize="11sp" />
+
+                    <CheckBox
+                        android:id="@+id/supportOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="110dp"
+                        android:text="@string/other"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
+                        android:layout_weight="0"
+                        android:padding="4dip"
+                        android:src="@drawable/glyphicons_140_adjust"
+                        android:visibility="visible"
+                        app:tint="@color/tint_gray" />
+
+                    <TextView
+                        android:id="@+id/moreLybraryettings"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/library_settings" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/section2"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:background="@drawable/bg_search_second"
+                android:text="@string/general_settings" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/tabs_position"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tapPositionTop"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/screen"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fullscreen"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/orientation"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/screenOrientation"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="@string/automatic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/language"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/appLang"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="Russian" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/font_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/appFontScale"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="Normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/theme"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/themeColor"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/engine"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/appEngine"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Librera_111" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/theme_color"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/colorsLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/color1"
+                        layout="@layout/item_color"
+                        android:layout_width="25dip"
+                        android:layout_height="25dip"
+                        android:layout_margin="1dip" />
+
+                    <include
+                        android:id="@+id/color2"
+                        layout="@layout/item_color"
+                        android:layout_width="25dip"
+                        android:layout_height="25dip"
+                        android:layout_margin="1dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="4dip"
+                android:layout_marginBottom="4dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/accent"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/isAccentTextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+                <LinearLayout
+                    android:id="@+id/colorsLine_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/color1_a"
+                        layout="@layout/item_color"
+                        android:layout_width="25dip"
+                        android:layout_height="25dip"
+                        android:layout_margin="1dip" />
+
+                    <include
+                        android:id="@+id/color2_a"
+                        layout="@layout/item_color"
+                        android:layout_width="25dip"
+                        android:layout_height="25dip"
+                        android:layout_margin="1dip" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/linksColor"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/link_color"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/onColorChoser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/wpButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_gallery" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -798,1098 +681,1236 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dip"
-                        android:text="@string/keys"
+                        android:text="Color Preferences"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:text="Book Text and Background colors" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1dip"
+                android:layout_marginBottom="1dip"
+                android:background="@color/lt_grey_alpha" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:tag="Brightness section"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:text="@string/brightness"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/autoSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dip"
+                        android:layout_weight="0"
+                        android:singleLine="true"
+                        android:text="@string/system_brightness"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <com.foobnix.pdf.info.view.CustomSeek
+                    android:id="@+id/customBrightness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/isEnableBlueFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/onBlueFilter"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dip"
+                        android:text="@string/bluelight_filter" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="3dip"
+                    android:layout_marginBottom="1dip"
+                    android:background="@color/lt_grey_alpha" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/onKeyCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_5_settings"
+                    app:tint="@color/tint_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textNextKeys"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dip"
-                            android:singleLine="true"
-                            android:text="Next Keys: 92,94,105,106" />
+                            android:text="@string/keys"
+                            android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/textPrevKeys"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dip"
-                            android:singleLine="true"
-                            android:text="Prev Keys: 93,96,104,107" />
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textNextKeys"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dip"
+                                android:singleLine="true"
+                                android:text="Next Keys: 92,94,105,106" />
+
+                            <TextView
+                                android:id="@+id/textPrevKeys"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dip"
+                                android:singleLine="true"
+                                android:text="Prev Keys: 93,96,104,107" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/onReverse"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/reverse_keys"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="3dip"
-            android:layout_marginBottom="1dip"
-            android:background="@color/lt_grey_alpha" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/isRememberMode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:layout_weight="1"
-                android:text="@string/remember_reading_mode" />
-
-            <TextView
-                android:id="@+id/selectedOpenMode"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:maxLines="2"
-                android:minWidth="100dip"
-                android:singleLine="false"
-                android:text="@string/mode_vertical" />
-
-            <ImageView
-                android:id="@+id/moreModeSettings"
-                android:contentDescription="@string/settings"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:padding="4dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                 app:tint="@color/tint_gray" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/isAppPassword"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/request_a_password_when_the_application_starts" />
-
-            <TextView
-                android:id="@+id/appPassword"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:minWidth="100dip"
-                android:singleLine="false"
-                android:text="@string/password" />
-        </LinearLayout>
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isOpenLastBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/opening_the_last_book_when_the_application_starts" />
-
-         <CheckBox
-             android:maxLines="1"
-            android:id="@+id/isAlwaysOpenOnPage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/open_books_on_page_1" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isRestoreSearchQuery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/restore_search_query_when_the_application_starts" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/lockBooksByDefault"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lock_books_by_default" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isShowCloseAppDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_application_close_dialog_every_time" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <CheckBox
-                android:maxLines="1"
-                android:id="@+id/isRememberDictionary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/open_in_the_dictionary" />
-
-            <TextView
-                android:id="@+id/selectedDictionaly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:padding="5dip"
-                android:singleLine="true"
-                android:text="GoogleTranslate" />
-        </LinearLayout>
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isLoopAutoplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@string/cyclic_scrolling_return_to_1_page_"
-            android:visibility="gone" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isDisplayAllFilesInFolder"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/display_all_file_types_in_folders" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isShowWhatIsNewDialog"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/show_the_dialog_what_is_new_for_updates" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isEnableAccessibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:text="@string/accessibility_mode" />
-
-        <CheckBox
-            android:maxLines="1"
-            android:id="@+id/isMenuIntegration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:text="@string/integration_in_the_context_menu" />
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/customize_font_background_colors"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/onDayColor"
-                    android:layout_width="90dip"
-                    android:layout_height="24dip"
-                    android:layout_marginLeft="5dip"
-                    android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:paddingLeft="5dip"
-                    android:paddingRight="5dip"
-                    android:text="@string/day"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/onNigthColor"
-                    android:layout_width="90dip"
-                    android:layout_height="24dip"
-                    android:layout_marginLeft="5dip"
-                    android:background="#000000"
-                    android:gravity="center"
-                    android:paddingLeft="5dip"
-                    android:paddingRight="5dip"
-                    android:text="@string/nigth"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/onDefaultColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_weight="0"
-                    android:ellipsize="end"
-                    android:padding="5dip"
-                    android:singleLine="true"
-                    android:text="@string/restore_defaults_short"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_144_database_search"
-                 app:tint="@color/tint_gray" />
-
-            <TextView
-                android:id="@+id/docSearch"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search_for_text_in_multiple_documents" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_filetypes_1_file_text"
-                 app:tint="@color/tint_gray" />
-
-            <TextView
-                android:id="@+id/docConverter"
-
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/document_converter_online_" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_371_plus"
-                 app:tint="@color/tint_gray" />
-
-            <TextView
-                android:id="@+id/newFile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_file_txt" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/cleanRecent"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/clear_all_recent" />
-
-            <Button
-                android:id="@+id/cleanBookmarks"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/clear_all_bookmars" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/section4"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/book_covers" />
-
-        <TextView
-            android:id="@+id/onContrast"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/contrast_and_brightness"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="1dip"
-            android:layout_marginBottom="1dip"
-            android:background="@color/lt_grey_alpha"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:text="@string/cover_image_size"
-            android:textStyle="bold" />
-
-        <com.foobnix.pdf.info.view.CustomSeek
-            android:id="@+id/coverSmallSize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            myseek:text="@string/list"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.foobnix.pdf.info.view.CustomSeek
-                android:id="@+id/coverBigSize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                myseek:text="@string/grid"></com.foobnix.pdf.info.view.CustomSeek>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:singleLine="true"
-                android:text="@string/column_count" />
-
-            <TextView
-                android:id="@+id/columsCount"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:minWidth="60dip"
-                android:text="2"
-                android:textAllCaps="true" />
-
-            <TextView
-                android:id="@+id/columsDefaul"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/restore_defaults_short" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="1dip"
-            android:layout_marginBottom="1dip"
-            android:background="@color/lt_grey_alpha" />
-
-        <CheckBox
-            android:id="@+id/isShowImages"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_book_covers" />
-
-        <CheckBox
-            android:id="@+id/isBookCoverEffect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_effect_of_the_book_cover" />
-
-        <CheckBox
-            android:id="@+id/isCropBookCovers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/crop_images_in_the_book_cover" />
-
-        <CheckBox
-            android:id="@+id/isBorderAndShadow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/borders_and_shadow_around_the_book_cover" />
-
-        <TextView
-            android:id="@+id/section7"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/tabs_position" />
-
-        <CheckBox
-            android:id="@+id/isshowPrefAsMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_preferences_tab_in_the_left_menu" />
-
-        <com.jmedeisis.draglinearlayout.DragLinearLayout
-            android:id="@+id/dragLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include layout="@layout/item_tab_line" />
-
-            <include layout="@layout/item_tab_line" />
-        </com.jmedeisis.draglinearlayout.DragLinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tabsDefaul"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/restore_defaults_short" />
-
-            <TextView
-                android:id="@+id/tabsApply"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minWidth="100dip"
-                android:text="@string/apply" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/section5"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/widget" />
-
-        <!-- Prefs. > Preferences > Widget -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="135dp"
-                    android:text="@string/show" />
-
-                <TextView
-                    android:id="@+id/widgetForRecent"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="100dip"
-                    android:text="@string/recent" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="135dp"
-                    android:text="@string/layout" />
-
-                <TextView
-                    android:id="@+id/widgetLayout"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="100dip"
-                    android:text="@string/grid" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="135dp"
-                    android:text="@string/number_of_books" />
-
-                <TextView
-                    android:id="@+id/widgetItemsCount"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:textAllCaps="true" />
-            </LinearLayout>
-        </LinearLayout>
-        <!-- end of  "Prefs. > Preferences > Widget" -->
-
-
-        <TextView
-            android:id="@+id/section3"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bg_search_second"
-            android:text="@string/import_or_export_application_settings_to_json_file" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/importButton"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:minWidth="100dip"
-                android:text="@string/import_" />
-
-            <TextView
-                android:id="@+id/exportButton"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="0"
-                android:minWidth="100dip"
-                android:text="@string/export_" />
-
-            <TextView
-                android:id="@+id/migrationButton"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_weight="0"
-                android:minWidth="100dip"
-                android:text="@string/migration" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <CheckBox
-                android:id="@+id/isAutomaticExport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/automatic_export_backup" />
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/profile_root" />
-
-            <TextView
-                android:id="@+id/rootFolder"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/folder_with_fonts" />
-
-            <TextView
-                android:id="@+id/fontFolder"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/folder_for_downloaded_books" />
-
-            <TextView
-                android:id="@+id/downloadFolder"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/cloud_sync_folder" />
-
-            <TextView
-                android:id="@+id/syncPath"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/backup_folder" />
-
-            <TextView
-                android:id="@+id/backupFolder"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="135dip"
-                android:text="@string/audio_books_folder" />
-
-            <TextView
-                android:id="@+id/ttsFolder"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="start"
-                android:text="[]" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sectionSync"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:id="@+id/section8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_search_second"
-                android:gravity="center_vertical">
-
-
-                <ImageView
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_weight="0"
-                    android:padding="2dip"
-                    android:src="@drawable/gdrive"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/syncHeader"
-                    style="@style/textLinkWhite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/sync_google_drive" />
-
-
-                <TextView
-                    android:id="@+id/signIn"
-                    style="@style/textLinkWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:singleLine="true"
-                    android:text="@string/sign_in" />
-
-
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/syncInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dip"
-                android:text="ivan@gmail.com" />
-
-            <TextView
-                android:id="@+id/syncInfo2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dip"
-                android:text="ivan@gmail.com" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical">
-
 
                 <CheckBox
-                    android:id="@+id/isEnableSync"
+                    android:id="@+id/onReverse"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/reverse_keys"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <com.foobnix.pdf.info.view.confline.ConfLineView
+                android:visibility="gone"
+                android:id="@+id/configDefaultView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                my:text="Default View" />
+
+            <com.foobnix.pdf.info.view.confline.ConfLineView
+                android:id="@+id/configSingleClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                my:text="Single click" />
+
+            <com.foobnix.pdf.info.view.confline.ConfLineView
+                android:id="@+id/configLongClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                my:text="Long Click" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dip"
+                android:layout_marginBottom="1dip"
+                android:background="@color/lt_grey_alpha" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/isRememberMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/enable" />
+                    android:maxLines="1"
+                    android:text="@string/remember_reading_mode" />
 
+                <TextView
+                    android:id="@+id/selectedOpenMode"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:maxLines="2"
+                    android:minWidth="100dip"
+                    android:singleLine="false"
+                    android:text="@string/mode_vertical" />
 
                 <ImageView
-                    android:id="@+id/isEnableSyncSettings"
+                    android:id="@+id/moreModeSettings"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
+                    android:contentDescription="@string/settings"
                     android:padding="4dip"
                     android:src="@drawable/glyphicons_137_cogwheel"
-                     app:tint="@color/tint_gray" />
+                    android:visibility="gone"
+                    app:tint="@color/tint_gray" />
+
+
             </LinearLayout>
 
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/section6"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:background="@drawable/bg_search_second"
-            android:text="Product: Lirbi Free" />
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:orientation="horizontal"
-            android:padding="4dip"
-            android:visibility="visible">
-
-            <ImageView
-                android:tag="@string/no_tint"
-                android:id="@+id/imageView1"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_margin="4dip"
-                android:src="@mipmap/icon_pdf_pro" />
-
-            <TextView
-                android:id="@+id/downloadPRO"
-                style="@style/textLink"
-                android:padding="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="@string/librera_pro" />
-        </LinearLayout>
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/pVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dip"
-            android:text="Version: 1.2.3" />
-
-
-        <TextView
-            android:id="@+id/whatIsNew"
-            style="@style/textLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:padding="0dp"
-            android:singleLine="true"
-            android:text="@string/what_is_new_in" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/licence_gnu_gpl_v3_0" />
-
-            <TextView
-                android:id="@+id/libraryLicenses"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:text="@string/licenses_for_libraries" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dip">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/autor_ivan_ivanenko" />
-        </LinearLayout>
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dip"
-            android:gravity="center_vertical">
+                <CheckBox
+                    android:id="@+id/isAppPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/request_a_password_when_the_application_starts" />
 
-            <TextView
-                android:layout_width="100dip"
+                <TextView
+                    android:id="@+id/appPassword"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:minWidth="100dip"
+                    android:singleLine="false"
+                    android:text="@string/password" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/isOpenLastBook"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dip"
-                android:text="@string/support" />
+                android:maxLines="1"
+                android:text="@string/opening_the_last_book_when_the_application_starts" />
+
+            <CheckBox
+                android:id="@+id/isAlwaysOpenOnPage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/open_books_on_page_1" />
+
+            <CheckBox
+                android:id="@+id/isRestoreSearchQuery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/restore_search_query_when_the_application_starts" />
+
+            <CheckBox
+                android:id="@+id/lockBooksByDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/lock_books_by_default" />
+
+            <CheckBox
+                android:id="@+id/isShowCloseAppDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/show_application_close_dialog_every_time" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/isRememberDictionary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/open_in_the_dictionary" />
+
+                <TextView
+                    android:id="@+id/selectedDictionaly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:padding="5dip"
+                    android:singleLine="true"
+                    android:text="GoogleTranslate" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/isLoopAutoplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/cyclic_scrolling_return_to_1_page_"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/isDisplayAllFilesInFolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="@string/display_all_file_types_in_folders"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/isShowWhatIsNewDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="@string/show_the_dialog_what_is_new_for_updates"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/isEnableAccessibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:maxLines="1"
+                android:text="@string/accessibility_mode" />
+
+            <CheckBox
+                android:id="@+id/isMenuIntegration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:maxLines="1"
+                android:text="@string/integration_in_the_context_menu" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/customize_font_background_colors"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/onDayColor"
+                        android:layout_width="90dip"
+                        android:layout_height="24dip"
+                        android:layout_marginLeft="5dip"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:text="@string/day"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/onNigthColor"
+                        android:layout_width="90dip"
+                        android:layout_height="24dip"
+                        android:layout_marginLeft="5dip"
+                        android:background="#000000"
+                        android:gravity="center"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:text="@string/nigth"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/onDefaultColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dip"
+                        android:layout_marginLeft="10dip"
+                        android:layout_weight="0"
+                        android:ellipsize="end"
+                        android:padding="5dip"
+                        android:singleLine="true"
+                        android:text="@string/restore_defaults_short"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_144_database_search"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/docSearch"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_for_text_in_multiple_documents" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_filetypes_1_file_text"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/docConverter"
+
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/document_converter_online_" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_371_plus"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/newFile"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_file_txt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/cleanRecent"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/clear_all_recent" />
+
+                <Button
+                    android:id="@+id/cleanBookmarks"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/clear_all_bookmars" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/onMailSupport"
+                android:id="@+id/section4"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/bg_search_second"
+                android:text="@string/book_covers" />
+
+            <TextView
+                android:id="@+id/onContrast"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_email" />
-        </LinearLayout>
+                android:text="@string/contrast_and_brightness"
+                android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1dip"
+                android:layout_marginBottom="1dip"
+                android:background="@color/lt_grey_alpha"
+                android:visibility="gone" />
 
             <TextView
-                android:layout_width="100dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dip"
-                android:text="@string/web" />
+                android:layout_marginLeft="5dip"
+                android:text="@string/cover_image_size"
+                android:textStyle="bold" />
+
+            <com.foobnix.pdf.info.view.CustomSeek
+                android:id="@+id/coverSmallSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                my:text="@string/list" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.foobnix.pdf.info.view.CustomSeek
+                    android:id="@+id/coverBigSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    my:text="@string/grid" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:singleLine="true"
+                    android:text="@string/column_count" />
+
+                <TextView
+                    android:id="@+id/columsCount"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dip"
+                    android:minWidth="60dip"
+                    android:text="2"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/columsDefaul"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/restore_defaults_short" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1dip"
+                android:layout_marginBottom="1dip"
+                android:background="@color/lt_grey_alpha" />
+
+            <CheckBox
+                android:id="@+id/isShowImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_book_covers" />
+
+            <CheckBox
+                android:id="@+id/isBookCoverEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_effect_of_the_book_cover" />
+
+            <CheckBox
+                android:id="@+id/isCropBookCovers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crop_images_in_the_book_cover" />
+
+            <CheckBox
+                android:id="@+id/isBorderAndShadow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/borders_and_shadow_around_the_book_cover" />
 
             <TextView
-                android:id="@+id/openWeb"
+                android:id="@+id/section7"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_second"
+                android:text="@string/tabs_position" />
+
+            <CheckBox
+                android:id="@+id/isshowPrefAsMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_preferences_tab_in_the_left_menu" />
+
+            <com.jmedeisis.draglinearlayout.DragLinearLayout
+                android:id="@+id/dragLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_tab_line" />
+
+                <include layout="@layout/item_tab_line" />
+            </com.jmedeisis.draglinearlayout.DragLinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tabsDefaul"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/restore_defaults_short" />
+
+                <TextView
+                    android:id="@+id/tabsApply"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minWidth="100dip"
+                    android:text="@string/apply" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/section5"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/bg_search_second"
+                android:text="@string/widget" />
+
+            <!-- Prefs. > Preferences > Widget -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="135dp"
+                        android:text="@string/show" />
+
+                    <TextView
+                        android:id="@+id/widgetForRecent"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dip"
+                        android:text="@string/recent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="135dp"
+                        android:text="@string/layout" />
+
+                    <TextView
+                        android:id="@+id/widgetLayout"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="100dip"
+                        android:text="@string/grid" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="135dp"
+                        android:text="@string/number_of_books" />
+
+                    <TextView
+                        android:id="@+id/widgetItemsCount"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textAllCaps="true" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- end of  "Prefs. > Preferences > Widget" -->
+
+
+            <TextView
+                android:id="@+id/section3"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/bg_search_second"
+                android:text="@string/import_or_export_application_settings_to_json_file" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/importButton"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:minWidth="100dip"
+                    android:text="@string/import_" />
+
+                <TextView
+                    android:id="@+id/exportButton"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="0"
+                    android:minWidth="100dip"
+                    android:text="@string/export_" />
+
+                <TextView
+                    android:id="@+id/migrationButton"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="0"
+                    android:minWidth="100dip"
+                    android:text="@string/migration" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/isAutomaticExport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/automatic_export_backup" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/profile_root" />
+
+                <TextView
+                    android:id="@+id/rootFolder"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/folder_with_fonts" />
+
+                <TextView
+                    android:id="@+id/fontFolder"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/folder_for_downloaded_books" />
+
+                <TextView
+                    android:id="@+id/downloadFolder"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/cloud_sync_folder" />
+
+                <TextView
+                    android:id="@+id/syncPath"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/backup_folder" />
+
+                <TextView
+                    android:id="@+id/backupFolder"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="135dip"
+                    android:text="@string/audio_books_folder" />
+
+                <TextView
+                    android:id="@+id/ttsFolder"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:text="[]" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sectionSync"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/section8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_search_second"
+                    android:gravity="center_vertical">
+
+
+                    <ImageView
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_weight="0"
+                        android:padding="2dip"
+                        android:src="@drawable/gdrive"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/syncHeader"
+                        style="@style/textLinkWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sync_google_drive" />
+
+
+                    <TextView
+                        android:id="@+id/signIn"
+                        style="@style/textLinkWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:singleLine="true"
+                        android:text="@string/sign_in" />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/syncInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dip"
+                    android:text="ivan@gmail.com" />
+
+                <TextView
+                    android:id="@+id/syncInfo2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dip"
+                    android:text="ivan@gmail.com" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
+
+                    <CheckBox
+                        android:id="@+id/isEnableSync"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/enable" />
+
+
+                    <ImageView
+                        android:id="@+id/isEnableSyncSettings"
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
+                        android:layout_weight="0"
+                        android:padding="4dip"
+                        android:src="@drawable/glyphicons_137_cogwheel"
+                        app:tint="@color/tint_gray" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/section6"
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:background="@drawable/bg_search_second"
+                android:text="Product: Lirbi Free" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dip"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_margin="4dip"
+                    android:src="@mipmap/icon_pdf_pro"
+                    android:tag="@string/no_tint" />
+
+                <TextView
+                    android:id="@+id/downloadPRO"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:singleLine="false"
+                    android:text="@string/librera_pro" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/pVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:text="Version: 1.2.3"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/whatIsNew"
+                style="@style/textLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:text="@string/what_is_new_in" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/licence_gnu_gpl_v3_0" />
+
+                <TextView
+                    android:id="@+id/libraryLicenses"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:text="@string/licenses_for_libraries" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/autor_ivan_ivanenko" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:text="@string/support" />
+
+                <TextView
+                    android:id="@+id/onMailSupport"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_email" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:text="@string/web" />
+
+                <TextView
+                    android:id="@+id/openWeb"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://librera.mobi" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:text="@string/beta_version" />
+
+                <TextView
+                    android:id="@+id/openBeta"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://beta.librera.mobi" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:text="FAQ" />
+
+                <TextView
+                    android:id="@+id/openWiki"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://librera.mobi/faq" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/onTelegram"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://librera.mobi" />
+                android:text="@string/telegram_channel"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dip"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_margin="4dip"
+                    android:src="@drawable/glyphicons_13_heart"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/onRateIt"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="false"
+                    android:text="@string/rate_pdf_reader1" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dip"
-                android:text="@string/beta_version" />
-
-            <TextView
-                android:id="@+id/openBeta"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="http://beta.librera.mobi" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dip"
-                android:text="FAQ" />
-
-            <TextView
-                android:id="@+id/openWiki"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="http://librera.mobi/faq" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/onTelegram"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/telegram_channel"
-            android:visibility="gone" />
-
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:orientation="horizontal"
-            android:padding="4dip"
-            android:visibility="visible">
-
-            <ImageView
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_margin="4dip"
-                app:tint="@color/tint_gray"
-                android:src="@drawable/glyphicons_13_heart" />
-
-            <TextView
-                android:id="@+id/onRateIt"
-                style="@style/textLink"
-                android:padding="2dip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="@string/rate_pdf_reader1" />
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
 </LinearLayout>

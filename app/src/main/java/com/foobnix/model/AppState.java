@@ -49,12 +49,12 @@ public class AppState {
     public static final int NIGHT_TRANSPARENCY = 160;
     public static final String PNG = "PNG";
     public static final String JPG = "JPG";
-    public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt".split(", ");
+    public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt" .split(", ");
     public static final String[] OTHER_BOOK_EXT =
-            ".abw, .docm, .lwp, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(
+            ".abw, .docm, .lwp, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz" .split(
                     ", ");
     public static final String[] OTHER_ARCH_EXT =
-            ".img, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(
+            ".img, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg" .split(
                     ", ");
     public static final String PREF_SCROLL_MODE = "pdf, djvu";
     public static final String PREF_BOOK_MODE = "epub, mobi, fb2, azw, azw3";
@@ -67,71 +67,70 @@ public class AppState {
     public static final int FULL_SCREEN_FULLSCREEN = 1;
     public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;
     public static final List<String> COLORS = Arrays.asList(//
-                                                            "#000001", //
-                                                            "#000002", //
-                                                            "#0000FF", //
-                                                            "#00FF00", //
-                                                            "#808000", //
-                                                            "#FFFF00", //
-                                                            "#FF0000", //
-                                                            "#00FFFF", //
-                                                            "#000000", //
-                                                            "#FF00FF", //
-                                                            "#808080", //
-                                                            "#008000", //
-                                                            "#800000", //
-                                                            "#000080", //
-                                                            "#800080", //
-                                                            "#008080", //
-                                                            "#C0C0C0", //
-                                                            "#FFFFFF", //
-                                                            "#CDDC39"//
-    );
+            "#000001", //
+            "#000002", //
+            "#0000FF", //
+            "#00FF00", //
+            "#808000", //
+            "#FFFF00", //
+            "#FF0000", //
+            "#00FFFF", //
+            "#000000", //
+            "#FF00FF", //
+            "#808080", //
+            "#008000", //
+            "#800000", //
+            "#000080", //
+            "#800080", //
+            "#008080", //
+            "#C0C0C0", //
+            "#FFFFFF", //
+            "#CDDC39"//
+                                                           );
     public static final List<String> STYLE_COLORS = Arrays.asList(//
-                                                                  "#3949AB", //
-                                                                  "#EA5964", //
-                                                                  "#00897B", //
-                                                                  "#000000" //
+            "#3949AB", //
+            "#EA5964", //
+            "#00897B", //
+            "#000000" //
 
-    );
+                                                                 );
     public static final List<String> ACCENT_COLORS = Arrays.asList(//
-                                                                   "#E3C800", //
-                                                                   "#EA5964", //
-                                                                   "#00897B", //
-                                                                   "#FFFFFF", //
-                                                                   "#000000");
+            "#E3C800", //
+            "#EA5964", //
+            "#00897B", //
+            "#FFFFFF", //
+            "#000000");
     public final static String OPDS_DEFAULT = "" + //
 
-                                              //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
-                                              "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;" +
-                                              //
-                                              "https://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" +
-                                              //
+            //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
+            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;" +
+            //
+            "https://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" +
+            //
 //            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/opds.png;" + //
-                                              //"http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/opds.png;" + //
+            //"http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/opds.png;" + //
 
-                                              SamlibOPDS.ROOT_AWARDS +
-                                              ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;"
+            SamlibOPDS.ROOT_AWARDS + ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;"
             //
             // end
             ;
     public final static String READ_COLORS_DEAFAUL =
             // (name),(bg),(text),(0-day 1-nigth)
             "" + //
-            "1,#ffffff,#000000,0;" + //
-            "2,#f2f0e9,#383226,0;" + //
-            "3,#f9f5e8,#333333,0;" + //
-            //
-            "A,#3a3a3a,#c8c8c8,1;" + //
-            "B,#000000,#8cffb5,1;" + //
-            "C,#000000,#ffffff,1;"; //
+                    "1,#ffffff,#000000,0;" + //
+                    "2,#f2f0e9,#383226,0;" + //
+                    "3,#f9f5e8,#333333,0;" + //
+                    //
+                    "A,#3a3a3a,#c8c8c8,1;" + //
+                    "B,#000000,#8cffb5,1;" + //
+                    "C,#000000,#ffffff,1;"; //
     public static final String TTS_REPLACEMENTS =
 
             "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
-            "'*[?!:;–|—|―]':'. ' , " +//
-            "'it’s':'it is' , " +//
-            "'#bla':'bla disabled' , " +//
-            "'*(L|l)ibre.':'$1ibréra'}";//
+                    "'*[?!:;–|—|―]':'. ' , " +//
+                    "'it’s':'it is' , " +//
+                    "'#bla':'bla disabled' , " +//
+                    "'*(L|l)ibre.':'$1ibréra'}";//
     public static final String TTS_PUNCUATIONS = ".;:!?";
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#0,6#0,7#0";
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
@@ -186,68 +185,30 @@ public class AppState {
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
     public final static List<String> appDictionariesKeys = Arrays.asList(//
-                                                                         "search", //
-                                                                         "lingvo", //
-                                                                         "linguee", //
-                                                                         "dic", //
-                                                                         "livio", //
-                                                                         "tran", //
-                                                                         "promt", //
-                                                                         "fora", //
-                                                                         "aard", //
-                                                                         "web", //
-                                                                         "encyc", // encyclopedias
-                                                                         "oxford", //
-                                                                         "mobifusion", //
-                                                                         "cambridge", //
-                                                                         "longman", //
-                                                                         "oup",//
-                                                                         "engl"//
+            "search", //
+            "lingvo", //
+            "linguee", //
+            "dic", //
+            "livio", //
+            "tran", //
+            "promt", //
+            "fora", //
+            "aard", //
+            "web", //
+            "encyc", // encyclopedias
+            "oxford", //
+            "mobifusion", //
+            "cambridge", //
+            "longman", //
+            "oup",//
+            "engl"//
 
-                                                                         //
-    );
-    public static final List<String> langCodes = Arrays.asList("ar",
-                                                               "be",
-                                                               "bg",
-                                                               "ca",
-                                                               "cs",
-                                                               "de",
-                                                               "el",
-                                                               "en",
-                                                               "es",
-                                                               "eu",
-                                                               "fa",
-                                                               "fi",
-                                                               "fr",
-                                                               "ga",
-                                                               "he",
-                                                               "hi",
-                                                               "hu",
-                                                               "id",
-                                                               "it",
-                                                               "ja",
-                                                               "kk",
-                                                               "ko",
-                                                               "la",
-                                                               "lt",
-                                                               "ml",
-                                                               "nl",
-                                                               "no",
-                                                               "pl",
-                                                               "pt",
-                                                               "ro",
-                                                               "ru",
-                                                               "sc",
-                                                               "sk",
-                                                               "sv",
-                                                               "sw",
-                                                               "ta",
-                                                               "th",
-                                                               "tr",
-                                                               "uk",
-                                                               "vi",
-                                                               "zh-rCN",
-                                                               "zh-rTW");
+            //
+                                                                        );
+    public static final List<String> langCodes =
+            Arrays.asList("ar", "be", "bg", "ca", "cs", "de", "el", "en", "es", "eu", "fa", "fi", "fr", "ga", "he",
+                    "hi", "hu", "id", "it", "ja", "kk", "ko", "la", "lt", "ml", "nl", "no", "pl", "pt", "ro", "ru",
+                    "sc", "sk", "sv", "sw", "ta", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW");
     public static final int BOOKMARK_SORT_PAGE_ASC = 0;
     public static final int BOOKMARK_SORT_PAGE_DESC = 1;
     public static final int BOOKMARK_SORT_DATE_ASC = 2;
@@ -274,54 +235,66 @@ public class AppState {
     public static int BLUE_FILTER_DEFAULT_COLOR = Color.BLACK;
     public static String MY_SYSTEM_LANG = "my";
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
-                                                          KeyEvent.KEYCODE_VOLUME_UP, //
-                                                          KeyEvent.KEYCODE_PAGE_UP, //
-                                                          // KeyEvent.KEYCODE_DPAD_UP,//
-                                                          KeyEvent.KEYCODE_DPAD_RIGHT, //
-                                                          KeyEvent.KEYCODE_MEDIA_NEXT, //
-                                                          94, //
-                                                          105 //
-                                                          // KeyEvent.KEYCODE_DEL//
-    );
+            KeyEvent.KEYCODE_VOLUME_UP, //
+            KeyEvent.KEYCODE_PAGE_UP, //
+            // KeyEvent.KEYCODE_DPAD_UP,//
+            KeyEvent.KEYCODE_DPAD_RIGHT, //
+            KeyEvent.KEYCODE_MEDIA_NEXT, //
+            94, //
+            105 //
+            // KeyEvent.KEYCODE_DEL//
+                                                         );
     public static List<Integer> PREV_KEYS = Arrays.asList(//
-                                                          KeyEvent.KEYCODE_VOLUME_DOWN, //
-                                                          KeyEvent.KEYCODE_PAGE_DOWN, //
-                                                          // KeyEvent.KEYCODE_DPAD_DOWN, //
-                                                          KeyEvent.KEYCODE_DPAD_LEFT, //
-                                                          KeyEvent.KEYCODE_MEDIA_PREVIOUS, //
-                                                          95, //
-                                                          106 //
-                                                          // KeyEvent.KEYCODE_ENTER //
+            KeyEvent.KEYCODE_VOLUME_DOWN, //
+            KeyEvent.KEYCODE_PAGE_DOWN, //
+            // KeyEvent.KEYCODE_DPAD_DOWN, //
+            KeyEvent.KEYCODE_DPAD_LEFT, //
+            KeyEvent.KEYCODE_MEDIA_PREVIOUS, //
+            95, //
+            106 //
+            // KeyEvent.KEYCODE_ENTER //
 
-    );
+                                                         );
+    public static int ACTION_BOOK_MODE = 1;
+    public static int ACTION_SCROLL_MODE = 2;
+    public static int ACTION_MUSIC_MODE = 3;
+    public static int ACTION_SELECT_VIEW_MODE = 4;
+    public static int ACTION_TAG_MANGER = 5;
+    public static int ACTION_OPEN_WITH = 6;
+    public static int ACTION_BOOK_INFORMATION = 7;
+    public static int ACTION_BOOK_MENU = 8;
+
+    public int defaultViewMode = ACTION_BOOK_MODE;
+    public int defaultSingleClick = ACTION_SELECT_VIEW_MODE;
+    public int defaultLongClick = ACTION_BOOK_MENU;
+
     private static AppState instance = new AppState();
 
     static {
         CONVERTERS.put("PDF",
-                       "https://cloudconvert.com/anything-to-pdf, https://topdf.com, https://www.zamzar.com".split(", "));
+                "https://cloudconvert.com/anything-to-pdf, https://topdf.com, https://www.zamzar.com" .split(", "));
         CONVERTERS.put("PDF Rotate",
-                       "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, https://www.rotatepdf.net".split(
-                               ", "));
-        CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, https://toepub.com".split(", "));
-        CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, https://toepub.com".split(", "));
-        CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, https://toepub.com".split(", "));
+                "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, https://www.rotatepdf.net" .split(", "));
+        CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, https://toepub.com" .split(", "));
+        CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, https://toepub.com" .split(", "));
+        CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, https://toepub.com" .split(", "));
         CONVERTERS.put("DOCX",
-                       "https://cloudconvert.com/anything-to-docx, https://document.online-convert.com/convert-to-docx, https://pdf2docx.com/".split(
-                               ", "));
+                "https://cloudconvert.com/anything-to-docx, https://document.online-convert.com/convert-to-docx, https://pdf2docx.com/" .split(
+                        ", "));
         CONVERTERS.put("FB2",
-                       "https://cloudconvert.com/anything-to-fb2, https://ebook.online-convert.com/convert-to-fb2".split(
-                               ", "));
+                "https://cloudconvert.com/anything-to-fb2, https://ebook.online-convert.com/convert-to-fb2" .split(
+                        ", "));
     }
 
     static {
         TTS_ENGINES.put("Google Text-to-Speech",
-                        "https://play.google.com/store/apps/details?id=com.google.android.tts");
+                "https://play.google.com/store/apps/details?id=com.google.android.tts");
         TTS_ENGINES.put("Acapela TTS Voices",
-                        "https://play.google.com/store/apps/details?id=com.acapelagroup.android.tts");
+                "https://play.google.com/store/apps/details?id=com.acapelagroup.android.tts");
         TTS_ENGINES.put("Vocalizer TTS Voice",
-                        "https://play.google.com/store/apps/details?id=es.codefactory.vocalizertts");
+                "https://play.google.com/store/apps/details?id=es.codefactory.vocalizertts");
         TTS_ENGINES.put("RHVoice",
-                        "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android");
+                "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android");
         TTS_ENGINES.put("SherpaTTS (F-Droid)", "https://f-droid.org/packages/org.woheller69.ttsengine");
     }
 
@@ -466,7 +439,6 @@ public class AppState {
 
     public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
 
-
     public float editLineWidth = 3;
     @IgnoreHashCode public boolean isRememberMode = false;
     public volatile boolean isAutoScroll = false;
@@ -550,7 +522,8 @@ public class AppState {
     public boolean isExperimental = false;
     @IgnoreHashCode public boolean isLockPDF = false;
     @IgnoreHashCode public boolean isCropPDF = false;
-    public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
+    public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi")
+                                              .contains(Urls.getLangCode());
     @IgnoreHashCode public long installationDate = System.currentTimeMillis();
 
     @IgnoreHashCode public boolean isShowLongBackDialog = false;
@@ -623,7 +596,8 @@ public class AppState {
     }
 
     public String getAppLang() {
-        return AppState.get().appLang.equals(com.foobnix.model.AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : com.foobnix.model.AppState.get().appLang;
+        return AppState.get().appLang.equals(com.foobnix.model.AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() :
+                com.foobnix.model.AppState.get().appLang;
     }
 
     public static String keyToString(final List<Integer> list) {
@@ -640,7 +614,8 @@ public class AppState {
         final List<Integer> res = new ArrayList<>();
 
         for (final String value : list.split(",")) {
-            if (value != null && !value.trim().equals("")) {
+            if (value != null && !value.trim()
+                                       .equals("")) {
                 res.add(new Integer(value.trim()));
             }
         }
@@ -682,8 +657,8 @@ public class AppState {
             accessibilityDefaults();
         }
 
-        if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) &&
-            !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
+        if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(
+                Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }
     }
@@ -697,7 +672,7 @@ public class AppState {
         AppSP.get().isFirstTimeVertical = false;
         AppSP.get().isFirstTimeHorizontal = false;
         AppState.get().tabsOrder9 = com.foobnix.model.AppState.get().tabsOrder9.replace(UITab.PrefFragment.index + "#0",
-                                                                      UITab.PrefFragment.index + "#1");
+                UITab.PrefFragment.index + "#1");
     }
 
     public boolean loadInit(final Context a) {
@@ -707,8 +682,7 @@ public class AppState {
             defaults(a);
 
             load(a);
-            if (AppState.get().isShowPanelBookNameBookMode &&
-                AppState.get().statusBarPosition == com.foobnix.model.AppState.STATUSBAR_POSITION_TOP) {
+            if (AppState.get().isShowPanelBookNameBookMode && AppState.get().statusBarPosition == com.foobnix.model.AppState.STATUSBAR_POSITION_TOP) {
                 AppState.get().isShowPanelBookNameBookMode = false;
             }
 

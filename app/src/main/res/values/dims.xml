@@ -17,9 +17,12 @@
     <declare-styleable name="CustomSeek">
         <attr name="text" format="string" />
         <attr name="textColor" format="string" />
+        <attr name="value" format="string" />
     </declare-styleable>
-    
-    
+
+
+
+
     <dimen name="sort_by_size">80dip</dimen>
     
      
