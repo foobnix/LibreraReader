@@ -66,11 +66,15 @@ public class Tags2 {
         LOG.d("Tags2", "getAllTags", obj.length());
         ArrayList<Pair<String, Integer>> res = new ArrayList<>();
         for (String key : obj.keySet()) {
-            long count = obj.getJSONArray(key)
-                            .toList()
-                            .stream()
-                            .filter(o -> new File(o.toString()).exists())
-                            .count();
+            JSONArray array = obj.optJSONArray(key);
+            if (array == null) {
+                res.add(new Pair<>(key, 0));
+                continue;
+            }
+            long count = array.toList()
+                              .stream()
+                              .filter(o -> new File(o.toString()).exists())
+                              .count();
             res.add(new Pair<>(key, (int) count));
         }
 
@@ -84,7 +88,10 @@ public class Tags2 {
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
         List<String> res = new ArrayList<>();
         for (String key : obj.keySet()) {
-            JSONArray array = obj.getJSONArray(key);
+            JSONArray array = obj.optJSONArray(key);
+            if (array == null) {
+                continue;
+            }
             int index = getIndex(array, file.getPath());
             if (index >= 0) {
                 res.add(key);
@@ -131,10 +138,12 @@ public class Tags2 {
 
     public static int getIndex(JSONArray array, String value) {
         try {
+            if (array == null || value == null) {
+                return -1;
+            }
 
             for (int i = 0; i < array.length(); i++) {
-                if (array.getString(i)
-                         .equals(value)) {
+                if (value.equals(array.optString(i,null))) {
                     return i;
                 }
             }
@@ -157,7 +166,7 @@ public class Tags2 {
                         continue;
                     }
                     final String file = MyPath.toAbsolute(key);
-                    String tagsLine = obj.getString(key);
+                    String tagsLine = obj.optString(key,"");
                     if (tagsLine.isEmpty()) {
                         continue;
                     }
