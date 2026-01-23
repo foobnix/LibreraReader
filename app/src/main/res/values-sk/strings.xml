@@ -678,6 +678,6 @@
    <string name="current_folder">Aktuálny priečinok</string>
    <string name="search_error_msg">Pri vyhľadávaní sa vyskytla chyba. Vyberte iný priečinok s knihami a skúste to znova.</string>
    <string name="single_tap">Jedným klepnutím</string>
-   <string name="long_tap">Dlhé poklepanie</string>
+   <string name="long_tap">Dlhé podržanie</string>
    <string name="select_mode">Vybrať režim</string>
 </resources>
