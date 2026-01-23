@@ -184,6 +184,7 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
+    public final static int READING_MODE_SELECT_MODE = 6;
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
             "lingvo", //

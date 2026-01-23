@@ -677,4 +677,7 @@
    <string name="time">時間</string>
    <string name="current_folder">目前資料夾</string>
    <string name="search_error_msg">搜尋時出錯。請選擇其他包含書籍的資料夾，然後再試一次。</string>
+   <string name="single_tap">點選</string>
+   <string name="long_tap">長按</string>
+   <string name="select_mode">選擇模式</string>
 </resources>

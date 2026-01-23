@@ -677,4 +677,7 @@
    <string name="time">Zeit</string>
    <string name="current_folder">Aktueller Ordner</string>
    <string name="search_error_msg">Bei der Suche ist ein Fehler aufgetreten. Bitte wählen Sie einen anderen Ordner mit Büchern aus und versuchen Sie es erneut.</string>
+   <string name="single_tap">Einmaliges Tippen</string>
+   <string name="long_tap">Langes Tippen</string>
+   <string name="select_mode">Modus auswählen</string>
 </resources>

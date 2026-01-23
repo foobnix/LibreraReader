@@ -677,4 +677,7 @@
    <string name="time">Idő</string>
    <string name="current_folder">Aktuális mappa</string>
    <string name="search_error_msg">Hiba történt a keresés során. Kérjük, válasszon egy másik, könyveket tartalmazó mappát, és próbálja újra.</string>
+   <string name="single_tap">Egyetlen érintéssel</string>
+   <string name="long_tap">Hosszú koppintás</string>
+   <string name="select_mode">Mód kiválasztása</string>
 </resources>

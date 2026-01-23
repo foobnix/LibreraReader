@@ -677,4 +677,7 @@
    <string name="time">Час</string>
    <string name="current_folder">Поточна папка</string>
    <string name="search_error_msg">Під час пошуку сталася помилка. Виберіть іншу папку з книгами та повторіть спробу.</string>
+   <string name="single_tap">Одинарне натискання</string>
+   <string name="long_tap">Довге натискання</string>
+   <string name="select_mode">Вибрати режим</string>
 </resources>

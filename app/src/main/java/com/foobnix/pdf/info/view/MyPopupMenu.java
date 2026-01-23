@@ -622,12 +622,16 @@ public class MyPopupMenu {
         private String fontPath;
 
         public Menu add(int res) {
-            this.stringRes = c.getString(res);
+            if(res>0) {
+                this.stringRes = c.getString(res);
+            }
             return this;
         }
 
         public Menu add(String name) {
-            this.stringRes = name;
+            if(TxtUtils.isNotEmpty(name)) {
+                this.stringRes = name;
+            }
             return this;
         }
 

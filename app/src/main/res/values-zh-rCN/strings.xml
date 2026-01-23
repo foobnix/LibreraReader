@@ -677,4 +677,7 @@
    <string name="time">时间</string>
    <string name="current_folder">当前文件夹</string>
    <string name="search_error_msg">搜索时出错。请选择其他包含书籍的文件夹，然后重试。</string>
+   <string name="single_tap">单击</string>
+   <string name="long_tap">长按</string>
+   <string name="select_mode">选择模式</string>
 </resources>

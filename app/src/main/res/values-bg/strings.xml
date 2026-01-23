@@ -677,4 +677,7 @@
    <string name="time">Време</string>
    <string name="current_folder">Текуща папка</string>
    <string name="search_error_msg">Възникна грешка при търсенето. Моля, изберете друга папка, съдържаща книги, и опитайте отново.</string>
+   <string name="single_tap">Еднократно докосване</string>
+   <string name="long_tap">Дълго докосване</string>
+   <string name="select_mode">Изберете режим</string>
 </resources>

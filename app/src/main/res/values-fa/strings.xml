@@ -677,4 +677,7 @@
    <string name="time">زمان</string>
    <string name="current_folder">پوشه فعلی</string>
    <string name="search_error_msg">هنگام جستجو خطایی رخ داد. لطفاً پوشه دیگری حاوی کتاب‌ها را انتخاب کرده و دوباره امتحان کنید.</string>
+   <string name="single_tap">تک شیر</string>
+   <string name="long_tap">ضربه طولانی</string>
+   <string name="select_mode">حالت را انتخاب کنید</string>
 </resources>

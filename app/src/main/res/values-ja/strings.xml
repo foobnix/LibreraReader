@@ -677,4 +677,7 @@
    <string name="time">時間</string>
    <string name="current_folder">現在のフォルダ</string>
    <string name="search_error_msg">検索中にエラーが発生しました。書籍が含まれている別のフォルダを選択して、もう一度お試しください。</string>
+   <string name="single_tap">シングルタップ</string>
+   <string name="long_tap">長押し</string>
+   <string name="select_mode">選択モード</string>
 </resources>

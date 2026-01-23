@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.view.confline;
 
+import android.widget.TextView;
+
 import androidx.annotation.StringRes;
 
 public class ConfAction {
@@ -19,8 +21,20 @@ public class ConfAction {
         this.actionInt = action;
     }
 
+    public void setTextTo(TextView textView) {
+        if (nameResId != 0) {
+            textView.setText(nameResId);
+        } else {
+            textView.setText(name);
+        }
+    }
+
     public static ConfAction of(@StringRes int resId, int actionId) {
         return new ConfAction(resId, actionId);
+    }
+
+    public static ConfAction of(String name, int actionId) {
+        return new ConfAction(name, actionId);
     }
 
 }

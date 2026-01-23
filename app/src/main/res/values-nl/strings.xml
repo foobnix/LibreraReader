@@ -677,4 +677,7 @@
    <string name="time">Tijd</string>
    <string name="current_folder">Huidige map</string>
    <string name="search_error_msg">Er is een fout opgetreden tijdens het zoeken. Selecteer een andere map met boeken en probeer het opnieuw.</string>
+   <string name="single_tap">Enkele tik</string>
+   <string name="long_tap">Lang tikken</string>
+   <string name="select_mode">Selecteer modus</string>
 </resources>

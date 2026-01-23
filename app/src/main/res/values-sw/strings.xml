@@ -677,4 +677,7 @@
    <string name="time">Wakati</string>
    <string name="current_folder">Folda ya sasa</string>
    <string name="search_error_msg">Hitilafu imetokea wakati wa kutafuta. Tafadhali chagua folda tofauti iliyo na vitabu na ujaribu tena.</string>
+   <string name="single_tap">Bomba moja</string>
+   <string name="long_tap">Bomba refu</string>
+   <string name="select_mode">Chagua hali</string>
 </resources>

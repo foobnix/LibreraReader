@@ -677,4 +677,7 @@
    <string name="time">Am</string>
    <string name="current_folder">Fillteán reatha</string>
    <string name="search_error_msg">Tharla earráid agus cuardach á dhéanamh. Roghnaigh fillteán eile ina bhfuil leabhair agus déan iarracht arís.</string>
+   <string name="single_tap">Sconna aonair</string>
+   <string name="long_tap">Sconna fada</string>
+   <string name="select_mode">Mód roghnaithe</string>
 </resources>

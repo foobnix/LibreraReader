@@ -677,4 +677,7 @@
    <string name="time">Φορά</string>
    <string name="current_folder">Τρέχων φάκελος</string>
    <string name="search_error_msg">Παρουσιάστηκε σφάλμα κατά την αναζήτηση. Επιλέξτε διαφορετικό φάκελο που περιέχει βιβλία και προσπαθήστε ξανά.</string>
+   <string name="single_tap">Ένα μόνο άγγιγμα</string>
+   <string name="long_tap">Μακρύ χτύπημα</string>
+   <string name="select_mode">Επιλογή λειτουργίας</string>
 </resources>

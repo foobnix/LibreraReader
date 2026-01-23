@@ -677,4 +677,7 @@
    <string name="time">Tempo</string>
    <string name="current_folder">Cartella corrente</string>
    <string name="search_error_msg">Si è verificato un errore durante la ricerca. Seleziona una cartella diversa contenente libri e riprova.</string>
+   <string name="single_tap">Singolo tocco</string>
+   <string name="long_tap">Tocco lungo</string>
+   <string name="select_mode">Seleziona la modalità</string>
 </resources>

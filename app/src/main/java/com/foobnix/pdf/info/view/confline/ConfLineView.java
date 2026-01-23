@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class ConfLineView extends FrameLayout {
     TextView textView, valueView;
@@ -48,27 +49,46 @@ public class ConfLineView extends FrameLayout {
         addView(inflate);
     }
 
-    public void init(int defaultAction, ConfResponse onChange, ConfAction... actions) {
-        if (actions == null || actions.length == 0) return;
 
-        MyPopupMenu popup = new MyPopupMenu(getContext(), valueView);
-        for (ConfAction it : actions) {
-            popup.getMenu()
-                 .add(it.nameResId)
-                 .setOnMenuItemClickListener(item -> {
-                     onChange.onResult(it.actionInt);
-                     valueView.setText(it.nameResId);
-                     TxtUtils.underlineTextView(valueView);
-                     return true;
-                 });
-        }
+
+    public void update(){
+        int defaultAction = init.readValue();
         ConfAction current = Arrays.stream(actions)
                                    .filter(a -> a.actionInt == defaultAction)
                                    .findFirst()
                                    .orElse(actions[0]);
 
-        valueView.setText(current.nameResId);
+
+        current.setTextTo(valueView);
         TxtUtils.underlineTextView(valueView);
+    }
+
+
+    ConfAction[] actions;
+    ReadInit init;
+
+    public void init(ReadInit init, ConfResponse onChange, ConfAction... actions) {
+        LOG.d("CONF-init",1);
+        if (actions == null || actions.length == 0) return;
+
+        int defaultAction = init.readValue();
+        this.actions = actions;
+        this.init = init;
+
+
+        MyPopupMenu popup = new MyPopupMenu(getContext(), valueView);
+        for (ConfAction it : actions) {
+            popup.getMenu()
+                 .add(it.nameResId)
+                    .add(it.name)
+                 .setOnMenuItemClickListener(item -> {
+                     onChange.onResult(it.actionInt);
+                     it.setTextTo(valueView);
+                     TxtUtils.underlineTextView(valueView);
+                     return true;
+                 });
+        }
+        update();
         valueView.setOnClickListener(v -> popup.show());
 
     }

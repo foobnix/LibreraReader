@@ -677,4 +677,7 @@
    <string name="time">Time</string>
    <string name="current_folder">Current folder</string>
    <string name="search_error_msg">An error occurred while searching. please select a different folder containing books and try again.</string>
+   <string name="single_tap">Single tap</string>
+   <string name="long_tap">Long tap</string>
+   <string name="select_mode">Select mode</string>
 </resources>

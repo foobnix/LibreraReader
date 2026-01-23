@@ -677,4 +677,7 @@
    <string name="time">समय</string>
    <string name="current_folder">वर्तमान फ़ोल्डर</string>
    <string name="search_error_msg">खोजते समय एक त्रुटि हुई। कृपया पुस्तकों वाला कोई दूसरा फ़ोल्डर चुनें और पुनः प्रयास करें।</string>
+   <string name="single_tap">सिंगल टैप</string>
+   <string name="long_tap">लंबा टैप</string>
+   <string name="select_mode">मोड का चयन करें</string>
 </resources>

@@ -677,4 +677,7 @@
    <string name="time">Thời gian</string>
    <string name="current_folder">Thư mục hiện tại</string>
    <string name="search_error_msg">Đã xảy ra lỗi trong quá trình tìm kiếm. Vui lòng chọn một thư mục khác chứa sách và thử lại.</string>
+   <string name="single_tap">Chạm một lần</string>
+   <string name="long_tap">Chạm dài</string>
+   <string name="select_mode">Chọn chế độ</string>
 </resources>

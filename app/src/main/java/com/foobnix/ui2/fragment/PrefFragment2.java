@@ -84,6 +84,7 @@ import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.confline.ReadInit;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
@@ -153,13 +154,13 @@ public class PrefFragment2 extends UIFragment {
     private CheckBox autoSettings;
     private TextView searchPaths;
     private CheckBox ch;
-    private CheckBox rememberMode;
     private TextView selectedOpenMode;
     private TextView textNigthColor;
     private TextView textDayColor;
     private TextView selectedDictionaly;
     private TextView screenOrientation;
     private View inflate;
+    ConfLineView configSingleClick;
 
     @Override public Pair<Integer, Integer> getNameAndIconRes() {
         return PAIR;
@@ -796,31 +797,6 @@ public class PrefFragment2 extends UIFragment {
                    }
                });
 
-        ((ConfLineView) inflate.findViewById(R.id.configDefaultView)).init(//
-                AppState.get().defaultViewMode,//
-                value -> AppState.get().defaultViewMode = value,//
-                of(R.string.mode_horizontally, AppState.ACTION_BOOK_MODE),//
-                of(R.string.mode_vertical, AppState.ACTION_SCROLL_MODE),//
-                of(R.string.mode_musician, AppState.ACTION_MUSIC_MODE));
-
-        ((ConfLineView) inflate.findViewById(R.id.configSingleClick)).init(//
-                AppState.get().defaultSingleClick,//
-                value -> AppState.get().defaultSingleClick = value,//
-                of(R.string.select_mode, AppState.ACTION_SELECT_VIEW_MODE),//
-                of(R.string.mode_horizontally, AppState.ACTION_BOOK_MODE),//
-                of(R.string.mode_vertical, AppState.ACTION_SCROLL_MODE),//
-                of(R.string.mode_musician, AppState.ACTION_MUSIC_MODE),//
-                of(R.string.open_with, AppState.ACTION_OPEN_WITH),//
-                of(R.string.tag_manager, AppState.ACTION_TAG_MANGER),//
-                of(R.string.book_menu, AppState.ACTION_BOOK_MENU),//
-                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION));
-
-        ((ConfLineView) inflate.findViewById(R.id.configLongClick)).init(//
-                AppState.get().defaultLongClick,//
-                value -> AppState.get().defaultLongClick = value,//
-                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION),//
-                of(R.string.book_menu, AppState.ACTION_BOOK_MENU));
-
         CheckBox isEnableAccessibility = inflate.findViewById(R.id.isEnableAccessibility);
 
         isEnableAccessibility.setChecked(AppState.get().isEnableAccessibility);
@@ -1096,101 +1072,26 @@ public class PrefFragment2 extends UIFragment {
                                               }
                                           });
 
-        rememberMode = inflate.findViewById(R.id.isRememberMode);
-        rememberMode.setChecked(AppState.get().isRememberMode);
-        rememberMode.setOnCheckedChangeListener(new
+        ((ConfLineView) inflate.findViewById(R.id.configLongClick)).init(//
+                () -> AppState.get().defaultLongClick,//
+                value -> AppState.get().defaultLongClick = value,//
+                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION),//
+                of(R.string.book_menu, AppState.ACTION_BOOK_MENU));
 
-                                                        OnCheckedChangeListener() {
-
-                                                            @Override public void onCheckedChanged(
-                                                                    final CompoundButton buttonView,
-                                                                    final boolean isChecked) {
-                                                                AppState.get().isRememberMode = isChecked;
-                                                            }
-                                                        });
-
-        selectedOpenMode = inflate.findViewById(R.id.selectedOpenMode);
-        selectedOpenMode.setOnClickListener(new
-
-                                                    OnClickListener() {
-
-                                                        @SuppressLint("NewApi") @Override public void onClick(View v) {
-                                                            final PopupMenu popupMenu =
-                                                                    new PopupMenu(selectedOpenMode.getContext(),
-                                                                            selectedOpenMode);
-
-                                                            final MenuItem advanced_mode = popupMenu.getMenu()
-                                                                                                    .add(AppState.get().nameVerticalMode);
-                                                            advanced_mode.setOnMenuItemClickListener(
-                                                                    new OnMenuItemClickListener() {
-
-                                                                        @Override public boolean onMenuItemClick(
-                                                                                final MenuItem item) {
-                                                                            AppSP.get().readingMode =
-                                                                                    AppState.READING_MODE_SCROLL;
-                                                                            checkOpenWithSpinner();
-                                                                            return false;
-                                                                        }
-                                                                    });
-
-                                                            final MenuItem easy_mode = popupMenu.getMenu()
-                                                                                                .add(AppState.get().nameHorizontalMode);
-                                                            easy_mode.setOnMenuItemClickListener(
-                                                                    new OnMenuItemClickListener() {
-
-                                                                        @Override public boolean onMenuItemClick(
-                                                                                final MenuItem item) {
-                                                                            AppSP.get().readingMode =
-                                                                                    AppState.READING_MODE_BOOK;
-                                                                            checkOpenWithSpinner();
-                                                                            return false;
-                                                                        }
-                                                                    });
-                                                            final MenuItem music_mode = popupMenu.getMenu()
-                                                                                                 .add(AppState.get().nameMusicianMode);
-                                                            music_mode.setOnMenuItemClickListener(
-                                                                    new OnMenuItemClickListener() {
-
-                                                                        @Override public boolean onMenuItemClick(
-                                                                                final MenuItem item) {
-                                                                            AppSP.get().readingMode =
-                                                                                    AppState.READING_MODE_MUSICIAN;
-                                                                            checkOpenWithSpinner();
-                                                                            return false;
-                                                                        }
-                                                                    });
-                                                            final MenuItem tags = popupMenu.getMenu()
-                                                                                           .add(getString(
-                                                                                                   R.string.tag_manager));
-                                                            tags.setOnMenuItemClickListener(
-                                                                    new OnMenuItemClickListener() {
-
-                                                                        @Override public boolean onMenuItemClick(
-                                                                                final MenuItem item) {
-                                                                            AppSP.get().readingMode =
-                                                                                    AppState.READING_MODE_TAG_MANAGER;
-                                                                            checkOpenWithSpinner();
-                                                                            return false;
-                                                                        }
-                                                                    });
-                                                            final MenuItem owith = popupMenu.getMenu()
-                                                                                            .add(getString(
-                                                                                                    R.string.open_with));
-                                                            owith.setOnMenuItemClickListener(
-                                                                    new OnMenuItemClickListener() {
-
-                                                                        @Override public boolean onMenuItemClick(
-                                                                                final MenuItem item) {
-                                                                            AppSP.get().readingMode =
-                                                                                    AppState.READING_MODE_OPEN_WITH;
-                                                                            checkOpenWithSpinner();
-                                                                            return false;
-                                                                        }
-                                                                    });
-                                                            popupMenu.show();
-
-                                                        }
-                                                    });
+        configSingleClick = (ConfLineView) inflate.findViewById(R.id.configSingeClick);
+        configSingleClick.init(//
+                () -> AppState.get().isRememberMode ? AppSP.get().readingMode:AppState.READING_MODE_SELECT_MODE,//
+                value -> {
+                    AppState.get().isRememberMode = value != AppState.READING_MODE_SELECT_MODE;
+                    AppSP.get().readingMode = value;
+                },//
+                of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//
+                of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL),//
+                of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK),//
+                of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN),//
+                of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER),//
+                of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH)//
+                              );
 
         inflate.findViewById(R.id.moreModeSettings)
                .
@@ -1259,7 +1160,7 @@ public class PrefFragment2 extends UIFragment {
                    }
                });
 
-        checkOpenWithSpinner();
+        LOG.d("CONF-init", 2);
 
         final CheckBox isCropBookCovers = inflate.findViewById(R.id.isCropBookCovers);
         isCropBookCovers.setOnCheckedChangeListener(null);
@@ -2871,23 +2772,6 @@ public class PrefFragment2 extends UIFragment {
         return text;
     }
 
-    private void checkOpenWithSpinner() {
-        String modId = AppState.get().nameVerticalMode;
-        if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
-            modId = AppState.get().nameMusicianMode;
-        } else if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-            modId = AppState.get().nameHorizontalMode;
-        } else if (AppSP.get().readingMode == AppState.READING_MODE_SCROLL) {
-            modId = AppState.get().nameVerticalMode;
-        } else if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
-            modId = getString(R.string.tag_manager);
-        } else if (AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH) {
-            modId = getString(R.string.open_with);
-        }
-
-        selectedOpenMode.setText(TxtUtils.underline(modId));
-    }
-
     public void onFolderConfigDialog() {
 
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
@@ -2923,8 +2807,7 @@ public class PrefFragment2 extends UIFragment {
         ch.setChecked(AppState.get().isReverseKeys);
         ch.setOnCheckedChangeListener(reverseListener);
 
-        rememberMode.setChecked(AppState.get().isRememberMode);
-        checkOpenWithSpinner();
+        configSingleClick.update();
 
         textNigthColor.setTextColor(AppState.get().colorNigthText);
         textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);

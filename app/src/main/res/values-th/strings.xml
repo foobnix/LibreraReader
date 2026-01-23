@@ -677,4 +677,7 @@
    <string name="time">เวลา</string>
    <string name="current_folder">โฟลเดอร์ปัจจุบัน</string>
    <string name="search_error_msg">เกิดข้อผิดพลาดขณะค้นหา โปรดเลือกโฟลเดอร์อื่นที่มีหนังสือและลองใหม่อีกครั้ง</string>
+   <string name="single_tap">แตะครั้งเดียว</string>
+   <string name="long_tap">แตะยาว</string>
+   <string name="select_mode">เลือกโหมด</string>
 </resources>

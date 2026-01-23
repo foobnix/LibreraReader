@@ -836,25 +836,28 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <com.foobnix.pdf.info.view.confline.ConfLineView
+            <ImageView
+                android:id="@+id/moreModeSettings"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:contentDescription="@string/settings"
+                android:padding="4dip"
+                android:src="@drawable/glyphicons_137_cogwheel"
                 android:visibility="gone"
-                android:id="@+id/configDefaultView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                my:text="Default View" />
+                app:tint="@color/tint_gray" />
 
             <com.foobnix.pdf.info.view.confline.ConfLineView
-                android:id="@+id/configSingleClick"
+                android:id="@+id/configSingeClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                my:text="Single click" />
+                my:text="@string/single_tap" />
 
             <com.foobnix.pdf.info.view.confline.ConfLineView
                 android:id="@+id/configLongClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                my:text="Long Click" />
-
+                my:text="@string/long_tap" />
 
             <View
                 android:layout_width="match_parent"
@@ -862,46 +865,6 @@
                 android:layout_marginTop="3dip"
                 android:layout_marginBottom="1dip"
                 android:background="@color/lt_grey_alpha" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <CheckBox
-                    android:id="@+id/isRememberMode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLines="1"
-                    android:text="@string/remember_reading_mode" />
-
-                <TextView
-                    android:id="@+id/selectedOpenMode"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:maxLines="2"
-                    android:minWidth="100dip"
-                    android:singleLine="false"
-                    android:text="@string/mode_vertical" />
-
-                <ImageView
-                    android:id="@+id/moreModeSettings"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_weight="0"
-                    android:contentDescription="@string/settings"
-                    android:padding="4dip"
-                    android:src="@drawable/glyphicons_137_cogwheel"
-                    android:visibility="gone"
-                    app:tint="@color/tint_gray" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

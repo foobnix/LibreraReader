@@ -677,4 +677,7 @@
    <string name="time">Aika</string>
    <string name="current_folder">Nykyinen kansio</string>
    <string name="search_error_msg">Haussa tapahtui virhe. Valitse toinen kirjoja sisältävä kansio ja yritä uudelleen.</string>
+   <string name="single_tap">Yhdellä napautuksella</string>
+   <string name="long_tap">Pitkä napautus</string>
+   <string name="select_mode">Valitse tila</string>
 </resources>
