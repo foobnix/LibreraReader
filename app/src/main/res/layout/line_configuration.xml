@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:layout_marginLeft="5dip"
+    android:padding="5dp"
     android:orientation="horizontal">
 
     <TextView

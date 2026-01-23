@@ -203,6 +203,7 @@ public class PrefFragment2 extends UIFragment {
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TxtUtils.setInkTextView(inflate.getRootView());
         }
+        TxtUtils.updateAllLinks(inflate,true);
 
     }
 
@@ -2262,7 +2263,7 @@ public class PrefFragment2 extends UIFragment {
                     sendNotifyTintChanged();
                     ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                    TxtUtils.updateAllLinks(inflate, true);
+                    //TxtUtils.updateAllLinks(inflate, true);
                 }
             };
 
@@ -2362,7 +2363,7 @@ public class PrefFragment2 extends UIFragment {
                         sendNotifyTintChanged();
                         ((MainTabs2) getActivity()).updateCurrentFragment();
 
-                        TxtUtils.updateAllLinks(inflate, true);
+                        //TxtUtils.updateAllLinks(inflate, true);
 
                     }
                 });

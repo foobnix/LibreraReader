@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
@@ -27,8 +28,11 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
@@ -1449,6 +1453,10 @@ public class TxtUtils {
                 View child = parent.getChildAt(i);
 
                 if ("no_tint".equals(child.getTag())) {
+                    continue;
+                }
+                if("with_tint".equals(child.getTag())){
+                    child.setBackgroundColor(MagicHelper.alpha(200,TintUtil.color));
                     continue;
                 }
 
