@@ -680,4 +680,6 @@
    <string name="single_tap">Sconna aonair</string>
    <string name="long_tap">Sconna fada</string>
    <string name="select_mode">Mód roghnaithe</string>
+   <string name="msg_migration">Aistrigh an t-eolaire [Librera] chuig gléas eile chun do chuid sonraí a aistriú.</string>
+   <string name="msg_sync">Sioncrónaigh an fillteán [Librera] le gléasanna eile trí Google Drive nó aipeanna tríú páirtí.</string>
 </resources>

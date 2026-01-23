@@ -680,4 +680,6 @@
    <string name="single_tap">Bomba moja</string>
    <string name="long_tap">Bomba refu</string>
    <string name="select_mode">Chagua hali</string>
+   <string name="msg_migration">Hamisha saraka ya [Librera] hadi kwenye kifaa kingine ili kuhamisha data yako.</string>
+   <string name="msg_sync">Sawazisha folda ya [Librera] na vifaa vingine kupitia google drive au programu za wahusika wengine.</string>
 </resources>

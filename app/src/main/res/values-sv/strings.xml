@@ -680,4 +680,6 @@
    <string name="single_tap">Enda tryckning</string>
    <string name="long_tap">Lång tryckning</string>
    <string name="select_mode">Välj läge</string>
+   <string name="msg_migration">Överför [Librera]-katalogen till en annan enhet för att migrera dina data.</string>
+   <string name="msg_sync">Synkronisera mappen [Librera] med andra enheter via Google Drive eller tredjepartsappar.</string>
 </resources>

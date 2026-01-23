@@ -680,4 +680,6 @@
    <string name="single_tap">Clic unique</string>
    <string name="long_tap">Appui long</string>
    <string name="select_mode">Sélectionner le mode</string>
+   <string name="msg_migration">Transférez le répertoire [Librera] vers un autre appareil pour migrer vos données.</string>
+   <string name="msg_sync">Synchronisez le dossier [Librera] avec d\'autres appareils via Google Drive ou des applications tierces.</string>
 </resources>

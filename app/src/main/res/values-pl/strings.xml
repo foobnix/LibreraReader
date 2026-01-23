@@ -680,4 +680,6 @@
    <string name="single_tap">Pojedyncze dotknięcie</string>
    <string name="long_tap">Długie dotknięcie</string>
    <string name="select_mode">Wybierz tryb</string>
+   <string name="msg_migration">Przenieś katalog [Librera] na inne urządzenie, aby przenieść swoje dane.</string>
+   <string name="msg_sync">Synchronizuj folder [Librera] z innymi urządzeniami za pomocą Dysku Google lub aplikacji innych firm.</string>
 </resources>

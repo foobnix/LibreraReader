@@ -680,4 +680,6 @@
    <string name="single_tap">Бір рет түрту</string>
    <string name="long_tap">Ұзақ түрту</string>
    <string name="select_mode">Режимді таңдау</string>
+   <string name="msg_migration">Деректеріңізді көшіру үшін [Librera] каталогын басқа құрылғыға тасымалдаңыз.</string>
+   <string name="msg_sync">[Librera] қалтасын Google Drive немесе үшінші тарап қолданбалары арқылы басқа құрылғылармен синхрондаңыз.</string>
 </resources>

@@ -680,4 +680,6 @@
    <string name="single_tap">싱글 탭</string>
    <string name="long_tap">길게 탭하기</string>
    <string name="select_mode">선택 모드</string>
+   <string name="msg_migration">데이터를 마이그레이션하려면 [Librera] 디렉토리를 다른 장치로 옮기세요.</string>
+   <string name="msg_sync">Google Drive 또는 타사 앱을 통해 [Librera] 폴더를 다른 기기와 동기화하세요.</string>
 </resources>

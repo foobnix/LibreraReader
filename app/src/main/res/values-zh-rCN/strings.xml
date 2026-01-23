@@ -680,4 +680,6 @@
    <string name="single_tap">单击</string>
    <string name="long_tap">长按</string>
    <string name="select_mode">选择模式</string>
+   <string name="msg_migration">将 [Librera] 目录传输到另一台设备以迁移您的数据。</string>
+   <string name="msg_sync">通过谷歌云端硬盘或第三方应用程序将[Librera]文件夹与其他设备同步。</string>
 </resources>

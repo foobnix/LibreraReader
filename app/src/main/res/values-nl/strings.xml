@@ -680,4 +680,6 @@
    <string name="single_tap">Enkele tik</string>
    <string name="long_tap">Lang tikken</string>
    <string name="select_mode">Selecteer modus</string>
+   <string name="msg_migration">Verplaats de [Librera]-directory naar een ander apparaat om uw gegevens te migreren.</string>
+   <string name="msg_sync">Synchroniseer de [Librera]-map met andere apparaten via Google Drive of apps van derden.</string>
 </resources>

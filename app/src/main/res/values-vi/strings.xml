@@ -680,4 +680,6 @@
    <string name="single_tap">Chạm một lần</string>
    <string name="long_tap">Chạm dài</string>
    <string name="select_mode">Chọn chế độ</string>
+   <string name="msg_migration">Hãy chuyển thư mục [Librera] sang thiết bị khác để di chuyển dữ liệu của bạn.</string>
+   <string name="msg_sync">Đồng bộ hóa thư mục [Librera] với các thiết bị khác thông qua Google Drive hoặc các ứng dụng của bên thứ ba.</string>
 </resources>

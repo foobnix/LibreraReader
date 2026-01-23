@@ -680,4 +680,6 @@
    <string name="single_tap">Ukitu bakarra</string>
    <string name="long_tap">Ukitu luzea</string>
    <string name="select_mode">Hautatu modua</string>
+   <string name="msg_migration">Transferitu [Librera] direktorioa beste gailu batera zure datuak migratzeko.</string>
+   <string name="msg_sync">Sinkronizatu [Librera] karpeta beste gailu batzuekin Google Drive edo hirugarrenen aplikazioen bidez.</string>
 </resources>

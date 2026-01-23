@@ -680,4 +680,6 @@
    <string name="single_tap">Одинарне натискання</string>
    <string name="long_tap">Довге натискання</string>
    <string name="select_mode">Вибрати режим</string>
+   <string name="msg_migration">Перенесіть каталог [Librera] на інший пристрій, щоб перенести свої дані.</string>
+   <string name="msg_sync">Синхронізуйте папку [Librera] з іншими пристроями через Google Диск або сторонні програми.</string>
 </resources>

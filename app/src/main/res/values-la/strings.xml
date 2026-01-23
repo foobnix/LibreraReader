@@ -680,4 +680,6 @@
    <string name="single_tap">Tactus singularis</string>
    <string name="long_tap">Diu tactus</string>
    <string name="select_mode">Modum eligere</string>
+   <string name="msg_migration">Directorium [Librera] ad aliud instrumentum transfer ut notitias tuas migres.</string>
+   <string name="msg_sync">Fasciculum [Librera] cum aliis machinis per Google Drive vel applicationes tertiae partis synchroniza.</string>
 </resources>

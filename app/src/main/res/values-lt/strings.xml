@@ -680,4 +680,6 @@
    <string name="single_tap">Vieno bakstelėjimo</string>
    <string name="long_tap">Ilgas bakstelėjimas</string>
    <string name="select_mode">Pasirinkti režimą</string>
+   <string name="msg_migration">Perkelkite [Librera] katalogą į kitą įrenginį, kad galėtumėte perkelti savo duomenis.</string>
+   <string name="msg_sync">Sinchronizuokite [Librera] aplanką su kitais įrenginiais naudodami „Google“ diską arba trečiųjų šalių programas.</string>
 </resources>

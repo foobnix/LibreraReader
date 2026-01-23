@@ -680,4 +680,6 @@
    <string name="single_tap">Yhdellä napautuksella</string>
    <string name="long_tap">Pitkä napautus</string>
    <string name="select_mode">Valitse tila</string>
+   <string name="msg_migration">Siirrä [Librera]-hakemisto toiselle laitteelle tietojesi siirtämiseksi.</string>
+   <string name="msg_sync">Synkronoi [Librera]-kansio muiden laitteiden kanssa Google Driven tai kolmannen osapuolen sovellusten kautta.</string>
 </resources>

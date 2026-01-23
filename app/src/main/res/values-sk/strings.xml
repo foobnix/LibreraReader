@@ -680,4 +680,6 @@
    <string name="single_tap">Jedným klepnutím</string>
    <string name="long_tap">Dlhé poklepanie</string>
    <string name="select_mode">Vybrať režim</string>
+   <string name="msg_migration">Pre migráciu údajov preneste adresár [Librera] do iného zariadenia.</string>
+   <string name="msg_sync">Synchronizujte priečinok [Librera] s inými zariadeniami prostredníctvom Disku Google alebo aplikácií tretích strán.</string>
 </resources>

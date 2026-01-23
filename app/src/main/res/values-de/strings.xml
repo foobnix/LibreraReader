@@ -680,4 +680,6 @@
    <string name="single_tap">Einmaliges Tippen</string>
    <string name="long_tap">Langes Tippen</string>
    <string name="select_mode">Modus auswählen</string>
+   <string name="msg_migration">Übertragen Sie das Verzeichnis [Librera] auf ein anderes Gerät, um Ihre Daten zu migrieren.</string>
+   <string name="msg_sync">Synchronisieren Sie den [Librera]-Ordner mit anderen Geräten über Google Drive oder Apps von Drittanbietern.</string>
 </resources>

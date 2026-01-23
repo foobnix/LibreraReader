@@ -680,4 +680,6 @@
    <string name="single_tap">ഒറ്റ ടാപ്പ്</string>
    <string name="long_tap">ലോങ്ങ് ടാപ്പ്</string>
    <string name="select_mode">മോഡ് തിരഞ്ഞെടുക്കുക</string>
+   <string name="msg_migration">നിങ്ങളുടെ ഡാറ്റ മൈഗ്രേറ്റ് ചെയ്യുന്നതിന് [Librera] ഡയറക്ടറി മറ്റൊരു ഉപകരണത്തിലേക്ക് മാറ്റുക.</string>
+   <string name="msg_sync">ഗൂഗിൾ ഡ്രൈവ് അല്ലെങ്കിൽ മൂന്നാം കക്ഷി ആപ്പുകൾ വഴി [ലിബ്രെറ] ഫോൾഡർ മറ്റ് ഉപകരണങ്ങളുമായി സമന്വയിപ്പിക്കുക.</string>
 </resources>

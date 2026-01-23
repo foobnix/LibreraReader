@@ -680,4 +680,6 @@
    <string name="single_tap">Egyetlen érintéssel</string>
    <string name="long_tap">Hosszú koppintás</string>
    <string name="select_mode">Mód kiválasztása</string>
+   <string name="msg_migration">Vigye át a [Librera] könyvtárat egy másik eszközre az adatok migrálásához.</string>
+   <string name="msg_sync">Szinkronizálja a [Librera] mappát más eszközökkel a Google Drive vagy harmadik féltől származó alkalmazások segítségével.</string>
 </resources>

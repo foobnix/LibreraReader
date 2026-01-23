@@ -680,4 +680,6 @@
    <string name="single_tap">Singolo tocco</string>
    <string name="long_tap">Tocco lungo</string>
    <string name="select_mode">Seleziona la modalità</string>
+   <string name="msg_migration">Trasferisci la directory [Librera] su un altro dispositivo per migrare i tuoi dati.</string>
+   <string name="msg_sync">Sincronizzare la cartella [Librera] con altri dispositivi tramite Google Drive o app di terze parti.</string>
 </resources>

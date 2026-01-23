@@ -680,4 +680,6 @@
    <string name="single_tap">نقرة واحدة</string>
    <string name="long_tap">الضغط المطول</string>
    <string name="select_mode">حدد الوضع</string>
+   <string name="msg_migration">انقل دليل [Librera] إلى جهاز آخر لترحيل بياناتك.</string>
+   <string name="msg_sync">قم بمزامنة مجلد [Librera] مع الأجهزة الأخرى عبر جوجل درايف أو تطبيقات الطرف الثالث.</string>
 </resources>

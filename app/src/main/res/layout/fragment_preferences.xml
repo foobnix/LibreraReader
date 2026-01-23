@@ -1418,6 +1418,14 @@
                 android:background="@drawable/bg_search_second"
                 android:text="@string/import_or_export_application_settings_to_json_file" />
 
+            <TextView
+                android:padding="4dip"
+                android:text="@string/msg_migration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1486,6 +1494,14 @@
                     android:ellipsize="start"
                     android:text="[]" />
             </LinearLayout>
+
+            <View
+                android:tag="with_tint"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="1dip"
+                android:layout_marginBottom="1dip"
+                android:background="@color/lt_grey_alpha" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -1628,6 +1644,8 @@
                         android:text="@string/sync_google_drive" />
 
 
+
+
                     <TextView
                         android:id="@+id/signIn"
                         style="@style/textLinkWhite"
@@ -1639,6 +1657,12 @@
 
 
                 </LinearLayout>
+
+                <TextView
+                    android:padding="4dip"
+                    android:text="@string/msg_sync"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
 
                 <TextView

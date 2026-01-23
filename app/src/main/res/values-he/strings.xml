@@ -680,4 +680,6 @@
    <string name="single_tap">הקשה אחת</string>
    <string name="long_tap">הקשה ארוכה</string>
    <string name="select_mode">בחירת מצב</string>
+   <string name="msg_migration">העבר את הספרייה [Librera] למכשיר אחר כדי להעביר את הנתונים שלך.</string>
+   <string name="msg_sync">סנכרן את התיקייה [Librera] עם מכשירים אחרים דרך גוגל דרייב או אפליקציות של צד שלישי.</string>
 </resources>

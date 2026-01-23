@@ -680,4 +680,6 @@
    <string name="single_tap">Enkelt trykk</string>
    <string name="long_tap">Langt trykk</string>
    <string name="select_mode">Velg modus</string>
+   <string name="msg_migration">Overfør [Librera]-katalogen til en annen enhet for å migrere dataene dine.</string>
+   <string name="msg_sync">Synkroniser [Librera]-mappen med andre enheter via Google Disk eller tredjepartsapper.</string>
 </resources>
