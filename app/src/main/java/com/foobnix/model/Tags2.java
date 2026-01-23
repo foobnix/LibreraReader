@@ -5,13 +5,16 @@ import androidx.core.util.Pair;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StringDB;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
 
 import org.greenrobot.eventbus.EventBus;
 import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
+import org.zwobble.mammoth.internal.documents.Run;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,24 +27,30 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Tags2 {
 
-    public static void createTag(String name) {
+    public static void createTag(String tag) {
+        if (TxtUtils.isEmpty(tag)) {
+            return;
+        }
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
-        obj.put(name, new JSONArray());
+        if (!obj.has(tag)) {
+            obj.put(tag, new JSONArray());
+        }
         IO.writeObjAsync(AppProfile.syncTags2, obj);
-        LOG.d("Tags2", "createTag", name);
+        LOG.d("Tags2", "createTag", tag);
     }
 
-    public static void deleteTag(String name) {
+    public static void deleteTag(String tag) {
+        if (TxtUtils.isEmpty(tag)) {
+            return;
+        }
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
-        obj.remove(name);
+        obj.remove(tag);
         IO.writeObjAsync(AppProfile.syncTags2, obj);
-        LOG.d("Tags2", "deleteTag", name);
+        LOG.d("Tags2", "deleteTag", tag);
     }
 
     public static List<String> getAllTags() {
@@ -112,9 +121,7 @@ public class Tags2 {
                     array.put(file.getPath());
                 }
             } else {
-                if (index >= 0) {
-                    array.remove(index);
-                }
+                array.remove(index);
             }
 
         }
@@ -123,55 +130,67 @@ public class Tags2 {
     }
 
     public static int getIndex(JSONArray array, String value) {
-        for (int i = 0; i < array.length(); i++) {
-            if (array.getString(i)
-                     .equals(value)) {
-                return i;
+        try {
+
+            for (int i = 0; i < array.length(); i++) {
+                if (array.getString(i)
+                         .equals(value)) {
+                    return i;
+                }
             }
+        } catch (Exception e) {
+            LOG.e(e);
         }
         return -1;
     }
 
     public static void migration() {
-        if (AppProfile.syncTags.exists() && !AppProfile.syncTags2.exists()) {
-            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+        try {
+            if (AppProfile.syncTags.exists() && !AppProfile.syncTags2.exists()) {
+                LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
 
-            final Iterator<String> keys = obj.keys();
-            Map<String, HashSet<File>> outMap = new HashMap<>();
-            while (keys.hasNext()) {
-                final String key = keys.next();
-                if (key.isEmpty()) {
-                    continue;
-                }
-                final String file = MyPath.toAbsolute(key);
-                String tagsLine = obj.getString(key);
-                if (tagsLine.isEmpty()) {
-                    continue;
-                }
-                List<String> tags = Arrays.stream(tagsLine.split(","))
-                                          .map(String::trim)
-                                          .filter(o -> !o.isEmpty())
-                                          .collect(Collectors.toList());
-                if (tags.isEmpty()) {
-                    continue;
-                }
+                final Iterator<String> keys = obj.keys();
+                Map<String, HashSet<File>> outMap = new HashMap<>();
+                while (keys.hasNext()) {
+                    final String key = keys.next();
+                    if (key.isEmpty()) {
+                        continue;
+                    }
+                    final String file = MyPath.toAbsolute(key);
+                    String tagsLine = obj.getString(key);
+                    if (tagsLine.isEmpty()) {
+                        continue;
+                    }
+                    List<String> tags = Arrays.stream(tagsLine.split(","))
+                                              .map(String::trim)
+                                              .filter(o -> !o.isEmpty())
+                                              .collect(Collectors.toList());
+                    if (tags.isEmpty()) {
+                        continue;
+                    }
 
-                tags.forEach(it -> {
-                    outMap.computeIfAbsent(it, k -> new HashSet<>())
-                          .add(new File(file));
+                    tags.forEach(it -> {
+                        outMap.computeIfAbsent(it, k -> new HashSet<>())
+                              .add(new File(file));
+                    });
+
+                    LOG.d("migrationTag", file, tags, tags.size());
+                }
+                LinkedJSONObject objOut = new LinkedJSONObject();
+                outMap.forEach((key, value) -> {
+                    LOG.d("migrationTagRes", key, value);
+                    objOut.put(key, new JSONArray(value));
                 });
-
-                LOG.d("migrationTag", file, tags, tags.size());
+                IO.writeObjAsync(AppProfile.syncTags2, objOut);
+                LOG.d("migrationTag", "Success");
+            } else {
+                LOG.d("migrationTag", "No Need");
             }
-            LinkedJSONObject objOut = new LinkedJSONObject();
-            outMap.forEach((key, value) -> {
-                LOG.d("migrationTagRes", key, value);
-                objOut.put(key, new JSONArray(value));
-            });
-            IO.writeObjAsync(AppProfile.syncTags2, objOut);
-            LOG.d("migrationTag", "Success");
-        } else {
-            LOG.d("migrationTag", "No Need");
+        } catch (Exception e) {
+            LOG.e(e);
+            if (AppsConfig.IS_LOG) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
