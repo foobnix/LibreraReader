@@ -91,6 +91,18 @@ public class SendReceiveActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         LOG.d("SendReceiveActivity", "updateIntent()-", getIntent());
         LOG.d("SendReceiveActivity", "updateIntent()-getExtras", getIntent().getExtras());
+
+        try {
+            for (String key : getIntent().getExtras()
+                                         .keySet()) {
+                LOG.d("SendReceiveActivity", "extra:", key, getIntent().getExtras()
+                                                                       .get(key));
+
+            }
+        }catch (Exception e){
+            LOG.e(e);
+        }
+
         LOG.d("SendReceiveActivity", "updateIntent()-getType", getIntent().getType());
         LOG.d("SendReceiveActivity", "updateIntent()-getScheme", getIntent().getScheme());
         LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
@@ -102,10 +114,21 @@ public class SendReceiveActivity extends Activity {
 
         Uri fileUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         LOG.d("SendReceiveActivity", "fileUri 1", fileUri);
+
+        if (fileUri == null && intent.getExtras() != null) {
+            String data=intent.getExtras().getString(Intent.EXTRA_TEXT);
+            if(TxtUtils.isNotEmpty(data)) {
+                fileUri = Uri.parse(data);
+                LOG.d("SendReceiveActivity", "fileUri 3", fileUri);
+            }
+        }
+        
         if (fileUri == null && intent.getClipData() != null) {
             fileUri = intent.getClipData().getItemAt(0).getUri();
+            LOG.d("SendReceiveActivity", "fileUri 2", fileUri);
         }
-        LOG.d("SendReceiveActivity", "fileUri 2", fileUri);
+
+        LOG.d("SendReceiveActivity", "fileUri final:", fileUri);
 
 
         String fileName = "downloaded_file.pdf";

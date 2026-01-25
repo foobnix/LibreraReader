@@ -52,7 +52,7 @@ public class AppsConfig {
 //        return t;
 //    });
 
-    public final static ExecutorService executorService = Executors.newFixedThreadPool(cpuCores);
+    public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
     public final static ExecutorService executorServiceSingle = Executors.newSingleThreadExecutor();
 
     public static boolean
