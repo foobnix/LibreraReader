@@ -179,7 +179,7 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="@string/search_error_msg" />
+            android:text="@string/search_error_msg1" />
 
         <TextView
             android:id="@+id/layoutErrorOnRestart"

@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Liburua osatuta dago.</string>
    <string name="time">Denbora</string>
    <string name="current_folder">Uneko karpeta</string>
-   <string name="search_error_msg">Errore bat gertatu da bilaketan zehar. Mesedez, hautatu liburuak dituen beste karpeta bat eta saiatu berriro.</string>
+   <string name="search_error_msg1">Bilaketa ez da osatu. Mesedez, hautatu beste karpeta bat edo saiatu berriro.</string>
    <string name="single_tap">Ukitu bakarra</string>
    <string name="long_tap">Ukitu luzea</string>
    <string name="select_mode">Hautatu modua</string>

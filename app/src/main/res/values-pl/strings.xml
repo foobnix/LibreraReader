@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Książka jest ukończona.</string>
    <string name="time">Czas</string>
    <string name="current_folder">Bieżący folder</string>
-   <string name="search_error_msg">Wystąpił błąd podczas wyszukiwania. Wybierz inny folder zawierający książki i spróbuj ponownie.</string>
+   <string name="search_error_msg1">Wyszukiwanie nie zostało ukończone. Wybierz inny folder lub spróbuj ponownie.</string>
    <string name="single_tap">Pojedyncze dotknięcie</string>
    <string name="long_tap">Długie dotknięcie</string>
    <string name="select_mode">Wybierz tryb</string>

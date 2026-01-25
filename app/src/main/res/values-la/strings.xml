@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Liber completus est.</string>
    <string name="time">Tempus</string>
    <string name="current_folder">Fasciculus praesens</string>
-   <string name="search_error_msg">Error inquisitione accidit. Quaeso, aliam fasciculam libros continentem elige et iterum conare.</string>
+   <string name="search_error_msg1">Inquisitio non completa est. Quaeso, aliud fasciculum elige vel iterum conare.</string>
    <string name="single_tap">Tactus singularis</string>
    <string name="long_tap">Diu tactus</string>
    <string name="select_mode">Modum eligere</string>

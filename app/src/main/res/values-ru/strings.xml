@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Книга завершена.</string>
    <string name="time">Время</string>
    <string name="current_folder">Текущая папка</string>
-   <string name="search_error_msg">Произошла ошибка при поиске. Пожалуйста, выберите другую папку с книгами и попробуйте снова.</string>
+   <string name="search_error_msg1">Поиск не завершен. Пожалуйста, выберите другую папку или попробуйте снова.</string>
    <string name="single_tap">Одно нажатие</string>
    <string name="long_tap">Длинный клик</string>
    <string name="select_mode">Выбрать режим</string>

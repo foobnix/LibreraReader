@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Cartea este completă.</string>
    <string name="time">Timp</string>
    <string name="current_folder">Folderul curent</string>
-   <string name="search_error_msg">A apărut o eroare în timpul căutării. Selectați un alt folder care conține cărți și încercați din nou.</string>
+   <string name="search_error_msg1">Căutarea nu a fost finalizată. Selectați un alt folder sau încercați din nou.</string>
    <string name="single_tap">O singură atingere</string>
    <string name="long_tap">Atingere lungă</string>
    <string name="select_mode">Selectați modul</string>

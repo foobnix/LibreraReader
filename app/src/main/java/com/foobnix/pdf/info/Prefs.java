@@ -15,21 +15,23 @@ public class Prefs {
         return instance;
     }
 
-    Context c;
     SharedPreferences sp;
 
-    public void init(Context c) {
-        sp = c.getSharedPreferences("TextErrors", Context.MODE_PRIVATE);
-    }
-
-    public void put(String path, int page) {
-        if(sp!=null) {
-            sp.edit().putBoolean(makeHash(path, page), true).commit();
+    public synchronized void init(Context c) {
+        if (sp == null) {
+            sp = c.getSharedPreferences("TextErrors", Context.MODE_PRIVATE);
         }
     }
 
-    @NonNull
-    private String makeHash(String path, int page) {
+    public void put(String path, int page) {
+        if (sp != null) {
+            sp.edit()
+              .putBoolean(makeHash(path, page), true)
+              .commit();
+        }
+    }
+
+    @NonNull private String makeHash(String path, int page) {
         return "" + path.hashCode() + page;
     }
 
@@ -44,8 +46,10 @@ public class Prefs {
     }
 
     public void remove(String path, int page) {
-        if(sp!=null) {
-            sp.edit().remove(makeHash(path, page)).commit();
+        if (sp != null) {
+            sp.edit()
+              .remove(makeHash(path, page))
+              .commit();
         }
     }
 

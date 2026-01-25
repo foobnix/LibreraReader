@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">O livro está completo.</string>
    <string name="time">Tempo</string>
    <string name="current_folder">Pasta atual</string>
-   <string name="search_error_msg">Ocorreu um erro durante a pesquisa. Selecione uma pasta diferente que contenha livros e tente novamente.</string>
+   <string name="search_error_msg1">A pesquisa não foi concluída. Selecione outra pasta ou tente novamente.</string>
    <string name="single_tap">Toque único</string>
    <string name="long_tap">Toque longo</string>
    <string name="select_mode">Selecionar modo</string>

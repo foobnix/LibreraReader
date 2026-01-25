@@ -579,12 +579,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void showResult(MessageSyncFinish event) {
-        if (AppDB.get()
-                 .getCount() == 0) {
-            layoutError.setVisibility(View.VISIBLE);
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN) public void showResult(MessageSyncFinish event) {
+        layoutError.setVisibility(AppDB.get()
+                                       .getCount() == 0 ? View.VISIBLE : View.GONE);
+
     }
 
     public void showAutoCompleteDialog() {

@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">Boken er komplett.</string>
    <string name="time">Tid</string>
    <string name="current_folder">Gjeldende mappe</string>
-   <string name="search_error_msg">Det oppsto en feil under søket. Vennligst velg en annen mappe som inneholder bøker og prøv på nytt.</string>
+   <string name="search_error_msg1">Søket ble ikke fullført. Vennligst velg en annen mappe eller prøv på nytt.</string>
    <string name="single_tap">Enkelt trykk</string>
    <string name="long_tap">Langt trykk</string>
    <string name="select_mode">Velg modus</string>

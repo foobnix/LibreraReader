@@ -676,7 +676,7 @@
    <string name="the_book_is_complete">പുസ്തകം പൂർത്തിയായി.</string>
    <string name="time">സമയം</string>
    <string name="current_folder">നിലവിലെ ഫോൾഡർ</string>
-   <string name="search_error_msg">തിരയുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു. പുസ്തകങ്ങൾ അടങ്ങിയ മറ്റൊരു ഫോൾഡർ തിരഞ്ഞെടുത്ത് വീണ്ടും ശ്രമിക്കുക.</string>
+   <string name="search_error_msg1">തിരയൽ പൂർത്തിയായില്ല. ദയവായി മറ്റൊരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ വീണ്ടും ശ്രമിക്കുക.</string>
    <string name="single_tap">ഒറ്റ ടാപ്പ്</string>
    <string name="long_tap">ലോങ്ങ് ടാപ്പ്</string>
    <string name="select_mode">മോഡ് തിരഞ്ഞെടുക്കുക</string>
