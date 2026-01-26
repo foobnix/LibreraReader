@@ -165,7 +165,7 @@
 
     <LinearLayout
         android:id="@+id/layoutError"
-        android:background="#F44336"
+        android:background="@color/green_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dip"
