@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:maxWidth="100dip"
-                android:text="Google TTS!!!" />
+                android:text="@string/empy" />
 
             <TextView
                 android:id="@+id/langLabel"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:layout_weight="1"
-                android:text="(Alan:Russian)" />
+                android:text="@string/empy" />
 
             <ImageView
                 android:id="@+id/onHelp"
