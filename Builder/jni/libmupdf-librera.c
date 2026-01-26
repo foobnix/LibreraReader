@@ -330,7 +330,7 @@ JNIEXPORT jlong
         // fz_drop_context(doc->ctx);
         // fz_set_user_css(doc->ctx,css);
 
-        __android_log_print(ANDROID_LOG_DEBUG, "EBookDroid", "Open succes");
+        __android_log_print(ANDROID_LOG_DEBUG, "EBookDroid", "Open succes %s", filename);
         printf("Open  end %s \n", filename);
 
         // char info[64];

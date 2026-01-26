@@ -32,6 +32,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class ADS {
@@ -40,7 +41,6 @@ public class ADS {
     public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//4 min
 
     public static int REWARDS_HOURS_IN_SECONDS = 2 * 60 * 60;//2 hours
-
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
@@ -216,18 +216,31 @@ public class ADS {
             return;
         }
         try {
+            FrameLayout adFrame1 = a.findViewById(R.id.adFrame1);
+            FrameLayout adFrame2 = a.findViewById(R.id.adFrame2);
+            boolean isTopBanner = new Random().nextBoolean();
+            final FrameLayout frame = isTopBanner ?//
+                    adFrame1 ://
+                    adFrame2;//
 
-            final FrameLayout frame = a.findViewById(R.id.adFrame);
             if (frame == null) {
                 return;
             }
-            frame.removeAllViews();
+            adFrame1.removeAllViews();
+            adFrame2.removeAllViews();
             onDestroyBanner();
 
             LOG.d("ADS1", "Banner show");
             adView = new AdView(a);
-            AdSize size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
-            //AdSize size = AdSize.BANNER;
+            AdSize size;
+            if (isTopBanner) {
+                size = new Random().nextBoolean() ?//
+                        AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP()) ://
+                        AdSize.LARGE_BANNER;
+            } else {
+                size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
+            }
+
             adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");

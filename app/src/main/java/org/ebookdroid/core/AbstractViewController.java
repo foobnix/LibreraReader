@@ -78,8 +78,8 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         //this.pageToGo = SettingsManager.getBookSettings().getCurrentPage(base.getDocumentModel().getPageCount());
 
-        createAction(R.id.adFrame, new Constant("direction", -1));
-        createAction(R.id.adFrame, new Constant("direction", +1));
+        //createAction(R.id.adFrame, new Constant("direction", -1));
+        //createAction(R.id.adFrame, new Constant("direction", +1));
 
     }
 

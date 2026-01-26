@@ -128,7 +128,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     View bottomBar, bottomIndicators, onClose, overlay, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
-    FrameLayout anchor, adFrame;
+    FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
             anchorX, anchorY, pagesBookmark;
@@ -318,7 +318,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
-        adFrame = findViewById(R.id.adFrame);
+
         anchor = (FrameLayout) findViewById(R.id.anchor);
 
         anchorX = (ImageView) findViewById(R.id.anchorX);

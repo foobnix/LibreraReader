@@ -11,6 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
+    <FrameLayout
+        android:id="@+id/adFrame1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -68,6 +73,8 @@
                     </LinearLayout>
 
 
+
+
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/pager"
                         android:layout_width="match_parent"
@@ -77,7 +84,7 @@
                     <FrameLayout
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp"
-                        android:id="@+id/adFrame"
+                        android:id="@+id/adFrame2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

@@ -149,22 +149,6 @@ public abstract class UIFragment<T> extends Fragment {
             LOG.d("TempHolder.listHash", listHash, TempHolder.listHash);
             resetFragment();
             listHash = TempHolder.listHash;
-        } else {
-            //TODO ???
-            //notifyFragment();
-
-            try {
-                if (adFrame == null) {
-                    adFrame = getActivity().findViewById(R.id.adFrame);
-                }
-
-                if (adFrame != null && adFrame.getVisibility() == View.INVISIBLE) {
-                    adFrame.setVisibility(View.VISIBLE);
-                }
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-
         }
     }
 

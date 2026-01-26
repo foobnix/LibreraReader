@@ -237,7 +237,7 @@ public class DocumentWrapperUI {
             batteryIcon, fullscreen, onTextReplacement;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2,
             goToPage1, goToPage1Top;
-    View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus,
+    View  titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus,
             zoomMinus;
     public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
 
@@ -962,7 +962,6 @@ public class DocumentWrapperUI {
 
         bottomBar = a.findViewById(R.id.bottomBar);
         imageMenuArrow = (ImageView) a.findViewById(R.id.imageMenuArrow);
-        adFrame = a.findViewById(R.id.adFrame);
 
         seekBar = (SeekBar) a.findViewById(R.id.seekBar1);
         seekBar.setAccessibilityDelegate(new View.AccessibilityDelegate());
