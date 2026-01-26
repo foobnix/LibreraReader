@@ -99,16 +99,18 @@ public class SendReceiveActivity extends Activity {
                                                                        .get(key));
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
         LOG.d("SendReceiveActivity", "updateIntent()-getType", getIntent().getType());
         LOG.d("SendReceiveActivity", "updateIntent()-getScheme", getIntent().getScheme());
-        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
-                                                                              .getDescription());
-        LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
-                                                                              .getItemCount());
+        if (getIntent().getClipData() != null) {
+            LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
+                                                                                  .getDescription());
+            LOG.d("SendReceiveActivity", "updateIntent()-getClipData", getIntent().getClipData()
+                                                                                  .getItemCount());
+        }
 
         new File(BookCSS.get().downlodsPath).mkdirs();
 
@@ -116,20 +118,22 @@ public class SendReceiveActivity extends Activity {
         LOG.d("SendReceiveActivity", "fileUri 1", fileUri);
 
         if (fileUri == null && intent.getExtras() != null) {
-            String data=intent.getExtras().getString(Intent.EXTRA_TEXT);
-            if(TxtUtils.isNotEmpty(data)) {
+            String data = intent.getExtras()
+                                .getString(Intent.EXTRA_TEXT);
+            if (TxtUtils.isNotEmpty(data)) {
                 fileUri = Uri.parse(data);
                 LOG.d("SendReceiveActivity", "fileUri 3", fileUri);
             }
         }
-        
+
         if (fileUri == null && intent.getClipData() != null) {
-            fileUri = intent.getClipData().getItemAt(0).getUri();
+            fileUri = intent.getClipData()
+                            .getItemAt(0)
+                            .getUri();
             LOG.d("SendReceiveActivity", "fileUri 2", fileUri);
         }
 
         LOG.d("SendReceiveActivity", "fileUri final:", fileUri);
-
 
         String fileName = "downloaded_file.pdf";
         if (fileUri != null) {
@@ -170,7 +174,6 @@ public class SendReceiveActivity extends Activity {
             }
         }
 
-
         if (extras != null && getIntent().getData() == null) {
             Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
             final Object text = res != null ? res : extras.get(Intent.EXTRA_TEXT);
@@ -182,9 +185,10 @@ public class SendReceiveActivity extends Activity {
                 return;
             }
 
-            Uri uri = Uri.parse((String) text);
-
-            if (uri != null) {
+            Uri uri = Uri.parse(text.toString());
+            LOG.d("SendReceiveActivity", "uri-text", uri);
+            if (uri != null && uri.getScheme() != null && uri.getScheme().startsWith("http")) {
+                LOG.d("SendReceiveActivity","Uri scheme",uri.getScheme());
                 Request request = new Request.Builder().cacheControl(
                                                                new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES)
                                                                                          .build())
@@ -290,9 +294,9 @@ public class SendReceiveActivity extends Activity {
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     String outerHtml = Jsoup.clean(document.html(), Safelist.basic());
                     LOG.d("outerHtml-html", outerHtml);
-                    fileOutputStream.write("<html><head></head><body style='text-align:justify;'>".getBytes());
+                    fileOutputStream.write("<html><head></head><body style='text-align:justify;'>" .getBytes());
                     fileOutputStream.write(outerHtml.getBytes());
-                    fileOutputStream.write("</body></html>".getBytes());
+                    fileOutputStream.write("</body></html>" .getBytes());
                     fileOutputStream.flush();
                     fileOutputStream.close();
                     getIntent().setData(Uri.fromFile(file));
