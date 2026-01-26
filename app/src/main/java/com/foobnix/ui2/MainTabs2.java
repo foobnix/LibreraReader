@@ -836,7 +836,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             pager.setCurrentItem(currentItem);
             IMG.clearMemoryCache();
         }
-        showBannerAds();
+        //showBannerAds();
     }
 
     @Override

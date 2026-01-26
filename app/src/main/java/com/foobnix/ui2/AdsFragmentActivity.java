@@ -69,7 +69,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onPostCreate(savedInstanceState);
         if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
             if (this instanceof MainTabs2) {
-                showBannerAds();
+                ADS.get().showBanner(this);
             }
         }
 //           // if (this instanceof HorizontalViewActivity || this instanceof VerticalViewActivity) {
@@ -88,10 +88,6 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     public void onRewardLoaded() {
 
-    }
-
-    public void showBannerAds() {
-        ADS.get().showBanner(this);
     }
 
     public void showRewardVideo(OnUserEarnedRewardListener listener) {

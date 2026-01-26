@@ -230,7 +230,7 @@ public class ADS {
             adFrame2.removeAllViews();
             onDestroyBanner();
 
-            LOG.d("ADS1", "Banner show");
+            LOG.d("ADS1", "Banner-show top", isTopBanner);
             adView = new AdView(a);
             AdSize size;
             if (isTopBanner) {
