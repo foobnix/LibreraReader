@@ -61,7 +61,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@TargetApi(Build.VERSION_CODES.O) public class TTSService extends Service {
+@TargetApi(Build.VERSION_CODES.O)
+public class TTSService extends Service {
     public static final String EXTRA_PATH = "EXTRA_PATH";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
     public static final String EXTRA_INT = "INT";
@@ -114,7 +115,7 @@ import java.util.List;
         }
     };
     private WakeLock wakeLock;
-    private static final long WAKE_LOCK_TIMEOUT = 1 * 60 * 1000L; // 1 min timeout per page
+    private static final long WAKE_LOCK_TIMEOUT = 2 * 60 * 1000L; // 2 min timeout per page
 
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -434,6 +435,8 @@ import java.util.List;
         return false;
     }
 
+
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -586,7 +589,7 @@ import java.util.List;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
-        releaseWakeLock();
+        //releaseWakeLock();
         acquireWakeLock();
         mMediaSessionCompat.setActive(true);
 
@@ -819,15 +822,18 @@ import java.util.List;
         LOG.d(TAG, "onDestroy:TTS playBookPage1");
     }
 
+    Object lock = new Object();
     private void acquireWakeLock() {
         try {
-            if (wakeLock != null && !wakeLock.isHeld()) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    wakeLock.acquire(WAKE_LOCK_TIMEOUT);
-                } else {
-                    wakeLock.acquire();
+            synchronized (lock) {
+                if (wakeLock != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        wakeLock.acquire(WAKE_LOCK_TIMEOUT);
+                    } else {
+                        wakeLock.acquire();
+                    }
+                    LOG.d(TAG, "WakeLock acquired");
                 }
-                LOG.d(TAG, "WakeLock acquired");
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -836,9 +842,11 @@ import java.util.List;
 
     private void releaseWakeLock() {
         try {
-            if (wakeLock != null && wakeLock.isHeld()) {
-                wakeLock.release();
-                LOG.d(TAG, "WakeLock released");
+            synchronized (lock) {
+                if (wakeLock != null && wakeLock.isHeld()) {
+                    wakeLock.release();
+                    LOG.d(TAG, "WakeLock released");
+                }
             }
         } catch (Exception e) {
             LOG.e(e);

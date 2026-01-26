@@ -127,6 +127,7 @@ public class TTSEngine {
 
         synchronized (helpObject) {
             if (ttsEngine != null) {
+
                 ttsEngine.shutdown();
             }
             ttsEngine = null;
