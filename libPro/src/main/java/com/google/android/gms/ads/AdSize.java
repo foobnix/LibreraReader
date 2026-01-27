@@ -3,11 +3,11 @@ package com.google.android.gms.ads;
 import android.app.Activity;
 
 public class AdSize {
-    public static final int SMART_BANNER = 1;
-    public static final int FULL_WIDTH = 1;
-    public static final int LARGE_BANNER = 2;
-    public static final int BANNER = 3;
-    public static final int FULL_BANNER = 3;
+    public static final AdSize SMART_BANNER =  new AdSize(0,0);
+    public static final AdSize FULL_WIDTH = new AdSize(0,0);
+    public static final AdSize LARGE_BANNER = new AdSize(0,0);
+    public static final AdSize BANNER = new AdSize(0,0);
+    public static final AdSize FULL_BANNER = new AdSize(0,0);
 
     public AdSize(int a, int b) {
 
