@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Tazama video hii fupi ili kuzima matangazo yote kwa saa 2</string>
    <string name="the_book_is_complete">Kitabu kimekamilika.</string>
    <string name="time">Wakati</string>
+   <string name="date_added">Tarehe imeongezwa</string>
    <string name="current_folder">Folda ya sasa</string>
    <string name="search_error_msg1">Utafutaji haukukamilika. Tafadhali chagua folda tofauti au jaribu tena.</string>
    <string name="single_tap">Bomba moja</string>

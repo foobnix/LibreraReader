@@ -166,7 +166,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             @Override public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
-                        getActivity().getString(R.string.time), //
+                        getActivity().getString(R.string.date_added), //
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //

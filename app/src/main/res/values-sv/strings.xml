@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Titta på den här korta videon för att stänga av all reklam i två timmar</string>
    <string name="the_book_is_complete">Boken är komplett.</string>
    <string name="time">Tid</string>
+   <string name="date_added">Datum tillagt</string>
    <string name="current_folder">Aktuell mapp</string>
    <string name="search_error_msg1">Sökningen slutfördes inte. Välj en annan mapp eller försök igen.</string>
    <string name="single_tap">Enda tryckning</string>

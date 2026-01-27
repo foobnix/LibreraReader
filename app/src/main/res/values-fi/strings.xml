@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset kahdeksi tunniksi</string>
    <string name="the_book_is_complete">Kirja on valmis.</string>
    <string name="time">Aika</string>
+   <string name="date_added">Lisäyspäivämäärä</string>
    <string name="current_folder">Nykyinen kansio</string>
    <string name="search_error_msg1">Haku ei onnistunut. Valitse toinen kansio tai yritä uudelleen.</string>
    <string name="single_tap">Yhdellä napautuksella</string>

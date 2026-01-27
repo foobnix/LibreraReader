@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">എല്ലാ പരസ്യങ്ങളും 2 മണിക്കൂർ ഓഫാക്കാൻ ഈ ചെറിയ വീഡിയോ കാണുക.</string>
    <string name="the_book_is_complete">പുസ്തകം പൂർത്തിയായി.</string>
    <string name="time">സമയം</string>
+   <string name="date_added">ചേർത്ത തീയതി</string>
    <string name="current_folder">നിലവിലെ ഫോൾഡർ</string>
    <string name="search_error_msg1">തിരയൽ പൂർത്തിയായില്ല. ദയവായി മറ്റൊരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ വീണ്ടും ശ്രമിക്കുക.</string>
    <string name="single_tap">ഒറ്റ ടാപ്പ്</string>

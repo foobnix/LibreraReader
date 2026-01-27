@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Гледайте това кратко видео, за да изключите всички реклами за 2 часа</string>
    <string name="the_book_is_complete">Книгата е завършена.</string>
    <string name="time">Време</string>
+   <string name="date_added">Дата на добавяне</string>
    <string name="current_folder">Текуща папка</string>
    <string name="search_error_msg1">Търсенето не беше завършено. Моля, изберете друга папка или опитайте отново.</string>
    <string name="single_tap">Еднократно докосване</string>

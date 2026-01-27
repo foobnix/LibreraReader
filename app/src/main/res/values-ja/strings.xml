@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">この短いビデオを見て、2時間すべての広告をオフにしてください</string>
    <string name="the_book_is_complete">本は完成しました。</string>
    <string name="time">時間</string>
+   <string name="date_added">追加日</string>
    <string name="current_folder">現在のフォルダ</string>
    <string name="search_error_msg1">検索が完了しませんでした。別のフォルダを選択するか、もう一度お試しください。</string>
    <string name="single_tap">シングルタップ</string>

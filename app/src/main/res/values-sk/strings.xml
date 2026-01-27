@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Pozrite si toto krátke video a na 2 hodinu vypnete všetky reklamy.</string>
    <string name="the_book_is_complete">Kniha je kompletná.</string>
    <string name="time">Čas</string>
+   <string name="date_added">Dátum pridania</string>
    <string name="current_folder">Aktuálny priečinok</string>
    <string name="search_error_msg1">Vyhľadávanie nebolo dokončené. Vyberte iný priečinok alebo skúste to znova.</string>
    <string name="single_tap">Jedným klepnutím</string>

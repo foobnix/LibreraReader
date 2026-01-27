@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Hoc breve video specta ut omnes inscriptiones per duas horas excludas.</string>
    <string name="the_book_is_complete">Liber completus est.</string>
    <string name="time">Tempus</string>
+   <string name="date_added">Dies addita</string>
    <string name="current_folder">Fasciculus praesens</string>
    <string name="search_error_msg1">Inquisitio non completa est. Quaeso, aliud fasciculum elige vel iterum conare.</string>
    <string name="single_tap">Tactus singularis</string>

@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Assista a este breve vídeo para desativar todos os anúncios por 2 horas.</string>
    <string name="the_book_is_complete">O livro está completo.</string>
    <string name="time">Tempo</string>
+   <string name="date_added">Data adicionada</string>
    <string name="current_folder">Pasta atual</string>
    <string name="search_error_msg1">A pesquisa não foi concluída. Selecione outra pasta ou tente novamente.</string>
    <string name="single_tap">Toque único</string>

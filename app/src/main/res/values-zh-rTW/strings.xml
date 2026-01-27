@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">觀看此短視頻，即可在 2 小時內關閉所有廣告。</string>
    <string name="the_book_is_complete">這本書已經完成了。</string>
    <string name="time">時間</string>
+   <string name="date_added">新增日期</string>
    <string name="current_folder">目前資料夾</string>
    <string name="search_error_msg1">搜尋未完成。請選擇其他資料夾或重試。</string>
    <string name="single_tap">點選</string>

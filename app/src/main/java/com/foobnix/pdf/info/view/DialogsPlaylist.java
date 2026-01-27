@@ -70,6 +70,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -445,6 +446,7 @@ public class DialogsPlaylist {
                 String tag = displayPath.replace(L_PLAYLIST_TAGS, "");
 
                 res.addAll(Tags2.getAllFilesByTag(tag));
+                Collections.reverse(res);
             } else {
                 mainHandler.post(() -> {
                             playListNameEdit.setVisibility(View.VISIBLE);

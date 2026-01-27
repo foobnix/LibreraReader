@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">2 மணி நேரம் அனைத்து விளம்பரங்களையும் அணைக்க இந்த சிறிய வீடியோவைப் பாருங்கள்.</string>
    <string name="the_book_is_complete">புத்தகம் முடிந்தது.</string>
    <string name="time">நேரம்</string>
+   <string name="date_added">சேர்க்கப்பட்ட தேதி</string>
    <string name="current_folder">தற்போதைய கோப்புறை</string>
    <string name="search_error_msg1">தேடல் முடியவில்லை. வேறு கோப்புறையைத் தேர்ந்தெடுக்கவும் அல்லது மீண்டும் முயற்சிக்கவும்.</string>
    <string name="single_tap">ஒற்றை குழாய்</string>

@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Παρακολουθήστε αυτό το σύντομο βίντεο για να απενεργοποιήσετε όλες τις διαφημίσεις για 2 ώρες</string>
    <string name="the_book_is_complete">Το βιβλίο είναι ολοκληρωμένο.</string>
    <string name="time">Φορά</string>
+   <string name="date_added">Ημερομηνία προσθήκης</string>
    <string name="current_folder">Τρέχων φάκελος</string>
    <string name="search_error_msg1">Η αναζήτηση δεν ολοκληρώθηκε. Επιλέξτε διαφορετικό φάκελο ή δοκιμάστε ξανά.</string>
    <string name="single_tap">Ένα μόνο άγγιγμα</string>

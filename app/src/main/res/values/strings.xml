@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Watch this short video to turn off all ads for 2 hours</string>
    <string name="the_book_is_complete">The book is complete.</string>
    <string name="time">Time</string>
+   <string name="date_added">Date added</string>
    <string name="current_folder">Current Folder</string>
    <string name="search_error_msg1">Search was not complete. Please select a different folder or try again.</string>
    <string name="single_tap">Single tap</string>

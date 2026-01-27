@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bu kısa videoyu izleyerek 2 saat boyunca tüm reklamları kapatabilirsiniz.</string>
    <string name="the_book_is_complete">Kitap tamamlandı.</string>
    <string name="time">Zaman</string>
+   <string name="date_added">Eklenme tarihi</string>
    <string name="current_folder">Mevcut klasör</string>
    <string name="search_error_msg1">Arama tamamlanmadı. Lütfen farklı bir klasör seçin veya tekrar deneyin.</string>
    <string name="single_tap">Tek musluk</string>

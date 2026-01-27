@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة ساعتين</string>
    <string name="the_book_is_complete">الكتاب مكتمل.</string>
    <string name="time">وقت</string>
+   <string name="date_added">تاريخ الإضافة</string>
    <string name="current_folder">المجلد الحالي</string>
    <string name="search_error_msg1">لم يكتمل البحث. يرجى اختيار مجلد مختلف أو المحاولة مرة أخرى.</string>
    <string name="single_tap">نقرة واحدة</string>

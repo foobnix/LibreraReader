@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">이 짧은 영상을 시청하시면 2시간 동안 모든 광고가 차단됩니다.</string>
    <string name="the_book_is_complete">책이 완성되었습니다.</string>
    <string name="time">시간</string>
+   <string name="date_added">추가된 날짜</string>
    <string name="current_folder">현재 폴더</string>
    <string name="search_error_msg1">검색이 완료되지 않았습니다. 다른 폴더를 선택하거나 다시 시도해 주세요.</string>
    <string name="single_tap">싱글 탭</string>

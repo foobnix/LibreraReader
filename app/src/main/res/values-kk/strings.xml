@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Барлық жарнамаларды 2 сағатқа өшіру үшін осы қысқа бейнені көріңіз</string>
    <string name="the_book_is_complete">Кітап толықтай дайын.</string>
    <string name="time">Уақыт</string>
+   <string name="date_added">Қосылған күні</string>
    <string name="current_folder">Ағымдағы қалта</string>
    <string name="search_error_msg1">Іздеу аяқталмады. Басқа қалтаны таңдаңыз немесе қайталап көріңіз.</string>
    <string name="single_tap">Бір рет түрту</string>

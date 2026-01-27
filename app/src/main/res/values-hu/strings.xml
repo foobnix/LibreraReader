@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Nézd meg ezt a rövid videót, hogy 2 órára kikapcsolhasd az összes reklámot</string>
    <string name="the_book_is_complete">A könyv teljes.</string>
    <string name="time">Idő</string>
+   <string name="date_added">Hozzáadott dátum</string>
    <string name="current_folder">Aktuális mappa</string>
    <string name="search_error_msg1">A keresés nem fejeződött be. Kérjük, válasszon egy másik mappát, vagy próbálja újra.</string>
    <string name="single_tap">Egyetlen érintéssel</string>

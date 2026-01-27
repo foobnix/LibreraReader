@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Mireu aquest vídeo curt per desactivar tots els anuncis durant 2 hores</string>
    <string name="the_book_is_complete">El llibre està complet.</string>
    <string name="time">Temps</string>
+   <string name="date_added">Data afegida</string>
    <string name="current_folder">Carpeta actual</string>
    <string name="search_error_msg1">La cerca no s\'ha completat. Seleccioneu una carpeta diferent o torneu-ho a intentar.</string>
    <string name="single_tap">Un sol toc</string>

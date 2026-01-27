@@ -675,6 +675,7 @@
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bekijk dit korte filmpje om alle advertenties 2 uur lang uit te schakelen.</string>
    <string name="the_book_is_complete">Het boek is af.</string>
    <string name="time">Tijd</string>
+   <string name="date_added">Datum toegevoegd</string>
    <string name="current_folder">Huidige map</string>
    <string name="search_error_msg1">De zoekopdracht is niet voltooid. Selecteer een andere map of probeer het opnieuw.</string>
    <string name="single_tap">Enkele tik</string>
