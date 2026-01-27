@@ -26,6 +26,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.provider.Settings;
+import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -148,9 +149,11 @@ import java.util.List;
         LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);
     }
 
-    public static void openSettingsIntent(Context a){
-        TTSEngine.get().stop();
-        TTSEngine.get().stopDestroy();
+    public static void openSettingsIntent(Context a) {
+        TTSEngine.get()
+                 .stop();
+        TTSEngine.get()
+                 .stopDestroy();
 
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -179,7 +182,10 @@ import java.util.List;
             }
             return false;
         }
-        if(TTSEngine.get().isInit() && TTSEngine.get().getCurrentLang().equals("---")){
+        if (TTSEngine.get()
+                     .isInit() && TTSEngine.get()
+                                           .getCurrentLang()
+                                           .equals("---")) {
             openSettingsIntent(context);
             return false;
         }
@@ -577,7 +583,7 @@ import java.util.List;
                 cache = null;
             }
             path = AppSP.get().lastBookPath;
-            LOG.d(TAG, "CodecDocument","loadingCancelled",TempHolder.get().loadingCancelled);
+            LOG.d(TAG, "CodecDocument", "loadingCancelled", TempHolder.get().loadingCancelled);
             cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "");
             if (cache == null) {
                 TTSNotification.hideNotification();
@@ -632,9 +638,12 @@ import java.util.List;
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                 }
-                TTSEngine.get()
-                         .getTTS()
-                         .setOnUtteranceCompletedListener(null);
+                TextToSpeech tts = TTSEngine.get()
+                                            .getTTS();
+                if (tts == null) {
+                    return;
+                }
+                tts.setOnUtteranceCompletedListener(null);
                 TTSEngine.get()
                          .speek(LibreraApp.context.getString(R.string.the_book_is_over));
 
@@ -765,7 +774,7 @@ import java.util.List;
 
                                  if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
                                      LOG.d(TAG, "onUtteranceCompleted skip", "");
-                                    return;
+                                     return;
                                  }
 
                                  LOG.d(TAG, "onUtteranceCompleted", utteranceId);
