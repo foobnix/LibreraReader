@@ -34,7 +34,8 @@ public class Apps {
 
     public static boolean isPackageInstalled(String packageName, Context context) {
         try {
-            context.getPackageManager().getPackageInfo(packageName, 0);
+            context.getPackageManager()
+                   .getPackageInfo(packageName, 0);
             return true;
         } catch (Exception e) {
             LOG.e(e);
@@ -43,22 +44,24 @@ public class Apps {
     }
 
     public static Drawable getApplicationImage(Context context) {
-        return context.getPackageManager().getApplicationIcon(context.getApplicationInfo());
+        return context.getPackageManager()
+                      .getApplicationIcon(context.getApplicationInfo());
     }
 
     public static String getApplicationName(Context context) {
         try {
-            return (String) context.getPackageManager().getApplicationLabel(context.getApplicationInfo());
+            return (String) context.getPackageManager()
+                                   .getApplicationLabel(context.getApplicationInfo());
         } catch (Exception e) {
             LOG.e(e);
         }
         return "";
     }
 
-
     public static String getVersionName(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo = context.getPackageManager()
+                                       .getPackageInfo(context.getPackageName(), 0);
             return pInfo.versionName;
         } catch (Exception e) {
             LOG.e(e);
@@ -68,7 +71,8 @@ public class Apps {
 
     public static int getVersionCode(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo = context.getPackageManager()
+                                       .getPackageInfo(context.getPackageName(), 0);
             return pInfo.versionCode;
         } catch (Exception e) {
             LOG.e(e);
@@ -78,7 +82,8 @@ public class Apps {
 
     public static int getTargetSdkVersion(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo = context.getPackageManager()
+                                       .getPackageInfo(context.getPackageName(), 0);
             return pInfo.applicationInfo.targetSdkVersion;
         } catch (Exception e) {
             LOG.e(e);
@@ -88,7 +93,8 @@ public class Apps {
 
     public static String getPackageName(Context context) {
         try {
-            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo pInfo = context.getPackageManager()
+                                       .getPackageInfo(context.getPackageName(), 0);
             return pInfo.packageName;
         } catch (Exception e) {
             LOG.e(e);
@@ -106,37 +112,45 @@ public class Apps {
     public static void onCrashEmail(Context c, String msg, String title) {
         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
-        String string = c.getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
+        String string = c.getResources()
+                         .getString(R.string.my_email)
+                         .replace("<u>", "")
+                         .replace("</u>", "");
         final String aEmailList[] = {string};
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getApplicationName(c) + " " + Apps.getVersionName(c) + " Crash report");
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+                getApplicationName(c) + " " + Apps.getVersionName(c) + " Crash report");
         emailIntent.setType("plain/text");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, msg);
 
         try {
             c.startActivity(Intent.createChooser(emailIntent, title));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(c, R.string.there_are_no_email_applications_installed_, Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, R.string.there_are_no_email_applications_installed_, Toast.LENGTH_SHORT)
+                 .show();
         }
     }
 
-
     public static String getMetaData(Context context, String name) {
         try {
-            if(context==null){
+            if (context == null || context.getPackageName() == null || //
+                    context.getPackageManager() == null || TxtUtils.isEmpty(name)) {
                 return null;
             }
-            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
-                    context.getPackageName(), PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = context.getPackageManager()
+                                             .getApplicationInfo(context.getPackageName(),
+                                                     PackageManager.GET_META_DATA);
             if (appInfo.metaData != null) {
                 return appInfo.metaData.getString(name);
             }
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             LOG.e(e);
+            if (AppsConfig.IS_LOG) {
+                throw new RuntimeException("can't find meta-data:" + name);
+            }
+            return null;
         }
-        if(AppsConfig.IS_LOG) {
-           throw  new RuntimeException("can't find meta-data:" + name);
-        }
+
         return null;
     }
 
@@ -161,7 +175,8 @@ public class Apps {
     }
 
     public static boolean isNight(Activity a) {
-        float screenBrightness = a.getWindow().getAttributes().screenBrightness;
+        float screenBrightness = a.getWindow()
+                                  .getAttributes().screenBrightness;
         LOG.d("isNight screenBrightness", screenBrightness);
         boolean isNight = false;
         if (screenBrightness == -1) {
@@ -198,7 +213,6 @@ public class Apps {
         }
     }
 
-
     public static void accessibilityText(Context context, String... ids) {
         StringBuilder builder = new StringBuilder();
         for (String id : ids) {
@@ -225,8 +239,8 @@ public class Apps {
                 AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
                 accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
 
-
-                accessibilityEvent.getText().add(text.trim());
+                accessibilityEvent.getText()
+                                  .add(text.trim());
                 if (am != null) {
                     am.sendAccessibilityEvent(accessibilityEvent);
                     LOG.d("accessibilityText", text);
@@ -237,11 +251,12 @@ public class Apps {
             LOG.e(e);
         }
     }
-    public static boolean isAccessibilityEnable(Context context){
+
+    public static boolean isAccessibilityEnable(Context context) {
         try {
             AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
             return am.isEnabled() && am.isTouchExplorationEnabled();
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
         return false;
@@ -253,7 +268,9 @@ public class Apps {
     }
 
     public static String getBookPathFromActivity(Activity a) {
-        return a.getIntent().getData().getPath();
+        return a.getIntent()
+                .getData()
+                .getPath();
     }
 
 }
