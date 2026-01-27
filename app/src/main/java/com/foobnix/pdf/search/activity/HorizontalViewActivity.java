@@ -92,6 +92,7 @@ import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
@@ -1227,6 +1228,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
     };
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updates(NotifyAllFragments notify){
+        DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
+    }
 
     public void showPagesHelper() {
         try {

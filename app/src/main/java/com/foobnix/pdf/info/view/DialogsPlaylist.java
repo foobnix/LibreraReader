@@ -356,6 +356,9 @@ public class DialogsPlaylist {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
+        if(Apps.isDestroyedActivity(a) || dc ==null){
+            return;
+        }
         final Handler mainHandler = new Handler(Looper.getMainLooper());
 
         final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);

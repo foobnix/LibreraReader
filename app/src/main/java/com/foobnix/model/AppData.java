@@ -16,11 +16,13 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.widget.RecentUpates;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.greenrobot.eventbus.EventBus;
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
@@ -40,7 +42,6 @@ public class AppData {
 
     public static final int LIMIT = 3;
     static AppData inst = new AppData();
-    static Map<String, List<SimpleMeta>> cacheSM = new HashMap<>();
 
     public static AppData get() {
         return inst;
@@ -222,13 +223,19 @@ public class AppData {
     public void removeRecent(FileMeta meta) {
         LOG.d("removeRecent", meta.getPath());
         removeAll(meta, AppProfile.APP_RECENT_JSON);
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
 
     public void removeFavorite(FileMeta meta) {
         removeAll(meta, AppProfile.APP_FAVORITE_JSON);
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
     public void removeFavorite(String path) {
         removeAll(new FileMeta(path), AppProfile.APP_FAVORITE_JSON);
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
 
     public void removeExcluded(FileMeta meta) {
@@ -262,10 +269,14 @@ public class AppData {
 
     public void addFavorite(SimpleMeta simpleMeta) {
         add(simpleMeta, AppProfile.syncFavorite);
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
 
     public void addExclue(String path) {
         add(new SimpleMeta(path), AppProfile.syncExclude);
+
+
     }
 
     public void clearFavorites() {
