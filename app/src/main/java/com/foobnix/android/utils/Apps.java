@@ -18,6 +18,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 
 import static android.content.Context.ACCESSIBILITY_SERVICE;
@@ -122,6 +123,9 @@ public class Apps {
 
     public static String getMetaData(Context context, String name) {
         try {
+            if(context==null){
+                return null;
+            }
             ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
                     context.getPackageName(), PackageManager.GET_META_DATA);
             if (appInfo.metaData != null) {
@@ -130,7 +134,9 @@ public class Apps {
         } catch (PackageManager.NameNotFoundException e) {
             LOG.e(e);
         }
-        new RuntimeException("can't find meta-data:" + name);
+        if(AppsConfig.IS_LOG) {
+           throw  new RuntimeException("can't find meta-data:" + name);
+        }
         return null;
     }
 

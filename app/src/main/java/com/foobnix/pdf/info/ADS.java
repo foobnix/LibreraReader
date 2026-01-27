@@ -141,6 +141,9 @@ public class ADS {
         LOG.d("ADS1", "RewardedAd load started...");
 
         String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_REWARD");
+        if(adUnitId==null){
+            return;
+        }
         RewardedAd.load(a, adUnitId, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
             @Override public void onAdLoaded(@NonNull RewardedAd rewardedAdLoaded) {
                 rewardedAd = rewardedAdLoaded;
@@ -187,6 +190,9 @@ public class ADS {
             }
 
             String adUnitId = Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID");
+            if(adUnitId==null){
+                return;
+            }
             InterstitialAd.load(LibreraApp.context, adUnitId, ADS.getAdRequest(a), new InterstitialAdLoadCallback() {
                 @Override public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
@@ -244,6 +250,9 @@ public class ADS {
             adView.setAdSize(size);
 
             String metaData = Apps.getMetaData(a, "librera.ADMOB_BANNER_ID");
+            if(metaData==null){
+                return;
+            }
             adView.setAdUnitId(metaData);
 
             adView.loadAd(getAdRequest(a));
