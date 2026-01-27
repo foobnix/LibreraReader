@@ -178,6 +178,7 @@
             <CheckBox
                 android:id="@+id/isDefaultHyphenLanguage"
                 android:layout_width="wrap_content"
+                android:maxLines="2"
                 android:layout_height="wrap_content"
                 android:text="@string/defaults_" />
 
@@ -196,6 +197,7 @@
             android:text="@string/show_footnotes_directly_in_text" />
 
         <View
+            android:tag="with_tint"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -217,6 +219,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
+            android:tag="with_tint"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -255,6 +258,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
+            android:tag="with_tint"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -308,6 +312,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
+            android:tag="with_tint"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
