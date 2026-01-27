@@ -10,8 +10,11 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -60,6 +63,8 @@ public class Playlists {
         }
         File child = new File(AppProfile.syncPlaylist, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
         child.delete();
+        EventBus.getDefault()
+                .post(new NotifyAllFragments());
     }
 
     public static void addMetaToPlaylist(String name, File file) {
@@ -69,6 +74,9 @@ public class Playlists {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child, true)));
             out.println(MyPath.toRelative(file.getPath()));
             out.close();
+
+            EventBus.getDefault()
+                    .post(new NotifyAllFragments());
         } catch (IOException e) {
             LOG.e(e);
         }
@@ -85,6 +93,9 @@ public class Playlists {
                 out.println(MyPath.toRelative(path));
             }
             out.close();
+
+            EventBus.getDefault()
+                    .post(new NotifyAllFragments());
         } catch (IOException e) {
             LOG.e(e);
         }
