@@ -69,6 +69,13 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             }
         });
 
+        holder.parent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override public boolean onLongClick(View v) {
+                mDragStartListener.onItemLongClick(item);
+                return true;
+            }
+        });
+
         int size = (int) (IMG.getImageSize() * 0.7);
 
         holder.imageView.getLayoutParams().width = size;

@@ -14,5 +14,6 @@ public interface OnStartDragListener {
     void onRevemove();
 
     void onItemClick(String result);
+    void onItemLongClick(String result);
 
 }

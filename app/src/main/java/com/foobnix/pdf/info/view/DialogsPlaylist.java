@@ -56,6 +56,7 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.drag.OnStartDragListener;
 import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
 import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
+import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
@@ -268,6 +269,10 @@ public class DialogsPlaylist {
                 Playlists.updatePlaylist(file, res);
             }
 
+            @Override public void onItemLongClick(String result) {
+                onItemClick(result);
+            }
+
             @Override public void onItemClick(String result) {
                 Playlists.updatePlaylist(file, res);
                 EventBus.getDefault()
@@ -463,6 +468,18 @@ public class DialogsPlaylist {
                     }
 
                     @Override public void onRevemove() {
+                    }
+
+                    @Override public void onItemLongClick(String result) {
+                        ShareDialog.show(dc.getActivity(), new File(result), new Runnable() {
+                            @Override public void run() {
+
+                            }
+                        }, 0, dc, new Runnable() {
+                            @Override public void run() {
+
+                            }
+                        });
                     }
 
                     @Override public void onItemClick(final String s) {
