@@ -1039,7 +1039,7 @@ public class PageImaveView extends View {
                         TempHolder.get().linkPage = target;
                         LOG.d("Go to targetPage", target);
                     }
-                    if (pair.second != null) {
+                    if (pair.second != null && TxtUtils.isNotEmpty(pair.second.text)) {
                         Dialogs.showTextDialog(getContext(), pair.second.text);
                     }
 
