@@ -236,6 +236,9 @@ public class Clouds {
     public void init(Context c) {
         this.context = c;
         try {
+            if(true){//allways false
+                return;
+            }
 
             if (!UITab.isShowCloudsPreferences()) {
                 LOG.d("Clouds-is not active");
