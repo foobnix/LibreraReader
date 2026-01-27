@@ -148,6 +148,16 @@ import java.util.List;
         LOG.d("Update-timer", TempHolder.get().timerFinishTime, AppState.get().ttsTimer);
     }
 
+    public static void openSettingsIntent(Context a){
+        TTSEngine.get().stop();
+        TTSEngine.get().stopDestroy();
+
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction("com.android.settings.TTS_SETTINGS");
+        a.startActivity(intent);
+    }
+
     public static boolean isTTSGranted(Context context) {
         if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context,
                 Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -167,6 +177,10 @@ import java.util.List;
                 ActivityCompat.requestPermissions((Activity) context,
                         new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
             }
+            return false;
+        }
+        if(TTSEngine.get().isInit() && TTSEngine.get().getCurrentLang().equals("---")){
+            openSettingsIntent(context);
             return false;
         }
         return true;
@@ -552,6 +566,7 @@ import java.util.List;
 
     public CodecDocument getDC() {
         try {
+
             if (AppSP.get().lastBookPath != null && AppSP.get().lastBookPath.equals(
                     path) && cache != null && wh == AppSP.get().lastBookWidth + AppSP.get().lastBookHeight) {
                 LOG.d(TAG, "CodecDocument from cache", AppSP.get().lastBookPath);
@@ -562,6 +577,7 @@ import java.util.List;
                 cache = null;
             }
             path = AppSP.get().lastBookPath;
+            LOG.d(TAG, "CodecDocument","loadingCancelled",TempHolder.get().loadingCancelled);
             cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "");
             if (cache == null) {
                 TTSNotification.hideNotification();
@@ -711,7 +727,7 @@ import java.util.List;
                                  }
 
                                  if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
-                                     LOG.d(TAG, "onUtteranceCompleted skip", "");
+                                     LOG.d(TAG, "onUtteranceCompleted skip", utteranceId);
                                      return;
                                  }
 
@@ -749,7 +765,7 @@ import java.util.List;
 
                                  if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
                                      LOG.d(TAG, "onUtteranceCompleted skip", "");
-                                     return;
+                                    return;
                                  }
 
                                  LOG.d(TAG, "onUtteranceCompleted", utteranceId);

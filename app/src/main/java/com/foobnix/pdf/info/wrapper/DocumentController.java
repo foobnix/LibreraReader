@@ -698,8 +698,8 @@ public abstract class DocumentController {
 
     }
 
-    public void addRecent(final Uri uri) {
-        AppDB.get().addRecent(uri.getPath());
+    public void addRecent(final String path) {
+        AppDB.get().addRecent(path);
         // BookmarksData.get().addRecent(uri);
     }
 
@@ -863,6 +863,9 @@ public abstract class DocumentController {
 
     public void setCurrentBook(final File currentBook) {
         this.currentBook = currentBook;
+        AppSP.get().lastBookPath = currentBook.getPath();
+        TempHolder.get().loadingCancelled.set(false);
+        LOG.d("setCurrentBook",currentBook);
     }
 
     public String getTitle() {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.net.Uri;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -91,8 +92,9 @@ public abstract class HorizontalModeController extends DocumentController {
             AppSP.get().isLocked = true;
         }
 
-        bookPath = getBookPathFromActivity(activity);
-        AppSP.get().lastBookPath = bookPath;
+        bookPath = Apps.getBookPathFromActivity(activity);
+        setCurrentBook(new File(bookPath));
+
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
 
@@ -186,13 +188,11 @@ public abstract class HorizontalModeController extends DocumentController {
 
     }
 
-    public static String getBookPathFromActivity(Activity a) {
-        return a.getIntent().getData().getPath();
-    }
+
 
     public static String getTempTitle(Activity a) {
         try {
-            return getTitle(getBookPathFromActivity(a));
+            return getTitle(Apps.getBookPathFromActivity(a));
         } catch (Exception e) {
             LOG.e(e);
             return "";

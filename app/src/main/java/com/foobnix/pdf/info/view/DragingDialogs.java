@@ -963,13 +963,7 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(ttsSettings).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         try {
-                            TTSEngine.get().stop();
-                            TTSEngine.get().stopDestroy();
-
-                            Intent intent = new Intent();
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.setAction("com.android.settings.TTS_SETTINGS");
-                            activity.startActivity(intent);
+                            TTSService.openSettingsIntent(activity);
                         } catch (Exception e) {
                             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
                             LOG.e(e);

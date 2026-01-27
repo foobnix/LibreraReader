@@ -62,10 +62,6 @@ EpubContext extends PdfContext {
         if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
-        if (TempHolder.get().loadingCancelled.get()) {
-            removeTempFiles();
-            return null;
-        }
 
         String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
 

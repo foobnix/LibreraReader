@@ -246,4 +246,8 @@ public class Apps {
 
     }
 
+    public static String getBookPathFromActivity(Activity a) {
+        return a.getIntent().getData().getPath();
+    }
+
 }

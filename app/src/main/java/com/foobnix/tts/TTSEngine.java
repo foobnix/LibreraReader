@@ -64,14 +64,17 @@ public class TTSEngine {
     HashMap<String, String> map = new HashMap<String, String>();
     HashMap<String, String> mapTemp = new HashMap<String, String>();
 
+    public boolean isInit() {
+        return ttsEngine != null;
+    }
 
     OnInitListener listener = new OnInitListener() {
 
-        @Override
-        public void onInit(int status) {
+        @Override public void onInit(int status) {
             LOG.d(TAG, "onInit", "SUCCESS", status == TextToSpeech.SUCCESS);
             if (status == TextToSpeech.ERROR) {
-                Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
+                     .show();
             }
 
         }
@@ -91,7 +94,8 @@ public class TTSEngine {
     }
 
     public static AppBookmark fastTTSBookmakr(DocumentController dc) {
-        return fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
+        return fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook()
+                                                   .getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
 
     }
 
@@ -102,19 +106,23 @@ public class TTSEngine {
             LOG.d("fastTTSBookmakr skip");
             return null;
         }
-        boolean hasBookmark = BookmarksData.get().hasBookmark(bookPath, page, pages);
+        boolean hasBookmark = BookmarksData.get()
+                                           .hasBookmark(bookPath, page, pages);
 
         if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(bookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
-            BookmarksData.get().add(bookmark);
+            final AppBookmark bookmark =
+                    new AppBookmark(bookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
+            BookmarksData.get()
+                         .add(bookmark);
 
-            String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
-            Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
+            String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(
+                    R.string.page) + " " + page + "";
+            Toast.makeText(c, TEXT, Toast.LENGTH_SHORT)
+                 .show();
             return bookmark;
         }
         Vibro.vibrate();
         return null;
-
 
     }
 
@@ -146,8 +154,11 @@ public class TTSEngine {
 
         synchronized (helpObject) {
 
-            if (TTSEngine.get().isMp3() && mp == null) {
-                TTSEngine.get().loadMP3(BookCSS.get().mp3BookPathGet());
+            if (TTSEngine.get()
+                         .isMp3() && mp == null) {
+                TTSEngine.get()
+                         .loadMP3(BookCSS.get()
+                                         .mp3BookPathGet());
             }
 
             if (ttsEngine != null) {
@@ -171,8 +182,7 @@ public class TTSEngine {
         stop(null);
     }
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    public void stop(MediaSessionCompat mediaSessionCompat) {
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) public void stop(MediaSessionCompat mediaSessionCompat) {
         if (mediaSessionCompat != null) {
             mediaSessionCompat.setActive(false);
         }
@@ -189,7 +199,6 @@ public class TTSEngine {
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
 
-
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
                     ttsEngine.setOnUtteranceProgressListener(null);
@@ -197,7 +206,8 @@ public class TTSEngine {
                     ttsEngine.setOnUtteranceCompletedListener(null);
                 }
                 ttsEngine.stop();
-                EventBus.getDefault().post(new TtsStatus());
+                EventBus.getDefault()
+                        .post(new TtsStatus());
             }
         }
     }
@@ -222,8 +232,7 @@ public class TTSEngine {
         return ttsEngine;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public synchronized void speek(final String text) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public synchronized void speek(final String text) {
         this.text = text;
 
         if (AppSP.get().tempBookPage != AppSP.get().lastBookPage) {
@@ -244,8 +253,7 @@ public class TTSEngine {
 
         ttsEngine = getTTS(new OnInitListener() {
 
-            @Override
-            public void onInit(int status) {
+            @Override public void onInit(int status) {
                 LOG.d("getTTS-status", status);
                 if (status == TextToSpeech.SUCCESS) {
                     try {
@@ -313,26 +321,29 @@ public class TTSEngine {
     }
 
     public void speakToFile(final DocumentController controller, final ResultResponse<String> info, int from, int to) {
-        File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
+        File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook()
+                                                                                 .getName());
         if (!dirFolder.exists()) {
             dirFolder.mkdirs();
         }
         if (!dirFolder.exists()) {
-            info.onResultRecive(controller.getActivity().getString(R.string.file_not_found) + " " + dirFolder.getPath());
+            info.onResultRecive(controller.getActivity()
+                                          .getString(R.string.file_not_found) + " " + dirFolder.getPath());
             return;
         }
-
 
         String path = dirFolder.getPath();
         speakToFile(controller, from - 1, path, info, from - 1, to);
     }
 
-    public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info, int from, int to) {
+    public void speakToFile(final DocumentController controller, final int page, final String folder,
+                            final ResultResponse<String> info, int from, int to) {
         LOG.d("speakToFile", page, controller.getPageCount());
         if (ttsEngine == null) {
             LOG.d("TTS is null");
             if (controller != null && controller.getActivity() != null) {
-                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
+                     .show();
             }
             return;
         }
@@ -342,7 +353,8 @@ public class TTSEngine {
 
         if (page >= to || !TempHolder.isRecordTTS) {
             LOG.d("speakToFile finish", page, controller.getPageCount());
-            info.onResultRecive((controller.getActivity().getString(R.string.success)));
+            info.onResultRecive((controller.getActivity()
+                                           .getString(R.string.success)));
             TempHolder.isRecordTTS = false;
             return;
         }
@@ -355,66 +367,65 @@ public class TTSEngine {
         String fileText = controller.getTextForPage(page);
         controller.recyclePage(page);
 
-
         LOG.d("synthesizeToFile", fileText);
         if (TxtUtils.isEmpty(fileText)) {
             speakToFile(controller, page + 1, folder, info, from, to);
         } else {
 
             if (fileText.length() > 3950) {
-                fileText = TxtUtils.substringSmart(fileText, 3950) + " " + controller.getString(R.string.text_is_too_long);
+                fileText =
+                        TxtUtils.substringSmart(fileText, 3950) + " " + controller.getString(R.string.text_is_too_long);
                 LOG.d("Text-too-long", page);
             }
 
             ttsEngine.synthesizeToFile(fileText, map, wav);
 
+            TTSEngine.get()
+                     .getTTS()
+                     .setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
 
-            TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
+                         @Override public void onUtteranceCompleted(String utteranceId) {
+                             LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
 
-                @Override
-                public void onUtteranceCompleted(String utteranceId) {
-                    LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
+                             if (AppState.get().isConvertToMp3) {
+                                 try {
+                                     File file = new File(wav);
+                                     Lame lame = new Lame();
 
+                                     InputStream input = new BufferedInputStream(new FileInputStream(file));
+                                     input.mark(44);
+                                     int bitrate = MobiParserIS.asInt_LITTLE_ENDIAN(input, 24, 4);
+                                     LOG.d("bitrate", bitrate);
+                                     input.close();
+                                     input = new FileInputStream(file);
 
-                    if (AppState.get().isConvertToMp3) {
-                        try {
-                            File file = new File(wav);
-                            Lame lame = new Lame();
+                                     byte[] bytes = IOUtils.toByteArray(input);
 
+                                     short[] shorts = new short[bytes.length / 2];
+                                     ByteBuffer.wrap(bytes)
+                                               .order(ByteOrder.LITTLE_ENDIAN)
+                                               .asShortBuffer()
+                                               .get(shorts);
 
-                            InputStream input = new BufferedInputStream(new FileInputStream(file));
-                            input.mark(44);
-                            int bitrate = MobiParserIS.asInt_LITTLE_ENDIAN(input, 24, 4);
-                            LOG.d("bitrate", bitrate);
-                            input.close();
-                            input = new FileInputStream(file);
+                                     lame.open(1, bitrate, 128, 4);
+                                     byte[] res = lame.encode(shorts, 44, shorts.length);
+                                     lame.close();
+                                     File toFile = new File(wav.replace(".wav", ".mp3"));
+                                     toFile.delete();
+                                     IO.copyFile(new ByteArrayInputStream(res), toFile);
+                                     input.close();
+                                     file.delete();
 
+                                 } catch (Exception e) {
+                                     LOG.e(e);
+                                 }
+                             }
+                             //lame.encode();
 
-                            byte[] bytes = IOUtils.toByteArray(input);
+                             speakToFile(controller, page + 1, folder, info, from, to);
+                         }
 
-                            short[] shorts = new short[bytes.length / 2];
-                            ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
-
-                            lame.open(1, bitrate, 128, 4);
-                            byte[] res = lame.encode(shorts, 44, shorts.length);
-                            lame.close();
-                            File toFile = new File(wav.replace(".wav", ".mp3"));
-                            toFile.delete();
-                            IO.copyFile(new ByteArrayInputStream(res), toFile);
-                            input.close();
-                            file.delete();
-
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    }
-                    //lame.encode();
-
-
-                    speakToFile(controller, page + 1, folder, info, from, to);
-                }
-
-            });
+                     });
         }
 
     }
@@ -444,17 +455,20 @@ public class TTSEngine {
 
     public boolean hasNoEngines() {
         try {
-            return ttsEngine != null && (ttsEngine.getEngines() == null || ttsEngine.getEngines().size() == 0);
+            return ttsEngine != null && (ttsEngine.getEngines() == null || ttsEngine.getEngines()
+                                                                                    .size() == 0);
         } catch (Exception e) {
             return true;
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public String getCurrentLang() {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice().getLocale() != null) {
-                return ttsEngine.getDefaultVoice().getLocale().getDisplayLanguage();
+            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice()
+                                                                                                                    .getLocale() != null) {
+                return ttsEngine.getDefaultVoice()
+                                .getLocale()
+                                .getDisplayLanguage();
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -468,7 +482,8 @@ public class TTSEngine {
                 return -1;
             }
 
-            return ttsEngine.getEngines().size();
+            return ttsEngine.getEngines()
+                            .size();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -509,8 +524,7 @@ public class TTSEngine {
             mp.prepare();
             mp.setOnCompletionListener(new OnCompletionListener() {
 
-                @Override
-                public void onCompletion(MediaPlayer mp) {
+                @Override public void onCompletion(MediaPlayer mp) {
                     mp.pause();
                 }
             });
@@ -522,11 +536,11 @@ public class TTSEngine {
 
             mTimer.schedule(new TimerTask() {
 
-                @Override
-                public void run() {
+                @Override public void run() {
                     AppState.get().mp3seek = mp.getCurrentPosition();
                     //LOG.d("Run timer-task");
-                    EventBus.getDefault().post(new TtsStatus());
+                    EventBus.getDefault()
+                            .post(new TtsStatus());
                 }
 
                 ;
@@ -568,7 +582,8 @@ public class TTSEngine {
     public boolean isMp3PlayPause() {
         if (isMp3()) {
             if (mp == null) {
-                loadMP3(BookCSS.get().mp3BookPathGet());
+                loadMP3(BookCSS.get()
+                               .mp3BookPathGet());
             }
             if (mp == null) {
                 return false;
@@ -597,7 +612,8 @@ public class TTSEngine {
     }
 
     public boolean isMp3() {
-        return TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet());
+        return TxtUtils.isNotEmpty(BookCSS.get()
+                                          .mp3BookPathGet());
     }
 
     public void seekTo(int i) {
