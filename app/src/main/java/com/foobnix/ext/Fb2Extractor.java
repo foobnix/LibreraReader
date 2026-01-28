@@ -978,7 +978,7 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
         } catch (Exception e) {
-            LOG.e(e, "!!!!", inputFile);
+            LOG.w(e, "!!!!", inputFile);
         }
         return EbookMeta.Empty();
     }

@@ -267,7 +267,7 @@ public class RtfExtract {
             in.close();
             fileInputStream.close();
         } catch (Exception e) {
-            LOG.e(e);
+            LOG.w(e);
         }
 
 

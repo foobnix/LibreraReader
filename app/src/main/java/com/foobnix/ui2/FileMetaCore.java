@@ -218,7 +218,7 @@ public class FileMetaCore {
             }
 
         } catch (Exception e) {
-            LOG.e(e);
+            LOG.w(e);
         }
         return ebookMeta;
 

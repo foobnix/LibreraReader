@@ -106,7 +106,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             } catch (MuPdfPasswordException e) {
                 throw new MuPdfPasswordRequiredException();
             } catch (Throwable e) {
-                LOG.e(e);
+                LOG.w(e);
                 return null;
             }
         } finally {

@@ -641,6 +641,9 @@ import java.util.List;
                 TextToSpeech tts = TTSEngine.get()
                                             .getTTS();
                 if (tts == null) {
+                    LOG.d(TAG,"TTS Is null");
+                    stopMediaSesstionAndReleaweWakeLock();
+                    stopSelf();
                     return;
                 }
                 tts.setOnUtteranceCompletedListener(null);

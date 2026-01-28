@@ -744,7 +744,7 @@ public class ImageExtractor {
         } catch (MuPdfPasswordException e) {
             return messageFile("#password", ExtUtils.getFileName(path));
         } catch (final Exception e) {
-            LOG.e(e);
+            LOG.w(e);
             return messageFile("#error", "");
         } catch (OutOfMemoryError e2) {
             IMG.clearMemoryCache();

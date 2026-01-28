@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.pdf.info.R;
@@ -37,7 +38,11 @@ public class ChooserDialogFragment extends DialogFragment {
         bundle.putInt(BrowseFragment2.EXTRA_TYPE, BrowseFragment2.TYPE_SELECT_FOLDER);
         bundle.putString(BrowseFragment2.EXTRA_INIT_PATH, initPath);
         ch.setArguments(bundle);
-        ch.show(a.getSupportFragmentManager(), "da");
+        try {
+            ch.show(a.getSupportFragmentManager(), "da");
+        }catch (Exception e){
+            LOG.e(e);
+        }
         return ch;
     }
 

@@ -1,9 +1,12 @@
 package com.foobnix.android.utils;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.R;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +20,6 @@ public class LOG {
     public static String DELIMITER = "|";
 
     public static boolean writeCrashTofile = false;
-
 
     public static String toString(Throwable e) {
         StringWriter sw = new StringWriter();
@@ -43,7 +45,8 @@ public class LOG {
 
     public static void dMeta(Object... statement) {
         String meta = null;
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement[] stackTrace = Thread.currentThread()
+                                               .getStackTrace();
         if (stackTrace.length > 3) {
             meta = asString(stackTrace[3].getClassName(), stackTrace[3].getMethodName(), stackTrace[3].getLineNumber());
         }
@@ -60,10 +63,14 @@ public class LOG {
         e(e, true, statement);
     }
 
-
     private static void e(Throwable e, Boolean uncaughtException, Object... statement) {
+
         if (AppsConfig.IS_LOG) {
-            Log.e(TAG, asString(statement), e);
+            String string = asString(statement);
+            Log.e(TAG, string, e);
+            new Handler(Looper.getMainLooper()).post(() -> {
+                throw new RuntimeException(string, e);
+            });
         }
         if (writeCrashTofile) {
             try {
@@ -77,7 +84,7 @@ public class LOG {
                 fw.flush();
                 fw.close();
             } catch (Exception e1) {
-                Log.e(TAG, asString(statement), e1);
+                Log.e(TAG,asString(statement),e1);
             }
         }
     }
@@ -85,6 +92,12 @@ public class LOG {
     public static void w(Throwable e, Object... statement) {
         if (AppsConfig.IS_LOG) {
             Log.w(TAG, asString(statement), e);
+        }
+    }
+
+    public static void i(Throwable e, Object... statement) {
+        if (AppsConfig.IS_LOG) {
+            Log.i(TAG, asString(statement), e);
         }
     }
 
@@ -99,7 +112,8 @@ public class LOG {
         StringBuffer out = new StringBuffer();
 
         out.append("======== [ Begin ] ======== \n");
-        for (Field f : obj.getClass().getDeclaredFields()) {
+        for (Field f : obj.getClass()
+                          .getDeclaredFields()) {
             if (Modifier.isStatic(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
                 continue;
             }
