@@ -631,25 +631,8 @@ import java.util.List;
             AppSP.get().lastBookPageCount = dc.getPageCount();
             LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppSP.get().lastBookPageCount);
             if (pageNumber >= AppSP.get().lastBookPageCount) {
-
                 Vibro.vibrate(1000);
-
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                }
-                TextToSpeech tts = TTSEngine.get()
-                                            .getTTS();
-                if (tts == null || LibreraApp.context == null) {
-                    LOG.d(TAG, "TTS Is null");
-                    stopMediaSesstionAndReleaweWakeLock();
-                    stopSelf();
-                    return;
-                }
-                tts.setOnUtteranceCompletedListener(null);
-                TTSEngine.get()
-                         .speek(LibreraApp.context.getString(R.string.the_book_is_over));
-
+                LOG.d(TAG, "CodecDocument Book is Finished");
                 EventBus.getDefault()
                         .post(new TtsStatus());
 
