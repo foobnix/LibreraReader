@@ -50,10 +50,8 @@ import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.hypen.HypenUtils;
-import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.TagData;
 import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -953,12 +951,12 @@ public class Dialogs {
 
         final CheckBox isEnableBC = new CheckBox(c);
         isEnableBC.setText(R.string.enable_contrast_and_brightness);
-        isEnableBC.setChecked(AppState.get().isEnableBCOptional);
+        isEnableBC.setChecked(AppState.get().isEnableBCOptional1);
         isEnableBC.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isEnableBCOptional = isChecked;
+                AppState.get().isEnableBCOptional1 = isChecked;
                 actionWrapper.run();
             }
         });

@@ -84,7 +84,6 @@ import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.view.confline.ReadInit;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
@@ -834,7 +833,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBCOptional = false;
+                                                               AppState.get().isEnableBCOptional1 = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -855,7 +854,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBCOptional = false;
+                                                               AppState.get().isEnableBCOptional1 = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -875,7 +874,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBCOptional = false;
+                                                               AppState.get().isEnableBCOptional1 = false;
 
                                                                IMG.clearDiscCache();
                                                                IMG.clearMemoryCache();
@@ -895,7 +894,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().contrastImage = 0;
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
-                                                               AppState.get().isEnableBCOptional = false;
+                                                               AppState.get().isEnableBCOptional1 = false;
                                                                AppState.get().tintColor = Color.BLACK;
                                                                AppState.get().isUiTextColor = false;
 

@@ -66,7 +66,6 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.ViewBinder;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
@@ -271,7 +270,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
-                    onBC.underline(AppState.get().isEnableBCOptional);
+                    onBC.underline(AppState.get().isEnableBCOptional1);
                     dc.updateRendering();
                 }
             }, null);
@@ -778,7 +777,7 @@ public class DocumentWrapperUI {
         zoomPlus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomMinus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         onBC.setVisibility(View.GONE);
-        if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
+        if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional1) {
             onBC.setVisibility(View.VISIBLE);
         }
 
@@ -1123,7 +1122,7 @@ public class DocumentWrapperUI {
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);
-        onBC.underline(AppState.get().isEnableBCOptional);
+        onBC.underline(AppState.get().isEnableBCOptional1);
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 

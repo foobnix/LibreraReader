@@ -27,5 +27,18 @@ public class Vibro {
         }
         LOG.d("Vibro", "vibrate", time);
     }
+    public static void vibrateFinish(){
+        try {
+            Vibrator v = (Vibrator) LibreraApp.context.getSystemService(Context.VIBRATOR_SERVICE);
 
+            long[] timings = {0, 150, 100, 600};
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createWaveform(timings, -1));
+            } else {
+                v.vibrate(timings, -1);
+            }
+        }catch (Exception e){
+            LOG.e(e);
+        }
+    }
 }

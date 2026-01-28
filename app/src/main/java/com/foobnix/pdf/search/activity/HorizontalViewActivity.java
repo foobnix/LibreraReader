@@ -152,7 +152,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBCOptional);
+            onBC.underline(AppState.get().isEnableBCOptional1);
             IMG.clearMemoryCache();
             int position = viewPager.getCurrentItem();
             ImagePageFragment
@@ -553,7 +553,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
-        onBC.underline(AppState.get().isEnableBCOptional);
+        onBC.underline(AppState.get().isEnableBCOptional1);
         onBC.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -574,7 +574,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onBC.setVisibility(View.GONE);
 
-        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBCOptional) {
+        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBCOptional1) {
             onBC.setVisibility(View.VISIBLE);
         }
 
@@ -1144,7 +1144,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(View.GONE );
-                    if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional) {
+                    if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional1) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -2586,7 +2586,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBCOptional);
+            onBC.underline(AppState.get().isEnableBCOptional1);
             // dc.getOutline(null, false);
             //dc.saveCurrentPageAsync();
             createAdapter();

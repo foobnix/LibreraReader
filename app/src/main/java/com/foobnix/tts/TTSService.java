@@ -631,7 +631,7 @@ import java.util.List;
             AppSP.get().lastBookPageCount = dc.getPageCount();
             LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppSP.get().lastBookPageCount);
             if (pageNumber >= AppSP.get().lastBookPageCount) {
-                Vibro.vibrate(1000);
+                Vibro.vibrateFinish();
                 LOG.d(TAG, "CodecDocument Book is Finished");
                 EventBus.getDefault()
                         .post(new TtsStatus());
