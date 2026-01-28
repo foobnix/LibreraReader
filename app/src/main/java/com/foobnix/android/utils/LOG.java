@@ -68,9 +68,9 @@ public class LOG {
         if (AppsConfig.IS_LOG) {
             String string = asString(statement);
             Log.e(TAG, string, e);
-            new Handler(Looper.getMainLooper()).post(() -> {
-                throw new RuntimeException(string, e);
-            });
+//            new Handler(Looper.getMainLooper()).post(() -> {
+//                throw new RuntimeException(string, e);
+//            });
         }
         if (writeCrashTofile) {
             try {

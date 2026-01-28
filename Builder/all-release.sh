@@ -38,4 +38,3 @@ rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*.apk
 
 cd Builder
 ./remove_all.sh
-./install_all.sh
