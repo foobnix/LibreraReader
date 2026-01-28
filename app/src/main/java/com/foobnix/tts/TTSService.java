@@ -640,8 +640,8 @@ import java.util.List;
                 }
                 TextToSpeech tts = TTSEngine.get()
                                             .getTTS();
-                if (tts == null) {
-                    LOG.d(TAG,"TTS Is null");
+                if (tts == null || LibreraApp.context == null) {
+                    LOG.d(TAG, "TTS Is null");
                     stopMediaSesstionAndReleaweWakeLock();
                     stopSelf();
                     return;
