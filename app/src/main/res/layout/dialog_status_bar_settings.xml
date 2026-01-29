@@ -2,13 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="2dip" >
+        android:padding="2dip">
 
         <com.foobnix.pdf.info.view.CustomColorView
             android:id="@+id/statusBarColorDay"
@@ -23,6 +23,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/st_color_night" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dip"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="1dip"
+            android:background="@color/lt_grey_alpha"
+            android:tag="with_tint1" />
 
         <CheckBox
             android:id="@+id/isShowToolBar"
@@ -80,12 +89,35 @@
             android:layout_marginLeft="10dip"
             android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
 
-        <TextView
-            android:layout_marginTop="10dip"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="1dip"
+            android:background="@color/lt_grey_alpha"
+            android:tag="with_tint1" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/additional_bookmarks_bar"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="2dip"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:src="@drawable/glyphicons_73_bookmark"
+                android:tint="@color/lt_grey_alpha2" />
+
+            <TextView
+                android:paddingLeft="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_bookmarks_bar"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/isShowBookmarsPanelInMusicMode"
@@ -109,19 +141,26 @@
             android:text="@string/mode_horizontally" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/isShowBookmarsPanelText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/sub_checkbox"
-            android:text="@string/display_bookmark_text_instead_of_number" />
+            android:text="@string/display_bookmark_text_instead_of_number"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="1dip"
+            android:background="@color/lt_grey_alpha"
+            android:tag="with_tint1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginTop="10dip"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -147,7 +186,7 @@
                 android:src="@drawable/glyphicons_739_check"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
-        
+
         <CheckBox
             android:id="@+id/isShowRectangularTapZones"
             android:layout_width="match_parent"
@@ -173,7 +212,7 @@
             android:id="@+id/statusBarPositionParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip" >
+            android:layout_marginTop="10dip">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,7 +234,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip" >
+            android:layout_marginTop="10dip">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -217,7 +256,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip" >
+            android:layout_marginTop="10dip">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -241,16 +280,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            myseek:text="@string/text_size" >
-        </com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/text_size"></com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/progressLineHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            myseek:text="@string/line_height" >
-        </com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/line_height"></com.foobnix.pdf.info.view.CustomSeek>
 
 
     </LinearLayout>

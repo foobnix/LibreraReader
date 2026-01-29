@@ -16,7 +16,7 @@
             android:orientation="horizontal">
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="1dip"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -34,7 +34,7 @@
                 android:text="@string/reading_settings" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:id="@+id/moreSettingsDiv"
                 android:layout_width="1dip"
                 android:layout_height="match_parent"
@@ -53,7 +53,7 @@
                 android:text="@string/advanced_settings" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="1dip"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -71,7 +71,7 @@
                 android:text="@string/status_bar" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="1dip"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -79,7 +79,7 @@
         </LinearLayout>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="1dip"
@@ -240,7 +240,7 @@
         </LinearLayout>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:id="@+id/topPanelLineDiv"
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -390,7 +390,7 @@
         </LinearLayout>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -562,7 +562,7 @@
             android:orientation="vertical">
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="1dip"

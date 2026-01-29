@@ -197,7 +197,7 @@
             android:text="@string/show_footnotes_directly_in_text" />
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -219,7 +219,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -258,7 +258,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
@@ -312,7 +312,7 @@
         </com.foobnix.pdf.info.view.CustomSeek>
 
         <View
-            android:tag="with_tint"
+            android:tag="with_tint1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="2dip"
