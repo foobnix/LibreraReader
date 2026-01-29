@@ -529,7 +529,7 @@
    <string name="export_as_text">Exporteren als tekst</string>
    <string name="export_as_backup_json_">Exporteren als back-up (json)</string>
    <string name="import_from_backup_json_">Importeren vanuit back-up (json)</string>
-   <string name="additional_bookmarks_bar">Extra bladwijzerbalk</string>
+   <string name="show_bookmarks_bar">Bladwijzerbalk weergeven</string>
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
    <string name="paste">Plakken</string>
    <string name="move">Verplaatsen</string>

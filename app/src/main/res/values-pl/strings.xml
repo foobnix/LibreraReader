@@ -529,7 +529,7 @@
    <string name="export_as_text">Eksportuj do pliku TXT</string>
    <string name="export_as_backup_json_">Eksportuj do pliku JSON</string>
    <string name="import_from_backup_json_">Importuj z pliku JSON</string>
-   <string name="additional_bookmarks_bar">Dodatkowy pasek zakładek</string>
+   <string name="show_bookmarks_bar">Pokaż pasek zakładek</string>
    <string name="turn_the_page_on_the_last_word">Przerwa przy przewracaniu strony</string>
    <string name="paste">Wklej</string>
    <string name="move">Przenieś</string>

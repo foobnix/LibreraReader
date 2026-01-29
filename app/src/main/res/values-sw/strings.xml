@@ -529,7 +529,7 @@
    <string name="export_as_text">Kuuza nje kama maandishi</string>
    <string name="export_as_backup_json_">Kuuza nje kama salama (json)</string>
    <string name="import_from_backup_json_">Kuagiza kutoka kwa hifadhi (json)</string>
-   <string name="additional_bookmarks_bar">Bar ya ziada ya alama</string>
+   <string name="show_bookmarks_bar">Onyesha upau wa alamisho</string>
    <string name="turn_the_page_on_the_last_word">Weka ukurasa kwenye neno la mwisho</string>
    <string name="paste">Weka</string>
    <string name="move">Hoja</string>

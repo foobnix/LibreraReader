@@ -529,7 +529,7 @@
    <string name="export_as_text">Export do souboru TXT</string>
    <string name="export_as_backup_json_">Export do souboru JSON</string>
    <string name="import_from_backup_json_">Import ze souboru JSON</string>
-   <string name="additional_bookmarks_bar">Pruh záložek</string>
+   <string name="show_bookmarks_bar">Zobrazit lištu záložek</string>
    <string name="turn_the_page_on_the_last_word">Přerušit na otočení stránky</string>
    <string name="paste">Vložit</string>
    <string name="move">Přesunout</string>

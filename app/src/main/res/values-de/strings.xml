@@ -529,7 +529,7 @@
    <string name="export_as_text">Zu TXT-Datei exportieren</string>
    <string name="export_as_backup_json_">Export als Backup (JSON)</string>
    <string name="import_from_backup_json_">Import aus Backup (JSON)</string>
-   <string name="additional_bookmarks_bar">Zusätzliche Lesezeichenleiste</string>
+   <string name="show_bookmarks_bar">Lesezeichenleiste anzeigen</string>
    <string name="turn_the_page_on_the_last_word">Seite bei letztem Wort wechseln</string>
    <string name="paste">Einfügen</string>
    <string name="move">Verschieben</string>

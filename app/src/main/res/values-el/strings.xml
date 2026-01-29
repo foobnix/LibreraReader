@@ -529,7 +529,7 @@
    <string name="export_as_text">Εξαγωγή σε αρχείο txt</string>
    <string name="export_as_backup_json_">Εξαγωγή σε αρχείο json</string>
    <string name="import_from_backup_json_">Εισαγωγή από το αρχείο json</string>
-   <string name="additional_bookmarks_bar">Κορδέλα σελιδοδείκτες</string>
+   <string name="show_bookmarks_bar">Εμφάνιση γραμμής σελιδοδεικτών</string>
    <string name="turn_the_page_on_the_last_word">Διάλειμμα στη σειρά της σελίδας</string>
    <string name="paste">Επικόλληση</string>
    <string name="move">Κίνηση</string>

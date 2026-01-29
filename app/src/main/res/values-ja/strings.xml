@@ -529,7 +529,7 @@
    <string name="export_as_text">テキストとしてエクスポート</string>
    <string name="export_as_backup_json_">バックアップとしてエクスポート（json）</string>
    <string name="import_from_backup_json_">バックアップからインポート（json）</string>
-   <string name="additional_bookmarks_bar">追加のブックマークバー</string>
+   <string name="show_bookmarks_bar">ブックマークバーを表示</string>
    <string name="turn_the_page_on_the_last_word">ページ切り替え時の一時停止</string>
    <string name="paste">ペースト</string>
    <string name="move">移動</string>

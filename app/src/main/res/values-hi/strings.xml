@@ -529,7 +529,7 @@
    <string name="export_as_text">पाठ के रूप में निर्यात करें</string>
    <string name="export_as_backup_json_">बैकअप के रूप में निर्यात (json)</string>
    <string name="import_from_backup_json_">बैकअप से आयात (json)</string>
-   <string name="additional_bookmarks_bar">अतिरिक्त बुकमार्क बार</string>
+   <string name="show_bookmarks_bar">बुकमार्क बार दिखाएँ</string>
    <string name="turn_the_page_on_the_last_word">पृष्ठ को अंतिम शब्द पर चालू करें</string>
    <string name="paste">पेस्ट</string>
    <string name="move">चाल</string>

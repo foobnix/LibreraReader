@@ -529,7 +529,7 @@
    <string name="export_as_text">Ekspor sebagai teks</string>
    <string name="export_as_backup_json_">Ekspor sebagai cadangan (json)</string>
    <string name="import_from_backup_json_">Impor dari cadangan (json)</string>
-   <string name="additional_bookmarks_bar">Bilah bookmark tambahan</string>
+   <string name="show_bookmarks_bar">Tampilkan bilah bookmark</string>
    <string name="turn_the_page_on_the_last_word">Balik halaman pada kata terakhir</string>
    <string name="paste">Pasta</string>
    <string name="move">Pindah</string>

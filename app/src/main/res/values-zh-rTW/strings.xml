@@ -529,7 +529,7 @@
    <string name="export_as_text">導出為文本</string>
    <string name="export_as_backup_json_">導出為備份（json）</string>
    <string name="import_from_backup_json_">從備份導入（json）</string>
-   <string name="additional_bookmarks_bar">閱讀模式附加書簽欄</string>
+   <string name="show_bookmarks_bar">顯示書籤列</string>
    <string name="turn_the_page_on_the_last_word">最後一字翻頁</string>
    <string name="paste">粘貼</string>
    <string name="move">移動</string>

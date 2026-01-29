@@ -529,7 +529,7 @@
    <string name="export_as_text">Экспортировать как обычный txt-файл</string>
    <string name="export_as_backup_json_">Экспортировать в виде резервной копии (JSON)</string>
    <string name="import_from_backup_json_">Импортировать из резервной копии (JSON)</string>
-   <string name="additional_bookmarks_bar">Режимы, при которых на экране поверх текста будет всегда отображаться расширенная панель закладок:</string>
+   <string name="show_bookmarks_bar">Показать панель закладок</string>
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
    <string name="paste">Вставить</string>
    <string name="move">Переместить</string>

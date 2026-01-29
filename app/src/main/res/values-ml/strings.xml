@@ -529,7 +529,7 @@
    <string name="export_as_text">Txt ഫയലിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുക</string>
    <string name="export_as_backup_json_">Json ഫയലിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുക</string>
    <string name="import_from_backup_json_">Json ഫയലിൽ നിന്ന് ഇറക്കുമതി ചെയ്യുക</string>
-   <string name="additional_bookmarks_bar">ബുക്ക്മാർക്കുകൾ റിബൺ</string>
+   <string name="show_bookmarks_bar">ബുക്ക്മാർക്ക് ബാർ കാണിക്കുക</string>
    <string name="turn_the_page_on_the_last_word">പേജ് ടേണിൽ ബ്രേക്ക് ചെയ്യുക</string>
    <string name="paste">പേസ്റ്റ്</string>
    <string name="move">നീക്കുക</string>

@@ -529,7 +529,7 @@
    <string name="export_as_text">TXT கோப்புக்கு ஏற்றுமதி செய்க</string>
    <string name="export_as_backup_json_">JSON கோப்பிற்கு ஏற்றுமதி செய்க</string>
    <string name="import_from_backup_json_">JSON கோப்பிலிருந்து இறக்குமதி செய்க</string>
-   <string name="additional_bookmarks_bar">புத்தககுறி ரிப்பன்</string>
+   <string name="show_bookmarks_bar">புக்மார்க்ஸ் பட்டியைக் காட்டு.</string>
    <string name="turn_the_page_on_the_last_word">பக்க திருப்பத்தில் உடைக்கவும்</string>
    <string name="paste">ஒட்டவும்</string>
    <string name="move">நகர்வு</string>

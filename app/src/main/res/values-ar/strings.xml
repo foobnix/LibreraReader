@@ -529,7 +529,7 @@
    <string name="export_as_text">تصدير كنص</string>
    <string name="export_as_backup_json_">تصدير كنسخة احتياطية (json)</string>
    <string name="import_from_backup_json_">الاستيراد من النسخ الاحتياطي (json)</string>
-   <string name="additional_bookmarks_bar">شريط الإشارات الإضافية</string>
+   <string name="show_bookmarks_bar">إظهار شريط الإشارات المرجعية</string>
    <string name="turn_the_page_on_the_last_word">تحويل الصفحة على الكلمة الأخيرة</string>
    <string name="paste">معجون</string>
    <string name="move">نقل</string>

@@ -529,7 +529,7 @@
    <string name="export_as_text">A easpórtáil go comhad txt</string>
    <string name="export_as_backup_json_">A easpórtáil go comhad json</string>
    <string name="import_from_backup_json_">Allmhairiú ó chomhad json</string>
-   <string name="additional_bookmarks_bar">Ribín leabharmharcanna</string>
+   <string name="show_bookmarks_bar">Taispeáin barra leabharmharcanna</string>
    <string name="turn_the_page_on_the_last_word">Briseadh ag cas leathanaigh</string>
    <string name="paste">Greamaigh</string>
    <string name="move">Bogadh</string>

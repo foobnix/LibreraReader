@@ -529,7 +529,7 @@
    <string name="export_as_text">Esportatu TXT gisa</string>
    <string name="export_as_backup_json_">Esportatu JSONtik</string>
    <string name="import_from_backup_json_">Inportatu JSONtik</string>
-   <string name="additional_bookmarks_bar">Laster-marka gehigarriak</string>
+   <string name="show_bookmarks_bar">Erakutsi laster-marken barra</string>
    <string name="turn_the_page_on_the_last_word">Pasatu orria azken hitzan</string>
    <string name="paste">Itsatsi</string>
    <string name="move">Mugitu</string>

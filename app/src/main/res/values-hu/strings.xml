@@ -529,7 +529,7 @@
    <string name="export_as_text">Exportálható szövegként</string>
    <string name="export_as_backup_json_">Exportálás mentésként (json)</string>
    <string name="import_from_backup_json_">Importálás a biztonsági mentésből (json)</string>
-   <string name="additional_bookmarks_bar">További könyvjelzősáv</string>
+   <string name="show_bookmarks_bar">Könyvjelzősáv megjelenítése</string>
    <string name="turn_the_page_on_the_last_word">Fordítsa az oldalt az utolsó szóra</string>
    <string name="paste">Paszta</string>
    <string name="move">Mozog</string>

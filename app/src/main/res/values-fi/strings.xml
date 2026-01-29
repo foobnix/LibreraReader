@@ -529,7 +529,7 @@
    <string name="export_as_text">Vie tekstitiedostoon</string>
    <string name="export_as_backup_json_">Vie JSON-tiedostoon</string>
    <string name="import_from_backup_json_">Tuo JSON-tiedostosta</string>
-   <string name="additional_bookmarks_bar">Kirjanmerkkipalkki</string>
+   <string name="show_bookmarks_bar">Näytä kirjanmerkkipalkki</string>
    <string name="turn_the_page_on_the_last_word">Tauko sivun käännöllä</string>
    <string name="paste">Liitä</string>
    <string name="move">Siirrä</string>

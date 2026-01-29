@@ -529,7 +529,7 @@
    <string name="export_as_text">Exportar como texto</string>
    <string name="export_as_backup_json_">Exportar como backup (json)</string>
    <string name="import_from_backup_json_">Importar do backup (json)</string>
-   <string name="additional_bookmarks_bar">Barra de favoritos adicionais</string>
+   <string name="show_bookmarks_bar">Mostrar barra de favoritos</string>
    <string name="turn_the_page_on_the_last_word">Virar a página na última palavra</string>
    <string name="paste">Colar</string>
    <string name="move">Mover</string>

@@ -529,7 +529,7 @@
    <string name="export_as_text">Экспарт у файл txt</string>
    <string name="export_as_backup_json_">Экспарт у файл json</string>
    <string name="import_from_backup_json_">Імпарт з файла json</string>
-   <string name="additional_bookmarks_bar">Стужка для закладак</string>
+   <string name="show_bookmarks_bar">Паказаць панэль закладак</string>
    <string name="turn_the_page_on_the_last_word">Перапынак пры перагортванні старонкі</string>
    <string name="paste">Паста</string>
    <string name="move">Рухацца</string>

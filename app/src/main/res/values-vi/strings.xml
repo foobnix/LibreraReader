@@ -529,7 +529,7 @@
    <string name="export_as_text">Xuất dưới dạng văn bản</string>
    <string name="export_as_backup_json_">Xuất dưới dạng bản sao lưu (json)</string>
    <string name="import_from_backup_json_">Nhập từ bản sao lưu (json)</string>
-   <string name="additional_bookmarks_bar">Thanh dấu trang bổ sung</string>
+   <string name="show_bookmarks_bar">Hiển thị thanh dấu trang</string>
    <string name="turn_the_page_on_the_last_word">Lật trang trên từ cuối cùng</string>
    <string name="paste">Dán</string>
    <string name="move">Di chuyển</string>

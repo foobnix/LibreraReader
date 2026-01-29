@@ -529,7 +529,7 @@
    <string name="export_as_text">Export ca text</string>
    <string name="export_as_backup_json_">Export ca backup (json)</string>
    <string name="import_from_backup_json_">Import din backup (json)</string>
-   <string name="additional_bookmarks_bar">Bara de marcaje suplimentare</string>
+   <string name="show_bookmarks_bar">Afișați bara de marcaje</string>
    <string name="turn_the_page_on_the_last_word">Întoarceți pagina la ultimul cuvânt</string>
    <string name="paste">Pastă</string>
    <string name="move">Mișcare</string>

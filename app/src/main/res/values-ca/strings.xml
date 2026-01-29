@@ -529,7 +529,7 @@
    <string name="export_as_text">Exporta a fitxer TXT</string>
    <string name="export_as_backup_json_">Exporta a fitxer JSON</string>
    <string name="import_from_backup_json_">Importa des de fitxer JSON</string>
-   <string name="additional_bookmarks_bar">Barra de marcadors</string>
+   <string name="show_bookmarks_bar">Mostra la barra de marcadors</string>
    <string name="turn_the_page_on_the_last_word">Passa la pàgina en arribar al final</string>
    <string name="paste">Enganxa</string>
    <string name="move">Mou</string>

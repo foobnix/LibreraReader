@@ -529,7 +529,7 @@
    <string name="export_as_text">Eksportuoti kaip tekstą</string>
    <string name="export_as_backup_json_">Eksportuoti kaip atsarginę kopiją (json)</string>
    <string name="import_from_backup_json_">Importuoti iš atsarginės kopijos („Json“)</string>
-   <string name="additional_bookmarks_bar">Papildomos žymių juostos</string>
+   <string name="show_bookmarks_bar">Rodyti žymių juostą</string>
    <string name="turn_the_page_on_the_last_word">Pasukite puslapį paskutiniu žodžiu</string>
    <string name="paste">Įklijuokite</string>
    <string name="move">Judėti</string>

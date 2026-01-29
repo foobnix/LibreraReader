@@ -529,7 +529,7 @@
    <string name="export_as_text">ייצוא כטקסט</string>
    <string name="export_as_backup_json_">ייצוא כגיבוי (json)</string>
    <string name="import_from_backup_json_">ייבוא מהגיבוי (json)</string>
-   <string name="additional_bookmarks_bar">סרגל סימניות נוסף</string>
+   <string name="show_bookmarks_bar">הצג סרגל הסימניות</string>
    <string name="turn_the_page_on_the_last_word">הפעל את הדף במילה האחרונה</string>
    <string name="paste">הדבק</string>
    <string name="move">מהלך \ לזוז \ לעבור</string>

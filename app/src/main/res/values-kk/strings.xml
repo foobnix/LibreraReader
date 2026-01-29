@@ -529,7 +529,7 @@
    <string name="export_as_text">Экспорт ретінде мәтін</string>
    <string name="export_as_backup_json_">Сақтық көшірме ретінде экспорттау (json)</string>
    <string name="import_from_backup_json_">Сақтық көшірмеден импорттау (json)</string>
-   <string name="additional_bookmarks_bar">Қосымша бетбелгілер жолағы</string>
+   <string name="show_bookmarks_bar">Бетбелгілер жолағын көрсету</string>
    <string name="turn_the_page_on_the_last_word">Бетті соңғы сөзге айналдырыңыз</string>
    <string name="paste">Паста</string>
    <string name="move">Жылжытыңыз</string>
