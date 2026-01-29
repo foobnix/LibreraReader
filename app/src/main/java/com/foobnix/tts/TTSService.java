@@ -642,6 +642,14 @@ import java.util.List;
             }
 
             CodecPage page = dc.getPage(pageNumber);
+            if(page==null){
+                EventBus.getDefault()
+                        .post(new TtsStatus());
+
+                stopMediaSesstionAndReleaweWakeLock();
+                stopSelf();
+                return;
+            }
             String pageHTML = page.getPageHTML();
             page.recycle();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
