@@ -15,7 +15,9 @@ public class HypToJHyphenator {
 
         for (String line : lines) {
             line = line.trim();
+            line = line.replace(".","_");
             if (line.isEmpty()) continue;
+            if (line.startsWith("UTF-8")) continue;
             if (line.startsWith("LEFTHYPHENMIN")) continue;
             if (line.startsWith("RIGHTHYPHENMIN")) continue;
 

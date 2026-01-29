@@ -50,6 +50,9 @@ public class HypenPanelHelper {
                 List<String> all = new ArrayList<String>();
 
                 for (HyphenPattern p : values) {
+                    if(p == HyphenPattern.error){
+                        continue;
+                    }
                     String e1 = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
                     all.add(e1);
 
@@ -65,7 +68,7 @@ public class HypenPanelHelper {
                     String[] split = langFull.split(":");
                     final String titleLang = split[0];
                     final String code = split[1];
-                    popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    popupMenu.getMenu().add(titleLang+" ["+code+"]").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {

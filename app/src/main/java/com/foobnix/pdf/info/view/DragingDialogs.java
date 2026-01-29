@@ -4710,6 +4710,9 @@ public class DragingDialogs {
                         List<String> all = new ArrayList<String>();
 
                         for (HyphenPattern p : values) {
+                            if(p == HyphenPattern.error){
+                                continue;
+                            }
                             String e = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
                             all.add(e);
                         }
@@ -4720,7 +4723,7 @@ public class DragingDialogs {
                             final String titleLang = split[0];
                             final String code = split[1];
                             popupMenu.getMenu()
-                                     .add(titleLang)
+                                     .add(titleLang +" ["+code+"]")
                                      .setOnMenuItemClickListener(new OnMenuItemClickListener() {
                                          @Override public boolean onMenuItemClick(MenuItem item) {
                                              AppSP.get().hypenLang = code;
