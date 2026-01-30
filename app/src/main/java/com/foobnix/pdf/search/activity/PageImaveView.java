@@ -388,9 +388,9 @@ public class PageImaveView extends View {
                 }
             }
 
-            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && !TempHolder.get().isTextFormat */) {
-                canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
-            }
+//            if (AppState.get().isOLED && !AppState.get().isDayNotInvert /* && !TempHolder.get().isTextFormat */) {
+//                canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
+//            }
 
             if (!AppSP.get().isCut && !AppSP.get().isCrop) {
 
