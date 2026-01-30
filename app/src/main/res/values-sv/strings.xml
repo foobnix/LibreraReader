@@ -683,4 +683,5 @@
    <string name="select_mode">Välj läge</string>
    <string name="msg_migration">Överför [Librera]-katalogen till en annan enhet för att migrera dina data.</string>
    <string name="msg_sync">Synkronisera mappen [Librera] med andra enheter via Google Drive eller tredjepartsappar.</string>
+   <string name="display_alert_if_cropping_is_on">Visa varning om beskärning är på</string>
 </resources>

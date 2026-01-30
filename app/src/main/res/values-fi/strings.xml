@@ -683,4 +683,5 @@
    <string name="select_mode">Valitse tila</string>
    <string name="msg_migration">Siirrä [Librera]-hakemisto toiselle laitteelle tietojesi siirtämiseksi.</string>
    <string name="msg_sync">Synkronoi [Librera]-kansio muiden laitteiden kanssa Google Driven tai kolmannen osapuolen sovellusten kautta.</string>
+   <string name="display_alert_if_cropping_is_on">Näytä hälytys, jos rajaus on käytössä</string>
 </resources>

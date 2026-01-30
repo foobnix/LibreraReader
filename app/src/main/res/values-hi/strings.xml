@@ -683,4 +683,5 @@
    <string name="select_mode">मोड का चयन करें</string>
    <string name="msg_migration">अपने डेटा को माइग्रेट करने के लिए [Librera] डायरेक्टरी को किसी अन्य डिवाइस पर स्थानांतरित करें।</string>
    <string name="msg_sync">गूगल ड्राइव या तृतीय-पक्ष ऐप्स के माध्यम से [Librera] फ़ोल्डर को अन्य उपकरणों के साथ सिंक्रनाइज़ करें।</string>
+   <string name="display_alert_if_cropping_is_on">क्रॉपिंग चालू होने पर अलर्ट प्रदर्शित करें</string>
 </resources>

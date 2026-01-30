@@ -683,4 +683,5 @@
    <string name="select_mode">Modum eligere</string>
    <string name="msg_migration">Directorium [Librera] ad aliud instrumentum transfer ut notitias tuas migres.</string>
    <string name="msg_sync">Fasciculum [Librera] cum aliis machinis per Google Drive vel applicationes tertiae partis synchroniza.</string>
+   <string name="display_alert_if_cropping_is_on">Monstra monitum si sectio activa est</string>
 </resources>

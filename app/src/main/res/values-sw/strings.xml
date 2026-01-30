@@ -683,4 +683,5 @@
    <string name="select_mode">Chagua hali</string>
    <string name="msg_migration">Hamisha saraka ya [Librera] hadi kwenye kifaa kingine ili kuhamisha data yako.</string>
    <string name="msg_sync">Sawazisha folda ya [Librera] na vifaa vingine kupitia google drive au programu za wahusika wengine.</string>
+   <string name="display_alert_if_cropping_is_on">Onyesha arifa ikiwa upunguzaji umewashwa</string>
 </resources>

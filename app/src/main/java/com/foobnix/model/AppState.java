@@ -417,6 +417,9 @@ public class AppState {
     public int cropBottom = 0;
     public int cropLeft = 0;
     public int cropRigth = 0;
+
+    @IgnoreHashCode public boolean isCropNotification = true;
+
     public boolean isDayNotInvert = true;
     public boolean isShowSearchBar = true;
     public boolean isShowFastScroll = true;

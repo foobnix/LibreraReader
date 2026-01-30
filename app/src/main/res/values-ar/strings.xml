@@ -683,4 +683,5 @@
    <string name="select_mode">حدد الوضع</string>
    <string name="msg_migration">انقل دليل [Librera] إلى جهاز آخر لترحيل بياناتك.</string>
    <string name="msg_sync">قم بمزامنة مجلد [Librera] مع الأجهزة الأخرى عبر جوجل درايف أو تطبيقات الطرف الثالث.</string>
+   <string name="display_alert_if_cropping_is_on">عرض تنبيه في حالة تفعيل خاصية القص</string>
 </resources>

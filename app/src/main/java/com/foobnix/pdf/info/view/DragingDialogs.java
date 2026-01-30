@@ -548,6 +548,14 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isCropNotification = inflate.findViewById(R.id.isCropNotification);
+                isCropNotification.setChecked(AppState.get().isCropNotification);
+                isCropNotification.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isCropNotification = isChecked;
+                    }
+                });
+
                 final CheckBox isEnableCrop = inflate.findViewById(R.id.isEnableCrop);
                 isEnableCrop.setChecked(AppSP.get().isCrop);
                 isEnableCrop.setOnCheckedChangeListener(new OnCheckedChangeListener() {

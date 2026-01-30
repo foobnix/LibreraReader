@@ -683,4 +683,5 @@
    <string name="select_mode">Mód kiválasztása</string>
    <string name="msg_migration">Vigye át a [Librera] könyvtárat egy másik eszközre az adatok migrálásához.</string>
    <string name="msg_sync">Szinkronizálja a [Librera] mappát más eszközökkel a Google Drive vagy harmadik féltől származó alkalmazások segítségével.</string>
+   <string name="display_alert_if_cropping_is_on">Riasztás megjelenítése, ha a vágás be van kapcsolva</string>
 </resources>

@@ -683,4 +683,5 @@
    <string name="select_mode">Выбрать режим</string>
    <string name="msg_migration">Перенесите каталог [Librera] на другое устройство, чтобы перенести ваши данные.</string>
    <string name="msg_sync">Синхронизируйте папку [Librera] с другими устройствами через Google Диск или сторонние приложения.</string>
+   <string name="display_alert_if_cropping_is_on">Отображать предупреждение, если обрезка включена.</string>
 </resources>

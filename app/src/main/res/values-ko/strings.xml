@@ -683,4 +683,5 @@
    <string name="select_mode">선택 모드</string>
    <string name="msg_migration">데이터를 마이그레이션하려면 [Librera] 디렉토리를 다른 장치로 옮기세요.</string>
    <string name="msg_sync">Google Drive 또는 타사 앱을 통해 [Librera] 폴더를 다른 기기와 동기화하세요.</string>
+   <string name="display_alert_if_cropping_is_on">자르기 기능이 켜져 있으면 알림을 표시합니다.</string>
 </resources>

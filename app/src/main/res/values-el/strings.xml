@@ -683,4 +683,5 @@
    <string name="select_mode">Επιλογή λειτουργίας</string>
    <string name="msg_migration">Μεταφέρετε τον κατάλογο [Librera] σε άλλη συσκευή για να μετεγκαταστήσετε τα δεδομένα σας.</string>
    <string name="msg_sync">Συγχρονίστε τον φάκελο [Librera] με άλλες συσκευές μέσω του Google Drive ή εφαρμογών τρίτων.</string>
+   <string name="display_alert_if_cropping_is_on">Εμφάνιση ειδοποίησης εάν η περικοπή είναι ενεργοποιημένη</string>
 </resources>

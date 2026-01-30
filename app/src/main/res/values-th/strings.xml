@@ -683,4 +683,5 @@
    <string name="select_mode">เลือกโหมด</string>
    <string name="msg_migration">ย้ายไดเร็กทอรี [Librera] ไปยังอุปกรณ์อื่นเพื่อย้ายข้อมูลของคุณ</string>
    <string name="msg_sync">ซิงโครไนซ์โฟลเดอร์ [Librera] กับอุปกรณ์อื่นๆ ผ่าน Google Drive หรือแอปพลิเคชันของบุคคลที่สาม</string>
+   <string name="display_alert_if_cropping_is_on">แสดงการแจ้งเตือนหากเปิดใช้งานการครอบตัด</string>
 </resources>

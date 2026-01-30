@@ -683,4 +683,5 @@
    <string name="select_mode">選択モード</string>
    <string name="msg_migration">データを移行するには、[Librera] ディレクトリを別のデバイスに転送します。</string>
    <string name="msg_sync">Google ドライブまたはサードパーティ アプリを介して [Librera] フォルダーを他のデバイスと同期します。</string>
+   <string name="display_alert_if_cropping_is_on">クロッピングがオンの場合に警告を表示する</string>
 </resources>

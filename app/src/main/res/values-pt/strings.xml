@@ -683,4 +683,5 @@
    <string name="select_mode">Selecionar modo</string>
    <string name="msg_migration">Transfira o diretório [Librera] para outro dispositivo para migrar seus dados.</string>
    <string name="msg_sync">Sincronize a pasta [Librera] com outros dispositivos via Google Drive ou aplicativos de terceiros.</string>
+   <string name="display_alert_if_cropping_is_on">Exibir alerta se o recorte estiver ativado</string>
 </resources>

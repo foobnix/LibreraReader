@@ -91,4 +91,10 @@
         android:layout_height="wrap_content"
         android:text="@string/crop_borders_symmetrically" />
 
+    <CheckBox
+        android:id="@+id/isCropNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/display_alert_if_cropping_is_on" />
+
 </LinearLayout>

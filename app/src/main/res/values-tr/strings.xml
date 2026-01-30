@@ -683,4 +683,5 @@
    <string name="select_mode">Modu seçin</string>
    <string name="msg_migration">Verilerinizi taşımak için [Librera] dizinini başka bir cihaza aktarın.</string>
    <string name="msg_sync">[Librera] klasörünü Google Drive veya üçüncü taraf uygulamalar aracılığıyla diğer cihazlarla senkronize edin.</string>
+   <string name="display_alert_if_cropping_is_on">Kırpma açıksa uyarı göster</string>
 </resources>

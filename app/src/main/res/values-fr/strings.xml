@@ -683,4 +683,5 @@
    <string name="select_mode">Sélectionner le mode</string>
    <string name="msg_migration">Transférez le répertoire [Librera] vers un autre appareil pour migrer vos données.</string>
    <string name="msg_sync">Synchronisez le dossier [Librera] avec d\'autres appareils via Google Drive ou des applications tierces.</string>
+   <string name="display_alert_if_cropping_is_on">Afficher une alerte si le recadrage est activé</string>
 </resources>

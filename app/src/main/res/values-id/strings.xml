@@ -683,4 +683,5 @@
    <string name="select_mode">Pilih mode</string>
    <string name="msg_migration">Pindahkan direktori [Librera] ke perangkat lain untuk memindahkan data Anda.</string>
    <string name="msg_sync">Sinkronkan folder [Librera] dengan perangkat lain melalui Google Drive atau aplikasi pihak ketiga.</string>
+   <string name="display_alert_if_cropping_is_on">Tampilkan peringatan jika pemangkasan sedang berlangsung.</string>
 </resources>

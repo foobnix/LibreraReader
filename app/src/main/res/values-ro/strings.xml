@@ -683,4 +683,5 @@
    <string name="select_mode">Selectați modul</string>
    <string name="msg_migration">Transferă directorul [Librera] pe un alt dispozitiv pentru a migra datele.</string>
    <string name="msg_sync">Sincronizați folderul [Librera] cu alte dispozitive prin Google Drive sau aplicații terțe.</string>
+   <string name="display_alert_if_cropping_is_on">Afișați o alertă dacă decuparea este activată</string>
 </resources>

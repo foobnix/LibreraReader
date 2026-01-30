@@ -683,4 +683,5 @@
    <string name="select_mode">Mód roghnaithe</string>
    <string name="msg_migration">Aistrigh an t-eolaire [Librera] chuig gléas eile chun do chuid sonraí a aistriú.</string>
    <string name="msg_sync">Sioncrónaigh an fillteán [Librera] le gléasanna eile trí Google Drive nó aipeanna tríú páirtí.</string>
+   <string name="display_alert_if_cropping_is_on">Taispeáin foláireamh má tá bearradh ar siúl</string>
 </resources>
