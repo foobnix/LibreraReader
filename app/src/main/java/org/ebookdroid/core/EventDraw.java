@@ -123,9 +123,10 @@ public class EventDraw implements IEvent {
             p.setAlpha(255 - MagicHelper.getTransparencyInt());
             canvas.drawBitmap(bgBitmap, m, p);
         }
-        if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
-            canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.top - Dips.DP_1, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
-        }
+        //if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
+          //  canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.top - Dips.DP_1,
+           //     fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
+        //}
 
         if (AppState.get().isShowLastPageRed && AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
             rect.setColor(ColorUtils.setAlphaComponent(Color.RED, 150));
