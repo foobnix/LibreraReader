@@ -251,7 +251,7 @@ public class AppData {
         RecentUpates.updateAll();
     }
 
-    private synchronized List<SimpleMeta> getAll(String name) {
+    private List<SimpleMeta> getAll(String name) {
         List<SimpleMeta> result = new ArrayList<>();
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
@@ -288,7 +288,7 @@ public class AppData {
 
     }
 
-    public synchronized List<FileMeta> getAllSyncBooks() {
+    public  List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.browseExts);
@@ -433,7 +433,7 @@ public class AppData {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
     }
 
-    public synchronized List<FileMeta> getAllTestedBooks() {
+    public  List<FileMeta> getAllTestedBooks() {
         List<FileMeta> res = new ArrayList<>();
         File logFile = getTestFileName();
 
