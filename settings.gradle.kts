@@ -18,8 +18,6 @@ dependencyResolutionManagement {
 include(":app")
 include(":libPro")
 include(":libReflow")
-include(":appCompose")
-include(":appLibDrive")
 
 include(":Builder")
 include(":libDepFree")
