@@ -9,7 +9,9 @@ layout: main
 
 [Librera FDroid on F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[MacOS DMG / Desktop version] (http://beta.librera.mobi/)
+[MacOS DMG / Desktop version](http://beta.librera.mobi/) 
+
+Librera for macOS, supports PDF, EPUB, FB2, CBZ, CBR (beta.librera.mobi for downloads)
 
 [Beta .apk on Dropbox](https://www.dropbox.com/sh/06uflsamq4qirp3/AABAc0RXaMHCKBbYvxN-W8aYa?lst)
 

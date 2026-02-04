@@ -41,7 +41,9 @@ https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.p
 
 [zip Chrome Extension](https://github.com/foobnix/LibreraReader/raw/master/Builder/librara-chrome-extension.zip)
 
-[MacOS DMG / Desktop version] (http://beta.librera.mobi/)
+[MacOS DMG / Desktop version](http://beta.librera.mobi/)
+
+Librera for macOS, supports PDF, EPUB, FB2, CBZ, CBR (beta.librera.mobi for downloads)
 
 ![img1](https://raw.githubusercontent.com/foobnix/LirbiReader/master/macOS/img1.png)
 
