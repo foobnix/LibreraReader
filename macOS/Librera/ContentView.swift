@@ -118,7 +118,7 @@ struct ContentView: View {
     }
     
     private var libraryView: some View {
-        bookListView(books: bookManager.books, title: "All Books")
+        bookListView(books: bookManager.books, title: "All Books", isRecent: false)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
@@ -158,7 +158,7 @@ struct ContentView: View {
     }
     
     private var recentView: some View {
-        bookListView(books: bookManager.recentBooks, title: "Recent Books")
+        bookListView(books: bookManager.recentBooks, title: "Recent Books", isRecent: true)
     }
     
     private var aboutView: some View {
@@ -202,16 +202,22 @@ struct ContentView: View {
         .background(Color(NSColor.windowBackgroundColor))
     }
     
-    private func bookListView(books: [Book], title: String) -> some View {
-        let sortedBooks = books.sorted { a, b in
-            let result: Bool
-            switch sortOption {
-            case .title:
-                result = a.title.localizedCaseInsensitiveCompare(b.title) == .orderedAscending
-            case .date:
-                result = a.date < b.date
+    private func bookListView(books: [Book], title: String, isRecent: Bool) -> some View {
+        let sortedBooks: [Book]
+        if isRecent {
+            // Recent books are already ordered by "last opened" in BookManager.recents
+            sortedBooks = books
+        } else {
+            sortedBooks = books.sorted { a, b in
+                let result: Bool
+                switch sortOption {
+                case .title:
+                    result = a.title.localizedCaseInsensitiveCompare(b.title) == .orderedAscending
+                case .date:
+                    result = a.date < b.date
+                }
+                return sortOrder == .ascending ? result : !result
             }
-            return sortOrder == .ascending ? result : !result
         }
         
         let filteredBooks = sortedBooks.filter {

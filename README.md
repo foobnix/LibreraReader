@@ -43,6 +43,10 @@ https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.p
 
 [MacOS DMG] (http://beta.librera.mobi/)
 
+![img1](https://raw.githubusercontent.com/foobnix/LirbiReader/master/macOS/img1.png)
+
+![img2](https://raw.githubusercontent.com/foobnix/LirbiReader/master/macOS/img2.png)
+
 ### Links
 
 [web: https://librera.mobi/](https://librera.mobi/)

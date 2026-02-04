@@ -198,8 +198,8 @@ struct EpubExtractor {
         
         // 1. Unzip
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-        process.arguments = ["-q", sourceURL.path, "-d", tempDir.path]
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
+        process.arguments = ["-x", "-k", sourceURL.path, tempDir.path]
         
         try process.run()
         process.waitUntilExit()
