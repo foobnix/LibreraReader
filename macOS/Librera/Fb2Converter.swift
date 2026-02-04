@@ -35,11 +35,18 @@ struct Fb2Converter {
             throw ConversionError.fileReadFailed(sourceURL, error.localizedDescription)
         }
         
-        let parser = Fb2Parser(xmlData: data, tempDir: tempDir)
+        let (xmlContent, detectedEncoding) = sanitizeXmlData(data)
+        
+        guard let cleanData = xmlContent.data(using: .utf8) else {
+            print("ERROR: Could not convert sanitized XML to UTF-8 data")
+            throw ConversionError.parsingFailed("Data conversion to UTF-8 failed.")
+        }
+        
+        let parser = Fb2Parser(xmlData: cleanData, tempDir: tempDir)
         let htmlBody = parser.parse()
         
         if let parseError = parser.getError() {
-            print("ERROR: XML Parsing failed: \(parseError)")
+            print("ERROR: XML Parsing failed (Encoding: \(detectedEncoding ?? "unknown")): \(parseError)")
             throw ConversionError.parsingFailed(parseError.localizedDescription)
         }
         
@@ -216,5 +223,71 @@ struct Fb2Converter {
                 try? data.write(to: fileURL)
             }
         }
+    }
+    
+    private static func sanitizeXmlData(_ data: Data) -> (String, String?) {
+        // 1. Try to detect encoding from XML header
+        var encodingName: String?
+        if let headerString = String(data: data.prefix(200), encoding: .ascii) {
+            let pattern = "encoding=[\"']([^\"']+)[\"']"
+            if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),
+               let match = regex.firstMatch(in: headerString, range: NSRange(headerString.startIndex..., in: headerString)) {
+                if let range = Range(match.range(at: 1), in: headerString) {
+                    encodingName = String(headerString[range])
+                }
+            }
+        }
+        
+        // 2. Convert to string using detected encoding or fallbacks
+        var xmlString: String?
+        var usedEncoding: String?
+        
+        if let name = encodingName {
+            let cfEncoding = CFStringConvertIANACharSetNameToEncoding(name as CFString)
+            if cfEncoding != kCFStringEncodingInvalidId {
+                let nsEncoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
+                xmlString = String(data: data, encoding: String.Encoding(rawValue: nsEncoding))
+                usedEncoding = name
+            }
+        }
+        
+        if xmlString == nil {
+            // Try Windows-1251 (CP1251) which is extremely common for FB2
+            xmlString = String(data: data, encoding: .windowsCP1251)
+            usedEncoding = "windows-1251"
+        }
+        
+        if xmlString == nil {
+            // Fallback to UTF-8
+            xmlString = String(data: data, encoding: .utf8)
+            usedEncoding = "utf-8"
+        }
+        
+        guard var content = xmlString else {
+            return ("", nil)
+        }
+        
+        // 3. Replace common HTML entities that are not standard XML
+        let entities = [
+            "&nbsp;": "&#160;",
+            "&mdash;": "&#8212;",
+            "&ndash;": "&#8211;",
+            "&laquo;": "&#171;",
+            "&raquo;": "&#187;",
+            "&rdquo;": "&#8221;",
+            "&ldquo;": "&#8220;",
+            "&lsquo;": "&#8216;",
+            "&rsquo;": "&#8217;",
+            "&copy;": "&#169;",
+            "&reg;": "&#174;",
+            "&trade;": "&#8482;",
+            "&hellip;": "&#8230;"
+        ]
+        
+        for (entity, replacement) in entities {
+            content = content.replacingOccurrences(of: entity, with: replacement)
+        }
+        
+        return (content, usedEncoding)
     }
 }
