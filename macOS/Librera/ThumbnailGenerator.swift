@@ -8,7 +8,7 @@ import Unrar
 actor ThumbnailGenerator {
     static let shared = ThumbnailGenerator()
     
-    private let cacheDirectory: URL
+    nonisolated let cacheDirectory: URL
     
     private init() {
         let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
@@ -25,15 +25,21 @@ actor ThumbnailGenerator {
     }
     
     func generateThumbnail(for url: URL, size: CGSize = CGSize(width: 300, height: 450)) async -> NSImage? {
-        // 1. Check Cache first
+        // 1. Check Cache first (Non-isolated for performance)
         let key = await getCacheKey(for: url)
         let cacheURL = cacheDirectory.appendingPathComponent("\(key).png")
         
         if let cachedImage = NSImage(contentsOf: cacheURL) {
+            print("INFO: Cache HIT for \(url.lastPathComponent)")
             return cachedImage
         }
         
-        // 2. Generate if not cached
+        // 2. Generate if not cached (Isolated to the actor to run serially)
+        print("INFO: Cache MISS for \(url.lastPathComponent), generating...")
+        return await generateAndCache(url: url, size: size, cacheURL: cacheURL)
+    }
+    
+    private func generateAndCache(url: URL, size: CGSize, cacheURL: URL) async -> NSImage? {
         let ext = url.pathExtension.lowercased()
         var generated: NSImage?
         
@@ -60,10 +66,15 @@ actor ThumbnailGenerator {
         return generated
     }
     
-    private func getCacheKey(for url: URL) async -> String {
+    nonisolated func getCacheKey(for url: URL) async -> String {
         let path = url.path
-        let attributes = try? FileManager.default.attributesOfItem(atPath: path)
-        let modDate = attributes?[.modificationDate] as? Date ?? Date()
+        
+        // Use security scope if needed for metadata
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        
+        let resourceValues = try? url.resourceValues(forKeys: [.contentModificationDateKey])
+        let modDate = resourceValues?.contentModificationDate ?? Date()
         
         let rawKey = "\(path)_\(modDate.timeIntervalSince1970)"
         let inputData = Data(rawKey.utf8)
@@ -111,6 +122,9 @@ actor ThumbnailGenerator {
     }
     
     private func extractFirstImageFromZip(url: URL) async -> NSImage? {
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        
         // 1. List files in zip
         let listProcess = Process()
         listProcess.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
@@ -154,6 +168,9 @@ actor ThumbnailGenerator {
     }
     
     private func extractFirstImageFromRar(url: URL) async -> NSImage? {
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        
         do {
             let archive = try Archive(path: url.path)
             let entries = try archive.entries()
@@ -179,6 +196,10 @@ actor ThumbnailGenerator {
     }
     
     private func generateFB2Thumbnail(url: URL) async -> NSImage? {
+        // Security scope for reading FB2 content
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        
         guard let data = try? Data(contentsOf: url) else { return nil }
         let parser = Fb2CoverParser(xmlData: data)
         if let coverData = parser.parseCover() {

@@ -117,12 +117,13 @@ class BookManager {
             }
             
             // Generate thumbnails lazily
-            for i in scannedBooks.indices {
-                let book = scannedBooks[i]
-                if let thumb = await ThumbnailGenerator.shared.generateThumbnail(for: book.url) {
-                    await MainActor.run {
-                        if let index = self.books.firstIndex(where: { $0.id == book.id }) {
-                            self.books[index].thumbnail = thumb
+            for book in scannedBooks {
+                Task {
+                    if let thumb = await ThumbnailGenerator.shared.generateThumbnail(for: book.url) {
+                        await MainActor.run {
+                            if let index = self.books.firstIndex(where: { $0.id == book.id }) {
+                                self.books[index].thumbnail = thumb
+                            }
                         }
                     }
                 }

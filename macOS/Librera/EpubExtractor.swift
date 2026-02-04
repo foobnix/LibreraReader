@@ -196,10 +196,10 @@ struct EpubExtractor {
         
         try fileManager.createDirectory(at: tempDir, withIntermediateDirectories: true)
         
-        // 1. Unzip
+        // 1. Unzip (using tar for better reliability)
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
-        process.arguments = ["-x", "-k", sourceURL.path, tempDir.path]
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/tar")
+        process.arguments = ["-xf", sourceURL.path, "-C", tempDir.path]
         
         try process.run()
         process.waitUntilExit()
