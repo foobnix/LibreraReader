@@ -41,7 +41,7 @@ https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.p
 
 [zip Chrome Extension](https://github.com/foobnix/LibreraReader/raw/master/Builder/librara-chrome-extension.zip)
 
-[macOS DMG] [http://beta.librera.mobi/]
+[MacOS DMG] (http://beta.librera.mobi/)
 
 ### Links
 
