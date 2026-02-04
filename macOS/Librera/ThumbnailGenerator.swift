@@ -1,0 +1,245 @@
+import SwiftUI
+import PDFKit
+import UniformTypeIdentifiers
+import QuickLookThumbnailing
+import CryptoKit
+import Unrar
+
+actor ThumbnailGenerator {
+    static let shared = ThumbnailGenerator()
+    
+    private let cacheDirectory: URL
+    
+    private init() {
+        let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+        let cacheBase = paths[0].appendingPathComponent("com.librera.mac/Thumbnails")
+        self.cacheDirectory = cacheBase
+        
+        try? FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
+    }
+    
+    enum ThumbnailError: Error {
+        case fileNotFound
+        case unsupportedFormat
+        case noCoverFound
+    }
+    
+    func generateThumbnail(for url: URL, size: CGSize = CGSize(width: 300, height: 450)) async -> NSImage? {
+        // 1. Check Cache first
+        let key = await getCacheKey(for: url)
+        let cacheURL = cacheDirectory.appendingPathComponent("\(key).png")
+        
+        if let cachedImage = NSImage(contentsOf: cacheURL) {
+            return cachedImage
+        }
+        
+        // 2. Generate if not cached
+        let ext = url.pathExtension.lowercased()
+        var generated: NSImage?
+        
+        switch ext {
+        case "pdf":
+            generated = generatePDFThumbnail(url: url, size: size)
+        case "epub":
+            generated = await generateEPUBThumbnail(url: url, size: size)
+        case "fb2":
+            generated = await generateFB2Thumbnail(url: url)
+        case "cbz":
+            generated = await extractFirstImageFromZip(url: url)
+        case "cbr":
+            generated = await extractFirstImageFromRar(url: url)
+        default:
+            return nil
+        }
+        
+        // 3. Save to cache
+        if let image = generated {
+            saveToCache(image: image, url: cacheURL)
+        }
+        
+        return generated
+    }
+    
+    private func getCacheKey(for url: URL) async -> String {
+        let path = url.path
+        let attributes = try? FileManager.default.attributesOfItem(atPath: path)
+        let modDate = attributes?[.modificationDate] as? Date ?? Date()
+        
+        let rawKey = "\(path)_\(modDate.timeIntervalSince1970)"
+        let inputData = Data(rawKey.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
+    }
+    
+    private func saveToCache(image: NSImage, url: URL) {
+        guard let tiffData = image.tiffRepresentation,
+              let bitmap = NSBitmapImageRep(data: tiffData),
+              let pngData = bitmap.representation(using: .png, properties: [:]) else {
+            return
+        }
+        
+        try? pngData.write(to: url)
+    }
+    
+    private func generatePDFThumbnail(url: URL, size: CGSize) -> NSImage? {
+        guard let document = PDFDocument(url: url),
+              let page = document.page(at: 0) else { return nil }
+        
+        return page.thumbnail(of: size, for: .mediaBox)
+    }
+    
+    private func generateEPUBThumbnail(url: URL, size: CGSize) async -> NSImage? {
+        let result = await withCheckedContinuation { (continuation: CheckedContinuation<NSImage?, Never>) in
+            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: NSScreen.main?.backingScaleFactor ?? 2.0, representationTypes: .thumbnail)
+            
+            QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { thumbnail, error in
+                if let thumbnail = thumbnail {
+                    continuation.resume(returning: thumbnail.nsImage)
+                } else {
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
+        
+        // Fallback: If QL fails, try to find the first image in the zip
+        if result == nil {
+            print("DEBUG: QL failed for EPUB \(url.lastPathComponent), trying fallback cover extraction...")
+            return await extractFirstImageFromZip(url: url)
+        }
+        
+        return result
+    }
+    
+    private func extractFirstImageFromZip(url: URL) async -> NSImage? {
+        // 1. List files in zip
+        let listProcess = Process()
+        listProcess.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
+        listProcess.arguments = ["-l", url.path]
+        let listPipe = Pipe()
+        listProcess.standardOutput = listPipe
+        
+        do {
+            try listProcess.run()
+            let listData = listPipe.fileHandleForReading.readDataToEndOfFile()
+            let listOutput = String(data: listData, encoding: .utf8) ?? ""
+            
+            // 2. Find first image (JPG, PNG, WEBP)
+            let pattern = "([\\w/.-]+\\.(jpg|jpeg|png|webp))"
+            let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let range = NSRange(listOutput.startIndex..., in: listOutput)
+            
+            if let match = regex?.firstMatch(in: listOutput, options: [], range: range),
+               let fileRange = Range(match.range(at: 1), in: listOutput) {
+                let imagePath = String(listOutput[fileRange])
+                
+                // 3. Extract that specific image
+                let extractProcess = Process()
+                extractProcess.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
+                extractProcess.arguments = ["-p", url.path, imagePath]
+                let extractPipe = Pipe()
+                extractProcess.standardOutput = extractPipe
+                
+                try extractProcess.run()
+                let imageData = extractPipe.fileHandleForReading.readDataToEndOfFile()
+                
+                if !imageData.isEmpty {
+                    return NSImage(data: imageData)
+                }
+            }
+        } catch {
+            print("DEBUG: Fallback extraction failed: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
+    private func extractFirstImageFromRar(url: URL) async -> NSImage? {
+        do {
+            let archive = try Archive(path: url.path)
+            let entries = try archive.entries()
+            
+            let imageExtensions = Set(["jpg", "jpeg", "png", "webp"])
+            
+            // Find first image entry
+            for entry in entries {
+               
+                    let ext = (entry.fileName as NSString).pathExtension.lowercased()
+                    if imageExtensions.contains(ext) {
+                        // Extract directly to memory
+                        if let data = try? archive.extract(entry) {
+                            return NSImage(data: data)
+                        }
+                    }
+                
+            }
+        } catch {
+            print("DEBUG: CBR cover extraction failed: \(error.localizedDescription)")
+        }
+        return nil
+    }
+    
+    private func generateFB2Thumbnail(url: URL) async -> NSImage? {
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        let parser = Fb2CoverParser(xmlData: data)
+        if let coverData = parser.parseCover() {
+            return NSImage(data: coverData)
+        }
+        return nil
+    }
+    
+    private class Fb2CoverParser: NSObject, XMLParserDelegate {
+        private let parser: XMLParser
+        private var coverId: String?
+        private var currentBinaryId: String?
+        private var currentBinaryData = ""
+        private var isInsideBinary = false
+        private var coverData: Data?
+        
+        init(xmlData: Data) {
+            self.parser = XMLParser(data: xmlData)
+            super.init()
+            self.parser.delegate = self
+        }
+        
+        func parseCover() -> Data? {
+            parser.parse()
+            return coverData
+        }
+        
+        func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+            if elementName == "coverpage" {
+                // In FB2, cover is often inside <coverpage><image l:href="#id"/></coverpage>
+            } else if elementName == "image" {
+                if let href = attributeDict["l:href"] ?? attributeDict["xlink:href"] {
+                    if coverId == nil { // Take the first image reference in the doc usually is cover if it's metadata
+                         coverId = href.hasPrefix("#") ? String(href.dropFirst()) : href
+                    }
+                }
+            } else if elementName == "binary" {
+                let id = attributeDict["id"]
+                if id == coverId {
+                    isInsideBinary = true
+                    currentBinaryId = id
+                    currentBinaryData = ""
+                }
+            }
+        }
+        
+        func parser(_ parser: XMLParser, foundCharacters string: String) {
+            if isInsideBinary {
+                currentBinaryData += string
+            }
+        }
+        
+        func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+            if elementName == "binary", isInsideBinary {
+                isInsideBinary = false
+                let cleaned = currentBinaryData.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+                coverData = Data(base64Encoded: cleaned)
+                if coverData != nil {
+                    parser.abortParsing() // Found what we need
+                }
+            }
+        }
+    }
+}
