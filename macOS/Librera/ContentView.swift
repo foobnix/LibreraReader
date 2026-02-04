@@ -9,7 +9,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @State private var bookManager = BookManager()
+    @State private var bookManager = BookManager.shared
     @State private var isExtracting: Bool = false
     @State private var extractionError: String?
     @State private var selectedCategory: NavigationCategory? = .library
@@ -112,6 +112,15 @@ struct ContentView: View {
             return true
         }
         .frame(minWidth: 800, minHeight: 500)
+        .onChange(of: bookManager.requestToOpenURL) { old, new in
+            if let url = new {
+                bookManager.requestToOpenURL = nil
+                openBook(Book(url: url))
+            }
+        }
+        .onAppear {
+            bookManager.restoreLastOpenedFolder()
+        }
 // ... intermediate part ...
         .overlay {
             if isExtracting {
@@ -307,7 +316,10 @@ struct ContentView: View {
             openWindow(value: data)
         } else if book.type == .epub || book.type == .fb2 || book.type == .cbz || book.type == .cbr {
             isExtracting = true
+            let activity = ProcessInfo.processInfo.beginActivity(options: [.userInitiated, .suddenTerminationDisabled, .automaticTerminationDisabled], reason: "Extracting and preparing book for reading")
+            
             Task {
+                defer { ProcessInfo.processInfo.endActivity(activity) }
                 do {
                     let (readerURL, rootURL): (URL, URL)
                     if book.type == .epub {

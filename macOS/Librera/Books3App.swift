@@ -12,6 +12,9 @@ struct LibreraMacApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onOpenURL { url in
+                    BookManager.shared.requestToOpenURL = url
+                }
         }
         
         WindowGroup(for: ReaderWindowData.self) { $data in

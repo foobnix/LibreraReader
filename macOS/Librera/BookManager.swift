@@ -3,16 +3,18 @@ import Combine
 
 @Observable
 class BookManager {
+    static let shared = BookManager() // Singleton for app-level URL handling and shared state
+    
     var books: [Book] = []
     var currentFolderURL: URL?
     var isLoading: Bool = false
     var recentBookPaths: [String] = []
+    var requestToOpenURL: URL?
     
     private let bookmarkKey = "LastOpenedFolderBookmark"
     private let recentBooksKey = "RecentBookPaths"
     
     init() {
-        restoreLastOpenedFolder()
         loadRecentBookPaths()
     }
     
@@ -87,7 +89,11 @@ class BookManager {
         isLoading = true
         books = []
         
+        let activity = ProcessInfo.processInfo.beginActivity(options: [.background, .suddenTerminationDisabled, .automaticTerminationDisabled], reason: "Scanning and generating thumbnails for books")
+        
         Task {
+            defer { ProcessInfo.processInfo.endActivity(activity) }
+            
             var newBooks: [Book] = []
             let fileManager = FileManager.default
             
@@ -140,7 +146,7 @@ class BookManager {
         }
     }
     
-    private func restoreLastOpenedFolder() {
+    func restoreLastOpenedFolder() {
         guard let bookmarkData = UserDefaults.standard.data(forKey: bookmarkKey) else { return }
         
         var isStale = false
