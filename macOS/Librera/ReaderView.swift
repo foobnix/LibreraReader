@@ -19,6 +19,7 @@ struct ReaderView: NSViewRepresentable {
         var savedInitialProgress: Double = 0.0
         var pdfView: PDFView?
         var scrollObserver: Any?
+        var keyMonitor: Any?
         
         init(_ parent: ReaderView) {
             self.parent = parent
@@ -28,6 +29,9 @@ struct ReaderView: NSViewRepresentable {
         deinit {
             if let observer = scrollObserver {
                 NotificationCenter.default.removeObserver(observer)
+            }
+            if let monitor = keyMonitor {
+                NSEvent.removeMonitor(monitor)
             }
         }
         
@@ -69,6 +73,30 @@ struct ReaderView: NSViewRepresentable {
                     var progress = docHeight > viewHeight ? scrollTop / (docHeight - viewHeight) : 0;
                     window.webkit.messageHandlers.scrollHandler.postMessage(progress);
                 });
+                
+                window.addEventListener('keydown', function(e) {
+                    var jumpH = window.innerWidth / 2;
+                    var jumpV = window.innerHeight / 2;
+                    
+                    switch(e.key) {
+                        case 'ArrowUp':
+                            window.scrollBy({ top: -jumpV, behavior: 'smooth' });
+                            e.preventDefault();
+                            break;
+                        case 'ArrowDown':
+                            window.scrollBy({ top: jumpV, behavior: 'smooth' });
+                            e.preventDefault();
+                            break;
+                        case 'ArrowLeft':
+                            window.scrollBy({ top: 0, left: -jumpH, behavior: 'smooth' });
+                            e.preventDefault();
+                            break;
+                        case 'ArrowRight':
+                            window.scrollBy({ top: 0, left: jumpH, behavior: 'smooth' });
+                            e.preventDefault();
+                            break;
+                    }
+                });
             })();
             """
             webView.evaluateJavaScript(js, completionHandler: nil)
@@ -89,6 +117,70 @@ struct ReaderView: NSViewRepresentable {
                     self?.updatePDFProgress()
                 }
             }
+            
+            // Handle arrow keys for PDF
+            keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+                guard let self = self, let pdfView = self.pdfView, pdfView.window?.isKeyWindow == true else { return event }
+                
+                // Only handle if PDFView (or its descendant) is first responder
+                var isInside = false
+                var responder = pdfView.window?.firstResponder
+                while responder != nil {
+                    if responder === pdfView { isInside = true; break }
+                    responder = (responder as? NSView)?.superview
+                }
+                if !isInside { return event }
+
+                let jumpH = pdfView.visibleRect.width / 2
+                let jumpV = pdfView.visibleRect.height / 2
+                
+                // Determine direction based on flipped state
+                let isFlipped = pdfView.subviews.first(where: { $0 is NSScrollView })?.subviews.first(where: { $0 is NSClipView })?.isFlipped ?? false
+                let vDir: CGFloat = isFlipped ? 1.0 : -1.0
+                
+                switch event.keyCode {
+                case 126: // Up
+                    self.scrollPDF(by: NSPoint(x: 0, y: -vDir * jumpV))
+                    return nil
+                case 125: // Down
+                    self.scrollPDF(by: NSPoint(x: 0, y: vDir * jumpV))
+                    return nil
+                case 123: // Left
+                    self.scrollPDF(by: NSPoint(x: -jumpH, y: 0))
+                    return nil
+                case 124: // Right
+                    self.scrollPDF(by: NSPoint(x: jumpH, y: 0))
+                    return nil
+                default:
+                    return event
+                }
+            }
+        }
+        
+        private func scrollPDF(by offset: NSPoint) {
+            guard let scrollView = pdfView?.subviews.first(where: { $0 is NSScrollView }) as? NSScrollView else { return }
+            let contentView = scrollView.contentView
+            let currentOrigin = contentView.bounds.origin
+            
+            // Calculate new origin and clamp to document bounds
+            let docFrame = scrollView.documentView?.frame ?? .zero
+            let viewSize = contentView.bounds.size
+            
+            var newOrigin = NSPoint(x: currentOrigin.x + offset.x, y: currentOrigin.y + offset.y)
+            
+            // Clamp horizontal
+            newOrigin.x = max(0, min(newOrigin.x, docFrame.width - viewSize.width))
+            // Clamp vertical
+            let minY = docFrame.minY
+            let maxY = docFrame.maxY - viewSize.height
+            newOrigin.y = max(minY, min(newOrigin.y, maxY))
+            
+            NSAnimationContext.beginGrouping()
+            NSAnimationContext.current.duration = 0.25
+            contentView.animator().scroll(to: newOrigin)
+            NSAnimationContext.endGrouping()
+            
+            scrollView.reflectScrolledClipView(contentView)
         }
         
         private func updatePDFProgress() {

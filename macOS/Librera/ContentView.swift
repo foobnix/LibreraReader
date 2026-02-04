@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State private var bookManager = BookManager()
@@ -93,6 +94,22 @@ struct ContentView: View {
                 }
             }
             .searchable(text: $searchText, placement: .automatic, prompt: "Search Title")
+        }
+        .onDrop(of: [.fileURL], isTargeted: nil) { providers in
+            for provider in providers {
+                _ = provider.loadObject(ofClass: URL.self) { url, _ in
+                    if let url = url {
+                        let ext = url.pathExtension.lowercased()
+                        let supported = ["pdf", "epub", "fb2", "cbz", "cbr"]
+                        if supported.contains(ext) {
+                            Task { @MainActor in
+                                self.openBook(Book(url: url))
+                            }
+                        }
+                    }
+                }
+            }
+            return true
         }
         .frame(minWidth: 800, minHeight: 500)
 // ... intermediate part ...
