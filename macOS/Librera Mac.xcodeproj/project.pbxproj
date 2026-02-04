@@ -11,6 +11,7 @@
 		6400E4F82F334DA200196F5D /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6400E4F72F334DA200196F5D /* UniformTypeIdentifiers.framework */; };
 		6400E4FE2F33523500196F5D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6400E4FD2F33523500196F5D /* WebKit.framework */; };
 		6400E5532F337FF800196F5D /* Unrar in Frameworks */ = {isa = PBXBuildFile; productRef = 6400E5522F337FF800196F5D /* Unrar */; };
+		64537C062F33BC7D00C7A412 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 64537C052F33BC7D00C7A412 /* ZIPFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 				6400E5532F337FF800196F5D /* Unrar in Frameworks */,
 				6400E4F62F334D8E00196F5D /* PDFKit.framework in Frameworks */,
 				6400E4FE2F33523500196F5D /* WebKit.framework in Frameworks */,
+				64537C062F33BC7D00C7A412 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +93,7 @@
 			name = "Librera Mac";
 			packageProductDependencies = (
 				6400E5522F337FF800196F5D /* Unrar */,
+				64537C052F33BC7D00C7A412 /* ZIPFoundation */,
 			);
 			productName = "Librera Mac";
 			productReference = 6400E4DE2F334C5200196F5D /* Librera Mac.app */;
@@ -122,6 +125,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6400E5512F337FF800196F5D /* XCRemoteSwiftPackageReference "Unrar" */,
+				64537C042F33BC7D00C7A412 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6400E4DF2F334C5200196F5D /* Products */;
@@ -384,6 +388,14 @@
 				minimumVersion = 0.5.1;
 			};
 		};
+		64537C042F33BC7D00C7A412 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.20;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -391,6 +403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6400E5512F337FF800196F5D /* XCRemoteSwiftPackageReference "Unrar" */;
 			productName = Unrar;
+		};
+		64537C052F33BC7D00C7A412 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64537C042F33BC7D00C7A412 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

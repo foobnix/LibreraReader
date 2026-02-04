@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 import QuickLookThumbnailing
 import CryptoKit
 import Unrar
+import ZIPFoundation
 
 actor ThumbnailGenerator {
     static let shared = ThumbnailGenerator()
@@ -125,43 +126,24 @@ actor ThumbnailGenerator {
         let accessing = url.startAccessingSecurityScopedResource()
         defer { if accessing { url.stopAccessingSecurityScopedResource() } }
         
-        // 1. List files in zip
-        let listProcess = Process()
-        listProcess.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-        listProcess.arguments = ["-l", url.path]
-        let listPipe = Pipe()
-        listProcess.standardOutput = listPipe
-        
         do {
-            try listProcess.run()
-            let listData = listPipe.fileHandleForReading.readDataToEndOfFile()
-            let listOutput = String(data: listData, encoding: .utf8) ?? ""
+            guard let archive = Archive(url: url, accessMode: .read) else { return nil }
             
-            // 2. Find first image (JPG, PNG, WEBP)
-            let pattern = "([\\w/.-]+\\.(jpg|jpeg|png|webp))"
-            let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-            let range = NSRange(listOutput.startIndex..., in: listOutput)
+            let imageExtensions = Set(["jpg", "jpeg", "png", "webp"])
             
-            if let match = regex?.firstMatch(in: listOutput, options: [], range: range),
-               let fileRange = Range(match.range(at: 1), in: listOutput) {
-                let imagePath = String(listOutput[fileRange])
-                
-                // 3. Extract that specific image
-                let extractProcess = Process()
-                extractProcess.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-                extractProcess.arguments = ["-p", url.path, imagePath]
-                let extractPipe = Pipe()
-                extractProcess.standardOutput = extractPipe
-                
-                try extractProcess.run()
-                let imageData = extractPipe.fileHandleForReading.readDataToEndOfFile()
-                
-                if !imageData.isEmpty {
-                    return NSImage(data: imageData)
+            for entry in archive {
+                let ext = (entry.path as NSString).pathExtension.lowercased()
+                if imageExtensions.contains(ext) {
+                    var data = Data()
+                    _ = try archive.extract(entry, consumer: { data.append($0) })
+                    
+                    if !data.isEmpty {
+                        return NSImage(data: data)
+                    }
                 }
             }
         } catch {
-            print("DEBUG: Fallback extraction failed: \(error.localizedDescription)")
+            print("DEBUG: ZIPFoundation extraction failed: \(error.localizedDescription)")
         }
         
         return nil

@@ -1,4 +1,5 @@
 import Foundation
+import ZIPFoundation
 
 struct CbzConverter {
     enum ConversionError: Error, LocalizedError {
@@ -27,20 +28,11 @@ struct CbzConverter {
         
         print("DEBUG: Converting CBZ \(sourceURL.lastPathComponent) to HTML...")
         
-        // 1. Unzip (using tar for better reliability)
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/tar")
-        process.arguments = ["-xf", sourceURL.path, "-C", tempDir.path]
-        
+        // 1. Unzip using ZIPFoundation
         do {
-            try process.run()
-            process.waitUntilExit()
+            try fileManager.unzipItem(at: sourceURL, to: tempDir)
         } catch {
             throw ConversionError.unzipFailed(error.localizedDescription)
-        }
-        
-        if process.terminationStatus != 0 {
-            throw ConversionError.unzipFailed("Unzip process exited with code \(process.terminationStatus)")
         }
         
         // 2. Find and sort images

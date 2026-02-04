@@ -1,4 +1,5 @@
 import Foundation
+import ZIPFoundation
 
 struct EpubExtractor {
     enum ExtractionError: Error, LocalizedError {
@@ -196,17 +197,8 @@ struct EpubExtractor {
         
         try fileManager.createDirectory(at: tempDir, withIntermediateDirectories: true)
         
-        // 1. Unzip (using tar for better reliability)
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/tar")
-        process.arguments = ["-xf", sourceURL.path, "-C", tempDir.path]
-        
-        try process.run()
-        process.waitUntilExit()
-        
-        if process.terminationStatus != 0 {
-            throw ExtractionError.unzipFailed
-        }
+        // 1. Unzip using ZIPFoundation
+        try fileManager.unzipItem(at: sourceURL, to: tempDir)
         
         // 2. Find OPF path from container.xml
         let containerURL = tempDir.appendingPathComponent("META-INF/container.xml")
