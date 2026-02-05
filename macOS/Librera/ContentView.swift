@@ -324,9 +324,15 @@ struct ContentView: View {
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                         
-                        Button("Open Folder") {
-                            bookManager.openFolder()
-                        }
+                          Button(action: {
+                        #if os(macOS)
+                        bookManager.openFolder()
+                        #else
+                        isShowingFolderPicker = true
+                        #endif
+                    }) {
+                        Label("Open Folder", systemImage: "folder.badge.plus")
+                    }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                     }
