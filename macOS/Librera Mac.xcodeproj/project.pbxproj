@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6400E4DE2F334C5200196F5D /* Librera Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Librera Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6400E4DE2F334C5200196F5D /* Librera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Librera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6400E4F52F334D8E00196F5D /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		6400E4F72F334DA200196F5D /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		6400E4FD2F33523500196F5D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -59,7 +59,7 @@
 		6400E4DF2F334C5200196F5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6400E4DE2F334C5200196F5D /* Librera Mac.app */,
+				6400E4DE2F334C5200196F5D /* Librera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,9 +77,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6400E4DD2F334C5200196F5D /* Librera Mac */ = {
+		6400E4DD2F334C5200196F5D /* Librera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6400E4E92F334C5400196F5D /* Build configuration list for PBXNativeTarget "Librera Mac" */;
+			buildConfigurationList = 6400E4E92F334C5400196F5D /* Build configuration list for PBXNativeTarget "Librera" */;
 			buildPhases = (
 				6400E4DA2F334C5200196F5D /* Sources */,
 				6400E4DB2F334C5200196F5D /* Frameworks */,
@@ -92,14 +92,14 @@
 			fileSystemSynchronizedGroups = (
 				6400E4E02F334C5200196F5D /* Librera */,
 			);
-			name = "Librera Mac";
+			name = Librera;
 			packageProductDependencies = (
 				6400E5522F337FF800196F5D /* Unrar */,
 				64537C052F33BC7D00C7A412 /* ZIPFoundation */,
 				64537C482F348E7200C7A412 /* libmobi */,
 			);
-			productName = "Librera Mac";
-			productReference = 6400E4DE2F334C5200196F5D /* Librera Mac.app */;
+			productName = Librera;
+			productReference = 6400E4DE2F334C5200196F5D /* Librera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6400E4DD2F334C5200196F5D /* Librera Mac */,
+				6400E4DD2F334C5200196F5D /* Librera */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +289,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readonly;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
@@ -310,7 +311,7 @@
 				);
 				MARKETING_VERSION = 0.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librera.mac;
-				PRODUCT_NAME = "Librera Mac";
+				PRODUCT_NAME = Librera;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -333,6 +334,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readonly;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
@@ -354,7 +356,7 @@
 				);
 				MARKETING_VERSION = 0.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librera.mac;
-				PRODUCT_NAME = "Librera Mac";
+				PRODUCT_NAME = Librera;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -380,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6400E4E92F334C5400196F5D /* Build configuration list for PBXNativeTarget "Librera Mac" */ = {
+		6400E4E92F334C5400196F5D /* Build configuration list for PBXNativeTarget "Librera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6400E4EA2F334C5400196F5D /* Debug */,

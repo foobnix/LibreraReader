@@ -3,13 +3,14 @@
 # Exit on error
 set -e
 
-APP_NAME="Librera Mac"
+APP_NAME="Librera"
+PROJECT_NAME="Librera Mac"
 BUILD_DIR="build"
 DIST_DIR="dist"
 
 # Extract version from project.pbxproj
-VERSION=$(grep -m 1 "MARKETING_VERSION" "Librera Mac.xcodeproj/project.pbxproj" | cut -d'=' -f2 | tr -d ' ;')
-DMG_NAME="Librera Mac v$VERSION.dmg"
+VERSION=$(grep -m 1 "MARKETING_VERSION" "$PROJECT_NAME.xcodeproj/project.pbxproj" | cut -d'=' -f2 | tr -d ' ;')
+DMG_NAME="$APP_NAME v$VERSION.dmg"
 
 echo "🚀 Starting build process for $APP_NAME..."
 
@@ -21,7 +22,7 @@ rm -f "$DMG_NAME"
 
 # 2. Build the app
 echo "🏗️ Building $APP_NAME (Release)..."
-xcodebuild -project "$APP_NAME.xcodeproj" \
+xcodebuild -project "$PROJECT_NAME.xcodeproj" \
            -scheme "$APP_NAME" \
            -configuration Release \
            -derivedDataPath "$BUILD_DIR" \
