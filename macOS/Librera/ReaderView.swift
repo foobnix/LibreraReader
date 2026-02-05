@@ -60,6 +60,13 @@ struct ReaderView: PlatformRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             print("WebView Finished Loading")
             hasLoadedContent = true
+            
+            #if os(iOS)
+            webView.evaluateJavaScript("window.focus();", completionHandler: nil)
+            webView.becomeFirstResponder()
+            webView.scrollView.decelerationRate = .normal
+            #endif
+            
             parent.applySettings(to: webView, preserveScroll: false)
             
             if savedInitialProgress > 0 {
@@ -81,28 +88,33 @@ struct ReaderView: PlatformRepresentable {
             // Inject SmoothScroller and scroll tracking
             let js = """
             (function() {
+                // Redirect console.log to Swift
+                var oldLog = console.log;
+                console.log = function(message) {
+                    try {
+                        window.webkit.messageHandlers.logHandler.postMessage(message);
+                    } catch(e) {}
+                    oldLog.apply(console, arguments);
+                };
+                
+                console.log("Injecting SmoothScroller...");
+
                 // Prevent multiple injections
-                if (window.SmoothScroller) return;
+                if (window.SmoothScroller) {
+                     console.log("SmoothScroller already exists");
+                     return;
+                }
 
                 class SmoothScroller {
                     constructor() {
-                        this.targetY = window.scrollY;
-                        this.currentY = window.scrollY;
-                        this.velocity = 0;
-                        this.isAnimating = false;
-                        this.rafId = null;
-                        this.lastScrollTime = 0;
-                        
-                        // Configuration
-                        this.friction = 0.15; // Higher = more friction, stops faster
-                        this.wheelMultiplier = 2.0; // Velocity multiplier
+                        console.log("SmoothScroller constructor started (Native Smooth)");
                         this.arrowStep = 200; // Pixels per arrow key press
                         
                         // Bind events
-                        window.addEventListener('wheel', this.onWheel.bind(this), { passive: false });
-                        
-                        // Handle internal links and programmatic scrolls by updating target
-                        window.addEventListener('scroll', this.onNativeScroll.bind(this));
+                        window.addEventListener('click', this.onClick.bind(this));
+                        window.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: false });
+                        window.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: false });
+                        console.log("Event listeners bound (Native)");
                         
                         // Report progress to Swift
                         this.progressInterval = setInterval(this.reportProgress.bind(this), 200);
@@ -135,21 +147,65 @@ struct ReaderView: PlatformRepresentable {
                         });
                     }
                     
+                    onTouchStart(e) {
+                         if (e.touches.length > 1) return;
+                         this.startX = e.touches[0].clientX;
+                         this.startY = e.touches[0].clientY;
+                         this.startTime = Date.now();
+                    }
+                    
+                    onTouchEnd(e) {
+                        if (e.changedTouches.length === 0) return;
+                        
+                        const endX = e.changedTouches[0].clientX;
+                        const endY = e.changedTouches[0].clientY;
+                        
+                        const diffX = Math.abs(endX - this.startX);
+                        const diffY = Math.abs(endY - this.startY);
+                        
+                        // Check for tap (small movement)
+                        if (diffX < 10 && diffY < 10) {
+                            console.log("Tap detected (via touch) at: " + endX);
+                            this.handleTap(endX, e);
+                        }
+                    }
+                    
+                    handleTap(x, e) {
+                        if (e.target.closest('a')) {
+                             console.log("Tap on link ignored");
+                             return;
+                        }
+                         
+                         const width = window.innerWidth;
+                         
+                         if (x < width * 0.2) {
+                             console.log("Touch Tap: Page UP");
+                             this.scrollPageUp();
+                             if (e.cancelable) e.preventDefault(); 
+                         } else if (x > width * 0.8) {
+                             console.log("Touch Tap: Page DOWN");
+                             this.scrollPageDown();
+                             if (e.cancelable) e.preventDefault();
+                         }
+                    }
+                    
+                    onClick(e) {
+                         // Keep logging just in case
+                         console.log("Click detected at: " + e.clientX);
+                    }
+                    
                     scrollPageDown() {
                         let step = window.innerHeight * 0.9;
-                        this.scrollBy(step);
+                        window.scrollBy({ top: step, behavior: 'smooth' });
                     }
                     
                     scrollPageUp() {
                         let step = window.innerHeight * 0.9;
-                        this.scrollBy(-step);
+                        window.scrollBy({ top: -step, behavior: 'smooth' });
                     }
 
-                    onNativeScroll() {
-                        if (!this.isAnimating) {
-                            this.targetY = window.scrollY;
-                            this.currentY = window.scrollY;
-                        }
+                    scrollBy(amount) {
+                         window.scrollBy({ top: amount, behavior: 'smooth' });
                     }
 
                     reportProgress() {
@@ -161,61 +217,8 @@ struct ReaderView: PlatformRepresentable {
                             window.webkit.messageHandlers.scrollHandler.postMessage(progress);
                         } catch(e) {}
                     }
-
-                    onWheel(e) {
-                         // Only intercept vertical scrolling
-                        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-                        
-                        e.preventDefault();
-                        
-                        // Add velocity
-                        this.targetY += e.deltaY * this.wheelMultiplier;
-                        this.clampTarget();
-                        this.startAnimation();
-                    }
                     
-                    scrollBy(amount) {
-                        this.targetY += amount;
-                        this.clampTarget();
-                        this.startAnimation();
-                    }
-                    
-                    clampTarget() {
-                        var docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-                        var maxScroll = docHeight - window.innerHeight;
-                        this.targetY = Math.max(0, Math.min(this.targetY, maxScroll));
-                    }
-                    
-                    startAnimation() {
-                        if (!this.isAnimating) {
-                            this.isAnimating = true;
-                            this.rafId = requestAnimationFrame(this.animate.bind(this));
-                        }
-                    }
-                    
-                    animate() {
-                        // Init currentY if needed (e.g. after resize/native scroll)
-                        if (Math.abs(window.scrollY - this.currentY) > 10) {
-                             this.currentY = window.scrollY;
-                        }
-                        
-                        // Lerp
-                        var diff = this.targetY - this.currentY;
-                        var delta = diff * this.friction;
-                        
-                        if (Math.abs(diff) < 0.5) {
-                            this.currentY = this.targetY;
-                            window.scrollTo(0, this.currentY);
-                            this.isAnimating = false;
-                            this.reportProgress();
-                            return;
-                        }
-                        
-                        this.currentY += delta;
-                        window.scrollTo(0, this.currentY);
-                        
-                        this.rafId = requestAnimationFrame(this.animate.bind(this));
-                    }
+                    // Removed custom physics loop (onWheel, startAnimation, animate, etc.)
                 }
                 
                 window.SmoothScroller = new SmoothScroller();
@@ -448,9 +451,14 @@ struct ReaderView: PlatformRepresentable {
                 }
             }
             config.userContentController.add(scrollHandler, name: "scrollHandler")
+            config.userContentController.add(LogMessageHandler(), name: "logHandler")
             
             let webView = WKWebView(frame: .zero, configuration: config)
             webView.navigationDelegate = context.coordinator
+            
+            #if os(iOS)
+            webView.scrollView.decelerationRate = .normal
+            #endif
             
             webView.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview(webView)
@@ -542,5 +550,11 @@ class ScrollMessageHandler: NSObject, WKScriptMessageHandler {
     init(onScroll: @escaping (Double) -> Void) { self.onScroll = onScroll }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if let progress = message.body as? Double { onScroll(min(1.0, max(0.0, progress))) }
+    }
+}
+
+class LogMessageHandler: NSObject, WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print("JS Log: \(message.body)")
     }
 }
