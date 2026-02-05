@@ -29,11 +29,7 @@ struct ReaderSettings {
     enum ReaderTheme: String, CaseIterable, Identifiable {
         case white
         case sepia
-        case antique
-        case mint
-        case softBlue
-        case grey
-        case dark
+      
         case black
         
         var id: String { rawValue }
@@ -42,19 +38,15 @@ struct ReaderSettings {
             switch self {
             case .white: return "#ffffff"
             case .sepia: return "#f4ecd8"
-            case .antique: return "#fdf6e3"
-            case .mint: return "#f0fff0"
-            case .softBlue: return "#f0f8ff"
-            case .grey: return "#f5f5f7"
-            case .dark: return "#2c2c2e"
+           
             case .black: return "#000000"
             }
         }
         
         var textColor: String {
             switch self {
-            case .white, .sepia, .antique, .mint, .softBlue, .grey: return "#000000"
-            case .dark, .black: return "#e5e5e7"
+            case .white, .sepia: return "#000000"
+            case  .black: return "#e5e5e7"
             }
         }
         
