@@ -14,7 +14,7 @@ actor ThumbnailGenerator {
     
     private init() {
         let paths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-        let cacheBase = paths[0].appendingPathComponent("com.librera.mac/Thumbnails")
+        let cacheBase = paths[0].appendingPathComponent("com.librera.app/Thumbnails")
         self.cacheDirectory = cacheBase
         
         try? FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
@@ -26,12 +26,12 @@ actor ThumbnailGenerator {
         case noCoverFound
     }
     
-    func generateThumbnail(for url: URL, size: CGSize = CGSize(width: 300, height: 450)) async -> NSImage? {
+    func generateThumbnail(for url: URL, size: CGSize = CGSize(width: 300, height: 450)) async -> PlatformImage? {
         // 1. Check Cache first (Non-isolated for performance)
         let key = await getCacheKey(for: url)
         let cacheURL = cacheDirectory.appendingPathComponent("\(key).png")
         
-        if let cachedImage = NSImage(contentsOf: cacheURL) {
+        if let cachedImage = PlatformImage(contentsOf: cacheURL) {
             print("INFO: Cache HIT for \(url.lastPathComponent)")
             return cachedImage
         }
@@ -41,9 +41,9 @@ actor ThumbnailGenerator {
         return await generateAndCache(url: url, size: size, cacheURL: cacheURL)
     }
     
-    private func generateAndCache(url: URL, size: CGSize, cacheURL: URL) async -> NSImage? {
+    private func generateAndCache(url: URL, size: CGSize, cacheURL: URL) async -> PlatformImage? {
         let ext = url.pathExtension.lowercased()
-        var generated: NSImage?
+        var generated: PlatformImage?
         
         switch ext {
         case "pdf":
@@ -86,30 +86,43 @@ actor ThumbnailGenerator {
         return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
     
-    private func saveToCache(image: NSImage, url: URL) {
-        guard let tiffData = image.tiffRepresentation,
-              let bitmap = NSBitmapImageRep(data: tiffData),
-              let pngData = bitmap.representation(using: .png, properties: [:]) else {
+    private func saveToCache(image: PlatformImage, url: URL) {
+        guard let pngData = image.pngData() else {
             return
         }
         
         try? pngData.write(to: url)
     }
     
-    private func generatePDFThumbnail(url: URL, size: CGSize) -> NSImage? {
+    private func generatePDFThumbnail(url: URL, size: CGSize) -> PlatformImage? {
         guard let document = PDFDocument(url: url),
               let page = document.page(at: 0) else { return nil }
         
+        #if canImport(AppKit)
         return page.thumbnail(of: size, for: .mediaBox)
+        #else
+        // PDFKit on iOS returns UIImage
+        return page.thumbnail(of: size, for: .mediaBox)
+        #endif
     }
     
-    private func generateEPUBThumbnail(url: URL, size: CGSize) async -> NSImage? {
-        let result = await withCheckedContinuation { (continuation: CheckedContinuation<NSImage?, Never>) in
-            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: NSScreen.main?.backingScaleFactor ?? 2.0, representationTypes: .thumbnail)
+    private func generateEPUBThumbnail(url: URL, size: CGSize) async -> PlatformImage? {
+        let result = await withCheckedContinuation { (continuation: CheckedContinuation<PlatformImage?, Never>) in
+            #if canImport(UIKit)
+            let scale = UIScreen.main.scale
+            #else
+            let scale = NSScreen.main?.backingScaleFactor ?? 2.0
+            #endif
+            
+            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .thumbnail)
             
             QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { thumbnail, error in
                 if let thumbnail = thumbnail {
+                    #if canImport(UIKit)
+                    continuation.resume(returning: thumbnail.uiImage)
+                    #else
                     continuation.resume(returning: thumbnail.nsImage)
+                    #endif
                 } else {
                     continuation.resume(returning: nil)
                 }
@@ -125,7 +138,7 @@ actor ThumbnailGenerator {
         return result
     }
     
-    private func extractFirstImageFromZip(url: URL) async -> NSImage? {
+    private func extractFirstImageFromZip(url: URL) async -> PlatformImage? {
         let accessing = url.startAccessingSecurityScopedResource()
         defer { if accessing { url.stopAccessingSecurityScopedResource() } }
         
@@ -141,7 +154,7 @@ actor ThumbnailGenerator {
                     _ = try archive.extract(entry, consumer: { data.append($0) })
                     
                     if !data.isEmpty {
-                        return NSImage(data: data)
+                        return PlatformImage(data: data)
                     }
                 }
             }
@@ -152,7 +165,7 @@ actor ThumbnailGenerator {
         return nil
     }
     
-    private func extractFirstImageFromRar(url: URL) async -> NSImage? {
+    private func extractFirstImageFromRar(url: URL) async -> PlatformImage? {
         let accessing = url.startAccessingSecurityScopedResource()
         defer { if accessing { url.stopAccessingSecurityScopedResource() } }
         
@@ -169,7 +182,7 @@ actor ThumbnailGenerator {
                     if imageExtensions.contains(ext) {
                         // Extract directly to memory
                         if let data = try? archive.extract(entry) {
-                            return NSImage(data: data)
+                            return PlatformImage(data: data)
                         }
                     }
                 
@@ -180,7 +193,7 @@ actor ThumbnailGenerator {
         return nil
     }
     
-    private func generateFB2Thumbnail(url: URL) async -> NSImage? {
+    private func generateFB2Thumbnail(url: URL) async -> PlatformImage? {
         // Security scope for reading FB2 content
         let accessing = url.startAccessingSecurityScopedResource()
         defer { if accessing { url.stopAccessingSecurityScopedResource() } }
@@ -188,7 +201,7 @@ actor ThumbnailGenerator {
         guard let data = try? Data(contentsOf: url) else { return nil }
         let parser = Fb2CoverParser(xmlData: data)
         if let coverData = parser.parseCover() {
-            return NSImage(data: coverData)
+            return PlatformImage(data: coverData)
         }
         return nil
     }
@@ -249,18 +262,32 @@ actor ThumbnailGenerator {
         }
     }
     
-    private func generateMobiThumbnail(url: URL) async -> NSImage? {
+    private func generateMobiThumbnail(url: URL) async -> PlatformImage? {
+        // Try QL fallback first (safer and sometimes has covers on macOS)
+        #if os(macOS)
+        if let qlThumb = await generateEPUBThumbnail(url: url, size: CGSize(width: 300, height: 450)) {
+            print("DEBUG: Using QL thumbnail for MOBI/AZW: \(url.lastPathComponent)")
+            return qlThumb
+        }
+        #endif
+
         let accessing = url.startAccessingSecurityScopedResource()
         defer { if accessing { url.stopAccessingSecurityScopedResource() } }
         
-        do {
-            let mobi = try Mobi(url: url)
-            if let coverData = try mobi.getCover() {
-                return NSImage(data: coverData)
+        print("DEBUG: Starting libmobi extraction for \(url.lastPathComponent)...")
+        
+        // Use a detached task to avoid blocking the cooperative pool with heavy C calls
+        return await Task.detached(priority: .background) {
+            do {
+                let mobi = try Mobi(url: url)
+                if let coverData = try mobi.getCover() {
+                    print("DEBUG: libmobi successfully extracted cover for \(url.lastPathComponent)")
+                    return PlatformImage(data: coverData)
+                }
+            } catch {
+                print("ERROR: libmobi failed for \(url.lastPathComponent): \(error.localizedDescription)")
             }
-        } catch {
-            print("ERROR: Could not generate MOBI thumbnail: \(error)")
-        }
-        return nil
+            return nil
+        }.value
     }
 }

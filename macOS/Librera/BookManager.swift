@@ -54,6 +54,7 @@ class BookManager {
     }
     
     func openFolder() {
+        #if os(macOS)
         let panel = NSOpenPanel()
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
@@ -65,6 +66,7 @@ class BookManager {
                 self.loadFolder(at: url)
             }
         }
+        #endif
     }
     
     func loadFolder(at url: URL) {
@@ -89,41 +91,70 @@ class BookManager {
         isLoading = true
         books = []
         
+        #if os(macOS)
         let activity = ProcessInfo.processInfo.beginActivity(options: [.background, .suddenTerminationDisabled, .automaticTerminationDisabled], reason: "Scanning and generating thumbnails for books")
+        #endif
         
         Task {
+            #if os(macOS)
             defer { ProcessInfo.processInfo.endActivity(activity) }
+            #endif
             
-            var newBooks: [Book] = []
+            defer {
+                Task { @MainActor in
+                    self.isLoading = false
+                    print("INFO: Finished scanning folder: \(url.path). Found \(self.books.count) books.")
+                }
+            }
+            
             let fileManager = FileManager.default
-            
-            // Perform deep scan using FileManager enumerator
             let keys: [URLResourceKey] = [.isRegularFileKey, .contentModificationDateKey]
             let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants]
             
-            if let enumerator = fileManager.enumerator(at: url, includingPropertiesForKeys: keys, options: options, errorHandler: { (url, error) -> Bool in
+            guard let enumerator = fileManager.enumerator(at: url, includingPropertiesForKeys: keys, options: options, errorHandler: { (url, error) -> Bool in
                 print("Error scanning \(url.path): \(error.localizedDescription)")
-                return true // Continue scanning other files
-            }) {
-                for case let fileURL as URL in enumerator {
-                    let ext = fileURL.pathExtension.lowercased()
-                    if ext == "pdf" || ext == "epub" || ext == "fb2" || ext == "mobi" || ext == "azw" || ext == "azw3" || ext == "cbz" || ext == "cbr" {
-                        let resourceValues = try? fileURL.resourceValues(forKeys: Set(keys))
-                        let modDate = resourceValues?.contentModificationDate ?? Date()
-                        newBooks.append(Book(url: fileURL, date: modDate))
+                return true
+            }) else {
+                return
+            }
+            
+            var batch: [Book] = []
+            let batchSize = 20
+            
+            for case let fileURL as URL in enumerator {
+                let ext = fileURL.pathExtension.lowercased()
+                let supported = ["pdf", "epub", "fb2", "mobi", "azw", "azw3", "cbz", "cbr"]
+                
+                if supported.contains(ext) {
+                    let resourceValues = try? fileURL.resourceValues(forKeys: Set(keys))
+                    let modDate = resourceValues?.contentModificationDate ?? Date()
+                    let newBook = Book(url: fileURL, date: modDate)
+                    batch.append(newBook)
+                    
+                    if batch.count >= batchSize {
+                        let currentBatch = batch
+                        batch = []
+                        await MainActor.run {
+                            self.books.append(contentsOf: currentBatch)
+                        }
                     }
                 }
             }
             
-            let scannedBooks = newBooks
-            
-            await MainActor.run {
-                self.books = scannedBooks
-                self.isLoading = false
+            // Final batch
+            if !batch.isEmpty {
+                let currentBatch = batch
+                await MainActor.run {
+                    self.books.append(contentsOf: currentBatch)
+                }
             }
             
-            // Generate thumbnails lazily
-            for book in scannedBooks {
+            // Generate thumbnails lazily for all books found
+            let allBooks = await MainActor.run { self.books }
+            for book in allBooks {
+                // Skip if already has thumbnail (though it shouldn't here as we just scanned)
+                if book.thumbnail != nil { continue }
+                
                 Task {
                     if let thumb = await ThumbnailGenerator.shared.generateThumbnail(for: book.url) {
                         await MainActor.run {
@@ -139,7 +170,13 @@ class BookManager {
     
     private func saveBookmark(for url: URL) {
         do {
-            let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            #if os(macOS)
+            let options: URL.BookmarkCreationOptions = .withSecurityScope
+            #else
+            let options: URL.BookmarkCreationOptions = .minimalBookmark
+            #endif
+            
+            let bookmarkData = try url.bookmarkData(options: options, includingResourceValuesForKeys: nil, relativeTo: nil)
             UserDefaults.standard.set(bookmarkData, forKey: bookmarkKey)
         } catch {
             print("Failed to save bookmark: \(error)")
@@ -151,7 +188,13 @@ class BookManager {
         
         var isStale = false
         do {
-            let url = try URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            #if os(macOS)
+            let options: URL.BookmarkResolutionOptions = .withSecurityScope
+            #else
+            let options: URL.BookmarkResolutionOptions = []
+            #endif
+            
+            let url = try URL(resolvingBookmarkData: bookmarkData, options: options, relativeTo: nil, bookmarkDataIsStale: &isStale)
             
             if isStale {
                 print("Bookmark is stale")

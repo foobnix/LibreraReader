@@ -32,9 +32,11 @@ struct LibreraMacApp: App {
     }
 }
 
-struct ReaderWindowData: Codable, Hashable {
+struct ReaderWindowData: Codable, Hashable, Identifiable {
     let url: URL
     let rootURL: URL
     let title: String
     let bookPath: String
+    
+    var id: String { url.absoluteString }
 }

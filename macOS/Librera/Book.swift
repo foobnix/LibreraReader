@@ -19,7 +19,7 @@ struct Book: Identifiable, Hashable {
     let title: String
     let type: BookType
     let date: Date
-    var thumbnail: NSImage?
+    var thumbnail: PlatformImage?
     
     init(url: URL, date: Date = Date()) {
         self.id = UUID()

@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var sortOption: SortOption = .date
     @State private var sortOrder: SortOrder = .descending
     @Environment(\.openWindow) private var openWindow
+    @State private var selectedBookData: ReaderWindowData?
+    @State private var isShowingFolderPicker = false
     
     enum NavigationCategory: String, CaseIterable, Identifiable {
         case library = "All Books"
@@ -45,9 +47,13 @@ struct ContentView: View {
         }
     }
     
-    let columns = [
-        GridItem(.adaptive(minimum: 160), spacing: 20)
-    ]
+    private var columns: [GridItem] {
+        #if os(macOS)
+        [GridItem(.adaptive(minimum: 160), spacing: 20)]
+        #else
+        [GridItem(.adaptive(minimum: 100), spacing: 10)]
+        #endif
+    }
     
     var body: some View {
         NavigationSplitView {
@@ -77,7 +83,7 @@ struct ContentView: View {
             }
             .frame(height: 50)
             
-            .navigationTitle("Librera Mac")
+            .navigationTitle("Librera")
         } detail: {
             Group {
                 if let category = selectedCategory {
@@ -95,6 +101,40 @@ struct ContentView: View {
             }
             .searchable(text: $searchText, placement: .automatic, prompt: "Search Title")
         }
+        #if os(macOS)
+        .sheet(item: $selectedBookData) { data in
+            ReaderContainerView(
+                url: data.url,
+                rootURL: data.rootURL,
+                title: data.title,
+                bookPath: data.bookPath
+            )
+        }
+        #else
+        .fullScreenCover(item: $selectedBookData) { data in
+            ReaderContainerView(
+                url: data.url,
+                rootURL: data.rootURL,
+                title: data.title,
+                bookPath: data.bookPath
+            )
+        }
+        #endif
+        .fileImporter(
+            isPresented: $isShowingFolderPicker,
+            allowedContentTypes: [.folder],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                if let url = urls.first {
+                    bookManager.loadFolder(at: url)
+                }
+            case .failure(let error):
+                print("Error picking folder: \(error.localizedDescription)")
+            }
+        }
+        #if os(macOS)
         .onDrop(of: [.fileURL], isTargeted: nil) { providers in
             for provider in providers {
                 _ = provider.loadObject(ofClass: URL.self) { url, _ in
@@ -112,6 +152,7 @@ struct ContentView: View {
             return true
         }
         .frame(minWidth: 800, minHeight: 500)
+        #endif
         .onChange(of: bookManager.requestToOpenURL) { old, new in
             if let url = new {
                 bookManager.requestToOpenURL = nil
@@ -148,7 +189,11 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
+                        #if os(macOS)
                         bookManager.openFolder()
+                        #else
+                        isShowingFolderPicker = true
+                        #endif
                     }) {
                         Label("Open Folder", systemImage: "folder.badge.plus")
                     }
@@ -174,12 +219,14 @@ struct ContentView: View {
                     }
                 }
                 
+                #if os(macOS)
                 if let path = bookManager.currentFolderURL?.path {
                     ToolbarItem(placement: .principal) {
                         Text(URL(fileURLWithPath: path).lastPathComponent)
                             .font(.headline)
                     }
                 }
+                #endif
             }
     }
     
@@ -189,13 +236,20 @@ struct ContentView: View {
     
     private var aboutView: some View {
         VStack(spacing: 20) {
-            Image(nsImage: NSApp.applicationIconImage)
-                .resizable()
-                .frame(width: 128, height: 128)
-                .shadow(radius: 10)
+            if let icon = PlatformImage.appIcon {
+                Image(platformImage: icon)
+                    .resizable()
+                    .frame(width: 128, height: 128)
+                    .shadow(radius: 10)
+            } else {
+                Image(systemName: "books.vertical")
+                    .font(.system(size: 80))
+                    .foregroundColor(.accentColor)
+                    .frame(width: 128, height: 128)
+            }
             
             VStack(spacing: 8) {
-                Text("Librera Mac")
+                Text("Librera")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -208,7 +262,7 @@ struct ContentView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                Text("Librera Book reader for macOS supports PDF, EPUB, FB2, MOBI, AZW, AZW3, CBZ, CBR book formats")
+                Text("Librera Book reader supports PDF, EPUB, FB2, MOBI, AZW, AZW3, CBZ, CBR book formats")
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .padding(.top, 8)
@@ -225,7 +279,7 @@ struct ContentView: View {
                 .padding(.top, 40)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(NSColor.windowBackgroundColor))
+        .background(Color(PlatformColor.windowBackgroundColor))
     }
     
     private func bookListView(books: [Book], title: String, isRecent: Bool) -> some View {
@@ -290,9 +344,11 @@ struct ContentView: View {
                                 Button("Open") {
                                     openBook(book)
                                 }
+                                #if os(macOS)
                                 Button("Show in Finder") {
                                     NSWorkspace.shared.activateFileViewerSelecting([book.url])
                                 }
+                                #endif
                             }
                     }
                 }
@@ -313,13 +369,21 @@ struct ContentView: View {
                 title: book.title,
                 bookPath: book.url.path
             )
+            #if os(macOS)
             openWindow(value: data)
+            #else
+            selectedBookData = data
+            #endif
         } else if book.type == .epub || book.type == .fb2 || book.type == .mobi || book.type == .azw || book.type == .azw3 || book.type == .cbz || book.type == .cbr {
             isExtracting = true
+            #if os(macOS)
             let activity = ProcessInfo.processInfo.beginActivity(options: [.userInitiated, .suddenTerminationDisabled, .automaticTerminationDisabled], reason: "Extracting and preparing book for reading")
+            #endif
             
             Task {
+                #if os(macOS)
                 defer { ProcessInfo.processInfo.endActivity(activity) }
+                #endif
                 do {
                     let (readerURL, rootURL): (URL, URL)
                     if book.type == .epub {
@@ -341,7 +405,11 @@ struct ContentView: View {
                             title: book.title,
                             bookPath: book.url.path
                         )
+                        #if os(macOS)
                         openWindow(value: data)
+                        #else
+                        selectedBookData = data
+                        #endif
                         self.isExtracting = false
                     }
                 } catch {

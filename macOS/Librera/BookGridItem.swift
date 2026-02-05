@@ -4,6 +4,14 @@ struct BookGridItem: View {
     let book: Book
     @State private var readingProgress: Double = 0
     
+    #if os(macOS)
+    private let itemWidth: CGFloat = 140
+    private let itemHeight: CGFloat = 210
+    #else
+    private let itemWidth: CGFloat = 80
+    private let itemHeight: CGFloat = 120
+    #endif
+    
     private func updateProgress() {
         let pref = BookPreferencesManager.shared.load(for: book.url.path)
         readingProgress = pref.scrollProgress
@@ -16,7 +24,7 @@ struct BookGridItem: View {
                     // Cover Image
                     Group {
                         if let image = book.thumbnail {
-                            Image(nsImage: image)
+                            Image(platformImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         } else {
@@ -29,7 +37,7 @@ struct BookGridItem: View {
                                 )
                         }
                     }
-                    .frame(width: 140, height: 210)
+                    .frame(width: itemWidth, height: itemHeight)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(radius: 4, y: 2)
                     
@@ -61,7 +69,7 @@ struct BookGridItem: View {
                     .padding(.bottom, 4)
                 }
             }
-            .frame(width: 140, height: 210)
+            .frame(width: itemWidth, height: itemHeight)
             
             // Title
             Text(book.title)
@@ -69,11 +77,13 @@ struct BookGridItem: View {
                 .fontWeight(.medium)
                 .lineLimit(2)
                 .truncationMode(.tail)
-                .frame(width: 140, alignment: .leading)
+                .frame(width: itemWidth, alignment: .leading)
+                #if os(macOS)
                 .help(book.title)
+                #endif
         }
         .padding(8)
-        .background(Color(NSColor.controlBackgroundColor).opacity(0.5))
+        .background(Color(PlatformColor.controlBackgroundColor).opacity(0.5))
         .cornerRadius(12)
         .onAppear {
             updateProgress()
