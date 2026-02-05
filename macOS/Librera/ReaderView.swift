@@ -78,48 +78,180 @@ struct ReaderView: PlatformRepresentable {
         }
         
         func setupWebViewScrollTracking(_ webView: WKWebView) {
+            // Inject SmoothScroller and scroll tracking
             let js = """
             (function() {
-                var lastUpdate = 0;
-                var throttleMs = 200;
-                window.addEventListener('scroll', function() {
-                    var now = Date.now();
-                    if (now - lastUpdate < throttleMs) return;
-                    lastUpdate = now;
-                    
-                    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-                    var docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-                    var viewHeight = window.innerHeight;
-                    var progress = docHeight > viewHeight ? scrollTop / (docHeight - viewHeight) : 0;
-                    window.webkit.messageHandlers.scrollHandler.postMessage(progress);
-                });
-                
-                window.addEventListener('keydown', function(e) {
-                    var jumpH = window.innerWidth / 2;
-                    var jumpV = window.innerHeight / 2;
-                    
-                    switch(e.key) {
-                        case 'ArrowUp':
-                            window.scrollBy({ top: -jumpV, behavior: 'smooth' });
-                            e.preventDefault();
-                            break;
-                        case 'ArrowDown':
-                            window.scrollBy({ top: jumpV, behavior: 'smooth' });
-                            e.preventDefault();
-                            break;
-                        case 'ArrowLeft':
-                            window.scrollBy({ top: 0, left: -jumpH, behavior: 'smooth' });
-                            e.preventDefault();
-                            break;
-                        case 'ArrowRight':
-                            window.scrollBy({ top: 0, left: jumpH, behavior: 'smooth' });
-                            e.preventDefault();
-                            break;
+                // Prevent multiple injections
+                if (window.SmoothScroller) return;
+
+                class SmoothScroller {
+                    constructor() {
+                        this.targetY = window.scrollY;
+                        this.currentY = window.scrollY;
+                        this.velocity = 0;
+                        this.isAnimating = false;
+                        this.rafId = null;
+                        this.lastScrollTime = 0;
+                        
+                        // Configuration
+                        this.friction = 0.15; // Higher = more friction, stops faster
+                        this.wheelMultiplier = 2.0; // Velocity multiplier
+                        this.arrowStep = 200; // Pixels per arrow key press
+                        
+                        // Bind events
+                        window.addEventListener('wheel', this.onWheel.bind(this), { passive: false });
+                        
+                        // Handle internal links and programmatic scrolls by updating target
+                        window.addEventListener('scroll', this.onNativeScroll.bind(this));
+                        
+                        // Report progress to Swift
+                        this.progressInterval = setInterval(this.reportProgress.bind(this), 200);
+                        
+                        // Expose to window for external control
+                        window.smoothScrollBy = this.scrollBy.bind(this);
+                        window.smoothScrollPageDown = this.scrollPageDown.bind(this);
+                        window.smoothScrollPageUp = this.scrollPageUp.bind(this);
+                        
+                        // Also listen for key events directly in webview
+                         window.addEventListener('keydown', (e) => {
+                            switch(e.key) {
+                                case 'ArrowUp':
+                                    this.scrollBy(-this.arrowStep);
+                                    e.preventDefault();
+                                    break;
+                                case 'ArrowDown':
+                                    this.scrollBy(this.arrowStep);
+                                    e.preventDefault();
+                                    break;
+                                case 'ArrowLeft':
+                                    this.scrollPageUp();
+                                    e.preventDefault();
+                                    break;
+                                case 'ArrowRight':
+                                    this.scrollPageDown();
+                                    e.preventDefault();
+                                    break;
+                            }
+                        });
                     }
-                });
+                    
+                    scrollPageDown() {
+                        let step = window.innerHeight * 0.9;
+                        this.scrollBy(step);
+                    }
+                    
+                    scrollPageUp() {
+                        let step = window.innerHeight * 0.9;
+                        this.scrollBy(-step);
+                    }
+
+                    onNativeScroll() {
+                        if (!this.isAnimating) {
+                            this.targetY = window.scrollY;
+                            this.currentY = window.scrollY;
+                        }
+                    }
+
+                    reportProgress() {
+                        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+                        var docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                        var viewHeight = window.innerHeight;
+                        var progress = docHeight > viewHeight ? scrollTop / (docHeight - viewHeight) : 0;
+                        try {
+                            window.webkit.messageHandlers.scrollHandler.postMessage(progress);
+                        } catch(e) {}
+                    }
+
+                    onWheel(e) {
+                         // Only intercept vertical scrolling
+                        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+                        
+                        e.preventDefault();
+                        
+                        // Add velocity
+                        this.targetY += e.deltaY * this.wheelMultiplier;
+                        this.clampTarget();
+                        this.startAnimation();
+                    }
+                    
+                    scrollBy(amount) {
+                        this.targetY += amount;
+                        this.clampTarget();
+                        this.startAnimation();
+                    }
+                    
+                    clampTarget() {
+                        var docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                        var maxScroll = docHeight - window.innerHeight;
+                        this.targetY = Math.max(0, Math.min(this.targetY, maxScroll));
+                    }
+                    
+                    startAnimation() {
+                        if (!this.isAnimating) {
+                            this.isAnimating = true;
+                            this.rafId = requestAnimationFrame(this.animate.bind(this));
+                        }
+                    }
+                    
+                    animate() {
+                        // Init currentY if needed (e.g. after resize/native scroll)
+                        if (Math.abs(window.scrollY - this.currentY) > 10) {
+                             this.currentY = window.scrollY;
+                        }
+                        
+                        // Lerp
+                        var diff = this.targetY - this.currentY;
+                        var delta = diff * this.friction;
+                        
+                        if (Math.abs(diff) < 0.5) {
+                            this.currentY = this.targetY;
+                            window.scrollTo(0, this.currentY);
+                            this.isAnimating = false;
+                            this.reportProgress();
+                            return;
+                        }
+                        
+                        this.currentY += delta;
+                        window.scrollTo(0, this.currentY);
+                        
+                        this.rafId = requestAnimationFrame(this.animate.bind(this));
+                    }
+                }
+                
+                window.SmoothScroller = new SmoothScroller();
             })();
             """
             webView.evaluateJavaScript(js, completionHandler: nil)
+            
+            #if os(macOS)
+            // Add global key monitor for this webview
+            if keyMonitor == nil {
+                keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self, weak webView] event in
+                    guard let self = self, let webView = webView, webView.window?.isKeyWindow == true else { return event }
+                    
+                    // Check if focus is inside the window but not necessarily on the webview
+                    // If focusing some text input, ignore
+                    // But general window focus should trigger scroll
+                    
+                    switch event.keyCode {
+                    case 126: // Up
+                        webView.evaluateJavaScript("window.smoothScrollBy && window.smoothScrollBy(-200)", completionHandler: nil)
+                        return nil
+                    case 125: // Down
+                        webView.evaluateJavaScript("window.smoothScrollBy && window.smoothScrollBy(200)", completionHandler: nil)
+                        return nil
+                    case 123: // Left
+                        webView.evaluateJavaScript("window.smoothScrollPageUp && window.smoothScrollPageUp()", completionHandler: nil)
+                        return nil
+                    case 124: // Right
+                        webView.evaluateJavaScript("window.smoothScrollPageDown && window.smoothScrollPageDown()", completionHandler: nil)
+                        return nil
+                    default:
+                        return event
+                    }
+                }
+            }
+            #endif
         }
         
         // MARK: - PDFView Tracking
