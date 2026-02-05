@@ -5,6 +5,31 @@ struct ReaderSettings {
     var fontFamily: String = "Serif"
     var theme: ReaderTheme = .white
     var textAlignment: TextAlignment = .justify
+    var hyphenationLanguage: HyphenationLanguage = .auto
+    
+    enum HyphenationLanguage: String, CaseIterable, Identifiable {
+        case auto
+        case en
+        case ru
+        case uk
+        case de
+        case es
+        case fr
+        
+        var id: String { rawValue }
+        
+        var displayName: String {
+            switch self {
+            case .auto: return "Auto"
+            case .en: return "English"
+            case .ru: return "Russian"
+            case .uk: return "Ukrainian"
+            case .de: return "German"
+            case .es: return "Spanish"
+            case .fr: return "French"
+            }
+        }
+    }
     
     enum TextAlignment: String, CaseIterable, Identifiable {
         case left

@@ -5,6 +5,7 @@ struct BookPreference: Codable {
     var fontFamily: String = "Serif"
     var themeName: String = "sepia"
     var textAlignmentName: String = "justify"
+    var hyphenationLanguageCode: String = "auto"
     var scrollProgress: Double = 0.0
     
     var theme: ReaderSettings.ReaderTheme {
@@ -17,12 +18,18 @@ struct BookPreference: Codable {
         set { textAlignmentName = newValue.rawValue }
     }
     
+    var hyphenationLanguage: ReaderSettings.HyphenationLanguage {
+        get { ReaderSettings.HyphenationLanguage(rawValue: hyphenationLanguageCode) ?? .auto }
+        set { hyphenationLanguageCode = newValue.rawValue }
+    }
+    
     func toReaderSettings() -> ReaderSettings {
         var settings = ReaderSettings()
         settings.fontSize = fontSize
         settings.fontFamily = fontFamily
         settings.theme = theme
         settings.textAlignment = textAlignment
+        settings.hyphenationLanguage = hyphenationLanguage
         return settings
     }
     
@@ -31,6 +38,7 @@ struct BookPreference: Codable {
         fontFamily = settings.fontFamily
         themeName = settings.theme.rawValue
         textAlignmentName = settings.textAlignment.rawValue
+        hyphenationLanguageCode = settings.hyphenationLanguage.rawValue
     }
 }
 

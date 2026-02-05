@@ -75,19 +75,6 @@ struct ReaderContainerView: View {
                                 
                                 Spacer()
                                 
-                                // Font Family Picker
-                                Picker("Font", selection: $settings.fontFamily) {
-                                    ForEach(ReaderSettings.availableFonts, id: \.self) { font in
-                                        Text(font).tag(font)
-                                    }
-                                }
-                                .pickerStyle(.menu)
-                                .labelsHidden()
-                                .frame(width: 100)
-                                .onChange(of: settings.fontFamily) { _, _ in savePreferences() }
-                                
-                                Spacer()
-                                
                                 // Alignment
                                 Picker("Align", selection: $settings.textAlignment) {
                                     ForEach(ReaderSettings.TextAlignment.allCases) { alignment in
@@ -95,8 +82,30 @@ struct ReaderContainerView: View {
                                     }
                                 }
                                 .pickerStyle(.segmented)
-                                .frame(width: 110)
+                                .frame(width: 100)
                                 .onChange(of: settings.textAlignment) { _, _ in savePreferences() }
+                                
+                                Spacer()
+                                
+                                // Settings Menu (Font & Hyphenation)
+                                Menu {
+                                    Picker("Font Family", selection: $settings.fontFamily) {
+                                        ForEach(ReaderSettings.availableFonts, id: \.self) { font in
+                                            Text(font).tag(font)
+                                        }
+                                    }
+                                    
+                                    Picker("Hyphenation", selection: $settings.hyphenationLanguage) {
+                                        ForEach(ReaderSettings.HyphenationLanguage.allCases) { lang in
+                                            Text(lang.displayName).tag(lang)
+                                        }
+                                    }
+                                } label: {
+                                    Image(systemName: "gearshape")
+                                        .font(.title3)
+                                        .padding(8)
+                                        .contentShape(Rectangle())
+                                }
                                 
                                 Spacer()
                                 
@@ -200,17 +209,6 @@ struct ReaderContainerView: View {
                 }
                 
                 ToolbarItem(placement: .automatic) {
-                    Picker("Font", selection: $settings.fontFamily) {
-                        ForEach(ReaderSettings.availableFonts, id: \.self) { font in
-                            Text(font).tag(font)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .frame(width: 120)
-                    .onChange(of: settings.fontFamily) { _, _ in savePreferences() }
-                }
-                
-                ToolbarItem(placement: .automatic) {
                     Picker("Align", selection: $settings.textAlignment) {
                         ForEach(ReaderSettings.TextAlignment.allCases) { alignment in
                             Image(systemName: alignment.iconName).tag(alignment)
@@ -219,6 +217,24 @@ struct ReaderContainerView: View {
                     .pickerStyle(.segmented)
                     .frame(width: 120)
                     .onChange(of: settings.textAlignment) { _, _ in savePreferences() }
+                }
+                
+                ToolbarItem(placement: .automatic) {
+                    Menu {
+                        Picker("Font Family", selection: $settings.fontFamily) {
+                            ForEach(ReaderSettings.availableFonts, id: \.self) { font in
+                                Text(font).tag(font)
+                            }
+                        }
+                        
+                        Picker("Hyphenation", selection: $settings.hyphenationLanguage) {
+                            ForEach(ReaderSettings.HyphenationLanguage.allCases) { lang in
+                                Text(lang.displayName).tag(lang)
+                            }
+                        }
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
+                    }
                 }
                 
                 ToolbarItem(placement: .automatic) {

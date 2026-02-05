@@ -488,6 +488,31 @@ struct ReaderView: PlatformRepresentable {
     
     func applySettings(to webView: WKWebView, preserveScroll: Bool) {
         let js: String
+        let hyphenValue = settings.hyphenationLanguage == .auto ? "auto" : "manual" // 'auto' relies on browser detection, but we want to force 'auto' style
+        // Actually, we always want CSS 'hyphens: auto', but we change the 'lang' attribute to control which dictionary is used.
+        // If 'auto' is selected, we might want to detect or leave it default. 
+        // Best approach: Always set CSS hyphens: auto. Set lang attribute on <html>.
+        
+        let langCode: String
+        switch settings.hyphenationLanguage {
+        case .auto: langCode = "" // Empty string or don't set it to let browser detect or use default
+        default: langCode = settings.hyphenationLanguage.rawValue
+        }
+        
+        // Common JS to set variables
+        let commonJS = """
+            document.documentElement.style.setProperty('--font-size', '\(settings.fontSize)px');
+            document.documentElement.style.setProperty('--font-family', '\(settings.cssFontFamily)');
+            document.documentElement.style.setProperty('--bg-color', '\(settings.theme.backgroundColor)');
+            document.documentElement.style.setProperty('--text-color', '\(settings.theme.textColor)');
+            document.body.style.textAlign = '\(settings.textAlignment.cssValue)';
+            
+            // Hyphenation
+            document.documentElement.lang = '\(langCode)';
+            document.body.style.webkitHyphens = 'auto';
+            document.body.style.hyphens = 'auto';
+        """
+
         if preserveScroll {
             js = """
             (function() {
@@ -496,11 +521,7 @@ struct ReaderView: PlatformRepresentable {
                 var viewHeight = window.innerHeight;
                 var scrollPercent = docHeight > viewHeight ? scrollTop / (docHeight - viewHeight) : 0;
                 
-                document.documentElement.style.setProperty('--font-size', '\(settings.fontSize)px');
-                document.documentElement.style.setProperty('--font-family', '\(settings.cssFontFamily)');
-                document.documentElement.style.setProperty('--bg-color', '\(settings.theme.backgroundColor)');
-                document.documentElement.style.setProperty('--text-color', '\(settings.theme.textColor)');
-                document.body.style.textAlign = '\(settings.textAlignment.cssValue)';
+                \(commonJS)
                 
                 requestAnimationFrame(function() {
                     var newDocHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
@@ -510,13 +531,7 @@ struct ReaderView: PlatformRepresentable {
             })();
             """
         } else {
-            js = """
-            document.documentElement.style.setProperty('--font-size', '\(settings.fontSize)px');
-            document.documentElement.style.setProperty('--font-family', '\(settings.cssFontFamily)');
-            document.documentElement.style.setProperty('--bg-color', '\(settings.theme.backgroundColor)');
-            document.documentElement.style.setProperty('--text-color', '\(settings.theme.textColor)');
-            document.body.style.textAlign = '\(settings.textAlignment.cssValue)';
-            """
+            js = commonJS
         }
         webView.evaluateJavaScript(js, completionHandler: nil)
     }
