@@ -1,6 +1,15 @@
 {
-  "originHash" : "2ab96f0365bb7b9e47592121058c8298458054b4beb8209a6ea0286212753df2",
+  "originHash" : "83fe7338bbd84ec7598d6ffe0ec9c8c2ac1fdabfaaeb3ace0ae11683cb5a0faf",
   "pins" : [
+    {
+      "identity" : "libmobi-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/awxkee/libmobi-swift",
+      "state" : {
+        "revision" : "a9b1bc3d87d9e2ac948bea9d7ca6a962b10c44b6",
+        "version" : "1.0.1"
+      }
+    },
     {
       "identity" : "unrar.swift",
       "kind" : "remoteSourceControl",

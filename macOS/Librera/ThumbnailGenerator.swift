@@ -5,6 +5,7 @@ import QuickLookThumbnailing
 import CryptoKit
 import Unrar
 import ZIPFoundation
+import libmobi
 
 actor ThumbnailGenerator {
     static let shared = ThumbnailGenerator()
@@ -51,6 +52,8 @@ actor ThumbnailGenerator {
             generated = await generateEPUBThumbnail(url: url, size: size)
         case "fb2":
             generated = await generateFB2Thumbnail(url: url)
+        case "mobi", "azw", "azw3":
+            generated = await generateMobiThumbnail(url: url)
         case "cbz":
             generated = await extractFirstImageFromZip(url: url)
         case "cbr":
@@ -244,5 +247,20 @@ actor ThumbnailGenerator {
                 }
             }
         }
+    }
+    
+    private func generateMobiThumbnail(url: URL) async -> NSImage? {
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        
+        do {
+            let mobi = try Mobi(url: url)
+            if let coverData = try mobi.getCover() {
+                return NSImage(data: coverData)
+            }
+        } catch {
+            print("ERROR: Could not generate MOBI thumbnail: \(error)")
+        }
+        return nil
     }
 }

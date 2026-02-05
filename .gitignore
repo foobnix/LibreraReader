@@ -26,3 +26,4 @@
 /epub/build/
 /Builder/build-cmake/
 google-services.*
+/macOS/build/

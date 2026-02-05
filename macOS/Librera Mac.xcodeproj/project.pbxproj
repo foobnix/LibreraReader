@@ -12,6 +12,7 @@
 		6400E4FE2F33523500196F5D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6400E4FD2F33523500196F5D /* WebKit.framework */; };
 		6400E5532F337FF800196F5D /* Unrar in Frameworks */ = {isa = PBXBuildFile; productRef = 6400E5522F337FF800196F5D /* Unrar */; };
 		64537C062F33BC7D00C7A412 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 64537C052F33BC7D00C7A412 /* ZIPFoundation */; };
+		64537C492F348E7200C7A412 /* libmobi in Frameworks */ = {isa = PBXBuildFile; productRef = 64537C482F348E7200C7A412 /* libmobi */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 				6400E4F82F334DA200196F5D /* UniformTypeIdentifiers.framework in Frameworks */,
 				6400E5532F337FF800196F5D /* Unrar in Frameworks */,
 				6400E4F62F334D8E00196F5D /* PDFKit.framework in Frameworks */,
+				64537C492F348E7200C7A412 /* libmobi in Frameworks */,
 				6400E4FE2F33523500196F5D /* WebKit.framework in Frameworks */,
 				64537C062F33BC7D00C7A412 /* ZIPFoundation in Frameworks */,
 			);
@@ -94,6 +96,7 @@
 			packageProductDependencies = (
 				6400E5522F337FF800196F5D /* Unrar */,
 				64537C052F33BC7D00C7A412 /* ZIPFoundation */,
+				64537C482F348E7200C7A412 /* libmobi */,
 			);
 			productName = "Librera Mac";
 			productReference = 6400E4DE2F334C5200196F5D /* Librera Mac.app */;
@@ -126,6 +129,7 @@
 			packageReferences = (
 				6400E5512F337FF800196F5D /* XCRemoteSwiftPackageReference "Unrar" */,
 				64537C042F33BC7D00C7A412 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				64537C472F348E7200C7A412 /* XCRemoteSwiftPackageReference "libmobi-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6400E4DF2F334C5200196F5D /* Products */;
@@ -304,7 +308,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librera.mac;
 				PRODUCT_NAME = "Librera Mac";
 				REGISTER_APP_GROUPS = YES;
@@ -345,7 +349,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librera.mac;
 				PRODUCT_NAME = "Librera Mac";
 				REGISTER_APP_GROUPS = YES;
@@ -398,6 +402,14 @@
 				minimumVersion = 0.9.20;
 			};
 		};
+		64537C472F348E7200C7A412 /* XCRemoteSwiftPackageReference "libmobi-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/awxkee/libmobi-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -410,6 +422,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 64537C042F33BC7D00C7A412 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		64537C482F348E7200C7A412 /* libmobi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64537C472F348E7200C7A412 /* XCRemoteSwiftPackageReference "libmobi-swift" */;
+			productName = libmobi;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

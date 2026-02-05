@@ -107,7 +107,7 @@ class BookManager {
             }) {
                 for case let fileURL as URL in enumerator {
                     let ext = fileURL.pathExtension.lowercased()
-                    if ext == "pdf" || ext == "epub" || ext == "fb2" || ext == "cbz" || ext == "cbr" {
+                    if ext == "pdf" || ext == "epub" || ext == "fb2" || ext == "mobi" || ext == "azw" || ext == "azw3" || ext == "cbz" || ext == "cbr" {
                         let resourceValues = try? fileURL.resourceValues(forKeys: Set(keys))
                         let modDate = resourceValues?.contentModificationDate ?? Date()
                         newBooks.append(Book(url: fileURL, date: modDate))

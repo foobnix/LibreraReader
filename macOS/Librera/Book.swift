@@ -5,6 +5,9 @@ enum BookType: String, Codable {
     case pdf
     case epub
     case fb2
+    case mobi
+    case azw
+    case azw3
     case cbz
     case cbr
     case unknown
@@ -31,6 +34,12 @@ struct Book: Identifiable, Hashable {
             self.type = .epub
         } else if ext == "fb2" {
             self.type = .fb2
+        } else if ext == "mobi" {
+            self.type = .mobi
+        } else if ext == "azw" {
+            self.type = .azw
+        } else if ext == "azw3" {
+            self.type = .azw3
         } else if ext == "cbz" {
             self.type = .cbz
         } else if ext == "cbr" {

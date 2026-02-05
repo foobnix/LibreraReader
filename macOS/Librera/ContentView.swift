@@ -100,7 +100,7 @@ struct ContentView: View {
                 _ = provider.loadObject(ofClass: URL.self) { url, _ in
                     if let url = url {
                         let ext = url.pathExtension.lowercased()
-                        let supported = ["pdf", "epub", "fb2", "cbz", "cbr"]
+                        let supported = ["pdf", "epub", "fb2", "mobi", "azw", "azw3", "cbz", "cbr"]
                         if supported.contains(ext) {
                             Task { @MainActor in
                                 self.openBook(Book(url: url))
@@ -208,7 +208,7 @@ struct ContentView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                Text("Librera Book reader for macOS supports PDF, EPUB, FB2, CBZ, CBR book formats")
+                Text("Librera Book reader for macOS supports PDF, EPUB, FB2, MOBI, AZW, AZW3, CBZ, CBR book formats")
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .padding(.top, 8)
@@ -314,7 +314,7 @@ struct ContentView: View {
                 bookPath: book.url.path
             )
             openWindow(value: data)
-        } else if book.type == .epub || book.type == .fb2 || book.type == .cbz || book.type == .cbr {
+        } else if book.type == .epub || book.type == .fb2 || book.type == .mobi || book.type == .azw || book.type == .azw3 || book.type == .cbz || book.type == .cbr {
             isExtracting = true
             let activity = ProcessInfo.processInfo.beginActivity(options: [.userInitiated, .suddenTerminationDisabled, .automaticTerminationDisabled], reason: "Extracting and preparing book for reading")
             
@@ -326,6 +326,8 @@ struct ContentView: View {
                         (readerURL, rootURL) = try await EpubExtractor.extractEpub(sourceURL: book.url)
                     } else if book.type == .fb2 {
                         (readerURL, rootURL) = try await Fb2Converter.convertFb2(sourceURL: book.url)
+                    } else if book.type == .mobi || book.type == .azw || book.type == .azw3 {
+                        (readerURL, rootURL) = try await MobiConverter.convertMobi(sourceURL: book.url)
                     } else if book.type == .cbz {
                         (readerURL, rootURL) = try await CbzConverter.convertCbz(sourceURL: book.url)
                     } else {
@@ -348,6 +350,9 @@ struct ContentView: View {
                         switch book.type {
                         case .epub: typeStr = "EPUB"
                         case .fb2: typeStr = "FB2"
+                        case .mobi: typeStr = "MOBI"
+                        case .azw: typeStr = "AZW"
+                        case .azw3: typeStr = "AZW3"
                         case .cbz: typeStr = "CBZ"
                         case .cbr: typeStr = "CBR"
                         default: typeStr = "Book"
