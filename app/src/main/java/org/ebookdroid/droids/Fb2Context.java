@@ -79,7 +79,7 @@ public class Fb2Context extends PdfContext {
                 public void run() {
                     try {
                         muPdfDocument.setFootNotes(getNotes(fileName));
-                        removeTempFiles();
+                        removeTempFilesIfCancel();
                     } catch (Throwable e) {
                         LOG.e(e);
                     }

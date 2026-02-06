@@ -241,7 +241,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override public int getPageCount(int w, int h, int size) {
+    @Override
+    public int getPageCount(int w, int h, int size) {
         this.w = w;
         this.h = h;
         int pageCountWithException = getPageCountWithException(documentHandle, w, h, size);

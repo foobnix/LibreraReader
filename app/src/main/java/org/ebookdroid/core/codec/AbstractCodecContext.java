@@ -50,11 +50,17 @@ public abstract class AbstractCodecContext implements CodecContext {
         return openDocument;
     }
 
-    public void removeTempFiles() {
-        LOG.d("removeTempFiles2", TempHolder.get().loadingCancelled.get());
+    public void removeTempFilesIfCancel() {
+        LOG.d("removeTempFiles2", "remove temp files", TempHolder.get().loadingCancelled.get());
         if (TempHolder.get().loadingCancelled.get()) {
-            recycle();
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+            //recycle();
+            try {
+                Thread.sleep(1000);
+                CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+                CacheZipUtils.removeFiles(CacheZipUtils.CACHE_TEMP.listFiles());
+            }catch (Exception e){
+                LOG.w(e);
+            }
         }
     }
 

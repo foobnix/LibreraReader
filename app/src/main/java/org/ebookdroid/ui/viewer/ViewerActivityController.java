@@ -18,6 +18,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -197,6 +198,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                                           }
 
                                           pageCount = controller.getPageCount();
+
+
+
                                           float percent =
                                                   Intents.getFloatAndClear(intent, DocumentController.EXTRA_PERCENT);
 
@@ -568,9 +572,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         @Override protected Throwable doInBackground(final String... params) {
             try {
                 //Thread.sleep(3000);
-                m_fileName = getActivity().getIntent()
-                                          .getData()
-                                          .getPath();
+                m_fileName = Apps.getBookPathFromActivity(getActivity());
 
                 documentModel.open(m_fileName, m_password);
                 getDocumentController().init(this);
@@ -578,12 +580,12 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             } catch (final MuPdfPasswordException pex) {
                 return pex;
             } catch (final Exception e) {
+                CacheZipUtils.createAllCacheDirs();
                 LOG.e(e);
                 return e;
             } catch (final Throwable th) {
                 LOG.e(th);
                 return th;
-            } finally {
             }
         }
 

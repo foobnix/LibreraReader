@@ -58,6 +58,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -2675,6 +2676,9 @@ public class PrefFragment2 extends UIFragment {
                 @Override public void run() {
                     //AppProfile.clear();
                     DragingPopup.resetCache(getActivity());
+
+                    CacheZipUtils.emptyAllCacheDirs();
+
 
                     final BookCSS b = new BookCSS();
                     b.resetToDefault(getActivity());

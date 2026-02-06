@@ -99,7 +99,7 @@ EpubContext extends PdfContext {
                     }
                     muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
 
-                    //removeTempFiles();
+                    removeTempFilesIfCancel();
                 } catch (Throwable e) {
                     LOG.e(e);
                 }

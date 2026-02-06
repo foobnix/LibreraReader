@@ -79,7 +79,7 @@ public class MobiContext extends PdfContext {
                         JsonHelper.mapToFile(jsonFile, notes);
                         LOG.d("save notes to file", jsonFile);
 
-                        removeTempFiles();
+                        removeTempFilesIfCancel();
 
                     } catch (OutOfMemoryError e) {
                         System.gc();

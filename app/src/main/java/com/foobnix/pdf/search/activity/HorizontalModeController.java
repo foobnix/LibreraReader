@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.net.Uri;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -51,7 +50,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -68,8 +66,7 @@ public abstract class HorizontalModeController extends DocumentController {
     private SharedPreferences matrixSP;
     private volatile boolean isClosed = false;
 
-    @Override
-    public boolean hasPDFAnnotations() {
+    @Override public boolean hasPDFAnnotations() {
         return false;
     }
 
@@ -81,7 +78,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
 
-        PageImageState.get().cleanSelectedWords();
+        PageImageState.get()
+                      .cleanSelectedWords();
         PageImageState.get().pagesText.clear();
 
         AppSP.get().isSmartReflow = false;
@@ -94,7 +92,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
         bookPath = Apps.getBookPathFromActivity(activity);
         setCurrentBook(new File(bookPath));
-
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
 
@@ -121,9 +118,11 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
-        BookCSS.get().detectLang(bookPath);
+        BookCSS.get()
+               .detectLang(bookPath);
 
-        String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
+        String pasw = activity.getIntent()
+                              .getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
         if (AppSP.get().isDouble && isTextFormat) {
@@ -137,24 +136,27 @@ public abstract class HorizontalModeController extends DocumentController {
             pagesCount = 0;
         }
 
+        if (pagesCount <= 0) {
+            CacheZipUtils.emptyAllCacheDirs();
+            throw new IllegalArgumentException("Pages count: "+pagesCount);
+        }
+
         try {
-            if (pagesCount > 0) {
-                FileMeta meta = AppDB.get().load(bookPath);
-                if (meta != null) {
-                    meta.setPages(pagesCount);
-                    AppDB.get().update(meta);
-                    LOG.d("update openDocument.getPageCount()", bookPath, pagesCount);
-                }
+            FileMeta meta = AppDB.get()
+                                 .load(bookPath);
+            if (meta != null) {
+                meta.setPages(pagesCount);
+                AppDB.get()
+                     .update(meta);
+                LOG.d("update openDocument.getPageCount()", bookPath, pagesCount);
             }
+
         } catch (Exception e) {
             LOG.e(e);
         }
 
-        if (pagesCount == -1) {
-            throw new IllegalArgumentException("Pages count = -1");
-        }
-
-        AppDB.get().addRecent(bookPath);
+        AppDB.get()
+             .addRecent(bookPath);
 
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
@@ -179,16 +181,17 @@ public abstract class HorizontalModeController extends DocumentController {
                     PageImageState.get().needAutoFit = false;
                 }
                 Matrix matrix = PageImageState.fromString(string);
-                PageImageState.get().getMatrix().set(matrix);
+                PageImageState.get()
+                              .getMatrix()
+                              .set(matrix);
 
-                LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+                LOG.d("MATRIX", "READ", bookPath.hashCode() + "", PageImageState.get()
+                                                                                .getMatrixAsString());
 
             }
         }
 
     }
-
-
 
     public static String getTempTitle(Activity a) {
         try {
@@ -201,65 +204,63 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public static String getTitle(String path) {
         if (ExtUtils.hasTitle(path)) {
-            return AppDB.get().getOrCreate(path).getTitle();
+            return AppDB.get()
+                        .getOrCreate(path)
+                        .getTitle();
         }
         return new File(path).getName();
     }
 
-    @Override
-    public void updateRendering() {
+    @Override public void updateRendering() {
 
     }
 
-    @Override
-    public void onScrollYPercent(float value) {
+    @Override public void onScrollYPercent(float value) {
         int page2 = Math.round(value * getPageCount());
         onGoToPage(page2);
     }
 
     public void udpateImageSize(boolean isTextFormat, int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
-        imageWidth =
-                isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
-        imageHeight =
-                isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        imageWidth = isTextFormat ? w :
+                (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        imageHeight = isTextFormat ? h :
+                (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
     }
 
-    @Override
-    public int getBookHeight() {
+    @Override public int getBookHeight() {
         return imageHeight;
     }
 
-    @Override
-    public int getBookWidth() {
+    @Override public int getBookWidth() {
         return imageWidth;
     }
 
-    @Override
-    public void onLinkHistory() {
+    @Override public void onLinkHistory() {
         if (!getLinkHistory().isEmpty()) {
             final int last = getLinkHistory().removeLast();
             onGoToPage(last);
         }
     }
 
-    @Override
-    public float getOffsetY() {
+    @Override public float getOffsetY() {
         return getCurentPageFirst1();
     }
 
-    @Override
-    public void cleanImageMatrix() {
+    @Override public void cleanImageMatrix() {
         try {
-            PageImageState.get().getMatrix().reset();
-            matrixSP.edit().remove("" + bookPath.hashCode()).commit();
+            PageImageState.get()
+                          .getMatrix()
+                          .reset();
+            matrixSP.edit()
+                    .remove("" + bookPath.hashCode())
+                    .commit();
         } catch (Exception e) {
             LOG.e(e);
         }
     }
 
-    @Override
-    public void saveAnnotationsToFile() {
+    @Override public void saveAnnotationsToFile() {
     }
 
     public int getCurrentPage() {
@@ -270,8 +271,7 @@ public abstract class HorizontalModeController extends DocumentController {
         currentPage = page;
     }
 
-    @Override
-    public int getCurentPageFirst1() {
+    @Override public int getCurentPageFirst1() {
         return currentPage + 1;
     }
 
@@ -279,8 +279,7 @@ public abstract class HorizontalModeController extends DocumentController {
         return currentPage;
     }
 
-    @Override
-    public PageUrl getPageUrl(int page) {
+    @Override public PageUrl getPageUrl(int page) {
         PageUrl build = PageUrl.build(getBookPath(), page, imageWidth, imageHeight);
         build.setDoText(true);
         return build;
@@ -292,15 +291,13 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public abstract void showInterstialAndClose();
 
-    @Override
-    public void onGoToPage(int page) {
+    @Override public void onGoToPage(int page) {
         if (page <= getPageCount()) {
             onGoToPageImpl(page - 1);
         }
     }
 
-    @Override
-    public void onSrollLeft() {
+    @Override public void onSrollLeft() {
         throw new RuntimeException("Not Implemented");
     }
 
@@ -318,8 +315,7 @@ public abstract class HorizontalModeController extends DocumentController {
         return null;
     }
 
-    @Override
-    public synchronized String getTextForPage(int page) {
+    @Override public synchronized String getTextForPage(int page) {
         try {
             CodecPage codecPage = codeDocument.getPage(page);
             if (!codecPage.isRecycled()) {
@@ -337,8 +333,7 @@ public abstract class HorizontalModeController extends DocumentController {
         return "";
     }
 
-    @Override
-    public String getPageHtml() {
+    @Override public String getPageHtml() {
         try {
             CodecPage codecPage = codeDocument.getPage(getCurentPageFirst1() - 1);
             if (!codecPage.isRecycled()) {
@@ -355,67 +350,59 @@ public abstract class HorizontalModeController extends DocumentController {
         return "";
     }
 
-    @Override
-    public List<PageLink> getLinksForPage(int page) {
+    @Override public List<PageLink> getLinksForPage(int page) {
         try {
-            return codeDocument.getPage(page).getPageLinks();
+            return codeDocument.getPage(page)
+                               .getPageLinks();
         } catch (Exception e) {
             LOG.e(e);
             return Collections.emptyList();
         }
     }
 
-    @Override
-    public void onSrollRight() {
+    @Override public void onSrollRight() {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void onNextPage(boolean animate) {
+    @Override public void onNextPage(boolean animate) {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void onPrevPage(boolean animate) {
+    @Override public void onPrevPage(boolean animate) {
         throw new RuntimeException("Not Implemented");
     }
 
-    @Override
-    public void onNextScreen(boolean animate) {
+    @Override public void onNextScreen(boolean animate) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
-    public boolean isCropCurrentBook() {
+    @Override public boolean isCropCurrentBook() {
         return false;
     }
 
-    @Override
-    public void onPrevScreen(boolean animate) {
+    @Override public void onPrevScreen(boolean animate) {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void onZoomInc() {
-        EventBus.getDefault().post(new MovePageAction(MovePageAction.ZOOM_PLUS, getCurentPage()));
+    @Override public void onZoomInc() {
+        EventBus.getDefault()
+                .post(new MovePageAction(MovePageAction.ZOOM_PLUS, getCurentPage()));
     }
 
-    @Override
-    public void onZoomDec() {
-        EventBus.getDefault().post(new MovePageAction(MovePageAction.ZOOM_MINUS, getCurentPage()));
+    @Override public void onZoomDec() {
+        EventBus.getDefault()
+                .post(new MovePageAction(MovePageAction.ZOOM_MINUS, getCurentPage()));
     }
 
-    @Override
-    public void onZoomInOut(int x, int y) {
+    @Override public void onZoomInOut(int x, int y) {
 
     }
 
-    @Override
-    public String getFootNote(String text, String chapter) {
+    @Override public String getFootNote(String text, String chapter) {
         try {
             return TxtUtils.getFooterNote(text, chapter, codeDocument.getFootNotes());
         } catch (Exception e) {
@@ -424,8 +411,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
-    @Override
-    public List<String> getMediaAttachments() {
+    @Override public List<String> getMediaAttachments() {
         try {
             return codeDocument.getMediaAttachments();
         } catch (Exception e) {
@@ -434,24 +420,21 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
-    @Override
-    public void onScrollDown() {
+    @Override public void onScrollDown() {
     }
 
-    @Override
-    public void onScrollUp() {
+    @Override public void onScrollUp() {
     }
 
-    @Override
-    public void onCloseActivityFinal(final Runnable run) {
+    @Override public void onCloseActivityFinal(final Runnable run) {
         stopTimer();
-        TTSEngine.get().stop();
+        TTSEngine.get()
+                 .stop();
         TTSNotification.hideNotification();
 
         Safe.run(new Runnable() {
 
-            @Override
-            public void run() {
+            @Override public void run() {
                 isClosed = true;
                 if (codeDocument != null) {
                     codeDocument.recycle();
@@ -460,9 +443,11 @@ public abstract class HorizontalModeController extends DocumentController {
                 try {
                     if (!ExtUtils.isTextFomat(bookPath)) {
                         matrixSP.edit()
-                                .putString(bookPath.hashCode() + "", PageImageState.get().getMatrixAsString())
+                                .putString(bookPath.hashCode() + "", PageImageState.get()
+                                                                                   .getMatrixAsString())
                                 .commit();
-                        LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get().getMatrixAsString());
+                        LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get()
+                                                                                        .getMatrixAsString());
                     }
                 } catch (Exception e) {
                     LOG.e(e);
@@ -483,82 +468,73 @@ public abstract class HorizontalModeController extends DocumentController {
         });
     }
 
-    @Override
-    public void onCloseActivityAdnShowInterstial() {
+    @Override public void onCloseActivityAdnShowInterstial() {
         showInterstialAndClose();
 
     }
 
-    @Override
-    public void onNightMode() {
+    @Override public void onNightMode() {
     }
 
-    @Override
-    public void onCrop() {
+    @Override public void onCrop() {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void onFullScreen() {
+    @Override public void onFullScreen() {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public int getCurentPage() {
+    @Override public int getCurentPage() {
         LOG.d("_PAGE", "getCurentPage", currentPage);
         return currentPage;
     }
 
-    @Override
-    public int getPageCount() {
+    @Override public int getPageCount() {
         return PageUrl.realToFake(pagesCount);
     }
 
-    @Override
-    public void onScrollY(int value) {
+    @Override public void onScrollY(int value) {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void onAutoScroll() {
+    @Override public void onAutoScroll() {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void clearSelectedText() {
-        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+    @Override public void clearSelectedText() {
+        EventBus.getDefault()
+                .post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         AppState.get().selectedText = null;
-        PageImageState.get().cleanSelectedWords();
-        EventBus.getDefault().post(new InvalidateMessage());
+        PageImageState.get()
+                      .cleanSelectedWords();
+        EventBus.getDefault()
+                .post(new InvalidateMessage());
     }
 
-    @Override
-    public void saveChanges(List<PointF> points, int color) {
+    @Override public void saveChanges(List<PointF> points, int color) {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void deleteAnnotation(long pageHander, int page, int index) {
+    @Override public void deleteAnnotation(long pageHander, int page, int index) {
         throw new RuntimeException("Not Implemented");
 
     }
 
-    @Override
-    public void underlineText(int color, float width, AnnotationType type) {
+    @Override public void underlineText(int color, float width, AnnotationType type) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public  void getOutline(
-            final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse, boolean forse) {
+    public void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse,
+                           boolean forse) {
 
-        if(Apps.isDestroyedActivity(activity)){
+        if (Apps.isDestroyedActivity(activity)) {
             return;
         }
 
@@ -583,20 +559,23 @@ public abstract class HorizontalModeController extends DocumentController {
                             return;
                         }
 
-                        if(Apps.isDestroyedActivity(activity)){
+                        if (Apps.isDestroyedActivity(activity)) {
                             return;
                         }
 
-                        if(codeDocument.isRecycled()){
+                        if (codeDocument.isRecycled()) {
                             return;
                         }
                         if (TxtUtils.isNotEmpty(ol.getTitle())) {
-                            if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink()
-                                                                                           .startsWith("#0")) {
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                            if (ol.getLink() != null && ol.getLink()
+                                                          .startsWith("#") && !ol.getLink()
+                                                                                 .startsWith("#0")) {
+                                outline.add(
+                                        new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                             } else {
                                 int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                                outline.add(
+                                        new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
                             }
                         }
                     }
@@ -607,8 +586,7 @@ public abstract class HorizontalModeController extends DocumentController {
                     if (outlineResonse != null) {
                         getActivity().runOnUiThread(new Runnable() {
 
-                            @Override
-                            public void run() {
+                            @Override public void run() {
                                 outlineResonse.onResultRecive(outline);
                             }
                         });
@@ -626,8 +604,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     }
 
-    @Override
-    public void recyclePage(int number) {
+    @Override public void recyclePage(int number) {
         if (codeDocument == null) {
             return;
         }
@@ -639,19 +616,18 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
-    @Override
-    public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result,
-                         int firstPage, int lastPage) {
+    @Override public void doSearch(final String text, final com.foobnix.android.utils.ResultResponse<Integer> result,
+                                   int firstPage, int lastPage) {
         if (searchTask != null && searchTask.getStatus() != CopyAsyncTask.Status.FINISHED) {
             return;
         }
 
         searchTask = new CopyAsyncTask() {
 
-            @Override
-            protected Object doInBackground(Object... params) {
+            @Override protected Object doInBackground(Object... params) {
                 try {
-                    PageImageState.get().cleanSelectedWords();
+                    PageImageState.get()
+                                  .cleanSelectedWords();
                     String textLowCase = text.toLowerCase(Locale.US);
                     String bookPath = getBookPath();
                     int prev = -1;
@@ -664,18 +640,19 @@ public abstract class HorizontalModeController extends DocumentController {
                     PageSearcher pageSearcher = new PageSearcher();
                     pageSearcher.setTextForSearch(text);
                     pageSearcher.setListener(new PageSearcher.OnWordSearched() {
-                        @Override
-                        public void onSearch(TextWord word, Object data) {
+                        @Override public void onSearch(TextWord word, Object data) {
                             if (!(data instanceof Integer)) return;
                             Integer pageNumber = (Integer) data;
                             LOG.d("Find on page_", pageNumber, text, word);
-                            List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);
+                            List<TextWord> selectedWords = PageImageState.get()
+                                                                         .getSelectedWords(pageNumber);
                             if (selectedWords == null || selectedWords.size() <= 0) {
                                 result.onResultRecive(pageNumber);
                                 LOG.d("Find on page", pageNumber, text);
                             }
                             if (selectedWords == null || !selectedWords.contains(word)) {
-                                PageImageState.get().addWord(pageNumber, word);
+                                PageImageState.get()
+                                              .addWord(pageNumber, word);
                             }
                         }
                     });
@@ -707,7 +684,8 @@ public abstract class HorizontalModeController extends DocumentController {
                             for (TextWord word : line) {
                                 if (AppState.get().selectingByLetters) {
                                     String it = String.valueOf(textLowCase.charAt(index));
-                                    if (word.w.toLowerCase(Locale.US).equals(it)) {
+                                    if (word.w.toLowerCase(Locale.US)
+                                              .equals(it)) {
                                         index++;
                                         find.add(word);
                                     } else {
@@ -722,17 +700,20 @@ public abstract class HorizontalModeController extends DocumentController {
                                             prev = i;
                                         }
                                         for (TextWord t : find) {
-                                            PageImageState.get().addWord(i, t);
+                                            PageImageState.get()
+                                                          .addWord(i, t);
                                         }
                                     }
 
-                                } else if (word.w.toLowerCase(Locale.US).contains(textLowCase)) {
+                                } else if (word.w.toLowerCase(Locale.US)
+                                                 .contains(textLowCase)) {
                                     LOG.d("Contains 1", word.w);
                                     if (prev != i) {
                                         result.onResultRecive(i);
                                         prev = i;
                                     }
-                                    PageImageState.get().addWord(i, word);
+                                    PageImageState.get()
+                                                  .addWord(i, word);
                                 } else if (word.w.length() >= 3 && word.w.endsWith("-")) {
                                     nextWorld = true;
                                     firstWord = word;
@@ -740,8 +721,10 @@ public abstract class HorizontalModeController extends DocumentController {
                                     firstPart = word.w.replace("-", "");
                                 } else if (nextWorld && (firstPart + word.w.toLowerCase(Locale.US)).contains(text)) {
                                     LOG.d("Contains 2", firstPart, word.w, text);
-                                    PageImageState.get().addWord(firstWordIndex, firstWord);
-                                    PageImageState.get().addWord(i, word);
+                                    PageImageState.get()
+                                                  .addWord(firstWordIndex, firstWord);
+                                    PageImageState.get()
+                                                  .addWord(i, word);
                                     nextWorld = false;
                                     firstWord = null;
                                     firstPart = "";
@@ -771,9 +754,9 @@ public abstract class HorizontalModeController extends DocumentController {
                 return null;
             }
 
-            @Override
-            protected void onPostExecute(Object result) {
-                EventBus.getDefault().post(new InvalidateMessage());
+            @Override protected void onPostExecute(Object result) {
+                EventBus.getDefault()
+                        .post(new InvalidateMessage());
             }
 
             ;
@@ -786,26 +769,24 @@ public abstract class HorizontalModeController extends DocumentController {
         return bookPath;
     }
 
-    @Override
-    public File getCurrentBook() {
+    @Override public File getCurrentBook() {
         return new File(getBookPath());
     }
 
-    @Override
-    public String getTitle() {
+    @Override public String getTitle() {
         return getTitle(getBookPath());
     }
 
-    @Override
-    public void alignDocument() {
+    @Override public void alignDocument() {
         PageImageState.get().isAutoFit = true;
-        EventBus.getDefault().post(new MessageAutoFit(getCurentPage()));
+        EventBus.getDefault()
+                .post(new MessageAutoFit(getCurentPage()));
     }
 
-    @Override
-    public void centerHorizontal() {
+    @Override public void centerHorizontal() {
         PageImageState.get().isAutoFit = true;
-        EventBus.getDefault().post(new MessageCenterHorizontally(getCurentPage()));
+        EventBus.getDefault()
+                .post(new MessageCenterHorizontally(getCurentPage()));
     }
 
 }

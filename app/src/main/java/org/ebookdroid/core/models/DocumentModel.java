@@ -2,6 +2,7 @@ package org.ebookdroid.core.models;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -139,7 +140,8 @@ public class DocumentModel extends ListenerProxy {
 
             this.currentIndex = newIndex;
 
-            this.<CurrentPageListener>getListener().currentPageChanged(newIndex.docIndex, pages);
+            this.<CurrentPageListener>getListener()
+                .currentPageChanged(newIndex.docIndex, pages);
         }
     }
 
@@ -201,8 +203,10 @@ public class DocumentModel extends ListenerProxy {
                     list.add(page);
 
                 } else {
-                    final Page page1 = new Page(base, new PageIndex(docIndex, viewIndex++), PageType.LEFT_PAGE, infos[docIndex]);
-                    final Page page2 = new Page(base, new PageIndex(docIndex, viewIndex++), PageType.RIGHT_PAGE, infos[docIndex]);
+                    final Page page1 =
+                            new Page(base, new PageIndex(docIndex, viewIndex++), PageType.LEFT_PAGE, infos[docIndex]);
+                    final Page page2 =
+                            new Page(base, new PageIndex(docIndex, viewIndex++), PageType.RIGHT_PAGE, infos[docIndex]);
 
                     if (AppState.get().isCutRTL) {
                         list.add(page2);
@@ -218,19 +222,26 @@ public class DocumentModel extends ListenerProxy {
         }
     }
 
-    private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final AppBook bs, final IProgressIndicator task) {
-        int pagesCount = base.getDecodeService().getPageCount();
+    private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final AppBook bs,
+                                              final IProgressIndicator task) {
+        int pagesCount = base.getDecodeService()
+                             .getPageCount();
+        if (pagesCount <= 0) {
+            CacheZipUtils.emptyAllCacheDirs();
+            return null;
+
+        }
+
         final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.path, pagesCount);
 
-
         try {
-            if (pagesCount > 0) {
-                FileMeta meta = AppDB.get().load(bs.path);
-                if (meta != null) {
-                    meta.setPages(pagesCount);
-                    AppDB.get().save(meta);
-                    LOG.d("update openDocument.getPageCount()", bs.path, pagesCount);
-                }
+            FileMeta meta = AppDB.get()
+                                 .load(bs.path);
+            if (meta != null) {
+                meta.setPages(pagesCount);
+                AppDB.get()
+                     .save(meta);
+                LOG.d("update openDocument.getPageCount()", bs.path, pagesCount);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -269,22 +280,18 @@ public class DocumentModel extends ListenerProxy {
             this.end = end;
         }
 
-        @Override
-        public boolean hasNext() {
+        @Override public boolean hasNext() {
             return 0 <= index && index < end;
         }
 
-        @Override
-        public Page next() {
+        @Override public Page next() {
             return hasNext() ? pages[index++] : null;
         }
 
-        @Override
-        public void remove() {
+        @Override public void remove() {
         }
 
-        @Override
-        public Iterator<Page> iterator() {
+        @Override public Iterator<Page> iterator() {
             return this;
         }
     }

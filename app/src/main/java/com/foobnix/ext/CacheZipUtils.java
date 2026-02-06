@@ -29,7 +29,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -80,6 +79,14 @@ public class CacheZipUtils {
         if (!CACHE_TEMP.exists()) {
             CACHE_TEMP.mkdirs();
         }
+    }
+
+    public static void emptyAllCacheDirs() {
+        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_TEMP.listFiles());
+        CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
+        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_WEB.listFiles());
+        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
     }
 
     public static void savaJavaCache(Object object, File file) {
@@ -134,22 +141,7 @@ public class CacheZipUtils {
         return "" + MagicHelper.hash() + file.lastModified() + file.getName() + "-outline";
     }
 
-    public static void clearBookDir() {
-        List<File> asList = Arrays.asList(CACHE_BOOK_DIR.listFiles());
 
-        int cacheSize = 3;
-        if (asList.size() <= cacheSize) {
-            return;
-        }
-
-        Collections.sort(asList, new FilerByDate());
-
-        for (int i = cacheSize; i < asList.size(); i++) {
-            File file = asList.get(i);
-            LOG.d("Remove file", file.getName());
-            file.delete();
-        }
-    }
 
     public static boolean removeFiles(File[] files) {
         try {
@@ -158,8 +150,8 @@ public class CacheZipUtils {
             }
             for (File file : files) {
                 if (file != null) {
-                    file.delete();
-                    LOG.d("removeFile", file);
+                    boolean result = file.delete();
+                    LOG.d("removeFile", file,result);
                 }
             }
         } catch (Exception e) {
