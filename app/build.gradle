@@ -291,6 +291,8 @@ dependencies {
     fdroidImplementation project(':libPro')
     implementation project(':libReflow')
 
+    //implementation project(":shared")
+
     //compose
 
     //implementation project(':appLibDrive')

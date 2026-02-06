@@ -101,6 +101,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.Stack;
 
+
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static final String EMPTY_ID = "\u00A0";
@@ -346,6 +347,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
+
+//        String greet = (String) (Object) new Greeting().greet();
+//        Toast.makeText(getActivity(), greet,Toast.LENGTH_LONG).show();
 
         LOG.d("Context-SF-getContext", getContext());
         LOG.d("Context-SF-getApplicationContext", getActivity().getApplicationContext());

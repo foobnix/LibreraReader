@@ -30,9 +30,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.runtime)
+            implementation("com.squareup.okio:okio:3.16.4")
         }
-        androidMain.dependencies {
-        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
