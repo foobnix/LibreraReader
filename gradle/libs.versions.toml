@@ -49,6 +49,7 @@ composeHotReload = "1.0.0"
 composeMultiplatform = "1.10.0"
 
 androidx-activity = "1.12.3"
+spmForKmp = "1.4.7"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -64,7 +65,7 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+spmForKmp = { id = "io.github.frankois944.spmForKmp", version.ref = "spmForKmp" }
 
 [libraries]
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
