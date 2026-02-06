@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -30,11 +31,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.runtime)
-            implementation("com.squareup.okio:okio:3.16.4")
+            implementation(libs.okio)
+            implementation(libs.xmlutil.serialization)
         }
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation("com.squareup.okio:okio-fakefilesystem:3.16.4")
         }
     }
 }

@@ -21,9 +21,11 @@ junit = "4.13.2"
 juniversalchardet = "2.5.0"
 junrar = "7.5.7"
 kotlin = "2.3.10"
+kotlinxSerializationCore = "1.10.0"
 ksp = "2.3.4"
 legacySupportV4 = "1.0.0"
 multidex = "2.0.1"
+okio = "3.16.4"
 playServicesAds = "24.9.0"
 playServicesAuth = "21.5.0"
 recyclerview = "1.4.0"
@@ -36,6 +38,7 @@ staxApi = "1.0-2"
 userMessagingPlatform = "4.0.0"
 workRuntime = "2.11.1"
 zip4j = "2.11.5"
+xmlutil = "1.0.0-rc2"
 
 okioParent="1.17.6"
 okhttpDigest="3.1.1"
@@ -97,10 +100,12 @@ jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
 junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
@@ -112,6 +117,7 @@ stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+xmlutil-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlutil" }
 
 okio-parent = { module = "com.squareup.okio:okio-parent", version.ref = "okioParent" }
 okhttp3 = { module = "com.squareup.okhttp3:okhttp", version = "3.12.6" }#app not compatible with new versions
