@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import Shared
+
 
 struct ContentView: View {
     @State private var bookManager = BookManager.shared
@@ -186,7 +186,7 @@ struct ContentView: View {
     }
     
     private var libraryView: some View {
-        bookListView(books: bookManager.books, title: "All Books \(Greeting().greet())", isRecent: false)
+        bookListView(books: bookManager.books, title: "All Books", isRecent: false)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
