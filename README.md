@@ -45,9 +45,9 @@ https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.p
 
 Librera for macOS, supports PDF, EPUB, FB2, CBZ, CBR (beta.librera.mobi for downloads)
 
-![img1](https://raw.githubusercontent.com/foobnix/LirbiReader/master/macOS/img1.png)
+![img1](https://raw.githubusercontent.com/foobnix/LirbiReader/master/iosOS/img1.png)
 
-![img2](https://raw.githubusercontent.com/foobnix/LirbiReader/master/macOS/img2.png)
+![img2](https://raw.githubusercontent.com/foobnix/LirbiReader/master/iosOS/img2.png)
 
 ### Links
 

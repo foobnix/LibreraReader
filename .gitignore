@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.kotlin
 /local.properties
 .DS_Store
 /build
@@ -27,3 +28,4 @@
 /Builder/build-cmake/
 google-services.*
 /macOS/build/
+/shared/build/
