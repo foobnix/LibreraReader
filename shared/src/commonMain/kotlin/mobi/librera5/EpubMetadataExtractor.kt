@@ -11,7 +11,6 @@ import org.kobjects.ktxml.mini.MiniXmlPullParser
 
 class EpubMetadataExtractor() {
 
-
     fun cover(zipFilePath: String): ByteArray {
         println("EPUB cover for $zipFilePath")
 
@@ -19,25 +18,28 @@ class EpubMetadataExtractor() {
         val fileSystem = FileSystem.SYSTEM
 
         if (!zipFilePath.endsWith(".epub") || !fileSystem.exists(zipPath)) {
-            println("Error: File not found at $zipFilePath")
             return ByteArray(0)
         }
-        var meta = EpubMetadata()
-        var coverData = ByteArray(0)
-        fileSystem.openZip(zipPath).use { zipFs ->
-            val paths = zipFs.listRecursively(".".toPath()).toList()
 
+        var meta = EpubMetadata()
+
+        return fileSystem.openZip(zipPath).use { zipFs ->
+            val paths = zipFs.listRecursively(".".toPath()).toList()
             paths.firstOrNull { it.name.endsWith(".opf") }?.let { opfPath ->
                 val opf = zipFs.read(opfPath) { readUtf8() }
                 meta = epubMetaParser(opf)
             }
-
-            paths.firstOrNull { it.name == meta.cover }?.let { coverPath ->
-                zipFs.read(coverPath) { readByteArray() }
+            val coverPath = paths.firstOrNull { it.name == meta.cover } ?: paths.firstOrNull {
+                val name = it.name.lowercase()
+                name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png")
             }
+
+            coverPath?.let { path ->
+                zipFs.read(path) { readByteArray() }
+            } ?: ByteArray(0)
+
         }
-        println("Return image 0")
-        return coverData
+
     }
 
     fun epubMetaParser(xmlContent: String): EpubMetadata = EpubMetadata().apply {
