@@ -20,7 +20,7 @@ jsoup = "1.22.1"
 junit = "4.13.2"
 juniversalchardet = "2.5.0"
 junrar = "7.5.7"
-kotlin = "2.3.10"
+kotlin = "2.3.0"
 kotlinxSerializationCore = "1.10.0"
 ksp = "2.3.4"
 legacySupportV4 = "1.0.0"
@@ -33,7 +33,6 @@ review = "2.0.2"
 room = "2.8.4"
 rtfparserkit = "1.16.0"
 runner = "1.7.0"
-runtime = "1.10.0"
 staxApi = "1.0-2"
 userMessagingPlatform = "4.0.0"
 workRuntime = "2.11.1"
@@ -46,10 +45,10 @@ okhttpDigest="3.1.1"
 targetSdk="36"
 minSdk="24"
 compileSdk="36"
-jvmTarget = "11"
+jvmTarget = "17"
 
 composeHotReload = "1.0.0"
-composeMultiplatform = "1.10.0"
+composeMultiplatform = "1.10.1"
 
 androidx-activity = "1.12.3"
 spmForKmp = "1.4.7"
@@ -58,6 +57,7 @@ espressoCore = "3.7.0"
 material = "1.13.0"
 kotlinx-coroutines="1.10.2"
 material3 = "1.10.0-alpha05"
+androidx-lifecycle = "2.9.6"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -112,7 +112,6 @@ recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "r
 review = { module = "com.google.android.play:review", version.ref = "review" }
 rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
 runner = { module = "androidx.test:runner", version.ref = "runner" }
-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "runtime" }
 stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
@@ -133,3 +132,12 @@ kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-s
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
 compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+
+
+compose-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
+androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
+compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
+

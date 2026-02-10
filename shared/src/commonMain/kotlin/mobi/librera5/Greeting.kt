@@ -6,4 +6,7 @@ class Greeting {
     fun greet(): String {
         return "Hello, ${platform.name}!"
     }
+
+    fun cover(path: String): ByteArray = EpubMetadataExtractor().cover(path)
+
 }

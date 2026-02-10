@@ -6,6 +6,7 @@ import CryptoKit
 import Unrar
 import ZIPFoundation
 import libmobi
+import Shared
 
 actor ThumbnailGenerator {
     static let shared = ThumbnailGenerator()
@@ -30,12 +31,12 @@ actor ThumbnailGenerator {
         // 1. Check Cache first (Non-isolated for performance)
         let key = await getCacheKey(for: url)
         let cacheURL = cacheDirectory.appendingPathComponent("\(key).png")
-        
-        if let cachedImage = PlatformImage(contentsOf: cacheURL) {
-            print("INFO: Cache HIT for \(url.lastPathComponent)")
-            return cachedImage
-        }
-        
+//        
+//        if let cachedImage = PlatformImage(contentsOf: cacheURL) {
+//            print("INFO: Cache HIT for \(url.lastPathComponent)")
+//            return cachedImage
+//        }
+//        
         // 2. Generate if not cached (Isolated to the actor to run serially)
         print("INFO: Cache MISS for \(url.lastPathComponent), generating...")
         return await generateAndCache(url: url, size: size, cacheURL: cacheURL)
@@ -105,37 +106,15 @@ actor ThumbnailGenerator {
         return page.thumbnail(of: size, for: .mediaBox)
         #endif
     }
-    
+
     private func generateEPUBThumbnail(url: URL, size: CGSize) async -> PlatformImage? {
-        let result = await withCheckedContinuation { (continuation: CheckedContinuation<PlatformImage?, Never>) in
-            #if canImport(UIKit)
-            let scale = UIScreen.main.scale
-            #else
-            let scale = NSScreen.main?.backingScaleFactor ?? 2.0
-            #endif
-            
-            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .thumbnail)
-            
-            QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { thumbnail, error in
-                if let thumbnail = thumbnail {
-                    #if canImport(UIKit)
-                    continuation.resume(returning: thumbnail.uiImage)
-                    #else
-                    continuation.resume(returning: thumbnail.nsImage)
-                    #endif
-                } else {
-                    continuation.resume(returning: nil)
-                }
-            }
+        do {
+            let imageData = try CoverExtractor().getCover(path: url.path)
+            return  PlatformImage(data: imageData)
+        }catch{
+            return nil
         }
-        
-        // Fallback: If QL fails, try to find the first image in the zip
-        if result == nil {
-            print("DEBUG: QL failed for EPUB \(url.lastPathComponent), trying fallback cover extraction...")
-            return await extractFirstImageFromZip(url: url)
-        }
-        
-        return result
+           
     }
     
     private func extractFirstImageFromZip(url: URL) async -> PlatformImage? {

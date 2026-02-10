@@ -29,3 +29,4 @@
 google-services.*
 /macOS/build/
 /shared/build/
+/composeApp/build/

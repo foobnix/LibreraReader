@@ -1,62 +1,107 @@
 package mobi.librera5
 
+import okio.FileSystem
+import okio.Path.Companion.toPath
+import okio.SYSTEM
+import okio.openZip
+import okio.use
+import org.kobjects.ktxml.api.EventType
+import org.kobjects.ktxml.api.XmlPullParser
+import org.kobjects.ktxml.mini.MiniXmlPullParser
 
-import nl.adaptivity.xmlutil.EventType
-import nl.adaptivity.xmlutil.XmlUtilInternal
-import nl.adaptivity.xmlutil.core.impl.multiplatform.StringReader
-
-import nl.adaptivity.xmlutil.xmlStreaming
-
-@OptIn(XmlUtilInternal::class)
-internal class EpubMetadataExtractor {
+class EpubMetadataExtractor() {
 
 
-    fun metaParser(xmlContent: String): EpubMetadata {
-        val reader = xmlStreaming.newReader(StringReader(xmlContent))
+    fun cover(zipFilePath: String): ByteArray {
+        println("EPUB cover for $zipFilePath")
 
-        val meta = EpubMetadata()
+        val zipPath = zipFilePath.toPath()
+        val fileSystem = FileSystem.SYSTEM
 
-        var currentElement = ""
-        while (reader.hasNext()) {
-            when (reader.next()) {
-                EventType.START_ELEMENT -> {
-                    currentElement = reader.localName
-                    println("currentElement: $currentElement")
-                }
+        if (!zipFilePath.endsWith(".epub") || !fileSystem.exists(zipPath)) {
+            println("Error: File not found at $zipFilePath")
+            return ByteArray(0)
+        }
+        var meta = EpubMetadata()
+        var coverData = ByteArray(0)
+        fileSystem.openZip(zipPath).use { zipFs ->
+            val paths = zipFs.listRecursively(".".toPath()).toList()
 
-                EventType.TEXT -> {
-                    val text = reader.text.trim()
+            paths.firstOrNull { it.name.endsWith(".opf") }?.let { opfPath ->
+                val opf = zipFs.read(opfPath) { readUtf8() }
+                meta = epubMetaParser(opf)
+            }
 
-                    if (text.isNotEmpty()) {
-                        when (currentElement) {
-                            "title" -> meta.title = text
-                            "creator" -> meta.author = text
-                            "subject" -> meta.genre = text
-                        }
-                        println(text)
+            paths.firstOrNull { it.name == meta.cover }?.let { coverPath ->
+                zipFs.read(coverPath) { readByteArray() }
+            }
+        }
+        println("Return image 0")
+        return coverData
+    }
+
+    fun epubMetaParser(xmlContent: String): EpubMetadata = EpubMetadata().apply {
+        var coverTemp = ""
+        metaParser(xmlContent) { tag ->
+            val element = tag.name.replace("dc:", "").replace("dcns:", "")
+
+            when (element) {
+                "title" -> title += tag.value
+                "creator" -> creator += tag.value
+                "date" -> date += tag.value
+                "subject" -> subject += tag.value
+                "publisher" -> publisher += tag.value
+                "identifier" -> identifier += tag.value
+                "language" -> language += tag.value
+                "description" -> language += tag.value
+                "meta" -> {
+                    if (tag.attrName == "cover") {
+                        coverTemp = tag.attrContent
                     }
                 }
 
-                EventType.END_ELEMENT -> {
-
-                }
-
-                EventType.START_DOCUMENT -> {
-
-                }
-
-                EventType.END_DOCUMENT -> {
-
-                }
-
-                else -> {
-
+                "item" -> {
+                    manifest += EpubItem(tag.attrId,
+                        tag.attrHref,
+                        tag.attrMediaType,
+                        tag.attrProperty)
                 }
             }
         }
+        cover = manifest.find { it.id == coverTemp }?.href
+    }
 
-        reader.close()
-        return meta
+    fun metaParser(xmlContent: String, resolver: (EpubTag) -> Unit) {
+        val reader = MiniXmlPullParser(xmlContent, relaxed = true)
+        while (reader.next() != EventType.END_DOCUMENT) {
+            val event = reader.eventType
+            when (event) {
+
+                EventType.START_TAG -> {
+                    val attrProperty = reader.getAttributeValue("", "property") ?: ""
+                    val attrName = reader.getAttributeValue("", "name") ?: ""
+                    val attrContent = reader.getAttributeValue("", "content") ?: ""
+                    val attrId = reader.getAttributeValue("", "id") ?: ""
+                    val attrHref = reader.getAttributeValue("", "href") ?: ""
+                    val attrMediaType = reader.getAttributeValue("", "media-type") ?: ""
+                    val name = reader.name
+                    val text = reader.nextText()
+                    resolver(EpubTag(
+                        name = name,
+                        value = text,
+                        attrProperty = attrProperty,
+                        attrName = attrName,
+                        attrContent = attrContent,
+                        attrId = attrId,
+                        attrHref = attrHref,
+                        attrMediaType = attrMediaType,
+                                    ))
+                }
+
+                else -> Unit
+            }
+        }
+
     }
 }
 

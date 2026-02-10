@@ -11,7 +11,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -27,12 +27,14 @@ kotlin {
     }
 
     jvm()
+    jvmToolchain(17)
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.runtime)
+            implementation(libs.compose.runtime)
             implementation(libs.okio)
-            implementation(libs.xmlutil.serialization)
+           // implementation(libs.xmlutil.serialization)
+            implementation("org.kobjects.ktxml:core:1.0.0")
         }
 
         commonTest.dependencies {
