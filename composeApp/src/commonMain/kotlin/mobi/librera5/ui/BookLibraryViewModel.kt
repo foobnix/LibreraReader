@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
+import mobi.librera5.initPDF
 import mobi.librera5.model.Book
 import mobi.librera5.model.BookType
 import java.io.File
@@ -18,6 +20,7 @@ class BookLibraryViewModel : ViewModel() {
     val uiState: StateFlow<BookLibraryUiState> = _uiState.asStateFlow()
 
     init {
+        initPDF()
         scanFolder("/Users/ivanivanenko/Downloads/export/")
     }
     fun scanFolder(folderPath: String) {
@@ -52,7 +55,7 @@ class BookLibraryViewModel : ViewModel() {
             if (file.isFile) {
                 val extension = file.extension.lowercase()
                 val bookType = when (extension) {
-                   // "pdf" -> BookType.PDF
+                    "pdf" -> BookType.PDF
                     "epub" -> BookType.EPUB
                     else -> null
                 }

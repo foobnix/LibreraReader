@@ -45,7 +45,7 @@ okhttpDigest="3.1.1"
 targetSdk="36"
 minSdk="24"
 compileSdk="36"
-jvmTarget = "17"
+jvmTarget = "21"
 
 composeHotReload = "1.0.0"
 composeMultiplatform = "1.10.1"

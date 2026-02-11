@@ -11,7 +11,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -27,14 +27,19 @@ kotlin {
     }
 
     jvm()
-    jvmToolchain(17)
+    jvmToolchain(21)
 
     sourceSets {
+        //jvmMain by getting
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.okio)
-           // implementation(libs.xmlutil.serialization)
+            implementation(compose.desktop.currentOs)
             implementation("org.kobjects.ktxml:core:1.0.0")
+
+        }
+        jvmMain.dependencies {
+            implementation("com.dshatz.pdfmp:pdfmp-compose:1.0.9")
         }
 
         commonTest.dependencies {
