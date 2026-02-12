@@ -39,7 +39,7 @@ kotlin {
 
         }
         jvmMain.dependencies {
-            implementation("com.dshatz.pdfmp:pdfmp-compose:1.0.9")
+            implementation(libs.pdfmp.compose)
         }
 
         commonTest.dependencies {

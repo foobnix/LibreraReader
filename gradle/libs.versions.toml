@@ -26,6 +26,7 @@ ksp = "2.3.4"
 legacySupportV4 = "1.0.0"
 multidex = "2.0.1"
 okio = "3.16.4"
+pdfmpCompose = "1.0.9"
 playServicesAds = "24.9.0"
 playServicesAuth = "21.5.0"
 recyclerview = "1.4.0"
@@ -106,6 +107,7 @@ mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
