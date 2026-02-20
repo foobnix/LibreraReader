@@ -484,19 +484,7 @@ public class Fb2Extractor extends BaseExtractor {
         return NCX.replace("%nav%", navs.toString());
     }
 
-    public static String genetateNCXbyOutline2(List<OutlineLink> titles) {
-        StringBuilder navs = new StringBuilder();
-        for (int i = 0; i < titles.size(); i++) {
-            OutlineLink link = titles.get(i);
-            String titleTxt = link.getTitle();
-            if (TxtUtils.isNotEmpty(titleTxt)) {
-                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
-                createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
-                navs.append(createNavPoint);
-            }
-        }
-        return NCX.replace("%nav%", navs.toString());
-    }
+
 
     public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
         XmlPullParser xpp = XmlParser.buildPullParser();

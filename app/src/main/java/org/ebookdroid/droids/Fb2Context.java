@@ -39,6 +39,9 @@ public class Fb2Context extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
+        if(cacheFile==null){
+            cacheFile = getCacheFileName(fileName);
+        }
         String outName = null;
 
         Map<String, String> notes = null;

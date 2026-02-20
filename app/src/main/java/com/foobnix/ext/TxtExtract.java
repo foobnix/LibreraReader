@@ -18,35 +18,80 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TxtExtract {
 
     public static final String OUT_FB2_XML = "txt.html";
 
-    static char[] endChars = new char[] { '.', '!', '?', ';' };
+    static char[] endChars = new char[]{'.', '!', '?', ';'};
 
     public static String foramtUB(String line) {
-        if (line != null && line.trim().startsWith("(*)") && TxtUtils.isLastCharEq(line, endChars)) {
+        if (line != null && line.trim()
+                                .startsWith("(*)") && TxtUtils.isLastCharEq(line, endChars)) {
             line = "<b><u>" + line + "</u></b>";
         }
         return line;
     }
 
-    public static FooterNote extract(String inputPath, String outputDir) throws IOException {
+    public static String extract1(String inputPath, String outputDir) throws IOException {
+        File file = new File(outputDir, inputPath.hashCode() + "_.fb2");
+
+        String encoding = "UTF-8";
+        if (AppState.get().isCharacterEncoding) {
+            encoding = AppState.get().characterEncoding;
+        } else {
+            encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
+        }
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
+
+        PrintWriter writer = new PrintWriter(file);
+        String line;
+        writer.println("<FictionBook>");
+
+        if (BookCSS.get().isAutoHypens) {
+            HypenUtils.applyLanguage(AppSP.get().hypenLang);
+        }
+
+        while ((line = input.readLine()) != null) {
+            String trimLine = line.toLowerCase();
+            if (line.isEmpty()) {
+                continue;
+            }
+            if (trimLine.startsWith("chapter ") || trimLine.startsWith("глава ") || trimLine.startsWith(
+                    "часть ") || trimLine.startsWith("розділ ") ||
+                    //trimLine.startsWith("#") ||
+                    //trimLine.startsWith("*") ||
+                    line.matches("[A-ZА-Я &()_:-]*")) {
+                LOG.d("MATCH", line);
+                writer.println("<section><title>");
+                writer.println(line);
+                writer.println("</title></section>");
+            } else {
+                if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                    line = HypenUtils.applyHypnes(line);
+                }
+                writer.println("<p>" + line + "</p>");
+            }
+        }
+        writer.println("</FictionBook>");
+        input.close();
+        writer.close();
+        return file.getPath();
+    }
+
+    public static String extract(String inputPath, String outputDir) throws IOException {
         File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
 
         boolean isJSON = inputPath.endsWith(".json");
 
         String encoding = "UTF-8";
-        if(AppState.get().isCharacterEncoding){
+        if (AppState.get().isCharacterEncoding) {
             encoding = AppState.get().characterEncoding;
-        }else{
+        } else {
             encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
         }
-
-
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
         PrintWriter writer = new PrintWriter(file);
@@ -55,7 +100,8 @@ public class TxtExtract {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         if (AppState.get().isPreText) {
-            writer.println("<head><style>@page{margin:0px 0.5em} pre{margin:0px;white-space:pre !important;} {body:margin:0px}</style></head>");
+            writer.println(
+                    "<head><style>@page{margin:0px 0.5em} pre{margin:0px;white-space:pre !important;} {body:margin:0px}</style></head>");
         } else {
             writer.println("<head><style>p,p+p{margin:0}</style></head>");
         }
@@ -73,7 +119,8 @@ public class TxtExtract {
             HypenUtils.applyLanguage(AppSP.get().hypenLang);
         }
 
-       List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+        List<SimpleMeta> replacements = AppData.get()
+                                               .getAllTextReplaces();
 
         while ((line = input.readLine()) != null) {
             String outLn = null;
@@ -90,14 +137,16 @@ public class TxtExtract {
             } else {
 
                 if (AppState.get().isLineBreaksText) {
-                    if (line.trim().length() == 0) {
+                    if (line.trim()
+                            .length() == 0) {
                         outLn = "<br/>";
                     } else {
                         outLn = format(line, replacements);
                     }
 
                 } else {
-                    if (line.trim().length() == 0) {
+                    if (line.trim()
+                            .length() == 0) {
                         outLn = "<p>&nbsp;</p>";
                     } else if (TxtUtils.isLineStartEndUpperCase(line)) {
                         outLn = "<b>" + format(line, replacements) + "</b>";
@@ -109,10 +158,9 @@ public class TxtExtract {
                 }
 
             }
-            if(isJSON){
-                outLn = outLn.replace(",",",<br/>");
+            if (isJSON) {
+                outLn = outLn.replace(",", ",<br/>");
             }
-
 
             outLn = Fb2Extractor.accurateLine(outLn);
             LOG.d("LINE", outLn);
@@ -123,9 +171,7 @@ public class TxtExtract {
             writer.println("</p>");
         }
 
-        if (AppState.get().isPreText)
-
-        {
+        if (AppState.get().isPreText) {
             writer.println("</pre>");
         }
         writer.println("</body></html>");
@@ -133,7 +179,7 @@ public class TxtExtract {
         input.close();
         writer.close();
 
-        return new FooterNote(file.getPath(), null);
+        return file.getPath();
     }
 
     public static String retab(final String text, final int tabstop) {

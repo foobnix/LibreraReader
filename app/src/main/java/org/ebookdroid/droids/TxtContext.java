@@ -1,32 +1,35 @@
 package org.ebookdroid.droids;
 
-import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.TxtExtract;
+import com.foobnix.model.AppState;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import java.util.Map;
+import java.io.IOException;
 
 public class TxtContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-        Map<String, String> notes = null;
+
+        String extractFile = null;
         try {
-            FooterNote extract = TxtExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
-            fileName = extract.path;
-            notes = extract.notes;
-            LOG.d("new-file name", fileName);
-        } catch (Exception e) {
-            LOG.e(e);
+            CacheZipUtils.emptyAllCacheDirs();
+            if (AppState.get().isPreText) {
+                extractFile = TxtExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
+                MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, extractFile, "");
+                return muPdfDocument;
+            }else {
+                extractFile = TxtExtract.extract1(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-        muPdfDocument.setFootNotes(notes);
-        return muPdfDocument;
+        return new Fb2Context().openDocumentInner(extractFile,"");
+
     }
 }

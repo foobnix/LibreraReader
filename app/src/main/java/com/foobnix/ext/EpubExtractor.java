@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -310,43 +309,7 @@ public class EpubExtractor extends BaseExtractor {
         return attachments;
     }
 
-    @Deprecated
-    private void proccessHypensDefault(String input, String output) throws Exception {
-        LOG.d("proccessHypens1", input, output);
 
-        FileInputStream inputStream = new FileInputStream(new File(input));
-        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-        ZipEntry nextEntry = null;
-
-        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
-        zos.setLevel(0);
-
-        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-            if (TempHolder.get().loadingCancelled.get()) {
-                break;
-            }
-            String name = nextEntry.getName();
-            String nameLow = name.toLowerCase(Locale.US);
-
-            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled.get(), name);
-
-                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null, 0, new ArrayList<>());
-                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
-            } else {
-                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
-                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
-
-            }
-
-        }
-        zipInputStream.close();
-        inputStream.close();
-
-        zos.close();
-
-    }
 
     @Override
     public String getBookOverview(String path) {

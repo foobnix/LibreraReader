@@ -5250,7 +5250,8 @@ public class DragingDialogs {
                     }
                 });
 
-                isLineBreaksText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+                //isLineBreaksText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+                isLineBreaksText.setVisibility(View.GONE);
 
                 //isLineTitleBoldText
 
@@ -5262,7 +5263,7 @@ public class DragingDialogs {
                     }
                 });
 
-                isLineTitleBoldText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+                isLineTitleBoldText.setVisibility(View.GONE);
 
                 //~isLineTitleBoldText
                 
