@@ -254,9 +254,9 @@ public class MdContext extends PdfContext {
         //line = line.replaceAll("&lt;" + ALL + "&gt;", "<a href='$1'>$1</a>");//url
 
 
-        if (line.startsWith("###")) line = "<h3>" + line.replace("#", "") + "</h3>";
-        if (line.startsWith("##")) line = "<h2>" + line.replace("#", "") + "</h2>";
-        if (line.startsWith("#")) line = "<h1>" + line.replace("#", "") + "</h1>";
+        if (line.startsWith("###")) line = "<h3>" + line.replaceFirst("###", "") + "</h3>";
+        if (line.startsWith("##")) line = "<h2>" + line.replaceFirst("##", "") + "</h2>";
+        if (line.startsWith("#")) line = "<h1>" + line.replaceFirst("#", "") + "</h1>";
 
         if (line.endsWith("---- ")) {//-------
             line = "<h2>" + line.replace("-", "") + "</h2>";
