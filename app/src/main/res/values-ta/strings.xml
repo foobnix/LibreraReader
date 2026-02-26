@@ -684,4 +684,5 @@
    <string name="msg_migration">உங்கள் தரவை நகர்த்த [Librera] கோப்பகத்தை வேறொரு சாதனத்திற்கு மாற்றவும்.</string>
    <string name="msg_sync">கூகிள் டிரைவ் அல்லது மூன்றாம் தரப்பு பயன்பாடுகள் வழியாக [லிப்ரேரா] கோப்புறையை பிற சாதனங்களுடன் ஒத்திசைக்கவும்.</string>
    <string name="display_alert_if_cropping_is_on">செதுக்குதல் இயக்கத்தில் இருந்தால் எச்சரிக்கையைக் காட்டு.</string>
+   <string name="scan_for_new_books_at_launch">வெளியீட்டின் போது புதிய புத்தகங்களை ஸ்கேன் செய்யவும்.</string>
 </resources>

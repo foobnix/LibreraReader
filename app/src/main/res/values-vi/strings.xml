@@ -684,4 +684,5 @@
    <string name="msg_migration">Hãy chuyển thư mục [Librera] sang thiết bị khác để di chuyển dữ liệu của bạn.</string>
    <string name="msg_sync">Đồng bộ hóa thư mục [Librera] với các thiết bị khác thông qua Google Drive hoặc các ứng dụng của bên thứ ba.</string>
    <string name="display_alert_if_cropping_is_on">Hiển thị cảnh báo nếu chế độ cắt ảnh đang bật.</string>
+   <string name="scan_for_new_books_at_launch">Tìm kiếm sách mới khi ra mắt</string>
 </resources>

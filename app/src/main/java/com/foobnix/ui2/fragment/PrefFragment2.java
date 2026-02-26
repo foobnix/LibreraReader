@@ -1,5 +1,7 @@
 package com.foobnix.ui2.fragment;
 
+import static com.foobnix.pdf.info.view.confline.ConfAction.of;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -75,16 +77,13 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.BrightnessHelper;
-
-import static com.foobnix.pdf.info.view.confline.ConfAction.of;
-
-import com.foobnix.pdf.info.view.confline.ConfLineView;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MultyDocSearchDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.confline.ConfLineView;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
@@ -1331,6 +1330,9 @@ public class PrefFragment2 extends UIFragment {
         TxtUtils.underlineTextView(libPrefView)
                 .setOnClickListener(v -> {
 
+                    final CheckBox isScanOnLaunch = new CheckBox(v.getContext());
+                    isScanOnLaunch.setText(getString(R.string.scan_for_new_books_at_launch));
+
                     final CheckBox isFirstSurname = new CheckBox(v.getContext());
                     isFirstSurname.setText(getString(R.string.in_the_author_s_name_first_the_surname));
 
@@ -1357,10 +1359,12 @@ public class PrefFragment2 extends UIFragment {
                     isShowSeriesNumberInTitle.setText(R.string.show_series_number_in_title);
 
                     final AlertDialog d =
-                            AlertDialogs.showViewDialog(getActivity(), null, isFirstSurname, isSkipFolderWithNOMEDIA,
+                            AlertDialogs.showViewDialog(getActivity(), null, isScanOnLaunch, isFirstSurname,
+                                    isSkipFolderWithNOMEDIA,
                                     isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF, isUseCalibreOpf,
                                     isDisplayAnnotation, isHideReadBook, isShowSeriesNumberInTitle);
 
+                    isScanOnLaunch.setChecked(AppState.get().isScanOnLaunch);
                     isFirstSurname.setChecked(AppState.get().isFirstSurname);
                     isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
                     isAuthorTitleFromMetaPDF.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
@@ -1371,6 +1375,7 @@ public class PrefFragment2 extends UIFragment {
                     isShowSeriesNumberInTitle.setChecked(AppState.get().isShowSeriesNumberInTitle);
 
                     final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
+                        AppState.get().isScanOnLaunch = isScanOnLaunch.isChecked();
                         AppState.get().isFirstSurname = isFirstSurname.isChecked();
                         AppState.get().isSkipFolderWithNOMEDIA = isSkipFolderWithNOMEDIA.isChecked();
                         AppState.get().isAuthorTitleFromMetaPDF = isAuthorTitleFromMetaPDF.isChecked();
@@ -1389,6 +1394,9 @@ public class PrefFragment2 extends UIFragment {
                         }, timeout);
                     };
 
+                    isScanOnLaunch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                        AppState.get().isScanOnLaunch = isChecked;
+                    });
                     isFirstSurname.setOnCheckedChangeListener(listener);
                     isAuthorTitleFromMetaPDF.setOnCheckedChangeListener(listener);
                     isSkipFolderWithNOMEDIA.setOnCheckedChangeListener(listener);

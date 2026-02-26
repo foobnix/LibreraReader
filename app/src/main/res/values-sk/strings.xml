@@ -684,4 +684,5 @@
    <string name="msg_migration">Pre migráciu údajov preneste adresár [Librera] do iného zariadenia.</string>
    <string name="msg_sync">Synchronizujte priečinok [Librera] s inými zariadeniami prostredníctvom Disku Google alebo aplikácií tretích strán.</string>
    <string name="display_alert_if_cropping_is_on">Zobraziť upozornenie, ak je zapnuté orezanie</string>
+   <string name="scan_for_new_books_at_launch">Skenovať nové knihy pri vydaní</string>
 </resources>

@@ -684,4 +684,5 @@
    <string name="msg_migration">برای انتقال داده‌هایتان، پوشه [Librera] را به دستگاه دیگری منتقل کنید.</string>
    <string name="msg_sync">پوشه [Librera] را از طریق گوگل درایو یا برنامه‌های شخص ثالث با سایر دستگاه‌ها همگام‌سازی کنید.</string>
    <string name="display_alert_if_cropping_is_on">نمایش هشدار در صورت فعال بودن برش</string>
+   <string name="scan_for_new_books_at_launch">اسکن کتاب‌های جدید در زمان رونمایی</string>
 </resources>

@@ -684,4 +684,5 @@
    <string name="msg_migration">Transferitu [Librera] direktorioa beste gailu batera zure datuak migratzeko.</string>
    <string name="msg_sync">Sinkronizatu [Librera] karpeta beste gailu batzuekin Google Drive edo hirugarrenen aplikazioen bidez.</string>
    <string name="display_alert_if_cropping_is_on">Erakutsi alerta mozketa aktibatuta badago</string>
+   <string name="scan_for_new_books_at_launch">Eskaneatu liburu berriak abiaraztean</string>
 </resources>

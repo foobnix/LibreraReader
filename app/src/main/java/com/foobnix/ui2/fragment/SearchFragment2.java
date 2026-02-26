@@ -41,7 +41,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -689,6 +688,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
+            if(!AppState.get().isScanOnLaunch){
+                LOG.d("checkForDeleteBooks","skip");
+                return;
+            }
+            LOG.d("checkForDeleteBooks","run");
             //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
             WorkManager.getInstance(getContext())

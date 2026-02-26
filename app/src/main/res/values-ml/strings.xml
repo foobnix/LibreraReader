@@ -684,4 +684,5 @@
    <string name="msg_migration">നിങ്ങളുടെ ഡാറ്റ മൈഗ്രേറ്റ് ചെയ്യുന്നതിന് [Librera] ഡയറക്ടറി മറ്റൊരു ഉപകരണത്തിലേക്ക് മാറ്റുക.</string>
    <string name="msg_sync">ഗൂഗിൾ ഡ്രൈവ് അല്ലെങ്കിൽ മൂന്നാം കക്ഷി ആപ്പുകൾ വഴി [ലിബ്രെറ] ഫോൾഡർ മറ്റ് ഉപകരണങ്ങളുമായി സമന്വയിപ്പിക്കുക.</string>
    <string name="display_alert_if_cropping_is_on">ക്രോപ്പിംഗ് ഓണാണെങ്കിൽ അലേർട്ട് പ്രദർശിപ്പിക്കുക</string>
+   <string name="scan_for_new_books_at_launch">പ്രകാശന സമയത്ത് പുതിയ പുസ്തകങ്ങൾക്കായി സ്കാൻ ചെയ്യുക</string>
 </resources>

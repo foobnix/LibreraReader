@@ -684,4 +684,5 @@
    <string name="msg_migration">Transfer the [Librera] directory to another device to migrate your data.</string>
    <string name="msg_sync">Synchronize the [Librera] folder with other devices via Google Drive or third-party apps.</string>
    <string name="display_alert_if_cropping_is_on">Display alert if cropping is on</string>
+   <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
 </resources>

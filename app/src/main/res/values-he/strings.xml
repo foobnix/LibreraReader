@@ -684,4 +684,5 @@
    <string name="msg_migration">העבר את הספרייה [Librera] למכשיר אחר כדי להעביר את הנתונים שלך.</string>
    <string name="msg_sync">סנכרן את התיקייה [Librera] עם מכשירים אחרים דרך גוגל דרייב או אפליקציות של צד שלישי.</string>
    <string name="display_alert_if_cropping_is_on">הצגת התראה אם החיתוך מופעל</string>
+   <string name="scan_for_new_books_at_launch">סרוק ספרים חדשים עם ההשקה</string>
 </resources>

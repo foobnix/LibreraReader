@@ -684,4 +684,5 @@
    <string name="msg_migration">将 [Librera] 目录传输到另一台设备以迁移您的数据。</string>
    <string name="msg_sync">通过谷歌云端硬盘或第三方应用程序将[Librera]文件夹与其他设备同步。</string>
    <string name="display_alert_if_cropping_is_on">如果裁剪功能已开启，则显示警告。</string>
+   <string name="scan_for_new_books_at_launch">发布会上扫描即可查看新书。</string>
 </resources>

@@ -684,4 +684,5 @@
    <string name="msg_migration">Перенесіть каталог [Librera] на інший пристрій, щоб перенести свої дані.</string>
    <string name="msg_sync">Синхронізуйте папку [Librera] з іншими пристроями через Google Диск або сторонні програми.</string>
    <string name="display_alert_if_cropping_is_on">Відображати сповіщення, якщо обрізання ввімкнено</string>
+   <string name="scan_for_new_books_at_launch">Сканування нових книг на виході</string>
 </resources>
