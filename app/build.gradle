@@ -334,6 +334,12 @@ dependencies {
     implementation(libs.commons.logging.api)
     implementation(libs.guava)
 
+    implementation("org.commonmark:commonmark:0.27.1")
+    implementation ("org.commonmark:commonmark-ext-gfm-tables:0.27.1")
+
+
+
+
     def dep_free = project(':libDepFree')
 
 

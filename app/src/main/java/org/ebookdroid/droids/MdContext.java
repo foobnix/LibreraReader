@@ -11,7 +11,14 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.google.common.io.CharSource;
+import com.google.common.io.Files;
 
+import org.commonmark.Extension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -23,7 +30,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
@@ -153,11 +162,22 @@ public class MdContext extends PdfContext {
         File file = new File(outputDir, OUT_FB2_XML);
         LOG.d("MdContext", inputPath);
         try {
-            String line2 = convertMdToHtml(inputPath);
+            //String line2 = convertMdToHtml(inputPath);
 
+            CharSource source = Files.asCharSource(new File(inputPath), StandardCharsets.UTF_8);
+            String content = source.read();
+
+            List<Extension> tables = Collections.singletonList(TablesExtension.create());
+
+            Parser parser = Parser.builder().extensions(tables).build();
+            Node document = parser.parse(content);
+            HtmlRenderer renderer = HtmlRenderer.builder().extensions(tables).build();
+            String htmlOutput = renderer.render(document);
+
+            LOG.d("MdContext","out", htmlOutput);
 
             FileOutputStream out = new FileOutputStream(file);
-            out.write(line2.getBytes());
+            out.write(htmlOutput.getBytes(StandardCharsets.UTF_8));
             out.flush();
             out.close();
         } catch (Exception e) {
