@@ -45,7 +45,8 @@ public class MagicHelper {
         builder.append(Objects.hashCode(AppState.get()));
         builder.append(Objects.hashCode(BookCSS.get()));
 
-        return builder.toString().hashCode();
+        return builder.toString()
+                      .hashCode();
 
     }
 
@@ -185,7 +186,8 @@ public class MagicHelper {
     }
 
     public static int getTransparencyInt() {
-        return AppState.get().isDayNotInvert ? AppState.get().bgImageDayTransparency : AppState.get().bgImageNightTransparency;
+        return AppState.get().isDayNotInvert ? AppState.get().bgImageDayTransparency :
+                AppState.get().bgImageNightTransparency;
     }
 
     public static final String IMAGE_BG_1 = "bg/bg1.jpg";
@@ -221,7 +223,8 @@ public class MagicHelper {
 
     public static Bitmap getBitmapFromAsset(Context context, String filePath) {
         try {
-            return BitmapFactory.decodeStream(context.getAssets().open(filePath));
+            return BitmapFactory.decodeStream(context.getAssets()
+                                                     .open(filePath));
         } catch (IOException e) {
             LOG.e(e);
         }
@@ -229,7 +232,8 @@ public class MagicHelper {
     }
 
     public static Drawable getBgImageDayDrawable(boolean withAlpa) {
-        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageDayPath), withAlpa ? AppState.get().bgImageDayTransparency : AppState.DAY_TRANSPARENCY, Color.WHITE);
+        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageDayPath),
+                withAlpa ? AppState.get().bgImageDayTransparency : AppState.DAY_TRANSPARENCY, Color.WHITE);
         if (bitmap == null) {
             return new ColorDrawable(Color.WHITE);
         }
@@ -237,7 +241,8 @@ public class MagicHelper {
     }
 
     public static Drawable getBgImageNightDrawable(boolean withAlpa) {
-        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageNightPath), withAlpa ? AppState.get().bgImageNightTransparency : AppState.NIGHT_TRANSPARENCY, Color.BLACK);
+        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageNightPath),
+                withAlpa ? AppState.get().bgImageNightTransparency : AppState.NIGHT_TRANSPARENCY, Color.BLACK);
         if (bitmap == null) {
             return new ColorDrawable(Color.BLACK);
         }
@@ -264,19 +269,20 @@ public class MagicHelper {
             return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
 
-
         if (name.startsWith("/") && !new File(name).exists()) {
             return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
 
-        if (name.startsWith("/")) {
-
-            BitmapFactory.Options opt = new BitmapFactory.Options();
-            opt.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
-            return BitmapFactory.decodeFile(name, opt);
-        }
         try {
-            InputStream oldBook = LibreraApp.context.getAssets().open(name);
+
+            if (name.startsWith("/")) {
+                //BitmapFactory.Options opt = new BitmapFactory.Options();
+                //opt.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
+                return decodeScaledBitmap(name);
+            }
+
+            InputStream oldBook = LibreraApp.context.getAssets()
+                                                    .open(name);
             Bitmap decodeStream = BitmapFactory.decodeStream(oldBook);
             Bitmap res = decodeStream.copy(AppsConfig.CURRENT_BITMAP_ARGB, false);
             decodeStream.recycle();
@@ -285,6 +291,42 @@ public class MagicHelper {
             LOG.e(e);
             return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
+    }
+
+    public static Bitmap decodeScaledBitmap(String name) {
+        File file = new File(name);
+        long fileSizeInBytes = file.length();
+        long limitInBytes = 1024 * 1024; // 1 MB
+
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+
+        if (fileSizeInBytes > limitInBytes) {
+            // 1. First, decode with inJustDecodeBounds = true to check dimensions
+            opt.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(name, opt);
+
+            // 2. Calculate inSampleSize (must be a power of 2, e.g., 2, 4, 8)
+            // We calculate how much larger the file is than the limit
+            opt.inSampleSize = calculateInSampleSize(fileSizeInBytes, limitInBytes);
+
+            // 3. Decode again with inJustDecodeBounds = false
+            opt.inJustDecodeBounds = false;
+        }
+
+        opt.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
+        return BitmapFactory.decodeFile(name, opt);
+    }
+
+    private static int calculateInSampleSize(long fileSize, long limit) {
+        int inSampleSize = 1;
+        if (fileSize > limit) {
+            // We estimate scaling. Since area scales quadratically,
+            // a sample size of 2 reduces memory by 4x.
+            float ratio = (float) fileSize / limit;
+            inSampleSize = (int) Math.ceil(Math.sqrt(ratio));
+        }
+        // Standard practice: ensure it's a power of 2 for better performance
+        return Integer.highestOneBit(inSampleSize);
     }
 
     public static Bitmap updateWithBackground(Bitmap bitmap) {
@@ -476,7 +518,6 @@ public class MagicHelper {
         return textColor;
     }
 
-
     public static boolean isLight(int color) {
         return color >= 200 && color <= 255;
     }
@@ -646,9 +687,12 @@ public class MagicHelper {
 
         final float inverseAmount = 1.0f - amount;
 
-        int a = ((int) (((color1 >> ALPHA_CHANNEL & 0xff) * amount) + ((color2 >> ALPHA_CHANNEL & 0xff) * inverseAmount))) & 0xff;
-        int r = ((int) (((color1 >> RED_CHANNEL & 0xff) * amount) + ((color2 >> RED_CHANNEL & 0xff) * inverseAmount))) & 0xff;
-        int g = ((int) (((color1 >> GREEN_CHANNEL & 0xff) * amount) + ((color2 >> GREEN_CHANNEL & 0xff) * inverseAmount))) & 0xff;
+        int a =
+                ((int) (((color1 >> ALPHA_CHANNEL & 0xff) * amount) + ((color2 >> ALPHA_CHANNEL & 0xff) * inverseAmount))) & 0xff;
+        int r =
+                ((int) (((color1 >> RED_CHANNEL & 0xff) * amount) + ((color2 >> RED_CHANNEL & 0xff) * inverseAmount))) & 0xff;
+        int g =
+                ((int) (((color1 >> GREEN_CHANNEL & 0xff) * amount) + ((color2 >> GREEN_CHANNEL & 0xff) * inverseAmount))) & 0xff;
         int b = ((int) (((color1 & 0xff) * amount) + ((color2 & 0xff) * inverseAmount))) & 0xff;
 
         return a << ALPHA_CHANNEL | r << RED_CHANNEL | g << GREEN_CHANNEL | b << BLUE_CHANNEL;
@@ -759,8 +803,6 @@ public class MagicHelper {
             return true; // It's a dark color
         }
     }
-
-
 
     public static void applyQuickContrastAndBrightness(int[] arr, int w, int h) {
         if (AppState.get().isEnableBCOptional1) {
