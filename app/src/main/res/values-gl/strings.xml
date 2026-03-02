@@ -395,7 +395,7 @@
    <string name="cd_return_to_the_parent_folder">Volver ao cartafol raíz</string>
    <string name="cd_back_to_sd_card">Volver á tarxeta SD</string>
    <string name="cd_clear_all">Limpar todo</string>
-   <string name="cd_search_in_bookmarks">procurar nos marcadores</string>
+   <string name="cd_search_in_bookmarks">Procurar nos marcadores</string>
    <string name="cd_export">Exportar</string>
    <string name="cd_import">Importar</string>
    <string name="cd_back_to_parent">Voltar ao nivel superior</string>

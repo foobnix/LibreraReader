@@ -223,7 +223,7 @@
                 android:textAllCaps="true" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="1dip"
@@ -703,7 +703,7 @@
             </LinearLayout>
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="1dip"
@@ -771,7 +771,7 @@
                 </LinearLayout>
 
                 <View
-                    android:tag="with_tint"
+                    android:tag="with_tint1"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="3dip"
@@ -872,7 +872,7 @@
                 my:text="@string/long_tap" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="3dip"
@@ -1177,7 +1177,7 @@
                 android:visibility="gone" />
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="1dip"
@@ -1243,7 +1243,7 @@
             </LinearLayout>
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="1dip"
@@ -1496,7 +1496,7 @@
             </LinearLayout>
 
             <View
-                android:tag="with_tint"
+                android:tag="with_tint1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="1dip"
