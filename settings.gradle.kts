@@ -40,5 +40,5 @@ include(":Builder")
 include(":libDepFree")
 include(":libDepPro")
 
-include(":composeApp")
-include(":shared")
+//include(":composeApp")
+//include(":shared")

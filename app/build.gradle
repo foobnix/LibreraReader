@@ -361,7 +361,7 @@ dependencies {
 }
 
 
-task copyApks() {
+tasks.register("copyApks") {
     if (project.hasProperty('beta') || project.hasProperty("release")) {
         println "My Task: [copy apks]"
 
@@ -421,10 +421,10 @@ task copyApks() {
 }
 
 
-task incVersion() {
+tasks.register("incVersion") {
+    File progejectDir = layout.projectDirectory.getAsFile()
     doLast {
         Properties props = new Properties()
-        File progejectDir = layout.projectDirectory.getAsFile()
         println "progejectDir :" + progejectDir
 
         File propsFile = new File(progejectDir, 'gradle.properties')
