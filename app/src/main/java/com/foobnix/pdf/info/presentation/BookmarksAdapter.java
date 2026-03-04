@@ -55,6 +55,8 @@ public class BookmarksAdapter extends BaseAdapter {
         final AppBookmark bookmark = objects.get(position);
 
         final TextView textView = (TextView) view.findViewById(R.id.text);
+        textView.setMaxLines(muxnumberOfLines);
+        textView.setEllipsize(android.text.TextUtils.TruncateAt.END);
         final TextView pageView = (TextView) view.findViewById(R.id.page);
         final TextView titleView = (TextView) view.findViewById(R.id.title);
         final ImageView image = (ImageView) view.findViewById(R.id.image);
