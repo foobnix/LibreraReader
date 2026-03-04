@@ -302,7 +302,7 @@ public class ColorsDialog {
                     @Override
                     public void onClick(View v) {
                         try {
-                            colorForegroundChoose = Color.parseColor(input.getText().toString());
+                            colorTextChoose = Color.parseColor(input.getText().toString());
                             updateAll(colorTextChoose, colorBgChoose, colorForegroundChoose);
                             dialog.dismiss();
                         } catch (Exception e) {
