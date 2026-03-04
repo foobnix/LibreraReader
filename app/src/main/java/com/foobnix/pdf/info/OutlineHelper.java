@@ -90,9 +90,6 @@ public class OutlineHelper {
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_4) {
             String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
 
-            // int leftPages = getLeftPages(dc);
-            text += SP;
-
             info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
             info.chText = textPage + DV + textMax;
