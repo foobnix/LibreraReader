@@ -112,7 +112,7 @@
                     android:ellipsize="end"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:maxLines="3"
+                    android:maxLines="10"
                     android:text="Bookmark text   Bookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text Bookmark" />
 
                 <ImageView
