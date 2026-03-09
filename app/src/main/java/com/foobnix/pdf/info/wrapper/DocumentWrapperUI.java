@@ -792,7 +792,7 @@ public class DocumentWrapperUI {
             onModeChange.setVisibility(View.GONE);
             onTextReplacement.setVisibility(View.VISIBLE);
 
-            if (AppSP.get().isCrop) {
+            if (AppSP.get().isCrop || AppState.get().isExperimental) {
                 crop.setVisibility(View.VISIBLE);
             }
             if (AppSP.get().isCut) {

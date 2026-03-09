@@ -833,6 +833,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setVisibility(isTextFomat && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
+        if(AppState.get().isExperimental){
+            onCrop.setVisibility(View.VISIBLE);
+        }
 
         onCrop.setOnClickListener(v -> DragingDialogs.dialogCustomCrop(anchor, dc, onCropChange));
         onCrop.setOnLongClickListener(v -> {
@@ -1142,6 +1145,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     updateIconMode();
 
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
+                    if(AppState.get().isExperimental){
+                        onCrop.setVisibility(View.VISIBLE);
+                    }
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(View.GONE );
                     if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional1) {
