@@ -90,7 +90,7 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.16.0" }#not update
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
-google-api-client-android = { module = "com.google.api-client:google-api-client-android", version.ref = "googleApiClientAndroid" }
+google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.0" }
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version.ref = "googleHttpClientGson" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version.ref = "googleOauthClientJetty" }
@@ -100,7 +100,7 @@ guava = { module = "com.google.guava:guava", version.ref = "guava" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
-junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
+junrar = { module = "com.github.junrar:junrar", version = "7.5.8" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
@@ -108,8 +108,8 @@ multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.0.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.5.1" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
@@ -117,7 +117,7 @@ runner = { module = "androidx.test:runner", version.ref = "runner" }
 stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
-zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.6" }
 xmlutil-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlutil" }
 
 okio-parent = { module = "com.squareup.okio:okio-parent", version.ref = "okioParent" }
