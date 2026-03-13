@@ -1,19 +1,5 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
-**The development and support of Librera is frozen for an unpredictable time, there is a big war in my country
-Ukraine.**
-[Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
-
-🇺🇦 To help Ukraine, please donate to these funds 💙💛
-
-[OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
-
-[Повернись Живим - Come Back Alive](https://savelife.in.ua/en/)
-
-[Фонд Сергія Стерненка - Foundation Sternenko Community](https://www.sternenkofund.org/en)
-
-[Фонд Сергія Притули - Serhiy Prytula Charity Foundation](https://prytulafoundation.org/en/)
-
 # Librera Reader
 
 Librera Reader is an e-book reader for Android devices;
@@ -72,7 +58,7 @@ mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev li
 ~~~~
 
 You also need the Android NDK in version 20+
-Please ensure to download it using android studio and add the NDK to your PATH.
+Please ensure to download it using Android Studio and add the NDK to your PATH.
 
 ## Create a keystore
 
@@ -98,14 +84,11 @@ RELEASE_KEY_ALIAS=ALIAS
 
 ## Create Firebase Authentication file
 
-To build with firebase support (all version but the ones for Fdroid) you need to get an
-authentication file for firebase services offered by google. Therefore please follow
-https://firebase.google.com/docs/android/setup to create your own project. You need to
-register for the packages com.foobnix.pdf.info and com.foobnix.pdf.reader.a1. This way
-you will get a google-services.json file that you have to place in the app folder of
-the repository.
+To build with firebase support (all versions but the ones for F-Droid) you need to get an
+authentication file for firebase services offered by Google. Therefore please follow https://firebase.google.com/docs/android/setup to create your own project. You need to
+register for the packages com.foobnix.pdf.info and com.foobnix.pdf.reader.a1. This way you will get a google-services.json file that you have to place in the app folder of the repository.
 
-For this project only Analytics is used, so a spakling plan is all you need.
+For this project only Analytics is used, so a sparkling plan is sufficient.
 
 ## Librera Build on MuPdf
 
@@ -118,7 +101,7 @@ cd ..
 
 ## Building for F-Droid for Android
 
-If you wish to build for F-Droid (e.g. not using google services, Internet) you can run the build with
+If you wish to build for F-Droid (e.g. not using Google services, Internet) you can run the build with
 
 ~~~~
 cd Builder
@@ -127,7 +110,7 @@ cd ..
 ./gradlew assembleFdroid
 ~~~~
 
-F-Droid build does also not need a **google-services.json**
+F-Droid build does not require a **google-services.json**
 
 ## Librera depends on:
 

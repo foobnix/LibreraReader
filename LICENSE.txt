@@ -1,3 +1,9 @@
+LibreraReader Ad-Free Fork
+Copyright (c) 2026 Mohibur Rashid
+
+This is a fork of the original LibreraReader project (https://github.com/foobnix/LirbiReader)
+with ad-free modifications for F-Droid and other custom builds.
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or

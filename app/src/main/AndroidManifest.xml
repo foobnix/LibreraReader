@@ -52,23 +52,9 @@
             android:name="android.webkit.WebView.MetricsOptOut"
             android:value="true" />
 
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${admobAppId}" />
-        <meta-data
-            android:name="librera.ADMOB_BANNER_ID"
-            android:value="${admobBannerId}" />
-        <meta-data
-            android:name="librera.ADMOB_FULLSCREEN_ID"
-            android:value="${admobFullId}" />
         <meta-data
             android:name="librera.GOOGLE_DRIVE_KEY"
             android:value="${appGdriveKey}" />
-
-        <meta-data
-            android:name="librera.ADMOB_REWARD"
-            android:value="${admobRewardId}" />
 
 
         <provider
