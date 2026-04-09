@@ -327,10 +327,12 @@ public class DocumentWrapperUI {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
+            showHideHistory();
         }
 
         @Override
         public void onStartTrackingTouch(final SeekBar seekBar) {
+            dc.getLinkHistory().add(dc.getCurentPageFirst1());
         }
 
         @Override
@@ -1796,6 +1798,7 @@ public class DocumentWrapperUI {
     };
 
     public void show() {
+        showHideHistory();
         menuLayout.setVisibility(View.VISIBLE);
 
         titleBar.setVisibility(View.VISIBLE);

@@ -2510,10 +2510,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
+            showHideHistory();
         }
 
         @Override
         public void onStartTrackingTouch(final SeekBar seekBar) {
+            dc.getLinkHistory().add(dc.getCurentPageFirst1());
         }
 
         @Override
