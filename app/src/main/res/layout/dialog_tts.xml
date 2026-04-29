@@ -99,6 +99,12 @@
             android:layout_weight="0"
             android:text="@string/restore_defaults_short" />
 
+        <CheckBox
+            android:id="@+id/isSherpaOnnxTtsEnabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sherpa_onnx_offline_tts" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

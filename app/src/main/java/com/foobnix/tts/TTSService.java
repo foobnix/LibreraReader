@@ -692,6 +692,43 @@ import java.util.List;
             }
             final String preText1 = preText;
 
+            TTSEngine.get().setSpeechListener(new TTSEngine.SpeechListener() {
+                @Override public void onDone(String utteranceId) {
+                    LOG.d(TAG, "onSpeechDone", utteranceId);
+                    if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
+                        stopMediaSesstionAndReleaweWakeLock();
+                        return;
+                    }
+                    if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
+                        if (TxtUtils.isNotEmpty(preText1)) {
+                            AppSP.get().lastBookParagraph =
+                                    Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
+                        } else {
+                            AppSP.get().lastBookParagraph = Integer.parseInt(
+                                    utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
+                        }
+                        return;
+                    }
+                    if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                        return;
+                    }
+                    if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                        stopMediaSesstionAndReleaweWakeLock();
+                        stopSelf();
+                        return;
+                    }
+                    AppSP.get().lastBookParagraph = 0;
+                    playPage(secondPart, AppSP.get().lastBookPage + 1, null);
+                }
+
+                @Override public void onError(String utteranceId) {
+                    LOG.d(TAG, "onSpeechError", utteranceId);
+                    stopMediaSesstionAndReleaweWakeLock();
+                    EventBus.getDefault()
+                            .post(new TtsStatus());
+                }
+            });
+
             if (Build.VERSION.SDK_INT >= 15) {
                 TTSEngine.get()
                          .getTTS()

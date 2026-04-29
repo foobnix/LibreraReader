@@ -152,6 +152,7 @@
    <string name="bluelight_filter">Bluelight Filter</string>
    <string name="password">Password</string>
    <string name="restore_defaults_short">Restore default</string>
+   <string name="sherpa_onnx_offline_tts">Sherpa-ONNX offline TTS</string>
    <string name="customize">Configure</string>
    <string name="color">Color</string>
    <string name="horizontal">Horizontal</string>

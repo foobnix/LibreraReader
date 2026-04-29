@@ -326,6 +326,9 @@ public class AppState {
     public int flippingInterval = 10;
     public int ttsTimer = 240;
     public int ttsPauseDuration = 50;
+    @IgnoreHashCode public boolean isSherpaOnnxTtsEnabled = false;
+    @IgnoreHashCode public int sherpaOnnxTtsSpeakerId = 0;
+    @IgnoreHashCode public int sherpaOnnxTtsNumThreads = 2;
     public int transparencyUI = 250;
     @IgnoreHashCode public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
     @IgnoreHashCode public int chapterFormat = CHAPTER_FORMAT_3;

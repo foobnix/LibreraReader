@@ -1,1 +1,9 @@
-/jniLibs
+/jniLibs/*
+!/jniLibs/arm64-v8a/
+!/jniLibs/arm64-v8a/*.so
+!/jniLibs/armeabi-v7a/
+!/jniLibs/armeabi-v7a/*.so
+!/jniLibs/x86/
+!/jniLibs/x86/*.so
+!/jniLibs/x86_64/
+!/jniLibs/x86_64/*.so

@@ -59,6 +59,8 @@ public class TTSEngine {
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
     volatile MediaPlayer mp;
+    volatile SherpaOnnxTtsPlayer sherpaOnnxTtsPlayer = new SherpaOnnxTtsPlayer();
+    volatile SpeechListener speechListener;
     Timer mTimer;
     Object helpObject = new Object();
     HashMap<String, String> map = new HashMap<String, String>();
@@ -91,6 +93,15 @@ public class TTSEngine {
 
     public static TTSEngine get() {
         return INSTANCE;
+    }
+
+    public interface SpeechListener {
+        void onDone(String utteranceId);
+        void onError(String utteranceId);
+    }
+
+    public void setSpeechListener(SpeechListener speechListener) {
+        this.speechListener = speechListener;
     }
 
     public static AppBookmark fastTTSBookmakr(DocumentController dc) {
@@ -134,6 +145,7 @@ public class TTSEngine {
         LOG.d(TAG, "shutdown");
 
         synchronized (helpObject) {
+            sherpaOnnxTtsPlayer.shutdown();
             if (ttsEngine != null) {
 
                 ttsEngine.shutdown();
@@ -198,6 +210,7 @@ public class TTSEngine {
 
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            sherpaOnnxTtsPlayer.stop();
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
@@ -216,6 +229,7 @@ public class TTSEngine {
         LOG.d(TAG, "stop");
         TxtUtils.dictHash = "";
         synchronized (helpObject) {
+            sherpaOnnxTtsPlayer.shutdown();
             if (ttsEngine != null) {
                 ttsEngine.shutdown();
             }
@@ -243,6 +257,24 @@ public class TTSEngine {
         LOG.d(TAG, "speek", AppSP.get().lastBookPage, "par", AppSP.get().lastBookParagraph);
 
         if (TxtUtils.isEmpty(text)) {
+            return;
+        }
+        if (AppState.get().isSherpaOnnxTtsEnabled) {
+            sherpaOnnxTtsPlayer.speak(LibreraApp.context, text, new SherpaOnnxTtsPlayer.Listener() {
+                @Override public void onDone(String utteranceId) {
+                    SpeechListener listener = speechListener;
+                    if (listener != null) {
+                        listener.onDone(utteranceId);
+                    }
+                }
+
+                @Override public void onError(String utteranceId, Exception error) {
+                    SpeechListener listener = speechListener;
+                    if (listener != null) {
+                        listener.onError(utteranceId);
+                    }
+                }
+            });
             return;
         }
         if (ttsEngine == null) {
@@ -434,7 +466,7 @@ public class TTSEngine {
         if (AppState.get().isEnableAccessibility) {
             return true;
         }
-        return mp != null || ttsEngine != null;
+        return mp != null || ttsEngine != null || sherpaOnnxTtsPlayer.isPlaying();
     }
 
     public boolean isPlaying() {
@@ -443,6 +475,9 @@ public class TTSEngine {
         }
         if (isMp3()) {
             return mp != null && mp.isPlaying();
+        }
+        if (AppState.get().isSherpaOnnxTtsEnabled && sherpaOnnxTtsPlayer.isPlaying()) {
+            return true;
         }
 
         synchronized (helpObject) {

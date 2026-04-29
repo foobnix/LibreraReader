@@ -760,7 +760,7 @@ public class DragingDialogs {
             return;
         }
 
-        if (TTSEngine.get().hasNoEngines()) {
+        if (!AppState.get().isSherpaOnnxTtsEnabled && TTSEngine.get().hasNoEngines()) {
             Urls.openTTS(controller.getActivity());
             return;
         }
@@ -1066,6 +1066,15 @@ public class DragingDialogs {
                             }
                         });
                 //
+
+                CheckBox isSherpaOnnxTtsEnabled = view.findViewById(R.id.isSherpaOnnxTtsEnabled);
+                isSherpaOnnxTtsEnabled.setChecked(AppState.get().isSherpaOnnxTtsEnabled);
+                isSherpaOnnxTtsEnabled.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isSherpaOnnxTtsEnabled = isChecked;
+                        TTSEngine.get().shutdown();
+                    }
+                });
 
                 CheckBox stopReadingOnCall = view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
