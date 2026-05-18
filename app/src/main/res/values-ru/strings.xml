@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Если замочек \"закрыть\", страницы не будут смещаться в стороны</string>
    <string name="there_are_no_email_applications_installed_">Приложения для работы с E-mail не установлены</string>
    <string name="file_not_found">Файл не найден</string>
-   <string name="you_need_grant_permission">Вам необходимо предоставить приложению доступ к внешнему запоминающему устройству</string>
+   <string name="you_need_grant_permission2">Для чтения ваших книг приложению необходим доступ к памяти вашего устройства.</string>
    <string name="remind_msg">Пришло время сделать перерыв и дать глазам немного отдохнуть</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для этой страницы уже существует</string>
    <string name="can_t_download">Скачать нельзя</string>

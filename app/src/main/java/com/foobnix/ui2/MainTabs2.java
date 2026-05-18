@@ -243,7 +243,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             SearchAllBooksWorker.run(this);
         }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
-            Toast.makeText(this, R.string.the_application_needs_storage_permission, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.you_need_grant_permission2, Toast.LENGTH_SHORT).show();
             //Android6.checkPermissions(this, false);
             //return;
 
@@ -320,8 +320,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-        if (!Android6.canWrite(this)) {
+        if (!Android6.canWrite(this) && !AppSP.get().userDeniedPermission) {
             Android6.checkPermissions(this, true);
+            AppSP.get().userDeniedPermission=true;
             //return;
 
         }

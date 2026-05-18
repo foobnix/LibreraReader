@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Bloqueado: Arrastre de página deshabilitado</string>
    <string name="there_are_no_email_applications_installed_">No hay una aplicación de correo instalada.</string>
    <string name="file_not_found">Archivo no encontrado</string>
-   <string name="you_need_grant_permission">Es necesario conceder el permiso de almacenamiento externo para esta aplicación</string>
+   <string name="you_need_grant_permission2">Para leer tus libros, la aplicación necesita acceso al almacenamiento de tu dispositivo.</string>
    <string name="remind_msg">Por favor tómese un respiro y descanse sus ojos.</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador ya existe</string>
    <string name="can_t_download">No se puede descargar</string>

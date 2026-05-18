@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blocadu: su trìsinu de pàginas est disabilitadu</string>
    <string name="there_are_no_email_applications_installed_">Perunu cliete de posta eletrònica installadu</string>
    <string name="file_not_found">Documentu no agatadu</string>
-   <string name="you_need_grant_permission">Permite a Librera de atzèdere a sa memòria esterna</string>
+   <string name="you_need_grant_permission2">To read your books, the app needs access to your device storage</string>
    <string name="remind_msg">Tempus de ti pasare!</string>
    <string name="bookmark_for_this_page_already_exists">Custu sinnalibru esistit giai</string>
    <string name="can_t_download">Iscarrigamentu de su documentu fallidu</string>

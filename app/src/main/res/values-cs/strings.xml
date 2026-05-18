@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Zamknuto: přetažení stránky je zakázáno</string>
    <string name="there_are_no_email_applications_installed_">Není nainstalován žádný e-mailový klient</string>
    <string name="file_not_found">Soubor nenalezen</string>
-   <string name="you_need_grant_permission">Prosím udělte povolení přístupu Librery k externímu úložišti</string>
+   <string name="you_need_grant_permission2">Abyste si mohli číst knihy, aplikace potřebuje přístup k úložišti vašeho zařízení</string>
    <string name="remind_msg">Je čas dát si přestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Tato záložka už existuje.</string>
    <string name="can_t_download">Soubor nelze stáhnout</string>

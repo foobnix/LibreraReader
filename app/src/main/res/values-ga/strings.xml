@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Faoi ghlas: tá tarraingt leathanaigh díchumasaithe</string>
    <string name="there_are_no_email_applications_installed_">Níl aon chliant ríomhphoist suiteáilte</string>
    <string name="file_not_found">Níor aimsíodh comhad</string>
-   <string name="you_need_grant_permission">Tabhair rochtain do librera ar stóráil sheachtrach le do thoil</string>
+   <string name="you_need_grant_permission2">Chun do leabhair a léamh, ní mór don aip rochtain a fháil ar stóras do ghléis</string>
    <string name="remind_msg">Am chun sos a ghlacadh!</string>
    <string name="bookmark_for_this_page_already_exists">Tá an leabharmharc seo ann cheana féin</string>
    <string name="can_t_download">In ann an comhad a íoslódáil</string>

@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blocca il movimento della pagina in orizzontale</string>
    <string name="there_are_no_email_applications_installed_">L\'applicazione e-mail non è installata.</string>
    <string name="file_not_found">File non trovato</string>
-   <string name="you_need_grant_permission">È necessario concedere l\'autorizzazione di archiviazione esterna per questa applicazione</string>
+   <string name="you_need_grant_permission2">Per leggere i tuoi libri, l\'app ha bisogno di accedere alla memoria del tuo dispositivo.</string>
    <string name="remind_msg">Si prega di prendere una pausa per i tuoi occhi e riposare un po \'.</string>
    <string name="bookmark_for_this_page_already_exists">Segnalibro per questa pagina esiste già</string>
    <string name="can_t_download">Non puoi scaricare</string>

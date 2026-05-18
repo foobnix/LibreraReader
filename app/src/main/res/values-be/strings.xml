@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Заблакіравана: перацягванне старонак адключана</string>
    <string name="there_are_no_email_applications_installed_">Паштовы кліент не ўсталяваны</string>
    <string name="file_not_found">Файл не знойдзены</string>
-   <string name="you_need_grant_permission">Калі ласка, дайце Librera доступ да знешняй памяці</string>
+   <string name="you_need_grant_permission2">Каб чытаць кнігі, праграме патрэбны доступ да памяці вашай прылады</string>
    <string name="remind_msg">Час зрабіць перапынак!</string>
    <string name="bookmark_for_this_page_already_exists">Гэтая закладка ўжо існуе</string>
    <string name="can_t_download">Немагчыма спампаваць файл</string>

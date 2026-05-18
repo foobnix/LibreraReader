@@ -164,6 +164,35 @@
             android:src="@drawable/my_glyphicons_114_paragraph_justify" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutOnGrant"
+        android:background="@color/red_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="@string/you_need_grant_permission2" />
+
+        <TextView
+            android:id="@+id/layoutOnGrantButton"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="0"
+            android:textAllCaps="true"
+            android:text="@string/yes" />
+    </LinearLayout>
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/openAsBook"
         android:layout_width="match_parent"

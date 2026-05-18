@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Κλειδωμένο: η μεταφορά σελίδων είναι απενεργοποιημένη</string>
    <string name="there_are_no_email_applications_installed_">Δεν έχει εγκατασταθεί πελάτης email</string>
    <string name="file_not_found">Το αρχείο δε βρέθηκε</string>
-   <string name="you_need_grant_permission">Παραχωρήστε πρόσβαση στο librera σε εξωτερικό χώρο αποθήκευσης</string>
+   <string name="you_need_grant_permission2">Για να διαβάσετε τα βιβλία σας, η εφαρμογή χρειάζεται πρόσβαση στον αποθηκευτικό χώρο της συσκευής σας</string>
    <string name="remind_msg">Ώρα για ένα διάλειμμα!</string>
    <string name="bookmark_for_this_page_already_exists">Αυτός ο σελιδοδείκτης υπάρχει ήδη</string>
    <string name="can_t_download">Αδύνατο να κατεβεί το αρχείο</string>

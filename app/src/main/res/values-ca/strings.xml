@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Bloquejat: l\'arrossegament de pàgina està desactivat</string>
    <string name="there_are_no_email_applications_installed_">No hi ha cap client de correu instal·lat</string>
    <string name="file_not_found">No s\'ha trobat el fitxer</string>
-   <string name="you_need_grant_permission">Si us plau, concediu Librera accés a l\'emmagatzematge extern</string>
+   <string name="you_need_grant_permission2">Per llegir els teus llibres, l\'aplicació necessita accedir a l\'emmagatzematge del teu dispositiu</string>
    <string name="remind_msg">És hora de fer una pausa.</string>
    <string name="bookmark_for_this_page_already_exists">Aquest marcador ja existeix</string>
    <string name="can_t_download">No s\'ha pogut baixar el fitxer</string>

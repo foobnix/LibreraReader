@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blokker sidebevegelsen horisontalt</string>
    <string name="there_are_no_email_applications_installed_">E-postprogrammet er ikke installert.</string>
    <string name="file_not_found">Fil ikke funnet</string>
-   <string name="you_need_grant_permission">Du må gi tillatelse til ekstern lagring for dette programmet</string>
+   <string name="you_need_grant_permission2">For å lese bøkene dine trenger appen tilgang til enhetens lagringsplass</string>
    <string name="remind_msg">Vennligst ta en pause for øynene dine og hvile litt.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmerke for denne siden finnes allerede</string>
    <string name="can_t_download">Kan ikke lastes ned</string>

@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Құлыпталған: бет апару мүмкіндігі өшірілген</string>
    <string name="there_are_no_email_applications_installed_">Электрондық пошта клиенті орнатылмаған</string>
    <string name="file_not_found">Файл табылмады</string>
-   <string name="you_need_grant_permission">Librera-ты сыртқы сақтауға рұқсат беріңіз</string>
+   <string name="you_need_grant_permission2">Кітаптарыңызды оқу үшін қолданбаға құрылғыңыздың жадына кіру мүмкіндігі қажет</string>
    <string name="remind_msg">Үзіліс жасау уақыты!</string>
    <string name="bookmark_for_this_page_already_exists">Бұл бетбелгі бұрыннан бар</string>
    <string name="can_t_download">Файлды жүктеу мүмкін емес</string>

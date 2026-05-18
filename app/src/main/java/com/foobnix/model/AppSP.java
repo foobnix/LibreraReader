@@ -55,6 +55,8 @@ public class AppSP {
     public long rewardedAdLoadedTime = 0;
     public long rewardShowTime = 0;
 
+    public boolean userDeniedPermission = false;
+
     public static AppSP get() {
         return instance;
     }

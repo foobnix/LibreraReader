@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Chặn trang theo chiều ngang</string>
    <string name="there_are_no_email_applications_installed_">Ứng dụng email không được cài đặt.</string>
    <string name="file_not_found">Tập tin không tìm thấy</string>
-   <string name="you_need_grant_permission">Bạn cần phải cấp phép của lưu trữ ngoài cho ứng dụng này</string>
+   <string name="you_need_grant_permission2">Để đọc sách của bạn, ứng dụng cần quyền truy cập vào bộ nhớ thiết bị của bạn.</string>
    <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark cho trang này đã tồn tại</string>
    <string name="can_t_download">Không thể tải xuống</string>

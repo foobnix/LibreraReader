@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">חסום את תנועת הדף בצורה אופקית</string>
    <string name="there_are_no_email_applications_installed_">יישום דואר אלקטרוני אינו מותקן.</string>
    <string name="file_not_found">הקובץ לא נמצא</string>
-   <string name="you_need_grant_permission">אתה צריך לתת לנו את האישורים של אחסון חיצוני עבור יישום זה</string>
+   <string name="you_need_grant_permission2">כדי לקרוא את הספרים שלך, האפליקציה צריכה גישה לאחסון המכשיר שלך</string>
    <string name="remind_msg">קח הפסקה לעיניים שלך ותנוח קצת.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark עבור הדף הזה כבר קיים</string>
    <string name="can_t_download">לא ניתן להוריד</string>

@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">ब्लॉक पृष्ठ आंदोलन क्षैतिज रूप से</string>
    <string name="there_are_no_email_applications_installed_">ईमेल आवेदन स्थापित नहीं।</string>
    <string name="file_not_found">फाइल नहीं मिली</string>
-   <string name="you_need_grant_permission">आप इस आवेदन के लिए बाह्य भंडारण की अनुमति देने की जरूरत है</string>
+   <string name="you_need_grant_permission2">आपकी किताबें पढ़ने के लिए, ऐप को आपके डिवाइस स्टोरेज तक पहुंच की आवश्यकता है।</string>
    <string name="remind_msg">कृपया अपनी आँखों के लिए एक ब्रेक ले लो और थोड़ा आराम करो।</string>
    <string name="bookmark_for_this_page_already_exists">इस पृष्ठ के लिए बुकमार्क पहले से मौजूद</string>
    <string name="can_t_download">डाउनलोड नहीं कर सकता</string>

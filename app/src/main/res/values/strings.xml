@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Locked: page-dragging is disabled</string>
    <string name="there_are_no_email_applications_installed_">No email client is installed</string>
    <string name="file_not_found">File not found</string>
-   <string name="you_need_grant_permission">Please grant Librera access to external storage</string>
+   <string name="you_need_grant_permission2">To read your books, the app needs access to your device storage</string>
    <string name="remind_msg">Time to take a break!</string>
    <string name="bookmark_for_this_page_already_exists">This bookmark already exists</string>
    <string name="can_t_download">Unable to download file</string>
@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Enable Accessibility Mode</string>
    <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in Preferences.</string>
    <string name="integration_in_the_context_menu">Integrate in global context menu</string>
-   <string name="the_application_needs_storage_permission">The application needs permission to access the storage to find all books</string>
    <string name="always_open_in_2_pages_mode">Open in 2-page mode</string>
    <string name="text_encoding">Text encoding</string>
    <string name="minus">Minus</string>

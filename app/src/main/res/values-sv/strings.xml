@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blockera sidrörelsen horisontellt</string>
    <string name="there_are_no_email_applications_installed_">E-postprogram inte är installerad.</string>
    <string name="file_not_found">Filen hittades inte</string>
-   <string name="you_need_grant_permission">Du behöver bevilja tillstånd av extern lagring för denna applikation</string>
+   <string name="you_need_grant_permission2">För att läsa dina böcker behöver appen åtkomst till din enhets lagringsutrymme</string>
    <string name="remind_msg">Ta en paus för dina ögon och vila lite.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmärke för denna sida finns redan</string>
    <string name="can_t_download">Det går inte att ladda ner</string>

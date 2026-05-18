@@ -32,8 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
@@ -57,6 +55,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -120,7 +119,7 @@ import java.util.Map;
     private TextView stub;
     private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder, pasteFrom;
     private EditText editPath;
-    private View pathContainer, onClose, onAction, openAsBook;
+    private View pathContainer, onClose, onAction, openAsBook,layoutOnGrant;
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
     private ResultResponse<String> onPositiveAction;
@@ -227,6 +226,10 @@ import java.util.Map;
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
+
+        layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
+        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
+        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
 
         sortOrder.setOnClickListener(new OnClickListener() {
 

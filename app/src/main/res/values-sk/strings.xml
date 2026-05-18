@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Zamknuté: posúvanie strán je zakázané</string>
    <string name="there_are_no_email_applications_installed_">E-mailový klient nie je nainštalovaný</string>
    <string name="file_not_found">Súbor sa nenašiel</string>
-   <string name="you_need_grant_permission">Udeliť Librera prístup pre externé úložisko</string>
+   <string name="you_need_grant_permission2">Na čítanie kníh potrebuje aplikácia prístup k úložisku vášho zariadenia</string>
    <string name="remind_msg">Dajte si prestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Táto záložka už existuje</string>
    <string name="can_t_download">Súbor nie je možné stiahnuť</string>

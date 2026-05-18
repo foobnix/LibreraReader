@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blokuoti puslapio judėjimą horizontaliai</string>
    <string name="there_are_no_email_applications_installed_">Elektroninio pašto programa neįdiegta</string>
    <string name="file_not_found">Failas nerastas</string>
-   <string name="you_need_grant_permission">Šiai programai reikalingas išorinės atminties leidimas</string>
+   <string name="you_need_grant_permission2">Norint skaityti knygas, programai reikia prieigos prie jūsų įrenginio saugyklos.</string>
    <string name="remind_msg">Padarykite pertraukėlę ir leiskite pailsėti akims</string>
    <string name="bookmark_for_this_page_already_exists">Šis puslapis jau žymelėse</string>
    <string name="can_t_download">Negalima atsisiųsti</string>

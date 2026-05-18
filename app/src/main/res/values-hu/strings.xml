@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Zárolva: az oldal húzása le van tiltva</string>
    <string name="there_are_no_email_applications_installed_">Nincs levelezőprogram telepítve</string>
    <string name="file_not_found">A fájl nem található</string>
-   <string name="you_need_grant_permission">Kérjük, adja meg az engedélyt a Librera számára a külső tároló eléréséhez</string>
+   <string name="you_need_grant_permission2">A könyvek olvasásához az alkalmazásnak hozzáférésre van szüksége az eszköz tárhelyéhez.</string>
    <string name="remind_msg">Ideje szünetet tartani!</string>
    <string name="bookmark_for_this_page_already_exists">Ez a könyvjelző már létezik</string>
    <string name="can_t_download">Nem lehet letölteni a fájlt</string>
