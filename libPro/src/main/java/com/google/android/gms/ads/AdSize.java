@@ -16,4 +16,8 @@ public class AdSize {
     public static AdSize getCurrentOrientationAnchoredAdaptiveBannerAdSize(Activity a, int i) {
         return new AdSize(0, 0);
     }
+
+    public static AdSize getInlineAdaptiveBannerAdSize(int i, int dp25) {
+        return new AdSize(0, 0);
+    }
 }
