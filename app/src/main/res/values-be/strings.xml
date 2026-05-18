@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Уключыць рэжым даступнасці</string>
    <string name="welcome_accessibility">Вітаем! вы можаце ўключыць рэжым даступнасці ў наладах.</string>
    <string name="integration_in_the_context_menu">Інтэграваць у глабальнае кантэкстнае меню</string>
-   <string name="the_application_needs_storage_permission">Праграме патрабуецца дазвол на доступ да сховішча, каб знайсці ўсе кнігі</string>
    <string name="always_open_in_2_pages_mode">Адкрыць у 2-старонкавым рэжыме</string>
    <string name="text_encoding">Кадзіроўка тэксту</string>
    <string name="minus">Мінус</string>

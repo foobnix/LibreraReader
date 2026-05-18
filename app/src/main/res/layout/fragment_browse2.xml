@@ -188,6 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:layout_weight="0"
+            android:gravity="center"
             android:textAllCaps="true"
             android:text="@string/yes" />
     </LinearLayout>

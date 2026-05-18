@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Қол жетімділік режимі</string>
    <string name="welcome_accessibility">Қош келдіңіз, сол жақ мәзірде қол жетімділікті оңтайландыруға болады</string>
    <string name="integration_in_the_context_menu">Контекстік мәзірде интеграция</string>
-   <string name="the_application_needs_storage_permission">Барлық кітаптарды табу үшін қосымшаға қоймаға кіруге рұқсат қажет</string>
    <string name="always_open_in_2_pages_mode">Әрқашан 2 бет режимінде ашыңыз</string>
    <string name="text_encoding">Мәтінді кодтау</string>
    <string name="minus">Минус</string>

@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Eingabehilfenmodus</string>
    <string name="welcome_accessibility">Willkommen, die Optimierung der Barrierefreiheit lässt sich im linken App-Menü aktivieren</string>
    <string name="integration_in_the_context_menu">Integration in das Kontextmenü</string>
-   <string name="the_application_needs_storage_permission">Die Anwendung benötigt die Berechtigung, auf den Speicher zuzugreifen, um alle Bücher zu finden</string>
    <string name="always_open_in_2_pages_mode">Immer im 2-Seiten-Modus öffnen</string>
    <string name="text_encoding">Textentschlüsselung</string>
    <string name="minus">Minus</string>

@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Activar modo de accesibilidade</string>
    <string name="welcome_accessibility">Benvido! Podes activar o modo de accesibilidade nas Preferencias.</string>
    <string name="integration_in_the_context_menu">Integrar no menú contextual global</string>
-   <string name="the_application_needs_storage_permission">A aplicación precisa permiso para acceder ao almacenamento e atopar todos os libros</string>
    <string name="always_open_in_2_pages_mode">Abrir sempre en modo de 2 páxinas</string>
    <string name="text_encoding">Codificación de texto</string>
    <string name="minus">Menos</string>

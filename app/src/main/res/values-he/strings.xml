@@ -633,7 +633,6 @@
    <string name="accessibility_mode">מצב נגישות</string>
    <string name="welcome_accessibility">ברוך הבא, באפשרותך לאפשר אופטימיזציה לנגישות בתפריט היישום השמאלי</string>
    <string name="integration_in_the_context_menu">שילוב בתפריט ההקשר</string>
-   <string name="the_application_needs_storage_permission">היישום זקוק להרשאה כדי לגשת לאחסון כדי למצוא את כל הספרים</string>
    <string name="always_open_in_2_pages_mode">תמיד פתוח במצב 2 עמודים</string>
    <string name="text_encoding">קידוד טקסט</string>
    <string name="minus">מינוס</string>

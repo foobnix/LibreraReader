@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Activa el mode d\'accessibilitat</string>
    <string name="welcome_accessibility">Déu lo guard. Podeu activar el mode d\'accessibilitat a preferències.</string>
    <string name="integration_in_the_context_menu">Integra al menú de context global</string>
-   <string name="the_application_needs_storage_permission">L\'aplicació necessita permís per accedir a l\'emmagatzematge per trobar tots els llibres</string>
    <string name="always_open_in_2_pages_mode">Obre en mode de 2 pàgines</string>
    <string name="text_encoding">Codificació del text</string>
    <string name="minus">Menys</string>

@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Режим на достъпност</string>
    <string name="welcome_accessibility">Добре дошли, можете да активирате оптимизиране на достъпността в менюто отляво на приложението</string>
    <string name="integration_in_the_context_menu">Интеграция в контекстното меню</string>
-   <string name="the_application_needs_storage_permission">Приложението се нуждае от разрешение за достъп до хранилището, за да намери всички книги</string>
    <string name="always_open_in_2_pages_mode">Винаги отворен в режим 2 страници</string>
    <string name="text_encoding">Кодиране на текст</string>
    <string name="minus">Минус</string>

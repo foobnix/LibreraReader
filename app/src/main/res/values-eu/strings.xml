@@ -633,7 +633,6 @@
    <string name="accessibility_mode">Irisgarritasun modua</string>
    <string name="welcome_accessibility">Ongi etorri, irisgarritasunaren optimizazioa gaitu dezakezu ezkerreko aplikazioen menuan</string>
    <string name="integration_in_the_context_menu">Integrazioa testuinguru-menuan</string>
-   <string name="the_application_needs_storage_permission">Aplikazioak baimena behar du biltegian sartzeko liburu guztiak aurkitzeko</string>
    <string name="always_open_in_2_pages_mode">Ireki beti 2 orrialdeko moduan</string>
    <string name="text_encoding">Testu-kodeketa</string>
    <string name="minus">Gutxiago</string>
