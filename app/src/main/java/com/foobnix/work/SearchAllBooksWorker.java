@@ -18,6 +18,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EbookMeta;
+import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
@@ -36,6 +37,7 @@ import com.foobnix.ui2.FileMetaCore;
 import org.ebookdroid.common.settings.books.SharedBooks;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,6 +106,20 @@ public class SearchAllBooksWorker extends MessageWorker {
             }
             if(itemsMeta.isEmpty()) {
                 File downloadsDir = new File(getApplicationContext().getExternalFilesDir(null), "TempDownloads");
+                downloadsDir.mkdirs();
+
+                try {
+                    String[] books = getApplicationContext().getAssets().list("books");
+                    for(String book:books) {
+                        File outFile = new File(downloadsDir, book);
+                        FileOutputStream out = new FileOutputStream(outFile);
+                        IOUtils.copyClose(getApplicationContext().getAssets().open("books/"+book), out);
+                        LOG.d("copyBook", book,outFile );
+                    }
+                }catch (Exception e){
+                    LOG.e(e);
+                }
+
                 SearchCore.search(itemsMeta, downloadsDir, ExtUtils.seachExts);
             }
 

@@ -49,6 +49,8 @@ public class FontExtractor {
                 // extractInside(c, "fonts", BookCSS.FONTS_DIR);
                 try {
                     synchronized (lock) {
+                        String[] bookFiles = c.getAssets().list("books");
+                        LOG.d("bookFiles",bookFiles);
 
                         //critically important copy CSS
                         String[] rootFiles = c.getAssets().list("");

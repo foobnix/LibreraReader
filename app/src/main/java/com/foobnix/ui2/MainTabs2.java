@@ -239,6 +239,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         LOG.d("onActivityResult", "requestCode:",requestCode,"resultCode:",resultCode,data);
         if(requestCode==MY_PERMISSIONS_REQUEST_WES){
+            AppProfile.init(this);
             SearchAllBooksWorker.run(this);
         }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
@@ -322,6 +323,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (!Android6.canWrite(this)) {
             Android6.checkPermissions(this, true);
             //return;
+
         }
 
         Clouds.get().init(this);

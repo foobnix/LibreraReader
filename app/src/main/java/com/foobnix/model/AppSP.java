@@ -14,7 +14,6 @@ import java.io.File;
 
 public class AppSP {
 
-
     private static AppSP instance = new AppSP();
     public String lastBookPath;
 
@@ -30,7 +29,7 @@ public class AppSP {
     public boolean isLocked = false;
     public boolean isFirstTimeVertical = true;
     public boolean isFirstTimeHorizontal = true;
-    
+
     public int readingMode = AppState.READING_MODE_BOOK;
     public long syncTime;
     public int syncTimeStatus;
@@ -50,8 +49,6 @@ public class AppSP {
 
     transient SharedPreferences sp;
 
-
-
     public long interstitialLoadAdTime = 0;
     public long interstitialAdShowTime = 0;
 
@@ -67,21 +64,21 @@ public class AppSP {
         load();
         if (!Android6.canWrite(c)) {
             rootPath = new File(c.getExternalFilesDir(null), "LibreraTemp").toString();
-        }else{
+        } else {
             rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
         }
-        LOG.d("rootPath2",rootPath);
+        instance.rootPath = rootPath;
+        LOG.d("rootPath2", rootPath);
     }
 
     public void load() {
-        Objects.loadFromSp(instance, sp);
+        Objects.loadFromSp(this, sp);
 
     }
 
     public void save() {
-        Objects.saveToSP(instance, sp);
+        Objects.saveToSP(this, sp);
 
     }
-
 
 }
