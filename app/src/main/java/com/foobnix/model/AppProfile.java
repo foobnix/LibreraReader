@@ -98,10 +98,10 @@ public class AppProfile {
         }
 
 
-        if (TxtUtils.isNotEmpty(profile)) {
-            LOG.d("AppProfile exist");
-            return;
-        }
+//        if (TxtUtils.isNotEmpty(profile)) {
+//            LOG.d("AppProfile exist");
+//            return;
+//        }
         AppSP.get()
              .init(c);
 
