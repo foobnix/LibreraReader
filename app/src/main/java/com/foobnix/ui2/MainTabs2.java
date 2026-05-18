@@ -1,5 +1,7 @@
 package com.foobnix.ui2;
 
+import static com.foobnix.pdf.info.Android6.MY_PERMISSIONS_REQUEST_WES;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -7,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
@@ -22,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -73,6 +77,7 @@ import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+import com.foobnix.work.SearchAllBooksWorker;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
@@ -215,14 +220,34 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults,
+                                           int deviceId) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId);
+        if (requestCode == MY_PERMISSIONS_REQUEST_WES) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                LOG.d("PermissionGranted","Granted");
+                SearchAllBooksWorker.run(this);
+            }else{
+                LOG.d("PermissionGranted","NOT Granted");
+            }
+        }
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        LOG.d("onActivityResult", "requestCode:",requestCode,"resultCode:",resultCode,data);
+        if(requestCode==MY_PERMISSIONS_REQUEST_WES){
+            SearchAllBooksWorker.run(this);
+        }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
             Toast.makeText(this, R.string.the_application_needs_storage_permission, Toast.LENGTH_SHORT).show();
-            Android6.checkPermissions(this, false);
-            return;
+            //Android6.checkPermissions(this, false);
+            //return;
+
         }
+
 
         if (Build.VERSION.SDK_INT < Android6.ANDROID_12_INT && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
@@ -273,10 +298,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
 
-        if (Android6.canWrite(this)) {
+       // if (Android6.canWrite(this)) {
             BrightnessHelper.applyBrigtness(this);
             BrightnessHelper.updateOverlay(overlay);
-        }
+    //    }
         GFile.runSyncService(this);
     }
 
@@ -296,7 +321,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (!Android6.canWrite(this)) {
             Android6.checkPermissions(this, true);
-            return;
+            //return;
         }
 
         Clouds.get().init(this);
@@ -417,9 +442,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         pager = findViewById(R.id.pager);
         pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
-        if (Android6.canWrite(this)) {
+        //if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
-        }
+       // }
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
             pager.setBackgroundColor(Color.BLACK);
@@ -521,7 +546,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
         }
 
-        Android6.checkPermissions(this, true);
+        //Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
 
         List<String>

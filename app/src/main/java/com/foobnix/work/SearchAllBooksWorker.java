@@ -1,16 +1,13 @@
 package com.foobnix.work;
 
-
 import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
 import static com.foobnix.pdf.info.AppsConfig.WORKER_POLICY;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
@@ -34,7 +31,6 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -64,6 +60,7 @@ public class SearchAllBooksWorker extends MessageWorker {
         WorkManager.getInstance(context)
                 .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, workRequest);
     }
+
 
     public boolean doWorkInner() {
         LOG.d("worker-starts","SearchAllBooksWorker");
@@ -105,6 +102,11 @@ public class SearchAllBooksWorker extends MessageWorker {
                     }
                 }
             }
+            if(itemsMeta.isEmpty()) {
+                File downloadsDir = new File(getApplicationContext().getExternalFilesDir(null), "TempDownloads");
+                SearchCore.search(itemsMeta, downloadsDir, ExtUtils.seachExts);
+            }
+
             if(AppState.get().isExperimental) {
                 if (itemsMeta.isEmpty()) {
                     File path = AppProfile.DOWNLOADS_DIR;

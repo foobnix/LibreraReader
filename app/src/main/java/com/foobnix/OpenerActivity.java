@@ -21,7 +21,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.MyContextWrapper;
 
 import java.io.File;
@@ -71,10 +70,10 @@ public class OpenerActivity extends Activity {
         super.onCreate(savedInstanceState);
 
 
-        if (!Android6.canWrite(this)) {
-            Android6.checkPermissions(this, true);
-            return;
-        }
+//        if (!Android6.canWrite(this)) {
+//            Android6.checkPermissions(this, true);
+//            return;
+//        }
 
 
         if (getIntent() == null) {
@@ -106,7 +105,8 @@ public class OpenerActivity extends Activity {
         LOG.d(TAG, " Scheme", getIntent().getScheme());
         LOG.d(TAG, " Mime", getIntent().getType());
 
-        new File(BookCSS.get().downlodsPath).mkdirs();
+        File downloadsDir = new File(getExternalFilesDir(null),"TempDownloads");
+        downloadsDir.mkdirs();
 
         File file = new File("");
 
@@ -187,7 +187,7 @@ public class OpenerActivity extends Activity {
 
         if (!file.isFile()) {
             LOG.d(TAG, "Find file in [Librera/Downloads]");
-            new File(BookCSS.get().downlodsPath).mkdirs();
+            downloadsDir.mkdirs();
             LOG.d(TAG, "Find file in [Downloads]");
             if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
                 String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
@@ -195,7 +195,7 @@ public class OpenerActivity extends Activity {
                 name = name + "." + extByMimeType;
             }
             name = TxtUtils.fixFileName(name);
-            file = new File(BookCSS.get().downlodsPath, name);
+            file = new File(downloadsDir, name);
 
 
             if (file.length() != MyMath.longValueOfNoException(size)) {

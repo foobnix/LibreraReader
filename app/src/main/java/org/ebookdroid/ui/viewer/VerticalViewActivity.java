@@ -146,10 +146,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         setContentView(R.layout.activity_vertical_view);
         DocumentController.applyEdgeToEdge(this);
 
-        if (!Android6.canWrite(this)) {
-            Android6.checkPermissions(this, true);
-            return;
-        }
+//        if (!Android6.canWrite(this)) {
+//            Android6.checkPermissions(this, true);
+//            return;
+//        }
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);

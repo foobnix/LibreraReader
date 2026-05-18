@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppSP;
 
 public class Android6 {
 
@@ -59,7 +60,9 @@ public class Android6 {
                     }
                 }
             } else {
+                AppSP.get().init(a);
                FontExtractor.extractFonts(a);
+
             }
             return;
         }
@@ -100,7 +103,9 @@ public class Android6 {
 //            if (checkWhatIsNew && !AppsConfig.IS_FDROID) {
 //                AndroidWhatsNew.checkWhatsNew(a);
 //            }
+            AppSP.get().init(a);
             FontExtractor.extractFonts(a);
+
         }
     }
 
@@ -117,9 +122,11 @@ public class Android6 {
                     return true;
                 }
             }
+
         }
         return false;
     }
+
 
     public static void onRequestPermissionsResult(Activity a, int requestCode, String
             permissions[], int[] grantResults) {

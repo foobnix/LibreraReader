@@ -25,7 +25,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -45,7 +44,7 @@ public class AppProfile {
 
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
-    public static final File DOWNLOADS_DIR =
+    public static File DOWNLOADS_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
@@ -103,13 +102,9 @@ public class AppProfile {
         AppSP.get()
              .init(c);
 
-        if (!Android6.canWrite(c)) {
-            return;
-        }
-
         if (profile.equals(getCurrent())) {
             LOG.d("AppProfile skip", profile);
-            return;
+            //return;
         }
         profile = getCurrent();
         String appDB = "db-" + AppSP.get().rootPath.hashCode() + "-" + profile;
@@ -208,9 +203,7 @@ public class AppProfile {
         if (a == null) {
             return;
         }
-        if (!Android6.canWrite(a)) {
-            return;
-        }
+
         if (TxtUtils.isNotEmpty(profile)) {
             DragingPopup.saveCache(a);
             PasswordState.get()

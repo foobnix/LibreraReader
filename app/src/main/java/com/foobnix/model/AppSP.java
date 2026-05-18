@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Urls;
 
@@ -44,7 +46,7 @@ public class AppSP {
     public String syncRootID;
 
     public String currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
-    public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+    public String rootPath;
 
     transient SharedPreferences sp;
 
@@ -63,6 +65,12 @@ public class AppSP {
     public void init(Context c) {
         sp = c.getSharedPreferences("AppTemp", Context.MODE_PRIVATE);
         load();
+        if (!Android6.canWrite(c)) {
+            rootPath = new File(c.getExternalFilesDir(null), "LibreraTemp").toString();
+        }else{
+            rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+        }
+        LOG.d("rootPath2",rootPath);
     }
 
     public void load() {

@@ -10,24 +10,17 @@ import android.os.Looper;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentActivity;
 
-import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
-
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-
-import java.util.concurrent.TimeUnit;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class AdsFragmentActivity extends FragmentActivity {
@@ -67,7 +60,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
+        if (AppsConfig.isShowAdsInApp(this)) {
             if (this instanceof MainTabs2) {
                 ADS.get().showBanner(this);
             }
@@ -110,7 +103,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (AppsConfig.isShowAdsInApp(this) && Android6.canWrite(this)) {
+        if (AppsConfig.isShowAdsInApp(this) ) {
 
             if (this instanceof MainTabs2) {
                 ADS.get().onResumeBanner(this);
@@ -126,7 +119,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (this instanceof MainTabs2 && Android6.canWrite(this)) {
+        if (this instanceof MainTabs2) {
             ADS.get().onPauseBanner();
         }
     }
