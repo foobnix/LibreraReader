@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -26,7 +25,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -150,6 +148,7 @@ public class AppProfile {
             AppState.get()
                     .load(c);
         }
+
         TintUtil.init();
         BookCSS.get()
                .load1(c);
@@ -223,9 +222,6 @@ public class AppProfile {
     }
 
     public static String getCurrent() {
-        if(!Android6.canWrite(LibreraApp.context)){
-            return "Temp";
-        }
         return AppSP.get().currentProfile;
     }
 

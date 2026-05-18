@@ -78,7 +78,7 @@ public class BookCSS {
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
     public String fontFolder;
-    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 26 : 21;
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 24 : 20;
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
     public String dirLastPath;
