@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">ലോക്കുചെയ്‌തു: പേജ് വലിച്ചിടുന്നത് പ്രവർത്തനരഹിതമാക്കി</string>
    <string name="there_are_no_email_applications_installed_">ഇമെയിൽ ക്ലയന്റുകളൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
    <string name="file_not_found">ഫയൽ കാണുന്നില്ല</string>
-   <string name="you_need_grant_permission2">നിങ്ങളുടെ പുസ്തകങ്ങൾ വായിക്കാൻ, ആപ്പിന് നിങ്ങളുടെ ഉപകരണ സംഭരണത്തിലേക്ക് ആക്‌സസ് ആവശ്യമാണ്.</string>
+   <string name="you_need_grant_permission5">നിങ്ങളുടെ എല്ലാ പുസ്തകങ്ങളും കണ്ടെത്തി പ്രദർശിപ്പിക്കുന്നതിന് ആപ്പിന് നിങ്ങളുടെ അനുമതി ആവശ്യമാണ്.</string>
    <string name="remind_msg">വിശ്രമിക്കാനുള്ള സമയം!</string>
    <string name="bookmark_for_this_page_already_exists">ഈ ബുക്ക്മാർക്ക് ഇതിനകം നിലവിലുണ്ട്</string>
    <string name="can_t_download">ഫയൽ ഡ download ൺലോഡ് ചെയ്യാൻ കഴിയില്ല</string>

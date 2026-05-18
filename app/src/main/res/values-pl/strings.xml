@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Zablokuj ruch strony w poziomie</string>
    <string name="there_are_no_email_applications_installed_">Nie zainstalowano klienta poczty e-mail</string>
    <string name="file_not_found">Nie znaleziono pliku</string>
-   <string name="you_need_grant_permission2">Aby czytać książki, aplikacja potrzebuje dostępu do pamięci urządzenia</string>
+   <string name="you_need_grant_permission5">Aplikacja potrzebuje Twojej zgody, aby znaleźć i wyświetlić wszystkie Twoje książki.</string>
    <string name="remind_msg">Czas na przerwę!</string>
    <string name="bookmark_for_this_page_already_exists">Zakładka na tej stronie już istnieje</string>
    <string name="can_t_download">Nie można pobrać pliku</string>

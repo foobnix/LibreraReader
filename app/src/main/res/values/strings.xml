@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Locked: page-dragging is disabled</string>
    <string name="there_are_no_email_applications_installed_">No email client is installed</string>
    <string name="file_not_found">File not found</string>
-   <string name="you_need_grant_permission2">To read your books, the app needs access to your device storage</string>
+   <string name="you_need_grant_permission5">The app needs your permission to find and display all your books.</string>
    <string name="remind_msg">Time to take a break!</string>
    <string name="bookmark_for_this_page_already_exists">This bookmark already exists</string>
    <string name="can_t_download">Unable to download file</string>

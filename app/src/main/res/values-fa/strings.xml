@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">مسدود کردن صفحه حرکت به صورت افقی</string>
    <string name="there_are_no_email_applications_installed_">نرم افزار ایمیل نصب نشده است.</string>
    <string name="file_not_found">فایل یافت نشد</string>
-   <string name="you_need_grant_permission2">برای خواندن کتاب‌هایتان، برنامه نیاز به دسترسی به فضای ذخیره‌سازی دستگاه شما دارد</string>
+   <string name="you_need_grant_permission5">این برنامه برای پیدا کردن و نمایش همه کتاب‌هایتان به اجازه شما نیاز دارد.</string>
    <string name="remind_msg">لطفا یک استراحت برای چشم خود را و استراحت کمی.</string>
    <string name="bookmark_for_this_page_already_exists">نشانک برای این صفحه قبلا وجود داشته</string>
    <string name="can_t_download">نمیتوانید دانلود کنید</string>

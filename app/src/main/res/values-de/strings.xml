@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Horizontale Seitenbewegung blockieren</string>
    <string name="there_are_no_email_applications_installed_">E-Mail-Anwendung nicht installiert</string>
    <string name="file_not_found">Datei nicht gefunden</string>
-   <string name="you_need_grant_permission2">Um Ihre Bücher lesen zu können, benötigt die App Zugriff auf den Speicher Ihres Geräts.</string>
+   <string name="you_need_grant_permission5">Die App benötigt Ihre Erlaubnis, um alle Ihre Bücher zu finden und anzuzeigen.</string>
    <string name="remind_msg">Bitte gönne deinen Augen eine Pause.</string>
    <string name="bookmark_for_this_page_already_exists">Lesezeichen bereits vorhanden</string>
    <string name="can_t_download">Kann nicht heruntergeladen werden</string>

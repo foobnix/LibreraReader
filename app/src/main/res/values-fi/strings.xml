@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Lukittu: sivun raahaaminen on pois käytöstä</string>
    <string name="there_are_no_email_applications_installed_">Sähköpostisovellusta ei ole asennettuna.</string>
    <string name="file_not_found">Tiedostoa ei löytynyt</string>
-   <string name="you_need_grant_permission2">Kirjojesi lukemiseen sovellus tarvitsee pääsyn laitteesi tallennustilaan</string>
+   <string name="you_need_grant_permission5">Sovellus tarvitsee lupasi kaikkien kirjojen löytämiseen ja näyttämiseen.</string>
    <string name="remind_msg">Pidä tauko ja lepuuta hetki silmiäsi!</string>
    <string name="bookmark_for_this_page_already_exists">Tälle sivulle on jo kirjanmerkki</string>
    <string name="can_t_download">Ei voida ladata</string>

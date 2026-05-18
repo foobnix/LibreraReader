@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Zima harakati za ukurasa kwa usawa</string>
    <string name="there_are_no_email_applications_installed_">Barua pepe maombi si imewekwa.</string>
    <string name="file_not_found">Faili halijapatikana</string>
-   <string name="you_need_grant_permission2">Ili kusoma vitabu vyako, programu inahitaji ufikiaji wa hifadhi ya kifaa chako</string>
+   <string name="you_need_grant_permission5">Programu inahitaji ruhusa yako ili kupata na kuonyesha vitabu vyako vyote.</string>
    <string name="remind_msg">Tafadhali kuchukua mapumziko kwa macho yako na kupumzika kidogo.</string>
    <string name="bookmark_for_this_page_already_exists">Alamisho ya ukurasa huu tayari upo</string>
    <string name="can_t_download">Haiwezi kupakuliwa</string>

@@ -15,7 +15,7 @@ googleOauthClientJetty = "1.39.0"
 googleServices = "4.4.4"
 greendao = "3.3.0"
 
-guava = "33.5.0-android"
+guava = "33.6.0-android"
 jsoup = "1.22.1"
 junit = "4.13.2"
 juniversalchardet = "2.5.0"
@@ -98,10 +98,10 @@ google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-cli
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
-jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+jsoup = { module = "org.jsoup:jsoup", version = "1.22.2" }
 junit = { module = "junit:junit", version.ref = "junit" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
-junrar = { module = "com.github.junrar:junrar", version = "7.5.8" }
+junrar = { module = "com.github.junrar:junrar", version = "7.6.0" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
@@ -109,7 +109,7 @@ multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.1.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.2.0" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.5.1" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }

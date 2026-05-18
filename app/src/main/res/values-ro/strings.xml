@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blocați mișcarea paginii pe orizontală</string>
    <string name="there_are_no_email_applications_installed_">Aplicație email neinstalată.</string>
    <string name="file_not_found">Fișierul nu a fost găsit</string>
-   <string name="you_need_grant_permission2">Pentru a citi cărțile, aplicația are nevoie de acces la memoria dispozitivului.</string>
+   <string name="you_need_grant_permission5">Aplicația are nevoie de permisiunea ta pentru a găsi și afișa toate cărțile tale.</string>
    <string name="remind_msg">Vă rugăm să luați o pauză pentru ochi și să vă odihniți puțin.</string>
    <string name="bookmark_for_this_page_already_exists">Marcaj pentru această pagină există deja</string>
    <string name="can_t_download">Nu se poate descărca</string>

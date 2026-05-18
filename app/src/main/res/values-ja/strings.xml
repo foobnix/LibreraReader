@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">ロック：ページのドラッグを無効</string>
    <string name="there_are_no_email_applications_installed_">メールアプリがインストールされていません。</string>
    <string name="file_not_found">ファイルが見つかりません</string>
-   <string name="you_need_grant_permission2">アプリが書籍を読むには、デバイスのストレージへのアクセスが必要です。</string>
+   <string name="you_need_grant_permission5">アプリがあなたの蔵書をすべて検索して表示するには、あなたの許可が必要です。</string>
    <string name="remind_msg">休憩の時間です！</string>
    <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
    <string name="can_t_download">ダウンロードできません</string>

@@ -16,7 +16,6 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
-import com.foobnix.model.AppState;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -31,7 +30,6 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -224,7 +222,7 @@ public class ADS {
         try {
             FrameLayout adFrame1 = a.findViewById(R.id.adFrame1);
             FrameLayout adFrame2 = a.findViewById(R.id.adFrame2);
-            boolean isTopBanner = new Random().nextBoolean();
+            boolean isTopBanner = false;//new Random().nextBoolean();
             final FrameLayout frame = isTopBanner ?//
                     adFrame1 ://
                     adFrame2;//
@@ -244,7 +242,9 @@ public class ADS {
                         AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP()) ://
                         AdSize.LARGE_BANNER;
             } else {
-                size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
+               // size = AdSize.getLargeAnchoredAdaptiveBannerAdSize(a, Dips.screenWidthDP());
+                size = AdSize.getInlineAdaptiveBannerAdSize(Dips.screenWidthDP(), Dips.DP_25);
+                //size = AdSize.getInlineAdaptiveBannerAdSize(a, Dips.screenWidthDP());
             }
 
             adView.setAdSize(size);

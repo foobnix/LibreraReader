@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">பூட்டப்பட்டது: பக்க-இழுத்தல் முடக்கப்பட்டுள்ளது</string>
    <string name="there_are_no_email_applications_installed_">மின்னஞ்சல் கிளையன்ட் எதுவும் நிறுவப்படவில்லை</string>
    <string name="file_not_found">கோப்பு கிடைக்கவில்லை</string>
-   <string name="you_need_grant_permission2">உங்கள் புத்தகங்களைப் படிக்க, இந்தச் செயலிக்கு உங்கள் சாதனத்தின் சேமிப்பகத்திற்கான அணுகல் தேவைப்படுகிறது.</string>
+   <string name="you_need_grant_permission5">உங்கள் புத்தகங்கள் அனைத்தையும் கண்டறிந்து காண்பிக்க, இந்தச் செயலிக்கு உங்கள் அனுமதி தேவை.</string>
    <string name="remind_msg">ஓய்வு எடுக்க நேரம்!</string>
    <string name="bookmark_for_this_page_already_exists">இந்த புத்தககுற ஏற்கனவே உள்ளது</string>
    <string name="can_t_download">கோப்பை பதிவிறக்க முடியவில்லை</string>

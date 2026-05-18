@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Bloqueado: o desprazamento horizontal está desactiva</string>
    <string name="there_are_no_email_applications_installed_">Non hai ningún cliente de correo instalado</string>
    <string name="file_not_found">Ficheiro non atopado</string>
-   <string name="you_need_grant_permission2">Para ler os teus libros, a aplicación necesita acceder ao almacenamento do teu dispositivo</string>
+   <string name="you_need_grant_permission5">A aplicación precisa o teu permiso para atopar e mostrar todos os teus libros.</string>
    <string name="remind_msg">É hora de facer unha pausa!</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador xa existe</string>
    <string name="can_t_download">Non se pode descargar o ficheiro</string>

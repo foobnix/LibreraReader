@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Bloquer le mouvement horizontal de la page</string>
    <string name="there_are_no_email_applications_installed_">Application email non installée.</string>
    <string name="file_not_found">Fichier non trouvé</string>
-   <string name="you_need_grant_permission2">Pour lire vos livres, l\'application a besoin d\'accéder au stockage de votre appareil.</string>
+   <string name="you_need_grant_permission5">L\'application a besoin de votre autorisation pour trouver et afficher tous vos livres.</string>
    <string name="remind_msg">S\'il vous plaît, prenez une pause pour vos yeux et reposez-vous un peu.</string>
    <string name="bookmark_for_this_page_already_exists">Un signet pour cette page existe déjà</string>
    <string name="can_t_download">Je ne peux pas télécharger</string>

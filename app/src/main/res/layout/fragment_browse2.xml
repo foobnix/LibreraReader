@@ -179,7 +179,7 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="@string/you_need_grant_permission2" />
+            android:text="@string/you_need_grant_permission5" />
 
         <TextView
             android:id="@+id/layoutOnGrantButton"

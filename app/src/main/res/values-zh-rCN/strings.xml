@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">已锁定:已禁用页面拖动</string>
    <string name="there_are_no_email_applications_installed_">未安装电子邮件客户端</string>
    <string name="file_not_found">文件未找到</string>
-   <string name="you_need_grant_permission2">要阅读您的书籍，该应用需要访问您的设备存储空间。</string>
+   <string name="you_need_grant_permission5">该应用需要您的许可才能查找和显示您的所有书籍。</string>
    <string name="remind_msg">该休息一会儿了！</string>
    <string name="bookmark_for_this_page_already_exists">书签已存在</string>
    <string name="can_t_download">无法下载文件</string>

@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">禁用頁面移動</string>
    <string name="there_are_no_email_applications_installed_">沒有安裝電子郵件!</string>
    <string name="file_not_found">無結果</string>
-   <string name="you_need_grant_permission2">要閱讀您的書籍，該應用程式需要存取您的裝置儲存空間。</string>
+   <string name="you_need_grant_permission5">該應用程式需要您的許可才能找到和顯示您的所有書籍。</string>
    <string name="remind_msg">請注意休息以保護視力</string>
    <string name="bookmark_for_this_page_already_exists">已有書簽</string>
    <string name="can_t_download">不能下載</string>

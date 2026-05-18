@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Não é permitido deslizar horizontalmente</string>
    <string name="there_are_no_email_applications_installed_">Nenhum app de e-mail está instalado.</string>
    <string name="file_not_found">Arquivo não encontrado</string>
-   <string name="you_need_grant_permission2">Para ler seus livros, o aplicativo precisa acessar o armazenamento do seu dispositivo.</string>
+   <string name="you_need_grant_permission5">O aplicativo precisa da sua permissão para encontrar e exibir todos os seus livros.</string>
    <string name="remind_msg">Por favor, faça uma pausa para que seus olhos podem descansar um pouco.</string>
    <string name="bookmark_for_this_page_already_exists">Marcador para esta página já existe</string>
    <string name="can_t_download">Não é possível baixar</string>

@@ -243,7 +243,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             SearchAllBooksWorker.run(this);
         }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
-            Toast.makeText(this, R.string.you_need_grant_permission2, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.you_need_grant_permission5, Toast.LENGTH_LONG).show();
             //Android6.checkPermissions(this, false);
             //return;
 

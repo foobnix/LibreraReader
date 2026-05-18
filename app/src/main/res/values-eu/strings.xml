@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blokeatua: Orria korritzea desgaituta dago</string>
    <string name="there_are_no_email_applications_installed_">Ez dago posta-aplikaziorik instalatuta.</string>
    <string name="file_not_found">Fitxategia ez da aurkitu</string>
-   <string name="you_need_grant_permission2">Zure liburuak irakurtzeko, aplikazioak zure gailuaren biltegiratzeko sarbidea behar du</string>
+   <string name="you_need_grant_permission5">Aplikazioak zure baimena behar du zure liburu guztiak aurkitu eta bistaratzeko.</string>
    <string name="remind_msg">Hartu arnasa eta eman atsedena begiei.</string>
    <string name="bookmark_for_this_page_already_exists">Laster marka hori badago</string>
    <string name="can_t_download">Ezin da deskargatu</string>

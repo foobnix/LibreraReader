@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blokkeer horizontale paginabeweging</string>
    <string name="there_are_no_email_applications_installed_">E-mail applicatie niet geïnstalleerd.</string>
    <string name="file_not_found">Bestand niet gevonden</string>
-   <string name="you_need_grant_permission2">Om je boeken te kunnen lezen, heeft de app toegang nodig tot de opslag van je apparaat.</string>
+   <string name="you_need_grant_permission5">De app heeft uw toestemming nodig om al uw boeken te vinden en weer te geven.</string>
    <string name="remind_msg">Neem een pauze voor je ogen en rust een beetje.</string>
    <string name="bookmark_for_this_page_already_exists">Bladwijzer voor deze pagina bestaat al</string>
    <string name="can_t_download">Kan bestand niet downloaden</string>

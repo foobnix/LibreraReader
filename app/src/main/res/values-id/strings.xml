@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Blok gerakan halaman secara horisontal</string>
    <string name="there_are_no_email_applications_installed_">Aplikasi email tidak terinstal</string>
    <string name="file_not_found">Berkas tidak ditemukan</string>
-   <string name="you_need_grant_permission2">Untuk membaca buku Anda, aplikasi ini memerlukan akses ke penyimpanan perangkat Anda.</string>
+   <string name="you_need_grant_permission5">Aplikasi ini memerlukan izin Anda untuk menemukan dan menampilkan semua buku Anda.</string>
    <string name="remind_msg">Silakan istirahat untuk matamu dan istirahat sebentar.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark untuk halaman ini sudah ada</string>
    <string name="can_t_download">Tidak bisa mendownload</string>

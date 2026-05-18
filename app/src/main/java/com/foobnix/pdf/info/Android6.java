@@ -73,7 +73,7 @@ public class Android6 {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(a);
                 builder.setCancelable(false);
-                builder.setMessage(R.string.you_need_grant_permission2);
+                builder.setMessage(R.string.you_need_grant_permission5);
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {

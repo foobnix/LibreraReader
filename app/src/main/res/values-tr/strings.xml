@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Kilitli: sayfa kaydırma kapalı</string>
    <string name="there_are_no_email_applications_installed_">E-posta uygulaması yüklü değil.</string>
    <string name="file_not_found">Dosya bulunamadı</string>
-   <string name="you_need_grant_permission2">Kitaplarınızı okuyabilmek için uygulamanın cihazınızın depolama alanına erişmesi gerekiyor.</string>
+   <string name="you_need_grant_permission5">Uygulamanın tüm kitaplarınızı bulup görüntüleyebilmesi için izninize ihtiyacı var.</string>
    <string name="remind_msg">Lütfen gözleriniz için biraz ara verin ve dinlenin.</string>
    <string name="bookmark_for_this_page_already_exists">Bu yer imi zaten var</string>
    <string name="can_t_download">Dosya indirilemiyor</string>

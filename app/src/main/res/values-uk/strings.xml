@@ -236,7 +236,7 @@
    <string name="block_page_movement_horizontally">Блокувати зсування сторінки</string>
    <string name="there_are_no_email_applications_installed_">Застосунок для роботи з E-mail не встановлено</string>
    <string name="file_not_found">Файл не знайдено</string>
-   <string name="you_need_grant_permission2">Щоб читати ваші книги, програмі потрібен доступ до пам\'яті вашого пристрою</string>
+   <string name="you_need_grant_permission5">Додатку потрібен ваш дозвіл, щоб знайти та відобразити всі ваші книги.</string>
    <string name="remind_msg">Настав час зробити перерву і дати очам трохи відпочити.</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для цієї сторінки вже існує</string>
    <string name="can_t_download">Неможливо завантажити</string>
