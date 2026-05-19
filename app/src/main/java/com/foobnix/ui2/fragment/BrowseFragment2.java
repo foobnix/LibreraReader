@@ -119,7 +119,7 @@ import java.util.Map;
     private TextView stub;
     private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder, pasteFrom;
     private EditText editPath;
-    private View pathContainer, onClose, onAction, openAsBook,layoutOnGrant;
+    private View pathContainer, onClose, onAction, openAsBook;
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
     private ResultResponse<String> onPositiveAction;
@@ -227,7 +227,7 @@ import java.util.Map;
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
 
-        layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
+        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
         Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
         layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
 

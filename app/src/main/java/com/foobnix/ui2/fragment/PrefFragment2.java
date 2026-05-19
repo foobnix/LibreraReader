@@ -2700,7 +2700,7 @@ public class PrefFragment2 extends UIFragment {
                     AppProfile.syncExclude.delete();
 
                     File rootFiles = AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
-                    if (rootFiles != null) {
+                    if (rootFiles != null && rootFiles.listFiles()!=null) {
                         for (File file : rootFiles.listFiles()) {
                             String name = file.getName();
                             if (name.endsWith(".css")) {

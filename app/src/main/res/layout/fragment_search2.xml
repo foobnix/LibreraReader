@@ -164,6 +164,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layoutOnGrant"
+        android:background="@color/green_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dip"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="@string/you_need_grant_permission5" />
+
+        <TextView
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:text="@string/yes" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layoutError"
         android:background="@color/green_msg"
         android:layout_width="match_parent"

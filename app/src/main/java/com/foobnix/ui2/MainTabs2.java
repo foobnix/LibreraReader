@@ -320,12 +320,10 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
-        if (!Android6.canWrite(this) && !AppSP.get().userDeniedPermission) {
-            Android6.checkPermissions(this, true);
-            AppSP.get().userDeniedPermission=true;
-            //return;
-
-        }
+//        if (!Android6.canWrite(this) ) {
+//            Android6.checkPermissions(this, true);
+//            //return;
+//        }
 
         Clouds.get().init(this);
 

@@ -45,7 +45,7 @@ public class AppSP {
     public String syncRootID;
 
     public String currentProfile = "None";
-    public String rootPath;
+    public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
 
     transient SharedPreferences sp;
 
@@ -55,7 +55,6 @@ public class AppSP {
     public long rewardedAdLoadedTime = 0;
     public long rewardShowTime = 0;
 
-    public boolean userDeniedPermission = false;
 
     public static AppSP get() {
         return instance;

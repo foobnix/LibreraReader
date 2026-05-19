@@ -53,10 +53,12 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -372,6 +374,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
+        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
+        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
+        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
+
 
         layoutError = view.findViewById(R.id.layoutError);
         layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);

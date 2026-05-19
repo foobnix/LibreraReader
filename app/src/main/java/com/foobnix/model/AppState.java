@@ -17,7 +17,6 @@ import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
@@ -670,7 +669,8 @@ public class AppState {
             isShowWhatIsNewDialog = false;
         }
 
-        if(!Android6.canWrite(a)){
+        //if(!Android6.canWrite(a)){
+        //Nice BG
             colorDayText = AppState.COLOR_BLACK;
             isUseBGImageDay = true;
             colorDayBg = AppState.COLOR_WHITE;
@@ -680,7 +680,7 @@ public class AppState {
             colorNigthText = AppState.COLOR_WHITE;
             colorNigthBg = AppState.COLOR_BLACK;
             colorNigthForeground = AppState.COLOR_NIGHT_FG;
-        }
+       // }
     }
 
     public void accessibilityDefaults() {
