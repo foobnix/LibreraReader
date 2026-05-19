@@ -27,6 +27,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -2658,7 +2659,9 @@ public class DragingDialogs {
                 ViewPager pager = root.findViewById(R.id.pager);
                 List<UIFragment> tabFragments = new ArrayList<>();
 
-                tabFragments.add(new SearchFragment2());
+                SearchFragment2 searchFragment2 = new SearchFragment2();
+                searchFragment2.setArguments(Bundle.EMPTY);
+                tabFragments.add(searchFragment2);
                 tabFragments.add(new BrowseFragment2());
                 tabFragments.add(new RecentFragment2());
                 tabFragments.add(new FavoritesFragment2());

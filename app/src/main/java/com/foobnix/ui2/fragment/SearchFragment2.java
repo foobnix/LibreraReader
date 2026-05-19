@@ -102,7 +102,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.Stack;
 
-
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static final String EMPTY_ID = "\u00A0";
@@ -376,9 +375,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
-
+        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()) && getArguments()!=Bundle.EMPTY);
+        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
 
         layoutError = view.findViewById(R.id.layoutError);
         layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);
@@ -695,11 +693,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
-            if(!AppState.get().isScanOnLaunch){
-                LOG.d("checkForDeleteBooks","skip");
+            if (!AppState.get().isScanOnLaunch) {
+                LOG.d("checkForDeleteBooks", "skip");
                 return;
             }
-            LOG.d("checkForDeleteBooks","run");
+            LOG.d("checkForDeleteBooks", "run");
             //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
             WorkManager.getInstance(getContext())

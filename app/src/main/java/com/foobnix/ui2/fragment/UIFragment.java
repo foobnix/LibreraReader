@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -118,9 +117,6 @@ public abstract class UIFragment<T> extends Fragment {
             });
         }
 
-        if (recyclerView != null) {
-            recyclerView.setAccessibilityDelegate(new View.AccessibilityDelegate());
-        }
     }
 
     @Override
