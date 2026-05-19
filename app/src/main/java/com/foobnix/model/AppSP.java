@@ -44,8 +44,8 @@ public class AppSP {
     public boolean isEnableSync;
     public String syncRootID;
 
-    public String currentProfile = "None";
-    public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+    public String currentProfile = "";
+    public String rootPath1 = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
 
     transient SharedPreferences sp;
 
@@ -63,23 +63,31 @@ public class AppSP {
     public void init(Context c) {
         sp = c.getSharedPreferences("AppTemp", Context.MODE_PRIVATE);
         load(c);
+        getRootPath(c);
+    }
+    public String getRootPath(Context c){
+        LOG.d("rootPath2","getRootPath-1",rootPath1, currentProfile);
+        if(instance.currentProfile.isEmpty()) {
+            if (!Android6.canWrite(c)) {
+                instance.rootPath1 = new File(c.getExternalFilesDir(null), "Demo").toString();
+                instance.currentProfile = "Demo";
+            } else {
+                instance.rootPath1 = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+                instance.currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
+            }
+        }
+        LOG.d("rootPath2","getRootPath-2",rootPath1, currentProfile);
+        return instance.rootPath1;
     }
 
     public void load(Context c) {
         Objects.loadFromSp(instance, sp);
-        if (!Android6.canWrite(c)) {
-            instance.rootPath = new File(c.getExternalFilesDir(null), "LibreraTemp").toString();
-            instance.currentProfile = "Temp";
-        } else {
-            instance.rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
-            currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
-        }
-        LOG.d("rootPath2", instance.rootPath);
-
     }
 
     public void save() {
         Objects.saveToSP(instance, sp);
+        LOG.d("rootPath2","save-1",rootPath1, currentProfile);
+        LOG.d("rootPath2","save-2",get().rootPath1, get().currentProfile);
 
     }
 

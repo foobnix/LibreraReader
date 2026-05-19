@@ -1769,15 +1769,16 @@ public class PrefFragment2 extends UIFragment {
         // folders
 
         final TextView rootFolder = inflate.findViewById(R.id.rootFolder);
-        TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(AppSP.get().rootPath));
-        rootFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder(getActivity(), AppSP.get().rootPath)
+        TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(AppSP.get().getRootPath(getActivity())));
+        rootFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder(getActivity(),
+                                                                        AppSP.get().getRootPath(getActivity()))
                                                                 .setOnSelectListener(
                                                                         new ResultResponse2<String, Dialog>() {
                                                                             @Override
                                                                             public boolean onResultRecive(String nPath,
                                                                                                           Dialog dialog) {
                                                                                 if (new File(nPath).canWrite()) {
-                                                                                    AppSP.get().rootPath = nPath;
+                                                                                    AppSP.get().rootPath1 = nPath;
                                                                                     new File(nPath, "Fonts").mkdirs();
                                                                                     TxtUtils.underline(rootFolder,
                                                                                             TxtUtils.smallPathFormat(

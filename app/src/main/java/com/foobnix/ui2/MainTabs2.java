@@ -239,6 +239,8 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         LOG.d("onActivityResult", "requestCode:",requestCode,"resultCode:",resultCode,data);
         if(requestCode==MY_PERMISSIONS_REQUEST_WES){
+            AppSP.get().currentProfile="";
+            AppSP.get().save();
             AppProfile.init(this);
             SearchAllBooksWorker.run(this);
         }
