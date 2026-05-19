@@ -45,7 +45,7 @@ public class AppSP {
     public String syncRootID;
 
     public String currentProfile = "";
-    public String rootPath1 = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+    public String rootPath1 = getRootDir();
 
     transient SharedPreferences sp;
 
@@ -65,14 +65,25 @@ public class AppSP {
         load(c);
         getRootPath(c);
     }
+
+    public String getTempDir(Context c){
+        return new File(c.getExternalFilesDir(null), "Demo").toString();
+    }
+    public String getRootDir(){
+        return new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+    }
+    public File getTempDownloadBooks(Context c){
+        return new File(c.getExternalFilesDir(null), "TempDownloads");
+    }
+
     public String getRootPath(Context c){
         LOG.d("rootPath2","getRootPath-1",rootPath1, currentProfile);
         if(instance.currentProfile.isEmpty()) {
             if (!Android6.canWrite(c)) {
-                instance.rootPath1 = new File(c.getExternalFilesDir(null), "Demo").toString();
+                instance.rootPath1 = getTempDir(c);
                 instance.currentProfile = "Demo";
             } else {
-                instance.rootPath1 = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+                instance.rootPath1 =getRootDir();
                 instance.currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
             }
         }

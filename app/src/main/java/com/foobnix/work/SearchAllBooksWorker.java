@@ -21,6 +21,7 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.Tags2;
@@ -105,7 +106,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 }
             }
             if(itemsMeta.isEmpty()) {
-                File downloadsDir = new File(getApplicationContext().getExternalFilesDir(null), "TempDownloads");
+                File downloadsDir = AppSP.get().getTempDownloadBooks(getApplicationContext());
                 downloadsDir.mkdirs();
 
                 try {

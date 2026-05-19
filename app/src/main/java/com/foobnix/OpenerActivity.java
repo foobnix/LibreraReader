@@ -17,6 +17,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -105,7 +106,7 @@ public class OpenerActivity extends Activity {
         LOG.d(TAG, " Scheme", getIntent().getScheme());
         LOG.d(TAG, " Mime", getIntent().getType());
 
-        File downloadsDir = new File(getExternalFilesDir(null),"TempDownloads");
+        File downloadsDir = AppSP.get().getTempDownloadBooks(getApplicationContext());
         downloadsDir.mkdirs();
 
         File file = new File("");
