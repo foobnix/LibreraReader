@@ -39,7 +39,7 @@ public class FontExtractor {
     public static String FONT_HTTP_ZIP2 = "https://www.dropbox.com/s/c8v7d05vskmjt28/fonts.zip?raw=1";
 
     public static void extractFonts(final Context c) {
-        LOG.d("extractFonts");
+        LOG.d("extractFonts to",AppProfile.SYNC_FOLDER_DEVICE_PROFILE);
         if (c == null) {
             return;
         }

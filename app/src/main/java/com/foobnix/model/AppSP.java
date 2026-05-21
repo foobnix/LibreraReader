@@ -86,6 +86,7 @@ public class AppSP {
                 instance.rootPath1 =getRootDir();
                 instance.currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
             }
+
         }
         LOG.d("rootPath2","getRootPath-2",rootPath1, currentProfile);
         return instance.rootPath1;

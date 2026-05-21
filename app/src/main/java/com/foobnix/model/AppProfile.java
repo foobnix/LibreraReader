@@ -26,6 +26,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -157,6 +158,7 @@ public class AppProfile {
                      .load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
+        FontExtractor.extractFonts(c);
 
     }
 

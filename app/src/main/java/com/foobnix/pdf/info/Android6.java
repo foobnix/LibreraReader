@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.model.AppSP;
+import com.foobnix.model.AppProfile;
 
 public class Android6 {
 
@@ -60,8 +60,8 @@ public class Android6 {
                     }
                 }
             } else {
-                AppSP.get().init(a);
-               FontExtractor.extractFonts(a);
+                AppProfile.init(a);
+                //FontExtractor.extractFonts(a);
 
             }
             return;
@@ -103,8 +103,8 @@ public class Android6 {
 //            if (checkWhatIsNew && !AppsConfig.IS_FDROID) {
 //                AndroidWhatsNew.checkWhatsNew(a);
 //            }
-            AppSP.get().init(a);
-            FontExtractor.extractFonts(a);
+            AppProfile.init(a);
+           //FontExtractor.extractFonts(a);
 
         }
     }
