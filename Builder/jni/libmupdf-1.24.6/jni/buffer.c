@@ -132,7 +132,7 @@ FUN(Buffer_readBytesInto)(JNIEnv *env, jobject self, jint jat, jobject jbs, jint
 	if (jlen < 0) jni_throw_oob(env, "length is negative");
 
 	bslen = (*env)->GetArrayLength(env, jbs);
-	if (len > bslen - off) jni_throw_oob(env, "offset + length is outside of buffer");
+	if (off > bslen || len > bslen - off) jni_throw_oob(env, "offset + length is outside of buffer");
 
 	blen = fz_buffer_storage(ctx, buf, &data);
 	if (at >= blen)
