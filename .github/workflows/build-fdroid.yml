@@ -73,9 +73,9 @@ jobs:
           cd ..
           MUPDF_ROOT="$PWD/mupdf-${{ env.MUPDF_VERSION }}"
           MUPDF_JAVA="$MUPDF_ROOT/platform/librera"
-          mkdir -p "$MUPDF_JAVA/jni"
-
           # Copy Librera's JNI directory (includes Android.mk, Application.mk, etc.)
+          # Remove existing jni dir first so cp puts contents directly, not nested
+          rm -rf "$MUPDF_JAVA/jni"
           cp -Rp jni "$MUPDF_JAVA/jni"
           if [ -f "$MUPDF_JAVA/jni/Android-${{ env.MUPDF_VERSION }}.mk" ]; then
             mv "$MUPDF_JAVA/jni/Android-${{ env.MUPDF_VERSION }}.mk" "$MUPDF_JAVA/jni/Android.mk"
