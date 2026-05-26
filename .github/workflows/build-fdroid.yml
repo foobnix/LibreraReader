@@ -98,7 +98,7 @@ jobs:
             cp -rpv "$SRC/directory.c"        "$DEST/fitz/directory.c"
             cp -rpv "$SRC/xml.c"             "$DEST/fitz/xml.c"
             cp -rpv "$SRC/list-device.c"     "$DEST/fitz/list-device.c"
-            cp -rpv "$SRC/pdf-xref.c"        "$DEST/fitz/pdf-xref.c"
+            cp -rpv "$SRC/pdf-xref.c"        "$DEST/pdf/pdf-xref.c"
             cp -rpv "$SRC/image-imp.h"       "$DEST/fitz/image-imp.h"
             cp -rpv "$SRC/compressed-buffer.h" "$MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h"
             cp -rpv "$SRC/context.h"         "$MUPDF_ROOT/include/mupdf/fitz/context.h"
