@@ -39,6 +39,11 @@ jobs:
           echo "Installing NDK ${{ env.NDK_VERSION }}..."
           sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
 
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-dev libgles2-mesa-dev
+
       - name: Cache MuPDF build
         id: cache-mupdf
         uses: actions/cache@v4
