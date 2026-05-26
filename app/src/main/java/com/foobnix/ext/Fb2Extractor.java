@@ -168,6 +168,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         int count = 0;
         int beginMath = 0;
+        int emptyLineCount = 0;
 
 
         while ((line = input.readLine()) != null) {
@@ -188,7 +189,14 @@ public class Fb2Extractor extends BaseExtractor {
                 }
             }
             if (!isValidXML && TxtUtils.isEmpty(line)) {
+                emptyLineCount++;
                 writer.println("<p></p>");
+                continue;
+            }
+            String trimmed = line.trim();
+            if (isValidXML && (trimmed.length() == 0 || trimmed.equalsIgnoreCase("<p></p>") || trimmed.equalsIgnoreCase("<div></div>"))) {
+                emptyLineCount++;
+                writer.println(line);
                 continue;
             }
 
@@ -305,6 +313,15 @@ public class Fb2Extractor extends BaseExtractor {
             if (!isValidXML && AppState.get().isCharacterEncoding) {
                 line = new String(line.getBytes("windows-1252"), AppState.get().characterEncoding);
             }
+
+            if (emptyLineCount > 0 && (line.contains("<p") || line.contains("<div"))) {
+                if (!line.contains("class=")) {
+                    line = line.replaceFirst("(<p(?:\\s+[^>]*)?)(>)", "$1 class=\"yr-gap-" + emptyLineCount + "\"$2");
+                    line = line.replaceFirst("(<div(?:\\s+[^>]*)?)(>)", "$1 class=\"yr-gap-" + emptyLineCount + "\"$2");
+                }
+                emptyLineCount = 0;
+            }
+
             writer.println(line);
 
             if (!isValidXML) {

@@ -21,6 +21,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.BookRecord;
 import com.foobnix.model.BookRecordHelper;
+import com.foobnix.model.ParagraphConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -64,6 +65,8 @@ public class BookCSS {
     public static int STYLES_DOC_AND_USER = 0;
     public static int STYLES_ONLY_DOC = 1;
     public static int STYLES_ONLY_USER = 2;
+    public static int STYLES_USER_THEN_DOC = 3;
+    public static int STYLES_DOC_THEN_USER_STRICT = 4;
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
     private static BookCSS instance = new BookCSS();
     public String searchPathsJson;
@@ -102,6 +105,12 @@ public class BookCSS {
 
     @IgnoreHashCode
     public transient String currentBookStyleOverride;
+    @IgnoreHashCode
+    public transient boolean currentLineMdRecognition = true;
+
+    public String userGlobalCssPath;
+    @IgnoreHashCode
+    public transient String userBookCssPath;
 
     public String paragraphGapRules;
     public int textAlign;
@@ -584,7 +593,7 @@ public class BookCSS {
     }
 
     public String important(String input) {
-        if (documentStyle == STYLES_ONLY_USER) {
+        if (documentStyle == STYLES_ONLY_USER || documentStyle == STYLES_DOC_THEN_USER_STRICT) {
             return input.replace(";", " !important;");
         }
         return input;
@@ -603,12 +612,18 @@ public class BookCSS {
         s = s.replace("{{marginBottom}}", em((marginBottom - 1) * 2));
         s = s.replace("{{textIndent}}", em(textIndent));
         s = s.replace("{{paragraphGap}}", em(paragraphHeight * 2));
+        s = s.replace("{{marginRight}}", em(marginRight * 2));
+        s = s.replace("{{marginLeft}}", em(marginLeft * 2));
+        s = s.replace("{{textAlign}}", getTextAlignConst(textAlign));
+        s = s.replace("{{emptyLine}}", em(emptyLine));
+        s = s.replace("{{fontWeight}}", String.valueOf(fontWeight));
         return s;
     }
 
     public static java.util.Map<Integer, String> parseGapRules(String rules) {
         java.util.Map<Integer, String> map = new java.util.HashMap<>();
         if (rules == null || rules.trim().isEmpty()) return map;
+        rules = rules.replace('\n', ',');
         for (String part : rules.split(",")) {
             part = part.trim();
             if (part.isEmpty()) continue;
@@ -655,10 +670,12 @@ public class BookCSS {
         String bookKey = ExtUtils.getFileName(path);
         String savedOverride = currentBookStyleOverride;
         String savedStyle = customCSS2;
+        String savedUserBookCssPath = userBookCssPath;
         int savedFontSizeSp = fontSizeSp;
         int savedTextIndent = textIndent;
         int savedLineHeight12 = lineHeight12;
         int savedParagraphHeight = paragraphHeight;
+        String savedParagraphGapRules = paragraphGapRules;
         int savedMarginTop = marginTop;
         int savedMarginBottom = marginBottom;
         int savedMarginLeft = marginLeft;
@@ -671,6 +688,7 @@ public class BookCSS {
                 try {
                     LinkedJSONObject jo = new LinkedJSONObject(overrideJson);
                     currentBookStyleOverride = jo.optString("customCSS", null);
+                    userBookCssPath = jo.optString("userBookCssPath", null);
                     fontSizeSp = jo.optInt("fontSizeSp", fontSizeSp);
                     textIndent = jo.optInt("textIndent", textIndent);
                     lineHeight12 = jo.optInt("lineHeight12", lineHeight12);
@@ -684,6 +702,15 @@ public class BookCSS {
                     LOG.e(e);
                 }
             }
+            String paragraphConfigJson = BookRecordHelper.getParagraphConfig(bookKey);
+            ParagraphConfig pc = ParagraphConfig.fromJson(paragraphConfigJson);
+            if (pc != null && pc.enabled) {
+                paragraphHeight = pc.paragraphHeight;
+                paragraphGapRules = pc.paragraphGapRules;
+                currentLineMdRecognition = pc.lineMdRecognition;
+            } else {
+                currentLineMdRecognition = true;
+            }
         }
         try {
             StringBuilder builder = new StringBuilder();
@@ -695,11 +722,134 @@ public class BookCSS {
             textIndent = savedTextIndent;
             lineHeight12 = savedLineHeight12;
             paragraphHeight = savedParagraphHeight;
+            paragraphGapRules = savedParagraphGapRules;
             marginTop = savedMarginTop;
             marginBottom = savedMarginBottom;
             marginLeft = savedMarginLeft;
             marginRight = savedMarginRight;
+            userBookCssPath = savedUserBookCssPath;
             textAlign = savedTextAlign;
+        }
+    }
+
+    private void appendUserCssBlock(StringBuilder builder, String backgroundColor, String textColor) {
+        builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
+        //apply settings
+
+        if (paragraphHeight >= 0) {// explicitly set margin to 0 when paragraphHeight==0
+            builder.append("div, p {");
+            builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
+            builder.append("}");
+        }
+
+
+        if (!AppState.get().isDayNotInvert) {
+            builder.append("h1, h2, h3, h4, h5, h6, hr{");
+            builder.append(String.format("background-color:%s !important;", backgroundColor));
+            builder.append(String.format("color:%s !important;", textColor));
+            builder.append("}");
+        }
+
+        // <P> begin
+        builder.append("body, div, p, span{");
+        builder.append(String.format("font-size:medium !important;"));
+
+        if (AppState.get().isDayNotInvert) {
+            if (!"#FFFFFF".equals(backgroundColor)) {
+                builder.append(important(String.format("background-color:%s;", backgroundColor)));
+            }
+            if (!"#000000".equals(textColor)) {
+                builder.append(important(String.format("color:%s;", textColor)));
+            }
+
+        } else {
+            //Important in the night mode
+            builder.append(String.format("background-color:%s !important;", backgroundColor));
+            builder.append(String.format("color:%s !important;", textColor));
+        }
+        //always important
+        builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+        builder.append(String.format("text-indent:%s !important;", em(textIndent)));
+        builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
+
+        if (isUrlFont(normalFont)) {
+            builder.append(important("font-family:'my';"));
+        } else {
+            builder.append(important("font-family:'" + normalFont + "';"));
+        }
+
+        builder.append("}");
+        // </P> end
+        builder.append("sub, sup{");
+        builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+        builder.append("}");
+
+
+        builder.append("div {");
+        builder.append("margin-right:0 !important;");
+        builder.append("margin-left:0 !important;");
+        builder.append("padding-left:0 !important;");
+        builder.append("padding-right:0 !important;");
+        builder.append("}");
+
+        // FONTS BEGIN
+        if (isUrlFont(normalFont)) {
+            builder.append("@font-face {font-family:'my'; src:url('" + normalFont + "'); font-weight:normal; font-style:normal;}");
+        }
+        if (isUrlFont(boldFont)) {
+            builder.append("@font-face {font-family:'my'; src:url('" + boldFont + "'); font-weight:bold; font-style:normal;}");
+        } else {
+            builder.append("b {font-family:'" + boldFont + "';font-weight:bold;}");
+        }
+
+        if (isUrlFont(italicFont)) {
+            builder.append("@font-face {font-family:'my'; src:url('" + italicFont + "'); font-weight:normal; font-style:italic;}");
+        } else {
+            builder.append("i {font-family:'" + italicFont + "'; font-style:italic;}");
+        }
+
+        if (isUrlFont(boldItalicFont)) {
+            builder.append("@font-face {font-family:'my'; src:url('" + boldItalicFont + "'); font-weight:bold; font-style:italic;}");
+        }
+
+        if (isUrlFont(headersFont)) {
+            builder.append("@font-face {font-family:'myHeader'; src:url('" + headersFont + "');}");
+            builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:'myHeader';}"));
+            builder.append(important("title,title>p,title>p>strong {font-weight:normal; font-family:'myHeader';}"));
+            builder.append(important("subtitle {font-weight:normal; font-family:'myHeader';}"));
+
+        } else {
+            builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:bold; font-family:'" + headersFont + "';}"));
+            builder.append(important("title,title>p,title>p>strong {font-weight:bold; font-family:'" + headersFont + "';}"));
+            builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
+        }
+
+        String effectiveCustomCSS = customCSS2;
+        if (currentBookStyleOverride != null && !currentBookStyleOverride.isEmpty()) {
+            effectiveCustomCSS = currentBookStyleOverride + "\n" + (effectiveCustomCSS != null ? effectiveCustomCSS : "");
+        }
+
+        if (userGlobalCssPath != null && !userGlobalCssPath.isEmpty()) {
+            File globalCss = new File(userGlobalCssPath);
+            if (globalCss.exists()) {
+                String css = IO.readString(globalCss);
+                if (css != null && !css.isEmpty()) {
+                    effectiveCustomCSS = (effectiveCustomCSS != null ? effectiveCustomCSS : "") + "\n" + css;
+                }
+            }
+        }
+        if (userBookCssPath != null && !userBookCssPath.isEmpty()) {
+            File bookCss = new File(userBookCssPath);
+            if (bookCss.exists()) {
+                String css = IO.readString(bookCss);
+                if (css != null && !css.isEmpty()) {
+                    effectiveCustomCSS = (effectiveCustomCSS != null ? effectiveCustomCSS : "") + "\n" + css;
+                }
+            }
+        }
+
+        if (effectiveCustomCSS != null) {
+            builder.append(replaceCustomCssVariables(effectiveCustomCSS).replace("\n", ""));
         }
     }
 
@@ -745,106 +895,13 @@ public class BookCSS {
         builder.append("padding:0 !important;");
         builder.append("}");
 
-        if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
+        if (documentStyle == STYLES_USER_THEN_DOC) {
+            appendUserCssBlock(builder, backgroundColor, textColor);
+        }
 
-            builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
-            //apply settings
+        if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER || documentStyle == STYLES_DOC_THEN_USER_STRICT) {
 
-            if (paragraphHeight > 0) {// bug is here
-                builder.append("div, p {");
-                builder.append(important(String.format("margin:%s 0;", em(paragraphHeight * 2))));
-                builder.append("}");
-            }
-
-
-            if (!AppState.get().isDayNotInvert) {
-                builder.append("h1, h2, h3, h4, h5, h6, hr{");
-                builder.append(String.format("background-color:%s !important;", backgroundColor));
-                builder.append(String.format("color:%s !important;", textColor));
-                builder.append("}");
-            }
-
-            // <P> begin
-            builder.append("body, div, p, span{");
-            builder.append(String.format("font-size:medium !important;"));
-
-            if (AppState.get().isDayNotInvert) {
-                if (!"#FFFFFF".equals(backgroundColor)) {
-                    builder.append(important(String.format("background-color:%s;", backgroundColor)));
-                }
-                if (!"#000000".equals(textColor)) {
-                    builder.append(important(String.format("color:%s;", textColor)));
-                }
-
-            } else {
-                //Important in the night mode
-                builder.append(String.format("background-color:%s !important;", backgroundColor));
-                builder.append(String.format("color:%s !important;", textColor));
-            }
-            //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
-            builder.append(String.format("text-indent:%s !important;", em(textIndent)));
-            builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
-
-            if (isUrlFont(normalFont)) {
-                builder.append(important("font-family:'my';"));
-            } else {
-                builder.append(important("font-family:'" + normalFont + "';"));
-            }
-
-            builder.append("}");
-            // </P> end
-            builder.append("sub, sup{");
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
-            builder.append("}");
-
-
-            builder.append("div {");
-            builder.append("margin-right:0 !important;");
-            builder.append("margin-left:0 !important;");
-            builder.append("padding-left:0 !important;");
-            builder.append("padding-right:0 !important;");
-            builder.append("}");
-
-            // FONTS BEGIN
-            if (isUrlFont(normalFont)) {
-                builder.append("@font-face {font-family:'my'; src:url('" + normalFont + "'); font-weight:normal; font-style:normal;}");
-            }
-            if (isUrlFont(boldFont)) {
-                builder.append("@font-face {font-family:'my'; src:url('" + boldFont + "'); font-weight:bold; font-style:normal;}");
-            } else {
-                builder.append("b {font-family:'" + boldFont + "';font-weight:bold;}");
-            }
-
-            if (isUrlFont(italicFont)) {
-                builder.append("@font-face {font-family:'my'; src:url('" + italicFont + "'); font-weight:normal; font-style:italic;}");
-            } else {
-                builder.append("i {font-family:'" + italicFont + "'; font-style:italic;}");
-            }
-
-            if (isUrlFont(boldItalicFont)) {
-                builder.append("@font-face {font-family:'my'; src:url('" + boldItalicFont + "'); font-weight:bold; font-style:italic;}");
-            }
-
-            if (isUrlFont(headersFont)) {
-                builder.append("@font-face {font-family:'myHeader'; src:url('" + headersFont + "');}");
-                builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:'myHeader';}"));
-                builder.append(important("title,title>p,title>p>strong {font-weight:normal; font-family:'myHeader';}"));
-                builder.append(important("subtitle {font-weight:normal; font-family:'myHeader';}"));
-
-            } else {
-                builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:bold; font-family:'" + headersFont + "';}"));
-                builder.append(important("title,title>p,title>p>strong {font-weight:bold; font-family:'" + headersFont + "';}"));
-                builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
-            }
-
-            String effectiveCustomCSS = customCSS2;
-            if (currentBookStyleOverride != null && !currentBookStyleOverride.isEmpty()) {
-                effectiveCustomCSS = currentBookStyleOverride + "\n" + (effectiveCustomCSS != null ? effectiveCustomCSS : "");
-            }
-            if (effectiveCustomCSS != null) {
-                builder.append(replaceCustomCssVariables(effectiveCustomCSS).replace("\n", ""));
-            }
+            appendUserCssBlock(builder, backgroundColor, textColor);
 
         }
         //FB2 Capital letter for all styles
@@ -900,6 +957,58 @@ public class BookCSS {
             final AppBook load = SharedBooks.load(bookPath);
             if (load != null) {
                 AppSP.get().hypenLang = load.ln;
+            }
+        }
+    }
+
+    public static void autoDetectFontFamily(String fontPath) {
+        BookCSS css = get();
+        if (fontPath == null || fontPath.isEmpty()) {
+            return;
+        }
+        File file = new File(fontPath);
+        if (!file.exists()) {
+            return;
+        }
+        File dir = file.getParentFile();
+        if (dir == null || !dir.isDirectory()) {
+            return;
+        }
+        String baseName = file.getName();
+        css.normalFont = fontPath;
+        css.boldFont = fontPath;
+        css.italicFont = fontPath;
+        css.boldItalicFont = fontPath;
+        css.headersFont = fontPath;
+        css.capitalFont = fontPath;
+
+        String lower = baseName.toLowerCase(Locale.US);
+        String prefix = baseName;
+        if (lower.contains("-")) {
+            prefix = baseName.substring(0, baseName.lastIndexOf("-"));
+        } else if (lower.contains("_")) {
+            prefix = baseName.substring(0, baseName.lastIndexOf("_"));
+        } else if (lower.contains(" ")) {
+            prefix = baseName.substring(0, baseName.lastIndexOf(" "));
+        }
+
+        String[] list = dir.list();
+        if (list == null) {
+            return;
+        }
+        for (String name : list) {
+            String low = name.toLowerCase(Locale.US);
+            if (!low.startsWith(prefix.toLowerCase(Locale.US))) {
+                continue;
+            }
+            String full = dir.getPath() + "/" + name;
+            if (low.contains("bolditalic") || low.contains("bold-italic") || low.contains("boldita") || low.contains("-bi") || low.contains("_bi") || low.contains("boldit")) {
+                css.boldItalicFont = full;
+            } else if (low.contains("bold") || low.contains("-b.") || low.contains("_b.") || low.endsWith("b.ttf") || low.endsWith("b.otf")) {
+                css.boldFont = full;
+                css.headersFont = full;
+            } else if (low.contains("italic") || low.contains("-i.") || low.contains("_i.") || low.endsWith("i.ttf") || low.endsWith("i.otf")) {
+                css.italicFont = full;
             }
         }
     }

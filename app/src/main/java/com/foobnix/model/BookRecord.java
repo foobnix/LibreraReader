@@ -60,6 +60,10 @@ public class BookRecord {
     private String annotationsJson;
     private String styleSettingsJson;
     private String paragraphConfigJson;
+    /** EPUB CFI / position JSON for epub3 locator */
+    private String epubLocatorJson;
+    /** TXT file byte/line offset JSON for plain-text locator */
+    private String txtLocatorJson;
     /** Content fingerprint for change detection (hash of first/last N bytes + size) */
     private String contentFingerprint;
 
@@ -178,6 +182,12 @@ public class BookRecord {
 
     public String getParagraphConfigJson() { return paragraphConfigJson; }
     public void setParagraphConfigJson(String paragraphConfigJson) { this.paragraphConfigJson = paragraphConfigJson; }
+
+    public String getEpubLocatorJson() { return epubLocatorJson; }
+    public void setEpubLocatorJson(String epubLocatorJson) { this.epubLocatorJson = epubLocatorJson; }
+
+    public String getTxtLocatorJson() { return txtLocatorJson; }
+    public void setTxtLocatorJson(String txtLocatorJson) { this.txtLocatorJson = txtLocatorJson; }
 
     public String getContentFingerprint() { return contentFingerprint; }
     public void setContentFingerprint(String contentFingerprint) { this.contentFingerprint = contentFingerprint; }

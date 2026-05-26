@@ -41,6 +41,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
         migrations.add(new MigrationV11());
+        migrations.add(new MigrationV12());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -173,6 +174,20 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         @Override
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + com.foobnix.model.BookRecordRepository.TABLE_NAME + " ADD COLUMN PARAGRAPH_CONFIG_JSON TEXT");
+        }
+    }
+
+    private static class MigrationV12 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 12;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + com.foobnix.model.BookRecordRepository.TABLE_NAME + " ADD COLUMN EPUB_LOCATOR_JSON TEXT");
+            db.execSQL("ALTER TABLE " + com.foobnix.model.BookRecordRepository.TABLE_NAME + " ADD COLUMN TXT_LOCATOR_JSON TEXT");
         }
     }
 

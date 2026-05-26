@@ -36,6 +36,8 @@ public class BookRecordRepository {
     public static final String COL_ANNOTATIONS_JSON = "ANNOTATIONS_JSON";
     public static final String COL_STYLE_SETTINGS_JSON = "STYLE_SETTINGS_JSON";
     public static final String COL_PARAGRAPH_CONFIG_JSON = "PARAGRAPH_CONFIG_JSON";
+    public static final String COL_EPUB_LOCATOR_JSON = "EPUB_LOCATOR_JSON";
+    public static final String COL_TXT_LOCATOR_JSON = "TXT_LOCATOR_JSON";
     public static final String COL_CONTENT_FINGERPRINT = "CONTENT_FINGERPRINT";
     public static final String COL_ADDED_TIME = "ADDED_TIME";
 
@@ -43,7 +45,8 @@ public class BookRecordRepository {
             COL_BOOK_KEY, COL_LAST_READ_TIME, COL_CURRENT_PAGE_INDEX, COL_PROGRESS_PERCENT,
             COL_TOTAL_PAGES, COL_RENDER_FLAGS_JSON, COL_ZOOM, COL_OFFSET_X, COL_OFFSET_Y,
             COL_SCROLL_SPEED, COL_BOOKMARKS_JSON, COL_ANNOTATIONS_JSON, COL_STYLE_SETTINGS_JSON,
-            COL_PARAGRAPH_CONFIG_JSON, COL_CONTENT_FINGERPRINT, COL_ADDED_TIME
+            COL_PARAGRAPH_CONFIG_JSON, COL_EPUB_LOCATOR_JSON, COL_TXT_LOCATOR_JSON,
+            COL_CONTENT_FINGERPRINT, COL_ADDED_TIME
     };
 
     public static void createTable(Database db, boolean ifNotExists) {
@@ -63,6 +66,8 @@ public class BookRecordRepository {
                 COL_ANNOTATIONS_JSON + " TEXT," +
                 COL_STYLE_SETTINGS_JSON + " TEXT," +
                 COL_PARAGRAPH_CONFIG_JSON + " TEXT," +
+                COL_EPUB_LOCATOR_JSON + " TEXT," +
+                COL_TXT_LOCATOR_JSON + " TEXT," +
                 COL_CONTENT_FINGERPRINT + " TEXT," +
                 COL_ADDED_TIME + " INTEGER DEFAULT 0" +
                 ");");
@@ -174,6 +179,8 @@ public class BookRecordRepository {
         rec.setAnnotationsJson(cursor.getString(cursor.getColumnIndexOrThrow(COL_ANNOTATIONS_JSON)));
         rec.setStyleSettingsJson(cursor.getString(cursor.getColumnIndexOrThrow(COL_STYLE_SETTINGS_JSON)));
         rec.setParagraphConfigJson(cursor.getString(cursor.getColumnIndexOrThrow(COL_PARAGRAPH_CONFIG_JSON)));
+        rec.setEpubLocatorJson(cursor.getString(cursor.getColumnIndexOrThrow(COL_EPUB_LOCATOR_JSON)));
+        rec.setTxtLocatorJson(cursor.getString(cursor.getColumnIndexOrThrow(COL_TXT_LOCATOR_JSON)));
         rec.setContentFingerprint(cursor.getString(cursor.getColumnIndexOrThrow(COL_CONTENT_FINGERPRINT)));
         rec.setAddedTime(cursor.getLong(cursor.getColumnIndexOrThrow(COL_ADDED_TIME)));
         return rec;
@@ -195,6 +202,8 @@ public class BookRecordRepository {
         cv.put(COL_ANNOTATIONS_JSON, rec.getAnnotationsJson());
         cv.put(COL_STYLE_SETTINGS_JSON, rec.getStyleSettingsJson());
         cv.put(COL_PARAGRAPH_CONFIG_JSON, rec.getParagraphConfigJson());
+        cv.put(COL_EPUB_LOCATOR_JSON, rec.getEpubLocatorJson());
+        cv.put(COL_TXT_LOCATOR_JSON, rec.getTxtLocatorJson());
         cv.put(COL_CONTENT_FINGERPRINT, rec.getContentFingerprint());
         cv.put(COL_ADDED_TIME, rec.getAddedTime());
         return cv;

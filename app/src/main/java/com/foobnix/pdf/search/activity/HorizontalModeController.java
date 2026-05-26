@@ -162,7 +162,23 @@ public abstract class HorizontalModeController extends DocumentController {
 
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
-        if (percent > 0.0f) {
+        String bookKey = ExtUtils.getFileName(bookPath);
+        BookRecord rec = BookRecordHelper.load(bookKey);
+        int targetPage = -1;
+        if (rec != null) {
+            if (rec.getCurrentPageIndex() >= 0 && rec.getTotalPages() == pagesCount) {
+                targetPage = rec.getCurrentPageIndex() + 1;
+            } else {
+                int pageFromPercent = Math.round(pagesCount * rec.getProgressPercent());
+                if (pageFromPercent > 0) {
+                    targetPage = pageFromPercent;
+                }
+            }
+        }
+
+        if (targetPage > 0 && targetPage <= pagesCount) {
+            currentPage = targetPage - 1;
+        } else if (percent > 0.0f) {
             currentPage = Math.round(pagesCount * percent) - 1;
         } else if (pagesCount > 0) {
             currentPage = bs.getCurrentPage(getPageCount()).viewIndex;

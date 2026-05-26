@@ -51,13 +51,21 @@ public class ImagePageFragment extends Fragment {
         @Override
         public void run() {
             if (!isDetached()) {
-                loadImageGlide();
+                prefetchImage();
             } else {
                 LOG.d("Image page is detached");
             }
         }
 
     };
+
+    public void prefetchImage() {
+        if (image != null && image.getWidth() == 0) {
+            handler.postDelayed(this.callback, 50);
+            return;
+        }
+        loadImageGlide();
+    }
 
     public String getPath() {
         return getArguments().getString(PAGE_PATH);
@@ -82,20 +90,20 @@ public class ImagePageFragment extends Fragment {
         handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
 
-            @Override
-            public void run() {
-                LOG.d("ImagePageFragment1  run ", page, "getPriority", getPriority(), "counter", count);
-                if (isVisible()) {
-                    if (0 == getPriority()) {
-                        handler.post(callback);
-                    } else if (1 == getPriority()) {
-                        handler.postDelayed(callback, 200);
-                    } else {
-                        handler.postDelayed(callback, getPriority() * 200);
-                    }
+        @Override
+        public void run() {
+            LOG.d("ImagePageFragment1  run ", page, "getPriority", getPriority(), "counter", count);
+            if (isVisible()) {
+                int priority = getPriority();
+                int delay = Math.max(0, (100 - priority) * 5);
+                if (delay == 0) {
+                    handler.post(callback);
+                } else {
+                    handler.postDelayed(callback, delay);
                 }
-
             }
+
+        }
         }, 150);
         lifeTime = System.currentTimeMillis();
 
@@ -215,7 +223,7 @@ public class ImagePageFragment extends Fragment {
     }
 
     public int getPriority() {
-        return Math.min(Math.abs(PageImageState.currentPage - page), 10);
+        return PageImageState.getPagePriorityWeight(page, PageImageState.currentPage);
     }
 
 

@@ -17,7 +17,7 @@ import org.greenrobot.greendao.identityscope.IdentityScopeType;
  * Master of DAO (schema version 9): knows all DAOs.
  */
 public class DaoMaster extends AbstractDaoMaster {
-    public static final int SCHEMA_VERSION = 11;
+    public static final int SCHEMA_VERSION = 12;
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {

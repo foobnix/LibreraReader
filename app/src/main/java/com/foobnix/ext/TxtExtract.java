@@ -149,8 +149,12 @@ public class TxtExtract {
                     }
 
                 } else {
-                    if (line.trim()
-                            .length() == 0) {
+                    String trimmed = line.trim();
+                    if (BookCSS.get().currentLineMdRecognition &&
+                            (trimmed.matches("^[*_]{3,}$") || trimmed.matches("^[-]{3,}$"))) {
+                        outLn = "<hr/>";
+                        emptyLineCount = 0;
+                    } else if (trimmed.length() == 0) {
                         emptyLineCount++;
                         continue;
                     } else if (TxtUtils.isLineStartEndUpperCase(line)) {
@@ -160,9 +164,8 @@ public class TxtExtract {
                         outLn = "<b>" + format(line, replacements) + "</b>";
                         emptyLineCount = 0;
                     } else {
-                        String gapClass = "yr-gap-" + emptyLineCount;
-                        if (BookCSS.get().getParagraphGapFor(emptyLineCount) != null) {
-                            outLn = "<p class=\"" + gapClass + "\">" + format(line, replacements) + "</p>";
+                        if (emptyLineCount > 0) {
+                            outLn = "<p class=\"yr-gap-" + emptyLineCount + "\">" + format(line, replacements) + "</p>";
                         } else {
                             outLn = "<p>" + format(line, replacements) + "</p>";
                         }

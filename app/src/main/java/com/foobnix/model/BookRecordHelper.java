@@ -60,4 +60,32 @@ public class BookRecordHelper {
         save(rec);
     }
 
+    public static String getEpubLocator(String bookKey) {
+        BookRecord rec = load(bookKey);
+        return rec != null ? rec.getEpubLocatorJson() : null;
+    }
+
+    public static void setEpubLocator(String bookKey, String epubLocatorJson) {
+        BookRecord rec = load(bookKey);
+        if (rec == null) {
+            rec = new BookRecord(bookKey);
+        }
+        rec.setEpubLocatorJson(epubLocatorJson);
+        save(rec);
+    }
+
+    public static String getTxtLocator(String bookKey) {
+        BookRecord rec = load(bookKey);
+        return rec != null ? rec.getTxtLocatorJson() : null;
+    }
+
+    public static void setTxtLocator(String bookKey, String txtLocatorJson) {
+        BookRecord rec = load(bookKey);
+        if (rec == null) {
+            rec = new BookRecord(bookKey);
+        }
+        rec.setTxtLocatorJson(txtLocatorJson);
+        save(rec);
+    }
+
 }

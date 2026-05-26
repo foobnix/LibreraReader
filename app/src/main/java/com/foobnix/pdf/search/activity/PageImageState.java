@@ -105,7 +105,17 @@ public class PageImageState {
             }
         }
         return out.toString();
+    }
 
+    public static int getPagePriorityWeight(int pageIndex, int currentPageIndex) {
+        int diff = pageIndex - currentPageIndex;
+        switch (diff) {
+            case 0: return 100; // current page - highest priority
+            case 1: return 90;  // next page
+            case 2: return 80; // next next page
+            case -1: return 70; // previous page
+            default: return Math.max(0, 60 - Math.abs(diff) * 10); // declining
+        }
     }
 
 }
