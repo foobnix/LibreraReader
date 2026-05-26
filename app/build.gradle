@@ -357,12 +357,10 @@ dependencies {
 
 
 
-    // YR: RTF disabled
-    //implementation(libs.rtfparserkit)
+    implementation(libs.rtfparserkit)
 
-    // YR: DOCX disabled
-    //implementation(libs.mammoth)
-    //implementation(libs.stax.api)
+    implementation(libs.mammoth)
+    implementation(libs.stax.api)
 
 
     implementation(libs.zip4j)
