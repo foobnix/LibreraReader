@@ -73,7 +73,7 @@ import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 // YR: TTS disabled imports
-// import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.MessagePageNumber;
 // import com.foobnix.tts.TTSControlsView;
 // import com.foobnix.tts.TTSEngine;
 // import com.foobnix.tts.TTSService;

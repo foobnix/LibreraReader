@@ -99,7 +99,7 @@ import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
 // YR: TTS disabled imports
-// import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.MessagePageNumber;
 // import com.foobnix.tts.TTSControlsView;
 // import com.foobnix.tts.TTSEngine;
 // import com.foobnix.tts.TTSNotification;
@@ -1742,6 +1742,30 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         hideShow();
     }
 
+    private void triggerPriorityPrefetch(final int currentPos) {
+        if (dc == null || pagerAdapter == null || viewPager == null) {
+            return;
+        }
+        int pageCount = dc.getPageCount();
+        if (pageCount <= 0) {
+            return;
+        }
+        final int[] prefetchOrder = { currentPos, currentPos + 1, currentPos + 2, currentPos - 1 };
+        for (int page : prefetchOrder) {
+            if (page < 0 || page >= pageCount) {
+                continue;
+            }
+            if (page == currentPos) {
+                continue;
+            }
+            final int p = page;
+            ImagePageFragment fragment = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + p);
+            if (fragment != null) {
+                fragment.prefetchImage();
+            }
+        }
+    }
+
     public void initAsync(int w, int h) {
         dc = new HorizontalModeController(this, w, h) {
             @Override
@@ -2522,6 +2546,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             PageImageState.currentPage = pos;
             dc.setCurrentPage(viewPager.getCurrentItem());
             updateUI(pos);
+            triggerPriorityPrefetch(pos);
 
             if (PageImageState.get().isAutoFit) {
                 EventBus.getDefault().post(new MessageAutoFit(pos));

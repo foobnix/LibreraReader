@@ -36,10 +36,13 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.BookRecord;
 import com.foobnix.model.BookRecordHelper;
+import com.foobnix.model.EpubLocator;
+import com.foobnix.model.TxtLocator;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -571,6 +574,35 @@ public abstract class DocumentController {
                 rec.setProgressPercent(bs.p);
                 BookRecordHelper.save(rec);
             }
+
+            // YR Phase 5: PRIMARY - Save locator for EPUB / TXT
+            if (bookKey != null) {
+                String ext = ExtUtils.getFileExtension(bs.path).toLowerCase();
+                if ("epub".equals(ext)) {
+                    EpubLocator locator = new EpubLocator();
+                    String currentChapter = getCurrentChapterFile();
+                    if (currentChapter != null) {
+                        locator.chapterHref = currentChapter;
+                        String chapterAsString = getCurrentChapter();
+                        if (chapterAsString != null) {
+                            try {
+                                locator.spineIndex = Integer.parseInt(chapterAsString.replaceAll("\\D+", ""));
+                            } catch (Exception e) {
+                                locator.spineIndex = 0;
+                            }
+                        }
+                        locator.domPath = "";
+                        locator.textNodeIndex = 0;
+                        locator.charIndex = 0;
+                        BookRecordHelper.setEpubLocator(bookKey, locator.toJson());
+                    }
+                } else if ("txt".equals(ext)) {
+                    TxtLocator locator = new TxtLocator();
+                    locator.byteOffset = getCurentPageFirst1();
+                    locator.encoding = com.foobnix.model.AppState.get().characterEncoding;
+                    BookRecordHelper.setTxtLocator(bookKey, locator.toJson());
+                }
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -588,25 +620,84 @@ public abstract class DocumentController {
         return AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN;
     }
 
+    public int resolveLocatorToPage(BookRecord rec, String path) {
+        if (rec == null) {
+            return -1;
+        }
+        String ext = ExtUtils.getFileExtension(path).toLowerCase();
+        if ("epub".equals(ext)) {
+            String epubJson = rec.getEpubLocatorJson();
+            if (epubJson != null) {
+                EpubLocator locator = EpubLocator.fromJson(epubJson);
+                if (locator != null && locator.isValid()) {
+                    String currentChapter = getCurrentChapterFile();
+                    if (currentChapter != null && currentChapter.equals(locator.chapterHref)) {
+                        int page = getCurentPageFirst1();
+                        if (page > 0 && page <= getPageCount()) {
+                            return page;
+                        }
+                    }
+                    // Fallback: try to match chapter via outline page range
+                    List<OutlineLinkWrapper> outline = getCurrentOutline();
+                    if (outline != null) {
+                        for (OutlineLinkWrapper item : outline) {
+                            if (item.linkUri != null && item.linkUri.equals(locator.chapterHref)) {
+                                if (item.targetPage > 0 && item.targetPage <= getPageCount()) {
+                                    return item.targetPage;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if ("txt".equals(ext)) {
+            String txtJson = rec.getTxtLocatorJson();
+            if (txtJson != null) {
+                TxtLocator locator = TxtLocator.fromJson(txtJson);
+                if (locator != null && locator.isValid()) {
+                    int pageHint = (int) Math.min(locator.byteOffset, getPageCount());
+                    if (pageHint > 0 && pageHint <= getPageCount()) {
+                        return pageHint;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
     public void onResume() {
         try {
             if (getPageCount() != 0) {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-                int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
 
                 String bookKey = ExtUtils.getFileName(getCurrentBook().getPath());
+                BookRecord rec = null;
                 if (bookKey != null) {
-                    BookRecord rec = BookRecordHelper.load(bookKey);
-                    if (rec != null && rec.getTotalPages() == getPageCount() && rec.getCurrentPageIndex() >= 0) {
-                        int target = rec.getCurrentPageIndex() + 1;
-                        LOG.d("_PAGE", "restore from BookRecord", target, rec.getTotalPages());
-                        if (target > 0 && target <= getPageCount() && getCurentPage() != target) {
-                            onGoToPage(target);
-                            return;
-                        }
+                    rec = BookRecordHelper.load(bookKey);
+                }
+
+                // NEW: PRIMARY - try locator first (Phase 5)
+                if (rec != null) {
+                    int locatorPage = resolveLocatorToPage(rec, getCurrentBook().getPath());
+                    if (locatorPage > 0 && locatorPage <= getPageCount() && getCurentPage() != locatorPage) {
+                        LOG.d("_PAGE", "restore from locator", locatorPage);
+                        onGoToPage(locatorPage);
+                        return;
                     }
                 }
 
+                // SECONDARY: BookRecord currentPageIndex (existing Phase 2)
+                if (rec != null && rec.getTotalPages() == getPageCount() && rec.getCurrentPageIndex() >= 0) {
+                    int target = rec.getCurrentPageIndex() + 1;
+                    LOG.d("_PAGE", "restore from BookRecord", target, rec.getTotalPages());
+                    if (target > 0 && target <= getPageCount() && getCurentPage() != target) {
+                        onGoToPage(target);
+                        return;
+                    }
+                }
+
+                // FALLBACK: percent-based (existing)
+                int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
                 if (getCurentPage() != page) {
                     onGoToPage(page);
                 }
