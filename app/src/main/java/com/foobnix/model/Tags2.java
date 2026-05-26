@@ -128,7 +128,9 @@ public class Tags2 {
                     array.put(file.getPath());
                 }
             } else {
-                array.remove(index);
+                if (index >= 0) {
+                    array.remove(index);
+                }
             }
 
         }

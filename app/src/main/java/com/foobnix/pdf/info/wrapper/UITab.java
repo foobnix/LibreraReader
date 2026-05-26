@@ -124,12 +124,10 @@ public enum UITab {
     }
 
     public boolean isVisible() {
-//        if (this == UITab.GoogleDrive2Fragment) {
-//            return false;
-//        }
-//        if (AppsConfig.IS_FDROID && (this == UITab.OpdsFragment)) {
-//            return false;
-//        }
+        // YuriReader: OPDS and Drive tabs always hidden
+        if (this == UITab.OpdsFragment || this == UITab.GoogleDrive2Fragment) {
+            return false;
+        }
         if (AppsConfig.IS_FDROID && (this == UITab.GoogleDrive2Fragment)) {
             return false;
         }

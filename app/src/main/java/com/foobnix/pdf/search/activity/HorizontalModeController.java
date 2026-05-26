@@ -18,6 +18,8 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.BookRecord;
+import com.foobnix.model.BookRecordHelper;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -33,8 +35,8 @@ import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
+// YR: TTS disabled import com.foobnix.tts.TTSEngine;
+// import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -428,9 +430,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override public void onCloseActivityFinal(final Runnable run) {
         stopTimer();
-        TTSEngine.get()
-                 .stop();
-        TTSNotification.hideNotification();
+        // YR: TTS disabled TTSEngine.get().stop();
+        // TTSNotification.hideNotification();
 
         Safe.run(new Runnable() {
 

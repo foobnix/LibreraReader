@@ -2088,7 +2088,9 @@ public class PrefFragment2 extends UIFragment {
                                                                     }
                                                                 });
 
+        // YR: Dict disabled - dictionary selection hidden in XML (visibility=gone)
         selectedDictionaly = inflate.findViewById(R.id.selectedDictionaly);
+        if (selectedDictionaly != null) {
         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
         selectedDictionaly.setOnClickListener(new
 
@@ -2102,9 +2104,10 @@ public class PrefFragment2 extends UIFragment {
                                                                               selectedDictionaly.setText(
                                                                                       DialogTranslateFromTo.getSelectedDictionaryUnderline());
                                                                           }
-                                                                      }, false);
-                                                          }
-                                                      });
+                                                                       }, false);
+                                                           }
+                                                       });
+        }
 
         textDayColor = inflate.findViewById(R.id.onDayColor);
         textDayColor.setOnClickListener(new
@@ -2829,7 +2832,9 @@ public class PrefFragment2 extends UIFragment {
         textDayColor.setBackgroundColor(AppState.get().colorDayBg);
 
         isRememberDictionary.setChecked(AppState.get().isRememberDictionary);
+        if (selectedDictionaly != null) {
         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
+        }
 
     }
 

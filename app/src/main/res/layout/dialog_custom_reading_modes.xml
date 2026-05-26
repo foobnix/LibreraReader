@@ -35,16 +35,20 @@
         android:singleLine="true"
         android:layout_height="wrap_content" />
 
+    <!-- YR: Musician mode disabled -->
     <TextView
         android:layout_width="match_parent"
         android:text="@string/mode_musician"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
+    <!-- YR: Musician mode disabled -->
     <EditText
         android:id="@+id/prefMusicianMode"
         android:layout_width="match_parent"
         android:singleLine="true"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <TextView
         style="@style/textLink"

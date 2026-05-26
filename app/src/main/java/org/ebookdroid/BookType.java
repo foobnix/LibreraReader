@@ -192,13 +192,17 @@ public enum BookType {
             return false;
         }
 
+        // YuriReader: Only EPUB and TXT are supported
         for (final BookType a : values()) {
             for (final String ext : a.extensions) {
                 if (TxtUtils.isEmpty(ext)) {
                     continue;
                 }
                 if (path.endsWith(ext)) {
-                    return true;
+                    if (a == EPUB || a == TXT) {
+                        return true;
+                    }
+                    return false;
                 }
 
             }

@@ -1,0 +1,189 @@
+name: Build YuriReader (fdroid)
+
+on:
+  push:
+    branches: [master]
+    tags: ['v*']
+  pull_request:
+    branches: [master]
+
+# Cancel in-progress runs for the same branch/PR
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MUPDF_VERSION: "1.23.7"
+  NDK_VERSION: "29.0.14206865"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: |
+          echo "Installing NDK ${{ env.NDK_VERSION }}..."
+          sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
+
+      - name: Cache MuPDF build
+        id: cache-mupdf
+        uses: actions/cache@v4
+        with:
+          path: |
+            Builder/mupdf-${{ env.MUPDF_VERSION }}
+            app/src/main/jniLibs
+          key: mupdf-${{ env.MUPDF_VERSION }}-ndk${{ env.NDK_VERSION }}-v1
+          restore-keys: |
+            mupdf-${{ env.MUPDF_VERSION }}-ndk${{ env.NDK_VERSION }}-
+
+      - name: Build MuPDF native libraries
+        if: steps.cache-mupdf.outputs.cache-hit != 'true'
+        working-directory: Builder
+        run: |
+          echo "=== Cloning MuPDF ${{ env.MUPDF_VERSION }} ==="
+          git clone --recursive git://git.ghostscript.com/mupdf.git --branch ${{ env.MUPDF_VERSION }} mupdf-${{ env.MUPDF_VERSION }}
+
+          echo "=== Building MuPDF ==="
+          cd mupdf-${{ env.MUPDF_VERSION }}
+          make generate
+          make release
+
+          echo "=== Setting up Librera JNI patches ==="
+          cd ..
+          MUPDF_ROOT="$PWD/mupdf-${{ env.MUPDF_VERSION }}"
+          MUPDF_JAVA="$MUPDF_ROOT/platform/librera"
+          mkdir -p "$MUPDF_JAVA/jni"
+
+          # Copy Librera's JNI directory (includes Android.mk, Application.mk, etc.)
+          cp -Rp jni "$MUPDF_JAVA/jni"
+          if [ -f "$MUPDF_JAVA/jni/Android-${{ env.MUPDF_VERSION }}.mk" ]; then
+            mv "$MUPDF_JAVA/jni/Android-${{ env.MUPDF_VERSION }}.mk" "$MUPDF_JAVA/jni/Android.mk"
+          fi
+
+          # Apply Librera patches to MuPDF source
+          SRC="jni/~mupdf-${{ env.MUPDF_VERSION }}"
+          DEST="$MUPDF_ROOT/source"
+          if [ -d "$SRC" ]; then
+            cp -rpv "$SRC/css-apply.c"       "$DEST/html/css-apply.c"
+            cp -rpv "$SRC/epub-doc.c"        "$DEST/html/epub-doc.c"
+            cp -rpv "$SRC/html-layout.c"     "$DEST/html/html-layout.c"
+            cp -rpv "$SRC/html-parse.c"      "$DEST/html/html-parse.c"
+            cp -rpv "$SRC/mucbz.c"           "$DEST/cbz/mucbz.c"
+            cp -rpv "$SRC/muimg.c"           "$DEST/cbz/muimg.c"
+            cp -rpv "$SRC/load-webp.c"       "$DEST/fitz/load-webp.c"
+            cp -rpv "$SRC/image.c"           "$DEST/fitz/image.c"
+            cp -rpv "$SRC/unzip.c"            "$DEST/fitz/unzip.c"
+            cp -rpv "$SRC/directory.c"        "$DEST/fitz/directory.c"
+            cp -rpv "$SRC/xml.c"             "$DEST/fitz/xml.c"
+            cp -rpv "$SRC/list-device.c"     "$DEST/fitz/list-device.c"
+            echo "Applied Librera patches to MuPDF"
+          else
+            echo "No custom patches directory found ($SRC), skipping patch step"
+          fi
+
+          echo "=== Building JNI libraries with NDK ==="
+          cd "$MUPDF_JAVA"
+          NDK_BUILD="$ANDROID_HOME/ndk/${{ env.NDK_VERSION }}/ndk-build"
+
+          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
+          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a APP_PLATFORM=android-24 &
+          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86 APP_PLATFORM=android-24 &
+          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64 APP_PLATFORM=android-24
+
+          echo "=== Linking .so files to jniLibs ==="
+          LIBS="$GITHUB_WORKSPACE/app/src/main/jniLibs"
+          rm -rf "$LIBS"
+          mkdir -p "$LIBS"
+          ln -s "$MUPDF_JAVA/libs/armeabi-v7a" "$LIBS/"
+          ln -s "$MUPDF_JAVA/libs/arm64-v8a" "$LIBS/"
+          ln -s "$MUPDF_JAVA/libs/x86" "$LIBS/"
+          ln -s "$MUPDF_JAVA/libs/x86_64" "$LIBS/"
+
+          echo "=== .so files ==="
+          find "$LIBS" -name "*.so" | head -20
+
+      - name: Verify native libraries
+        run: |
+          echo "=== Checking jniLibs ==="
+          find app/src/main/jniLibs -name "*.so" || echo "WARNING: No .so files found!"
+          ls -la app/src/main/jniLibs/*/ 2>/dev/null || echo "ERROR: jniLibs subdirectories missing"
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/libs.versions.toml', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-
+
+      - name: Build fdroid debug APK (PR/push)
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        run: |
+          ./gradlew assembleFdroidDebug
+
+      - name: Build fdroid release APK (tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          # Generate a CI keystore for release builds.
+          # For production signing: set these as GitHub Secrets and reference them here.
+          _KEYSTORE_PATH="$HOME/release.keystore"
+          _KEYSTORE_PASS="android"
+          _KEY_ALIAS="release"
+          _KEY_PASS="android"
+
+          keytool -genkeypair -v \
+            -keystore "$_KEYSTORE_PATH" \
+            -storepass "$_KEYSTORE_PASS" \
+            -alias "$_KEY_ALIAS" \
+            -keypass "$_KEY_PASS" \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=YuriReader,OU=Build,O=YuriReader,L=Seoul,C=KR"
+
+          ./gradlew assembleFdroidRelease \
+            -PRELEASE_STORE_FILE="$_KEYSTORE_PATH" \
+            -PRELEASE_STORE_PASSWORD="$_KEYSTORE_PASS" \
+            -PRELEASE_KEY_ALIAS="$_KEY_ALIAS" \
+            -PRELEASE_KEY_PASSWORD="$_KEY_PASS"
+
+      - name: Upload debug APK artifact
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: yurireader-fdroid-debug
+          path: app/build/outputs/apk/fdroid/debug/*.apk
+          retention-days: 30
+
+      - name: Upload release APK artifact
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: yurireader-fdroid-release
+          path: app/build/outputs/apk/fdroid/release/*.apk
+          retention-days: 90
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: app/build/outputs/apk/fdroid/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

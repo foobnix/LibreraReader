@@ -122,6 +122,8 @@ public class TxtExtract {
         List<SimpleMeta> replacements = AppData.get()
                                                .getAllTextReplaces();
 
+        int emptyLineCount = 0;
+
         while ((line = input.readLine()) != null) {
             String outLn = null;
 
@@ -141,19 +143,30 @@ public class TxtExtract {
                             .length() == 0) {
                         outLn = "<br/>";
                     } else {
-                        outLn = format(line, replacements);
+                        outLn = "".equals(format(line, replacements))
+                            ? "<br/>"
+                            : format(line, replacements);
                     }
 
                 } else {
                     if (line.trim()
                             .length() == 0) {
-                        outLn = "<p>&nbsp;</p>";
+                        emptyLineCount++;
+                        continue;
                     } else if (TxtUtils.isLineStartEndUpperCase(line)) {
                         outLn = "<b>" + format(line, replacements) + "</b>";
+                        emptyLineCount = 0;
                     } else if (line.contains("Title:")) {
                         outLn = "<b>" + format(line, replacements) + "</b>";
+                        emptyLineCount = 0;
                     } else {
-                        outLn = "<p>" + format(line, replacements) + "</p>";
+                        String gapClass = "yr-gap-" + emptyLineCount;
+                        if (BookCSS.get().getParagraphGapFor(emptyLineCount) != null) {
+                            outLn = "<p class=\"" + gapClass + "\">" + format(line, replacements) + "</p>";
+                        } else {
+                            outLn = "<p>" + format(line, replacements) + "</p>";
+                        }
+                        emptyLineCount = 0;
                     }
                 }
 

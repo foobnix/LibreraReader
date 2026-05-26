@@ -25,7 +25,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSNotification;
+// YR: TTS disabled import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -105,7 +105,7 @@ public class LibreraApp extends MultiDexApplication {
         Log.d("Build", "Build.MODEL :" + Build.MODEL);
         Log.d("Build", "Build.DEVICE:" + Build.DEVICE);
 
-        TTSNotification.initChannels(this);
+        // YR: TTS disabled TTSNotification.initChannels(this);
 
         CacheZipUtils.init(this);
 

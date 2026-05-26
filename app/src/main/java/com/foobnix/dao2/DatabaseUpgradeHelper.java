@@ -40,6 +40,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV7());
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
+        migrations.add(new MigrationV11());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -146,6 +147,32 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.FilesCount.columnName + " INTEGER");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.ReadCount.columnName + " INTEGER");
+        }
+    }
+
+    private static class MigrationV10 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 10;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            com.foobnix.model.BookRecordRepository.createTable(db, true);
+        }
+    }
+
+    private static class MigrationV11 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 11;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + com.foobnix.model.BookRecordRepository.TABLE_NAME + " ADD COLUMN PARAGRAPH_CONFIG_JSON TEXT");
         }
     }
 

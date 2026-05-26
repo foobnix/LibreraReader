@@ -98,12 +98,13 @@ import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.MessagePageNumber;
-import com.foobnix.tts.TTSControlsView;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
-import com.foobnix.tts.TTSService;
-import com.foobnix.tts.TtsStatus;
+// YR: TTS disabled imports
+// import com.foobnix.tts.MessagePageNumber;
+// import com.foobnix.tts.TTSControlsView;
+// import com.foobnix.tts.TTSEngine;
+// import com.foobnix.tts.TTSNotification;
+// import com.foobnix.tts.TTSService;
+// import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -128,7 +129,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
     View bottomBar, bottomIndicators, onClose, overlay, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
-    TTSControlsView ttsActive;
+    // YR: TTS disabled TTSControlsView ttsActive;
+    View ttsActiveDummy;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
@@ -237,9 +239,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         finishOtherViewer(this, VerticalViewActivity.class);
-        if (TTSNotification.ACTION_TTS.equals(intent.getAction())) {
-            return;
-        }
+        // YR: TTS disabled if (TTSNotification.ACTION_TTS.equals(intent.getAction())) { return; }
+        if (false) { return; }
 
         if (!intent.filterEquals(getIntent())) {
             finish();
@@ -390,7 +391,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             public void run() {
                 onMoveAction.run();
                 if (AppState.get().isRememberDictionary) {
-                    DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
+                    // YR: Dict disabled DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
+                    dc.clearSelectedText();
                 } else {
                     DragingDialogs.dialogSelectText(anchor, dc, true, onRefresh);
                 }
@@ -670,8 +672,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              dc.restartActivity();
                              dc.cleanImageMatrix();
                          } else {
-                             TTSEngine.get().stop();
-                             dc.cleanImageMatrix();
+                            // YR: TTS disabled TTSEngine.get().stop();
+                            dc.cleanImageMatrix();
                              reloadDoc.run();
                              authoFit();
                          }
@@ -701,8 +703,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              dc.restartActivity();
                              dc.cleanImageMatrix();
                          } else {
-                             TTSEngine.get().stop();
-                             dc.cleanImageMatrix();
+                            // YR: TTS disabled TTSEngine.get().stop();
+                            dc.cleanImageMatrix();
                              reloadDoc.run();
                              authoFit();
                          }
@@ -732,7 +734,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                  dc.restartActivity();
                                  dc.cleanImageMatrix();
                              } else {
-                                 TTSEngine.get().stop();
+                            // YR: TTS disabled TTSEngine.get().stop();
+
                                  dc.cleanImageMatrix();
                                  reloadDoc.run();
                                  authoFit();
@@ -759,7 +762,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              SettingsManager.getBookSettings().updateFromAppState();
                              SharedBooks.save(SettingsManager.getBookSettings());
 
-                             TTSEngine.get().stop();
+                              // YR: TTS disabled TTSEngine.get().stop();
 
                              // onCrop.underline(AppSP.get().isCrop);
 
@@ -788,7 +791,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              SettingsManager.getBookSettings().updateFromAppState();
                              SharedBooks.save(SettingsManager.getBookSettings());
 
-                             TTSEngine.get().stop();
+                              // YR: TTS disabled TTSEngine.get().stop();
 
                              // onCrop.underline(AppSP.get().isCrop);
 
@@ -1338,14 +1341,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onTTSStatus(TtsStatus status) {
-        try {
-            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
+    // YR: TTS disabled @Subscribe(threadMode = ThreadMode.MAIN) public void onTTSStatus(TtsStatus status) {}
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(final MessagePageNumber event) {
@@ -1564,8 +1560,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
 
-        if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
+        // YR: TTS disabled ttsActive visibility
+        if (ttsActiveDummy != null) {
+            ttsActiveDummy.setVisibility(View.GONE);
         }
 
     }
@@ -1609,7 +1606,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             updateSeekBarColorAndSize();
             BrightnessHelper.updateOverlay(overlay);
             hideShow();
-            TTSEngine.get().stop();
+            // YR: TTS disabled TTSEngine.get().stop();
             showPagesHelper();
             ViewBinder.updateBrightness(onBC);
 
@@ -1692,7 +1689,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             updateLockMode();
             // Toast.makeText(this, "DB", Toast.LENGTH_SHORT).show();
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_PLAY_PAUSE)) {
-            TTSService.playPause(HorizontalViewActivity.this, dc);
+            // YR: TTS disabled TTSService.playPause
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_SHARE_PAGE)) {
 
             ExtUtils.sharePage(dc, dc.getCurentPage());
@@ -1710,7 +1707,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 if (AppState.get().isRememberDictionary) {
                     final String text = AppState.get().selectedText;
-                    DictsHelper.runIntent(dc.getActivity(), anchor, text);
+                    // YR: Dict disabled DictsHelper.runIntent(dc.getActivity(), anchor, text);
                     dc.clearSelectedText();
                 } else {
                     DragingDialogs.dialogSelectText(anchor, dc, true, onRefresh);
@@ -2326,11 +2323,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 AppState.get().isEditMode = false;
                 hideShow();
 
-                if (TTSEngine.get().isTempPausing()) {
-                    TTSService.playPause(dc.getActivity(), dc);
-                } else {
+                // YR: TTS disabled auto-resume on key press
+                // if (TTSEngine.get().isTempPausing()) { TTSService.playPause(dc.getActivity(), dc); } else {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_AUTO_SCROLL));
-                }
+                // }
 
                 isMyKey = true;
                 return true;
@@ -2353,26 +2349,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             LOG.d("onKeyDown", keyCode, repeatCount, System.currentTimeMillis());
 
-            if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
-                if (TTSEngine.get().isPlaying()) {
-                    if (AppState.get().isFastBookmarkByTTS) {
-                        TTSEngine.get().fastTTSBookmakr(dc);
-                    } else {
-                        TTSEngine.get().stop();
-                    }
-                } else {
-                    //FTTSEngine.get().playCurrent();
-                    TTSService.playPause(dc.getActivity(), dc);
-
-                    anchor.setTag("");
-                }
-                //TTSNotification.showLast();
-                //DragingDialogs.textToSpeachDialog(anchor, dc);
+            // YR: TTS disabled HEADSETHOOK handler
+            if (false && AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
+                // if (TTSEngine.get().isPlaying()) { ... } else { TTSService.playPause(...); }
                 return true;
             }
 
-            if (!TTSEngine.get().isPlaying()) {
-                if (AppState.get().getNextKeys().contains(keyCode)) {
+            // YR: TTS disabled - always pass key check now
+            if (AppState.get().getNextKeys().contains(keyCode)) {
                     if (closeDialogs()) {
                         isMyKey = true;
                         return true;
@@ -2402,8 +2386,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     return true;
                 }
             }
-
-        }
 
         return super.onKeyDown(keyCode, event);
 
@@ -2558,10 +2540,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
 
-            if (!TTSEngine.get().isPlaying()) {
-                Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
-                dc.checkReadingTimer();
-            }
+            // YR: TTS disabled - always run accessibility and timer check
+            Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
+            dc.checkReadingTimer();
 
         }
 

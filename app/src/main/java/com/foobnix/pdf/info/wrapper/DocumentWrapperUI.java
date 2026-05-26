@@ -72,11 +72,12 @@ import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.MessagePageNumber;
-import com.foobnix.tts.TTSControlsView;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSService;
-import com.foobnix.tts.TtsStatus;
+// YR: TTS disabled imports
+// import com.foobnix.tts.MessagePageNumber;
+// import com.foobnix.tts.TTSControlsView;
+// import com.foobnix.tts.TTSEngine;
+// import com.foobnix.tts.TTSService;
+// import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -252,7 +253,8 @@ public class DocumentWrapperUI {
     };
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
-    TTSControlsView ttsActive;
+    // YR: TTS disabled TTSControlsView ttsActive;
+    View ttsActiveDummy;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
     public View.OnClickListener onShowContext = new View.OnClickListener() {
@@ -416,22 +418,14 @@ public class DocumentWrapperUI {
         try {
             if (dc != null) {
                 dc.onGoToPage(event.getPage() + 1);
-                ttsActive.setVisibility(View.VISIBLE);
+                // YR: TTS disabled ttsActive.setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
             LOG.e(e);
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onTTSStatus(TtsStatus status) {
-        try {
-            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-    }
+    // YR: TTS disabled @Subscribe(threadMode = ThreadMode.MAIN) public void onTTSStatus(TtsStatus status) {}
 
     public void onSingleTap() {
         if (dc.isMusicianMode()) {
@@ -452,7 +446,7 @@ public class DocumentWrapperUI {
             });
         } else {
             if (AppState.get().isRememberDictionary) {
-                DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
+                // YR: Dict disabled DictsHelper.runIntent(dc.getActivity(), anchor, AppState.get().selectedText);
                 dc.clearSelectedText();
             } else {
                 DragingDialogs.dialogSelectText(anchor, dc, true, updateUIRunnable);
@@ -577,11 +571,8 @@ public class DocumentWrapperUI {
             closeDialogs();
             AppState.get().isEditMode = false;
             hideShow();
-            if (TTSEngine.get().isTempPausing()) {
-                TTSService.playPause(dc.getActivity(), dc);
-            } else {
-                onAutoScrollClick();
-            }
+            // YR: TTS disabled - always auto scroll
+            onAutoScrollClick();
             return true;
         }
 
@@ -627,8 +618,8 @@ public class DocumentWrapperUI {
             }
         }
 
-        if (!TTSEngine.get().isPlaying()) {
-            if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
+        // YR: TTS disabled - always pass key check
+        if (AppState.get().isUseVolumeKeys && AppState.get().getNextKeys().contains(keyCode)) {
                 if (closeDialogs()) {
                     return true;
                 }
@@ -643,22 +634,9 @@ public class DocumentWrapperUI {
                 prevChose(false, event.getRepeatCount());
                 return true;
             }
-        }
 
-        if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
-            if (TTSEngine.get().isPlaying()) {
-                if (AppState.get().isFastBookmarkByTTS) {
-                    TTSEngine.get().fastTTSBookmakr(dc);
-                } else {
-                    TTSEngine.get().stop();
-                }
-            } else {
-                //TTSEngine.get().playCurrent();
-                TTSService.playPause(dc.getActivity(), dc);
-                anchor.setTag("");
-            }
-            //TTSNotification.showLast();
-            //DragingDialogs.textToSpeachDialog(anchor, dc);
+        // YR: TTS disabled HEADSETHOOK handler
+        if (false && AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
             return true;
         }
 
@@ -944,7 +922,7 @@ public class DocumentWrapperUI {
             updateSeekBarColorAndSize();
             hideShow();
             updateUI();
-            TTSEngine.get().stop();
+            // YR: TTS disabled TTSEngine.get().stop();
             BrightnessHelper.updateOverlay(overlay);
             showPagesHelper();
             hideShowPrevNext();
@@ -1033,7 +1011,7 @@ public class DocumentWrapperUI {
                 onMoveAction.run();
                 if (AppState.get().isRememberDictionary) {
                     final String text = AppState.get().selectedText;
-                    DictsHelper.runIntent(dc.getActivity(), anchor, text);
+                    // YR: Dict disabled DictsHelper.runIntent(dc.getActivity(), anchor, text);
                     dc.clearSelectedText();
 
                 } else {
@@ -1483,7 +1461,7 @@ public class DocumentWrapperUI {
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_SHARE_PAGE) {
                 ExtUtils.sharePage(dc, dc.getCurentPage() - 1);
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_START_STOP_TTS) {
-                TTSService.playPause(dc.getActivity(), dc);
+                // YR: TTS disabled TTSService.playPause(dc.getActivity(), dc);
 
             } else if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_CLOSE_BOOK_AND_APP) {
                 dc.onCloseActivityFinal(new Runnable() {

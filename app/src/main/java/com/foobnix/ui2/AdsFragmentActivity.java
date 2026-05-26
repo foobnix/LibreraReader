@@ -18,8 +18,8 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
+// YR: TTS disabled import com.foobnix.tts.TTSEngine;
+// import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -166,8 +166,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     public void showInterstitial() {
         TempHolder.get().loadingCancelled.set(true);
         IMG.pauseRequests(this);
-        TTSNotification.hideNotification();
-        TTSEngine.get().shutdown();
+        // YR: TTS disabled TTSNotification.hideNotification();
+        // TTSEngine.get().shutdown();
 //        if (ADS.secondsRemain(timeActivityCreated) > FULL_SCREEN_TIMEOUT_SEC) {
 //
 //        } else {

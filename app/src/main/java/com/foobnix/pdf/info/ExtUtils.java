@@ -781,11 +781,7 @@ public class ExtUtils {
                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
-            } else if (AppState.get().prefMusicianMode.contains(ext)) {
-                AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, null);
-                return true;
-            }
+            } // YR: Musician mode disabled - prefMusicianMode branch removed
         }
         if (AppState.get().isRememberMode) {
             showDocumentWithoutDialog(c, file, null);
@@ -917,17 +913,13 @@ public class ExtUtils {
             }
         });
 
+        // YR: Musician mode disabled
         music.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                dialog.dismiss();
-                AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, null);
             }
         });
 
-        if (Dips.isEInk()) {
-            view.findViewById(R.id.music).setVisibility(View.GONE);
-        }
+        view.findViewById(R.id.music).setVisibility(View.GONE);
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);
         checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

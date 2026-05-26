@@ -25,8 +25,9 @@ public class ClickUtils {
     public void initMusician() {
         WIDHT_X = Dips.screenWidth();
         HEIGHT_Y = Dips.screenHeight();
-        border_side = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
-        border_top = AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
+        // YR: Musician mode disabled - always use tapzone borders
+        border_side = Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
+        border_top = Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
     }
 
     public boolean isClickCenter(float x, float y) {

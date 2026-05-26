@@ -17,6 +17,8 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.model.BookRecordHelper;
+import com.foobnix.model.BookRecordMigration;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -125,6 +127,9 @@ public class AppDB {
             QueryBuilder.LOG_VALUES = true;
         }
 
+        // YR: Phase 2 migration from JSON → BOOK_RECORD SQLite
+        BookRecordMigration.migrateIfNeeded(daoSession.getDatabase());
+        BookRecordHelper.init(daoSession.getDatabase());
     }
 
     public void openDictDB(Context c, String path) {

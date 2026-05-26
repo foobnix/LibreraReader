@@ -29,6 +29,7 @@
         android:text="@string/mode_horizontally"
         android:textSize="16sp" />
 
+    <!-- YR: Musician mode disabled -->
     <TextView
         android:id="@+id/music"
         android:layout_width="match_parent"
@@ -37,7 +38,8 @@
         android:background="@android:drawable/list_selector_background"
         android:padding="15dip"
         android:text="@string/mode_musician"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/verticalEdit"
@@ -58,6 +60,7 @@
         android:text="@string/mode_horizontally"
         android:textSize="16sp" />
 
+    <!-- YR: Musician mode disabled -->
     <EditText
         android:id="@+id/musicEdit"
         android:layout_width="match_parent"
@@ -65,7 +68,8 @@
         android:layout_weight="0"
         android:padding="15dip"
         android:text="@string/mode_musician"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:gravity="bottom"

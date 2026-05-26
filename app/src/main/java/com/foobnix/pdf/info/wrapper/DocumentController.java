@@ -36,10 +36,10 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
-import com.foobnix.model.AppBookmark;
-import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.BookRecord;
+import com.foobnix.model.BookRecordHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -53,7 +53,7 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSEngine;
+// YR: TTS disabled import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.common.settings.SettingsManager;
@@ -131,7 +131,7 @@ public abstract class DocumentController {
 
     public DocumentController(final Activity activity) {
         this.activity = activity;
-        TTSEngine.get().mp3Destroy();
+        // YR: TTS disabled TTSEngine.get().mp3Destroy();
         resetReadTimer();
         LOG.d("readTimeStart");
     }
@@ -521,20 +521,8 @@ public abstract class DocumentController {
 
     public abstract void updateRendering();
 
+    // YR: TTS disabled
     public void goToPageByTTS() {
-        try {
-            if (TTSEngine.get().isPlaying()) {
-
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-
-                if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
-                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                    LOG.d("goToPageByTTS", AppSP.get().lastBookPage + 1);
-                }
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
     }
 
     public abstract void cleanImageMatrix();
@@ -558,7 +546,6 @@ public abstract class DocumentController {
     }
 
     public void saveCurrentPageAsync() {
-        // int page = PageUrl.fakeToReal(currentPage);
         LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
         try {
             if (getPageCount() <= 0) {
@@ -569,14 +556,24 @@ public abstract class DocumentController {
             bs.updateFromAppState();
             SharedBooks.save(bs);
 
-            //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-            //bs.updateFromAppState();
-            //bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
-            //SharedBooks.save(bs);
+            // YR Phase 5: save reliable currentPageIndex + totalPages
+            String bookKey = ExtUtils.getFileName(bs.path);
+            if (bookKey != null) {
+                BookRecord rec = BookRecordHelper.load(bookKey);
+                if (rec == null) {
+                    rec = new BookRecord(bookKey);
+                }
+                int cur = getCurentPageFirst1();
+                if (cur > 0) {
+                    rec.setCurrentPageIndex(Math.max(0, cur - 1));
+                }
+                rec.setTotalPages(getPageCount());
+                rec.setProgressPercent(bs.p);
+                BookRecordHelper.save(rec);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     public boolean isBookMode() {
@@ -592,12 +589,26 @@ public abstract class DocumentController {
     }
 
     public void onResume() {
-
         try {
             if (getPageCount() != 0) {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-                if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
-                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
+                int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
+
+                String bookKey = ExtUtils.getFileName(getCurrentBook().getPath());
+                if (bookKey != null) {
+                    BookRecord rec = BookRecordHelper.load(bookKey);
+                    if (rec != null && rec.getTotalPages() == getPageCount() && rec.getCurrentPageIndex() >= 0) {
+                        int target = rec.getCurrentPageIndex() + 1;
+                        LOG.d("_PAGE", "restore from BookRecord", target, rec.getTotalPages());
+                        if (target > 0 && target <= getPageCount() && getCurentPage() != target) {
+                            onGoToPage(target);
+                            return;
+                        }
+                    }
+                }
+
+                if (getCurentPage() != page) {
+                    onGoToPage(page);
                 }
             }
         } catch (Exception e) {
@@ -727,7 +738,7 @@ public abstract class DocumentController {
     public void restartActivity() {
         //IMG.clearMemoryCache();
         saveAppState();
-        TTSEngine.get().stop();
+        // YR: TTS disabled TTSEngine.get().stop();
 
         Safe.run(new Runnable() {
 

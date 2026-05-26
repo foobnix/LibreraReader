@@ -5,6 +5,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.BookRecord;
+import com.foobnix.model.BookRecordHelper;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ExtUtils;
@@ -57,6 +59,7 @@ public class SharedBooks {
             if (linkedJsonObject.has(key)) {
                 linkedJsonObject.remove(key);
                 IO.writeObjAsync(fileName, linkedJsonObject);
+                BookRecordHelper.delete(key);
                 LOG.d("deleteProgress", path);
             }
         }
@@ -65,6 +68,14 @@ public class SharedBooks {
     public static AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
 
+        // YR Phase 2: try unified BOOK_RECORD first
+        BookRecord rec = BookRecordHelper.load(fileName);
+        if (rec != null) {
+            LOG.d("SharedBooks-load-from-BookRecord", fileName);
+            return rec.toAppBook();
+        }
+
+        // Fallback to JSON (for pre-migration / edge cases)
         if (cache.containsKey(fileName)) {
             LOG.d("SharedBooks-load-from-cache", fileName);
             return cache.get(fileName);
@@ -160,6 +171,9 @@ public class SharedBooks {
             final LinkedJSONObject value = Objects.toJSONObject(bs);
             obj.put(fileName, value);
             cache.put(fileName, bs);
+
+            // YR Phase 2: save to unified BOOK_RECORD
+            BookRecordHelper.save(BookRecord.fromAppBook(bs, fileName));
 
             LOG.d("SharedBooks-Save", value);
 

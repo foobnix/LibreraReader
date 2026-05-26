@@ -244,7 +244,8 @@
                     android:minWidth="110dp"
                     android:padding="-5dip"
                     android:text="PDF"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportDJVU"
@@ -252,7 +253,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="90dp"
                     android:text="DJVU"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportFB2"
@@ -260,7 +262,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="FB2"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -274,7 +277,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="MOBI/AZW"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportEPUB"
@@ -290,7 +294,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="XPS"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -304,7 +309,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="DOC/DOCX"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportRTF"
@@ -312,7 +318,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="90dp"
                     android:text="RTF"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportODT"
@@ -320,7 +327,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="ODT"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -334,7 +342,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
                     android:text="CBZ/CBR"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportZIP"
@@ -342,7 +351,8 @@
                     android:layout_height="wrap_content"
                     android:minWidth="90dip"
                     android:text="ZIP"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:visibility="gone" />
 
                 <CheckBox
                     android:id="@+id/supportTXT"
@@ -380,7 +390,8 @@
                         android:layout_height="wrap_content"
                         android:minWidth="110dp"
                         android:text="@string/archives"
-                        android:textSize="11sp" />
+                        android:textSize="11sp"
+                        android:visibility="gone" />
 
                     <CheckBox
                         android:id="@+id/supportOther"
@@ -388,7 +399,8 @@
                         android:layout_height="wrap_content"
                         android:minWidth="110dp"
                         android:text="@string/other"
-                        android:textSize="11sp" />
+                        android:textSize="11sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1111,7 +1123,8 @@
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/document_converter_online_" />
+                    android:text="@string/document_converter_online_"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -1601,7 +1614,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:width="135dip"
-                    android:text="@string/audio_books_folder" />
+                    android:text="@string/audio_books_folder"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/ttsFolder"
@@ -1612,11 +1626,13 @@
                     android:text="[]" />
             </LinearLayout>
 
+            <!-- YR: Drive/Sync disabled -->
             <LinearLayout
                 android:id="@+id/sectionSync"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <LinearLayout

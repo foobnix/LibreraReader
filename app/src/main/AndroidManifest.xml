@@ -31,9 +31,11 @@
         <intent>
             <action android:name="android.intent.action.SEARCH" />
         </intent>
+        <!-- YR: TTS disabled
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
+        -->
     </queries>
 
     <application
@@ -63,9 +65,11 @@
         <meta-data
             android:name="librera.ADMOB_FULLSCREEN_ID"
             android:value="${admobFullId}" />
+        <!-- YR: Drive disabled
         <meta-data
             android:name="librera.GOOGLE_DRIVE_KEY"
             android:value="${appGdriveKey}" />
+        -->
 
         <meta-data
             android:name="librera.ADMOB_REWARD"
@@ -257,6 +261,7 @@
 
             -->
 
+        <!-- YR: TTS disabled
         <service
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"
@@ -267,8 +272,10 @@
             </intent-filter>
 
         </service>
+        -->
 
 
+        <!-- YR: TTS disabled
         <receiver
             android:name="androidx.media.session.MediaButtonReceiver"
             android:exported="true">
@@ -276,7 +283,9 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
+        -->
 
+        <!-- YR: TTS disabled
         <activity
             android:name="com.foobnix.tts.TTSActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -286,8 +295,10 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        -->
 
 
+        <!-- YR: Drive disabled
         <activity
             android:name="com.foobnix.ui2.CloudrailActivity"
             android:exported="true"
@@ -302,6 +313,7 @@
                 <data android:scheme="librera" />
             </intent-filter>
         </activity>
+        -->
 
 
         <activity
@@ -347,6 +359,7 @@
 
         </activity>
 
+        <!-- YR: TTS widget disabled
         <receiver
             android:name=".widget.TTSWidget"
             android:exported="false"
@@ -358,6 +371,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/tts_view_provider_3x1" />
         </receiver>
+        -->
 
         <receiver
             android:name=".widget.RecentBooksWidget"

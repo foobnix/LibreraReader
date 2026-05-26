@@ -198,7 +198,8 @@ android {
                     appSafeMode  : "false"
             ]
         }
-        tts_reader {
+        // YR: TTS Reader flavor disabled
+        /* tts_reader {
             dimension = "version"
             applicationId = "tts.reader"
             manifestPlaceholders = [
@@ -212,7 +213,7 @@ android {
                     admobRewardId: tts_reader_admobRewardId,
                     appSafeMode  : "false"
             ]
-        }
+        } */
         epub_reader {
             dimension = "version"
             applicationId = "epub.reader"
@@ -321,10 +322,12 @@ dependencies {
 
 
 
-    implementation(libs.rtfparserkit)
+    // YR: RTF disabled
+    //implementation(libs.rtfparserkit)
 
-    implementation(libs.mammoth)
-    implementation(libs.stax.api)
+    // YR: DOCX disabled
+    //implementation(libs.mammoth)
+    //implementation(libs.stax.api)
 
 
     implementation(libs.zip4j)
@@ -346,7 +349,8 @@ dependencies {
     libreraImplementation dep_free
     pdf_v2Implementation dep_free
     ebookaImplementation dep_free
-    tts_readerImplementation dep_free
+    // YR: tts_reader disabled
+    // tts_readerImplementation dep_free
     pdf_classicImplementation dep_free
     epub_readerImplementation dep_free
     def dep_pro = project(':libDepPro')
@@ -355,7 +359,8 @@ dependencies {
     libreraImplementation dep_pro
     pdf_v2Implementation dep_pro
     ebookaImplementation dep_pro
-    tts_readerImplementation dep_pro
+    // YR: tts_reader disabled
+    // tts_readerImplementation dep_pro
     pdf_classicImplementation dep_pro
     epub_readerImplementation dep_pro
     proImplementation dep_pro

@@ -19,6 +19,8 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.BookRecord;
+import com.foobnix.model.BookRecordHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -97,6 +99,11 @@ public class BookCSS {
     public int textIndent;
     public int fontWeight;
     public String customCSS2;
+
+    @IgnoreHashCode
+    public transient String currentBookStyleOverride;
+
+    public String paragraphGapRules;
     public int textAlign;
     public String displayFontName;
     public String normalFont;
@@ -584,11 +591,119 @@ public class BookCSS {
 
     }
 
+    public String replaceCustomCssVariables(String customCSS) {
+        if (customCSS == null) {
+            return "";
+        }
+        String s = customCSS;
+        s = s.replace("{{font}}", normalFont != null ? normalFont : "");
+        s = s.replace("{{fontSize}}", String.valueOf(fontSizeSp));
+        s = s.replace("{{lineHeight}}", em(lineHeight12));
+        s = s.replace("{{marginTop}}", em(marginTop * 2));
+        s = s.replace("{{marginBottom}}", em((marginBottom - 1) * 2));
+        s = s.replace("{{textIndent}}", em(textIndent));
+        s = s.replace("{{paragraphGap}}", em(paragraphHeight * 2));
+        return s;
+    }
+
+    public static java.util.Map<Integer, String> parseGapRules(String rules) {
+        java.util.Map<Integer, String> map = new java.util.HashMap<>();
+        if (rules == null || rules.trim().isEmpty()) return map;
+        for (String part : rules.split(",")) {
+            part = part.trim();
+            if (part.isEmpty()) continue;
+            int eq = part.indexOf('=');
+            if (eq < 0) continue;
+            String key = part.substring(0, eq).trim();
+            String val = part.substring(eq + 1).trim();
+            try {
+                if (key.endsWith("+")) {
+                    int n = Integer.parseInt(key.substring(0, key.length() - 1));
+                    for (int i = n; i <= 20; i++) {
+                        map.putIfAbsent(i, val);
+                    }
+                } else {
+                    map.put(Integer.parseInt(key), val);
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        return map;
+    }
+
+    public String getParagraphGapFor(int emptyLineCount) {
+        if (paragraphGapRules == null || paragraphGapRules.isEmpty()) return null;
+        java.util.Map<Integer, String> rules = parseGapRules(paragraphGapRules);
+        return rules.get(emptyLineCount);
+    }
+
+    public String getGapRulesCss() {
+        if (paragraphGapRules == null || paragraphGapRules.isEmpty()) return "";
+        java.util.Map<Integer, String> rules = parseGapRules(paragraphGapRules);
+        if (rules.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        for (java.util.Map.Entry<Integer, String> e : rules.entrySet()) {
+            sb.append(String.format(".yr-gap-%d { margin-bottom:%s; }", e.getKey(), e.getValue()));
+        }
+        return sb.toString();
+    }
+
     public String toCssString(String path) {
 
         lineHeight12 = Math.max(10, lineHeight12);
 
-        StringBuilder builder = new StringBuilder();
+        String bookKey = ExtUtils.getFileName(path);
+        String savedOverride = currentBookStyleOverride;
+        String savedStyle = customCSS2;
+        int savedFontSizeSp = fontSizeSp;
+        int savedTextIndent = textIndent;
+        int savedLineHeight12 = lineHeight12;
+        int savedParagraphHeight = paragraphHeight;
+        int savedMarginTop = marginTop;
+        int savedMarginBottom = marginBottom;
+        int savedMarginLeft = marginLeft;
+        int savedMarginRight = marginRight;
+        int savedTextAlign = textAlign;
+
+        if (bookKey != null) {
+            String overrideJson = BookRecordHelper.getStyleOverride(bookKey);
+            if (overrideJson != null && !overrideJson.isEmpty()) {
+                try {
+                    LinkedJSONObject jo = new LinkedJSONObject(overrideJson);
+                    currentBookStyleOverride = jo.optString("customCSS", null);
+                    fontSizeSp = jo.optInt("fontSizeSp", fontSizeSp);
+                    textIndent = jo.optInt("textIndent", textIndent);
+                    lineHeight12 = jo.optInt("lineHeight12", lineHeight12);
+                    paragraphHeight = jo.optInt("paragraphHeight", paragraphHeight);
+                    marginTop = jo.optInt("marginTop", marginTop);
+                    marginBottom = jo.optInt("marginBottom", marginBottom);
+                    marginLeft = jo.optInt("marginLeft", marginLeft);
+                    marginRight = jo.optInt("marginRight", marginRight);
+                    textAlign = jo.optInt("textAlign", textAlign);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        }
+        try {
+            StringBuilder builder = new StringBuilder();
+            return generateCssString(builder);
+        } finally {
+            currentBookStyleOverride = savedOverride;
+            customCSS2 = savedStyle;
+            fontSizeSp = savedFontSizeSp;
+            textIndent = savedTextIndent;
+            lineHeight12 = savedLineHeight12;
+            paragraphHeight = savedParagraphHeight;
+            marginTop = savedMarginTop;
+            marginBottom = savedMarginBottom;
+            marginLeft = savedMarginLeft;
+            marginRight = savedMarginRight;
+            textAlign = savedTextAlign;
+        }
+    }
+
+    private String generateCssString(StringBuilder builder) {
 
         File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
         if (!cssFile.exists()) {
@@ -610,6 +725,7 @@ public class BookCSS {
 
         builder.append("documentStyle" + documentStyle + "{}");
         builder.append("isAutoHypens1" + isAutoHypens + AppSP.get().hypenLang + "{}");
+        builder.append(getGapRulesCss());
 
         // PAGE BEGIN
         builder.append("@page {");
@@ -722,7 +838,13 @@ public class BookCSS {
                 builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
             }
 
-            builder.append(customCSS2.replace("\n", ""));
+            String effectiveCustomCSS = customCSS2;
+            if (currentBookStyleOverride != null && !currentBookStyleOverride.isEmpty()) {
+                effectiveCustomCSS = currentBookStyleOverride + "\n" + (effectiveCustomCSS != null ? effectiveCustomCSS : "");
+            }
+            if (effectiveCustomCSS != null) {
+                builder.append(replaceCustomCssVariables(effectiveCustomCSS).replace("\n", ""));
+            }
 
         }
         //FB2 Capital letter for all styles

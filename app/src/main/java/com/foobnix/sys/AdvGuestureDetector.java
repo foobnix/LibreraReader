@@ -170,7 +170,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return true;
         }
 
-        if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
+        // YR: Musician mode disabled - always check annotations
+        if (!AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
             alowConfirm = false;
             Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
 
@@ -217,7 +218,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
 
         }
-        if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
+        // YR: Musician mode disabled - always process tap
+        {
             boolean processTap = avc.processTap(TouchManager.Touch.SingleTap, e);
             if (processTap) {
                 return false;
@@ -259,9 +261,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 return false;
             }
 
-            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
-                return false;
-            }
+            // YR: Musician mode disabled - never return false here
             final Rect l = avc.getScrollLimits();
             float x = vX, y = vY;
             if (Math.abs(vX / vY) < 0.5) {
@@ -314,7 +314,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         if (delta > value) {
             t = System.currentTimeMillis();
-            if (isNoLock() || (e2.getPointerCount() == 2 && !(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
+            if (isNoLock() || (e2.getPointerCount() == 2 && AppState.get().isZoomInOutWithLock)) {
                 avc.getView().scrollBy(d1, d2);
             } else {
                 avc.getView().scrollBy(0, d2);
@@ -392,9 +392,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         LOG.d("onTwoFingerPinch", oldDistance, newDistance);
         if (AppSP.get().isLocked) {
-            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
-                return;
-            }
+            // YR: Musician mode disabled - never early return on pinch
             if (!AppState.get().isZoomInOutWithLock) {
                 return;
             }
@@ -419,9 +417,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public void onTwoFingerPinchEnd(final MotionEvent e) {
         if (AppSP.get().isLocked) {
-            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
-                return;
-            }
+            // YR: Musician mode disabled - never early return on pinch
             if (!AppState.get().isZoomInOutWithLock) {
                 return;
             }

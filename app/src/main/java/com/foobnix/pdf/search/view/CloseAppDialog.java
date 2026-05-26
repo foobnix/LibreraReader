@@ -23,8 +23,8 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
+// YR: TTS disabled import com.foobnix.tts.TTSEngine;
+// import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.MainTabs2;
 
 import java.util.ArrayList;
@@ -145,8 +145,8 @@ public class CloseAppDialog {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                TTSNotification.hideNotification();
-                TTSEngine.get().shutdown();
+                // YR: TTS disabled TTSNotification.hideNotification();
+                // TTSEngine.get().shutdown();
                 int i = 0;
                 if (which == i++) {
 
