@@ -53,7 +53,7 @@ jobs:
           path: |
             Builder/mupdf-${{ env.MUPDF_VERSION }}
             app/src/main/jniLibs
-          key: mupdf-${{ env.MUPDF_VERSION }}-ndk${{ env.NDK_VERSION }}-v1
+          key: mupdf-${{ env.MUPDF_VERSION }}-ndk${{ env.NDK_VERSION }}-v2
           restore-keys: |
             mupdf-${{ env.MUPDF_VERSION }}-ndk${{ env.NDK_VERSION }}-
 
@@ -98,6 +98,12 @@ jobs:
             cp -rpv "$SRC/directory.c"        "$DEST/fitz/directory.c"
             cp -rpv "$SRC/xml.c"             "$DEST/fitz/xml.c"
             cp -rpv "$SRC/list-device.c"     "$DEST/fitz/list-device.c"
+            cp -rpv "$SRC/pdf-xref.c"        "$DEST/fitz/pdf-xref.c"
+            cp -rpv "$SRC/image-imp.h"       "$DEST/fitz/image-imp.h"
+            cp -rpv "$SRC/compressed-buffer.h" "$MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h"
+            cp -rpv "$SRC/context.h"         "$MUPDF_ROOT/include/mupdf/fitz/context.h"
+            cp -rpv "$SRC/j2k.c"             "$MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/j2k.c"
+            cp -rpv "$SRC/pi.c"              "$MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c"
             echo "Applied Librera patches to MuPDF"
           else
             echo "No custom patches directory found ($SRC), skipping patch step"
