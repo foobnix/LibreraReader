@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.googleServices)
+    // YR: googleServices disabled — fdroid build does not use Google services
+    // alias(libs.plugins.googleServices)
 }
 
 def taskName = getGradle().getStartParameter().getTaskRequests().toString()

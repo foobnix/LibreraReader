@@ -99,19 +99,19 @@ jobs:
           cd "$MUPDF_JAVA"
           NDK_BUILD="$ANDROID_HOME/ndk/${{ env.NDK_VERSION }}/ndk-build"
 
-          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
-          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a APP_PLATFORM=android-24 &
-          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86 APP_PLATFORM=android-24 &
-          $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64 APP_PLATFORM=android-24
+          for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
+            echo "Building for $ABI..."
+            $NDK_BUILD NDK_APPLICATION_MK=jni/Application.mk APP_ABI=$ABI APP_PLATFORM=android-24
+          done
 
-          echo "=== Linking .so files to jniLibs ==="
+          echo "=== Copying .so files to jniLibs ==="
           LIBS="$GITHUB_WORKSPACE/app/src/main/jniLibs"
           rm -rf "$LIBS"
           mkdir -p "$LIBS"
-          ln -s "$MUPDF_JAVA/libs/armeabi-v7a" "$LIBS/"
-          ln -s "$MUPDF_JAVA/libs/arm64-v8a" "$LIBS/"
-          ln -s "$MUPDF_JAVA/libs/x86" "$LIBS/"
-          ln -s "$MUPDF_JAVA/libs/x86_64" "$LIBS/"
+          cp -rp "$MUPDF_JAVA/libs/armeabi-v7a" "$LIBS/"
+          cp -rp "$MUPDF_JAVA/libs/arm64-v8a" "$LIBS/"
+          cp -rp "$MUPDF_JAVA/libs/x86" "$LIBS/"
+          cp -rp "$MUPDF_JAVA/libs/x86_64" "$LIBS/"
 
           echo "=== .so files ==="
           find "$LIBS" -name "*.so" | head -20
