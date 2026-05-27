@@ -143,7 +143,83 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/userGlobalCssLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:singleLine="true"
+                android:text="@string/global_css_file"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userGlobalCssPath"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="false"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/browseGlobalCss"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dip"
+                android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_28_search"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/userBookCssLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:singleLine="true"
+                android:text="@string/book_css_file"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userBookCssPath"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="false"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/browseBookCss"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dip"
+                android:layout_weight="0"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_28_search"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/isAutoHypens"
@@ -240,6 +316,44 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/paragraph_spacing" >
         </com.foobnix.pdf.info.view.CustomSeek>
+
+        <CheckBox
+            android:id="@+id/isPerBookParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_per_book_paragraph_settings" />
+
+        <LinearLayout
+            android:id="@+id/paragraphGapRulesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paragraph_gap_rules"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paragraph_gap_rules_description"
+                android:textSize="12sp"
+                android:textColor="@color/tint_gray" />
+
+            <EditText
+                android:id="@+id/paragraphGapRulesEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="4"
+                android:maxLines="6"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:hint="@string/paragraph_gap_rules_hint"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/fontParagraph"

@@ -40,6 +40,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV7());
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
+        migrations.add(new MigrationV10());
         migrations.add(new MigrationV11());
         migrations.add(new MigrationV12());
 

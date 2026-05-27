@@ -652,8 +652,13 @@
    <string name="web_search_google">Web Search (Google, ...)</string>
    <string name="synced_books">Synced books</string>
    <string name="smart_reflow">Smart reflow</string>
-   <string name="user_styles">User styles</string>
-   <string name="engine">Engine</string>
+    <string name="user_styles">User styles</string>
+    <string name="user_then_document">User then Document</string>
+    <string name="document_then_user_strict">Document then User Strict</string>
+    <string name="auto_detect_font_variants">Auto-detect font variants (Bold, Italic)</string>
+    <string name="global_css_file">Global CSS File</string>
+    <string name="book_css_file">Book CSS File</string>
+    <string name="engine">Engine</string>
    <string name="restart_manually">This change requires a manual restart of the application</string>
    <string name="search_in_the_library">Search in the library</string>
    <string name="update_metadata">Update metadata</string>
@@ -682,7 +687,11 @@
    <string name="select_mode">Select mode</string>
    <string name="msg_migration">Transfer the [Librera] directory to another device to migrate your data.</string>
    <string name="msg_sync">Synchronize the [Librera] folder with other devices via Google Drive or third-party apps.</string>
-   <string name="display_alert_if_cropping_is_on">Display alert if cropping is on</string>
-   <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
-   <string name="show_contrast_and_brightness_button">Show Contrast and Brightness button</string>
+    <string name="display_alert_if_cropping_is_on">Display alert if cropping is on</string>
+    <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
+    <string name="show_contrast_and_brightness_button">Show Contrast and Brightness button</string>
+    <string name="paragraph_gap_rules">Paragraph Gap Rules</string>
+    <string name="paragraph_gap_rules_hint">1=0\n2=0.8\n3=1.4\n4+=2.0</string>
+    <string name="paragraph_gap_rules_description">Lines above paragraph → gap in em</string>
+    <string name="use_per_book_paragraph_settings">Use per-book paragraph settings</string>
 </resources>
