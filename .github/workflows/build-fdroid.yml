@@ -60,6 +60,7 @@ jobs:
       - name: Build MuPDF native libraries
         if: steps.cache-mupdf.outputs.cache-hit != 'true'
         working-directory: Builder
+        timeout-minutes: 40
         run: |
           echo "=== Cloning MuPDF ${{ env.MUPDF_VERSION }} ==="
           git clone --recursive git://git.ghostscript.com/mupdf.git --branch ${{ env.MUPDF_VERSION }} mupdf-${{ env.MUPDF_VERSION }}
