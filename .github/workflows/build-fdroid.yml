@@ -63,7 +63,7 @@ jobs:
         timeout-minutes: 40
         run: |
           echo "=== Cloning MuPDF ${{ env.MUPDF_VERSION }} ==="
-          git clone --recursive https://git.ghostscript.com/mupdf.git --branch ${{ env.MUPDF_VERSION }} mupdf-${{ env.MUPDF_VERSION }}
+          git clone --recursive https://github.com/ArtifexSoftware/mupdf.git --branch ${{ env.MUPDF_VERSION }} mupdf-${{ env.MUPDF_VERSION }}
 
           echo "=== Building MuPDF ==="
           cd mupdf-${{ env.MUPDF_VERSION }}
