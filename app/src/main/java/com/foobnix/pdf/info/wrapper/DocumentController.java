@@ -68,6 +68,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public abstract class DocumentController {
@@ -548,6 +549,50 @@ public abstract class DocumentController {
         }
     }
 
+    private static final int SNIPPET_LENGTH = 120;
+
+    private String extractTextSnippet(int page) {
+        try {
+            String html = getTextForPage(page);
+            if (html == null || html.isEmpty()) {
+                return "";
+            }
+            String text = html.replaceAll("<[^>]+>", " ").replaceAll("\\s+", " ").trim();
+            if (text.length() <= SNIPPET_LENGTH) {
+                return text;
+            }
+            return text.substring(0, SNIPPET_LENGTH);
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        }
+    }
+
+    private int findPageByTextSnippet(String snippet, int startPage, int endPage) {
+        if (snippet == null || snippet.isEmpty() || startPage < 1 || endPage > getPageCount()) {
+            return -1;
+        }
+        String snippetClean = snippet.toLowerCase(Locale.US).replaceAll("\\s+", " ").trim();
+        if (snippetClean.isEmpty()) {
+            return -1;
+        }
+        for (int p = startPage; p <= endPage; p++) {
+            try {
+                String pageHtml = getTextForPage(p);
+                if (pageHtml == null) {
+                    continue;
+                }
+                String pageText = pageHtml.replaceAll("<[^>]+>", " ").replaceAll("\\s+", " ").trim();
+                if (pageText.toLowerCase(Locale.US).contains(snippetClean)) {
+                    return p;
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return -1;
+    }
+
     public void saveCurrentPageAsync() {
         LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
         try {
@@ -559,14 +604,13 @@ public abstract class DocumentController {
             bs.updateFromAppState();
             SharedBooks.save(bs);
 
-            // YR Phase 5: save reliable currentPageIndex + totalPages
+            int cur = getCurentPageFirst1();
             String bookKey = ExtUtils.getFileName(bs.path);
             if (bookKey != null) {
                 BookRecord rec = BookRecordHelper.load(bookKey);
                 if (rec == null) {
                     rec = new BookRecord(bookKey);
                 }
-                int cur = getCurentPageFirst1();
                 if (cur > 0) {
                     rec.setCurrentPageIndex(Math.max(0, cur - 1));
                 }
@@ -575,7 +619,6 @@ public abstract class DocumentController {
                 BookRecordHelper.save(rec);
             }
 
-            // YR Phase 5: PRIMARY - Save locator for EPUB / TXT
             if (bookKey != null) {
                 String ext = ExtUtils.getFileExtension(bs.path).toLowerCase();
                 if ("epub".equals(ext)) {
@@ -583,23 +626,37 @@ public abstract class DocumentController {
                     String currentChapter = getCurrentChapterFile();
                     if (currentChapter != null) {
                         locator.chapterHref = currentChapter;
-                        String chapterAsString = getCurrentChapter();
-                        if (chapterAsString != null) {
-                            try {
-                                locator.spineIndex = Integer.parseInt(chapterAsString.replaceAll("\\D+", ""));
-                            } catch (Exception e) {
-                                locator.spineIndex = 0;
+                        List<OutlineLinkWrapper> outlineList = getCurrentOutline();
+                        if (outlineList != null) {
+                            for (int i = 0; i < outlineList.size(); i++) {
+                                OutlineLinkWrapper item = outlineList.get(i);
+                                if (currentChapter.equals(item.linkUri)) {
+                                    locator.spineIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                        if (locator.spineIndex == 0) {
+                            String chapterAsString = getCurrentChapter();
+                            if (chapterAsString != null) {
+                                try {
+                                    locator.spineIndex = Integer.parseInt(chapterAsString.replaceAll("\\D+", ""));
+                                } catch (Exception e) {
+                                    locator.spineIndex = 0;
+                                }
                             }
                         }
                         locator.domPath = "";
                         locator.textNodeIndex = 0;
                         locator.charIndex = 0;
+                        locator.textSnippet = extractTextSnippet(cur);
                         BookRecordHelper.setEpubLocator(bookKey, locator.toJson());
                     }
                 } else if ("txt".equals(ext)) {
                     TxtLocator locator = new TxtLocator();
                     locator.byteOffset = getCurentPageFirst1();
                     locator.encoding = com.foobnix.model.AppState.get().characterEncoding;
+                    locator.textSnippet = extractTextSnippet(cur);
                     BookRecordHelper.setTxtLocator(bookKey, locator.toJson());
                 }
             }
@@ -625,29 +682,41 @@ public abstract class DocumentController {
             return -1;
         }
         String ext = ExtUtils.getFileExtension(path).toLowerCase();
+        int savedPage = (rec.getCurrentPageIndex() >= 0) ? rec.getCurrentPageIndex() + 1 : -1;
         if ("epub".equals(ext)) {
             String epubJson = rec.getEpubLocatorJson();
             if (epubJson != null) {
                 EpubLocator locator = EpubLocator.fromJson(epubJson);
                 if (locator != null && locator.isValid()) {
-                    String currentChapter = getCurrentChapterFile();
-                    if (currentChapter != null && currentChapter.equals(locator.chapterHref)) {
-                        int page = getCurentPageFirst1();
-                        if (page > 0 && page <= getPageCount()) {
-                            return page;
-                        }
-                    }
-                    // Fallback: try to match chapter via outline page range
-                    List<OutlineLinkWrapper> outline = getCurrentOutline();
-                    if (outline != null) {
-                        for (OutlineLinkWrapper item : outline) {
+                    int coarsePage = -1;
+                    List<OutlineLinkWrapper> outlineList = getCurrentOutline();
+                    if (outlineList != null) {
+                        for (OutlineLinkWrapper item : outlineList) {
                             if (item.linkUri != null && item.linkUri.equals(locator.chapterHref)) {
                                 if (item.targetPage > 0 && item.targetPage <= getPageCount()) {
-                                    return item.targetPage;
+                                    coarsePage = item.targetPage;
+                                    break;
                                 }
                             }
                         }
                     }
+                    if (coarsePage <= 0 && savedPage > 0 && savedPage <= getPageCount()) {
+                        coarsePage = savedPage;
+                    }
+                    if (coarsePage <= 0) {
+                        return -1;
+                    }
+                    if (locator.textSnippet != null && !locator.textSnippet.isEmpty()) {
+                        int searchStart = Math.max(1, coarsePage - 5);
+                        int searchEnd = Math.min(getPageCount(), coarsePage + 15);
+                        int foundPage = findPageByTextSnippet(locator.textSnippet, searchStart, searchEnd);
+                        if (foundPage > 0) {
+                            LOG.d("_PAGE", "epub locator resolved by snippet", foundPage);
+                            return foundPage;
+                        }
+                    }
+                    LOG.d("_PAGE", "epub locator resolved by chapter", coarsePage);
+                    return coarsePage;
                 }
             }
         } else if ("txt".equals(ext)) {
@@ -656,7 +725,20 @@ public abstract class DocumentController {
                 TxtLocator locator = TxtLocator.fromJson(txtJson);
                 if (locator != null && locator.isValid()) {
                     int pageHint = (int) Math.min(locator.byteOffset, getPageCount());
+                    if (pageHint <= 0 && savedPage > 0 && savedPage <= getPageCount()) {
+                        pageHint = savedPage;
+                    }
                     if (pageHint > 0 && pageHint <= getPageCount()) {
+                        if (locator.textSnippet != null && !locator.textSnippet.isEmpty()) {
+                            int searchStart = Math.max(1, pageHint - 5);
+                            int searchEnd = Math.min(getPageCount(), pageHint + 15);
+                            int foundPage = findPageByTextSnippet(locator.textSnippet, searchStart, searchEnd);
+                            if (foundPage > 0) {
+                                LOG.d("_PAGE", "txt locator resolved by snippet", foundPage);
+                                return foundPage;
+                            }
+                        }
+                        LOG.d("_PAGE", "txt locator resolved by byteOffset", pageHint);
                         return pageHint;
                     }
                 }

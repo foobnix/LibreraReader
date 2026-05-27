@@ -166,7 +166,10 @@ public abstract class HorizontalModeController extends DocumentController {
         BookRecord rec = BookRecordHelper.load(bookKey);
         int targetPage = -1;
         if (rec != null) {
-            if (rec.getCurrentPageIndex() >= 0 && rec.getTotalPages() == pagesCount) {
+            int locatorPage = resolveLocatorToPage(rec, bookPath);
+            if (locatorPage > 0 && locatorPage <= pagesCount) {
+                targetPage = locatorPage;
+            } else if (rec.getCurrentPageIndex() >= 0 && rec.getTotalPages() == pagesCount) {
                 targetPage = rec.getCurrentPageIndex() + 1;
             } else {
                 int pageFromPercent = Math.round(pagesCount * rec.getProgressPercent());
