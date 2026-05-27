@@ -11,13 +11,19 @@ public class TxtLocator {
 
     public long byteOffset;
     public String encoding;
+    public String textSnippet;
 
     public TxtLocator() {
     }
 
-    public TxtLocator(long byteOffset, String encoding) {
+    public TxtLocator(long byteOffset, String encoding, String textSnippet) {
         this.byteOffset = byteOffset;
         this.encoding = encoding;
+        this.textSnippet = textSnippet;
+    }
+
+    public TxtLocator(long byteOffset, String encoding) {
+        this(byteOffset, encoding, "");
     }
 
     public String toJson() {
@@ -25,8 +31,9 @@ public class TxtLocator {
         try {
             obj.put("byteOffset", byteOffset);
             obj.put("encoding", encoding);
+            obj.put("textSnippet", textSnippet == null ? "" : textSnippet);
         } catch (JSONException e) {
-            return null;
+            return "";
         }
         return obj.toString();
     }
@@ -40,6 +47,7 @@ public class TxtLocator {
             TxtLocator locator = new TxtLocator();
             locator.byteOffset = obj.optLong("byteOffset", 0);
             locator.encoding = obj.optString("encoding", null);
+            locator.textSnippet = obj.optString("textSnippet", "");
             return locator;
         } catch (JSONException e) {
             return null;

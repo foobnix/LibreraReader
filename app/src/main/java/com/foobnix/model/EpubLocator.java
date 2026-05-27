@@ -14,16 +14,22 @@ public class EpubLocator {
     public String domPath;
     public int textNodeIndex;
     public int charIndex;
+    public String textSnippet;
 
     public EpubLocator() {
     }
 
-    public EpubLocator(int spineIndex, String chapterHref, String domPath, int textNodeIndex, int charIndex) {
+    public EpubLocator(int spineIndex, String chapterHref, String domPath, int textNodeIndex, int charIndex, String textSnippet) {
         this.spineIndex = spineIndex;
         this.chapterHref = chapterHref;
         this.domPath = domPath;
         this.textNodeIndex = textNodeIndex;
         this.charIndex = charIndex;
+        this.textSnippet = textSnippet;
+    }
+
+    public EpubLocator(int spineIndex, String chapterHref, String domPath, int textNodeIndex, int charIndex) {
+        this(spineIndex, chapterHref, domPath, textNodeIndex, charIndex, "");
     }
 
     public String toJson() {
@@ -34,6 +40,7 @@ public class EpubLocator {
             json.put("domPath", domPath);
             json.put("textNodeIndex", textNodeIndex);
             json.put("charIndex", charIndex);
+            json.put("textSnippet", textSnippet == null ? "" : textSnippet);
         } catch (JSONException e) {
             return "";
         }
@@ -52,6 +59,7 @@ public class EpubLocator {
             locator.domPath = obj.optString("domPath", null);
             locator.textNodeIndex = obj.optInt("textNodeIndex", 0);
             locator.charIndex = obj.optInt("charIndex", 0);
+            locator.textSnippet = obj.optString("textSnippet", "");
             return locator;
         } catch (JSONException e) {
             return null;
