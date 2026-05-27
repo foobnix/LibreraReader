@@ -3960,6 +3960,10 @@ public class DragingDialogs {
         final int initHash = Objects.appHash();
 
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
+            private CheckBox isPerBookParagraph;
+            private EditText paragraphGapRulesEdit;
+            private String bookKey;
+
             @Override public void beforeCreate() {
                 titleAction = controller.getString(R.string.preferences);
                 titleRunnable = new Runnable() {
@@ -4313,11 +4317,11 @@ public class DragingDialogs {
                     }
                 });
 
-                final CheckBox isPerBookParagraph = inflate.findViewById(R.id.isPerBookParagraph);
-                final EditText paragraphGapRulesEdit = inflate.findViewById(R.id.paragraphGapRulesEdit);
+                this.isPerBookParagraph = inflate.findViewById(R.id.isPerBookParagraph);
+                this.paragraphGapRulesEdit = inflate.findViewById(R.id.paragraphGapRulesEdit);
                 final View paragraphGapRulesLayout = inflate.findViewById(R.id.paragraphGapRulesLayout);
-                final String bookKey = ExtUtils.getFileName(controller.getCurrentBook().getPath());
-                ParagraphConfig pc = ParagraphConfig.fromJson(BookRecordHelper.getParagraphConfig(bookKey));
+                this.bookKey = ExtUtils.getFileName(controller.getCurrentBook().getPath());
+                ParagraphConfig pc = ParagraphConfig.fromJson(BookRecordHelper.getParagraphConfig(this.bookKey));
                 if (pc == null) {
                     pc = ParagraphConfig.defaultConfig();
                 }
