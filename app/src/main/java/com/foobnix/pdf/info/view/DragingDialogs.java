@@ -3958,11 +3958,10 @@ public class DragingDialogs {
                                               final Runnable onRefresh,
                                               final Runnable updateUIRefresh) {
         final int initHash = Objects.appHash();
-
+        final CheckBox[] isPerBookParagraph = new CheckBox[1];
+        final EditText[] paragraphGapRulesEdit = new EditText[1];
+        final String[] bookKey = new String[1];
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
-            private CheckBox isPerBookParagraph;
-            private EditText paragraphGapRulesEdit;
-            private String bookKey;
 
             @Override public void beforeCreate() {
                 titleAction = controller.getString(R.string.preferences);
@@ -4317,23 +4316,23 @@ public class DragingDialogs {
                     }
                 });
 
-                this.isPerBookParagraph = inflate.findViewById(R.id.isPerBookParagraph);
-                this.paragraphGapRulesEdit = inflate.findViewById(R.id.paragraphGapRulesEdit);
+                isPerBookParagraph[0] = inflate.findViewById(R.id.isPerBookParagraph);
+                paragraphGapRulesEdit[0] = inflate.findViewById(R.id.paragraphGapRulesEdit);
                 final View paragraphGapRulesLayout = inflate.findViewById(R.id.paragraphGapRulesLayout);
-                this.bookKey = ExtUtils.getFileName(controller.getCurrentBook().getPath());
-                ParagraphConfig pc = ParagraphConfig.fromJson(BookRecordHelper.getParagraphConfig(this.bookKey));
+                bookKey[0] = ExtUtils.getFileName(controller.getCurrentBook().getPath());
+                ParagraphConfig pc = ParagraphConfig.fromJson(BookRecordHelper.getParagraphConfig(bookKey[0]));
                 if (pc == null) {
                     pc = ParagraphConfig.defaultConfig();
                 }
-                isPerBookParagraph.setChecked(pc.enabled);
-                paragraphGapRulesEdit.setText(pc.enabled ? TxtUtils.nullToEmpty(pc.paragraphGapRules) : TxtUtils.nullToEmpty(BookCSS.get().paragraphGapRules));
+                isPerBookParagraph[0].setChecked(pc.enabled);
+                paragraphGapRulesEdit[0].setText(pc.enabled ? TxtUtils.nullToEmpty(pc.paragraphGapRules) : TxtUtils.nullToEmpty(BookCSS.get().paragraphGapRules));
                 paragraphGapRulesLayout.setVisibility(pc.enabled ? View.VISIBLE : View.GONE);
-                isPerBookParagraph.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                isPerBookParagraph[0].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         paragraphGapRulesLayout.setVisibility(isChecked ? View.VISIBLE : View.GONE);
                     }
                 });
-                paragraphGapRulesEdit.addTextChangedListener(new android.text.TextWatcher() {
+                paragraphGapRulesEdit[0].addTextChangedListener(new android.text.TextWatcher() {
                     @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
                     @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
                     @Override public void afterTextChanged(android.text.Editable s) {
@@ -4578,13 +4577,13 @@ public class DragingDialogs {
             @Override public void run() {
                 ParagraphConfig config = new ParagraphConfig();
                 config.paragraphHeight = BookCSS.get().paragraphHeight;
-                config.paragraphGapRules = paragraphGapRulesEdit.getText().toString().trim();
+                config.paragraphGapRules = paragraphGapRulesEdit[0].getText().toString().trim();
                 config.lineMdRecognition = true;
-                config.enabled = isPerBookParagraph.isChecked();
+                config.enabled = isPerBookParagraph[0].isChecked();
                 if (config.enabled) {
-                    BookRecordHelper.setParagraphConfig(bookKey, config.toJson());
+                    BookRecordHelper.setParagraphConfig(bookKey[0], config.toJson());
                 } else {
-                    BookRecordHelper.setParagraphConfig(bookKey, null);
+                    BookRecordHelper.setParagraphConfig(bookKey[0], null);
                 }
                 if (initHash != Objects.appHash()) {
                     if (onRefresh != null) {
