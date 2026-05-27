@@ -4078,6 +4078,7 @@ public class DragingDialogs {
                         userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
                         TxtUtils.underlineTextView(userGlobalCssPath);
                         result2.dismiss();
+                        return false;
                     });
                 });
                 inflate.findViewById(R.id.browseGlobalCss).setOnClickListener(v -> {
@@ -4087,6 +4088,7 @@ public class DragingDialogs {
                         userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
                         TxtUtils.underlineTextView(userGlobalCssPath);
                         result2.dismiss();
+                        return false;
                     });
                 });
 
@@ -4111,6 +4113,7 @@ public class DragingDialogs {
                             LOG.e(e);
                         }
                         result2.dismiss();
+                        return false;
                     });
                 });
                 inflate.findViewById(R.id.browseBookCss).setOnClickListener(v -> {
@@ -4129,6 +4132,7 @@ public class DragingDialogs {
                             LOG.e(e);
                         }
                         result2.dismiss();
+                        return false;
                     });
                 });
 
