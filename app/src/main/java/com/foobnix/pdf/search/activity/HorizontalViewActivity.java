@@ -129,8 +129,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
     View bottomBar, bottomIndicators, onClose, overlay, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
-    // YR: TTS disabled TTSControlsView ttsActive;
-    View ttsActiveDummy;
+        // YR: TTS disabled — replaced with plain View to keep layout ID
+        View ttsActive;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
@@ -1146,16 +1146,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.underline(AppSP.get().isCrop);
                     onCrop.invalidate();
 
-                    ttsActive.setDC(dc);
-                    ttsActive.addOnDialogRunnable(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            AppState.get().isEditMode = true;
-                            hideShow();
-                            DragingDialogs.dialogTextToSpeech(anchor, dc);
-                        }
-                    });
+                    // YR: TTS disabled — ttsActive is now plain View, skip TTSControlsView setup
+                    ttsActive = findViewById(R.id.ttsActive);
 
                     DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
 
@@ -1346,7 +1338,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(final MessagePageNumber event) {
         try {
-            ttsActive.setVisibility(View.VISIBLE);
+            // YR: TTS disabled — skip ttsActive visibility toggle
             dc.onGoToPage(event.getPage() + 1);
         } catch (Exception e) {
             LOG.e(e);
@@ -1560,9 +1552,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
 
-        // YR: TTS disabled ttsActive visibility
-        if (ttsActiveDummy != null) {
-            ttsActiveDummy.setVisibility(View.GONE);
+        // YR: TTS disabled
+        if (ttsActive != null) {
+            ttsActive.setVisibility(View.GONE);
         }
 
     }

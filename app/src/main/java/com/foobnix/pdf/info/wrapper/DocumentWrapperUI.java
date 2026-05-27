@@ -253,8 +253,8 @@ public class DocumentWrapperUI {
     };
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
-    // YR: TTS disabled TTSControlsView ttsActive;
-    View ttsActiveDummy;
+    // YR: TTS disabled — TTSControlsView removed, layout ID kept as plain View
+    View ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
     public View.OnClickListener onShowContext = new View.OnClickListener() {
@@ -1162,17 +1162,8 @@ public class DocumentWrapperUI {
         textToSpeachTop = (ImageView) a.findViewById(R.id.textToSpeachTop);
         textToSpeachTop.setOnClickListener(onTextToSpeach);
 
-        ttsActive = a.findViewById(R.id.ttsActive);
-        ttsActive.setDC(dc);
-        ttsActive.addOnDialogRunnable(new Runnable() {
-
-            @Override
-            public void run() {
-                AppState.get().isEditMode = true;
-                hideShow();
-                DragingDialogs.dialogTextToSpeech(anchor, dc);
-            }
-        });
+        // YR: TTS disabled — TTSControlsView removed
+        View ttsActive = null;
 
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
@@ -2078,9 +2069,7 @@ public class DocumentWrapperUI {
             dc.goToPageByTTS();
         }
 
-        if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
-        }
+        // TTS disabled — ttsActive visibility removed
 
     }
 

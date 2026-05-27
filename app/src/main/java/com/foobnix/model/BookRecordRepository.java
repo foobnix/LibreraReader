@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.foobnix.android.utils.LOG;
 
 import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.database.StandardDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,9 +103,10 @@ public class BookRecordRepository {
 
     public static void insert(Database db, BookRecord record) {
         if (record == null || record.getBookKey() == null) return;
-        ContentValues cv = recordToContentValues(record);
         try {
-            db.insert(TABLE_NAME, null, cv);
+            SQLiteDatabase sqlDb = ((StandardDatabase) db).getRawDatabase();
+            ContentValues cv = recordToContentValues(record);
+            sqlDb.insert(TABLE_NAME, null, cv);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -113,7 +115,8 @@ public class BookRecordRepository {
     public static int update(Database db, String bookKey, ContentValues cv) {
         if (bookKey == null) return 0;
         try {
-            return db.update(TABLE_NAME, cv, COL_BOOK_KEY + " = ?", new String[]{bookKey});
+            SQLiteDatabase sqlDb = ((StandardDatabase) db).getRawDatabase();
+            return sqlDb.update(TABLE_NAME, cv, COL_BOOK_KEY + " = ?", new String[]{bookKey});
         } catch (Exception e) {
             LOG.e(e);
             return 0;
@@ -131,7 +134,8 @@ public class BookRecordRepository {
     public static void delete(Database db, String bookKey) {
         if (bookKey == null) return;
         try {
-            db.delete(TABLE_NAME, COL_BOOK_KEY + " = ?", new String[]{bookKey});
+            SQLiteDatabase sqlDb = ((StandardDatabase) db).getRawDatabase();
+            sqlDb.delete(TABLE_NAME, COL_BOOK_KEY + " = ?", new String[]{bookKey});
         } catch (Exception e) {
             LOG.e(e);
         }

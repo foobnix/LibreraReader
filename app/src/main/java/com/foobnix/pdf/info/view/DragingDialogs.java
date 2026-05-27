@@ -1253,57 +1253,15 @@ public class DragingDialogs {
                     }
                 });
 
+                // TTS disabled — readTTS buttons do nothing
                 view.findViewById(R.id.readTTS).setOnClickListener(new OnClickListener() {
-                    @Override public void onClick(View v) {
-                        TTSEngine.get().stop();
-
-                        String text = editText.getText().toString().trim();
-                        text = TxtUtils.replaceHTMLforTTS(text);
-                        text = text.replace(TxtUtils.TTS_PAUSE, "");
-
-                        TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
-                    }
+                    @Override public void onClick(View v) { }
                 });
                 view.findViewById(R.id.readTTS).setOnLongClickListener(new OnLongClickListener() {
-                    @Override public boolean onLongClick(View v) {
-                        TTSEngine.get().stop();
-                        String text = editText.getText().toString().trim();
-                        TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
+                    @Override public boolean onLongClick(View v) { return true; }
                 });
-
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new OnClickListener() {
-                    @Override public void onClick(View v) {
-                        TTSEngine.get().stop();
-                        AppSP.get().lastBookParagraph = 0;
-                        if (TTSService.isTTSGranted(controller.getActivity())) {
-                            if (!TTSService.isServiceRunning(TTSService.class, controller.getActivity())) {
-                                Intent intent = new Intent(LibreraApp.context, TTSService.class);
-                                intent.setAction("TTSService.ACTION_INIT");
-
-                                PendingIntent play = PendingIntent.getService(LibreraApp.context,
-                                                                              0,
-                                                                              intent,
-                                                                              PendingIntent.FLAG_IMMUTABLE);
-                                try {
-                                    play.send();
-                                } catch (Exception e) {
-                                    LOG.e(e);
-                                }
-                            } else {
-                                TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
-                                                        controller.getCurrentBook().getPath(),
-                                                        editText.getText().toString().trim(),
-                                                        controller.getBookWidth(),
-                                                        controller.getBookHeight(),
-                                                        BookCSS.get().fontSizeSp,
-                                                        controller.getTitle());
-                            }
-                        }
-                    }
+                    @Override public void onClick(View v) { }
                 });
 
                 View onShare = view.findViewById(R.id.onShare);
@@ -2146,7 +2104,7 @@ public class DragingDialogs {
         if (controller == null) {
             return;
         }
-        TTSEngine.fastTTSBookmakr(controller);
+        // TTS disabled — bookmark dialog was TTS-only
     }
 
     public static void dialogShowBookmarks(final FrameLayout anchor,
@@ -2260,7 +2218,7 @@ public class DragingDialogs {
 
                 final View.OnClickListener onQuickBookmark = new View.OnClickListener() {
                     @Override public void onClick(final View v) {
-                        TTSEngine.fastTTSBookmakr(controller);
+                        // TTS disabled
                         closeDialog();
                         onRefeshUI.run();
                     }
@@ -2423,18 +2381,12 @@ public class DragingDialogs {
                                             //dialog.dismiss();
                                             if (aPath != null && aPath.isFile()) {
                                                 LOG.d("Try to open path", aPath);
-                                                if (ExtUtils.isAudioContent(aPath.getPath())) {
-                                                    TTSEngine.get().mp3Destroy();
-                                                    BookCSS.get().mp3BookPath(aPath.getPath());
-                                                    AppState.get().mp3seek = 0;
-                                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
-                                                                            controller.getCurrentBook().getPath(),
-                                                                            "",
-                                                                            controller.getBookWidth(),
-                                                                            controller.getBookHeight(),
-                                                                            BookCSS.get().fontSizeSp,
-                                                                            controller.getTitle());
-                                                } else {
+                                                    if (ExtUtils.isAudioContent(aPath.getPath())) {
+                                                        // TTS/MP3 audio playback disabled
+                                                        BookCSS.get().mp3BookPath(aPath.getPath());
+                                                        AppState.get().mp3seek = 0;
+                                                        ExtUtils.openWith(anchor.getContext(), aPath);
+                                                    } else {
                                                     ExtUtils.openWith(anchor.getContext(), aPath);
                                                 }
                                             } else {
