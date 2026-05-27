@@ -106,6 +106,8 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.BookRecordHelper;
+import com.foobnix.model.ParagraphConfig;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -167,6 +169,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.greenrobot.eventbus.EventBus;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -4045,7 +4048,9 @@ public class DragingDialogs {
                                                              controller.getString(R.string.user_styles),
                                                              //
                                                              controller.getString(R.string.document_styles),
-                                                             controller.getString(R.string.user_styles));
+                                                             controller.getString(R.string.user_styles),
+                                                             controller.getString(R.string.user_styles) + " -> " + controller.getString(R.string.document_styles),
+                                                             controller.getString(R.string.document_styles) + " -> " + controller.getString(R.string.user_styles) + " (!important)");
 
                 final TextView docStyle = inflate.findViewById(R.id.documentStyle);
 
@@ -4105,6 +4110,74 @@ public class DragingDialogs {
                     }
 
                     popupMenu.show();
+                });
+
+                // CSS file path pickers
+                final boolean isText = ExtUtils.isTextFomat(controller.getCurrentBook().getPath());
+                View userGlobalCssLayout = inflate.findViewById(R.id.userGlobalCssLayout);
+                userGlobalCssLayout.setVisibility(isText ? View.VISIBLE : View.GONE);
+                final TextView userGlobalCssPath = inflate.findViewById(R.id.userGlobalCssPath);
+                userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
+                TxtUtils.underlineTextView(userGlobalCssPath);
+                userGlobalCssPath.setOnClickListener(v -> {
+                    String initPath = TxtUtils.isNotEmpty(BookCSS.get().userGlobalCssPath) ? BookCSS.get().userGlobalCssPath : "/sdcard/";
+                    ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), initPath).setOnSelectListener((result1, result2) -> {
+                        BookCSS.get().userGlobalCssPath = result1;
+                        userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
+                        TxtUtils.underlineTextView(userGlobalCssPath);
+                        result2.dismiss();
+                    });
+                });
+                inflate.findViewById(R.id.browseGlobalCss).setOnClickListener(v -> {
+                    String initPath = TxtUtils.isNotEmpty(BookCSS.get().userGlobalCssPath) ? BookCSS.get().userGlobalCssPath : "/sdcard/";
+                    ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), initPath).setOnSelectListener((result1, result2) -> {
+                        BookCSS.get().userGlobalCssPath = result1;
+                        userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
+                        TxtUtils.underlineTextView(userGlobalCssPath);
+                        result2.dismiss();
+                    });
+                });
+
+                View userBookCssLayout = inflate.findViewById(R.id.userBookCssLayout);
+                userBookCssLayout.setVisibility(isText ? View.VISIBLE : View.GONE);
+                final TextView userBookCssPath = inflate.findViewById(R.id.userBookCssPath);
+                userBookCssPath.setText(BookCSS.get().userBookCssPath);
+                TxtUtils.underlineTextView(userBookCssPath);
+                userBookCssPath.setOnClickListener(v -> {
+                    String initPath = TxtUtils.isNotEmpty(BookCSS.get().userBookCssPath) ? BookCSS.get().userBookCssPath : "/sdcard/";
+                    ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), initPath).setOnSelectListener((result1, result2) -> {
+                        String bookPath = controller.getCurrentBook().getPath();
+                        BookCSS.get().userBookCssPath = result1;
+                        userBookCssPath.setText(BookCSS.get().userBookCssPath);
+                        TxtUtils.underlineTextView(userBookCssPath);
+                        try {
+                            String existingJson = BookRecordHelper.getStyleOverride(bookPath);
+                            LinkedJSONObject jo = (existingJson != null && !existingJson.isEmpty()) ? new LinkedJSONObject(existingJson) : new LinkedJSONObject();
+                            jo.put("userBookCssPath", result1);
+                            BookRecordHelper.setStyleOverride(bookPath, jo.toString());
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                        result2.dismiss();
+                    });
+                });
+                inflate.findViewById(R.id.browseBookCss).setOnClickListener(v -> {
+                    String initPath = TxtUtils.isNotEmpty(BookCSS.get().userBookCssPath) ? BookCSS.get().userBookCssPath : "/sdcard/";
+                    ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), initPath).setOnSelectListener((result1, result2) -> {
+                        String bookPath = controller.getCurrentBook().getPath();
+                        BookCSS.get().userBookCssPath = result1;
+                        userBookCssPath.setText(BookCSS.get().userBookCssPath);
+                        TxtUtils.underlineTextView(userBookCssPath);
+                        try {
+                            String existingJson = BookRecordHelper.getStyleOverride(bookPath);
+                            LinkedJSONObject jo = (existingJson != null && !existingJson.isEmpty()) ? new LinkedJSONObject(existingJson) : new LinkedJSONObject();
+                            jo.put("userBookCssPath", result1);
+                            BookRecordHelper.setStyleOverride(bookPath, jo.toString());
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                        result2.dismiss();
+                    });
                 });
 
                 // end styles
@@ -4281,6 +4354,30 @@ public class DragingDialogs {
                     @Override public boolean onResultRecive(int result) {
                         BookCSS.get().paragraphHeight = result;
                         return false;
+                    }
+                });
+
+                final CheckBox isPerBookParagraph = inflate.findViewById(R.id.isPerBookParagraph);
+                final EditText paragraphGapRulesEdit = inflate.findViewById(R.id.paragraphGapRulesEdit);
+                final View paragraphGapRulesLayout = inflate.findViewById(R.id.paragraphGapRulesLayout);
+                final String bookKey = ExtUtils.getFileName(controller.getCurrentBook().getPath());
+                ParagraphConfig pc = ParagraphConfig.fromJson(BookRecordHelper.getParagraphConfig(bookKey));
+                if (pc == null) {
+                    pc = ParagraphConfig.defaultConfig();
+                }
+                isPerBookParagraph.setChecked(pc.enabled);
+                paragraphGapRulesEdit.setText(pc.enabled ? TxtUtils.nullToEmpty(pc.paragraphGapRules) : TxtUtils.nullToEmpty(BookCSS.get().paragraphGapRules));
+                paragraphGapRulesLayout.setVisibility(pc.enabled ? View.VISIBLE : View.GONE);
+                isPerBookParagraph.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        paragraphGapRulesLayout.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                    }
+                });
+                paragraphGapRulesEdit.addTextChangedListener(new android.text.TextWatcher() {
+                    @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                    @Override public void afterTextChanged(android.text.Editable s) {
+                        BookCSS.get().paragraphGapRules = s.toString().trim();
                     }
                 });
 
@@ -4501,6 +4598,13 @@ public class DragingDialogs {
                                                                           BookCSS.get().linkColorDays));
                                                                   linkColorNight.withDefaultColors(StringDB.converToColor(
                                                                           BookCSS.get().linkColorNigths));
+
+                                                                  docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                                                                  TxtUtils.underlineTextView(docStyle);
+                                                                  userGlobalCssPath.setText(BookCSS.get().userGlobalCssPath);
+                                                                  TxtUtils.underlineTextView(userGlobalCssPath);
+                                                                  userBookCssPath.setText(BookCSS.get().userBookCssPath);
+                                                                  TxtUtils.underlineTextView(userBookCssPath);
                                                               }
                                                           });
                             }
@@ -4512,6 +4616,16 @@ public class DragingDialogs {
         dialog.show(DragingPopup.PREF + "_moreBookSettings");
         dialog.setOnCloseListener(new Runnable() {
             @Override public void run() {
+                ParagraphConfig config = new ParagraphConfig();
+                config.paragraphHeight = BookCSS.get().paragraphHeight;
+                config.paragraphGapRules = paragraphGapRulesEdit.getText().toString().trim();
+                config.lineMdRecognition = true;
+                config.enabled = isPerBookParagraph.isChecked();
+                if (config.enabled) {
+                    BookRecordHelper.setParagraphConfig(bookKey, config.toJson());
+                } else {
+                    BookRecordHelper.setParagraphConfig(bookKey, null);
+                }
                 if (initHash != Objects.appHash()) {
                     if (onRefresh != null) {
                         onRefresh.run();

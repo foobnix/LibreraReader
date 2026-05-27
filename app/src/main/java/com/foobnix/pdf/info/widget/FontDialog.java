@@ -143,10 +143,55 @@ public class FontDialog {
         builder.setTitle(R.string.customize_fonts);
         builder.setView(inflate);
 
+        final CheckBox autoDetectFontVariants = (CheckBox) inflate.findViewById(R.id.autoDetectFontVariants);
+        final TextView detectedFontVariants = (TextView) inflate.findViewById(R.id.detectedFontVariants);
+
+        autoDetectFontVariants.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    String normalPath = (String) normalFontSpinner.getTag();
+                    if (normalPath != null) {
+                        BookCSS.autoDetectFontFamily(normalPath);
+                        StringBuilder sb = new StringBuilder();
+                        if (!BookCSS.get().normalFont.equals(normalPath)) {
+                            sb.append("N: ").append(ExtUtils.getFileName(BookCSS.get().normalFont)).append(" ");
+                        }
+                        if (!BookCSS.get().boldFont.equals(normalPath)) {
+                            sb.append("B: ").append(ExtUtils.getFileName(BookCSS.get().boldFont)).append(" ");
+                        }
+                        if (!BookCSS.get().italicFont.equals(normalPath)) {
+                            sb.append("I: ").append(ExtUtils.getFileName(BookCSS.get().italicFont)).append(" ");
+                        }
+                        if (!BookCSS.get().boldItalicFont.equals(normalPath)) {
+                            sb.append("BI: ").append(ExtUtils.getFileName(BookCSS.get().boldItalicFont)).append(" ");
+                        }
+                        if (sb.length() > 0) {
+                            detectedFontVariants.setText(sb.toString().trim());
+                            detectedFontVariants.setVisibility(View.VISIBLE);
+                        } else {
+                            detectedFontVariants.setText("No variants found");
+                            detectedFontVariants.setVisibility(View.VISIBLE);
+                        }
+                    }
+                } else {
+                    detectedFontVariants.setVisibility(View.GONE);
+                }
+            }
+        });
+
         builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                BookCSS.get().normalFont = (String) normalFontSpinner.getTag();
+                String normalPath = (String) normalFontSpinner.getTag();
+                if (autoDetectFontVariants.isChecked() && normalPath != null) {
+                    BookCSS.autoDetectFontFamily(normalPath);
+                    updateTextTag(boldFontSpinner, BookCSS.get().boldFont);
+                    updateTextTag(italicFontSpinner, BookCSS.get().italicFont);
+                    updateTextTag(boldItalicFontSpinner, BookCSS.get().boldItalicFont);
+                }
+
+                BookCSS.get().normalFont = normalPath;
                 BookCSS.get().boldFont = (String) boldFontSpinner.getTag();
                 BookCSS.get().italicFont = (String) italicFontSpinner.getTag();
                 BookCSS.get().boldItalicFont = (String) boldItalicFontSpinner.getTag();
