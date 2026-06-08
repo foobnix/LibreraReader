@@ -24,6 +24,7 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_ROOT)/source/pdf \
 	$(TOP_LOCAL_PATH)/libdjvu-3.5.28/src \
 	$(TOP_LOCAL_PATH)/libhqx-1.2 \
+	$(TOP_LOCAL_PATH)/libwebp-1.3.2/src \
 	$(TOP_LOCAL_PATH)
     	
 LOCAL_CFLAGS := -DHAVE_ANDROID

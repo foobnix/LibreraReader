@@ -12,6 +12,7 @@ ext {
 }
 
 
+
 println " --------------------"
 println " taskName: " + taskName
 println " --------------------"
@@ -76,6 +77,7 @@ android {
     buildTypes {
         release {
             minifyEnabled = false
+            //shrinkResources = false
             signingConfig = signingConfigs.release
             debuggable = false
         }

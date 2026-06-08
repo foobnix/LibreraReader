@@ -114,7 +114,7 @@ cp -rpv $SRC/pi.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c
 
 cd $MUPDF_JAVA
 
-NDK_VERSION="29.0.14206865"
+NDK_VERSION="30.0.14904198"
 FDRIOD_NDK_VERSION="21.4.7075529"
 
 if [ "$(uname)" == "Darwin" ]; then

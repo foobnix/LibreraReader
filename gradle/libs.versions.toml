@@ -109,8 +109,8 @@ multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.2.0" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.5.1" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.3.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
