@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
 
 
 public class HypenUtils {
@@ -69,9 +70,10 @@ public class HypenUtils {
         }
         //LOG.d("applyHypnesNewMy-input",input);
 
+        final String text = applyTextReplacements(input, replacements);
         final StringBuilder res = new StringBuilder();
 
-        tokenize(input, new TokensListener() {
+        tokenize(text, new TokensListener() {
 
             @Override
             public void findOther(char ch) {
@@ -80,19 +82,6 @@ public class HypenUtils {
 
             @Override
             public void findText(String w) {
-                if (AppState.get().isEnableTextReplacement && replacements != null) {
-                    for (SimpleMeta it : replacements) {
-                        if (TxtUtils.isNotEmpty(it.name)) {
-                            if (it.name.startsWith("*")) {
-                                String regexp = it.name.substring(1);
-                                w = TxtUtils.replaceAll(w, regexp, it.path);
-                            } else {
-                                w = w.replace(it.name, it.path);
-                            }
-                        }
-                    }
-                }
-
                 if (AppState.get().isBionicMode) {
                     res.append(TxtUtils.toBionicWord(w));
                     return;
@@ -129,6 +118,82 @@ public class HypenUtils {
         //LOG.d("applyHypnesNewMy-out",out);
 
         return out;
+    }
+
+    static String applyTextReplacements(final String input, List<SimpleMeta> replacements) {
+        return applyTextReplacements(input, replacements, AppState.get().isEnableTextReplacement);
+    }
+
+    static String applyTextReplacements(final String input, List<SimpleMeta> replacements, boolean isEnabled) {
+        if (!isEnabled || replacements == null || replacements.isEmpty()) {
+            return input;
+        }
+
+        StringBuilder out = new StringBuilder(input.length());
+        StringBuilder text = new StringBuilder();
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+
+            if (ch == '<') {
+                appendReplacedText(out, text, replacements);
+
+                int end = input.indexOf('>', i + 1);
+                if (end == -1) {
+                    out.append(input.substring(i));
+                    return out.toString();
+                }
+
+                out.append(input, i, end + 1);
+                i = end;
+                continue;
+            }
+
+            if (ch == '&') {
+                int end = input.indexOf(';', i + 1);
+                int tagStart = input.indexOf('<', i + 1);
+                if (end != -1 && (tagStart == -1 || end < tagStart)) {
+                    appendReplacedText(out, text, replacements);
+                    out.append(input, i, end + 1);
+                    i = end;
+                    continue;
+                }
+            }
+
+            text.append(ch);
+        }
+
+        appendReplacedText(out, text, replacements);
+        return out.toString();
+    }
+
+    private static void appendReplacedText(StringBuilder out, StringBuilder text, List<SimpleMeta> replacements) {
+        if (text.length() == 0) {
+            return;
+        }
+
+        String value = text.toString();
+        for (SimpleMeta it : replacements) {
+            if (TxtUtils.isNotEmpty(it.name)) {
+                String replacement = escapeReplacementText(it.path);
+                if (it.name.startsWith("*")) {
+                    String regexp = it.name.substring(1);
+                    value = TxtUtils.replaceAll(value, regexp, Matcher.quoteReplacement(replacement));
+                } else {
+                    value = value.replace(it.name, replacement);
+                }
+            }
+        }
+        out.append(value);
+        text.setLength(0);
+    }
+
+    private static String escapeReplacementText(String text) {
+        return text.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#39;");
     }
 
     public static String applyHypnesOld2(String input) {

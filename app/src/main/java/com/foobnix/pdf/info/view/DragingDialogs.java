@@ -423,7 +423,7 @@ public class DragingDialogs {
                                 EditText childFrom = (EditText) line.getChildAt(0);
                                 String from = childFrom.getText().toString();
                                 String to = ((EditText) line.getChildAt(2)).getText().toString();
-                                from = from.replace(" ", "").trim();
+                                from = from.trim();
 
                                 LOG.d("TTS-add", from, to);
 
