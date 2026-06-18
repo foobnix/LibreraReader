@@ -8,6 +8,7 @@ import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.rtfparserkit.converter.text.AbstractTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
@@ -32,6 +33,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class RtfExtract {
@@ -70,6 +72,7 @@ public class RtfExtract {
 
             HypenUtils.resetTokenizer();
 
+            List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
             parser.parse(source, new AbstractTextConverter() {
                 boolean isImage;
                 String format = "jpg";
@@ -81,7 +84,7 @@ public class RtfExtract {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
                     if (AppState.get().isEnableTextReplacement) {
-                        htmlEncode = HypenUtils.applyTextReplacements(htmlEncode, AppData.get().getAllTextReplaces());
+                        htmlEncode = HypenUtils.applyTextReplacements(htmlEncode, replacements);
                     }
                     if (isEnableHypens) {
                         htmlEncode = HypenUtils.applyHyphens(htmlEncode);

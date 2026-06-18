@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -18,7 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 import at.stefl.opendocument.java.odf.LocatedOpenDocumentFile;
 import at.stefl.opendocument.java.odf.OpenDocument;
@@ -36,7 +36,7 @@ public class OdtContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameCache = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameCache = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter + AppState.get().textReplacementHash;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameCache.hashCode() + "-0.html");
         return cacheFile;
     }
@@ -86,7 +86,7 @@ public class OdtContext extends PdfContext {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
 
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null,null,0, new ArrayList<>());
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null,null,0, AppData.get().getAllTextReplaces());
                 out.close();
                 in.close();
 

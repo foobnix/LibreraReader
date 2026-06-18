@@ -138,13 +138,17 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if (AppState.get().isEnableTextReplacement || (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang))) {
+            boolean needsTextReplacement = AppState.get().isEnableTextReplacement;
+            boolean needsHyphens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang);
+            if (needsTextReplacement || needsHyphens) {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
-                String processedString = HypenUtils.applyTextReplacements(string.substring(bodyInt), AppData.get().getAllTextReplaces(), AppState.get().isEnableTextReplacement);
-                processedString = HypenUtils.applyHyphens(processedString);
+                String processedString = HypenUtils.applyTextReplacements(string.substring(bodyInt), AppData.get().getAllTextReplaces(), needsTextReplacement);
+                if (needsHyphens) {
+                    processedString = HypenUtils.applyHyphens(processedString);
+                }
                 string = string.substring(0, bodyInt) + processedString;
                 // string = Jsoup.clean(string, Whitelist.none());
             }

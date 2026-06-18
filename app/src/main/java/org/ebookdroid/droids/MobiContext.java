@@ -6,6 +6,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -26,7 +27,7 @@ public class MobiContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang).hashCode();
+        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppState.get().textReplacementHash).hashCode();
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
         return cacheFile;
     }
@@ -42,13 +43,13 @@ public class MobiContext extends PdfContext {
 
         } else {
             try {
-                int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
+                boolean isProcess = AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens;
+                int outName = isProcess ? "temp".hashCode() : originalHashCode;
 
                 FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
                 fileNameEpub = extract.path;
                 LOG.d("Context", "MobiContext outName", outName, extract.path);
-                if (BookCSS.get().isAutoHypens) {
-
+                if (isProcess) {
                     EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath(), null);
                     fileNameEpub = cacheFile.getPath();
                 }

@@ -6,6 +6,7 @@ import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.libmobi.LibMobi;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -20,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 public class DocContext extends PdfContext {
 
@@ -30,7 +30,7 @@ public class DocContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter + AppState.get().textReplacementHash;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + EXT_DOC_HTML);
         return cacheFile;
     }
@@ -57,7 +57,7 @@ public class DocContext extends PdfContext {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
 
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, null, 0, new ArrayList<>());
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, null, 0, AppData.get().getAllTextReplaces());
                 out.close();
                 in.close();
 

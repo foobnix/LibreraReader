@@ -54,6 +54,7 @@ public class TxtExtract {
             HypenUtils.applyLanguage(AppSP.get().hypenLang);
         }
 
+        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
         while ((line = input.readLine()) != null) {
             String trimLine = line.toLowerCase();
             if (line.isEmpty()) {
@@ -70,7 +71,7 @@ public class TxtExtract {
                 writer.println("</title></section>");
             } else {
                 if (AppState.get().isEnableTextReplacement) {
-                    line = HypenUtils.applyTextReplacements(line, AppData.get().getAllTextReplaces());
+                    line = HypenUtils.applyTextReplacements(line, replacements);
                 }
                 if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                     line = HypenUtils.applyHyphens(line);
@@ -132,6 +133,12 @@ public class TxtExtract {
 
                 outLn = retab(line, 8);
                 outLn = TextUtils.htmlEncode(outLn);
+                if (AppState.get().isEnableTextReplacement) {
+                    outLn = HypenUtils.applyTextReplacements(outLn, replacements);
+                }
+                if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                    outLn = HypenUtils.applyHyphens(outLn);
+                }
 
                 if (TxtUtils.isLineStartEndUpperCase(outLn)) {
                     outLn = "<b>" + outLn + "</b>";
