@@ -172,7 +172,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled.get()) {
-               return;
+                return;
             }
             if (!isValidXMLChecked && line.length() == 0) {
                 continue;
@@ -292,11 +292,11 @@ public class Fb2Extractor extends BaseExtractor {
 
             }
 
-
-            boolean isProcess = AppState.get().isEnableTextReplacement ||
-                    (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
-            if (isProcess) {
-                line = HypenUtils.applyHypnes(line, replacements);
+            if (AppState.get().isEnableTextReplacement) {
+                line = HypenUtils.applyTextReplacements(line, replacements);
+            }
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                line = HypenUtils.applyHyphens(line);
             }
 
             if (!isValidXML) {
@@ -483,7 +483,6 @@ public class Fb2Extractor extends BaseExtractor {
         }
         return NCX.replace("%nav%", navs.toString());
     }
-
 
 
     public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
@@ -728,7 +727,7 @@ public class Fb2Extractor extends BaseExtractor {
         byte[] decode = null;
         try {
             XmlPullParser xpp = XmlParser.buildPullParser();
-            try(final FileInputStream inputStream = new FileInputStream(path)) {
+            try (final FileInputStream inputStream = new FileInputStream(path)) {
                 xpp.setInput(inputStream, "UTF-8");
 
                 int eventType = xpp.getEventType();
@@ -747,7 +746,7 @@ public class Fb2Extractor extends BaseExtractor {
                             if (imageCover == null) {
                                 imageCover = xpp.getAttributeValue(0);
                                 if (TxtUtils.isNotEmpty(imageCover) && imageCover.toLowerCase(Locale.US)
-                                                                                 .contains("cover")) {
+                                        .contains("cover")) {
                                     imageCover = imageID = imageCover.replace("#", "");
                                 } else {
                                     imageCover = null;
@@ -756,7 +755,7 @@ public class Fb2Extractor extends BaseExtractor {
                         }
 
                         if (imageID != null && xpp.getName()
-                                                  .equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
+                                .equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
                             String text = xpp.nextText();
                             if (text != null) {
                                 decode = Base64.decode(text, Base64.DEFAULT);
@@ -1197,10 +1196,11 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    boolean isProcess = AppState.get().isEnableTextReplacement ||
-                            (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
-                    if (isProcess) {
-                        line = HypenUtils.applyHypnes(line, replacements);
+                    if (AppState.get().isEnableTextReplacement) {
+                        line = HypenUtils.applyTextReplacements(line, replacements);
+                    }
+                    if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                        line = HypenUtils.applyHyphens(line);
                     }
                 }
                 writer.print(line);

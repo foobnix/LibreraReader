@@ -9,6 +9,7 @@ import com.foobnix.ext.FooterNote;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.google.common.io.CharSource;
@@ -200,7 +201,7 @@ public class MdContext extends PdfContext {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
 
-        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+            List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
 
             String l;
             String line = "";
@@ -214,9 +215,11 @@ public class MdContext extends PdfContext {
                     continue;
                 }
 
-
+                if (AppState.get().isEnableTextReplacement) {
+                    line = HypenUtils.applyTextReplacements(line, replacements);
+                }
                 if (BookCSS.get().isAutoHypens) {
-                    line = HypenUtils.applyHypnes(line,replacements);
+                    line = HypenUtils.applyHyphens(line);
                 }
 
                 html.append("<p>");

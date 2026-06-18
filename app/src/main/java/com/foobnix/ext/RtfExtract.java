@@ -5,7 +5,9 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.rtfparserkit.converter.text.AbstractTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
@@ -78,8 +80,11 @@ public class RtfExtract {
                 public void processExtractedText(String text) {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
+                    if (AppState.get().isEnableTextReplacement) {
+                        htmlEncode = HypenUtils.applyTextReplacements(htmlEncode, AppData.get().getAllTextReplaces());
+                    }
                     if (isEnableHypens) {
-                        htmlEncode = HypenUtils.applyHypnes(htmlEncode);
+                        htmlEncode = HypenUtils.applyHyphens(htmlEncode);
                     }
                     printText(htmlEncode);
                     writer.print(" ");

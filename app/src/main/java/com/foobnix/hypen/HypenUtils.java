@@ -1,8 +1,9 @@
 package com.foobnix.hypen;
 
+import android.text.TextUtils;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -55,25 +56,15 @@ public class HypenUtils {
 
     }
 
-    public static String applyHypnes(String htmlEncode) {
-        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
-        return applyHypnesNewMy(htmlEncode, replacements);
-    }
-
-    public static String applyHypnes(String htmlEncode, List<SimpleMeta> replacements) {
-        return applyHypnesNewMy(htmlEncode, replacements);
-    }
-
-    private static String applyHypnesNewMy(final String input, List<SimpleMeta> replacements) {
-        if (input == null || input.length() == 0) {
+    public static String applyHyphens(String htmlEncode) {
+        if (htmlEncode == null || htmlEncode.isEmpty()) {
             return "";
         }
         //LOG.d("applyHypnesNewMy-input",input);
 
-        final String text = applyTextReplacements(input, replacements);
         final StringBuilder res = new StringBuilder();
 
-        tokenize(text, new TokensListener() {
+        tokenize(htmlEncode, new TokensListener() {
 
             @Override
             public void findOther(char ch) {
@@ -120,11 +111,11 @@ public class HypenUtils {
         return out;
     }
 
-    static String applyTextReplacements(final String input, List<SimpleMeta> replacements) {
+    public static String applyTextReplacements(final String input, List<SimpleMeta> replacements) {
         return applyTextReplacements(input, replacements, AppState.get().isEnableTextReplacement);
     }
 
-    static String applyTextReplacements(final String input, List<SimpleMeta> replacements, boolean isEnabled) {
+    public static String applyTextReplacements(final String input, List<SimpleMeta> replacements, boolean isEnabled) {
         if (!isEnabled || replacements == null || replacements.isEmpty()) {
             return input;
         }
@@ -175,7 +166,7 @@ public class HypenUtils {
         String value = text.toString();
         for (SimpleMeta it : replacements) {
             if (TxtUtils.isNotEmpty(it.name)) {
-                String replacement = escapeReplacementText(it.path);
+                String replacement = TextUtils.htmlEncode(it.path);
                 if (it.name.startsWith("*")) {
                     String regexp = it.name.substring(1);
                     value = TxtUtils.replaceAll(value, regexp, Matcher.quoteReplacement(replacement));
@@ -186,14 +177,6 @@ public class HypenUtils {
         }
         out.append(value);
         text.setLength(0);
-    }
-
-    private static String escapeReplacementText(String text) {
-        return text.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\"", "&quot;")
-                .replace("'", "&#39;");
     }
 
     public static String applyHypnesOld2(String input) {

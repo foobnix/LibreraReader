@@ -8,7 +8,6 @@ import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -21,7 +20,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class HtmlExtractor {
@@ -140,12 +138,14 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+            if (AppState.get().isEnableTextReplacement || (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang))) {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
-                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt));
+                String processedString = HypenUtils.applyTextReplacements(string.substring(bodyInt), AppData.get().getAllTextReplaces(), AppState.get().isEnableTextReplacement);
+                processedString = HypenUtils.applyHyphens(processedString);
+                string = string.substring(0, bodyInt) + processedString;
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();
@@ -220,8 +220,11 @@ public class HtmlExtractor {
 
             String string = Jsoup.clean(html.toString(), Safelist.basic());
 
+            if (AppState.get().isEnableTextReplacement) {
+                string = HypenUtils.applyTextReplacements(string, AppData.get().getAllTextReplaces());
+            }
             if (BookCSS.get().isAutoHypens) {
-                string = HypenUtils.applyHypnes(string);
+                string = HypenUtils.applyHyphens(string);
             }
 
             string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";

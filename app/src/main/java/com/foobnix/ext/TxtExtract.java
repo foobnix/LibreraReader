@@ -69,8 +69,11 @@ public class TxtExtract {
                 writer.println(line);
                 writer.println("</title></section>");
             } else {
+                if (AppState.get().isEnableTextReplacement) {
+                    line = HypenUtils.applyTextReplacements(line, AppData.get().getAllTextReplaces());
+                }
                 if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                    line = HypenUtils.applyHypnes(line);
+                    line = HypenUtils.applyHyphens(line);
                 }
                 writer.println("<p>" + line + "</p>");
             }
@@ -216,8 +219,11 @@ public class TxtExtract {
             line = line.replace("\n", "");
             line = line.replace("\r", "");
             line = TextUtils.htmlEncode(line);
+            if (AppState.get().isEnableTextReplacement) {
+                line = HypenUtils.applyTextReplacements(line, replacements);
+            }
             if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                line = HypenUtils.applyHypnes(line, replacements);
+                line = HypenUtils.applyHyphens(line);
             }
             line = line.trim();
 

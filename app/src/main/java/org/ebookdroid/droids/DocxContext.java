@@ -5,6 +5,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -70,11 +71,14 @@ public class DocxContext extends PdfContext {
 
                 String html = result.getValue();
                 html = html.replace("<br /><br />", "<empty-line />");
+                if (AppState.get().isEnableTextReplacement) {
+                    html = HypenUtils.applyTextReplacements(html, AppData.get().getAllTextReplaces());
+                }
                 if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(AppSP.get().hypenLang);
                     HypenUtils.resetTokenizer();
-                    html = HypenUtils.applyHypnes(html);
+                    html = HypenUtils.applyHyphens(html);
                 }
 
                 FileOutputStream out = new FileOutputStream(cacheFile);
