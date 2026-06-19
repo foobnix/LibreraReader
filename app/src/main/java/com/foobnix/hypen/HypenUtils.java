@@ -63,13 +63,27 @@ public class HypenUtils {
         return applyHypnesNewMy(htmlEncode, replacements);
     }
 
-    private static String applyHypnesNewMy(final String input, List<SimpleMeta> replacements) {
-        if (input == null || input.length() == 0) {
+    private static String applyHypnesNewMy(final String input2, List<SimpleMeta> replacements) {
+        if (input2 == null || input2.length() == 0) {
             return "";
         }
         //LOG.d("applyHypnesNewMy-input",input);
 
+        String input = input2;
         final StringBuilder res = new StringBuilder();
+
+        if (AppState.get().isEnableTextReplacement && replacements != null) {
+            for (SimpleMeta it : replacements) {
+                if (TxtUtils.isNotEmpty(it.name)) {
+                    if (it.name.startsWith("*")) {
+                        String regexp = it.name.substring(1);
+                        input = TxtUtils.replaceAll(input, regexp, it.path);
+                    } else {
+                        input = input.replace(it.name, it.path);
+                    }
+                }
+            }
+        }
 
         tokenize(input, new TokensListener() {
 
@@ -80,18 +94,7 @@ public class HypenUtils {
 
             @Override
             public void findText(String w) {
-                if (AppState.get().isEnableTextReplacement && replacements != null) {
-                    for (SimpleMeta it : replacements) {
-                        if (TxtUtils.isNotEmpty(it.name)) {
-                            if (it.name.startsWith("*")) {
-                                String regexp = it.name.substring(1);
-                                w = TxtUtils.replaceAll(w, regexp, it.path);
-                            } else {
-                                w = w.replace(it.name, it.path);
-                            }
-                        }
-                    }
-                }
+
 
                 if (AppState.get().isBionicMode) {
                     res.append(TxtUtils.toBionicWord(w));
