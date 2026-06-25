@@ -77,6 +77,20 @@ public class LibreraApp extends MultiDexApplication {
         try {
             if (AppsConfig.isShowAdsInApp(this)) {
                 LOG.d("ADS1", "MobileAds.initialize");
+
+//                AdSettings.addTestDevice("e13a44ef-2006-41e0-8597-ed1afcc727b6");
+//                if (!AudienceNetworkAds.isInitialized(context)) {
+//                    if(AppsConfig.IS_LOG) {
+//                        AdSettings.turnOnSDKDebugger(context);
+//                    }
+//
+//                    AudienceNetworkAds
+//                            .buildInitSettings(context)
+//                            .withInitListener(initResult -> LOG.d("FBads",initResult,initResult.getMessage()))
+//                            .initialize();
+//                }
+//                AdSettings.addTestDevice("e13a44ef-2006-41e0-8597-ed1afcc727b6");
+
                 MobileAds.initialize(this, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(
@@ -85,6 +99,21 @@ public class LibreraApp extends MultiDexApplication {
                         LOG.d("ads-complete");
                     }
                 });
+//                new Thread(){
+//                    @Override public void run() {
+//                        try {
+//                            LOG.d("AppsConfig", "getAdvertisingIdInfo",
+//                                    AdvertisingIdClient.getAdvertisingIdInfo(LibreraApp.this));
+//                            LOG.d("AppsConfig", "getAdvertisingIdInfo-debug",
+//                                    AdvertisingIdClient.getIsAdIdFakeForDebugLogging(LibreraApp.this));
+//                        }catch (Exception e){
+//                            LOG.e(e);
+//                        }
+//                    }
+//                }.start();
+
+
+
 
                 LOG.d("AppsConfig.IS_TEST_DEVICE", AppsConfig.IS_TEST_DEVICE);
                 if (AppsConfig.IS_TEST_DEVICE) {
@@ -155,6 +184,8 @@ public class LibreraApp extends MultiDexApplication {
 
 
     }
+
+
 
 
 

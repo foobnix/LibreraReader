@@ -2,12 +2,15 @@ package com.foobnix.pdf.info.widget;
 
 import static android.util.TypedValue.COMPLEX_UNIT_PX;
 
+import static com.foobnix.pdf.info.IMG.WIDTH_DK;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -89,6 +92,11 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
             v.setImageViewBitmap(R.id.imageView1, image);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                v.setViewLayoutWidth(R.id.imageView1, AppState.get().coverBigSize, TypedValue.COMPLEX_UNIT_DIP);
+                v.setViewLayoutHeight(R.id.imageView1, AppState.get().coverBigSize*WIDTH_DK, TypedValue.COMPLEX_UNIT_DIP);
+
             }
             v.setViewPadding(R.id.imageView1, Dips.DP_2,Dips.DP_2,Dips.DP_2,Dips.DP_2);
         } catch (Exception e) {
