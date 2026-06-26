@@ -48,6 +48,13 @@
             android:text="@string/show_book_title" />
 
         <CheckBox
+            android:id="@+id/isShowBottomSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_reading_slider" />
+
+        <CheckBox
             android:id="@+id/isShowReadingProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

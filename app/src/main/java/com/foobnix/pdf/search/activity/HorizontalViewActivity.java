@@ -142,6 +142,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     volatile Boolean isInitPosistion = null;
     volatile int isInitOrientation;
     ProgressDraw progressDraw;
+    View seekLine;
     LinearLayout pageshelper;
     String quickBookmark;
     ClickUtils clickUtils;
@@ -407,6 +408,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         moveCenter = findViewById(R.id.moveCenter);
 
         currentSeek = (TextView) findViewById(R.id.currentSeek);
+        seekLine = findViewById(R.id.seekLine);
         maxSeek = (TextView) findViewById(R.id.maxSeek);
 
         toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
@@ -2091,6 +2093,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         updateBannnerTop();
         showPagesHelper();
 
+        if (seekLine != null) {
+            seekLine.setVisibility(AppState.get().isEditMode && AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+        }
+
         if (prev == AppState.get().isEditMode) {
             return;
         }
@@ -2103,6 +2109,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (!animated || AppState.get().appTheme == AppState.THEME_INK) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
+            if (seekLine != null) {
+                seekLine.setVisibility(AppState.get().isEditMode && AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+            }
             //adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
 
             DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
@@ -2144,6 +2153,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     try {
                         actionBar.setVisibility(View.VISIBLE);
                         bottomBar.setVisibility(View.VISIBLE);
+                        if (seekLine != null) {
+                            seekLine.setVisibility(AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+                        }
                         //adFrame.setVisibility(View.VISIBLE);
                         ///adFrame.setTag(null);
 
@@ -2498,10 +2510,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
+            showHideHistory();
         }
 
         @Override
         public void onStartTrackingTouch(final SeekBar seekBar) {
+            dc.getLinkHistory().add(dc.getCurentPageFirst1());
         }
 
         @Override

@@ -137,6 +137,7 @@
    <string name="status_bar">Status Bar</string>
    <string name="show_status_bar">Show status bar</string>
    <string name="show_progress_of_reading">Enable progress bar</string>
+    <string name="show_reading_slider">Show progress slider</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigate by sliding across status bar</string>
    <string name="text_size">Font size</string>
    <string name="line_height">Progress bar height</string>
