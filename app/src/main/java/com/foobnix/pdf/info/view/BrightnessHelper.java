@@ -373,7 +373,7 @@ public class BrightnessHelper {
         this.x = x;
         this.y = y;
         isMovementStart = false;
-        currentPercent = getMinMaxValue(currentPercent + lastPercent);
+        updateCurrentValue();
     }
 
     public void onActionUp() {
@@ -400,15 +400,15 @@ public class BrightnessHelper {
         float dx = Math.abs(x - event.getX());
 
         if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
-            isMovementStart = true;
-
-            if (y < Dips.screenHeight() / 3 || y > Dips.screenHeight() - Dips.screenHeight() / 3) {
-                lastPercent = (int) (yDiff * 100 / MIN);
+            float plus;
+            if (!isMovementStart) { // On first call update y and enable isMovementStart and do not change brightness.
+                this.y = event.getY();
+                plus = currentPercent;
             } else {
-                lastPercent = (int) (yDiff * 100 / MAX);
+                lastPercent = (int) (yDiff * 100 / MIN);
+                plus = getMinMaxValue(lastPercent + currentPercent);
             }
-
-            float plus = getMinMaxValue(lastPercent + currentPercent);
+            isMovementStart = true;
             EventBus.getDefault().post(new MessegeBrightness((int) plus));
         }
         return isMovementStart;
