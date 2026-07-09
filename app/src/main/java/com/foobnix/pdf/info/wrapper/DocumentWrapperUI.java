@@ -2109,7 +2109,6 @@ public class DocumentWrapperUI {
     public void onPause() {
         LOG.d("DocumentWrapperUI", "onPause");
         handlerTimer.removeCallbacks(updateTimePower);
-        dc.resetReadTimer();
     }
 
     public View.OnClickListener onPrefTop = new View.OnClickListener() {
