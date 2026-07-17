@@ -469,7 +469,7 @@
    <string name="year">عام</string>
    <string name="publisher">الناشر</string>
    <string name="do_you_want_to_download_the_file_">هل تريد تنزيل الملف؟</string>
-   <string name="do_you_want_to_delete_this_file_">هل تريد حذف هذا الملف؟</string>
+   <string name="do_you_want_to_delete_this_file_1">هل تريد حذف هذا الملف نهائياً؟ لا يمكن استعادته.</string>
    <string name="logout">الخروج</string>
    <string name="cloud_not_connected">السحابة غير متصلة</string>
    <string name="cloud_sync_folder">مجلد مزامنة السحابة</string>

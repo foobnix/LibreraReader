@@ -469,7 +469,7 @@
    <string name="year">Година</string>
    <string name="publisher">Издател</string>
    <string name="do_you_want_to_download_the_file_">Изтеглите този файл?</string>
-   <string name="do_you_want_to_delete_this_file_">Изтриете този файл?</string>
+   <string name="do_you_want_to_delete_this_file_1">Да изтрия ли този файл за постоянно? Той не може да бъде възстановен.</string>
    <string name="logout">Излез от профила си</string>
    <string name="cloud_not_connected">Облакът не е свързан</string>
    <string name="cloud_sync_folder">Облачна папка за синхронизиране</string>

@@ -469,7 +469,7 @@
    <string name="year">Жыл</string>
    <string name="publisher">Баспагер</string>
    <string name="do_you_want_to_download_the_file_">Бұл файлды жүктеу керек пе?</string>
-   <string name="do_you_want_to_delete_this_file_">Бұл файлды жою керек пе?</string>
+   <string name="do_you_want_to_delete_this_file_1">Бұл файлды біржола жою керек пе? Оны қалпына келтіру мүмкін емес.</string>
    <string name="logout">Шығу</string>
    <string name="cloud_not_connected">Бұлт қосылмаған</string>
    <string name="cloud_sync_folder">Бұлтты синхрондау қалтасы</string>

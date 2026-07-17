@@ -469,7 +469,7 @@
    <string name="year">Năm</string>
    <string name="publisher">Nhà xuất bản</string>
    <string name="do_you_want_to_download_the_file_">Bạn có muốn tải tệp xuống không?</string>
-   <string name="do_you_want_to_delete_this_file_">Bạn có muốn xóa tệp này không?</string>
+   <string name="do_you_want_to_delete_this_file_1">Xóa vĩnh viễn tập tin này? Không thể khôi phục được.</string>
    <string name="logout">Đăng xuất</string>
    <string name="cloud_not_connected">Đám mây không được kết nối</string>
    <string name="cloud_sync_folder">Thư mục đồng bộ hóa trên đám mây</string>

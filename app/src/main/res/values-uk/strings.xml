@@ -469,7 +469,7 @@
    <string name="year">Рік</string>
    <string name="publisher">Видавець</string>
    <string name="do_you_want_to_download_the_file_">Ви хочете завантажити файл?</string>
-   <string name="do_you_want_to_delete_this_file_">Ви хочете видалити цей файл?</string>
+   <string name="do_you_want_to_delete_this_file_1">Видалити цей файл назавжди? його не можна відновити.</string>
    <string name="logout">Вийти</string>
    <string name="cloud_not_connected">Хмара не під\'єднана</string>
    <string name="cloud_sync_folder">Тека синхронізації Cloud</string>

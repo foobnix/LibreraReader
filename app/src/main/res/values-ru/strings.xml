@@ -469,7 +469,7 @@
    <string name="year">Год</string>
    <string name="publisher">Издательство</string>
    <string name="do_you_want_to_download_the_file_">Вы действительно хотите загрузить файл?</string>
-   <string name="do_you_want_to_delete_this_file_">Вы действительно хотите удалить этот файл?</string>
+   <string name="do_you_want_to_delete_this_file_1">Удалить этот файл навсегда? Его невозможно будет восстановить.</string>
    <string name="logout">Выйти</string>
    <string name="cloud_not_connected">Облако не подключено</string>
    <string name="cloud_sync_folder">Папка облачной синхронизации</string>

@@ -469,7 +469,7 @@
    <string name="year">Year</string>
    <string name="publisher">Publisher</string>
    <string name="do_you_want_to_download_the_file_">Download this file?</string>
-   <string name="do_you_want_to_delete_this_file_">Delete this file?</string>
+   <string name="do_you_want_to_delete_this_file_1">Delete this file permanently? It can\'t be recovered.</string>
    <string name="logout">Log out</string>
    <string name="cloud_not_connected">Cloud is not connected</string>
    <string name="cloud_sync_folder">Cloud sync folder</string>

@@ -469,7 +469,7 @@
    <string name="year">Tahun</string>
    <string name="publisher">Penerbit</string>
    <string name="do_you_want_to_download_the_file_">Apakah Anda ingin mengunduh file?</string>
-   <string name="do_you_want_to_delete_this_file_">Apakah Anda ingin menghapus file ini?</string>
+   <string name="do_you_want_to_delete_this_file_1">Hapus file ini secara permanen? File ini tidak dapat dipulihkan.</string>
    <string name="logout">Keluar</string>
    <string name="cloud_not_connected">Cloud tidak terhubung</string>
    <string name="cloud_sync_folder">Folder sinkronisasi cloud</string>

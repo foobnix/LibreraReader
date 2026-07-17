@@ -469,7 +469,7 @@
    <string name="year">വർഷം</string>
    <string name="publisher">പ്രസാധകൻ</string>
    <string name="do_you_want_to_download_the_file_">ഈ ഫയൽ ഡൗൺലോഡുചെയ്യണോ?</string>
-   <string name="do_you_want_to_delete_this_file_">ഈ ഫയൽ ഇല്ലാതാക്കണോ?</string>
+   <string name="do_you_want_to_delete_this_file_1">ഈ ഫയൽ ശാശ്വതമായി ഇല്ലാതാക്കണോ? ഇത് വീണ്ടെടുക്കാൻ കഴിയില്ല.</string>
    <string name="logout">ലോഗ് .ട്ട് ചെയ്യുക</string>
    <string name="cloud_not_connected">ക്ലൗഡ് കണക്റ്റുചെയ്‌തിട്ടില്ല</string>
    <string name="cloud_sync_folder">ക്ലൗഡ് സമന്വയ ഫോൾഡർ</string>

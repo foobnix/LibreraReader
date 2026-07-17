@@ -469,7 +469,7 @@
    <string name="year">ஆண்டு</string>
    <string name="publisher">பதிப்பகத்தார்</string>
    <string name="do_you_want_to_download_the_file_">இந்தக் கோப்பைப் பதிவிறக்கவா?</string>
-   <string name="do_you_want_to_delete_this_file_">இந்த கோப்பை நீக்கவா?</string>
+   <string name="do_you_want_to_delete_this_file_1">இந்தக் கோப்பை நிரந்தரமாக நீக்கவா? இதை மீட்டெடுக்க முடியாது.</string>
    <string name="logout">வெளியேறு</string>
    <string name="cloud_not_connected">மேககணி இணைக்கப்படவில்லை</string>
    <string name="cloud_sync_folder">மேகக்கணி ஒத்திசைவு கோப்புறை</string>

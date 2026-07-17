@@ -469,7 +469,7 @@
    <string name="year">Vuosi</string>
    <string name="publisher">Kustantaja</string>
    <string name="do_you_want_to_download_the_file_">Ladataanko tiedosto?</string>
-   <string name="do_you_want_to_delete_this_file_">Poistetaanko tiedosto?</string>
+   <string name="do_you_want_to_delete_this_file_1">Poistetaanko tämä tiedosto pysyvästi? Sitä ei voi palauttaa.</string>
    <string name="logout">Kirjaudu ulos</string>
    <string name="cloud_not_connected">Cloud ei ole käytössä</string>
    <string name="cloud_sync_folder">Cloud synkronointikansio</string>

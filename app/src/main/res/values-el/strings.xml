@@ -469,7 +469,7 @@
    <string name="year">Έτος</string>
    <string name="publisher">Εκδότης</string>
    <string name="do_you_want_to_download_the_file_">Λήψη αυτού του αρχείου;</string>
-   <string name="do_you_want_to_delete_this_file_">Διαγραφή αυτού του αρχείου;</string>
+   <string name="do_you_want_to_delete_this_file_1">Να διαγραφεί οριστικά αυτό το αρχείο; Δεν είναι δυνατή η ανάκτησή του.</string>
    <string name="logout">Αποσύνδεση</string>
    <string name="cloud_not_connected">Το cloud δεν είναι συνδεδεμένο</string>
    <string name="cloud_sync_folder">Φάκελος συγχρονισμού cloud</string>

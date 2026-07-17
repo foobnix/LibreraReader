@@ -469,7 +469,7 @@
    <string name="year">年份</string>
    <string name="publisher">出版商</string>
    <string name="do_you_want_to_download_the_file_">需要下载文件？</string>
-   <string name="do_you_want_to_delete_this_file_">确认删除文件？</string>
+   <string name="do_you_want_to_delete_this_file_1">永久删除此文件？无法恢复。</string>
    <string name="logout">退出</string>
    <string name="cloud_not_connected">未连接网盘</string>
    <string name="cloud_sync_folder">云同步文件夹</string>

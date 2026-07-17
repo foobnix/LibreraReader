@@ -469,7 +469,7 @@
    <string name="year">Année</string>
    <string name="publisher">Éditeur</string>
    <string name="do_you_want_to_download_the_file_">Voulez-vous télécharger le fichier?</string>
-   <string name="do_you_want_to_delete_this_file_">Voulez-vous supprimer ce fichier?</string>
+   <string name="do_you_want_to_delete_this_file_1">Supprimer ce fichier définitivement ? Il est irrécupérable.</string>
    <string name="logout">Déconnecter</string>
    <string name="cloud_not_connected">Cloud non connecté</string>
    <string name="cloud_sync_folder">Dossier de synchronisation du cloud</string>

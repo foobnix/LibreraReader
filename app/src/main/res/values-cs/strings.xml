@@ -469,7 +469,7 @@
    <string name="year">Rok</string>
    <string name="publisher">Vydavatel</string>
    <string name="do_you_want_to_download_the_file_">Stáhnout tento soubor?</string>
-   <string name="do_you_want_to_delete_this_file_">Smazat tento soubor?</string>
+   <string name="do_you_want_to_delete_this_file_1">Trvale smazat tento soubor? Nelze jej obnovit.</string>
    <string name="logout">Odhlásit se</string>
    <string name="cloud_not_connected">Cloud není připojen</string>
    <string name="cloud_sync_folder">Složka synchronizace v cloudu</string>

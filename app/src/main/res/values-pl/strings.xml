@@ -469,7 +469,7 @@
    <string name="year">Rok</string>
    <string name="publisher">Wydawca</string>
    <string name="do_you_want_to_download_the_file_">Pobrać ten plik?</string>
-   <string name="do_you_want_to_delete_this_file_">Usunąć ten plik?</string>
+   <string name="do_you_want_to_delete_this_file_1">Czy usunąć ten plik na stałe? Nie będzie można go odzyskać.</string>
    <string name="logout">Wyloguj</string>
    <string name="cloud_not_connected">Chmura nie jest podłączona</string>
    <string name="cloud_sync_folder">Katalog synchronizacji w chmurze</string>

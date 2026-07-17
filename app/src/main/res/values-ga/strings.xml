@@ -469,7 +469,7 @@
    <string name="year">Bhliain</string>
    <string name="publisher">Foilsitheoir</string>
    <string name="do_you_want_to_download_the_file_">An comhad seo a íoslódáil?</string>
-   <string name="do_you_want_to_delete_this_file_">An comhad seo a scriosadh?</string>
+   <string name="do_you_want_to_delete_this_file_1">Scrios an comhad seo go buan? Ní féidir é a aisghabháil.</string>
    <string name="logout">Logáil Amach</string>
    <string name="cloud_not_connected">Níl scamall ceangailte</string>
    <string name="cloud_sync_folder">Fillteán sync scamall</string>

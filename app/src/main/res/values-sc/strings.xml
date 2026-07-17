@@ -469,7 +469,7 @@
    <string name="year">Annu</string>
    <string name="publisher">Editore</string>
    <string name="do_you_want_to_download_the_file_">Iscarrigare custu documentu?</string>
-   <string name="do_you_want_to_delete_this_file_">Iscantzellare custu documentu?</string>
+   <string name="do_you_want_to_delete_this_file_1">Delete this file permanently? it can\'t be recovered.</string>
    <string name="logout">Essi</string>
    <string name="cloud_not_connected">Sa nue no est connessa</string>
    <string name="cloud_sync_folder">Cartella de sincronizatzione in sa nue</string>

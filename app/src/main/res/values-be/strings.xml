@@ -469,7 +469,7 @@
    <string name="year">Год</string>
    <string name="publisher">Выдавец</string>
    <string name="do_you_want_to_download_the_file_">Спампаваць гэты файл?</string>
-   <string name="do_you_want_to_delete_this_file_">Выдаліць гэты файл?</string>
+   <string name="do_you_want_to_delete_this_file_1">Выдаліць гэты файл назаўсёды? Яго нельга аднавіць.</string>
    <string name="logout">Выйсці з сістэмы</string>
    <string name="cloud_not_connected">Воблака не падключана</string>
    <string name="cloud_sync_folder">Тэчка воблачнай сінхранізацыі</string>
