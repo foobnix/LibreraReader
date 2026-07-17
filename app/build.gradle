@@ -282,6 +282,7 @@ android {
                     'META-INF/LICENSE',
                     'META-INF/LICENSE.txt',
                     'META-INF/NOTICE.txt',
+                    'META-INF/INDEX.LIST',
             )
         }
     }
@@ -337,7 +338,7 @@ dependencies {
     implementation(libs.guava)
 
     implementation('org.commonmark:commonmark:0.29.0')
-    implementation ('org.commonmark:commonmark-ext-gfm-tables:0.28.0')
+    implementation ('org.commonmark:commonmark-ext-gfm-tables:0.29.0')
 
 
 

@@ -9,18 +9,15 @@ coreKtx = "1.17.0"
 eventbus = "3.3.1"
 firebaseBom = "34.9.0"
 
-googleApiServicesDrive = "v3-rev20220815-2.0.0"
-googleApiClientAndroid = "2.8.1"
-googleHttpClientGson = "2.1.0"
-googleOauthClientJetty = "1.39.0"
+
 googleServices = "4.4.4"
 greendao = "3.3.0"
 
 guava = "33.6.0-android"
-jsoup = "1.22.1"
+jsoup = "1.22.2"
 junit = "4.13.2"
 juniversalchardet = "2.5.0"
-junrar = "7.5.7"
+junrar = "7.6.0"
 kotlin = "2.3.0"
 kotlinxSerializationCore = "1.10.0"
 ksp = "2.3.4"
@@ -59,6 +56,8 @@ material = "1.13.0"
 kotlinx-coroutines="1.10.2"
 material3 = "1.10.0-alpha05"
 androidx-lifecycle = "2.9.6"
+zip4j="2.11.6"
+workRuntime="2.11.2"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -88,36 +87,41 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.16.0" }#not update
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
+mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
+
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.0" }
-google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
+google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20260712-2.0.0" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.1.1" }
-google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version.ref = "googleOauthClientJetty" }
+google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version = "1.39.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
+
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
-jsoup = { module = "org.jsoup:jsoup", version = "1.22.2" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
-junrar = { module = "com.github.junrar:junrar", version = "7.6.0" }
+junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
-mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
+
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
+
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
 runner = { module = "androidx.test:runner", version.ref = "runner" }
 stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
-work-runtime = { module = "androidx.work:work-runtime", version = "2.11.2" }
-zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.6" }
+work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
 xmlutil-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlutil" }
 
 okio-parent = { module = "com.squareup.okio:okio-parent", version.ref = "okioParent" }
