@@ -207,7 +207,7 @@ public class AppState {
             //
                                                                         );
     public static final List<String> langCodes =
-            Arrays.asList("ar", "be", "bg", "ca", "cs", "de", "el", "en", "es", "eu", "fa", "fi", "fr", "ga", "he",
+            Arrays.asList("ar", "be", "bg", "ca", "cs", "de", "el", "en", "es", "eu", "fa", "fi", "fr", "ga", "he","iw",
                     "hi", "hu", "id", "it", "ja", "kk", "ko", "la", "lt", "ml", "nl", "no", "pl", "pt", "ro", "ru",
                     "sc", "sk", "sv", "sw", "ta", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW","gl");
     public static final int BOOKMARK_SORT_PAGE_ASC = 0;
