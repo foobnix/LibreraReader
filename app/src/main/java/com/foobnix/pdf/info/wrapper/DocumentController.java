@@ -592,6 +592,7 @@ public abstract class DocumentController {
     }
 
     public void onResume() {
+        resetReadTimer();
 
         try {
             if (getPageCount() != 0) {
