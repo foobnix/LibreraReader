@@ -1,5 +1,6 @@
 [versions]
 agp = "8.13.2"
+#agp = "9.2"
 appcompat = "1.7.1"
 billing = "8.3.0"
 cardview = "1.0.0"
@@ -27,8 +28,7 @@ legacySupportV4 = "1.0.0"
 multidex = "2.0.1"
 okio = "3.16.4"
 pdfmpCompose = "1.0.9"
-playServicesAds = "24.9.0"
-playServicesAuth = "21.5.0"
+
 recyclerview = "1.4.0"
 review = "2.0.2"
 room = "2.8.4"
@@ -36,8 +36,7 @@ rtfparserkit = "1.16.0"
 runner = "1.7.0"
 staxApi = "1.0-2"
 userMessagingPlatform = "4.0.0"
-workRuntime = "2.11.1"
-zip4j = "2.11.5"
+
 xmlutil = "1.0.0-rc2"
 
 okioParent="1.17.6"
@@ -93,7 +92,7 @@ glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.1
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.0" }
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleApiServicesDrive" }
-google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version.ref = "googleHttpClientGson" }
+google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.1.1" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version.ref = "googleOauthClientJetty" }
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
@@ -109,7 +108,7 @@ multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.3.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }

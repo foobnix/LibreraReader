@@ -121,9 +121,10 @@
             <LinearLayout
                 android:id="@+id/author"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dip"
+                android:minHeight="@dimen/wh_button_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
                  />
 
 
@@ -231,6 +232,7 @@
 
             <LinearLayout
                 android:id="@+id/metaGenre"
+                android:minHeight="@dimen/wh_button_small"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -277,6 +279,7 @@
             <LinearLayout
                 android:id="@+id/keywordList"
                 android:orientation="vertical"
+                android:minHeight="@dimen/wh_button_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

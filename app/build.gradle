@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7062
-    FDroidVersionNumber = "9.4.8"
+    FDroidCodeNumber = 7162
+    FDroidVersionNumber = "9.4.18"
 }
 
 
@@ -336,7 +336,7 @@ dependencies {
     implementation(libs.commons.logging.api)
     implementation(libs.guava)
 
-    implementation('org.commonmark:commonmark:0.28.0')
+    implementation('org.commonmark:commonmark:0.29.0')
     implementation ('org.commonmark:commonmark-ext-gfm-tables:0.28.0')
 
 

@@ -14,6 +14,7 @@ import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -36,12 +37,9 @@ public class AppsConfig {
             IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
-            "77EA5ED1B6B3C6C8511E2696FB1B7D08",
-            "394FC2536F98E69D313F47CA4B26AB2D",
-            "15B8E113746E8241A97A23D7F6FEAA2B",
-            "DBD4EE494036921735BA1981B883D379",
-            "51C86C5778E8E588602F7DD6215975E8",
-            "00AC2A127826E69269908EF10F066517");
+            "0E97B0A7D10574E204947584CD0F713C"
+
+            );
     //setTestDeviceIds
     public static final boolean IS_WRITE_LOGS = IS_FDROID;
     public static final String FLAVOR = LibreraBuildConfig.FLAVOR;
@@ -88,6 +86,7 @@ public class AppsConfig {
     public static void init(Context c) {
         String deviceID = ADS.getByTestID(c);
         IS_TEST_DEVICE = testDevices.contains(deviceID);
+
         if (IS_TEST_DEVICE) {
             IS_LOG = true;
         }
