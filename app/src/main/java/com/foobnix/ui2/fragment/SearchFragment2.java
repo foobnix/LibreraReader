@@ -75,6 +75,7 @@ import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
+import com.foobnix.pdf.search.activity.msg.SearchMetaMsg;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
@@ -662,6 +663,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override public void onStop() {
         super.onStop();
+    }
+
+    @Subscribe
+    public void onMetaClick(SearchMetaMsg msg){
+        onMetaInfoClick(msg.mode, msg.text);
     }
 
     private void onMetaInfoClick(SEARCH_IN mode, String result) {

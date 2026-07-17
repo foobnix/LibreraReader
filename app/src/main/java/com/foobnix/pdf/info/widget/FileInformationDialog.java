@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.pdf.search.activity.msg.SearchMetaMsg;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.ImageExtractor;
@@ -71,9 +73,45 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import at.stefl.svm.object.action.LineAction;
+
 public class FileInformationDialog {
 
     static AlertDialog infoDialog;
+
+    public static void showKeys(LinearLayout sample, String line, SEARCH_IN mode) {
+
+        if (TxtUtils.isEmpty(line)) {
+            return;
+        }
+        String lines[] = line.split("[,;]");
+        List<String> res = new ArrayList<String>();
+        for (String it : lines) {
+            if (TxtUtils.isNotEmpty(it)) {
+                res.add(TxtUtils.firstUppercase(it.trim()));
+            }
+        }
+        Collections.sort(res);
+
+        sample.removeAllViews();
+        for (String it : res) {
+            TextView t = new TextView(sample.getContext());
+            t.setText(it);
+            t.setPadding(Dips.DP_4,Dips.DP_2,Dips.DP_2,Dips.DP_2);
+
+
+            TxtUtils.underlineTextView(t);
+            t.setOnClickListener(v -> {
+                EventBus.getDefault()
+                        .post(new SearchMetaMsg(mode, it));
+                infoDialog.dismiss();
+
+            });
+
+            sample.addView(t);
+        }
+
+    }
 
     public static String showKeys(String line) {
         if (TxtUtils.isEmpty(line)) {
@@ -142,7 +180,7 @@ public class FileInformationDialog {
         }
 
         TextView title = (TextView) dialog.findViewById(R.id.title);
-        TextView author = (TextView) dialog.findViewById(R.id.author);
+        LinearLayout author = (LinearLayout) dialog.findViewById(R.id.author);
         TextView year = (TextView) dialog.findViewById(R.id.year);
 
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
@@ -150,10 +188,19 @@ public class FileInformationDialog {
 
         title.setText(fileMeta.getTitle());
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
-            author.setText(showKeys(fileMeta.getAuthor()));
+            showKeys(author,fileMeta.getAuthor(),SEARCH_IN.AUTHOR);
+
+
         }
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
+        TxtUtils.underlineTextView(year);
+        year.setOnClickListener(v -> {
+            EventBus.getDefault()
+                    .post(new SearchMetaMsg(SEARCH_IN.YEAR, year.getText()
+                                                                .toString()));
+            infoDialog.dismiss();
+        });
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
@@ -164,7 +211,17 @@ public class FileInformationDialog {
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
 
-        ((TextView) dialog.findViewById(R.id.publisher)).setText(fileMeta.getPublisher());
+        TextView publisher = (TextView) dialog.findViewById(R.id.publisher);
+        publisher.setText(fileMeta.getPublisher());
+
+        TxtUtils.underlineTextView(publisher);
+        publisher.setOnClickListener(v -> {
+            EventBus.getDefault()
+                    .post(new SearchMetaMsg(SEARCH_IN.PUBLISHER, publisher.getText()
+                                                                          .toString()));
+            infoDialog.dismiss();
+        });
+
         ((TextView) dialog.findViewById(R.id.isbn)).setText(showKeys(fileMeta.getIsbn()));
 
         if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
@@ -277,21 +334,22 @@ public class FileInformationDialog {
         }
 
         String genre = fileMeta.getGenre();
+        final LinearLayout metaGenre = (LinearLayout) dialog.findViewById(R.id.metaGenre);
         if (TxtUtils.isNotEmpty(genre)) {
-            final TextView metaGenre = (TextView) dialog.findViewById(R.id.metaGenre);
-            metaGenre.setText(showKeys(genre));
+
+            showKeys(metaGenre, genre,SEARCH_IN.GENRE);
 
         } else {
-            ((TextView) dialog.findViewById(R.id.metaGenre)).setVisibility(View.GONE);
+            metaGenre.setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
         }
 
+        final LinearLayout metaKeys = (LinearLayout) dialog.findViewById(R.id.keywordList);
         if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
-            final TextView metaKeys = (TextView) dialog.findViewById(R.id.keywordList);
-            metaKeys.setText(showKeys(fileMeta.getKeyword()));
+            showKeys(metaKeys,fileMeta.getKeyword(),SEARCH_IN.KEYWRODS);
         } else {
             ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
-            ((TextView) dialog.findViewById(R.id.keywordList)).setVisibility(View.GONE);
+            metaKeys.setVisibility(View.GONE);
         }
 
         final Runnable tagsRunnable = new Runnable() {
@@ -514,7 +572,7 @@ public class FileInformationDialog {
                                                         .toString()
                                                         .toLowerCase());
 
-            editMeta(fileMeta, editAuthor, author, MuPdfDocument.META_INFO_AUTHOR);
+            editMeta(fileMeta, editAuthor, fileMeta.getAuthor(), MuPdfDocument.META_INFO_AUTHOR, author);
             editMeta(fileMeta, editTitle, title, MuPdfDocument.META_INFO_TITLE);
             editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
         }
@@ -560,7 +618,30 @@ public class FileInformationDialog {
                         author.setText(result);
                         update(fileMeta);
                     } catch (MuPdfPasswordRequiredException e) {
-                        Toast.makeText(author.getContext(),R.string.msg_password_required,Toast.LENGTH_LONG).show();
+                        Toast.makeText(author.getContext(), R.string.msg_password_required, Toast.LENGTH_LONG)
+                             .show();
+                    }
+                    return false;
+                }));
+    }
+    private static void editMeta(FileMeta fileMeta, TextView click, String authorText, String key, LinearLayout list) {
+        click.setOnClickListener(v -> Dialogs.showEditDialog(click.getContext(), true, click.getContext()
+                                                                                              .getString(R.string.edit),
+                authorText, result -> {
+                    try {
+                        PdfContext codecContex = new PdfContext();
+                        CodecDocument doc = codecContex.openDocument(fileMeta.getPath(), "");
+                        if (doc != null) {
+                            doc.setMeta(key, result);
+                            doc.saveAnnotations(fileMeta.getPath());
+                            doc.recycle();
+                        }
+                        //author.setText(result);
+                        showKeys(list,result,SEARCH_IN.AUTHOR);
+                        update(fileMeta);
+                    } catch (MuPdfPasswordRequiredException e) {
+                        Toast.makeText(click.getContext(), R.string.msg_password_required, Toast.LENGTH_LONG)
+                             .show();
                     }
                     return false;
                 }));

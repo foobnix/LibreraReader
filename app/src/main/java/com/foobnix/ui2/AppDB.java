@@ -597,7 +597,7 @@ public class AppDB {
         }
     }
 
-    public enum SEARCH_IN {
+    public  enum SEARCH_IN {
         //
         PATH(FileMetaDao.Properties.Path, -1), //
         SERIES(FileMetaDao.Properties.Sequence, AppState.MODE_SERIES), //

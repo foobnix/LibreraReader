@@ -118,17 +118,14 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/author"
-                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="2dip"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="10dip"
-                android:text=""
-                android:textIsSelectable="true"
-                android:textStyle="normal" />
+                 />
+
 
 
             <LinearLayout
@@ -232,14 +229,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/genre" />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/metaGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:padding="4dip"
-                android:text="Genre"
-                android:textIsSelectable="true" />
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
 
             <TextView
                 style="@style/textSection"
@@ -278,13 +274,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/keywords" />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/keywordList"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
-                android:text="Tags"
-                android:textIsSelectable="true" />
+                />
 
             <TextView
                 android:id="@+id/tagsID"

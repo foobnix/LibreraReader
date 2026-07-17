@@ -67,6 +67,7 @@ import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
+import com.foobnix.pdf.search.activity.msg.SearchMetaMsg;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
@@ -456,6 +457,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         pager.setOffscreenPageLimit(10);
         pager.addOnPageChangeListener(onPageChangeListener);
 
+
         drawerLayout.addDrawerListener(new DrawerListener() {
             @Override
             public void onDrawerStateChanged(int arg0) {
@@ -711,6 +713,14 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
+    }
+
+    @Subscribe
+    public void goToPageMsg(SearchMetaMsg msg){
+            int index = UITab.getCurrentTabIndex(UITab.SearchFragment);
+            if(index>=0) {
+                pager.setCurrentItem(index);
+            }
     }
 
     public void checkGoToPage(Intent intent) {
