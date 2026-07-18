@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Показване на предупреждение, ако изрязването е включено</string>
    <string name="scan_for_new_books_at_launch">Сканиране за нови книги при издаването им</string>
    <string name="show_contrast_and_brightness_button">Бутон за показване на контраст и яркост</string>
+   <string name="text_and_background_color">Цвят на текста и фона</string>
 </resources>

@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">クロッピングがオンの場合に警告を表示する</string>
    <string name="scan_for_new_books_at_launch">発売時に新刊書籍をスキャンする</string>
    <string name="show_contrast_and_brightness_button">コントラストと明るさボタンを表示する</string>
+   <string name="text_and_background_color">テキストと背景色</string>
 </resources>

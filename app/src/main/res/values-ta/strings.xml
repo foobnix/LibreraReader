@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">செதுக்குதல் இயக்கத்தில் இருந்தால் எச்சரிக்கையைக் காட்டு.</string>
    <string name="scan_for_new_books_at_launch">வெளியீட்டின் போது புதிய புத்தகங்களை ஸ்கேன் செய்யவும்.</string>
    <string name="show_contrast_and_brightness_button">மாறுபாடு மற்றும் பிரகாசத்தைக் காட்டு பொத்தான்</string>
+   <string name="text_and_background_color">உரை மற்றும் பின்னணி நிறம்</string>
 </resources>

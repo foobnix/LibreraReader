@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">عرض تنبيه في حالة تفعيل خاصية القص</string>
    <string name="scan_for_new_books_at_launch">ابحث عن الكتب الجديدة عند الإطلاق</string>
    <string name="show_contrast_and_brightness_button">زر إظهار التباين والسطوع</string>
+   <string name="text_and_background_color">لون النص والخلفية</string>
 </resources>

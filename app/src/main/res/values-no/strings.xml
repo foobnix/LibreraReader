@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Vis varsel hvis beskjæring er på</string>
    <string name="scan_for_new_books_at_launch">Skann etter nye bøker ved lansering</string>
    <string name="show_contrast_and_brightness_button">Vis kontrast- og lysstyrkeknappen</string>
+   <string name="text_and_background_color">Tekst- og bakgrunnsfarge</string>
 </resources>

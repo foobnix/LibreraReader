@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">ക്രോപ്പിംഗ് ഓണാണെങ്കിൽ അലേർട്ട് പ്രദർശിപ്പിക്കുക</string>
    <string name="scan_for_new_books_at_launch">പ്രകാശന സമയത്ത് പുതിയ പുസ്തകങ്ങൾക്കായി സ്കാൻ ചെയ്യുക</string>
    <string name="show_contrast_and_brightness_button">കോൺട്രാസ്റ്റും ബ്രൈറ്റ്‌നെസ് ബട്ടണും കാണിക്കുക</string>
+   <string name="text_and_background_color">വാചകത്തിന്റെയും പശ്ചാത്തലത്തിന്റെയും നിറം</string>
 </resources>

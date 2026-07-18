@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Εμφάνιση ειδοποίησης εάν η περικοπή είναι ενεργοποιημένη</string>
    <string name="scan_for_new_books_at_launch">Σάρωση για νέα βιβλία κατά την κυκλοφορία</string>
    <string name="show_contrast_and_brightness_button">Κουμπί εμφάνισης αντίθεσης και φωτεινότητας</string>
+   <string name="text_and_background_color">Κείμενο και χρώμα φόντου</string>
 </resources>

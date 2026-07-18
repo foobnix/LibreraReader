@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">如果裁切功能已開啟，則顯示警告。</string>
    <string name="scan_for_new_books_at_launch">發表會上掃描即可查看新書。</string>
    <string name="show_contrast_and_brightness_button">顯示對比度和亮度按鈕</string>
+   <string name="text_and_background_color">文字和背景顏色</string>
 </resources>

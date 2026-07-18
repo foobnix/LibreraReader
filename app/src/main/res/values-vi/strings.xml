@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Hiển thị cảnh báo nếu chế độ cắt ảnh đang bật.</string>
    <string name="scan_for_new_books_at_launch">Tìm kiếm sách mới khi ra mắt</string>
    <string name="show_contrast_and_brightness_button">Nút hiển thị độ tương phản và độ sáng</string>
+   <string name="text_and_background_color">Màu chữ và màu nền</string>
 </resources>

@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Onyesha arifa ikiwa upunguzaji umewashwa</string>
    <string name="scan_for_new_books_at_launch">Skana vitabu vipya wakati wa uzinduzi</string>
    <string name="show_contrast_and_brightness_button">Onyesha kitufe cha utofautishaji na mwangaza</string>
+   <string name="text_and_background_color">Maandishi na rangi ya usuli</string>
 </resources>

@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Rodyti įspėjimą, jei įjungtas apkirpimas</string>
    <string name="scan_for_new_books_at_launch">Nuskaityti naujas knygas pristatymo metu</string>
    <string name="show_contrast_and_brightness_button">Rodyti kontrastą ir ryškumą mygtukas</string>
+   <string name="text_and_background_color">Teksto ir fono spalva</string>
 </resources>

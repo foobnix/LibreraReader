@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Taispeáin foláireamh má tá bearradh ar siúl</string>
    <string name="scan_for_new_books_at_launch">Scanadh le haghaidh leabhar nua ag an seoladh</string>
    <string name="show_contrast_and_brightness_button">Cnaipe codarsnachta agus gile a thaispeáint</string>
+   <string name="text_and_background_color">Dath téacs agus cúlra</string>
 </resources>

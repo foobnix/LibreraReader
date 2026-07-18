@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">Tampilkan peringatan jika pemangkasan sedang berlangsung.</string>
    <string name="scan_for_new_books_at_launch">Cari buku-buku baru saat peluncuran.</string>
    <string name="show_contrast_and_brightness_button">Tampilkan tombol kontras dan kecerahan.</string>
+   <string name="text_and_background_color">Warna teks dan latar belakang</string>
 </resources>

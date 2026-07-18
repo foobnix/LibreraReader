@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">แสดงการแจ้งเตือนหากเปิดใช้งานการครอบตัด</string>
    <string name="scan_for_new_books_at_launch">สแกนหาหนังสือใหม่เมื่อเปิดตัว</string>
    <string name="show_contrast_and_brightness_button">แสดงปุ่มปรับความคมชัดและความสว่าง</string>
+   <string name="text_and_background_color">สีข้อความและสีพื้นหลัง</string>
 </resources>

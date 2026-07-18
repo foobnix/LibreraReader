@@ -389,6 +389,187 @@
                 app:tint="@color/tint_gray" />
         </LinearLayout>
 
+
+
+        <LinearLayout
+            android:id="@+id/allBGConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:tag="with_tint1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="1dip"
+                android:layout_marginTop="1dip"
+                android:background="@color/lt_grey_alpha" />
+
+
+            <TextView
+                android:id="@+id/fontNamePreview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:singleLine="true"
+                android:text="@string/text_and_background_color"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dip"
+                    android:background="@drawable/bg_border_ltgray">
+
+                    <TextView
+                        android:id="@+id/onDayColor"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/wh_button"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingLeft="25dip"
+                        android:text="@string/day"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/onDayColorImage"
+                        android:tag="@string/no_tint"
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
+                        android:padding="6dip"
+                        android:src="@drawable/glyphicons_232_sun"
+                        app:tint="#000000" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+
+                    android:background="@drawable/bg_border_ltgray">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/onNigthColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/wh_button"
+                        android:background="#000000"
+                        android:gravity="center"
+                        android:paddingLeft="25dip"
+                        android:text="@string/nigth"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:tag="@string/no_tint"
+                        android:id="@+id/onNigthColorImage"
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
+                        android:padding="6dip"
+                        android:src="@drawable/glyphicons_231_moon"
+                        app:tint="#ffffff" />
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:layout_marginRight="4dip"
+                    android:id="@+id/moreReadColorSettings"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="4dip"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_border_ltgray"
+                    android:padding="8dip"
+                    android:src="@drawable/glyphicons_140_adjust"
+                    app:tint="@color/tint_gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/preColors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="2dip">
+
+
+
+                <TextView
+                    android:id="@+id/t1"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:gravity="center"
+                    android:text=" 1 "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/t2"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_marginLeft="2dip"
+                    android:gravity="center"
+                    android:text=" 2 "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/t3"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_marginLeft="2dip"
+                    android:gravity="center"
+                    android:text=" 3 "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ta"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:gravity="center"
+                    android:text=" A "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tb"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_marginLeft="2dip"
+                    android:gravity="center"
+                    android:text=" B "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tc"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_marginLeft="2dip"
+                    android:gravity="center"
+                    android:text=" C "
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
         <View
             android:tag="with_tint1"
             android:layout_width="match_parent"
@@ -545,6 +726,41 @@
                 android:text="GoogleTranslate" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/isEnableBlueFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/onBlueFilter"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="1"
+                android:text="@string/bluelight_filter" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/onDefaultColor"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="@string/restore_defaults_short" />
+
         <TextView
             android:id="@+id/textCustomizeFontBGColor"
             android:layout_width="wrap_content"
@@ -555,190 +771,7 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/allBGConfig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <View
-                android:tag="with_tint1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="1dip"
-                android:layout_marginTop="1dip"
-                android:background="@color/lt_grey_alpha" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/isEnableBlueFilter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/onBlueFilter"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:layout_weight="1"
-                    android:text="@string/bluelight_filter" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:background="@drawable/bg_border_ltgray">
-
-                    <TextView
-                        android:id="@+id/onDayColor"
-                        android:layout_width="90dip"
-                        android:layout_height="@dimen/wh_button"
-                        android:background="#FFFFFF"
-                        android:gravity="center"
-                        android:paddingLeft="25dip"
-                        android:text="@string/day"
-                        android:textColor="#000000"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/onDayColorImage"
-                        android:tag="@string/no_tint"
-                        android:layout_width="@dimen/wh_button"
-                        android:layout_height="@dimen/wh_button"
-                        android:padding="6dip"
-                        android:src="@drawable/glyphicons_232_sun"
-                        app:tint="#000000" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:background="@drawable/bg_border_ltgray">
-
-                    <TextView
-                        android:id="@+id/onNigthColor"
-                        android:layout_width="90dip"
-                        android:layout_height="@dimen/wh_button"
-                        android:background="#000000"
-                        android:gravity="center"
-                        android:paddingLeft="25dip"
-                        android:text="@string/nigth"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:tag="@string/no_tint"
-                        android:id="@+id/onNigthColorImage"
-                        android:layout_width="@dimen/wh_button"
-                        android:layout_height="@dimen/wh_button"
-                        android:padding="6dip"
-                        android:src="@drawable/glyphicons_231_moon"
-                        app:tint="#ffffff" />
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/moreReadColorSettings"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="4dip"
-                    android:layout_weight="0"
-                    android:background="@drawable/bg_border_ltgray"
-                    android:padding="8dip"
-                    android:src="@drawable/glyphicons_140_adjust"
-                    app:tint="@color/tint_gray" />
-
-                <TextView
-                    android:id="@+id/onDefaultColor"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:maxLines="2"
-                    android:singleLine="false"
-                    android:text="@string/restore_defaults_short" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/preColors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="2dip">
-
-                <TextView
-                    android:id="@+id/t1"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:gravity="center"
-                    android:text=" 1 "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/t2"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_marginLeft="2dip"
-                    android:gravity="center"
-                    android:text=" 2 "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/t3"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_marginLeft="2dip"
-                    android:gravity="center"
-                    android:text=" 3 "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ta"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:gravity="center"
-                    android:text=" A "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tb"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_marginLeft="2dip"
-                    android:gravity="center"
-                    android:text=" B "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tc"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_marginLeft="2dip"
-                    android:gravity="center"
-                    android:text=" C "
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -685,4 +685,5 @@
    <string name="display_alert_if_cropping_is_on">如果裁剪功能已开启，则显示警告。</string>
    <string name="scan_for_new_books_at_launch">发布会上扫描即可查看新书。</string>
    <string name="show_contrast_and_brightness_button">显示对比度和亮度按钮</string>
+   <string name="text_and_background_color">文本和背景颜色</string>
 </resources>
