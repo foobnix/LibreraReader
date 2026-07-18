@@ -248,7 +248,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         TempHolder.isActiveSpeedRead.set(false);
 
         if (handler != null) {
-            handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
+          //  handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         }
         GFile.runSyncService(this);
 

@@ -2691,12 +2691,12 @@ public class PrefFragment2 extends UIFragment {
 
                     final BookCSS b = new BookCSS();
                     b.resetToDefault(getActivity());
-                    IO.writeObjAsync(AppProfile.syncCSS, b);
+                    IO.writeObjSync(AppProfile.syncCSS, b);
 
                     final AppState o = new AppState();
                     o.defaults(getActivity());
 
-                    IO.writeObjAsync(AppProfile.syncState, o);
+                    IO.writeObjSync(AppProfile.syncState, o);
 
                     AppProfile.syncExclude.delete();
 

@@ -56,7 +56,7 @@ public class SharedBooks {
             String key = ExtUtils.getFileName(path);
             if (linkedJsonObject.has(key)) {
                 linkedJsonObject.remove(key);
-                IO.writeObjAsync(fileName, linkedJsonObject);
+                IO.writeObjSync(fileName, linkedJsonObject);
                 LOG.d("deleteProgress", path);
             }
         }
@@ -167,7 +167,7 @@ public class SharedBooks {
             if (inThread) {
                 IO.writeObj(AppProfile.syncProgress, obj);
             } else {
-                IO.writeObjAsync(AppProfile.syncProgress, obj);
+                IO.writeObjSync(AppProfile.syncProgress, obj);
             }
         } catch (Exception e) {
             LOG.e(e);

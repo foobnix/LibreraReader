@@ -25,7 +25,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.R;
@@ -261,10 +260,10 @@ public class AppProfile {
 
         final AppState appState = new AppState();
         appState.defaults(c);
-        IO.writeObjAsync(state, appState);
+        IO.writeObjSync(state, appState);
         final BookCSS bookCss = new BookCSS();
         bookCss.resetToDefault(c);
-        IO.writeObjAsync(css, bookCss);
+        IO.writeObjSync(css, bookCss);
         LOG.d("Profile Created");
 
     }

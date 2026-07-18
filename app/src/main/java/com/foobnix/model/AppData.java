@@ -32,7 +32,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -112,7 +111,7 @@ public class AppData {
             LOG.d("writeSimpleMeta", o);
         }
 
-        IO.writeObjAsync(file, array);
+        IO.writeObjSync(file, array);
 
     }
 

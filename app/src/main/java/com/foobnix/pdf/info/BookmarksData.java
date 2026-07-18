@@ -41,7 +41,7 @@ public class BookmarksData {
         try {
             LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
-            IO.writeObjAsync(AppProfile.syncBookmarks, obj);
+            IO.writeObjSync(AppProfile.syncBookmarks, obj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -56,7 +56,7 @@ public class BookmarksData {
             if (obj.has("" + bookmark.t)) {
                 obj.remove("" + bookmark.t);
             }
-            IO.writeObjAsync(bookmark.file, obj);
+            IO.writeObjSync(bookmark.file, obj);
         } catch (Exception e) {
             LOG.e(e);
         }

@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class IO {
 
@@ -42,10 +40,10 @@ public class IO {
 
     public static void writeObj(File file, Object o) {
         //new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
-        AppsConfig.executorServiceSingle.execute(() -> writeObjAsync(file, o));
+        AppsConfig.executorServiceSingle.execute(() -> writeObjSync(file, o));
     }
 
-    public static void writeObjAsync(File file, Object o) {
+    public static void writeObjSync(File file, Object o) {
         LOG.d("writeObjAsync", file.getPath());
         if (o instanceof LinkedJSONObject || o instanceof JSONArray) {
             LOG.d("writeObjAsync", "LinkedJSONObject");
@@ -91,8 +89,8 @@ public class IO {
 
     }
 
-    public static String cacheFile;
-    public static String cacheString;
+    public static volatile String cacheFile;
+    public static volatile String cacheString;
 
     public static String readString(File file) {
         return readString(file, false);

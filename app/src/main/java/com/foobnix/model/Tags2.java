@@ -4,7 +4,6 @@ import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
@@ -14,7 +13,6 @@ import com.foobnix.ui2.AppDB;
 import org.greenrobot.eventbus.EventBus;
 import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
-import org.zwobble.mammoth.internal.documents.Run;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class Tags2 {
         if (!obj.has(tag)) {
             obj.put(tag, new JSONArray());
         }
-        IO.writeObjAsync(AppProfile.syncTags2, obj);
+        IO.writeObjSync(AppProfile.syncTags2, obj);
         LOG.d("Tags2", "createTag", tag);
     }
 
@@ -49,7 +47,7 @@ public class Tags2 {
         }
         LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags2);
         obj.remove(tag);
-        IO.writeObjAsync(AppProfile.syncTags2, obj);
+        IO.writeObjSync(AppProfile.syncTags2, obj);
         LOG.d("Tags2", "deleteTag", tag);
     }
 
@@ -132,7 +130,7 @@ public class Tags2 {
             }
 
         }
-        IO.writeObjAsync(AppProfile.syncTags2, obj);
+        IO.writeObjSync(AppProfile.syncTags2, obj);
         LOG.d("Tags2", "addTags", file, tags);
     }
 
@@ -190,7 +188,7 @@ public class Tags2 {
                     LOG.d("migrationTagRes", key, value);
                     objOut.put(key, new JSONArray(value));
                 });
-                IO.writeObjAsync(AppProfile.syncTags2, objOut);
+                IO.writeObjSync(AppProfile.syncTags2, objOut);
                 LOG.d("migrationTag", "Success");
             } else {
                 LOG.d("migrationTag", "No Need");

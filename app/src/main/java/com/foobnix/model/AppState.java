@@ -41,7 +41,7 @@ public class AppState {
     public static final String PROXY_SOCKS = "SOCKS";
     public static final String TEXT_COLOR_DAY = "#888888";
     public static final String TEXT_COLOR_NIGHT = "#888888";
-    public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(500);// SECONDS, MINUTES
+    public static final long APP_CLOSE_AUTOMATIC = TimeUnit.HOURS.toMillis(5);// HOURS
     public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(30);
     // public static final long APP_CLOSE_AUTOMATIC =
     // TimeUnit.SECONDS.toMillis(5);

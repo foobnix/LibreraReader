@@ -191,7 +191,7 @@ public class ExportConverter {
             resObj2.put("" + bookmark.t, Objects.toJSONObject(bookmark));
         }
 
-        IO.writeObjAsync(AppProfile.syncBookmarks, resObj2);
+        IO.writeObjSync(AppProfile.syncBookmarks, resObj2);
 
         SharedBooks.cache.clear();
 

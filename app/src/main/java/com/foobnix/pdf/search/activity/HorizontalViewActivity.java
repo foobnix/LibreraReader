@@ -177,7 +177,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            LOG.d("Close App");
+            LOG.d("closeRunnable","Close App");
             if (dc != null) {
                 dc.saveCurrentPageAsync();
                 dc.onCloseActivityAdnShowInterstial();
@@ -1577,7 +1577,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
         //dc.saveCurrentPageAsync();
-        handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
+        //handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
         GFile.runSyncService(this);
     }
