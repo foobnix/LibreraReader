@@ -228,6 +228,7 @@ public class ExtUtils {
 
         if (AppState.get().supportPDF) {
             result.add(".pdf");
+            result.add(".Pdf");
         }
         if (AppState.get().supportXPS) {
             result.add(".xps");
