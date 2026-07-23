@@ -55,10 +55,7 @@ public class TxtExtract {
         }
 
         while ((line = input.readLine()) != null) {
-            if (line.startsWith("<")){
-                //line = line.replace("<","***");
-                line = TextUtils.htmlEncode(line);
-            }
+            line = TextUtils.htmlEncode(line);
             String trimLine = line.toLowerCase();
             if (line.isEmpty()) {
                 continue;
