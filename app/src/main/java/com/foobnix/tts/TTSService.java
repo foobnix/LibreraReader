@@ -29,7 +29,9 @@ import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.KeyEvent;
 
 import androidx.core.app.ActivityCompat;
@@ -79,6 +81,7 @@ import java.util.List;
     int height;
     AudioManager mAudioManager;
     MediaSessionCompat mMediaSessionCompat;
+    private static MediaSessionCompat.Token sMediaSessionToken;
     boolean isActivated;
     boolean isPlaying;
     Object audioFocusRequest;
@@ -142,6 +145,10 @@ import java.util.List;
     public static void playLastBook() {
         playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth,
                 AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
+    }
+
+    public static MediaSessionCompat.Token getMediaSessionToken() {
+        return sMediaSessionToken;
     }
 
     public static void updateTimer() {
@@ -280,6 +287,7 @@ import java.util.List;
         mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag", null, pendingIntent1);
         mMediaSessionCompat.setFlags(
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        sMediaSessionToken = mMediaSessionCompat.getSessionToken();
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override public boolean onMediaButtonEvent(Intent intent) {
                 KeyEvent event = (KeyEvent) intent.getExtras()
@@ -296,28 +304,11 @@ import java.util.List;
 
                 if (KeyEvent.ACTION_DOWN == event.getAction()) {
                     if (list.contains(event.getKeyCode())) {
-                        LOG.d(TAG, "onMediaButtonEvent", "isPlaying", isPlaying, "isFastBookmarkByTTS",
-                                AppState.get().isFastBookmarkByTTS);
-
-                        if (AppState.get().isFastBookmarkByTTS) {
-                            if (isPlaying) {
-                                TTSEngine.get()
-                                         .fastTTSBookmakr(getBaseContext(), AppSP.get().lastBookPath,
-                                                 AppSP.get().lastBookPage + 1, AppSP.get().lastBookPageCount);
-                            } else {
-                                playPage("", AppSP.get().lastBookPage, null);
-                            }
-                        } else {
-                            if (isPlaying) {
-                                stopMediaSesstionAndReleaweWakeLock();
-                            } else {
-                                playPage("", AppSP.get().lastBookPage, null);
-                            }
-                        }
+                        handlePlayPause();
                     } else if (KeyEvent.KEYCODE_MEDIA_NEXT == event.getKeyCode()) {
-                        playPage("", AppSP.get().lastBookPage + 1, null);
+                        handleNext();
                     } else if (KeyEvent.KEYCODE_MEDIA_PREVIOUS == event.getKeyCode()) {
-                        playPage("", AppSP.get().lastBookPage - 1, null);
+                        handlePrevious();
                     }
                 }
 
@@ -326,6 +317,31 @@ import java.util.List;
                 TTSNotification.showLast();
                 //  }
                 return true;
+            }
+
+            @Override public void onPlay() {
+                LOG.d(TAG, "onPlay");
+                handlePlayPause();
+            }
+
+            @Override public void onPause() {
+                LOG.d(TAG, "onPause");
+                handlePlayPause();
+            }
+
+            @Override public void onStop() {
+                LOG.d(TAG, "onStop");
+                handlePlayPause();
+            }
+
+            @Override public void onSkipToNext() {
+                LOG.d(TAG, "onSkipToNext");
+                handleNext();
+            }
+
+            @Override public void onSkipToPrevious() {
+                LOG.d(TAG, "onSkipToPrevious");
+                handlePrevious();
             }
         });
 
@@ -380,6 +396,68 @@ import java.util.List;
 
     @Override public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    private void handlePlayPause() {
+        boolean isPlaying = TTSEngine.get()
+                                     .isPlaying();
+
+        LOG.d(TAG, "handlePlayPause", "isPlaying", isPlaying, "isFastBookmarkByTTS",
+                AppState.get().isFastBookmarkByTTS);
+
+        if (AppState.get().isFastBookmarkByTTS) {
+            if (isPlaying) {
+                TTSEngine.get()
+                         .fastTTSBookmakr(getBaseContext(), AppSP.get().lastBookPath,
+                                 AppSP.get().lastBookPage + 1, AppSP.get().lastBookPageCount);
+            } else {
+                playPage("", AppSP.get().lastBookPage, null);
+            }
+        } else {
+            if (isPlaying) {
+                stopMediaSesstionAndReleaweWakeLock();
+            } else {
+                playPage("", AppSP.get().lastBookPage, null);
+            }
+        }
+    }
+
+    private void handleNext() {
+        playPage("", AppSP.get().lastBookPage + 1, null);
+    }
+
+    private void handlePrevious() {
+        playPage("", AppSP.get().lastBookPage - 1, null);
+    }
+
+    private void publishPlaybackState(int state) {
+        if (mMediaSessionCompat == null) {
+            return;
+        }
+        long actions = PlaybackStateCompat.ACTION_PLAY | PlaybackStateCompat.ACTION_PAUSE
+                | PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_STOP
+                | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
+
+        mMediaSessionCompat.setPlaybackState(new PlaybackStateCompat.Builder() //
+                                                                              .setActions(actions)
+                                                                              .setState(state,
+                                                                                      PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN,
+                                                                                      1f)
+                                                                              .build());
+    }
+
+    private void publishMetadata(String title, int page) {
+        if (mMediaSessionCompat == null) {
+            return;
+        }
+        mMediaSessionCompat.setMetadata(new MediaMetadataCompat.Builder() //
+                                                                         .putString(
+                                                                                 MediaMetadataCompat.METADATA_KEY_TITLE,
+                                                                                 title)
+                                                                         .putString(
+                                                                                 MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE,
+                                                                                 "Page " + page)
+                                                                         .build());
     }
 
     public boolean startMyForeground() {
@@ -566,6 +644,7 @@ import java.util.List;
         TTSEngine.get()
                  .stop(mMediaSessionCompat);
         releaseWakeLock();
+        publishPlaybackState(PlaybackStateCompat.STATE_PAUSED);
         EventBus.getDefault()
                 .post(new TtsStatus());
     }
@@ -605,6 +684,7 @@ import java.util.List;
         //releaseWakeLock();
         acquireWakeLock();
         mMediaSessionCompat.setActive(true);
+        publishPlaybackState(PlaybackStateCompat.STATE_PLAYING);
 
         if (!AppState.get().allowOtherMusic) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -620,6 +700,7 @@ import java.util.List;
             EventBus.getDefault()
                     .post(new MessagePageNumber(pageNumber));
             AppSP.get().lastBookPage = pageNumber;
+            publishMetadata(AppSP.get().lastBookTitle, pageNumber + 1);
             CodecDocument dc = getDC();
             if (dc == null) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
@@ -836,7 +917,9 @@ import java.util.List;
         }
 
         //mMediaSessionCompat.setCallback(null);
+        publishPlaybackState(PlaybackStateCompat.STATE_STOPPED);
         mMediaSessionCompat.release();
+        sMediaSessionToken = null;
 
         if (cache != null) {
             cache.recycle();
