@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -20,8 +21,12 @@ public class VerticalViewPager extends CustomViewPager {
 
     private MyScroller value;
 
+    // e-ink: flip one page per horizontal swipe instead of drag-to-follow.
+    private final GestureDetector einkSwipe;
+
     public VerticalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        einkSwipe = Dips.isEInk() ? new GestureDetector(context, new EinkSwipeListener()) : null;
         init();
         setMyScroller();
     }
@@ -112,6 +117,10 @@ public class VerticalViewPager extends CustomViewPager {
             return false;
         }
 
+        if (einkSwipe != null) {
+            return einkSwipe.onTouchEvent(swapXY(ev));
+        }
+
         boolean intercepted = super.onInterceptTouchEvent(swapXY(ev));
         swapXY(ev);
         return intercepted;
@@ -126,7 +135,32 @@ public class VerticalViewPager extends CustomViewPager {
             return false;
         }
 
+        if (einkSwipe != null) {
+            einkSwipe.onTouchEvent(swapXY(ev));
+            return true;
+        }
+
         return super.onTouchEvent(swapXY(ev));
+    }
+
+    private class EinkSwipeListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onScroll(MotionEvent down, MotionEvent now, float dx, float dy) {
+            return Math.abs(now.getX() - down.getX()) > Math.abs(now.getY() - down.getY());
+        }
+
+        @Override
+        public boolean onFling(MotionEvent down, MotionEvent up, float vx, float vy) {
+            if (getAdapter() == null) {
+                return false;
+            }
+            boolean next = (up.getX() < down.getX()) != isRtl();
+            int target = getCurrentItem() + (next ? 1 : -1);
+            if (target >= 0 && target < getAdapter().getCount()) {
+                setCurrentItem(target, false);
+            }
+            return true;
+        }
     }
 
     @Override
