@@ -349,6 +349,7 @@ public class AppState {
     public boolean isShowPanelBookNameScrollMode = true;
     public boolean isShowPanelBookNameBookMode = false;
     public boolean isShowReadingProgress = true;
+    public boolean isShowBottomSeekBar = true;
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
     public int antiAliasLevel = 8;//0-8

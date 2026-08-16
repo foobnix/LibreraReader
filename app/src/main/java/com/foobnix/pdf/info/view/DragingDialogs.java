@@ -3316,6 +3316,7 @@ public class DragingDialogs {
                 View inflate = inflater.inflate(R.layout.dialog_status_bar_settings, null, false);
 
                 final CheckBox isShowReadingProgress = inflate.findViewById(R.id.isShowReadingProgress);
+                final CheckBox isShowBottomSeekBar = inflate.findViewById(R.id.isShowBottomSeekBar);
                 final CheckBox isShowChaptersOnProgress = inflate.findViewById(R.id.isShowChaptersOnProgress);
                 final CheckBox isShowSubChaptersOnProgress = inflate.findViewById(R.id.isShowSubChaptersOnProgress);
 
@@ -3333,6 +3334,16 @@ public class DragingDialogs {
                         isShowSubChaptersOnProgress.setEnabled(isChecked);
                         if (!isChecked) {
                             isShowSubChaptersOnProgress.setChecked(isChecked);
+                        }
+                    }
+                });
+
+                isShowBottomSeekBar.setChecked(AppState.get().isShowBottomSeekBar);
+                isShowBottomSeekBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowBottomSeekBar = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
                         }
                     }
                 });

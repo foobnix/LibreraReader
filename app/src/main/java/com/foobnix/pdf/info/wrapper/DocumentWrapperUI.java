@@ -238,7 +238,7 @@ public class DocumentWrapperUI {
             batteryIcon, fullscreen, onTextReplacement;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2,
             goToPage1, goToPage1Top;
-    View  titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus,
+    View  titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, seekLine, onCloseBook, seekSpeedLayot, zoomPlus,
             zoomMinus;
     public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
 
@@ -327,19 +327,20 @@ public class DocumentWrapperUI {
 
         @Override
         public void onStopTrackingTouch(final SeekBar seekBar) {
+            showHideHistory();
         }
 
         @Override
         public void onStartTrackingTouch(final SeekBar seekBar) {
+            dc.getLinkHistory().add(dc.getCurentPageFirst1());
         }
 
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-
-            dc.onGoToPage(progress + 1);
-
+            if (fromUser) {
+                dc.onGoToPage(progress + 1);
+            }
             Apps.accessibilityText(a, a.getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
-            //updateUI();
         }
     };
     public View.OnClickListener onShowHideEditPanel = new View.OnClickListener() {
@@ -1231,6 +1232,7 @@ public class DocumentWrapperUI {
         pagesCountIndicator.setVisibility(View.GONE);
 
         currentSeek = (TextView) a.findViewById(R.id.currentSeek);
+        seekLine = a.findViewById(R.id.seekLine);
         maxSeek = (TextView) a.findViewById(R.id.maxSeek);
         bookName = (TextView) a.findViewById(R.id.bookName);
 
@@ -1796,6 +1798,7 @@ public class DocumentWrapperUI {
     };
 
     public void show() {
+        showHideHistory();
         menuLayout.setVisibility(View.VISIBLE);
 
         titleBar.setVisibility(View.VISIBLE);
@@ -1803,6 +1806,7 @@ public class DocumentWrapperUI {
         updateLock();
 
         bottomBar.setVisibility(View.VISIBLE);
+        seekLine.setVisibility(AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
         //adFrame.setVisibility(View.VISIBLE);
         // adFrame.setClickable(true);
         // adFrame.setTag(null);
