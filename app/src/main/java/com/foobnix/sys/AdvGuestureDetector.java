@@ -300,14 +300,12 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (docCtrl.checkReadingTimer()) {
             return true;
         }
-
-        final float x = distanceX, y = distanceY;
-        d1 += x;
-        d2 += y;
-
         if (brightnessHelper.onActionMove(e2)) {
             return true;
         }
+        final float x = distanceX, y = distanceY;
+        d1 += x;
+        d2 += y;
 
         long delta = System.currentTimeMillis() - t;
         long value = AppSP.get().isLocked ? 5 : 10;
