@@ -4,16 +4,6 @@
 Ukraine.**
 [Russian invasion of Ukraine](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
 
-🇺🇦 To help Ukraine, please donate to these funds 💙💛
-
-[OFFICIAL FUNDRAISING PLATFORM OF UKRAINE](https://u24.gov.ua/)
-
-[Повернись Живим - Come Back Alive](https://savelife.in.ua/en/)
-
-[Фонд Сергія Стерненка - Foundation Sternenko Community](https://www.sternenkofund.org/en)
-
-[Фонд Сергія Притули - Serhiy Prytula Charity Foundation](https://prytulafoundation.org/en/)
-
 # Librera Reader
 
 Librera Reader is an e-book reader for Android devices;
@@ -22,46 +12,30 @@ and OPDS Catalogs
 
 # Download application
 
-[Librera Reader on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
+[Librera on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
 [Librera PRO on Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
 [Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[Beta testing .apk](http://beta.librera.mobi/)
 
-[Application Fonts.zip](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts)
+### New Librera App
 
+![librera](https://raw.githubusercontent.com/foobnix/LirbiReader/master/librera-round-128.png)
 
-[Web browser Librera Book Reader](https://librera.mobi/online-book-reader/)
+[Librera1 Web](https://librera1.com)
 
-https://librera.mobi/online-book-reader/?file=https://pdfobject.com/pdf/sample.pdf
+[Libera1 Chrome](https://chromewebstore.google.com/detail/dplmfhcjlbkejkdalnkmklpghklcjahg)
 
-[Google Chrome Extension](https://chromewebstore.google.com/detail/epub-reader-librera/kfpiokccdkdlbjmgiajpfcdefcbdbphe)
-
-[zip Chrome Extension](https://github.com/foobnix/LibreraReader/raw/master/Builder/librara-chrome-extension.zip)
-
-[MacOS DMG / Desktop version](http://beta.librera.mobi/)
-
-Librera for macOS, supports PDF, EPUB, FB2, CBZ, CBR (beta.librera.mobi for downloads)
-
-![img1](https://raw.githubusercontent.com/foobnix/LirbiReader/master/iosApp/img1.png)
-
-![img2](https://raw.githubusercontent.com/foobnix/LirbiReader/master/iosApp/img2.png)
+[Libera1 VS Code](https://marketplace.visualstudio.com/items?itemName=librera.librera-reader)
 
 ### Links
 
-[web: https://librera.mobi/](https://librera.mobi/)
-
-[What is new/Changes](https://librera.mobi/what-is-new/)
-
 [FAQ](https://librera.mobi/faq/)
-
-[Telegram Info](https://t.me/LibreraReader)
 
 [Telegram Chat](https://t.me/librera_reader_chat)
 
-♥︎♥︎♥︎ [Support & Donation on Patreon](https://www.patreon.com/librera) ♥︎♥︎♥︎
+♥︎ [Support Libera on Patreon](https://www.patreon.com/librera) ♥︎
 
 [Email: librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
