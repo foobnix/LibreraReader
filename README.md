@@ -35,9 +35,9 @@ and OPDS Catalogs
 
 [Telegram Chat](https://t.me/librera_reader_chat)
 
-♥︎ [Support Libera on Patreon](https://www.patreon.com/librera) ♥︎
+[Support on Patreon](https://www.patreon.com/librera)
 
-[Email: librera.reader@gmail.com](mailto:librera.reader@gmail.com)
+[librera.reader@gmail.com](mailto:librera.reader@gmail.com)
 
 ## Required build libs
 
