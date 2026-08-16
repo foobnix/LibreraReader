@@ -21,7 +21,7 @@ and OPDS Catalogs
 
 ### New Librera App
 
-![librera](https://raw.githubusercontent.com/foobnix/LirbiReader/master/librera-round-128.png)
+![librera](https://raw.githubusercontent.com/foobnix/LibreraReader/refs/heads/master/librera-round-128.png)
 
 [Librera1 Web](https://librera1.com)
 
