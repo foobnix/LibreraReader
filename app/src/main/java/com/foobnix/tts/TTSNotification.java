@@ -206,7 +206,7 @@ public class TTSNotification {
                             .setOngoing(true)//
                             .setPriority(NotificationCompat.PRIORITY_HIGH) //
                             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
-                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setMediaSession(TTSService.getMediaSessionToken()))
                             .setSilent(true)
                             .setCustomBigContentView(remoteViews) ///
                             .setCustomContentView(remoteViewsSmall); ///
