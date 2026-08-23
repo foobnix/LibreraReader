@@ -4,131 +4,125 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 <head>
 
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Librera</title>
+    <title>Librera</title>
 
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/css/wiki.css">
-  
-  <link href="index.xml" rel="alternate" type="application/rss+xml" title="Librera" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/wiki.css">
+
+    <link href="index.xml" rel="alternate" type="application/rss+xml" title="Librera"/>
 
 </head>
 <body>
 
 
-
-
-
-
 <div class="sidebar sidebar-default">
     <div class="navigation">
-        
-        
-        <h1 class="site-title"><a href="/{{lang}}">Librera</a>  </h1>
-
-        <h2><a href="https://librera1.com" target="_blank">Librera1 Web (new)</a></h2>
 
 
-             {% capture my_include %}{% include menu.md %}{% endcapture %}
-   {{ my_include | markdownify }}
+        <h1 class="site-title"><a href="/{{lang}}">Librera</a></h1>
+
+        {% capture my_include %}{% include menu.md %}{% endcapture %}
+        {{ my_include | markdownify }}
 
 
     </div>
 
     <div class="version">
-           <a href="http://librera.mobi">http://librera.mobi</a><br/> 
-           <a href="mailto:librera.reader@gmail.com">librera.reader@gmail.com</a>
-           
+        <a href="http://librera.app" target="_blank">All apps: librera.app</a><br/>
+        <a href="http://librera1.com" target="_blank">New Librera1: librera1.com</a><br/>
+        <a href="mailto:librera.reader@gmail.com">librera.reader@gmail.com</a>
+
     </div>
 </div>
 
 <div class="content">
     <section class="page">
         {% assign ask=false %}
-        {% if parent == '/faq/' or  parent == '/' or parent == '/what-is-new/' %}
-            {% assign ask=true %}
-            <a href="{{parent}}{{lang}}"> < </a>
+        {% if parent == '/faq/' or parent == '/' or parent == '/what-is-new/' %}
+        {% assign ask=true %}
+        <a href="{{parent}}{{lang}}"> < </a>
         {% endif %}
 
         {{content}}
 
         {% if page.url contains 'what-is-new' %}
-            {% capture my_include2 %}{% include versions.md %}{% endcapture %}
-            {{ my_include2 | markdownify }}
+        {% capture my_include2 %}{% include versions.md %}{% endcapture %}
+        {{ my_include2 | markdownify }}
         {% endif %}
 
-     </section>
-        
-    
+    </section>
+
+
 </div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-  <img class="modal-content" id="img01" src="1.png">
+    <img class="modal-content" id="img01" src="1.png">
 </div>
 
 <script>
-// Get the modal
-var modal = document.getElementById('myModal');
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var images = document.querySelectorAll('td > img, .i');
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var images = document.querySelectorAll('td > img, .i');
 
-var modalImg = document.getElementById("img01");
+    var modalImg = document.getElementById("img01");
 
-for (var i = 0; i < images.length; i++) {
-  
-  
-images[i].onclick = function(event){
-	    modal.style.display = "block";
-	    modalImg.src = this.src;
-    
-    }
+    for (var i = 0; i < images.length; i++) {
 
-   
-   }
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("modal-content")[0];
+    images[i].onclick = function(event){
+            modal.style.display = "block";
+            modalImg.src = this.src;
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-	
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-    modal.style.display = "none";
-    }
-}
-	
-document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    var isEscape = false;
-    if ("key" in evt) {
-        isEscape = (evt.key == "Escape" || evt.key == "Esc");
-    } else {
-        isEscape = (evt.keyCode == 27);
-    }
-    if (isEscape) {
+        }
+
+
+       }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("modal-content")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
         modal.style.display = "none";
     }
-};
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
+
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = (evt.key == "Escape" || evt.key == "Esc");
+        } else {
+            isEscape = (evt.keyCode == 27);
+        }
+        if (isEscape) {
+            modal.style.display = "none";
+        }
+    };
 
 </script>
 
 {%if ask_temp %}
-<div class="content"> 
+<div class="content">
     <div class="as">
         <div class="title">Эта информация оказалась полезной?</div>
         <div class="button-group">
             <button class="as-button" data-value="5" type="button">Да</button>
             <button class="as-button" data-value="1" type="button">Нет</button>
         </div>
-    </div> 
+    </div>
 </div>
 {% endif %}
 
