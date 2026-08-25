@@ -19,15 +19,14 @@ and OPDS Catalogs
 [Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
 
-### New Librera App
+### Librera App
+[librera.app](https://librera.app)
 
 ![librera](https://raw.githubusercontent.com/foobnix/LibreraReader/refs/heads/master/librera-round-128.png)
 
-[Librera1 Web](https://librera1.com)
+[Librera1 Reader (New Librera)](https://librera1.com)
 
-[Libera1 Chrome](https://chromewebstore.google.com/detail/dplmfhcjlbkejkdalnkmklpghklcjahg)
 
-[Libera1 VS Code](https://marketplace.visualstudio.com/items?itemName=librera.librera-reader)
 
 ### Links
 
