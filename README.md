@@ -19,7 +19,8 @@ and OPDS Catalogs
 [Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
 
-### Librera App
+### All Librera Applications
+
 [librera.app](https://librera.app)
 
 ![librera](https://raw.githubusercontent.com/foobnix/LibreraReader/refs/heads/master/librera-round-128.png)
