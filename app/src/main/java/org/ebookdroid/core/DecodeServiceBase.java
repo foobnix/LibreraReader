@@ -53,6 +53,11 @@ public class DecodeServiceBase implements DecodeService {
 
     static final AtomicLong TASK_ID_SEQ = new AtomicLong();
 
+    // Bumped whenever the crop setting is toggled so that decode tasks scheduled
+    // for the previous crop state can be recognised as obsolete and dropped
+    // instead of publishing stale cropped/uncropped geometry or bitmaps.
+    final java.util.concurrent.atomic.AtomicInteger cropStamp = new java.util.concurrent.atomic.AtomicInteger();
+
     final CodecContext codecContext;
     final AtomicBoolean isRecycled = new AtomicBoolean();
     final AtomicReference<ViewState> viewState = new AtomicReference<ViewState>();
@@ -151,6 +156,11 @@ public class DecodeServiceBase implements DecodeService {
     @Override
     public void updateViewState(final ViewState viewState) {
         this.viewState.set(viewState);
+    }
+
+    @Override
+    public void invalidateCropStamp() {
+        cropStamp.incrementAndGet();
     }
 
     @Override
@@ -313,13 +323,18 @@ public class DecodeServiceBase implements DecodeService {
 
             r = getScaledSize(task.node, task.viewState.zoom, croppedPageBounds, vuPage);
 
-            final RectF actualSliceBounds = task.node.croppedBounds != null ? task.node.croppedBounds : task.node.pageSliceBounds;
+            // Only render the cropped slice when cropping is currently enabled.
+            // A crop-ON decode that was already in flight when the user turned
+            // crop off could otherwise keep rendering the cropped region using a
+            // stale node.croppedBounds, so the page never appears to un-crop.
+            final boolean cropping = task.viewState.book != null && task.viewState.book.cp;
+            final RectF actualSliceBounds = (cropping && task.node.croppedBounds != null) ? task.node.croppedBounds : task.node.pageSliceBounds;
 
             // TempHolder.lock.lock();
             final BitmapRef bitmap = vuPage.renderBitmap(r.width(), r.height(), actualSliceBounds, true);
             // TempHolder.lock.unlock();
 
-            if (executor.isTaskDead(task)) {
+            if (executor.isTaskDead(task) || task.cropStamp != cropStamp.get()) {
                 BitmapManager.release(bitmap);
                 return;
             }
@@ -339,6 +354,14 @@ public class DecodeServiceBase implements DecodeService {
                 task.node.page.texts = vuPage.getText();
             }
             // TempHolder.lock.unlock();
+
+            // Final validity check with no slow work before completion: if the
+            // task became obsolete (e.g. the crop setting was toggled) drop it so
+            // it cannot install a stale bitmap or cancel the replacement task.
+            if (executor.isTaskDead(task) || task.cropStamp != cropStamp.get()) {
+                BitmapManager.release(bitmap);
+                return;
+            }
 
             finishDecoding(task, vuPage, bitmap, r, croppedPageBounds);
             // test
@@ -395,10 +418,22 @@ public class DecodeServiceBase implements DecodeService {
             LOG.d("DJVU1-1a", vuPage.getWidth(), vuPage.getHeight());
             LOG.d("DJVU1-1b", rootBitmap.getBitmap().getWidth(), rootBitmap.getBitmap().getHeight());
 
-            root.croppedBounds = PageCropper.getCropBounds(rootBitmap.getBitmap(), rootRect, new RectF(0, 0, 1f, 1f));
-            LOG.d("DJVU1-2", root.croppedBounds.width(), root.croppedBounds.height());
+            final RectF cropBounds = PageCropper.getCropBounds(rootBitmap.getBitmap(), rootRect, new RectF(0, 0, 1f, 1f));
+            LOG.d("DJVU1-2", cropBounds.width(), cropBounds.height());
 
             BitmapManager.release(rootBitmap);
+
+            // The crop detection above is slow; re-check right before publishing
+            // (with no slow work in between) that cropping is still enabled and
+            // this task is still current. This prevents a decode started while
+            // crop was on from re-cropping the page after the user turned crop
+            // off - the stale cropped aspect ratio would otherwise stick.
+            if (task.viewState.book == null || !task.viewState.book.cp || executor.isTaskDead(task)
+                    || task.cropStamp != cropStamp.get()) {
+                return null;
+            }
+
+            root.croppedBounds = cropBounds;
 
             final ViewState viewState = task.viewState;
             final float pageWidth = vuPage.getWidth() * root.croppedBounds.width();
@@ -953,12 +988,14 @@ public class DecodeServiceBase implements DecodeService {
         final PageTreeNode node;
         final ViewState viewState;
         final int pageNumber;
+        final int cropStamp;
 
         DecodeTask(final ViewState viewState, final PageTreeNode node) {
             super(2);
             this.pageNumber = node.page.index.docIndex;
             this.viewState = viewState;
             this.node = node;
+            this.cropStamp = DecodeServiceBase.this.cropStamp.get();
         }
 
         @Override

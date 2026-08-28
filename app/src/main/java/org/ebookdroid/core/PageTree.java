@@ -42,6 +42,17 @@ public class PageTree {
         return this.treeNodes;
     }
 
+    synchronized void resetCropping() {
+        root.croppedBounds = null;
+        if (this.treeNodes != null) {
+            for (final PageTreeNode node : this.treeNodes) {
+                if (node != null) {
+                    node.croppedBounds = null;
+                }
+            }
+        }
+    }
+
     public boolean process(final IEvent event, final PageTreeLevel level, final boolean createNodes) {
         boolean res = false;
         if (createNodes || level.start < maxNodeId) {

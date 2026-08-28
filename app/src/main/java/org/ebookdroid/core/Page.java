@@ -120,6 +120,17 @@ public class Page {
         return bounds;
     }
 
+    /**
+     * Drops any cached crop geometry so the page is laid out and rendered for
+     * the current crop setting. Without this, toggling "Crop White Space" keeps
+     * the previously computed cropped aspect ratio and slice bounds until the
+     * page is scrolled off-screen and re-decoded.
+     */
+    public void resetCropping() {
+        setAspectRatio(cpi);
+        nodes.resetCropping();
+    }
+
     public void recycle(final List<Bitmaps> bitmapsToRecycle) {
         texts = null;
         recycled = true;
