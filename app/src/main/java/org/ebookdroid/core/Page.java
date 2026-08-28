@@ -120,6 +120,15 @@ public class Page {
         return bounds;
     }
 
+    /**
+     * The visible crop region as a normalized rectangle (0..1) of the full page,
+     * or null when the page has not been cropped. When "Crop White Space" is
+     * enabled the on-screen page shows only this sub-region of the full page.
+     */
+    public RectF getCroppedBounds() {
+        return nodes.root.croppedBounds;
+    }
+
     public void recycle(final List<Bitmaps> bitmapsToRecycle) {
         texts = null;
         recycled = true;

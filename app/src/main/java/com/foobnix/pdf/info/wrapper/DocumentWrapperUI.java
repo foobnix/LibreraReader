@@ -346,10 +346,6 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            if (AppSP.get().isCrop) {
-                onCrop.onClick(null);
-            }
-
             DragingDialogs.dialogEditColors(anchor, dc, drawView, false, new Runnable() {
                 @Override
                 public void run() {
@@ -1954,7 +1950,7 @@ public class DocumentWrapperUI {
     public void hideShowEditIcon() {
         if (dc != null && !BookType.PDF.is(dc.getCurrentBook().getPath())) {
             editTop2.setVisibility(View.GONE);
-        } else if (AppSP.get().isCrop || AppSP.get().isCut) {
+        } else if (AppSP.get().isCut) {
             editTop2.setVisibility(View.GONE);
         } else {
             boolean passwordProtected = dc.isPasswordProtected();
