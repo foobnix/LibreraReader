@@ -48,6 +48,8 @@ public interface DecodeService {
 
 	void updateViewState(ViewState viewState);
 
+	default void invalidateCropStamp() {}
+
 	boolean isPageSizeCacheable();
 
 	int getPixelFormat();

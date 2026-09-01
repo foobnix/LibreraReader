@@ -20,7 +20,7 @@ public class AppBook implements CurrentPageListener {
 
     public int z = 100;//z
     public boolean sp = false;//split pages
-    public boolean cp = false; //crop pages
+    public volatile boolean cp = false; //crop pages (read by the decode thread)
     public boolean dp = false; //double pages normal
     public boolean dc = false; //double pages cover
     public int lk = LOCK_NONE;

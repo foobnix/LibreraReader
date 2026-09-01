@@ -121,6 +121,14 @@ public class Page {
     }
 
     /**
+     * Drops any cached crop geometry so the page is laid out and rendered for
+     * the current crop setting. Without this, toggling "Crop White Space" keeps
+     * the previously computed cropped aspect ratio and slice bounds until the
+     * page is scrolled off-screen and re-decoded.
+     */
+    public void resetCropping() {
+        setAspectRatio(cpi);
+        nodes.resetCropping();
      * The visible crop region as a normalized rectangle (0..1) of the full page,
      * or null when the page has not been cropped. When "Crop White Space" is
      * enabled the on-screen page shows only this sub-region of the full page.

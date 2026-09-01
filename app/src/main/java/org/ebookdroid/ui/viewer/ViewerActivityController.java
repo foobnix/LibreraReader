@@ -41,6 +41,7 @@ import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
+import org.ebookdroid.core.Page;
 import org.ebookdroid.core.events.CurrentPageListener;
 import org.ebookdroid.core.events.DecodingProgressListener;
 import org.ebookdroid.core.models.DocumentModel;
@@ -403,15 +404,48 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void toggleCrop(boolean isCrop) {
-        getDocumentController().toggleRenderingEffects();
+        // The crop toggle UI updates AppSP.isCrop but the renderer reads the
+        // per-book flag (bs.cp), which is normally only synced later by
+        // saveCurrentPage(). Sync it here so the change takes effect immediately
+        // instead of only after the user scrolls or changes page.
+        final AppBook bs = SettingsManager.getBookSettings();
+        if (bs != null) {
+            bs.cp = isCrop;
+        }
 
-        final IViewController newDc = switchDocumentController(SettingsManager.getBookSettings());
-        newDc.init(null);
-        newDc.show();
+        // Invalidate decode tasks scheduled for the previous crop state so any
+        // still in flight are dropped instead of publishing stale geometry.
+        getDecodeService().invalidateCropStamp();
 
-        currentPageChanged(documentModel.getCurrentIndex().docIndex, getDocumentController().getBase()
-                                                                                            .getDocumentModel()
-                                                                                            .getPageCount());
+        final IViewController dc = getDocumentController();
+
+        // Remember the current page so we can keep it in view after the page
+        // sizes change (otherwise the kept absolute scroll offset can jump to a
+        // different page or past the new bottom limit).
+        final int currentPage = documentModel.getCurrentIndex().viewIndex;
+
+        // Drop cached crop geometry (cropped aspect ratio + slice bounds) so the
+        // visible pages are reflowed for the new setting.
+        if (documentModel != null) {
+            for (final Page page : documentModel.getPages()) {
+                if (page != null) {
+                    page.resetCropping();
+                }
+            }
+        }
+
+        // Re-layout with the reset (uncropped) sizes and re-decode in place. When
+        // cropping is enabled the decode step recomputes the crop bounds. Doing
+        // this in place - like night-mode toggling - instead of recreating the
+        // view controller avoids the page-info reload (retrievePagesInfo) whose
+        // caching/timing made the reflow unreliable on some files.
+        dc.invalidatePageSizes(IViewController.InvalidateSizeReason.INIT, null);
+        dc.goToPage(currentPage);
+        dc.toggleRenderingEffects();
+
+        currentPageChanged(documentModel.getCurrentIndex().docIndex, dc.getBase()
+                                                                        .getDocumentModel()
+                                                                        .getPageCount());
 
     }
 
