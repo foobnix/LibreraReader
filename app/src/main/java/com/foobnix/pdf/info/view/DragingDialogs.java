@@ -4513,8 +4513,12 @@ public class DragingDialogs {
                 });
                 // rtl
                 final TextView rtlText = inflate.findViewById(R.id.rtlText);
+                // Reading direction applies to the vertical scroll mode as well: it drives the
+                // tap zones, the reflow text direction (BookCSS) and the page counter order,
+                // none of which are specific to the book (horizontal) mode.
                 ((ViewGroup) rtlText.getParent()).setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
+                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ||
+                        AppSP.get().readingMode == AppState.READING_MODE_SCROLL ? View.VISIBLE : View.GONE);
                 if (AppState.get().isRTLByDefault) {
                     rtlText.setText(R.string.right_to_left);
                 } else {

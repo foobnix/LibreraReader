@@ -113,6 +113,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
                 final boolean isTextFormat = ExtUtils.isTextFomat(bs.path);
+                // Restore the per-book reading direction, the same way HorizontalModeController
+                // does. Without this the scroll mode keeps whatever direction the previously
+                // opened book left behind, so the setting never sticks per book.
+                LOG.d("isRTL", "AppBook.rtl", bs.rtl);
+                AppSP.get().isRTL = bs.rtl;
                 AppSP.get().isCut = isTextFormat ? false : bs.sp; //important!!!
                 AppSP.get().isCrop = bs.cp;
                 AppSP.get().isDouble = false;

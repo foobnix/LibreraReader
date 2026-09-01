@@ -1346,6 +1346,13 @@ public class DocumentWrapperUI {
             }
         }
 
+        // Mark the reading direction the way HorizontalViewActivity.applyRTL() does, so the
+        // scroll mode shows the same indicator. The seek bar is deliberately not rotated here:
+        // unlike the book mode it tracks top-to-bottom progress, which RTL does not reverse.
+        if (AppSP.get().isRTL) {
+            modeName.setText(modeName.getText() + " RTL");
+        }
+
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
