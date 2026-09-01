@@ -4,7 +4,10 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.provider.Settings;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
@@ -167,11 +170,65 @@ public class TTSEngine {
             if (onLisnter == null) {
                 onLisnter = listener;
             }
-            ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
+            // The system default engine can point at a package that is no longer installed
+            // (Android then logs "is not allowed to bind to private engine" and stays silent).
+            // In that case pick an engine that is actually present instead of inheriting the
+            // broken default.
+            final String fallback = resolveUsableEngine(LibreraApp.context);
+            if (fallback != null) {
+                LOG.d(TAG, "default TTS engine unusable, falling back to", fallback);
+                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter, fallback);
+            } else {
+                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
+            }
         }
 
         return ttsEngine;
 
+    }
+
+    /**
+     * @return package of an installed engine to use, or null when the system default is fine.
+     */
+    static String resolveUsableEngine(Context c) {
+        try {
+            final List<ResolveInfo> installed = c.getPackageManager()
+                    .queryIntentServices(new Intent(TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE), 0);
+            if (installed == null || installed.isEmpty()) {
+                return null;
+            }
+
+            String defaultEngine = null;
+            try {
+                defaultEngine = Settings.Secure.getString(c.getContentResolver(),
+                        Settings.Secure.TTS_DEFAULT_SYNTH);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+            String google = null;
+            String first = null;
+            for (ResolveInfo info : installed) {
+                if (info == null || info.serviceInfo == null) {
+                    continue;
+                }
+                final String pkg = info.serviceInfo.packageName;
+                if (first == null) {
+                    first = pkg;
+                }
+                if ("com.google.android.tts".equals(pkg)) {
+                    google = pkg;
+                }
+                if (pkg.equals(defaultEngine)) {
+                    // The configured default is installed - leave the system to use it.
+                    return null;
+                }
+            }
+            return google != null ? google : first;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     public synchronized boolean isShutdown() {

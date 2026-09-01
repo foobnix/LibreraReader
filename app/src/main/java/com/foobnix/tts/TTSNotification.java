@@ -44,6 +44,14 @@ import java.io.File;
 public class TTSNotification {
 
     public static final String DEFAULT = "default";
+    /**
+     * Playback channel. A separate id from DEFAULT because an existing channel's importance can
+     * never be raised programmatically - the user owns it once created. DEFAULT was
+     * IMPORTANCE_LOW, which marks the notification silent, and Android 12+ drops status bar
+     * icons for silent notifications. IMPORTANCE_DEFAULT with no sound keeps it quiet while
+     * keeping the icon pinned in the status bar, the way media players do it.
+     */
+    public static final String CHANNEL_PLAYBACK = "playback";
 
     public static final String ACTION_TTS = "TTSNotification_TTS";
 
@@ -79,15 +87,25 @@ public class TTSNotification {
             return;
         }
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_LOW);
-        //channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+
+        NotificationChannel channel = new NotificationChannel(CHANNEL_PLAYBACK,
+                Apps.getApplicationName(context), NotificationManager.IMPORTANCE_DEFAULT);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-
-        //channel.setShowBadge(false);
-        //channel.setSound(null,null);
-
+        // Quiet, but not "silent" in the system's sense - that distinction is what decides
+        // whether the icon stays in the status bar.
+        channel.setSound(null, null);
+        channel.enableVibration(false);
+        channel.setShowBadge(false);
 
         notificationManager.createNotificationChannel(channel);
+
+        // The old low-importance channel is no longer used; drop it so it does not linger in
+        // the app's notification settings.
+        try {
+            notificationManager.deleteNotificationChannel(DEFAULT);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 
@@ -98,7 +116,7 @@ public class TTSNotification {
         try {
             NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_PLAYBACK);
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
@@ -160,10 +178,15 @@ public class TTSNotification {
 
                     final boolean isPlaying = TTSEngine.get().isPlaying();
 
+                    // Refresh the session before posting: a MediaStyle notification is only
+                    // rendered while its session is active, so this guarantees the notification
+                    // is actually visible whenever it is shown.
+                    TTSService.updatePlaybackState();
+
                     // Cover + title + DURATION for the system player. The duration is what makes
                     // Android draw the seek bar; one "second" per page keeps the bar position
                     // equal to the reading percentage.
-                    TTSService.updateMediaMetadata(fileMetaBookName, pageNumberText, resource, maxPages);
+                    TTSService.updateMediaMetadata(fileMetaBookName, pageNumberText, resource);
 
                     builder.setContentIntent(contentIntent) //
                             .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
@@ -172,7 +195,6 @@ public class TTSNotification {
                             .setPriority(NotificationCompat.PRIORITY_HIGH) //
                             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
                             .setStyle(mediaStyle)
-                            .setSilent(true)
                             .setContentTitle(fileMetaBookName)
                             .setContentText(pageNumberText)
                             .setLargeIcon(resource)

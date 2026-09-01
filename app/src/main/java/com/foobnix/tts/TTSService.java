@@ -100,12 +100,67 @@ import java.util.List;
      */
     private static volatile MediaSessionCompat sessionRef;
 
-    /**
-     * The media session works in milliseconds, so pages are mapped onto a virtual timeline of one
-     * "second" per page. That makes the system seek bar move one notch per page and keeps the
-     * position/duration ratio identical to the reading percentage.
-     */
-    static final long PAGE_UNIT_MS = 1000L;
+    // --- estimated listening time -------------------------------------------------------
+    // The media timeline shows how long the book takes to read aloud: one page is timed while
+    // it is spoken and the average is multiplied by the page count. Until a page has actually
+    // been timed, the length of its text and the current speech rate give a starting estimate.
+
+    /** Rough TTS throughput in characters per second at speech rate 1.0. */
+    private static final double CHARS_PER_SECOND = 15.0;
+    /** Ignore measurements outside this range - they mean the page was skipped or paused. */
+    private static final long MIN_PAGE_MS = 1_500L;
+    private static final long MAX_PAGE_MS = 30 * 60 * 1_000L;
+
+    private static volatile long pageStartMs = 0;
+    private static volatile long avgPageMs = 0;
+    private static volatile int lastPageChars = 0;
+
+    /** Called when a page starts being spoken. */
+    static void onPageSpeechStarted(String text) {
+        pageStartMs = System.currentTimeMillis();
+        lastPageChars = text != null ? text.length() : 0;
+    }
+
+    /** Called when a page finished being spoken; folds the real duration into the average. */
+    static void onPageSpeechFinished() {
+        final long start = pageStartMs;
+        if (start <= 0) {
+            return;
+        }
+        final long elapsed = System.currentTimeMillis() - start;
+        if (elapsed < MIN_PAGE_MS || elapsed > MAX_PAGE_MS) {
+            return;
+        }
+        // Exponential moving average so the estimate settles quickly but still adapts when the
+        // speech rate changes mid-book.
+        avgPageMs = avgPageMs <= 0 ? elapsed : (avgPageMs * 3 + elapsed) / 4;
+        LOG.d(TAG, "page spoken in", elapsed, "avg", avgPageMs);
+    }
+
+    /** Best estimate of how long a single page takes to read aloud, or 0 when unknown. */
+    private static long estimatedPageMs() {
+        if (avgPageMs > 0) {
+            return avgPageMs;
+        }
+        if (lastPageChars > 0) {
+            float speed = AppState.get().ttsSpeed;
+            if (speed <= 0) {
+                speed = 1f;
+            }
+            return (long) (lastPageChars / (CHARS_PER_SECOND * speed) * 1000);
+        }
+        return 0;
+    }
+
+    /** Estimated time to read the whole book aloud, or 0 while still unknown. */
+    static long bookDurationMs() {
+        final long perPage = estimatedPageMs();
+        final int pages = AppSP.get().lastBookPageCount;
+        if (perPage <= 0 || pages <= 0) {
+            return 0;
+        }
+        return perPage * pages;
+    }
     boolean isActivated;
     boolean isPlaying;
     Object audioFocusRequest;
@@ -404,9 +459,10 @@ import java.util.List;
             }
 
             @Override public void onSeekTo(long pos) {
-                // Dragging the seek bar in the system media view jumps to that page.
+                // The bar is in estimated listening time; convert it back into a page.
                 final int maxPages = AppSP.get().lastBookPageCount;
-                int page = (int) (pos / PAGE_UNIT_MS);
+                final long perPage = estimatedPageMs();
+                int page = perPage > 0 ? (int) (pos / perPage) : 0;
                 if (page < 0) {
                     page = 0;
                 }
@@ -573,7 +629,7 @@ import java.util.List;
         PendingIntent stopDestroy = PendingIntent.getService(this, 0,
                 new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class),
                 PendingIntent.FLAG_IMMUTABLE);
-        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+        Notification notification = new NotificationCompat.Builder(this, TTSNotification.CHANNEL_PLAYBACK) //
                                                                                                   .setSmallIcon(
                                                                                                           R.drawable.glyphicons_smileys_100_headphones) //
                                                                                                   .setContentTitle(
@@ -793,13 +849,33 @@ import java.util.List;
      * media controls (lock screen, quick settings, Bluetooth, Android Auto) have no actions to
      * show, so the session token on its own would not be enough.
      */
-    void updatePlaybackState() {
+    /** Elapsed listening time: whole pages already read plus progress through the current one. */
+    private static long currentPositionMs() {
+        final long perPage = estimatedPageMs();
+        if (perPage <= 0) {
+            return 0L;
+        }
+        long position = Math.max(0, AppSP.get().lastBookPage) * perPage;
+        final long start = pageStartMs;
+        if (start > 0 && TTSEngine.get().isPlaying()) {
+            position += Math.min(System.currentTimeMillis() - start, perPage);
+        }
+        final long duration = bookDurationMs();
+        return duration > 0 ? Math.min(position, duration) : position;
+    }
+
+    static void updatePlaybackState() {
         try {
-            final MediaSessionCompat session = mMediaSessionCompat;
+            final MediaSessionCompat session = sessionRef;
             if (session == null) {
                 return;
             }
             final boolean playing = TTSEngine.get().isPlaying();
+            // Keep the session active even while paused. Android 13+ renders a MediaStyle
+            // notification only through the media controls, and hides it completely when the
+            // session is inactive - TTSEngine.stop() deactivates it on pause, which would
+            // otherwise make the notification vanish instead of showing a paused player.
+            session.setActive(true);
             session.setPlaybackState(new PlaybackStateCompat.Builder()
                     .setActions(PlaybackStateCompat.ACTION_PLAY
                             | PlaybackStateCompat.ACTION_PAUSE
@@ -808,10 +884,10 @@ import java.util.List;
                             | PlaybackStateCompat.ACTION_SKIP_TO_NEXT
                             | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
                             | PlaybackStateCompat.ACTION_SEEK_TO)
-                    // Playback speed 0 keeps the seek bar parked on the current page instead of
-                    // letting the system extrapolate it forward like a running track.
+                    // The timeline is now real time, so let the system extrapolate while playing -
+                    // that keeps the bar moving smoothly between page updates.
                     .setState(playing ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED,
-                            AppSP.get().lastBookPage * PAGE_UNIT_MS, 0f)
+                            currentPositionMs(), playing ? 1f : 0f)
                     .build());
         } catch (Exception e) {
             LOG.e(e);
@@ -834,7 +910,7 @@ import java.util.List;
      * Publishes what the system media view shows: cover, title and - through DURATION - the length
      * of the seek bar. Without a duration Android draws no seek bar at all.
      */
-    public static void updateMediaMetadata(String title, String subTitle, Bitmap cover, int maxPages) {
+    public static void updateMediaMetadata(String title, String subTitle, Bitmap cover) {
         try {
             final MediaSessionCompat session = sessionRef;
             if (session == null) {
@@ -844,8 +920,7 @@ import java.util.List;
                     .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
                     .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, subTitle)
                     .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, subTitle)
-                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION,
-                            maxPages > 0 ? maxPages * PAGE_UNIT_MS : 0L);
+                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, bookDurationMs());
             if (cover != null) {
                 b.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, cover);
             }
@@ -997,6 +1072,7 @@ import java.util.List;
                                      return;
                                  }
 
+                                 onPageSpeechFinished();
                                  AppSP.get().lastBookParagraph = 0;
                                  playPage(secondPart, AppSP.get().lastBookPage + 1, null);
                              }
@@ -1035,11 +1111,14 @@ import java.util.List;
                                      return;
                                  }
 
+                                 onPageSpeechFinished();
                                  AppSP.get().lastBookParagraph = 0;
                                  playPage(secondPart, AppSP.get().lastBookPage + 1, null);
                              }
                          });
             }
+
+            onPageSpeechStarted(firstPart);
 
             TTSEngine.get()
                      .speek(firstPart);
