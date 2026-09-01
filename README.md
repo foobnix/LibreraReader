@@ -108,6 +108,7 @@ F-Droid build does also not need a **google-services.json**
 Full release notes: https://github.com/foobnix/LibreraReader/releases
 
 ### 9.5.0 (unreleased)
+[APK Direct Download](http://beta.librera.mobi)
 
 Taken from the commits since the 9.4.21 tag; there is no release entry for it yet.
 
