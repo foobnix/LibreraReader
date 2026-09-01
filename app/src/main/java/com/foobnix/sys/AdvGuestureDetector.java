@@ -21,7 +21,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.touch.IGestureDetector;
 import org.ebookdroid.common.touch.IMultiTouchListener;
 import org.ebookdroid.common.touch.TouchManager;
@@ -345,7 +344,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if(AppState.get().isCropNotification) {
             Vibro.vibrate();
         }
-        if (AppSP.get().isCut || AppSP.get().isCrop) {
+        // Cropping no longer blocks selection: Page.getPageRegion() maps word rectangles from
+        // full-page space into the cropped page. Splitting pages (isCut) still has no such
+        // mapping, so it stays unsupported.
+        if (AppSP.get().isCut) {
             if(AppState.get().isCropNotification) {
                 Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work,
                              Toast.LENGTH_LONG)
@@ -356,9 +358,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         isLongMovement = true;
 
-        if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cp) {
-            docCtrl.onCrop();
-        }
         AppState.get().selectedText = avc.processLongTap(true, e, e, true);
     }
 

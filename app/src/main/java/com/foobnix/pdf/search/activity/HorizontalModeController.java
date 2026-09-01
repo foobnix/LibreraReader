@@ -81,6 +81,8 @@ public abstract class HorizontalModeController extends DocumentController {
         PageImageState.get()
                       .cleanSelectedWords();
         PageImageState.get().pagesText.clear();
+        // Keep crop rectangles in lockstep with the text they are used to map.
+        PageImageState.get().clearPagesCrop();
 
         AppSP.get().isSmartReflow = false;
 

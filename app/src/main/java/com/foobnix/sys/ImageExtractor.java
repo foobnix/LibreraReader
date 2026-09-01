@@ -116,14 +116,34 @@ public class ImageExtractor {
     }
 
     public static Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
+        return cropBitmap(bitmap, sample, null);
+    }
+
+    /**
+     * @param appliedCrop optional out-parameter; receives the normalized (0..1) rectangle of the
+     *                    source bitmap that was actually kept. Text and link coordinates are
+     *                    reported by the codec in full-page space, so they have to be mapped
+     *                    through this rectangle to line up with the cropped bitmap.
+     */
+    public static Bitmap cropBitmap(Bitmap bitmap, Bitmap sample, RectF appliedCrop) {
+        final int srcW = bitmap.getWidth();
+        final int srcH = bitmap.getHeight();
+
         final Rect rootRect = new Rect(0, 0, sample.getWidth(), sample.getHeight());
         RectF rectCrop = PageCropper.getCropBounds(sample, rootRect, new RectF(0, 0, 1f, 1f));
-        int x = (int) (bitmap.getWidth() * rectCrop.left);
-        int y = (int) (bitmap.getHeight() * rectCrop.top);
-        int w = (int) (bitmap.getWidth() * rectCrop.width());
-        int h = (int) (bitmap.getHeight() * rectCrop.height());
+        int x = (int) (srcW * rectCrop.left);
+        int y = (int) (srcH * rectCrop.top);
+        int w = (int) (srcW * rectCrop.width());
+        int h = (int) (srcH * rectCrop.height());
         Bitmap bitmap1 = Bitmap.createBitmap(bitmap, x, y, w, h);
         bitmap.recycle();
+
+        if (appliedCrop != null) {
+            // Report the pixel-quantized rectangle that was really taken, not the raw
+            // detector output, so the mapping matches the bitmap exactly.
+            appliedCrop.set((float) x / srcW, (float) y / srcH, (float) (x + w) / srcW, (float) (y + h) / srcH);
+        }
+
         return bitmap1;
     }
 
@@ -494,14 +514,31 @@ public class ImageExtractor {
         }
 
         if (pageUrl.isCrop()) {
+            // Only a plain, unrotated single-page render has a crop rectangle that can be
+            // mapped back onto full-page text coordinates. For split/double pages the crop is
+            // measured against a half bitmap and for rotated pages the axes no longer match,
+            // so no rectangle is published and text selection stays disabled for those.
+            // Restricted to isDoText() renders (the reading page) so a thumbnail or cover
+            // render, which measures the crop on a much smaller bitmap, cannot replace the
+            // rectangle belonging to the page text stored below.
+            final boolean mappable = pageUrl.isDoText() && pageUrl.getNumber() == 0 && pageUrl.getRotate() == 0;
+            final RectF appliedCrop = mappable ? new RectF() : null;
+
             if (BookType.DJVU.is(pageUrl.getPath())) {
                 Bitmap sample = pageCodec.renderBitmapSimple(PageCropper.MAX_WIDTH, PageCropper.MAX_HEIGHT, rectF).getBitmap();
-                bitmap = cropBitmap(bitmap, sample);
+                bitmap = cropBitmap(bitmap, sample, appliedCrop);
                 sample.recycle();
                 sample = null;
             } else {
-                bitmap = cropBitmap(bitmap, bitmap);
+                bitmap = cropBitmap(bitmap, bitmap, appliedCrop);
             }
+
+            if (mappable) {
+                PageImageState.get().putPageCrop(pageUrl.getPage(), appliedCrop);
+            }
+        } else if (pageUrl.isDoText()) {
+            // Drop any rectangle left over from an earlier cropped render of this page.
+            PageImageState.get().putPageCrop(pageUrl.getPage(), null);
         }
 
         if (AppSP.get().isSmartReflow) {

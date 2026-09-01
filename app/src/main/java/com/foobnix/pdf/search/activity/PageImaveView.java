@@ -127,6 +127,20 @@ public class PageImaveView extends View {
 
     public RectF transform(RectF origin, int number) {
         RectF r = new RectF(origin);
+
+        if (number == 0) {
+            // In crop mode the bitmap on screen is only the cropped region of the page, while
+            // text/link rectangles are reported by the codec in full-page space. Move them into
+            // cropped space first, otherwise everything lands offset and undersized.
+            final RectF crop = PageImageState.get().getPageCrop(pageNumber);
+            if (crop != null && crop.width() > 0 && crop.height() > 0) {
+                r.left = (r.left - crop.left) / crop.width();
+                r.right = (r.right - crop.left) / crop.width();
+                r.top = (r.top - crop.top) / crop.height();
+                r.bottom = (r.bottom - crop.top) / crop.height();
+            }
+        }
+
         r.left = r.left * drawableWidth;
         r.right = r.right * drawableWidth;
 
@@ -183,11 +197,27 @@ public class PageImaveView extends View {
     }
 
     public synchronized Pair<List<PageLink>, List<Annotation>> getPageLinks(int number) {
-        if (AppSP.get().isCut || AppSP.get().isCrop) {
+        if (AppSP.get().isCut || !isCropMappable(number)) {
             return new Pair<>(Collections.emptyList(), Collections.emptyList());
         }
         return getPageLinksInner(number);
 
+    }
+
+    /**
+     * True when page coordinates can be mapped onto the bitmap currently on screen. Without
+     * cropping that is always the case; with cropping it needs the crop rectangle that
+     * {@link com.foobnix.sys.ImageExtractor} publishes for plain single-page renders.
+     */
+    public boolean isCropMappable(int number) {
+        if (!AppSP.get().isCrop) {
+            return true;
+        }
+        if (number != 0 || AppSP.get().isDouble) {
+            return false;
+        }
+        final RectF crop = PageImageState.get().getPageCrop(pageNumber);
+        return crop != null && crop.width() > 0 && crop.height() > 0;
     }
 
     public synchronized Pair<List<PageLink>, List<Annotation>> getPageLinksInner(int number) {
@@ -392,7 +422,7 @@ public class PageImaveView extends View {
 //                canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
 //            }
 
-            if (!AppSP.get().isCut && !AppSP.get().isCrop) {
+            if (!AppSP.get().isCut && isCropMappable(0)) {
 
                 paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
                 paintWrods.setAlpha(60);
@@ -844,7 +874,7 @@ public class PageImaveView extends View {
             if(AppState.get().isCropNotification) {
                 Vibro.vibrate();
             }
-            if (AppSP.get().isCut || AppSP.get().isCrop) {
+            if (AppSP.get().isCut || !isCropMappable(0)) {
                 if(AppState.get().isCropNotification) {
                     Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work,
                                  Toast.LENGTH_LONG)

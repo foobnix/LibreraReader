@@ -227,22 +227,29 @@ public class Page {
     public RectF getPageRegion(final RectF pageBounds, final RectF sourceRect) {
         final AppBook bs = SettingsManager.getBookSettings();
         final RectF cb = nodes.root.croppedBounds;
-        if (bs != null && bs.cp && cb != null) {
+
+        // Work on a copy: callers may pass a live TextWord straight out of page.texts, and the
+        // crop mapping below would otherwise rewrite the stored word coordinates in place. That
+        // compounds - every redraw and every drag update re-applies the crop to already-mapped
+        // words, so the selection drifts further off the text with each pass.
+        final RectF rect = new RectF(sourceRect);
+
+        if (bs != null && bs.cp && cb != null && cb.width() > 0 && cb.height() > 0) {
             final Matrix m = MatrixUtils.get();
             final RectF psb = nodes.root.pageSliceBounds;
             m.postTranslate(psb.left - cb.left, psb.top - cb.top);
             m.postScale(psb.width() / cb.width(), psb.height() / cb.height());
-            m.mapRect(sourceRect);
+            m.mapRect(rect);
         }
 
-        if (type == PageType.LEFT_PAGE && sourceRect.left >= 0.5f) {
+        if (type == PageType.LEFT_PAGE && rect.left >= 0.5f) {
             return null;
         }
 
-        if (type == PageType.RIGHT_PAGE && sourceRect.right < 0.5f) {
+        if (type == PageType.RIGHT_PAGE && rect.right < 0.5f) {
             return null;
         }
 
-        return getTargetRect(type, pageBounds, sourceRect);
+        return getTargetRect(type, pageBounds, rect);
     }
 }

@@ -1,6 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
 import android.graphics.Matrix;
+import android.graphics.RectF;
 import android.util.SparseArray;
 
 import com.foobnix.android.utils.LOG;
@@ -22,6 +23,13 @@ public class PageImageState {
     public final SparseArray<TextWord[][]> pagesText = new SparseArray<TextWord[][]>();
     public final SparseArray<List<PageLink>> pagesLinks = new SparseArray<List<PageLink>>();
     public final SparseArray<List<Annotation>> pagesAnnotation = new SparseArray<List<Annotation>>();
+    /**
+     * Normalized (0..1) crop rectangle actually applied to the rendered page bitmap, per page.
+     * Text/link coordinates come from the codec in full-page space, so they have to be mapped
+     * through this rectangle before they line up with a cropped bitmap. Absent entry means the
+     * page bitmap is not cropped.
+     */
+    private final SparseArray<RectF> pagesCrop = new SparseArray<RectF>();
     private Matrix matrix = new Matrix();
 
     public static volatile int currentPage = 0;
@@ -39,6 +47,23 @@ public class PageImageState {
         selectedWords.clear();
         pagesText.clear();
         pagesLinks.clear();
+        pagesCrop.clear();
+    }
+
+    public RectF getPageCrop(int page) {
+        return pagesCrop.get(page);
+    }
+
+    public void putPageCrop(int page, RectF crop) {
+        if (crop == null) {
+            pagesCrop.remove(page);
+        } else {
+            pagesCrop.put(page, new RectF(crop));
+        }
+    }
+
+    public void clearPagesCrop() {
+        pagesCrop.clear();
     }
 
     public List<TextWord> getSelectedWords(int page) {
