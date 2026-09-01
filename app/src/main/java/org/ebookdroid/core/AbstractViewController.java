@@ -571,7 +571,7 @@ public abstract class AbstractViewController extends AbstractComponentController
                     continue;
                 }
                 for (Annotation a : page.annotations) {
-                    RectF wordRect = page.getPageRegion(bounds, a);
+                    RectF wordRect = page.getPageRegion(bounds, new RectF(a));
                     if (wordRect == null) {
                         continue;
                     }

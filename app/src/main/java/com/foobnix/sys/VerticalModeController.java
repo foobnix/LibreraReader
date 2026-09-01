@@ -323,11 +323,6 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void saveChanges(final List<PointF> points, final int color) {
-        if (SettingsManager.getBookSettings().cp) {
-            onCrop();
-            return;
-        }
-
         final float zoom = ctr.getZoomModel().getZoom();
         int scrollX = ctr.getDocumentController().getView().getScrollX();
         int scrollY = ctr.getDocumentController().getView().getScrollY();
@@ -345,14 +340,6 @@ public class VerticalModeController extends DocumentController {
             Iterable<Page> pages = ctr.getDocumentModel().getPages(first, last);
             for (Page page : pages) {
                 RectF pbounds = page.getBounds(zoom);
-                float aspect = page.getAspectRatio();
-                float k = page.cpi.width / pbounds.width();
-
-                LOG.d("PAGE #", page.index.viewIndex);
-                LOG.d("PAGE wxh", page.cpi.width, page.cpi.height);
-                LOG.d("PAGE dpi", page.cpi.dpi, page.cpi.dpi);
-                LOG.d("pbounds p", pbounds, "z", zoom, "aspect", aspect);
-                LOG.d("pbounds p", pbounds, "z", zoom, "aspect", aspect);
 
                 if (RectF.intersects(pbounds, tapRect)) {
                     int pNumber = page.index.docIndex;
@@ -361,11 +348,23 @@ public class VerticalModeController extends DocumentController {
                         list = new ArrayList<PointF>();
                     }
 
-                    p.x += scrollX;
-                    p.y += scrollY - pbounds.top;
+                    // Position of the touch within the on-screen page box (0..1).
+                    float normX = (p.x + scrollX - pbounds.left) / pbounds.width();
+                    float normY = (p.y + scrollY - pbounds.top) / pbounds.height();
 
-                    p.x = p.x * k;
-                    p.y = p.y * k;
+                    // When "Crop White Space" is enabled the on-screen page shows
+                    // only the cropped sub-region of the full page, so remap the
+                    // normalized point back into the full page before converting
+                    // to PDF coordinates. Annotations are always stored in full
+                    // page coordinates so they render correctly cropped or not.
+                    RectF crop = page.getCroppedBounds();
+                    if (crop != null) {
+                        normX = crop.left + normX * crop.width();
+                        normY = crop.top + normY * crop.height();
+                    }
+
+                    p.x = normX * page.cpi.width;
+                    p.y = normY * page.cpi.height;
 
                     list.add(p);
                     result.put(pNumber, list);
