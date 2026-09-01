@@ -137,6 +137,7 @@
    <string name="status_bar">Állapotsor</string>
    <string name="show_status_bar">Állapotsor megjelenítése</string>
    <string name="show_progress_of_reading">Folyamatjelző megjelenítése</string>
+   <string name="show_reading_slider">Folyamatjelző csúszka megjelenítése</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigálás az állapotsoron keresztül</string>
    <string name="text_size">Betűméret</string>
    <string name="line_height">Folyamatjelző sáv magassága</string>

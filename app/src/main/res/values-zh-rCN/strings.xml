@@ -137,6 +137,7 @@
    <string name="status_bar">状态栏</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="show_progress_of_reading">显示进度条</string>
+   <string name="show_reading_slider">显示进度滑块</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条以导航</string>
    <string name="text_size">字体大小</string>
    <string name="line_height">进度条高度</string>

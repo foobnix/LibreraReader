@@ -137,6 +137,7 @@
    <string name="status_bar">Γραμμή κατάστασης</string>
    <string name="show_status_bar">Εμφάνιση γραμμής κατάστασης</string>
    <string name="show_progress_of_reading">Ενεργοποιήστε τη γραμμή προόδου</string>
+   <string name="show_reading_slider">Εμφάνιση ρυθμιστικού προόδου</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Πλοηγηθείτε σύροντας τη γραμμή κατάστασης</string>
    <string name="text_size">Μέγεθος γραμματοσειράς</string>
    <string name="line_height">Ύψος ράβδου προόδου</string>

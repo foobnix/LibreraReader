@@ -137,6 +137,7 @@
    <string name="status_bar">שורת מצב</string>
    <string name="show_status_bar">הצג שורת מצב</string>
    <string name="show_progress_of_reading">הצג התקדמות בקריאה</string>
+   <string name="show_reading_slider">הצג מחוון התקדמות</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">אפשר הרצה אחורה של דפים באמצעות קו התקדמות הקריאה</string>
    <string name="text_size">גודל טקסט</string>
    <string name="line_height">גובה קו</string>

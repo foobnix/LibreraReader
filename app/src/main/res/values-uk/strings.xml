@@ -137,6 +137,7 @@
    <string name="status_bar">Рядок стану</string>
    <string name="show_status_bar">Показати рядок стану</string>
    <string name="show_progress_of_reading">Показати прогрес читання</string>
+   <string name="show_reading_slider">Показати повзунок прогресу</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Увімкнути гортання сторінок за допомогою рядка читання</string>
    <string name="text_size">Розмір тексту</string>
    <string name="line_height">Товщина лінії</string>

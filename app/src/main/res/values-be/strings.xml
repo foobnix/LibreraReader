@@ -137,6 +137,7 @@
    <string name="status_bar">Радок стану</string>
    <string name="show_status_bar">Паказаць радок стану</string>
    <string name="show_progress_of_reading">Уключыць панэль прагрэсу</string>
+   <string name="show_reading_slider">Паказаць паўзунок прагрэсу</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Перамяшчацца, слізгаючы па радку стану</string>
    <string name="text_size">Памер шрыфта</string>
    <string name="line_height">Вышыня панэлі прагрэсу</string>

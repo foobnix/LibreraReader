@@ -137,6 +137,7 @@
    <string name="status_bar">資訊區域</string>
    <string name="show_status_bar">顯示閱讀狀態</string>
    <string name="show_progress_of_reading">顯示出進度條</string>
+   <string name="show_reading_slider">顯示進度滑桿</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">可拖曳進度條</string>
    <string name="text_size">字體大小</string>
    <string name="line_height">進度條高</string>

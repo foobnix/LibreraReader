@@ -137,6 +137,7 @@
    <string name="status_bar">Barra de estado</string>
    <string name="show_status_bar">Amosar barra de estado</string>
    <string name="show_progress_of_reading">Activar barra de progreso</string>
+   <string name="show_reading_slider">Mostrar o control deslizante de progreso</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navegar deslizando na barra</string>
    <string name="text_size">Tamaño da fonte</string>
    <string name="line_height">Altura da barra de progreso</string>

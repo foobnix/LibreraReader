@@ -137,6 +137,7 @@
    <string name="status_bar">Barra stádais</string>
    <string name="show_status_bar">Barra stádais a thaispeáint</string>
    <string name="show_progress_of_reading">Barra dul chun cinn a chumasú</string>
+   <string name="show_reading_slider">Taispeáin sleamhnán dul chun cinn</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Nascleanúint a dhéanamh trí sleamhnú trasna barra stádais</string>
    <string name="text_size">Méid cló</string>
    <string name="line_height">Airde barra dul chun cinn</string>

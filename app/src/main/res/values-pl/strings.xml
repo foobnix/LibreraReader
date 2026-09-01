@@ -137,6 +137,7 @@
    <string name="status_bar">Pasek stanu</string>
    <string name="show_status_bar">Pokaż pasek stanu</string>
    <string name="show_progress_of_reading">Pokaż postęp czytania</string>
+   <string name="show_reading_slider">Pokaż suwak postępu</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Włącz przewijanie stron za pomocą linii postępu czytania</string>
    <string name="text_size">Rozmiar czcionki</string>
    <string name="line_height">Wysokość linii</string>

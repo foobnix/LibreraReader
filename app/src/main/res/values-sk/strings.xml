@@ -137,6 +137,7 @@
    <string name="status_bar">Stavový riadok</string>
    <string name="show_status_bar">Zobraziť stavový riadok</string>
    <string name="show_progress_of_reading">Zobraziť priebeh čítania</string>
+   <string name="show_reading_slider">Zobraziť posuvník priebehu</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigovať posúvaním po stavovom riadku</string>
    <string name="text_size">Veľkosť písma</string>
    <string name="line_height">Výška riadka</string>

@@ -137,6 +137,7 @@
    <string name="status_bar">แถบสถานะ</string>
    <string name="show_status_bar">แสดงแถบสถานะ</string>
    <string name="show_progress_of_reading">แสดงความก้าวหน้าในการอ่าน</string>
+   <string name="show_reading_slider">แสดงแถบเลื่อนความคืบหน้า</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">เปิดใช้งานการย้อนกลับของหน้าเว็บโดยใช้เส้นความคืบหน้าการอ่าน</string>
    <string name="text_size">ขนาดข้อความ</string>
    <string name="line_height">ความสูงของบรรทัด</string>

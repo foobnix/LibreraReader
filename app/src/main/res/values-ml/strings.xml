@@ -137,6 +137,7 @@
    <string name="status_bar">സ്റ്റാറ്റസ് ബാർ</string>
    <string name="show_status_bar">സ്റ്റാറ്റസ് ബാർ കാണിക്കുക</string>
    <string name="show_progress_of_reading">പുരോഗതി ബാർ പ്രവർത്തനക്ഷമമാക്കുക</string>
+   <string name="show_reading_slider">പ്രോഗ്രസ് സ്ലൈഡർ കാണിക്കുക</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">സ്റ്റാറ്റസ് ബാറിലുടനീളം സ്ലൈഡുചെയ്‌ത് നാവിഗേറ്റുചെയ്യുക</string>
    <string name="text_size">അക്ഷര വലിപ്പം</string>
    <string name="line_height">പുരോഗതി ബാർ ഉയരം</string>

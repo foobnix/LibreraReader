@@ -137,6 +137,7 @@
    <string name="status_bar">Күй жолағы</string>
    <string name="show_status_bar">Күй жолағын көрсету</string>
    <string name="show_progress_of_reading">Орындалу барысын қосу</string>
+   <string name="show_reading_slider">Прогресс слайдерін көрсету</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Күй жолағының бойымен сырғыту арқылы шарлаңыз</string>
    <string name="text_size">Қаріп өлшемі</string>
    <string name="line_height">Орындалу жолының биіктігі</string>

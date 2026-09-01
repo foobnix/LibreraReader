@@ -137,6 +137,7 @@
    <string name="status_bar">Egoera barra</string>
    <string name="show_status_bar">Erakutsi egoera barra</string>
    <string name="show_progress_of_reading">Erakutsi irakurketaren aurrerapena</string>
+   <string name="show_reading_slider">Erakutsi aurrerapen-graduatzailea</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Orriak pasa aurrerapenaren barran</string>
    <string name="text_size">Letraren tamaina</string>
    <string name="line_height">Aurrerapen barraren altuera</string>

@@ -137,6 +137,7 @@
    <string name="status_bar">Statuslinjen</string>
    <string name="show_status_bar">Vis statuslinje</string>
    <string name="show_progress_of_reading">Vis fremdrift av lesing</string>
+   <string name="show_reading_slider">Vis fremdriftsglidebryteren</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Aktiver tilbakespoling av sider ved hjelp av lesefremdriftslinjen</string>
    <string name="text_size">Tekststørrelse</string>
    <string name="line_height">Linjehøyde</string>

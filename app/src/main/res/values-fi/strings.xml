@@ -137,6 +137,7 @@
    <string name="status_bar">Tilarivi</string>
    <string name="show_status_bar">Näytä tilarivi</string>
    <string name="show_progress_of_reading">Näytä edistymispalkki</string>
+   <string name="show_reading_slider">Näytä edistymisliukusäädin</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Selaa sivuja edistymispalkkia pyyhkäisemällä</string>
    <string name="text_size">Tekstin koko</string>
    <string name="line_height">Korkeus</string>

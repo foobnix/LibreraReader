@@ -137,6 +137,7 @@
    <string name="status_bar">Progreso juosta</string>
    <string name="show_status_bar">Rodyti progreso juostą</string>
    <string name="show_progress_of_reading">Rodyti skaitymo progresą</string>
+   <string name="show_reading_slider">Rodyti progreso slankiklį</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Peršokti puslapius skaitymo progreso linijoje</string>
    <string name="text_size">Teksto dydis</string>
    <string name="line_height">Brūkšnio aukštis</string>

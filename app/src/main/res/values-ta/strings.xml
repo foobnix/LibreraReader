@@ -137,6 +137,7 @@
    <string name="status_bar">நிலைமை பட்டை</string>
    <string name="show_status_bar">நிலைப்பட்டியைக் காட்டு</string>
    <string name="show_progress_of_reading">முன்னேற்றப் பட்டியை இயக்கு</string>
+   <string name="show_reading_slider">முன்னேற்ற ஸ்லைடரைக் காட்டு</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">நிலைப்பட்டியின் குறுக்கே சறுக்குவதன் மூலம் செல்லவும்</string>
    <string name="text_size">எழுத்துரு அளவு</string>
    <string name="line_height">முன்னேற்றப் பட்டியின் உயரம்</string>

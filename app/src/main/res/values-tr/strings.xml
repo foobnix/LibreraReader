@@ -137,6 +137,7 @@
    <string name="status_bar">Durum çubuğu</string>
    <string name="show_status_bar">Durum çubuğunu göster</string>
    <string name="show_progress_of_reading">Okuma ilerlemesini göster</string>
+   <string name="show_reading_slider">Ilerleme kaydırıcısını göster</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Durum çubuğunu kaydırarak sayfalarda dolaş</string>
    <string name="text_size">Yazı boyutu</string>
    <string name="line_height">Durum çubuğu yüksekliği</string>

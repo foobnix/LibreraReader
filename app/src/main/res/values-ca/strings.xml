@@ -137,6 +137,7 @@
    <string name="status_bar">Barra d\'estat</string>
    <string name="show_status_bar">Mostra la barra d\'estat</string>
    <string name="show_progress_of_reading">Activa la barra de progrés</string>
+   <string name="show_reading_slider">Mostra el control lliscant de progrés</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navega lliscant per la barra d\'estat</string>
    <string name="text_size">Mida de la lletra</string>
    <string name="line_height">Alçada de la barra de progrés</string>

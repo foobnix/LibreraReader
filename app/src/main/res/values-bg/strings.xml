@@ -137,6 +137,7 @@
    <string name="status_bar">Лента за състоянието</string>
    <string name="show_status_bar">Покажете лентата на състоянието</string>
    <string name="show_progress_of_reading">Активирайте лентата за напредък</string>
+   <string name="show_reading_slider">Покажи плъзгача за напредък</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Навигирайте, като плъзнете през лентата на състоянието</string>
    <string name="text_size">Размер на шрифта</string>
    <string name="line_height">Височина на лентата на прогреса</string>

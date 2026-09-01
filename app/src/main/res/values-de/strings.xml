@@ -137,6 +137,7 @@
    <string name="status_bar">Statusleiste</string>
    <string name="show_status_bar">Zeige Statusleiste</string>
    <string name="show_progress_of_reading">Zeige Lesefortschritt</string>
+   <string name="show_reading_slider">Fortschrittsschieberegler anzeigen</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Navigation durch streichen über den Lesefortschritt</string>
    <string name="text_size">Textgröße</string>
    <string name="line_height">Zeilenhöhe</string>
