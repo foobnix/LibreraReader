@@ -54,6 +54,12 @@
             android:name="android.webkit.WebView.MetricsOptOut"
             android:value="true" />
 
+        <!-- Declares Librera as an Android Auto media app; res/xml/automotive_app_desc.xml
+             already contained <uses name="media"/> but was never referenced. -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -261,10 +267,15 @@
         <service
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"
-            android:exported="false"
+            android:exported="true"
+            android:icon="${appIcon}"
+            android:label="${appName}"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
 
         </service>

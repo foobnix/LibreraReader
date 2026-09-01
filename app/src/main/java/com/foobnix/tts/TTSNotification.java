@@ -120,54 +120,7 @@ public class TTSNotification {
             PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
 
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
-            RemoteViews remoteViewsSmall = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line_small);
-
-
-            //remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
-            remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
-            remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
-            remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
-            remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
-
-
-            //remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bookImage);
-            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPlay, playPause);
-            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsNext, next);
-            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPrev, prev);
-            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
-
-
-            remoteViews.setViewVisibility(R.id.ttsNextTrack, View.GONE);
-            remoteViews.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
-
-            remoteViewsSmall.setViewVisibility(R.id.ttsNextTrack, View.GONE);
-            remoteViewsSmall.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
-
-
-            remoteViews.setViewVisibility(R.id.ttsDialog, View.GONE);
-            remoteViewsSmall.setViewVisibility(R.id.ttsDialog, View.GONE);
-
-            if (TTSEngine.get().isPlaying()) {
-                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
-                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_pause);
-            } else {
-                remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
-                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_play);
-            }
-
             final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
-
-
-            remoteViews.setInt(R.id.ttsPlay, "setColorFilter", color);
-            remoteViews.setInt(R.id.ttsNext, "setColorFilter", color);
-            remoteViews.setInt(R.id.ttsPrev, "setColorFilter", color);
-            remoteViews.setInt(R.id.ttsStop, "setColorFilter", color);
-
-            remoteViewsSmall.setInt(R.id.ttsPlay, "setColorFilter", color);
-            remoteViewsSmall.setInt(R.id.ttsNext, "setColorFilter", color);
-            remoteViewsSmall.setInt(R.id.ttsPrev, "setColorFilter", color);
-            remoteViewsSmall.setInt(R.id.ttsStop, "setColorFilter", color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
 
@@ -176,6 +129,7 @@ public class TTSNotification {
             if (page == -1 || maxPages == -1) {
                 pageNumber = "";
             }
+            final String pageNumberText = pageNumber;
 
             String textLine = pageNumber + " " + fileMetaBookName;
 
@@ -183,11 +137,6 @@ public class TTSNotification {
                 textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
             }
 
-            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1 + " ", "\n").trim());
-            //remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
-
-            remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
-            //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
             final String extraText = textLine;
 
             //final String url = IMG.getCoverUrl(bookPath);
@@ -197,8 +146,24 @@ public class TTSNotification {
             IMG.getCoverPageWithEffect(LibreraApp.context,bookPath,null).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
-                    remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
+                    // The notification uses Android's own media UI. Custom RemoteViews are not
+                    // set: once a MediaSession token is attached, Android 13+ renders media
+                    // notifications with the system template and ignores custom content views.
+                    final androidx.media.app.NotificationCompat.MediaStyle mediaStyle =
+                            new androidx.media.app.NotificationCompat.MediaStyle();
+                    final android.support.v4.media.session.MediaSessionCompat.Token token =
+                            TTSService.getMediaSessionToken();
+                    if (token != null) {
+                        mediaStyle.setMediaSession(token);
+                        mediaStyle.setShowActionsInCompactView(0, 1, 2);
+                    }
+
+                    final boolean isPlaying = TTSEngine.get().isPlaying();
+
+                    // Cover + title + DURATION for the system player. The duration is what makes
+                    // Android draw the seek bar; one "second" per page keeps the bar position
+                    // equal to the reading percentage.
+                    TTSService.updateMediaMetadata(fileMetaBookName, pageNumberText, resource, maxPages);
 
                     builder.setContentIntent(contentIntent) //
                             .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
@@ -206,10 +171,16 @@ public class TTSNotification {
                             .setOngoing(true)//
                             .setPriority(NotificationCompat.PRIORITY_HIGH) //
                             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
-                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+                            .setStyle(mediaStyle)
                             .setSilent(true)
-                            .setCustomBigContentView(remoteViews) ///
-                            .setCustomContentView(remoteViewsSmall); ///
+                            .setContentTitle(fileMetaBookName)
+                            .setContentText(pageNumberText)
+                            .setLargeIcon(resource)
+                            .addAction(R.drawable.glyphicons_173_rewind, "prev", prev)
+                            .addAction(isPlaying ? R.drawable.glyphicons_174_pause
+                                    : R.drawable.glyphicons_175_play, "play", playPause)
+                            .addAction(R.drawable.glyphicons_177_forward, "next", next)
+                            .addAction(R.drawable.glyphicons_599_menu_close, "stop", stopDestroy);
                     Notification n = builder.build(); //
 
                     nm.notify(NOT_ID, n);

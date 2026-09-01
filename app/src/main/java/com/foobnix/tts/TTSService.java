@@ -29,7 +29,13 @@ import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.KeyEvent;
 
 import androidx.core.app.ActivityCompat;
@@ -42,8 +48,14 @@ import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppData;
+import org.ebookdroid.common.settings.SettingsManager;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -60,9 +72,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.Arrays;
+import androidx.media.MediaBrowserServiceCompat;
+
+import java.util.ArrayList;
 import java.util.List;
 
-@TargetApi(Build.VERSION_CODES.O) public class TTSService extends Service {
+@TargetApi(Build.VERSION_CODES.O) public class TTSService extends MediaBrowserServiceCompat {
     public static final String EXTRA_PATH = "EXTRA_PATH";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
     public static final String EXTRA_INT = "INT";
@@ -79,6 +94,18 @@ import java.util.List;
     int height;
     AudioManager mAudioManager;
     MediaSessionCompat mMediaSessionCompat;
+    /**
+     * The running service's media session. TTSNotification is static, so it reads the token from
+     * here to attach it to the notification. Null while the service is not running.
+     */
+    private static volatile MediaSessionCompat sessionRef;
+
+    /**
+     * The media session works in milliseconds, so pages are mapped onto a virtual timeline of one
+     * "second" per page. That makes the system seek bar move one notch per page and keeps the
+     * position/duration ratio identical to the reading percentage.
+     */
+    static final long PAGE_UNIT_MS = 1000L;
     boolean isActivated;
     boolean isPlaying;
     Object audioFocusRequest;
@@ -258,6 +285,7 @@ import java.util.List;
     }
 
     @Override public void onCreate() {
+        super.onCreate();
         LOG.d(TAG, "onCreate:TTS playBookPage1");
         //startMyForeground();
         //
@@ -327,6 +355,70 @@ import java.util.List;
                 //  }
                 return true;
             }
+
+            @Override public void onPlayFromMediaId(String mediaId, Bundle extras) {
+                LOG.d(TAG, "onPlayFromMediaId", mediaId);
+                if (TxtUtils.isNotEmpty(mediaId) && !mediaId.equals(AppSP.get().lastBookPath)) {
+                    // Switching books: start the newly chosen one from its saved position.
+                    AppSP.get().lastBookPath = mediaId;
+                    // Resume where the book was left off. The position is stored in AppBook as a
+                    // fraction, so it needs the page count from the library metadata to resolve.
+                    int page = 0;
+                    try {
+                        final FileMeta meta = AppDB.get().getOrCreate(mediaId);
+                        final AppBook bs = SettingsManager.getBookSettings(mediaId);
+                        final Integer pages = meta != null ? meta.getPages() : null;
+                        if (bs != null && pages != null && pages > 0) {
+                            page = bs.getCurrentPage(pages).viewIndex;
+                        }
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                    AppSP.get().lastBookPage = page;
+                    cache = null;
+                }
+                playPage("", AppSP.get().lastBookPage, null);
+                EventBus.getDefault()
+                        .post(new TtsStatus());
+                TTSNotification.showLast();
+            }
+
+            @Override public void onPlay() {
+                dispatchAction(TTSNotification.TTS_PLAY);
+            }
+
+            @Override public void onPause() {
+                dispatchAction(TTSNotification.TTS_PAUSE);
+            }
+
+            @Override public void onStop() {
+                dispatchAction(TTSNotification.TTS_STOP_DESTROY);
+            }
+
+            @Override public void onSkipToNext() {
+                dispatchAction(TTSNotification.TTS_NEXT);
+            }
+
+            @Override public void onSkipToPrevious() {
+                dispatchAction(TTSNotification.TTS_PREV);
+            }
+
+            @Override public void onSeekTo(long pos) {
+                // Dragging the seek bar in the system media view jumps to that page.
+                final int maxPages = AppSP.get().lastBookPageCount;
+                int page = (int) (pos / PAGE_UNIT_MS);
+                if (page < 0) {
+                    page = 0;
+                }
+                if (maxPages > 0 && page > maxPages - 1) {
+                    page = maxPages - 1;
+                }
+                LOG.d(TAG, "onSeekTo", pos, "page", page);
+                playPage("", page, null);
+                EventBus.getDefault()
+                        .post(new TtsStatus());
+                TTSNotification.showLast();
+            }
         });
 
         Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
@@ -338,7 +430,11 @@ import java.util.List;
             LOG.e(e);
         }
 
-        //setSessionToken(mMediaSessionCompat.getSessionToken());
+        // Publishing the token is what lets Android Auto (and the Assistant) attach to this
+        // session once they have connected to the browser service.
+        setSessionToken(mMediaSessionCompat.getSessionToken());
+        sessionRef = mMediaSessionCompat;
+        updatePlaybackState();
 
         // mMediaSessionCompat.setPlaybackState(new
         // PlaybackStateCompat.Builder().setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).setState(PlaybackStateCompat.STATE_CONNECTING,
@@ -379,7 +475,90 @@ import java.util.List;
     }
 
     @Override public IBinder onBind(Intent intent) {
-        return null;
+        // MediaBrowserServiceCompat handles the browser-service binding itself; returning null
+        // here would stop Android Auto from ever connecting.
+        return super.onBind(intent);
+    }
+
+    private static final String MEDIA_ROOT_ID = "librera_tts_root";
+    /**
+     * Browse items travel to Android Auto over a Binder transaction with a ~1MB ceiling, and each
+     * item carries a cover bitmap, so the recent list is capped and the covers kept small.
+     */
+    private static final int MAX_BROWSE_ITEMS = 20;
+    private static final int BROWSE_COVER_PX = 128;
+
+    @Override public BrowserRoot onGetRoot(String clientPackageName, int clientUid, Bundle rootHints) {
+        LOG.d(TAG, "onGetRoot", clientPackageName, clientUid);
+        return new BrowserRoot(MEDIA_ROOT_ID, null);
+    }
+
+    @Override public void onLoadChildren(String parentId,
+            Result<List<MediaBrowserCompat.MediaItem>> result) {
+        if (!MEDIA_ROOT_ID.equals(parentId)) {
+            result.sendResult(new ArrayList<MediaBrowserCompat.MediaItem>());
+            return;
+        }
+        // Reading the database and decoding covers is far too slow for the main thread, so the
+        // result is detached and delivered once the list is built.
+        result.detach();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                result.sendResult(loadRecentBooks());
+            }
+        }, "tts-browse").start();
+    }
+
+    private List<MediaBrowserCompat.MediaItem> loadRecentBooks() {
+        final List<MediaBrowserCompat.MediaItem> items = new ArrayList<>();
+        try {
+            final List<FileMeta> recent = AppData.get().getAllRecent(true);
+            if (recent == null) {
+                return items;
+            }
+            for (FileMeta meta : recent) {
+                if (items.size() >= MAX_BROWSE_ITEMS) {
+                    break;
+                }
+                if (meta == null || TxtUtils.isEmpty(meta.getPath())) {
+                    continue;
+                }
+                final String path = meta.getPath();
+
+                String title = meta.getTitle();
+                if (TxtUtils.isEmpty(title)) {
+                    title = ExtUtils.getFileName(path);
+                }
+
+                final MediaDescriptionCompat.Builder description = new MediaDescriptionCompat.Builder()
+                        .setMediaId(path)
+                        .setTitle(title)
+                        .setSubtitle(meta.getAuthor());
+
+                final Bitmap cover = loadCover(path);
+                if (cover != null) {
+                    description.setIconBitmap(cover);
+                }
+
+                items.add(new MediaBrowserCompat.MediaItem(description.build(),
+                        MediaBrowserCompat.MediaItem.FLAG_PLAYABLE));
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        LOG.d(TAG, "loadRecentBooks", items.size());
+        return items;
+    }
+
+    private Bitmap loadCover(String path) {
+        try {
+            return IMG.getCoverPageWithEffect(getApplicationContext(), path, null)
+                      .submit(BROWSE_COVER_PX, BROWSE_COVER_PX)
+                      .get();
+        } catch (Throwable e) {
+            LOG.d(TAG, "loadCover failed", path);
+            return null;
+        }
     }
 
     public boolean startMyForeground() {
@@ -566,6 +745,7 @@ import java.util.List;
         TTSEngine.get()
                  .stop(mMediaSessionCompat);
         releaseWakeLock();
+        updatePlaybackState();
         EventBus.getDefault()
                 .post(new TtsStatus());
     }
@@ -600,11 +780,87 @@ import java.util.List;
         }
     }
 
+    /**
+     * Token of the running session, or null when the service is not up. Used by TTSNotification.
+     */
+    public static MediaSessionCompat.Token getMediaSessionToken() {
+        final MediaSessionCompat session = sessionRef;
+        return session != null ? session.getSessionToken() : null;
+    }
+
+    /**
+     * Publishes the play/pause state to the media session. Without a PlaybackState the system
+     * media controls (lock screen, quick settings, Bluetooth, Android Auto) have no actions to
+     * show, so the session token on its own would not be enough.
+     */
+    void updatePlaybackState() {
+        try {
+            final MediaSessionCompat session = mMediaSessionCompat;
+            if (session == null) {
+                return;
+            }
+            final boolean playing = TTSEngine.get().isPlaying();
+            session.setPlaybackState(new PlaybackStateCompat.Builder()
+                    .setActions(PlaybackStateCompat.ACTION_PLAY
+                            | PlaybackStateCompat.ACTION_PAUSE
+                            | PlaybackStateCompat.ACTION_PLAY_PAUSE
+                            | PlaybackStateCompat.ACTION_STOP
+                            | PlaybackStateCompat.ACTION_SKIP_TO_NEXT
+                            | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
+                            | PlaybackStateCompat.ACTION_SEEK_TO)
+                    // Playback speed 0 keeps the seek bar parked on the current page instead of
+                    // letting the system extrapolate it forward like a running track.
+                    .setState(playing ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED,
+                            AppSP.get().lastBookPage * PAGE_UNIT_MS, 0f)
+                    .build());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /**
+     * Routes a media-session transport callback through the same intent handling that the
+     * notification buttons use, so both paths behave identically (mp3 mode included).
+     */
+    void dispatchAction(String action) {
+        try {
+            startService(new Intent(action, null, this, TTSService.class));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /**
+     * Publishes what the system media view shows: cover, title and - through DURATION - the length
+     * of the seek bar. Without a duration Android draws no seek bar at all.
+     */
+    public static void updateMediaMetadata(String title, String subTitle, Bitmap cover, int maxPages) {
+        try {
+            final MediaSessionCompat session = sessionRef;
+            if (session == null) {
+                return;
+            }
+            final MediaMetadataCompat.Builder b = new MediaMetadataCompat.Builder()
+                    .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+                    .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, subTitle)
+                    .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, subTitle)
+                    .putLong(MediaMetadataCompat.METADATA_KEY_DURATION,
+                            maxPages > 0 ? maxPages * PAGE_UNIT_MS : 0L);
+            if (cover != null) {
+                b.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, cover);
+            }
+            session.setMetadata(b.build());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
         //releaseWakeLock();
         acquireWakeLock();
         mMediaSessionCompat.setActive(true);
+        updatePlaybackState();
 
         if (!AppState.get().allowOtherMusic) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -836,6 +1092,7 @@ import java.util.List;
         }
 
         //mMediaSessionCompat.setCallback(null);
+        sessionRef = null;
         mMediaSessionCompat.release();
 
         if (cache != null) {
