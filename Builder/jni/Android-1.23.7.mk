@@ -36,7 +36,7 @@ LOCAL_SRC_FILES := \
 	cbdroidbridge.c \
 	jni_concurrent.c \
 	androidfonts.c \
-	libmupdf-librera.c
+	libmupdf_librera_1_23_7.c
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java

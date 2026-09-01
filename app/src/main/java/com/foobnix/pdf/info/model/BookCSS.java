@@ -611,6 +611,10 @@ public class BookCSS {
         builder.append("documentStyle" + documentStyle + "{}");
         builder.append("isAutoHypens1" + isAutoHypens + AppSP.get().hypenLang + "{}");
 
+        if(AppSP.get().isRTL){
+            builder.append("html {direction:rtl}");
+        }
+
         // PAGE BEGIN
         builder.append("@page {");
         builder.append(String.format("margin-top:%s !important;", em(marginTop * 2)));
@@ -618,6 +622,8 @@ public class BookCSS {
         builder.append(String.format("margin-bottom:%s !important;", em((marginBottom - 1) * 2)));
         builder.append(String.format("margin-left:%s !important;", em(marginLeft * 2)));
         builder.append("}");
+
+
         // PAGE END
 
         builder.append(String.format("empty-line {padding:%s;}", em(emptyLine)));

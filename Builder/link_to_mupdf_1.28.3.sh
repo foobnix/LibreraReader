@@ -6,10 +6,17 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.23.5"
-git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
+VERSION_TAG="1.28.3"
+MUPDF_FOLDER=mupdf-$VERSION_TAG
 
-MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
+if [ "$1" == "fdroid" ]; then
+  MUPDF_FOLDER=$MUPDF_FOLDER-fdroid
+fi
+
+git clone --recursive https://github.com/ArtifexSoftware/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
+
+MUPDF_ROOT=$BUILD_DIR/$MUPDF_FOLDER
+
 
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 mkdir -p $MUPDF_JAVA/jni
@@ -22,9 +29,9 @@ echo "MUPDF :" $VERSION_TAG
 echo "================== "
 
 mkdir $SRC
-mkdir mupdf-$VERSION_TAG
+mkdir $MUPDF_FOLDER
 
-cd mupdf-$VERSION_TAG
+cd $MUPDF_FOLDER
 
 echo "=================="
 
@@ -71,10 +78,14 @@ cp -rpv $DEST/fitz/unzip.c        $SRC/unzip.c
 cp -rpv $DEST/fitz/directory.c    $SRC/directory.c
 cp -rpv $DEST/fitz/xml.c          $SRC/xml.c
 cp -rpv $DEST/fitz/list-device.c  $SRC/list-device.c
+cp -rpv $DEST/pdf/pdf-xref.c      $SRC/pdf-xref.c
 
 cp -rpv $DEST/fitz/image-imp.h                              $SRC/image-imp.h
 cp -rpv $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h  $SRC/compressed-buffer.h
 cp -rpv $MUPDF_ROOT/include/mupdf/fitz/context.h            $SRC/context.h
+
+cp -rpv $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/j2k.c $SRC/j2k.c
+cp -rpv $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c  $SRC/pi.c
 
 else
 
@@ -92,46 +103,77 @@ cp -rpv $SRC/unzip.c             $DEST/fitz/unzip.c
 cp -rpv $SRC/directory.c         $DEST/fitz/directory.c
 cp -rpv $SRC/xml.c               $DEST/fitz/xml.c
 cp -rpv $SRC/list-device.c       $DEST/fitz/list-device.c
+cp -rpv $SRC/pdf-xref.c          $DEST/pdf/pdf-xref.c
 
 cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
 cp -rpv $SRC/context.h $MUPDF_ROOT/include/mupdf/fitz/context.h
 
+cp -rpv $SRC/j2k.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/j2k.c
+cp -rpv $SRC/pi.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c
+
 cd $MUPDF_JAVA
 
-NDK_VERSION="26.1.10909125"
+NDK_VERSION="30.0.14904198"
+FDRIOD_NDK_VERSION="21.4.7075529"
 
-
-if [ "$1" == "clean_ndk" ]; then
-/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
-/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build clean
-rm -rf $MUPDF_JAVA/obj
+if [ "$(uname)" == "Darwin" ]; then
+  FDRIOD_NDK_VERSION=$NDK_VERSION
 fi
 
-start=`date +%s`
+PATH1=/Users/ivanivanenko/Library/Android/sdk/ndk
+PATH2=/home/dev/Android/Sdk/ndk
 
+if [ ! -d "$PATH1/$NDK_VERSION" ]; then
+    echo "-- NDK ERROR --"
+    echo "$PATH1/$NDK_VERSION NDK NOT FOUND"
+    echo "----"
+fi
 
-for NDK in "/Volumes/SSD-USB/Android/Sdk/ndk/$NDK_VERSION/ndk-build" "/home/dev/Android/Sdk/ndk/$NDK_VERSION/ndk-build";
-do 
-  if [ -f "$NDK" ]; then
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=armeabi-v7a &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=arm64-v8a &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86 &
-  $NDK NDK_APPLICATION_MK=jni/Application-19.mk APP_ABI=x86_64
+if [ "$1" == "clean_ndk" ]; then
+  rm -rf $MUPDF_JAVA/obj
+
+  if [ "$2" == "fdroid" ]; then
+   $PATH1/$FDRIOD_NDK_VERSION/ndk-build clean
+   $PATH2/$FDRIOD_NDK_VERSION/ndk-build clean
+  else
+   $PATH1/$NDK_VERSION/ndk-build clean
+   $PATH2/$NDK_VERSION/ndk-build clean
   fi
-done
 
-echo "=================="
-echo "MUPDF:" $MUPDF_JAVA
-echo "LIBS:"  $LIBS
-echo "=================="
-
-
-if [ "$1" == "clean_ndk" ]; then
-  cd $BUILD_DIR
-  end=`date +%s`
-  runtime=$( echo "$end - $start" | bc -l )
-  echo "Run time: ${runtime}"
 fi
 
+if [ "$1" == "fdroid" ]; then
+  for NDK in "$PATH1/$FDRIOD_NDK_VERSION/ndk-build" "$PATH2/$FDRIOD_NDK_VERSION/ndk-build";
+    do
+      if [ -f "$NDK" ]; then
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
+      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+      echo "=================="
+      echo "NDK:"  $NDK
+      echo "APP_PLATFORM=android-24"
+      fi
+    done
+else
+  for NDK in "$PATH1/$NDK_VERSION/ndk-build" "$PATH2/$NDK_VERSION/ndk-build";
+  do
+    if [ -f "$NDK" ]; then
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
+    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+    echo "=================="
+    echo "NDK:"  $NDK
+    echo "APP_PLATFORM=android-24"
+    fi
+  done
+
+fi
+
+echo "=================="
+echo "MUPDF:"$MUPDF_JAVA
+echo "JNI:"$LIBS
+echo "=================="
 fi
