@@ -103,6 +103,31 @@ cd ..
 
 F-Droid build does also not need a **google-services.json**
 
+## Android versions
+
+| Librera version | Min Android — PRO | Min Android — F-Droid |
+|---|---|---|
+| 9.4.21 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.4.8 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.4.5 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.75 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.63 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.55 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.35 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.19 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.10 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.3.1 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.2.40 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.2.31 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.2.21 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.2.4 | 7.0 (API 24) | 7.0 (API 24) |
+| 9.1.35 | 7.0 (API 24) | 5.0 (API 21) |
+| 9.1.29 | 7.0 (API 24) | 5.0 (API 21) |
+| 9.1.14 | 7.0 (API 24) | 4.1 (API 16) |
+| 9.1.7 | 7.0 (API 24) | 4.1 (API 16) |
+| 9.0.5 | 7.0 (API 24) | 4.1 (API 16) |
+| 8.9.182 | 5.0 (API 21) | 4.1 (API 16) |
+
 ## Librera depends on:
 
 MuPDF - (AGPL License) https://github.com/ArtifexSoftware/mupdf
