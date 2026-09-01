@@ -110,8 +110,6 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 ### 9.5.0 (unreleased)
 [APK Direct Download](http://beta.librera.mobi)
 
-Taken from the commits since the 9.4.21 tag; there is no release entry for it yet.
-
 * Upgraded the MuPDF engine to 1.28.3 (Librera patches ported from 1.23.7)
 * Text selection now works while "crop white space" is enabled, in both book and scroll modes
 * Reading direction (RTL) can now be set in scroll mode, not only in book mode
