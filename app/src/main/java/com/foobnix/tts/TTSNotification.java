@@ -189,7 +189,7 @@ public class TTSNotification {
                     TTSService.updateMediaMetadata(fileMetaBookName, pageNumberText, resource);
 
                     builder.setContentIntent(contentIntent) //
-                            .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
+                            .setSmallIcon(R.drawable.ic_notification_librera) //
                             .setColor(color)
                             .setOngoing(true)//
                             .setPriority(NotificationCompat.PRIORITY_HIGH) //

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Librera mark, converted from https://librera.app/assets/img/librera-mark.svg
+    (viewBox 0 0 100 100, three stroked paths, stroke-width 7, round cap/join).
+
+    Drawn in white because notification small icons are treated as alpha masks: the system
+    recolours them, so only the shape and its transparency matter.
+
+    The source art only covers x 13.5..86.5 and y 17.3..80.5 once the stroke is included, so the
+    group scales it up by 1.3699 and re-centres it to fill the icon edge to edge. That also
+    thickens the stroke to an effective ~9.6 units, which reads far better at status bar size.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <group
+        android:scaleX="1.3699"
+        android:scaleY="1.3699"
+        android:translateX="-18.49"
+        android:translateY="-17.01">
+
+        <path
+            android:pathData="M50,29 C43,22 30,19 17,22 L17,72 C30,69 43,71 50,77"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path
+            android:pathData="M50,29 C57,22 70,19 83,22 L83,72 C70,69 57,71 50,77"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path
+            android:pathData="M50,29 L50,77"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+    </group>
+</vector>

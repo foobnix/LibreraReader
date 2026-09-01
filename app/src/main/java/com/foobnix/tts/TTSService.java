@@ -631,7 +631,7 @@ import java.util.List;
                 PendingIntent.FLAG_IMMUTABLE);
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.CHANNEL_PLAYBACK) //
                                                                                                   .setSmallIcon(
-                                                                                                          R.drawable.glyphicons_smileys_100_headphones) //
+                                                                                                          R.drawable.ic_notification_librera) //
                                                                                                   .setContentTitle(
                                                                                                           Apps.getApplicationName(
                                                                                                                   this)) //
