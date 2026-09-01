@@ -1,0 +1,4 @@
+9.3.35
+* Tags functionality rewritten.
+* Book click action on single tap and long tap.
+* Fixes.

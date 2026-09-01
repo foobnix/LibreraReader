@@ -1,0 +1,6 @@
+9.3.63
+* Scan for new books at app launch.
+* Better Markdown (.md) support.
+* Table of contents for .txt files.
+* Added Galician (gl) translation.
+* Improvements and fixes.

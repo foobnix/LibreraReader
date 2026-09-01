@@ -103,6 +103,57 @@ cd ..
 
 F-Droid build does also not need a **google-services.json**
 
+## What's new
+
+Full release notes: https://github.com/foobnix/LibreraReader/releases
+
+### 9.5.0 (unreleased)
+
+Taken from the commits since the 9.4.21 tag; there is no release entry for it yet.
+
+* Upgraded the MuPDF engine to 1.28.3 (Librera patches ported from 1.23.7)
+* Text selection now works while "crop white space" is enabled, in both book and scroll modes
+* Reading direction (RTL) can now be set in scroll mode, not only in book mode
+* Annotating is allowed while crop is enabled
+* Fixed reflow when toggling "crop white space"
+* Book mode: the clock/battery ticker stops when the status bar is hidden
+* New "Show progress slider" setting to toggle the seek bar row
+* Improved jump history and "Back" arrow visibility when using the slider
+* More consistent brightness values when adjusting by scroll
+
+### 9.4.21
+
+* Fixed text replacement for multiple words.
+* Updated the UI for changing text and background colors.
+* Added an alert for permanent file deletion.
+* Clicking on File Information metadata now navigates to the library.
+* Added the "iw" translation and fixed other translations.
+* Fixed the grid view widget.
+* Fixed the eye reset timer.
+
+### 9.4.8
+
+* All-storage access is optional.
+* Apps can use the system file manager to open individual files.
+* Fixed choose profile.
+
+### 9.3.75
+
+* Fixed Contrast and Brigtness
+* Advanced option to Enable Contrast and Brigtness for all reading mods
+* Fixed Chinese lang
+* Fixed search in many pdf, epub
+
+### 9.3.63
+
+* Improvements
+* Fixes
+
+### 9.3.55
+
+* Fixes
+* Librera for macOS, supports PDF, EPUB, FB2, CBZ, CBR (beta.librera.mobi for downloads)
+
 ## Android versions
 
 | App Version | Librera PRO  | Librera F-Droid |
@@ -128,30 +179,56 @@ F-Droid build does also not need a **google-services.json**
 | 9.0.5       | 7.0 (API 24) | 4.1 (API 16)    |
 | 8.9.182     | 5.0 (API 21) | 4.1 (API 16)    |
 
-## Librera depends on:
+## Librera depends on
 
-MuPDF - (AGPL License) https://github.com/ArtifexSoftware/mupdf
+| Library    | Version          | License              |
+|------------|------------------|----------------------|
+| MuPDF      | 1.28.3 (1.23.7)  | AGPL-3.0             |
+| DjVuLibre  | 3.5.28           | GPL-2.0-or-later     |
+| antiword   | 1.3.1            | GPL-2.0              |
+| libmobi    | 0.12             | LGPL-3.0-or-later    |
+| hqx        | 1.2              | LGPL-2.1-or-later    |
+| LAME       | 3.100            | LGPL-2.0-or-later    |
+| libwebp    | 1.3.2            | BSD-3-Clause         |
 
-* ebookdroid
-* djvulibre
-* hpx
-* junrar
-* glide
-* libmobi
-* commons-compress
-* eventbus
-* greendao
-* jsoup
-* juniversalchardet
-* commons-compress
-* okhttp3
-* okhttp-digest
-* okio
-* rtfparserkit
-* java-mammoth
-* zip4j
+| Component                                 | License                       |
+|-------------------------------------------|-------------------------------|
+| EBookDroid (`org.ebookdroid`, `org.emdev`) | GPL-3.0 <sup>1</sup>          |
+| wmf2svg (`net.arnx.wmf2svg`)               | Apache-2.0                    |
+| PBKDF2 (`de.rtner`)                        | LGPL-2.1-or-later             |
+| opendocument.java (`at.stefl`)             | not declared <sup>1</sup>     |
+| DragLinearLayout (`com.jmedeisis`)         | Apache-2.0 <sup>1</sup>       |
+| HSV colour picker (`com.buzzingandroid`)   | Apache-2.0 <sup>1</sup>       |
+| android-lame JNI (`com.github.axet`)       | Apache-2.0 <sup>1</sup>       |
 
-Librera is distributed under the GPL
+| Dependency                                  | Version        | License                     |
+|---------------------------------------------|----------------|-----------------------------|
+| androidx.appcompat:appcompat                | 1.7.1          | Apache-2.0                  |
+| androidx.cardview:cardview                  | 1.0.0          | Apache-2.0                  |
+| androidx.legacy:legacy-support-v4           | 1.0.0          | Apache-2.0                  |
+| androidx.multidex:multidex                  | 2.0.1          | Apache-2.0                  |
+| androidx.recyclerview:recyclerview          | 1.4.0          | Apache-2.0                  |
+| androidx.work:work-runtime                  | 2.11.2         | Apache-2.0                  |
+| org.greenrobot:eventbus                     | 3.3.1          | Apache-2.0                  |
+| org.greenrobot:greendao                     | 3.3.0          | Apache-2.0                  |
+| org.greenrobot:greendao-api                 | 3.3.0          | Apache-2.0                  |
+| org.jsoup:jsoup                             | 1.22.2         | MIT                         |
+| com.github.albfernandez:juniversalchardet   | 2.5.0          | MPL-1.1 / GPL-3.0 / LGPL-3.0 |
+| com.squareup.okhttp3:okhttp                 | 3.12.6         | Apache-2.0                  |
+| io.github.rburgst:okhttp-digest             | 3.1.1          | Apache-2.0                  |
+| com.squareup.okio:okio                      | 1.17.6         | Apache-2.0                  |
+| com.github.joniles:rtfparserkit             | 1.16.0         | Apache-2.0                  |
+| org.zwobble.mammoth:mammoth                 | 1.5.0          | BSD-2-Clause                |
+| javax.xml.stream:stax-api                   | 1.0-2          | CDDL-1.0 / GPL-2.0          |
+| net.lingala.zip4j:zip4j                     | 2.11.6         | Apache-2.0                  |
+| com.github.bumptech.glide:glide             | 4.16.0         | BSD-2-Clause and Apache-2.0 |
+| commons-logging:commons-logging-api         | 1.1            | Apache-2.0                  |
+| com.google.guava:guava                      | 33.6.0-android | Apache-2.0                  |
+| org.commonmark:commonmark                   | 0.29.0         | BSD-2-Clause                |
+| org.commonmark:commonmark-ext-gfm-tables    | 0.29.0         | BSD-2-Clause                |
+| com.github.junrar:junrar                       | 7.6.0                    | UnRar License                    |
+
+Librera is distributed under the GPL v3
 
 ## License
 

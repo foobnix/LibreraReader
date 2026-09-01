@@ -1,0 +1,10 @@
+9.3.19
+* Fixed a crash on password-protected files.
+* Fixed the outline and DjVu rendering.
+* Fixed RTL in two-page mode.
+* Fixed opening files and colors.
+
+9.3.10
+* Super fast reader.
+* Migrated to ARGB_8888 rendering.
+* Added current folder, fixed sort order.

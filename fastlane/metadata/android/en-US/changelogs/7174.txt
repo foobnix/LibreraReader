@@ -1,0 +1,13 @@
+9.4.21
+* Fixed text replacement for multiple words.
+* Updated the UI for changing text and background colors.
+* Added an alert for permanent file deletion.
+* Clicking File Information metadata now navigates to the library.
+* Added the "iw" translation and fixed other translations.
+* Fixed the grid view widget.
+* Fixed the eye reset timer.
+
+9.4.8
+* All-storage access is optional.
+* Apps can use the system file manager to open individual files.
+* Fixed choose profile.

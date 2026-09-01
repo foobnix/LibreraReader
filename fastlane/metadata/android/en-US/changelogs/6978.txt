@@ -1,0 +1,3 @@
+9.3.55
+* Librera for macOS: supports PDF, EPUB, FB2, CBZ, CBR (downloads at beta.librera.mobi).
+* Fixes.

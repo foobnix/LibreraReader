@@ -1,0 +1,5 @@
+9.3.75
+* Fixed Contrast and Brightness.
+* Advanced option to enable Contrast and Brightness for all reading modes.
+* Fixed Chinese language.
+* Fixed search in many PDF and EPUB files.

@@ -1,0 +1,5 @@
+9.2.40
+* Do not open a completed book on start.
+* Open corrupted documents.
+* Fixed opening PDF files.
+* Fixed reset popups.
