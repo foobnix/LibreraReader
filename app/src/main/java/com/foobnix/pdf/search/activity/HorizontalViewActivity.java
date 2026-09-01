@@ -1381,18 +1381,29 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             LOG.d("Update time and updateTimePower");
             try {
-                if (pagesTime != null) {
-                    pagesTime.setText(UiSystemUtils.getSystemTime(HorizontalViewActivity.this));
-                    pagesTime1.setText(UiSystemUtils.getSystemTime(HorizontalViewActivity.this));
+                if (pagesTime == null || !(pagesTime.isShown() || pagesPower.isShown() || pagesTime1.isShown())) {
+                    LOG.d("updateTimePower stopped: clock and battery are not shown");
+                    return;
+                }
+                final String time = UiSystemUtils.getSystemTime(HorizontalViewActivity.this);
+                if (!time.contentEquals(pagesTime.getText())) {
+                    pagesTime.setText(time);
+                }
+                if (!time.contentEquals(pagesTime1.getText())) {
+                    pagesTime1.setText(time);
+                }
 
-                    int myLevel = UiSystemUtils.getPowerLevel(HorizontalViewActivity.this);
-                    pagesPower.setText(myLevel + "%");
+                int myLevel = UiSystemUtils.getPowerLevel(HorizontalViewActivity.this);
+                final String power = myLevel + "%";
+                if (!power.contentEquals(pagesPower.getText())) {
+                    pagesPower.setText(power);
                 }
             } catch (Exception e) {
                 LOG.e(e);
             }
             LOG.d("Update time and power");
-            handlerTimer.postDelayed(updateTimePower, AppState.APP_UPDATE_TIME_IN_UI);
+            final long minuteMs = TimeUnit.MINUTES.toMillis(1);
+            handlerTimer.postDelayed(updateTimePower, minuteMs - System.currentTimeMillis() % minuteMs);
 
         }
     };
@@ -1430,6 +1441,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             pagesPower.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.INVISIBLE);
             pagesTime.setVisibility(AppState.get().isShowTime ? View.VISIBLE : View.INVISIBLE);
         }
+
+        handlerTimer.removeCallbacks(updateTimePower);
+        handlerTimer.post(updateTimePower);
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) bottomPanel.getLayoutParams();
 
@@ -1556,6 +1570,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         handler.removeCallbacks(closeRunnable);
+        handlerTimer.removeCallbacks(updateTimePower);
         handlerTimer.post(updateTimePower);
 
         if (AppState.get().inactivityTime != -1) {
