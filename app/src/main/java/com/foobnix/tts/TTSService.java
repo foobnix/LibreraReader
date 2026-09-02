@@ -94,20 +94,12 @@ import java.util.List;
     int height;
     AudioManager mAudioManager;
     MediaSessionCompat mMediaSessionCompat;
-    /**
-     * The running service's media session. TTSNotification is static, so it reads the token from
-     * here to attach it to the notification. Null while the service is not running.
-     */
+
     private static volatile MediaSessionCompat sessionRef;
 
-    // --- estimated listening time -------------------------------------------------------
-    // The media timeline shows how long the book takes to read aloud: one page is timed while
-    // it is spoken and the average is multiplied by the page count. Until a page has actually
-    // been timed, the length of its text and the current speech rate give a starting estimate.
 
-    /** Rough TTS throughput in characters per second at speech rate 1.0. */
     private static final double CHARS_PER_SECOND = 15.0;
-    /** Ignore measurements outside this range - they mean the page was skipped or paused. */
+
     private static final long MIN_PAGE_MS = 1_500L;
     private static final long MAX_PAGE_MS = 30 * 60 * 1_000L;
 
@@ -115,13 +107,11 @@ import java.util.List;
     private static volatile long avgPageMs = 0;
     private static volatile int lastPageChars = 0;
 
-    /** Called when a page starts being spoken. */
     static void onPageSpeechStarted(String text) {
         pageStartMs = System.currentTimeMillis();
         lastPageChars = text != null ? text.length() : 0;
     }
 
-    /** Called when a page finished being spoken; folds the real duration into the average. */
     static void onPageSpeechFinished() {
         final long start = pageStartMs;
         if (start <= 0) {
@@ -137,7 +127,6 @@ import java.util.List;
         LOG.d(TAG, "page spoken in", elapsed, "avg", avgPageMs);
     }
 
-    /** Best estimate of how long a single page takes to read aloud, or 0 when unknown. */
     private static long estimatedPageMs() {
         if (avgPageMs > 0) {
             return avgPageMs;
@@ -152,7 +141,6 @@ import java.util.List;
         return 0;
     }
 
-    /** Estimated time to read the whole book aloud, or 0 while still unknown. */
     static long bookDurationMs() {
         final long perPage = estimatedPageMs();
         final int pages = AppSP.get().lastBookPageCount;
@@ -315,18 +303,15 @@ import java.util.List;
         AppSP.get().lastBookPage = page;
 
         Intent intent = playBookIntent(page, path, anchor);
-        //UserDefinedFileAttributeView
-//        PendingIntent play = PendingIntent.getService(LibreraApp.context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-//        try {
-//            play.send();
-//        } catch (CanceledException e) {
-//            LOG.e(e);
-//        }
 
-        if (Build.VERSION.SDK_INT >= 26) {
-            LibreraApp.context.startForegroundService(intent);
-        } else {
-            LibreraApp.context.startService(intent);
+        try {
+            if (Build.VERSION.SDK_INT >= 26) {
+                LibreraApp.context.startForegroundService(intent);
+            } else {
+                LibreraApp.context.startService(intent);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
@@ -625,6 +610,18 @@ import java.util.List;
         return isStartForeground;
     }
 
+    private String placeholderText() {
+        try {
+            final String path = AppSP.get().lastBookPath;
+            if (TxtUtils.isNotEmpty(path)) {
+                return ExtUtils.getFileName(path);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return getString(R.string.please_wait);
+    }
+
     private void startServiceWithNotification() {
         PendingIntent stopDestroy = PendingIntent.getService(this, 0,
                 new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class),
@@ -636,8 +633,7 @@ import java.util.List;
                                                                                                           Apps.getApplicationName(
                                                                                                                   this)) //
                                                                                                   .setContentText(
-                                                                                                          getString(
-                                                                                                                  R.string.please_wait))
+                                                                                                          placeholderText())
                                                                                                   .addAction(
                                                                                                           R.drawable.glyphicons_599_menu_close,
                                                                                                           getString(
