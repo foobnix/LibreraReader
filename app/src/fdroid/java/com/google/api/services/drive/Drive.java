@@ -80,6 +80,22 @@ public class Drive {
         return null;
     }
 
+    public Drive changes() {
+        return null;
+    }
+
+    public Drive list(String pageToken) {
+        return null;
+    }
+
+    public Drive setIncludeRemoved(boolean includeRemoved) {
+        return null;
+    }
+
+    public Drive getStartPageToken() {
+        return null;
+    }
+
     public static class Builder {
 
         public Builder(Object newCompatibleTransport, GsonFactory gsonFactory, GoogleAccountCredential credential) {

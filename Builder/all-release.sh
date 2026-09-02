@@ -17,7 +17,8 @@ fi
 
 cd ../
 
-./gradlew clean incVersion
+#./gradlew clean incVersion
+./gradlew clean
 
 ./gradlew assembleLibreraRelease
 ./gradlew assemblePdf_v2Release

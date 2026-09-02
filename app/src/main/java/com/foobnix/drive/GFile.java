@@ -40,6 +40,7 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.ChangeList;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.StartPageToken;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 
@@ -638,7 +639,7 @@ public class GFile {
             String newToken = null;
             boolean changed = false;
             while (page != null) {
-                final ChangeList list = googleDriveService.changes()
+                final ChangeList list = (ChangeList) googleDriveService.changes()
                         .list(page)
                         .setSpaces("drive")
                         .setIncludeRemoved(true)
@@ -668,10 +669,10 @@ public class GFile {
 
     private static void rememberSyncedState(Context c, java.io.File root) {
         try {
-            final String token = googleDriveService.changes()
+            final StartPageToken startPage = (StartPageToken) googleDriveService.changes()
                     .getStartPageToken()
-                    .execute()
-                    .getStartPageToken();
+                    .execute();
+            final String token = startPage.getStartPageToken();
             syncState(c).edit()
                     .putString(KEY_CHANGES_TOKEN, token)
                     .putLong(KEY_LOCAL_SIGNATURE, localSignature(root))
