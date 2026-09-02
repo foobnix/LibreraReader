@@ -182,15 +182,38 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 
 ## Android versions
 
-| App Version | Librera PRO  | Librera F-Droid |
-|-------------|--------------|-----------------|
-| 9.2.4+      | 7.0 (API 24) | 7.0 (API 24)    |
-| 9.1.35      | 7.0 (API 24) | 5.0 (API 21)    |
-| 9.1.29      | 7.0 (API 24) | 5.0 (API 21)    |
-| 9.1.14      | 7.0 (API 24) | 4.1 (API 16)    |
-| 9.1.7       | 7.0 (API 24) | 4.1 (API 16)    |
-| 9.0.5       | 7.0 (API 24) | 4.1 (API 16)    |
-| 8.9.182     | 5.0 (API 21) | 4.1 (API 16)    |
+| App Version | Librera PRO  | Librera F-Droid | Release Date |
+|-------------|--------------|-----------------|--------------|
+| [9.5.7](https://github.com/foobnix/LibreraReader/releases/tag/9.5.7) | 7.0 (API 24) | 7.0 (API 24)    | 2026-09-02 |
+| [9.4.21](https://github.com/foobnix/LibreraReader/releases/tag/9.4.21) | 7.0 (API 24) | 7.0 (API 24)    | 2026-07-21 |
+| [9.4.8](https://github.com/foobnix/LibreraReader/releases/tag/9.4.8) | 7.0 (API 24) | 7.0 (API 24)    | 2026-05-21 |
+| [9.4.5](https://github.com/foobnix/LibreraReader/releases/tag/9.4.5) | 7.0 (API 24) | 7.0 (API 24)    | 2026-05-19 |
+| [9.3.75](https://github.com/foobnix/LibreraReader/releases/tag/9.3.75) | 7.0 (API 24) | 7.0 (API 24)    | 2026-04-24 |
+| [9.3.63](https://github.com/foobnix/LibreraReader/releases/tag/9.3.63) | 7.0 (API 24) | 7.0 (API 24)    | 2026-03-02 |
+| [9.3.55](https://github.com/foobnix/LibreraReader/releases/tag/9.3.55) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-29 |
+| [9.3.35](https://github.com/foobnix/LibreraReader/releases/tag/9.3.35) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-23 |
+| [9.3.19](https://github.com/foobnix/LibreraReader/releases/tag/9.3.19) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-20 |
+| [9.3.10](https://github.com/foobnix/LibreraReader/releases/tag/9.3.10) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-15 |
+| [9.3.1](https://github.com/foobnix/LibreraReader/releases/tag/9.3.1) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-12 |
+| [9.2.40](https://github.com/foobnix/LibreraReader/releases/tag/9.2.40) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-08 |
+| [9.2.31](https://github.com/foobnix/LibreraReader/releases/tag/9.2.31) | 7.0 (API 24) | 7.0 (API 24)    | 2026-01-02 |
+| [9.2.21](https://github.com/foobnix/LibreraReader/releases/tag/9.2.21) | 7.0 (API 24) | 7.0 (API 24)    | 2025-12-30 |
+| [9.2.4](https://github.com/foobnix/LibreraReader/releases/tag/9.2.4) | 7.0 (API 24) | 7.0 (API 24)    | 2025-12-25 |
+| [9.1.35](https://github.com/foobnix/LibreraReader/releases/tag/9.1.35) | 7.0 (API 24) | 5.0 (API 21)    | 2025-12-08 |
+| [9.1.29](https://github.com/foobnix/LibreraReader/releases/tag/9.1.29) | 7.0 (API 24) | 5.0 (API 21)    | 2025-12-01 |
+| [9.1.14](https://github.com/foobnix/LibreraReader/releases/tag/9.1.14) | 7.0 (API 24) | 4.1 (API 16)    | 2025-11-27 |
+| [9.1.7](https://github.com/foobnix/LibreraReader/releases/tag/9.1.7) | 7.0 (API 24) | 4.1 (API 16)    | 2025-11-25 |
+| [9.0.5](https://github.com/foobnix/LibreraReader/releases/tag/9.0.5) | 7.0 (API 24) | 4.1 (API 16)    | 2025-07-10 |
+| [9.0.1](https://github.com/foobnix/LibreraReader/releases/tag/9.0.1) | 7.0 (API 24) | 4.1 (API 16)    | 2025-07-09 |
+| [8.9.182](https://github.com/foobnix/LibreraReader/releases/tag/8.9.182) | 5.0 (API 21) | 4.1 (API 16)    | 2024-11-06 |
+| [8.9.181](https://github.com/foobnix/LibreraReader/releases/tag/8.9.181) | 5.0 (API 21) | 4.1 (API 16)    | 2024-10-24 |
+| [8.9.175](https://github.com/foobnix/LibreraReader/releases/tag/8.9.175) | 5.0 (API 21) | 4.1 (API 16)    | 2024-05-13 |
+| [8.9.170](https://github.com/foobnix/LibreraReader/releases/tag/8.9.170) | 5.0 (API 21) | 4.1 (API 16)    | 2024-04-05 |
+| [8.9.161](https://github.com/foobnix/LibreraReader/releases/tag/8.9.161) | 5.0 (API 21) | 4.1 (API 16)    | 2024-03-12 |
+| [8.9.158](https://github.com/foobnix/LibreraReader/releases/tag/8.9.158) | 5.0 (API 21) | 4.1 (API 16)    | 2024-01-05 |
+| [8.9.147](https://github.com/foobnix/LibreraReader/releases/tag/8.9.147) | 5.0 (API 21) | 4.1 (API 16)    | 2023-12-29 |
+| [8.9.133](https://github.com/foobnix/LibreraReader/releases/tag/8.9.133) | 5.0 (API 21) | 4.1 (API 16)    | 2023-12-21 |
+| [8.9.126](https://github.com/foobnix/LibreraReader/releases/tag/8.9.126) | 5.0 (API 21) | 4.1 (API 16)    | 2023-12-18 |
 
 ## Librera depends on
 
