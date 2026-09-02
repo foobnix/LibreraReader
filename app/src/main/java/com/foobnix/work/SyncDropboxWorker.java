@@ -1,6 +1,6 @@
 package com.foobnix.work;
 
-import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
+import static com.foobnix.pdf.info.AppsConfig.SYNC_DROPBOX_WORKER_NAME;
 
 import android.content.Context;
 
@@ -20,7 +20,7 @@ public class SyncDropboxWorker extends MessageWorker{
     public static void run(Context context) {
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SyncDropboxWorker.class).build();
         //WorkManager.getInstance(context).enqueue(workRequest);
-        WorkManager.getInstance(context).enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, ExistingWorkPolicy.KEEP, workRequest);
+        WorkManager.getInstance(context).enqueueUniqueWork(SYNC_DROPBOX_WORKER_NAME, ExistingWorkPolicy.KEEP, workRequest);
     }
 
 

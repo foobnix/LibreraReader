@@ -17,6 +17,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -1243,7 +1244,7 @@ public class GFile {
                     //BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
                     OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SynctornizatoinWorker.class).build();
 //                    WorkManager.getInstance(a).enqueue(workRequest);
-                    WorkManager.getInstance(a).enqueueUniqueWork("search", ExistingWorkPolicy.KEEP, workRequest);
+                    WorkManager.getInstance(a).enqueueUniqueWork(AppsConfig.SYNC_DRIVE_WORKER_NAME, ExistingWorkPolicy.KEEP, workRequest);
                 }
             }
         } catch (Exception e) {
