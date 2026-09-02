@@ -10,6 +10,7 @@ import androidx.work.WorkManager;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -36,6 +37,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.ChangeList;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
@@ -47,11 +49,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class GFile {
     public static final int REQUEST_CODE_SIGN_IN = 1110;
@@ -61,13 +73,44 @@ public class GFile {
 
     public static final String TAG = "GFile";
     public static final int PAGE_SIZE = 1000;
+    /** Exactly the metadata the sync reads; keeps the listing response small. */
+    private static final String LIST_FIELDS =
+            "nextPageToken, files(id,name,mimeType,parents,size,trashed,createdTime,modifiedTime)";
     public static final String SKIP = "skip";
+    /**
+     * Suffix of the scratch file downloadContent() writes next to its target. It is deleted in a
+     * finally block, but a process that dies mid-download (or a sync that is killed) leaves one
+     * behind - and because it sits inside the synced folder, the next sync uploaded it to Drive
+     * and every other device then downloaded it. These are never synced in either direction.
+     */
+    public static final String TEMP_SUFFIX = ".temp";
     public static final String MY_SCOPE = DriveScopes.DRIVE_FILE;
     public static final String LASTMODIFIED = "lastmodified2";
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
-    public static String debugOut = new String();
+    /**
+     * Human-readable sync log shown in the debug dialog. A StringBuilder rather than repeated
+     * String concatenation: several of the append sites sit inside per-file loops, which made
+     * this quadratic on large libraries, and nothing ever trimmed it between runs.
+     */
+    public static final StringBuilder debugOut = new StringBuilder();
+    private static final int DEBUG_OUT_MAX = 200_000;
+
+    static void debug(String text) {
+        synchronized (debugOut) {
+            debugOut.append(text);
+            if (debugOut.length() > DEBUG_OUT_MAX) {
+                debugOut.delete(0, debugOut.length() - DEBUG_OUT_MAX);
+            }
+        }
+    }
+
+    public static void clearDebug() {
+        synchronized (debugOut) {
+            debugOut.setLength(0);
+        }
+    }
 
 
     public static String getDisplayInfo(Context c) {
@@ -130,6 +173,7 @@ public class GFile {
                             .build();
         }
         sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
+        invalidateLastModifiedIndex();
 
     }
 
@@ -162,6 +206,7 @@ public class GFile {
 
         LOG.d(TAG, "googleDriveService", " build");
         sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
+        invalidateLastModifiedIndex();
 
     }
 
@@ -186,12 +231,22 @@ public class GFile {
         String nextPageToken = "";
         List<File> res = new ArrayList<File>();
         do {
-            //debugOut += "\n:" + q;
+            //debug("\n:" + q);
 
-            final FileList list = (FileList) googleDriveService.files().list().setSpaces("drive").setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
+            // Only the fields below are ever read (see getName/getId/getModifiedTime/...).
+            // files(*) returns the full metadata for every file, which is by far the largest
+            // part of the sync payload. Ordering is dropped too - the results go into maps.
+            final FileList list = (FileList) googleDriveService.files()
+                    .list()
+                    .setSpaces("drive")
+                    .setQ(q)
+                    .setPageToken(nextPageToken)
+                    .setFields(LIST_FIELDS)
+                    .setPageSize(PAGE_SIZE)
+                    .execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
-            debugOut += "\nGet remote files info: " + list.getFiles().size();
+            debug("\nGet remote files info: " + list.getFiles().size());
             //debugPrint(list.getFiles());
         } while (nextPageToken != null);
         return res;
@@ -251,7 +306,7 @@ public class GFile {
                     .setName("lock");
 
             LOG.d(TAG, "Create lock", roodId, "lock");
-            debugOut += "\nCreate lock: " + new DateTime(modifiedTime).toStringRfc3339();
+            debug("\nCreate lock: " + new DateTime(modifiedTime).toStringRfc3339());
             file = googleDriveService.files().create(metadata).execute();
         }
         return file;
@@ -261,7 +316,7 @@ public class GFile {
         File file = getOrCreateLock(roodId, modifiedTime);
         File metadata = new File().setModifiedTime(new DateTime(modifiedTime));
 
-        debugOut += "\nUpdate lock: " + new DateTime(modifiedTime).toStringRfc3339();
+        debug("\nUpdate lock: " + new DateTime(modifiedTime).toStringRfc3339());
         GFile.googleDriveService.files().update(file.getId(), metadata).execute();
     }
 
@@ -316,7 +371,7 @@ public class GFile {
 
 
     public static void uploadFile(String roodId, File file, final java.io.File inFile) throws IOException {
-        debugOut += "\nUpload: " + inFile.getParentFile().getParentFile().getName() + "/" + inFile.getParentFile().getName() + "/" + inFile.getName();
+        debug("\nUpload: " + inFile.getParentFile().getParentFile().getName() + "/" + inFile.getParentFile().getName() + "/" + inFile.getName());
 
         setLastModifiedTime(inFile, inFile.lastModified());
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
@@ -357,16 +412,21 @@ public class GFile {
 
 
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
+        if (downloadContent(fileId, file, lastModified)) {
+            afterDownload(file);
+        }
+    }
 
-        //file = new java.io.File(TxtUtils.fixFilePath(file.getPath()));
-
+    /**
+     * Transfers one file. Safe to run on several threads at once: it only touches the network,
+     * a temp path unique to this file, and the synchronized timestamp store.
+     *
+     * @return true when the file was written and still needs registering via afterDownload.
+     */
+    private static boolean downloadContent(String fileId, java.io.File file, long lastModified) throws IOException {
         LOG.d(TAG, "Download: " + file.getParentFile().getParentFile().getName() + "/" + file.getName());
-        debugOut += "\nDownload: " + file.getParentFile().getParentFile().getName() + "/" + file.getParentFile().getName() + "/" + file.getName();
+        debug("\nDownload: " + file.getParentFile().getParentFile().getName() + "/" + file.getParentFile().getName() + "/" + file.getName());
         InputStream is = null;
-        //if (!file.getPath().endsWith("json")) {
-        //    is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
-        //} else {
-        // }
         java.io.File temp = new java.io.File(file.getPath() + ".temp");
         try {
             try {
@@ -374,34 +434,39 @@ public class GFile {
             } catch (IOException e) {
                 is = googleDriveService.files().get(fileId).executeAsInputStream();
             }
-
 
             final boolean result = IO.copyFile(is, temp);
             if (result) {
                 IO.copyFile(temp, file);
                 setLastModifiedTime(file, lastModified);
-
-                if (Clouds.isLibreraSyncFile(file.getPath())) {
-                    IMG.clearCache(file.getPath());
-                    FileMeta meta = AppDB.get().getOrCreate(file.getPath());
-                    FileMetaCore.createMetaIfNeed(file.getPath(), true);
-                    //IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
-
-                }
-
-
+                return true;
             }
+            return false;
         } finally {
             temp.delete();
         }
+    }
 
-        //LOG.d(TAG, "downloadFile-lastModified after", file.lastModified(), lastModified, file.getName());
-
+    /**
+     * Post-download bookkeeping. Deliberately kept off the download threads - the Glide cache,
+     * FileMeta and the greenDAO session are shared state that is not written for concurrent use.
+     */
+    private static void afterDownload(java.io.File file) {
+        if (!Clouds.isLibreraSyncFile(file.getPath())) {
+            return;
+        }
+        try {
+            IMG.clearCache(file.getPath());
+            AppDB.get().getOrCreate(file.getPath());
+            FileMetaCore.createMetaIfNeed(file.getPath(), true);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static void downloadTemp(String fileId, java.io.File file) throws IOException {
         LOG.d(TAG, "Download: " + file.getParentFile().getName() + "/" + file.getName());
-        debugOut += "\nDownload: " + file.getParentFile().getName() + "/" + file.getName();
+        debug("\nDownload: " + file.getParentFile().getName() + "/" + file.getName());
         InputStream is = null;
         java.io.File temp = new java.io.File(file.getPath() + ".temp");
         try {
@@ -420,27 +485,85 @@ public class GFile {
         }
     }
 
+    /*
+     * Timestamp bookkeeping.
+     *
+     * Keys are "<path><local mtime>", so answering "is there an entry for this path?" is a
+     * prefix query. The original code answered it by calling sp.getAll() - which clones the
+     * entire preference map - once per remote file, and wrote with a blocking commit() per
+     * removed key. On a large library that is O(n^2) map copies plus an fsync per file, and it
+     * was the slowest part of the sync.
+     *
+     * The keys are mirrored into a sorted set instead: ceiling()/tailSet() answer the same
+     * prefix query in O(log n) with identical semantics, and writes are batched into one
+     * asynchronous apply() per file.
+     */
+    private static TreeSet<String> keyIndex;
+
+    /**
+     * Private monitor, deliberately NOT the class monitor.
+     *
+     * sycnronizeAll() is static synchronized, so it holds GFile.class for the whole sync. If
+     * these methods were static synchronized too, the parallel download threads would block on
+     * a lock the sync thread owns while it waits for them to finish - a deadlock that stalls the
+     * sync right after the first batch of downloads starts.
+     */
+    private static final Object TIMESTAMP_LOCK = new Object();
+
+    private static TreeSet<String> keyIndex() {
+        synchronized (TIMESTAMP_LOCK) {
+            if (keyIndex == null) {
+                keyIndex = new TreeSet<>(sp.getAll().keySet());
+            }
+            return keyIndex;
+        }
+    }
+
+    /** Drop the cached index; call when the backing preferences are cleared wholesale. */
+    public static void invalidateLastModifiedIndex() {
+        synchronized (TIMESTAMP_LOCK) {
+            keyIndex = null;
+        }
+    }
+
     public static void setLastModifiedTime(java.io.File file, long lastModified) {
+        synchronized (TIMESTAMP_LOCK) {
+        final TreeSet<String> index = keyIndex();
+        final String path = file.getPath();
+        final SharedPreferences.Editor editor = sp.edit();
+
         if (file.isFile()) {
-            for (String key : sp.getAll().keySet()) {
-                if (key.startsWith(file.getPath())) {
-                    sp.edit().remove(key).commit();
-                    LOG.d("hasLastModified remove", key);
+            // Same prefix sweep as before, but over the sorted index and in a single batch.
+            final List<String> stale = new ArrayList<>();
+            for (String key : index.tailSet(path)) {
+                if (!key.startsWith(path)) {
+                    break;
                 }
+                stale.add(key);
+            }
+            for (String key : stale) {
+                editor.remove(key);
+                index.remove(key);
+                LOG.d("hasLastModified remove", key);
             }
         }
-        sp.edit().putLong(file.getPath() + file.lastModified(), lastModified).commit();
-        LOG.d("hasLastModified put", file.getPath() + file.lastModified(), lastModified);
 
+        final String key = path + file.lastModified();
+        editor.putLong(key, lastModified);
+        index.add(key);
+        // apply() instead of commit(): the timestamps are a cache, and a blocking disk write
+        // per file is what made this dominate the sync.
+        editor.apply();
+        LOG.d("hasLastModified put", key, lastModified);
+        }
     }
 
     public static boolean hasLastModified(java.io.File file) {
-        for (String key : sp.getAll().keySet()) {
-            if (key.startsWith(file.getPath())) {
-                return true;
-            }
+        synchronized (TIMESTAMP_LOCK) {
+            final String path = file.getPath();
+            final String candidate = keyIndex().ceiling(path);
+            return candidate != null && candidate.startsWith(path);
         }
-        return false;
     }
 
     public static long getLastModified(java.io.File file) {
@@ -454,7 +577,7 @@ public class GFile {
     private static void deleteFile(File file, long lastModified) throws IOException {
         File metadata = new File().setTrashedTime(new DateTime(lastModified)).setModifiedTime(new DateTime(lastModified)).setTrashed(true);
         LOG.d("Delete", file.getName());
-        debugOut += "\nDelete: " + file.getName();
+        debug("\nDelete: " + file.getName());
         googleDriveService.files().update(file.getId(), metadata).execute();
 
     }
@@ -466,7 +589,7 @@ public class GFile {
             return folder;
         }
         LOG.d(TAG, "Create folder", roodId, name);
-        debugOut += "\nCreate remote folder: " + name;
+        debug("\nCreate remote folder: " + name);
         File metadata = new File()
                 .setParents(Collections.singletonList(roodId))
                 //.setModifiedTime(new DateTime(lastModified))
@@ -481,21 +604,147 @@ public class GFile {
     public static volatile boolean isNeedUpdate = false;
 
 
+    /*
+     * changes.list probe.
+     *
+     * Deliberately used only to answer "did anything change at all?", not to drive an
+     * incremental tree cache. The token lives in app-private preferences and never on Drive:
+     * getFilesAll() pulls everything and syncUpload() uploads everything it sees, so a cache
+     * file inside the Librera folder would be downloaded by older builds, shown in the library
+     * and synced between devices.
+     *
+     * When anything has changed the code falls through to exactly the same full listing as
+     * before, which keeps behaviour identical to older versions and avoids two traps: the feed
+     * lags files.list (so a cached tree can be stale and lose a just-uploaded file), and
+     * modifiedTime is written from the uploading device's clock, so feed order does not imply
+     * modifiedTime order.
+     */
+    private static final String SYNC_STATE_PREFS = "gfile_sync_state";
+    private static final String KEY_CHANGES_TOKEN = "changesToken";
+    private static final String KEY_LOCAL_SIGNATURE = "localSignature";
+
+    private static SharedPreferences syncState(Context c) {
+        return c.getSharedPreferences(SYNC_STATE_PREFS, Context.MODE_PRIVATE);
+    }
+
+    /** @return true if Drive reports changes since the stored token, or if we cannot tell. */
+    private static boolean hasRemoteChanges(Context c) {
+        try {
+            final String token = syncState(c).getString(KEY_CHANGES_TOKEN, null);
+            if (token == null) {
+                return true;
+            }
+            String page = token;
+            String newToken = null;
+            boolean changed = false;
+            while (page != null) {
+                final ChangeList list = googleDriveService.changes()
+                        .list(page)
+                        .setSpaces("drive")
+                        .setIncludeRemoved(true)
+                        .setPageSize(PAGE_SIZE)
+                        .setFields("newStartPageToken,nextPageToken,changes(fileId)")
+                        .execute();
+                if (list.getChanges() != null && !list.getChanges().isEmpty()) {
+                    changed = true;
+                }
+                if (list.getNewStartPageToken() != null) {
+                    newToken = list.getNewStartPageToken();
+                }
+                page = list.getNextPageToken();
+            }
+            if (!changed && newToken != null) {
+                // Only advance when nothing changed. If something did, the token is refreshed
+                // after the full sync succeeds - never before, or a failed sync would lose the
+                // signal and the work would be skipped next time.
+                syncState(c).edit().putString(KEY_CHANGES_TOKEN, newToken).apply();
+            }
+            return changed;
+        } catch (Exception e) {
+            LOG.e(e);
+            return true;
+        }
+    }
+
+    private static void rememberSyncedState(Context c, java.io.File root) {
+        try {
+            final String token = googleDriveService.changes()
+                    .getStartPageToken()
+                    .execute()
+                    .getStartPageToken();
+            syncState(c).edit()
+                    .putString(KEY_CHANGES_TOKEN, token)
+                    .putLong(KEY_LOCAL_SIGNATURE, localSignature(root))
+                    .apply();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /** Cheap local fingerprint (paths, sizes, mtimes) used to notice local edits. */
+    private static long localSignature(java.io.File root) {
+        long hash = 1125899906842597L;
+        final Deque<java.io.File> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            final java.io.File[] children = stack.pop().listFiles();
+            if (children == null) {
+                continue;
+            }
+            for (java.io.File child : children) {
+                hash = 31 * hash + child.getPath().hashCode();
+                if (child.isDirectory()) {
+                    stack.push(child);
+                } else {
+                    hash = 31 * hash + child.lastModified();
+                    hash = 31 * hash + child.length();
+                }
+            }
+        }
+        return hash;
+    }
+
+    /** True when nothing changed on either side and there is genuinely no work to do. */
+    private static boolean canSkipSync(Context c) {
+        if (c == null || !AppProfile.SYNC_FOLDER_ROOT.exists()) {
+            return false;
+        }
+        if (!pendingDeletions(c).isEmpty()) {
+            return false;
+        }
+        final SharedPreferences state = syncState(c);
+        if (!state.contains(KEY_CHANGES_TOKEN) || !state.contains(KEY_LOCAL_SIGNATURE)) {
+            return false;
+        }
+        if (state.getLong(KEY_LOCAL_SIGNATURE, 0) != localSignature(AppProfile.SYNC_FOLDER_ROOT)) {
+            return false;
+        }
+        return !hasRemoteChanges(c);
+    }
+
     public static synchronized void sycnronizeAll(final Context c) throws Exception {
 
 
         try {
             isNeedUpdate = false;
-            debugOut += "\n ----------------------------------";
-            debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
+            debug("\n ----------------------------------");
+            debug("\nBegin: " + DateFormat.getTimeInstance().format(new Date()));
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
+
+            if (canSkipSync(c)) {
+                // One changes.list call and a local stat walk, instead of paging the whole
+                // drive and re-walking every file.
+                LOG.d(TAG, "sycnronizeAll", "nothing changed, skipping");
+                debug("\nNothing changed - skipped");
+                return;
+            }
             if (TxtUtils.isEmpty(AppSP.get().syncRootID)) {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null || syncRoot.getTrashed() == true) {
                     syncRoot = GFile.createFolder("root", "Librera");
-                    debugOut += "\n Create remote [Librera]";
+                    debug("\n Create remote [Librera]");
                 }
                 AppSP.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
@@ -504,7 +753,7 @@ public class GFile {
 //                    final File execute = GFile.googleDriveService.files().get(AppSP.get().syncRootID).execute();
 //                    if (execute.getTrashed() == true) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
-//                        debugOut += "\n Create remote [Librera]";
+//                        debug("\n Create remote [Librera]");
 //                        AppSP.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
@@ -512,7 +761,7 @@ public class GFile {
 //                    LOG.e(e);
 //                    if (e.getDetails().getCode() == 404) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
-//                        debugOut += "\n Create remote [Librera]";
+//                        debug("\n Create remote [Librera]");
 //                        AppSP.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
@@ -527,8 +776,9 @@ public class GFile {
 
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
                 sp.edit().clear().commit();
+                invalidateLastModifiedIndex();
                 AppProfile.SYNC_FOLDER_ROOT.mkdirs();
-                debugOut += "\n Create local [Librera]";
+                debug("\n Create local [Librera]");
             }
 
 
@@ -540,25 +790,112 @@ public class GFile {
             //updateLock(AppState.get().syncRootID, beginTime);
 
             LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd: " + DateFormat.getTimeInstance().format(new Date());
+            debug("\nEnd: " + DateFormat.getTimeInstance().format(new Date()));
 
+
+            rememberSyncedState(c, AppProfile.SYNC_FOLDER_ROOT);
 
             TagData.restoreTags();
 
 
         } catch (IOException e) {
-            debugOut += "\nException: " + e.getMessage();
+            debug("\nException: " + e.getMessage());
             LOG.e(e);
             throw e;
         }
     }
 
+    /*
+     * Local deletions are recorded persistently.
+     *
+     * map2 is only populated while sync() runs, so resolving the remote copy through it worked
+     * solely when a sync had already happened in this process. After an app restart, or before
+     * the first sync, or with no network at delete time, the lookup found nothing, the remote
+     * copy stayed alive - and the next sync saw "remote exists, local missing" and downloaded
+     * the book straight back. Callers ignore the return value, so the failure was silent.
+     *
+     * Recording the path means the next sync can still trash the remote copy, whenever it runs.
+     */
+    private static final String DELETED_PREFS = "gfile_deleted";
+    private static final String DELETED_KEY = "paths";
+
+    private static SharedPreferences deletedPrefs(Context c) {
+        return c.getSharedPreferences(DELETED_PREFS, Context.MODE_PRIVATE);
+    }
+
+    private static final Object DELETION_LOCK = new Object();
+
+    private static Set<String> pendingDeletions(Context c) {
+      synchronized (DELETION_LOCK) {
+        // getStringSet may hand back the live instance; copy before touching it.
+        return new HashSet<>(deletedPrefs(c).getStringSet(DELETED_KEY, Collections.<String>emptySet()));
+      }
+    }
+
+    private static void savePendingDeletions(Context c, Set<String> paths) {
+        synchronized (DELETION_LOCK) {
+            deletedPrefs(c).edit().putStringSet(DELETED_KEY, paths).apply();
+        }
+    }
+
+    public static void markDeletedLocally(Context c, java.io.File ioFile) {
+        if (c == null || ioFile == null) {
+            return;
+        }
+        final Set<String> paths = pendingDeletions(c);
+        if (paths.add(ioFile.getPath())) {
+            savePendingDeletions(c, paths);
+            LOG.d(TAG, "deletion recorded", ioFile.getPath());
+        }
+    }
+
+    private static void clearDeletion(Context c, String path) {
+        final Set<String> paths = pendingDeletions(c);
+        if (paths.remove(path)) {
+            savePendingDeletions(c, paths);
+        }
+    }
+
+    /**
+     * Trashes the remote copies of files deleted locally. Runs before the download pass so a
+     * pending deletion cannot be undone by re-downloading the file first.
+     */
+    private static void applyPendingDeletions(Context c, Map<java.io.File, File> byLocalPath) {
+        if (c == null) {
+            return;
+        }
+        for (String path : pendingDeletions(c)) {
+            final java.io.File local = new java.io.File(path);
+            if (local.exists()) {
+                // Came back locally - nothing to propagate.
+                clearDeletion(c, path);
+                continue;
+            }
+            final File remote = byLocalPath.get(local);
+            try {
+                if (remote != null && !Boolean.TRUE.equals(remote.getTrashed())) {
+                    deleteFile(remote, System.currentTimeMillis());
+                    // Mark it here too: driveFiles holds the same instances, so the later
+                    // passes will skip it instead of downloading it again.
+                    remote.setTrashed(true);
+                }
+                clearDeletion(c, path);
+            } catch (Exception e) {
+                // Leave it pending so the next sync retries.
+                LOG.e(e);
+            }
+        }
+    }
+
     public static boolean deleteRemoteFile(final java.io.File ioFile) {
+        // Record first: if anything below fails, the next sync still removes the remote copy.
+        markDeletedLocally(LibreraApp.context, ioFile);
         try {
             final File file = map2.get(ioFile);
             if (file != null) {
                 deleteFile(file, System.currentTimeMillis());
-                //Thread.sleep(5000);
+                file.setTrashed(true);
+                clearDeletion(LibreraApp.context, ioFile.getPath());
                 return true;
             }
         } catch (Exception e) {
@@ -574,7 +911,7 @@ public class GFile {
     private static void sync(final String syncId, final java.io.File ioRoot) throws Exception {
 
 //        if (System.currentTimeMillis() - timeout < 10 * 1000) {
-//            debugOut += "\n 10 sec time-out";
+//            debug("\n 10 sec time-out");
 //            return;
 //        }
 //        timeout = System.currentTimeMillis();
@@ -592,32 +929,16 @@ public class GFile {
 
 
         Map<String, File> map = new HashMap<>();
-        map2.clear();
-
-
         for (File file : driveFiles) {
             map.put(file.getId(), file);
         }
 
-        for (File file : driveFiles) {
-            String filePath = findFile(file, map);
+        map2.clear();
+        map2.putAll(collapse(driveFiles, ioRoot, map));
 
-            if (filePath.startsWith(SKIP)) {
-                continue;
-            }
-            //filePath = TxtUtils.fixFilePath(filePath);
-
-            java.io.File local = new java.io.File(ioRoot, filePath);
-
-            final File other = map2.get(local);
-            if (other == null) {
-                map2.put(local, file);
-                LOG.d(TAG, "map2-put-1", file.getName(), file.getId(), file.getTrashed());
-            } else if (file.getModifiedTime().getValue() > other.getModifiedTime().getValue()) {
-                map2.put(local, file);
-                LOG.d(TAG, "map2-put-2", file.getName(), file.getId(), file.getModifiedTime(), file.getTrashed());
-            }
-        }
+        // Propagate deletions made on this device first, so a file that is pending removal is
+        // not downloaded again by the pass below.
+        applyPendingDeletions(LibreraApp.context, map2);
 
         for (java.io.File local : map2.keySet()) {
             File remote = map2.get(local);
@@ -626,7 +947,7 @@ public class GFile {
                 LOG.d("CHECK-to-REMOVE", local.getPath(), remote.getModifiedTime().getValue(), getLastModified(local));
 
                 if (remote.getModifiedTime().getValue() - getLastModified(local) > 0) {
-                    debugOut += "\nDelete local: " + local.getPath();
+                    debug("\nDelete local: " + local.getPath());
                     LOG.d(TAG, "Delete locale", local.getPath());
                     ExtUtils.deleteRecursive(local);
                     isNeedUpdate = true;
@@ -637,6 +958,7 @@ public class GFile {
 
 
         //upload second files
+        final List<Download> pending = new ArrayList<>();
         for (File remote : driveFiles) {
             if (remote.getTrashed()) {
                 LOG.d(TAG, "Skip trashed", remote.getName());
@@ -644,6 +966,10 @@ public class GFile {
             }
             boolean skip = false;
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
+                if (remote.getName() != null && remote.getName().endsWith(TEMP_SUFFIX)) {
+                    LOG.d(TAG, "Skip temp", remote.getName());
+                    continue;
+                }
                 String filePath = findFile(remote, map);
                 if (filePath.startsWith(SKIP)) {
                     LOG.d(TAG, "Skip", filePath);
@@ -654,25 +980,109 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
-                if (!hasLastModified(local) || (!local.getName().endsWith(".json") && local.length() == remote.getSize().longValue())) {
+                final boolean sameSize = remote.getSize() != null
+                        && !local.getName().endsWith(".json")
+                        && local.length() == remote.getSize().longValue();
+                if (!hasLastModified(local) || sameSize) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
-                    //debugOut += "\n skip: " + local.getName();
+                    //debug("\n skip: " + local.getName());
                     LOG.d(TAG, "Skip", local.getName());
                 }
 
 
                 if (!skip && compareBySizeModifiedTime(remote, local) > 0) {
                     final java.io.File parentFile = local.getParentFile();
-                    if (parentFile.exists()) {
+                    if (parentFile != null && !parentFile.exists()) {
                         parentFile.mkdirs();
                     }
-                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
-                    isNeedUpdate = true;
+                    // Decide serially, transfer in parallel below: the decision reads and writes
+                    // the shared timestamp store, and keeping it on one thread avoids ordering
+                    // surprises there.
+                    pending.add(new Download(remote.getId(), local, remote.getModifiedTime().getValue()));
                 }
             }
         }
+
+        downloadAll(pending);
+
         syncUpload(syncId, ioRoot, map2);
+    }
+
+    /** How many downloads run at once. */
+    public static final int DOWNLOAD_THREADS = 4;
+    private static final int DOWNLOAD_TIMEOUT_MINUTES = 30;
+
+    private static final class Download {
+        final String fileId;
+        final java.io.File local;
+        final long modifiedTime;
+
+        Download(String fileId, java.io.File local, long modifiedTime) {
+            this.fileId = fileId;
+            this.local = local;
+            this.modifiedTime = modifiedTime;
+        }
+    }
+
+    /**
+     * Fetches the queued files on a small thread pool.
+     *
+     * Only the transfer is parallel. The bookkeeping that follows a download - Glide cache,
+     * FileMeta, the greenDAO session - runs afterwards on this thread, because it is shared
+     * mutable state that was never written with concurrency in mind. Downloads are pure network
+     * plus a write to a path unique per task, so they parallelise safely.
+     */
+    private static void downloadAll(List<Download> pending) throws IOException {
+        if (pending.isEmpty()) {
+            return;
+        }
+        LOG.d(TAG, "downloadAll", pending.size(), "threads", DOWNLOAD_THREADS);
+
+        final ExecutorService pool = Executors.newFixedThreadPool(Math.min(DOWNLOAD_THREADS, pending.size()));
+        final List<java.io.File> fetched = Collections.synchronizedList(new ArrayList<java.io.File>());
+        final AtomicReference<Exception> failure = new AtomicReference<>();
+
+        for (final Download task : pending) {
+            pool.submit(new Runnable() {
+                @Override public void run() {
+                    if (failure.get() != null) {
+                        return;
+                    }
+                    try {
+                        downloadContent(task.fileId, task.local, task.modifiedTime);
+                        fetched.add(task.local);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        failure.compareAndSet(null, e);
+                    }
+                }
+            });
+        }
+
+        pool.shutdown();
+        try {
+            // Bounded wait: a stalled connection must not leave the sync blocked forever.
+            if (!pool.awaitTermination(DOWNLOAD_TIMEOUT_MINUTES, TimeUnit.MINUTES)) {
+                pool.shutdownNow();
+                failure.compareAndSet(null, new IOException("Download timed out"));
+            }
+        } catch (InterruptedException e) {
+            pool.shutdownNow();
+            Thread.currentThread().interrupt();
+            failure.compareAndSet(null, e);
+        }
+
+        // Serial tail: register everything that arrived.
+        for (java.io.File file : fetched) {
+            afterDownload(file);
+            isNeedUpdate = true;
+        }
+
+        final Exception e = failure.get();
+        if (e != null) {
+            throw e instanceof IOException ? (IOException) e : new IOException(e);
+        }
     }
 
     public static long compareBySizeModifiedTime(File remote, java.io.File local) {
@@ -695,9 +1105,21 @@ public class GFile {
         }
         for (java.io.File local : files) {
             File remote = map2.get(local);
-//            if (remote != null && remote.getTrashed() == true) {
-//                remote = null;
-//            }
+            if (remote != null && Boolean.TRUE.equals(remote.getTrashed())) {
+                // The remote copy is in the trash, i.e. deleted on some device. Skip it:
+                // uploading into a trashed entry is a silent no-op, and recreating it would
+                // resurrect the book on every other device. Deleted stays deleted; the delete
+                // pass above is what removes the leftover local copy.
+                LOG.d(TAG, "Skip trashed remote", local.getPath());
+                continue;
+            }
+            if (!local.isDirectory() && local.getName().endsWith(TEMP_SUFFIX)) {
+                // Leftover scratch file from an interrupted download: delete it rather than
+                // uploading it.
+                LOG.d(TAG, "Delete leftover temp", local.getPath());
+                local.delete();
+                continue;
+            }
             if (local.isDirectory()) {
                 if (remote == null) {
                     remote = createFolder(syncId, local.getName());
@@ -708,7 +1130,16 @@ public class GFile {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add, local);
                 } else if (compareBySizeModifiedTime(remote, local) < 0) {
-                    uploadFile(syncId, remote, local);
+                    if (isStale(remote)) {
+                        // Another device changed this file after our listing was taken. Leave it
+                        // alone; the next sync sees the fresh state and resolves it properly.
+                        // files.get costs a fraction of an upload, and there are usually only a
+                        // handful of uploads per sync, so this check is cheap insurance.
+                        LOG.d(TAG, "Skip upload, remote moved on", local.getPath());
+                        debug("\nSkip upload (remote changed): " + local.getName());
+                    } else {
+                        uploadFile(syncId, remote, local);
+                    }
                 }
 
 
@@ -716,6 +1147,59 @@ public class GFile {
         }
     }
 
+
+    /**
+     * Resolves remote files to local paths, collapsing duplicates.
+     *
+     * Drive happily holds several files with the same path - createFirstTime does not check for
+     * an existing entry, so deleting a book on one device and re-adding it on another produces
+     * two ids for the same path. The tie-break is "newest modifiedTime wins", and it has to stay
+     * in one place: if two code paths ever picked different winners, the devices would upload
+     * over each other in a loop. Anything keyed by path must therefore be derived through here,
+     * never cached as a path-to-id mapping.
+     */
+    public static Map<java.io.File, File> collapse(Collection<File> all, java.io.File ioRoot,
+            Map<String, File> byId) {
+        final Map<java.io.File, File> res = new HashMap<>();
+        for (File file : all) {
+            final String filePath = findFile(file, byId);
+            if (filePath.startsWith(SKIP)) {
+                continue;
+            }
+            final java.io.File local = new java.io.File(ioRoot, filePath);
+            final File other = res.get(local);
+            if (other == null) {
+                res.put(local, file);
+                LOG.d(TAG, "map2-put-1", file.getName(), file.getId(), file.getTrashed());
+            } else if (file.getModifiedTime().getValue() > other.getModifiedTime().getValue()) {
+                res.put(local, file);
+                LOG.d(TAG, "map2-put-2", file.getName(), file.getId(), file.getModifiedTime(), file.getTrashed());
+            }
+        }
+        return res;
+    }
+
+    /**
+     * @return true when the remote file changed since the listing this sync is working from.
+     *         Drive v3 has no conditional updates (ETags went away with v2), so this read is the
+     *         only guard against clobbering a newer version.
+     */
+    private static boolean isStale(File cached) {
+        try {
+            final File fresh = googleDriveService.files().get(cached.getId())
+                    .setFields("id,modifiedTime,size,trashed")
+                    .execute();
+            if (fresh.getModifiedTime() == null || cached.getModifiedTime() == null) {
+                return false;
+            }
+            return fresh.getModifiedTime().getValue() != cached.getModifiedTime().getValue()
+                    || Boolean.TRUE.equals(fresh.getTrashed());
+        } catch (Exception e) {
+            // Cannot tell - do not block the upload on a failed probe.
+            LOG.e(e);
+            return false;
+        }
+    }
 
     private static String findFile(File file, Map<String, File> map) {
         if (file == null) {

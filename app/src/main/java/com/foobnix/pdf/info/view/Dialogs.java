@@ -506,7 +506,7 @@ public class Dialogs {
 
         new Thread(() -> {
             while (flag.get()) {
-                a.runOnUiThread(() -> result.setText(GFile.debugOut));
+                a.runOnUiThread(() -> result.setText(GFile.debugOut.toString()));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -516,16 +516,16 @@ public class Dialogs {
         }, "@T showSyncLOGDialog").start();
 
 
-        result.setText(GFile.debugOut);
+        result.setText(GFile.debugOut.toString());
 
         result.setTextSize(12);
-        result.setText(GFile.debugOut);
+        result.setText(GFile.debugOut.toString());
         result.setMinWidth(Dips.dpToPx(1000));
         result.setMinHeight(Dips.dpToPx(1000));
 
         TextView t = UI.uText(a, a.getString(R.string.clear_log));
         t.setTextSize(16);
-        t.setOnClickListener(v -> GFile.debugOut = "");
+        t.setOnClickListener(v -> GFile.clearDebug());
 
         AlertDialogs.showViewDialog(a, new Runnable() {
             @Override
