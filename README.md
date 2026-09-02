@@ -107,8 +107,26 @@ F-Droid build does also not need a **google-services.json**
 
 Full release notes: https://github.com/foobnix/LibreraReader/releases
 
-### 9.5.0 (unreleased)
-[APK Direct Download](http://beta.librera.mobi)
+[Unreleased APK Direct Download](http://beta.librera.mobi)
+
+### 9.5.7
+
+**Android Auto**
+
+* Librera now appears as a media app in Android Auto
+* Browse recent books in the car, with covers, titles and authors
+* Selecting a book resumes it at its saved position
+* Playback controls work from the car, the lock screen and Bluetooth
+
+**Text-to-speech**
+
+* Uses Android's standard media notification, with cover art, a progress bar and lock screen controls
+* Fixed no speech when the system default engine points at an uninstalled package
+* Fixed the notification disappearing, or staying stuck on "please wait", after a long time in the background
+* Fixed audio focus not being released on pause, which left other apps muted
+* Fixed a crash when requesting the notification permission from the TTS controls
+
+**Reading**
 
 * Upgraded the MuPDF engine to 1.28.3 (Librera patches ported from 1.23.7)
 * Text selection now works while "crop white space" is enabled, in both book and scroll modes
@@ -119,6 +137,15 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 * New "Show progress slider" setting to toggle the seek bar row
 * Improved jump history and "Back" arrow visibility when using the slider
 * More consistent brightness values when adjusting by scroll
+* Fixes for formatted .txt files
+
+**Google Drive sync**
+
+* Much faster: smaller listing requests, parallel downloads and a change check that skips work when nothing changed
+* Deleting a book now propagates: it no longer comes back from another device
+* Fixed downloads failing into folders that did not exist locally
+* Fixed a sync that could stop early on files without a size
+* Temporary download files are no longer uploaded to Drive
 
 ### 9.4.21
 
@@ -157,6 +184,7 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 
 | App Version | Librera PRO  | Librera F-Droid |
 |-------------|--------------|-----------------|
+| 9.5.0       | 7.0 (API 24) | 7.0 (API 24)    |
 | 9.4.21      | 7.0 (API 24) | 7.0 (API 24)    |
 | 9.4.8       | 7.0 (API 24) | 7.0 (API 24)    |
 | 9.4.5       | 7.0 (API 24) | 7.0 (API 24)    |

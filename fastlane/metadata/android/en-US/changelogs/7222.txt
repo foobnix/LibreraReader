@@ -1,0 +1,9 @@
+9.5.0
+* Android Auto: browse recent books with covers, titles and authors, and control playback in the car.
+* Text-to-speech uses the standard media notification, with cover, progress and lock screen controls.
+* Fixed no speech when the default engine is missing.
+* Fixed the notification vanishing or stuck on "please wait".
+* Text selection works with crop white space enabled.
+* Reading direction (RTL) in scroll mode.
+* PDF engine updated to MuPDF 1.28.3.
+* Faster Drive sync; deleted books stay deleted.
