@@ -246,8 +246,7 @@ public class TTSEngine {
         if (!AppState.get().allowOtherMusic) {
             try {
 
-                AudioManager mAudioManager = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
-                mAudioManager.abandonAudioFocus(null);
+                TTSService.abandonAudioFocusCompat();
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -289,7 +288,13 @@ public class TTSEngine {
         return ttsEngine;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public synchronized void speek(final String text) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public void speek(final String text) {
+        synchronized (helpObject) {
+            speekLocked(text);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) private void speekLocked(final String text) {
         this.text = text;
 
         if (AppSP.get().tempBookPage != AppSP.get().lastBookPage) {
@@ -321,6 +326,11 @@ public class TTSEngine {
                 }
             }
         });
+
+        if (ttsEngine == null) {
+            LOG.d(TAG, "speek: no TTS engine available");
+            return;
+        }
 
         ttsEngine.setPitch(AppState.get().ttsPitch);
         if (AppState.get().ttsSpeed == 0.0f) {

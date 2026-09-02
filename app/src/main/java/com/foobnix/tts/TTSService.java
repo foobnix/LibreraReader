@@ -96,6 +96,27 @@ import java.util.List;
     MediaSessionCompat mMediaSessionCompat;
 
     private static volatile MediaSessionCompat sessionRef;
+    private static volatile TTSService serviceRef;
+
+    public static void abandonAudioFocusCompat() {
+        final TTSService service = serviceRef;
+        if (service == null || service.mAudioManager == null) {
+            return;
+        }
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (service.audioFocusRequest != null) {
+                    service.mAudioManager.abandonAudioFocusRequest(
+                            (AudioFocusRequest) service.audioFocusRequest);
+                }
+            } else {
+                service.mAudioManager.abandonAudioFocus(service.listener);
+            }
+            LOG.d(TAG, "audio focus abandoned");
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
 
 
     private static final double CHARS_PER_SECOND = 15.0;
@@ -231,23 +252,30 @@ import java.util.List;
         a.startActivity(intent);
     }
 
+    private static void openNotificationSettings(Context context) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static boolean isTTSGranted(Context context) {
         if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context,
                 Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                    Manifest.permission.POST_NOTIFICATIONS)) {
+            final Activity activity = context instanceof Activity ? (Activity) context : null;
 
-                try {
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                    context.startActivity(intent);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
+            if (activity == null) {
+                openNotificationSettings(context);
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    Manifest.permission.POST_NOTIFICATIONS)) {
+                openNotificationSettings(context);
             } else {
-                ActivityCompat.requestPermissions((Activity) context,
+                ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
             }
             return false;
@@ -326,6 +354,7 @@ import java.util.List;
 
     @Override public void onCreate() {
         super.onCreate();
+        serviceRef = this;
         LOG.d(TAG, "onCreate:TTS playBookPage1");
         //startMyForeground();
         //
@@ -1160,14 +1189,11 @@ import java.util.List;
 
         //mAudioManager.abandonAudioFocus(listener);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mAudioManager.abandonAudioFocusRequest((AudioFocusRequest) audioFocusRequest);
-        } else {
-            mAudioManager.abandonAudioFocus(listener);
-        }
+        abandonAudioFocusCompat();
 
         //mMediaSessionCompat.setCallback(null);
         sessionRef = null;
+        serviceRef = null;
         mMediaSessionCompat.release();
 
         if (cache != null) {
