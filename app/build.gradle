@@ -232,44 +232,6 @@ android {
         }
     }
 
-    def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
-
-    applicationVariants.all { variant ->
-
-        variant.outputs.all { output ->
-
-            def flavor = variant.productFlavors[0].name.capitalize()
-            def abiName = getFilter("ABI")
-/*            if (abiName == "armeabi-v7a") {
-                variant.mergedFlavor.manifestPlaceholders.appSafeMode = "true"
-                //variant.resValue "string", "[appSafeMode]", "true"
-                println abiName + " : appSafeMode true "
-            } else {
-                variant.mergedFlavor.manifestPlaceholders.appSafeMode = "true"
-                //variant.resValue "string", "[appSafeMode]", "false"
-                println abiName + " : appSafeMode false"
-            }
-*/
-            if (abiName != null) {
-                def code = abiCodes.get(abiName, 0) + variant.versionCode
-                abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
-
-                output.versionCodeOverride = code
-                //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk"
-
-                def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
-
-                output.outputFileName = fullName
-            } else {
-                //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk"
-                //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk"
-                def fullName = "Librera ${flavor}-${versionNumber}-uni.apk"
-                output.versionCodeOverride = codeNumber
-                output.outputFileName = fullName
-            }
-        }
-    }
-
     sourceSets {
         fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
     }
@@ -370,6 +332,26 @@ dependencies {
 }
 
 
+// AGP 9 removed applicationVariants: per-ABI version codes and the APK names now come
+// from the Variant API, with the same values as before.
+androidComponents {
+    def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
+    onVariants(selector().all()) { variant ->
+        def flavor = variant.flavorName ? variant.flavorName.capitalize() : ""
+        variant.outputs.each { output ->
+            def abi = output.filters.find { it.filterType.name() == "ABI" }?.identifier
+            if (abi != null) {
+                def abiName = abi.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
+                output.versionCode.set(abiCodes.get(abi, 0) + codeNumber)
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}-${abiName}.apk")
+            } else {
+                output.versionCode.set(codeNumber)
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}-uni.apk")
+            }
+        }
+    }
+}
+
 tasks.register("copyApks") {
     if (project.hasProperty('beta') || project.hasProperty("release")) {
         println "My Task: [copy apks]"
@@ -381,9 +363,9 @@ tasks.register("copyApks") {
         delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk")
         //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
 
-        android.applicationVariants.all { variant ->
-            if ("release" == variant.buildType.name) {
-                def flavor = variant.productFlavors[0].name
+        android.productFlavors.each { productFlavor ->
+            {
+                def flavor = productFlavor.name
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
