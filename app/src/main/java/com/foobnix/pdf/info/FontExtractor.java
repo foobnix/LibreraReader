@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
@@ -182,7 +181,7 @@ public class FontExtractor {
                         return a;
                     }
 
-                    ProgressDialog progressDialog;
+                    MyProgressDialog progressDialog;
 
                     @Override
                     protected void onPreExecute() {

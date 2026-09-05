@@ -2,7 +2,6 @@ package com.foobnix.sys;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.PointF;
@@ -708,7 +707,7 @@ public class VerticalModeController extends DocumentController {
 
         if (ctr.getDecodeService().hasAnnotationChanges()) {
             if (AppState.get().isSaveAnnotatationsAutomatically) {
-                final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                final MyProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
                 progress.setCancelable(false);
                 progress.show();
                 ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
@@ -742,7 +741,7 @@ public class VerticalModeController extends DocumentController {
                             }
 
                         }
-                        final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                        final MyProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
                         progress.setCancelable(false);
                         progress.show();
                         ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {

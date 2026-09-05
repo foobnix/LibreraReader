@@ -6,7 +6,6 @@ import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -3001,7 +3000,7 @@ public class DragingDialogs {
                                         return controller.getActivity();
                                     }
 
-                                    ProgressDialog dialog;
+                                    MyProgressDialog dialog;
 
                                     @Override protected void onPreExecute() {
                                         dialog = MyProgressDialog.show(controller.getActivity(),

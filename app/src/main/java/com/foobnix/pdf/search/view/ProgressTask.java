@@ -1,6 +1,5 @@
 package com.foobnix.pdf.search.view;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,7 +13,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public abstract class ProgressTask<T> {
-    private ProgressDialog dialog;
+    private MyProgressDialog dialog;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private volatile boolean cancelled = false;
 

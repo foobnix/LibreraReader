@@ -31,3 +31,5 @@ google-services.*
 /shared/build/
 /composeApp/build/
 /appCompose/build/
+/Builder/mupdf-1.23.7/
+/Builder/mupdf-1.28.3/

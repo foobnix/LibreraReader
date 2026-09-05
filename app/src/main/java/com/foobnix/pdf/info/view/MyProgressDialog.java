@@ -1,43 +1,75 @@
 package com.foobnix.pdf.info.view;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
 
 public class MyProgressDialog {
 
-    static Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final AlertDialog dialog;
+    private final TextView text;
 
-    public static ProgressDialog show(Context c, String subtitile) {
-        ProgressDialog dialog = android.app.ProgressDialog.show(c, "", subtitile);
+    private MyProgressDialog(Context c, String subtitile) {
+        View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
 
-        try {
-            android.widget.ProgressBar pr = (android.widget.ProgressBar) Objects.getInstanceValue(dialog, "mProgress");
-            pr.setSaveEnabled(false);
-            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
-        } catch (Exception e) {
-            //LOG.e(e);
-        }
+        int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
 
-        handler.postDelayed(() -> {
-            try {
-                dialog.dismiss();
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }, 30 * 1000);
+        text = view.findViewById(R.id.text1);
+        text.setText(subtitile);
+        TintUtil.setTintText(text, color);
 
+        view.findViewById(R.id.onCancel).setVisibility(View.GONE);
+
+        MyProgressBar pr = view.findViewById(R.id.MyProgressBarLoading);
+        pr.setSaveEnabled(false);
+        pr.setSaveFromParentEnabled(false);
+        TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), color);
+
+        dialog = new AlertDialog.Builder(c).setView(view).show();
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+        handler.postDelayed(this::dismiss, 30 * 1000);
         dialog.setOnDismissListener(dialog1 -> handler.removeCallbacksAndMessages(null));
+    }
 
+    public static MyProgressDialog show(Context c, String subtitile) {
+        return new MyProgressDialog(c, subtitile);
+    }
 
-        return dialog;
+    public void dismiss() {
+        try {
+            dialog.dismiss();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public void show() {
+        dialog.show();
+    }
+
+    public void setCancelable(boolean cancelable) {
+        dialog.setCancelable(cancelable);
+    }
+
+    public void setMessage(CharSequence message) {
+        text.setText(message);
+    }
+
+    public boolean isShowing() {
+        return dialog.isShowing();
     }
 }
