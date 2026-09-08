@@ -71,6 +71,8 @@ public abstract class UIFragment<T> extends Fragment {
     private boolean headerSquared;
     /** Whether the header's colour is ours to keep up with, or the tab's own. */
     private boolean headerPainted;
+    /** A notice the tab raises in the chrome, painted with it rather than against it. */
+    private View floatingNotice;
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -185,6 +187,11 @@ public abstract class UIFragment<T> extends Fragment {
         // The same tint the tabs float in at the foot, kept back by the same amount, so the
         // two bars are one colour. The colour itself stays the tab's own to set and change.
         floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        // A notice raised at the top of the page stands in the chrome, so it is painted in
+        // the chrome's own colour and runs the full width of it.
+        floatingNotice = column.findViewById(R.id.layoutOnGrant);
+        paintFloatingNotice();
+
         column.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -289,6 +296,15 @@ public abstract class UIFragment<T> extends Fragment {
         }
         headerSquared = false;
         floatingHeader.requestLayout();
+        paintFloatingNotice();
+    }
+
+    private void paintFloatingNotice() {
+        if (floatingNotice == null) {
+            return;
+        }
+        floatingNotice.setBackgroundColor(TintUtil.color);
+        floatingNotice.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
     }
 
     /**
@@ -470,6 +486,7 @@ public abstract class UIFragment<T> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         floatingHeader = null;
+        floatingNotice = null;
         if (recyclerView != null) {
             try {
                 recyclerView.setAdapter(null);

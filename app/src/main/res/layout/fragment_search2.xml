@@ -175,6 +175,12 @@
             android:layout_marginLeft="5dip"
             android:layout_weight="0"
             android:gravity="center"
+            android:background="@drawable/bg_pill_outline"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:layout_marginRight="6dip"
             android:textAllCaps="true"
             android:text="@string/yes" />
     </LinearLayout>
