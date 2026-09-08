@@ -215,10 +215,17 @@ public abstract class DocumentController {
         }
     }
 
+    /**
+     * The bars are the system's to paint over the app, and it paints them solid. Where the
+     * app's own chrome floats over the page and carries the bars itself, they are left clear
+     * instead, or the page would be hidden under the very strips it was meant to run beneath.
+     */
     public static void setNavBarTintColor(Activity a) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            a.getWindow().setNavigationBarColor(TintUtil.color);
-            a.getWindow().setStatusBarColor(TintUtil.color);
+            boolean floatingChrome = a.findViewById(R.id.slidingTabs2) != null;
+            int color = floatingChrome ? Color.TRANSPARENT : TintUtil.color;
+            a.getWindow().setNavigationBarColor(color);
+            a.getWindow().setStatusBarColor(color);
         }
     }
 
@@ -390,7 +397,10 @@ public abstract class DocumentController {
 
                     ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
                     mlp.leftMargin = insets.left;
-                    mlp.bottomMargin = insets.bottom;
+                    // Where the chrome floats it carries the bars itself, and the page runs
+                    // the whole height of the screen - under the buttons at the foot as well
+                    // as under the clock at the head.
+                    mlp.bottomMargin = underStatusBar ? 0 : insets.bottom;
                     mlp.rightMargin = insets.right;
                     v.setLayoutParams(mlp);
 
@@ -411,7 +421,7 @@ public abstract class DocumentController {
                         drawer.setPadding(drawer.getPaddingLeft(),
                                           underStatusBar ? insets.top : 0,
                                           drawer.getPaddingRight(),
-                                          drawer.getPaddingBottom());
+                                          underStatusBar ? insets.bottom : 0);
                         // The strip it keeps is left clear: the page shows through it, and
                         // the bar's own light icons stay readable over that rather than
                         // being lost on the drawer's white ground.

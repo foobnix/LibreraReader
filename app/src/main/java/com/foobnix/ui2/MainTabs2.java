@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -543,6 +544,18 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
+        if (SlidingTabLayout.isFloating()) {
+            // The bar floats clear of the system's own buttons, which the page now runs
+            // under rather than stopping above.
+            indicator.post(() -> {
+                WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
+                int below = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
+                lp.bottomMargin = Dips.DP_8 + below;
+                indicator.setLayoutParams(lp);
+            });
+        }
+
         if (AppState.get().tapPositionTop) {
             // Standing over the page now, the strip carries the status bar itself, and is
             // lifted clear of the header the page's own tab draws beneath it.

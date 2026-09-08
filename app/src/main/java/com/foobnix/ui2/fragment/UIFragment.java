@@ -233,7 +233,11 @@ public abstract class UIFragment<T> extends Fragment {
         // own down there - then the space comes off the tab's edge, or the bar would sit on
         // top of it.
         boolean listReachesFoot = isLastShown(column, holder);
-        int space = SlidingTabLayout.floatingSpace();
+        // The bar's own room, and under it whatever the system's buttons take: the page runs
+        // beneath both, and comes to rest clear of both.
+        WindowInsetsCompat below = ViewCompat.getRootWindowInsets(column);
+        int space = SlidingTabLayout.floatingSpace()
+                + (below == null ? 0 : below.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
         int under = listReachesFoot ? space : 0;
         if (column.getPaddingBottom() != space - under) {
             column.setPadding(column.getPaddingLeft(),
@@ -269,28 +273,32 @@ public abstract class UIFragment<T> extends Fragment {
 
     /**
      * The header runs up under whatever the library floats above the page. At the foot that
-     * is the status bar alone, and the header carries its height; at the head the tabs are
-     * up there too, already carrying it, and the header clears the strip they stand on.
+     * is the status bar alone, and the header grows to carry it - it is the only thing up
+     * there to paint it. At the head the tabs are already standing over that space and
+     * painting it, so the header only clears their strip: growing into it would lay the same
+     * tint down a second time and shut the page out from under both.
      */
     private boolean liftHeaderOverStatusBar(View attached) {
-        int statusBar;
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) floatingHeader.getLayoutParams();
+        int carried = 0;
+        int cleared = 0;
         if (SlidingTabLayout.isFloating()) {
             WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(attached);
-            statusBar = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+            carried = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
         } else {
-            View tabs = getActivity().findViewById(R.id.imageParent1);
-            statusBar = tabs == null ? 0 : tabs.getHeight();
+            View strip = getActivity().findViewById(R.id.imageParent1);
+            cleared = strip == null ? 0 : strip.getHeight();
         }
-        if (floatingHeader.getPaddingTop() == headerPaddingTop + statusBar) {
+        if (floatingHeader.getPaddingTop() == headerPaddingTop + carried && lp.topMargin == cleared) {
             return true;
         }
+        lp.topMargin = cleared;
         if (headerHeight > 0) {
-            ViewGroup.LayoutParams lp = floatingHeader.getLayoutParams();
-            lp.height = headerHeight + statusBar;
-            floatingHeader.setLayoutParams(lp);
+            lp.height = headerHeight + carried;
         }
+        floatingHeader.setLayoutParams(lp);
         floatingHeader.setPadding(floatingHeader.getPaddingLeft(),
-                                  headerPaddingTop + statusBar,
+                                  headerPaddingTop + carried,
                                   floatingHeader.getPaddingRight(),
                                   floatingHeader.getPaddingBottom());
         return false;
