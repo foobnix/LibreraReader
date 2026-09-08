@@ -280,13 +280,6 @@ import java.util.List;
             }
             return false;
         }
-        if (TTSEngine.get()
-                     .isInit() && TTSEngine.get()
-                                           .getCurrentLang()
-                                           .equals("---")) {
-            openSettingsIntent(context);
-            return false;
-        }
         return true;
     }
 
