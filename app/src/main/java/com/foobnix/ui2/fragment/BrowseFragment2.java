@@ -220,13 +220,12 @@ import java.util.Map;
         return getId() == R.id.pager;
     }
 
-    /** The button's own shape: a tinted round with a white edge, and a tap ripple to match. */
+    /** The button's own shape: a tinted round, and a tap ripple to match. */
     private static Drawable openAsBookButton() {
         GradientDrawable face = new GradientDrawable();
         face.setCornerRadius(Dips.DP_50);
         face.setColor(TintUtil.color);
         face.setAlpha(SlidingTabLayout.FLOATING_ALPHA);
-        face.setStroke(Dips.DP_1, Color.WHITE);
 
         GradientDrawable mask = new GradientDrawable();
         mask.setCornerRadius(Dips.DP_50);

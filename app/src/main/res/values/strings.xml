@@ -246,8 +246,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Reading Mode</string>
    <string name="convert_to">Convert to</string>
-   <string name="mode_vertical">Scroll mode</string>
-   <string name="mode_horizontally">Book mode</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paged</string>
    <string name="mode_musician">Musician’s mode</string>
    <string name="save">Save</string>
    <string name="remember_choice">Remember selection</string>

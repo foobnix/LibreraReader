@@ -87,10 +87,16 @@ public class AppState {
             "#FFFFFF", //
             "#CDDC39"//
                                                            );
+    /**
+     * The trim the chrome is drawn in. Deep and quiet rather than bright: the bars are
+     * translucent and the covers show through them, so a colour that competes with the
+     * books reads as noise. Each of these clears 7:1 against the white the labels are set
+     * in, with room to spare once the page lightens them.
+     */
     public static final List<String> STYLE_COLORS = Arrays.asList(//
-            "#3949AB", //
-            "#EA5964", //
-            "#00897B", //
+            "#1B2A4A", // Oxford navy - the leather-bound blue
+            "#6B2131", // oxblood
+            "#7A5230", // bronze
             "#000000" //
 
                                                                  );

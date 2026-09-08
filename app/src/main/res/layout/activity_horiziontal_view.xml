@@ -233,6 +233,8 @@
                 <ImageView
                     android:id="@+id/bookClose"
                     style="@style/buttonWhiteClose"
+                    android:background="@drawable/bg_round_button"
+                    android:padding="7dip"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_alignParentRight="true"

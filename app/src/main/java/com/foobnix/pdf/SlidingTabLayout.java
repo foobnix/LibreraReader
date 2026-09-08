@@ -77,8 +77,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * stops this far short of that, so the ends are round without closing into circles.
      */
     private static final int FLOATING_RADIUS_INSET_DIPS = 4;
-    /** How much of the tint colour the floating chrome keeps: the page reads through it. */
-    public static final int FLOATING_ALPHA = 240;
+    /**
+     * How much of the tint colour the floating chrome keeps. Two things bound it: the page
+     * has to be seen moving under the bars at all, and the white the labels are set in has
+     * to hold against the brightest thing that can pass beneath them - a white cover, which
+     * lightens the bar by whatever is let through.
+     */
+    public static final int FLOATING_ALPHA = 230;
     /** The patch the chosen tab keeps behind its icon and name. */
     private static final int PATCH_ALPHA = 46;
     /** The ripple a tap leaves on a tab, over that same patch. */

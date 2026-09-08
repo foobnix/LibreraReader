@@ -46,6 +46,7 @@ import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.OutlineHelper.Info;
+import android.graphics.drawable.GradientDrawable;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
@@ -1258,7 +1259,7 @@ public class DocumentWrapperUI {
 
         View bookMenu = a.findViewById(R.id.bookMenu);
         bookMenu.setOnClickListener(onItemMenu);
-        modeName.setOnClickListener(onItemMenu);
+        modeName.setOnClickListener(v -> ExtUtils.switchReadingMode(a, dc));
         modeName.setOnLongClickListener(onCloseLongClick);
 //        modeName.setOnLongClickListener(new OnLongClickListener() {
 //

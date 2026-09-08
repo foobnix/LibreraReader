@@ -871,7 +871,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                bookMenu.performClick();
+                ExtUtils.switchReadingMode(HorizontalViewActivity.this, dc);
             }
         });
 //        modeName.setOnLongClickListener(new OnLongClickListener() {

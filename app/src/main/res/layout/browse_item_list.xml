@@ -16,15 +16,18 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <!-- The cover sits flush into the corner of the card: no gap above, below or to the
+             left of it, and no rounding of its own - the card it fills the end of is already
+             cut to a round, and clips it to the same one. -->
         <androidx.cardview.widget.CardView
             android:id="@+id/imageParent"
             android:layout_width="60dip"
             android:layout_height="100dip"
             android:layout_gravity="center"
-            android:layout_margin="2dip"
+            android:layout_marginRight="8dip"
             android:padding="0dip"
             card_view:cardBackgroundColor="@color/transparent"
-            card_view:cardCornerRadius="@dimen/cover_radius_small"
+            card_view:cardCornerRadius="0dp"
             card_view:cardElevation="0dp"
             card_view:cardPreventCornerOverlap="true">
 

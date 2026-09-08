@@ -991,6 +991,28 @@ public class ExtUtils {
         c.startActivity(intent);
     }
 
+    /**
+     * The two ways of reading are a pair, and the name of the one in use is the switch
+     * between them: a tap changes to the other and reopens the book where it was left.
+     * Musician's mode is a third thing rather than the other half of the pair, so it falls
+     * back to the paged one.
+     */
+    public static void switchReadingMode(final Activity a, final DocumentController dc) {
+        if (dc == null || dc.getCurrentBook() == null) {
+            return;
+        }
+        final File file = dc.getCurrentBook();
+        final String playlist = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        dc.onCloseActivityFinal(new Runnable() {
+
+            @Override public void run() {
+                AppSP.get().readingMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK
+                        ? AppState.READING_MODE_SCROLL : AppState.READING_MODE_BOOK;
+                showDocumentWithoutDialog(a, file, playlist);
+            }
+        });
+    }
+
     public static Uri checkPlaylisturi(Uri uri, Intent intent, String playlist) {
         if (TxtUtils.isNotEmpty(playlist)) {
             intent.putExtra(DocumentController.EXTRA_PLAYLIST, playlist);
