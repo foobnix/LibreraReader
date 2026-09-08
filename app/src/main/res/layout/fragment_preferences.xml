@@ -31,21 +31,21 @@
             android:maxLines="1"
             android:text="@string/preferences"
             android:textColor="@color/white"
-            android:textStyle="normal" />
+            android:textStyle="bold" android:textAllCaps="true" />
 
-        <TextView
+        <ImageView
             android:id="@+id/onCloseApp"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:contentDescription="@string/exit_application"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="5dip"
             android:layout_weight="0"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/exit_application"
-            android:textSize="@dimen/text_title"
+            android:background="@drawable/bg_round_button"
+            android:padding="7dip"
+            android:src="@drawable/glyphicons_599_menu_close"
+            android:tag="no_tint"
+            android:tint="@color/white"
             android:visibility="visible" />
 
 

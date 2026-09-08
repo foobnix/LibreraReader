@@ -352,7 +352,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.doContextMenu(this);
 
         setContentView(R.layout.main_tabs);
-        DocumentController.applyEdgeToEdge(this);
+        // With the tabs floating at the foot, the headers float at the top too: the page
+        // runs the whole height of the screen and they are drawn over it.
+        DocumentController.applyEdgeToEdge(this, SlidingTabLayout.isFloating());
 
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
@@ -517,7 +519,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
-        indicator.setBackgroundColor(TintUtil.color);
+        indicator.setTabsBackground(TintUtil.color);
 
         if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
             indicator.setDividerColors(Color.TRANSPARENT);
@@ -547,7 +549,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
             indicator.setSelectedIndicatorColors(TintUtil.color);
             indicator.setDividerColors(TintUtil.color);
-            indicator.setBackgroundColor(Color.TRANSPARENT);
+            indicator.setTabsBackground(Color.TRANSPARENT);
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
         }
 

@@ -535,9 +535,9 @@ public class FileInformationDialog {
                                 .onResultRecive(fileMeta, null);
 
                 if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+                    starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
                 } else {
-                    starIcon.setImageResource(R.drawable.glyphicons_49_star);
+                    starIcon.setImageResource(R.drawable.glyphicons_13_heart);
                 }
                 TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
@@ -545,9 +545,9 @@ public class FileInformationDialog {
         });
 
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+            starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
         } else {
-            starIcon.setImageResource(R.drawable.glyphicons_49_star);
+            starIcon.setImageResource(R.drawable.glyphicons_13_heart);
         }
 
         TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());

@@ -26,13 +26,6 @@
             android:text="@string/back"
             android:textSize="14sp" />
 
-        <View
-            android:visibility="gone"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
-
         <TextView
             android:id="@+id/searchOld"
             style="@style/textLinkWhite"
@@ -78,7 +71,7 @@
             android:gravity="center_vertical"
             android:text="@string/bookmarks"
             android:textColor="@color/white"
-            android:textStyle="normal" />
+            android:textStyle="bold" android:textAllCaps="true" />
 
         <TextView
             android:id="@+id/importBookmarks"
@@ -98,11 +91,6 @@
             android:visibility="gone" />
 
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/onSettings"
             style="@style/buttonWhite"
@@ -112,11 +100,6 @@
             android:contentDescription="@string/settings"
             android:src="@drawable/glyphicons_137_cogwheel" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/search"
             style="@style/buttonWhite"
@@ -125,11 +108,6 @@
             android:contentDescription="@string/search"
             android:src="@drawable/glyphicons_28_search" />
 
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
 
         <ImageView
             android:id="@+id/onListGrid"

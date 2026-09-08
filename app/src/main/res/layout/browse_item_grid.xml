@@ -128,7 +128,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="2dip"
                     android:contentDescription="@string/add_to_favorites"
-                    android:src="@drawable/glyphicons_50_star_empty"
+                    android:src="@drawable/glyphicons_9_heart_empty"
                     android:tint="@color/tint_gray" />
 
 

@@ -1,10 +1,14 @@
 package com.foobnix.pdf;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -59,7 +63,36 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static int POS_VERTICAL = 1;
     private static int myPOS = POS_VERTICAL;
     private static int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 10 : 7;
+
+    /**
+     * The space a page keeps clear at its foot, so the floating bar never comes to rest on
+     * the last book: the pill's own height, the gap it is lifted by, and a little air. A
+     * bar of icons alone is the shorter of the two and asks for less.
+     */
+    private static final int FLOATING_SPACE_DIPS = 76;
+    private static final int FLOATING_SPACE_ALONE_DIPS = 50;
+    /**
+     * A full stadium rounds to half the bar's height, the way LibreraX draws it; the pill
+     * stops this far short of that, so the ends are round without closing into circles.
+     */
+    private static final int FLOATING_RADIUS_INSET_DIPS = 4;
+    /** How much of the tint colour the floating chrome keeps: the page reads through it. */
+    public static final int FLOATING_ALPHA = 240;
+    /** The patch the chosen tab keeps behind its icon and name. */
+    private static final int PATCH_ALPHA = 46;
+    /** The ripple a tap leaves on a tab, over that same patch. */
+    private static final int RIPPLE_ALPHA = 60;
+    /** The margin the pill keeps between its own edge and the tabs inside it. */
+    private static final int FLOATING_INSET_DIPS = 5;
+    private static final int FLOATING_INSET_ALONE_DIPS = 3;
+    private static final int FLOATING_ELEVATION_DIPS = 6;
+    /** The icon in a tab, and the smaller one it draws where it stands without a name. */
+    private static final int TAB_ICON_DIPS = 28;
+    private static final int TAB_ICON_ALONE_DIPS = 24;
+
     private final SlidingTabStrip mTabStrip;
+    /** The pill itself, kept so its corners can follow the height it ends up with. */
+    private GradientDrawable floatingPill;
     SwipeRefreshLayout swipeRefreshLayout;
     IntegerResponse onDoubleClickAction;
     private int mTitleOffset;
@@ -91,6 +124,104 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabStrip = new SlidingTabStrip(context);
         mTabStrip.setDividerColors(Color.TRANSPARENT);
 
+    }
+
+    /**
+     * True while the tabs sit at the foot of the library, where they float over the pages
+     * rather than standing on a strip of their own.
+     */
+    public static boolean isFloating() {
+        return !AppState.get().tapPositionTop;
+    }
+
+    /** The floating bar carrying no names: each tab is an icon and nothing else. */
+    private static boolean isIconsAlone() {
+        return isFloating() && !AppState.get().tabWithNames;
+    }
+
+    /** What a page has to keep clear at its foot for the bar floating over it. */
+    public static int floatingSpace() {
+        return Dips.dpToPx(isIconsAlone() ? FLOATING_SPACE_ALONE_DIPS : FLOATING_SPACE_DIPS);
+    }
+
+    /**
+     * At the top the bar is a plain strip in the tint colour. At the foot it floats over
+     * the pages instead: a rounded pill, translucent enough to read the page through, and
+     * lifted off it by a shadow. On e-ink the same shape stays flat and opaque - a shadow
+     * only greys the screen, and a page showing through would smear behind the names.
+     */
+    public void setTabsBackground(int color) {
+        if (!isFloating()) {
+            setBackgroundColor(color);
+            return;
+        }
+        boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+        floatingPill = new GradientDrawable();
+        floatingPill.setColor(ink ? pageColor() : setColorAlpha(color, FLOATING_ALPHA));
+        if (ink) {
+            floatingPill.setStroke(Dips.DP_1, TintUtil.color);
+        }
+        setBackground(floatingPill);
+        setClipToOutline(true);
+        setElevation(ink ? 0 : Dips.dpToPx(FLOATING_ELEVATION_DIPS));
+
+        int inset = Dips.dpToPx(isIconsAlone() ? FLOATING_INSET_ALONE_DIPS : FLOATING_INSET_DIPS);
+        setPadding(inset, inset, inset, inset);
+
+        applyFloatingRadius(getHeight());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        applyFloatingRadius(h);
+    }
+
+    /** The corners are cut from the height, so the pill keeps its shape at any text size. */
+    private void applyFloatingRadius(int height) {
+        if (floatingPill != null && height > 0) {
+            floatingPill.setCornerRadius(Math.max(0, height / 2f - Dips.dpToPx(FLOATING_RADIUS_INSET_DIPS)));
+        }
+    }
+
+    /** What the page behind the bar is painted with, for the themes that must hide it. */
+    private int pageColor() {
+        TypedValue outValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(android.R.attr.colorBackground, outValue, true);
+        return outValue.data;
+    }
+
+    private static int setColorAlpha(int color, int alpha) {
+        return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+    }
+
+    /**
+     * A tab-shaped patch. The radius is past any height a tab can reach, and a round rect
+     * is drawn no rounder than half its own side, so the ends come out fully rounded.
+     */
+    private static GradientDrawable roundedPatch(int color) {
+        GradientDrawable patch = new GradientDrawable();
+        patch.setCornerRadius(Dips.DP_50);
+        patch.setColor(color);
+        return patch;
+    }
+
+    /**
+     * The chosen tab keeps a rounded patch behind its icon and name, the way LibreraX marks
+     * it. The patch is the tab's own background, with the tap ripple laid over it.
+     */
+    private void setTabPatch(View tab, boolean isSelected) {
+        if (!isFloating()) {
+            return;
+        }
+        try {
+            Drawable patch = ((RippleDrawable) tab.getBackground()).getDrawable(0);
+            boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+            int color = setColorAlpha(ink ? TintUtil.color : Color.WHITE, PATCH_ALPHA);
+            ((GradientDrawable) patch).setColor(isSelected ? color : Color.TRANSPARENT);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public void addSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
@@ -208,11 +339,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
         TextView textView = new TextView(context);
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
-        // textView.setTypeface(Typeface.DEFAULT_BOLD);
 
-        TypedValue outValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
+        if (isFloating()) {
+            // Rounded all the way round, as in LibreraX: the pill's own corners are the
+            // only ones held back. The mask keeps the ripple to the same shape.
+            boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+            int ripple = setColorAlpha(ink ? TintUtil.color : Color.WHITE, RIPPLE_ALPHA);
+            textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
+                                                      roundedPatch(Color.TRANSPARENT),
+                                                      roundedPatch(Color.WHITE)));
+        } else {
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            textView.setBackgroundResource(outValue.resourceId);
+        }
 
         if (myPOS == POS_HORIZONTAL) {
             textView.setAllCaps(true);
@@ -222,7 +362,20 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        if (AppState.get().tabWithNames) {
+        if (isFloating()) {
+            // Inside the pill the tab is drawn tight: the name in bold right under the icon,
+            // and only as much air above and below as keeps the patch off the pill's edge.
+            // The patch wraps the whole tab, so that air has to be even at both ends.
+            textView.setTypeface(Typeface.DEFAULT_BOLD);
+            int air = isIconsAlone() ? Dips.DP_3 : Dips.DP_4;
+            textView.setPadding(padding, air, padding, air);
+            if (isIconsAlone()) {
+                // There is no name to draw, but an empty line still holds a line's height
+                // under the icon: the bar would carry a band of nothing at its foot and the
+                // patch would sit low around the icon rather than about it.
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 0);
+            }
+        } else if (AppState.get().tabWithNames) {
             textView.setPadding(padding, padding, padding, padding);
         } else {
             if (myPOS == POS_HORIZONTAL) {
@@ -257,7 +410,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
-                if (AppState.get().appTheme == AppState.THEME_INK) {
+                if (AppState.get().appTheme == AppState.THEME_INK && !isIconsAlone()) {
                     ((TextView) tabView).setTextSize(16);
                 }
             }
@@ -279,7 +432,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 try {
                     drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
                     //drawable = new ScaleDrawable(drawable.getCurrent(),0,Dips.DP_10,Dips.DP_10);
-                    int size = Dips.dpToPx(28);
+                    int size = Dips.dpToPx(isIconsAlone() ? TAB_ICON_ALONE_DIPS : TAB_ICON_DIPS);
                     drawable.setBounds(0,0,size,size);
 
                     if (myPOS == POS_VERTICAL) {
@@ -292,7 +445,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 }
 
 
-                tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
+                tabTitleView.setCompoundDrawablePadding(
+                        isIconsAlone() ? 0 : isFloating() ? Dips.DP_1 : Dips.dpToPx(5));
 
                 if (AppState.get().appTheme == AppState.THEME_INK) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
@@ -320,7 +474,16 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 });
 
 
-                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1));
+                LinearLayout.LayoutParams
+                        params =
+                        new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1);
+                if (isFloating()) {
+                    // Every tab the same width, so the patch behind the chosen one comes out
+                    // as a pill across it rather than a circle in the middle of it.
+                    params.width = 0;
+                    params.leftMargin = params.rightMargin = Dips.DP_2;
+                }
+                getmTabStrip().addView(tabView, params);
 
             }
         }
@@ -384,6 +547,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 childAt.setTextColor(myColor);
                 TintUtil.setDrawableTint(drawable, myColor);
             }
+
+            setTabPatch(childAt, i == position);
         }
     }
 

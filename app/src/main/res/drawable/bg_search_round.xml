@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The search field where the header floats: a rounded well in the tint band, with no
+     border of its own to cut it out of the colour it sits on. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"><shape android:shape="rectangle">
+            <solid android:color="#33ffffff" />
+            <corners android:radius="18dp" />
+        </shape></item>
+    <item><shape android:shape="rectangle">
+            <solid android:color="#22ffffff" />
+            <corners android:radius="18dp" />
+        </shape></item>
+
+</selector>

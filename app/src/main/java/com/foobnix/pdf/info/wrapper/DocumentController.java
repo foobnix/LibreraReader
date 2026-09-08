@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -362,6 +363,15 @@ public abstract class DocumentController {
     }
 
     public static void applyEdgeToEdge(final Activity a) {
+        applyEdgeToEdge(a, false);
+    }
+
+    /**
+     * @param underStatusBar the page runs up behind the status bar instead of stopping
+     * below a strip of its own, so that a header floating at the top of the page and the
+     * status bar over it read as one surface.
+     */
+    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar) {
         if (Build.VERSION.SDK_INT >= 35) {
             View parentParent = a.findViewById(R.id.parentParent);
             View statusBarHack = a.findViewById(R.id.systemBarHack);
@@ -378,11 +388,26 @@ public abstract class DocumentController {
 
                     if (statusBarHack != null) {
                         ViewGroup.LayoutParams statusBarHackLayoutParams = statusBarHack.getLayoutParams();
-                        statusBarHackLayoutParams.height = insets.top;
+                        statusBarHackLayoutParams.height = underStatusBar ? 0 : insets.top;
                         statusBarHack.setLayoutParams(statusBarHackLayoutParams);
 
                         statusBarHack.setBackgroundColor(TintUtil.color);
 
+                    }
+
+                    // Only the page runs up behind the status bar. The drawer slides over
+                    // the page, so it starts below the bar or its own title would be read
+                    // through the clock.
+                    View drawer = a.findViewById(R.id.left_drawer);
+                    if (drawer != null) {
+                        drawer.setPadding(drawer.getPaddingLeft(),
+                                          underStatusBar ? insets.top : 0,
+                                          drawer.getPaddingRight(),
+                                          drawer.getPaddingBottom());
+                        // The strip it keeps is left clear: the page shows through it, and
+                        // the bar's own light icons stay readable over that rather than
+                        // being lost on the drawer's white ground.
+                        drawer.setBackgroundColor(underStatusBar ? Color.TRANSPARENT : Color.WHITE);
                     }
 
                     return WindowInsetsCompat.CONSUMED;

@@ -63,6 +63,8 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
+import android.util.TypedValue;
+import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -119,9 +121,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public int rememberPos = 0;
     FileMetaAdapter searchAdapter;
     AuthorsAdapter2 authorsAdapter;
-    TextView countBooks, sortBy, layoutErrorOnRestart;
+    TextView countBooks, layoutErrorOnRestart;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage, cleanFilter, menu2;
+    ImageView sortBy, sortOrder, myAutoCompleteImage, cleanFilter, menu2;
     View onRefresh, secondTopPanel, layoutError;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
@@ -158,11 +160,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchAndOrderAsync();
-                searchEditText.setHint(R.string.search);
+                setSearchHint(R.string.library);
                 onRefresh.setActivated(true);
 
                 if (AppsConfig.IS_LOG) {
-                    searchEditText.setHint(Apps.getApplicationName(getContext()));
+                    setSearchHint(Apps.getApplicationName(getContext()));
                 }
 
             } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
@@ -170,13 +172,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 if (count > 0) {
                     countBooks.setText("" + count);
                 }
-                searchEditText.setHint(R.string.searching_please_wait_);
+                setSearchHint(R.string.searching_please_wait_);
                 onRefresh.setActivated(false);
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 onRefresh.setActivated(false);
-                searchEditText.setHint(R.string.extracting_information_from_books);
+                setSearchHint(R.string.extracting_information_from_books);
             } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                searchEditText.setHint(intent.getStringExtra("TEXT"));
+                setSearchHint(intent.getStringExtra("TEXT"));
             } else if (BooksService.RESULT_NOTIFY_ALL.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 TempHolder.listHash++;
                 EventBus.getDefault()
@@ -305,8 +307,54 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             TintUtil.setUITextColor(searchEditText, Color.BLACK);
             countBooks.setTextColor(Color.BLACK);
 
+        } else {
+            styleFilterLineOnTint();
         }
 
+    }
+
+    /**
+     * The field's prompt is set from a dozen places - what is being searched, what is still
+     * loading - and is drawn in capitals from every one of them, the way the shelf titles
+     * above it are.
+     */
+    private void setSearchHint(int resId) {
+        setSearchHint(getString(resId));
+    }
+
+    private void setSearchHint(CharSequence hint) {
+        searchEditText.setHint(hint == null ? null : hint.toString().toUpperCase(Locale.getDefault()));
+    }
+
+    /**
+     * The filter line stands on the tint band the header is painted in, not on the page, so
+     * it is drawn to be read against it: the menu the same white as the buttons on the far
+     * side, and the field a rounded well with its words in white, rather than a boxed-out
+     * rectangle with a border cutting it from the colour it sits on.
+     */
+    private void styleFilterLineOnTint() {
+        if (!SlidingTabLayout.isFloating() || getId() != R.id.pager) {
+            return;
+        }
+        TypedValue outValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+        menu2.setBackgroundResource(outValue.resourceId);
+        TintUtil.setTintImageNoAlpha(menu2, Color.WHITE);
+
+        // The buttons stand on the bar itself. Their own panel was a second, solid block of
+        // the same tint laid over a bar the page shows through - a darker patch with an
+        // edge of its own, right where the bar was meant to read as one surface.
+        secondTopPanel.setBackgroundColor(Color.TRANSPARENT);
+
+        searchEditText.setBackgroundResource(R.drawable.bg_search_round);
+        searchEditText.setPadding(Dips.DP_15,
+                                  searchEditText.getPaddingTop(),
+                                  searchEditText.getPaddingRight(),
+                                  searchEditText.getPaddingBottom());
+        TintUtil.setUITextColor(searchEditText, Color.WHITE);
+        countBooks.setTextColor(Color.WHITE);
+        TintUtil.setTintImageNoAlpha(cleanFilter, Color.WHITE);
+        TintUtil.setTintImageNoAlpha(myAutoCompleteImage, Color.WHITE);
     }
 
     public void onGridList() {
@@ -368,7 +416,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onRefresh = view.findViewById(R.id.onRefresh);
         onRefresh.setActivated(true);
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
-        sortBy = (TextView) view.findViewById(R.id.sortBy);
+        sortBy = (ImageView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         menu2 = (ImageView) view.findViewById(R.id.menu2);
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
@@ -732,15 +780,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (Apps.isDestroyedActivity(getActivity())) {
             return;
         }
-        searchEditText.setHint(R.string.msg_loading);
-        sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy)
-                                    .getResName());
-
+        setSearchHint(R.string.msg_loading);
         sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_221_chevron_down :
                 R.drawable.glyphicons_222_chevron_up);
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
-        sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
+        // The mark alone says what it opens, so the field being sorted on is left to it.
+        sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + getString(
+                AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName()));
         sortOrder.setContentDescription(order);
 
         populate();
@@ -905,10 +952,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         String txt = searchEditText.getText()
                                    .toString()
                                    .trim();
-        searchEditText.setHint(R.string.search);
+        setSearchHint(R.string.library);
 
         //if(AppsConfig.IS_LOG){
-        //searchEditText.setHint(Apps.getApplicationName(getContext()));
+        //setSearchHint(Apps.getApplicationName(getContext()));
         //}
 
         if (CMD_KEYCODE.equals(txt)) {
@@ -939,6 +986,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             AppState.get().previousLibraryMode = AppState.get().libraryMode;
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
+            sortBy.setVisibility(View.VISIBLE);
             sortOrder.setEnabled(true);
             if (AppState.get().isVisibleSorting) {
                 sortOrder.setVisibility(View.VISIBLE);
@@ -962,34 +1010,34 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             prevLibModeAuthors = AppState.get().libraryMode;
             searchEditText.setEnabled(false);
             sortBy.setEnabled(false);
-            sortBy.setText("");
+            sortBy.setVisibility(View.INVISIBLE);
             sortOrder.setEnabled(false);
             sortOrder.setVisibility(View.INVISIBLE);
 
             String empty = "";
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
-                searchEditText.setHint(R.string.author);
+                setSearchHint(R.string.author);
                 empty = EMPTY_ID + getString(R.string.no_author);
             } else if (AppState.get().libraryMode == AppState.MODE_SERIES) {
-                searchEditText.setHint(R.string.serie);
+                setSearchHint(R.string.serie);
                 empty = EMPTY_ID + getString(R.string.no_serie);
             } else if (AppState.get().libraryMode == AppState.MODE_GENRE) {
-                searchEditText.setHint(R.string.genre);
+                setSearchHint(R.string.genre);
                 empty = EMPTY_ID + getString(R.string.no_genre);
             } else if (AppState.get().libraryMode == AppState.MODE_KEYWORDS) {
-                searchEditText.setHint(R.string.keywords);
+                setSearchHint(R.string.keywords);
                 empty = EMPTY_ID + getString(R.string.no_keywords);
             } else if (AppState.get().libraryMode == AppState.MODE_USER_TAGS) {
-                searchEditText.setHint(R.string.my_tags);
+                setSearchHint(R.string.my_tags);
                 empty = EMPTY_ID + getActivity().getString(R.string.no_tag);
             } else if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
-                searchEditText.setHint(R.string.language);
+                setSearchHint(R.string.language);
                 empty = EMPTY_ID + getActivity().getString(R.string.no_language);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
-                searchEditText.setHint(R.string.publication_date);
+                setSearchHint(R.string.publication_date);
                 empty = EMPTY_ID + getActivity().getString(R.string.empy);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLISHER) {
-                searchEditText.setHint(R.string.publisher);
+                setSearchHint(R.string.publisher);
                 empty = EMPTY_ID + getActivity().getString(R.string.empy);
             }
 
@@ -1193,10 +1241,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
         if (!BooksService.isRunning) {
             onRefresh.setActivated(!BooksService.isRunning);
-            searchEditText.setHint(R.string.search);
+            setSearchHint(R.string.library);
 
 //            if(AppsConfig.IS_LOG){
-//                searchEditText.setHint(Apps.getApplicationName(getContext()));
+//                setSearchHint(Apps.getApplicationName(getContext()));
 //            }
 
         }

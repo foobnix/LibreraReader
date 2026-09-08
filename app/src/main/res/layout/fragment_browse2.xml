@@ -26,11 +26,6 @@
             android:contentDescription="@string/back"
             android:src="@drawable/glyphicons_223_chevron_left" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <HorizontalScrollView
             android:id="@+id/scroller"
             android:layout_width="wrap_content"
@@ -76,11 +71,6 @@
             android:tint="@color/tint_white" />
 
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/createFolder"
             style="@style/buttonWhite"
@@ -92,11 +82,6 @@
             android:src="@drawable/glyphicons_371_plus"
             android:tint="@color/tint_white" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
@@ -104,14 +89,8 @@
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
             android:padding="7dip"
-            android:src="@drawable/glyphicons_50_star_empty"
+            android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider"
             android:visibility="gone" />
 
         <ImageView
@@ -135,11 +114,6 @@
             android:src="@drawable/glyphicons_222_chevron_up"
             android:tint="@color/white" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/onHome"
             style="@style/buttonWhite"
@@ -148,11 +122,6 @@
             android:layout_weight="0"
             android:contentDescription="@string/favorites"
             android:src="@drawable/glyphicons_336_folder" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
 
         <ImageView
             android:id="@+id/onListGrid"
@@ -253,7 +222,7 @@
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="7dip"
-                android:src="@drawable/glyphicons_50_star_empty"
+                android:src="@drawable/glyphicons_9_heart_empty"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 

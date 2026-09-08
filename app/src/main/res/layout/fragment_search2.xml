@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/panel_padding"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="6dip">
 
         <ImageView
             android:visibility="visible"
@@ -50,7 +51,7 @@
                 android:background="@drawable/bg_search_edit"
                 android:contentDescription="@string/filter"
                 android:ellipsize="end"
-                android:hint="@string/search"
+                android:hint="@string/library"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="10dip"
@@ -69,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="4dip"
+                android:layout_marginRight="14dip"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/tint_gray"
@@ -107,20 +108,16 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:contentDescription="@string/cd_sort_results"
                 android:id="@+id/sortBy"
-                android:layout_width="@dimen/sort_by_size"
+                android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:paddingLeft="8dip"
-                android:singleLine="true"
-                android:text="@string/by_path"
-                android:textColor="@color/white"
-                android:textStyle="normal" />
+                android:padding="6dip"
+                android:src="@drawable/glyphicons_471_sort"
+                android:tint="@color/white" />
 
             <ImageView
                 android:visibility="visible"
@@ -134,11 +131,6 @@
                 android:src="@drawable/glyphicons_221_chevron_down"
                 android:tint="@color/white" />
 
-            <View
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:background="@color/tint_divider" />
-
             <ImageView
                 android:contentDescription="@string/update_library"
                 android:id="@+id/onRefresh"
@@ -147,11 +139,6 @@
                 android:layout_height="@dimen/wh_button"
                 android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/glyphicons_82_refresh" />
-
-            <View
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:background="@color/tint_divider" />
 
             <ImageView
                 android:contentDescription="@string/cd_view_menu"

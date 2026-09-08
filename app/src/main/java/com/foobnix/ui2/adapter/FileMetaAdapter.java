@@ -295,9 +295,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
 
             if (fileMeta.getIsStar() != null && fileMeta.getIsStar()) {
-                holder.starIcon.setImageResource(R.drawable.glyphicons_49_star);
+                holder.starIcon.setImageResource(R.drawable.glyphicons_13_heart);
             } else {
-                holder.starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+                holder.starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
             }
 
             TintUtil.setNoTintImage(holder.image);
@@ -443,7 +443,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             final String STARRED = holder.getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
 
             holder.recentName.setText(holder.getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
-            holder.starredNameIcon.setImageResource(R.drawable.glyphicons_49_star);
+            holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
             TxtUtils.underlineTextView(holder.starredName);
@@ -453,12 +453,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 public void onClick(final View v) {
                     MyPopupMenu menu = new MyPopupMenu(v.getContext(), v);
 
-                    menu.getMenu().add(STARRED).setIcon(R.drawable.glyphicons_49_star).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    menu.getMenu().add(STARRED).setIcon(R.drawable.glyphicons_13_heart).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             AppState.get().recentTag = "";
-                            holder.starredNameIcon.setImageResource(R.drawable.glyphicons_49_star);
+                            holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
                             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
                             TxtUtils.underline(holder.starredName, STARRED);
@@ -520,7 +520,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             });
             adapter.getItemsList().clear();
             if (TxtUtils.isEmpty(AppState.get().recentTag)) {
-                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_49_star);
+                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
                 TxtUtils.underline(holder.starredName, STARRED);
@@ -745,9 +745,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
 
         if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-            holder.star.setImageResource(R.drawable.glyphicons_50_star_empty);
+            holder.star.setImageResource(R.drawable.glyphicons_9_heart_empty);
         } else {
-            holder.star.setImageResource(R.drawable.glyphicons_49_star);
+            holder.star.setImageResource(R.drawable.glyphicons_13_heart);
         }
         TintUtil.setTintImageWithAlpha(holder.star, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 

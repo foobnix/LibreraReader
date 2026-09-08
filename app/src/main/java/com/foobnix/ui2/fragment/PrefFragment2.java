@@ -613,8 +613,7 @@ public class PrefFragment2 extends UIFragment {
         } catch (final NameNotFoundException e) {
         }
 
-        TextView onCloseApp = inflate.findViewById(R.id.onCloseApp);
-        TxtUtils.underlineTextView(onCloseApp);
+        View onCloseApp = inflate.findViewById(R.id.onCloseApp);
         onCloseApp.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(View v) {

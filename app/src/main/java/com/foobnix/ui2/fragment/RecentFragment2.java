@@ -100,22 +100,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        clearAllRecent.run();
-
-                    }
-                });
-
-            }
-        });
-
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
@@ -158,9 +142,9 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             recentAdapter.notifyDataSetChanged();
         }
         if (AppState.get().isHideReadBook) {
-            recentName.setText(getString(R.string.recent) + " (" + (items.size() + count) + "/" + count + ")");
+            recentName.setText(getString(R.string.recent) + "  " + (items.size() + count) + "/" + count);
         } else {
-            recentName.setText(getString(R.string.recent) + " (" + items.size() + ")");
+            recentName.setText(getString(R.string.recent) + "  " + items.size());
         }
     }
 
@@ -201,6 +185,20 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                 }
             });
         }
+
+        // Emptying the shelf is not something to leave a tap away in the bar, and it asks
+        // before it does anything.
+        p.getMenu().add(R.string.clear_all).setIcon(R.drawable.glyphicons_17_bin).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AlertDialogs.showDialog(getActivity(),
+                                        getString(R.string.do_you_want_to_clear_everything_),
+                                        getString(R.string.ok),
+                                        clearAllRecent);
+                return false;
+            }
+        });
 
 
         p.show();

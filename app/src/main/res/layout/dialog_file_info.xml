@@ -54,7 +54,7 @@
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="8dip"
-                    android:src="@drawable/glyphicons_49_star"
+                    android:src="@drawable/glyphicons_13_heart"
                     android:tint="@color/white" />
             </RelativeLayout>
 
@@ -493,7 +493,7 @@
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:padding="8dip"
-            android:src="@drawable/glyphicons_49_star"
+            android:src="@drawable/glyphicons_13_heart"
             android:tint="@color/white" />
 
         <TextView

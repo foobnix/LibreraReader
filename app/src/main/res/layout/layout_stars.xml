@@ -20,7 +20,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:src="@drawable/glyphicons_49_star" />
+            android:src="@drawable/glyphicons_13_heart" />
 
         <TextView
             android:id="@+id/starredName"

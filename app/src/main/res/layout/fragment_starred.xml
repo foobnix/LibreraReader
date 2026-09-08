@@ -24,7 +24,7 @@
             android:gravity="center_vertical"
             android:text="@string/favorite"
             android:textColor="@color/white"
-            android:textStyle="normal" />
+            android:textStyle="bold" android:textAllCaps="true" />
 
         <ImageView
             android:id="@+id/onShowMenu"
@@ -36,12 +36,6 @@
             android:contentDescription="@string/settings"
             android:src="@drawable/glyphicons_140_adjust" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
-
         <TextView
             android:id="@+id/onTags"
             style="@style/textLinkWhite"
@@ -52,12 +46,6 @@
             android:minEms="2"
             android:text="@string/tags" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
-
         <TextView
             android:id="@+id/onPlaylists"
             style="@style/textLinkWhite"
@@ -67,11 +55,6 @@
             android:gravity="center"
             android:text="@string/playlists" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <TextView
             android:id="@+id/clearAllRecent"
             style="@style/textLinkWhite"
@@ -80,13 +63,6 @@
             android:layout_weight="0"
             android:contentDescription="@string/cd_clear_all"
             android:text="@string/clear_all"
-            android:visibility="gone" />
-
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider"
             android:visibility="gone" />
 
 
@@ -110,11 +86,6 @@
             android:padding="4dip"
             android:src="@drawable/glyphicons_222_chevron_up"
             android:tint="@color/white" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
 
         <ImageView
             android:id="@+id/onListGrid"

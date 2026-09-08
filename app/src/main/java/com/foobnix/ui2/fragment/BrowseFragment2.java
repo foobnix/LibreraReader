@@ -61,6 +61,14 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.IMG;
+import androidx.cardview.widget.CardView;
+import com.foobnix.pdf.SlidingTabLayout;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.Outline;
+import android.view.ViewOutlineProvider;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -197,10 +205,39 @@ import java.util.Map;
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setTintImageWithAlpha(openAsbookImage,
-                getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                        TintUtil.getColorInDayNighthBook());
+        TintUtil.setTintImageWithAlpha(openAsbookImage, openAsBookInk());
 
+    }
+
+    /**
+     * Where the header floats, the row offering the folder as a book belongs to it rather
+     * than to the files: it is drawn on the tint, so its own marks are drawn on tint too.
+     */
+    private boolean isOpenAsBookInHeader() {
+        return SlidingTabLayout.isFloating() && getId() == R.id.pager;
+    }
+
+    /** The button's own shape: a tinted round with a white edge, and a tap ripple to match. */
+    private static Drawable openAsBookButton() {
+        GradientDrawable face = new GradientDrawable();
+        face.setCornerRadius(Dips.DP_50);
+        face.setColor(TintUtil.color);
+        face.setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        face.setStroke(Dips.DP_1, Color.WHITE);
+
+        GradientDrawable mask = new GradientDrawable();
+        mask.setCornerRadius(Dips.DP_50);
+        mask.setColor(Color.WHITE);
+
+        return new RippleDrawable(ColorStateList.valueOf(Color.argb(60, 255, 255, 255)), face, mask);
+    }
+
+    private int openAsBookInk() {
+        if (isOpenAsBookInHeader()) {
+            return Color.WHITE;
+        }
+        return getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                TintUtil.getColorInDayNighthBook();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) @Override
@@ -217,9 +254,32 @@ import java.util.Map;
         onClose = view.findViewById(R.id.onClose);
         openAsBook = view.findViewById(R.id.openAsBook);
         openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
-        TintUtil.setTintImageWithAlpha(openAsbookImage,
-                getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                        TintUtil.getColorInDayNighthBook());
+        TintUtil.setTintImageWithAlpha(openAsbookImage, openAsBookInk());
+        if (isOpenAsBookInHeader()) {
+            // Not a card of the page but a button on the bar above it: a rounded shape in
+            // the same tint the path is drawn in, ruled with a white edge, with the files
+            // running on underneath.
+            CardView card = (CardView) openAsBook;
+            card.setRadius(0);
+            card.setCardElevation(0);
+            card.setUseCompatPadding(false);
+            card.setCardBackgroundColor(Color.TRANSPARENT);
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
+            lp.leftMargin = lp.rightMargin = Dips.DP_8;
+            lp.topMargin = Dips.DP_4;
+            lp.bottomMargin = Dips.DP_6;
+            card.setLayoutParams(lp);
+            view.findViewById(R.id.openAsBookBg).setBackground(openAsBookButton());
+            // The card is only a holder now. Left as it is, the shadow it is lifted by
+            // would be cast by the card's square edge around a round button.
+            card.setOutlineProvider(new ViewOutlineProvider() {
+                @Override public void getOutline(View v, Outline outline) {
+                    outline.setRoundRect(0, 0, v.getWidth(), v.getHeight(), v.getHeight() / 2f);
+                }
+            });
+            card.setClipToOutline(true);
+            ((TextView) view.findViewById(R.id.text1)).setTextColor(Color.WHITE);
+        }
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
@@ -1157,21 +1217,25 @@ import java.util.Map;
 
             final String[] split = path.split("/");
 
-            TextView nameView = new TextView(getActivity());
-            if (split.length == 0) {
-                nameView.setText(name + ": " + Clouds.get()
-                                                     .getUserLogin(AppState.get().displayPath) + " ");
-            } else {
-                nameView.setText(name + ":");
-            }
-            nameView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
-            nameView.setOnClickListener(new OnClickListener() {
-
-                @Override public void onClick(View v) {
-                    displayAnyPath(prefix + "/");
+            // A cloud is named, because the path alone would not say which one it is. The
+            // device's own storage needs no such word in front of it.
+            if (Clouds.isCloud(AppState.get().displayPath)) {
+                TextView nameView = new TextView(getActivity());
+                if (split.length == 0) {
+                    nameView.setText(name + ": " + Clouds.get()
+                                                         .getUserLogin(AppState.get().displayPath) + " ");
+                } else {
+                    nameView.setText(name + ":");
                 }
-            });
-            paths.addView(nameView);
+                nameView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                nameView.setOnClickListener(new OnClickListener() {
+
+                    @Override public void onClick(View v) {
+                        displayAnyPath(prefix + "/");
+                    }
+                });
+                paths.addView(nameView);
+            }
 
             if (split.length == 0 && Clouds.isCloud(AppState.get().displayPath)) {
                 TextView logout = new TextView(getActivity());
@@ -1217,13 +1281,18 @@ import java.util.Map;
                 if (TxtUtils.isEmpty(part)) {
                     continue;
                 }
+                // The whole path reads as one line, dividers and all, and sits close: the
+                // spaces the dividers used to be padded with pulled it apart.
                 TextView slash = new TextView(getActivity());
-                slash.setText(" / ");
+                slash.setText("/");
+                slash.setPadding(Dips.DP_2, 0, Dips.DP_2, 0);
+                slash.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                 slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
 
                 TextView item = new TextView(getActivity());
                 item.setText(part);
                 item.setGravity(Gravity.CENTER);
+                item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                 item.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                 item.setSingleLine();
                 TypedValue outValue = new TypedValue();
@@ -1232,7 +1301,6 @@ import java.util.Map;
                 item.setBackgroundResource(outValue.resourceId);
 
                 if (i == split.length - 1) {
-                    item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
                     item.setMinimumWidth(Dips.DP_40);
                     item.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
                 }
@@ -1289,13 +1357,16 @@ import java.util.Map;
 
             }
 
+            // The count belongs to the path it follows, and is set in the same weight: the
+            // brackets it used to be kept in only fenced it off from the line.
             TextView stub = new TextView(getActivity());
 
             if (AppState.get().isHideReadBook) {
-                stub.setText(" (" + (itemsCount + readCount) + "/" + readCount + ") ");
+                stub.setText("  " + (itemsCount + readCount) + "/" + readCount);
             } else {
-                stub.setText(" (" + itemsCount + ") ");
+                stub.setText("  " + itemsCount);
             }
+            stub.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             stub.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
             stub.setSingleLine();
             paths.addView(stub);
@@ -1307,9 +1378,9 @@ import java.util.Map;
 
         if (AppDB.get()
                  .isStarFolder(AppState.get().displayPath)) {
-            starIcon.setImageResource(R.drawable.glyphicons_49_star);
+            starIcon.setImageResource(R.drawable.glyphicons_13_heart);
         } else {
-            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+            starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
         }
         TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
 
@@ -1324,9 +1395,9 @@ import java.util.Map;
                                 .onResultRecive(fileMeta, null);
                 if (AppDB.get()
                          .isStarFolder(AppState.get().displayPath)) {
-                    starIcon.setImageResource(R.drawable.glyphicons_49_star);
+                    starIcon.setImageResource(R.drawable.glyphicons_13_heart);
                 } else {
-                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+                    starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
                 }
             }
         });
@@ -1335,13 +1406,11 @@ import java.util.Map;
                                          .toString();
         if (AppDB.get()
                  .isStarFolder(ldir)) {
-            starIconDir.setImageResource(R.drawable.glyphicons_49_star);
+            starIconDir.setImageResource(R.drawable.glyphicons_13_heart);
         } else {
-            starIconDir.setImageResource(R.drawable.glyphicons_50_star_empty);
+            starIconDir.setImageResource(R.drawable.glyphicons_9_heart_empty);
         }
-        TintUtil.setTintImageWithAlpha(starIconDir,
-                getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                        TintUtil.getColorInDayNighthBook());
+        TintUtil.setTintImageWithAlpha(starIconDir, openAsBookInk());
 
         starIconDir.setOnClickListener(new OnClickListener() {
 
@@ -1356,13 +1425,11 @@ import java.util.Map;
                                 .onResultRecive(fileMeta, null);
                 if (AppDB.get()
                          .isStarFolder(ldir)) {
-                    starIconDir.setImageResource(R.drawable.glyphicons_49_star);
+                    starIconDir.setImageResource(R.drawable.glyphicons_13_heart);
                 } else {
-                    starIconDir.setImageResource(R.drawable.glyphicons_50_star_empty);
+                    starIconDir.setImageResource(R.drawable.glyphicons_9_heart_empty);
                 }
-                TintUtil.setTintImageWithAlpha(starIconDir,
-                        getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                                TintUtil.getColorInDayNighthBook());
+                TintUtil.setTintImageWithAlpha(starIconDir, openAsBookInk());
             }
         });
 

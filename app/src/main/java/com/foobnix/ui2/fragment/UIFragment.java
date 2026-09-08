@@ -9,9 +9,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -27,9 +32,11 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -55,6 +62,10 @@ public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
     protected volatile MyProgressBar MyProgressBar;
     protected RecyclerView recyclerView;
+    /** The header floated over this tab's page, and the room it stood in before it did. */
+    private View floatingHeader;
+    private int headerHeight;
+    private int headerPaddingTop;
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -91,6 +102,8 @@ public abstract class UIFragment<T> extends Fragment {
             TxtUtils.setInkTextView(view);
         }
 
+        floatChromeOverPage(view);
+
         if (recyclerView instanceof FastScrollRecyclerView) {
             swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefreshLayout);
 
@@ -117,6 +130,150 @@ public abstract class UIFragment<T> extends Fragment {
             });
         }
 
+    }
+
+    /**
+     * The library's own filter line is the screen rather than a title over it, so it keeps
+     * the room it stands in; every other tab lets its header float.
+     */
+    public boolean hasFloatingHeader() {
+        return true;
+    }
+
+    /**
+     * With the tabs floating at the foot of the library, the tab's own header floats at the
+     * top: the page runs the whole height of the screen and the chrome is drawn over it,
+     * the header carrying up behind the status bar so the two read as one surface.
+     * <p>
+     * What that costs the page is the space it keeps clear at each end, and that is worked
+     * out again on every layout pass: the status bar's height is only known once the view
+     * is on screen, and what a tab stands above and below its list comes and goes.
+     */
+    private void floatChromeOverPage(final View root) {
+        if (!SlidingTabLayout.isFloating() || !(getActivity() instanceof MainTabs2)) {
+            return;
+        }
+        // Only the tabs themselves: the settings are also the drawer, and a tab's screen is
+        // borrowed by dialogs, and the floating chrome reaches over neither.
+        if (getId() != R.id.pager || !(root instanceof LinearLayout)) {
+            return;
+        }
+        final ViewGroup column = (ViewGroup) root;
+        if (column.getChildCount() < 2) {
+            return;
+        }
+        // The window runs the whole height of the screen now, so every header takes the
+        // full width and carries the status bar itself rather than sitting under a strip.
+        floatingHeader = column.getChildAt(0);
+        headerHeight = floatingHeader.getLayoutParams().height;
+        headerPaddingTop = floatingHeader.getPaddingTop();
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) floatingHeader.getLayoutParams();
+        lp.leftMargin = lp.topMargin = lp.rightMargin = lp.bottomMargin = 0;
+        floatingHeader.setLayoutParams(lp);
+        // A header carrying the status bar has to be painted, or the bar's own clock and
+        // icons are left over whatever the page happens to be showing.
+        if (floatingHeader.getBackground() == null) {
+            floatingHeader.setBackgroundColor(TintUtil.color);
+        }
+        // The same tint the tabs float in at the foot, kept back by the same amount, so the
+        // two bars are one colour. The colour itself stays the tab's own to set and change.
+        floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        column.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                layOutAroundChrome(column);
+            }
+        });
+    }
+
+    /**
+     * Each step writes only what has changed and then leaves, so the layout it asks for
+     * settles instead of running on.
+     */
+    private void layOutAroundChrome(ViewGroup column) {
+        if (getActivity() == null || floatingHeader == null || !liftHeaderOverStatusBar(column)) {
+            return;
+        }
+        View scroller = recyclerView != null ? recyclerView : column.findViewById(R.id.scroll);
+        View holder = childHolding(column, scroller);
+        if (holder == null || scroller == null) {
+            return;
+        }
+        // Everything the tab stands above its list floats over it: the list is pulled up to
+        // the top of the page and keeps that much as padding it can scroll through.
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) holder.getLayoutParams();
+        int above = hasFloatingHeader() ? holder.getTop() - lp.topMargin : 0;
+        if (lp.topMargin != -above) {
+            lp.topMargin = -above;
+            holder.setLayoutParams(lp);
+            return;
+        }
+        // A row of views draws in the order it holds them, so the list - the later child -
+        // would be drawn over the chrome it has just been pulled up behind. Lifting the
+        // chrome puts it back on top, and gives it the same shadow the tabs cast below.
+        for (int i = 0; above > 0 && i < column.indexOfChild(holder); i++) {
+            View chrome = column.getChildAt(i);
+            if (chrome.getElevation() < Dips.DP_4) {
+                chrome.setElevation(Dips.DP_4);
+            }
+        }
+        // At the foot the same again for the tabs, unless the tab stands something of its
+        // own down there - then the space comes off the tab's edge, or the bar would sit on
+        // top of it.
+        boolean listReachesFoot = isLastShown(column, holder);
+        int space = SlidingTabLayout.floatingSpace();
+        int under = listReachesFoot ? space : 0;
+        if (column.getPaddingBottom() != space - under) {
+            column.setPadding(column.getPaddingLeft(),
+                              column.getPaddingTop(),
+                              column.getPaddingRight(),
+                              space - under);
+            return;
+        }
+        if (scroller.getPaddingTop() != above || scroller.getPaddingBottom() != under) {
+            ((ViewGroup) scroller).setClipToPadding(false);
+            scroller.setPadding(scroller.getPaddingLeft(), above, scroller.getPaddingRight(), under);
+        }
+    }
+
+    /** The header runs up behind the status bar, so it has to carry the bar's height. */
+    private boolean liftHeaderOverStatusBar(View attached) {
+        int statusBar = 0;
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(attached);
+        if (insets != null) {
+            statusBar = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+        }
+        if (floatingHeader.getPaddingTop() == headerPaddingTop + statusBar) {
+            return true;
+        }
+        if (headerHeight > 0) {
+            ViewGroup.LayoutParams lp = floatingHeader.getLayoutParams();
+            lp.height = headerHeight + statusBar;
+            floatingHeader.setLayoutParams(lp);
+        }
+        floatingHeader.setPadding(floatingHeader.getPaddingLeft(),
+                                  headerPaddingTop + statusBar,
+                                  floatingHeader.getPaddingRight(),
+                                  floatingHeader.getPaddingBottom());
+        return false;
+    }
+
+    /** The child of the column the list sits in, which may well be the list itself. */
+    private static View childHolding(ViewGroup column, View view) {
+        while (view != null && view.getParent() != column) {
+            view = view.getParent() instanceof View ? (View) view.getParent() : null;
+        }
+        return view;
+    }
+
+    /** True when nothing a reader can see stands between the child and the foot of the tab. */
+    private static boolean isLastShown(ViewGroup column, View child) {
+        for (int i = column.indexOfChild(child) + 1; i < column.getChildCount(); i++) {
+            if (column.getChildAt(i).getVisibility() != View.GONE) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -246,6 +403,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        floatingHeader = null;
         if (recyclerView != null) {
             try {
                 recyclerView.setAdapter(null);

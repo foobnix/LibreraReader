@@ -85,7 +85,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     String title;
     Stack<String> stack = new Stack<String>();
     ImageView onPlus, onProxy;
-    View pathContainer, view1, view2;
+    View pathContainer;
     long enqueue;
     TextView defaults, faq;
     ImageView starIcon;
@@ -160,8 +160,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         onProxy = (ImageView) view.findViewById(R.id.onProxy);
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         pathContainer = view.findViewById(R.id.pathContainer);
-        view1 = view.findViewById(R.id.view1);
-        view2 = view.findViewById(R.id.view2);
         MyProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarOPDS);
         MyProgressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
@@ -286,13 +284,13 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         @Override
                         public void run() {
-                            starIcon.setImageResource(R.drawable.glyphicons_49_star);
+                            starIcon.setImageResource(R.drawable.glyphicons_13_heart);
                             TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                         }
                     }, entry, false);
                 } else {
                     AppState.get().allOPDSLinks = AppState.get().allOPDSLinks.replace(entry.appState, "");
-                    starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+                    starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
                     TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
                     // AlertDialogs.showOkDialog(getActivity(),
                     // getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
@@ -844,7 +842,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         defaults.setVisibility(isHomeVisible);
         faq.setVisibility(isHomeVisible);
         onProxy.setVisibility(isHomeVisible);
-        view1.setVisibility(isHomeVisible);
 
         starIcon.setVisibility(url == "/" ? View.GONE : View.VISIBLE);
         for (Entry cat : allCatalogs) {
@@ -855,9 +852,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
 
         if (AppState.get().allOPDSLinks.contains(url)) {
-            starIcon.setImageResource(R.drawable.glyphicons_49_star);
+            starIcon.setImageResource(R.drawable.glyphicons_13_heart);
         } else {
-            starIcon.setImageResource(R.drawable.glyphicons_50_star_empty);
+            starIcon.setImageResource(R.drawable.glyphicons_9_heart_empty);
         }
         TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
     }

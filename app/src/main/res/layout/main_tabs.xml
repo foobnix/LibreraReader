@@ -77,11 +77,29 @@
 
 
 
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/pager"
+                    <!-- The tabs at the foot float over the pages instead of taking a
+                         strip of their own, so the books scroll on under them. -->
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1">
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <com.foobnix.pdf.SlidingTabLayout
+                            android:id="@+id/slidingTabs2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="10dip"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginBottom="8dip"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
 
                     <FrameLayout
                         android:layout_marginTop="2dp"
@@ -89,15 +107,6 @@
                         android:id="@+id/adFrame2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
-                    <com.foobnix.pdf.SlidingTabLayout
-                        android:id="@+id/slidingTabs2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:background="#3949ab"
-                        android:elevation="2dip"
-                        android:visibility="gone" />
 
                 </LinearLayout>
 

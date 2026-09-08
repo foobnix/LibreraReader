@@ -46,7 +46,7 @@ import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR =
-            new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_49_star);
+            new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_13_heart);
 
     FileMetaAdapter recentAdapter;
     ImageView onListGrid, sortOrder, onSort;

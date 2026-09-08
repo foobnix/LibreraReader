@@ -1414,7 +1414,8 @@ public class TxtUtils {
                 color = Color.WHITE;
             }
 
-            List<Integer> ids = Arrays.asList(R.id.restoreDefaultProfile, R.id.onCloseApp, R.id.title, R.id.chapter,
+            // onCloseApp is a button now, not a line of text, and would stop the loop dead.
+            List<Integer> ids = Arrays.asList(R.id.restoreDefaultProfile, R.id.title, R.id.chapter,
                     R.id.currentSeek, R.id.maxSeek, R.id.modeName, R.id.nextTypeBootom, R.id.playListName,
                     R.id.playListNameEdit);
             if (AppState.get().isUiTextColor) {

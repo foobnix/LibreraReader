@@ -25,11 +25,6 @@
             android:contentDescription="@string/cd_back_to_parent"
             android:src="@drawable/glyphicons_223_chevron_left" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <TextView
             android:id="@+id/titleView"
             android:layout_width="wrap_content"
@@ -40,7 +35,8 @@
             android:gravity="left"
             android:maxLines="1"
             android:text="@string/catalogs"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" android:textAllCaps="true" />
 
         <ImageView
             android:id="@+id/starIcon"
@@ -49,7 +45,7 @@
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
             android:padding="7dip"
-            android:src="@drawable/glyphicons_50_star_empty"
+            android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray" />
 
         <com.foobnix.pdf.info.view.MyProgressBar
@@ -60,12 +56,6 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/onProxy"
             style="@style/buttonWhite"
@@ -75,12 +65,6 @@
             android:contentDescription="@string/settings"
             android:src="@drawable/glyphicons_137_cogwheel" />
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
-
         <ImageView
             android:id="@+id/onHome"
             style="@style/buttonWhite"
@@ -89,11 +73,6 @@
             android:layout_weight="0"
             android:contentDescription="@string/cd_back_to_all_catalogs"
             android:src="@drawable/glyphicons_21_home" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/tint_divider" />
 
         <ImageView
             android:id="@+id/onPlus"
