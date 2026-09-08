@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:padding="0dip"
             card_view:cardBackgroundColor="@color/transparent"
-            card_view:cardCornerRadius="@dimen/radius"
+            card_view:cardCornerRadius="0dp"
             card_view:cardElevation="0dp"
             card_view:cardPreventCornerOverlap="true" >
 
