@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Glyphicons Halflings 25 "eye". The source is cut to a 20 unit box that the glyph almost
+     fills; the group sits it back on the 32 unit grid the rest of the set is drawn on, so it
+     carries the same optical weight as the marks beside it in a bar. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportHeight="32"
+    android:viewportWidth="32"
+    android:width="32dp"
+    android:height="32dp"
+    >
+    <group
+        android:scaleX="1.33333"
+        android:scaleY="1.33333"
+        android:translateX="2.66667"
+        android:translateY="2.66667" >
+        <path android:fillColor="@color/black"
+ android:pathData="M13,10a3,3,0,1,1-3-3A3,3,0,0,1,13,10Zm5.98389-.79688C18.30225,7.74805,15.63867,3,10,3S1.69775,7.74805,1.01611,9.20312A1.97612,1.97612,0,0,0,1.021,10.89355C1.70459,12.32617,4.37109,17,10,17s8.23644-4.5972,8.979-6.10645A1.97,1.97,0,0,0,18.98389,9.20312ZM10,15c-4.458,0-6.61768-3.80176-7.17334-4.94727C3.38232,8.86719,5.541,5,10,5c4.44727,0,6.606,3.84668,7.16846,5.043C16.605,11.21973,14.44482,15,10,15Z"/>
+    </group>
+</vector>
