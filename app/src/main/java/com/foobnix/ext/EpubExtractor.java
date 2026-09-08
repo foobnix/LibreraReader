@@ -40,6 +40,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -79,7 +80,6 @@ public class EpubExtractor extends BaseExtractor {
     }
 
     public static void proccessHypensApache(String input, String output, final Map<String, String> notes) throws Exception {
-
         Fb2Extractor.epub3Pages.clear();
 
         LOG.d("proccessHypens2", input, output);
@@ -205,7 +205,6 @@ public class EpubExtractor extends BaseExtractor {
 
                 Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count, replacements);
 
-
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
@@ -240,7 +239,6 @@ public class EpubExtractor extends BaseExtractor {
         }
 
         zipInputStream.close();
-
         zos.close();
 
     }
@@ -689,7 +687,6 @@ public class EpubExtractor extends BaseExtractor {
                                     LOG.d("Skip text", text);
                                     continue;
                                 }
-
                                 textLink.put(attr, text + "#" + name);
                                 LOG.d("put links >>", attr, text + "#" + name);
 
@@ -707,7 +704,6 @@ public class EpubExtractor extends BaseExtractor {
 
                     }
                 }
-
                 zipInputStream.release();
                 zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
 
@@ -723,11 +719,11 @@ public class EpubExtractor extends BaseExtractor {
                         LOG.d("PARSE FILE NAME begin", name);
                         if (ExtUtils.getFileName(name).endsWith(ExtUtils.getFileName(fileName))) {
                             LOG.d("PARSE FILE NAME", name);
-                            // System.out.println("file: " + name);
                             Parser xmlParser = Parser.xmlParser();
                             Document parse = Jsoup.parse(zipInputStream, null, "", xmlParser);
 
                             Elements ids = parse.select("[id]");
+                            Map<Element, String> parentTextCache = new IdentityHashMap<Element, String>();
                             for (int i = 0; i < ids.size(); i++) {
                                 if (TempHolder.get().loadingCancelled.get()) {
                                     return new HashMap<String, String>();
@@ -746,20 +742,26 @@ public class EpubExtractor extends BaseExtractor {
                                 String value = item.text();
 
                                 int min = 20;
+                                Element sibling = item.nextElementSibling();
                                 if (value.trim().length() < min) {
-                                    value = value + " " + parse.select("[id=" + id + "]+*").text();
-                                }
-                                if (value.trim().length() < min) {
-                                    value = value + " " + parse.select("[id=" + id + "]+*+*").text();
-                                }
-                                try {
-                                    if (value.trim().length() < min) {
-                                        value = value + " " + parse.select("[id=" + id + "]").parents().get(0).text();
+                                    if (sibling != null) {
+                                        value = value + " " + sibling.text();
                                     }
-                                } catch (Exception e) {
-                                    LOG.e(e);
                                 }
-
+                                if (value.trim().length() < min) {
+                                    sibling = sibling != null ? sibling.nextElementSibling() : null;
+                                    if (sibling != null) {
+                                        value = value + " " + sibling.text();
+                                    }
+                                }
+                                if (value.trim().length() < min && item.parent() != null) {
+                                    String parentText = parentTextCache.get(item.parent());
+                                    if (parentText == null) {
+                                        parentText = item.parent().text();
+                                        parentTextCache.put(item.parent(), parentText);
+                                    }
+                                    value = value + " " + parentText;
+                                }
 
                                 LOG.d("put text >>", TempHolder.get().loadingCancelled.get(), textKey, value);
                                 notes.put(textKey, value.trim());
@@ -776,7 +778,6 @@ public class EpubExtractor extends BaseExtractor {
             } catch (Exception e) {
                 LOG.e(e);
             }
-
             return notes;
         } catch (Throwable e) {
             LOG.e(e);

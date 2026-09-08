@@ -153,6 +153,9 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number, List<SimpleMeta> replacements) throws Exception {
+        boolean textReplacement = AppState.get().isEnableTextReplacement;
+        boolean autoHyphenation = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang);
+        boolean isProcess = textReplacement || autoHyphenation;
         BufferedReader input = new BufferedReader(inputStream);
 
 
@@ -215,7 +218,6 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             if (AppState.get().isReferenceMode) {
-
                 int index = line.indexOf("<p");
                 while (index >= 0) {
                     count++;
@@ -296,8 +298,6 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-            boolean isProcess = AppState.get().isEnableTextReplacement ||
-                    (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
             if (isProcess) {
                 line = HypenUtils.applyHypnes(line, replacements);
             }
@@ -359,53 +359,70 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static String includeFooterNotes(String line, Map<String, String> notes, String name) {
-        if (notes == null) {
+        if (notes == null || line.indexOf('[') < 0 && line.indexOf('{') < 0) {
             return line;
         }
 
-        int beginIndex = -1;
-        int endIndex = -1;
-        StringBuffer out = new StringBuffer();
-
-        for (int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if (c == '[' || c == '{') {
-                beginIndex = i;
+        StringBuilder out = new StringBuilder(line.length());
+        int position = 0;
+        while (position < line.length()) {
+            int square = line.indexOf('[', position);
+            int curly = line.indexOf('{', position);
+            int begin = square < 0 ? curly : curly < 0 ? square : Math.min(square, curly);
+            if (begin < 0) {
+                out.append(line, position, line.length());
+                break;
             }
-            if (c == ']' || c == '}') {
-                endIndex = i;
-            }
-            out.append(c);
+            out.append(line, position, begin);
 
-            if (beginIndex > 0 && endIndex > beginIndex && endIndex - beginIndex < 6) {
-                String number = line.substring(beginIndex, endIndex + 1);
-                beginIndex = -1;
-                endIndex = -1;
-
-                int end = line.indexOf('>', i);
-                int k = end - i;
-                if (end > i && k < 8) {
-                    out.append(line.substring(i + 1, end + 1));
-                    i += k;
-                }
-
-                LOG.d("includeFooterNotes", number, number + "#" + name);
-
-                String value = notes.get(number + "#" + name);
-                if (value != null) {
-                    value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();// two times!
-                    value = value.replaceAll("^[0-9]+", "").trim();
-
-                    out.append(" <t>[");
-                    out.append(TxtUtils.escapeHtml(value));
-                    out.append("]</t>");
+            int close = -1;
+            for (int i = begin + 1; i < line.length() && i - begin < 6; i++) {
+                char c = line.charAt(i);
+                if (c == ']' || c == '}') {
+                    close = i;
+                    break;
                 }
             }
+            if (close < 0) {
+                out.append(line.charAt(begin));
+                position = begin + 1;
+                continue;
+            }
 
+            String number = line.substring(begin, close + 1);
+            int end = line.indexOf('>', close);
+            int insertion = end > close && end - close < 8 ? end + 1 : close + 1;
+            out.append(line, begin, insertion);
+            position = insertion;
+
+            LOG.d("includeFooterNotes", number, number + "#" + name);
+            String value = notes.get(number + "#" + name);
+            if (value != null) {
+                out.append(" <t>[")
+                   .append(TxtUtils.escapeHtml(stripNoteNumber(value)))
+                   .append("]</t>");
+            }
         }
         return out.toString();
+    }
+
+    private static String stripNoteNumber(String value) {
+        value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
+        for (int pass = 0; pass < 2; pass++) {
+            int i = 1;
+            while (i < value.length() && Character.isDigit(value.charAt(i))) {
+                i++;
+            }
+            if (i > 1 && i < value.length() && (value.charAt(0) == '[' || value.charAt(0) == '{') &&
+                    (value.charAt(i) == ']' || value.charAt(i) == '}')) {
+                value = value.substring(i + 1).trim();
+            }
+        }
+        int i = 0;
+        while (i < value.length() && Character.isDigit(value.charAt(i))) {
+            i++;
+        }
+        return value.substring(i).trim();
     }
 
     @Deprecated
