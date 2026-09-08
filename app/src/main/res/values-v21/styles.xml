@@ -4,11 +4,19 @@
     <style name="StyledIndicatorsWhite" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuRound</item>
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
+        <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
     </style>
 
     <style name="StyledIndicatorsBlack" parent="@android:style/Theme.Material.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuRound</item>
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
+        <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
     </style>
 
 </resources>

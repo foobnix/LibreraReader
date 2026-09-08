@@ -82,9 +82,11 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
+import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.FlippingStart;
 import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -124,9 +126,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public boolean prev = true;
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
+    View showRewardVideo;
+    TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
             flippingIntervalView, pagesTime, pagesTime1, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
     View bottomBar, bottomIndicators, onClose, overlay, musicButtonPanel, parentParent;
+    ImageView bookCover;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
@@ -461,6 +465,39 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         titleTxt = (TextView) findViewById(R.id.title);
         chapterView = (TextView) findViewById(R.id.chapter);
+
+        // The cover of the book being read, and the two lines naming it, all open the same
+        // information about it.
+        bookCover = (ImageView) findViewById(R.id.bookCover);
+        OnClickListener onBookInfo = new OnClickListener() {
+
+            @Override public void onClick(View v) {
+                if (dc == null || dc.getCurrentBook() == null) {
+                    return;
+                }
+                FileInformationDialog.showFileInfoDialog(HorizontalViewActivity.this, dc.getCurrentBook(), null);
+            }
+        };
+        if (bookCover != null) {
+            bookCover.setOnClickListener(onBookInfo);
+        }
+        titleTxt.setOnClickListener(onBookInfo);
+        chapterView.setOnClickListener(onBookInfo);
+
+        View onLibrary = findViewById(R.id.onLibrary);
+        if (onLibrary != null) {
+            TintUtil.setRingColor(onLibrary, MagicHelper.getTextOrIconColor());
+            onLibrary.setOnClickListener(new OnClickListener() {
+
+                @Override public void onClick(View v) {
+                    // Close the book and come back to the library, landing on the same tab the
+                    // nav bar's Library opens. The page is saved first, as a normal close does.
+                    dc.saveCurrentPageAsync();
+                    MainTabs2.startActivity(HorizontalViewActivity.this, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                    dc.closeActivity();
+                }
+            });
+        }
 
         linkHistory.setOnClickListener(new OnClickListener() {
 
@@ -898,6 +935,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onClose = findViewById(R.id.bookClose);
+        // Same ring, same rule: it takes the colour the rest of the marks are drawn in.
+        TintUtil.setRingColor(onClose, MagicHelper.getTextOrIconColor());
         Apps.accessibilityButtonSize(onClose);
         onClose.setVisibility(View.VISIBLE);
 
@@ -1838,6 +1877,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void loadUI() {
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
+        // The cover of the book now open, drawn into the mark in front of its title.
+        if (bookCover != null && dc.getCurrentBook() != null) {
+            IMG.getCoverPageWithEffect(this, dc.getCurrentBook().getPath(), null).into(bookCover);
+        }
         createAdapter();
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);

@@ -169,9 +169,10 @@ public class Playlists {
             return ((Activity) a).getString(R.string.current_folder) + folderName;
         }
         name = ExtUtils.getFileName(name);
-        String res = TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(
+        // No clef in front of the name: the row draws a playlist mark of its own, and a second
+        // one set in the text only competed with it.
+        return TxtUtils.firstUppercase(name.replace(Playlists.L_PLAYLIST, "")) + " (" + getPlaylistItems(
                 name).size() + ")";
-        return "\uD834\uDD1E "+res;
     }
 
     public static List<FileMeta> getAllPlaylistsMeta(Context a) {

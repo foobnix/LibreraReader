@@ -246,7 +246,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists))
+        view.findViewById(R.id.onPlaylists)
                 .setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
@@ -261,7 +261,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
                     }
                 });
-        TxtUtils.underlineTextView(view.findViewById(R.id.onTags))
+        view.findViewById(R.id.onTags)
                 .setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {

@@ -33,16 +33,18 @@
             android:textColor="@color/white"
             android:textStyle="bold" android:textAllCaps="true" />
 
+        <!-- The ring is cut a size below the bar it sits in, so the bar closes around it
+             instead of the circle running out over the edge. -->
         <ImageView
             android:id="@+id/onCloseApp"
             android:contentDescription="@string/exit_application"
-            android:layout_width="@dimen/wh_button"
-            android:layout_height="@dimen/wh_button"
+            android:layout_width="@dimen/wh_button_medium"
+            android:layout_height="@dimen/wh_button_medium"
             android:layout_marginLeft="10dip"
-            android:layout_marginRight="5dip"
+            android:layout_marginRight="@dimen/dv"
             android:layout_weight="0"
             android:background="@drawable/bg_round_button"
-            android:padding="7dip"
+            android:padding="6dip"
             android:src="@drawable/glyphicons_599_menu_close"
             android:tag="no_tint"
             android:tint="@color/white"
@@ -96,7 +98,7 @@
 
 
                 <TextView
-                    style="@style/textLinkWhite"
+                    style="@style/textSectionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -185,7 +187,7 @@
                 android:background="@drawable/bg_search_second">
 
                 <TextView
-                    style="@style/textLinkWhite"
+                    style="@style/textSectionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -422,7 +424,7 @@
 
             <TextView
                 android:id="@+id/section2"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dip"
@@ -1161,7 +1163,7 @@
 
             <TextView
                 android:id="@+id/section4"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
@@ -1276,7 +1278,7 @@
 
             <TextView
                 android:id="@+id/section7"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_search_second"
@@ -1324,7 +1326,7 @@
 
             <TextView
                 android:id="@+id/section5"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
@@ -1411,7 +1413,7 @@
 
             <TextView
                 android:id="@+id/section3"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
@@ -1637,7 +1639,7 @@
 
                     <TextView
                         android:id="@+id/syncHeader"
-                        style="@style/textLinkWhite"
+                        style="@style/textSectionTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -1708,7 +1710,7 @@
 
             <TextView
                 android:id="@+id/section6"
-                style="@style/textLinkWhite"
+                style="@style/textSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dip"

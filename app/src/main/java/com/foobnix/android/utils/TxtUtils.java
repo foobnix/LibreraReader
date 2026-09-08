@@ -1471,7 +1471,9 @@ public class TxtUtils {
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
                     if (child instanceof CheckBox) {
-                        ((CheckBox) child).setButtonTintList(tint);
+                        // A checkbox is chrome, not a link: it takes the theme colour the bars
+                        // and headers are drawn in, rather than the colour text links carry.
+                        ((CheckBox) child).setButtonTintList(ColorStateList.valueOf(TintUtil.color));
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 

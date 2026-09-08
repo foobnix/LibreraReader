@@ -10,6 +10,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.view.View;
@@ -33,6 +34,10 @@ import java.util.Random;
 public class TintUtil {
     public static final int RADIUS = Dips.dpToPx(2);
     public static final int STROKE = Dips.dpToPx(1);
+    public static final int SWATCH_RADIUS = Dips.dpToPx(6);
+    public static final int SECTION_RADIUS = Dips.dpToPx(8);
+    public static final int BADGE_RADIUS = Dips.dpToPx(20);
+    private static final int SWATCH_BORDER = Color.parseColor("#55888888");
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
     public static int cloudSyncColor = Color.parseColor("#66bb6a");// Color.parseColor("#9fd8bc");
@@ -120,10 +125,115 @@ public class TintUtil {
 
     }
 
+    /**
+     * The count carried in the corner of an icon, drawn as a round in the theme colour rather
+     * than as a coloured square. The round is larger than the badge can ever be, so a single
+     * digit comes out a circle and a longer count a capsule.
+     */
+    public static void setBadge(View badge, int color) {
+        if (badge == null) {
+            return;
+        }
+        GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(BADGE_RADIUS);
+        shape.setColor(color);
+        badge.setBackground(shape);
+    }
+
+    /**
+     * A settings section head. Same fill as any other tinted bar, but cut to a round of its
+     * own, so a head reads as a band laid over the page rather than a block butted against it.
+     */
+    public static void setSectionFillColor(View textView, int color) {
+        try {
+            GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+            drawable.setColor(color);
+            drawable.setCornerRadius(SECTION_RADIUS);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static void setBackgroundFillColorBottomRight(View textView, int color) {
         GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
         drawable.setColor(color);
         drawable.setCornerRadii(new float[]{0, 0, 0, 0, RADIUS * 2, RADIUS * 2, 0, 0});
+    }
+
+    /**
+     * The reading progress line, drawn with its ends rounded off rather than cut square. The
+     * round is half the line's own thickness, so the ends read as caps at whatever height the
+     * layout gives it.
+     */
+    public static void setProgressLine(View line, int color) {
+        if (line == null) {
+            return;
+        }
+        int height = line.getLayoutParams() == null ? 0 : line.getLayoutParams().height;
+        if (height <= 0) {
+            height = line.getHeight();
+        }
+        GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(height / 2f);
+        shape.setColor(color);
+        line.setBackground(shape);
+    }
+
+    /**
+     * A colour to pick from, drawn as a chip with a small round and a hairline round it, so a
+     * swatch close to the colour of the sheet behind it still reads as a swatch.
+     */
+    public static void setColorSwatch(View swatch, int color) {
+        if (swatch == null) {
+            return;
+        }
+        GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(SWATCH_RADIUS);
+        shape.setColor(color);
+        shape.setStroke(STROKE, SWATCH_BORDER);
+        swatch.setBackground(shape);
+    }
+
+    /**
+     * The chip that opens the colour picker: the same round, drawn as a ring in the colour
+     * already chosen rather than filled with it, so the plus on it reads as a button and not
+     * as one more colour in the row.
+     */
+    public static void setColorSwatchOutline(View swatch, int color) {
+        if (swatch == null) {
+            return;
+        }
+        GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(SWATCH_RADIUS);
+        shape.setColor(Color.TRANSPARENT);
+        shape.setStroke(Dips.DP_2, color);
+        swatch.setBackground(shape);
+    }
+
+    /**
+     * Draws the ring of a round outline button in the given colour. The background is a ripple
+     * wrapped around the shape, so the shape has to be dug out of the layers rather than cast
+     * to from the background itself.
+     */
+    public static void setRingColor(View view, int color) {
+        if (view == null || view.getBackground() == null) {
+            return;
+        }
+        Drawable background = view.getBackground().mutate();
+        if (background instanceof RippleDrawable) {
+            RippleDrawable ripple = (RippleDrawable) background;
+            for (int i = 0; i < ripple.getNumberOfLayers(); i++) {
+                if (ripple.getId(i) == android.R.id.mask) {
+                    continue;
+                }
+                Drawable layer = ripple.getDrawable(i);
+                if (layer instanceof GradientDrawable) {
+                    ((GradientDrawable) layer).setStroke(STROKE, color);
+                }
+            }
+        } else if (background instanceof GradientDrawable) {
+            ((GradientDrawable) background).setStroke(STROKE, color);
+        }
     }
 
     public static void setStrokeColor(View textView, int color) {

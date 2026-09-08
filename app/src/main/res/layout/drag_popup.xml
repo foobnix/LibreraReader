@@ -7,7 +7,7 @@
     android:layout_margin="2dip"
     android:background="?android:attr/colorBackground"
     android:elevation="4dp"
-    card_view:cardCornerRadius="0dp"
+    card_view:cardCornerRadius="@dimen/radius"
     card_view:cardUseCompatPadding="true"
     card_view:contentPadding="1dp" >
 
@@ -39,13 +39,17 @@
                 android:src="@mipmap/icon_pdf_droid"
                 android:visibility="gone" />
 
+            <!-- The trail back to the dialog this one was opened from. It is set in the same
+                 caps and weight as the name it leads to, so the head reads as one line. -->
             <TextView
                 android:id="@+id/onTitleAction"
                 style="@style/textLinkWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/preferences" />
+                android:text="@string/preferences"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/onTitleAction1"
@@ -53,8 +57,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text=">"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
+            <!-- The name of the dialog, set in caps and bold so the head is told apart from
+                 the settings under it. -->
             <TextView
                 android:id="@+id/dialogTitle"
                 android:layout_width="match_parent"
@@ -64,7 +71,9 @@
                 android:paddingLeft="10dip"
                 android:singleLine="true"
                 android:text="Search"
-                android:textColor="@color/white" >
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold" >
             </TextView>
 
             <ImageView

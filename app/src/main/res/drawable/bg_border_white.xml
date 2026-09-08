@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- An outlined button: a ring around the word or the mark, cut to the same round the rest of
+     the chrome is drawn in rather than left as a rectangle. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_pressed="true">
         <shape>
             <stroke android:width="1dip" android:color="@color/tint_divider" />
             <solid android:color="@color/tint_divider"/>
+            <corners android:radius="@dimen/radius" />
         </shape></item>
     <item>
         <shape>
             <stroke android:width="1dip" android:color="@color/tint_divider" />
             <solid android:color="@color/transparent"/>
+            <corners android:radius="@dimen/radius" />
         </shape></item>
 
 </selector>

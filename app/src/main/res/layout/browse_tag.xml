@@ -20,7 +20,6 @@
 
         <ImageView
             android:id="@+id/image1"
-            android:visibility="gone"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_margin="4dip"
@@ -48,6 +47,21 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <!-- How many books carry the tag, drawn in the same round the playlist count is. -->
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:minWidth="20dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:text="123"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <ImageView
             android:visibility="gone"

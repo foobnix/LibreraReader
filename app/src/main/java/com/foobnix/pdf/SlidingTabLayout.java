@@ -357,23 +357,33 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
 
+        // On e-ink a tap is answered by the page it opens and by nothing else: a ripple there
+        // only leaves a patch of grey behind while the screen catches up with it.
+        boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+
         if (isFloating()) {
             // Rounded all the way round, as in LibreraX: only the pill's own corners are
             // held back. The mask keeps the ripple of a tap to the same shape.
-            boolean ink = AppState.get().appTheme == AppState.THEME_INK;
-            int ripple = setColorAlpha(ink ? TintUtil.color : Color.WHITE, RIPPLE_ALPHA);
-            textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
-                                                      roundedPatch(Color.TRANSPARENT),
-                                                      roundedPatch(Color.WHITE)));
+            if (ink) {
+                textView.setBackground(roundedPatch(Color.TRANSPARENT));
+            } else {
+                int ripple = setColorAlpha(Color.WHITE, RIPPLE_ALPHA);
+                textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
+                                                          roundedPatch(Color.TRANSPARENT),
+                                                          roundedPatch(Color.WHITE)));
+            }
         } else {
             // At the top the chosen tab is told apart by the weight of its own colour and
             // keeps no patch behind it. A tap still answers, but in the same round the rest
             // of the chrome is drawn in rather than a rectangle cut around the words.
-            boolean ink = AppState.get().appTheme == AppState.THEME_INK;
-            int ripple = setColorAlpha(ink ? TintUtil.color : Color.WHITE, RIPPLE_ALPHA);
-            textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
-                                                      null,
-                                                      roundedPatch(Color.WHITE)));
+            if (ink) {
+                textView.setBackground(null);
+            } else {
+                int ripple = setColorAlpha(Color.WHITE, RIPPLE_ALPHA);
+                textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
+                                                          null,
+                                                          roundedPatch(Color.WHITE)));
+            }
         }
 
         if (myPOS == POS_HORIZONTAL) {

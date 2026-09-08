@@ -47,6 +47,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
@@ -254,8 +255,20 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof TagViewHolder) {
             final TagViewHolder holder = (TagViewHolder) holderAll;
-            holder.title.setText(fileMeta.getPathTxt());
-            TintUtil.setTintImageWithAlpha(holder.image);
+            holder.image.setImageResource(R.drawable.glyphicons_67_tags);
+            String tagText = fileMeta.getPathTxt();
+            int t1 = tagText == null ? -1 : tagText.lastIndexOf("(");
+            int t2 = tagText == null ? -1 : tagText.lastIndexOf(")");
+            if (t1 > 0 && t2 > t1) {
+                holder.title.setText(tagText.substring(0, t1).trim());
+                bindCountBadge(holder.count, tagText.substring(t1 + 1, t2));
+            } else {
+                holder.title.setText(tagText);
+                bindCountBadge(holder.count, null);
+            }
+            // The tag mark is drawn in the colour every other mark on a row is - the folder and
+            // the playlist marks take the same one, so all three read as one set.
+            TintUtil.setTintImageWithAlpha(holder.image, accentColor(holder.image));
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
             TxtUtils.setInkTextView(holder.title);
@@ -277,6 +290,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.play.setVisibility(View.GONE);
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
+
+
 
             holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
 
@@ -304,12 +319,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setNoTintImage(holder.image);
 
             if (AppState.get().isFolderPreview && fileMeta.getFilesCount() != null && fileMeta.getFilesCount() > 0) {
-                holder.count.setVisibility(View.VISIBLE);
-
-                holder.count.setText("" + fileMeta.getFilesCount());
-                if (AppState.get().isHideReadBook) {
-                    holder.count.setText(fileMeta.getFilesCount() + "/" + fileMeta.getReadCount());
-                }
+                bindCountBadge(holder.count, AppState.get().isHideReadBook ?
+                        fileMeta.getFilesCount() + "/" + fileMeta.getReadCount() : "" + fileMeta.getFilesCount());
             } else {
                 holder.count.setVisibility(View.GONE);
             }
@@ -381,21 +392,21 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
                 holder.play.setVisibility(View.VISIBLE);
-                holder.count.setVisibility(View.VISIBLE);
 
                 holder.play.setText(holder.play.getText().toString().toUpperCase(Locale.US));
                 int i1 = fileMeta.getPathTxt().indexOf("(");
                 int i2 = fileMeta.getPathTxt().indexOf(")");
 
                 if (i1 > 0 && i2 > i1) {
-                    holder.count.setText(fileMeta.getPathTxt().subSequence(i1 + 1, i2));
                     holder.title.setText(fileMeta.getPathTxt().subSequence(0, i1));
-                    holder.count.setVisibility(View.VISIBLE);
+                    bindCountBadge(holder.count, fileMeta.getPathTxt().subSequence(i1 + 1, i2));
                 } else {
                     holder.count.setVisibility(View.GONE);
                 }
 
-                TxtUtils.underlineTextView(holder.play);
+                int accent = accentColor(holder.play);
+                TintUtil.setRingColor(holder.play, accent);
+                holder.play.setTextColor(accent);
 
                 holder.play.setOnClickListener(new OnClickListener() {
 
@@ -719,11 +730,20 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             LOG.d("getIsRecentProgress", recentProgress);
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
-            holder.idProgressColor.setBackgroundColor(TintUtil.color);
+            // Track and fill are cut with the same cap, both taken from the line's own height,
+            // so the one laid over the other leaves no rim of track showing at the ends.
+            TintUtil.setProgressLine(holder.idProgressColor, TintUtil.color);
+            TintUtil.setProgressLine(holder.idProgressBg,
+                    holder.idProgressBg.getResources().getColor(R.color.lt_grey_dima));
+
             int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(100) : Dips.dpToPx(200);
+            int height = holder.idProgressColor.getLayoutParams().height;
 
             holder.idProgressBg.getLayoutParams().width = width;
-            holder.idProgressColor.getLayoutParams().width = (int) Math.round((float) width * recentProgress);
+            // A fill shorter than it is thick cannot be drawn as a capsule, so a barely started
+            // book gets a dot rather than a splinter.
+            holder.idProgressColor.getLayoutParams().width =
+                    Math.max(height, (int) Math.round((float) width * recentProgress));
             holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
@@ -859,7 +879,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (AppState.get().isBorderAndShadow || !AppState.get().isCropBookCovers) {
-            holder.imageParent.setBackgroundColor(Color.TRANSPARENT);
+            // Only the fill is cleared. setBackgroundColor would put a plain colour where the
+            // card's round-rect was, and the cover - clipped to the card's outline - would come
+            // out square.
+            if (holder.imageParent instanceof CardView) {
+                ((CardView) holder.imageParent).setCardBackgroundColor(Color.TRANSPARENT);
+            } else {
+                holder.imageParent.setBackgroundColor(Color.TRANSPARENT);
+            }
             // LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)
             // holder.imageParent.getLayoutParams();
             // layoutParams.setMargins(0, 0, 0, 0);
@@ -907,6 +934,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.menu, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (holder.remove != null) {
+            // The mark that drops a book takes the same day/night colour as the heart beside
+            // it, so on a night theme it stays legible instead of sinking into the card.
+            if (holder.remove instanceof ImageView) {
+                TintUtil.setTintImageWithAlpha((ImageView) holder.remove,
+                        holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                                TintUtil.getColorInDayNighthBook());
+            }
             holder.remove.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -1123,15 +1157,43 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public class TagViewHolder extends ContextViewHolder {
         public TextView title;
+        public TextView count;
         public ImageView image;
         public View parent;
 
         public TagViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text1);
+            count = (TextView) view.findViewById(R.id.count);
             image = (ImageView) view.findViewById(R.id.image1);
             parent = view;
         }
+    }
+
+    /**
+     * The colour an accent takes on a row - the heart, the remove mark, a count, a button. It
+     * follows the day/night rule rather than the flat theme colour, so nothing sinks into the
+     * card on a night theme.
+     */
+    private static int accentColor(View view) {
+        return view.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                TintUtil.getColorInDayNighthBook();
+    }
+
+    /** Fills a count badge in the row's accent, with a number legible against it. */
+    private static void bindCountBadge(TextView badge, CharSequence value) {
+        if (badge == null) {
+            return;
+        }
+        if (TxtUtils.isEmpty(value == null ? null : value.toString())) {
+            badge.setVisibility(View.GONE);
+            return;
+        }
+        int accent = accentColor(badge);
+        badge.setVisibility(View.VISIBLE);
+        badge.setText(value);
+        badge.setTextColor(MagicHelper.isColorDark(accent) ? Color.WHITE : Color.BLACK);
+        TintUtil.setBadge(badge, accent);
     }
 
     public class NameDividerViewHolder extends ContextViewHolder {

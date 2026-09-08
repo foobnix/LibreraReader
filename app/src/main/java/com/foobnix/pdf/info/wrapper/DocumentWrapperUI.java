@@ -192,7 +192,8 @@ public class DocumentWrapperUI {
     };
     AdsFragmentActivity a;
     String bookTitle;
-    TextView showRewardVideo, toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek,
+    View showRewardVideo;
+    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek,
             currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator, onSaveAnnotation;
     public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
 
@@ -1149,8 +1150,23 @@ public class DocumentWrapperUI {
         onTextReplacement = a.findViewById(R.id.onTextReplacement);
         onTextReplacement.setOnClickListener(v -> DragingDialogs.dialogTextReplaces(anchor, dc));
 
+        View onLibrary = a.findViewById(R.id.onLibrary);
+        if (onLibrary != null) {
+            TintUtil.setRingColor(onLibrary, MagicHelper.getTextOrIconColor());
+            onLibrary.setOnClickListener(v -> {
+                // Close the book and come back to the library, landing on the same tab the nav
+                // bar's Library opens. The page is saved first, as a normal close does.
+                dc.saveCurrentPageAsync();
+                MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                dc.closeActivity();
+            });
+        }
+
         onCloseBook = a.findViewById(R.id.close);
         Apps.accessibilityButtonSize(onCloseBook);
+        // The ring is drawn in whatever colour the marks along the bar are, so the button
+        // reads as one of them instead of a white circle laid over them.
+        TintUtil.setRingColor(onCloseBook, MagicHelper.getTextOrIconColor());
 
         onCloseBook.setOnClickListener(onClose);
         onCloseBook.setOnLongClickListener(onCloseLongClick);

@@ -26,34 +26,27 @@
             android:textColor="@color/white"
             android:textStyle="bold" android:textAllCaps="true" />
 
+        <!-- Tags and playlists open the same dialogs they always did, but as marks in the
+             round the rest of the bar is drawn in, rather than as underlined words. -->
         <ImageView
-            android:id="@+id/onShowMenu"
+            android:id="@+id/onTags"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:padding="4dip"
-            android:contentDescription="@string/settings"
-            android:src="@drawable/glyphicons_140_adjust" />
+            android:padding="5dip"
+            android:contentDescription="@string/tags"
+            android:src="@drawable/glyphicons_67_tags" />
 
-        <TextView
-            android:id="@+id/onTags"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:gravity="center"
-            android:minEms="2"
-            android:text="@string/tags" />
-
-        <TextView
+        <ImageView
             android:id="@+id/onPlaylists"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:gravity="center"
-            android:text="@string/playlists" />
+            android:padding="5dip"
+            android:contentDescription="@string/playlists"
+            android:src="@drawable/glyphicons_160_playlist" />
 
         <TextView
             android:id="@+id/clearAllRecent"
@@ -65,6 +58,16 @@
             android:text="@string/clear_all"
             android:visibility="gone" />
 
+
+        <ImageView
+            android:id="@+id/onShowMenu"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:padding="4dip"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/glyphicons_25_eye" />
 
         <ImageView
             android:id="@+id/onSort"

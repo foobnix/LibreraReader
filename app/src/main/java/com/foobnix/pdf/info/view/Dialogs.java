@@ -631,7 +631,7 @@ public class Dialogs {
             view.setBackgroundColor(Color.TRANSPARENT);
             final int intColor = Color.parseColor(color);
             final View img = view.findViewById(R.id.itColor);
-            img.setBackgroundColor(intColor);
+            TintUtil.setColorSwatch(img, intColor);
 
             colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
@@ -652,9 +652,9 @@ public class Dialogs {
         View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
         view.setBackgroundColor(Color.TRANSPARENT);
         final ImageView img = (ImageView) view.findViewById(R.id.itColor);
-        img.setColorFilter(a.getResources().getColor(R.color.tint_gray));
         img.setImageResource(R.drawable.glyphicons_371_plus);
-        img.setBackgroundColor(AppState.get().uiTextColorUser);
+        img.setColorFilter(AppState.get().uiTextColorUser);
+        TintUtil.setColorSwatchOutline(img, AppState.get().uiTextColorUser);
         colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
         view.setOnClickListener(new OnClickListener() {
@@ -668,7 +668,8 @@ public class Dialogs {
                         AppState.get().isUiTextColor = true;
                         AppState.get().uiTextColor = color;
                         AppState.get().uiTextColorUser = color;
-                        img.setBackgroundColor(color);
+                        img.setColorFilter(color);
+                        TintUtil.setColorSwatchOutline(img, color);
 
                         if (action != null) {
                             action.run();

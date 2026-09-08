@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -188,6 +189,35 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="50dip"
                     android:layout_marginRight="50dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- The cover of the book being read, cut to a small round, standing in
+                         front of its title. It opens the same book information the title and
+                         the chapter beneath it open. -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bookCoverParent"
+                        android:layout_width="34dip"
+                        android:layout_height="34dip"
+                        android:layout_marginRight="8dip"
+                        android:layout_weight="0"
+                        app:cardBackgroundColor="@color/transparent"
+                        app:cardCornerRadius="@dimen/cover_radius_small"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="true" >
+
+                        <ImageView
+                            android:id="@+id/bookCover"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/information"
+                            android:scaleType="centerCrop"
+                            android:tag="no_tint" />
+                    </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -213,6 +243,7 @@
                         android:textSize="12sp"
                         android:visibility="gone"></TextView>
                 </LinearLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/pagesTime1"
@@ -229,6 +260,21 @@
                     android:textColor="@color/white"
                     android:textSize="9sp"
                     android:visibility="gone" />
+
+                <!-- The way back to the library, ringed like the close in the other corner. -->
+                <ImageView
+                    android:id="@+id/onLibrary"
+                    style="@style/buttonWhiteClose"
+                    android:background="@drawable/bg_round_button"
+                    android:padding="7dip"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="0"
+                    android:contentDescription="@string/library"
+                    android:src="@drawable/glyphicons_589_book_open" />
 
                 <ImageView
                     android:id="@+id/bookClose"
@@ -334,17 +380,62 @@
 
 
 
-            <TextView
+            <!-- The offer to trade a short video for time without ads: what is on offer on the left,
+                 and the thing to press on the right, ringed so it reads as a button rather than as
+                 more of the sentence. The row as a whole is still the clickable target. -->
+            <LinearLayout
                 android:id="@+id/showRewardVideo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:layout_margin="1dp"
                 android:background="@drawable/bg_clickable_white"
-                android:gravity="center"
-                android:lines="2"
-                android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
-                android:textColor="@color/white_alpha_dd"/>
+                android:gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <!-- The mark for the offer, cut to the height of the two lines it stands beside;
+                     ViewBinder sets that height from the line the message is actually drawn at. -->
+                <ImageView
+                    android:id="@+id/showRewardVideoIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dip"
+                    android:layout_marginLeft="6dip"
+                    android:layout_marginRight="4dip"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/glyphicons_basic_438_playlist_video"
+                    android:tag="no_tint"
+                    android:tint="@color/white_alpha_dd" />
+
+                <TextView
+                    android:id="@+id/showRewardVideoText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
+                    android:textColor="@color/white_alpha_dd" />
+
+                <TextView
+                    android:id="@+id/showRewardVideoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dip"
+                    android:layout_marginRight="6dip"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_pill_outline"
+                    android:gravity="center"
+                    android:paddingLeft="16dip"
+                    android:paddingRight="16dip"
+                    android:paddingTop="5dip"
+                    android:paddingBottom="5dip"
+                    android:text="@string/watch"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white_alpha_dd" />
+            </LinearLayout>
 
 
             <include

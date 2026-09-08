@@ -300,16 +300,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         TintUtil.setUITextColor(searchEditText, colorTheme);
 
-        if (AppState.get().appTheme == AppState.THEME_INK) {
-            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
-            TintUtil.setStrokeColor(searchEditText, Color.BLACK);
-            TintUtil.setStrokeColor(menu2, Color.BLACK);
-            TintUtil.setUITextColor(searchEditText, Color.BLACK);
-            countBooks.setTextColor(Color.BLACK);
-
-        } else {
-            styleFilterLineOnTint();
-        }
+        // Ink is no exception here. The header is painted in the theme colour and carries the
+        // status bar, so black on it cannot be read whatever the page below is set in - the
+        // menu, the name of the shelf and its count are drawn in white as on every other
+        // theme. The page itself stays black on white.
+        styleFilterLineOnTint();
 
     }
 
@@ -779,6 +774,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return;
         }
         setSearchHint(R.string.msg_loading);
+        sortBy.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_476_sort_attributes :
+                R.drawable.glyphicons_477_sort_attributes_alt);
         sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_221_chevron_down :
                 R.drawable.glyphicons_222_chevron_up);
 

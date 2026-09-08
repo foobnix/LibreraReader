@@ -21,7 +21,7 @@
    <string name="theme">Theme</string>
    <string name="light">Light</string>
    <string name="black">Dark</string>
-   <string name="theme_color">Trim</string>
+   <string name="theme_color">Color</string>
    <string name="widget">Widget</string>
    <string name="show">Show</string>
    <string name="layout">Layout</string>
@@ -671,6 +671,7 @@
    <string name="foreground">Foreground</string>
    <string name="warning_this_document_has_unsaved_changes">Warning: This document has unsaved changes</string>
    <string name="bold_headings">Bold Headings</string>
+   <string name="watch">Watch</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Watch this short video to turn off all ads for 1 hour</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Watch this short video to turn off all ads for 2 hours</string>
    <string name="the_book_is_complete">The book is complete.</string>

@@ -178,15 +178,15 @@ public class PrefFragment2 extends UIFragment {
     @Override public void onTintChanged() {
 
         TintUtil.setStatusBarColor(getActivity(), TintUtil.color);
-        TintUtil.setBackgroundFillColor(section1, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section2, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section3, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section4, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section5, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section6, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section7, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section8, TintUtil.color);
-        TintUtil.setBackgroundFillColor(section9, TintUtil.color);
+        TintUtil.setSectionFillColor(section1, TintUtil.color);
+        TintUtil.setSectionFillColor(section2, TintUtil.color);
+        TintUtil.setSectionFillColor(section3, TintUtil.color);
+        TintUtil.setSectionFillColor(section4, TintUtil.color);
+        TintUtil.setSectionFillColor(section5, TintUtil.color);
+        TintUtil.setSectionFillColor(section6, TintUtil.color);
+        TintUtil.setSectionFillColor(section7, TintUtil.color);
+        TintUtil.setSectionFillColor(section8, TintUtil.color);
+        TintUtil.setSectionFillColor(section9, TintUtil.color);
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         if (statusBarHack != null) {
             statusBarHack.setBackgroundColor(TintUtil.color);
@@ -2192,7 +2192,7 @@ public class PrefFragment2 extends UIFragment {
                 view.setBackgroundColor(Color.TRANSPARENT);
                 final int intColor = Color.parseColor(color);
                 final View img = view.findViewById(R.id.itColor);
-                img.setBackgroundColor(intColor);
+                TintUtil.setColorSwatch(img, intColor);
                 img.setContentDescription(getString(R.string.color));
 
                 colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
@@ -2217,13 +2217,9 @@ public class PrefFragment2 extends UIFragment {
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setContentDescription(getString(R.string.color));
             final ImageView img = view.findViewById(R.id.itColor);
-            img.setColorFilter(
-
-                    getResources().
-
-                                          getColor(R.color.tint_gray));
             img.setImageResource(R.drawable.glyphicons_371_plus);
-            img.setBackgroundColor(AppState.get().userColor);
+            img.setColorFilter(AppState.get().userColor);
+            TintUtil.setColorSwatchOutline(img, AppState.get().userColor);
             colorsLine.addView(view, new
 
                     LayoutParams(Dips.dpToPx(30), Dips.
@@ -2238,7 +2234,8 @@ public class PrefFragment2 extends UIFragment {
                             AppState.get().userColor = color;
                             AppState.get().tintColor = color;
                             TintUtil.color = color;
-                            img.setBackgroundColor(color);
+                            img.setColorFilter(color);
+                            TintUtil.setColorSwatchOutline(img, color);
 
                             onTintChanged();
                             sendNotifyTintChanged();
@@ -2305,7 +2302,7 @@ public class PrefFragment2 extends UIFragment {
                 view.setBackgroundColor(Color.TRANSPARENT);
 
                 final View img = view.findViewById(R.id.itColor);
-                img.setBackgroundColor(intColor);
+                TintUtil.setColorSwatch(img, intColor);
                 img.setContentDescription(getString(R.string.color));
 
                 colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
@@ -2330,9 +2327,9 @@ public class PrefFragment2 extends UIFragment {
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setContentDescription(getString(R.string.color));
             final ImageView img = view.findViewById(R.id.itColor);
-            img.setColorFilter(getResources().getColor(R.color.tint_gray));
             img.setImageResource(R.drawable.glyphicons_371_plus);
-            img.setBackgroundColor(AppState.get().userColor);
+            img.setColorFilter(AppState.get().userColor);
+            TintUtil.setColorSwatchOutline(img, AppState.get().userColor);
             colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
             view.setOnClickListener(new OnClickListener() {
@@ -2344,7 +2341,8 @@ public class PrefFragment2 extends UIFragment {
                             AppState.get().uiTextColor = color;
                             AppState.get().uiTextColorUser = color;
 
-                            img.setBackgroundColor(color);
+                            img.setColorFilter(color);
+                            TintUtil.setColorSwatchOutline(img, color);
                             isAccentTextColor.setChecked(AppState.get().isUiTextColor);
 
                             onAccent.run();

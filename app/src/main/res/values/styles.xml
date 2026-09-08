@@ -5,11 +5,19 @@
     <style name="StyledIndicatorsWhite" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuRound</item>
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
+        <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
     </style>
 
     <style name="StyledIndicatorsBlack" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuRound</item>
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
+        <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
     </style>
 
 
@@ -82,6 +90,12 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <!-- A settings section head: the same white link the rest of the panel is set in, but
+         in caps, so a head is told apart from the settings under it at a glance. -->
+    <style name="textSectionTitle" parent="textLinkWhite">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="textLinkStyle">
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
@@ -112,6 +126,37 @@
         <item name="android:layout_marginLeft">4dip</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Every menu the app drops open is drawn on the same rounded sheet. The framework
+         widgets read the android: attributes and the AppCompat ones read the plain names, so
+         each theme below points both at these. -->
+    <style name="PopupMenuRound" parent="@android:style/Widget.Material.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="PopupMenuRoundOverflow" parent="@android:style/Widget.Material.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="ListPopupWindowRound" parent="@android:style/Widget.Material.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="SpinnerPopupRound" parent="@android:style/Widget.Material.Spinner">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="PopupMenuRoundCompat" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="PopupMenuRoundCompatOverflow" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <style name="ListPopupWindowRoundCompat" parent="Widget.AppCompat.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/bg_popup_round</item>
     </style>
 
 </resources>

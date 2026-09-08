@@ -31,6 +31,7 @@ import com.foobnix.opds.Entry;
 import com.foobnix.opds.Link;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.ScaledImageView;
@@ -94,6 +95,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         if (entry.appState != null) {
             holder.remove.setVisibility(View.VISIBLE);
+            // The mark that drops a catalog takes the same day/night colour a heart does, so
+            // on a night theme it stays legible instead of sinking into the card.
+            TintUtil.setTintImageNoAlpha(holder.remove,
+                    holder.remove.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                            TintUtil.getColorInDayNighthBook());
             holder.remove.setOnClickListener(new OnClickListener() {
 
                 @Override

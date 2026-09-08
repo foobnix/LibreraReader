@@ -117,7 +117,7 @@
                 android:background="@drawable/bg_round_press"
                 android:clickable="true"
                 android:padding="6dip"
-                android:src="@drawable/glyphicons_471_sort"
+                android:src="@drawable/glyphicons_476_sort_attributes"
                 android:tint="@color/white" />
 
             <ImageView

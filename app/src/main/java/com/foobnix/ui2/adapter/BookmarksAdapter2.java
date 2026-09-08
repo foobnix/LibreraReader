@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
@@ -63,7 +64,11 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             }
         });
         holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_599_menu_close : R.drawable.glyphicons_578_share);
-        TintUtil.setTintImageNoAlpha(holder.remove, holder.remove.getResources().getColor(R.color.lt_grey_dima));
+        // The mark that drops a bookmark takes the same day/night colour a heart does, so on
+        // a night theme it stays legible instead of sinking into the card.
+        TintUtil.setTintImageNoAlpha(holder.remove,
+                holder.remove.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                        TintUtil.getColorInDayNighthBook());
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);
