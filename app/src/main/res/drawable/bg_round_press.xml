@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The answer a chrome button gives to a tap: the same round the rest of the chrome is
+     drawn in, rather than a rectangle cut around the mark. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#3cffffff">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</ripple>
