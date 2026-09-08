@@ -69,6 +69,8 @@ public abstract class UIFragment<T> extends Fragment {
     private int headerHeight;
     private int headerPaddingTop;
     private boolean headerSquared;
+    /** Whether the header's colour is ours to keep up with, or the tab's own. */
+    private boolean headerPainted;
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -82,12 +84,7 @@ public abstract class UIFragment<T> extends Fragment {
                 onTextRecive(txt);
             } else {
                 onTintChanged();
-                // The tint is painted back on with the corners it was drawn with; the
-                // header has to be squared off again.
-                headerSquared = false;
-                if (floatingHeader != null) {
-                    floatingHeader.requestLayout();
-                }
+                repaintFloatingHeader();
             }
         }
     };
@@ -183,6 +180,7 @@ public abstract class UIFragment<T> extends Fragment {
         // icons are left over whatever the page happens to be showing.
         if (floatingHeader.getBackground() == null) {
             floatingHeader.setBackgroundColor(TintUtil.color);
+            headerPainted = true;
         }
         // The same tint the tabs float in at the foot, kept back by the same amount, so the
         // two bars are one colour. The colour itself stays the tab's own to set and change.
@@ -227,6 +225,9 @@ public abstract class UIFragment<T> extends Fragment {
             View chrome = column.getChildAt(i);
             if (chrome.getElevation() < Dips.DP_4) {
                 chrome.setElevation(Dips.DP_4);
+                // Lifted for the order it is drawn in, not for a shadow: the panels are one
+                // colour, and a shadow cast from one onto the next would band the seam.
+                chrome.setOutlineProvider(null);
             }
         }
         // At the foot the same again for the tabs, unless the tab stands something of its
@@ -269,6 +270,25 @@ public abstract class UIFragment<T> extends Fragment {
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    /**
+     * The trim colour has changed under the header. A tab that paints its own header has
+     * just done so, in the colour's full strength and with the corners it is drawn with;
+     * one whose header we painted has had nothing done to it at all.
+     */
+    private void repaintFloatingHeader() {
+        if (floatingHeader == null) {
+            return;
+        }
+        if (headerPainted) {
+            floatingHeader.setBackgroundColor(TintUtil.color);
+        }
+        if (floatingHeader.getBackground() != null) {
+            floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        }
+        headerSquared = false;
+        floatingHeader.requestLayout();
     }
 
     /**

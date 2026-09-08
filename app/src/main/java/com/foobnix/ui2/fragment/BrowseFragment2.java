@@ -206,6 +206,9 @@ import java.util.Map;
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
         TintUtil.setTintImageWithAlpha(openAsbookImage, openAsBookInk());
+        if (isOpenAsBookInHeader() && openAsBook != null) {
+            openAsBook.findViewById(R.id.openAsBookBg).setBackground(openAsBookButton());
+        }
 
     }
 

@@ -560,6 +560,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             // Standing over the page now, the strip carries the status bar itself, and is
             // lifted clear of the header the page's own tab draws beneath it.
             imageMenuParent.setElevation(Dips.DP_8);
+            imageMenuParent.setOutlineProvider(null);
             imageMenuParent.post(() -> {
                 WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(imageMenuParent);
                 int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
@@ -979,8 +980,14 @@ public class MainTabs2 extends AdsFragmentActivity {
                     indicator.setDividerColors(TintUtil.color);
                     indicator.updateIcons(pager.getCurrentItem());
                 } else {
-                    indicator.setBackgroundColor(TintUtil.color);
+                    // Through setTabsBackground, or the pill at the foot would be flattened
+                    // into a plain rectangle of the new colour.
+                    indicator.setTabsBackground(TintUtil.color);
                     imageMenuParent.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
+                    View statusBarHack = findViewById(R.id.systemBarHack);
+                    if (statusBarHack != null) {
+                        statusBarHack.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
+                    }
                 }
             }
         }
