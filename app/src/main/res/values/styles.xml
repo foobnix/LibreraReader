@@ -56,7 +56,7 @@
 
 
     <style name="buttonWhite">
-        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/bg_round_press</item>
         <item name="android:padding">3dip</item>
         <item name="android:layout_marginLeft">1.5dip</item>
         <item name="android:layout_marginRight">1.5dip</item>

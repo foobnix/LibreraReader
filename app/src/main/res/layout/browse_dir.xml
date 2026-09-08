@@ -102,7 +102,7 @@
             android:layout_height="@dimen/wh_button_small"
             android:layout_marginRight="4dip"
             android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray" />
     </LinearLayout>

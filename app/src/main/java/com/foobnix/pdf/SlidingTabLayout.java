@@ -141,6 +141,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     /** What a page has to keep clear at its foot for the bar floating over it. */
     public static int floatingSpace() {
+        if (!isFloating()) {
+            return 0;
+        }
         return Dips.dpToPx(isIconsAlone() ? FLOATING_SPACE_ALONE_DIPS : FLOATING_SPACE_DIPS);
     }
 
@@ -150,9 +153,17 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * lifted off it by a shadow. On e-ink the same shape stays flat and opaque - a shadow
      * only greys the screen, and a page showing through would smear behind the names.
      */
+    /** The tint the floating chrome is painted in: the colour, with the page kept showing. */
+    public static int floatingTint(int color) {
+        return setColorAlpha(color, FLOATING_ALPHA);
+    }
+
     public void setTabsBackground(int color) {
         if (!isFloating()) {
-            setBackgroundColor(color);
+            // At the top the strip the tabs stand on is already painted in the chrome's
+            // colour. Painting them again over it would lay the same tint down twice and
+            // come out darker than every other panel.
+            setBackgroundColor(Color.TRANSPARENT);
             return;
         }
         boolean ink = AppState.get().appTheme == AppState.THEME_INK;
@@ -341,17 +352,22 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
 
         if (isFloating()) {
-            // Rounded all the way round, as in LibreraX: the pill's own corners are the
-            // only ones held back. The mask keeps the ripple to the same shape.
+            // Rounded all the way round, as in LibreraX: only the pill's own corners are
+            // held back. The mask keeps the ripple of a tap to the same shape.
             boolean ink = AppState.get().appTheme == AppState.THEME_INK;
             int ripple = setColorAlpha(ink ? TintUtil.color : Color.WHITE, RIPPLE_ALPHA);
             textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
                                                       roundedPatch(Color.TRANSPARENT),
                                                       roundedPatch(Color.WHITE)));
         } else {
-            TypedValue outValue = new TypedValue();
-            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-            textView.setBackgroundResource(outValue.resourceId);
+            // At the top the chosen tab is told apart by the weight of its own colour and
+            // keeps no patch behind it. A tap still answers, but in the same round the rest
+            // of the chrome is drawn in rather than a rectangle cut around the words.
+            boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+            int ripple = setColorAlpha(ink ? TintUtil.color : Color.WHITE, RIPPLE_ALPHA);
+            textView.setBackground(new RippleDrawable(ColorStateList.valueOf(ripple),
+                                                      null,
+                                                      roundedPatch(Color.WHITE)));
         }
 
         if (myPOS == POS_HORIZONTAL) {
@@ -376,7 +392,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 0);
             }
         } else if (AppState.get().tabWithNames) {
-            textView.setPadding(padding, padding, padding, padding);
+            // The patch wraps the tab, so what is padding here is the room around the mark
+            // on the chosen one: enough to clear the words, not enough to swell the strip.
+            textView.setTypeface(Typeface.DEFAULT_BOLD);
+            textView.setPadding(padding, Dips.DP_6, padding, Dips.DP_6);
         } else {
             if (myPOS == POS_HORIZONTAL) {
                 textView.setPadding((int) (padding * 1.6), padding, padding, padding);

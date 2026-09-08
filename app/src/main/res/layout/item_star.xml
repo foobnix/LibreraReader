@@ -13,7 +13,7 @@
 
     <ImageView
         android:id="@+id/starIcon"
-          android:background="?android:attr/selectableItemBackground"    
+          android:background="@drawable/bg_round_press"    
         android:layout_width="20dip"
         android:layout_height="20dip"
         android:layout_alignParentBottom="true"

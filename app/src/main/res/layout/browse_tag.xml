@@ -56,7 +56,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
             android:layout_marginRight="4dip"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:padding="7dip"
             android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray" />

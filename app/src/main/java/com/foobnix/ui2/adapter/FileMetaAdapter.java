@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
+import androidx.cardview.widget.CardView;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -864,12 +865,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (holder.layoutBootom != null) {
-            if (adapterType == ADAPTER_COVERS) {
-                holder.layoutBootom.setVisibility(View.GONE);
-                holder.infoLayout.setVisibility(View.GONE);
-            } else {
-                holder.layoutBootom.setVisibility(View.VISIBLE);
-                holder.infoLayout.setVisibility(View.VISIBLE);
+            boolean coversOnly = adapterType == ADAPTER_COVERS;
+            holder.layoutBootom.setVisibility(coversOnly ? View.GONE : View.VISIBLE);
+            holder.infoLayout.setVisibility(coversOnly ? View.GONE : View.VISIBLE);
+            // In covers the tile is the cover and nothing else. The card that carries the
+            // title in the grid would only draw a pale edge around it, and the sheet the
+            // image is backed by would show wherever the cover does not fill it.
+            if (holder.parent instanceof CardView) {
+                CardView card = (CardView) holder.parent;
+                card.setCardBackgroundColor(coversOnly ? Color.TRANSPARENT : holder.cardColor);
+                card.setCardElevation(coversOnly ? 0 : holder.cardElevation);
             }
         }
 
@@ -1047,6 +1052,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         public LinearLayout tags;
         public ImageView image, star, signIcon, menu, cloudImage;
         public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
+        /** What the card looks like when it carries a title, kept so covers can drop it. */
+        private int cardColor;
+        private float cardElevation;
 
         public FileMetaViewHolder(View view) {
             super(view);
@@ -1077,6 +1085,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             remove = view.findViewById(R.id.delete);
 
             parent = view;
+            if (parent instanceof CardView) {
+                // Read rather than assumed: the card takes its colour from the theme, and
+                // on a dark one it is not white.
+                cardColor = ((CardView) parent).getCardBackgroundColor().getDefaultColor();
+                cardElevation = ((CardView) parent).getCardElevation();
+            }
 
 
         }

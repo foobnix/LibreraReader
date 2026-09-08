@@ -87,7 +87,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:padding="7dip"
             android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray"
@@ -107,7 +107,7 @@
             android:layout_width="@dimen/wh_button_small"
             android:layout_height="@dimen/wh_button_small"
             android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:clickable="true"
             android:contentDescription="@string/cd_sort_order"
             android:padding="4dip"
@@ -169,7 +169,7 @@
         android:layout_marginLeft="@dimen/panel_padding"
         android:layout_marginRight="@dimen/panel_padding"
         android:layout_marginBottom="@dimen/panel_padding"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@drawable/bg_round_press"
         android:elevation="@dimen/dv"
         card_view:cardCornerRadius="@dimen/radius">
 
@@ -177,7 +177,7 @@
             android:id="@+id/openAsBookBg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/dv">
@@ -220,7 +220,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_marginRight="8dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:padding="7dip"
                 android:src="@drawable/glyphicons_9_heart_empty"
                 android:tint="@color/tint_gray" />

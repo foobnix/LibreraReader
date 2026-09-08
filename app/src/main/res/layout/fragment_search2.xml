@@ -13,6 +13,7 @@
         android:layout_margin="@dimen/panel_padding"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:paddingTop="6dip"
         android:paddingBottom="6dip">
 
         <ImageView
@@ -113,7 +114,7 @@
                 android:id="@+id/sortBy"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:clickable="true"
                 android:padding="6dip"
                 android:src="@drawable/glyphicons_471_sort"
@@ -125,7 +126,7 @@
                 android:id="@+id/sortOrder"
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:clickable="true"
                 android:padding="4dip"
                 android:src="@drawable/glyphicons_221_chevron_down"
@@ -137,7 +138,7 @@
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:src="@drawable/glyphicons_82_refresh" />
 
             <ImageView

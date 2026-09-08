@@ -43,7 +43,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:padding="7dip"
             android:src="@drawable/glyphicons_9_heart_empty"
             android:tint="@color/tint_gray" />

@@ -214,7 +214,7 @@ import java.util.Map;
      * than to the files: it is drawn on the tint, so its own marks are drawn on tint too.
      */
     private boolean isOpenAsBookInHeader() {
-        return SlidingTabLayout.isFloating() && getId() == R.id.pager;
+        return getId() == R.id.pager;
     }
 
     /** The button's own shape: a tinted round with a white edge, and a tap ripple to match. */

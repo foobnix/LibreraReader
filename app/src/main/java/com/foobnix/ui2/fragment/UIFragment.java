@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -66,6 +68,7 @@ public abstract class UIFragment<T> extends Fragment {
     private View floatingHeader;
     private int headerHeight;
     private int headerPaddingTop;
+    private boolean headerSquared;
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -79,6 +82,12 @@ public abstract class UIFragment<T> extends Fragment {
                 onTextRecive(txt);
             } else {
                 onTintChanged();
+                // The tint is painted back on with the corners it was drawn with; the
+                // header has to be squared off again.
+                headerSquared = false;
+                if (floatingHeader != null) {
+                    floatingHeader.requestLayout();
+                }
             }
         }
     };
@@ -150,7 +159,7 @@ public abstract class UIFragment<T> extends Fragment {
      * is on screen, and what a tab stands above and below its list comes and goes.
      */
     private void floatChromeOverPage(final View root) {
-        if (!SlidingTabLayout.isFloating() || !(getActivity() instanceof MainTabs2)) {
+        if (!(getActivity() instanceof MainTabs2)) {
             return;
         }
         // Only the tabs themselves: the settings are also the drawer, and a tab's screen is
@@ -194,6 +203,7 @@ public abstract class UIFragment<T> extends Fragment {
         if (getActivity() == null || floatingHeader == null || !liftHeaderOverStatusBar(column)) {
             return;
         }
+        squareHeaderCorners();
         View scroller = recyclerView != null ? recyclerView : column.findViewById(R.id.scroll);
         View holder = childHolding(column, scroller);
         if (holder == null || scroller == null) {
@@ -201,8 +211,11 @@ public abstract class UIFragment<T> extends Fragment {
         }
         // Everything the tab stands above its list floats over it: the list is pulled up to
         // the top of the page and keeps that much as padding it can scroll through.
+        // At the foot the page runs on under the chrome. At the head it begins below it: the
+        // bar is still drawn over the page, but nothing is read through it.
         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) holder.getLayoutParams();
-        int above = hasFloatingHeader() ? holder.getTop() - lp.topMargin : 0;
+        int above = hasFloatingHeader() && SlidingTabLayout.isFloating()
+                ? holder.getTop() - lp.topMargin : 0;
         if (lp.topMargin != -above) {
             lp.topMargin = -above;
             holder.setLayoutParams(lp);
@@ -236,12 +249,38 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
-    /** The header runs up behind the status bar, so it has to carry the bar's height. */
+    /**
+     * The header runs the full width of the screen and meets the strips above and below it.
+     * Rounded, its corners let the page through in four small notches along those seams.
+     */
+    private void squareHeaderCorners() {
+        if (headerSquared) {
+            return;
+        }
+        try {
+            Drawable face = floatingHeader.getBackground().getCurrent();
+            if (face instanceof GradientDrawable) {
+                ((GradientDrawable) face).setCornerRadius(0);
+            }
+            headerSquared = true;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /**
+     * The header runs up under whatever the library floats above the page. At the foot that
+     * is the status bar alone, and the header carries its height; at the head the tabs are
+     * up there too, already carrying it, and the header clears the strip they stand on.
+     */
     private boolean liftHeaderOverStatusBar(View attached) {
-        int statusBar = 0;
-        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(attached);
-        if (insets != null) {
-            statusBar = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+        int statusBar;
+        if (SlidingTabLayout.isFloating()) {
+            WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(attached);
+            statusBar = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+        } else {
+            View tabs = getActivity().findViewById(R.id.imageParent1);
+            statusBar = tabs == null ? 0 : tabs.getHeight();
         }
         if (floatingHeader.getPaddingTop() == headerPaddingTop + statusBar) {
             return true;

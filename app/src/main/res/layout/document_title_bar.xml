@@ -137,7 +137,7 @@
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:gravity="center"
                 android:src="@drawable/glyphicons_172_skip_to_start"
                 android:text="1"
@@ -152,7 +152,7 @@
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:src="@drawable/glyphicons_186_volume_up"
                 android:tint="@color/tint_gray"
                 android:visibility="visible" />
@@ -163,7 +163,7 @@
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:src="@drawable/glyphicons_218_lock_open"
                 android:tint="@color/tint_gray"
                 android:visibility="visible" />
@@ -174,7 +174,7 @@
                 android:layout_height="@dimen/title_wh_button"
                 android:layout_marginLeft="5dip"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/bg_round_press"
                 android:src="@drawable/my_glyphicons_full_page"
                 android:tint="@color/tint_gray" />
 

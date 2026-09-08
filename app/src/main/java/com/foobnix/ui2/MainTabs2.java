@@ -54,6 +54,8 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -354,11 +356,14 @@ public class MainTabs2 extends AdsFragmentActivity {
         setContentView(R.layout.main_tabs);
         // With the tabs floating at the foot, the headers float at the top too: the page
         // runs the whole height of the screen and they are drawn over it.
-        DocumentController.applyEdgeToEdge(this, SlidingTabLayout.isFloating());
+        // The page runs the whole height of the screen either way: the chrome floats over
+        // it, at the head or at the foot, and carries the status bar itself.
+        DocumentController.applyEdgeToEdge(this, true,
+                                           SlidingTabLayout.floatingTint(TintUtil.color));
 
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
-        imageMenuParent.setBackgroundColor(TintUtil.color);
+        imageMenuParent.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
 
         fab = findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
@@ -521,9 +526,12 @@ public class MainTabs2 extends AdsFragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setTabsBackground(TintUtil.color);
 
+        // The chosen tab is marked by the patch behind it, wherever the tabs sit, and the
+        // rules that used to stand between them are gone with the rest of them.
+        indicator.setDividerColors(Color.TRANSPARENT);
+        indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
+
         if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
-            indicator.setDividerColors(Color.TRANSPARENT);
-            indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
             for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
                 View child = indicator.getmTabStrip().getChildAt(i);
                 child.setOnLongClickListener(new View.OnLongClickListener() {
@@ -535,6 +543,19 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
+        if (AppState.get().tapPositionTop) {
+            // Standing over the page now, the strip carries the status bar itself, and is
+            // lifted clear of the header the page's own tab draws beneath it.
+            imageMenuParent.setElevation(Dips.DP_8);
+            imageMenuParent.post(() -> {
+                WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(imageMenuParent);
+                int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+                imageMenuParent.setPadding(imageMenuParent.getPaddingLeft(), top,
+                                           imageMenuParent.getPaddingRight(),
+                                           imageMenuParent.getPaddingBottom());
+            });
+        }
+
         indicator.setOnDoubleClickAction(index -> {
             try {
                 tabFragments.get(index).onDoubleClick();
@@ -946,7 +967,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     indicator.updateIcons(pager.getCurrentItem());
                 } else {
                     indicator.setBackgroundColor(TintUtil.color);
-                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                    imageMenuParent.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
                 }
             }
         }

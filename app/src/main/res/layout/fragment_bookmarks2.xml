@@ -148,7 +148,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:clickable="true"
             android:padding="8dip"
             android:src="@drawable/glyphicons_599_menu_close"

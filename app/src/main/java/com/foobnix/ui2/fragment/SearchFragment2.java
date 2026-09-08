@@ -333,12 +333,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
      * rectangle with a border cutting it from the colour it sits on.
      */
     private void styleFilterLineOnTint() {
-        if (!SlidingTabLayout.isFloating() || getId() != R.id.pager) {
+        if (getId() != R.id.pager) {
             return;
         }
-        TypedValue outValue = new TypedValue();
-        getActivity().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        menu2.setBackgroundResource(outValue.resourceId);
+        menu2.setBackgroundResource(R.drawable.bg_round_press);
         TintUtil.setTintImageNoAlpha(menu2, Color.WHITE);
 
         // The buttons stand on the bar itself. Their own panel was a second, solid block of

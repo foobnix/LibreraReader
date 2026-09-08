@@ -363,7 +363,11 @@ public abstract class DocumentController {
     }
 
     public static void applyEdgeToEdge(final Activity a) {
-        applyEdgeToEdge(a, false);
+        applyEdgeToEdge(a, false, TintUtil.color);
+    }
+
+    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar) {
+        applyEdgeToEdge(a, underStatusBar, TintUtil.color);
     }
 
     /**
@@ -371,7 +375,11 @@ public abstract class DocumentController {
      * below a strip of its own, so that a header floating at the top of the page and the
      * status bar over it read as one surface.
      */
-    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar) {
+    /**
+     * @param barColor what the strip kept for the status bar is painted with, where one is
+     * kept at all - the chrome below it is painted in the same colour.
+     */
+    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int barColor) {
         if (Build.VERSION.SDK_INT >= 35) {
             View parentParent = a.findViewById(R.id.parentParent);
             View statusBarHack = a.findViewById(R.id.systemBarHack);
@@ -391,7 +399,7 @@ public abstract class DocumentController {
                         statusBarHackLayoutParams.height = underStatusBar ? 0 : insets.top;
                         statusBarHack.setLayoutParams(statusBarHackLayoutParams);
 
-                        statusBarHack.setBackgroundColor(TintUtil.color);
+                        statusBarHack.setBackgroundColor(barColor);
 
                     }
 

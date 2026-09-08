@@ -30,7 +30,10 @@
      <dimen name="speed_size_padding">14dip</dimen>
     
     <dimen name="dv">4dip</dimen>
-    <dimen name="radius">1dip</dimen>
+    <!-- The rounding every card is cut to, as LibreraX draws them, and the tighter one for
+         the thumbnail that sits beside a line of text. -->
+    <dimen name="radius">10dp</dimen>
+    <dimen name="cover_radius_small">6dp</dimen>
     
     <dimen name="brigtness">15dip</dimen>
     <dimen name="progress">2dip</dimen>

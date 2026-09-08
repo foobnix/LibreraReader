@@ -24,8 +24,8 @@
             android:layout_margin="2dip"
             android:padding="0dip"
             card_view:cardBackgroundColor="@color/transparent"
-            card_view:cardCornerRadius="1dp"
-            card_view:cardElevation="4dip"
+            card_view:cardCornerRadius="@dimen/cover_radius_small"
+            card_view:cardElevation="0dp"
             card_view:cardPreventCornerOverlap="true">
 
             <ImageView
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/white"
+                android:background="@color/transparent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true" />
         </androidx.cardview.widget.CardView>
@@ -198,7 +198,7 @@
                     android:layout_marginBottom="-1dip"
                     android:layout_weight="0"
                     android:contentDescription="@string/remove"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/bg_round_press"
                     android:padding="2dip"
                     android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima1"
@@ -220,7 +220,7 @@
                     android:layout_marginBottom="0dip"
                     android:layout_weight="0"
 
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/bg_round_press"
                     android:padding="2dip"
                     android:src="@drawable/glyphicons_9_heart_empty"
                     android:tint="@color/tint_gray" />
@@ -231,7 +231,7 @@
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_marginBottom="-1dip"
                     android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/bg_round_press"
                     android:padding="2dip"
                     android:contentDescription="@string/book_menu"
                     android:singleLine="true"

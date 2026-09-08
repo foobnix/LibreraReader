@@ -52,7 +52,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toRightOf="@+id/cloudImage"
                     android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@drawable/bg_round_press"
                     android:padding="8dip"
                     android:src="@drawable/glyphicons_13_heart"
                     android:tint="@color/white" />
@@ -491,7 +491,7 @@
             android:layout_height="@dimen/wh_button"
             android:layout_alignLeft="@+id/openFile"
             android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/bg_round_press"
             android:padding="8dip"
             android:src="@drawable/glyphicons_13_heart"
             android:tint="@color/white" />
