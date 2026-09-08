@@ -63,6 +63,10 @@ public class TTSEngine {
     private static final String TAG = "TTSEngine";
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
+    private boolean initialized;
+    private boolean initializationFailed;
+    private String pendingText;
+    private int generation;
     volatile MediaPlayer mp;
     Timer mTimer;
     Object helpObject = new Object();
@@ -143,8 +147,11 @@ public class TTSEngine {
         LOG.d(TAG, "shutdown");
 
         synchronized (helpObject) {
+            generation++;
+            initialized = false;
+            initializationFailed = false;
+            pendingText = null;
             if (ttsEngine != null) {
-
                 ttsEngine.shutdown();
             }
             ttsEngine = null;
@@ -170,22 +177,48 @@ public class TTSEngine {
                                          .mp3BookPathGet());
             }
 
+            if (initializationFailed) {
+                shutdown();
+            }
             if (ttsEngine != null) {
                 return ttsEngine;
             }
-            if (onLisnter == null) {
-                onLisnter = listener;
-            }
+            final OnInitListener callback = onLisnter == null ? listener : onLisnter;
             // The system default engine can point at a package that is no longer installed
             // (Android then logs "is not allowed to bind to private engine" and stays silent).
             // In that case pick an engine that is actually present instead of inheriting the
             // broken default.
             final String fallback = resolveUsableEngine(LibreraApp.context);
+            final int currentGeneration = ++generation;
+            initialized = false;
+            OnInitListener init = status -> {
+                synchronized (helpObject) {
+                    if (generation != currentGeneration) {
+                        return;
+                    }
+                    initialized = status == TextToSpeech.SUCCESS;
+                    initializationFailed = !initialized;
+                    if (!initialized) {
+                        pendingText = null;
+                    }
+                }
+                try {
+                    callback.onInit(status);
+                } finally {
+                    synchronized (helpObject) {
+                        if (generation == currentGeneration && initialized && pendingText != null) {
+                            String queued = pendingText;
+                            pendingText = null;
+                            speekLocked(queued);
+                        }
+                    }
+                }
+            };
             if (fallback != null) {
                 LOG.d(TAG, "default TTS engine unusable, falling back to", fallback);
-                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter, fallback);
+                ttsEngine = new TextToSpeech(LibreraApp.context, init, fallback);
             } else {
-                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
+                ttsEngine = new TextToSpeech(LibreraApp.context, init);
             }
         }
 
@@ -260,6 +293,7 @@ public class TTSEngine {
 
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            pendingText = null;
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
@@ -277,21 +311,8 @@ public class TTSEngine {
     public void stopDestroy() {
         LOG.d(TAG, "stop");
         TxtUtils.dictHash = "";
-        synchronized (helpObject) {
-            if (ttsEngine != null) {
-                ttsEngine.shutdown();
-            }
-            ttsEngine = null;
-        }
-        AppSP.get().lastBookParagraph = 0;
-    }
-
-    public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
-        synchronized (helpObject) {
-            ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
-        }
-        return ttsEngine;
+        AppSP.get().lastBookParagraph = 0;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public void speek(final String text) {
@@ -319,24 +340,18 @@ public class TTSEngine {
             LOG.d("getTTS-status not null");
         }
 
-        ttsEngine = getTTS(new OnInitListener() {
-
-            @Override public void onInit(int status) {
-                LOG.d("getTTS-status", status);
-                if (status == TextToSpeech.SUCCESS) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                    }
-                    speek(text);
-                }
-            }
-        });
+        ttsEngine = getTTS();
 
         if (ttsEngine == null) {
             LOG.d(TAG, "speek: no TTS engine available");
             return;
         }
+        if (!initialized) {
+            LOG.d(TAG, "speek: waiting for TTS initialization");
+            pendingText = text;
+            return;
+        }
+        pendingText = null;
 
         ttsEngine.setPitch(AppState.get().ttsPitch);
         if (AppState.get().ttsSpeed == 0.0f) {
