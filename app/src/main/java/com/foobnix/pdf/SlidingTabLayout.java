@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -160,9 +161,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     public void setTabsBackground(int color) {
         if (!isFloating()) {
-            // At the top the strip the tabs stand on is already painted in the chrome's
-            // colour. Painting them again over it would lay the same tint down twice and
-            // come out darker than every other panel.
+            // The strip the tabs stand on is already painted in the chrome's colour, and the
+            // page shows through it. Painting the tabs again over that would lay the same
+            // tint down twice and come out darker than every other panel.
             setBackgroundColor(Color.TRANSPARENT);
             return;
         }

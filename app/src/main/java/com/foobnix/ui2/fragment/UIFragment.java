@@ -211,11 +211,10 @@ public abstract class UIFragment<T> extends Fragment {
         }
         // Everything the tab stands above its list floats over it: the list is pulled up to
         // the top of the page and keeps that much as padding it can scroll through.
-        // At the foot the page runs on under the chrome. At the head it begins below it: the
-        // bar is still drawn over the page, but nothing is read through it.
+        // The page runs on under the chrome wherever the tabs sit: it is drawn over the
+        // books at the head the same way it is at the foot.
         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) holder.getLayoutParams();
-        int above = hasFloatingHeader() && SlidingTabLayout.isFloating()
-                ? holder.getTop() - lp.topMargin : 0;
+        int above = hasFloatingHeader() ? holder.getTop() - lp.topMargin : 0;
         if (lp.topMargin != -above) {
             lp.topMargin = -above;
             holder.setLayoutParams(lp);
