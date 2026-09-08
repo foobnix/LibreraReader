@@ -334,7 +334,9 @@ public class DocumentWrapperUI {
 
         @Override
         public void onStartTrackingTouch(final SeekBar seekBar) {
-            dc.getLinkHistory().add(dc.getCurentPageFirst1());
+            // Dragging the slider is not following a link. It used to leave the page behind in
+            // the link history, which raised the back button as though a reference had been
+            // opened; the button is left to mean what it says - back from a link or a footnote.
         }
 
         @Override

@@ -1471,14 +1471,21 @@ public class TxtUtils {
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
                     if (child instanceof CheckBox) {
-                        // A checkbox is chrome, not a link: it takes the theme colour the bars
-                        // and headers are drawn in, rather than the colour text links carry.
-                        ((CheckBox) child).setButtonTintList(ColorStateList.valueOf(TintUtil.color));
+                        // A box is ticked in the colour the buttons beside it are drawn in -
+                        // the link colour the panel settles on for day and for night - rather
+                        // than in the theme colour the bars are painted with.
+                        ((CheckBox) child).setButtonTintList(tint);
                     } else if (child instanceof ImageView) {
                         ImageView imageView = (ImageView) child;
 
                         if ((imageView.getId() == R.id.closePopup || imageView.getId() == R.id.onIconAction) && !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                        } else if (AppState.get().appTheme == AppState.THEME_INK) {
+                            // Ink is black on white throughout: a mark is drawn in the same
+                            // black the words around it are, not in an accent that leaves it
+                            // invisible on the page. The two marks above are the exception -
+                            // they stand on a tinted bar rather than on the page.
+                            imageView.setImageTintList(ColorStateList.valueOf(Color.BLACK));
                         } else if (accentImages || AppState.get().isUiTextColor) {
                             if (AppState.get().uiTextColor == AppState.get().tintColor) {
                                 imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));

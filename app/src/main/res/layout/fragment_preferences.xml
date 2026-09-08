@@ -191,38 +191,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/library_settings" />
+                    android:text="@string/library_folders" />
 
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:singleLine="true"
-                android:text="@string/scan_device_for_new_books"
-                android:textStyle="bold" />
-
-            <TextView
+            <!-- The folders the library is built from. The panel fills this with one chip a
+                 folder, rather than running them together in a block of text. -->
+            <LinearLayout
                 android:id="@+id/searchPaths"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:padding="0dip"
-                android:singleLine="false"
-                android:text="/mnt/sdcard \r\n /emmc /n /sdcard1" />
+                android:orientation="vertical" />
 
-            <TextView
-                android:id="@+id/onConfigPath"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
+            <!-- Adding a folder and rebuilding the library from the folders now listed: one
+                 says what the library is made of, the other goes and makes it. -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="4dip"
-                android:text="@string/add_folder"
-                android:textAllCaps="true" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/onConfigPath"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="4dip"
+                    android:text="@string/add_folder"
+                    android:textAllCaps="true" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/onUpdateLibrary"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="4dip"
+                    android:text="@string/update_library"
+                    android:textAllCaps="true" />
+            </LinearLayout>
 
             <View
                 android:tag="with_tint1"
@@ -1731,7 +1746,7 @@
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_margin="4dip"
-                    android:src="@mipmap/icon_pdf_pro"
+                    android:src="@drawable/icon_pro_square"
                     android:tag="@string/no_tint" />
 
                 <TextView

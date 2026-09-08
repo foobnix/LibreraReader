@@ -18,6 +18,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 
@@ -80,6 +81,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
 
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
+        // The covers in the strip are cut to the same round they are everywhere else.
+        TintUtil.roundCorners(holder.imageView, Dips.dpToPx(6));
 
         holder.imageView.setAdjustViewBounds(true);
         holder.imageView.setScaleType(ScaleType.CENTER_CROP);

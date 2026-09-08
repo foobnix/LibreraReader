@@ -8,6 +8,7 @@
         <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
         <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
         <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
+        <item name="android:alertDialogTheme">@style/DialogRoundLight</item>
     </style>
 
     <style name="StyledIndicatorsBlack" parent="@android:style/Theme.Material.NoActionBar">
@@ -17,6 +18,7 @@
         <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
         <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
         <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
+        <item name="android:alertDialogTheme">@style/DialogRoundDark</item>
     </style>
 
 </resources>

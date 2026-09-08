@@ -6,16 +6,18 @@
     android:gravity="center_vertical"
     android:orientation="vertical" >
 
+    <!-- No padding round the cover: the view is cut to a round, and an image held in from the
+         edge would keep its own square corners inside that round for the eye to catch. The
+         mark for the book being read is drawn along the foot of the cover itself. -->
     <com.foobnix.pdf.info.view.UnderlineImageView
         android:id="@+id/image1"
         android:layout_width="80dip"
         android:layout_height="120dip"
         android:layout_weight="0"
+        android:layout_marginLeft="3dip"
+        android:layout_marginRight="3dip"
+        android:layout_marginBottom="2dip"
         android:background="@drawable/bg_clickable"
-        android:paddingLeft="2dip"
-        android:paddingRight="2dip"
-        android:layout_marginBottom="2dip"	
-        android:paddingBottom="8dip"
         android:src="@drawable/glyphicons_589_book_open" />
 
     <TextView

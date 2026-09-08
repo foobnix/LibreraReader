@@ -216,6 +216,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * A tab-shaped patch. The radius is past any height a tab can reach, and a round rect
      * is drawn no rounder than half its own side, so the ends come out fully rounded.
      */
+    private boolean showTabPatch = true;
+
     private static GradientDrawable roundedPatch(int color) {
         GradientDrawable patch = new GradientDrawable();
         patch.setCornerRadius(Dips.DP_50);
@@ -227,8 +229,26 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * The chosen tab keeps a rounded patch behind its icon and name, the way LibreraX marks
      * it. The patch is the tab's own background, with the tap ripple laid over it.
      */
+    /**
+     * Whether the chosen tab carries a patch behind it. The tabs at the foot of the main
+     * screen do; a strip borrowed by a dialog is one surface with the bars above it, and a
+     * patch there only breaks that surface up.
+     */
+    public void setShowTabPatch(boolean value) {
+        showTabPatch = value;
+        if (getmTabStrip() != null) {
+            for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
+                clearTabPatch(getmTabStrip().getChildAt(i));
+            }
+        }
+    }
+
     private void setTabPatch(View tab, boolean isSelected) {
         if (!isFloating()) {
+            return;
+        }
+        if (!showTabPatch) {
+            clearTabPatch(tab);
             return;
         }
         try {
@@ -236,6 +256,15 @@ public class SlidingTabLayout extends HorizontalScrollView {
             boolean ink = AppState.get().appTheme == AppState.THEME_INK;
             int color = setColorAlpha(ink ? TintUtil.color : Color.WHITE, PATCH_ALPHA);
             ((GradientDrawable) patch).setColor(isSelected ? color : Color.TRANSPARENT);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    private void clearTabPatch(View tab) {
+        try {
+            Drawable patch = ((RippleDrawable) tab.getBackground()).getDrawable(0);
+            ((GradientDrawable) patch).setColor(Color.TRANSPARENT);
         } catch (Exception e) {
             LOG.e(e);
         }

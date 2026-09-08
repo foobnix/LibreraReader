@@ -9,6 +9,7 @@
         <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
         <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
         <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
+        <item name="android:alertDialogTheme">@style/DialogRoundLight</item>
     </style>
 
     <style name="StyledIndicatorsBlack" parent="@android:style/Theme.Black.NoTitleBar">
@@ -18,6 +19,7 @@
         <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflow</item>
         <item name="android:listPopupWindowStyle">@style/ListPopupWindowRound</item>
         <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRound</item>
+        <item name="android:alertDialogTheme">@style/DialogRoundDark</item>
     </style>
 
 
@@ -157,6 +159,30 @@
 
     <style name="ListPopupWindowRoundCompat" parent="Widget.AppCompat.ListPopupWindow">
         <item name="android:popupBackground">@drawable/bg_popup_round</item>
+    </style>
+
+    <!-- Dialogs are cut to the same round the cards are and held a little short of opaque, and
+         their titles are set in caps like the section heads, so a dialog reads as part of the
+         app rather than as the platform's own box. -->
+    <!-- The platform's own dialog-title style is private, so the title is described here
+         rather than inherited: the large text appearance the platform uses for it, set in
+         caps and bold like the section heads. -->
+    <style name="DialogRoundTitle">
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="DialogRoundLight" parent="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_round_light</item>
+        <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
+    </style>
+
+    <style name="DialogRoundDark" parent="@android:style/Theme.DeviceDefault.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_round_dark</item>
+        <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
     </style>
 
 </resources>

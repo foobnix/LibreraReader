@@ -11,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
+import android.graphics.Outline;
+import android.view.ViewOutlineProvider;
 import android.view.ViewGroup;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ClipDrawable;
@@ -130,6 +132,22 @@ public class TintUtil {
     }
 
     /**
+     * Cuts a view to a round without wrapping it in a card - a cover is sized by the adapter
+     * that shows it, and a card around it would take that sizing away from the image.
+     */
+    public static void roundCorners(View view, final float radius) {
+        if (view == null) {
+            return;
+        }
+        view.setOutlineProvider(new ViewOutlineProvider() {
+            @Override public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
+            }
+        });
+        view.setClipToOutline(true);
+    }
+
+    /**
      * A link drawn as a button: a ring cut to the round the cards are, in the colour of the
      * word inside it, with air enough round it that two side by side do not touch.
      */
@@ -142,6 +160,10 @@ public class TintUtil {
                              .toString());
         button.setBackgroundResource(R.drawable.bg_button_outline);
         button.setPadding(Dips.DP_10, Dips.DP_4, Dips.DP_10, Dips.DP_4);
+        // A floor under the width, so a column of short values - Top, Dark, Auto - comes out
+        // one width instead of a ragged edge. A longer word still makes its button wider.
+        button.setMinWidth(Dips.dpToPx(110));
+        button.setGravity(Gravity.CENTER);
         if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
             lp.leftMargin = lp.rightMargin = Dips.DP_8;

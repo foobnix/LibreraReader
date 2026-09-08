@@ -22,8 +22,16 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
+import androidx.cardview.widget.CardView;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
@@ -33,6 +41,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
@@ -153,7 +162,7 @@ public class PrefFragment2 extends UIFragment {
     };
     private SeekBar bar;
     private CheckBox autoSettings;
-    private TextView searchPaths;
+    private LinearLayout searchPaths;
     private CheckBox ch;
     private TextView selectedOpenMode;
     private TextView textNigthColor;
@@ -378,8 +387,15 @@ public class PrefFragment2 extends UIFragment {
 
                     View library = LayoutInflater.from(getActivity())
                                                  .inflate(R.layout.item_tab_line, null, false);
-                    if (AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK) {
-                        library.setBackgroundColor(Color.BLACK);
+                    // The row is drawn on the colour the panel behind it is, rather than
+                    // blacked out against it. setBackgroundColor would also put a plain colour
+                    // where the card's round-rect is and square the corners off with it, so
+                    // the card's own fill is what changes.
+                    if (library instanceof CardView) {
+                        TypedValue panel = new TypedValue();
+                        getActivity().getTheme()
+                                     .resolveAttribute(android.R.attr.colorBackground, panel, true);
+                        ((CardView) library).setCardBackgroundColor(panel.data);
                     }
 
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
@@ -1750,11 +1766,15 @@ public class PrefFragment2 extends UIFragment {
         initKeys();
 
         searchPaths = inflate.findViewById(R.id.searchPaths);
-        searchPaths.setText(JsonDB.fromHtml(BookCSS.get().searchPathsJson));
-        searchPaths.setOnClickListener(v -> onFolderConfigDialog());
+        showSearchPaths();
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
         asButton(addFolder, "+ " + getString(R.string.add_folder));
+
+        // Rebuilds the library from the folders now listed, without going through the dialog
+        // to reach the same scan.
+        View updateLibrary = asButton(inflate.findViewById(R.id.onUpdateLibrary));
+        updateLibrary.setOnClickListener(v -> onScan());
         addFolder.setOnClickListener(v -> onFolderConfigDialog());
 
         asButton(inflate.findViewById(R.id.importButton))
@@ -2798,11 +2818,54 @@ public class PrefFragment2 extends UIFragment {
     private void paintLinkButton(TextView button) {
         int color = button.getCurrentTextColor();
         TintUtil.setRingColor(button, color);
+        if (keepsOwnColour(markBeside(button))) {
+            return;
+        }
         for (Drawable icon : button.getCompoundDrawables()) {
             if (icon != null) {
                 icon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
             }
         }
+    }
+
+    /**
+     * Draws a picture into a square of the given size, as it is. The icon is taken from a
+     * plain raster rather than from the launcher's own resource: what the system hands back
+     * for an app icon is already cut to whatever shape the launcher uses - a circle here -
+     * and there is no getting the square art back out of it.
+     */
+    private Drawable sizedPicture(Drawable source, int size) {
+        Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        source.setBounds(0, 0, size, size);
+        source.draw(new Canvas(bitmap));
+
+        BitmapDrawable picture = new BitmapDrawable(getResources(), bitmap);
+        picture.setBounds(0, 0, size, size);
+        return picture;
+    }
+
+    /** The mark standing in front of a link, if there is one. */
+    private static ImageView markBeside(TextView button) {
+        if (!(button.getParent() instanceof ViewGroup)) {
+            return null;
+        }
+        ViewGroup row = (ViewGroup) button.getParent();
+        int position = row.indexOfChild(button);
+        if (position <= 0 || !(row.getChildAt(position - 1) instanceof ImageView)) {
+            return null;
+        }
+        return (ImageView) row.getChildAt(position - 1);
+    }
+
+    /** Whether a mark is one the app tags as its own to colour - a picture, not a glyph. */
+    private boolean keepsOwnColour(View mark) {
+        if (mark == null || mark.getTag() == null) {
+            return false;
+        }
+        String tag = mark.getTag()
+                         .toString();
+        return "no_tint".equals(tag) || getString(R.string.no_tint)
+                                                .equals(tag);
     }
 
     /**
@@ -2829,22 +2892,30 @@ public class PrefFragment2 extends UIFragment {
         if (!(button.getParent() instanceof ViewGroup)) {
             return;
         }
-        ViewGroup row = (ViewGroup) button.getParent();
-        int position = row.indexOfChild(button);
-        if (position <= 0 || !(row.getChildAt(position - 1) instanceof ImageView)) {
+        ImageView mark = markBeside(button);
+        if (mark == null) {
             return;
         }
-        ImageView mark = (ImageView) row.getChildAt(position - 1);
         Drawable icon = mark.getDrawable();
         if (icon == null) {
             return;
         }
         icon = icon.mutate();
-        int size = Dips.dpToPx(18);
-        icon.setBounds(0, 0, size, size);
-        icon.setColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
+        // A mark asked to keep its own colours is a picture, not a glyph: it keeps them and is
+        // drawn at twice the size a glyph is, so the picture can be made out.
+        if (keepsOwnColour(mark)) {
+            icon = sizedPicture(icon, Dips.dpToPx(36));
+        } else {
+            int size = Dips.dpToPx(18);
+            icon.setBounds(0, 0, size, size);
+            icon.setColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
+        }
         button.setCompoundDrawables(icon, null, null, null);
         button.setCompoundDrawablePadding(Dips.DP_6);
+        // With a mark inside it the button leads with the mark, so the space in front of it is
+        // cut back to the same the mark has above and below - the wider inset a button of
+        // words starts with would leave the mark adrift from its own edge.
+        button.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_10, Dips.DP_4);
         mark.setVisibility(View.GONE);
     }
 
@@ -2854,12 +2925,59 @@ public class PrefFragment2 extends UIFragment {
         return asButton(text);
     }
 
+    /**
+     * The folders the library is built from, one row a folder: a folder mark, the path itself
+     * across the width of the panel, and a round button to drop it. Run together in one block
+     * of text a long path wrapped into the next and neither could be told from the other. The
+     * middle of a path is what gives way when it will not fit - the drive it is on and the
+     * folder it ends in are what name it.
+     */
+    private void showSearchPaths() {
+        if (searchPaths == null) {
+            return;
+        }
+        searchPaths.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            View row = inflater.inflate(R.layout.path_item, searchPaths, false);
+
+            TextView pathView = row.findViewById(R.id.browserPath);
+            pathView.setText(path);
+            pathView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            // Tagged as a link so the panel's colour pass reaches it, and the marks beside it
+            // are cut from whatever colour that pass settles on.
+            pathView.setTag("textLink");
+            TxtUtils.setLinkTextColor(pathView);
+            int rowColor = pathView.getCurrentTextColor();
+
+            View mark = row.findViewById(R.id.image1);
+            if (mark instanceof ImageView) {
+                TintUtil.setTintImageNoAlpha((ImageView) mark, rowColor);
+            }
+
+            View remove = row.findViewById(R.id.delete);
+            TintUtil.setRingColor(remove, rowColor);
+            if (remove instanceof ImageView) {
+                TintUtil.setTintImageNoAlpha((ImageView) remove, rowColor);
+            }
+            remove.setOnClickListener(v -> {
+                BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                showSearchPaths();
+                saveChanges();
+                LOG.d("Save Changes", 3);
+            });
+
+            row.setOnClickListener(v -> onFolderConfigDialog());
+            searchPaths.addView(row);
+        }
+    }
+
     public void onFolderConfigDialog() {
 
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
 
             @Override public void run() {
-                searchPaths.setText(JsonDB.fromHtml(BookCSS.get().searchPathsJson));
+                showSearchPaths();
                 saveChanges();
                 LOG.d("Save Changes", 2);
             }
@@ -2954,6 +3072,12 @@ public class PrefFragment2 extends UIFragment {
 
     public void onScan() {
         if (getActivity() == null) {
+            return;
+        }
+        // A scan already under way is left to finish: starting a second one over the same
+        // folders would have the two writing the library out from under each other. The
+        // reader is told why nothing happened, as everywhere else that waits on this.
+        if (PrefDialogs.isBookSeriviceIsRunning(getActivity())) {
             return;
         }
         AppProfile.save(getActivity());

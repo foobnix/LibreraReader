@@ -8,8 +8,7 @@
     android:background="?android:attr/colorBackground"
     android:elevation="4dp"
     card_view:cardCornerRadius="@dimen/radius"
-    card_view:cardUseCompatPadding="true"
-    card_view:contentPadding="1dp" >
+    card_view:cardUseCompatPadding="true" >
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -100,8 +99,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/topLayout"
             android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:padding="2dip" >
+            android:clickable="true" >
         </com.foobnix.pdf.info.view.MyFrameLayout>
 
         <View

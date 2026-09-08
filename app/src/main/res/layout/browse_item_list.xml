@@ -246,15 +246,18 @@
                     android:visibility="visible" />
             </LinearLayout>
 
-            <!-- The line runs the width of the row with the same air either side of it. Track
-                 and read part are one view: the read part is a clip of the whole, so it is set
-                 as a fraction and needs no second view measured out in pixels. -->
+            <!-- The line runs the width of the row with the same air either side of it. The
+                 column it sits in is held off the cover by 3dip on its left and nothing on its
+                 right, so the line carries that difference on its own right margin - 3+4 on
+                 one side, 7 on the other. Track and read part are one view: the read part is a
+                 clip of the whole, so it is set as a fraction and needs no second view
+                 measured out in pixels. -->
             <LinearLayout
                 android:id="@+id/progresLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
+                android:layout_marginRight="7dip"
                 android:gravity="bottom"
                 android:orientation="horizontal">
 

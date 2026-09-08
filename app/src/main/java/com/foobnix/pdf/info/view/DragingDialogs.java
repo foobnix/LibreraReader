@@ -2688,9 +2688,20 @@ public class DragingDialogs {
                 indicator.setVisibility(View.VISIBLE);
                 indicator.init();
 
-                indicator.setDividerColors(controller.getColor(R.color.tint_divider));
-                indicator.setSelectedIndicatorColors(Color.WHITE);
+                // Nothing ruled between the tabs: the chosen one is told apart by its own
+                // patch and the line under it, and a grid of hairlines only cuts the one
+                // surface the head of the dialog is meant to be into pieces.
+                indicator.setDividerColors(Color.TRANSPARENT);
+                // Nor a patch behind the chosen tab, nor a line under it: the tab is told
+                // apart by the weight of its own colour, and the head of the dialog stays one
+                // unbroken surface.
+                indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
+                indicator.setShowTabPatch(false);
+                // One surface from the head of the dialog down to the page: the strip takes
+                // the theme colour solid, like the bars above and below it, and casts no
+                // shadow of its own that would draw a seam between them.
                 indicator.setBackgroundColor(TintUtil.color);
+                indicator.setElevation(0);
 
                 pager.setOffscreenPageLimit(10);
                 pager.setCurrentItem(AppState.get().tabPositionInRecentDialog);

@@ -274,7 +274,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TxtUtils.setInkTextView(holder.title);
 
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
-                holder.parent.setBackgroundColor(Color.BLACK);
+                paintRow(holder.parent, Color.BLACK);
             }
 
 
@@ -307,7 +307,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
             if (!AppState.get().isBorderAndShadow) {
-                holder.parent.setBackgroundColor(Color.TRANSPARENT);
+                paintRow(holder.parent, Color.TRANSPARENT);
             }
 
             if (fileMeta.getIsStar() != null && fileMeta.getIsStar()) {
@@ -421,7 +421,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
 
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
-                holder.parent.setBackgroundColor(Color.BLACK);
+                paintRow(holder.parent, Color.BLACK);
             }
 
             TxtUtils.setInkTextView(holder.title, holder.path, holder.play, holder.count);
@@ -458,7 +458,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-            TxtUtils.underlineTextView(holder.starredName);
             holder.starredName.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -473,7 +472,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
                             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                            TxtUtils.underline(holder.starredName, STARRED);
+                            holder.starredName.setText(STARRED);
 
                             adapter.getItemsList().clear();
                             List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
@@ -496,7 +495,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
                                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                                TxtUtils.underline(holder.starredName, nameName);
+                                holder.starredName.setText(nameName);
 
                                 adapter.getItemsList().clear();
                                 List<FileMeta> allTags = AppDB.get().searchBy("@tags " + tag, SORT_BY.FILE_NAME, false);
@@ -516,7 +515,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             AppState.get().recentTag = Playlists.L_PLAYLIST;
                             holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
                             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
-                            TxtUtils.underline(holder.starredName, nameName);
+                            holder.starredName.setText(nameName);
 
                             adapter.getItemsList().clear();
                             adapter.getItemsList().addAll(playlists);
@@ -535,7 +534,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_13_heart);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                TxtUtils.underline(holder.starredName, STARRED);
+                holder.starredName.setText(STARRED);
                 adapter.getItemsList().addAll(allStars);
 
             } else if (Playlists.L_PLAYLIST.equals(AppState.get().recentTag)) {
@@ -544,7 +543,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                TxtUtils.underline(holder.starredName, nameName);
+                holder.starredName.setText(nameName);
                 adapter.getItemsList().addAll(playlists);
 
             } else {
@@ -555,7 +554,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 List<FileMeta> allTags = AppDB.get().searchBy("@tags " + AppState.get().recentTag, SORT_BY.FILE_NAME, false);
                 adapter.getItemsList().addAll(allTags);
 
-                TxtUtils.underline(holder.starredName, AppState.get().recentTag + " (" + allTags.size() + ")");
+                holder.starredName.setText(AppState.get().recentTag + " (" + allTags.size() + ")");
 
 
             }
@@ -846,6 +845,18 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             // The cover runs the full height of the row instead of floating in the middle of
             // it: the slot keeps the cover width and stretches to whatever height the text
             // beside it needs, so no card is left showing above or below the image.
+            // The cover is cut flush into the corner of the card it fills the end of, and the
+            // card's own round is what rounds it. Where there is no card to see - the black
+            // theme, or borders turned off - the cover is a tile of its own and carries the
+            // round on all four corners instead.
+            if (holder.imageParent instanceof CardView) {
+                boolean cardShows = AppState.get().isBorderAndShadow &&
+                        AppState.get().appTheme != AppState.THEME_DARK_OLED;
+                ((CardView) holder.imageParent).setRadius(cardShows ? 0 :
+                        holder.imageParent.getResources()
+                                          .getDimension(R.dimen.cover_radius_small));
+            }
+
             LayoutParams parentLp = IMG.updateImageSizeSmall(holder.imageParent);
             if (parentLp != null) {
                 parentLp.height = LayoutParams.MATCH_PARENT;
@@ -974,10 +985,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         });
         if (!AppState.get().isBorderAndShadow) {
-            holder.parent.setBackgroundColor(Color.TRANSPARENT);
+            paintRow(holder.parent, Color.TRANSPARENT);
         }
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
-            holder.parent.setBackgroundColor(Color.BLACK);
+            paintRow(holder.parent, Color.BLACK);
         }
 
         if (tempValue == TEMP_VALUE_SERIES) {
@@ -1158,6 +1169,19 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             count = (TextView) view.findViewById(R.id.count);
             image = (ImageView) view.findViewById(R.id.image1);
             parent = view;
+        }
+    }
+
+    /**
+     * Paints the sheet a row stands on. A card's fill has to be set through the card:
+     * setBackgroundColor would put a plain colour where its round-rect is, and the cover -
+     * which is clipped to the card's outline - would come out square.
+     */
+    private static void paintRow(View row, int color) {
+        if (row instanceof CardView) {
+            ((CardView) row).setCardBackgroundColor(color);
+        } else if (row != null) {
+            row.setBackgroundColor(color);
         }
     }
 

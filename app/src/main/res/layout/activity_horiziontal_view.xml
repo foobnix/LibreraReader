@@ -189,7 +189,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="50dip"
                     android:layout_marginRight="50dip"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <!-- The cover of the book being read, cut to a small round, standing in
@@ -215,17 +215,23 @@
                             android:tag="no_tint" />
                     </androidx.cardview.widget.CardView>
 
+                <!-- Only as wide as the words in it, so the cover and the name it belongs to
+                     are centred in the bar together rather than the name alone. A long name
+                     is cut short by the ems below rather than run out under the buttons. -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/title"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
                         android:gravity="center"
+                        android:maxEms="18"
                         android:singleLine="true"
                         android:text="@string/msg_loading"
                         android:textColor="#ffffff"
@@ -234,9 +240,12 @@
 
                     <TextView
                         android:id="@+id/chapter"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
                         android:gravity="center"
+                        android:maxEms="22"
                         android:singleLine="true"
                         android:text="@string/msg_loading"
                         android:textColor="#ffffff"

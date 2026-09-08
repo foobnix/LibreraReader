@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The same sheet for a dark theme: the floating surface Material uses, held a little short
+     of opaque and cut to the same round. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <solid android:color="#F2303030" />
+
+    <corners android:radius="@dimen/radius" />
+
+</shape>

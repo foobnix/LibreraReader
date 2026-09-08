@@ -159,11 +159,8 @@ public abstract class UIFragment<T> extends Fragment {
      * is on screen, and what a tab stands above and below its list comes and goes.
      */
     private void floatChromeOverPage(final View root) {
-        if (!(getActivity() instanceof MainTabs2)) {
-            return;
-        }
-        // Only the tabs themselves: the settings are also the drawer, and a tab's screen is
-        // borrowed by dialogs, and the floating chrome reaches over neither.
+        // Only the tabs themselves: the settings are also the drawer, and the floating chrome
+        // reaches over neither.
         if (getId() != R.id.pager || !(root instanceof LinearLayout)) {
             return;
         }
@@ -171,25 +168,27 @@ public abstract class UIFragment<T> extends Fragment {
         if (column.getChildCount() < 2) {
             return;
         }
-        // The window runs the whole height of the screen now, so every header takes the
-        // full width and carries the status bar itself rather than sitting under a strip.
         floatingHeader = column.getChildAt(0);
-        headerHeight = floatingHeader.getLayoutParams().height;
-        headerPaddingTop = floatingHeader.getPaddingTop();
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) floatingHeader.getLayoutParams();
-        lp.leftMargin = lp.topMargin = lp.rightMargin = lp.bottomMargin = 0;
-        floatingHeader.setLayoutParams(lp);
-        // A header carrying the status bar has to be painted, or the bar's own clock and
-        // icons are left over whatever the page happens to be showing.
+        // The head of a page is chrome, in the main screen and in a dialog alike: it is drawn
+        // in the theme colour rather than left to show whatever is behind it, and it runs the
+        // full width, with no margin to break it away from the bar above it.
         if (floatingHeader.getBackground() == null) {
             floatingHeader.setBackgroundColor(TintUtil.color);
             headerPainted = true;
         }
-        // The same tint the tabs float in at the foot, kept back by the same amount, so the
-        // two bars are one colour. The colour itself stays the tab's own to set and change.
-        floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
-        // A notice raised at the top of the page stands in the chrome, so it is painted in
-        // the chrome's own colour and runs the full width of it.
+        if (floatingHeader.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams headerLp =
+                    (ViewGroup.MarginLayoutParams) floatingHeader.getLayoutParams();
+            headerLp.leftMargin = headerLp.topMargin = headerLp.rightMargin = headerLp.bottomMargin = 0;
+            floatingHeader.setLayoutParams(headerLp);
+        }
+        // Over a page the bar is held back the same amount the tabs are, so the two read as
+        // one surface with the books showing faintly through. In a dialog there is no page
+        // under it to show through, and a held-back bar only looks unlike the one above it.
+        if (getActivity() instanceof MainTabs2) {
+            floatingHeader.getBackground()
+                          .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        }
         // Every notice raised at the top of a page stands in the chrome, whichever it is.
         floatingNotices.clear();
         for (int id : new int[]{R.id.layoutOnGrant, R.id.layoutError}) {
@@ -199,6 +198,17 @@ public abstract class UIFragment<T> extends Fragment {
             }
         }
         paintFloatingNotice();
+
+        // Everything past here is the main screen's alone: pulling the list up behind the
+        // chrome and carrying the status bar make no sense inside a dialog, which stands in
+        // its own sheet with the window's insets already dealt with.
+        if (!(getActivity() instanceof MainTabs2)) {
+            return;
+        }
+        // The window runs the whole height of the screen now, so the header carries the
+        // status bar itself rather than sitting under a strip.
+        headerHeight = floatingHeader.getLayoutParams().height;
+        headerPaddingTop = floatingHeader.getPaddingTop();
 
         column.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
             @Override
@@ -308,10 +318,13 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     private void paintFloatingNotice() {
+        boolean overPage = getActivity() instanceof MainTabs2;
         for (View notice : floatingNotices) {
             notice.setBackgroundColor(TintUtil.color);
-            notice.getBackground()
-                  .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+            if (overPage) {
+                notice.getBackground()
+                      .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+            }
         }
     }
 

@@ -91,9 +91,13 @@ public class PrefDialogs {
         recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        builder.setTitle(R.string.scan_device_for_new_books);
+        // The dialog names what it holds, as the panel's section does.
+        builder.setTitle(R.string.library_folders);
 
         final ListView list = new ListView(a);
+        // No rule drawn between the folders: the rows carry their own spacing.
+        list.setDivider(null);
+        list.setDividerHeight(0);
 
         list.setAdapter(recentAdapter);
 

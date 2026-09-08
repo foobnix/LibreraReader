@@ -10,12 +10,15 @@
         android:clickable="true"
         android:orientation="vertical">
 
+        <!-- The row is held off the head of the panel by as much as the strip below it holds
+             the covers off, so the button has the same air above it as beneath. -->
         <LinearLayout
             android:id="@+id/playListParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="5dip">
 
             <TextView
                 android:id="@+id/playListName"
@@ -40,13 +43,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+            <!-- Ringed like the close on the reading bar; the panel draws the ring in its
+                 own colour. -->
             <ImageView
                 android:id="@+id/closePlaylist"
-                android:layout_width="@dimen/title_wh_button"
-                android:layout_height="@dimen/title_wh_button"
-                android:layout_margin="2dip"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_margin="4dip"
                 android:layout_weight="0"
+                android:background="@drawable/bg_round_button"
                 android:contentDescription="@string/close"
+                android:padding="5dip"
                 android:src="@drawable/glyphicons_599_menu_close"
                 android:tint="@color/tint_white" />
 

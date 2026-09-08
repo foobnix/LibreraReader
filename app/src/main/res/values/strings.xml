@@ -2,6 +2,7 @@
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
+   <string name="library_folders">Library Folders</string>
    <string name="add_folder">Add folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
@@ -462,7 +463,7 @@
    <string name="crop_borders_symmetrically">Mirrored crop</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extract authors\' names and book titles from meta-data (PDF)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro">Librera PRO: This app but without ads</string>
+   <string name="librera_pro">Get Librera PRO \u2014 ad-free, and it removes the ads from this app too</string>
    <string name="annotation">Annotation</string>
    <string name="book">Book</string>
    <string name="information">File Info</string>

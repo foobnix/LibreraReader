@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The sheet a dialog stands on: cut to the round the cards are, and held a little short of
+     opaque so the page it covers is still faintly there behind it. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <solid android:color="#F2FAFAFA" />
+
+    <corners android:radius="@dimen/radius" />
+
+</shape>

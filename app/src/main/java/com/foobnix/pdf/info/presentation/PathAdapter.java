@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.ImageView;
+import com.foobnix.pdf.info.TintUtil;
 
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.pdf.info.R;
@@ -66,6 +68,17 @@ public class PathAdapter extends BaseAdapter {
         final View deleteView = browserItem.findViewById(R.id.delete);
         if (deleteView != null) {
             deleteView.setVisibility(View.VISIBLE);
+            // Drawn in the colour the path beside it is, so the mark is as legible as the row
+            // it belongs to whatever the dialog is set in.
+            int rowColor = textPath.getCurrentTextColor();
+            View mark = browserItem.findViewById(R.id.image1);
+            if (mark instanceof ImageView) {
+                TintUtil.setTintImageNoAlpha((ImageView) mark, rowColor);
+            }
+            TintUtil.setRingColor(deleteView, rowColor);
+            if (deleteView instanceof ImageView) {
+                TintUtil.setTintImageNoAlpha((ImageView) deleteView, rowColor);
+            }
             deleteView.setOnClickListener(new OnClickListener() {
 
                 @Override

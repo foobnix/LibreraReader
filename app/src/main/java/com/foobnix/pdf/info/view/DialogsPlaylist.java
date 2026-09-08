@@ -20,6 +20,9 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -52,6 +55,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.drag.OnStartDragListener;
 import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
@@ -372,6 +376,7 @@ public class DialogsPlaylist {
         final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
         final View playListParent = a.findViewById(R.id.playListParent);
         final ImageView closePlaylist = a.findViewById(R.id.closePlaylist);
+        TintUtil.setRingColor(closePlaylist, MagicHelper.getTextOrIconColor());
 
         playListName.setVisibility(View.VISIBLE);
 
@@ -536,10 +541,23 @@ public class DialogsPlaylist {
 
         });
 
-        playListName.setText("☰ " + Playlists.formatPlaylistName(a, displayPath));
+        // The mark and the name are one button: a ring around both, with the mark drawn inside
+        // it rather than set in the text as a character.
+        playListName.setText(Playlists.formatPlaylistName(a, displayPath));
+        int playlistAccent = MagicHelper.getTextOrIconColor();
+        playListName.setTextColor(playlistAccent);
+        TintUtil.asLinkButton(playListName);
+        Drawable playlistMark = ContextCompat.getDrawable(a, R.drawable.my_glyphicons_114_paragraph_justify);
+        if (playlistMark != null) {
+            int markSize = (int) playListName.getTextSize();
+            playlistMark.setBounds(0, 0, markSize, markSize);
+            playlistMark.setColorFilter(playlistAccent, PorterDuff.Mode.SRC_IN);
+            playListName.setCompoundDrawables(playlistMark, null, null, null);
+            playListName.setCompoundDrawablePadding(Dips.DP_6);
+        }
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
 
-        playListName.setOnClickListener(v -> {
+        View.OnClickListener onChoosePlaylist = v -> {
             if (!AppState.get().isPlayListVisible) {
                 AppState.get().isPlayListVisible = true;
                 updateVisible.run();
@@ -608,7 +626,9 @@ public class DialogsPlaylist {
 
             menu.show();
 
-        });
+        };
+
+        playListName.setOnClickListener(onChoosePlaylist);
 
     }
 

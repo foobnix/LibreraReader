@@ -6,6 +6,15 @@
     android:orientation="horizontal"
     android:padding="5dip" >
 
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="@dimen/wh_button_small"
+        android:layout_height="@dimen/wh_button_small"
+        android:layout_weight="0"
+        android:importantForAccessibility="no"
+        android:padding="2dip"
+        android:src="@drawable/glyphicons_145_folder_open" />
+
     <TextView
         android:id="@+id/browserPath"
         android:layout_width="wrap_content"
@@ -17,15 +26,18 @@
         android:text="/asdf/asdf/asdf/asdf/asdf/"
         android:textSize="@dimen/text_subtitle" />
 
+    <!-- The mark that drops a folder, ringed like the other round buttons; the adapter draws
+         the ring and the mark in the theme colour. -->
     <ImageView
         android:id="@+id/delete"
         android:contentDescription="@string/remove"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
+        android:layout_margin="4dip"
         android:layout_weight="0"
-        android:padding="2dip"
+        android:background="@drawable/bg_round_button"
+        android:padding="5dip"
         android:src="@drawable/glyphicons_599_menu_close"
-        android:tint="@color/lt_grey_dima"
         android:visibility="visible" />
 
 </LinearLayout>
