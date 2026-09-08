@@ -1019,14 +1019,6 @@ public class DragingDialogs {
                     }
                 });
 
-                controller.runTimer(1000, new Runnable() {
-                    @Override public void run() {
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.bold(ttsLang);
-                    }
-                });
-
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                 TxtUtils.bold(ttsLang);

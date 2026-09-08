@@ -2,6 +2,7 @@ package com.foobnix.tts;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.icu.util.ULocale;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.content.Intent;
@@ -48,6 +49,7 @@ import java.nio.ByteOrder;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -533,13 +535,13 @@ public class TTSEngine {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public String getCurrentLang() {
+    @SuppressWarnings("deprecation") public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice()
-                                                                                                                    .getLocale() != null) {
-                return ttsEngine.getDefaultVoice()
-                                .getLocale()
-                                .getDisplayLanguage();
+            TextToSpeech engine = ttsEngine;
+            // This getter is cached; ICU normalizes its legacy three-letter language code.
+            Locale language = engine != null ? engine.getLanguage() : null;
+            if (language != null && !language.getLanguage().isEmpty()) {
+                return new ULocale(language.getLanguage()).getDisplayLanguage();
             }
         } catch (Exception e) {
             LOG.e(e);
