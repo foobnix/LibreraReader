@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Cahaya</string>
    <string name="black">Hitam</string>
-   <string name="theme_color">Warna tema</string>
+   <string name="theme_color">Warna</string>
    <string name="widget">Widget</string>
    <string name="show">Menunjukkan</string>
    <string name="layout">Layout</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro">Librera pro: aplikasi ini tetapi tanpa iklan</string>
+   <string name="librera_pro">Dapatkan Librera PRO — tanpa iklan, dan juga menghapus iklan di aplikasi ini</string>
    <string name="annotation">Anotasi</string>
    <string name="book">Book</string>
    <string name="information">Informasi</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Cari buku-buku baru saat peluncuran.</string>
    <string name="show_contrast_and_brightness_button">Tampilkan tombol kontras dan kecerahan.</string>
    <string name="text_and_background_color">Warna teks dan latar belakang</string>
+   <string name="library_folders">Folder pustaka</string>
+   <string name="watch">Tonton</string>
 </resources>

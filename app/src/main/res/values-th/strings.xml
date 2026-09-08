@@ -21,7 +21,7 @@
    <string name="theme">ธีม</string>
    <string name="light">เบา</string>
    <string name="black">สีดำ</string>
-   <string name="theme_color">สีธีม</string>
+   <string name="theme_color">สี</string>
    <string name="widget">วิดเจ็ต</string>
    <string name="show">แสดง</string>
    <string name="layout">รูปแบบ</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">ครอบตัดขอบสมมาตร</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">แสดงชื่อผู้แต่งและชื่อหนังสือ PDF จากเมตาแท็ก</string>
    <string name="meta_tags">แท็ก meta</string>
-   <string name="librera_pro">Librera pro: แอพนี้ แต่ไม่มีโฆษณา</string>
+   <string name="librera_pro">รับ Librera PRO — ไม่มีโฆษณา และยังลบโฆษณาในแอปนี้ด้วย</string>
    <string name="annotation">คำอธิบายประกอบ</string>
    <string name="book">หนังสือ</string>
    <string name="information">ข้อมูล</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">สแกนหาหนังสือใหม่เมื่อเปิดตัว</string>
    <string name="show_contrast_and_brightness_button">แสดงปุ่มปรับความคมชัดและความสว่าง</string>
    <string name="text_and_background_color">สีข้อความและสีพื้นหลัง</string>
+   <string name="library_folders">โฟลเดอร์ห้องสมุด</string>
+   <string name="watch">ดู</string>
 </resources>

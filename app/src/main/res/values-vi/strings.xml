@@ -21,7 +21,7 @@
    <string name="theme">Chủ đề</string>
    <string name="light">Ánh sáng</string>
    <string name="black">Đen</string>
-   <string name="theme_color">Màu chủ đề</string>
+   <string name="theme_color">Màu</string>
    <string name="widget">Widget</string>
    <string name="show">Chỉ</string>
    <string name="layout">Bố trí</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hiển thị tác giả và tựa đề của cuốn sách PDF từ các thẻ meta</string>
    <string name="meta_tags">Thẻ meta</string>
-   <string name="librera_pro">Librera pro: ứng dụng này nhưng không có quảng cáo</string>
+   <string name="librera_pro">Tải Librera PRO — không quảng cáo, và cũng gỡ quảng cáo trong ứng dụng này</string>
    <string name="annotation">Chú thích</string>
    <string name="book">Sách</string>
    <string name="information">Thông tin</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Tìm kiếm sách mới khi ra mắt</string>
    <string name="show_contrast_and_brightness_button">Nút hiển thị độ tương phản và độ sáng</string>
    <string name="text_and_background_color">Màu chữ và màu nền</string>
+   <string name="library_folders">Thư mục thư viện</string>
+   <string name="watch">Xem</string>
 </resources>

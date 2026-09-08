@@ -1783,8 +1783,6 @@ public class PrefFragment2 extends UIFragment {
         asButton(inflate.findViewById(R.id.exportButton))
                 .setOnClickListener(v -> PrefDialogs.exportDialog(getActivity()));
 
-        asButton(inflate.findViewById(R.id.migrationButton))
-                .setOnClickListener(v -> PrefDialogs.migrationDialog(getActivity()));
 
         // folders
 

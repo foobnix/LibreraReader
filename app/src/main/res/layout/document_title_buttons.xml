@@ -188,7 +188,7 @@
         android:gravity="center_vertical"
         android:layout_margin="1dp"
         android:orientation="horizontal"
-        android:padding="3dp">
+        android:padding="6dp">
 
         <!-- The mark for the offer, cut to the height of the two lines it stands beside;
              ViewBinder sets that height from the line the message is actually drawn at. -->
@@ -202,7 +202,7 @@
             android:adjustViewBounds="true"
             android:importantForAccessibility="no"
             android:scaleType="fitCenter"
-            android:src="@drawable/glyphicons_basic_438_playlist_video"
+            android:src="@drawable/glyphicons_smileys_13_smiling_heart_eyes"
             android:tag="no_tint"
             android:tint="@color/white_alpha_dd" />
 

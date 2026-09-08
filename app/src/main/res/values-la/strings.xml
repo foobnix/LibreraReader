@@ -21,7 +21,7 @@
    <string name="theme">Thema</string>
    <string name="light">Luculenta</string>
    <string name="black">Nigra</string>
-   <string name="theme_color">Color thematis</string>
+   <string name="theme_color">Color</string>
    <string name="widget">Fenestretta</string>
    <string name="show">Ostendere</string>
    <string name="layout">Aspectum</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Seges oras aequabiliter intortum</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Author imaginatio demonstrans appetibile, et in titulum libri de PDF tags meta</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro">Pro librera: sed sine app hoc ads</string>
+   <string name="librera_pro">Librera PRO cape — sine nuntiis, et nuntios etiam ex hac applicatione tollit</string>
    <string name="annotation">Description</string>
    <string name="book">Liber</string>
    <string name="information">Information</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Libros novos in editione inspicere</string>
    <string name="show_contrast_and_brightness_button">Bullam \"monstrare contrastum et claritatem\"</string>
    <string name="text_and_background_color">Color textus et fundi</string>
+   <string name="library_folders">Directoria bibliothecae</string>
+   <string name="watch">Specta</string>
 </resources>

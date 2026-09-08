@@ -21,7 +21,7 @@
    <string name="theme">Téama</string>
    <string name="light">Éadrom</string>
    <string name="black">Dorcha</string>
-   <string name="theme_color">Baile Átha Troim</string>
+   <string name="theme_color">Dath</string>
    <string name="widget">Giuirléid</string>
    <string name="show">Seó</string>
    <string name="layout">Leagan amach</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Barr scáthánach</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Sleachta ainmneacha údair agus teidil leabhar ó mheiteashonraí (pdf)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro">Librera pro: an aip seo ach gan fógraí</string>
+   <string name="librera_pro">Faigh Librera PRO — gan fógraí, agus baineann sé na fógraí den aip seo freisin</string>
    <string name="annotation">Anótáil</string>
    <string name="book">Leabhar</string>
    <string name="information">Eolas comhaid</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Scanadh le haghaidh leabhar nua ag an seoladh</string>
    <string name="show_contrast_and_brightness_button">Cnaipe codarsnachta agus gile a thaispeáint</string>
    <string name="text_and_background_color">Dath téacs agus cúlra</string>
+   <string name="library_folders">Fillteáin na leabharlainne</string>
+   <string name="watch">Féach</string>
 </resources>

@@ -21,7 +21,7 @@
    <string name="theme">موضوع</string>
    <string name="light">سبک</string>
    <string name="black">سیاه</string>
-   <string name="theme_color">رنگ تم</string>
+   <string name="theme_color">رنگ</string>
    <string name="widget">ویجت</string>
    <string name="show">نمایش</string>
    <string name="layout">طرح</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">میانه های محصول به طور متقارن</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">نمایش نویسنده و عنوان کتاب PDF از برچسب های متا</string>
    <string name="meta_tags">برچسب های متا</string>
-   <string name="librera_pro">Librera pro: این برنامه اما بدون تبلیغات</string>
+   <string name="librera_pro">Librera PRO را بگیرید — بدون تبلیغات، و تبلیغات این برنامه را هم حذف می‌کند</string>
    <string name="annotation">حاشیه نویسی</string>
    <string name="book">کتاب</string>
    <string name="information">اطلاعات</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">اسکن کتاب‌های جدید در زمان رونمایی</string>
    <string name="show_contrast_and_brightness_button">دکمه نمایش کنتراست و روشنایی</string>
    <string name="text_and_background_color">رنگ متن و پس زمینه</string>
+   <string name="library_folders">پوشه‌های کتابخانه</string>
+   <string name="watch">تماشا</string>
 </resources>

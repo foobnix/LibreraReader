@@ -21,7 +21,7 @@
    <string name="theme">Temă</string>
    <string name="light">Ușoară</string>
    <string name="black">Negru</string>
-   <string name="theme_color">Culoarea temei</string>
+   <string name="theme_color">Culoare</string>
    <string name="widget">Widget</string>
    <string name="show">Spectacol</string>
    <string name="layout">Schemă</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Afișarea autorului și a titlului cărții PDF din etichetele meta</string>
    <string name="meta_tags">Meta etichete</string>
-   <string name="librera_pro">Librera pro: această aplicație, dar fără reclame</string>
+   <string name="librera_pro">Ia Librera PRO — fără reclame, și elimină reclamele și din această aplicație</string>
    <string name="annotation">Adnotare</string>
    <string name="book">Carte</string>
    <string name="information">Informație</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Scanează pentru cărți noi la lansare</string>
    <string name="show_contrast_and_brightness_button">Butonul pentru afișarea contrastului și a luminozității</string>
    <string name="text_and_background_color">Text și culoare de fundal</string>
+   <string name="library_folders">Dosarele bibliotecii</string>
+   <string name="watch">Vizionează</string>
 </resources>

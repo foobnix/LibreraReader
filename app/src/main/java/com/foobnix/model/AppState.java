@@ -453,7 +453,9 @@ public class AppState {
     public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
 
     public float editLineWidth = 3;
-    @IgnoreHashCode public boolean isRememberMode = false;
+    // A single tap opens the book in the mode it is set to - paged, as AppSP starts out -
+    // rather than stopping to ask which mode to use. E-ink still starts on the chooser below.
+    @IgnoreHashCode public boolean isRememberMode = true;
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
     @IgnoreHashCode public boolean isScrollSpeedByVolumeKeys = false;

@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Šviesi</string>
    <string name="black">Tamsi</string>
-   <string name="theme_color">Temos spalva</string>
+   <string name="theme_color">Spalva</string>
    <string name="widget">Šaukinys</string>
    <string name="show">Rodyti</string>
    <string name="layout">Maketas</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Sumažinti sienas simetriškai</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Rodoma autoriaus ir PDF knygos pavadinimo iš meta žymeles</string>
    <string name="meta_tags">Meta žymeles</string>
-   <string name="librera_pro">Librera pro: ši programa, bet be skelbimų</string>
+   <string name="librera_pro">Įsigykite „Librera PRO“ — be reklamų, ir ji pašalina reklamas ir šioje programoje</string>
    <string name="annotation">Anotacija</string>
    <string name="book">Knyga</string>
    <string name="information">Informacija</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Nuskaityti naujas knygas pristatymo metu</string>
    <string name="show_contrast_and_brightness_button">Rodyti kontrastą ir ryškumą mygtukas</string>
    <string name="text_and_background_color">Teksto ir fono spalva</string>
+   <string name="library_folders">Bibliotekos aplankai</string>
+   <string name="watch">Žiūrėti</string>
 </resources>

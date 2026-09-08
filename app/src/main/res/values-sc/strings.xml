@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Craru</string>
    <string name="black">Iscuru</string>
-   <string name="theme_color">Colore de su tema</string>
+   <string name="theme_color">Colore</string>
    <string name="widget">Widget</string>
    <string name="show">Ammustra</string>
    <string name="layout">Disponimentu</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Mutzinadura de oros simmètrica</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Estrai sos nùmenes de sos autores e sos tìtulos de sos libros dae sos metadatos (PDF)</string>
    <string name="meta_tags">Etichetas meta</string>
-   <string name="librera_pro">Librera pro: this app but without ads</string>
+   <string name="librera_pro">Leva Librera PRO — chena publicidade, e bogat sa publicidade fintzas dae custa aplicatzione</string>
    <string name="annotation">Annotatzione</string>
    <string name="book">Libru</string>
    <string name="information">Informatziones de su documentu</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
    <string name="show_contrast_and_brightness_button">Show contrast and brightness button</string>
    <string name="text_and_background_color">Text and background color</string>
+   <string name="library_folders">Cartellas de sa biblioteca</string>
+   <string name="watch">Càstia</string>
 </resources>

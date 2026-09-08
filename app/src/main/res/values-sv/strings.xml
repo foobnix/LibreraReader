@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Ljus</string>
    <string name="black">Svart</string>
-   <string name="theme_color">Tema färg</string>
+   <string name="theme_color">Färg</string>
    <string name="widget">Widget</string>
    <string name="show">Show</string>
    <string name="layout">Layout</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Beskär gränserna symmetriskt</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visar författaren och titeln på PDF-boken från metataggarna</string>
    <string name="meta_tags">Metataggar</string>
-   <string name="librera_pro">Librera pro: denna app men utan annonser</string>
+   <string name="librera_pro">Skaffa Librera PRO — utan annonser, och det tar bort annonserna i den här appen också</string>
    <string name="annotation">Anteckning</string>
    <string name="book">Bok</string>
    <string name="information">Information</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Skanna efter nya böcker vid lansering</string>
    <string name="show_contrast_and_brightness_button">Visa kontrast- och ljusstyrkeknappen</string>
    <string name="text_and_background_color">Text- och bakgrundsfärg</string>
+   <string name="library_folders">Bibliotekets mappar</string>
+   <string name="watch">Titta</string>
 </resources>

@@ -89,7 +89,9 @@ public class ViewBinder {
         }
         ViewGroup.LayoutParams lp = mark.getLayoutParams();
         if (lp != null) {
-            lp.height = message.getLineHeight() * 2;
+            // Half again the line, not the full two: a mark that fills the row edge to edge
+            // crowds the words it stands in front of.
+            lp.height = message.getLineHeight() * 3 / 2;
             mark.setLayoutParams(lp);
         }
     }

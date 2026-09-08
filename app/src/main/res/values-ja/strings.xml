@@ -21,7 +21,7 @@
    <string name="theme">テーマ</string>
    <string name="light">ライト</string>
    <string name="black">ブラック</string>
-   <string name="theme_color">テーマの色</string>
+   <string name="theme_color">色</string>
    <string name="widget">ウィジェット</string>
    <string name="show">表示</string>
    <string name="layout">レイアウト</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著者名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
-   <string name="librera_pro">Librera pro: このアプリですが、広告はありません</string>
+   <string name="librera_pro">Librera PRO を入手 — 広告なし。このアプリの広告も消えます</string>
    <string name="annotation">注釈</string>
    <string name="book">本</string>
    <string name="information">情報</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">発売時に新刊書籍をスキャンする</string>
    <string name="show_contrast_and_brightness_button">コントラストと明るさボタンを表示する</string>
    <string name="text_and_background_color">テキストと背景色</string>
+   <string name="library_folders">ライブラリのフォルダ</string>
+   <string name="watch">見る</string>
 </resources>

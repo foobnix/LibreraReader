@@ -21,7 +21,7 @@
    <string name="theme">Theme</string>
    <string name="light">Mwanga</string>
    <string name="black">Black</string>
-   <string name="theme_color">Mandhari ya rangi</string>
+   <string name="theme_color">Rangi</string>
    <string name="widget">Widget</string>
    <string name="show">Onyesha</string>
    <string name="layout">Mpangilio</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Mipaka ya mimea ya usawa</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Inaonyesha mwandishi na kichwa cha kitabu cha PDF kutoka kwa meta tags</string>
    <string name="meta_tags">Lebo za meta</string>
-   <string name="librera_pro">Librera pro: programu hii lakini bila matangazo</string>
+   <string name="librera_pro">Pata Librera PRO — bila matangazo, na huondoa matangazo katika programu hii pia</string>
    <string name="annotation">Maelezo</string>
    <string name="book">Kitabu</string>
    <string name="information">Taarifa</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Skana vitabu vipya wakati wa uzinduzi</string>
    <string name="show_contrast_and_brightness_button">Onyesha kitufe cha utofautishaji na mwangaza</string>
    <string name="text_and_background_color">Maandishi na rangi ya usuli</string>
+   <string name="library_folders">Folda za maktaba</string>
+   <string name="watch">Tazama</string>
 </resources>

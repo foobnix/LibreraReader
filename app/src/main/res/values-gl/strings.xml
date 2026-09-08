@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Claro</string>
    <string name="black">Escuro</string>
-   <string name="theme_color">Cor de acento</string>
+   <string name="theme_color">Cor</string>
    <string name="widget">Widget</string>
    <string name="show">Amosar</string>
    <string name="layout">Deseño</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Recorte simétrico</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extraer autores e títulos dos metadatos (PDF)</string>
    <string name="meta_tags">Metadatos</string>
-   <string name="librera_pro">Librera PRO: Esta aplicación sen anuncios</string>
+   <string name="librera_pro">Consegue Librera PRO — sen anuncios, e tamén elimina os anuncios desta aplicación</string>
    <string name="annotation">Anotación</string>
    <string name="book">Libro</string>
    <string name="information">Información do ficheiro</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Escanear novos libros ao abrir a aplicación</string>
    <string name="show_contrast_and_brightness_button">Botón para mostrar contraste e brillo</string>
    <string name="text_and_background_color">Texto e cor de fondo</string>
+   <string name="library_folders">Cartafoles da biblioteca</string>
+   <string name="watch">Ver</string>
 </resources>

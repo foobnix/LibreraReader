@@ -21,7 +21,7 @@
    <string name="theme">Тэма</string>
    <string name="light">Святло</string>
    <string name="black">Цёмны</string>
-   <string name="theme_color">Абрэзаць</string>
+   <string name="theme_color">Колер</string>
    <string name="widget">Віджэт</string>
    <string name="show">Паказаць</string>
    <string name="layout">Макет</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Люстраны кадр</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Атрымаць імёны аўтараў і назвы кніг з мета-дадзеных (pdf)</string>
    <string name="meta_tags">Мета-тэгі</string>
-   <string name="librera_pro">Librera pro: гэта дадатак, але без рэкламы</string>
+   <string name="librera_pro">Атрымайце Librera PRO — без рэкламы, і яна прыбірае рэкламу і ў гэтай праграме</string>
    <string name="annotation">Анатацыя</string>
    <string name="book">Кніга</string>
    <string name="information">Інфармацыя аб файле</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Сканаваць новыя кнігі на прэзентацыі</string>
    <string name="show_contrast_and_brightness_button">Паказаць кнопку кантраснасці і яркасці</string>
    <string name="text_and_background_color">Колер тэксту і фону</string>
+   <string name="library_folders">Папкі бібліятэкі</string>
+   <string name="watch">Глядзець</string>
 </resources>

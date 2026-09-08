@@ -21,7 +21,7 @@
    <string name="theme">테마</string>
    <string name="light">밝게</string>
    <string name="black">어둡게</string>
-   <string name="theme_color">테마 색삼</string>
+   <string name="theme_color">색상</string>
    <string name="widget">위젯</string>
    <string name="show">보여 주다</string>
    <string name="layout">레이아웃</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">대칭으로 테두리 자르기</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">메타 태그에서 저자 및 제목 추출하기</string>
    <string name="meta_tags">메타 태그</string>
-   <string name="librera_pro">Librera pro: 광고 없는 버전</string>
+   <string name="librera_pro">Librera PRO 받기 — 광고 없음, 이 앱의 광고도 사라집니다</string>
    <string name="annotation">주석</string>
    <string name="book">도서</string>
    <string name="information">정보</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">신간 출시 시 스캔하여 새 책을 찾아보세요.</string>
    <string name="show_contrast_and_brightness_button">명암 및 밝기 표시 버튼</string>
    <string name="text_and_background_color">텍스트 및 배경색</string>
+   <string name="library_folders">라이브러리 폴더</string>
+   <string name="watch">보기</string>
 </resources>

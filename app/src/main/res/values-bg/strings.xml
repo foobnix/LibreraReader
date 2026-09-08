@@ -21,7 +21,7 @@
    <string name="theme">Тема</string>
    <string name="light">Светлина</string>
    <string name="black">Тъмен</string>
-   <string name="theme_color">Подреден</string>
+   <string name="theme_color">Цвят</string>
    <string name="widget">Джаджа</string>
    <string name="show">Покажи</string>
    <string name="layout">Оформление</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Симетрично отрязване</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Извличане на имена на автори и заглавия на книги от метаданни (pdf)</string>
    <string name="meta_tags">Мета тагове</string>
-   <string name="librera_pro">Librera pro: това приложение, но без реклами</string>
+   <string name="librera_pro">Вземете Librera PRO — без реклами, и премахва рекламите и в това приложение</string>
    <string name="annotation">Анотация</string>
    <string name="book">Книга</string>
    <string name="information">Информация за файла</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Сканиране за нови книги при издаването им</string>
    <string name="show_contrast_and_brightness_button">Бутон за показване на контраст и яркост</string>
    <string name="text_and_background_color">Цвят на текста и фона</string>
+   <string name="library_folders">Папки на библиотеката</string>
+   <string name="watch">Гледай</string>
 </resources>

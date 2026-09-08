@@ -21,7 +21,7 @@
    <string name="theme">主题</string>
    <string name="light">亮色</string>
    <string name="black">暗色</string>
-   <string name="theme_color">主题颜色</string>
+   <string name="theme_color">颜色</string>
    <string name="widget">小部件</string>
    <string name="show">显示</string>
    <string name="layout">布局</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">对称裁剪</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">显示PDF元数据中的作者和书名</string>
    <string name="meta_tags">元标签</string>
-   <string name="librera_pro">Librera pro：无广告的应用程序</string>
+   <string name="librera_pro">获取 Librera PRO — 无广告，并且也会移除本应用中的广告</string>
    <string name="annotation">注释</string>
    <string name="book">书名</string>
    <string name="information">信息</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">发布会上扫描即可查看新书。</string>
    <string name="show_contrast_and_brightness_button">显示对比度和亮度按钮</string>
    <string name="text_and_background_color">文本和背景颜色</string>
+   <string name="library_folders">书库文件夹</string>
+   <string name="watch">观看</string>
 </resources>

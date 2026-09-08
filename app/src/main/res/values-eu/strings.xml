@@ -21,7 +21,7 @@
    <string name="theme">Gaia</string>
    <string name="light">Argia</string>
    <string name="black">Iluna</string>
-   <string name="theme_color">Gaiaren kolorea</string>
+   <string name="theme_color">Kolorea</string>
    <string name="widget">Trepeta</string>
    <string name="show">Erakutsi</string>
    <string name="layout">Diseinua</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Moztu ertzak simetrikoki</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Erakutsi egilea eta liburuaren izenburua meta-etiketetatik</string>
    <string name="meta_tags">Metaetiketak</string>
-   <string name="librera_pro">Librera pro: aplikazio hau baina iragarkirik gabe</string>
+   <string name="librera_pro">Eskuratu Librera PRO — iragarkirik gabe, eta aplikazio honetako iragarkiak ere kentzen ditu</string>
    <string name="annotation">Oharra</string>
    <string name="book">Liburua</string>
    <string name="information">Informazioa</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Eskaneatu liburu berriak abiaraztean</string>
    <string name="show_contrast_and_brightness_button">Kontrastea eta distira erakusteko botoia</string>
    <string name="text_and_background_color">Testua eta atzeko planoaren kolorea</string>
+   <string name="library_folders">Liburutegiko karpetak</string>
+   <string name="watch">Ikusi</string>
 </resources>

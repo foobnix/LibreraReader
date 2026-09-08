@@ -21,7 +21,7 @@
    <string name="theme">विषय</string>
    <string name="light">रोशनी</string>
    <string name="black">काली</string>
-   <string name="theme_color">थीम रंग</string>
+   <string name="theme_color">रंग</string>
    <string name="widget">विजेट</string>
    <string name="show">दिखाना</string>
    <string name="layout">ख़ाका</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">सीमाओं को सममित रूप से क्रॉप करें</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">मेटा टैग से पीडीएफ पुस्तक के लेखक और शीर्षक को प्रदर्शित करना</string>
    <string name="meta_tags">मेटा टैग</string>
-   <string name="librera_pro">लाइब्रेरा प्रो: यह ऐप लेकिन विज्ञापनों के बिना</string>
+   <string name="librera_pro">Librera PRO लें — बिना विज्ञापन, और यह इस ऐप के विज्ञापन भी हटा देता है</string>
    <string name="annotation">टिप्पणी</string>
    <string name="book">किताब</string>
    <string name="information">जानकारी</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">लॉन्च के समय नई किताबों की तलाश करें</string>
    <string name="show_contrast_and_brightness_button">कंट्रास्ट और ब्राइटनेस बटन दिखाएँ</string>
    <string name="text_and_background_color">पाठ और पृष्ठभूमि का रंग</string>
+   <string name="library_folders">लाइब्रेरी फ़ोल्डर</string>
+   <string name="watch">देखें</string>
 </resources>

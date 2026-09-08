@@ -21,7 +21,7 @@
    <string name="theme">തീം</string>
    <string name="light">പ്രകാശം</string>
    <string name="black">ഇരുട്ട്</string>
-   <string name="theme_color">ട്രിം ചെയ്യുക</string>
+   <string name="theme_color">നിറം</string>
    <string name="widget">വിജറ്റ്</string>
    <string name="show">കാണിക്കുക</string>
    <string name="layout">ലേ .ട്ട്</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">മിറർ ചെയ്ത വിള</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">മെറ്റാ ഡാറ്റയിൽ നിന്ന് (പി‌ഡി‌എഫ്) രചയിതാക്കളുടെ പേരുകളും പുസ്തക ശീർഷകങ്ങളും എക്‌സ്‌ട്രാക്റ്റുചെയ്യുക.</string>
    <string name="meta_tags">മെറ്റാ ടാഗുകൾ</string>
-   <string name="librera_pro">Librera pro: ഈ ആപ്പ് എന്നാൽ പരസ്യങ്ങളില്ലാതെ</string>
+   <string name="librera_pro">Librera PRO നേടൂ — പരസ്യങ്ങളില്ല, ഈ ആപ്പിലെ പരസ്യങ്ങളും നീക്കും</string>
    <string name="annotation">വ്യാഖ്യാനം</string>
    <string name="book">പുസ്തകം</string>
    <string name="information">ഫയൽ വിവരം</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">പ്രകാശന സമയത്ത് പുതിയ പുസ്തകങ്ങൾക്കായി സ്കാൻ ചെയ്യുക</string>
    <string name="show_contrast_and_brightness_button">കോൺട്രാസ്റ്റും ബ്രൈറ്റ്‌നെസ് ബട്ടണും കാണിക്കുക</string>
    <string name="text_and_background_color">വാചകത്തിന്റെയും പശ്ചാത്തലത്തിന്റെയും നിറം</string>
+   <string name="library_folders">ലൈബ്രറി ഫോള്‍ഡറുകള്‍</string>
+   <string name="watch">കാണുക</string>
 </resources>

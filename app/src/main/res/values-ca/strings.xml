@@ -21,7 +21,7 @@
    <string name="theme">Tema</string>
    <string name="light">Clar</string>
    <string name="black">Fosc</string>
-   <string name="theme_color">Color del tema</string>
+   <string name="theme_color">Color</string>
    <string name="widget">Giny</string>
    <string name="show">Mostra</string>
    <string name="layout">Disposició</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Retall simètric</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extreu els noms dels autors i els títols dels llibres de les meta-dades (PDF)</string>
    <string name="meta_tags">Meta etiquetes</string>
-   <string name="librera_pro">Librera PRO: Aquesta aplicació però sense anuncis</string>
+   <string name="librera_pro">Obtén Librera PRO — sense anuncis, i també elimina els anuncis d\'aquesta aplicació</string>
    <string name="annotation">Anotació</string>
    <string name="book">Llibre</string>
    <string name="information">Informació del fitxer</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Escaneja per trobar nous llibres al llançament</string>
    <string name="show_contrast_and_brightness_button">Botó per mostrar contrast i brillantor</string>
    <string name="text_and_background_color">Text i color de fons</string>
+   <string name="library_folders">Carpetes de la biblioteca</string>
+   <string name="watch">Mira</string>
 </resources>

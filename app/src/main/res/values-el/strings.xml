@@ -21,7 +21,7 @@
    <string name="theme">Θέμα</string>
    <string name="light">Φως</string>
    <string name="black">Σκοτάδι</string>
-   <string name="theme_color">Τακτοποίηση</string>
+   <string name="theme_color">Χρώμα</string>
    <string name="widget">Widget</string>
    <string name="show">Προβολή</string>
    <string name="layout">Σχέδιο</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">Είδωλο καλλιέργειας</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Εξαγωγή ονομάτων συγγραφέων και τίτλων βιβλίων από μετα-δεδομένα (pdf)</string>
    <string name="meta_tags">Μετα-ετικέτες</string>
-   <string name="librera_pro">Librera pro: αυτή η εφαρμογή αλλά χωρίς διαφημίσεις</string>
+   <string name="librera_pro">Αποκτήστε το Librera PRO — χωρίς διαφημίσεις, και αφαιρεί τις διαφημίσεις και από αυτή την εφαρμογή</string>
    <string name="annotation">Σχόλιο</string>
    <string name="book">Βιβλίο</string>
    <string name="information">Πληροφορίες αρχείου</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">Σάρωση για νέα βιβλία κατά την κυκλοφορία</string>
    <string name="show_contrast_and_brightness_button">Κουμπί εμφάνισης αντίθεσης και φωτεινότητας</string>
    <string name="text_and_background_color">Κείμενο και χρώμα φόντου</string>
+   <string name="library_folders">Φάκελοι βιβλιοθήκης</string>
+   <string name="watch">Παρακολούθηση</string>
 </resources>

@@ -21,7 +21,7 @@
    <string name="theme">المقدمة</string>
    <string name="light">أبيض</string>
    <string name="black">أسود</string>
-   <string name="theme_color">لون الموضوع</string>
+   <string name="theme_color">اللون</string>
    <string name="widget">القطعة</string>
    <string name="show">تبين</string>
    <string name="layout">نسق</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">عرض المؤلف وعنوان كتاب PDF من العلامات الوصفية</string>
    <string name="meta_tags">العلامات الفوقية</string>
-   <string name="librera_pro">Librera pro: هذا التطبيق ولكن بدون إعلانات</string>
+   <string name="librera_pro">احصل على Librera PRO — بلا إعلانات، وهو يزيل الإعلانات من هذا التطبيق أيضًا</string>
    <string name="annotation">حاشية</string>
    <string name="book">كتاب</string>
    <string name="information">معلومات</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">ابحث عن الكتب الجديدة عند الإطلاق</string>
    <string name="show_contrast_and_brightness_button">زر إظهار التباين والسطوع</string>
    <string name="text_and_background_color">لون النص والخلفية</string>
+   <string name="library_folders">مجلدات المكتبة</string>
+   <string name="watch">مشاهدة</string>
 </resources>

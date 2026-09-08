@@ -21,7 +21,7 @@
    <string name="theme">נושא</string>
    <string name="light">מואר</string>
    <string name="black">שחור</string>
-   <string name="theme_color">צבע ערכת נושא</string>
+   <string name="theme_color">צבע</string>
    <string name="widget">יישומון</string>
    <string name="show">הצג</string>
    <string name="layout">מערך</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">חתוך גבולות באופן סימטרי</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">הצגת המחבר והכותרת של ספר ה- PDF מתוך המטא-תגים</string>
    <string name="meta_tags">מטא תגים</string>
-   <string name="librera_pro">Librera pro: אפליקציה זו אך ללא מודעות</string>
+   <string name="librera_pro">קבלו את Librera PRO — ללא פרסומות, והיא מסירה את הפרסומות גם מהאפליקציה הזו</string>
    <string name="annotation">ביאור</string>
    <string name="book">ספר</string>
    <string name="information">מידע</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">סרוק ספרים חדשים עם ההשקה</string>
    <string name="show_contrast_and_brightness_button">כפתור הצג ניגודיות ובהירות</string>
    <string name="text_and_background_color">צבע טקסט ורקע</string>
+   <string name="library_folders">תיקיות הספרייה</string>
+   <string name="watch">צפה</string>
 </resources>

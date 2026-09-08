@@ -21,7 +21,7 @@
    <string name="theme">கருப்பொருள்கள் கட்டமைப்பு</string>
    <string name="light">ஒளி</string>
    <string name="black">இருள்</string>
-   <string name="theme_color">ஒழுங்கமைக்கவும்</string>
+   <string name="theme_color">நிறம்</string>
    <string name="widget">சாளரம்</string>
    <string name="show">காட்டு</string>
    <string name="layout">தளவமைப்பு</string>
@@ -462,7 +462,7 @@
    <string name="crop_borders_symmetrically">பிரதிபலித்த வெட்டு</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">மெட்டாடேட்டா (PDF) இலிருந்து ஆசிரியர்களின் பெயர்கள் மற்றும் புத்தக தலைப்புகளை பிரித்தெடுக்கவும்</string>
    <string name="meta_tags">மெட்டா குறிச்சொற்கள்</string>
-   <string name="librera_pro">Librera pro: இந்த பயன்பாடு ஆனால் விளம்பரங்கள் இல்லாமல்</string>
+   <string name="librera_pro">Librera PRO பெறுங்கள் — விளம்பரம் இல்லை, இந்த ஆப்பின் விளம்பரங்களையும் நீக்கும்</string>
    <string name="annotation">சிறுகுறிப்பு</string>
    <string name="book">நூல்</string>
    <string name="information">கோப்பு தகவல்</string>
@@ -687,4 +687,6 @@
    <string name="scan_for_new_books_at_launch">வெளியீட்டின் போது புதிய புத்தகங்களை ஸ்கேன் செய்யவும்.</string>
    <string name="show_contrast_and_brightness_button">மாறுபாடு மற்றும் பிரகாசத்தைக் காட்டு பொத்தான்</string>
    <string name="text_and_background_color">உரை மற்றும் பின்னணி நிறம்</string>
+   <string name="library_folders">நூலக கோப்புறைகள்</string>
+   <string name="watch">பார்க்க</string>
 </resources>
