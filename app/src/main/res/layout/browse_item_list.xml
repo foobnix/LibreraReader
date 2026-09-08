@@ -246,36 +246,24 @@
                     android:visibility="visible" />
             </LinearLayout>
 
+            <!-- The line runs the width of the row with the same air either side of it. Track
+                 and read part are one view: the read part is a clip of the whole, so it is set
+                 as a fraction and needs no second view measured out in pixels. -->
             <LinearLayout
                 android:id="@+id/progresLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
                 android:gravity="bottom"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:layout_weight="1">
-
-                    <View
-                        android:id="@+id/idProgressBg"
-                        android:layout_width="200dip"
-                        android:layout_height="4dip"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="4dip"
-                        android:background="@drawable/bg_progress_track" />
-
-                    <View
-                        android:id="@+id/idProgressColor"
-                        android:layout_width="100dip"
-                        android:layout_height="4dip"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="4dip"
-                        android:background="@color/tint_blue_alpha" />
-                </RelativeLayout>
+                <View
+                    android:id="@+id/idProgressBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dip"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

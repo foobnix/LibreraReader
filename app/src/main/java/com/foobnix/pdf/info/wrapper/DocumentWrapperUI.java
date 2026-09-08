@@ -1181,6 +1181,9 @@ public class DocumentWrapperUI {
         // a.findViewById(R.id.onScreenMode)).setOnClickListener(onScreenMode);
 
         nextTypeBootom = (TextView) a.findViewById(R.id.nextTypeBootom);
+        // The ring around the word is drawn in the colour the word itself is, so the button
+        // reads as one mark rather than a grey box with a coloured label inside it.
+        TintUtil.setRingColor(nextTypeBootom, MagicHelper.getTextOrIconColor());
 
         nextTypeBootom.setOnClickListener(onNextType);
 

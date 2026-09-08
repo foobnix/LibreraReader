@@ -58,6 +58,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UIFragment<T> extends Fragment {
@@ -72,7 +73,7 @@ public abstract class UIFragment<T> extends Fragment {
     /** Whether the header's colour is ours to keep up with, or the tab's own. */
     private boolean headerPainted;
     /** A notice the tab raises in the chrome, painted with it rather than against it. */
-    private View floatingNotice;
+    private final List<View> floatingNotices = new ArrayList<View>();
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -189,7 +190,14 @@ public abstract class UIFragment<T> extends Fragment {
         floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
         // A notice raised at the top of the page stands in the chrome, so it is painted in
         // the chrome's own colour and runs the full width of it.
-        floatingNotice = column.findViewById(R.id.layoutOnGrant);
+        // Every notice raised at the top of a page stands in the chrome, whichever it is.
+        floatingNotices.clear();
+        for (int id : new int[]{R.id.layoutOnGrant, R.id.layoutError}) {
+            View notice = column.findViewById(id);
+            if (notice != null) {
+                floatingNotices.add(notice);
+            }
+        }
         paintFloatingNotice();
 
         column.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -300,11 +308,11 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     private void paintFloatingNotice() {
-        if (floatingNotice == null) {
-            return;
+        for (View notice : floatingNotices) {
+            notice.setBackgroundColor(TintUtil.color);
+            notice.getBackground()
+                  .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
         }
-        floatingNotice.setBackgroundColor(TintUtil.color);
-        floatingNotice.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
     }
 
     /**
@@ -486,7 +494,7 @@ public abstract class UIFragment<T> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         floatingHeader = null;
-        floatingNotice = null;
+        floatingNotices.clear();
         if (recyclerView != null) {
             try {
                 recyclerView.setAdapter(null);

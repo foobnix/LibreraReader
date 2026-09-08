@@ -726,25 +726,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         double recentProgress = fileMeta.getIsRecentProgress() == null ? 0 : fileMeta.getIsRecentProgress();
 
 
-        if (holder.idProgressColor != null && recentProgress > 0f) {
+        if (holder.idProgressBg != null && recentProgress > 0f) {
             LOG.d("getIsRecentProgress", recentProgress);
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
-            // Track and fill are cut with the same cap, both taken from the line's own height,
-            // so the one laid over the other leaves no rim of track showing at the ends.
-            TintUtil.setProgressLine(holder.idProgressColor, TintUtil.color);
+            // The line is as wide as the row and filled by a fraction of itself, so it keeps
+            // the same air on both sides whatever the screen is.
             TintUtil.setProgressLine(holder.idProgressBg,
-                    holder.idProgressBg.getResources().getColor(R.color.lt_grey_dima));
-
-            int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(100) : Dips.dpToPx(200);
-            int height = holder.idProgressColor.getLayoutParams().height;
-
-            holder.idProgressBg.getLayoutParams().width = width;
-            // A fill shorter than it is thick cannot be drawn as a capsule, so a barely started
-            // book gets a dot rather than a splinter.
-            holder.idProgressColor.getLayoutParams().width =
-                    Math.max(height, (int) Math.round((float) width * recentProgress));
-            holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
+                                     holder.idProgressBg.getResources()
+                                                        .getColor(R.color.lt_grey_dima),
+                                     TintUtil.color,
+                                     recentProgress);
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
         } else if (holder.progresLayout != null) {
@@ -1092,7 +1084,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
         public LinearLayout tags;
         public ImageView image, star, signIcon, menu, cloudImage;
-        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
+        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressBg, imageParent;
         /** What the card looks like when it carries a title, kept so covers can drop it. */
         private int cardColor;
         private float cardElevation;
@@ -1114,7 +1106,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
             star = (ImageView) view.findViewById(R.id.starIcon);
             //signIcon = (ImageView) view.findViewById(R.id.signIcon);
-            idProgressColor = view.findViewById(R.id.idProgressColor);
             idProgressBg = view.findViewById(R.id.idProgressBg);
             infoLayout = view.findViewById(R.id.infoLayout);
             imageParent = view.findViewById(R.id.imageParent);

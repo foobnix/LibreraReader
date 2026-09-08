@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
@@ -203,6 +205,7 @@ public class PrefFragment2 extends UIFragment {
             TxtUtils.setInkTextView(inflate.getRootView());
         }
         TxtUtils.updateAllLinks(inflate,true);
+        paintLinkButtons(inflate);
 
     }
 
@@ -213,7 +216,7 @@ public class PrefFragment2 extends UIFragment {
             AppSP.get().isEnableSync = false;
             syncInfo.setVisibility(View.GONE);
             singIn.setText(R.string.sign_in);
-            TxtUtils.underlineTextView(singIn);
+            asButton(singIn);
             singIn.setOnClickListener(new OnClickListener() {
                 @Override public void onClick(View v) {
                     GFile.init(getActivity());
@@ -224,7 +227,7 @@ public class PrefFragment2 extends UIFragment {
             syncInfo.setVisibility(View.VISIBLE);
             syncInfo.setText(gdriveInfo);
             singIn.setText(R.string.sign_out);
-            TxtUtils.underlineTextView(singIn);
+            asButton(singIn);
 
             singIn.setOnClickListener(new OnClickListener() {
                 @Override public void onClick(View v) {
@@ -410,7 +413,7 @@ public class PrefFragment2 extends UIFragment {
         };
         dragLinear.run();
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.tabsApply))
+        asButton(inflate.findViewById(R.id.tabsApply))
                 .setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
@@ -453,7 +456,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.tabsDefaul))
+        asButton(inflate.findViewById(R.id.tabsDefaul))
                 .setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
@@ -512,7 +515,7 @@ public class PrefFragment2 extends UIFragment {
 
         final TextView columsCount = inflate.findViewById(R.id.columsCount);
         columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
-        TxtUtils.underlineTextView(columsCount);
+        asButton(columsCount);
         columsCount.setOnClickListener(new OnClickListener() {
 
             @SuppressLint("NewApi") @Override public void onClick(View v) {
@@ -530,7 +533,7 @@ public class PrefFragment2 extends UIFragment {
                              AppState.get().coverBigSize = result;
 
                              columsCount.setText("" + k);
-                             TxtUtils.underlineTextView(columsCount);
+                             asButton(columsCount);
 
                              coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize),
                                      AppState.get().coverBigSize);
@@ -543,7 +546,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
         final TextView columsDefaul = inflate.findViewById(R.id.columsDefaul);
-        TxtUtils.underlineTextView(columsDefaul);
+        asButton(columsDefaul);
         columsDefaul.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(View v) {
@@ -564,7 +567,7 @@ public class PrefFragment2 extends UIFragment {
                                 TempHolder.listHash++;
 
                                 columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
-                                TxtUtils.underlineTextView(columsCount);
+                                asButton(columsCount);
 
                                 coverSmallSize.init(40, max, AppState.get().coverSmallSize);
                                 coverBigSize.init(40, Math.max(max, AppState.get().coverBigSize),
@@ -625,7 +628,7 @@ public class PrefFragment2 extends UIFragment {
 
         onFullScreen.setText(DocumentController.getFullScreenName(getActivity(), AppState.get().fullScreenMainMode));
 
-        TxtUtils.underlineTextView(onFullScreen);
+        asButton(onFullScreen);
 
         onFullScreen.setOnClickListener(v -> {
 
@@ -633,7 +636,7 @@ public class PrefFragment2 extends UIFragment {
                 AppState.get().fullScreenMainMode = id;
                 onFullScreen.setText(
                         DocumentController.getFullScreenName(getActivity(), AppState.get().fullScreenMainMode));
-                TxtUtils.underlineTextView(onFullScreen);
+                asButton(onFullScreen);
                 DocumentController.chooseFullScreen(getActivity(), AppState.get().fullScreenMainMode);
                 return true;
             }, AppState.get().fullScreenMainMode);
@@ -646,7 +649,7 @@ public class PrefFragment2 extends UIFragment {
         tabText += AppState.get().tabWithNames ? "" : " - " + getString(R.string.icons_only);
         tapPositionTop.setText(tabText);
 
-        TxtUtils.underlineTextView(tapPositionTop);
+        asButton(tapPositionTop);
 
         tapPositionTop.setOnClickListener(v -> {
 
@@ -705,7 +708,7 @@ public class PrefFragment2 extends UIFragment {
 
         screenOrientation = inflate.findViewById(R.id.screenOrientation);
         screenOrientation.setText(DocumentController.getRotationText());
-        TxtUtils.underlineTextView(screenOrientation);
+        asButton(screenOrientation);
 
         screenOrientation.setOnClickListener(new
 
@@ -732,7 +735,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                      screenOrientation.setText(
                                                                                              DocumentController.orientationTexts.get(
                                                                                                      j));
-                                                                                     TxtUtils.underlineTextView(
+                                                                                     asButton(
                                                                                              screenOrientation);
                                                                                      DocumentController.doRotation(
                                                                                              getActivity());
@@ -784,7 +787,7 @@ public class PrefFragment2 extends UIFragment {
                 consentInformation.getPrivacyOptionsRequirementStatus() == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
 
         adsSettigns.setVisibility(TxtUtils.visibleIf(isPrivicyOptionRequired));
-        TxtUtils.underlineTextView(adsSettigns);
+        asButton(adsSettigns);
 
         inflate.findViewById(R.id.onKeyCode)
                .
@@ -923,7 +926,7 @@ public class PrefFragment2 extends UIFragment {
 
         TextView appEngine = inflate.findViewById(R.id.appEngine);
         appEngine.setText("" + AppsConfig.MUPDF_FZ_VERSION);
-        TxtUtils.underlineTextView(appEngine);
+        asButton(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
 //        appEngine.setOnClickListener(v -> {
@@ -962,7 +965,7 @@ public class PrefFragment2 extends UIFragment {
 
         final TextView hypenLang = inflate.findViewById(R.id.appLang);
         hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(AppState.get().appLang));
-        TxtUtils.underlineTextView(hypenLang);
+        asButton(hypenLang);
 
         hypenLang.setOnClickListener(new
 
@@ -986,7 +989,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                                           @Override public boolean onMenuItemClick(
                                                                                   MenuItem item) {
-                                                                              TxtUtils.underlineTextView(hypenLang);
+                                                                              asButton(hypenLang);
                                                                               AppState.get().appLang =
                                                                                       AppState.MY_SYSTEM_LANG;
                                                                               TempHolder.get().forseAppLang = true;
@@ -1013,7 +1016,7 @@ public class PrefFragment2 extends UIFragment {
                                                                               @Override public boolean onMenuItemClick(
                                                                                       MenuItem item) {
                                                                                   AppState.get().appLang = code;
-                                                                                  TxtUtils.underlineTextView(hypenLang);
+                                                                                  asButton(hypenLang);
                                                                                   onTheme();
                                                                                   return false;
                                                                               }
@@ -1028,7 +1031,7 @@ public class PrefFragment2 extends UIFragment {
         appFontScale.setText(
 
                 getFontName(BookCSS.get().appFontScale));
-        TxtUtils.underlineTextView(appFontScale);
+        asButton(appFontScale);
         appFontScale.setOnClickListener(new
 
                                                 OnClickListener() {
@@ -1057,9 +1060,7 @@ public class PrefFragment2 extends UIFragment {
                                                 });
 
         final TextView onMail = inflate.findViewById(R.id.onMailSupport);
-        onMail.setText(TxtUtils.underline(
-
-                getString(R.string.my_email)));
+        asButton(onMail, getString(R.string.my_email));
 
         onMail.setOnClickListener(new
 
@@ -1326,7 +1327,7 @@ public class PrefFragment2 extends UIFragment {
         };
 
         View libPrefView = inflate.findViewById(R.id.moreLybraryettings);
-        TxtUtils.underlineTextView(libPrefView)
+        asButton(libPrefView)
                 .setOnClickListener(v -> {
 
                     final CheckBox isScanOnLaunch = new CheckBox(v.getContext());
@@ -1676,7 +1677,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword))
+        asButton(inflate.findViewById(R.id.appPassword))
                 .setOnClickListener(v -> PasswordDialog.showDialog(getActivity(), true, () -> {
                     if (PasswordState.get()
                                      .hasPassword()) {
@@ -1716,7 +1717,7 @@ public class PrefFragment2 extends UIFragment {
                         getActivity()) + " " + Apps.getVersionName(
 
                         getActivity()));
-        TxtUtils.underlineTextView(whatIsNew);
+        asButton(whatIsNew);
         whatIsNew.setOnClickListener(new View.OnClickListener() {
 
             @Override public void onClick(View v) {
@@ -1753,22 +1754,22 @@ public class PrefFragment2 extends UIFragment {
         searchPaths.setOnClickListener(v -> onFolderConfigDialog());
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
-        addFolder.setText(TxtUtils.notAndUnderline("+ ", getString(R.string.add_folder)));
+        asButton(addFolder, "+ " + getString(R.string.add_folder));
         addFolder.setOnClickListener(v -> onFolderConfigDialog());
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton))
+        asButton(inflate.findViewById(R.id.importButton))
                 .setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton))
+        asButton(inflate.findViewById(R.id.exportButton))
                 .setOnClickListener(v -> PrefDialogs.exportDialog(getActivity()));
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.migrationButton))
+        asButton(inflate.findViewById(R.id.migrationButton))
                 .setOnClickListener(v -> PrefDialogs.migrationDialog(getActivity()));
 
         // folders
 
         final TextView rootFolder = inflate.findViewById(R.id.rootFolder);
-        TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(AppSP.get().getRootPath(getActivity())));
+        asButton(rootFolder, TxtUtils.smallPathFormat(AppSP.get().getRootPath(getActivity())));
         rootFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder(getActivity(),
                                                                         AppSP.get().getRootPath(getActivity()))
                                                                 .setOnSelectListener(
@@ -1779,7 +1780,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                 if (new File(nPath).canWrite()) {
                                                                                     AppSP.get().rootPath1 = nPath;
                                                                                     new File(nPath, "Fonts").mkdirs();
-                                                                                    TxtUtils.underline(rootFolder,
+                                                                                    asButton(rootFolder,
                                                                                             TxtUtils.smallPathFormat(
                                                                                                     nPath));
                                                                                     onTheme();
@@ -1795,7 +1796,7 @@ public class PrefFragment2 extends UIFragment {
                                                                         }));
 
         final TextView fontFolder = inflate.findViewById(R.id.fontFolder);
-        TxtUtils.underline(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));
+        asButton(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));
         fontFolder.setOnClickListener(new
 
                                               OnClickListener() {
@@ -1811,7 +1812,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                                Dialog dialog) {
                                                                                            BookCSS.get().fontFolder =
                                                                                                    nPath;
-                                                                                           TxtUtils.underline(
+                                                                                                   asButton(
                                                                                                    fontFolder,
                                                                                                    TxtUtils.smallPathFormat(
                                                                                                            BookCSS.get().fontFolder));
@@ -1823,7 +1824,7 @@ public class PrefFragment2 extends UIFragment {
                                               });
 
         final TextView downloadFolder = inflate.findViewById(R.id.downloadFolder);
-        TxtUtils.underline(downloadFolder, TxtUtils.smallPathFormat(BookCSS.get().downlodsPath));
+        asButton(downloadFolder, TxtUtils.smallPathFormat(BookCSS.get().downlodsPath));
         downloadFolder.setOnClickListener(new
 
                                                   OnClickListener() {
@@ -1839,7 +1840,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                                    Dialog dialog) {
                                                                                                BookCSS.get().downlodsPath =
                                                                                                        nPath;
-                                                                                               TxtUtils.underline(
+                                                                                                       asButton(
                                                                                                        downloadFolder,
                                                                                                        TxtUtils.smallPathFormat(
                                                                                                                BookCSS.get().downlodsPath));
@@ -1851,7 +1852,7 @@ public class PrefFragment2 extends UIFragment {
                                                   });
 
         final TextView syncPath = inflate.findViewById(R.id.syncPath);
-        TxtUtils.underline(syncPath, TxtUtils.smallPathFormat(BookCSS.get().syncDropboxPath));
+        asButton(syncPath, TxtUtils.smallPathFormat(BookCSS.get().syncDropboxPath));
         syncPath.setOnClickListener(new
 
                                             OnClickListener() {
@@ -1867,7 +1868,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                              Dialog dialog) {
                                                                                          BookCSS.get().syncDropboxPath =
                                                                                                  nPath;
-                                                                                         TxtUtils.underline(
+                                                                                                 asButton(
                                                                                                  downloadFolder,
                                                                                                  TxtUtils.smallPathFormat(
                                                                                                          BookCSS.get().syncDropboxPath));
@@ -1879,7 +1880,7 @@ public class PrefFragment2 extends UIFragment {
                                             });
 
         final TextView ttsFolder = inflate.findViewById(R.id.ttsFolder);
-        TxtUtils.underline(ttsFolder, TxtUtils.smallPathFormat(BookCSS.get().ttsSpeakPath));
+        asButton(ttsFolder, TxtUtils.smallPathFormat(BookCSS.get().ttsSpeakPath));
         ttsFolder.setOnClickListener(new
 
                                              OnClickListener() {
@@ -1895,7 +1896,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                               Dialog dialog) {
                                                                                           BookCSS.get().ttsSpeakPath =
                                                                                                   nPath;
-                                                                                          TxtUtils.underline(ttsFolder,
+                                                                                          asButton(ttsFolder,
                                                                                                   TxtUtils.smallPathFormat(
                                                                                                           BookCSS.get().ttsSpeakPath));
                                                                                           dialog.dismiss();
@@ -1906,7 +1907,7 @@ public class PrefFragment2 extends UIFragment {
                                              });
 
         final TextView backupPath = inflate.findViewById(R.id.backupFolder);
-        TxtUtils.underline(backupPath, TxtUtils.smallPathFormat(BookCSS.get().backupPath));
+        asButton(backupPath, TxtUtils.smallPathFormat(BookCSS.get().backupPath));
         backupPath.setOnClickListener(new
 
                                               OnClickListener() {
@@ -1922,7 +1923,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                                Dialog dialog) {
                                                                                            BookCSS.get().backupPath =
                                                                                                    nPath;
-                                                                                           TxtUtils.underline(
+                                                                                                   asButton(
                                                                                                    backupPath,
                                                                                                    TxtUtils.smallPathFormat(
                                                                                                            BookCSS.get().backupPath));
@@ -1937,7 +1938,7 @@ public class PrefFragment2 extends UIFragment {
 
         final TextView widgetLayout = inflate.findViewById(R.id.widgetLayout);
         widgetLayout.setText(AppState.get().widgetType == AppState.WIDGET_LIST ? R.string.list : R.string.grid);
-        TxtUtils.underlineTextView(widgetLayout);
+        asButton(widgetLayout);
 
         widgetLayout.setOnClickListener(new
 
@@ -1956,7 +1957,7 @@ public class PrefFragment2 extends UIFragment {
                                                                         AppState.get().widgetType =
                                                                                 AppState.WIDGET_LIST;
                                                                         widgetLayout.setText(R.string.list);
-                                                                        TxtUtils.underlineTextView(widgetLayout);
+                                                                        asButton(widgetLayout);
                                                                         RecentUpates.updateAll();
                                                                         return false;
                                                                     }
@@ -1972,7 +1973,7 @@ public class PrefFragment2 extends UIFragment {
                                                                         AppState.get().widgetType =
                                                                                 AppState.WIDGET_GRID;
                                                                         widgetLayout.setText(R.string.grid);
-                                                                        TxtUtils.underlineTextView(widgetLayout);
+                                                                        asButton(widgetLayout);
                                                                         RecentUpates.updateAll();
                                                                         return false;
                                                                     }
@@ -1986,7 +1987,7 @@ public class PrefFragment2 extends UIFragment {
 
         final TextView widgetForRecent = inflate.findViewById(R.id.widgetForRecent);
         widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-        TxtUtils.underlineTextView(widgetForRecent);
+        asButton(widgetForRecent);
 
         widgetForRecent.setOnClickListener(new
 
@@ -2009,7 +2010,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                    AppState.get().isStarsInWidget ?
                                                                                            R.string.starred :
                                                                                            R.string.recent);
-                                                                           TxtUtils.underlineTextView(widgetForRecent);
+                                                                           asButton(widgetForRecent);
 
                                                                            RecentUpates.updateAll();
                                                                            return false;
@@ -2028,7 +2029,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                    AppState.get().isStarsInWidget ?
                                                                                            R.string.starred :
                                                                                            R.string.recent);
-                                                                           TxtUtils.underlineTextView(widgetForRecent);
+                                                                           asButton(widgetForRecent);
 
                                                                            RecentUpates.updateAll();
                                                                            return false;
@@ -2043,7 +2044,7 @@ public class PrefFragment2 extends UIFragment {
 
         final TextView widgetItemsCount = inflate.findViewById(R.id.widgetItemsCount);
         widgetItemsCount.setText("" + AppState.get().widgetItemsCount);
-        TxtUtils.underlineTextView(widgetItemsCount);
+        asButton(widgetItemsCount);
         widgetItemsCount.setOnClickListener(new
 
                                                     OnClickListener() {
@@ -2061,7 +2062,7 @@ public class PrefFragment2 extends UIFragment {
                                                                                      MenuItem item) {
                                                                                  AppState.get().widgetItemsCount = k;
                                                                                  widgetItemsCount.setText("" + k);
-                                                                                 TxtUtils.underlineTextView(
+                                                                                 asButton(
                                                                                          widgetItemsCount);
                                                                                  RecentUpates.updateAll();
                                                                                  return false;
@@ -2162,7 +2163,7 @@ public class PrefFragment2 extends UIFragment {
                                                       }
                                                   });
 
-        TextView onDefalt = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor));
+        View onDefalt = asButton(inflate.findViewById(R.id.onDefaultColor));
         onDefalt.setOnClickListener(new
 
                                             OnClickListener() {
@@ -2355,7 +2356,7 @@ public class PrefFragment2 extends UIFragment {
         }
         ////
 
-        underline(inflate.findViewById(R.id.linksColor)).
+        asButton(inflate.findViewById(R.id.linksColor)).
 
                                                                 setOnClickListener(new OnClickListener() {
 
@@ -2380,7 +2381,7 @@ public class PrefFragment2 extends UIFragment {
 
         ////
 
-        underline(inflate.findViewById(R.id.onContrast)).
+        asButton(inflate.findViewById(R.id.onContrast)).
 
                                                                 setOnClickListener(new OnClickListener() {
 
@@ -2398,7 +2399,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.onRateIt)).
+        asButton(inflate.findViewById(R.id.onRateIt)).
 
                                                               setOnClickListener(new OnClickListener() {
 
@@ -2407,7 +2408,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.openWeb)).
+        asButton(inflate.findViewById(R.id.openWeb)).
 
                                                              setOnClickListener(new OnClickListener() {
 
@@ -2416,7 +2417,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.openBeta)).
+        asButton(inflate.findViewById(R.id.openBeta)).
 
                                                               setOnClickListener(new OnClickListener() {
 
@@ -2425,7 +2426,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.openWiki)).
+        asButton(inflate.findViewById(R.id.openWiki)).
 
                                                               setOnClickListener(new OnClickListener() {
 
@@ -2434,7 +2435,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        underline(inflate.findViewById(R.id.onTelegram)).
+        asButton(inflate.findViewById(R.id.onTelegram)).
 
                                                                 setOnClickListener(new OnClickListener() {
 
@@ -2444,7 +2445,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         TextView proText = inflate.findViewById(R.id.downloadPRO);
-        TxtUtils.underlineTextView(proText);
+        asButton(proText);
         ((View) proText.getParent()).
 
                                             setOnClickListener(new OnClickListener() {
@@ -2510,7 +2511,7 @@ public class PrefFragment2 extends UIFragment {
                });
 
         // licences link
-        underline(inflate.findViewById(R.id.libraryLicenses)).
+        asButton(inflate.findViewById(R.id.libraryLicenses)).
 
                                                                      setOnClickListener(new OnClickListener() {
 
@@ -2544,7 +2545,7 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.docSearch))
+        asButton(inflate.findViewById(R.id.docSearch))
                 .
 
                         setOnClickListener(new OnClickListener() {
@@ -2555,7 +2556,7 @@ public class PrefFragment2 extends UIFragment {
                 });
         // convert
         final TextView docConverter = inflate.findViewById(R.id.docConverter);
-        TxtUtils.underlineTextView(docConverter);
+        asButton(docConverter);
         docConverter.setOnClickListener(new
 
                                                 OnClickListener() {
@@ -2585,7 +2586,7 @@ public class PrefFragment2 extends UIFragment {
                                                 });
 
         final TextView newFile = inflate.findViewById(R.id.newFile);
-        TxtUtils.underlineTextView(newFile);
+        asButton(newFile);
         newFile.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
 
@@ -2624,8 +2625,8 @@ public class PrefFragment2 extends UIFragment {
         profileLetter.setContentDescription(p + " " + getString(R.string.profile));
         onProfile.setContentDescription(p + " " + getString(R.string.profile));
 
-        TxtUtils.underlineTextView(onProfile);
-        TxtUtils.underlineTextView(restoreDefaultProfile);
+        asButton(onProfile);
+        asButton(restoreDefaultProfile);
         onProfile.setOnClickListener(v ->
 
         {
@@ -2753,6 +2754,7 @@ public class PrefFragment2 extends UIFragment {
                });
 
         TxtUtils.updateAllLinks(inflate, true);
+        paintLinkButtons(inflate);
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         return inflate;
 
@@ -2776,10 +2778,80 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    public View underline(View text) {
-        CharSequence myText = ((TextView) text).getText();
-        ((TextView) text).setText(Html.fromHtml("<u>" + myText + "</u>", Html.FROM_HTML_MODE_LEGACY));
-        return text;
+    /**
+     * A link in the panel is drawn as a button - a ring in the theme colour, cut to the same
+     * round the cards are - rather than as an underlined word. Every link that used to be
+     * underlined here goes through this instead.
+     */
+    public View asButton(View text) {
+        if (!(text instanceof TextView)) {
+            return text;
+        }
+        TextView button = (TextView) text;
+        TintUtil.asLinkButton(button);
+        drawIconInside(button);
+        paintLinkButton(button);
+        return button;
+    }
+
+    /** Cuts a button's ring and its mark from the colour its own word is drawn in. */
+    private void paintLinkButton(TextView button) {
+        int color = button.getCurrentTextColor();
+        TintUtil.setRingColor(button, color);
+        for (Drawable icon : button.getCompoundDrawables()) {
+            if (icon != null) {
+                icon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            }
+        }
+    }
+
+    /**
+     * The colour pass over the panel's links runs after the buttons are built and leaves their
+     * rings behind, so every link is walked once the words have their final colour. A link
+     * that is not drawn as a button has no ring to cut, and the walk passes over it.
+     */
+    private void paintLinkButtons(View root) {
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                paintLinkButtons(group.getChildAt(i));
+            }
+        } else if (root instanceof TextView && "textLink".equals(root.getTag())) {
+            paintLinkButton((TextView) root);
+        }
+    }
+
+    /**
+     * A link that stands next to a mark takes the mark inside the button, so the two read as
+     * one thing to press rather than as a picture parked beside a box.
+     */
+    private void drawIconInside(TextView button) {
+        if (!(button.getParent() instanceof ViewGroup)) {
+            return;
+        }
+        ViewGroup row = (ViewGroup) button.getParent();
+        int position = row.indexOfChild(button);
+        if (position <= 0 || !(row.getChildAt(position - 1) instanceof ImageView)) {
+            return;
+        }
+        ImageView mark = (ImageView) row.getChildAt(position - 1);
+        Drawable icon = mark.getDrawable();
+        if (icon == null) {
+            return;
+        }
+        icon = icon.mutate();
+        int size = Dips.dpToPx(18);
+        icon.setBounds(0, 0, size, size);
+        icon.setColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
+        button.setCompoundDrawables(icon, null, null, null);
+        button.setCompoundDrawablePadding(Dips.DP_6);
+        mark.setVisibility(View.GONE);
+    }
+
+    /** The same, for a link whose text is rewritten every time the panel is refreshed. */
+    public View asButton(TextView text, CharSequence value) {
+        text.setText(value);
+        return asButton(text);
     }
 
     public void onFolderConfigDialog() {
@@ -2914,7 +2986,7 @@ public class PrefFragment2 extends UIFragment {
 
     public void rotationText() {
         screenOrientation.setText(DocumentController.getRotationText());
-        TxtUtils.underlineTextView(screenOrientation);
+        asButton(screenOrientation);
         DocumentController.doRotation(getActivity());
     }
 
@@ -2923,19 +2995,20 @@ public class PrefFragment2 extends UIFragment {
         rotationText();
 
         if (AppState.get().isSystemThemeColor) {
-            themeColor.setText(TxtUtils.underline(getString(R.string.system)));
+            themeColor.setText(getString(R.string.system));
         } else if (AppState.get().appTheme == AppState.THEME_INK) {
-            themeColor.setText(TxtUtils.underline("Ink"));
+            themeColor.setText("Ink");
         } else if (AppState.get().appTheme == AppState.THEME_LIGHT) {
-            themeColor.setText(TxtUtils.underline(getString(R.string.light)));
+            themeColor.setText(getString(R.string.light));
         } else if (AppState.get().appTheme == AppState.THEME_DARK) {
-            themeColor.setText(TxtUtils.underline(getString(R.string.black)));
+            themeColor.setText(getString(R.string.black));
         } else if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
-            themeColor.setText(TxtUtils.underline(getString(R.string.dark_oled)));
+            themeColor.setText(getString(R.string.dark_oled));
         } else {
             themeColor.setText("unknown");
 
         }
+        asButton(themeColor);
     }
 
     private void saveChanges() {

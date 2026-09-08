@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 
@@ -60,7 +61,7 @@ public class ConfLineView extends FrameLayout {
 
 
         current.setTextTo(valueView);
-        TxtUtils.underlineTextView(valueView);
+        TintUtil.asLinkButton(valueView);
     }
 
 
@@ -84,7 +85,7 @@ public class ConfLineView extends FrameLayout {
                  .setOnMenuItemClickListener(item -> {
                      onChange.onResult(it.actionInt);
                      it.setTextTo(valueView);
-                     TxtUtils.underlineTextView(valueView);
+                     TintUtil.asLinkButton(valueView);
                      return true;
                  });
         }

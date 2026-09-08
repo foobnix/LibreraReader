@@ -422,7 +422,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         layoutError = view.findViewById(R.id.layoutError);
         layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);
-        TxtUtils.underlineTextView(layoutErrorOnRestart);
         layoutError.setVisibility(View.GONE);
 
         layoutError.setOnClickListener(new OnClickListener() {

@@ -10,6 +10,10 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -126,6 +130,28 @@ public class TintUtil {
     }
 
     /**
+     * A link drawn as a button: a ring cut to the round the cards are, in the colour of the
+     * word inside it, with air enough round it that two side by side do not touch.
+     */
+    public static void asLinkButton(TextView button) {
+        if (button == null) {
+            return;
+        }
+        // Any underline the text was carrying goes with it - the ring says it can be pressed.
+        button.setText(button.getText()
+                             .toString());
+        button.setBackgroundResource(R.drawable.bg_button_outline);
+        button.setPadding(Dips.DP_10, Dips.DP_4, Dips.DP_10, Dips.DP_4);
+        if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+            lp.leftMargin = lp.rightMargin = Dips.DP_8;
+            lp.topMargin = lp.bottomMargin = Dips.DP_4;
+            button.setLayoutParams(lp);
+        }
+        setRingColor(button, button.getCurrentTextColor());
+    }
+
+    /**
      * The count carried in the corner of an icon, drawn as a round in the theme colour rather
      * than as a coloured square. The round is larger than the badge can ever be, so a single
      * digit comes out a circle and a longer count a capsule.
@@ -161,11 +187,11 @@ public class TintUtil {
     }
 
     /**
-     * The reading progress line, drawn with its ends rounded off rather than cut square. The
-     * round is half the line's own thickness, so the ends read as caps at whatever height the
-     * layout gives it.
+     * The reading progress line: one view carrying both the track and the part read, so the
+     * line can be given the width of the row and still be filled by a fraction rather than by
+     * a second view measured in pixels. Ends are rounded to half the line's own thickness.
      */
-    public static void setProgressLine(View line, int color) {
+    public static void setProgressLine(View line, int trackColor, int fillColor, double progress) {
         if (line == null) {
             return;
         }
@@ -173,10 +199,20 @@ public class TintUtil {
         if (height <= 0) {
             height = line.getHeight();
         }
-        GradientDrawable shape = new GradientDrawable();
-        shape.setCornerRadius(height / 2f);
-        shape.setColor(color);
-        line.setBackground(shape);
+        float radius = height / 2f;
+
+        GradientDrawable track = new GradientDrawable();
+        track.setCornerRadius(radius);
+        track.setColor(trackColor);
+
+        GradientDrawable read = new GradientDrawable();
+        read.setCornerRadius(radius);
+        read.setColor(fillColor);
+
+        ClipDrawable clip = new ClipDrawable(read, Gravity.START, ClipDrawable.HORIZONTAL);
+        clip.setLevel((int) Math.round(Math.max(0, Math.min(1, progress)) * 10000));
+
+        line.setBackground(new LayerDrawable(new Drawable[]{track, clip}));
     }
 
     /**
@@ -233,6 +269,9 @@ public class TintUtil {
             }
         } else if (background instanceof GradientDrawable) {
             ((GradientDrawable) background).setStroke(STROKE, color);
+        } else if (background.getCurrent() instanceof GradientDrawable) {
+            // A selector: only the state on show can be reached, which is the one being drawn.
+            ((GradientDrawable) background.getCurrent()).setStroke(STROKE, color);
         }
     }
 
