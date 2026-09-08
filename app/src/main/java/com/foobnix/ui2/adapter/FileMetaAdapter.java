@@ -828,19 +828,26 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setVisibility(View.VISIBLE);
             holder.size.setVisibility(View.VISIBLE);
 
-            IMG.updateImageSizeSmall(holder.imageParent);
+            int coverWidth = Dips.dpToPx(AppState.get().coverSmallSize);
+            int coverHeight = (int) (coverWidth * IMG.WIDTH_DK);
+
+            // The cover runs the full height of the row instead of floating in the middle of
+            // it: the slot keeps the cover width and stretches to whatever height the text
+            // beside it needs, so no card is left showing above or below the image.
+            LayoutParams parentLp = IMG.updateImageSizeSmall(holder.imageParent);
+            if (parentLp != null) {
+                parentLp.height = LayoutParams.MATCH_PARENT;
+            }
+            holder.imageParent.setMinimumHeight(coverHeight);
 
             LayoutParams lp = holder.image.getLayoutParams();
+            lp.width = coverWidth;
+            lp.height = LayoutParams.MATCH_PARENT;
 
-            if (AppState.get().isCropBookCovers) {
-                lp.width = Dips.dpToPx(AppState.get().coverSmallSize);
-                lp.height = (int) (lp.width * IMG.WIDTH_DK);
-
-            } else {
-                lp.width = LayoutParams.WRAP_CONTENT;
-                lp.height = LayoutParams.WRAP_CONTENT;
-
-            }
+            // A short row is still only as tall as the cover: without a ceiling the stretched
+            // image would measure itself against the whole bitmap and drag the row out with it.
+            holder.image.setAdjustViewBounds(false);
+            holder.image.setMaxHeight(coverHeight);
         }
         if (holder.date != null) {
             holder.date.setVisibility(View.VISIBLE);

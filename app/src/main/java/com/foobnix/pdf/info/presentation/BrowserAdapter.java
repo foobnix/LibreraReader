@@ -144,8 +144,22 @@ public class BrowserAdapter extends BaseAdapter {
                 IMG.updateImageSizeBig(imageView);
                 IMG.updateImageSizeBig((View) imageView.getParent());
             } else {
+                // As in the library list, the cover fills the row from top to bottom instead of
+                // sitting centred with card showing above and below it. The ceiling keeps a
+                // short row down to the cover height rather than the height of the bitmap.
+                int coverHeight = (int) (Dips.dpToPx(AppState.get().coverSmallSize) * IMG.WIDTH_DK);
+                View coverSlot = (View) imageView.getParent();
+
                 IMG.updateImageSizeSmall(imageView);
-                IMG.updateImageSizeSmall((View) imageView.getParent());
+                ViewGroup.LayoutParams slotLp = IMG.updateImageSizeSmall(coverSlot);
+                if (slotLp != null) {
+                    slotLp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                }
+                coverSlot.setMinimumHeight(coverHeight);
+
+                imageView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+                imageView.setAdjustViewBounds(false);
+                imageView.setMaxHeight(coverHeight);
             }
 
             if (AppState.get().isCropBookCovers) {

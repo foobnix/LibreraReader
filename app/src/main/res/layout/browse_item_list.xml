@@ -18,7 +18,10 @@
 
         <!-- The cover sits flush into the corner of the card: no gap above, below or to the
              left of it, and no rounding of its own - the card it fills the end of is already
-             cut to a round, and clips it to the same one. -->
+             cut to a round, and clips it to the same one. The adapter stretches it over the
+             whole height of the row, so the text beside it cannot leave card showing over or
+             under the image; the sizes here are only what a plain file browser row falls back
+             to. -->
         <androidx.cardview.widget.CardView
             android:id="@+id/imageParent"
             android:layout_width="60dip"
