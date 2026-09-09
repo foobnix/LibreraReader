@@ -85,6 +85,33 @@ public class PrefDialogs {
         }
     }
 
+    /**
+     * Adds one folder to the library paths. The root, an external SD card and a path already
+     * in the list are each refused with a word on why, so the caller only has to say where to
+     * put the folder it picked.
+     *
+     * @return true when the list gained the path.
+     */
+    public static boolean addSearchPath(final Context a, final String nPath) {
+        if ("/".equals(nPath)) {
+            Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (ExtUtils.isExteralSD(nPath)) {
+            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
+                Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, str,
+                        a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        BookCSS.get().searchPathsJson = JsonDB.add(BookCSS.get().searchPathsJson, nPath);
+        return true;
+    }
+
     public static void chooseFolderDialog(final FragmentActivity a, final Runnable onChanges, final Runnable onScan) {
 
         final PathAdapter recentAdapter = new PathAdapter();
@@ -116,30 +143,11 @@ public class PrefDialogs {
                 ChooserDialogFragment.chooseFolder(a, BookCSS.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-
-                        if (nPath.equals("/")) {
-                            Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
-                            return false;
-                        }
-                        boolean isExists = false;
-                        String existPath = "";
-                        for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
-                            if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
-                                isExists = true;
-                                existPath = str;
-                                break;
-                            }
-                        }
-                        if (ExtUtils.isExteralSD(nPath)) {
-                            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                        } else if (isExists) {
-                            Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, existPath, a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
-                        } else {
-                            BookCSS.get().searchPathsJson = JsonDB.add(BookCSS.get().searchPathsJson, nPath);
-                        }
+                        // The folder goes straight into the list the caller keeps; this dialog
+                        // is not put back up over it.
+                        addSearchPath(a, nPath);
                         dialog.dismiss();
                         onChanges.run();
-                        chooseFolderDialog(a, onChanges, onScan);
                         return false;
                     }
 

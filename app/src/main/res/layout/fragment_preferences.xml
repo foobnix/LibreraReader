@@ -114,14 +114,8 @@
                 android:gravity="center"
                 android:padding="4dip">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:singleLine="true"
-                    android:text="@string/profile"
-                    android:textStyle="bold" />
-
+                <!-- The word that named this row is carried by the head of the popup the
+                     button opens; the blank mark is left to balance the cogwheel opposite. -->
                 <ImageView
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
@@ -165,19 +159,8 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/restoreDefaultProfile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dip"
-                android:layout_weight="0"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="@string/restore_defaults_short"
-                android:textSize="@dimen/text_title"
-                android:visibility="visible" />
+            <!-- Restoring the defaults is done from the profiles dialog the cogwheel opens,
+                 beside the profiles it applies to. -->
 
 
             <LinearLayout

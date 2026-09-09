@@ -14,6 +14,7 @@ import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,23 +31,78 @@ public class SharedBooks {
 
         long a = System.currentTimeMillis();
         preloadAll();
+
+        // Only the books whose bar has actually moved are written back: the whole shelf was
+        // being rewritten row by row on every refresh, for a handful of changes at most.
+        final List<FileMeta> changed = new ArrayList<>();
         for (FileMeta meta : list) {
             try {
                 AppBook book = SharedBooks.load(meta.getPath());
+                final Float was = meta.getIsRecentProgress();
+                final Long wasTime = meta.getIsRecentTime();
                 meta.setIsRecentProgress(book.p);
                 if (updateTime) {
                     meta.setIsRecentTime(book.t);
+                }
+                if (was == null || was != book.p || (updateTime && (wasTime == null || wasTime != book.t))) {
+                    changed.add(meta);
                 }
             } catch (Exception e) {
                 LOG.e(e);
             }
         }
-        AppDB.get().updateAll(list);
+        AppDB.get().updateAll(changed);
         long b = System.currentTimeMillis() - a;
-        LOG.d("updateProgress-time:", list.size(), b / 1000.0);
+        LOG.d("updateProgress-time:", list.size(), changed.size(), b / 1000.0);
     }
 
     public static Map<String, AppBook> cache = new ConcurrentHashMap<>();
+
+    /**
+     * How far ahead of this device's clock another device's timestamp may be before it is
+     * treated as wrong. Devices merge by "whose record is newest", so one with its clock set
+     * years forward would otherwise win every book for good, and no amount of reading here
+     * would ever take a position back.
+     */
+    public static final long CLOCK_TOLERANCE = 24L * 60 * 60 * 1000;
+
+    /**
+     * Which of a book's records across devices carries the position: the newest of them,
+     * passing over any stamped further ahead than {@link #CLOCK_TOLERANCE}. Returns -1 when
+     * there is nothing to choose from - every record was in the future, or there were none.
+     */
+    public static int newestRecord(long[] times, long now) {
+        int newest = -1;
+        for (int i = 0; i < times.length; i++) {
+            if (times[i] > now + CLOCK_TOLERANCE) {
+                continue;
+            }
+            if (newest == -1 || times[i] >= times[newest]) {
+                newest = i;
+            }
+        }
+        return newest;
+    }
+
+    /** The content last written for each book, so an unchanged book is not written again. */
+    public static final Map<String, Integer> written = new ConcurrentHashMap<>();
+
+    /**
+     * Whether this book has changed since it was last written. One book's write used to be
+     * skipped because a different book had just been written with the same content: the last
+     * hash was held in a single slot shared by every book, rather than one apiece.
+     */
+    public static boolean hasChanged(String key, int hash) {
+        final Integer previous = written.get(key);
+        if (previous != null && previous == hash) {
+            return false;
+        }
+        written.put(key, hash);
+        return true;
+    }
+
+    /** When each progress file was last read, so an unchanged one is not read again. */
+    private static final Map<String, Long> lastRead = new ConcurrentHashMap<>();
 
     /**
      * Reads every device's progress file once and merges them into the cache.
@@ -60,10 +116,22 @@ public class SharedBooks {
      * time carries the position, and this device's own record carries it if it has one.
      */
     public static void preloadAll() {
-        final Map<String, AppBook> newest = new java.util.HashMap<>();
-        final Map<String, AppBook> ours = new java.util.HashMap<>();
+        preloadAll(false);
+    }
 
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
+    public static void preloadAll(boolean force) {
+        final List<File> files = AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON);
+
+        // Nothing has been written since the last pass, so the answer is the one already held.
+        if (!force && !hasChangedOnDisk(files)) {
+            LOG.d("SharedBooks-preloadAll", "unchanged", cache.size());
+            return;
+        }
+
+        final Map<String, List<AppBook>> records = new HashMap<>();
+        final Map<String, AppBook> ours = new HashMap<>();
+
+        for (File file : files) {
             final boolean isThisDevice = file.equals(AppProfile.syncProgress);
             final LinkedJSONObject obj = IO.readJsonObject(file);
             for (String key : obj.keySet()) {
@@ -71,26 +139,23 @@ public class SharedBooks {
                 if (TxtUtils.isEmpty(book.path)) {
                     continue;
                 }
-                final AppBook best = newest.get(key);
-                if (best == null || book.t >= best.t) {
-                    newest.put(key, book);
+                List<AppBook> forKey = records.get(key);
+                if (forKey == null) {
+                    forKey = new ArrayList<>();
+                    records.put(key, forKey);
                 }
+                forKey.add(book);
                 if (isThisDevice) {
                     ours.put(key, book);
                 }
             }
+            lastRead.put(file.getPath(), file.lastModified());
         }
 
-        for (Map.Entry<String, AppBook> entry : newest.entrySet()) {
-            final AppBook best = entry.getValue();
-            final AppBook own = ours.get(entry.getKey());
-            final AppBook merged;
-            if (own != null) {
-                own.p = best.p;
-                own.t = Math.max(best.t, own.t);
-                merged = own;
-            } else {
-                merged = best;
+        for (Map.Entry<String, List<AppBook>> entry : records.entrySet()) {
+            final AppBook merged = merge(entry.getValue(), ours.get(entry.getKey()));
+            if (merged == null) {
+                continue;
             }
 
             // A book just closed is written to its file on a background thread, so a pass over
@@ -104,6 +169,63 @@ public class SharedBooks {
             cache.put(entry.getKey(), merged);
         }
         LOG.d("SharedBooks-preloadAll", cache.size());
+    }
+
+    /**
+     * The record that carries the position, out of every device's record of one book. This
+     * device's own record is the one handed back where it has one, so its zoom, crop and lock
+     * are kept, but the position and time come from whichever record is newest.
+     */
+    private static AppBook merge(List<AppBook> forKey, AppBook own) {
+        final long[] times = new long[forKey.size()];
+        for (int i = 0; i < times.length; i++) {
+            times[i] = forKey.get(i).t;
+        }
+        final int newest = newestRecord(times, System.currentTimeMillis());
+        if (newest == -1) {
+            return null;
+        }
+        final AppBook best = forKey.get(newest);
+        if (own == null) {
+            return best;
+        }
+        own.p = best.p;
+        own.t = Math.max(best.t, own.t);
+        return own;
+    }
+
+    private static boolean hasChangedOnDisk(List<File> files) {
+        if (lastRead.size() != files.size()) {
+            return true;
+        }
+        for (File file : files) {
+            final Long seen = lastRead.get(file.getPath());
+            if (seen == null || seen != file.lastModified()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Writes one book's progress into the row the lists are drawn from. The files are what the
+     * devices agree on, the row is only what the screen reads, and nothing refreshed the row
+     * for a book outside the recent and favourite lists - so a book read and closed kept its
+     * old bar in the library until the whole shelf was scanned again.
+     */
+    public static void syncToDb(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            return;
+        }
+        try {
+            final AppBook book = load(path);
+            final FileMeta meta = AppDB.get().getOrCreate(path);
+            meta.setIsRecentProgress(book.p);
+            AppDB.get().update(meta);
+            LOG.d("SharedBooks-syncToDb", path, book.p);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static void deleteProgress(String path) {
@@ -192,27 +314,22 @@ public class SharedBooks {
         save(bs, false);
     }
 
-    static int phash = -1;
-
     private static void save(AppBook bs, boolean inThread) {
         if (bs == null) {
             LOG.d("SharedBooks-Save", "null");
             return;
         }
 
-        int hash = bs.hashCode();
-        if (phash == hash) {
-            LOG.d("SharedBooks-Save", "skip", hash);
-            return;
-        }
-        phash = hash;
-        LOG.d("SharedBooks-Save", "inThread " + inThread);
-
-
         if (TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
             return;
         }
+
+        if (!hasChanged(ExtUtils.getFileName(bs.path), bs.hashCode())) {
+            LOG.d("SharedBooks-Save", "skip", bs.path);
+            return;
+        }
+        LOG.d("SharedBooks-Save", "inThread " + inThread);
 
         try {
             final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
@@ -228,6 +345,10 @@ public class SharedBooks {
 
             LOG.d("SharedBooks-Save", value);
 
+
+            // Our own file is about to change, so the next pass over the files has to read it
+            // again rather than trust what it read last time.
+            lastRead.remove(AppProfile.syncProgress.getPath());
 
             if (inThread) {
                 IO.writeObj(AppProfile.syncProgress, obj);

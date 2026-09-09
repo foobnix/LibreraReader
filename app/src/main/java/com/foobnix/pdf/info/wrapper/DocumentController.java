@@ -611,6 +611,9 @@ public abstract class DocumentController {
             AppBook bs = SettingsManager.getBookSettings();
             bs.updateFromAppState();
             SharedBooks.save(bs);
+            // The row the shelves are drawn from is brought up to the file straight away, so a
+            // book closed shows where it was left without waiting for the shelf to be scanned.
+            SharedBooks.syncToDb(bs.path);
 
             //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
             //bs.updateFromAppState();

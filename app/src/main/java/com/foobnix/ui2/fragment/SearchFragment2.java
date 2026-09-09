@@ -72,7 +72,6 @@ import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
-import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
@@ -499,22 +498,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                          .show();
                     return;
                 }
-                PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
-
-                    @Override public void run() {
-                        //BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-                    }
-                }, new Runnable() {
-
-                    @Override public void run() {
-                        Prefs.get()
-                             .remove(AppProfile.getCurrent(), 0);
-                        layoutError.setVisibility(View.GONE);
-                        recyclerView.scrollToPosition(0);
-                        seachAll();
-                        ((AdsFragmentActivity) SearchFragment2.this.getActivity()).showInterstitialNoFinish();
-                    }
-                });
+                // The folders are managed in the preferences panel; this button only rebuilds
+                // the library from the folders already listed there, without asking again.
+                Prefs.get()
+                     .remove(AppProfile.getCurrent(), 0);
+                layoutError.setVisibility(View.GONE);
+                recyclerView.scrollToPosition(0);
+                seachAll();
+                ((AdsFragmentActivity) SearchFragment2.this.getActivity()).showInterstitialNoFinish();
             }
         });
 

@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.ActionProvider;
@@ -110,6 +112,16 @@ public class MyPopupMenu {
                 textView.setText(stringRes);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
+                // A head names what the rows under it choose between: set in caps, underlined,
+                // and out of reach of a tap. Rows come back recycled, so the plain ones undo it.
+                textView.setAllCaps(item.isTitle);
+                textView.setTypeface(null, item.isTitle ? Typeface.BOLD : Typeface.NORMAL);
+                if (item.isTitle) {
+                    textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                } else {
+                    textView.setPaintFlags(textView.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
+                }
+
                 if (TxtUtils.isNotEmpty(item.fontPath)) {
                     textView.setTypeface(BookCSS.getTypeFaceForFont(item.fontPath));
                 }
@@ -159,6 +171,14 @@ public class MyPopupMenu {
                 } else {
                     imageView.setVisibility(View.GONE);
                 }
+                if (item.isTitle) {
+                    layout.setOnClickListener(null);
+                    layout.setOnLongClickListener(null);
+                    layout.setClickable(false);
+                    layout.setLongClickable(false);
+                    return;
+                }
+
                 layout.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -619,7 +639,14 @@ public class MyPopupMenu {
         String checkboxString;
         boolean checkboxState;
         CompoundButton.OnCheckedChangeListener checkedChangeListener;
+        boolean isTitle;
         private String fontPath;
+
+        /** Makes the row the popup's head: named, underlined, and not there to be tapped. */
+        public Menu asTitle() {
+            this.isTitle = true;
+            return this;
+        }
 
         public Menu add(int res) {
             if(res>0) {

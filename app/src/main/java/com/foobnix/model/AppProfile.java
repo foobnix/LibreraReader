@@ -288,7 +288,7 @@ public class AppProfile {
 
     }
 
-    public static void showDialog(Activity a, ResultResponse<String> onclick) {
+    public static void showDialog(Activity a, ResultResponse<String> onclick, Runnable onRestoreDefaults) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.tag);
@@ -298,7 +298,10 @@ public class AppProfile {
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        TxtUtils.underline(add, a.getString(R.string.new_profile));
+        // Named for what it adds and drawn as a ringed button, as the panel draws its own.
+        // The layout is shared with the tag and playlist dialogs, so this is set here only.
+        add.setText(R.string.add_profile);
+        asRingedButton(add);
 
         final List<String> profiles = getAllProfiles();
 
@@ -375,6 +378,15 @@ public class AppProfile {
             }
         });
 
+        if (onRestoreDefaults != null) {
+            builder.setNeutralButton(R.string.restore_defaults_short, new AlertDialog.OnClickListener() {
+
+                @Override public void onClick(DialogInterface dialog, int which) {
+                    onRestoreDefaults.run();
+                }
+            });
+        }
+
         AlertDialog create = builder.create();
         create.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -386,6 +398,19 @@ public class AppProfile {
         });
         create.show();
 
+        // The dialog's own words are ringed to match, once the frame has made them.
+        asRingedButton(create.getButton(DialogInterface.BUTTON_NEGATIVE));
+        asRingedButton(create.getButton(DialogInterface.BUTTON_NEUTRAL));
+
+    }
+
+    /** Draws a word as a button the way the settings panel does: a ring cut from its own colour. */
+    private static void asRingedButton(TextView button) {
+        if (button == null) {
+            return;
+        }
+        TintUtil.asLinkButton(button);
+        TintUtil.setRingColor(button, button.getCurrentTextColor());
     }
 
     public static void addDialog(final Activity a, final Runnable onRefresh) {

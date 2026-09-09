@@ -12,6 +12,7 @@ import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
@@ -27,6 +28,9 @@ public class HypenPanelHelper {
 
     public static void init(View parent, DocumentController dc) {
         View hyphenPanel = parent.findViewById(R.id.showHypenLangPanel);
+        // Nothing is painted here. The notice stands inside the action bar, which is already
+        // drawn in the chrome's colour and held back by the reader's transparency; a second
+        // coat of the same tint over that one only comes out darker than the bar it sits in.
         hyphenPanel.setVisibility(TxtUtils.visibleIf(dc.isTextFormat() && BookCSS.get().isAutoHypens && TxtUtils.isEmpty(AppSP.get().hypenLang)));
 
 
@@ -35,8 +39,9 @@ public class HypenPanelHelper {
 
         hypenLang.setText(R.string.choose_);
 
-        TxtUtils.underlineTextView(hypenLang);
-        TxtUtils.underlineTextView(hypenApply);
+        // The ring round each says it can be pressed; underlining the word as well doubles up.
+        TintUtil.setRingColor(hypenLang, hypenLang.getCurrentTextColor());
+        TintUtil.setRingColor(hypenApply, hypenApply.getCurrentTextColor());
 
         hypenLang.setOnClickListener(new View.OnClickListener() {
 

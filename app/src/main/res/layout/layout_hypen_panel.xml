@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- The notice offering to hyphenate: it stands in the chrome at the head of the page, so it
+     is drawn in the chrome's colour, and what it asks the reader to press is ringed at the end
+     of the row rather than underlined in the middle of it. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/green_msg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dip"
     android:gravity="center_vertical"
+    android:padding="4dip"
     tools:showIn="@layout/activity_horiziontal_view">
 
     <TextView
@@ -13,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dip"
-        android:layout_weight="0"
+        android:layout_weight="1"
         android:textColor="@color/white"
         android:text="@string/hyphenation_language" />
 
@@ -23,17 +25,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
-        android:layout_weight="1"
-        android:minWidth="50dip"
-        android:text="Russian" />
+        android:layout_marginRight="6dip"
+        android:layout_weight="0"
+        android:background="@drawable/bg_pill_outline"
+        android:gravity="center"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:text="@string/choose_" />
 
     <TextView
         android:id="@+id/hypenApply"
         style="@style/textLinkWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
+        android:layout_marginRight="6dip"
         android:layout_weight="0"
+        android:background="@drawable/bg_pill_outline"
+        android:gravity="center"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
         android:textAllCaps="true"
         android:text="@string/apply" />
 </LinearLayout>

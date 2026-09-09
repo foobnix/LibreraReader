@@ -1775,7 +1775,7 @@ public class PrefFragment2 extends UIFragment {
         // to reach the same scan.
         View updateLibrary = asButton(inflate.findViewById(R.id.onUpdateLibrary));
         updateLibrary.setOnClickListener(v -> onScan());
-        addFolder.setOnClickListener(v -> onFolderConfigDialog());
+        addFolder.setOnClickListener(v -> onAddFolder());
 
         asButton(inflate.findViewById(R.id.importButton))
                 .setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));
@@ -2627,7 +2627,6 @@ public class PrefFragment2 extends UIFragment {
                                      findViewById(R.id.overlay);
 
         TextView onProfile = inflate.findViewById(R.id.onProfile);
-        TextView restoreDefaultProfile = inflate.findViewById(R.id.restoreDefaultProfile);
 
         profileLetter = inflate.findViewById(R.id.profileLetter);
 
@@ -2644,7 +2643,6 @@ public class PrefFragment2 extends UIFragment {
         onProfile.setContentDescription(p + " " + getString(R.string.profile));
 
         asButton(onProfile);
-        asButton(restoreDefaultProfile);
         onProfile.setOnClickListener(v ->
 
         {
@@ -2656,6 +2654,12 @@ public class PrefFragment2 extends UIFragment {
             }
 
             MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
+
+            // The head names what the rows under it choose between, now that the panel no
+            // longer carries the word beside the button.
+            popup.getMenu()
+                 .add(R.string.profile)
+                 .asTitle();
 
             List<String> all = AppProfile.getAllProfiles();
             for (String profile : all) {
@@ -2739,7 +2743,6 @@ public class PrefFragment2 extends UIFragment {
             return true;
         };
         onProfile.setOnLongClickListener(onDefaultProfile);
-        restoreDefaultProfile.setOnClickListener(v -> onDefaultProfile.onLongClick(v));
         profileLetter.setOnLongClickListener(onDefaultProfile);
 
         inflate.findViewById(R.id.onProfileEdit)
@@ -2768,7 +2771,7 @@ public class PrefFragment2 extends UIFragment {
                                    });
                        }
                        return false;
-                   });
+                   }, () -> onDefaultProfile.onLongClick(v));
                });
 
         TxtUtils.updateAllLinks(inflate, true);
@@ -2968,6 +2971,24 @@ public class PrefFragment2 extends UIFragment {
             row.setOnClickListener(v -> onFolderConfigDialog());
             searchPaths.addView(row);
         }
+    }
+
+    /**
+     * Picks a folder and puts it straight into the library paths. The panel already lists the
+     * folders under this button, so the folder dialog is not put in the way of adding one.
+     */
+    public void onAddFolder() {
+        ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().dirLastPath)
+                             .setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                 @Override public boolean onResultRecive(String nPath, Dialog dialog) {
+                                     if (PrefDialogs.addSearchPath(getActivity(), nPath)) {
+                                         showSearchPaths();
+                                         saveChanges();
+                                     }
+                                     dialog.dismiss();
+                                     return false;
+                                 }
+                             });
     }
 
     public void onFolderConfigDialog() {

@@ -2,12 +2,15 @@ package com.foobnix.pdf.info.widget;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.Window;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
@@ -17,12 +20,20 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 
 public class ChooserDialogFragment extends DialogFragment {
 
     public ChooserDialogFragment() {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // The card draws its own head, so the frame around it is asked for none.
+        setStyle(DialogFragment.STYLE_NO_TITLE, 0);
     }
 
     @Override
@@ -79,8 +90,20 @@ public class ChooserDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, android.view.ViewGroup container, android.os.Bundle savedInstanceState) {
         setRetainInstance(true);
-        FrameLayout frame = new FrameLayout(getContext());
-        frame.setId(R.id.metaGenreID);
+        View frame = inflater.inflate(R.layout.dialog_chooser, container, false);
+
+        // The head is cut from the same colour, and to the same weight, as a draging popup's.
+        TintUtil.setTintBgSimple(frame.findViewById(R.id.topLayout), 230);
+
+        ((TextView) frame.findViewById(R.id.dialogTitle)).setText(R.string.choose_);
+
+        frame.findViewById(R.id.closePopup).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dismissAllowingStateLoss();
+            }
+        });
 
         final BrowseFragment2 fr = BrowseFragment2.newInstance(getArguments());
 
@@ -104,17 +127,18 @@ public class ChooserDialogFragment extends DialogFragment {
             }
         });
 
-        getDialog().setTitle(R.string.choose_);
-
         return frame;
     };
 
     @Override
     public void onResume() {
-        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        final Window window = getDialog().getWindow();
+        ViewGroup.LayoutParams params = window.getAttributes();
         params.width = LayoutParams.MATCH_PARENT;
         params.height = LayoutParams.MATCH_PARENT;
-        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+        window.setAttributes((android.view.WindowManager.LayoutParams) params);
+        // Nothing square is left behind the card, or its round corners would be filled in.
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         super.onResume();
     }

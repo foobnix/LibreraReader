@@ -340,7 +340,7 @@
    <string name="text_page">Page</string>
    <string name="page">Page</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Choose …</string>
+   <string name="choose_">Choose</string>
    <string name="crop_white_borders">Crop White Space</string>
    <string name="full_screen">Fullscreen</string>
    <string name="go">Go</string>
@@ -543,6 +543,7 @@
    <string name="dark_oled">Dark OLED</string>
    <string name="profile">Profile</string>
    <string name="new_profile">New Profile</string>
+   <string name="add_profile">Add profile</string>
    <string name="main">Main</string>
    <string name="do_you_want_to_switch_profile_">Switch to this profile?</string>
    <string name="sync_error">Syncing error</string>

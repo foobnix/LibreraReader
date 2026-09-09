@@ -11,7 +11,6 @@
         android:id="@+id/pathContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_margin="@dimen/panel_padding"
         android:background="@drawable/bg_search_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -253,11 +252,14 @@
         android:id="@+id/editPath"
         android:layout_width="match_parent"
         android:layout_height="@dimen/wh_button"
-        android:layout_margin="4dip"
-        android:background="@drawable/bg_search_edit"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginTop="4dip"
+        android:background="@drawable/bg_input_round"
         android:ellipsize="end"
         android:lines="2"
-        android:paddingLeft="4dip"></EditText>
+        android:paddingLeft="12dip"
+        android:paddingRight="12dip"></EditText>
 
     <LinearLayout
         android:id="@+id/onCloseActionPaner"
@@ -270,9 +272,13 @@
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dip"
+            android:layout_marginBottom="8dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="4dip"
+            android:layout_marginTop="8dip"
             android:layout_weight="1"
-            android:background="@drawable/bg_search_second_clickable"
+            android:background="@drawable/bg_pill_filled"
+            android:minHeight="@dimen/wh_button"
             android:text="@string/close" />
 
         <Button
@@ -280,9 +286,13 @@
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dip"
+            android:layout_marginBottom="8dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginTop="8dip"
             android:layout_weight="1"
-            android:background="@drawable/bg_search_second_clickable"
+            android:background="@drawable/bg_pill_filled"
+            android:minHeight="@dimen/wh_button"
             android:text="@string/select" />
     </LinearLayout>
 
