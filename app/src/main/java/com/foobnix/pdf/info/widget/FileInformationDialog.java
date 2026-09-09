@@ -97,10 +97,8 @@ public class FileInformationDialog {
         for (String it : res) {
             TextView t = new TextView(sample.getContext());
             t.setText(it);
-            t.setPadding(Dips.DP_4,Dips.DP_2,Dips.DP_2,Dips.DP_2);
-
-
-            TxtUtils.underlineTextView(t);
+            t.setPadding(0, Dips.DP_2, 0, Dips.DP_2);
+            t.setTextColor(TintUtil.getColorInDayNighth());
             t.setOnClickListener(v -> {
                 EventBus.getDefault()
                         .post(new SearchMetaMsg(mode, it));
@@ -111,6 +109,23 @@ public class FileInformationDialog {
             sample.addView(t);
         }
 
+    }
+
+    /**
+     * A row is shown only if it has something to say. The row goes with the value, so no name
+     * is left standing over an empty column.
+     */
+    private static void hideRowIfEmpty(View dialog, int rowId, int valueId) {
+        final View row = dialog.findViewById(rowId);
+        final View value = dialog.findViewById(valueId);
+        if (row == null) {
+            return;
+        }
+        if (!(value instanceof TextView) || TxtUtils.isEmpty(((TextView) value).getText()
+                                                                               .toString()
+                                                                               .trim())) {
+            row.setVisibility(View.GONE);
+        }
     }
 
     public static String showKeys(String line) {
@@ -187,6 +202,7 @@ public class FileInformationDialog {
         final TextView bookmarksSection = (TextView) dialog.findViewById(R.id.bookmarksSection);
 
         title.setText(fileMeta.getTitle());
+        ((TextView) dialog.findViewById(R.id.bookName)).setText(fileMeta.getTitle());
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
             showKeys(author,fileMeta.getAuthor(),SEARCH_IN.AUTHOR);
 
@@ -194,7 +210,6 @@ public class FileInformationDialog {
         }
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
-        TxtUtils.underlineTextView(year);
         year.setOnClickListener(v -> {
             EventBus.getDefault()
                     .post(new SearchMetaMsg(SEARCH_IN.YEAR, year.getText()
@@ -214,7 +229,6 @@ public class FileInformationDialog {
         TextView publisher = (TextView) dialog.findViewById(R.id.publisher);
         publisher.setText(fileMeta.getPublisher());
 
-        TxtUtils.underlineTextView(publisher);
         publisher.setOnClickListener(v -> {
             EventBus.getDefault()
                     .post(new SearchMetaMsg(SEARCH_IN.PUBLISHER, publisher.getText()
@@ -254,6 +268,7 @@ public class FileInformationDialog {
         bookmarks.setText(TxtUtils.replaceLast(lines.toString(), "\n", ""));
         if (TxtUtils.isListEmpty(objects)) {
             bookmarksSection.setVisibility(View.GONE);
+            bookmarks.setVisibility(View.GONE);
         }
 
         bookmarks.setOnClickListener(new OnClickListener() {
@@ -329,8 +344,8 @@ public class FileInformationDialog {
             }
 
         } else {
-            ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
-            ((TextView) dialog.findViewById(R.id.metaSeriesID)).setVisibility(View.GONE);
+            dialog.findViewById(R.id.metaSeriesID)
+                  .setVisibility(View.GONE);
         }
 
         String genre = fileMeta.getGenre();
@@ -340,16 +355,16 @@ public class FileInformationDialog {
             showKeys(metaGenre, genre,SEARCH_IN.GENRE);
 
         } else {
-            metaGenre.setVisibility(View.GONE);
-            ((TextView) dialog.findViewById(R.id.metaGenreID)).setVisibility(View.GONE);
+            dialog.findViewById(R.id.metaGenreID)
+                  .setVisibility(View.GONE);
         }
 
         final LinearLayout metaKeys = (LinearLayout) dialog.findViewById(R.id.keywordList);
         if (TxtUtils.isNotEmpty(fileMeta.getKeyword())) {
             showKeys(metaKeys,fileMeta.getKeyword(),SEARCH_IN.KEYWRODS);
         } else {
-            ((TextView) dialog.findViewById(R.id.keywordID)).setVisibility(View.GONE);
-            metaKeys.setVisibility(View.GONE);
+            dialog.findViewById(R.id.keywordID)
+                  .setVisibility(View.GONE);
         }
 
         final Runnable tagsRunnable = new Runnable() {
@@ -361,33 +376,34 @@ public class FileInformationDialog {
                     replace = TxtUtils.replaceLast(replace, ",", "")
                                       .trim();
                     ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
-                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
-                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
+                    dialog.findViewById(R.id.tagsID)
+                          .setVisibility(View.VISIBLE);
                 } else {
-                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
-                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
+                    dialog.findViewById(R.id.tagsID)
+                          .setVisibility(View.GONE);
                 }
 
             }
         };
         tagsRunnable.run();
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags))
-                .setOnClickListener(new OnClickListener() {
+        final ImageView tagIcon = (ImageView) dialog.findViewById(R.id.tagIcon);
+        TintUtil.setTintImageNoAlpha(tagIcon, TintUtil.getColorInDayNighth());
+        tagIcon.setOnClickListener(new OnClickListener() {
 
-                    @Override public void onClick(View v) {
-                        Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
+            @Override public void onClick(View v) {
+                Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
 
-                            @Override public void run() {
-                                tagsRunnable.run();
-                                EventBus.getDefault()
-                                        .post(new NotifyAllFragments());
-                            }
-                        });
+                    @Override public void run() {
+                        tagsRunnable.run();
+                        EventBus.getDefault()
+                                .post(new NotifyAllFragments());
                     }
                 });
+            }
+        });
 
-        TextView metaTags = (TextView) dialog.findViewById(R.id.metaTags);
+        View metaTags = dialog.findViewById(R.id.metaTags);
         TextView metaTagsInfo = (TextView) dialog.findViewById(R.id.metaTagsInfo);
         metaTags.setVisibility(View.GONE);
         metaTagsInfo.setVisibility(View.GONE);
@@ -511,8 +527,6 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
-        coverImage.setBackgroundColor(Color.WHITE);
-        coverImage.getLayoutParams().width = Dips.screenMinWH() / 2;
 
         IMG.getCoverPageWithEffect(a, file.getPath(), null)
            .into(coverImage);
@@ -576,10 +590,19 @@ public class FileInformationDialog {
             editMeta(fileMeta, editTitle, title, MuPdfDocument.META_INFO_TITLE);
             editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
         }
-        // The sheet is given the settings panel's look: each head drawn as a band in the theme
-        // colour, and every link under the heads drawn as a ringed button.
-        TintUtil.asSectionHeads(dialog);
-        TintUtil.asLinkButtons(dialog);
+        // A fact the book has none of is left out rather than shown empty. The name, the author
+        // and the annotation stay whatever they hold - each carries the word that edits it.
+        hideRowIfEmpty(dialog, R.id.rowYear, R.id.year);
+        hideRowIfEmpty(dialog, R.id.rowPublisher, R.id.publisher);
+        hideRowIfEmpty(dialog, R.id.rowIsbn, R.id.isbn);
+
+        // What can be done to the file is drawn as the settings panel draws its buttons; the
+        // words that edit a single fact are left as the small links they sit beside.
+        TintUtil.asLinkButton(convertFile, 0);
+        TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.openWith), 0);
+        TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.sendFile), 0);
+        TintUtil.asLinkButton(onUpdateMeta, 0);
+        TintUtil.asLinkButton(delete, 0);
 
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);

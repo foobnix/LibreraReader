@@ -117,44 +117,43 @@
         <item name="android:background">#60e1e1e1</item>
     </style>
 
-    <!-- A section head in the book sheet, wearing the settings panel's own band: the theme
-         colour cut to a round, the name across it in caps, air above it so a head is read as
-         opening what follows rather than closing what came before. The tag is what the tint
-         looks for when it colours the heads of a sheet it is handed. -->
-    <style name="textSectionInfo">
-        <item name="android:tag">section</item>
-        <item name="android:background">@drawable/bg_section_round</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_marginLeft">4dip</item>
-        <item name="android:layout_marginRight">4dip</item>
-        <item name="android:layout_marginTop">10dip</item>
-        <item name="android:layout_marginBottom">2dip</item>
-        <item name="android:paddingLeft">10dip</item>
-        <item name="android:paddingRight">10dip</item>
-        <item name="android:paddingTop">6dip</item>
-        <item name="android:paddingBottom">6dip</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
+    <!-- A fact in the book sheet, set as a pair: the name of the fact held to one column so
+         every name lines up, and the fact itself taking the rest of the row and wrapping
+         inside it. -->
+    <style name="infoRow">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">7dip</item>
+        <item name="android:paddingBottom">7dip</item>
     </style>
 
-    <!-- The name inside a head that also carries a button. The band around it is the head, so
-         the name brings the lettering alone. -->
-    <style name="textSectionInfoName">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
+    <!-- The name of a fact: quieter than the fact, so the eye runs down the values. -->
+    <style name="infoLabel">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
-    <!-- What a head is set over: a value, or a list of them, indented to start under the first
-         letter of the name above it. -->
-    <style name="textSectionValue">
-        <item name="android:paddingLeft">14dip</item>
-        <item name="android:paddingRight">14dip</item>
+    <!-- The fact itself. -->
+    <style name="infoValue">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <!-- A fact that answers a tap - an author to search by, a year, a tongue - set in the
+         colour links are set in and left unmarked otherwise. -->
+    <style name="infoValueLink" parent="infoValue">
+        <item name="android:textColor">?android:attr/textColorLink</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- The head of a block that stands on its own under the facts - the annotation, the
+         bookmarks - set in the quiet of a fact's name with air above it. -->
+    <style name="infoBlockLabel">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:paddingTop">4dip</item>
-        <item name="android:paddingBottom">4dip</item>
+        <item name="android:paddingBottom">6dip</item>
     </style>
-
 
     <style name="textCircle">
         <item name="android:textSize">18sp</item>

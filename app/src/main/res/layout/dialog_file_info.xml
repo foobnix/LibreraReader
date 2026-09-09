@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- What is known about a book, read as a list of pairs: the name of each fact held to one
+     column so the names line up down the sheet, the fact itself taking the rest of the row.
+     Above them the book names itself once, beside its cover; below them the blocks that are
+     too long to sit in a row - the annotation, the bookmarks - each under a name of its own. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,465 +17,551 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip"
+            android:paddingTop="14dip"
+            android:paddingBottom="10dip">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
-
-                    <com.foobnix.pdf.info.view.ScaledImageView
-                        android:id="@+id/image"
-                        android:layout_width="100dip"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dip"
-                        android:src="@mipmap/icon_pdf_pro" />
-                </FrameLayout>
-
-
-                <ImageView
-                    android:id="@+id/cloudImage"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true"
-                    android:padding="8dip"
-                    android:src="@drawable/dropbox" />
-
-                <ImageView
-                    android:id="@+id/starIcon"
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_toRightOf="@+id/cloudImage"
-                    android:layout_weight="0"
-                    android:background="@drawable/bg_round_press"
-                    android:padding="8dip"
-                    android:src="@drawable/glyphicons_13_heart"
-                    android:tint="@color/white" />
-            </RelativeLayout>
-
+            <!-- The head: the cover, the name of the book beside it, and under the name the two
+                 marks that act on the book itself rather than tell anything about it. -->
             <LinearLayout
-                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.foobnix.pdf.info.view.ScaledImageView
+                        android:id="@+id/image"
+                        android:layout_width="86dip"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@mipmap/icon_pdf_pro" />
+
+                    <ImageView
+                        android:id="@+id/cloudImage"
+                        android:layout_width="@dimen/wh_button_small"
+                        android:layout_height="@dimen/wh_button_small"
+                        android:layout_gravity="bottom|left"
+                        android:contentDescription="@string/clouds"
+                        android:padding="4dip"
+                        android:src="@drawable/dropbox" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dip"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/bookName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dip"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/starIcon"
+                            android:layout_width="@dimen/wh_button"
+                            android:layout_height="@dimen/wh_button"
+                            android:background="@drawable/bg_round_press"
+                            android:contentDescription="@string/favorites"
+                            android:padding="7dip"
+                            android:src="@drawable/glyphicons_9_heart_empty" />
+
+                        <ImageView
+                            android:id="@+id/tagIcon"
+                            android:layout_width="@dimen/wh_button"
+                            android:layout_height="@dimen/wh_button"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/bg_round_press"
+                            android:contentDescription="@string/add_tag"
+                            android:padding="7dip"
+                            android:src="@drawable/glyphicons_67_tags" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Title -->
+            <LinearLayout
+                android:id="@+id/rowTitle"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/textSectionInfoName"
-                    android:layout_width="wrap_content"
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
                     android:layout_height="wrap_content"
                     android:text="@string/title" />
 
                 <TextView
+                    android:id="@+id/title"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+
+                <TextView
                     android:id="@+id/editTitle"
                     style="@style/textLink"
-                    android:padding="2dip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:contentDescription="@string/edit"
                     android:text="@string/edit" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/title"
-                style="@style/textSectionValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="Title"
-                android:textIsSelectable="true"
-                android:textStyle="normal" />
-
-
+            <!-- Author -->
             <LinearLayout
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/textSectionInfoName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/author" />
-
-                <TextView
-                    android:id="@+id/editAuthor"
-                    android:padding="2dip"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:contentDescription="@string/edit"
-                    android:text="@string/edit" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/wh_button_small"
-                android:orientation="vertical"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip" />
-
-
-
-            <LinearLayout
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/textSectionInfoName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/annotation"
-                    android:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/editAnnotation"
-                    android:padding="2dip"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:contentDescription="@string/edit"
-                    android:text="@string/edit" />
-            </LinearLayout>
-
-            <RelativeLayout
+                android:id="@+id/rowAuthor"
+                style="@style/infoRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/metaInfo"
-                    android:layout_width="match_parent"
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:ellipsize="end"
-                    android:maxLines="6"
-                    android:paddingLeft="14dip"
-                    android:paddingRight="14dip"
-                    android:paddingTop="4dip"
-                    android:paddingBottom="4dip"
-                    android:text="@string/msg_loading" />
+                    android:text="@string/author" />
+
+                <LinearLayout
+                    android:id="@+id/author"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" />
 
                 <TextView
-                    android:id="@+id/expand"
+                    android:id="@+id/editAuthor"
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/metaInfo"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dip"
-                    android:text="@string/more" />
-            </RelativeLayout>
+                    android:contentDescription="@string/edit"
+                    android:text="@string/edit" />
+            </LinearLayout>
 
-            <TextView
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/year"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/year"
-                style="@style/textSectionValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:maxLines="2"
-                android:text=""
-                android:textIsSelectable="true"
-                android:textStyle="normal" />
-
-            <TextView
+            <!-- Series -->
+            <LinearLayout
                 android:id="@+id/metaSeriesID"
-                style="@style/textSectionInfo"
+                style="@style/infoRow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/serie" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/metaSeries"
-                style="@style/textSectionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Series"
-                android:textIsSelectable="true" />
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serie" />
+
+                <TextView
+                    android:id="@+id/metaSeries"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewSeries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dip"
-                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                android:paddingTop="4dip"
+                android:paddingBottom="4dip"
+                android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/metaGenreID"
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/genre" />
-
+            <!-- Genre -->
             <LinearLayout
-                android:id="@+id/metaGenre"
+                android:id="@+id/metaGenreID"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/genre" />
+
+                <LinearLayout
+                    android:id="@+id/metaGenre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Year -->
+            <LinearLayout
+                android:id="@+id/rowYear"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/year" />
+
+                <TextView
+                    android:id="@+id/year"
+                    style="@style/infoValueLink"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- Publisher -->
+            <LinearLayout
+                android:id="@+id/rowPublisher"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/publisher" />
+
+                <TextView
+                    android:id="@+id/publisher"
+                    style="@style/infoValueLink"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- ISBN -->
+            <LinearLayout
+                android:id="@+id/rowIsbn"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="ISBN" />
+
+                <TextView
+                    android:id="@+id/isbn"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- Keywords -->
+            <LinearLayout
+                android:id="@+id/keywordID"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keywords" />
+
+                <LinearLayout
+                    android:id="@+id/keywordList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- My tags -->
+            <LinearLayout
+                android:id="@+id/tagsID"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_tags" />
+
+                <TextView
+                    android:id="@+id/tagsList"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- Language -->
+            <LinearLayout
+                android:id="@+id/rowLanguage"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hypenLangLabel"
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language" />
+
+                <TextView
+                    android:id="@+id/hypenLang"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- Extension -->
+            <LinearLayout
+                android:id="@+id/rowExtension"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/by_extension" />
+
+                <TextView
+                    android:id="@+id/info"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <!-- Size -->
+            <LinearLayout
+                android:id="@+id/rowSize"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/size" />
+
+                <TextView
+                    android:id="@+id/size"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- Date -->
+            <LinearLayout
+                android:id="@+id/rowDate"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/by_date" />
+
+                <TextView
+                    android:id="@+id/date"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <!-- The kind of file, kept for the log build; it has no row of its own to show in. -->
+            <TextView
+                android:id="@+id/mimeType"
+                style="@style/infoValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/wh_button_small"
-                android:orientation="vertical"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip">
+                android:text=""
+                android:visibility="gone" />
 
+            <!-- Path -->
+            <LinearLayout
+                android:id="@+id/rowPath"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/file_path" />
+
+                <TextView
+                    android:id="@+id/path"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="6dip"
+                android:background="#33888888" />
+
+            <!-- Annotation: too long for a row, so it is given its own name and the width of
+                 the sheet under it. -->
+            <LinearLayout
+                android:id="@+id/rowAnnotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/infoBlockLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/annotation" />
+
+                <TextView
+                    android:id="@+id/editAnnotation"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/edit"
+                    android:text="@string/edit" />
             </LinearLayout>
 
             <TextView
-                style="@style/textSectionInfo"
+                android:id="@+id/metaInfo"
+                style="@style/infoValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/publisher" />
+                android:ellipsize="end"
+                android:maxLines="6"
+                android:text="@string/msg_loading" />
 
             <TextView
-                android:id="@+id/publisher"
-                style="@style/textSectionValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:selectAllOnFocus="true"
-                android:text=""
-                android:textIsSelectable="true" />
-
-            <TextView
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ISBN" />
-
-            <TextView
-                android:id="@+id/isbn"
-                style="@style/textSectionValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:selectAllOnFocus="true"
-                android:text=""
-                android:textIsSelectable="true" />
-
-            <TextView
-                android:id="@+id/keywordID"
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/keywords" />
-
-            <LinearLayout
-                android:id="@+id/keywordList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/wh_button_small"
-                android:orientation="vertical"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip" />
-
-            <TextView
-                android:id="@+id/tagsID"
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/my_tags" />
-
-            <TextView
-                android:id="@+id/tagsList"
-                style="@style/textSectionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tags"
-                android:textIsSelectable="true" />
-
-            <TextView
-                android:id="@+id/addTags"
+                android:id="@+id/expand"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
-                android:text="@string/add_tag"
-                android:visibility="visible" />
+                android:layout_gravity="right"
+                android:text="@string/more" />
 
+            <!-- Meta tags: what the file itself carries, shown as it was written. -->
             <TextView
                 android:id="@+id/metaTags"
-                style="@style/textSectionInfo"
+                style="@style/infoBlockLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/meta_tags" />
 
             <TextView
                 android:id="@+id/metaTagsInfo"
-                style="@style/textSectionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/meta_tags"
-                android:textIsSelectable="true" />
-
-            <TextView
-                android:id="@+id/convertFile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/convert_to"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/openWith"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/open_with"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/sendFile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send_file"
-                android:visibility="gone" />
-
-            <TextView
-                style="@style/textSectionInfo"
+                style="@style/infoValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/information" />
+                android:text="" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="14dip"
-                android:paddingRight="14dip"
-                android:paddingTop="4dip"
-                android:paddingBottom="4dip">
-
-                <TextView
-                    android:id="@+id/mimeType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mime"
-                    android:textSize="@dimen/text_subtitle"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textSize="@dimen/text_subtitle" />
-
-                <TextView
-                    android:id="@+id/info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:text="EPUB"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dip"
-                    android:text="EPUB"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/text_subtitle"
-                    android:textStyle="normal" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="14dip"
-                android:paddingRight="14dip"
-                android:paddingBottom="4dip">
-
-                <TextView
-                    android:id="@+id/hypenLangLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="@string/language" />
-
-                <TextView
-                    android:id="@+id/hypenLang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:layout_weight="0"
-                    android:minWidth="50dip"
-                    android:singleLine="true"
-                    android:text="Russian"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TextView
-                style="@style/textSectionInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/file_path" />
-
-            <TextView
-                android:id="@+id/path"
-                style="@style/textSectionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:selectAllOnFocus="true"
-                android:text="Path"
-                android:textIsSelectable="true" />
-
+            <!-- Bookmarks -->
             <TextView
                 android:id="@+id/bookmarksSection"
-                style="@style/textSectionInfo"
+                style="@style/infoBlockLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/bookmarks" />
 
             <TextView
                 android:id="@+id/bookmarks"
-                style="@style/textSectionValue"
-                android:layout_width="wrap_content"
+                style="@style/infoValue"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="5" />
+                android:maxLines="5"
+                android:text="" />
 
-            <TextView
-                android:id="@+id/onUpdateMeta"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
+            <!-- What can be done to the file, set apart from what is known about it. -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/delete"
-                android:text="@string/update_metadata" />
+                android:layout_marginTop="8dip"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/delete"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/delete"
-                android:text="@string/delete" />
+                <TextView
+                    android:id="@+id/convertFile"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/convert_to"
+                    android:visibility="gone" />
 
+                <TextView
+                    android:id="@+id/openWith"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_with"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/sendFile"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send_file"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/onUpdateMeta"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_metadata" />
+
+                <TextView
+                    android:id="@+id/delete"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/delete"
+                    android:text="@string/delete" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
@@ -490,9 +580,9 @@
             android:id="@+id/starIcon1"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
-            android:layout_alignLeft="@+id/openFile"
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_round_press"
+            android:contentDescription="@string/favorites"
             android:padding="8dip"
             android:src="@drawable/glyphicons_13_heart"
             android:tint="@color/white" />
