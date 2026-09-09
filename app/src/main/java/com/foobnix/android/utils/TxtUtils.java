@@ -48,11 +48,13 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -633,13 +635,7 @@ public class TxtUtils {
                 }
             }
             LOG.d("pageHTML [8b]", pageHTML);
-            for (String r : shortList) {
-                if (!r.startsWith("!")) {
-                    String r1 = r;
-                    String r2 = r.replace(".", "{dot}");
-                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
-                }
-            }
+            pageHTML = protectAbbreviations(pageHTML, shortList);
             LOG.d("pageHTML [8c]", pageHTML);
 
             pageHTML = replaceAll(pageHTML,
@@ -691,6 +687,32 @@ public class TxtUtils {
                           .matcher(input)
                           .replaceAll(replacement);
         }
+    }
+
+    static String protectAbbreviations(String text, List<String> abbreviations) {
+        int maxLength = 0;
+        for (String r : abbreviations) {
+            maxLength = Math.max(maxLength, r.length());
+        }
+        Set<String> candidates = new HashSet<>();
+        for (int space = text.indexOf(' '); space >= 0; space = text.indexOf(' ', space + 1)) {
+            int start = space + 1;
+            int limit = start + Math.min(maxLength, text.length() - start);
+            int dot = start;
+            while (dot < limit && text.charAt(dot) != '.') {
+                dot++;
+            }
+            for (int end = dot + 1; end <= limit; end++) {
+                candidates.add(text.substring(start, end));
+            }
+        }
+        for (String r : abbreviations) {
+            // Earlier replacements can introduce {dot}, so such rules still need a live search.
+            if (!r.startsWith("!") && (r.indexOf('{') >= 0 || candidates.contains(r))) {
+                text = text.replace(" " + r, " " + r.replace(".", "{dot}"));
+            }
+        }
+        return text;
     }
 
     public static void loadShotList() {
