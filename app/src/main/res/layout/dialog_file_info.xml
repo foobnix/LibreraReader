@@ -59,17 +59,17 @@
             </RelativeLayout>
 
             <LinearLayout
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
 
                 <TextView
+                    style="@style/textSectionInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/title"
-                    android:textStyle="bold" />
+                    android:text="@string/title" />
 
                 <TextView
                     android:id="@+id/editTitle"
@@ -84,27 +84,26 @@
 
             <TextView
                 android:id="@+id/title"
+                style="@style/textSectionValue"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="10dip"
                 android:text="Title"
                 android:textIsSelectable="true"
                 android:textStyle="normal" />
 
 
             <LinearLayout
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
+                    style="@style/textSectionInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/author"
-                    android:textStyle="bold" />
+                    android:text="@string/author" />
 
                 <TextView
                     android:id="@+id/editAuthor"
@@ -120,26 +119,26 @@
 
             <LinearLayout
                 android:id="@+id/author"
-                android:orientation="vertical"
-                android:minHeight="@dimen/wh_button_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                 />
+                android:minHeight="@dimen/wh_button_small"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" />
 
 
 
             <LinearLayout
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
+                    style="@style/textSectionInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/annotation"
-                    android:textStyle="bold"
                     android:visibility="visible" />
 
                 <TextView
@@ -154,17 +153,20 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/metaInfo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ellipsize="end"
                     android:maxLines="6"
-                    android:padding="10dip"
+                    android:paddingLeft="14dip"
+                    android:paddingRight="14dip"
+                    android:paddingTop="4dip"
+                    android:paddingBottom="4dip"
                     android:text="@string/msg_loading" />
 
                 <TextView
@@ -174,44 +176,40 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/metaInfo"
                     android:layout_alignParentRight="true"
-                    android:gravity="right"
-                    android:text="@string/more"
-                    android:textSize="10sp" />
+                    android:layout_marginRight="10dip"
+                    android:text="@string/more" />
             </RelativeLayout>
 
             <TextView
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/year"
-                android:textStyle="bold"
                 android:visibility="visible" />
 
             <TextView
                 android:id="@+id/year"
+                style="@style/textSectionValue"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:maxLines="2"
-                android:padding="4dip"
                 android:text=""
                 android:textIsSelectable="true"
                 android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/metaSeriesID"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/serie"
-                android:textStyle="bold" />
+                android:text="@string/serie" />
 
             <TextView
                 android:id="@+id/metaSeries"
+                style="@style/textSectionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
                 android:text="Series"
                 android:textIsSelectable="true" />
 
@@ -225,77 +223,80 @@
 
             <TextView
                 android:id="@+id/metaGenreID"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/genre" />
 
             <LinearLayout
                 android:id="@+id/metaGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:minHeight="@dimen/wh_button_small"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip">
 
             </LinearLayout>
 
             <TextView
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/publisher" />
 
             <TextView
                 android:id="@+id/publisher"
+                style="@style/textSectionValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
                 android:selectAllOnFocus="true"
                 android:text=""
                 android:textIsSelectable="true" />
 
             <TextView
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ISBN" />
 
             <TextView
                 android:id="@+id/isbn"
+                style="@style/textSectionValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
                 android:selectAllOnFocus="true"
                 android:text=""
                 android:textIsSelectable="true" />
 
             <TextView
                 android:id="@+id/keywordID"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/keywords" />
 
             <LinearLayout
                 android:id="@+id/keywordList"
-                android:orientation="vertical"
-                android:minHeight="@dimen/wh_button_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:minHeight="@dimen/wh_button_small"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" />
 
             <TextView
                 android:id="@+id/tagsID"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/my_tags" />
 
             <TextView
                 android:id="@+id/tagsList"
+                style="@style/textSectionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
                 android:text="Tags"
                 android:textIsSelectable="true" />
 
@@ -310,16 +311,16 @@
 
             <TextView
                 android:id="@+id/metaTags"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/meta_tags" />
 
             <TextView
                 android:id="@+id/metaTagsInfo"
+                style="@style/textSectionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dip"
                 android:text="@string/meta_tags"
                 android:textIsSelectable="true" />
 
@@ -348,17 +349,19 @@
                 android:visibility="gone" />
 
             <TextView
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/information"
-                android:textStyle="bold" />
+                android:text="@string/information" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="4dip">
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip"
+                android:paddingTop="4dip"
+                android:paddingBottom="4dip">
 
                 <TextView
                     android:id="@+id/mimeType"
@@ -400,7 +403,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingLeft="4dip">
+                android:paddingLeft="14dip"
+                android:paddingRight="14dip"
+                android:paddingBottom="4dip">
 
                 <TextView
                     android:id="@+id/hypenLangLabel"
@@ -422,38 +427,34 @@
             </LinearLayout>
 
             <TextView
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/file_path"
-                android:textStyle="bold" />
+                android:text="@string/file_path" />
 
             <TextView
                 android:id="@+id/path"
+                style="@style/textSectionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="4dip"
                 android:selectAllOnFocus="true"
                 android:text="Path"
                 android:textIsSelectable="true" />
 
             <TextView
                 android:id="@+id/bookmarksSection"
-                style="@style/textSection"
+                style="@style/textSectionInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bookmarks"
-                android:textStyle="bold" />
+                android:text="@string/bookmarks" />
 
             <TextView
                 android:id="@+id/bookmarks"
+                style="@style/textSectionValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 android:ellipsize="end"
-                android:maxLines="5"
-                android:padding="4dip" />
+                android:maxLines="5" />
 
             <TextView
                 android:id="@+id/onUpdateMeta"

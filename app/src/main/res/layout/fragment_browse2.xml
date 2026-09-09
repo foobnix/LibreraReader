@@ -257,9 +257,12 @@
         android:layout_marginTop="4dip"
         android:background="@drawable/bg_input_round"
         android:ellipsize="end"
-        android:lines="2"
+        android:gravity="center_vertical"
+        android:inputType="text"
+        android:maxLines="1"
         android:paddingLeft="12dip"
-        android:paddingRight="12dip"></EditText>
+        android:paddingRight="12dip"
+        android:singleLine="true" />
 
     <LinearLayout
         android:id="@+id/onCloseActionPaner"

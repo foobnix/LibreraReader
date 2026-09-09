@@ -21,24 +21,36 @@ public class ScaledImageView extends ImageView {
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         final Drawable d = getDrawable();
 
-        if (d != null) {
-            int width;
-            int height;
-            if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
-                height = MeasureSpec.getSize(heightMeasureSpec);
-                width = (int) Math.ceil(height * (float) d.getIntrinsicWidth() / d.getIntrinsicHeight());
-            } else {
-                width = Math.min(Dips.screenWidth(), MeasureSpec.getSize(widthMeasureSpec));
-                height = (int) Math.ceil(width * (float) d.getIntrinsicHeight() / d.getIntrinsicWidth());
-
-
-            }
-            width = Math.min((int) (Dips.screenWidth() * 0.9), width);
-            height = Math.min((int) (Dips.screenHeight() * 0.9), height);
-            LOG.d("ScaledImageView", width, height);
-            setMeasuredDimension(width, height);
-        } else {
+        if (d == null || d.getIntrinsicWidth() <= 0 || d.getIntrinsicHeight() <= 0) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            return;
         }
+
+        // The picture is given the room it is offered, and never more than nine tenths of the
+        // screen either way. It takes the width first and the height that its own shape asks
+        // for; if that comes out taller than the room, the height is what it is given and the
+        // width follows from the shape again. Whichever side runs out first, the view ends up
+        // the shape of the picture, so no ground is left showing above or below it.
+        int maxWidth = (int) (Dips.screenWidth() * 0.9);
+        int maxHeight = (int) (Dips.screenHeight() * 0.9);
+
+        if (MeasureSpec.getMode(widthMeasureSpec) != MeasureSpec.UNSPECIFIED) {
+            maxWidth = Math.min(maxWidth, MeasureSpec.getSize(widthMeasureSpec));
+        }
+        if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED) {
+            maxHeight = Math.min(maxHeight, MeasureSpec.getSize(heightMeasureSpec));
+        }
+
+        final float ratio = (float) d.getIntrinsicHeight() / d.getIntrinsicWidth();
+
+        int width = maxWidth;
+        int height = (int) Math.ceil(width * ratio);
+        if (height > maxHeight) {
+            height = maxHeight;
+            width = (int) Math.ceil(height / ratio);
+        }
+
+        LOG.d("ScaledImageView", width, height);
+        setMeasuredDimension(width, height);
     }
 }

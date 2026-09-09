@@ -203,6 +203,42 @@ public class TintUtil {
     }
 
     /**
+     * A word at the foot of a dialog, drawn as one of the panel's buttons. The frame a dialog
+     * stands its own buttons in keeps a tall floor under them for a finger to land on, and the
+     * ring is drawn on the button itself - so left alone it comes out a ring far taller than
+     * the word inside it. The floor is taken away and the ring left to the word and its air.
+     */
+    public static void asDialogButton(TextView button) {
+        if (button == null) {
+            return;
+        }
+        asLinkButton(button, 0);
+        button.setMinHeight(0);
+        button.setMinimumHeight(0);
+        button.setMinWidth(0);
+        button.setMinimumWidth(0);
+    }
+
+    /**
+     * Draws every section head under a view as the settings panel draws its own. A head is what
+     * the section style tags, so a sheet takes on the panel's look by handing this its root.
+     */
+    public static void asSectionHeads(View root) {
+        if (root == null) {
+            return;
+        }
+        if ("section".equals(root.getTag())) {
+            setSectionFillColor(root, color);
+        }
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                asSectionHeads(group.getChildAt(i));
+            }
+        }
+    }
+
+    /**
      * A value button set against a word in its own row is given half the row, and the word the
      * other half, so a column of them comes out one edge instead of stepping in and out with
      * the length of each word. Rows carrying anything else - a mark, a box to tick - are left

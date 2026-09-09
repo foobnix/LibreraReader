@@ -1238,9 +1238,17 @@ public class DragingDialogs {
                         final TextView ttsSpeakPath = inflate.findViewById(R.id.ttsSpeakPath);
                         final TextView progressText = inflate.findViewById(R.id.progressText);
                         final MyProgressBar MyProgressBar1 = inflate.findViewById(R.id.MyProgressBarTTS);
-                        final Button start = inflate.findViewById(R.id.start);
-                        final Button stop = inflate.findViewById(R.id.stop);
-                        final Button delete = inflate.findViewById(R.id.delete);
+                        final TextView start = inflate.findViewById(R.id.start);
+                        final TextView stop = inflate.findViewById(R.id.stop);
+                        final TextView delete = inflate.findViewById(R.id.delete);
+
+                        // The three stand as ringed buttons, as the rest of the screen's do.
+                        // Each is ringed on its own rather than by the sweep over the dialog:
+                        // that would take the row the path stands in for a value against a
+                        // word and give the path half of it.
+                        TintUtil.asLinkButton(delete);
+                        TintUtil.asLinkButton(start, 0);
+                        TintUtil.asLinkButton(stop, 0);
                         final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
                         isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
                         isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) ->

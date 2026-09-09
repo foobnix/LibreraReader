@@ -117,6 +117,44 @@
         <item name="android:background">#60e1e1e1</item>
     </style>
 
+    <!-- A section head in the book sheet, wearing the settings panel's own band: the theme
+         colour cut to a round, the name across it in caps, air above it so a head is read as
+         opening what follows rather than closing what came before. The tag is what the tint
+         looks for when it colours the heads of a sheet it is handed. -->
+    <style name="textSectionInfo">
+        <item name="android:tag">section</item>
+        <item name="android:background">@drawable/bg_section_round</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginRight">4dip</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:layout_marginBottom">2dip</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:paddingTop">6dip</item>
+        <item name="android:paddingBottom">6dip</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- The name inside a head that also carries a button. The band around it is the head, so
+         the name brings the lettering alone. -->
+    <style name="textSectionInfoName">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- What a head is set over: a value, or a list of them, indented to start under the first
+         letter of the name above it. -->
+    <style name="textSectionValue">
+        <item name="android:paddingLeft">14dip</item>
+        <item name="android:paddingRight">14dip</item>
+        <item name="android:paddingTop">4dip</item>
+        <item name="android:paddingBottom">4dip</item>
+    </style>
+
 
     <style name="textCircle">
         <item name="android:textSize">18sp</item>

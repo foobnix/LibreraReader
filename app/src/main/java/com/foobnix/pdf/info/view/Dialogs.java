@@ -155,12 +155,16 @@ public class Dialogs {
 
 
                 ImageView img = new ImageView(activity);
-                img.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+                img.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
                 img.setMaxWidth(Dips.DP_20);
                 img.setMaxHeight(Dips.DP_20);
 
                 img.setImageResource(R.drawable.glyphicons_599_menu_close);
                 TintUtil.setTintImageWithAlpha(img);
+                // The mark that drops a rule stands in a round of its own, as the mark that
+                // closes a panel does, drawn in the colour the mark itself is.
+                img.setBackgroundResource(R.drawable.bg_round_button);
+                TintUtil.setRingColor(img, TintUtil.color);
 
                 img.setOnClickListener(new OnClickListener() {
                     @Override
@@ -182,7 +186,7 @@ public class Dialogs {
                 from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
                 text.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
                 to.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
-                img.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
+                img.setLayoutParams(new LinearLayout.LayoutParams(Dips.DP_32, Dips.DP_32, 0f));
                 move.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
 
                 h.addView(from);
@@ -203,7 +207,6 @@ public class Dialogs {
         add.setText(activity.getString(R.string.add_rule));
         add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
 
-        TxtUtils.underlineTextView(add);
         add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,7 +293,6 @@ public class Dialogs {
         TextView export = new TextView(activity, null, R.style.textLink);
         export.setText(activity.getString(R.string.export_));
         export.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
-        TxtUtils.underlineTextView(export);
         export.setOnClickListener(v -> {
             if (save.run()) {
 
@@ -328,7 +330,6 @@ public class Dialogs {
         TextView importFile = new TextView(activity, null, R.style.textLink);
         importFile.setText(activity.getString(R.string.import_));
         importFile.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
-        TxtUtils.underlineTextView(importFile);
         importFile.setOnClickListener(v -> {
 
             ChooserDialogFragment.chooseFile((FragmentActivity) activity, "TTS-RegEx.txt").setOnSelectListener((result1, result2) -> {
@@ -390,19 +391,24 @@ public class Dialogs {
         importFile.setEllipsize(TextUtils.TruncateAt.END);
 
 
-        line.addView(add);
-        line.addView(Views.newText(activity, " ("));
-        line.addView(export);
-        line.addView(Views.newText(activity, " | "));
-        line.addView(importFile);
-        line.addView(Views.newText(activity, " )"));
+        // The three share the row evenly, so they come out one width and a long word in any
+        // language shortens rather than pushing its neighbour off the end. Three buttons
+        // across a dialog have no room for the width a button standing on its own is given,
+        // and are asked for none; the brackets that held them apart as text are what the
+        // rings do now.
+        line.addView(add, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+        line.addView(export, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+        line.addView(importFile, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+
+        TintUtil.asLinkButton(add, 0);
+        TintUtil.asLinkButton(export, 0);
+        TintUtil.asLinkButton(importFile, 0);
 
         root.addView(Views.newFrameLayout(activity, line));
 
         TextView addDict = new TextView(activity, null, R.style.textLink);
         addDict.setText(activity.getString(R.string.add_dictionary) + " (.txt RegEx @Voice)");
         addDict.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
-        TxtUtils.underlineTextView(addDict);
         addDict.setOnClickListener(v -> {
             ChooserDialogFragment.chooseFile((FragmentActivity) activity, ".txt").setOnSelectListener((result1, result2) -> {
                 if (!StringDB.contains(BookCSS.get().dictPath, result1)) {
@@ -431,6 +437,7 @@ public class Dialogs {
         addDict.setSingleLine();
         addDict.setEllipsize(TextUtils.TruncateAt.END);
         root.addView(addDict);
+        TintUtil.asLinkButton(addDict);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
         restore.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
@@ -439,8 +446,8 @@ public class Dialogs {
         restore.setEllipsize(TextUtils.TruncateAt.END);
 
         restore.setText(R.string.restore_defaults_short);
-        TxtUtils.underlineTextView(restore);
         root.addView(restore);
+        TintUtil.asLinkButton(restore);
 
 
         ScrollView scroll = new ScrollView(activity);

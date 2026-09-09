@@ -25,15 +25,14 @@
             android:gravity="center_vertical"
             android:text="[]" />
 
-        <Button
-            android:layout_weight="0"
+        <!-- Drawn as a ringed button in the screen's own hand, rather than as the filled
+             box the system gives a Button. -->
+        <TextView
             android:id="@+id/delete"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/textLink"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
-            android:minWidth="80dip"
+            android:layout_weight="0"
             android:contentDescription="@string/delete"
             android:text="@string/delete" />
 
@@ -100,22 +99,22 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
+            <!-- The two share the row evenly, so they come out one width and a long word in
+                 any language shortens rather than pushing its neighbour off the end. -->
+            <TextView
                 android:id="@+id/start"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                style="@style/textLink"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:minWidth="120dip"
+                android:layout_weight="1"
                 android:text="@string/start_recording" />
 
-            <Button
+            <TextView
                 android:id="@+id/stop"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-
+                style="@style/textLink"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dip"
-                android:minWidth="80dip"
+                android:layout_weight="1"
                 android:text="@string/to_stop" />
 
 

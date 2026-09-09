@@ -576,6 +576,11 @@ public class FileInformationDialog {
             editMeta(fileMeta, editTitle, title, MuPdfDocument.META_INFO_TITLE);
             editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
         }
+        // The sheet is given the settings panel's look: each head drawn as a band in the theme
+        // colour, and every link under the heads drawn as a ringed button.
+        TintUtil.asSectionHeads(dialog);
+        TintUtil.asLinkButtons(dialog);
+
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);
 
@@ -600,6 +605,12 @@ public class FileInformationDialog {
         });
 
         infoDialog.show();
+
+        // The two words that close the sheet and open the book wear the same ring as the
+        // buttons inside it, asked for no width of their own - a sheet's foot has room for two
+        // side by side only if neither takes the width a column of them would.
+        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_NEGATIVE));
+        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_POSITIVE));
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
@@ -658,9 +669,7 @@ public class FileInformationDialog {
         });
 
         final ScaledImageView imageView = new ScaledImageView(a);
-        imageView.setBackgroundColor(Color.WHITE);
         imageView.setAdjustViewBounds(true);
-        imageView.setCropToPadding(true);
 
         imageView.setOnClickListener(new OnClickListener() {
 
@@ -675,8 +684,8 @@ public class FileInformationDialog {
         IMG.getCoverPageWithEffect(imageView.getContext(), path, null)
            .into(imageView);
 
-        RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                (int) (Dips.screenWidth() * 0.9), RelativeLayout.LayoutParams.WRAP_CONTENT);
         builder.addContentView(imageView, params);
         builder.show();
     }
@@ -702,8 +711,8 @@ public class FileInformationDialog {
         IMG.getCoverPageWithEffect(LibreraApp.context, path, null)
            .into(imageView);
 
-        RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                (int) (Dips.screenWidth() * 0.9), RelativeLayout.LayoutParams.WRAP_CONTENT);
         builder.addContentView(imageView, params);
         builder.show();
     }
