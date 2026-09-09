@@ -596,8 +596,14 @@ public class FileInformationDialog {
         hideRowIfEmpty(dialog, R.id.rowPublisher, R.id.publisher);
         hideRowIfEmpty(dialog, R.id.rowIsbn, R.id.isbn);
 
-        // What can be done to the file is drawn as the settings panel draws its buttons; the
-        // words that edit a single fact are left as the small links they sit beside.
+        // Every word that can be acted on is drawn as the settings panel draws its buttons - a
+        // ring in the colour of the word. None is given a width of its own: the ones that edit
+        // a fact stand at the end of that fact's row and have only the end of the row to stand
+        // in.
+        TintUtil.asLinkButton(editTitle, 0);
+        TintUtil.asLinkButton(editAuthor, 0);
+        TintUtil.asLinkButton(editAnnotation, 0);
+        TintUtil.asLinkButton(expand, 0);
         TintUtil.asLinkButton(convertFile, 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.openWith), 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.sendFile), 0);
