@@ -2,27 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:gravity="center"
      >
 
     <ImageView
         android:id="@+id/ttsDialog"
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
-        android:background="@drawable/bg_clickable"
+        android:background="@drawable/bg_round_press"
         android:padding="2dip"
         android:contentDescription="@string/settings"
         android:src="@drawable/glyphicons_smileys_100_headphones" />
 
     <ImageView
         android:id="@+id/ttsPrev"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/bg_clickable"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/bg_round_press"
         android:contentDescription="@string/previous_page"
         android:padding="2dp"
-        android:src="@drawable/glyphicons_173_rewind" />
+        android:src="@drawable/glyphicons_81_skip_to_previous" />
 
 
 
@@ -32,8 +33,8 @@
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
         android:contentDescription="@string/play_pause"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/bg_clickable"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/bg_round_press"
         android:src="@drawable/glyphicons_175_play" />
 
 
@@ -44,10 +45,10 @@
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dip"
-        android:background="@drawable/bg_clickable"
+        android:layout_marginLeft="4dip"
+        android:background="@drawable/bg_round_press"
         android:padding="2dp"
-        android:src="@drawable/glyphicons_177_forward" />
+        android:src="@drawable/glyphicons_89_skip_to_next" />
     
     
     <ImageView
@@ -56,8 +57,8 @@
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dip"
-        android:background="@drawable/bg_clickable"
+        android:layout_marginLeft="4dip"
+        android:background="@drawable/bg_round_press"
         android:padding="2dp"
         android:src="@drawable/glyphicons_172_skip_to_start" />
     
@@ -68,7 +69,7 @@
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:background="@drawable/bg_clickable"
+        android:background="@drawable/bg_round_press"
         android:padding="2dp"
         android:src="@drawable/glyphicons_178_skip_to_end" />
     
@@ -78,9 +79,9 @@
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dip"
+        android:layout_marginLeft="4dip"
         android:contentDescription="@string/close"
-        android:background="@drawable/bg_clickable"
+        android:background="@drawable/bg_round_press"
         android:padding="8dp"
         android:src="@drawable/glyphicons_599_menu_close" />
 

@@ -19,6 +19,7 @@ import android.os.Looper;
 import android.os.Parcelable;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -34,6 +35,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -668,6 +670,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return true;
         });
         ttsActive = findViewById(R.id.ttsActive);
+        moveTtsControlsIntoPanel();
 
         // ttsActive.setOnClickListener(new View.OnClickListener() {
         //
@@ -1189,6 +1192,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.invalidate();
 
                     ttsActive.setDC(dc);
+                    ttsActive.hideStop();
                     ttsActive.addOnDialogRunnable(new Runnable() {
 
                         @Override
@@ -1386,7 +1390,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         try {
-            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
+            showTtsControls();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1395,7 +1399,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPageNumber(final MessagePageNumber event) {
         try {
-            ttsActive.setVisibility(View.VISIBLE);
+            showTtsControls();
             dc.onGoToPage(event.getPage() + 1);
         } catch (Exception e) {
             LOG.e(e);
@@ -1625,7 +1629,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
+            showTtsControls();
         }
 
     }
@@ -2300,13 +2304,49 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private void ttsFixPosition() {
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ttsActive.getLayoutParams();
-        if (AppState.get().isEditMode) {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
-        } else {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        // Only where the controls still float over the page do they need placing against its
+        // foot; in the panel the row they stand in decides where they are.
+        if (ttsActive.getLayoutParams() instanceof RelativeLayout.LayoutParams) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ttsActive.getLayoutParams();
+            if (AppState.get().isEditMode) {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
+            } else {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            }
+            ttsActive.setLayoutParams(layoutParams);
         }
-        ttsActive.setLayoutParams(layoutParams);
+        showTtsControls();
+    }
+
+    /**
+     * Puts the reading controls in the slot the recent panel keeps for them, on the middle of
+     * the row it names itself in. They were a sheet of their own floating over the page; there
+     * is a row of chrome already there to stand in.
+     */
+    private void moveTtsControlsIntoPanel() {
+        final View slot = findViewById(R.id.ttsControlsSlot);
+        if (ttsActive == null || !(slot instanceof ViewGroup) || ttsActive.getParent() == slot) {
+            return;
+        }
+        if (ttsActive.getParent() instanceof ViewGroup) {
+            ((ViewGroup) ttsActive.getParent()).removeView(ttsActive);
+        }
+        final FrameLayout.LayoutParams lp =
+                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+                                             FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.CENTER;
+        ((ViewGroup) slot).addView(ttsActive, lp);
+    }
+
+    /**
+     * The reading controls stand with the panels, not over the page. They were shown for as
+     * long as speech was running, which left them lying across the words being read.
+     */
+    private void showTtsControls() {
+        if (ttsActive == null) {
+            return;
+        }
+        ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
     }
 
     @Override

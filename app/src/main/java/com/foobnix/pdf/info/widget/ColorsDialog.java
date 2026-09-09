@@ -1,6 +1,8 @@
 package com.foobnix.pdf.info.widget;
 
 import android.app.AlertDialog;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.TintUtil;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -74,8 +76,11 @@ public class ColorsDialog {
         textPreview2 = (TextView) view.findViewById(R.id.textView2);
 
 
-        isColor = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.isColor));
-        isImage = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.isImage));
+        isColor = (TextView) view.findViewById(R.id.isColor);
+        isImage = (TextView) view.findViewById(R.id.isImage);
+        // These two share half a row, so they are given no floor under their width.
+        TintUtil.asLinkButton(isColor, 0);
+        TintUtil.asLinkButton(isImage, 0);
 
         textPreview.setText(isDayMode ? R.string.day : R.string.nigth);
 
@@ -95,6 +100,15 @@ public class ColorsDialog {
         fontRGB = (TextView) view.findViewById(R.id.fontRGB);
         bgRGB = (TextView) view.findViewById(R.id.bgRGB);
         fontRGBForeground = (TextView) view.findViewById(R.id.fontRGBForeground);
+
+        // The values read as buttons, and the bands they are picked from are cut to the same
+        // round the wheels under them already are.
+        asRingedButton(fontRGB);
+        asRingedButton(bgRGB);
+        asRingedButton(fontRGBForeground);
+        TintUtil.roundCorners(hsvValueSliderFont, Dips.dpToPx(8));
+        TintUtil.roundCorners(hsvValueSliderBackground, Dips.dpToPx(8));
+        TintUtil.roundCorners(hsvValueSliderForeground, Dips.dpToPx(8));
 
         foregroundLayout = view.findViewById(R.id.foregroundLayout);
 
@@ -125,6 +139,17 @@ public class ColorsDialog {
         bg2 = (ImageView) view.findViewById(R.id.bg2);
         bg3 = (ImageView) view.findViewById(R.id.bg3);
         bg4 = (ImageView) view.findViewById(R.id.bg4);
+
+        // The pictures a page can be laid on are cut to the same round the covers are, and the
+        // plus that adds one is ringed in the theme's own colour rather than left grey.
+        for (ImageView tile : new ImageView[]{bg1, bg2, bg3, bg4}) {
+            TintUtil.roundCorners(tile, Dips.dpToPx(6));
+        }
+        View onAddImage = view.findViewById(R.id.onAddImage);
+        if (onAddImage instanceof ImageView) {
+            TintUtil.setRingColor(onAddImage, TintUtil.color);
+            TintUtil.setTintImageNoAlpha((ImageView) onAddImage, TintUtil.color);
+        }
 
         bg1.setImageBitmap(MagicHelper.loadBitmap(MagicHelper.IMAGE_BG_1));
         bg2.setImageBitmap(MagicHelper.loadBitmap(MagicHelper.IMAGE_BG_2));
@@ -478,9 +503,26 @@ public class ColorsDialog {
                 AppProfile.save(c);
             }
         });
-        d.show();
+        // Restoring the defaults is one of the three things this dialog offers, so it stands
+        // in the row with the other two rather than on a line of its own above them. The
+        // listener is attached after the dialog is made, or pressing it would close it.
+        d.setNeutralButton(R.string.restore_defaults_short, new DialogInterface.OnClickListener() {
 
-        TextView isDefaults = TxtUtils.underlineTextView((TextView) view.findViewById(R.id.onDefaults));
+            @Override public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        final AlertDialog created = d.show();
+        final TextView isDefaults = created.getButton(DialogInterface.BUTTON_NEUTRAL);
+        final TextView ok = created.getButton(DialogInterface.BUTTON_POSITIVE);
+        if (isDefaults != null && ok != null) {
+            isDefaults.setTextColor(ok.getCurrentTextColor());
+        }
+        asRingedButton(created.getButton(DialogInterface.BUTTON_NEGATIVE));
+        asRingedButton(ok);
+        asRingedButton(isDefaults);
+
         isDefaults.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -586,13 +628,32 @@ public class ColorsDialog {
         updateRGB(fontRGBForeground, foregroundColor);
     }
 
+    /** Draws a word as a button the way the settings panel does: a ring cut from its own colour. */
+    private static void asRingedButton(TextView button) {
+        if (button == null) {
+            return;
+        }
+        TintUtil.asLinkButton(button);
+        // A dialog gives its words a row of its own height and lets them fill it, so the ring
+        // comes out as tall as the row. Cut back to what the word and its padding need.
+        button.setMinHeight(0);
+        button.setMinimumHeight(0);
+        if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+            lp.topMargin = lp.bottomMargin = 0;
+            button.setLayoutParams(lp);
+        }
+    }
+
     public void updateRGB(TextView font, Integer intColor) {
         if (intColor == AppState.COLOR_BLACK) {
             intColor = Color.BLACK;
         }
 
         String hexColor = MagicHelper.colorToString(intColor);
-        font.setText(TxtUtils.underline(hexColor));
+        // No underline: the ring around it already says it can be pressed, and a span set
+        // here would be dropped by the next repaint of the button anyway.
+        font.setText(hexColor);
     }
 
 }

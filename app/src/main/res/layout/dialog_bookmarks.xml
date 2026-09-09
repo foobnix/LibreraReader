@@ -35,27 +35,32 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
-        <Button
+        <!-- Ringed like the buttons the settings panel is drawn with, rather than the
+             platform's grey slabs. The dialog colours the rings when it binds them. -->
+        <TextView
             android:id="@+id/addBookmarkNormal"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/textLink"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dip"
             android:layout_marginLeft="3dip"
             android:layout_marginRight="3dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAllCaps="true"
             android:text="@string/add" />
 
-        <Button
+        <TextView
             android:id="@+id/addPageBookmarkQuick"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dip"
             android:layout_marginLeft="3dip"
             android:layout_marginRight="3dip"
             android:layout_weight="1"
-            android:tint="@color/white"
+            android:gravity="center"
+            android:textAllCaps="true"
             android:text="@string/fast_bookmark" />
     </LinearLayout>
 

@@ -10,6 +10,9 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.view.Gravity;
 import android.graphics.Outline;
 import android.view.ViewOutlineProvider;
@@ -23,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.widget.ImageViewCompat;
@@ -152,6 +156,15 @@ public class TintUtil {
      * word inside it, with air enough round it that two side by side do not touch.
      */
     public static void asLinkButton(TextView button) {
+        asLinkButton(button, 110);
+    }
+
+    /**
+     * The same button, with the floor under its width given rather than assumed. Two of them
+     * side by side in half a dialog have no room for the width a column of them wants, and
+     * are asked for none.
+     */
+    public static void asLinkButton(TextView button, int minWidthDp) {
         if (button == null) {
             return;
         }
@@ -162,7 +175,7 @@ public class TintUtil {
         button.setPadding(Dips.DP_10, Dips.DP_4, Dips.DP_10, Dips.DP_4);
         // A floor under the width, so a column of short values - Top, Dark, Auto - comes out
         // one width instead of a ragged edge. A longer word still makes its button wider.
-        button.setMinWidth(Dips.dpToPx(110));
+        button.setMinWidth(Dips.dpToPx(minWidthDp));
         button.setGravity(Gravity.CENTER);
         if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
@@ -171,6 +184,54 @@ public class TintUtil {
             button.setLayoutParams(lp);
         }
         setRingColor(button, button.getCurrentTextColor());
+    }
+
+    /**
+     * Draws every link under a view as a button. A link is what the textLink style tags, so a
+     * dialog takes on the settings panel's look by handing this its inflated root.
+     */
+    public static void asLinkButtons(View root) {
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                asLinkButtons(group.getChildAt(i));
+            }
+        } else if (root instanceof TextView && "textLink".equals(root.getTag())) {
+            asLinkButton((TextView) root);
+            alignInRow((TextView) root);
+        }
+    }
+
+    /**
+     * A value button set against a word in its own row is given half the row, and the word the
+     * other half, so a column of them comes out one edge instead of stepping in and out with
+     * the length of each word. Rows carrying anything else - a mark, a box to tick - are left
+     * as they were laid out.
+     */
+    private static void alignInRow(TextView button) {
+        if (!(button.getParent() instanceof LinearLayout)) {
+            return;
+        }
+        LinearLayout row = (LinearLayout) button.getParent();
+        if (row.getOrientation() != LinearLayout.HORIZONTAL || row.getChildCount() != 2) {
+            return;
+        }
+        View label = row.getChildAt(0) == button ? row.getChildAt(1) : row.getChildAt(0);
+        if (!(label instanceof TextView) || "textLink".equals(label.getTag())) {
+            return;
+        }
+        halve(label);
+        halve(button);
+    }
+
+    private static void halve(View view) {
+        if (!(view.getLayoutParams() instanceof LinearLayout.LayoutParams)) {
+            return;
+        }
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) view.getLayoutParams();
+        lp.width = 0;
+        lp.weight = 1;
+        view.setLayoutParams(lp);
     }
 
     /**
@@ -273,27 +334,63 @@ public class TintUtil {
      * wrapped around the shape, so the shape has to be dug out of the layers rather than cast
      * to from the background itself.
      */
+    /**
+     * The states a ring is looked for in. A selector hands out one drawable at a time, so it
+     * is asked for each of these in turn - otherwise only the state that happened to be on
+     * show is recoloured, and the ring goes back to the colour it was inflated with the moment
+     * the view settles into another state.
+     */
+    private static final int[][] RING_STATES = {
+            new int[]{},
+            new int[]{android.R.attr.state_pressed},
+            new int[]{android.R.attr.state_selected},
+            new int[]{android.R.attr.state_focused},
+            new int[]{android.R.attr.state_enabled},
+    };
+
     public static void setRingColor(View view, int color) {
         if (view == null || view.getBackground() == null) {
             return;
         }
-        Drawable background = view.getBackground().mutate();
-        if (background instanceof RippleDrawable) {
-            RippleDrawable ripple = (RippleDrawable) background;
-            for (int i = 0; i < ripple.getNumberOfLayers(); i++) {
-                if (ripple.getId(i) == android.R.id.mask) {
+        strokeRings(view.getBackground().mutate(), color, 0);
+        // The states were stepped through to reach every ring; the view is asked to draw
+        // itself again so the one on show is the freshly coloured one.
+        view.invalidate();
+    }
+
+    /**
+     * Draws every ring found under a background in the given colour, whichever way it was put
+     * together - a shape, a shape inside a ripple or a layer list, a shape held in a selector,
+     * or one wrapped in an inset. Anything that is not a ring is passed over.
+     */
+    private static void strokeRings(Drawable drawable, int color, int depth) {
+        if (drawable == null || depth > 4) {
+            return;
+        }
+        if (drawable instanceof GradientDrawable) {
+            ((GradientDrawable) drawable).setStroke(STROKE, color);
+        } else if (drawable instanceof LayerDrawable) {
+            // A ripple is a layer list too, and its mask is not drawn.
+            LayerDrawable layers = (LayerDrawable) drawable;
+            for (int i = 0; i < layers.getNumberOfLayers(); i++) {
+                if (layers.getId(i) == android.R.id.mask) {
                     continue;
                 }
-                Drawable layer = ripple.getDrawable(i);
-                if (layer instanceof GradientDrawable) {
-                    ((GradientDrawable) layer).setStroke(STROKE, color);
+                strokeRings(layers.getDrawable(i), color, depth + 1);
+            }
+        } else if (drawable instanceof StateListDrawable) {
+            StateListDrawable states = (StateListDrawable) drawable;
+            int[] wasShowing = states.getState();
+            for (int[] state : RING_STATES) {
+                states.setState(state);
+                Drawable child = states.getCurrent();
+                if (child != null && child != drawable) {
+                    strokeRings(child, color, depth + 1);
                 }
             }
-        } else if (background instanceof GradientDrawable) {
-            ((GradientDrawable) background).setStroke(STROKE, color);
-        } else if (background.getCurrent() instanceof GradientDrawable) {
-            // A selector: only the state on show can be reached, which is the one being drawn.
-            ((GradientDrawable) background.getCurrent()).setStroke(STROKE, color);
+            states.setState(wasShowing);
+        } else if (drawable instanceof InsetDrawable) {
+            strokeRings(((InsetDrawable) drawable).getDrawable(), color, depth + 1);
         }
     }
 

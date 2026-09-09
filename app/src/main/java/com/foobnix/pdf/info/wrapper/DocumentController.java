@@ -313,6 +313,17 @@ public abstract class DocumentController {
         return R.drawable.glyphicons_216_fullscreen;
     }
 
+    /**
+     * The mode a tap on the full screen button moves to: out of normal into full screen, and
+     * out of anything else back to normal. The button asked which of three to use on every
+     * press, two of which differ only on a device with a notch; the third is still there on a
+     * long press.
+     */
+    public static int nextFullScreenMode(int currentMode) {
+        return currentMode == AppState.FULL_SCREEN_NORMAL ? AppState.FULL_SCREEN_FULLSCREEN :
+                AppState.FULL_SCREEN_NORMAL;
+    }
+
     public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow()

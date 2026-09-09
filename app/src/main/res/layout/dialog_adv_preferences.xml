@@ -115,6 +115,18 @@
                 android:layout_height="wrap_content"
                 android:minEms="2"
                 android:text="5%" />
+        </LinearLayout>
+
+        <!-- Customising the zones is its own row, so the size beside the word above lines up
+             with the values in every other row rather than sharing its row with a second
+             button and stepping out of the column. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="180dip"
+                android:layout_height="1dp" />
 
             <TextView
                 android:id="@+id/tapzoneCustomize"

@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Environment;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -312,7 +313,11 @@ public class AppProfile {
                         text.setText(tagName);
 
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
-                        TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
+                        // Ringed and drawn in the colour of the name beside it, like the mark
+                        // that drops a folder or a book.
+                        final int rowColor = text.getCurrentTextColor();
+                        TintUtil.setRingColor(delete, rowColor);
+                        TintUtil.setTintImageNoAlpha(delete, rowColor);
                         if (tagName.equals(getCurrent())) {
                             delete.setVisibility(View.GONE);
                         } else {
@@ -410,6 +415,14 @@ public class AppProfile {
             return;
         }
         TintUtil.asLinkButton(button);
+        // A dialog lays its own words out in a bar of its own height. The air a button carries
+        // in the settings panel pushes the ring past the top and bottom of that bar, and it is
+        // drawn cut off; inside a dialog the padding alone gives the ring its room.
+        if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+            lp.topMargin = lp.bottomMargin = 0;
+            button.setLayoutParams(lp);
+        }
         TintUtil.setRingColor(button, button.getCurrentTextColor());
     }
 

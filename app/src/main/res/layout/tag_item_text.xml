@@ -17,16 +17,18 @@
         android:singleLine="true"
         android:text="Sample 1" />
 
+    <!-- Ringed like the other remove marks; the adapter draws the ring in the colour of the
+         name beside it. -->
     <ImageView
         android:id="@+id/delete1"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
+        android:layout_marginLeft="10dip"
         android:layout_weight="0"
-        android:padding="5dip"
-		android:layout_marginLeft="10dip"
+        android:background="@drawable/bg_round_button"
         android:contentDescription="@string/remove"
+        android:padding="5dip"
         android:src="@drawable/glyphicons_599_menu_close"
-        android:tint="@color/lt_grey_dima"
         android:visibility="visible" />
 
 </LinearLayout>

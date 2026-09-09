@@ -261,16 +261,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip">
 
+                    <!-- Ringed and drawn in the theme's accent, like the other round buttons.
+                         The dialog colours it when it binds. -->
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/onAddImage"
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
                         android:layout_centerInParent="true"
-                        android:gravity="center"
-                        android:padding="2dip"
-                        android:scaleType="center"
-                        android:src="@drawable/glyphicons_631_circle_plus"
-                        android:textSize="40sp"
-                        android:tint="@color/tint_gray" />
+                        android:background="@drawable/bg_round_button"
+                        android:contentDescription="@string/add"
+                        android:padding="7dip"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/glyphicons_371_plus" />
 
                     <ImageView
                         android:id="@+id/bg4"
@@ -286,14 +288,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/onDefaults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dip"
-        android:layout_weight="0"
-        android:text="@string/restore_defaults_short" />
 
 </LinearLayout>

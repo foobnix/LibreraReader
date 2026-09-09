@@ -45,18 +45,23 @@
         android:layout_marginTop="5dip"
         android:gravity="center_horizontal" >
 
-        <Button
+        <!-- Set as links rather than as framed buttons: the dialog draws them as rings in
+             the accent, the way every other button in the settings is drawn. -->
+        <TextView
             android:id="@+id/flippingStop"
+            style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/to_stop" />
+            android:text="@string/to_stop"
+            android:textAllCaps="true" />
 
-        <Button
+        <TextView
             android:id="@+id/flippingStart"
+            style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/start" />
+            android:text="@string/start"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 </LinearLayout>

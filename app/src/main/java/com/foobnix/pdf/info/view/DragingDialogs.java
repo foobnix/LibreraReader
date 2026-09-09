@@ -23,6 +23,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -358,9 +359,11 @@ public class DragingDialogs {
 
                 TextView add = new TextView(activity, null, R.style.textLink);
                 add.setText(activity.getString(R.string.add));
-                add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
-
-                TxtUtils.underlineTextView(add);
+                // A ringed button, like the ones the settings panel is drawn with, in the
+                // colour the marks in this panel are. The ring says it can be pressed, so the
+                // word is not underlined as well.
+                add.setTextColor(MagicHelper.getTextOrIconColor());
+                TintUtil.asLinkButton(add);
                 add.setTag(false);
                 add.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
@@ -405,8 +408,11 @@ public class DragingDialogs {
                     }
                 });
 
-                Button save = new Button(controller.getActivity());
+                TextView save = new TextView(controller.getActivity());
                 save.setText(R.string.save);
+                save.setAllCaps(true);
+                save.setTextColor(MagicHelper.getTextOrIconColor());
+                TintUtil.asLinkButton(save);
                 save.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         boolean hasErrors = false;
@@ -456,8 +462,25 @@ public class DragingDialogs {
                     }
                 });
 
-                root.addView(add);
-                root.addView(save);
+                // Only as wide as the words in them, one at each end of the row: what adds a
+                // line on the left, what keeps the lot on the right. A view built in code
+                // carries no layout of its own for asLinkButton to add margins to, so the row
+                // hands each one out here.
+                LinearLayout buttons = new LinearLayout(activity);
+                buttons.setOrientation(LinearLayout.HORIZONTAL);
+
+                final LinearLayout.LayoutParams button =
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                                      LinearLayout.LayoutParams.WRAP_CONTENT);
+                button.leftMargin = button.rightMargin = Dips.DP_8;
+                button.topMargin = button.bottomMargin = Dips.DP_4;
+
+                final View spacer = new View(activity);
+
+                buttons.addView(add, button);
+                buttons.addView(spacer, new LinearLayout.LayoutParams(0, 1, 1));
+                buttons.addView(save, new LinearLayout.LayoutParams(button));
+                root.addView(buttons);
 
                 ScrollView scroll = new ScrollView(activity);
                 scroll.setOverScrollMode(ScrollView.OVER_SCROLL_IF_CONTENT_SCROLLS);
@@ -1046,9 +1069,13 @@ public class DragingDialogs {
 
                 final EditText ttsSentecesDivs = view.findViewById(R.id.ttsSentecesDivs);
 
-                TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults))
-                        .setOnClickListener(new OnClickListener() {
-                            @Override public void onClick(View v) {
+                // Putting the defaults back is reached from the dialog's own menu, rather
+                // than from a button standing among the settings it puts back.
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
+                titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
+                titlePopupMenu.getMenu()
+                              .add(controller.getString(R.string.restore_defaults_short))
+                              .setOnMenuItemClickListener(item -> {
 
                                 AlertDialogs.showOkDialog(controller.getActivity(),
                                                           controller.getString(R.string.restore_defaults_full),
@@ -1076,8 +1103,8 @@ public class DragingDialogs {
                                                                   ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
                                                               }
                                                           });
-                            }
-                        });
+                                return false;
+                            });
                 //
 
                 CheckBox stopReadingOnCall = view.findViewById(R.id.stopReadingOnCall);
@@ -1363,6 +1390,35 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(timerStart);
                 TxtUtils.underlineTextView(timerTime);
                 TxtUtils.underlineTextView(ttsSkeakToFile);
+
+                // The two parts of the sheet, chosen by the row of tabs at its head. Only one
+                // is on show at a time, so the settings that are reached less often are not in
+                // the way of the ones that are.
+                final View ttsMainSection = view.findViewById(R.id.ttsMainSection);
+                final View ttsAdvancedSection = view.findViewById(R.id.ttsAdvancedSection);
+                final TextView ttsMainTab = view.findViewById(R.id.ttsMainTab);
+                final TextView ttsAdvancedTab = view.findViewById(R.id.ttsAdvancedTab);
+
+                final ResultResponse<Boolean> showSection = new ResultResponse<Boolean>() {
+                    @Override public boolean onResultRecive(Boolean advanced) {
+                        ttsMainSection.setVisibility(advanced ? View.GONE : View.VISIBLE);
+                        ttsAdvancedSection.setVisibility(advanced ? View.VISIBLE : View.GONE);
+                        // The part being read is named in bold, so which of the two is on
+                        // show can be told from the tabs themselves.
+                        ttsMainTab.setTypeface(null, advanced ? Typeface.NORMAL : Typeface.BOLD);
+                        ttsAdvancedTab.setTypeface(null, advanced ? Typeface.BOLD : Typeface.NORMAL);
+                        return false;
+                    }
+                };
+                showSection.onResultRecive(false);
+
+                ttsMainTab.setOnClickListener(v1 -> showSection.onResultRecive(false));
+                ttsAdvancedTab.setOnClickListener(v1 -> showSection.onResultRecive(true));
+
+                // The links in this dialog are drawn as ringed buttons, as the settings panel
+                // draws its own.
+                TintUtil.asLinkButtons(view);
+
 
                 return view;
             }
@@ -2860,7 +2916,16 @@ public class DragingDialogs {
                 contentList.setAdapter(bookmarksAdapter);
                 contentList.setOnItemClickListener(onItem);
                 contentList.setOnItemLongClickListener(onBooksLong);
-                a.findViewById(R.id.addBookmarkNormal).setOnClickListener(onAddBookmark);
+                final View addBookmark = a.findViewById(R.id.addBookmarkNormal);
+                final View quickBookmark = a.findViewById(R.id.addPageBookmarkQuick);
+                // Ringed in the colour of the words inside them, as every other button is.
+                if (addBookmark instanceof TextView) {
+                    TintUtil.asLinkButton((TextView) addBookmark);
+                }
+                if (quickBookmark instanceof TextView) {
+                    TintUtil.asLinkButton((TextView) quickBookmark);
+                }
+                addBookmark.setOnClickListener(onAddBookmark);
 
                 final View.OnClickListener onQuickBookmark = new View.OnClickListener() {
                     @Override public void onClick(final View v) {
@@ -3297,6 +3362,9 @@ public class DragingDialogs {
                         EventBus.getDefault().post(new FlippingStop());
                     }
                 });
+
+                // Stop and start are drawn as ringed buttons, as the settings dialogs draw theirs.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }
@@ -3820,6 +3888,10 @@ public class DragingDialogs {
                     statusBarColorDay.setVisibility(View.GONE);
                     statusBarColorNight.setVisibility(View.VISIBLE);
                 }
+
+                // The links in this dialog are drawn as ringed buttons, as the settings
+                // panel draws its own.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }
@@ -4603,6 +4675,10 @@ public class DragingDialogs {
                     }
                 });
                 Views.visibleInBeta(drawThreadPriority);
+
+                // The links in this dialog are drawn as ringed buttons, as the settings
+                // panel draws its own.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }
@@ -5665,7 +5741,12 @@ public class DragingDialogs {
                             params.setMargins(padding, padding, padding, padding);
                             t1.setLayoutParams(params);
                             t1.setGravity(Gravity.CENTER);
-                            t1.setBackgroundColor(bg);
+                            // The colour is laid in already cut to the round, so the corners
+                            // do not have to be clipped off a square afterwards.
+                            GradientDrawable swatch = new GradientDrawable();
+                            swatch.setColor(bg);
+                            swatch.setCornerRadius(Dips.dpToPx(BorderTextView.RADIUS_DP));
+                            t1.setBackground(swatch);
                             if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
                                 t1.setText(name);
                                 t1.setTextColor(text);
@@ -5758,13 +5839,26 @@ public class DragingDialogs {
                             });
                             lc.addView(t2);
                         }
+
+                        for (int i = 0; i < lc.getChildCount(); i++) {
+                            TintUtil.roundCorners(lc.getChildAt(i), Dips.dpToPx(8));
+                        }
                     }
                 };
                 colorsLine.run();
 
-                TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor))
-                        .setOnClickListener(new OnClickListener() {
-                            @Override public void onClick(View v) {
+                // The two panels and every swatch under them are cut to the round their
+                // borders are, so a colour or a texture no longer squares off the corners.
+                TintUtil.roundCorners(textDayColor, Dips.dpToPx(8));
+                TintUtil.roundCorners(textNigthColor, Dips.dpToPx(8));
+
+                // Putting the defaults back is reached from the dialog's own menu now, rather
+                // than from a button standing among the settings it puts back.
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
+                titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
+                titlePopupMenu.getMenu()
+                              .add(controller.getString(R.string.restore_defaults_short))
+                              .setOnMenuItemClickListener(item -> {
 
                                 AlertDialogs.showOkDialog(controller.getActivity(),
                                                           controller.getString(R.string.restore_defaults_full),
@@ -5818,8 +5912,8 @@ public class DragingDialogs {
                                                                   colorsLine.run();
                                                               }
                                                           });
-                            }
-                        });
+                                return false;
+                            });
 
                 inflate.findViewById(R.id.moreReadColorSettings).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
@@ -5939,6 +6033,10 @@ public class DragingDialogs {
                         builder.show();
                     }
                 });
+
+                // The links in this dialog are drawn as ringed buttons, as the settings
+                // panel draws its own.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }

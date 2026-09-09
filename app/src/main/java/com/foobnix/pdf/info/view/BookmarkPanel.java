@@ -35,7 +35,6 @@ public class BookmarkPanel {
         if (dc == null) {
             return;
         }
-        int tintColor = TintUtil.color;
         int colorWhite = ColorUtils.setAlphaComponent(Color.WHITE,50);
 
         if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
@@ -50,9 +49,13 @@ public class BookmarkPanel {
         }
 
 
-        TintUtil.setTintImageNoAlpha(pagesBookmark, tintColor);
+        // Everything in this panel stands on the page rather than on a bar, so it is drawn in
+        // the colour the reading marks are - the theme colour the bars are filled with is
+        // barely there against the page itself.
+        final int bookmarkColor = MagicHelper.getTextOrIconColor();
+        TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
         pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
-        TintUtil.setStrokeColorWithDash(pagesBookmark, tintColor).setColor(colorWhite);
+        TintUtil.setStrokeColorWithDash(pagesBookmark, bookmarkColor).setColor(colorWhite);
 
 
 
@@ -82,11 +85,9 @@ public class BookmarkPanel {
             t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             t.setTextSize(16);
             t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
-            t.setTextColor(tintColor);
+            t.setTextColor(bookmarkColor);
 
-
-
-            TintUtil.setStrokeColorWithDash(t, tintColor).setColor(colorWhite);
+            TintUtil.setStrokeColorWithDash(t, bookmarkColor).setColor(colorWhite);
 
 
             t.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,9 @@ import com.foobnix.android.utils.Dips;
 
 public class BorderTextView extends TextView {
 
+    /** The round the swatch is cut to, and that its border has to follow. */
+    public static final int RADIUS_DP = 8;
+
     Paint paint = new Paint();
     {
         paint.setColor(Color.LTGRAY);
@@ -26,9 +29,13 @@ public class BorderTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(0, 0, getHeight(), getWidth(), paint);
+        // Drawn square, the border left its corners behind as specks outside the round the
+        // swatch is clipped to. It is drawn to the same round instead, and held inside the
+        // view by half its own width so the stroke does not straddle the edge.
+        final float inset = paint.getStrokeWidth() / 2f;
+        final float radius = Dips.dpToPx(RADIUS_DP);
+        canvas.drawRoundRect(inset, inset, getWidth() - inset, getHeight() - inset, radius, radius, paint);
         super.onDraw(canvas);
     }
-
 
 }

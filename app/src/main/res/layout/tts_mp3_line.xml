@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
 
-    android:padding="4dip"
+    android:padding="0dip"
     android:clickable="true"
     android:orientation="vertical" >
 

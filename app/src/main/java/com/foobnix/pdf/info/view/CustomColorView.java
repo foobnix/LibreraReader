@@ -88,7 +88,9 @@ public class CustomColorView extends FrameLayout {
 
         for (final int color : colors) {
             TextView t = new TextView(getContext());
-            t.setBackgroundColor(color);
+            // Cut to the same small round the swatches in the settings panel are, rather than
+            // left as bare squares of colour.
+            TintUtil.setColorSwatch(t, color);
             t.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -172,7 +174,7 @@ public class CustomColorView extends FrameLayout {
 
     public void init(int initColor) {
         this.initColor = initColor;
-        text2.setBackgroundColor(initColor);
+        TintUtil.setColorSwatch(text2, initColor);
         text2.setText(MagicHelper.colorToString(initColor));
 
 

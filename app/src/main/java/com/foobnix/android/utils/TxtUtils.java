@@ -1467,6 +1467,9 @@ public class TxtUtils {
                 if (child instanceof TextView) {
                     if ("textLink".equals(child.getTag())) {
                         ((TextView) child).setTextColor(color);
+                        // A link drawn as a button keeps its ring the colour of its own word.
+                        // Links still drawn as text carry no ring, and this passes over them.
+                        TintUtil.setRingColor(child, color);
                     }
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
@@ -1494,6 +1497,14 @@ public class TxtUtils {
                             }
                         } else {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
+                        }
+
+                        // A mark standing inside a ring has the ring drawn in the colour the
+                        // mark itself just took, so the two read as one button rather than as
+                        // a coloured glyph in a grey box. Marks with no ring are passed over.
+                        ColorStateList markTint = imageView.getImageTintList();
+                        if (markTint != null) {
+                            TintUtil.setRingColor(imageView, markTint.getDefaultColor());
                         }
                     } else if (child instanceof SeekBar) {
                         SeekBar seekBar = (SeekBar) child;

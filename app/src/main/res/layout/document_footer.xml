@@ -11,52 +11,74 @@
         android:orientation="vertical">
 
         <!-- The row is held off the head of the panel by as much as the strip below it holds
-             the covers off, so the button has the same air above it as beneath. -->
+             the covers off, so the button has the same air above it as beneath. The name and
+             the close button are given the same weight either side of the slot the reading
+             controls stand in, so those controls keep the middle of the panel however long
+             the name beside them runs. -->
         <LinearLayout
             android:id="@+id/playListParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingTop="5dip">
 
-            <TextView
-                android:id="@+id/playListName"
-                style="@style/textLinkWhite"
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/playListName"
+                    style="@style/textLinkWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text=""
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/playListNameEdit"
+                    style="@style/textLinkWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="textLink"
+                    android:text="@string/edit"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- The controls that play the book are put in here by the reading screen; the
+                 slot takes no room of its own while they are away. -->
+            <FrameLayout
+                android:id="@+id/ttsControlsSlot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text=""
-                android:textStyle="bold" />
+                android:layout_weight="0" />
 
-            <TextView
-                android:id="@+id/playListNameEdit"
-                style="@style/textLinkWhite"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:tag="textLink"
-                android:text="@string/edit"
-                android:visibility="gone" />
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <!-- Ringed like the close on the reading bar; the panel draws the ring in its
-                 own colour. -->
-            <ImageView
-                android:id="@+id/closePlaylist"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_margin="4dip"
-                android:layout_weight="0"
-                android:background="@drawable/bg_round_button"
-                android:contentDescription="@string/close"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_599_menu_close"
-                android:tint="@color/tint_white" />
-
+                <!-- Ringed like the close on the reading bar; the panel draws the ring in its
+                     own colour. -->
+                <ImageView
+                    android:id="@+id/closePlaylist"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:layout_margin="4dip"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_round_button"
+                    android:contentDescription="@string/close"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_599_menu_close"
+                    android:tint="@color/tint_white" />
+            </LinearLayout>
 
         </LinearLayout>
 

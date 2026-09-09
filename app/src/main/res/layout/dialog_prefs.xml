@@ -751,15 +751,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/onDefaultColor"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:maxLines="2"
-            android:singleLine="false"
-            android:text="@string/restore_defaults_short" />
+        <!-- Putting the defaults back is offered by the dialog's own menu, in the head. -->
 
         <TextView
             android:id="@+id/textCustomizeFontBGColor"

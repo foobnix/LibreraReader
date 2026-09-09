@@ -20,6 +20,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -417,7 +418,7 @@ public class DocumentWrapperUI {
         try {
             if (dc != null) {
                 dc.onGoToPage(event.getPage() + 1);
-                ttsActive.setVisibility(View.VISIBLE);
+                showTtsControls();
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -427,7 +428,7 @@ public class DocumentWrapperUI {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         try {
-            ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown()));
+            showTtsControls();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1160,6 +1161,7 @@ public class DocumentWrapperUI {
         fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
 
         fullscreen.setOnClickListener(onFull);
+        fullscreen.setOnLongClickListener(onFullLong);
         fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
 
         onTextReplacement = a.findViewById(R.id.onTextReplacement);
@@ -1218,6 +1220,8 @@ public class DocumentWrapperUI {
 
         ttsActive = a.findViewById(R.id.ttsActive);
         ttsActive.setDC(dc);
+        ttsActive.hideStop();
+        moveTtsControlsIntoPanel();
         ttsActive.addOnDialogRunnable(new Runnable() {
 
             @Override
@@ -1335,6 +1339,9 @@ public class DocumentWrapperUI {
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+        // The name of the mode is set in the colour the book's own title beside it is, rather
+        // than in a white of its own.
+        lirbiLogo.setTextColor(MagicHelper.getTextOrIconColor());
         tintSpeed();
 
         pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
@@ -1803,9 +1810,41 @@ public class DocumentWrapperUI {
         showPagesHelper();
 
         ViewBinder.updateBrightness(onBC);
+        showTtsControls();
 
         //try eink fix
 
+    }
+
+    /**
+     * Puts the reading controls in the slot the recent panel keeps for them, on the middle of
+     * the row it names itself in - where the page-at-a-time screen stands them. They were a
+     * sheet of their own floating over the page.
+     */
+    private void moveTtsControlsIntoPanel() {
+        final View slot = a.findViewById(R.id.ttsControlsSlot);
+        if (ttsActive == null || !(slot instanceof ViewGroup) || ttsActive.getParent() == slot) {
+            return;
+        }
+        if (ttsActive.getParent() instanceof ViewGroup) {
+            ((ViewGroup) ttsActive.getParent()).removeView(ttsActive);
+        }
+        final FrameLayout.LayoutParams lp =
+                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
+                                             FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.CENTER;
+        ((ViewGroup) slot).addView(ttsActive, lp);
+    }
+
+    /**
+     * The reading controls stand with the panels, not over the page. They were shown for as
+     * long as speech was running, which left them lying across the words being read.
+     */
+    private void showTtsControls() {
+        if (ttsActive == null) {
+            return;
+        }
+        ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
     }
 
     public void hide() {
@@ -1909,19 +1948,33 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
-                AppState.get().fullScreenMode = id;
-                fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
-
-                if (dc.isTextFormat()) {
-                    onRefresh.run();
-                    dc.restartActivity();
-                }
-                DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
-                return true;
-            }, AppState.get().fullScreenMode);
+            applyFullScreen(DocumentController.nextFullScreenMode(AppState.get().fullScreenMode));
         }
     };
+
+    /** The menu of every mode, kept on a long press for the one a notch calls for. */
+    public View.OnLongClickListener onFullLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View v) {
+            DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
+                applyFullScreen(id);
+                return true;
+            }, AppState.get().fullScreenMode);
+            return true;
+        }
+    };
+
+    private void applyFullScreen(int mode) {
+        AppState.get().fullScreenMode = mode;
+        fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, mode));
+
+        if (dc.isTextFormat()) {
+            onRefresh.run();
+            dc.restartActivity();
+        }
+        DocumentController.chooseFullScreen(a, mode);
+    }
 
     public void nextChose(boolean animate, int repeatCount) {
         LOG.d("nextChose");
@@ -2142,9 +2195,7 @@ public class DocumentWrapperUI {
             dc.goToPageByTTS();
         }
 
-        if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
-        }
+        showTtsControls();
 
     }
 

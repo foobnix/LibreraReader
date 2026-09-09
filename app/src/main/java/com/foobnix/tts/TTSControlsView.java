@@ -110,7 +110,9 @@ public class TTSControlsView extends FrameLayout {
         ttsDialog.setVisibility(View.GONE);
         trackName.setVisibility(View.GONE);
 
-        colorTint = MagicHelper.getTintColor();
+        // The colour the marks on the reading bars are drawn in. The theme colour the bars are
+        // filled with is nearly invisible against the panel these controls stand on.
+        colorTint = MagicHelper.getTextOrIconColor();
 
 
         int alpha = 240;
@@ -292,8 +294,21 @@ public class TTSControlsView extends FrameLayout {
         controller = dc;
     }
 
+    /**
+     * Drops the mark that stops the reading. The panel keeps the book open behind it and has
+     * its own way out, so the line standing in it carries only what plays the book; the
+     * dialog, which is read on its own, keeps the mark.
+     */
+    public void hideStop() {
+        View stop = view.findViewById(R.id.ttsStop);
+        if (stop != null) {
+            stop.setVisibility(View.GONE);
+        }
+    }
+
     public void addOnDialogRunnable(final Runnable run) {
-        ttsDialog.setVisibility(View.VISIBLE);
+        // The mark that opens the settings stays hidden: the line carries the four controls
+        // that play the book and nothing else, and the settings are reached from the bar.
         ttsDialog.setOnClickListener(new OnClickListener() {
 
             @Override
