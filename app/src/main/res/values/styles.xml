@@ -175,12 +175,12 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="DialogRoundLight" parent="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+    <style name="DialogRoundLight" parent="@android:style/Theme.Material.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/bg_dialog_round_light</item>
         <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
     </style>
 
-    <style name="DialogRoundDark" parent="@android:style/Theme.DeviceDefault.Dialog.Alert">
+    <style name="DialogRoundDark" parent="@android:style/Theme.Material.Dialog.Alert">
         <item name="android:windowBackground">@drawable/bg_dialog_round_dark</item>
         <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
     </style>

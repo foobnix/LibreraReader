@@ -914,6 +914,19 @@ public class DocumentWrapperUI {
 
     }
 
+    /**
+     * The button that closes the recent panel. It is kept out of the way while a book loads -
+     * the panel is what the reader is waiting on, and closing it there would leave them
+     * looking at a blank page - and put back afterwards only if the panel is open at all.
+     */
+    public void showPlaylistClose(boolean show) {
+        View closePlaylist = a.findViewById(R.id.closePlaylist);
+        if (closePlaylist == null) {
+            return;
+        }
+        closePlaylist.setVisibility(show && AppState.get().isPlayListVisible ? View.VISIBLE : View.INVISIBLE);
+    }
+
     public void showHideHistory() {
         linkHistory.setVisibility(dc.getLinkHistory().isEmpty() ? View.GONE : View.VISIBLE);
     }

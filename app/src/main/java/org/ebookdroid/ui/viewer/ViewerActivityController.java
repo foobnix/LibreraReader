@@ -187,12 +187,19 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public int pageCount;
 
     public void startDecoding(final String fileName, final String password) {
+        if (wrapperControlls != null) {
+            wrapperControlls.showPlaylistClose(false);
+        }
         getManagedComponent().view.getView()
                                   .post(new BookLoadTask(fileName, password, new Runnable() {
 
                                       @Override public void run() {
 
                                           intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
+
+                                          if (wrapperControlls != null) {
+                                              wrapperControlls.showPlaylistClose(true);
+                                          }
 
                                           if (onBookLoaded != null) {
                                               onBookLoaded.run();

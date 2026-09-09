@@ -985,6 +985,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             protected void onPreExecute() {
 
                 start = System.currentTimeMillis();
+                // Nothing to close while the book is still coming up: the panel is what the
+                // reader is waiting on, and a close there would leave them looking at a blank
+                // page. The button comes back once the book is up.
+                showPlaylistClose(false);
 
                 dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
 
@@ -1874,7 +1878,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
+    /**
+     * The button that closes the recent panel. It is kept out of the way while a book loads,
+     * and put back afterwards only if the panel is one the reader has open at all.
+     */
+    private void showPlaylistClose(boolean show) {
+        View closePlaylist = findViewById(R.id.closePlaylist);
+        if (closePlaylist == null) {
+            return;
+        }
+        closePlaylist.setVisibility(show && AppState.get().isPlayListVisible ? View.VISIBLE : View.INVISIBLE);
+    }
+
     public void loadUI() {
+        showPlaylistClose(true);
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
         // The cover of the book now open, drawn into the mark in front of its title.
