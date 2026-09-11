@@ -35,6 +35,10 @@
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
+        <!-- The paid app, looked for by name to keep the ads out of this one while it is
+             installed. Since Android 11 another app's package cannot be looked up unless it is
+             named here, and the look-up came back empty on every such device. -->
+        <package android:name="com.foobnix.pro.pdf.reader" />
     </queries>
 
     <application

@@ -3093,6 +3093,7 @@ public class PrefFragment2 extends UIFragment {
         if (getActivity() == null) {
             return;
         }
+
         // A scan already under way is left to finish: starting a second one over the same
         // folders would have the two writing the library out from under each other. The
         // reader is told why nothing happened, as everywhere else that waits on this.

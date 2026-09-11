@@ -357,12 +357,17 @@ public class DragingDialogs {
                     root.setViewDraggable(h, move);
                 }
 
+                // The buttons wear the colour of the reader's marks, except on a light sheet,
+                // where that white would vanish into it; there they take the theme colour.
+                final int buttonColor = TintUtil.isLightSurface(activity, android.R.attr.colorBackground)
+                                        ? TintUtil.color : MagicHelper.getTextOrIconColor();
+
                 TextView add = new TextView(activity, null, R.style.textLink);
                 add.setText(activity.getString(R.string.add));
                 // A ringed button, like the ones the settings panel is drawn with, in the
                 // colour the marks in this panel are. The ring says it can be pressed, so the
                 // word is not underlined as well.
-                add.setTextColor(MagicHelper.getTextOrIconColor());
+                add.setTextColor(buttonColor);
                 TintUtil.asLinkButton(add);
                 add.setTag(false);
                 add.setOnClickListener(new OnClickListener() {
@@ -411,7 +416,7 @@ public class DragingDialogs {
                 TextView save = new TextView(controller.getActivity());
                 save.setText(R.string.save);
                 save.setAllCaps(true);
-                save.setTextColor(MagicHelper.getTextOrIconColor());
+                save.setTextColor(buttonColor);
                 TintUtil.asLinkButton(save);
                 save.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {

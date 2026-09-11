@@ -374,8 +374,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Dialogs.showSyncLOGDialog(MainTabs2.this);
             }
         });
-        fab.setBackgroundResource(R.drawable.bg_circular);
-        TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
@@ -498,7 +496,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                         swipeRefreshLayout.setEnabled(true);
                         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
                     }
-                    TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -726,20 +723,37 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    // The line runs just under the status bar, at the top edge of the top bar; the inset is
+    // read each time it is shown, when the window has surely been given it.
+    private void showSyncLine(boolean show) {
+        if (!show) {
+            fab.setVisibility(View.GONE);
+            return;
+        }
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(fab);
+        int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) fab.getLayoutParams();
+        if (lp.topMargin != top) {
+            lp.topMargin = top;
+            fab.setLayoutParams(lp);
+        }
+        fab.setVisibility(View.VISIBLE);
+    }
+
     public void onShowSycn(MessageSync msg) {
 
         try {
             if (msg.state == MessageSync.STATE_VISIBLE) {
                 if (BookCSS.get().isSyncAnimation) {
-                    fab.setVisibility(View.VISIBLE);
+                    showSyncLine(true);
                 }
                 swipeRefreshLayout.setRefreshing(false);
             } else if (msg.state == MessageSync.STATE_FAILE) {
-                fab.setVisibility(View.GONE);
+                showSyncLine(false);
                 swipeRefreshLayout.setRefreshing(false);
                 //Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
             } else {
-                fab.setVisibility(View.GONE);
+                showSyncLine(false);
                 swipeRefreshLayout.setRefreshing(false);
             }
         } catch (Exception e) {
