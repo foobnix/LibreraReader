@@ -26,7 +26,7 @@ public class MobiContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang).hashCode();
+        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + BookCSS.get().isEnableBBCode).hashCode();
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
         return cacheFile;
     }
