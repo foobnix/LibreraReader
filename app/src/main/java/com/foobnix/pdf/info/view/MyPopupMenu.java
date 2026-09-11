@@ -55,12 +55,14 @@ public class MyPopupMenu {
     List<Menu> list = new ArrayList<Menu>();
     private View anchor;
     private boolean isTabsActivity;
+    private boolean isLightSurface;
     private OnDismissListener onDismissListener;
 
     public MyPopupMenu(Context c, View anchor) {
         this.c = c;
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+        isLightSurface = TintUtil.isLightSurface(c, android.R.attr.colorBackgroundFloating);
 
 
     }
@@ -69,6 +71,7 @@ public class MyPopupMenu {
         this.c = anchor.getContext();
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+        isLightSurface = TintUtil.isLightSurface(c, android.R.attr.colorBackgroundFloating);
 
 
     }
@@ -159,6 +162,10 @@ public class MyPopupMenu {
                             } else {
                                 TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
                             }
+                        } else if (isLightSurface) {
+                            // A reader's menu drawn white would swallow the white its bars'
+                            // icons wear, so on a light menu an icon takes the theme colour.
+                            TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                         } else {
                             TintUtil.setTintImageWithAlpha(imageView, MagicHelper.getTextOrIconColor());
                         }

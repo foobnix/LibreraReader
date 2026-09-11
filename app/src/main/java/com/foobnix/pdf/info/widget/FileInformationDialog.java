@@ -568,6 +568,17 @@ public class FileInformationDialog {
 
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
+        // The sheet is closed from the ringed cross in its corner, mark and ring both drawn in
+        // the colour of the two marks beside it; it keeps no foot of buttons of its own.
+        final ImageView closeInfo = (ImageView) dialog.findViewById(R.id.closeInfo);
+        TintUtil.setTintImageNoAlpha(closeInfo, TintUtil.getColorInDayNighth());
+        TintUtil.setRingColor(closeInfo, TintUtil.getColorInDayNighth());
+        closeInfo.setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+            }
+        });
+
         TextView editTitle = (TextView) dialog.findViewById(R.id.editTitle);
         TextView editAuthor = (TextView) dialog.findViewById(R.id.editAuthor);
         TextView editAnnotation = (TextView) dialog.findViewById(R.id.editAnnotation);
@@ -613,18 +624,6 @@ public class FileInformationDialog {
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);
 
-        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-
-        builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int id) {
-                ExtUtils.showDocumentWithoutDialog2(a, file);
-            }
-        });
-
         infoDialog = builder.create();
         infoDialog.setOnDismissListener(new OnDismissListener() {
 
@@ -634,12 +633,6 @@ public class FileInformationDialog {
         });
 
         infoDialog.show();
-
-        // The two words that close the sheet and open the book wear the same ring as the
-        // buttons inside it, asked for no width of their own - a sheet's foot has room for two
-        // side by side only if neither takes the width a column of them would.
-        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_NEGATIVE));
-        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_POSITIVE));
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {

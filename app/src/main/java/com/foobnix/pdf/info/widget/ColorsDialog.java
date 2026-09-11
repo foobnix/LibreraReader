@@ -484,73 +484,32 @@ public class ColorsDialog {
 
         AlertDialog.Builder d = new AlertDialog.Builder(c);
         d.setView(view);
-        d.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        // What was chosen goes back to whoever asked for it, as the dialog's OK once sent it.
+        final Runnable apply = () -> {
+            colorTextChoose = magicBlackColor(colorTextChoose);
+            colorBgChoose = magicBlackColor(colorBgChoose);
 
-            }
-        });
-        d.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            colorsDialogResult.onChooseColor(colorTextChoose, colorBgChoose, colorForegroundChoose);
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                colorTextChoose = magicBlackColor(colorTextChoose);
-                colorBgChoose = magicBlackColor(colorBgChoose);
-
-                colorsDialogResult.onChooseColor(colorTextChoose, colorBgChoose, colorForegroundChoose);
-
-                AppProfile.save(c);
-            }
-        });
-        // Restoring the defaults is one of the three things this dialog offers, so it stands
-        // in the row with the other two rather than on a line of its own above them. The
-        // listener is attached after the dialog is made, or pressing it would close it.
-        d.setNeutralButton(R.string.restore_defaults_short, new DialogInterface.OnClickListener() {
-
-            @Override public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
+            AppProfile.save(c);
+        };
 
         final AlertDialog created = d.show();
-        final TextView isDefaults = created.getButton(DialogInterface.BUTTON_NEUTRAL);
-        final TextView ok = created.getButton(DialogInterface.BUTTON_POSITIVE);
-        if (isDefaults != null && ok != null) {
-            isDefaults.setTextColor(ok.getCurrentTextColor());
-        }
-        asRingedButton(created.getButton(DialogInterface.BUTTON_NEGATIVE));
-        asRingedButton(ok);
-        asRingedButton(isDefaults);
 
-        isDefaults.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (isDayMode) {
-                    AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
-                    AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
-                    imageTransparency.reset(AppState.get().bgImageDayTransparency);
-                } else {
-                    AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
-                    AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_2;
-                    imageTransparency.reset(AppState.get().bgImageNightTransparency);
-                }
-                updateAll(colorTextDef, colorBgDef, colorFgDef);
-                handler.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (soligBG) {
-                            isColor.performClick();
-                        } else {
-                            isImage.performClick();
-                        }
-                    }
-                }, 25);
-
-            }
+        // The dialog keeps no foot of buttons: the ringed cross in its corner closes it and
+        // takes the colours chosen with it. Leaving by the back key or a touch outside does
+        // the same, so no way out of the dialog quietly drops them. The cross is drawn in the
+        // colour of the ringed buttons inside the dialog.
+        final ImageView closeColors = (ImageView) view.findViewById(R.id.closeColors);
+        final int ringColor = isColor.getCurrentTextColor();
+        TintUtil.setTintImageNoAlpha(closeColors, ringColor);
+        TintUtil.setRingColor(closeColors, ringColor);
+        closeColors.setOnClickListener(v -> {
+            apply.run();
+            created.dismiss();
         });
+        created.setOnCancelListener(dialog -> apply.run());
 
         // hsvColorWheel1.setColor(colorText);
         // hsvValueSlider1.setColor(colorText, false);
@@ -584,8 +543,6 @@ public class ColorsDialog {
 
         if (onlyColorBg) {
             isImage.setVisibility(View.GONE);
-            isDefaults.setVisibility(View.GONE);
-
         }
 
     }

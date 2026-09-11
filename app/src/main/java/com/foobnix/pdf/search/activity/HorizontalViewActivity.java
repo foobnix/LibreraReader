@@ -539,6 +539,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesBookmark.setOnLongClickListener(onBookmarksLong);
 
         final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
+        // A tap moves straight between normal and full screen, with no menu to choose from:
+        // the mode a notch calls for is picked in the settings, not on every press.
         onFullScreen.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -546,21 +548,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (dc == null) {
                     return;
                 }
-
-                DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
-                    AppState.get().fullScreenMode = id;
-                    DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().fullScreenMode);
-                    onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
-                    if (dc.isTextFormat()) {
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        nullAdapter();
-                        dc.restartActivity();
+                final int mode = DocumentController.nextFullScreenMode(AppState.get().fullScreenMode);
+                AppState.get().fullScreenMode = mode;
+                DocumentController.chooseFullScreen(HorizontalViewActivity.this, mode);
+                onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, mode));
+                if (dc.isTextFormat()) {
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
-                    return true;
-                }, AppState.get().fullScreenMode);
-
+                    nullAdapter();
+                    dc.restartActivity();
+                }
             }
         });
         onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
@@ -841,7 +839,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          }
                      });
                 }
-                p.getMenu().add(getString(R.string.rotate)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                p.getMenu().add(getString(R.string.rotate)).setIcon(R.drawable.glyphicons_basic_86_reload).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

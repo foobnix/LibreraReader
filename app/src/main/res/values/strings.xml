@@ -626,7 +626,7 @@
    <string name="m_total_pages">Total pages</string>
    <string name="close_menu">Close menu</string>
    <string name="go_to_page">Go to page</string>
-   <string name="update_library">Update library</string>
+   <string name="update_library">Update</string>
    <string name="ascending">Ascending</string>
    <string name="descending">Descending</string>
    <string name="remove">Remove</string>

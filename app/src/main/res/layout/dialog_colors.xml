@@ -17,23 +17,44 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <RelativeLayout
-        android:id="@+id/foregroundLayout"
+    <!-- The head: the preview of the colours chosen, and at its end the ringed cross that
+         closes the dialog. The cross stands on the dialog's own ground rather than on the
+         preview, whose colour is whatever was picked and could swallow it. -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:background="#ff0000"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/foregroundLayout"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:layout_margin="8dp"
-            android:background="@color/white"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s."
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:background="#ff0000">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_margin="8dp"
+                android:background="@color/white"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s."
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/closeColors"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_gravity="top"
+            android:layout_margin="4dip"
+            android:background="@drawable/bg_round_button"
+            android:contentDescription="@string/close_dialog_and_apply_changes"
+            android:padding="8dip"
+            android:src="@drawable/glyphicons_599_menu_close" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

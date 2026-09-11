@@ -1129,6 +1129,8 @@ public class Dialogs {
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_tag));
+        // Drawn as the settings panel draws its buttons: a ring in the colour of the word.
+        TintUtil.asLinkButton(add);
 
         final List<String> allTags = Tags2.getAllTags();
         final List<String> fileTags = Tags2.getAllTagsByFile(file);

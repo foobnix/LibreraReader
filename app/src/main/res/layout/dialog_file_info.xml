@@ -24,7 +24,9 @@
             android:paddingBottom="10dip">
 
             <!-- The head: the cover, the name of the book beside it, and under the name the two
-                 marks that act on the book itself rather than tell anything about it. -->
+                 marks that act on the book itself rather than tell anything about it. The cross
+                 that closes the sheet stands at the head's far corner - the sheet keeps no foot
+                 of buttons of its own. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,6 +94,19 @@
                             android:src="@drawable/glyphicons_67_tags" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- Ringed like the close on the reading panel; the sheet draws the ring in the
+                     cross's own colour. -->
+                <ImageView
+                    android:id="@+id/closeInfo"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="6dip"
+                    android:background="@drawable/bg_round_button"
+                    android:contentDescription="@string/close"
+                    android:padding="8dip"
+                    android:src="@drawable/glyphicons_599_menu_close" />
             </LinearLayout>
 
             <!-- Title -->

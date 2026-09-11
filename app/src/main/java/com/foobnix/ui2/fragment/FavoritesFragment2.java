@@ -53,6 +53,32 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     View panelRecent;
     String syncronizedBooksTitle;
 
+    // Every book and folder is taken off the shelf. The other tabs are told as well, so a heart
+    // left filled on a cover in the library does not go on claiming a place that is gone.
+    final Runnable clearAllFavorites = new Runnable() {
+
+        @Override public void run() {
+            for (FileMeta f : AppDB.get()
+                                   .getStarsFilesDeprecated()) {
+                f.setIsStar(false);
+                AppDB.get()
+                     .update(f);
+            }
+            for (FileMeta f : AppDB.get()
+                                   .getStarsFoldersDeprecated()) {
+                f.setIsStar(false);
+                AppDB.get()
+                     .update(f);
+            }
+            AppData.get()
+                   .clearFavorites();
+
+            populate();
+            EventBus.getDefault()
+                    .post(new NotifyAllFragments());
+        }
+    };
+
     @Override public Pair<Integer, Integer> getNameAndIconRes() {
         return PAIR;
     }
@@ -213,27 +239,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
                     @Override public void onClick(View v) {
                         AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_),
-                                getString(R.string.ok), new Runnable() {
-
-                                    @Override public void run() {
-                                        for (FileMeta f : AppDB.get()
-                                                               .getStarsFilesDeprecated()) {
-                                            f.setIsStar(false);
-                                            AppDB.get()
-                                                 .update(f);
-                                        }
-                                        for (FileMeta f : AppDB.get()
-                                                               .getStarsFoldersDeprecated()) {
-                                            f.setIsStar(false);
-                                            AppDB.get()
-                                                 .update(f);
-                                        }
-                                        AppData.get()
-                                               .clearFavorites();
-
-                                        populate();
-                                    }
-                                });
+                                getString(R.string.ok), clearAllFavorites);
 
                     }
                 });
@@ -329,6 +335,20 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                  }
              });
         }
+
+        // Emptying the shelf sits under the same mark as it does on the Recent tab, and asks
+        // before it does anything.
+        p.getMenu()
+         .add(R.string.clear_all)
+         .setIcon(R.drawable.glyphicons_17_bin)
+         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+             @Override public boolean onMenuItemClick(MenuItem item) {
+                 AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_),
+                         getString(R.string.ok), clearAllFavorites);
+                 return false;
+             }
+         });
 
         p.show();
 
