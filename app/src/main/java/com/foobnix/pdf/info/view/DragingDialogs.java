@@ -879,6 +879,11 @@ public class DragingDialogs {
                 final TTSControlsView tts = view.findViewById(R.id.ttsActive);
                 tts.setBackgroundColor(Color.TRANSPARENT);
                 tts.setDC(controller);
+                // On the dialog's sheet the controls take the theme colour when the sheet is
+                // light; the white they wear on the reading bars would vanish into it.
+                if (TintUtil.isLightSurface(activity, android.R.attr.colorBackground)) {
+                    tts.setTintColor(TintUtil.color);
+                }
 
 
                 TextView ttsSkeakToFile = view.findViewById(R.id.ttsSkeakToFile);

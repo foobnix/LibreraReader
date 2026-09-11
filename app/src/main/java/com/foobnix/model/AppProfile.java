@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -195,7 +194,7 @@ public class AppProfile {
         File syncState = new File(AppProfile.SYNC_FOLDER_ROOT,
                 PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
         IO.readObj(syncState, s);
-        background.setColor(s.tintColor);
+        background.setColor(s.tintThemeColor);
         return background;
     }
 

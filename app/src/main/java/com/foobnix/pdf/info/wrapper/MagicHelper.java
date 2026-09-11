@@ -509,7 +509,7 @@ public class MagicHelper {
     public static int getTextOrIconColor() {
         int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
 
-        if (AppState.get().uiTextColor == AppState.get().tintColor) {
+        if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
             textColor = Color.WHITE;
         }
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
@@ -1167,7 +1167,7 @@ public class MagicHelper {
         if (AppState.get().isUiTextColor) {
             colorTint = AppState.get().uiTextColor;
         } else {
-            colorTint = AppState.get().tintColor;
+            colorTint = AppState.get().tintThemeColor;
         }
         if (colorTint == Color.WHITE && AppState.get().isDayNotInvert) {
             colorTint = Color.BLACK;

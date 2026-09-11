@@ -314,7 +314,7 @@ public class AppState {
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA
     public String tabsOrder9 = DEFAULTS_TABS_ORDER;
-    public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
+    public int tintThemeColor = Color.parseColor(STYLE_COLORS.get(0));
     public boolean isUiTextColor = false;
     public int uiTextColor = Color.BLUE;
     public int uiTextColorUser = Color.MAGENTA;
@@ -665,7 +665,7 @@ public class AppState {
             isRememberMode = false;
             isReverseKeys = true;
             isScrollAnimation = false;
-            tintColor = Color.BLACK;
+            tintThemeColor = Color.BLACK;
             bolderTextOnImage = true;
             isEnableBCOptional1 = true;
             brigtnessImage = -50;

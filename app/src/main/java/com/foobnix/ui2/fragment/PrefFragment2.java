@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,9 +25,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -942,7 +938,7 @@ public class PrefFragment2 extends UIFragment {
                                                                AppState.get().brigtnessImage = 0;
                                                                AppState.get().bolderTextOnImage = false;
                                                                AppState.get().isEnableBCOptional1 = false;
-                                                               AppState.get().tintColor = Color.BLACK;
+                                                               AppState.get().tintThemeColor = Color.BLACK;
                                                                AppState.get().isUiTextColor = false;
 
                                                                IMG.clearDiscCache();
@@ -2249,7 +2245,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override public void onClick(View v) {
                         TintUtil.color = intColor;
-                        AppState.get().tintColor = intColor;
+                        AppState.get().tintThemeColor = intColor;
                         TempHolder.listHash++;
 
                         onTintChanged();
@@ -2280,7 +2276,7 @@ public class PrefFragment2 extends UIFragment {
 
                         @Override public void colorSelected(Integer color) {
                             AppState.get().userColor = color;
-                            AppState.get().tintColor = color;
+                            AppState.get().tintThemeColor = color;
                             TintUtil.color = color;
                             img.setColorFilter(color);
                             TintUtil.setColorSwatchOutline(img, color);
@@ -2303,7 +2299,7 @@ public class PrefFragment2 extends UIFragment {
         {
             Runnable onAccent = new Runnable() {
                 @Override public void run() {
-                    if (AppState.get().isUiTextColor && AppState.get().uiTextColorUser != AppState.get().tintColor) {
+                    if (AppState.get().isUiTextColor && AppState.get().uiTextColorUser != AppState.get().tintThemeColor) {
                         AppState.get().statusBarColorDay = AppState.get().uiTextColorUser;
                         AppState.get().statusBarColorNight = AppState.get().uiTextColorUser;
                     } else {
@@ -2813,7 +2809,7 @@ public class PrefFragment2 extends UIFragment {
     private void onEink() {
         AppState.get().appTheme = AppState.THEME_INK;
         AppState.get().blueLightAlpha = 0;
-        AppState.get().tintColor = Color.BLACK;
+        AppState.get().tintThemeColor = Color.BLACK;
         AppState.get().uiTextColor = Color.BLACK;
         AppState.get().isUiTextColor = true;
         TintUtil.color = Color.BLACK;

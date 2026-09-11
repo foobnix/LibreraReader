@@ -290,6 +290,28 @@ public class TTSControlsView extends FrameLayout {
 
     }
 
+    /**
+     * The controls wear the colour of the marks on the reading bars, which suits them where they
+     * stand on a bar. Put on a sheet of their own - the TTS dialog - they are handed the colour
+     * marks take there by whoever put them on it.
+     */
+    public void setTintColor(int color) {
+        colorTint = color;
+        int alpha = 240;
+        for (int id : new int[]{R.id.ttsStop, R.id.ttsPlay, R.id.ttsNext, R.id.ttsPrev, R.id.ttsDialog,
+                R.id.ttsPrevTrack, R.id.ttsNextTrack}) {
+            View mark = view.findViewById(id);
+            if (mark instanceof ImageView) {
+                TintUtil.setTintImageWithAlpha((ImageView) mark, color, alpha);
+            }
+        }
+        TintUtil.setTintText(trackName, color);
+        TintUtil.setDrawableTint(seekMp3.getProgressDrawable(), color, alpha);
+        TintUtil.setDrawableTint(seekMp3.getThumb(), color, alpha);
+        TintUtil.setTintText(seekCurrent, color);
+        TintUtil.setTintText(seekMax, color);
+    }
+
     public void setDC(DocumentController dc) {
         controller = dc;
     }

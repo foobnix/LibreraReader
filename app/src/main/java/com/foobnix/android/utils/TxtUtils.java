@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
@@ -28,7 +27,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -1407,7 +1405,7 @@ public class TxtUtils {
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
-            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+            if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
                 color = Color.WHITE;
             }
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
@@ -1490,7 +1488,7 @@ public class TxtUtils {
                             // they stand on a tinted bar rather than on the page.
                             imageView.setImageTintList(ColorStateList.valueOf(Color.BLACK));
                         } else if (accentImages || AppState.get().isUiTextColor) {
-                            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+                            if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
                                 imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                             } else {
                                 imageView.setImageTintList(tint);

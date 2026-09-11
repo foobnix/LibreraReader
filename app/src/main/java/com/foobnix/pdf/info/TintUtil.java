@@ -17,14 +17,9 @@ import android.view.Gravity;
 import android.graphics.Outline;
 import android.view.ViewOutlineProvider;
 import android.view.ViewGroup;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,9 +32,7 @@ import androidx.core.widget.ImageViewCompat;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -133,13 +126,13 @@ public class TintUtil {
     }
 
     public static int tintRandomColor() {
-        AppState.get().tintColor = Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
-        TintUtil.color = AppState.get().tintColor;
-        return AppState.get().tintColor;
+        AppState.get().tintThemeColor = Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
+        TintUtil.color = AppState.get().tintThemeColor;
+        return AppState.get().tintThemeColor;
     }
 
     public static void init() {
-        color = AppState.get().tintColor;
+        color = AppState.get().tintThemeColor;
     }
 
     public static void clean() {
