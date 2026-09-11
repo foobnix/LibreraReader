@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.view;
 
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -527,19 +529,43 @@ public class Dialogs {
 
         result.setTextSize(12);
         result.setText(GFile.debugOut.toString());
-        result.setMinWidth(Dips.dpToPx(1000));
-        result.setMinHeight(Dips.dpToPx(1000));
 
-        TextView t = UI.uText(a, a.getString(R.string.clear_log));
-        t.setTextSize(16);
-        t.setOnClickListener(v -> GFile.clearDebug());
+        // The log scrolls on its own, so the button under it stays in view however long the log
+        // runs. Clearing sits at the foot of the sheet, drawn as the panel's buttons are: a ring
+        // in the link colour.
+        ScrollView scroll = new ScrollView(a);
+        scroll.addView(result);
 
-        AlertDialogs.showViewDialog(a, new Runnable() {
-            @Override
-            public void run() {
-                flag.set(false);
-            }
-        }, t, result);
+        TextView clear = new TextView(a);
+        clear.setText(R.string.clear_log);
+        TypedArray link = a.obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+        ColorStateList linkColor = link.getColorStateList(0);
+        link.recycle();
+        if (linkColor != null) {
+            clear.setTextColor(linkColor);
+        }
+        clear.setOnClickListener(v -> {
+            GFile.clearDebug();
+            result.setText(GFile.debugOut.toString());
+        });
+
+        LinearLayout root = new LinearLayout(a);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+        root.addView(scroll, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                           (int) (Dips.screenHeight() * 0.6)));
+        root.addView(clear);
+        TintUtil.asLinkButton(clear);
+
+        AlertDialog dialog = new AlertDialog.Builder(a)
+                .setView(root)
+                .setNegativeButton(R.string.close, null)
+                .create();
+        dialog.setOnDismissListener(d -> {
+            flag.set(false);
+            Keyboards.hideNavigation(a);
+        });
+        dialog.show();
     }
 
     public static void testWebView(final Activity a, final String path) {

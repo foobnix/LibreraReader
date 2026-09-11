@@ -120,7 +120,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     View imageMenuParent, overlay;
     TextView toastBrightnessText, onSubscribe;
     Handler handler;
-    MyProgressBar fab;
     SwipeRefreshLayout swipeRefreshLayout;
     boolean isMyKey = false;
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
@@ -365,15 +364,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
-
-        fab = findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialogs.showSyncLOGDialog(MainTabs2.this);
-            }
-        });
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
@@ -722,40 +712,12 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
     }
 
+    // A sync is drawn in the preferences now, and nowhere else in the app; here the message
+    // only lets go of the pull-to-refresh wheel that may have started it.
     @Subscribe(threadMode = ThreadMode.MAIN)
-    // The line runs just under the status bar, at the top edge of the top bar; the inset is
-    // read each time it is shown, when the window has surely been given it.
-    private void showSyncLine(boolean show) {
-        if (!show) {
-            fab.setVisibility(View.GONE);
-            return;
-        }
-        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(fab);
-        int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) fab.getLayoutParams();
-        if (lp.topMargin != top) {
-            lp.topMargin = top;
-            fab.setLayoutParams(lp);
-        }
-        fab.setVisibility(View.VISIBLE);
-    }
-
     public void onShowSycn(MessageSync msg) {
-
         try {
-            if (msg.state == MessageSync.STATE_VISIBLE) {
-                if (BookCSS.get().isSyncAnimation) {
-                    showSyncLine(true);
-                }
-                swipeRefreshLayout.setRefreshing(false);
-            } else if (msg.state == MessageSync.STATE_FAILE) {
-                showSyncLine(false);
-                swipeRefreshLayout.setRefreshing(false);
-                //Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
-            } else {
-                showSyncLine(false);
-                swipeRefreshLayout.setRefreshing(false);
-            }
+            swipeRefreshLayout.setRefreshing(false);
         } catch (Exception e) {
             LOG.e(e);
         }

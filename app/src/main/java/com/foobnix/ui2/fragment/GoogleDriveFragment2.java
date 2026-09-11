@@ -98,13 +98,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly =
                     isChecked);
 
-            final CheckBox isShowSyncWheel = new CheckBox(getActivity());
-            isShowSyncWheel.setText(getString(R.string.animate_sync_progress));
-            isShowSyncWheel.setChecked(BookCSS.get().isSyncAnimation);
-            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncAnimation =
-                    isChecked);
-
-            AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly, isShowSyncWheel);
+            AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly);
         });
 
         updateSyncInfo(null);

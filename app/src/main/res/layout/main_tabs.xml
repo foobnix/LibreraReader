@@ -145,21 +145,6 @@
                 android:visibility="visible" />
 
 
-            <!-- A sync under way: a thin white line along the top edge of the top bar, over
-                 whichever tab is showing. The status bar's height is set above it in code, so
-                 it runs just under the clock rather than behind it. -->
-            <com.foobnix.pdf.info.view.MyProgressBar
-                android:id="@+id/fab"
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_alignParentTop="true"
-                android:elevation="10dp"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/white"
-                android:outlineProvider="none"
-                android:visibility="gone" />
-
 
         </RelativeLayout>
 
