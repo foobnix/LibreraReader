@@ -187,15 +187,37 @@ public class TxtUtils {
         text = replaceBBTag(text, "left", "<span style=\"display:block; text-align:left;\">", "</span>");
         text = replaceBBTag(text, "right", "<span style=\"display:block; text-align:right;\">", "</span>");
         text = replaceBBTag(text, "quote", "<blockquote style=\"border-left:3px solid #888; padding-left:10px;\">", "</blockquote>");
+        text = replaceBBTag(text, "list", "<ul>", "</ul>");
+        text = replaceBBTag(text, "ul", "<ul>", "</ul>");
+        text = replaceBBTag(text, "ol", "<ol>", "</ol>");
+        text = replaceBBTag(text, "li", "<li>", "</li>");
+        text = replaceBBTag(text, "table", "<table>", "</table>");
+        text = replaceBBTag(text, "tr", "<tr>", "</tr>");
+        text = replaceBBTag(text, "th", "<th>", "</th>");
+        text = replaceBBTag(text, "td", "<td>", "</td>");
+        text = replaceBBTag(text, "pre", "<pre>", "</pre>");
+
+        text = replaceBBTag(text, "spoiler", "", "");
 
         if (text.contains("[")) {
             text = text.replace("[hr]", "<hr/>").replace("[HR]", "<hr/>")
-                       .replace("[br]", "<br/>").replace("[BR]", "<br/>");
+                       .replace("[br]", "<br/>").replace("[BR]", "<br/>")
+                       .replace("[*]", "<li>");
+
+            text = text.replaceAll("(?i)\\[(?:url|video)\\]([^\\[\\]\"<>]+)\\[/(?:url|video)\\]", "<a href=\"$1\">$1</a>");
+            text = text.replaceAll("(?i)\\[img\\]([^\\[\\]\"<>]+)\\[/img\\]", "<img src=\"$1\"/>");
 
             if (text.contains("=")) {
+                text = text.replaceAll("(?i)\\[list=[^\\]]*\\]", "<ul>");
+                text = text.replaceAll("(?i)\\[spoiler=([^\\]]+)\\]", "<b><i>$1</i></b>");
+                text = text.replaceAll("(?i)\\[quote=([^\\]]+)\\]", "<blockquote style=\"border-left:3px solid #888; padding-left:10px;\"><b><i>$1</i></b>");
                 text = text.replaceAll("(?i)\\[color=([^\\]]+)\\](.*?)\\[/color\\]", "<span style=\"color:$1\">$2</span>");
                 text = text.replaceAll("(?i)\\[size=([0-9]+)%?\\](.*?)\\[/size\\]", "<span style=\"font-size:$1%\">$2</span>");
+                text = text.replaceAll("(?i)\\[font=([^\\]]+)\\](.*?)\\[/font\\]", "<span style=\"font-family:$1\">$2</span>");
+                text = text.replaceAll("(?i)\\[url=([^\\]\"<>]+)\\]", "<a href=\"$1\">");
+                text = text.replaceAll("(?i)\\[code=[^\\]]*\\]", "<code>");
             }
+            text = text.replace("[/url]", "</a>").replace("[/URL]", "</a>");
         }
 
         return text;
