@@ -91,6 +91,7 @@
    <string name="styles">Stile</string>
    <string name="document_styles">Dokumentenstile</string>
    <string name="automatic_hyphenation">Automatische Silbentrennung</string>
+   <string name="parse_bbcode_tags">BBCode-Tags verarbeiten</string>
    <string name="empty_line">Leere Zeile</string>
    <string name="margin_width">Randbreite</string>
    <string name="top">Oben</string>

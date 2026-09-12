@@ -91,6 +91,7 @@
    <string name="styles">Stiluri</string>
    <string name="document_styles">Stilurile documentului</string>
    <string name="automatic_hyphenation">Automată despărțirea în silabe</string>
+   <string name="parse_bbcode_tags">Procesează etichetele BBCode</string>
    <string name="empty_line">Linie goală</string>
    <string name="margin_width">Lățimea marginii</string>
    <string name="top">Partea de sus</string>

@@ -91,6 +91,7 @@
    <string name="styles">Estilos</string>
    <string name="document_styles">Estilo de documento</string>
    <string name="automatic_hyphenation">Hifenização automática</string>
+   <string name="parse_bbcode_tags">Interpretar tags BBCode</string>
    <string name="empty_line">Linha vazia</string>
    <string name="margin_width">Largura da margem</string>
    <string name="top">Lado superior</string>

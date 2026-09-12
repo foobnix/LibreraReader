@@ -91,6 +91,7 @@
    <string name="styles">Stílusok</string>
    <string name="document_styles">Dokumentum</string>
    <string name="automatic_hyphenation">Elválasztás engedélyezése</string>
+   <string name="parse_bbcode_tags">BBCode-címkék feldolgozása</string>
    <string name="empty_line">Üres sor</string>
    <string name="margin_width">Oldalmargók</string>
    <string name="top">Felül</string>

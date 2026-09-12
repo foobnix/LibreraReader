@@ -91,6 +91,7 @@
    <string name="styles">Стылі</string>
    <string name="document_styles">Дакумент</string>
    <string name="automatic_hyphenation">Уключыць перанос</string>
+   <string name="parse_bbcode_tags">Апрацоўка тэгаў BBCode</string>
    <string name="empty_line">Разрыў страфы</string>
    <string name="margin_width">Палі старонкі</string>
    <string name="top">Верх</string>

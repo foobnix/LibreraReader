@@ -91,6 +91,7 @@
    <string name="styles">शैलियाँ</string>
    <string name="document_styles">दस्तावेज़ शैलियाँ</string>
    <string name="automatic_hyphenation">स्वत: हायफ़नेशन</string>
+   <string name="parse_bbcode_tags">BBCode टैग संसाधित करें</string>
    <string name="empty_line">खाली पंक्ति</string>
    <string name="margin_width">मार्जिन चौड़ाई</string>
    <string name="top">ऊपर की ओर</string>

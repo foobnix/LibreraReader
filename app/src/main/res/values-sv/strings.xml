@@ -91,6 +91,7 @@
    <string name="styles">Styles</string>
    <string name="document_styles">Dokument~~POS=TRUNC stilar</string>
    <string name="automatic_hyphenation">Automatisk avstavning</string>
+   <string name="parse_bbcode_tags">Tolka BBCode-taggar</string>
    <string name="empty_line">Tom rad</string>
    <string name="margin_width">Marginal bredd</string>
    <string name="top">Ovansidan</string>

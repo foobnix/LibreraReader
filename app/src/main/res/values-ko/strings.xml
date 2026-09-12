@@ -91,6 +91,7 @@
    <string name="styles">스타일</string>
    <string name="document_styles">문서</string>
    <string name="automatic_hyphenation">자동 하이픈</string>
+   <string name="parse_bbcode_tags">BBCode 태그 처리</string>
    <string name="empty_line">빈 라인</string>
    <string name="margin_width">여백 폭</string>
    <string name="top">위</string>

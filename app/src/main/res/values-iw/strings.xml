@@ -91,6 +91,7 @@
    <string name="styles">סגנונות</string>
    <string name="document_styles">סגנונות מסמך</string>
    <string name="automatic_hyphenation">המיקוף אוטומטי</string>
+   <string name="parse_bbcode_tags">עיבוד תגי BBCode</string>
    <string name="empty_line">שורה ריקה</string>
    <string name="margin_width">רוחב שולי</string>
    <string name="top">בצד למעלה</string>

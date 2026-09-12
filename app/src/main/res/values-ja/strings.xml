@@ -91,6 +91,7 @@
    <string name="styles">スタイル</string>
    <string name="document_styles">文書のスタイル</string>
    <string name="automatic_hyphenation">自動ハイフネーション</string>
+   <string name="parse_bbcode_tags">BBCodeタグを処理する</string>
    <string name="empty_line">空行</string>
    <string name="margin_width">マージン幅</string>
    <string name="top">上部</string>

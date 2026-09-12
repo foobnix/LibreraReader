@@ -91,6 +91,7 @@
    <string name="styles">Стилове</string>
    <string name="document_styles">Документ</string>
    <string name="automatic_hyphenation">Дайте възможност за тирене</string>
+   <string name="parse_bbcode_tags">Обработка на BBCode тагове</string>
    <string name="empty_line">Строфа почивка</string>
    <string name="margin_width">Полета на страницата</string>
    <string name="top">Отгоре</string>

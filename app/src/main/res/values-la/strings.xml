@@ -91,6 +91,7 @@
    <string name="styles">Styli</string>
    <string name="document_styles">Insinuati</string>
    <string name="automatic_hyphenation">Transponimentum verborum</string>
+   <string name="parse_bbcode_tags">Notas BBCode interpretari</string>
    <string name="empty_line">Empty Line</string>
    <string name="margin_width">Latitudo marginum</string>
    <string name="top">Latus superalis</string>

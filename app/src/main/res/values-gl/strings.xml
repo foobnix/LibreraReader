@@ -91,6 +91,7 @@
    <string name="styles">Estilos</string>
    <string name="document_styles">Documento</string>
    <string name="automatic_hyphenation">Activar guionización</string>
+   <string name="parse_bbcode_tags">Interpretar etiquetas BBCode</string>
    <string name="empty_line">Salto de estrofa</string>
    <string name="margin_width">Marxes da páxina</string>
    <string name="top">Superior</string>

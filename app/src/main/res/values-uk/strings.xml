@@ -91,7 +91,7 @@
    <string name="styles">Стилі</string>
    <string name="document_styles">Вбудовані</string>
    <string name="automatic_hyphenation">Авторозставляння перенесень</string>
-   <string name="parse_bbcode_tags">Обробка BBCode тегів ([i], [b])</string>
+   <string name="parse_bbcode_tags">Обробка BBCode тегів</string>
    <string name="empty_line">Порожній рядок</string>
    <string name="margin_width">Розмір відступів</string>
    <string name="top">Вгорі</string>

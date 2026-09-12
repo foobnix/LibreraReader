@@ -91,6 +91,7 @@
    <string name="styles">الأنماط</string>
    <string name="document_styles">أنماط المستند</string>
    <string name="automatic_hyphenation">الواصلة التلقائي</string>
+   <string name="parse_bbcode_tags">معالجة وسوم BBCode</string>
    <string name="empty_line">خط فارغ</string>
    <string name="margin_width">عرض الهوامش</string>
    <string name="top">الجانب العلوي</string>

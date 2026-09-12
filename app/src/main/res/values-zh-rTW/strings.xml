@@ -91,6 +91,7 @@
    <string name="styles">樣式</string>
    <string name="document_styles">文檔樣式</string>
    <string name="automatic_hyphenation">自動斷字</string>
+   <string name="parse_bbcode_tags">解析 BBCode 標籤</string>
    <string name="empty_line">標題間距</string>
    <string name="margin_width">頁邊空白</string>
    <string name="top">上邊</string>

@@ -91,6 +91,7 @@
    <string name="styles">Stiliai</string>
    <string name="document_styles">Dokumento</string>
    <string name="automatic_hyphenation">Automatinė pertrauka</string>
+   <string name="parse_bbcode_tags">Apdoroti BBCode žymes</string>
    <string name="empty_line">Tuščia linija</string>
    <string name="margin_width">Paraštės plotis</string>
    <string name="top">Viršuje</string>

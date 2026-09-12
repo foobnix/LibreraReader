@@ -91,6 +91,7 @@
    <string name="styles">Istiles</string>
    <string name="document_styles">Documentu</string>
    <string name="automatic_hyphenation">Abìlita sa sillabatzione</string>
+   <string name="parse_bbcode_tags">Intèrpreta sas etichetas BBCode</string>
    <string name="empty_line">Lìnia bòida</string>
    <string name="margin_width">Oros de sa pàgina</string>
    <string name="top">A pitzos</string>

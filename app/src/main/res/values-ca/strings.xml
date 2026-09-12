@@ -91,6 +91,7 @@
    <string name="styles">Estils</string>
    <string name="document_styles">Document</string>
    <string name="automatic_hyphenation">Activa la partició de mots amb guions</string>
+   <string name="parse_bbcode_tags">Interpreta les etiquetes BBCode</string>
    <string name="empty_line">Espai entre estrofes</string>
    <string name="margin_width">Marges de pàgina</string>
    <string name="top">Superior</string>
