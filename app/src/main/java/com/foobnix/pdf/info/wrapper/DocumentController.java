@@ -60,6 +60,7 @@ import com.foobnix.ui2.AppDB;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.PageLink;
 
 import java.io.File;
@@ -571,6 +572,33 @@ public abstract class DocumentController {
 
     public float getPercentage() {
         return MyMath.percent(getCurentPageFirst1(), getPageCount());
+    }
+
+    public CodecDocument getCodecDocument() {
+        return null;
+    }
+
+    public String getBookmarkText() {
+        try {
+            CodecDocument doc = getCodecDocument();
+            return doc != null ? doc.getBookmarkText(getCurentPageFirst1()) : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public int getBookmarkPage(AppBookmark bookmark) {
+        int page = bookmark.getPage(getPageCount());
+        try {
+            CodecDocument doc = getCodecDocument();
+            if (doc != null && TxtUtils.isNotEmpty(bookmark.pt)) {
+                page = doc.findBookmarkPage(page, bookmark.pt);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return page;
     }
 
     public abstract void updateRendering();

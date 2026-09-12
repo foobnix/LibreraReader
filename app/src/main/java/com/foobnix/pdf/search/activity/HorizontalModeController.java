@@ -66,6 +66,10 @@ public abstract class HorizontalModeController extends DocumentController {
     private SharedPreferences matrixSP;
     private volatile boolean isClosed = false;
 
+    @Override public CodecDocument getCodecDocument() {
+        return codeDocument;
+    }
+
     @Override public boolean hasPDFAnnotations() {
         return false;
     }

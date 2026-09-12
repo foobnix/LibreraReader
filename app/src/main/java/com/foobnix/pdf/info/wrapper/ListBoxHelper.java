@@ -58,6 +58,7 @@ public class ListBoxHelper {
                                                                      text,
                                                                      controller.getPercentage());
                         bookmark.isF = isFloat.isChecked();
+                        bookmark.pt = controller.getBookmarkText();
                         BookmarksData.get().add(bookmark);
                         if (objects != null) {
                             objects.add(0, bookmark);
@@ -95,6 +96,7 @@ public class ListBoxHelper {
         final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(),
                                                      text,
                                                      controller.getPercentage());
+        bookmark.pt = controller.getBookmarkText();
         BookmarksData.get().add(bookmark);
     }
 

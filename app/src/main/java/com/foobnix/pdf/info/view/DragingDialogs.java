@@ -2861,7 +2861,7 @@ public class DragingDialogs {
 
                 LOG.d("onItem", appBookmark);
 
-                int page = appBookmark.getPage(controller.getPageCount());
+                int page = controller.getBookmarkPage(appBookmark);
 
                 controller.onGoToPage(page);
 

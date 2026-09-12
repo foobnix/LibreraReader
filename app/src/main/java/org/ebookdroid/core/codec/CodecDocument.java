@@ -68,4 +68,10 @@ public interface CodecDocument {
     List<String> getMetaKeys();
 
     void setMeta(String key, String value);
+
+    // page is 1-based, the text is saved to AppBookmark.pt
+    String getBookmarkText(int page);
+
+    // page is estimated by the bookmark percent, returns the nearby page with the bookmark text
+    int findBookmarkPage(int page, String text);
 }

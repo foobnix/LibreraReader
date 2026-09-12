@@ -38,6 +38,7 @@ import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
@@ -90,6 +91,14 @@ public class VerticalModeController extends DocumentController {
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    @Override
+    public CodecDocument getCodecDocument() {
+        if (ctr == null || ctr.getDecodeService() == null) {
+            return null;
+        }
+        return ctr.getDecodeService().getCodecDocument();
     }
 
     @Override

@@ -104,7 +104,7 @@ public class BookmarkPanel {
                         dc.floatingBookmark = null;
                     }
 
-                    dc.onGoToPage(num);
+                    dc.onGoToPage(dc.getBookmarkPage(appBookmark));
                 }
             });
             t.setOnLongClickListener(new OnLongClickListener() {

@@ -99,4 +99,12 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return new ArrayList<String>();
     }
 
+    @Override public String getBookmarkText(int page) {
+        return null;
+    }
+
+    @Override public int findBookmarkPage(int page, String text) {
+        return page;
+    }
+
 }

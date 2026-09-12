@@ -1335,6 +1335,149 @@ JNIEXPORT jobject
     return arrayList;
 }
 
+// BOOKMARKS
+//////////////
+
+#define BOOKMARK_TEXT_SIZE 128  // page text saved with a bookmark
+#define BOOKMARK_NEEDLE_SIZE 64 // searched part of it, short to fit on one page after re-layout
+#define BOOKMARK_NEEDLE_MIN 8
+
+// copy src to dst with whitespace runs collapsed to one space, a word cut by the size limit is dropped
+static void
+bookmark_text(const char* src, char* dst, int size)
+{
+    char utf[8];
+    int n = 0;
+    int space = 0;
+    int last_space = -1;
+    int rune, len;
+
+    while (*src) {
+        src += fz_chartorune(&rune, src);
+        if (rune == ' ' || rune == '\t' || rune == '\n' || rune == '\r') {
+            space = n > 0;
+            continue;
+        }
+        len = fz_runetochar(utf, rune);
+        if (n + space + len >= size) {
+            if (!space && last_space > 0) {
+                n = last_space;
+            }
+            break;
+        }
+        if (space) {
+            last_space = n;
+            dst[n++] = ' ';
+            space = 0;
+        }
+        memcpy(dst + n, utf, len);
+        n += len;
+    }
+    dst[n] = 0;
+}
+
+JNIEXPORT jstring JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getBookmarkTextInternal(JNIEnv* env,
+                                                                             jclass clazz,
+                                                                             jlong handle,
+                                                                             jint pageno)
+{
+    renderdocument_t* doc = (renderdocument_t*)(long)handle;
+    fz_stext_options opts = { FZ_STEXT_DEHYPHENATE };
+    fz_stext_page* stext = NULL;
+    fz_buffer* buf = NULL;
+    char text[BOOKMARK_TEXT_SIZE];
+
+    text[0] = 0;
+    if (!doc || !doc->ctx || !doc->document) {
+        return safeNewStringUTF(env, text);
+    }
+
+    fz_var(stext);
+    fz_var(buf);
+
+    fz_try(doc->ctx)
+    {
+        stext = fz_new_stext_page_from_page_number(doc->ctx, doc->document, pageno - 1, &opts);
+        buf = fz_new_buffer_from_stext_page(doc->ctx, stext);
+        bookmark_text(fz_string_from_buffer(doc->ctx, buf), text, sizeof(text));
+    }
+    fz_always(doc->ctx)
+    {
+        fz_drop_buffer(doc->ctx, buf);
+        fz_drop_stext_page(doc->ctx, stext);
+    }
+    fz_catch(doc->ctx)
+    {
+        text[0] = 0;
+    }
+
+    return safeNewStringUTF(env, text);
+}
+
+// pageno is estimated by the bookmark percent, search the text on pageno, pageno+1, pageno-1 ... pageno+-range
+JNIEXPORT jint JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_findBookmarkPageInternal(JNIEnv* env,
+                                                                              jclass clazz,
+                                                                              jlong handle,
+                                                                              jint pageno,
+                                                                              jstring jtext,
+                                                                              jint range)
+{
+    renderdocument_t* doc = (renderdocument_t*)(long)handle;
+    char needle[BOOKMARK_NEEDLE_SIZE];
+    fz_quad quad;
+    int count = 0;
+    int result = pageno;
+
+    if (!doc || !doc->ctx || !doc->document || !jtext) {
+        return pageno;
+    }
+
+    const char* text = (*env)->GetStringUTFChars(env, jtext, NULL);
+    if (!text) {
+        return pageno;
+    }
+    bookmark_text(text, needle, sizeof(needle));
+    (*env)->ReleaseStringUTFChars(env, jtext, text);
+
+    if (strlen(needle) < BOOKMARK_NEEDLE_MIN) {
+        return pageno;
+    }
+
+    fz_try(doc->ctx)
+    {
+        count = fz_count_pages(doc->ctx, doc->document);
+    }
+    fz_catch(doc->ctx)
+    {
+        count = 0;
+    }
+
+    for (int i = 0; i <= 2 * range; i++) {
+        int page = i % 2 ? pageno + (i + 1) / 2 : pageno - i / 2;
+        int hits = 0;
+        if (page < 1 || page > count) {
+            continue;
+        }
+        fz_try(doc->ctx)
+        {
+            hits = fz_search_page_number(doc->ctx, doc->document, page - 1, needle, NULL, &quad, 1);
+        }
+        fz_catch(doc->ctx)
+        {
+            hits = 0;
+        }
+        if (hits > 0) {
+            result = page;
+            break;
+        }
+    }
+
+    DEBUG("findBookmarkPage %d -> %d [%s]", pageno, result, needle);
+    return result;
+}
+
 JNIEXPORT jint
 
   JNICALL
