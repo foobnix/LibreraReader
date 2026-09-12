@@ -76,6 +76,9 @@ public class HtmlExtractor {
                 int svgNumbver = 0;
 
                 while ((line = input.readLine()) != null) {
+                    if (BookCSS.get().isEnableBBCode) {
+                        line = TxtUtils.convertBBCodeToHtml(line);
+                    }
 
                     if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) {
                         if (line.contains("<math")) {

@@ -36,7 +36,7 @@ public class OdtContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameCache = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameCache = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isEnableBBCode + BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameCache.hashCode() + "-0.html");
         return cacheFile;
     }

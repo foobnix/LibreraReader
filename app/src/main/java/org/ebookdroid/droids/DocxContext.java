@@ -36,6 +36,7 @@ public class DocxContext extends PdfContext {
                 AppSP.get().isDouble +
                 AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle+
+                BookCSS.get().isEnableBBCode +
                 BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
         return cacheFile;
@@ -70,6 +71,9 @@ public class DocxContext extends PdfContext {
 
                 String html = result.getValue();
                 html = html.replace("<br /><br />", "<empty-line />");
+                if (BookCSS.get().isEnableBBCode) {
+                    html = TxtUtils.convertBBCodeToHtml(html);
+                }
                 if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(AppSP.get().hypenLang);

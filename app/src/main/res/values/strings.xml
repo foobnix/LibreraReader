@@ -92,6 +92,7 @@
    <string name="styles">Styles</string>
    <string name="document_styles">Document</string>
    <string name="automatic_hyphenation">Enable hyphenation</string>
+   <string name="parse_bbcode_tags">Parse BBCode tags ([i], [b])</string>
    <string name="empty_line">Stanza break</string>
    <string name="margin_width">Page margins</string>
    <string name="top">Top</string>

@@ -41,6 +41,7 @@ EpubContext extends PdfContext {
                 AppSP.get().hypenLang +
                 AppState.get().enableImageScale +
                 AppState.get().textReplacementHash +
+                BookCSS.get().isEnableBBCode +
                 AppState.get().isExperimental)
                 .hashCode() + ".epub");
         return cacheFile;
@@ -59,11 +60,11 @@ EpubContext extends PdfContext {
             cacheFile = getCacheFileName(fileName);
         }
 
-        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
 
-        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
+        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) ? cacheFile.getPath() : fileName;
 
         if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");

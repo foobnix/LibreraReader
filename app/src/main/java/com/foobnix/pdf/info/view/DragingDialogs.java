@@ -4838,6 +4838,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isEnableBBCode = inflate.findViewById(R.id.isEnableBBCode);
+                if (isEnableBBCode != null) {
+                    isEnableBBCode.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+                    isEnableBBCode.setChecked(BookCSS.get().isEnableBBCode);
+                    isEnableBBCode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                        @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            BookCSS.get().isEnableBBCode = isChecked;
+                        }
+                    });
+                }
+
                 final TextView hypenLangLabel = inflate.findViewById(R.id.hypenLangLabel);
 
                 final TextView hypenLang = inflate.findViewById(R.id.hypenLang);

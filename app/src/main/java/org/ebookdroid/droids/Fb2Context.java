@@ -30,6 +30,7 @@ public class Fb2Context extends PdfContext {
                 AppSP.get().isDouble +
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +
+                BookCSS.get().isEnableBBCode +
                 BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         return cacheFile;

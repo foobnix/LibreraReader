@@ -146,6 +146,9 @@ public class Fb2Extractor extends BaseExtractor {
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
             //line = line.replace("_", "_" + HypenUtils.SHY); //break image paths
         }
+        if (BookCSS.get().isEnableBBCode) {
+            line = TxtUtils.convertBBCodeToHtml(line);
+        }
         return line;
     }
 

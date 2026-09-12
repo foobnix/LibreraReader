@@ -106,6 +106,7 @@ public class BookCSS {
     public String headersFont;
     public String capitalFont;
     public boolean isAutoHypens;
+    public boolean isEnableBBCode;
     public String linkColorDay;
     public String linkColorNight;
     public boolean isCapitalLetter = false;
@@ -225,6 +226,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
+        isEnableBBCode = true;
         AppSP.get().hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
