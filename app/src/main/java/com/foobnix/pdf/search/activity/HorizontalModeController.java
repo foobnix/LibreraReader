@@ -169,7 +169,7 @@ public abstract class HorizontalModeController extends DocumentController {
         if (percent > 0.0f) {
             currentPage = Math.round(pagesCount * percent) - 1;
         } else if (pagesCount > 0) {
-            currentPage = bs.getCurrentPage(getPageCount()).viewIndex;
+            currentPage = findBookmarkPage(bs.getCurrentPage(getPageCount()).viewIndex + 1, bs.pt) - 1;
         }
         if (AppState.get().isAlwaysOpenOnPage1) {
             currentPage = 0;

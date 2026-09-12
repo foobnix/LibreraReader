@@ -30,6 +30,7 @@ public class AppBook implements CurrentPageListener {
     public int d = 0;//delta
 
     public float p; //percent
+    public String pt; //page text at p, restores the position after re-layout (font size change, other device)
     public long t;//time
     public String ln;
 
@@ -37,7 +38,7 @@ public class AppBook implements CurrentPageListener {
 
     @Override
     public int hashCode() {
-        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + ln + rtl;
+        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + pt + ln + rtl;
         LOG.d("hashCode-appbook", s);
         return s.hashCode();
     }
@@ -85,7 +86,11 @@ public class AppBook implements CurrentPageListener {
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;
         }
-        this.p = MyMath.percent(page, pages);
+        float percent = MyMath.percent(page, pages);
+        if (percent != p) {
+            pt = null; //text of the old page, DocumentController.saveCurrentPageAsync() sets the new one
+        }
+        this.p = percent;
         LOG.d("currentPageChanged", page, pages, p);
         t = System.currentTimeMillis();
         if (page == pages) {

@@ -190,6 +190,7 @@ public class SharedBooks {
             return best;
         }
         own.p = best.p;
+        own.pt = best.pt;
         own.t = Math.max(best.t, own.t);
         return own;
     }
@@ -277,6 +278,7 @@ public class SharedBooks {
         }
         if (original != null) {
             original.p = res.p;
+            original.pt = res.pt;
             original.t = Math.max(res.t, original.t);
             LOG.d("SharedBooks-load1 original", fileName, res.p);
             cache.put(key, original);

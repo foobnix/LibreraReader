@@ -588,17 +588,21 @@ public abstract class DocumentController {
         }
     }
 
-    public int getBookmarkPage(AppBookmark bookmark) {
-        int page = bookmark.getPage(getPageCount());
+    // page is estimated by percent, the page text saved with it finds the page after re-layout (font size change)
+    public int findBookmarkPage(int page, String text) {
         try {
             CodecDocument doc = getCodecDocument();
-            if (doc != null && TxtUtils.isNotEmpty(bookmark.pt)) {
-                page = doc.findBookmarkPage(page, bookmark.pt);
+            if (doc != null && TxtUtils.isNotEmpty(text)) {
+                return doc.findBookmarkPage(page, text);
             }
         } catch (Exception e) {
             LOG.e(e);
         }
         return page;
+    }
+
+    public int getBookmarkPage(AppBookmark bookmark) {
+        return findBookmarkPage(bookmark.getPage(getPageCount()), bookmark.pt);
     }
 
     public abstract void updateRendering();
@@ -649,6 +653,9 @@ public abstract class DocumentController {
             }
             AppBook bs = SettingsManager.getBookSettings();
             bs.updateFromAppState();
+            if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
+                bs.pt = getBookmarkText();
+            }
             SharedBooks.save(bs);
             // The row the shelves are drawn from is brought up to the file straight away, so a
             // book closed shows where it was left without waiting for the shelf to be scanned.
@@ -682,8 +689,12 @@ public abstract class DocumentController {
         try {
             if (getPageCount() != 0) {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-                if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
-                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
+                int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
+                if (getCurentPage() != page) {
+                    page = findBookmarkPage(page, bs.pt);
+                    if (getCurentPage() != page) {
+                        onGoToPage(page);
+                    }
                 }
             }
         } catch (Exception e) {

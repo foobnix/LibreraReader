@@ -27,6 +27,7 @@ import org.ebookdroid.common.touch.MultiTouchGestureDetector;
 import org.ebookdroid.common.touch.TouchManager;
 import org.ebookdroid.common.touch.TouchManager.Touch;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
@@ -161,6 +162,11 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             PageIndex currentPage = bs.getCurrentPage(getBase().getDocumentModel().getPageCount());
             int toPage = currentPage != null ? currentPage.docIndex : 0;
+
+            CodecDocument doc = getBase().getDecodeService() != null ? getBase().getDecodeService().getCodecDocument() : null;
+            if (doc != null && TxtUtils.isNotEmpty(bs.pt)) {
+                toPage = doc.findBookmarkPage(toPage + 1, bs.pt) - 1;
+            }
 
             if (AppState.get().isAlwaysOpenOnPage1) {
                 toPage = 0;
