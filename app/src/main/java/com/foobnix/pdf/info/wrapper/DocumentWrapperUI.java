@@ -1333,9 +1333,6 @@ public class DocumentWrapperUI {
         updateSeekBarColorAndSize();
         BrightnessHelper.updateOverlay(overlay);
 
-        // bottom 1
-        TintUtil.setStatusBarColor(a);
-
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
@@ -1410,7 +1407,7 @@ public class DocumentWrapperUI {
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         //int textColor = MagicHelper.getTextOrIconColor();
-        int textColor = TintUtil.getStatusBarColor();
+        int textColor = TintUtil.getStatusBarTextColor();
 
         TintUtil.setTintText(bookName, textColor);
         TintUtil.setTintImageWithAlpha(textToSpeachTop, textColor);

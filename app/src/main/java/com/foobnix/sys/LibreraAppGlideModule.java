@@ -24,6 +24,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.executor.GlideExecutor;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
@@ -143,10 +144,14 @@ public class LibreraAppGlideModule extends AppGlideModule {
             });
         }
 
+        /**
+         * Everything but pictures off the network: those Glide fetches and decodes itself, at the
+         * size they are shown at (see OkHttpUrlLoader).
+         */
         @Override
         public boolean handles(@NonNull String s) {
             LOG.d("LibreraAppGlideModule handles", s);
-            return true;//s.startsWith("{");
+            return !s.startsWith("http://") && !s.startsWith("https://");
         }
     };
 
@@ -201,6 +206,9 @@ public class LibreraAppGlideModule extends AppGlideModule {
     public void registerComponents(Context context, Glide glide, Registry registry) {
         //registry.append(Bitmap.class, new BitmapEncoder(glide.getArrayPool()));
         //registry.prepend(Bitmap.class, new BitmapEncoder(glide.getArrayPool()));
+        // Pictures off the network are fetched with the catalogues' own client, in place of
+        // Glide's plain HttpURLConnection, and decoded by Glide at the size they are shown at.
+        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
         registry.prepend(String.class, Bitmap.class, new ModelLoaderFactory<String, Bitmap>() {
             @NonNull
             @Override

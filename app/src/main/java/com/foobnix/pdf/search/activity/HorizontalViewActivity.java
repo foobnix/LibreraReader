@@ -467,6 +467,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         titleTxt = (TextView) findViewById(R.id.title);
         chapterView = (TextView) findViewById(R.id.chapter);
+        updateTitleBlockWidth();
 
         // The cover of the book being read, and the two lines naming it, all open the same
         // information about it.
@@ -1355,15 +1356,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateSeekBarColorAndSize() {
 
-        TintUtil.setTintText(pagesPower, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pagesTime, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(pannelBookTitle, TintUtil.getStatusBarColor());
-        TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pagesPower, TintUtil.getStatusBarTextColor());
+        TintUtil.setTintText(pagesTime, TintUtil.getStatusBarTextColor());
+        TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarTextColor());
+        TintUtil.setTintText(pannelBookTitle, TintUtil.getStatusBarTextColor());
+        TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarTextColor());
 
         if (false) {
             GradientDrawable bg = (GradientDrawable) pagesPower.getBackground();
-            bg.setStroke(1, TintUtil.getStatusBarColor());
+            bg.setStroke(1, TintUtil.getStatusBarTextColor());
         } else {
             pagesPower.setBackgroundColor(Color.TRANSPARENT);
         }
@@ -1965,16 +1966,30 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TxtUtils.updateAllLinks(parentParent);
         TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
-        TintUtil.setStatusBarColor(this);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
+    }
+
+    // The name and chapter keep a fixed width, 60% of the screen but clear of the corner
+    // buttons, so the cover beside them stays in place when the chapter changes.
+    private void updateTitleBlockWidth() {
+        final View titleBlock = findViewById(R.id.titleBlock);
+        if (titleBlock == null) {
+            return;
+        }
+        final int screen = Dips.dpToPx(getResources().getConfiguration().screenWidthDp);
+        // the bar's side margins (2 x 50dip) and the cover with its gap (34 + 8dip)
+        final int room = screen - Dips.dpToPx(2 * 50 + 34 + 8);
+        titleBlock.getLayoutParams().width = Math.min(screen * 6 / 10, room);
+        titleBlock.requestLayout();
     }
 
     // @Override
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        updateTitleBlockWidth();
         TempHolder.isActiveSpeedRead.set(false);
         clickUtils.init();
         if (isInitPosistion == null) {

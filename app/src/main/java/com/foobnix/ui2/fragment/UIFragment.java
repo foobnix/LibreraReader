@@ -263,7 +263,7 @@ public abstract class UIFragment<T> extends Fragment {
         // beneath both, and comes to rest clear of both.
         WindowInsetsCompat below = ViewCompat.getRootWindowInsets(column);
         int space = SlidingTabLayout.floatingSpace()
-                + (below == null ? 0 : below.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+                + DocumentController.keptClearOf(getActivity(), below).bottom;
         int under = listReachesFoot ? space : 0;
         if (column.getPaddingBottom() != space - under) {
             column.setPadding(column.getPaddingLeft(),
@@ -341,7 +341,7 @@ public abstract class UIFragment<T> extends Fragment {
         int cleared = 0;
         if (SlidingTabLayout.isFloating()) {
             WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(attached);
-            carried = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+            carried = DocumentController.keptClearOf(getActivity(), insets).top;
         } else {
             View strip = getActivity().findViewById(R.id.imageParent1);
             cleared = strip == null ? 0 : strip.getHeight();
@@ -448,7 +448,6 @@ public abstract class UIFragment<T> extends Fragment {
         if (getActivity() != null) {
             Intent intent = new Intent(INTENT_TINT_CHANGE);
             LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-            DocumentController.setNavBarTintColor(getActivity());
         }
     }
 

@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -121,7 +120,11 @@ public class TintUtil {
         }
     }
 
-    public static int getStatusBarColor() {
+    /**
+     * The colour of the reader's own status line - page, clock, battery - in the day or the
+     * night scheme. Nothing to do with the system's status bar.
+     */
+    public static int getStatusBarTextColor() {
         return AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : AppState.get().statusBarColorNight;
     }
 
@@ -607,16 +610,6 @@ public class TintUtil {
         } else {
             txtView.setBackgroundDrawable(states);
         }
-    }
-
-    @SuppressLint("NewApi")
-    public static void setStatusBarColor(Activity activity) {
-        setStatusBarColor(activity, TintUtil.color);
-    }
-
-    @SuppressLint("NewApi")
-    public static void setStatusBarColor(Activity activity, int color) {
-
     }
 
     public static void grayScaleImageView(ImageView v) {

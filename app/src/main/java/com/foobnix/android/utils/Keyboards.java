@@ -103,6 +103,9 @@ public class Keyboards {
                                 View.SYSTEM_UI_FLAG_LOW_PROFILE //
                                         | View.SYSTEM_UI_FLAG_FULLSCREEN); //
                     }
+                    // Up to Android 10 the bars going away changes nothing the page is told -
+                    // it is laid out stable - so it is asked to look at them again.
+                    decorView.requestApplyInsets();
                 }
 
             }, 100);

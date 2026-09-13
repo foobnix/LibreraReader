@@ -349,7 +349,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         handler = new Handler(Looper.getMainLooper());
         isEink = Dips.isEInk();
 
-        TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);
 
@@ -536,7 +535,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             // under rather than stopping above.
             indicator.post(() -> {
                 WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
-                int below = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+                int below = DocumentController.keptClearOf(MainTabs2.this, insets).bottom;
                 ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
                 lp.bottomMargin = Dips.DP_8 + below;
                 indicator.setLayoutParams(lp);
@@ -550,7 +549,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setOutlineProvider(null);
             imageMenuParent.post(() -> {
                 WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(imageMenuParent);
-                int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+                int top = DocumentController.keptClearOf(MainTabs2.this, insets).top;
                 imageMenuParent.setPadding(imageMenuParent.getPaddingLeft(), top,
                                            imageMenuParent.getPaddingRight(),
                                            imageMenuParent.getPaddingBottom());

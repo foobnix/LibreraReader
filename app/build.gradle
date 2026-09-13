@@ -75,7 +75,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled = false
+            // R8: shrink, optimize and obfuscate the DEX (Google Play requires >= 25% in each category)
+            minifyEnabled = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             //shrinkResources = false
             signingConfig = signingConfigs.release
             debuggable = false
@@ -268,6 +270,7 @@ dependencies {
     implementation(libs.work.runtime)
     implementation(libs.legacy.support.v4)
     implementation(libs.appcompat)
+    implementation(libs.activity)
 
     implementation(libs.eventbus)
     implementation(libs.greenrobot.greendao)

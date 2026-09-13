@@ -187,7 +187,6 @@ public class PrefFragment2 extends UIFragment {
 
     @Override public void onTintChanged() {
 
-        TintUtil.setStatusBarColor(getActivity(), TintUtil.color);
         TintUtil.setSectionFillColor(section1, TintUtil.color);
         TintUtil.setSectionFillColor(section2, TintUtil.color);
         TintUtil.setSectionFillColor(section3, TintUtil.color);

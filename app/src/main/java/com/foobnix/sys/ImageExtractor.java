@@ -39,7 +39,6 @@ import com.foobnix.ext.OdtExtractor;
 import com.foobnix.ext.RtfExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -81,7 +80,6 @@ import java.util.Locale;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
 import mobi.librera.smartreflow.SmartReflow1;
-import okhttp3.Request;
 
 public class ImageExtractor {
 
@@ -647,18 +645,8 @@ public class ImageExtractor {
             return messageFile("safe run", "stub");
 
         }
-        if (imageUri.startsWith("http")) {
-
-            Request request = new Request.Builder()//
-                    .header("User-Agent", OPDS.USER_AGENT)
-                    .header("Accept-Language", AppState.get().getAppLang())
-                    .url(imageUri)//
-                    .build();//
-
-            LOG.d("https!!!", imageUri);
-            return OPDS.client.newCall(request).execute().body().byteStream();
-        }
-
+        // Pictures off the network never come here: Glide fetches and decodes those itself, at
+        // the size they are shown at (see OkHttpUrlLoader).
         if (imageUri.startsWith("data:")) {
             String uri = imageUri;
             // uri = uri.replace("data:image/png;base64,", "");

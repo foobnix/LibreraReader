@@ -76,6 +76,8 @@ spmForKmp = { id = "io.github.frankois944.spmForKmp", version.ref = "spmForKmp" 
 
 [libraries]
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+# EdgeToEdge.enable() sets the window's cut-out mode itself from 1.9 on (appcompat alone brings 1.8)
+activity = { module = "androidx.activity:activity", version = "1.9.2" }
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
 cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 commons-logging-api = { module = "commons-logging:commons-logging-api", version.ref = "commonsLoggingApi" }

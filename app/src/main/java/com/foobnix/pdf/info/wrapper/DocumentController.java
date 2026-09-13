@@ -21,6 +21,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -56,6 +59,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -177,39 +181,7 @@ public abstract class DocumentController {
         try {
             a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-            }
-
-            Keyboards.hideNavigation(a);
-
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static void runFullScreenCutOut(final Activity a) {
-        try {
-
-            setNavBarTintColor(a);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-
-            }
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
             Keyboards.hideNavigation(a);
 
@@ -219,16 +191,25 @@ public abstract class DocumentController {
     }
 
     /**
-     * The bars are the system's to paint over the app, and it paints them solid. Where the
-     * app's own chrome floats over the page and carries the bars itself, they are left clear
-     * instead, or the page would be hidden under the very strips it was meant to run beneath.
+     * The window always reaches into the camera's cut-out (EdgeToEdge sets that up); whether
+     * the page follows it there is the page's own affair - see keptClearOf.
      */
-    public static void setNavBarTintColor(Activity a) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            boolean floatingChrome = a.findViewById(R.id.slidingTabs2) != null;
-            int color = floatingChrome ? Color.TRANSPARENT : TintUtil.color;
-            a.getWindow().setNavigationBarColor(color);
-            a.getWindow().setStatusBarColor(color);
+    public static void runFullScreenCutOut(final Activity a) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            }
+
+            Keyboards.hideNavigation(a);
+
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
@@ -236,18 +217,14 @@ public abstract class DocumentController {
         try {
             a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
             a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+            // The bars come back and the page goes on running under them: the flags that put
+            // them away are dropped, the ones the page was laid out under them with are kept.
             final View decorView = a.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-
-            setNavBarTintColor(a);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-            }
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         } catch (Exception e) {
             LOG.e(e);
@@ -263,6 +240,9 @@ public abstract class DocumentController {
         } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
             runFullScreenCutOut(a);
         }
+        // Between the two modes with the bars away nothing the system reports changes, only
+        // whether the page keeps clear of the camera, so the page is asked to look again.
+        ViewCompat.requestApplyInsets(a.getWindow().getDecorView());
 
         try {
             View bookName = a.findViewById(R.id.bookName);
@@ -392,60 +372,114 @@ public abstract class DocumentController {
     }
 
     /**
+     * The page is laid out under the system's bars on every version, not only from Android 15
+     * on where the system insists on it, and keeps itself clear of them - see keptClearOf.
+     *
      * @param underStatusBar the page runs up behind the status bar instead of stopping
      * below a strip of its own, so that a header floating at the top of the page and the
      * status bar over it read as one surface.
-     */
-    /**
      * @param barColor what the strip kept for the status bar is painted with, where one is
      * kept at all - the chrome below it is painted in the same colour.
      */
     public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int barColor) {
-        if (Build.VERSION.SDK_INT >= 35) {
-            View parentParent = a.findViewById(R.id.parentParent);
-            View statusBarHack = a.findViewById(R.id.systemBarHack);
+        if (a instanceof ComponentActivity) {
+            // Both bars clear, with the light icons they always had: the app paints the status
+            // bar's strip itself, and the buttons at the foot get the system's dark scrim
+            // wherever the system draws one.
+            EdgeToEdge.enable((ComponentActivity) a,
+                              SystemBarStyle.dark(Color.TRANSPARENT),
+                              SystemBarStyle.auto(EdgeToEdge.getDefaultLightScrim(),
+                                                  EdgeToEdge.getDefaultDarkScrim(),
+                                                  resources -> true));
+        }
+        View parentParent = a.findViewById(R.id.parentParent);
+        View statusBarHack = a.findViewById(R.id.systemBarHack);
 
-            if (parentParent != null) {
-                ViewCompat.setOnApplyWindowInsetsListener(parentParent, (v, windowInsets) -> {
-                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+        if (parentParent != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(parentParent, (v, windowInsets) -> {
+                Insets insets = keptClearOf(a, windowInsets);
 
-                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                // Where the chrome floats it carries the bars itself, and the page runs
+                // the whole height of the screen - under the buttons at the foot as well
+                // as under the clock at the head.
+                int bottom = underStatusBar ? 0 : insets.bottom;
+                if (mlp.leftMargin != insets.left || mlp.rightMargin != insets.right || mlp.bottomMargin != bottom) {
                     mlp.leftMargin = insets.left;
-                    // Where the chrome floats it carries the bars itself, and the page runs
-                    // the whole height of the screen - under the buttons at the foot as well
-                    // as under the clock at the head.
-                    mlp.bottomMargin = underStatusBar ? 0 : insets.bottom;
+                    mlp.bottomMargin = bottom;
                     mlp.rightMargin = insets.right;
                     v.setLayoutParams(mlp);
+                }
 
-                    if (statusBarHack != null) {
-                        ViewGroup.LayoutParams statusBarHackLayoutParams = statusBarHack.getLayoutParams();
-                        statusBarHackLayoutParams.height = underStatusBar ? 0 : insets.top;
+                if (statusBarHack != null) {
+                    ViewGroup.LayoutParams statusBarHackLayoutParams = statusBarHack.getLayoutParams();
+                    int top = underStatusBar ? 0 : insets.top;
+                    if (statusBarHackLayoutParams.height != top) {
+                        statusBarHackLayoutParams.height = top;
                         statusBarHack.setLayoutParams(statusBarHackLayoutParams);
-
-                        statusBarHack.setBackgroundColor(barColor);
-
                     }
+                    // With the status bar put away, all the strip still keeps clear of is the
+                    // camera, and that is boxed off in black the way the system used to do it.
+                    statusBarHack.setBackgroundColor(barsShown(a, windowInsets).top > 0 ? barColor : Color.BLACK);
+                }
 
-                    // Only the page runs up behind the status bar. The drawer slides over
-                    // the page, so it starts below the bar or its own title would be read
-                    // through the clock.
-                    View drawer = a.findViewById(R.id.left_drawer);
-                    if (drawer != null) {
-                        drawer.setPadding(drawer.getPaddingLeft(),
-                                          underStatusBar ? insets.top : 0,
-                                          drawer.getPaddingRight(),
-                                          underStatusBar ? insets.bottom : 0);
-                        // The strip it keeps is left clear: the page shows through it, and
-                        // the bar's own light icons stay readable over that rather than
-                        // being lost on the drawer's white ground.
-                        drawer.setBackgroundColor(underStatusBar ? Color.TRANSPARENT : Color.WHITE);
-                    }
+                // Only the page runs up behind the status bar. The drawer slides over
+                // the page, so it starts below the bar or its own title would be read
+                // through the clock.
+                View drawer = a.findViewById(R.id.left_drawer);
+                if (drawer != null) {
+                    drawer.setPadding(drawer.getPaddingLeft(),
+                                      underStatusBar ? insets.top : 0,
+                                      drawer.getPaddingRight(),
+                                      underStatusBar ? insets.bottom : 0);
+                    // The strip it keeps is left clear: the page shows through it, and
+                    // the bar's own light icons stay readable over that rather than
+                    // being lost on the drawer's white ground.
+                    drawer.setBackgroundColor(underStatusBar ? Color.TRANSPARENT : Color.WHITE);
+                }
 
-                    return WindowInsetsCompat.CONSUMED;
-                });
-            }
+                return WindowInsetsCompat.CONSUMED;
+            });
         }
+    }
+
+    /**
+     * The room at the edges of the screen the page keeps clear of: the bars while they are
+     * up, and - up to Android 14 - the camera's cut-out, the way each mode's cut-out setting
+     * boxed it off there: full screen and normal screen stay clear of it, the notched mode runs
+     * round it. From Android 15 on the page runs the full height of the screen in every mode,
+     * camera and all, as the system itself has it there.
+     */
+    public static Insets keptClearOf(Activity a, WindowInsetsCompat windowInsets) {
+        if (windowInsets == null) {
+            return Insets.NONE;
+        }
+        Insets bars = barsShown(a, windowInsets);
+        int mode = a instanceof MainTabs2 ? AppState.get().fullScreenMainMode : AppState.get().fullScreenMode;
+        if (Build.VERSION.SDK_INT >= 35 || mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+            return bars;
+        }
+        return Insets.max(bars, windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout()));
+    }
+
+    /**
+     * What the system's bars take while they are up. Up to Android 10 the room of a bar that
+     * has been put away goes on being reported - the page is laid out stable - so there it is
+     * the flags it was put away with that are asked. Beside another app the bars stay up.
+     */
+    private static Insets barsShown(Activity a, WindowInsetsCompat windowInsets) {
+        Insets bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+        if (a == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.R || a.isInMultiWindowMode()) {
+            return bars;
+        }
+        int flags = a.getWindow().getDecorView().getSystemUiVisibility();
+        boolean statusAway = (flags & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0
+                || (a.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+        boolean navigationAway = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0;
+        return Insets.of(navigationAway ? 0 : bars.left,
+                         statusAway ? 0 : bars.top,
+                         navigationAway ? 0 : bars.right,
+                         navigationAway ? 0 : bars.bottom);
     }
 
     public static void doRotation(final Activity a) {
