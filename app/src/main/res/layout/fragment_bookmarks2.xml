@@ -13,18 +13,18 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:id="@+id/allBookmarks"
-            style="@style/textLinkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
+            android:layout_width="@dimen/wh_button_medium"
+            android:layout_height="@dimen/wh_button_medium"
+            android:layout_marginLeft="@dimen/dv"
             android:layout_weight="0"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/back"
-            android:textSize="14sp" />
+            android:background="@drawable/bg_round_button"
+            android:contentDescription="@string/back"
+            android:padding="6dip"
+            android:src="@drawable/glyphicons_223_chevron_left"
+            android:tag="no_tint"
+            android:tint="@color/white" />
 
         <TextView
             android:id="@+id/searchOld"
