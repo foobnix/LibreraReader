@@ -103,8 +103,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return null;
     }
 
-    @Override public int findBookmarkPage(int page, String text) {
-        return page;
+    @Override public int findBookmarkPage(int page, String text, String pageText) {
+        return -1;
     }
 
 }

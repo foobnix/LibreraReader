@@ -167,9 +167,10 @@ public abstract class HorizontalModeController extends DocumentController {
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
         if (percent > 0.0f) {
-            currentPage = Math.round(pagesCount * percent) - 1;
+            currentPage = getBookmarkPage(percent, activity.getIntent().getStringExtra(EXTRA_BOOKMARK_TEXT),
+                                          activity.getIntent().getStringExtra(EXTRA_BOOKMARK_PAGE_TEXT)) - 1;
         } else if (pagesCount > 0) {
-            currentPage = findBookmarkPage(bs.getCurrentPage(getPageCount()).viewIndex + 1, bs.pt) - 1;
+            currentPage = findBookmarkPage(bs.getCurrentPage(getPageCount()).viewIndex + 1, null, bs.pt) - 1;
         }
         if (AppState.get().isAlwaysOpenOnPage1) {
             currentPage = 0;

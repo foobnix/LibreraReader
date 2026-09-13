@@ -16,12 +16,3 @@ layout: main
 [Privacy Policy](/PrivacyPolicy)
 
 [Donate on Patreon](https://www.patreon.com/librera)
-
-
-# Librera1 - New Librera App
-
-[Librera1 Web](https://librera1.com)
-
-[Libera1 Chrome](https://chromewebstore.google.com/detail/dplmfhcjlbkejkdalnkmklpghklcjahg)
-
-[Libera1 VS Code](https://marketplace.visualstudio.com/items?itemName=librera.librera-reader)

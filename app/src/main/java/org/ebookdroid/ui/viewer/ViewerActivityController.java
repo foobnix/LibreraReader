@@ -214,7 +214,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
                                           if (percent > 0f) {
                                               LOG.d("startDecoding-onGoToPage", percent, pageCount);
-                                              controller.onGoToPage(Math.round(pageCount * percent));
+                                              controller.onGoToPage(controller.getBookmarkPage(percent,
+                                                      intent.getStringExtra(DocumentController.EXTRA_BOOKMARK_TEXT),
+                                                      intent.getStringExtra(DocumentController.EXTRA_BOOKMARK_PAGE_TEXT)));
 
                                           }
 

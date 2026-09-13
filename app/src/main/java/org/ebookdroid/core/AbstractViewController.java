@@ -165,7 +165,10 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             CodecDocument doc = getBase().getDecodeService() != null ? getBase().getDecodeService().getCodecDocument() : null;
             if (doc != null && TxtUtils.isNotEmpty(bs.pt)) {
-                toPage = doc.findBookmarkPage(toPage + 1, bs.pt) - 1;
+                int found = doc.findBookmarkPage(toPage + 1, null, bs.pt);
+                if (found > 0) {
+                    toPage = found - 1;
+                }
             }
 
             if (AppState.get().isAlwaysOpenOnPage1) {

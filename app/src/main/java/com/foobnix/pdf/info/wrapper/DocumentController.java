@@ -73,6 +73,8 @@ public abstract class DocumentController {
 
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PERCENT = "p";
+    public static final String EXTRA_BOOKMARK_TEXT = "bt"; // with EXTRA_PERCENT, finds the bookmark page by the text
+    public static final String EXTRA_BOOKMARK_PAGE_TEXT = "bpt";
     public static final String EXTRA_PLAYLIST = "playlist";
 
     public static final int REPEAT_SKIP_AMOUNT = 15;
@@ -588,12 +590,16 @@ public abstract class DocumentController {
         }
     }
 
-    // page is estimated by percent, the page text saved with it finds the page after re-layout (font size change)
-    public int findBookmarkPage(int page, String text) {
+    // page is estimated by percent, returns the nearest page (+-10) with the text, else with the page text
+    // saved at the position (finds the page after re-layout, font size change), else the page
+    public int findBookmarkPage(int page, String text, String pageText) {
         try {
             CodecDocument doc = getCodecDocument();
-            if (doc != null && TxtUtils.isNotEmpty(text)) {
-                return doc.findBookmarkPage(page, text);
+            if (doc != null && (TxtUtils.isNotEmpty(text) || TxtUtils.isNotEmpty(pageText))) {
+                int found = doc.findBookmarkPage(page, text, pageText);
+                if (found > 0) {
+                    return found;
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -602,7 +608,20 @@ public abstract class DocumentController {
     }
 
     public int getBookmarkPage(AppBookmark bookmark) {
-        return findBookmarkPage(bookmark.getPage(getPageCount()), bookmark.pt);
+        String text = bookmark.text;
+        if (getString(R.string.fast_bookmark).equals(text)) {
+            text = null; // a label, not text of the page
+        }
+        return findBookmarkPage(bookmark.getPage(getPageCount()), text, bookmark.pt);
+    }
+
+    // the book is opened on a bookmark from the library bookmarks, see ExtUtils.showDocumentWithoutDialog2
+    public int getBookmarkPage(float percent, String text, String pageText) {
+        AppBookmark bookmark = new AppBookmark();
+        bookmark.p = percent;
+        bookmark.text = text;
+        bookmark.pt = pageText;
+        return getBookmarkPage(bookmark);
     }
 
     public abstract void updateRendering();
@@ -691,7 +710,7 @@ public abstract class DocumentController {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
                 int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
                 if (getCurentPage() != page) {
-                    page = findBookmarkPage(page, bs.pt);
+                    page = findBookmarkPage(page, null, bs.pt);
                     if (getCurentPage() != page) {
                         onGoToPage(page);
                     }

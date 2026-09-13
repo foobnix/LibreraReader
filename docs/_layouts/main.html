@@ -22,7 +22,7 @@
     <div class="navigation">
 
 
-        <h1 class="site-title"><a href="/{{lang}}">Librera</a></h1>
+        <h1 class="site-title"><a href="/">Librera</a></h1>
 
         {% capture my_include %}{% include menu.md %}{% endcapture %}
         {{ my_include | markdownify }}
@@ -32,7 +32,6 @@
 
     <div class="version">
         <a href="http://librera.app" target="_blank">All apps: librera.app</a><br/>
-        <a href="http://librera1.com" target="_blank">New Librera1: librera1.com</a><br/>
         <a href="mailto:librera.reader@gmail.com">librera.reader@gmail.com</a>
 
     </div>
@@ -43,7 +42,7 @@
         {% assign ask=false %}
         {% if parent == '/faq/' or parent == '/' or parent == '/what-is-new/' %}
         {% assign ask=true %}
-        <a href="{{parent}}{{lang}}"> < </a>
+        <a href="{{parent}}"> < </a>
         {% endif %}
 
         {{content}}
@@ -113,18 +112,6 @@
     };
 
 </script>
-
-{%if ask_temp %}
-<div class="content">
-    <div class="as">
-        <div class="title">Эта информация оказалась полезной?</div>
-        <div class="button-group">
-            <button class="as-button" data-value="5" type="button">Да</button>
-            <button class="as-button" data-value="1" type="button">Нет</button>
-        </div>
-    </div>
-</div>
-{% endif %}
 
 </body>
 </html>

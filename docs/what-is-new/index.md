@@ -4,7 +4,117 @@ layout: main
 
 # What is new
 
+### [9.5.7] Android Auto, faster Google Drive sync, MuPDF 1.28.3
 
+**Android Auto**
+
+* Librera now appears as a media app in Android Auto
+* Browse recent books in the car, with covers, titles and authors
+* Selecting a book resumes it at its saved position
+* Playback controls work from the car, the lock screen and Bluetooth
+
+**Text-to-speech**
+
+* Uses Android's standard media notification, with cover art, a progress bar and lock screen controls
+* Fixed no speech when the system default engine points at an uninstalled package
+* Fixed the notification disappearing, or staying stuck on "please wait", after a long time in the background
+* Fixed audio focus not being released on pause, which left other apps muted
+* Fixed a crash when requesting the notification permission from the TTS controls
+
+**Reading**
+
+* Upgraded the MuPDF engine to 1.28.3
+* Text selection now works while "crop white space" is enabled, in both book and scroll modes
+* Reading direction (RTL) can now be set in scroll mode, not only in book mode
+* Annotating is allowed while crop is enabled
+* Fixed reflow when toggling "crop white space"
+* Book mode: the clock/battery ticker stops when the status bar is hidden
+* New "Show progress slider" setting to toggle the seek bar row
+* Improved jump history and "Back" arrow visibility when using the slider
+* More consistent brightness values when adjusting by scroll
+* Fixes for formatted .txt files
+
+**Google Drive sync**
+
+* Much faster: smaller listing requests, parallel downloads and a change check that skips work when nothing changed
+* Deleting a book now propagates: it no longer comes back from another device
+* Fixed downloads failing into folders that did not exist locally
+* Fixed a sync that could stop early on files without a size
+* Temporary download files are no longer uploaded to Drive
+
+**LibreraX** is the future Librera application: [read more](https://github.com/foobnix/LibreraReader/blob/master/LIBRERAX.md), [beta downloads](http://beta.librera.mobi)
+
+||||
+|-|-|-|
+|![](/librerax/Screenshot_20260906_130854.png)|![](/librerax/Screenshot_20260906_130833.png)|![](/librerax/Screenshot_20260906_130844.png)|
+
+### [9.4.21] Text replacement and color settings
+
+* Fixed text replacement for multiple words
+* Updated the UI for changing text and background colors
+* Added an alert for permanent file deletion
+* Clicking on File Information metadata now navigates to the library
+* Added the Hebrew ("iw") translation and fixed other translations
+* Fixed the grid view widget
+* Fixed the eye reset timer
+
+### [9.4.8] All-storage access is optional
+
+* The app can use the system file manager to open individual files
+* Fixed choosing a profile
+
+### [9.3.75] Contrast and brightness for all reading modes
+
+* Fixed contrast and brightness
+* Advanced option to enable contrast and brightness for all reading modes
+* Fixed Chinese language
+* Fixed search in many PDF and EPUB books
+
+### [9.3.55] Librera for macOS (beta)
+
+Supports PDF, EPUB, FB2, CBZ, CBR. [Download](http://beta.librera.mobi)
+
+### [9.3.35] Tags rewritten, single and long tap book actions
+
+* Tags functionality rewritten
+* Configure the book click action for single tap and long tap
+
+### [9.3.10] Super fast reader
+
+### [9.3.1] Recent, Favorites, Tags, Playlist, Folders fast preview panel
+
+### [9.2.21] Many improvements and fixes
+
+### [9.1.29] Page foreground color, RTL or LTR per book
+
+* Configure page foreground color
+* Set RTL or LTR text direction for each book individually
+
+### [9.1.7] Remember RTL or LTR per book, SherpaTTS
+
+* Remember RTL or LTR for books individually
+* Added [SherpaTTS](https://f-droid.org/en/packages/org.woheller69.ttsengine/) as a recommended TTS engine
+* Many small fixes
+
+### [9.0.5] Android 15 and Android 16 support
+
+* Support Android 15, Android 16
+* Improved UI
+* Fixed grid widget
+* Fixed TTS
+* Added support for user CA certificates
+* Added double tap to share page as image
+* Added range search in the book (example: `search text[14:344]`)
+
+### [8.9.182] Android 15 edge-to-edge fix
+
+### [8.9.181] Android 14 widget fix, cache files fix
+
+### [8.9.175] Librera online book reader
+
+Read PDF, EPUB, FB2, CBZ, TXT in the browser: [Librera online book reader](/online-book-reader/)
+
+### [8.9.161] Fixed TTS audio focus
 
 ### [8.9.155] TTS desktop widget
 
@@ -21,6 +131,10 @@ layout: main
 ### [8.9.127] Edit PDF meta tags
 
 <img class="i" src="8.9.127.png" />
+
+### [8.9.133] F-Droid version with Internet and OPDS
+
+### [8.9.126] Open books from external SD card without a cache copy, when possible
 
 ### [8.9.117] Clicking the back button twice to exit an activity
 

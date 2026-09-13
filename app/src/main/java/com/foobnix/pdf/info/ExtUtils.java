@@ -954,14 +954,25 @@ public class ExtUtils {
                                                   final Uri uri,
                                                   final float percent,
                                                   final String playList) {
+        showDocumentWithoutDialog2(c, uri, percent, playList, null, null);
+    }
+
+    // bookmarkText and bookmarkPageText find the page near the percent, see DocumentController.getBookmarkPage
+    public static void showDocumentWithoutDialog2(final Context c, final Uri uri, final float percent, final String playList,
+                                                  final String bookmarkText, final String bookmarkPageText) {
         Safe.run(new Runnable() {
             @Override public void run() {
-                showDocumentInner(c, uri, percent, playList);
+                showDocumentInner(c, uri, percent, playList, bookmarkText, bookmarkPageText);
             }
         }, true);
     }
 
     public static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist) {
+        showDocumentInner(c, uri, percent, playlist, null, null);
+    }
+
+    public static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist,
+                                         String bookmarkText, String bookmarkPageText) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -969,7 +980,7 @@ public class ExtUtils {
         LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
 
         if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-            openHorizontalView(c, uri, percent, playlist);
+            openHorizontalView(c, uri, percent, playlist, bookmarkText, bookmarkPageText);
             return;
         }
 
@@ -982,6 +993,8 @@ public class ExtUtils {
 
             if (percent > 0f) {
                 Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
+                intent.putExtra(DocumentController.EXTRA_BOOKMARK_TEXT, bookmarkText);
+                intent.putExtra(DocumentController.EXTRA_BOOKMARK_PAGE_TEXT, bookmarkPageText);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -1028,7 +1041,8 @@ public class ExtUtils {
         return uri;
     }
 
-    private static void openHorizontalView(final Context c, final Uri uri, final float percent, String playlist) {
+    private static void openHorizontalView(final Context c, final Uri uri, final float percent, String playlist,
+                                           String bookmarkText, String bookmarkPageText) {
         if (uri == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -1052,6 +1066,8 @@ public class ExtUtils {
 
         if (percent > 0f) {
             Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
+            intent.putExtra(DocumentController.EXTRA_BOOKMARK_TEXT, bookmarkText);
+            intent.putExtra(DocumentController.EXTRA_BOOKMARK_PAGE_TEXT, bookmarkPageText);
         }
         c.startActivity(intent);
 

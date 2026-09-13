@@ -234,7 +234,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private static native String getBookmarkTextInternal(long handle, int page);
 
-    private static native int findBookmarkPageInternal(long handle, int page, String text, int range);
+    private static native int findBookmarkPageInternal(long handle, int page, String text, String pageText, int range);
 
     @Override public String getBookmarkText(int page) {
         TempHolder.lock.lock();
@@ -245,10 +245,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
-    @Override public int findBookmarkPage(int page, String text) {
+    @Override public int findBookmarkPage(int page, String text, String pageText) {
         TempHolder.lock.lock();
         try {
-            return isRecycled() ? page : findBookmarkPageInternal(documentHandle, page, text, 10);
+            return isRecycled() ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
         } finally {
             TempHolder.lock.unlock();
         }

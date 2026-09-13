@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs-jekyll",
+      "runtimeExecutable": "jekyll",
+      "runtimeArgs": ["serve", "--source", "docs", "--destination", "docs/_site", "--port", "4000", "--livereload"],
+      "port": 4000
+    }
+  ]
+}

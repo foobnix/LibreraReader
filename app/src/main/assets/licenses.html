@@ -1,6 +1,17 @@
-<html><head><style> body { font-family: sans-serif; } pre { background-color: #eeeeee; padding: 1em; white-space: pre-wrap; } </style></head><body>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: sans-serif; font-size: 14px; margin: 8px; }
+h3 { margin: 18px 0 6px; }
+pre { background-color: #eeeeee; padding: 1em; white-space: pre-wrap; font-size: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 12px; }
+th, td { border: 1px solid #cccccc; padding: 4px 6px; text-align: left; vertical-align: top; word-break: break-word; }
+th { background-color: #eeeeee; }
+code { font-size: 11px; }
+</style></head><body>
+
 <h3>Librera Reader</h3>
-<a href="http://Librera.mobi">http://Librera.mobi</a><br/>
+<a href="https://librera.mobi">https://librera.mobi</a><br/>
 <pre>
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,107 +24,64 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see http://www.gnu.org/licenses	
-</pre>
-
-
-<h3>MuPDF 1.12</h3>
-<a href="http://mupdf.com">http://mupdf.com</a>
-<pre>
-
-MuPDF is free software: you can redistribute it and/or modify it under the terms of the 
-Affero GNU General Public License as published by the Free Software Foundation, either version 3 of the License, 
-or (at your option) any later version.
-
-MuPDF is Copyright © 2006-2017 Artifex Software, Inc.
-
-For commercial licensing please contact sales@artifex.com.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see http://www.gnu.org/licenses
 </pre>
 
-<h3>EbookDroid 1.6.5</h3>
+<h3>Libraries</h3>
+<table>
+<tr><th>Library</th><th>Version</th><th>License</th></tr>
+<tr><td>MuPDF</td><td>1.28.3 (1.23.7)</td><td>AGPL-3.0</td></tr>
+<tr><td>DjVuLibre</td><td>3.5.28</td><td>GPL-2.0-or-later</td></tr>
+<tr><td>antiword</td><td>1.3.1</td><td>GPL-2.0</td></tr>
+<tr><td>libmobi</td><td>0.12</td><td>LGPL-3.0-or-later</td></tr>
+<tr><td>hqx</td><td>1.2</td><td>LGPL-2.1-or-later</td></tr>
+<tr><td>LAME</td><td>3.100</td><td>LGPL-2.0-or-later</td></tr>
+<tr><td>libwebp</td><td>1.3.2</td><td>BSD-3-Clause</td></tr>
+</table>
+
+<h3>Components</h3>
+<table>
+<tr><th>Component</th><th>License</th></tr>
+<tr><td>EBookDroid (<code>org.ebookdroid</code>, <code>org.emdev</code>)</td><td>GPL-3.0</td></tr>
+<tr><td>wmf2svg (<code>net.arnx.wmf2svg</code>)</td><td>Apache-2.0</td></tr>
+<tr><td>PBKDF2 (<code>de.rtner</code>)</td><td>LGPL-2.1-or-later</td></tr>
+<tr><td>opendocument.java (<code>at.stefl</code>)</td><td>not declared</td></tr>
+<tr><td>DragLinearLayout (<code>com.jmedeisis</code>)</td><td>Apache-2.0</td></tr>
+<tr><td>HSV colour picker (<code>com.buzzingandroid</code>)</td><td>Apache-2.0</td></tr>
+<tr><td>android-lame JNI (<code>com.github.axet</code>)</td><td>Apache-2.0</td></tr>
+</table>
+
+<h3>Dependencies</h3>
+<table>
+<tr><th>Dependency</th><th>Version</th><th>License</th></tr>
+<tr><td>androidx.appcompat:appcompat</td><td>1.7.1</td><td>Apache-2.0</td></tr>
+<tr><td>androidx.cardview:cardview</td><td>1.0.0</td><td>Apache-2.0</td></tr>
+<tr><td>androidx.legacy:legacy-support-v4</td><td>1.0.0</td><td>Apache-2.0</td></tr>
+<tr><td>androidx.multidex:multidex</td><td>2.0.1</td><td>Apache-2.0</td></tr>
+<tr><td>androidx.recyclerview:recyclerview</td><td>1.4.0</td><td>Apache-2.0</td></tr>
+<tr><td>androidx.work:work-runtime</td><td>2.11.2</td><td>Apache-2.0</td></tr>
+<tr><td>org.greenrobot:eventbus</td><td>3.3.1</td><td>Apache-2.0</td></tr>
+<tr><td>org.greenrobot:greendao</td><td>3.3.0</td><td>Apache-2.0</td></tr>
+<tr><td>org.greenrobot:greendao-api</td><td>3.3.0</td><td>Apache-2.0</td></tr>
+<tr><td>org.jsoup:jsoup</td><td>1.22.2</td><td>MIT</td></tr>
+<tr><td>com.github.albfernandez:juniversalchardet</td><td>2.5.0</td><td>MPL-1.1 / GPL-3.0 / LGPL-3.0</td></tr>
+<tr><td>com.squareup.okhttp3:okhttp</td><td>3.12.6</td><td>Apache-2.0</td></tr>
+<tr><td>io.github.rburgst:okhttp-digest</td><td>3.1.1</td><td>Apache-2.0</td></tr>
+<tr><td>com.squareup.okio:okio</td><td>1.17.6</td><td>Apache-2.0</td></tr>
+<tr><td>com.github.joniles:rtfparserkit</td><td>1.16.0</td><td>Apache-2.0</td></tr>
+<tr><td>org.zwobble.mammoth:mammoth</td><td>1.5.0</td><td>BSD-2-Clause</td></tr>
+<tr><td>javax.xml.stream:stax-api</td><td>1.0-2</td><td>CDDL-1.0 / GPL-2.0</td></tr>
+<tr><td>net.lingala.zip4j:zip4j</td><td>2.11.6</td><td>Apache-2.0</td></tr>
+<tr><td>com.github.bumptech.glide:glide</td><td>4.16.0</td><td>BSD-2-Clause and Apache-2.0</td></tr>
+<tr><td>commons-logging:commons-logging-api</td><td>1.1</td><td>Apache-2.0</td></tr>
+<tr><td>com.google.guava:guava</td><td>33.6.0-android</td><td>Apache-2.0</td></tr>
+<tr><td>org.commonmark:commonmark</td><td>0.29.0</td><td>BSD-2-Clause</td></tr>
+<tr><td>org.commonmark:commonmark-ext-gfm-tables</td><td>0.29.0</td><td>BSD-2-Clause</td></tr>
+<tr><td>com.github.junrar:junrar</td><td>7.6.0</td><td>UnRar License</td></tr>
+</table>
+
+<h3>UnRar License (junrar)</h3>
 <pre>
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see http://www.gnu.org/licenses	
-</pre>
-
-<h3>Universal Image Loader 1.9.5</h3>
-<pre>
-    Copyright 2011-2015 Sergey Tarasevich
-
-	Licensed under the Apache License, Version 2.0 (the "License");This program is free software: 
-	you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see http://www.gnu.org/licenses	
-	you may not use this file except in compliance with the License.
-	You may obtain a copy of the License at
-	
-	   http://www.apache.org/licenses/LICENSE-2.0
-	
-	Unless required by applicable law or agreed to in writing, software
-	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
-</pre>
-
-<h3>djvulibre</h3>
-<pre>
-    This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-</pre>
-
-<h3>junrar</h3>
-<pre>
-     ******    *****   ******   UnRAR - free utility for RAR archives
- **   **  **   **  **   **  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- ******   *******  ******    License for use and distribution of
- **   **  **   **  **   **   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- **   **  **   **  **   **         FREE portable version
-                                   ~~~~~~~~~~~~~~~~~~~~~
-
       The source code of UnRAR utility is freeware. This means:
 
    1. All copyrights to RAR and the utility UnRAR are exclusively
@@ -131,8 +99,8 @@ For commercial licensing please contact sales@artifex.com.
       to distribute UnRAR inside of other software packages.
 
    4. THE RAR ARCHIVER AND THE UnRAR UTILITY ARE DISTRIBUTED "AS IS".
-      NO WARRANTY OF ANY KIND IS EXPRESSED OR IMPLIED.  YOU USE AT 
-      YOUR OWN RISK. THE AUTHOR WILL NOT BE LIABLE FOR DATA LOSS, 
+      NO WARRANTY OF ANY KIND IS EXPRESSED OR IMPLIED.  YOU USE AT
+      YOUR OWN RISK. THE AUTHOR WILL NOT BE LIABLE FOR DATA LOSS,
       DAMAGES, LOSS OF PROFITS OR ANY OTHER KIND OF LOSS WHILE USING
       OR MISUSING THIS SOFTWARE.
 
@@ -145,132 +113,7 @@ For commercial licensing please contact sales@artifex.com.
 
       Thank you for your interest in RAR and UnRAR.
 
-
                                             Alexander L. Roshal
 </pre>
 
-<h3>libmobi</h3>
-<pre>
-This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see http://www.gnu.org/licenses	
-</pre>
-
-<h3>commons-compress-1.11.jar</h3>
-<pre>
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-</pre>
-
-<h3>eventbus-3.0.0.jar</h3>
-<pre>EventBus License
-EventBus binaries and source code can be used according to the Apache License, Version 2.0:
-
-Copyright © 2012-2016 Markus Junginger, greenrobot (http://greenrobot.org)
-
-Licensed under the Apache License, Version 2.0 (the “License”); 
-you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, 
-software distributed under the License is distributed on an “AS IS” BASIS, 
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-See the License for the specific language governing permissions and limitations under the License.</pre>
-
-<h3>greendao-3.2.0.jar, greendao-api-3.2.0.jar</h3>
-<pre> 
-
-EventBus License
-EventBus binaries and source code can be used according to the Apache License, Version 2.0:
-
-Copyright © 2012-2016 Markus Junginger, greenrobot (http://greenrobot.org)
-
-Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-</pre>
-
-<h3>jsoup-1.8.3.jar</h3>
-<pre>The MIT License
-Copyright © 2009 - 2016 Jonathan Hedley (jonathan@hedley.net)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
-
-<h3>juniversalchardet-1.0.3.jar</h3>
-<pre>The library is subject to the Mozilla Public License Version 1.1.
-Alternatively, the library may be used under the terms of either
-the GNU General Public License Version 2 or later, or the GNU
-Lesser General Public License 2.1 or later.</pre>
-
-
-<h3>rtfparserkit-1.10.0.jar</h3>
-<pre>https://github.com/joniles/rtfparserkit</pre>
-
-<h3>buzzingandroid</h3>
-<pre>The MIT License (MIT)
-
-Copyright (c) 2014 Jesper Borgstrup
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
-
-<h3>hqx</h3>
-<pre>    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA</pre>
-
-<h3>okhttp-3.8.1, okio-1.13.0</h3>
-<pre>
-Copyright 2016 Square, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-</pre>
-
+</body></html>
