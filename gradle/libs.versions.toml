@@ -22,7 +22,6 @@ kotlin = "2.3.0"
 kotlinxSerializationCore = "1.10.0"
 ksp = "2.3.4"
 legacySupportV4 = "1.0.0"
-multidex = "2.0.1"
 okio = "3.16.4"
 pdfmpCompose = "1.0.9"
 
@@ -108,8 +107,6 @@ juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", vers
 junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
-
-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }

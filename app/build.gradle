@@ -42,7 +42,6 @@ android {
         versionCode = codeNumber
         versionName = versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled = true
     }
 
     configurations {
@@ -265,7 +264,6 @@ dependencies {
 
 /** AndroidX **/
     implementation(libs.cardview)
-    implementation(libs.multidex)
     implementation(libs.recyclerview)
     implementation(libs.work.runtime)
     implementation(libs.legacy.support.v4)

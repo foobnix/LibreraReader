@@ -169,7 +169,6 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 | androidx.appcompat:appcompat                | 1.7.1          | Apache-2.0                  |
 | androidx.cardview:cardview                  | 1.0.0          | Apache-2.0                  |
 | androidx.legacy:legacy-support-v4           | 1.0.0          | Apache-2.0                  |
-| androidx.multidex:multidex                  | 2.0.1          | Apache-2.0                  |
 | androidx.recyclerview:recyclerview          | 1.4.0          | Apache-2.0                  |
 | androidx.work:work-runtime                  | 2.11.2         | Apache-2.0                  |
 | org.greenrobot:eventbus                     | 3.3.1          | Apache-2.0                  |

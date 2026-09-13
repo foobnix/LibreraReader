@@ -2,6 +2,7 @@ package com.foobnix;
 
 import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -10,7 +11,6 @@ import android.os.StrictMode;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
 import androidx.work.WorkManager;
 
@@ -31,7 +31,7 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
-public class LibreraApp extends MultiDexApplication {
+public class LibreraApp extends Application {
     public static Context context;
 
 
