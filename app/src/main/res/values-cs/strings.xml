@@ -625,7 +625,7 @@
    <string name="m_total_pages">Celkem stránek</string>
    <string name="close_menu">Zavřete nabídku</string>
    <string name="go_to_page">Jdi na stránku</string>
-   <string name="update_library">Aktualizovat knihovnu</string>
+   <string name="update_library">Aktualizovat</string>
    <string name="ascending">Vzestupně</string>
    <string name="descending">Sestupně</string>
    <string name="remove">Odstranit</string>

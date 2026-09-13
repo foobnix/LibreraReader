@@ -625,7 +625,7 @@
    <string name="m_total_pages">Toplam sayfa</string>
    <string name="close_menu">Menüyü kapat</string>
    <string name="go_to_page">Sayfaya git</string>
-   <string name="update_library">Kütüphaneyi güncelle</string>
+   <string name="update_library">Güncelle</string>
    <string name="ascending">Artan</string>
    <string name="descending">Azalan</string>
    <string name="remove">Kaldır</string>

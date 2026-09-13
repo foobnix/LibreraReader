@@ -625,7 +625,7 @@
    <string name="m_total_pages">จำนวนหน้าทั้งหมด</string>
    <string name="close_menu">ปิดเมนู</string>
    <string name="go_to_page">ไปที่หน้า</string>
-   <string name="update_library">อัปเดตห้องสมุด</string>
+   <string name="update_library">อัปเดต</string>
    <string name="ascending">จากน้อยไปมาก</string>
    <string name="descending">จากมากไปน้อย</string>
    <string name="remove">ลบ</string>

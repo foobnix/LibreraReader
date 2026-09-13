@@ -625,7 +625,7 @@
    <string name="m_total_pages">மொத்த பக்கங்கள்</string>
    <string name="close_menu">பட்டியல்லை மூடு</string>
    <string name="go_to_page">பக்கத்திற்கு செல்</string>
-   <string name="update_library">நூலகத்தைப் புதுப்பிக்கவும்</string>
+   <string name="update_library">புதுப்பி</string>
    <string name="ascending">ஏறுவரிசை</string>
    <string name="descending">இறங்கு வரிசை</string>
    <string name="remove">அகற்று</string>

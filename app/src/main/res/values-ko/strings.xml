@@ -625,7 +625,7 @@
    <string name="m_total_pages">총 페이지</string>
    <string name="close_menu">메뉴 닫기</string>
    <string name="go_to_page">페이지로 이동</string>
-   <string name="update_library">라이브러리 업데이트</string>
+   <string name="update_library">업데이트</string>
    <string name="ascending">오름차순</string>
    <string name="descending">내림차순</string>
    <string name="remove">제거</string>

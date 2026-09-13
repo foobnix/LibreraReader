@@ -625,7 +625,7 @@
    <string name="m_total_pages">總頁數</string>
    <string name="close_menu">關閉菜單</string>
    <string name="go_to_page">轉到頁面</string>
-   <string name="update_library">更新庫</string>
+   <string name="update_library">更新</string>
    <string name="ascending">上升</string>
    <string name="descending">降序</string>
    <string name="remove">去掉</string>
