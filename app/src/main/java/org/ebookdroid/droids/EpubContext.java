@@ -122,8 +122,11 @@ EpubContext extends PdfContext {
         } else {
             LOG.d("getNotes extract", fileName);
             notes = EpubExtractor.get().getFooterNotes(fileName);
-            JsonHelper.mapToFile(jsonFile, notes);
-            LOG.d("save notes to file", jsonFile);
+            // a cancelled extraction is empty or partial, it must not stay in the cache
+            if (!TempHolder.get().loadingCancelled.get()) {
+                JsonHelper.mapToFile(jsonFile, notes);
+                LOG.d("save notes to file", jsonFile);
+            }
         }
         return notes;
     }

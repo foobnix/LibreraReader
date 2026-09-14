@@ -341,6 +341,8 @@ public class AppState {
     //public boolean isFullScreenMain = false;
     public boolean isAccurateFontSize = false;
     public boolean isShowFooterNotesInText = false;
+    // EPUB footnotes: java.util.zip opens entries faster, zip4j works better on some old Android versions
+    @IgnoreHashCode public boolean isJavaZip = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
     public boolean isCharacterEncoding = false;
     public String characterEncoding = "UTF-8";
     @IgnoreHashCode public boolean isEditMode = true;

@@ -9,6 +9,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -76,8 +77,11 @@ public class MobiContext extends PdfContext {
                         LOG.d("new file name", fileNameEpub);
                         muPdfDocument.setFootNotes(notes);
 
-                        JsonHelper.mapToFile(jsonFile, notes);
-                        LOG.d("save notes to file", jsonFile);
+                        // a cancelled extraction is empty or partial, it must not stay in the cache
+                        if (!TempHolder.get().loadingCancelled.get()) {
+                            JsonHelper.mapToFile(jsonFile, notes);
+                            LOG.d("save notes to file", jsonFile);
+                        }
 
                         removeTempFilesIfCancel();
 

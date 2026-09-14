@@ -34,7 +34,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1054,11 +1053,9 @@ public class Fb2Extractor extends BaseExtractor {
     public Map<String, String> getFooterNotes(String inputFile) {
         Map<String, String> map = new HashMap<String, String>();
         try {
-            // the base64 images at the end are most of the file, no need to parse them
-            boolean stopAtBinary = isBinaryAtEnd(inputFile);
-
             XmlPullParser xpp = XmlParser.buildPullParser();
-            final FileInputStream inputStream = new FileInputStream(inputFile);
+            // counts what the parser has read, to know about where it is when it reaches a <binary>
+            final CountingInputStream inputStream = new CountingInputStream(new FileInputStream(inputFile));
             try {
                 xpp.setInput(inputStream, findHeaderEncoding(inputFile));
                 int eventType = xpp.getEventType();
@@ -1072,6 +1069,7 @@ public class Fb2Extractor extends BaseExtractor {
                 boolean isLink = false;
                 String link = null;
                 StringBuilder key = new StringBuilder();
+                boolean checkBinary = true;
 
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (TempHolder.get().loadingCancelled.get()) {
@@ -1088,8 +1086,13 @@ public class Fb2Extractor extends BaseExtractor {
                         } else if (tag.equals("section")) {
                             sectionId = xpp.getAttributeValue(null, "id");
                             text = new StringBuilder();
-                        } else if (stopAtBinary && tag.equals("binary")) {
-                            break;
+                        } else if (checkBinary && tag.equals("binary")) {
+                            // the base64 images at the end are most of the file, no need to parse them unless
+                            // a body follows; the parser reads ahead, so look from a bit before where it is
+                            checkBinary = false;
+                            if (!hasBodyAfterBinary(inputFile, Math.max(0, inputStream.count - 64 * 1024))) {
+                                break;
+                            }
                         }
                     } else if (eventType == XmlPullParser.TEXT) {
                         if (sectionId != null || isLink) {
@@ -1153,31 +1156,102 @@ public class Fb2Extractor extends BaseExtractor {
         return map;
     }
 
-    // true when the file has a <binary> and no <body> after the first one, so parsing can stop there
-    private static boolean isBinaryAtEnd(String file) {
+    private static final byte[] BINARY_TAG = {'<', 'b', 'i', 'n', 'a', 'r', 'y'};
+    private static final byte[] BODY_TAG = {'<', 'b', 'o', 'd', 'y'};
+    // searching 8 MB of images: String.indexOf is fast on Android 7 and slow on 16, a byte loop the other way round
+    private static final boolean SEARCH_BYTES = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O;
+
+    // true when a <body> comes after the first <binary> found from the given offset
+    static boolean hasBodyAfterBinary(String file, long from) {
+        return hasBodyAfterBinary(file, from, SEARCH_BYTES);
+    }
+
+    static boolean hasBodyAfterBinary(String file, long from, boolean searchBytes) {
         try (InputStream in = new FileInputStream(file)) {
+            while (from > 0) {
+                long skipped = in.skip(from);
+                if (skipped <= 0) {
+                    break;
+                }
+                from -= skipped;
+            }
             byte[] buffer = new byte[64 * 1024];
-            String tail = "";
+            int keep = 0; // end of the previous read, a tag can start there
             boolean binary = false;
             int n;
-            while ((n = in.read(buffer)) != -1) {
-                String chunk = tail + new String(buffer, 0, n, StandardCharsets.ISO_8859_1);
+            while ((n = in.read(buffer, keep, buffer.length - keep)) != -1) {
+                int end = keep + n;
+                // ISO-8859-1 keeps bytes and chars one to one
+                String chunk = searchBytes ? null : new String(buffer, 0, end, java.nio.charset.StandardCharsets.ISO_8859_1);
+                int at = 0;
                 if (!binary) {
-                    int index = chunk.indexOf("<binary");
+                    int index = searchBytes ? indexOf(buffer, 0, end, BINARY_TAG) : chunk.indexOf("<binary");
                     if (index >= 0) {
                         binary = true;
-                        chunk = chunk.substring(index);
+                        at = index + BINARY_TAG.length;
                     }
                 }
-                if (binary && chunk.contains("<body")) {
-                    return false;
+                if (binary && (searchBytes ? indexOf(buffer, at, end, BODY_TAG) : chunk.indexOf("<body", at)) >= 0) {
+                    return true;
                 }
-                tail = chunk.substring(Math.max(0, chunk.length() - 6));
+                keep = Math.min(BINARY_TAG.length - 1, end);
+                System.arraycopy(buffer, end - keep, buffer, 0, keep);
             }
-            return binary;
+            return !binary; // no <binary> found from there: keep parsing to be safe
         } catch (IOException e) {
             LOG.e(e);
-            return false;
+            return true;
+        }
+    }
+
+    private static int indexOf(byte[] buffer, int from, int to, byte[] tag) {
+        for (int i = from; i + tag.length <= to; i++) {
+            if (buffer[i] == '<' && startsWith(buffer, i, tag)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static boolean startsWith(byte[] buffer, int from, byte[] tag) {
+        for (int i = 1; i < tag.length; i++) {
+            if (buffer[from + i] != tag[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static class CountingInputStream extends java.io.FilterInputStream {
+        long count;
+
+        CountingInputStream(InputStream in) {
+            super(in);
+        }
+
+        @Override
+        public int read() throws IOException {
+            int b = super.read();
+            if (b >= 0) {
+                count++;
+            }
+            return b;
+        }
+
+        @Override
+        public int read(byte[] b, int off, int len) throws IOException {
+            int n = super.read(b, off, len);
+            if (n > 0) {
+                count += n;
+            }
+            return n;
+        }
+
+        @Override
+        public long skip(long n) throws IOException {
+            long skipped = super.skip(n);
+            count += skipped;
+            return skipped;
         }
     }
 

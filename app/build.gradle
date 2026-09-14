@@ -235,6 +235,9 @@ android {
 
     sourceSets {
         fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
+        // code for both JVM and device tests, like the old footnote code to compare with
+        test.java.srcDirs += 'src/sharedTest/java'
+        androidTest.java.srcDirs += 'src/sharedTest/java'
     }
 
     packagingOptions {
@@ -331,6 +334,7 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.kxml2)
     androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.androidx.junit)
 
 }
 

@@ -7,6 +7,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -103,8 +104,11 @@ public class Fb2Context extends PdfContext {
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
             notes = Fb2Extractor.get().getFooterNotes(fileName);
-            JsonHelper.mapToFile(jsonFile, notes);
-            LOG.d("save notes to file", jsonFile);
+            // a cancelled extraction is empty or partial, it must not stay in the cache
+            if (!TempHolder.get().loadingCancelled.get()) {
+                JsonHelper.mapToFile(jsonFile, notes);
+                LOG.d("save notes to file", jsonFile);
+            }
         }
         return notes;
     }

@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -27,15 +28,22 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Opt-in benchmark: runs getFooterNotes over real books, records the time and a dump of every notes map.
+ * Opt-in benchmark: runs master's footnote code ("old") and the rewrite with zip4j and with java.util.zip
+ * over real books, records the time and a dump of every notes map.
  * Skipped unless FOOTNOTES_BOOKS (file with one book path per line) and FOOTNOTES_OUT (output dir) are set.
  * <p>
  * FOOTNOTES_BOOKS=books.txt FOOTNOTES_OUT=out ./gradlew :app:testFdroidDebugUnitTest
  * --tests com.foobnix.ext.FooterNotesBenchmarkTest --rerun
+ * <p>
+ * out/summary.tsv has one line per book and variant: variant, status, ms, notes, hash of the notes, path, exception
  */
 public class FooterNotesBenchmarkTest {
 
     private static final long TIMEOUT_SEC = 300;
+
+    interface Extractor {
+        Map<String, String> notes(String path, boolean fb2);
+    }
 
     @Test
     public void extractNotes() throws Exception {
@@ -46,14 +54,19 @@ public class FooterNotesBenchmarkTest {
         // not a constant in android.jar, so it is null in JVM tests and kxml rejects it
         android.util.Xml.FEATURE_RELAXED = "http://xmlpull.org/v1/doc/features.html#relaxed";
 
-        File maps = new File(outDir, "maps");
-        maps.mkdirs();
+        Map<String, Extractor> variants = new LinkedHashMap<>();
+        variants.put("old", (path, fb2) -> fb2 ? LegacyFooterNotes.fb2(path) : LegacyFooterNotes.epub(path));
+        variants.put("zip4j", (path, fb2) -> fb2 ? Fb2Extractor.get().getFooterNotes(path) : EpubExtractor.get().getFooterNotes(path, false));
+        variants.put("java.util.zip", (path, fb2) -> fb2 ? null : EpubExtractor.get().getFooterNotes(path, true));
+        for (String variant : variants.keySet()) {
+            new File(outDir, "maps/" + variant).mkdirs();
+        }
 
         ScheduledExecutorService watchdog = Executors.newSingleThreadScheduledExecutor();
-        // extractors swallow exceptions into LOG.e, keep the first one per book
+        // extractors swallow exceptions into LOG.e, keep the first one per run
         Throwable[] logged = new Throwable[1];
+        // stubOnly: a normal mock records every LOG call with its arguments and runs out of memory;
         // mockStatic is thread-local, so extraction runs on this thread and the watchdog only cancels it
-        // stubOnly: a normal mock records every LOG call with its arguments and runs out of memory
         try (MockedStatic<LOG> ignored = Mockito.mockStatic(LOG.class, Mockito.withSettings().stubOnly().defaultAnswer(invocation -> {
             if (invocation.getMethod().getName().equals("e") && logged[0] == null
                     && invocation.getArguments().length > 0 && invocation.getArgument(0) instanceof Throwable) {
@@ -69,36 +82,39 @@ public class FooterNotesBenchmarkTest {
                     continue;
                 }
                 warmUp(file);
+                boolean fb2 = path.toLowerCase(Locale.US).endsWith(".fb2");
 
-                TempHolder.get().loadingCancelled.set(false);
-                ScheduledFuture<?> timeout = watchdog.schedule(
-                        () -> TempHolder.get().loadingCancelled.set(true), TIMEOUT_SEC, TimeUnit.SECONDS);
-
-                String status = "OK";
-                Map<String, String> notes = null;
-                logged[0] = null;
-                long start = System.nanoTime();
-                try {
-                    if (path.toLowerCase(Locale.US).endsWith(".fb2")) {
-                        notes = Fb2Extractor.get().getFooterNotes(path);
-                    } else {
-                        notes = EpubExtractor.get().getFooterNotes(path);
+                for (Map.Entry<String, Extractor> variant : variants.entrySet()) {
+                    if (fb2 && variant.getKey().equals("java.util.zip")) {
+                        continue;
                     }
-                } catch (Throwable e) {
-                    status = "ERROR " + e.getClass().getSimpleName();
-                }
-                long ms = (System.nanoTime() - start) / 1_000_000;
+                    TempHolder.get().loadingCancelled.set(false);
+                    ScheduledFuture<?> timeout = watchdog.schedule(
+                            () -> TempHolder.get().loadingCancelled.set(true), TIMEOUT_SEC, TimeUnit.SECONDS);
 
-                timeout.cancel(false);
-                if (TempHolder.get().loadingCancelled.getAndSet(false)) {
-                    status = "TIMEOUT";
-                }
+                    String status = "OK";
+                    Map<String, String> notes = null;
+                    logged[0] = null;
+                    long start = System.nanoTime();
+                    try {
+                        notes = variant.getValue().notes(path, fb2);
+                    } catch (Throwable e) {
+                        status = "ERROR " + e.getClass().getSimpleName();
+                    }
+                    long ms = (System.nanoTime() - start) / 1_000_000;
 
-                String dump = dump(notes);
-                Files.write(new File(maps, sha1(path) + ".txt").toPath(),
-                        (path + "\n" + dump).getBytes(StandardCharsets.UTF_8));
-                String error = logged[0] == null ? "" : escape(describe(logged[0]));
-                summary.println(status + "\t" + ms + "\t" + (notes == null ? -1 : notes.size()) + "\t" + sha1(dump) + "\t" + path + "\t" + error);
+                    timeout.cancel(false);
+                    if (TempHolder.get().loadingCancelled.getAndSet(false)) {
+                        status = "TIMEOUT";
+                    }
+
+                    String dump = dump(notes);
+                    Files.write(new File(outDir, "maps/" + variant.getKey() + "/" + sha1(path) + ".txt").toPath(),
+                            (path + "\n" + dump).getBytes(StandardCharsets.UTF_8));
+                    String error = logged[0] == null ? "" : escape(describe(logged[0]));
+                    summary.println(variant.getKey() + "\t" + status + "\t" + ms + "\t" + (notes == null ? -1 : notes.size())
+                            + "\t" + sha1(dump) + "\t" + path + "\t" + error);
+                }
                 summary.flush();
             }
         } finally {

@@ -10,10 +10,13 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
+
+import net.lingala.zip4j.model.FileHeader;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -41,6 +44,9 @@ import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
@@ -50,6 +56,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
@@ -647,65 +654,154 @@ public class EpubExtractor extends BaseExtractor {
 
     @Override
     public Map<String, String> getFooterNotes(String inputPath) {
-        LOG.d("getNotes getFooterNotes", inputPath);
+        return getFooterNotes(inputPath, AppState.get().isJavaZip);
+    }
+
+    // java.util.zip opens entries faster, zip4j works better on some old Android versions and reads
+    // the files java.util.zip rejects
+    public Map<String, String> getFooterNotes(String inputPath, boolean javaZip) {
+        LOG.d("getNotes getFooterNotes", inputPath, javaZip);
 
         Map<String, String> notes = new HashMap<String, String>();
-        ZipArchiveInputStream zipInputStream = null;
+        ZipFile zip = null;
+        if (javaZip) {
+            try {
+                zip = new ZipFile(inputPath);
+            } catch (Throwable e) {
+                LOG.e(e, "java.util.zip", inputPath);
+            }
+        }
         try {
-            // pass 1: footnote links like <a href="notes.xhtml#n1">[1]</a> in OEBPS/ch1.xhtml,
-            // kept as "OEBPS/notes.xhtml" -> "n1" -> ["[1]#OEBPS/ch1.xhtml"]
-            Map<String, Map<String, List<String>>> links = new HashMap<String, Map<String, List<String>>>();
-            List<String> documents = new ArrayList<String>();
-
-            zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
-            ArchiveEntry nextEntry;
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled.get()) {
-                    return new HashMap<String, String>();
-                }
-                String name = nextEntry.getName();
-                if (!isDocument(name)) {
-                    continue;
-                }
-                documents.add(name);
-                try {
-                    findFooterLinks(readText(zipInputStream), name, links);
-                } catch (Exception e) {
-                    LOG.e(e, name);
-                }
+            if (zip != null) {
+                return getFooterNotes(javaZipEntries(zip), notes);
             }
-            zipInputStream.release();
-            zipInputStream = null;
-
-            // pass 2: text of the linked elements, parsing only the files that have them
-            Map<String, Map<String, List<String>>> targets = resolveTargets(links, documents);
-            if (targets.isEmpty()) {
-                return notes;
+            net.lingala.zip4j.ZipFile zip4j = new net.lingala.zip4j.ZipFile(inputPath);
+            try {
+                return getFooterNotes(zip4jEntries(zip4j), notes);
+            } finally {
+                zip4j.close();
             }
-            zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled.get()) {
-                    return new HashMap<String, String>();
-                }
-                Map<String, List<String>> ids = targets.get(nextEntry.getName());
-                if (ids == null) {
-                    continue;
-                }
-                try {
-                    collectNotes(Jsoup.parse(zipInputStream, null, "", Parser.xmlParser()), ids, notes);
-                } catch (Exception e) {
-                    LOG.e(e, nextEntry.getName());
-                }
-            }
-            return notes;
         } catch (Throwable e) {
             LOG.e(e);
             return notes;
         } finally {
-            if (zipInputStream != null) {
-                zipInputStream.release();
+            if (zip != null) {
+                try {
+                    zip.close();
+                } catch (IOException e) {
+                    LOG.e(e);
+                }
             }
         }
+    }
+
+    // the files of a book by name, in the order ZipArchiveInputStream gives them
+    private interface Entries {
+        List<String> names();
+
+        InputStream open(String name) throws IOException;
+    }
+
+    private static Entries javaZipEntries(final ZipFile zip) {
+        final List<String> names = new ArrayList<String>();
+        Enumeration<? extends ZipEntry> all = zip.entries();
+        while (all.hasMoreElements()) {
+            names.add(all.nextElement().getName());
+        }
+        sortNames(names);
+        return new Entries() {
+            @Override
+            public List<String> names() {
+                return names;
+            }
+
+            @Override
+            public InputStream open(String name) throws IOException {
+                return zip.getInputStream(zip.getEntry(name));
+            }
+        };
+    }
+
+    private static Entries zip4jEntries(final net.lingala.zip4j.ZipFile zip) throws IOException {
+        final Map<String, FileHeader> headers = new HashMap<String, FileHeader>();
+        for (FileHeader header : zip.getFileHeaders()) {
+            headers.put(header.getFileName(), header);
+        }
+        final List<String> names = new ArrayList<String>(headers.keySet());
+        sortNames(names);
+        return new Entries() {
+            @Override
+            public List<String> names() {
+                return names;
+            }
+
+            @Override
+            public InputStream open(String name) throws IOException {
+                return zip.getInputStream(headers.get(name));
+            }
+        };
+    }
+
+    private static void sortNames(List<String> names) {
+        Collections.sort(names, new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                try {
+                    return FileMetaComparators.naturalOrderComparator.compare(a, b);
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        });
+    }
+
+    private static Map<String, String> getFooterNotes(Entries entries, Map<String, String> notes) {
+        // pass 1: footnote links like <a href="notes.xhtml#n1">[1]</a> in OEBPS/ch1.xhtml,
+        // kept as "OEBPS/notes.xhtml" -> "n1" -> ["[1]#OEBPS/ch1.xhtml"]
+        Map<String, Map<String, List<String>>> links = new HashMap<String, Map<String, List<String>>>();
+        List<String> documents = new ArrayList<String>();
+        for (String name : entries.names()) {
+            if (TempHolder.get().loadingCancelled.get()) {
+                return new HashMap<String, String>();
+            }
+            if (!isDocument(name)) {
+                continue;
+            }
+            documents.add(name);
+            try {
+                InputStream in = entries.open(name);
+                try {
+                    findFooterLinks(readText(in), name, links);
+                } finally {
+                    in.close();
+                }
+            } catch (Exception e) {
+                LOG.e(e, name);
+            }
+        }
+
+        // pass 2: text of the linked elements, parsing only the files that have them
+        Map<String, Map<String, List<String>>> targets = resolveTargets(links, documents);
+        for (String name : documents) {
+            Map<String, List<String>> ids = targets.get(name);
+            if (ids == null) {
+                continue;
+            }
+            if (TempHolder.get().loadingCancelled.get()) {
+                return new HashMap<String, String>();
+            }
+            try {
+                InputStream in = entries.open(name);
+                try {
+                    collectNotes(Jsoup.parse(in, null, "", Parser.xmlParser()), ids, notes);
+                } finally {
+                    in.close();
+                }
+            } catch (Exception e) {
+                LOG.e(e, name);
+            }
+        }
+        return notes;
     }
 
     // an id used more than once, like a list <div id="n1"> around <a id="n1">[1]</a>, gives the element
