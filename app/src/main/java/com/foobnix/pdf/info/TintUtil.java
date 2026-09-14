@@ -154,14 +154,24 @@ public class TintUtil {
     }
 
     public static void setBackgroundFillColor(View textView, int color) {
-        try {
-            GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        if (textView == null || textView.getBackground() == null) {
+            return;
+        }
+        Drawable background = textView.getBackground().getCurrent();
+        if (background instanceof GradientDrawable) {
+            GradientDrawable drawable = (GradientDrawable) background;
             drawable.setColor(color);
             drawable.setCornerRadius(RADIUS);
-        }catch (Exception e){
-            LOG.e(e);
+        } else if (background instanceof LayerDrawable) {
+            // A ripple keeps its shape in its layers: fill the content, leave the mask and the round alone.
+            LayerDrawable layers = (LayerDrawable) background.mutate();
+            for (int i = 0; i < layers.getNumberOfLayers(); i++) {
+                Drawable layer = layers.getDrawable(i);
+                if (layers.getId(i) != android.R.id.mask && layer instanceof GradientDrawable) {
+                    ((GradientDrawable) layer).setColor(color);
+                }
+            }
         }
-
     }
 
     /**

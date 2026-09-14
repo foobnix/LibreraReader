@@ -301,7 +301,7 @@ dependencies {
     implementation(libs.guava)
 
     implementation('org.commonmark:commonmark:0.29.0')
-    implementation ('org.commonmark:commonmark-ext-gfm-tables:0.29.0')
+    implementation ('org.commonmark:commonmark-ext-gfm-tables:0.30.0')
 
 
 
@@ -328,6 +328,8 @@ dependencies {
 
 /** Testing **/
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.kxml2)
     androidTestImplementation(libs.runner)
 
 }

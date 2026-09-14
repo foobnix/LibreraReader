@@ -37,9 +37,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -643,145 +647,438 @@ public class EpubExtractor extends BaseExtractor {
 
     @Override
     public Map<String, String> getFooterNotes(String inputPath) {
-
         LOG.d("getNotes getFooterNotes", inputPath);
 
         Map<String, String> notes = new HashMap<String, String>();
+        ZipArchiveInputStream zipInputStream = null;
         try {
-            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
+            // pass 1: footnote links like <a href="notes.xhtml#n1">[1]</a> in OEBPS/ch1.xhtml,
+            // kept as "OEBPS/notes.xhtml" -> "n1" -> ["[1]#OEBPS/ch1.xhtml"]
+            Map<String, Map<String, List<String>>> links = new HashMap<String, Map<String, List<String>>>();
+            List<String> documents = new ArrayList<String>();
 
-            ArchiveEntry nextEntry = null;
-            Map<String, String> textLink = new HashMap<String, String>();
-            Set<String> files = new HashSet<String>();
-
-            try {
-                // CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
-
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (TempHolder.get().loadingCancelled.get()) {
-                        return new HashMap<String, String>();
-                    }
-                    String name = nextEntry.getName();
-                    String nameLow = name.toLowerCase(Locale.US);
-                    if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
-                        // System.out.println("- " + nameLow + " -");
-                        Document parse = Jsoup.parse(zipInputStream, null, "", Parser.xmlParser());
-                        Elements select = parse.select("a[href]");
-
-                        for (int i = 0; i < select.size(); i++) {
-                            if (TempHolder.get().loadingCancelled.get()) {
-
-                                return new HashMap<String, String>();
-                            }
-                            Element item = select.get(i);
-                            String text = item.text();
-                            if (item.attr("href").contains("#")) {
-                                String attr = item.attr("href");
-                                String file = attr.substring(0, attr.indexOf("#"));
-                                // System.out.println(text + " -> " + attr + "
-                                // [" +
-                                // file);
-                                if (attr.startsWith("#")) {
-                                    attr = name + attr;
-                                }
-                                LOG.d("link-item-text", attr, text,"finished",TempHolder.get().loadingCancelled.get());
-                                if (!TxtUtils.isFooterNote(text)) {
-                                    LOG.d("Skip text", text);
-                                    continue;
-                                }
-
-                                textLink.put(attr, text + "#" + name);
-                                LOG.d("put links >>", attr, text + "#" + name);
-
-                                LOG.d("Extract file", file);
-                                if (TxtUtils.isEmpty(file)) {
-                                    file = name;
-                                }
-
-                                if (file.endsWith("html") || file.endsWith("htm") || nameLow.endsWith("xml")) {
-                                    files.add(file);
-                                }
-                            }
-                        }
-
-
-                    }
+            zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
+            ArchiveEntry nextEntry;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled.get()) {
+                    return new HashMap<String, String>();
                 }
-
-                zipInputStream.release();
-                zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
-
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (TempHolder.get().loadingCancelled.get()) {
-                        return new HashMap<String, String>();
-                    }
-                    String name = nextEntry.getName();
-                    for (String fileName : files) {
-                        if (TempHolder.get().loadingCancelled.get()) {
-                            return new HashMap<String, String>();
-                        }
-                        LOG.d("PARSE FILE NAME begin", name);
-                        if (ExtUtils.getFileName(name).endsWith(ExtUtils.getFileName(fileName))) {
-                            LOG.d("PARSE FILE NAME", name);
-                            // System.out.println("file: " + name);
-                            Parser xmlParser = Parser.xmlParser();
-                            Document parse = Jsoup.parse(zipInputStream, null, "", xmlParser);
-
-                            Elements ids = parse.select("[id]");
-                            for (int i = 0; i < ids.size(); i++) {
-                                if (TempHolder.get().loadingCancelled.get()) {
-                                    return new HashMap<String, String>();
-                                }
-                                Element item = ids.get(i);
-                                String id = item.attr("id");
-
-                                String fileKey = fileName + "#" + id;
-
-                                String textKey = textLink.get(fileKey);
-                                if (textKey == null) {
-                                    LOG.d("skip #id", fileKey);
-                                    continue;
-                                }
-
-                                String value = item.text();
-
-                                int min = 20;
-                                if (value.trim().length() < min) {
-                                    value = value + " " + parse.select("[id=" + id + "]+*").text();
-                                }
-                                if (value.trim().length() < min) {
-                                    value = value + " " + parse.select("[id=" + id + "]+*+*").text();
-                                }
-                                try {
-                                    if (value.trim().length() < min) {
-                                        value = value + " " + parse.select("[id=" + id + "]").parents().get(0).text();
-                                    }
-                                } catch (Exception e) {
-                                    LOG.e(e);
-                                }
-
-
-                                LOG.d("put text >>", TempHolder.get().loadingCancelled.get(), textKey, value);
-                                notes.put(textKey, value.trim());
-
-
-                            }
-
-                        }
-
-                    }
+                String name = nextEntry.getName();
+                if (!isDocument(name)) {
+                    continue;
                 }
-
-                zipInputStream.release();
-            } catch (Exception e) {
-                LOG.e(e);
+                documents.add(name);
+                try {
+                    findFooterLinks(readText(zipInputStream), name, links);
+                } catch (Exception e) {
+                    LOG.e(e, name);
+                }
             }
+            zipInputStream.release();
+            zipInputStream = null;
 
+            // pass 2: text of the linked elements, parsing only the files that have them
+            Map<String, Map<String, List<String>>> targets = resolveTargets(links, documents);
+            if (targets.isEmpty()) {
+                return notes;
+            }
+            zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled.get()) {
+                    return new HashMap<String, String>();
+                }
+                Map<String, List<String>> ids = targets.get(nextEntry.getName());
+                if (ids == null) {
+                    continue;
+                }
+                try {
+                    collectNotes(Jsoup.parse(zipInputStream, null, "", Parser.xmlParser()), ids, notes);
+                } catch (Exception e) {
+                    LOG.e(e, nextEntry.getName());
+                }
+            }
             return notes;
         } catch (Throwable e) {
             LOG.e(e);
             return notes;
+        } finally {
+            if (zipInputStream != null) {
+                zipInputStream.release();
+            }
         }
+    }
+
+    // an id used more than once, like a list <div id="n1"> around <a id="n1">[1]</a>, gives the element
+    // whose text is the link text, else the first one
+    private static void collectNotes(Document parse, Map<String, List<String>> ids, Map<String, String> notes) {
+        Map<Element, String> parentText = new IdentityHashMap<Element, String>();
+        Map<String, Integer> matches = new HashMap<String, Integer>();
+        for (Element item : parse.select("[id]")) {
+            String id = item.attr("id");
+            List<String> textKeys = ids.get(id);
+            if (textKeys == null) {
+                continue;
+            }
+            String text = item.text();
+            for (String textKey : textKeys) {
+                int match = match(text, textKey.substring(0, textKey.lastIndexOf('#')));
+                String pair = id + "#" + textKey;
+                Integer best = matches.get(pair);
+                if (best == null || match > best) {
+                    matches.put(pair, match);
+                    notes.put(textKey, noteValue(item, text, parentText));
+                }
+            }
+        }
+    }
+
+    private static int match(String text, String label) {
+        text = text.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
+        if (text.equals(label)) {
+            return 2;
+        }
+        return text.startsWith(label) ? 1 : 0;
+    }
+
+    private static boolean isDocument(String name) {
+        String nameLow = name.toLowerCase(Locale.US);
+        return nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml");
+    }
+
+    // text of the linked element; a short one like "[1]" gets the text after it or of its paragraph
+    private static String noteValue(Element item, String text, Map<Element, String> parentText) {
+        int min = 20;
+        String value = text;
+        Element sibling = item.nextElementSibling();
+        if (value.trim().length() < min) {
+            value = value + " " + (sibling == null ? "" : sibling.text());
+        }
+        if (value.trim().length() < min) {
+            Element next = sibling == null ? null : sibling.nextElementSibling();
+            value = value + " " + (next == null ? "" : next.text());
+        }
+        Element parent = item.parent();
+        if (value.trim().length() < min && parent != null && !(parent instanceof Document)) {
+            String parentValue = parentText.get(parent);
+            if (parentValue == null) {
+                parentValue = parent.text();
+                parentText.put(parent, parentValue);
+            }
+            value = value + " " + parentValue;
+        }
+        return value.trim();
+    }
+
+    // <a href="...#id">text</a> with a footnote text like [1], found without building a DOM
+    private static void findFooterLinks(String html, String name, Map<String, Map<String, List<String>>> links) {
+        int length = html.length();
+        int comment = html.indexOf("<!--");
+        int hash = -1;
+        int i = 0;
+        while ((i = html.indexOf("<a", i)) >= 0) {
+            if (comment >= 0 && comment < i) {
+                int commentEnd = html.indexOf("-->", comment + 4);
+                if (commentEnd < 0) {
+                    return;
+                }
+                comment = html.indexOf("<!--", commentEnd + 3);
+                if (i < commentEnd + 3) {
+                    i = commentEnd + 3;
+                }
+                continue;
+            }
+            int start = i;
+            i += 2;
+            if (i >= length || !isSpace(html.charAt(i))) {
+                continue; // <abbr>, <aside>, <a> without attributes
+            }
+            int tagEnd = tagEnd(html, i);
+            if (tagEnd < 0) {
+                return;
+            }
+            i = tagEnd + 1;
+            if (html.charAt(tagEnd - 1) == '/') {
+                continue; // <a id="x"/>
+            }
+            if (hash < start) {
+                hash = html.indexOf('#', start);
+                if (hash < 0) {
+                    return; // no more links to an #id
+                }
+            }
+            if (hash > tagEnd) {
+                continue;
+            }
+            int close = closingTag(html, i);
+            if (close < 0) {
+                return;
+            }
+            int closeEnd = html.indexOf('>', close);
+            if (closeEnd < 0) {
+                return;
+            }
+            if (!hasFooterNoteChars(html, i, close)) {
+                continue;
+            }
+
+            String text = null;
+            String href = null;
+            if (isPlainText(html, i, close)) {
+                href = plainHref(html, start + 2, tagEnd);
+                text = html.substring(i, close);
+            }
+            if (href == null) {
+                Element a = Jsoup.parse(html.substring(start, closeEnd + 1), "", Parser.xmlParser()).selectFirst("a[href]");
+                if (a == null) {
+                    continue;
+                }
+                text = a.text();
+                href = a.attr("href");
+            }
+            i = closeEnd + 1;
+            addFooterLink(links, name, href, text);
+        }
+    }
+
+    private static void addFooterLink(Map<String, Map<String, List<String>>> links, String name, String href, String text) {
+        int sharp = href.indexOf('#');
+        if (sharp < 0 || !TxtUtils.isFooterNote(text)) {
+            return;
+        }
+        String file = href.substring(0, sharp);
+        String target = file.isEmpty() ? name : resolvePath(name, file);
+        if (target == null) {
+            return;
+        }
+        Map<String, List<String>> ids = links.get(target);
+        if (ids == null) {
+            ids = new HashMap<String, List<String>>();
+            links.put(target, ids);
+        }
+        String id = href.substring(sharp + 1);
+        List<String> textKeys = ids.get(id);
+        if (textKeys == null) {
+            textKeys = new ArrayList<String>(1);
+            ids.put(id, textKeys);
+        }
+        String textKey = text + "#" + name;
+        if (!textKeys.contains(textKey)) {
+            textKeys.add(textKey);
+        }
+    }
+
+    // the zip entry a link points to, relative to the linking file; null for external links
+    static String resolvePath(String base, String href) {
+        if (href.indexOf(':') >= 0) {
+            return null;
+        }
+        int query = href.indexOf('?');
+        if (query >= 0) {
+            href = href.substring(0, query);
+        }
+        if (href.indexOf('%') >= 0) {
+            try {
+                href = URLDecoder.decode(href.replace("+", "%2B"), "UTF-8");
+            } catch (Exception e) {
+                // keep it as it is
+            }
+        }
+        String path;
+        if (href.startsWith("/")) {
+            path = href.substring(1);
+        } else {
+            int slash = base.lastIndexOf('/');
+            path = slash < 0 ? href : base.substring(0, slash + 1) + href;
+        }
+        if (!path.contains("./") && !path.contains("//")) {
+            return path;
+        }
+        List<String> parts = new ArrayList<String>();
+        for (String part : path.split("/")) {
+            if (part.equals("..")) {
+                if (!parts.isEmpty()) {
+                    parts.remove(parts.size() - 1);
+                }
+            } else if (!part.isEmpty() && !part.equals(".")) {
+                parts.add(part);
+            }
+        }
+        StringBuilder out = new StringBuilder(path.length());
+        for (String part : parts) {
+            if (out.length() > 0) {
+                out.append('/');
+            }
+            out.append(part);
+        }
+        return out.toString();
+    }
+
+    // a link to a missing path falls back to a document with the same file name
+    private static Map<String, Map<String, List<String>>> resolveTargets(Map<String, Map<String, List<String>>> links, List<String> documents) {
+        Set<String> names = new HashSet<String>(documents);
+        Map<String, String> byFileName = new HashMap<String, String>();
+        for (String document : documents) {
+            String fileName = document.substring(document.lastIndexOf('/') + 1);
+            if (!byFileName.containsKey(fileName)) {
+                byFileName.put(fileName, document);
+            }
+        }
+        Map<String, Map<String, List<String>>> targets = new HashMap<String, Map<String, List<String>>>();
+        for (Map.Entry<String, Map<String, List<String>>> link : links.entrySet()) {
+            String path = link.getKey();
+            String document = names.contains(path) ? path : byFileName.get(path.substring(path.lastIndexOf('/') + 1));
+            if (document == null) {
+                continue;
+            }
+            Map<String, List<String>> ids = targets.get(document);
+            if (ids == null) {
+                targets.put(document, link.getValue());
+                continue;
+            }
+            for (Map.Entry<String, List<String>> id : link.getValue().entrySet()) {
+                List<String> textKeys = ids.get(id.getKey());
+                if (textKeys == null) {
+                    ids.put(id.getKey(), id.getValue());
+                } else {
+                    textKeys.addAll(id.getValue());
+                }
+            }
+        }
+        return targets;
+    }
+
+    private static boolean isSpace(char c) {
+        return c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f';
+    }
+
+    // the '>' that ends a tag, skipping quoted attribute values
+    private static int tagEnd(String html, int from) {
+        char quote = 0;
+        for (int i = from; i < html.length(); i++) {
+            char c = html.charAt(i);
+            if (quote != 0) {
+                if (c == quote) {
+                    quote = 0;
+                }
+            } else if (c == '"' || c == '\'') {
+                quote = c;
+            } else if (c == '>') {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static int closingTag(String html, int from) {
+        int i = from;
+        while ((i = html.indexOf("</a", i)) >= 0) {
+            int next = i + 3;
+            if (next < html.length() && (html.charAt(next) == '>' || isSpace(html.charAt(next)))) {
+                return i;
+            }
+            i = next;
+        }
+        return -1;
+    }
+
+    // a footnote text has a bracket, maybe written as an entity
+    private static boolean hasFooterNoteChars(String html, int from, int to) {
+        for (int i = from; i < to; i++) {
+            char c = html.charAt(i);
+            if (c == '[' || c == '{' || c == '&') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // text that jsoup would return unchanged: no tags, entities or whitespace
+    private static boolean isPlainText(String html, int from, int to) {
+        for (int i = from; i < to; i++) {
+            char c = html.charAt(i);
+            if (c == '<' || c == '&' || c == ' ' || Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return to > from;
+    }
+
+    // quoted href value without entities, else null to let jsoup parse the tag
+    private static String plainHref(String html, int from, int to) {
+        int i = from;
+        while ((i = html.indexOf("href", i)) >= 0 && i < to) {
+            int j = i + 4;
+            if (!isSpace(html.charAt(i - 1))) {
+                i = j; // data-href, xlink:href
+                continue;
+            }
+            while (j < to && isSpace(html.charAt(j))) {
+                j++;
+            }
+            if (j >= to || html.charAt(j) != '=') {
+                return null;
+            }
+            j++;
+            while (j < to && isSpace(html.charAt(j))) {
+                j++;
+            }
+            if (j >= to || html.charAt(j) != '"' && html.charAt(j) != '\'') {
+                return null;
+            }
+            int end = html.indexOf(html.charAt(j), j + 1);
+            if (end < 0 || end > to) {
+                return null;
+            }
+            String value = html.substring(j + 1, end);
+            return value.indexOf('&') < 0 ? value : null;
+        }
+        return null;
+    }
+
+    private static String readText(InputStream in) throws IOException {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream(64 * 1024);
+        byte[] buffer = new byte[16 * 1024];
+        int n;
+        while ((n = in.read(buffer)) != -1) {
+            bytes.write(buffer, 0, n);
+        }
+        return decode(bytes.toByteArray());
+    }
+
+    // BOM, then encoding="..." of the XML declaration or charset= of a meta tag, else UTF-8
+    private static String decode(byte[] data) {
+        int n = data.length;
+        if (n >= 2 && (data[0] & 0xFF) == 0xFE && (data[1] & 0xFF) == 0xFF) {
+            return new String(data, 2, n - 2, StandardCharsets.UTF_16BE);
+        }
+        if (n >= 2 && (data[0] & 0xFF) == 0xFF && (data[1] & 0xFF) == 0xFE) {
+            return new String(data, 2, n - 2, StandardCharsets.UTF_16LE);
+        }
+        if (n >= 3 && (data[0] & 0xFF) == 0xEF && (data[1] & 0xFF) == 0xBB && (data[2] & 0xFF) == 0xBF) {
+            return new String(data, 3, n - 3, StandardCharsets.UTF_8);
+        }
+        String head = new String(data, 0, Math.min(n, 1024), StandardCharsets.ISO_8859_1);
+        int i = head.indexOf("encoding=");
+        int from = i + "encoding=".length();
+        if (i < 0) {
+            i = head.indexOf("charset=");
+            from = i + "charset=".length();
+        }
+        if (i >= 0) {
+            while (from < head.length() && (head.charAt(from) == '"' || head.charAt(from) == '\'')) {
+                from++;
+            }
+            int to = from;
+            while (to < head.length() && (Character.isLetterOrDigit(head.charAt(to)) || "-_.:".indexOf(head.charAt(to)) >= 0)) {
+                to++;
+            }
+            try {
+                return new String(data, Charset.forName(head.substring(from, to)));
+            } catch (Exception e) {
+                // unknown charset
+            }
+        }
+        return new String(data, StandardCharsets.UTF_8);
     }
 
 }

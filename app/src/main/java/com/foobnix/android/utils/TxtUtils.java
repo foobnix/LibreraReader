@@ -1159,14 +1159,14 @@ public class TxtUtils {
         }
     }
 
+    private static final Pattern FOOTER_NOTE = Pattern.compile("[\\[{][0-9]+[}\\]]");
+
     public static boolean isFooterNote(String text) {
         if (text == null) {
             return false;
         }
-        Pattern p = Pattern.compile("[\\[{][0-9]+[}\\]]");
         text = text.trim();
-        return text.length() < 30 && (p.matcher(text)
-                                       .find());
+        return text.length() < 30 && FOOTER_NOTE.matcher(text).find();
     }
 
     public static String escapeHtml(CharSequence text) {
