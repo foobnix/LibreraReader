@@ -151,7 +151,7 @@ public class DjvuPage extends AbstractCodecPage {
         if (width > 0 && height > 0) {
             bmp = BitmapManager.getBitmap("Djvu page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             final int[] buffer = new int[width * height];
-            renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
+            renderPageWrapper(contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
             bmp.getBitmap().setPixels(buffer, 0, width, 0, 0, width, height);
             return bmp;
         }
@@ -169,7 +169,7 @@ public class DjvuPage extends AbstractCodecPage {
         if (width > 0 && height > 0) {
             bmp = BitmapManager.getBitmap("Djvu page", width, height, AppsConfig.CURRENT_BITMAP_ARGB);
             final int[] buffer = new int[width * height];
-            renderPageWrapper(pageHandle, contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
+            renderPageWrapper(contextHandle, width, height, pageSliceBounds.left, pageSliceBounds.top, pageSliceBounds.width(), pageSliceBounds.height(), buffer, renderMode);
 
             if (MagicHelper.isNeedBC) {
                 MagicHelper.applyQuickContrastAndBrightness(buffer, width, height);
@@ -299,9 +299,17 @@ public class DjvuPage extends AbstractCodecPage {
         return list;
     }
 
-    private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode) {
+    private boolean renderPageWrapper(long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode) {
+        TempHolder.lock.lock();
+        try {
+            if (pageHandle == 0) {
+                LOG.d("renderPage skip isRecycled");
+                return false;
+            }
             return renderPage(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, buffer, renderMode);
-
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     private boolean renderPageBitmapWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode) {

@@ -315,6 +315,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return new ArrayList<PageLink>();
+            }
             return MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
         } finally {
             TempHolder.lock.unlock();
@@ -325,6 +328,9 @@ public class MuPdfPage extends AbstractCodecPage {
     public int getCharCount() {
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return 0;
+            }
             return getCharCount(docHandle, pageHandle);
         } finally {
             TempHolder.lock.unlock();
@@ -344,6 +350,9 @@ public class MuPdfPage extends AbstractCodecPage {
         LOG.d("getPageAsHtml");
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return "";
+            }
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, -1);
             String string = new String(pageAsHtml);
             LOG.d("getPageAsHtml", string);
@@ -364,6 +373,9 @@ public class MuPdfPage extends AbstractCodecPage {
             // FZ_STEXT_PRESERVE_LIGATURES = 1,
             // FZ_STEXT_PRESERVE_WHITESPACE = 2,
             // FZ_STEXT_PRESERVE_IMAGES = 4,
+            if (isRecycled()) {
+                return "";
+            }
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, 4);
             String string = new String(pageAsHtml);
             LOG.d("getPageAsHtml WithImages", string);
@@ -385,6 +397,10 @@ public class MuPdfPage extends AbstractCodecPage {
         LOG.d("addMarkupAnnotation", quadPoints.length, type, color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                LOG.d("addMarkupAnnotation skip isRecycled");
+                return;
+            }
             addMarkupAnnotationInternal(docHandle, pageHandle, quadPoints, type.ordinal(), color);
         } finally {
             TempHolder.lock.unlock();
@@ -397,6 +413,9 @@ public class MuPdfPage extends AbstractCodecPage {
         TempHolder.lock.lock();
         List<Annotation> result = new ArrayList<Annotation>();
         try {
+            if (isRecycled()) {
+                return result;
+            }
             Annotation[] list = getAnnotationsInternal(docHandle, pageHandle);
 
             if (list != null) {
@@ -421,6 +440,10 @@ public class MuPdfPage extends AbstractCodecPage {
         LOG.d("addInkAnnotationInternal", color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                LOG.d("addAnnotation skip isRecycled");
+                return;
+            }
             addInkAnnotationInternal(docHandle, pageHandle, color, points, (int) width, alpha);
         } finally {
             TempHolder.lock.unlock();
@@ -430,6 +453,9 @@ public class MuPdfPage extends AbstractCodecPage {
     public TextChar[][][][] text() {
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return null;
+            }
             return text(docHandle, pageHandle);
         } catch (Throwable e) {
             LOG.e(e);
@@ -473,6 +499,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return new TextWord[0][0];
+            }
             chars = text116(docHandle, pageHandle);
         } finally {
             TempHolder.lock.unlock();

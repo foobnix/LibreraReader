@@ -147,9 +147,14 @@ public abstract class AbstractCodecContext implements CodecContext {
      */
     @Override
     public final void recycle() {
-        if (!isRecycled()) {
-            freeContext();
-            contextHandle = 0;
+        TempHolder.lock.lock();
+        try {
+            if (!isRecycled()) {
+                freeContext();
+                contextHandle = 0;
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
     }
 

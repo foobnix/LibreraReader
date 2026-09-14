@@ -66,13 +66,17 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override public final void recycle() {
         //LOG.d("ACD","recycle",isRecycled());
-        TempHolder.get().lastRecycledDocument = documentHandle;
-        if (!isRecycled()) {
-            context.recycle();
-            context = null;
-            freeDocument();
+        TempHolder.lock.lock();
+        try {
+            TempHolder.get().lastRecycledDocument = documentHandle;
+            if (!isRecycled()) {
+                context.recycle();
+                context = null;
+                freeDocument();
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
-
     }
 
     @Override public final boolean isRecycled() {
