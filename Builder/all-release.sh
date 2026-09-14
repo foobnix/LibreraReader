@@ -20,6 +20,10 @@ cd ../
 #./gradlew clean incVersion
 ./gradlew clean
 
+#./gradlew assemblePdf_v2Release bundlePdf_v2Release
+#./gradlew assembleEbookaRelease bundleEbookaRelease
+
+
 ./gradlew assembleLibreraRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
@@ -34,8 +38,8 @@ cd ../
 ./gradlew copyApks -Prelease
 ./gradlew -stop
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/*.apk
-rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*.apk
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*.apk /home/dev/Dropbox/FREE_PDF_APK/testing/*.aab /home/dev/Dropbox/FREE_PDF_APK/testing/*-mapping.txt
+rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*.apk /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*.aab /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-mapping.txt
 
 cd Builder
 ./remove_all.sh

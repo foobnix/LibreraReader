@@ -359,14 +359,15 @@ tasks.register("copyApks") {
 
         //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
         //delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
-        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk", "*.aab", "*-mapping.txt")
 
-        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk")
+        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk", "*.aab", "*-mapping.txt")
         //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
 
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
+                def appName = "Librera ${flavor.capitalize()}-${flavor == 'fdroid' ? FDroidVersionNumber : versionNumber}"
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
@@ -386,10 +387,21 @@ tasks.register("copyApks") {
                 list.each { dest ->
 
                     copy {
-                        from file(
-                                "build/outputs/apk/${flavor}/release/"
-                        )
-                        include "*.apk"
+                        from(file("build/outputs/apk/${flavor}/release/")) {
+                            include "*.apk"
+                        }
+                        // App Bundle: build/outputs/bundle/<flavor>Release/app-<flavor>-release.aab
+                        from(file("build/outputs/bundle/${flavor}Release/")) {
+                            include "*.aab"
+                            rename { "${appName}.aab" }
+                        }
+                        // R8 mapping for deobfuscating crash stack traces: release folder, Librera and Pro only
+                        if (project.hasProperty("release") && dest.endsWith("/$versionNumber") && flavor in ["librera", "pro"]) {
+                            from(file("build/outputs/mapping/${flavor}Release/")) {
+                                include "mapping.txt"
+                                rename { "${appName}-mapping.txt" }
+                            }
+                        }
                         into file(dest)
                         println "Copy: '" + flavor + "' to " + dest
 
