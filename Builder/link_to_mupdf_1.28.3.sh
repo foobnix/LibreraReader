@@ -151,6 +151,7 @@ if [ "$1" == "fdroid" ]; then
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
       $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+      wait
       echo "=================="
       echo "NDK:"  $NDK
       echo "APP_PLATFORM=android-24"
@@ -164,6 +165,7 @@ else
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
     $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+    wait
     echo "=================="
     echo "NDK:"  $NDK
     echo "APP_PLATFORM=android-24"
