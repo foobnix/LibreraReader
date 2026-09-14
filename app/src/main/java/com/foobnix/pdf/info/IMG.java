@@ -36,7 +36,7 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 public class IMG {
 
-    public static final float WIDTH_DK = 1.4f;
+    public static final float WIDTH_DK = 1.5f;
     public static final int TWO_LINE_COVER_SIZE = 74;
     public static Drawable bookBGWithMark;
     public static Drawable bookBGNoMark;
