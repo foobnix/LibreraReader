@@ -226,7 +226,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
-        isEnableBBCode = true;
+        isEnableBBCode = false;
         AppSP.get().hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
