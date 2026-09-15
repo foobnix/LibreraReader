@@ -29,6 +29,7 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition.StringCondition;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -519,6 +520,41 @@ public class AppDB {
     }
 
 
+    /**
+     * Splits a genre query on whitespace while keeping quoted multi-word genres together.
+     */
+    private static List<String> splitGenreSearch(String text) {
+        List<String> result = new ArrayList<String>();
+        StringBuilder token = new StringBuilder();
+        boolean quoted = false;
+        char quote = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c == '\"' || c == '\'') {
+                if (quoted && c == quote) {
+                    quoted = false;
+                } else if (!quoted) {
+                    quoted = true;
+                    quote = c;
+                    token.append(c);
+                } else {
+                    token.append(c);
+                }
+            } else if (Character.isWhitespace(c) && !quoted) {
+                if (token.length() > 0) {
+                    result.add(token.toString());
+                    token.setLength(0);
+                }
+            } else {
+                token.append(c);
+            }
+        }
+        if (token.length() > 0) {
+            result.add(token.toString());
+        }
+        return result;
+    }
+
     public List<FileMeta> searchBy(String str, SORT_BY sortby, boolean isAsc) {
         LOG.d("searchBy", str);
         try {
@@ -541,19 +577,108 @@ public class AppDB {
 
             if (searchIn == SEARCH_IN.TAGS) {
                 str = str + StringDB.DIVIDER;
-
             }
             LOG.d("searchBy", searchIn, str, "-");
             if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
+            } else if (searchIn == SEARCH_IN.GENRE && TxtUtils.isNotEmpty(str)) {
+                // Genre metadata is stored as a comma-delimited list (",Action,Fantasy,").
+                // Whitespace-separated terms are independent AND conditions; a leading '-'
+                // or NOT makes a term an exclusion. Quoted terms keep multi-word genres together.
+                List<String> genreTerms = splitGenreSearch(str);
+                boolean hasGenreCondition = false;
+                boolean negateNext = false;
+
+                for (String term : genreTerms) {
+                    if (term.length() == 0) {
+                        continue;
+                    }
+                    if ("AND".equalsIgnoreCase(term)) {
+                        continue;
+                    }
+                    if ("NOT".equalsIgnoreCase(term)) {
+                        negateNext = true;
+                        continue;
+                    }
+
+                    boolean negative = negateNext || term.startsWith("-");
+                    negateNext = false;
+                    if (term.startsWith("-")) {
+                        term = term.substring(1).trim();
+                    }
+                    if (term.length() == 0) {
+                        continue;
+                    }
+
+                    if (term.length() >= 2 && ((term.startsWith("\"") && term.endsWith("\""))
+                            || (term.startsWith("'") && term.endsWith("'")))) {
+                        term = term.substring(1, term.length() - 1).trim();
+                    }
+                    term = term.replace(StringDB.DIVIDER, "").trim();
+                    if (term.length() == 0) {
+                        continue;
+                    }
+
+                    String genreColumn = "\"" + FileMetaDao.Properties.Genre.columnName + "\"";
+                    String normalizedTerm = term.replace("*", "%");
+                    String lowerTerm = term.toLowerCase(Locale.US).replace("*", "%");
+
+                    // StringDB stores genres as comma-delimited values (normally with a trailing comma),
+                    // but imported/older metadata may not have a leading comma or may contain only one genre.
+                    // Match the complete genre token rather than a substring, and don't depend on genre order.
+                    String[] patterns = new String[] {
+                            normalizedTerm,
+                            normalizedTerm + ",%",
+                            "%," + normalizedTerm + ",%",
+                            "%," + normalizedTerm
+                    };
+                    String[] lowerPatterns = new String[] {
+                            lowerTerm,
+                            lowerTerm + ",%",
+                            "%," + lowerTerm + ",%",
+                            "%," + lowerTerm
+                    };
+
+                    if (negative) {
+                        StringBuilder condition = new StringBuilder();
+                        for (int i = 0; i < patterns.length; i++) {
+                            if (i > 0) {
+                                condition.append(" AND ");
+                            }
+                            condition.append(genreColumn).append(" NOT LIKE ? AND ").append(genreColumn).append(" NOT LIKE ?");
+                        }
+                        Object[] values = new Object[patterns.length * 2];
+                        for (int i = 0; i < patterns.length; i++) {
+                            values[i * 2] = patterns[i];
+                            values[i * 2 + 1] = lowerPatterns[i];
+                        }
+                        where = where.where(new StringCondition(condition.toString(), values));
+                    } else {
+                        StringBuilder condition = new StringBuilder("(");
+                        Object[] values = new Object[patterns.length * 2];
+                        for (int i = 0; i < patterns.length; i++) {
+                            if (i > 0) {
+                                condition.append(" OR ");
+                            }
+                            condition.append("(").append(genreColumn).append(" LIKE ? OR ").append(genreColumn).append(" LIKE ?)");
+                            values[i * 2] = patterns[i];
+                            values[i * 2 + 1] = lowerPatterns[i];
+                        }
+                        condition.append(")");
+                        where = where.where(new StringCondition(condition.toString(), values));
+                    }
+                    hasGenreCondition = true;
+                }
+
+                if (!hasGenreCondition) {
+                    LOG.d("searchBy-genre", "No usable genre terms in", str);
+                }
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
                     str = str.replace(" ", "%").replace("*", "%");
                     str = str.replace(StringDB.EXACTMATCHCHAR, StringDB.DIVIDER);
 
                     String string = "%" + str + "%";
-
-
                     LOG.d("searchBy-final", string);
 
                     if (searchIn != null) {
