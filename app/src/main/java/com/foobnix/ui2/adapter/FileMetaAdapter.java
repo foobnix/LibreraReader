@@ -325,11 +325,21 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.count.setVisibility(View.GONE);
             }
 
+            // A recycled row may have held a cover: the folder mark is drawn whole and held off
+            // the edge of the card.
+            final View coverFrame = (View) holder.image.getParent();
+            coverFrame.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+            holder.image.setScaleType(ScaleType.FIT_CENTER);
+
             if (new File(fileMeta.getPath(), "Fonts").isDirectory()) {
                 holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
             } else {
                 if (AppState.get().isFolderPreview) {
                     IMG.updateImageSizeSmallDir(holder.image);
+                    // The cover a folder shows sits flush into the corner of the card, as a
+                    // book's does: no air round it, and the card cuts it to its own round.
+                    coverFrame.setPadding(0, 0, 0, 0);
+                    holder.image.setScaleType(ScaleType.CENTER_CROP);
                     IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(),  new IMG.ResourceReady() {
                         @Override
                         public void onResourceReady(Bitmap bitmap) {
@@ -937,13 +947,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.menu, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (holder.remove != null) {
-            // The mark that drops a book takes the same day/night colour as the heart beside
-            // it, so on a night theme it stays legible instead of sinking into the card.
+            // The bin that drops a book and its ring take the same day/night colour as the heart
+            // beside it, so on a night theme it stays legible instead of sinking into the card.
+            int removeColor = holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                    TintUtil.getColorInDayNighthBook();
             if (holder.remove instanceof ImageView) {
-                TintUtil.setTintImageWithAlpha((ImageView) holder.remove,
-                        holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                                TintUtil.getColorInDayNighthBook());
+                TintUtil.setTintImageWithAlpha((ImageView) holder.remove, removeColor);
             }
+            TintUtil.setRingColor(holder.remove, removeColor);
             holder.remove.setOnClickListener(new OnClickListener() {
 
                 @Override

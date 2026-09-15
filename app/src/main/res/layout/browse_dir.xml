@@ -16,11 +16,14 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="2dip" >
+        android:paddingRight="2dip" >
 
+       <!-- The frame keeps the folder mark off the edge of the card; a cover shown in its place
+            is set flush into the corner by the adapter, and the card cuts it to its round. -->
        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="2dip" >
 
            <ImageView
                android:id="@+id/image1"
