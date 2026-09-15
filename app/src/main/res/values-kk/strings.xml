@@ -543,6 +543,7 @@
    <string name="dark_oled">Қараңғы</string>
    <string name="profile">Профиль</string>
    <string name="new_profile">Жаңа профиль</string>
+   <string name="add_profile">Профиль қосу</string>
    <string name="main">Бастысы</string>
    <string name="do_you_want_to_switch_profile_">Басқа профильге ауысу керек пе?</string>
    <string name="sync_error">Синхрондау қатесі</string>

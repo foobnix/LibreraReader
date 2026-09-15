@@ -543,6 +543,7 @@
    <string name="dark_oled">ഇരുണ്ട ഓൾഡ്</string>
    <string name="profile">പ്രൊഫൈൽ</string>
    <string name="new_profile">പുതിയ പ്രൊഫൈൽ</string>
+   <string name="add_profile">പ്രൊഫൈൽ ചേർക്കുക</string>
    <string name="main">പ്രധാനം</string>
    <string name="do_you_want_to_switch_profile_">ഈ പ്രൊഫൈലിലേക്ക് മാറണോ?</string>
    <string name="sync_error">സമന്വയിപ്പിക്കുന്നതിൽ പിശക്</string>

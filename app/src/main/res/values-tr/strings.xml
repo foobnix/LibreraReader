@@ -543,6 +543,7 @@
    <string name="dark_oled">Karanlık OLED</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Yeni profil</string>
+   <string name="add_profile">Profil ekle</string>
    <string name="main">Ana</string>
    <string name="do_you_want_to_switch_profile_">Başka bir profile geçilsin mi?</string>
    <string name="sync_error">Senkronizasyon hatası</string>

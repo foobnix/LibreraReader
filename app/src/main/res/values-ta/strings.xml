@@ -543,6 +543,7 @@
    <string name="dark_oled">இருண்ட OLED திரை</string>
    <string name="profile">சுயவிவரம்</string>
    <string name="new_profile">புதிய சுயவிவரம்</string>
+   <string name="add_profile">சுயவிவரத்தைச் சேர்</string>
    <string name="main">முதன்மை</string>
    <string name="do_you_want_to_switch_profile_">இந்த சுயவிவரத்திற்கு மாறவா?</string>
    <string name="sync_error">ஒத்திசைவு பிழை</string>

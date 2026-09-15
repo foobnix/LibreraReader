@@ -63,12 +63,14 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
                 onDeleteClickListener.onResultRecive(item);
             }
         });
-        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_599_menu_close : R.drawable.glyphicons_578_share);
+        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_17_bin : R.drawable.glyphicons_578_share);
         // The mark that drops a bookmark takes the same day/night colour a heart does, so on
-        // a night theme it stays legible instead of sinking into the card.
-        TintUtil.setTintImageNoAlpha(holder.remove,
-                holder.remove.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                        TintUtil.getColorInDayNighthBook());
+        // a night theme it stays legible instead of sinking into the card. Its ring is cut
+        // from the same colour.
+        final int removeColor = holder.remove.getContext() instanceof MainTabs2 ?
+                                TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook();
+        TintUtil.setTintImageNoAlpha(holder.remove, removeColor);
+        TintUtil.setRingColor(holder.remove, removeColor);
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);

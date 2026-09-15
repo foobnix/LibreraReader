@@ -543,6 +543,7 @@
    <string name="dark_oled">ダーク OLED</string>
    <string name="profile">プロファイル</string>
    <string name="new_profile">新しいプロファイル</string>
+   <string name="add_profile">プロファイルを追加</string>
    <string name="main">メイン</string>
    <string name="do_you_want_to_switch_profile_">別のプロファイルに切り替えますか？</string>
    <string name="sync_error">同期エラー</string>

@@ -543,6 +543,7 @@
    <string name="dark_oled">Tmavý OLED</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Nový profil</string>
+   <string name="add_profile">Přidat profil</string>
    <string name="main">Hlavní</string>
    <string name="do_you_want_to_switch_profile_">Přepnout na jiný profil?</string>
    <string name="sync_error">Chyba synchronizace</string>

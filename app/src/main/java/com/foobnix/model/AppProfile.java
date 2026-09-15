@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -188,8 +189,11 @@ public class AppProfile {
     }
 
     public static Drawable getProfileColorDrawable(Context c, String profile) {
+        // Mutated, so each profile's round keeps its own colour instead of every round shown
+        // taking the colour of the last one set.
         GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular);
+                                                          .getDrawable(R.drawable.bg_circular)
+                                                          .mutate();
         AppState s = new AppState();
         File syncState = new File(AppProfile.SYNC_FOLDER_ROOT,
                 PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
@@ -200,7 +204,8 @@ public class AppProfile {
 
     public static Drawable getProfileColorDrawable(Context c, int color) {
         GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular);
+                                                          .getDrawable(R.drawable.bg_circular)
+                                                          .mutate();
         background.setColor(color);
         return background;
     }
@@ -294,14 +299,19 @@ public class AppProfile {
         // builder.setTitle(R.string.tag);
 
         View inflate = LayoutInflater.from(a)
-                                     .inflate(R.layout.dialog_tags, null, false);
+                                     .inflate(R.layout.dialog_profiles, null, false);
 
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
-        // Named for what it adds and drawn as a ringed button, as the panel draws its own.
-        // The layout is shared with the tag and playlist dialogs, so this is set here only.
-        add.setText(R.string.add_profile);
+        // Drawn as a ringed button, as the panel draws its own.
         asRingedButton(add);
+
+        final TextView restore = inflate.findViewById(R.id.onRestoreDefaults);
+        final TextView close = inflate.findViewById(R.id.onClose);
+        // Smaller than the dialog's own buttons were: a lower floor under the width, and the
+        // word's own size rather than the dialog bar's.
+        TintUtil.asLinkButton(restore, 80);
+        TintUtil.asLinkButton(close, 80);
 
         final List<String> profiles = getAllProfiles();
 
@@ -311,17 +321,23 @@ public class AppProfile {
                         TextView text = layout.findViewById(R.id.text1);
                         text.setText(tagName);
 
+                        // The profile's letter on its theme colour, as the profile menu has it.
+                        TextView letter = layout.findViewById(R.id.profileLetter);
+                        letter.setVisibility(View.VISIBLE);
+                        letter.setText(TxtUtils.getFirstLetter(tagName));
+                        letter.setBackgroundDrawable(getProfileColorDrawable(a, tagName));
+
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
-                        // Ringed and drawn in the colour of the name beside it, like the mark
-                        // that drops a folder or a book.
-                        final int rowColor = text.getCurrentTextColor();
+                        // The bin and its ring in one colour, the one links are drawn in, like
+                        // the bin that drops a folder.
+                        final int rowColor = TxtUtils.getLinkTextColor(a);
                         TintUtil.setRingColor(delete, rowColor);
                         TintUtil.setTintImageNoAlpha(delete, rowColor);
-                        if (tagName.equals(getCurrent())) {
-                            delete.setVisibility(View.GONE);
-                        } else {
-                            delete.setVisibility(View.VISIBLE);
-                        }
+                        // The profile in use is named in bold and cannot be dropped. Rows come
+                        // back recycled, so the others are set back to plain.
+                        final boolean isCurrent = tagName.equals(getCurrent());
+                        text.setTypeface(null, isCurrent ? Typeface.BOLD : Typeface.NORMAL);
+                        delete.setVisibility(isCurrent ? View.GONE : View.VISIBLE);
 
                         delete.setOnClickListener(new View.OnClickListener() {
 
@@ -375,23 +391,18 @@ public class AppProfile {
 
         builder.setView(inflate);
 
-        builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {
+        AlertDialog create = builder.create();
 
-            @Override public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
+        close.setOnClickListener(v -> create.dismiss());
         if (onRestoreDefaults != null) {
-            builder.setNeutralButton(R.string.restore_defaults_short, new AlertDialog.OnClickListener() {
-
-                @Override public void onClick(DialogInterface dialog, int which) {
-                    onRestoreDefaults.run();
-                }
+            restore.setOnClickListener(v -> {
+                onRestoreDefaults.run();
+                create.dismiss();
             });
+        } else {
+            restore.setVisibility(View.GONE);
         }
 
-        AlertDialog create = builder.create();
         create.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
             @Override public void onDismiss(DialogInterface dialog) {
@@ -402,10 +413,6 @@ public class AppProfile {
         });
         create.show();
 
-        // The dialog's own words are ringed to match, once the frame has made them.
-        asRingedButton(create.getButton(DialogInterface.BUTTON_NEGATIVE));
-        asRingedButton(create.getButton(DialogInterface.BUTTON_NEUTRAL));
-
     }
 
     /** Draws a word as a button the way the settings panel does: a ring cut from its own colour. */
@@ -414,9 +421,8 @@ public class AppProfile {
             return;
         }
         TintUtil.asLinkButton(button);
-        // A dialog lays its own words out in a bar of its own height. The air a button carries
-        // in the settings panel pushes the ring past the top and bottom of that bar, and it is
-        // drawn cut off; inside a dialog the padding alone gives the ring its room.
+        // The air above and below is left to the rows around it; the padding alone gives the
+        // ring its room.
         if (button.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
             lp.topMargin = lp.bottomMargin = 0;

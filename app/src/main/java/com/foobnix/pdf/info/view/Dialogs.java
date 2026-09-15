@@ -94,6 +94,10 @@ public class Dialogs {
         final DragLinearLayout root = new DragLinearLayout(activity);
         root.setOrientation(LinearLayout.VERTICAL);
 
+        // Buttons and marks take the colour the settings panel's links do, so they read as the
+        // panel's own rather than a white or a blue of their own.
+        final int linkColor = TxtUtils.getLinkTextColor(activity);
+
 
         LinearLayout dicts = UI.verticalLayout(activity);
 
@@ -161,12 +165,12 @@ public class Dialogs {
                 img.setMaxWidth(Dips.DP_20);
                 img.setMaxHeight(Dips.DP_20);
 
-                img.setImageResource(R.drawable.glyphicons_599_menu_close);
-                TintUtil.setTintImageWithAlpha(img);
-                // The mark that drops a rule stands in a round of its own, as the mark that
+                img.setImageResource(R.drawable.glyphicons_17_bin);
+                TintUtil.setTintImageNoAlpha(img, linkColor);
+                // The bin that drops a rule stands in a round of its own, as the mark that
                 // closes a panel does, drawn in the colour the mark itself is.
                 img.setBackgroundResource(R.drawable.bg_round_button);
-                TintUtil.setRingColor(img, TintUtil.color);
+                TintUtil.setRingColor(img, linkColor);
 
                 img.setOnClickListener(new OnClickListener() {
                     @Override
@@ -182,7 +186,7 @@ public class Dialogs {
                 move.setMaxHeight(Dips.DP_20);
 
                 move.setImageResource(R.drawable.glyphicons_600_menu);
-                TintUtil.setTintImageWithAlpha(move);
+                TintUtil.setTintImageNoAlpha(move, linkColor);
 
 
                 from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
@@ -402,6 +406,10 @@ public class Dialogs {
         line.addView(export, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
         line.addView(importFile, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
 
+        // The colour goes on first: the ring is cut from whatever colour the word is.
+        add.setTextColor(linkColor);
+        export.setTextColor(linkColor);
+        importFile.setTextColor(linkColor);
         TintUtil.asLinkButton(add, 0);
         TintUtil.asLinkButton(export, 0);
         TintUtil.asLinkButton(importFile, 0);
@@ -439,6 +447,7 @@ public class Dialogs {
         addDict.setSingleLine();
         addDict.setEllipsize(TextUtils.TruncateAt.END);
         root.addView(addDict);
+        addDict.setTextColor(linkColor);
         TintUtil.asLinkButton(addDict);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
@@ -449,6 +458,7 @@ public class Dialogs {
 
         restore.setText(R.string.restore_defaults_short);
         root.addView(restore);
+        restore.setTextColor(linkColor);
         TintUtil.asLinkButton(restore);
 
 
@@ -1187,7 +1197,10 @@ public class Dialogs {
                 text.setChecked(fileTags.contains(tagName));
 
                 ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
-                TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
+                // The bin and its ring in one colour, the one links are drawn in.
+                final int deleteColor = TxtUtils.getLinkTextColor(a);
+                TintUtil.setTintImageNoAlpha(delete, deleteColor);
+                TintUtil.setRingColor(delete, deleteColor);
                 delete.setOnClickListener(new OnClickListener() {
 
                     @Override

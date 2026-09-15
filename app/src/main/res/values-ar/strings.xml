@@ -543,6 +543,7 @@
    <string name="dark_oled">الظلام الظلام</string>
    <string name="profile">الملف الشخصي</string>
    <string name="new_profile">الملف الشخصي الجديد</string>
+   <string name="add_profile">إضافة ملف شخصي</string>
    <string name="main">الأساسية</string>
    <string name="do_you_want_to_switch_profile_">التبديل إلى ملف تعريف آخر؟</string>
    <string name="sync_error">خطأ في المزامنة</string>

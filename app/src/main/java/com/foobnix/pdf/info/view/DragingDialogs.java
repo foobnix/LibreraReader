@@ -254,6 +254,22 @@ public class DragingDialogs {
         dialog.show("WebView", false, true);
     }
 
+    /**
+     * A mark in an outlined button and the ring around it, drawn in the one colour: the
+     * reader's marks, or on a light sheet, where those would vanish, the theme colour.
+     */
+    private static void tintRingedMark(View button) {
+        if (button == null) {
+            return;
+        }
+        final int color = TintUtil.isLightSurface(button.getContext(), android.R.attr.colorBackground)
+                          ? TintUtil.color : MagicHelper.getTextOrIconColor();
+        if (button instanceof ImageView) {
+            TintUtil.setTintImageNoAlpha((ImageView) button, color);
+        }
+        TintUtil.setRingColor(button, color);
+    }
+
     public static void dialogTextReplaces(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
@@ -267,6 +283,12 @@ public class DragingDialogs {
 
                 final DragLinearLayout root = new DragLinearLayout(activity);
                 root.setOrientation(LinearLayout.VERTICAL);
+
+                // The buttons and the marks on each line wear the colour of the reader's marks,
+                // except on a light sheet, where that white would vanish into it; there they
+                // take the theme colour.
+                final int buttonColor = TintUtil.isLightSurface(activity, android.R.attr.colorBackground)
+                                        ? TintUtil.color : MagicHelper.getTextOrIconColor();
 
                 CheckBox isEnableTextReplacement = new CheckBox(activity);
                 isEnableTextReplacement.setText(R.string.enable);
@@ -310,12 +332,14 @@ public class DragingDialogs {
                     to.setHint("_");
 
                     ImageView img = new ImageView(activity);
-                    img.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
-                    img.setMaxWidth(Dips.DP_20);
-                    img.setMaxHeight(Dips.DP_20);
+                    img.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
 
-                    img.setImageResource(R.drawable.glyphicons_599_menu_close);
-                    TintUtil.setTintImageWithAlpha(img);
+                    img.setImageResource(R.drawable.glyphicons_17_bin);
+                    TintUtil.setTintImageNoAlpha(img, buttonColor);
+                    // The bin that drops a line stands in a round of its own, drawn in the
+                    // colour the bin itself is.
+                    img.setBackgroundResource(R.drawable.bg_round_button);
+                    TintUtil.setRingColor(img, buttonColor);
 
                     img.setOnClickListener(new OnClickListener() {
                         @Override public void onClick(View v) {
@@ -329,7 +353,7 @@ public class DragingDialogs {
                     move.setMaxHeight(Dips.DP_20);
 
                     move.setImageResource(R.drawable.glyphicons_600_menu);
-                    TintUtil.setTintImageWithAlpha(move);
+                    TintUtil.setTintImageNoAlpha(move, buttonColor);
 
                     from.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -340,9 +364,7 @@ public class DragingDialogs {
                     to.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                      ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                      1.0f));
-                    img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                                      ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                                      0f));
+                    img.setLayoutParams(new LinearLayout.LayoutParams(Dips.DP_32, Dips.DP_32, 0f));
                     move.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        0f));
@@ -356,11 +378,6 @@ public class DragingDialogs {
                     root.addView(h);
                     root.setViewDraggable(h, move);
                 }
-
-                // The buttons wear the colour of the reader's marks, except on a light sheet,
-                // where that white would vanish into it; there they take the theme colour.
-                final int buttonColor = TintUtil.isLightSurface(activity, android.R.attr.colorBackground)
-                                        ? TintUtil.color : MagicHelper.getTextOrIconColor();
 
                 TextView add = new TextView(activity, null, R.style.textLink);
                 add.setText(activity.getString(R.string.add));
@@ -393,7 +410,8 @@ public class DragingDialogs {
                         h.addView(from);
                         h.addView(text);
                         h.addView(to);
-                        root.addView(h, root.getChildCount() - 2);
+                        // Just above the row of buttons, the last thing in the list.
+                        root.addView(h, root.getChildCount() - 1);
 
                         if (add.getTag().equals(true) && items.size() > 0) {
                             SimpleMeta last = items.get(items.size() - 1);
@@ -428,6 +446,11 @@ public class DragingDialogs {
                             if (childAt instanceof LinearLayout) {
                                 final LinearLayout line = (LinearLayout) childAt;
                                 if (line.getOrientation() == LinearLayout.VERTICAL) {
+                                    continue;
+                                }
+                                // The row of buttons is laid out across too; only a line that
+                                // opens with a field to type in is a replacement.
+                                if (!(line.getChildAt(0) instanceof EditText)) {
                                     continue;
                                 }
                                 EditText childFrom = (EditText) line.getChildAt(0);
@@ -1508,7 +1531,7 @@ public class DragingDialogs {
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
-                TintUtil.setTintBg(onSearch);
+                tintRingedMark(onSearch);
 
                 EditTextHelper.enableKeyboardSearch(searchEdit, new Runnable() {
                     @Override public void run() {
@@ -2496,7 +2519,8 @@ public class DragingDialogs {
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
-                TintUtil.setTintBg(onSearch);
+                tintRingedMark(onSearch);
+                tintRingedMark(view.findViewById(R.id.onLink));
 
                 number.setOnKeyListener(new OnKeyListener() {
                     @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -2776,6 +2800,9 @@ public class DragingDialogs {
                 // shadow of its own that would draw a seam between them.
                 indicator.setBackgroundColor(TintUtil.color);
                 indicator.setElevation(0);
+                // The tabs stand on that tint, not on the page, so on Ink they are drawn white.
+                indicator.setTabsOnTint(true);
+                indicator.updateIcons(pager.getCurrentItem());
 
                 pager.setOffscreenPageLimit(10);
                 pager.setCurrentItem(AppState.get().tabPositionInRecentDialog);

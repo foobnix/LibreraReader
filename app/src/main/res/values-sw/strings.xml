@@ -543,6 +543,7 @@
    <string name="dark_oled">Oled giza</string>
    <string name="profile">Maelezo mafupi</string>
    <string name="new_profile">Maelezo mapya</string>
+   <string name="add_profile">Ongeza wasifu</string>
    <string name="main">Kuu</string>
    <string name="do_you_want_to_switch_profile_">Kubadili maelezo mengine?</string>
    <string name="sync_error">Hifadhi ya kusawazisha</string>

@@ -543,6 +543,7 @@
    <string name="dark_oled">Dunkles Layout für OLED-Bildschirme</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Neues Profil</string>
+   <string name="add_profile">Profil hinzufügen</string>
    <string name="main">Hauptprofil</string>
    <string name="do_you_want_to_switch_profile_">Zu einem anderen Profil wechseln?</string>
    <string name="sync_error">Synchronisierungsfehler</string>

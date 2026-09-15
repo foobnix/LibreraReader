@@ -543,6 +543,7 @@
    <string name="dark_oled">Bóng tối</string>
    <string name="profile">Hồ sơ</string>
    <string name="new_profile">Hồ sơ mới</string>
+   <string name="add_profile">Thêm hồ sơ</string>
    <string name="main">Chủ yếu</string>
    <string name="do_you_want_to_switch_profile_">Chuyển sang hồ sơ khác?</string>
    <string name="sync_error">Lỗi đồng bộ hóa</string>

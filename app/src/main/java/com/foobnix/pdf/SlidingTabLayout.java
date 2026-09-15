@@ -243,6 +243,21 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
     }
 
+    /**
+     * Whether the tabs stand on a strip painted in the tint colour rather than on the page.
+     * On Ink the tint is black, so tabs there are drawn in white as on every other theme;
+     * tabs on the page keep the black the page's words are set in.
+     */
+    private boolean tabsOnTint = false;
+
+    public void setTabsOnTint(boolean value) {
+        tabsOnTint = value;
+    }
+
+    private boolean isInkOnPage() {
+        return AppState.get().appTheme == AppState.THEME_INK && !tabsOnTint;
+    }
+
     private void setTabPatch(View tab, boolean isSelected) {
         if (!isFloating()) {
             return;
@@ -512,7 +527,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView.setCompoundDrawablePadding(
                         isIconsAlone() ? 0 : isFloating() ? Dips.DP_1 : Dips.dpToPx(5));
 
-                if (AppState.get().appTheme == AppState.THEME_INK) {
+                if (isInkOnPage()) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
                     tabTitleView.setTextColor(TintUtil.color);
                 } else {
@@ -604,7 +619,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 drawable = childAt.getCompoundDrawables()[0];
             }
 
-            if (AppState.get().appTheme == AppState.THEME_INK) {
+            if (isInkOnPage()) {
                 TintUtil.setDrawableTint(drawable, TintUtil.color);
                 childAt.setTextColor(TintUtil.color);
             } else {

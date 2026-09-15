@@ -543,6 +543,7 @@
    <string name="dark_oled">OLED iluna</string>
    <string name="profile">Profila</string>
    <string name="new_profile">Profil berria</string>
+   <string name="add_profile">Gehitu profila</string>
    <string name="main">Nagusia</string>
    <string name="do_you_want_to_switch_profile_">Beste profil batera aldatu?</string>
    <string name="sync_error">Sinkronizazio akatsa</string>

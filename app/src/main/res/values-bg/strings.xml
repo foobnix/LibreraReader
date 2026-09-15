@@ -543,6 +543,7 @@
    <string name="dark_oled">Тъмно оледо</string>
    <string name="profile">Профил</string>
    <string name="new_profile">Нов профил</string>
+   <string name="add_profile">Добави профил</string>
    <string name="main">Основен</string>
    <string name="do_you_want_to_switch_profile_">Да преминете към този профил?</string>
    <string name="sync_error">Грешка при синхронизиране</string>

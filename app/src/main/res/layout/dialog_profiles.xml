@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="8dip" >
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:divider="@color/transparent"
+        android:dividerHeight="8dip"
+        android:paddingBottom="8dip" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/addTag"
+        style="@style/textLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:minWidth="150dip"
+        android:padding="4dip"
+        android:text="@string/add_profile" />
+
+    <!-- The dialog's own words, laid out here rather than in the dialog's button bar: that bar
+         stacks its buttons one under the other when a word is too long for it, where here the
+         close button keeps its width and restore gives way, cut short at the end. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="14dip" >
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/onRestoreDefaults"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/restore_defaults_short" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/onClose"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/close" />
+    </LinearLayout>
+
+</LinearLayout>

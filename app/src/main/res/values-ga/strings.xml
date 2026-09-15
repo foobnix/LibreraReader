@@ -543,6 +543,7 @@
    <string name="dark_oled">Oled dorcha</string>
    <string name="profile">Próifíl</string>
    <string name="new_profile">Próifíl nua</string>
+   <string name="add_profile">Cuir próifíl leis</string>
    <string name="main">Priomh</string>
    <string name="do_you_want_to_switch_profile_">Aistrigh go dtí an phróifíl seo?</string>
    <string name="sync_error">Earráid syncing</string>

@@ -543,6 +543,7 @@
    <string name="dark_oled">Mørk oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Ny profil</string>
+   <string name="add_profile">Legg til profil</string>
    <string name="main">Hoved-</string>
    <string name="do_you_want_to_switch_profile_">Bytt til en annen profil?</string>
    <string name="sync_error">Synkroniseringsfeil</string>

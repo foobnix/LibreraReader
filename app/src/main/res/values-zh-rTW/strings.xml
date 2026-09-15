@@ -543,6 +543,7 @@
    <string name="dark_oled">黑暗有機電激光顯示</string>
    <string name="profile">配置檔</string>
    <string name="new_profile">新建配置檔</string>
+   <string name="add_profile">新增配置檔</string>
    <string name="main">主要</string>
    <string name="do_you_want_to_switch_profile_">您要切換配置檔嗎？</string>
    <string name="sync_error">同步錯誤</string>

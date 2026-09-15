@@ -543,6 +543,7 @@
    <string name="dark_oled">Черная (OLED)</string>
    <string name="profile">Профиль</string>
    <string name="new_profile">Новый профиль</string>
+   <string name="add_profile">Добавить профиль</string>
    <string name="main">Главный</string>
    <string name="do_you_want_to_switch_profile_">Переключиться на другой профиль?</string>
    <string name="sync_error">Ошибка синхронизации</string>

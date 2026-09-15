@@ -543,6 +543,7 @@
    <string name="dark_oled">검정 OLED</string>
    <string name="profile">프로필</string>
    <string name="new_profile">새 프로필</string>
+   <string name="add_profile">프로필 추가</string>
    <string name="main">메인</string>
    <string name="do_you_want_to_switch_profile_">다른 프로필로 전환 하시겠습니까?</string>
    <string name="sync_error">동기화 오류</string>

@@ -543,6 +543,7 @@
    <string name="dark_oled">כהה</string>
    <string name="profile">פרופיל</string>
    <string name="new_profile">פרופיל חדש</string>
+   <string name="add_profile">הוסף פרופיל</string>
    <string name="main">ראשי</string>
    <string name="do_you_want_to_switch_profile_">לעבור לפרופיל אחר?</string>
    <string name="sync_error">שגיאת סינכרון</string>

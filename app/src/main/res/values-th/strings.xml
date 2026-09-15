@@ -543,6 +543,7 @@
    <string name="dark_oled">มืด จอ oled</string>
    <string name="profile">ข้อมูลส่วนตัว</string>
    <string name="new_profile">โปรไฟล์ใหม่</string>
+   <string name="add_profile">เพิ่มโปรไฟล์</string>
    <string name="main">หลัก</string>
    <string name="do_you_want_to_switch_profile_">เปลี่ยนไปใช้โปรไฟล์อื่นหรือไม่</string>
    <string name="sync_error">ข้อผิดพลาดในการซิงค์</string>

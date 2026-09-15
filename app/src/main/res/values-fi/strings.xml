@@ -543,6 +543,7 @@
    <string name="dark_oled">Tumma OLED</string>
    <string name="profile">Profiili</string>
    <string name="new_profile">Uusi profiili</string>
+   <string name="add_profile">Lisää profiili</string>
    <string name="main">Ensisijainen</string>
    <string name="do_you_want_to_switch_profile_">Vaihdetaanko toiseen profiiliin?</string>
    <string name="sync_error">Synkronointivirhe</string>

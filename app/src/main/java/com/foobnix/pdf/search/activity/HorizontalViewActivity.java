@@ -1963,9 +1963,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private void tinUI() {
-        TxtUtils.updateAllLinks(parentParent);
+        // The bars are painted first: on Ink a mark takes its colour from the surface under it.
         TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
+        TxtUtils.updateAllLinks(parentParent);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 

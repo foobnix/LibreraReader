@@ -543,6 +543,7 @@
    <string name="dark_oled">تاریک است</string>
    <string name="profile">مشخصات</string>
    <string name="new_profile">مشخصات جدید</string>
+   <string name="add_profile">افزودن نمایه</string>
    <string name="main">اصلی</string>
    <string name="do_you_want_to_switch_profile_">تغییر به نمایه دیگری</string>
    <string name="sync_error">خطای همگام سازی</string>

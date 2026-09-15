@@ -1509,17 +1509,19 @@ public class TxtUtils {
     }
 
     public static void setLinkTextColor(TextView txt) {
+        txt.setTextColor(getLinkTextColor(txt.getContext()));
+    }
 
-        int color = AppState.get().uiTextColor;
+    /** The colour a link is drawn in: the one picked for the interface, else the theme's own. */
+    public static int getLinkTextColor(Context c) {
         if (AppState.get().isUiTextColor) {
-            color = AppState.get().uiTextColor;
-        } else {
-            TypedArray out = txt.getContext()
-                                .getTheme()
-                                .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
-            color = out.getColor(0, Color.WHITE);
+            return AppState.get().uiTextColor;
         }
-        txt.setTextColor(color);
+        TypedArray out = c.getTheme()
+                          .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+        int color = out.getColor(0, Color.WHITE);
+        out.recycle();
+        return color;
     }
 
     public static void updateAllLinks(ViewGroup parent, int color, boolean accentImages) {
@@ -1561,11 +1563,9 @@ public class TxtUtils {
                         if ((imageView.getId() == R.id.closePopup || imageView.getId() == R.id.onIconAction) && !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (AppState.get().appTheme == AppState.THEME_INK) {
-                            // Ink is black on white throughout: a mark is drawn in the same
-                            // black the words around it are, not in an accent that leaves it
-                            // invisible on the page. The two marks above are the exception -
-                            // they stand on a tinted bar rather than on the page.
-                            imageView.setImageTintList(ColorStateList.valueOf(Color.BLACK));
+                            // Ink is black and white only: a mark on the black bars is drawn in
+                            // white, a mark on the page in the black of the words around it.
+                            imageView.setImageTintList(ColorStateList.valueOf(TintUtil.inkMarkColor(imageView)));
                         } else if (accentImages || AppState.get().isUiTextColor) {
                             if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
                                 imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));

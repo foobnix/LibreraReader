@@ -571,7 +571,10 @@ public class MainTabs2 extends AdsFragmentActivity {
             indicator.setSelectedIndicatorColors(TintUtil.color);
             indicator.setDividerColors(TintUtil.color);
             indicator.setTabsBackground(Color.TRANSPARENT);
-            imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
+            // At the foot the strip lies on the sheet and lets it show through. Standing over
+            // the page at the top, the books scroll beneath it, so there it is solid white,
+            // as ink paper is.
+            imageMenuParent.setBackgroundColor(AppState.get().tapPositionTop ? Color.WHITE : Color.TRANSPARENT);
         }
 
         //Android6.checkPermissions(this, true);

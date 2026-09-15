@@ -543,6 +543,7 @@
    <string name="dark_oled">Σκοτεινό</string>
    <string name="profile">Προφίλ</string>
    <string name="new_profile">Νέο προφίλ</string>
+   <string name="add_profile">Προσθήκη προφίλ</string>
    <string name="main">Κύριος</string>
    <string name="do_you_want_to_switch_profile_">Μετάβαση σε αυτό το προφίλ;</string>
    <string name="sync_error">Σφάλμα συγχρονισμού</string>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- A button drawn on the bar itself: a ring around the mark, with nothing filled in behind
-     it so the bar's own colour carries through, and a tap answered in the same round. -->
+     it so the bar's own colour carries through, and a tap answered in the same round. The
+     tap is a mid grey rather than a white, so it shows on a white sheet - a bin beside a
+     folder or a bookmark - as well as on the dark bars. -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#3cffffff">
+    android:color="#66808080">
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/transparent" />

@@ -6,6 +6,17 @@
     android:orientation="horizontal"
     android:padding="5dip" >
 
+    <!-- A profile's first letter on its theme colour, as the profile menu draws it; hidden in
+         the lists that are not of profiles. -->
+    <TextView
+        android:id="@+id/profileLetter"
+        style="@style/textCircle"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:layout_marginRight="8dip"
+        android:layout_weight="0"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
@@ -17,18 +28,19 @@
         android:singleLine="true"
         android:text="Sample 1" />
 
-    <!-- Ringed like the other remove marks; the adapter draws the ring in the colour of the
-         name beside it. -->
+    <!-- A bin, ringed like the other remove marks; the adapter draws the ring in the colour of
+         the name beside it. -->
     <ImageView
         android:id="@+id/delete1"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
         android:layout_marginLeft="10dip"
+        android:layout_marginRight="8dip"
         android:layout_weight="0"
         android:background="@drawable/bg_round_button"
         android:contentDescription="@string/remove"
-        android:padding="5dip"
-        android:src="@drawable/glyphicons_599_menu_close"
+        android:padding="6dip"
+        android:src="@drawable/glyphicons_17_bin"
         android:visibility="visible" />
 
 </LinearLayout>

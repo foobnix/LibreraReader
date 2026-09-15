@@ -543,6 +543,7 @@
    <string name="dark_oled">Escuro OLED</string>
    <string name="profile">Perfil</string>
    <string name="new_profile">Novo perfil</string>
+   <string name="add_profile">Engadir perfil</string>
    <string name="main">Principal</string>
    <string name="do_you_want_to_switch_profile_">Trocar a este perfil?</string>
    <string name="sync_error">Erro de sincronización</string>

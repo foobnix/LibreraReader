@@ -543,6 +543,7 @@
    <string name="dark_oled">Întuneric oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Profil nou</string>
+   <string name="add_profile">Adaugă profil</string>
    <string name="main">Principal</string>
    <string name="do_you_want_to_switch_profile_">Treci la alt profil?</string>
    <string name="sync_error">Sincronizare eroare</string>

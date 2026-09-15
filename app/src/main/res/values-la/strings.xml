@@ -543,6 +543,7 @@
    <string name="dark_oled">Tenebris OLED</string>
    <string name="profile">Profile</string>
    <string name="new_profile">Nova profile</string>
+   <string name="add_profile">Adde profile</string>
    <string name="main">Pelagus</string>
    <string name="do_you_want_to_switch_profile_">Switch ad alia profile?</string>
    <string name="sync_error">Error sync</string>

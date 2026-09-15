@@ -543,6 +543,7 @@
    <string name="dark_oled">Tamsiai oled</string>
    <string name="profile">Profilis</string>
    <string name="new_profile">Naujas profilis</string>
+   <string name="add_profile">Pridėti profilį</string>
    <string name="main">Pagrindinis</string>
    <string name="do_you_want_to_switch_profile_">Pereiti prie kito profilio?</string>
    <string name="sync_error">Sinchronizavimo klaida</string>

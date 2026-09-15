@@ -543,6 +543,7 @@
    <string name="dark_oled">全黑(仅适用于OLED)</string>
    <string name="profile">配置文件</string>
    <string name="new_profile">新建配置文件</string>
+   <string name="add_profile">添加配置文件</string>
    <string name="main">主要</string>
    <string name="do_you_want_to_switch_profile_">您要切换配置文件吗？</string>
    <string name="sync_error">同步错误</string>

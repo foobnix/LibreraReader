@@ -543,6 +543,7 @@
    <string name="dark_oled">Sötét oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Új profil</string>
+   <string name="add_profile">Profil hozzáadása</string>
    <string name="main">Fő-</string>
    <string name="do_you_want_to_switch_profile_">Váltson másik profilra?</string>
    <string name="sync_error">Szinkronizálási hiba</string>
