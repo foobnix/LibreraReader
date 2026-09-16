@@ -2,6 +2,7 @@ package com.foobnix.librerax;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
@@ -32,6 +34,11 @@ public class LibreraXActivity extends Activity {
 
     private String path;
     private boolean started;
+
+    @Override protected void attachBaseContext(Context context) {
+        // the language chosen in the app, not the system one
+        super.attachBaseContext(MyContextWrapper.wrap(context));
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         if (AppState.get().isDayNotInvert) {
