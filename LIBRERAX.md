@@ -81,4 +81,4 @@
 
 # Download direct APK
 
-http://beta.librera.mobi
+https://github.com/foobnix/LibreraReader/releases
