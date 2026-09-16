@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="librerax" translatable="false">LibreraX</string>
+    <string name="librerax_not_installed" translatable="false">LibreraX is not installed. Download and install it, then open the book again.</string>
+</resources>

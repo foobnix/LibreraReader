@@ -1128,6 +1128,7 @@ public class PrefFragment2 extends UIFragment {
                 of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//
                 of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL),//
                 of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK),//
+                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX),//
                 of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN),//
                 of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER),//
                 of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH)//

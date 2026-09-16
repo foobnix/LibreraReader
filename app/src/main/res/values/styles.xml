@@ -222,4 +222,21 @@
         <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
     </style>
 
+    <!-- LibreraXActivity: no screen of its own, only the popup when LibreraX is missing. -->
+    <style name="LibreraXWhite" parent="StyledIndicatorsWhite">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="LibreraXBlack" parent="StyledIndicatorsBlack">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
 </resources>

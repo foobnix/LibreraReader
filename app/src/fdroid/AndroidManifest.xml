@@ -6,5 +6,18 @@
         android:name="android.permission.USE_BIOMETRIC"
         tools:node="remove" />
 
+    <application>
+        <!-- The same DjVu render service as the pro flavour: both are com.foobnix.pro.pdf.reader,
+             and LibreraX cannot tell one from the other. See src/pro/AndroidManifest.xml. -->
+        <service
+            android:name="mobi.librera.djvu.DjvuRenderService"
+            android:exported="true"
+            android:process=":djvu">
+            <intent-filter>
+                <action android:name="mobi.librera.djvu.RENDER" />
+            </intent-filter>
+        </service>
+    </application>
+
 
 </manifest>

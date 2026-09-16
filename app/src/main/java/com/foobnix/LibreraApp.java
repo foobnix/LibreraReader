@@ -59,6 +59,12 @@ public class LibreraApp extends Application {
         //AppsConfig.loadEngine(this);
 
         context = getApplicationContext();
+
+        // The DjVu render service's process draws pages for another app and nothing else:
+        // it needs none of the reader, and must not cancel or prune the reader's work.
+        if (isDjvuRenderProcess()) {
+            return;
+        }
         if (!WorkManager.isInitialized()) {
             WorkManager.initialize(this, new Configuration.Builder().setMinimumLoggingLevel(Log.DEBUG).build());
         }
@@ -189,6 +195,28 @@ public class LibreraApp extends Application {
 
 
 
+
+    private static boolean isDjvuRenderProcess() {
+        String name = null;
+        if (Build.VERSION.SDK_INT >= 28) {
+            name = Application.getProcessName();
+        } else {
+            try (java.io.FileInputStream in = new java.io.FileInputStream("/proc/self/cmdline")) {
+                byte[] buf = new byte[256];
+                int n = in.read(buf);
+                if (n > 0) {
+                    int end = 0;
+                    while (end < n && buf[end] != 0) {
+                        end++;
+                    }
+                    name = new String(buf, 0, end);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return name != null && name.endsWith(":djvu");
+    }
 
     @Override
     public void onLowMemory() {

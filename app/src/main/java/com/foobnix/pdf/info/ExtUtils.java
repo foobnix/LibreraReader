@@ -58,6 +58,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
@@ -798,6 +799,8 @@ public class ExtUtils {
         final TextView vertical = (TextView) view.findViewById(R.id.vertical);
         final TextView horizontal = (TextView) view.findViewById(R.id.horizontal);
         final TextView music = (TextView) view.findViewById(R.id.music);
+        final TextView librerax = (TextView) view.findViewById(R.id.librerax);
+        librerax.setText("Ⓧ " + c.getString(R.string.librerax));
 
         final EditText verticalEdit = (EditText) view.findViewById(R.id.verticalEdit);
         final EditText horizontalEdit = (EditText) view.findViewById(R.id.horizontalEdit);
@@ -926,6 +929,14 @@ public class ExtUtils {
             }
         });
 
+        librerax.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                dialog.dismiss();
+                AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
+                showDocumentWithoutDialog(c, file, null);
+            }
+        });
+
         if (Dips.isEInk()) {
             view.findViewById(R.id.music).setVisibility(View.GONE);
         }
@@ -978,6 +989,12 @@ public class ExtUtils {
             return;
         }
         LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
+
+        if (AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX && TxtUtils.isEmpty(playlist)
+                && !uri.getPath().endsWith(Playlists.L_PLAYLIST)) {
+            LibreraX.open(c, uri, percent, TxtUtils.isNotEmpty(bookmarkPageText) ? bookmarkPageText : bookmarkText);
+            return;
+        }
 
         if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist, bookmarkText, bookmarkPageText);

@@ -33,6 +33,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -70,7 +71,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         LOG.d("RecentBooksWidget", intent, intent.getData(), intent.getExtras());
         if (intent.getAction().equals(ACTION_MY)) {
 
-            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
+            Class clazz = LibreraX.readerClass();
 
             Intent nintent = new Intent(Intent.ACTION_VIEW, (Uri) intent.getParcelableExtra("uri"));
             nintent.setClassName(context, clazz.getName());
@@ -175,10 +176,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
             public void run() {
                 try {
 
-                    String className = VerticalViewActivity.class.getName();
-                    if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-                        className = HorizontalViewActivity.class.getName();
-                    }
+                    String className = LibreraX.readerClass().getName();
                     remoteViews.removeAllViews(R.id.linearLayout);
 
                     if (recent.size() == 0) {
@@ -210,7 +208,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
 
-                                        Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
+                                        Class clazz = LibreraX.readerClass();
 
                                         intent.setClassName(context, clazz.getName());
 

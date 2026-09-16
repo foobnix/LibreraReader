@@ -240,6 +240,11 @@ android {
         androidTest.java.srcDirs += 'src/sharedTest/java'
     }
 
+    buildFeatures {
+        // IDjvuRenderer: the DjVu render service LibreraX binds to.
+        aidl = true
+    }
+
     packagingOptions {
         resources {
             excludes.addAll(

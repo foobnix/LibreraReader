@@ -312,6 +312,14 @@ public class DjvuPage extends AbstractCodecPage {
         }
     }
 
+    /**
+     * Renders a slice of the page into [buffer] as ARGB ints, without Librera's own colour
+     * settings applied. Used by the DjVu render service.
+     */
+    public boolean renderPixels(int targetWidth, int targetHeight, RectF pageSlice, int[] buffer, int renderMode) {
+        return renderPageWrapper(contextHandle, targetWidth, targetHeight, pageSlice.left, pageSlice.top, pageSlice.width(), pageSlice.height(), buffer, renderMode);
+    }
+
     private boolean renderPageBitmapWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode) {
         TempHolder.lock.lock();
         try {

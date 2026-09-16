@@ -39,6 +39,8 @@
              installed. Since Android 11 another app's package cannot be looked up unless it is
              named here, and the look-up came back empty on every such device. -->
         <package android:name="com.foobnix.pro.pdf.reader" />
+        <!-- LibreraX, the reading mode that hands the book over to it. -->
+        <package android:name="com.librerax" />
     </queries>
 
     <application
@@ -249,6 +251,12 @@
             android:launchMode="singleTask"
             android:resizeableActivity="true"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.foobnix.librerax.LibreraXActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/LibreraXBlack" />
 
         <activity
             android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
