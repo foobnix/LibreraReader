@@ -691,4 +691,5 @@
    <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
    <string name="show_contrast_and_brightness_button">Show Contrast and Brightness button</string>
    <string name="text_and_background_color">Text and Background Color</string>
+   <string name="librerax_not_installed">LibreraX is not installed. Download and install it, then open the book again.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Tekst- og bakgrunnsfarge</string>
    <string name="library_folders">Bibliotekmapper</string>
    <string name="watch">Se</string>
+   <string name="librerax_not_installed">LibreraX er ikke installert. Last ned og installer den, og åpne boken på nytt.</string>
 </resources>

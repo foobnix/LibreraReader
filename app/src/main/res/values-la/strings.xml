@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Color textus et fundi</string>
    <string name="library_folders">Directoria bibliothecae</string>
    <string name="watch">Specta</string>
+   <string name="librerax_not_installed">LibreraX non est installata. Depone et installa eam, deinde librum iterum aperi.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Dath téacs agus cúlra</string>
    <string name="library_folders">Fillteáin na leabharlainne</string>
    <string name="watch">Féach</string>
+   <string name="librerax_not_installed">Níl LibreraX suiteáilte. Íoslódáil agus suiteáil é, ansin oscail an leabhar arís.</string>
 </resources>

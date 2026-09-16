@@ -691,4 +691,5 @@
    <string name="text_and_background_color">文字和背景顏色</string>
    <string name="library_folders">書庫資料夾</string>
    <string name="watch">觀看</string>
+   <string name="librerax_not_installed">尚未安裝 LibreraX。請下載並安裝，然後重新開啟這本書。</string>
 </resources>

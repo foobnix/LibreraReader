@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Колер тэксту і фону</string>
    <string name="library_folders">Папкі бібліятэкі</string>
    <string name="watch">Глядзець</string>
+   <string name="librerax_not_installed">LibreraX не ўсталяваны. Спампуйце і ўсталюйце яго, потым адкрыйце кнігу зноў.</string>
 </resources>

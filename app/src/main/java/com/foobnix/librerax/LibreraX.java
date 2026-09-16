@@ -28,7 +28,7 @@ public class LibreraX {
     // Started for a result: the reader LibreraX keeps for itself is singleTask and would
     // answer at once with RESULT_CANCELED.
     public static final String READER_FOR_RESULT = "com.librerax.reader.ReaderForResultActivity";
-    public static final String DOWNLOAD_URL = "http://beta.librera.mobi";
+    public static final String DOWNLOAD_URL = "https://github.com/foobnix/LibreraReader/releases";
 
     public static final String EXTRA_PERCENT = "librera.percent";
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Maandishi na rangi ya usuli</string>
    <string name="library_folders">Folda za maktaba</string>
    <string name="watch">Tazama</string>
+   <string name="librerax_not_installed">LibreraX haijasakinishwa. Ipakue na uisakinishe, kisha ufungue kitabu tena.</string>
 </resources>

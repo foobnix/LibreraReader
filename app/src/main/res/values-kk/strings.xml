@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Мәтін және фон түсі</string>
    <string name="library_folders">Кітапхана қалталары</string>
    <string name="watch">Көру</string>
+   <string name="librerax_not_installed">LibreraX орнатылмаған. Оны жүктеп алып орнатыңыз, содан кейін кітапты қайта ашыңыз.</string>
 </resources>

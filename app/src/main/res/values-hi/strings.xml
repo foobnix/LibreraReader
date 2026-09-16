@@ -691,4 +691,5 @@
    <string name="text_and_background_color">पाठ और पृष्ठभूमि का रंग</string>
    <string name="library_folders">लाइब्रेरी फ़ोल्डर</string>
    <string name="watch">देखें</string>
+   <string name="librerax_not_installed">LibreraX इंस्टॉल नहीं है। इसे डाउनलोड और इंस्टॉल करें, फिर किताब दोबारा खोलें।</string>
 </resources>

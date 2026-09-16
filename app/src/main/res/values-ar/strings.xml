@@ -691,4 +691,5 @@
    <string name="text_and_background_color">لون النص والخلفية</string>
    <string name="library_folders">مجلدات المكتبة</string>
    <string name="watch">مشاهدة</string>
+   <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>
 </resources>

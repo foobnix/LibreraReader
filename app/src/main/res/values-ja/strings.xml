@@ -691,4 +691,5 @@
    <string name="text_and_background_color">テキストと背景色</string>
    <string name="library_folders">ライブラリのフォルダ</string>
    <string name="watch">見る</string>
+   <string name="librerax_not_installed">LibreraX がインストールされていません。ダウンロードしてインストールしてから、もう一度本を開いてください。</string>
 </resources>

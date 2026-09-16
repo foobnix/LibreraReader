@@ -691,4 +691,5 @@
    <string name="text_and_background_color">สีข้อความและสีพื้นหลัง</string>
    <string name="library_folders">โฟลเดอร์ห้องสมุด</string>
    <string name="watch">ดู</string>
+   <string name="librerax_not_installed">ยังไม่ได้ติดตั้ง LibreraX ดาวน์โหลดและติดตั้ง แล้วเปิดหนังสืออีกครั้ง</string>
 </resources>

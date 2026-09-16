@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Κείμενο και χρώμα φόντου</string>
    <string name="library_folders">Φάκελοι βιβλιοθήκης</string>
    <string name="watch">Παρακολούθηση</string>
+   <string name="librerax_not_installed">Το LibreraX δεν είναι εγκατεστημένο. Κατεβάστε και εγκαταστήστε το και, στη συνέχεια, ανοίξτε ξανά το βιβλίο.</string>
 </resources>

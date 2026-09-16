@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Text and background color</string>
    <string name="library_folders">Cartellas de sa biblioteca</string>
    <string name="watch">Càstia</string>
+   <string name="librerax_not_installed">LibreraX no est installadu. Iscàrrigalu e installalu, e a pustis torra a abèrrere su libru.</string>
 </resources>

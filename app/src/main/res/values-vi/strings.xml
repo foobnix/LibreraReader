@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Màu chữ và màu nền</string>
    <string name="library_folders">Thư mục thư viện</string>
    <string name="watch">Xem</string>
+   <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
 </resources>

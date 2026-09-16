@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Text i color de fons</string>
    <string name="library_folders">Carpetes de la biblioteca</string>
    <string name="watch">Mira</string>
+   <string name="librerax_not_installed">LibreraX no està instal·lat. Baixeu-lo i instal·leu-lo i torneu a obrir el llibre.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">உரை மற்றும் பின்னணி நிறம்</string>
    <string name="library_folders">நூலக கோப்புறைகள்</string>
    <string name="watch">பார்க்க</string>
+   <string name="librerax_not_installed">LibreraX நிறுவப்படவில்லை. அதைப் பதிவிறக்கி நிறுவி, பின்னர் புத்தகத்தை மீண்டும் திறக்கவும்.</string>
 </resources>

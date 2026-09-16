@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Color del texto y del fondo</string>
    <string name="library_folders">Carpetas de la biblioteca</string>
    <string name="watch">Ver</string>
+   <string name="librerax_not_installed">LibreraX no está instalado. Descárgalo e instálalo y vuelve a abrir el libro.</string>
 </resources>

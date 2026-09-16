@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Tekstin ja taustan väri</string>
    <string name="library_folders">Kirjaston kansiot</string>
    <string name="watch">Katso</string>
+   <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
 </resources>

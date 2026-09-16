@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Teksto ir fono spalva</string>
    <string name="library_folders">Bibliotekos aplankai</string>
    <string name="watch">Žiūrėti</string>
+   <string name="librerax_not_installed">LibreraX neįdiegta. Atsisiųskite ir įdiekite ją, tada vėl atidarykite knygą.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Testua eta atzeko planoaren kolorea</string>
    <string name="library_folders">Liburutegiko karpetak</string>
    <string name="watch">Ikusi</string>
+   <string name="librerax_not_installed">LibreraX ez dago instalatuta. Deskargatu eta instalatu, eta ireki liburua berriro.</string>
 </resources>

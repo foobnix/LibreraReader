@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Text- och bakgrundsfärg</string>
    <string name="library_folders">Bibliotekets mappar</string>
    <string name="watch">Titta</string>
+   <string name="librerax_not_installed">LibreraX är inte installerat. Ladda ner och installera det och öppna sedan boken igen.</string>
 </resources>

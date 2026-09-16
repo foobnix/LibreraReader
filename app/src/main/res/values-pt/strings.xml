@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Cor do texto e do fundo</string>
    <string name="library_folders">Pastas da biblioteca</string>
    <string name="watch">Assistir</string>
+   <string name="librerax_not_installed">O LibreraX não está instalado. Baixe e instale-o e abra o livro novamente.</string>
 </resources>

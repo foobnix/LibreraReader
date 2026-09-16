@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Text și culoare de fundal</string>
    <string name="library_folders">Dosarele bibliotecii</string>
    <string name="watch">Vizionează</string>
+   <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">צבע טקסט ורקע</string>
    <string name="library_folders">תיקיות הספרייה</string>
    <string name="watch">צפה</string>
+   <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
 </resources>

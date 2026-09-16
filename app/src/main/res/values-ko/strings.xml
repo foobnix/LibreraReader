@@ -691,4 +691,5 @@
    <string name="text_and_background_color">텍스트 및 배경색</string>
    <string name="library_folders">라이브러리 폴더</string>
    <string name="watch">보기</string>
+   <string name="librerax_not_installed">LibreraX가 설치되어 있지 않습니다. 다운로드하여 설치한 후 책을 다시 여세요.</string>
 </resources>

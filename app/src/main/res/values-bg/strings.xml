@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Цвят на текста и фона</string>
    <string name="library_folders">Папки на библиотеката</string>
    <string name="watch">Гледай</string>
+   <string name="librerax_not_installed">LibreraX не е инсталиран. Изтеглете и го инсталирайте, след това отворете книгата отново.</string>
 </resources>

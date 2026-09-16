@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Farba textu a pozadia</string>
    <string name="library_folders">Priečinky knižnice</string>
    <string name="watch">Pozrieť</string>
+   <string name="librerax_not_installed">LibreraX nie je nainštalovaný. Stiahnite a nainštalujte ho a potom knihu otvorte znova.</string>
 </resources>

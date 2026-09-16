@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Szöveg és háttérszín</string>
    <string name="library_folders">Könyvtár mappái</string>
    <string name="watch">Megnézem</string>
+   <string name="librerax_not_installed">A LibreraX nincs telepítve. Töltse le és telepítse, majd nyissa meg újra a könyvet.</string>
 </resources>

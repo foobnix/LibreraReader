@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Tekst- en achtergrondkleur</string>
    <string name="library_folders">Bibliotheekmappen</string>
    <string name="watch">Bekijken</string>
+   <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
 </resources>

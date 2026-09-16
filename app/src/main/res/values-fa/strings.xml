@@ -691,4 +691,5 @@
    <string name="text_and_background_color">رنگ متن و پس زمینه</string>
    <string name="library_folders">پوشه‌های کتابخانه</string>
    <string name="watch">تماشا</string>
+   <string name="librerax_not_installed">LibreraX نصب نشده است. آن را دانلود و نصب کنید، سپس کتاب را دوباره باز کنید.</string>
 </resources>

@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Metin ve arka plan rengi</string>
    <string name="library_folders">Kitaplık klasörleri</string>
    <string name="watch">İzle</string>
+   <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>
 </resources>

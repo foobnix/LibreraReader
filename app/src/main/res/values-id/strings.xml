@@ -691,4 +691,5 @@
    <string name="text_and_background_color">Warna teks dan latar belakang</string>
    <string name="library_folders">Folder pustaka</string>
    <string name="watch">Tonton</string>
+   <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
 </resources>
