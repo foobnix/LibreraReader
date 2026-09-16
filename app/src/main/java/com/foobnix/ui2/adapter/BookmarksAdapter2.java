@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -63,14 +64,21 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
                 onDeleteClickListener.onResultRecive(item);
             }
         });
-        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_17_bin : R.drawable.glyphicons_578_share);
+        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_599_menu_close : R.drawable.glyphicons_578_share);
         // The mark that drops a bookmark takes the same day/night colour a heart does, so on
-        // a night theme it stays legible instead of sinking into the card. Its ring is cut
-        // from the same colour.
+        // a night theme it stays legible instead of sinking into the card. The cross stands
+        // on its own, only the share mark keeps a ring, cut from the same colour.
         final int removeColor = holder.remove.getContext() instanceof MainTabs2 ?
                                 TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook();
         TintUtil.setTintImageNoAlpha(holder.remove, removeColor);
-        TintUtil.setRingColor(holder.remove, removeColor);
+        if (withPageNumber) {
+            holder.remove.setBackgroundResource(R.drawable.bg_round_press_grey);
+            holder.remove.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+        } else {
+            holder.remove.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
+            holder.remove.setBackgroundResource(R.drawable.bg_round_button);
+            TintUtil.setRingColor(holder.remove, removeColor);
+        }
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);

@@ -94,10 +94,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="6dip"
                     android:layout_weight="0"
-                    android:background="@drawable/bg_round_button"
-                    android:padding="4dip"
+                    android:background="@drawable/bg_round_press_grey"
+                    android:padding="2dip"
                     android:contentDescription="@string/remove"
-                    android:src="@drawable/glyphicons_17_bin"
+                    android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima" />
             </LinearLayout>
 
@@ -124,10 +124,10 @@
                     android:layout_marginRight="6dip"
                     android:layout_weight="0"
                     android:visibility="gone"
-                    android:background="@drawable/bg_round_button"
-                    android:padding="4dip"
+                    android:background="@drawable/bg_round_press_grey"
+                    android:padding="2dip"
                     android:contentDescription="@string/remove"
-                    android:src="@drawable/glyphicons_17_bin"
+                    android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima" />
 
             </LinearLayout>

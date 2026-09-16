@@ -692,4 +692,5 @@
    <string name="library_folders">پوشه‌های کتابخانه</string>
    <string name="watch">تماشا</string>
    <string name="librerax_not_installed">LibreraX نصب نشده است. آن را دانلود و نصب کنید، سپس کتاب را دوباره باز کنید.</string>
+   <string name="remove_library_folder">این پوشه از کتابخانه حذف شود؟ فایل‌های داخل آن پاک نمی‌شوند.</string>
 </resources>

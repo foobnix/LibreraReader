@@ -161,16 +161,14 @@ public class Dialogs {
 
 
                 ImageView img = new ImageView(activity);
-                img.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
+                img.setPadding(Dips.DP_3, Dips.DP_3, Dips.DP_3, Dips.DP_3);
                 img.setMaxWidth(Dips.DP_20);
                 img.setMaxHeight(Dips.DP_20);
 
-                img.setImageResource(R.drawable.glyphicons_17_bin);
+                img.setImageResource(R.drawable.glyphicons_599_menu_close);
+                img.setBackgroundResource(R.drawable.bg_round_press_grey);
+                // The cross that drops a rule, drawn in the colour links are.
                 TintUtil.setTintImageNoAlpha(img, linkColor);
-                // The bin that drops a rule stands in a round of its own, as the mark that
-                // closes a panel does, drawn in the colour the mark itself is.
-                img.setBackgroundResource(R.drawable.bg_round_button);
-                TintUtil.setRingColor(img, linkColor);
 
                 img.setOnClickListener(new OnClickListener() {
                     @Override
@@ -1197,10 +1195,9 @@ public class Dialogs {
                 text.setChecked(fileTags.contains(tagName));
 
                 ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
-                // The bin and its ring in one colour, the one links are drawn in.
+                // The cross in the colour links are drawn in.
                 final int deleteColor = TxtUtils.getLinkTextColor(a);
                 TintUtil.setTintImageNoAlpha(delete, deleteColor);
-                TintUtil.setRingColor(delete, deleteColor);
                 delete.setOnClickListener(new OnClickListener() {
 
                     @Override

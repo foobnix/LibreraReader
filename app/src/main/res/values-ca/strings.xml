@@ -692,4 +692,5 @@
    <string name="library_folders">Carpetes de la biblioteca</string>
    <string name="watch">Mira</string>
    <string name="librerax_not_installed">LibreraX no està instal·lat. Baixeu-lo i instal·leu-lo i torneu a obrir el llibre.</string>
+   <string name="remove_library_folder">Voleu treure aquesta carpeta de la biblioteca? Els fitxers que conté no se suprimiran.</string>
 </resources>

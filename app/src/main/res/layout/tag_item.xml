@@ -17,17 +17,16 @@
         android:text="Sample 1"
         android:textSize="@dimen/text_subtitle" />
 
-    <!-- A bin, ringed like the other remove marks; the adapter draws the ring in the colour of
-         the mark. -->
+    <!-- A cross, drawn in the colour the adapter gives it. -->
     <ImageView
         android:id="@+id/deleteTag"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
         android:layout_weight="0"
-        android:background="@drawable/bg_round_button"
-        android:padding="6dip"
+        android:background="@drawable/bg_round_press_grey"
+        android:padding="3dip"
         android:contentDescription="@string/remove"
-        android:src="@drawable/glyphicons_17_bin"
+        android:src="@drawable/glyphicons_599_menu_close"
         android:tint="@color/lt_grey_dima"
         android:visibility="visible" />
 

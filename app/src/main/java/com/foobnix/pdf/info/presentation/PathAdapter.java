@@ -75,7 +75,6 @@ public class PathAdapter extends BaseAdapter {
             if (mark instanceof ImageView) {
                 TintUtil.setTintImageNoAlpha((ImageView) mark, rowColor);
             }
-            TintUtil.setRingColor(deleteView, rowColor);
             if (deleteView instanceof ImageView) {
                 TintUtil.setTintImageNoAlpha((ImageView) deleteView, rowColor);
             }

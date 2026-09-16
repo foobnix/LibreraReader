@@ -692,4 +692,5 @@
    <string name="library_folders">Folda za maktaba</string>
    <string name="watch">Tazama</string>
    <string name="librerax_not_installed">LibreraX haijasakinishwa. Ipakue na uisakinishe, kisha ufungue kitabu tena.</string>
+   <string name="remove_library_folder">Ondoa folda hii kwenye maktaba? Faili zilizomo hazitafutwa.</string>
 </resources>

@@ -26,8 +26,7 @@
         android:text="/asdf/asdf/asdf/asdf/asdf/"
         android:textSize="@dimen/text_subtitle" />
 
-    <!-- The bin that drops a folder, ringed like the other round buttons; the adapter draws
-         the ring and the mark in the theme colour. -->
+    <!-- The cross that drops a folder; the adapter draws it in the theme colour. -->
     <ImageView
         android:id="@+id/delete"
         android:contentDescription="@string/remove"
@@ -35,9 +34,9 @@
         android:layout_height="@dimen/wh_button_small"
         android:layout_margin="4dip"
         android:layout_weight="0"
-        android:background="@drawable/bg_round_button"
-        android:padding="6dip"
-        android:src="@drawable/glyphicons_17_bin"
+        android:background="@drawable/bg_round_press_grey"
+        android:padding="3dip"
+        android:src="@drawable/glyphicons_599_menu_close"
         android:visibility="visible" />
 
 </LinearLayout>

@@ -692,4 +692,5 @@
    <string name="library_folders">நூலக கோப்புறைகள்</string>
    <string name="watch">பார்க்க</string>
    <string name="librerax_not_installed">LibreraX நிறுவப்படவில்லை. அதைப் பதிவிறக்கி நிறுவி, பின்னர் புத்தகத்தை மீண்டும் திறக்கவும்.</string>
+   <string name="remove_library_folder">இந்தக் கோப்புறையை நூலகத்திலிருந்து அகற்றவா? அதிலுள்ள கோப்புகள் நீக்கப்படாது.</string>
 </resources>

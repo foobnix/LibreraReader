@@ -692,4 +692,5 @@
    <string name="library_folders">โฟลเดอร์ห้องสมุด</string>
    <string name="watch">ดู</string>
    <string name="librerax_not_installed">ยังไม่ได้ติดตั้ง LibreraX ดาวน์โหลดและติดตั้ง แล้วเปิดหนังสืออีกครั้ง</string>
+   <string name="remove_library_folder">นำโฟลเดอร์นี้ออกจากห้องสมุดหรือไม่ ไฟล์ในโฟลเดอร์จะไม่ถูกลบ</string>
 </resources>

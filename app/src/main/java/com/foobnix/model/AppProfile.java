@@ -328,10 +328,9 @@ public class AppProfile {
                         letter.setBackgroundDrawable(getProfileColorDrawable(a, tagName));
 
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
-                        // The bin and its ring in one colour, the one links are drawn in, like
-                        // the bin that drops a folder.
+                        // The cross in the colour links are drawn in, like the cross that drops
+                        // a folder.
                         final int rowColor = TxtUtils.getLinkTextColor(a);
-                        TintUtil.setRingColor(delete, rowColor);
                         TintUtil.setTintImageNoAlpha(delete, rowColor);
                         // The profile in use is named in bold and cannot be dropped. Rows come
                         // back recycled, so the others are set back to plain.

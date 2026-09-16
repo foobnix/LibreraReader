@@ -692,4 +692,5 @@
    <string name="library_folders">Папки бібліотеки</string>
    <string name="watch">Дивитися</string>
    <string name="librerax_not_installed">LibreraX не встановлено. Завантажте та встановіть її, потім відкрийте книгу знову.</string>
+   <string name="remove_library_folder">Прибрати цю теку з бібліотеки? Файли в ній не буде видалено.</string>
 </resources>

@@ -692,4 +692,5 @@
    <string name="library_folders">Cartelle della libreria</string>
    <string name="watch">Guarda</string>
    <string name="librerax_not_installed">LibreraX non è installato. Scaricalo e installalo, poi riapri il libro.</string>
+   <string name="remove_library_folder">Rimuovere questa cartella dalla libreria? I file al suo interno non verranno eliminati.</string>
 </resources>

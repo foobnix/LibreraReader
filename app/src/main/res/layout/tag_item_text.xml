@@ -28,8 +28,7 @@
         android:singleLine="true"
         android:text="Sample 1" />
 
-    <!-- A bin, ringed like the other remove marks; the adapter draws the ring in the colour of
-         the name beside it. -->
+    <!-- A cross, drawn by the adapter in the colour of the name beside it. -->
     <ImageView
         android:id="@+id/delete1"
         android:layout_width="@dimen/wh_button_small"
@@ -37,10 +36,10 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="8dip"
         android:layout_weight="0"
-        android:background="@drawable/bg_round_button"
         android:contentDescription="@string/remove"
-        android:padding="6dip"
-        android:src="@drawable/glyphicons_17_bin"
+        android:background="@drawable/bg_round_press_grey"
+        android:padding="3dip"
+        android:src="@drawable/glyphicons_599_menu_close"
         android:visibility="visible" />
 
 </LinearLayout>

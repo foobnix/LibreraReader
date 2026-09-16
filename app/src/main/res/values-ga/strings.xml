@@ -692,4 +692,5 @@
    <string name="library_folders">Fillteáin na leabharlainne</string>
    <string name="watch">Féach</string>
    <string name="librerax_not_installed">Níl LibreraX suiteáilte. Íoslódáil agus suiteáil é, ansin oscail an leabhar arís.</string>
+   <string name="remove_library_folder">An fillteán seo a bhaint den leabharlann? Ní scriosfar na comhaid atá ann.</string>
 </resources>

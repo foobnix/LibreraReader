@@ -332,14 +332,12 @@ public class DragingDialogs {
                     to.setHint("_");
 
                     ImageView img = new ImageView(activity);
-                    img.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
+                    img.setPadding(Dips.DP_3, Dips.DP_3, Dips.DP_3, Dips.DP_3);
 
-                    img.setImageResource(R.drawable.glyphicons_17_bin);
+                    img.setImageResource(R.drawable.glyphicons_599_menu_close);
+                    img.setBackgroundResource(R.drawable.bg_round_press_grey);
+                    // The cross that drops a line, drawn in the colour of the buttons.
                     TintUtil.setTintImageNoAlpha(img, buttonColor);
-                    // The bin that drops a line stands in a round of its own, drawn in the
-                    // colour the bin itself is.
-                    img.setBackgroundResource(R.drawable.bg_round_button);
-                    TintUtil.setRingColor(img, buttonColor);
 
                     img.setOnClickListener(new OnClickListener() {
                         @Override public void onClick(View v) {

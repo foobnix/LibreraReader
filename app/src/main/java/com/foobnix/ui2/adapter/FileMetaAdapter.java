@@ -947,14 +947,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.menu, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (holder.remove != null) {
-            // The bin that drops a book and its ring take the same day/night colour as the heart
-            // beside it, so on a night theme it stays legible instead of sinking into the card.
+            // The cross that drops a book takes the same day/night colour as the heart beside it,
+            // so on a night theme it stays legible instead of sinking into the card.
             int removeColor = holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
                     TintUtil.getColorInDayNighthBook();
             if (holder.remove instanceof ImageView) {
                 TintUtil.setTintImageWithAlpha((ImageView) holder.remove, removeColor);
             }
-            TintUtil.setRingColor(holder.remove, removeColor);
             holder.remove.setOnClickListener(new OnClickListener() {
 
                 @Override

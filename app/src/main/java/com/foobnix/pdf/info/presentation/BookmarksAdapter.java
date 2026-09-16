@@ -66,12 +66,11 @@ public class BookmarksAdapter extends BaseAdapter {
         cloudImage.setVisibility(View.GONE);
         final View deleteView = view.findViewById(R.id.remove2);
         deleteView.setVisibility(View.VISIBLE);
-        // The bin and its ring take the colour the dialog's buttons are: the reader's marks, or
-        // on a light sheet, where those would vanish, the theme colour.
+        // The cross takes the colour the dialog's buttons are: the reader's marks, or on a light
+        // sheet, where those would vanish, the theme colour.
         final int removeColor = TintUtil.isLightSurface(context, android.R.attr.colorBackground)
                                 ? TintUtil.color : MagicHelper.getTextOrIconColor();
         TintUtil.setTintImageNoAlpha((ImageView) deleteView, removeColor);
-        TintUtil.setRingColor(deleteView, removeColor);
         view.findViewById(R.id.remove).setVisibility(View.GONE);
 
         ((View) image.getParent()).setVisibility(View.GONE);

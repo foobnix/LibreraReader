@@ -692,4 +692,5 @@
    <string name="library_folders">Bibliotekos aplankai</string>
    <string name="watch">Žiūrėti</string>
    <string name="librerax_not_installed">LibreraX neįdiegta. Atsisiųskite ir įdiekite ją, tada vėl atidarykite knygą.</string>
+   <string name="remove_library_folder">Pašalinti šį aplanką iš bibliotekos? Jame esantys failai nebus ištrinti.</string>
 </resources>

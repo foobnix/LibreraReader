@@ -692,4 +692,5 @@
    <string name="library_folders">Könyvtár mappái</string>
    <string name="watch">Megnézem</string>
    <string name="librerax_not_installed">A LibreraX nincs telepítve. Töltse le és telepítse, majd nyissa meg újra a könyvet.</string>
+   <string name="remove_library_folder">Eltávolítja ezt a mappát a könyvtárból? A benne lévő fájlok nem törlődnek.</string>
 </resources>

@@ -126,10 +126,9 @@ public class DialogsPlaylist {
                         if (file != null) {
                             img.setVisibility(View.GONE);
                         }
-                        // The bin and its ring in one colour, the one links are drawn in.
+                        // The cross in the colour links are drawn in.
                         final int deleteColor = TxtUtils.getLinkTextColor(a);
                         TintUtil.setTintImageNoAlpha(img, deleteColor);
-                        TintUtil.setRingColor(img, deleteColor);
                         img.setOnClickListener(new OnClickListener() {
 
                             @Override public void onClick(View v) {

@@ -166,12 +166,14 @@ public class PrefDialogs {
 
             @Override
             public boolean onResultRecive(Uri result) {
-                String path = result.getPath();
-                LOG.d("TEST", "Remove " + path);
-                BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
-                LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson);
-                recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
-                onChanges.run();
+                final String path = result.getPath();
+                AlertDialogs.showDialog(a, a.getString(R.string.remove_library_folder) + "\n\n" + path, a.getString(R.string.remove), () -> {
+                    LOG.d("TEST", "Remove " + path);
+                    BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                    LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson);
+                    recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
+                    onChanges.run();
+                });
                 return false;
             }
         });

@@ -692,4 +692,5 @@
    <string name="library_folders">Cartellas de sa biblioteca</string>
    <string name="watch">Càstia</string>
    <string name="librerax_not_installed">LibreraX no est installadu. Iscàrrigalu e installalu, e a pustis torra a abèrrere su libru.</string>
+   <string name="remove_library_folder">Bogare custa cartella dae sa biblioteca? Sos archìvios chi bi sunt no ant a èssere cantzellados.</string>
 </resources>

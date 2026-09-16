@@ -692,4 +692,5 @@
    <string name="library_folders">Bibliotekmapper</string>
    <string name="watch">Se</string>
    <string name="librerax_not_installed">LibreraX er ikke installert. Last ned og installer den, og åpne boken på nytt.</string>
+   <string name="remove_library_folder">Fjerne denne mappen fra biblioteket? Filene i den blir ikke slettet.</string>
 </resources>

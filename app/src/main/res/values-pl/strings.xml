@@ -692,4 +692,5 @@
    <string name="library_folders">Foldery biblioteki</string>
    <string name="watch">Obejrzyj</string>
    <string name="librerax_not_installed">LibreraX nie jest zainstalowana. Pobierz ją i zainstaluj, a następnie ponownie otwórz książkę.</string>
+   <string name="remove_library_folder">Usunąć ten folder z biblioteki? Pliki w nim nie zostaną usunięte.</string>
 </resources>

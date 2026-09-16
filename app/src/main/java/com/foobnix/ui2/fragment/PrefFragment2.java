@@ -2982,16 +2982,16 @@ public class PrefFragment2 extends UIFragment {
             }
 
             View remove = row.findViewById(R.id.delete);
-            TintUtil.setRingColor(remove, rowColor);
             if (remove instanceof ImageView) {
                 TintUtil.setTintImageNoAlpha((ImageView) remove, rowColor);
             }
-            remove.setOnClickListener(v -> {
-                BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
-                showSearchPaths();
-                saveChanges();
-                LOG.d("Save Changes", 3);
-            });
+            remove.setOnClickListener(v -> AlertDialogs.showDialog(getActivity(),
+                    getString(R.string.remove_library_folder) + "\n\n" + path, getString(R.string.remove), () -> {
+                        BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                        showSearchPaths();
+                        saveChanges();
+                        LOG.d("Save Changes", 3);
+                    }));
 
             row.setOnClickListener(v -> onFolderConfigDialog());
             searchPaths.addView(row);

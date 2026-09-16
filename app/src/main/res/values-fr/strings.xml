@@ -692,4 +692,5 @@
    <string name="library_folders">Dossiers de la bibliothèque</string>
    <string name="watch">Regarder</string>
    <string name="librerax_not_installed">LibreraX n\'est pas installé. Téléchargez-le et installez-le, puis rouvrez le livre.</string>
+   <string name="remove_library_folder">Retirer ce dossier de la bibliothèque ? Les fichiers qu\'il contient ne seront pas supprimés.</string>
 </resources>

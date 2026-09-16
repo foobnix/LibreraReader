@@ -61,8 +61,8 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <!-- The author and the series share what the bin leaves of the row, so a long
-                     name is cut short rather than pushing the bin off the card. -->
+                <!-- The author and the series share what the cross leaves of the row, so a long
+                     name is cut short rather than pushing the cross off the card. -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                     android:visibility="visible" />
                 </LinearLayout>
 
-                <!-- The bin that drops a book from the list, held in the top right corner of
+                <!-- The cross that drops a book from the list, held in the top right corner of
                      the card with a little air from both edges. -->
                 <ImageView
                     android:id="@+id/delete"
@@ -109,9 +109,9 @@
                     android:layout_marginRight="4dip"
                     android:layout_weight="0"
                     android:contentDescription="@string/remove"
-                    android:background="@drawable/bg_round_button"
-                    android:padding="6dip"
-                    android:src="@drawable/glyphicons_17_bin"
+                    android:background="@drawable/bg_round_press_grey"
+                    android:padding="3dip"
+                    android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/lt_grey_dima1"
                     android:visibility="visible" />
             </LinearLayout>

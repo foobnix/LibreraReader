@@ -692,4 +692,5 @@
    <string name="library_folders">Bibliotheekmappen</string>
    <string name="watch">Bekijken</string>
    <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
+   <string name="remove_library_folder">Deze map uit de bibliotheek verwijderen? De bestanden erin worden niet verwijderd.</string>
 </resources>

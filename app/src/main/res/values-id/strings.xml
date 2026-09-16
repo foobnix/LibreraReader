@@ -692,4 +692,5 @@
    <string name="library_folders">Folder pustaka</string>
    <string name="watch">Tonton</string>
    <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
+   <string name="remove_library_folder">Hapus folder ini dari pustaka? File di dalamnya tidak akan dihapus.</string>
 </resources>
