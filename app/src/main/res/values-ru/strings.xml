@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Выберите...</string>
    <string name="convert_to">Преобразовать в</string>
-   <string name="mode_vertical">Режим \"Свиток\"</string>
-   <string name="mode_horizontally">Режим \"Книга\"</string>
+   <string name="mode_vertical">Вертикально</string>
+   <string name="mode_horizontally">Постранично</string>
    <string name="mode_musician">Режим \"Музыкант\"</string>
    <string name="save">Сохранить</string>
    <string name="remember_choice">Запомнить выбор</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Страница</string>
    <string name="page">Страница</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Выберите...</string>
+   <string name="choose_">Выберите</string>
    <string name="crop_white_borders">Обрезка пустых полей</string>
    <string name="full_screen">Во весь экран</string>
    <string name="go">Перейти</string>

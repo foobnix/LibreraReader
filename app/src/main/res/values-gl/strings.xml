@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Modo de lectura</string>
    <string name="convert_to">Converter a</string>
-   <string name="mode_vertical">Modo desprazamento</string>
-   <string name="mode_horizontally">Modo libro</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paxinado</string>
    <string name="mode_musician">Modo músico</string>
    <string name="save">Gardar</string>
    <string name="remember_choice">Lembrar selección</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Páxina</string>
    <string name="page">Páxina</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Seleccionar …</string>
+   <string name="choose_">Seleccionar</string>
    <string name="crop_white_borders">Recortar marxes brancas</string>
    <string name="full_screen">Pantalla completa</string>
    <string name="go">Ir</string>

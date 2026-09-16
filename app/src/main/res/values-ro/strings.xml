@@ -176,7 +176,7 @@
    <string name="no_language">Nici o limbă</string>
    <string name="without_series">Fără serii</string>
    <string name="folders">Dosare</string>
-   <string name="recent">Recent</string>
+   <string name="recent">Recente</string>
    <string name="clear_all">Curata tot</string>
    <string name="search_history_and_autocomplete">Istoricul căutărilor și autocompletarea</string>
    <string name="press_any_key">Apăsați orice tastă</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Selectați modul de citire</string>
    <string name="convert_to">Schimbați în</string>
-   <string name="mode_vertical">Modul \"Derulați\"</string>
-   <string name="mode_horizontally">Modul \"Rezervați\"</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginat</string>
    <string name="mode_musician">Modul \"Muzician\"</string>
    <string name="save">Salvați</string>
    <string name="remember_choice">Ține minte alegerea</string>
@@ -326,7 +326,7 @@
    <string name="___SELECT___TEXT___SECTION___"></string>
    <string name="highlight_of_text">A evidenția</string>
    <string name="underline_of_text">Sublinia</string>
-   <string name="strikethrough_of_text">Strikethrough</string>
+   <string name="strikethrough_of_text">Tăiat</string>
    <string name="text">Text</string>
    <string name="bookmark_on_page_">Marcaj pe pagină</string>
    <string name="share">Distribuiți</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Pagină</string>
    <string name="page">Pagină</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Alegeți...</string>
+   <string name="choose_">Alegeți</string>
    <string name="crop_white_borders">Decupați marginile albe</string>
    <string name="full_screen">Ecran complet</string>
    <string name="go">Du-te</string>
@@ -474,7 +474,7 @@
    <string name="do_you_want_to_delete_this_file_1">Ștergeți definitiv acest fișier? Nu poate fi recuperat.</string>
    <string name="logout">Deconectare</string>
    <string name="cloud_not_connected">Cloud nu este conectat</string>
-   <string name="cloud_sync_folder">Cloud sync folder</string>
+   <string name="cloud_sync_folder">Dosar de sincronizare în cloud</string>
    <string name="clouds">Nori</string>
    <string name="librera_cloud">Librera nor</string>
    <string name="hide_search_bar">Ascundeți bara de căutare</string>

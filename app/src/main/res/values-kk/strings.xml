@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Оқу режимі</string>
    <string name="convert_to">Ауыстыру</string>
-   <string name="mode_vertical">Жылжыту режимі</string>
-   <string name="mode_horizontally">Кітап режимі</string>
+   <string name="mode_vertical">Тік</string>
+   <string name="mode_horizontally">Беттеп</string>
    <string name="mode_musician">Музыканттың режимі</string>
    <string name="save">Сақтау</string>
    <string name="remember_choice">Таңдауын есте сақтаңыз</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Бет</string>
    <string name="page">Бет</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Таңдау...</string>
+   <string name="choose_">Таңдау</string>
    <string name="crop_white_borders">Ақ кеңістікті қиып алыңыз</string>
    <string name="full_screen">Толық экран</string>
    <string name="go">Барыңыз</string>

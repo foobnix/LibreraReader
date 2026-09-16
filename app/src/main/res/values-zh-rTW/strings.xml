@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___">上下文選單</string>
    <string name="select_the_reading_mode">閱讀模式</string>
    <string name="convert_to">轉換為</string>
-   <string name="mode_vertical">滾動模式</string>
-   <string name="mode_horizontally">書籍模式</string>
+   <string name="mode_vertical">上下捲動</string>
+   <string name="mode_horizontally">左右翻頁</string>
    <string name="mode_musician">樂師模式</string>
    <string name="save">保存</string>
    <string name="remember_choice">記住選擇</string>
@@ -340,7 +340,7 @@
    <string name="text_page">頁</string>
    <string name="page">頁</string>
    <string name="___INDEFINITE___SECTION___">無限</string>
-   <string name="choose_">請選擇...</string>
+   <string name="choose_">請選擇</string>
    <string name="crop_white_borders">切除白邊</string>
    <string name="full_screen">全屏模式</string>
    <string name="go">前往</string>

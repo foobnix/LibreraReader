@@ -197,8 +197,8 @@
    <string name="proxy_server_settings">การตั้งค่าพร็อกซีเซิร์ฟเวอร์</string>
    <string name="use_proxy_server">ใช้พร็อกซีเซิร์ฟเวอร์</string>
    <string name="proxy_type">ประเภทพร็อกซี</string>
-   <string name="server">Server</string>
-   <string name="port">Port</string>
+   <string name="server">เซิร์ฟเวอร์</string>
+   <string name="port">พอร์ต</string>
    <string name="user">ชื่อผู้ใช้งาน</string>
    <string name="other_settings">การตั้งค่าอื่น ๆ</string>
    <string name="folder_for_downloaded_books">โฟลเดอร์หนังสือที่ดาวน์โหลดมา</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">เลือกโหมดการอ่าน</string>
    <string name="convert_to">เปลี่ยนเป็น</string>
-   <string name="mode_vertical">โหมด \"เลื่อน\"</string>
-   <string name="mode_horizontally">โหมด \"สมุด\"</string>
+   <string name="mode_vertical">แนวตั้ง</string>
+   <string name="mode_horizontally">แบ่งหน้า</string>
    <string name="mode_musician">โหมด \"นักดนตรี\"</string>
    <string name="save">บันทึก</string>
    <string name="remember_choice">จำการตั้งค่า</string>
@@ -340,7 +340,7 @@
    <string name="text_page">หน้า</string>
    <string name="page">หน้า</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">เลือก...</string>
+   <string name="choose_">เลือก</string>
    <string name="crop_white_borders">ตัดขอบสีขาว</string>
    <string name="full_screen">เต็มจอ</string>
    <string name="go">ไป</string>
@@ -436,7 +436,7 @@
    <string name="link_color">สีลิงก์</string>
    <string name="show_battery_percentage">แสดงเปอร์เซ็นต์ของแบตเตอรี่</string>
    <string name="show_current_time">แสดงเวลาปัจจุบัน</string>
-   <string name="telegram_channel">Telegram channel</string>
+   <string name="telegram_channel">ช่อง Telegram</string>
    <string name="zoom_in_out_using_the_volume_keys">ซูมเข้า / ออกโดยใช้ปุ่มปรับระดับเสียง</string>
    <string name="tag">แท็ก</string>
    <string name="no_tag">ไม่มีแท็ก</string>
@@ -475,7 +475,7 @@
    <string name="logout">ออกจากระบบ</string>
    <string name="cloud_not_connected">Cloud ไม่ได้เชื่อมต่อ</string>
    <string name="cloud_sync_folder">โฟลเดอร์ซิงค์ระบบคลาวด์</string>
-   <string name="clouds">Clouds</string>
+   <string name="clouds">คลาวด์</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">ซ่อนแถบค้นหา</string>
    <string name="show_search_bar">แสดงแถบค้นหา</string>

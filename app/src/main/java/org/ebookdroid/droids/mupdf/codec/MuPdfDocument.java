@@ -247,6 +247,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return getPageCountWithException(documentHandle, getW(), getH(), BookCSS.get().fontSizeSp);
     }
 
+    private static volatile boolean hasBookmarkNatives = true;
+
     private static native String getBookmarkTextInternal(long handle, int page);
 
     private static native int findBookmarkPageInternal(long handle, int page, String text, String pageText, int range);
@@ -254,7 +256,12 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public String getBookmarkText(int page) {
         TempHolder.lock.lock();
         try {
-            return isRecycled() ? null : getBookmarkTextInternal(documentHandle, page);
+            return isRecycled() || !hasBookmarkNatives ? null : getBookmarkTextInternal(documentHandle, page);
+        } catch (UnsatisfiedLinkError e) {
+            // a native library built before the bookmark functions were added
+            hasBookmarkNatives = false;
+            LOG.e(e);
+            return null;
         } finally {
             TempHolder.lock.unlock();
         }
@@ -263,7 +270,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public int findBookmarkPage(int page, String text, String pageText) {
         TempHolder.lock.lock();
         try {
-            return isRecycled() ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
+            return isRecycled() || !hasBookmarkNatives ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
+        } catch (UnsatisfiedLinkError e) {
+            hasBookmarkNatives = false;
+            LOG.e(e);
+            return -1;
         } finally {
             TempHolder.lock.unlock();
         }

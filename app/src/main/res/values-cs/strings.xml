@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Režim čtení</string>
    <string name="convert_to">Převést na</string>
-   <string name="mode_vertical">Režim skrolování</string>
-   <string name="mode_horizontally">Režim knihy</string>
+   <string name="mode_vertical">Svislý</string>
+   <string name="mode_horizontally">Stránkový</string>
    <string name="mode_musician">Režim hudebníka</string>
    <string name="save">Uložit</string>
    <string name="remember_choice">Pamatovat si výběr</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Stránka</string>
    <string name="page">Stránka</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Vybrat…</string>
+   <string name="choose_">Vybrat</string>
    <string name="crop_white_borders">Oříznout prázdný prostor</string>
    <string name="full_screen">Celá obrazovka</string>
    <string name="go">Jít</string>
@@ -656,7 +656,7 @@
    <string name="synced_books">Synchronizované knihy</string>
    <string name="smart_reflow">Chytré přeformátování</string>
    <string name="user_styles">Uživatelsky definované</string>
-   <string name="engine">Engine</string>
+   <string name="engine">Jádro</string>
    <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>
    <string name="search_in_the_library">Hledat v knihovně</string>
    <string name="update_metadata">Aktualizovat metadata</string>

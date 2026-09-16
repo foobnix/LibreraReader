@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Okuma Kipi</string>
    <string name="convert_to">Şuna dönüştür</string>
-   <string name="mode_vertical">Kaydırma kipi</string>
-   <string name="mode_horizontally">Kitap kipi</string>
+   <string name="mode_vertical">Dikey</string>
+   <string name="mode_horizontally">Sayfalı</string>
    <string name="mode_musician">Müzisyen kipi</string>
    <string name="save">Kaydet</string>
    <string name="remember_choice">Seçimi hatırla</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Sayfa</string>
    <string name="page">Sayfa</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Seç ...</string>
+   <string name="choose_">Seç</string>
    <string name="crop_white_borders">Beyaz kenarları kes</string>
    <string name="full_screen">Tam ekran yap</string>
    <string name="go">Git</string>

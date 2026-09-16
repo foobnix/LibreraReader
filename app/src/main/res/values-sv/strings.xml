@@ -23,7 +23,7 @@
    <string name="black">Svart</string>
    <string name="theme_color">Färg</string>
    <string name="widget">Widget</string>
-   <string name="show">Show</string>
+   <string name="show">Visa</string>
    <string name="layout">Layout</string>
    <string name="number_of_books">Antal böcker</string>
    <string name="remember_reading_mode">Kom ihåg läsläge</string>
@@ -88,7 +88,7 @@
    <string name="right">Höger sida</string>
    <string name="center">Centrum</string>
    <string name="custom_css">Anpassad CSS</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Stilar</string>
    <string name="document_styles">Dokument~~POS=TRUNC stilar</string>
    <string name="automatic_hyphenation">Automatisk avstavning</string>
    <string name="parse_bbcode_tags">Tolka BBCode-taggar</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Välj läsläge</string>
    <string name="convert_to">Konvertera till</string>
-   <string name="mode_vertical">Läge \"Scroll\"</string>
-   <string name="mode_horizontally">Läge \"bok\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Sidvis</string>
    <string name="mode_musician">Läge \"musiker\"</string>
    <string name="save">Spara</string>
    <string name="remember_choice">Kom ihåg valet</string>
@@ -335,12 +335,12 @@
    <string name="search_in_document">Sök i dokumentet</string>
    <string name="web_dict_oxfort">Webbordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
-   <string name="font">Font</string>
+   <string name="font">Typsnitt</string>
    <string name="font_name">Font namn</string>
    <string name="text_page">Sida</string>
    <string name="page">Sida</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Välja...</string>
+   <string name="choose_">Välja</string>
    <string name="crop_white_borders">Beskär vita kanter</string>
    <string name="full_screen">Fullskärm</string>
    <string name="go">Gå</string>
@@ -425,7 +425,7 @@
    <string name="keywords">Nyckelord</string>
    <string name="number">Siffra</string>
    <string name="percent">Procent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Utmärkelser</string>
    <string name="close_book_and_application">Stäng bok och ansökan</string>
    <string name="percent_and_number">Procent och antal</string>
    <string name="current_page">Nuvarande sida</string>
@@ -475,7 +475,7 @@
    <string name="logout">Logga ut</string>
    <string name="cloud_not_connected">Cloud inte anslutet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
-   <string name="clouds">Clouds</string>
+   <string name="clouds">Moln</string>
    <string name="librera_cloud">Librera moln</string>
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
@@ -519,7 +519,7 @@
    <string name="pause">Paus</string>
    <string name="favorite">Favorit</string>
    <string name="playlists">Spellistor</string>
-   <string name="tags">Tags</string>
+   <string name="tags">Taggar</string>
    <string name="are_you_sure_to_delete_playlist_">Är du säker på att radera spellista?</string>
    <string name="delete_this_bookmark_">Radera det här bokmärket?</string>
    <string name="zoom_in_out_with_lock_enable">Zooma in / ut med låsaktivera</string>

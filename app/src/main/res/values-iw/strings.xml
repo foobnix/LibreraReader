@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">בחר את מצב הקריאה</string>
    <string name="convert_to">להמיר ל</string>
-   <string name="mode_vertical">מצב \"גלילה\"</string>
-   <string name="mode_horizontally">מצב \"ספר\"</string>
+   <string name="mode_vertical">אנכי</string>
+   <string name="mode_horizontally">לפי עמודים</string>
    <string name="mode_musician">מצב \"מוסיקאי\"</string>
    <string name="save">להציל</string>
    <string name="remember_choice">זכור בחירה</string>
@@ -340,7 +340,7 @@
    <string name="text_page">עמוד</string>
    <string name="page">עמוד</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">בחר...</string>
+   <string name="choose_">בחר</string>
    <string name="crop_white_borders">חתוך שוליים לבנים</string>
    <string name="full_screen">מסך מלא</string>
    <string name="go">לעבור</string>

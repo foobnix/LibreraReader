@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">읽기 모드 선택</string>
    <string name="convert_to">변경하기</string>
-   <string name="mode_vertical">모드 \"스크롤\"</string>
-   <string name="mode_horizontally">모드 \"독서\"</string>
+   <string name="mode_vertical">세로 스크롤</string>
+   <string name="mode_horizontally">페이지 넘김</string>
    <string name="mode_musician">모드 \"뮤지션\"</string>
    <string name="save">저장</string>
    <string name="remember_choice">선택 사항 기억하기</string>

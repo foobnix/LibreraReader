@@ -88,7 +88,7 @@
    <string name="right">Høyre side</string>
    <string name="center">Senter</string>
    <string name="custom_css">Tilpasset CSS</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Stiler</string>
    <string name="document_styles">Dokumentstiler</string>
    <string name="automatic_hyphenation">Automatisk bindestrek</string>
    <string name="parse_bbcode_tags">Behandle BBCode-tagger</string>
@@ -192,7 +192,7 @@
    <string name="filter">Filter</string>
    <string name="bookmark_by_date">Etter dato</string>
    <string name="bookmark_by_book">Ved bok</string>
-   <string name="network">Network</string>
+   <string name="network">Nettverk</string>
    <string name="catalogs">Kataloger</string>
    <string name="proxy_server_settings">Proxy-serverinnstillinger</string>
    <string name="use_proxy_server">Bruk proxy-server</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Velg lesemodus</string>
    <string name="convert_to">Konvertere til</string>
-   <string name="mode_vertical">Modus \"bla\"</string>
-   <string name="mode_horizontally">Modus \"bok\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Sidevis</string>
    <string name="mode_musician">Modus \"musiker\"</string>
    <string name="save">Lagre</string>
    <string name="remember_choice">Husk valg</string>
@@ -335,12 +335,12 @@
    <string name="search_in_document">Søk i dokument</string>
    <string name="web_dict_oxfort">Nettordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
-   <string name="font">Font</string>
+   <string name="font">Skrift</string>
    <string name="font_name">Skriftnavn</string>
    <string name="text_page">Side</string>
    <string name="page">Side</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Velge...</string>
+   <string name="choose_">Velge</string>
    <string name="crop_white_borders">Beskjær hvite grenser</string>
    <string name="full_screen">Full skjerm</string>
    <string name="go">Gå</string>
@@ -425,7 +425,7 @@
    <string name="keywords">Nøkkelord</string>
    <string name="number">Antall</string>
    <string name="percent">Prosent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Utmerkelser</string>
    <string name="close_book_and_application">Lukk bok og søknad</string>
    <string name="percent_and_number">Prosent og tall</string>
    <string name="current_page">Nåværende side</string>
@@ -444,7 +444,7 @@
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Vil du slette denne taggen fra alle bøkene?</string>
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
-   <string name="by_extension">Extension</string>
+   <string name="by_extension">Filtype</string>
    <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
    <string name="line_spacing">Linjeavstand</string>
    <string name="paragraph_spacing">Avsnittsavstand</string>
@@ -519,7 +519,7 @@
    <string name="pause">Pause</string>
    <string name="favorite">Favoritt</string>
    <string name="playlists">Spillelister</string>
-   <string name="tags">Tags</string>
+   <string name="tags">Tagger</string>
    <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
    <string name="delete_this_bookmark_">Slett dette bokmerket?</string>
    <string name="zoom_in_out_with_lock_enable">Zoome inn / ut med lås aktivering</string>
@@ -535,7 +535,7 @@
    <string name="turn_the_page_on_the_last_word">Vri siden på siste ord</string>
    <string name="paste">Lim inn</string>
    <string name="move">Bevege seg</string>
-   <string name="tag_manager">Tag manager</string>
+   <string name="tag_manager">Taggbehandling</string>
    <string name="the_file_already_exists_">Filen eksisterer allerede.</string>
    <string name="please_wait_books_are_being_processed_">Vent, bøker blir behandlet</string>
    <string name="system_brightness">Systemets lysstyrke</string>
@@ -654,7 +654,7 @@
    <string name="accessibility">Tilgjengelighet</string>
    <string name="web_search_google">Nettsøk (Google, ...)</string>
    <string name="synced_books">Synkroniserte bøker</string>
-   <string name="smart_reflow">Smart reflow</string>
+   <string name="smart_reflow">Smart omflyt</string>
    <string name="user_styles">Brukerstiler</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denne endringen krever en manuell omstart av programmet</string>

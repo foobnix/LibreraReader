@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">வாசிப்பு முறை</string>
    <string name="convert_to">மாற்றவும்</string>
-   <string name="mode_vertical">உருள் பயன்முறை</string>
-   <string name="mode_horizontally">புத்தக முறை</string>
+   <string name="mode_vertical">செங்குத்து</string>
+   <string name="mode_horizontally">பக்கவாரியாக</string>
    <string name="mode_musician">இசைக்கலைஞரின் பயன்முறை</string>
    <string name="save">சேமி</string>
    <string name="remember_choice">தேர்வை நினைவில் கொள்க</string>

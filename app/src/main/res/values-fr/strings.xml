@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Sélectionnez le mode de lecture</string>
    <string name="convert_to">Convertir en</string>
-   <string name="mode_vertical">Mode \"Défilement\"</string>
-   <string name="mode_horizontally">Mode \"Livre\"</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginé</string>
    <string name="mode_musician">Mode \"Musicien\"</string>
    <string name="save">Enregistrer</string>
    <string name="remember_choice">Se rappeler le choix</string>
@@ -335,12 +335,12 @@
    <string name="search_in_document">Rechercher dans le document</string>
    <string name="web_dict_oxfort">Dictionnaire web (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
-   <string name="font">Font</string>
+   <string name="font">Police</string>
    <string name="font_name">Nom de la police</string>
    <string name="text_page">Page</string>
    <string name="page">Page</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Choisir...</string>
+   <string name="choose_">Choisir</string>
    <string name="crop_white_borders">Couper les marges blanches</string>
    <string name="full_screen">Plein écran</string>
    <string name="go">OK</string>
@@ -475,7 +475,7 @@
    <string name="logout">Déconnecter</string>
    <string name="cloud_not_connected">Cloud non connecté</string>
    <string name="cloud_sync_folder">Dossier de synchronisation du cloud</string>
-   <string name="clouds">Clouds</string>
+   <string name="clouds">Nuages</string>
    <string name="librera_cloud">Cloud Librera</string>
    <string name="hide_search_bar">Masquer la barre de recherche</string>
    <string name="show_search_bar">Afficher la barre de recherche</string>
@@ -518,7 +518,7 @@
    <string name="play">Jouer</string>
    <string name="pause">Pause</string>
    <string name="favorite">Préféré</string>
-   <string name="playlists">Playlists</string>
+   <string name="playlists">Listes de lecture</string>
    <string name="tags">Mots-clés</string>
    <string name="are_you_sure_to_delete_playlist_">Êtes-vous sûr de vouloir supprimer la playlist?</string>
    <string name="delete_this_bookmark_">Supprimer ce signet?</string>

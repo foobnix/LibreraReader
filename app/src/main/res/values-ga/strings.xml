@@ -183,7 +183,7 @@
    <string name="restore_default_keys">Réamhshocrú a chur ar ais</string>
    <string name="next_keys">Na chéad cnaipí eile:</string>
    <string name="prev_keys">Cnaipí prev:</string>
-   <string name="starred">Favorites</string>
+   <string name="starred">Ceanáin</string>
    <string name="bookmarks">Leabharmharcanna</string>
    <string name="back">Ar ais</string>
    <string name="import_bookmarks">Allmhairiú</string>
@@ -212,7 +212,7 @@
    <string name="do_you_want_to_delete_">An iontráil seo a scriosadh?</string>
    <string name="authentication_required">Fíordheimhniú riachtanach</string>
    <string name="user_name">Ainm úsáideora</string>
-   <string name="favorites">Favorites</string>
+   <string name="favorites">Ceanáin</string>
    <string name="my_favorites_links">Na naisc is fearr liom</string>
    <string name="what_is_the_opds_online_catalog_">Cad is catalóg ar líne opds ann?</string>
    <string name="___DIALOGS___SECTION___"></string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Modh léitheoireachta</string>
    <string name="convert_to">Tiontaigh go</string>
-   <string name="mode_vertical">Modh scrollaigh</string>
-   <string name="mode_horizontally">Modh leabhair</string>
+   <string name="mode_vertical">Ingearach</string>
+   <string name="mode_horizontally">Leathanach ar leathanach</string>
    <string name="mode_musician">Modh an cheoltóra</string>
    <string name="save">Sábháil</string>
    <string name="remember_choice">Cuimhnigh ar roghnú</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Leathanach</string>
    <string name="page">Leathanach</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Roghnaigh ...</string>
+   <string name="choose_">Roghnaigh</string>
    <string name="crop_white_borders">Spás bán barr</string>
    <string name="full_screen">Scáileán iomlán</string>
    <string name="go">Téigh</string>
@@ -438,7 +438,7 @@
    <string name="show_current_time">Clog a thaispeáint</string>
    <string name="telegram_channel">Cainéal teileagraim</string>
    <string name="zoom_in_out_using_the_volume_keys">Zúmáil isteach / amach le heochracha toirte</string>
-   <string name="tag">Tag</string>
+   <string name="tag">Clib</string>
    <string name="no_tag">Gan clibeanna</string>
    <string name="add_tag">Tag nua</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">An chlib seo a bhaint de gach leabhar?</string>
@@ -462,7 +462,7 @@
    <string name="my_tags">Mo chlibeanna</string>
    <string name="crop_borders_symmetrically">Barr scáthánach</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Sleachta ainmneacha údair agus teidil leabhar ó mheiteashonraí (pdf)</string>
-   <string name="meta_tags">Meta tags</string>
+   <string name="meta_tags">Meiteachlibeanna</string>
    <string name="librera_pro">Faigh Librera PRO — gan fógraí, agus baineann sé na fógraí den aip seo freisin</string>
    <string name="annotation">Anótáil</string>
    <string name="book">Leabhar</string>
@@ -552,8 +552,8 @@
    <string name="wifi_sync_only">Sync thar wifi amháin</string>
    <string name="sync_google_drive">Info (tiomáint google)</string>
    <string name="single_tap_to_select_text">Roghnú aon sconna</string>
-   <string name="sync_book">Sync</string>
-   <string name="sync">Sync</string>
+   <string name="sync_book">Sioncrónaigh</string>
+   <string name="sync">Sioncrónú</string>
    <string name="synchronized_folder">Fillteán synced</string>
    <string name="today">Inniu</string>
    <string name="downloads">Íoslódálacha</string>
@@ -572,7 +572,7 @@
    <string name="add_dictionary">Cuir foclóir leis</string>
    <string name="add_rule">Riail nua</string>
    <string name="emphasis">Marc (anna) struis láimhe</string>
-   <string name="with_cutout">Notched</string>
+   <string name="with_cutout">Le eang</string>
    <string name="screen">Scáileán</string>
    <string name="normal_screen">Gnáth</string>
    <string name="please_enter_more_characters_to_search">Sreang cuardaigh níos faide de dhíth!</string>
@@ -663,7 +663,7 @@
    <string name="highlighting_initial_letters">Ag cur béime ar litreacha tosaigh</string>
    <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
-   <string name="accent">Accent</string>
+   <string name="accent">Aiceann</string>
    <string name="discarded_books">Leabhair caite</string>
    <string name="show_print_edition_page_numbers_epub3">Taispeáin uimhreacha leathanaigh eagrán priontála (epub3)</string>
    <string name="ad_privacy_settings">Socruithe príobháideachais fógraí</string>

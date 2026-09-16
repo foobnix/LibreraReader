@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Lukutila</string>
    <string name="convert_to">Muunna</string>
-   <string name="mode_vertical">Vieritys</string>
-   <string name="mode_horizontally">Kirjatila</string>
+   <string name="mode_vertical">Pystysuora</string>
+   <string name="mode_horizontally">Sivuittain</string>
    <string name="mode_musician">Muusikkotila</string>
    <string name="save">Tallenna</string>
    <string name="remember_choice">Muista valinta</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Sivu</string>
    <string name="page">Sivu</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Valitse...</string>
+   <string name="choose_">Valitse</string>
    <string name="crop_white_borders">Rajaa valkoiset reunat</string>
    <string name="full_screen">Koko näyttö</string>
    <string name="go">Mene</string>

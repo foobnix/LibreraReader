@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Selecteer de leesmodus</string>
    <string name="convert_to">Omzetten naar</string>
-   <string name="mode_vertical">Scroll modus</string>
-   <string name="mode_horizontally">Boek modus</string>
+   <string name="mode_vertical">Verticaal</string>
+   <string name="mode_horizontally">Per pagina</string>
    <string name="mode_musician">Musicus modus</string>
    <string name="save">Opslaan</string>
    <string name="remember_choice">Onthoud de keuze</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Kiezen...</string>
+   <string name="choose_">Kiezen</string>
    <string name="crop_white_borders">Witte randen uitsnijden</string>
    <string name="full_screen">Volledig scherm</string>
    <string name="go">Gaan</string>
@@ -425,7 +425,7 @@
    <string name="keywords">Trefwoorden</string>
    <string name="number">Nummer</string>
    <string name="percent">Procent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Prijzen</string>
    <string name="close_book_and_application">Librera sluiten</string>
    <string name="percent_and_number">Percentage en nummer</string>
    <string name="current_page">Huidige pagina</string>
@@ -535,7 +535,7 @@
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
    <string name="paste">Plakken</string>
    <string name="move">Verplaatsen</string>
-   <string name="tag_manager">Tag manager</string>
+   <string name="tag_manager">Tagbeheer</string>
    <string name="the_file_already_exists_">Het bestand bestaat al</string>
    <string name="please_wait_books_are_being_processed_">Een ogenblik geduld, boeken worden verwerkt</string>
    <string name="system_brightness">Systeem helderheid</string>

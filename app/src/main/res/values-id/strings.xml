@@ -24,7 +24,7 @@
    <string name="theme_color">Warna</string>
    <string name="widget">Widget</string>
    <string name="show">Menunjukkan</string>
-   <string name="layout">Layout</string>
+   <string name="layout">Tata letak</string>
    <string name="number_of_books">Jumlah buku</string>
    <string name="remember_reading_mode">Ingat mode baca</string>
    <string name="opening_the_last_book_when_the_application_starts">Membuka buku terakhir saat aplikasi dimulai</string>
@@ -106,7 +106,7 @@
    <string name="right_to_left">Kanan ke kiri</string>
    <string name="right_page_then_left_page_rtl_">Kanan halaman kemudian kiri halaman (RTL)</string>
    <string name="rotate_page">Putar Halaman</string>
-   <string name="rotate_default">Default</string>
+   <string name="rotate_default">Bawaan</string>
    <string name="tap_zone_size">Ukuran zona tekan</string>
    <string name="customize_tap_zones">Sesuaikan zona ketuk</string>
    <string name="left_side">Sisi kiri</string>
@@ -208,7 +208,7 @@
    <string name="description">Deskripsi</string>
    <string name="add_as_a_web_site">Tambahkan sebagai situs WEB</string>
    <string name="more">Lebih</string>
-   <string name="download">Download</string>
+   <string name="download">Unduh</string>
    <string name="do_you_want_to_delete_">Apakah kamu ingin menghapus?</string>
    <string name="authentication_required">Diperlukan Otentikasi</string>
    <string name="user_name">Nama pengguna</string>
@@ -247,12 +247,12 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Pilih mode bacaan</string>
    <string name="convert_to">Ubah ke</string>
-   <string name="mode_vertical">Mode \"Gulir\"</string>
-   <string name="mode_horizontally">Mode \"Buku\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Per halaman</string>
    <string name="mode_musician">Mode \"Musisi\"</string>
    <string name="save">Menyimpan</string>
    <string name="remember_choice">Ingat pilihan</string>
-   <string name="edit">Edit</string>
+   <string name="edit">Sunting</string>
    <string name="make_text_reflow">Mode teks (Text Reflow)</string>
    <string name="open_with">Buka dengan</string>
    <string name="send_file">Kirim file</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Halaman</string>
    <string name="page">Halaman</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Memilih...</string>
+   <string name="choose_">Memilih</string>
    <string name="crop_white_borders">Pangkas batas putih</string>
    <string name="full_screen">Layar penuh</string>
    <string name="go">Pergi</string>
@@ -465,7 +465,7 @@
    <string name="meta_tags">Meta tag</string>
    <string name="librera_pro">Dapatkan Librera PRO — tanpa iklan, dan juga menghapus iklan di aplikasi ini</string>
    <string name="annotation">Anotasi</string>
-   <string name="book">Book</string>
+   <string name="book">Buku</string>
    <string name="information">Informasi</string>
    <string name="file_path">Jalur file</string>
    <string name="year">Tahun</string>

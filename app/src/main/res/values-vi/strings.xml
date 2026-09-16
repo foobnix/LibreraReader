@@ -88,7 +88,7 @@
    <string name="right">Bên phải</string>
    <string name="center">Trung tâm</string>
    <string name="custom_css">CSS tùy chỉnh</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Kiểu</string>
    <string name="document_styles">Kiểu tài liệu</string>
    <string name="automatic_hyphenation">Dấu gạch nối tự động</string>
    <string name="parse_bbcode_tags">Xử lý thẻ BBCode</string>
@@ -161,7 +161,7 @@
    <string name="minutes">Biên bản</string>
    <string name="close_book">Đóng Sách</string>
    <string name="background">Lý lịch</string>
-   <string name="dialog_color_picker">Color Picker</string>
+   <string name="dialog_color_picker">Bộ chọn màu</string>
    <string name="invalid_color_value">Giá trị màu không hợp lệ</string>
    <string name="add">Thêm vào</string>
    <string name="search">Tìm kiếm</string>
@@ -184,7 +184,7 @@
    <string name="next_keys">Phím tiếp theo:</string>
    <string name="prev_keys">Phím Prev:</string>
    <string name="starred">Đóng vai chính</string>
-   <string name="bookmarks">Bookmarks</string>
+   <string name="bookmarks">Dấu trang</string>
    <string name="back">Trở lại</string>
    <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">E-mail</string>
@@ -193,7 +193,7 @@
    <string name="bookmark_by_date">Theo ngày</string>
    <string name="bookmark_by_book">Bởi cuốn sách</string>
    <string name="network">Mạng</string>
-   <string name="catalogs">Catalogs</string>
+   <string name="catalogs">Danh mục</string>
    <string name="proxy_server_settings">Cài đặt máy chủ proxy</string>
    <string name="use_proxy_server">Sử dụng máy chủ proxy</string>
    <string name="proxy_type">Loại proxy</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Chọn chế độ đọc</string>
    <string name="convert_to">Chuyển đổi sang</string>
-   <string name="mode_vertical">Chế độ \"Di chuyển\"</string>
-   <string name="mode_horizontally">Chế độ \"Sách\"</string>
+   <string name="mode_vertical">Dọc</string>
+   <string name="mode_horizontally">Theo trang</string>
    <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
    <string name="save">Tiết kiệm</string>
    <string name="remember_choice">Nhớ sự lựa chọn</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Trang</string>
    <string name="page">Trang</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Chọn...</string>
+   <string name="choose_">Chọn</string>
    <string name="crop_white_borders">Cắt viền màu trắng</string>
    <string name="full_screen">Toàn màn hình</string>
    <string name="go">Đi</string>

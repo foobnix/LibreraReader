@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Olvasási mód</string>
    <string name="convert_to">Konvertálás...</string>
-   <string name="mode_vertical">Lapozás mód</string>
-   <string name="mode_horizontally">Könyv mód</string>
+   <string name="mode_vertical">Függőleges</string>
+   <string name="mode_horizontally">Lapozós</string>
    <string name="mode_musician">Zenész mód</string>
    <string name="save">Mentés</string>
    <string name="remember_choice">Emlékezzen a választásomra</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Oldal</string>
    <string name="page">Oldal</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Válasszon...</string>
+   <string name="choose_">Válasszon</string>
    <string name="crop_white_borders">Üres terület kivágása</string>
    <string name="full_screen">Teljes képernyő</string>
    <string name="go">Ugrás</string>

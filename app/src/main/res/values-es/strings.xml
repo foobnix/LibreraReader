@@ -66,7 +66,7 @@
    <string name="formatted_text">Texto formateado (pseudo gráficos)</string>
    <string name="continuous_text">Texto continuo (sin salto de línea)</string>
    <string name="customize_fonts">Personalizar fuentes</string>
-   <string name="regular_font">Regular</string>
+   <string name="regular_font">Normal</string>
    <string name="bold_font">Negrita</string>
    <string name="italic_font">Cursiva</string>
    <string name="bold_italic_font">Cursiva y negrita</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Modo de lectura</string>
    <string name="convert_to">Convertir a</string>
-   <string name="mode_vertical">Modo \"Desplazarse\"</string>
-   <string name="mode_horizontally">Modo \"Libro\"</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginado</string>
    <string name="mode_musician">Modo \"Músico\"</string>
    <string name="save">Guardar</string>
    <string name="remember_choice">Recordar elección</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Página</string>
    <string name="page">Página</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Escoger...</string>
+   <string name="choose_">Escoger</string>
    <string name="crop_white_borders">Recortar bordes blancos</string>
    <string name="full_screen">Pantalla completa</string>
    <string name="go">Ir</string>

@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">حدد وضع القراءة</string>
    <string name="convert_to">حول الى</string>
-   <string name="mode_vertical">الوضع \"التمرير\"</string>
-   <string name="mode_horizontally">وضع \"كتاب\"</string>
+   <string name="mode_vertical">عمودي</string>
+   <string name="mode_horizontally">صفحات</string>
    <string name="mode_musician">وضع \"موسيقي\"</string>
    <string name="save">حفظ</string>
    <string name="remember_choice">تذكر الخيار</string>
@@ -340,7 +340,7 @@
    <string name="text_page">صفحة</string>
    <string name="page">صفحة</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">اختر...</string>
+   <string name="choose_">اختر</string>
    <string name="crop_white_borders">إزالة الحدود البيضاء</string>
    <string name="full_screen">تكبير الشاشة</string>
    <string name="go">ذهاب</string>

@@ -152,7 +152,7 @@
    <string name="font_size">അക്ഷര വലിപ്പം</string>
    <string name="brightness">തെളിച്ചം</string>
    <string name="bluelight_filter">ബ്ലൂലൈറ്റ് ഫിൽട്ടർ</string>
-   <string name="password">Password</string>
+   <string name="password">പാസ്‌വേഡ്</string>
    <string name="restore_defaults_short">നേരത്തെയുള്ളത് പുനസ്ഥാപിക്കുക</string>
    <string name="customize">ക്രമീകരിക്കുക</string>
    <string name="color">നിറം</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">റീഡിംഗ് മോഡ്</string>
    <string name="convert_to">ആക്കി മാറ്റുക</string>
-   <string name="mode_vertical">സ്ക്രോൾ മോഡ്</string>
-   <string name="mode_horizontally">പുസ്തക മോഡ്</string>
+   <string name="mode_vertical">ലംബം</string>
+   <string name="mode_horizontally">പേജുകളായി</string>
    <string name="mode_musician">സംഗീതജ്ഞന്റെ മോഡ്</string>
    <string name="save">രക്ഷിക്കും</string>
    <string name="remember_choice">തിരഞ്ഞെടുക്കൽ ഓർമ്മിക്കുക</string>
@@ -340,7 +340,7 @@
    <string name="text_page">പേജ്</string>
    <string name="page">പേജ്</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">തിരഞ്ഞെടുക്കുക ...</string>
+   <string name="choose_">തിരഞ്ഞെടുക്കുക</string>
    <string name="crop_white_borders">ക്രോപ്പ് വൈറ്റ് സ്പേസ്</string>
    <string name="full_screen">പൂർണ്ണ സ്ക്രീൻ</string>
    <string name="go">പോകൂ</string>

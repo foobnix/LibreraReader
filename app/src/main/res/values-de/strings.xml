@@ -23,7 +23,7 @@
    <string name="black">Dunkel</string>
    <string name="theme_color">Farbe</string>
    <string name="widget">Widget</string>
-   <string name="show">Show</string>
+   <string name="show">Anzeigen</string>
    <string name="layout">Layout</string>
    <string name="number_of_books">Bücher</string>
    <string name="remember_reading_mode">Lesemodus merken</string>
@@ -199,7 +199,7 @@
    <string name="proxy_type">Proxy-Typ</string>
    <string name="server">Server</string>
    <string name="port">Port</string>
-   <string name="user">User</string>
+   <string name="user">Benutzer</string>
    <string name="other_settings">Andere Einstellungen</string>
    <string name="folder_for_downloaded_books">Downloads</string>
    <string name="display_large_book_covers_in_the_catalog">Große Titelbilder in der Übersicht anzeigen</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Lesemodus wählen</string>
    <string name="convert_to">Konvertieren zu</string>
-   <string name="mode_vertical">\„Vertikales Blättern\“</string>
-   <string name="mode_horizontally">\„Horizontales Blättern\“ (Buch)</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Seitenweise</string>
    <string name="mode_musician">\„Musiker\“</string>
    <string name="save">Speichern</string>
    <string name="remember_choice">Auswahl merken</string>
@@ -313,7 +313,7 @@
    <string name="to_read">Start</string>
    <string name="to_paly_pause">Play/Pause</string>
    <string name="text_to_speech">Einstellungen Text-zu-Sprache</string>
-   <string name="speed1">Speed</string>
+   <string name="speed1">Geschwindigkeit</string>
    <string name="pitch1">Tonhöhe</string>
    <string name="sound_volume">Lautstärke</string>
    <string name="next">Nächste</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Seite</string>
    <string name="page">Seite</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Wählen...</string>
+   <string name="choose_">Wählen</string>
    <string name="crop_white_borders">Leerraum beschneiden</string>
    <string name="full_screen">Vollbild</string>
    <string name="go">Anwenden</string>
@@ -374,7 +374,7 @@
    <string name="display_settings">Bildschirmeinstellungen</string>
    <string name="image_format">Bildformat</string>
    <string name="enable_vibration_for_some_actions">Vibration für einige Aktionen aktivieren</string>
-   <string name="image">Image</string>
+   <string name="image">Bild</string>
    <string name="transparency">Transparenz</string>
    <string name="write_feedback">Feedback</string>
    <string name="clear_all_marked">Alle markierten löschen</string>
@@ -654,9 +654,9 @@
    <string name="accessibility">Barrierefreiheit</string>
    <string name="web_search_google">Websuche (Google, ...)</string>
    <string name="synced_books">Synchronisierte Bücher</string>
-   <string name="smart_reflow">Smart reflow</string>
+   <string name="smart_reflow">Intelligenter Umbruch</string>
    <string name="user_styles">Benutzer-Stile</string>
-   <string name="engine">Engine</string>
+   <string name="engine">Modul</string>
    <string name="restart_manually">Diese Änderung erfordert einen manuellen Neustart der Anwendung</string>
    <string name="search_in_the_library">Suche in der Bibliothek</string>
    <string name="update_metadata">Metadaten aktualisieren</string>

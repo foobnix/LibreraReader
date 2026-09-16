@@ -81,7 +81,7 @@
    <string name="nigth">Nit</string>
    <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="reading_settings">Configuració de la lectura</string>
-   <string name="folder_with_fonts">Fonts</string>
+   <string name="folder_with_fonts">Tipus de lletra</string>
    <string name="text_align">Alineació del text</string>
    <string name="width">Justificat</string>
    <string name="left">Esquerra</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Mode de lectura</string>
    <string name="convert_to">Convertir a</string>
-   <string name="mode_vertical">Mode de desplaçament</string>
-   <string name="mode_horizontally">Mode de llibre</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginat</string>
    <string name="mode_musician">Mode de músic</string>
    <string name="save">Desa</string>
    <string name="remember_choice">Recorda la selecció</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Pàgina</string>
    <string name="page">Pàgina</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Tria …</string>
+   <string name="choose_">Tria</string>
    <string name="crop_white_borders">Retalla l\'espai en blanc</string>
    <string name="full_screen">Pantalla completa</string>
    <string name="go">Ves</string>

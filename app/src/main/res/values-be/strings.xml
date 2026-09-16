@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Рэжым чытання</string>
    <string name="convert_to">Канвертаваць у</string>
-   <string name="mode_vertical">Рэжым пракруткі</string>
-   <string name="mode_horizontally">Рэжым кнігі</string>
+   <string name="mode_vertical">Вертыкальна</string>
+   <string name="mode_horizontally">Пастаронкава</string>
    <string name="mode_musician">Рэжым музыканта</string>
    <string name="save">Захаваць</string>
    <string name="remember_choice">Запомніць выбар</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Старонка</string>
    <string name="page">Старонка</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Выбраць…</string>
+   <string name="choose_">Выбраць</string>
    <string name="crop_white_borders">Абрэзаць прастору</string>
    <string name="full_screen">Поуны экран</string>
    <string name="go">Ісці</string>

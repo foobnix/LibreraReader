@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Seleziona la modalità di lettura</string>
    <string name="convert_to">Convertire in</string>
-   <string name="mode_vertical">Modalità \"Scroll\"</string>
-   <string name="mode_horizontally">Modalità \"Libro\"</string>
+   <string name="mode_vertical">Verticale</string>
+   <string name="mode_horizontally">Paginato</string>
    <string name="mode_musician">Modalità \"Musicista\"</string>
    <string name="save">Salva</string>
    <string name="remember_choice">Ricorda la scelta</string>
@@ -340,7 +340,7 @@
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Scegli...</string>
+   <string name="choose_">Scegli</string>
    <string name="crop_white_borders">Elimina bordi bianchi</string>
    <string name="full_screen">A schermo intero</string>
    <string name="go">Vai</string>
@@ -462,7 +462,7 @@
    <string name="my_tags">I miei tag</string>
    <string name="crop_borders_symmetrically">Ritaglia i bordi simmetricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visualizzazione dell\'autore e del titolo del libro PDF dai meta tag</string>
-   <string name="meta_tags">Meta tags</string>
+   <string name="meta_tags">Meta tag</string>
    <string name="librera_pro">Ottieni Librera PRO — senza pubblicità, e rimuove gli annunci anche da questa app</string>
    <string name="annotation">Annotazione</string>
    <string name="book">Libro</string>
@@ -497,7 +497,7 @@
    <string name="chapter_format">Formato del capitolo</string>
    <string name="play_a_music_file">Riproduci un file musicale</string>
    <string name="rate_app">Tariffa app</string>
-   <string name="reset">Reset</string>
+   <string name="reset">Ripristina</string>
    <string name="status_bar_location">Posizione della barra di stato</string>
    <string name="add_to_bookmark">Aggiungi ai segnalibri</string>
    <string name="fast_reading">Lettura veloce (RSVP)</string>

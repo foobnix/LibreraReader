@@ -55,7 +55,7 @@
    <string name="product">製品</string>
    <string name="version">バージョン</string>
    <string name="licence_gnu_gpl_v3_0">Licence: GNU GPL v3.0</string>
-   <string name="licenses_for_libraries">Libraries\' Licenses</string>
+   <string name="licenses_for_libraries">ライブラリのライセンス</string>
    <string name="autor_ivan_ivanenko">Autor: Ivan Ivanenko</string>
    <string name="support">サポート</string>
    <string name="web">ウェブ</string>
@@ -247,8 +247,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">読み取りモードを選択する</string>
    <string name="convert_to">変換</string>
-   <string name="mode_vertical">モード \"スクロール\"</string>
-   <string name="mode_horizontally">モード \"ブック\"</string>
+   <string name="mode_vertical">縦スクロール</string>
+   <string name="mode_horizontally">ページめくり</string>
    <string name="mode_musician">モード \"ミュージシャン\"</string>
    <string name="save">保存</string>
    <string name="remember_choice">選択を記憶する</string>
@@ -340,7 +340,7 @@
    <string name="text_page">ページ</string>
    <string name="page">1ページ</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">選択...</string>
+   <string name="choose_">選択</string>
    <string name="crop_white_borders">余白の切り取り</string>
    <string name="full_screen">全画面表示</string>
    <string name="go">Go</string>
