@@ -38,7 +38,7 @@ cd ../
 
 ./gradlew clean incVersion
 ./gradlew assembleProRelease
-./gradlew assembleLibreraRelease
+#./gradlew assembleLibreraRelease
 ./gradlew assembleFdroidRelease
 
 ####################################
