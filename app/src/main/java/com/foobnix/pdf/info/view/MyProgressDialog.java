@@ -2,7 +2,6 @@ package com.foobnix.pdf.info.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.model.AppState;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
@@ -25,7 +24,9 @@ public class MyProgressDialog {
     private MyProgressDialog(Context c, String subtitile) {
         View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
 
-        int color = AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE;
+        // The accent the dialog's own theme draws links and checks in, so the text and the wheel
+        // stand out on the dialog whatever the page behind it is set to.
+        int color = TxtUtils.getLinkTextColor(c);
 
         text = view.findViewById(R.id.text1);
         text.setText(subtitile);
