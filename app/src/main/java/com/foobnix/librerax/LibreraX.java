@@ -18,7 +18,8 @@ import org.ebookdroid.ui.viewer.VerticalViewActivity;
 /**
  * LibreraX as a fourth reading mode: the book is handed over with the place it is read at
  * (the percent and the text at the top of the page), and the place LibreraX closes it at
- * comes back as the result, see LibreraXActivity. Notes and bookmarks stay where they are.
+ * comes back as the result, see LibreraXActivity. The book's bookmarks go along to be
+ * gone to, and stay Librera's: nothing about them comes back.
  *
  * The same extras are read by com.librerax.reader.ReaderActivity on the other side.
  */
@@ -32,6 +33,9 @@ public class LibreraX {
 
     public static final String EXTRA_PERCENT = "librera.percent";
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";
+    // the book's bookmarks as a JSON array of {text, p, pt, t}: listed in LibreraX and found
+    // there by percent and page text, never saved or drawn there
+    public static final String EXTRA_BOOKMARKS = "librera.bookmarks";
 
     // the activity a book is opened with in the current reading mode, for widgets and shortcuts
     public static Class<?> readerClass() {
