@@ -1,5 +1,6 @@
 package web;
 
+import paths.LocalPaths;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
@@ -21,15 +22,9 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
-    static String HOME = "/home/dev/git/LibreraReader";
+    static String HOME = LocalPaths.repo().getPath();
 
     public static void main(String[] args) throws Exception {
-        if (!new File(HOME).isDirectory()) {
-            HOME = "/Users/dev/git/LibreraReader";
-        }
-        if (!new File(HOME).isDirectory()) {
-            throw new Exception("HOME not found");
-        }
 
 
         GenerateFAQ.updateIndex(HOME + "/docs/faq", "Frequently Asked Questions");
@@ -41,10 +36,7 @@ public class WikiTranslate {
 
         );
 
-        File file = new File("/home/dev/Dropbox/Dev/cache.json");
-        if (!file.isFile()) {
-            file = new File("/Users/dev/Library/CloudStorage/Dropbox/Dev/cache.json");
-        }
+        File file = new File(LocalPaths.property("librera_dev_dir", "cache.json"));
 
         if (!file.isFile()) {
             throw new Exception("file cache.json not found");

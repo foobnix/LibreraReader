@@ -1,5 +1,6 @@
 package hypen;
 
+import paths.LocalPaths;
 import java.nio.file.*;
 import java.util.*;
 
@@ -7,7 +8,7 @@ public class HypToJHyphenator {
 
     public static void main(String[] args) throws Exception {
         List<String> lines = Files.readAllLines(
-                Path.of("/Users/ivanivanenko/git/LibreraReader/Builder/src/main/java/hypen/hyph_sr.dic"),
+                Path.of(LocalPaths.repo("Builder/src/main/java/hypen/hyph_sr.dic")),
                 java.nio.charset.StandardCharsets.UTF_8
         );
 

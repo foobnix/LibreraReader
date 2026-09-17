@@ -337,7 +337,10 @@ public class TintUtil {
     }
 
     public static void setBackgroundFillColorBottomRight(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return;
+        }
         drawable.setColor(color);
         drawable.setCornerRadii(new float[]{0, 0, 0, 0, RADIUS * 2, RADIUS * 2, 0, 0});
     }
@@ -467,14 +470,32 @@ public class TintUtil {
         }
     }
 
+    /**
+     * The shape a view is drawn on, or null where its background is something else - a ripple
+     * put there in place of the shape the view was laid out with.
+     */
+    private static GradientDrawable gradientBackground(View view) {
+        if (view == null || view.getBackground() == null) {
+            return null;
+        }
+        Drawable background = view.getBackground().getCurrent();
+        return background instanceof GradientDrawable ? (GradientDrawable) background : null;
+    }
+
     public static void setStrokeColor(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return;
+        }
         drawable.setStroke(STROKE, color);
         drawable.setCornerRadius(RADIUS);
     }
 
     public static GradientDrawable setStrokeColorWithDash(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return null;
+        }
         drawable.setStroke(Dips.DP_2, color,Dips.DP_6,Dips.DP_6);
         drawable.setCornerRadius(RADIUS);
         return drawable;

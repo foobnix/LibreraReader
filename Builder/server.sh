@@ -1,9 +1,9 @@
-#cd /home/data/git/LibreraReader/docs
-cd /home/dev/git/LibreraReader/what-is-new
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+cd "$REPO/docs/what-is-new"
 mogrify -quality 85 -resize 600 *.png
 
-cd /home/dev/git/LibreraReader/docs
-cd /Users/dev/git/LibreraReader/docs
+cd "$REPO/docs"
 
 if [ "$1" == "init" ]; then
 bundle init

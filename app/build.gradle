@@ -368,12 +368,18 @@ tasks.register("copyApks") {
     if (project.hasProperty('beta') || project.hasProperty("release")) {
         println "My Task: [copy apks]"
 
-        //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
-        //delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
-        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing").include("*.apk", "*.aab", "*-mapping.txt")
+        // Where the builds go: librera_builds_dir in the global ~/.gradle/gradle.properties
+        def buildsDir = project.findProperty("librera_builds_dir")
+        if (!buildsDir) {
+            throw new GradleException("librera_builds_dir is not set in ~/.gradle/gradle.properties")
+        }
 
-        delete fileTree("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/$versionNumber").include("*.apk", "*.aab", "*-mapping.txt")
-        //delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber").include("*.apk")
+        delete fileTree(buildsDir).include("*.apk", "*.aab", "*-mapping.txt")
+
+        // The version's own folder is emptied only when a release is about to be copied into it
+        if (project.hasProperty("release")) {
+            delete fileTree("$buildsDir/$versionNumber").include("*.apk", "*.aab", "*-mapping.txt")
+        }
 
         android.productFlavors.each { productFlavor ->
             {
@@ -385,15 +391,12 @@ tasks.register("copyApks") {
                 def list = []
 
                 if (project.hasProperty("beta")) {
-                    //list.add("/home/dev/Nextcloud/LibreraBeta")
-                    list.add("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing")
-                    //list.add("/home/dev/Dropbox/FREE_PDF_APK/testing")
+                    list.add(buildsDir)
                 }
 
 
                 if (project.hasProperty("release")) {
-                    //list.add("/home/dev/Dropbox/FREE_PDF_APK/testing/$versionNumber")
-                    list.add("/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$versionNumber")
+                    list.add("$buildsDir/$versionNumber")
                 }
                 list.each { dest ->
 
@@ -429,9 +432,6 @@ tasks.register("copyApks") {
                 }
             }
         }
-
-        //File file = new File('/home/data/Dropbox/FREE_PDF_APK/testing/version.txt')
-        //file.write versionNumber
     }
 }
 

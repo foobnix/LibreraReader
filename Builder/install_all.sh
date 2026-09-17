@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
+# Where copyApks puts the builds: librera_builds_dir in the global ~/.gradle/gradle.properties
+BUILDS_DIR=$(sed -n 's/^librera_builds_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
+if [ "debug" != "$1" ] && [ -z "$BUILDS_DIR" ]; then
+  echo "ERROR: librera_builds_dir is not set in ~/.gradle/gradle.properties"
+  exit 1
+fi
+
 if [ "debug" == "$1" ]; then
     echo "==[Debug]=="
-    APK=/Users/dev/git/LibreraReader/app/build/intermediates/apk/pro/debug
+    APK="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/app/build/intermediates/apk/pro/debug"
 else
   if [ -z "$1" ]; then
     echo "==[Testing]=="
-      if [ "$(uname)" == "Darwin" ]; then
-       APK=/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing
-        else
-       APK=/home/dev/Dropbox/FREE_PDF_APK/testing
-      fi
+    APK="$BUILDS_DIR"
   else
     echo "==[$1]=="
-      if [ "$(uname)" == "Darwin" ]; then
-       APK=/Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/$1
-        else
-       APK=/home/dev/Dropbox/FREE_PDF_APK/testing/$1
-      fi
+    APK="$BUILDS_DIR/$1"
   fi
 fi
 
@@ -37,27 +36,28 @@ do
 	  echo "--------------------------------------------------------"
 
 
+	# The folder has a space in it ("My Drive"): the files are globbed into an array, not a string
 	if [[ $TYPE == *"arm64"* ]]; then
 		#echo "TYPE:[arm64]"
-	    FILES=$APK/*arm64.apk
+	    FILES=("$APK"/*arm64.apk)
 	elif [[ $TYPE == *"armeabi"* ]]; then
 		#echo "TYPE:[arm]"
-	    FILES=$APK/*arm.**
+	    FILES=("$APK"/*arm.**)
 	else 
 		#echo "TYPE:[x86]"
-	    FILES=$APK/*x86*.apk
+	    FILES=("$APK"/*x86*.apk)
 	fi
 
 
-  for f in $FILES
+  for f in "${FILES[@]}"
 	do
 		echo "Installing: $f"
 		#adb -s ${DEVICE} install -r "$f"
 		adb -s ${DEVICE} install -t "$f"
 	done
 
-FILES=$APK/*uni*.apk
-for f in $FILES
+FILES=("$APK"/*uni*.apk)
+for f in "${FILES[@]}"
 do
   echo "Installing universal: $f"
   adb -s ${DEVICE} install "$f"

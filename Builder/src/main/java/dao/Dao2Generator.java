@@ -1,5 +1,6 @@
 package dao;
 
+import paths.LocalPaths;
 import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
@@ -57,7 +58,7 @@ public class Dao2Generator {
         dict.addStringProperty("key").primaryKey();
         dict.addStringProperty("value");
 
-        String path ="/Users/dev/git/LibreraReader/app/src/main/java";
+        String path = LocalPaths.repo("app/src/main/java");
         new DaoGenerator().generateAll(schema, path);
 
 

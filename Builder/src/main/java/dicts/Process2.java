@@ -1,6 +1,7 @@
 package dicts;
 
 
+import paths.LocalPaths;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -12,8 +13,8 @@ public class Process2 {
     public static void main(final String[] args) throws Exception {
 
         System.out.println("hello");
-        String file = "/home/data/Downloads/replaces/db/odict/zalizniak.txt";
-        String outFile = "/home/data/Downloads/replaces/db/odict/Librera_Словарь_Ударений_[odict.ru].txt";
+        String file = LocalPaths.property("librera_dicts_dir", "odict/zalizniak.txt");
+        String outFile = LocalPaths.property("librera_dicts_dir", "odict/Librera_Словарь_Ударений_[odict.ru].txt");
 
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Windows-1251"));

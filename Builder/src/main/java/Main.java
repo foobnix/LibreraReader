@@ -1,3 +1,4 @@
+import paths.LocalPaths;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,7 +27,7 @@ public class Main {
 
     static GraphicsConfiguration gc;
 
-    static String img = "/home/data/IdeaProjects/SmartReflow/images/sample6.png";
+    static String img = LocalPaths.property("librera_smartreflow_dir", "images/sample6.png");
 
     public static void main(String[] args) throws IOException {
         runIU(img);
@@ -113,7 +114,7 @@ public class Main {
         open1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File my = new File("/home/data/IdeaProjects/SmartReflow/src1");
+                File my = new File(LocalPaths.property("librera_smartreflow_dir", "src1"));
                 if (!my.exists()) {
                     my = new File(System.getProperty("user.dir"));
 

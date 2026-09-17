@@ -1,5 +1,4 @@
 #!/bin/sh
-#/home/dev/.local/share/nautilus/scripts/
 echo "Arugment:[$1]"
 echo "pwd:[$(pwd)]"
 DEST=$(pwd)/$1-source

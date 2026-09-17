@@ -1,5 +1,6 @@
 package web;
 
+import paths.LocalPaths;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,7 +19,7 @@ public class WikiTranslate2 {
 
     public static void main(String[] args) throws Exception {
 
-        String root = "/home/dev/git/LibreraReader/docs/wiki";
+        String root = LocalPaths.repo("docs/wiki");
         syncPaths(root, "ru");
 
 

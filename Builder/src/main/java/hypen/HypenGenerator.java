@@ -1,5 +1,6 @@
 package hypen;
 
+import paths.LocalPaths;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +11,7 @@ import java.io.InputStreamReader;
 public class HypenGenerator {
 
     public static void main(String[] args) throws IOException {
-        String path = "/home/data/git/Hyphenator/patterns/";
+        String path = LocalPaths.property("librera_hyphenator_dir", "patterns/");
         StringBuilder out = new StringBuilder();
 
         for (String name : new File(path).list()) {
@@ -79,7 +80,7 @@ public class HypenGenerator {
 
         }
 
-        FileWriter fw = new FileWriter(new File("/home/data/git/LirbiReader/Builder/src/hypen/out.txt"));
+        FileWriter fw = new FileWriter(new File(LocalPaths.repo("Builder/src/main/java/hypen/out.txt")));
         fw.write(out.toString());
         fw.close();
         System.out.println("done");

@@ -1,5 +1,6 @@
 package svg;
 
+import paths.LocalPaths;
 import javax.swing.plaf.IconUIResource;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,8 +14,8 @@ import java.util.Arrays;
 
 public class ConventSvgtoAndroidXml {
     public static void main(String[] args) throws IOException {
-        String in = "/home/dev/Dropbox/Projects/glyphicons_pro/glyphicons-basic-2-4/";
-        String out = "/home/dev/git/LibreraReader/app/src/main/res/drawable/";
+        String in = LocalPaths.property("librera_projects_dir", "glyphicons_pro/glyphicons-basic-2-4/");
+        String out = LocalPaths.repo("app/src/main/res/drawable/");
 
         List<Integer> ids = Arrays.asList(
                 4,5,17,21,28,37,38,49,50,55,57,66,67,73,77,82,86,87,92,94,

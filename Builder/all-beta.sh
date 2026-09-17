@@ -26,7 +26,9 @@ echo "Translations OK: $EN_LINES lines"
 if [ "$(uname)" == "Darwin" ]; then
   export JAVA_HOME=`/usr/libexec/java_home -v 24`
 else
-  export JAVA_HOME=/home/dev/.local/share/JetBrains/Toolbox/apps/android-studio/jbr
+  # librera_java_home in the global ~/.gradle/gradle.properties, else the JDK of Android Studio
+  LIBRERA_JAVA_HOME=$(sed -n 's/^librera_java_home=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
+  export JAVA_HOME="${LIBRERA_JAVA_HOME:-$HOME/.local/share/JetBrains/Toolbox/apps/android-studio/jbr}"
 fi
 
 
@@ -47,8 +49,8 @@ cd ../
 ####################################
 
 
-#rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-x86*
-#rm /Users/ivanivanenko/Library/CloudStorage/Dropbox/FREE_PDF_APK/testing/*-arm.apk
+#rm "$BUILDS_DIR"/*-x86*
+#rm "$BUILDS_DIR"/*-arm.apk
 
 cd Builder
 ./remove_all.sh

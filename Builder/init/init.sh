@@ -18,10 +18,8 @@ sudo cp -rfv 51-android.rules /etc/udev/rules.d/
 sudo chmod a+r /etc/udev/rules.d/51-android.rules
 sudo service udev restart
 
-cp -rfv profile /home/dev/.profile
-cp -rfv unzip_epub /home/dev/.local/share/nautilus/scripts
+cp -rfv profile "$HOME/.profile"
+cp -rfv unzip_epub "$HOME/.local/share/nautilus/scripts"
 
-mkdir -p /home/dev/Dropbox/FREE_PDF_APK/testing/
-
-cp -rfv org.gnome.AndroidStudio.desktop /home/dev/.local/share/applications/
-cp -rfv org.gnome.Terminal.desktop /home/dev/.local/share/applications/
+cp -rfv org.gnome.AndroidStudio.desktop "$HOME/.local/share/applications/"
+cp -rfv org.gnome.Terminal.desktop "$HOME/.local/share/applications/"

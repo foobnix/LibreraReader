@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.view;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -55,7 +56,10 @@ public class BookmarkPanel {
         final int bookmarkColor = MagicHelper.getTextOrIconColor();
         TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
         pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
-        TintUtil.setStrokeColorWithDash(pagesBookmark, bookmarkColor).setColor(colorWhite);
+        GradientDrawable pagesBookmarkShape = TintUtil.setStrokeColorWithDash(pagesBookmark, bookmarkColor);
+        if (pagesBookmarkShape != null) {
+            pagesBookmarkShape.setColor(colorWhite);
+        }
 
 
 
@@ -87,7 +91,10 @@ public class BookmarkPanel {
             t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
             t.setTextColor(bookmarkColor);
 
-            TintUtil.setStrokeColorWithDash(t, bookmarkColor).setColor(colorWhite);
+            GradientDrawable shape = TintUtil.setStrokeColorWithDash(t, bookmarkColor);
+            if (shape != null) {
+                shape.setColor(colorWhite);
+            }
 
 
             t.setOnClickListener(new View.OnClickListener() {

@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 public class TestImage {
 
-    static String img = "/home/ivan-dev/IdeaProjects/SmartReflow/images/sample6.png";
+    static String img = System.getenv("LIBRERA_SMARTREFLOW_DIR") + "/images/sample6.png";
 
 
     static GraphicsConfiguration gc;

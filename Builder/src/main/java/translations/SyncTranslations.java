@@ -1,5 +1,6 @@
 package translations;
 
+import paths.LocalPaths;
 import org.json.JSONException;
 import org.simpleframework.xml.core.Persister;
 
@@ -64,8 +65,7 @@ public class SyncTranslations {
         return asList;
     }
 
-    private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");//Linux
-    private static Config IVAN = new Config("ivan", "", "/Users/ivanivanenko/git/LibreraReader/app/src/main/res/");//MAC
+    private static Config IVAN = new Config("ivan", "", LocalPaths.repo("app/src/main/res/"));
 
 
     // run as "SyncTranslations user_name"

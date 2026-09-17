@@ -114,65 +114,39 @@ cp -rpv $SRC/pi.c $MUPDF_ROOT/thirdparty/openjpeg/src/lib/openjp2/pi.c
 
 cd $MUPDF_JAVA
 
-NDK_VERSION="30.0.14904198"
-FDRIOD_NDK_VERSION="21.4.7075529"
+# The NDK: librera_ndk_dir in the global ~/.gradle/gradle.properties, and librera_fdroid_ndk_dir
+# for the F-Droid build where it needs another one (the same NDK when it is not set)
+GRADLE_PROPERTIES="${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties"
+NDK_DIR=$(sed -n 's/^librera_ndk_dir=//p' "$GRADLE_PROPERTIES" | tail -n 1)
+FDROID_NDK_DIR=$(sed -n 's/^librera_fdroid_ndk_dir=//p' "$GRADLE_PROPERTIES" | tail -n 1)
+FDROID_NDK_DIR=${FDROID_NDK_DIR:-$NDK_DIR}
 
-if [ "$(uname)" == "Darwin" ]; then
-  FDRIOD_NDK_VERSION=$NDK_VERSION
+if [ "$1" == "fdroid" ] || [ "$2" == "fdroid" ]; then
+  NDK="$FDROID_NDK_DIR/ndk-build"
+else
+  NDK="$NDK_DIR/ndk-build"
 fi
 
-PATH1=/Users/ivanivanenko/Library/Android/sdk/ndk
-PATH2=/home/dev/Android/Sdk/ndk
-
-if [ ! -d "$PATH1/$NDK_VERSION" ]; then
+if [ ! -f "$NDK" ]; then
     echo "-- NDK ERROR --"
-    echo "$PATH1/$NDK_VERSION NDK NOT FOUND"
+    echo "[$NDK] NDK NOT FOUND, set librera_ndk_dir in $GRADLE_PROPERTIES"
     echo "----"
+    exit 1
 fi
 
 if [ "$1" == "clean_ndk" ]; then
   rm -rf $MUPDF_JAVA/obj
-
-  if [ "$2" == "fdroid" ]; then
-   $PATH1/$FDRIOD_NDK_VERSION/ndk-build clean
-   $PATH2/$FDRIOD_NDK_VERSION/ndk-build clean
-  else
-   $PATH1/$NDK_VERSION/ndk-build clean
-   $PATH2/$NDK_VERSION/ndk-build clean
-  fi
-
+  "$NDK" clean
 fi
 
-if [ "$1" == "fdroid" ]; then
-  for NDK in "$PATH1/$FDRIOD_NDK_VERSION/ndk-build" "$PATH2/$FDRIOD_NDK_VERSION/ndk-build";
-    do
-      if [ -f "$NDK" ]; then
-      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
-      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
-      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
-      $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
-      wait
-      echo "=================="
-      echo "NDK:"  $NDK
-      echo "APP_PLATFORM=android-24"
-      fi
-    done
-else
-  for NDK in "$PATH1/$NDK_VERSION/ndk-build" "$PATH2/$NDK_VERSION/ndk-build";
-  do
-    if [ -f "$NDK" ]; then
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
-    $NDK NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
-    wait
-    echo "=================="
-    echo "NDK:"  $NDK
-    echo "APP_PLATFORM=android-24"
-    fi
-  done
-
-fi
+"$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=armeabi-v7a APP_PLATFORM=android-24 &
+"$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=arm64-v8a   APP_PLATFORM=android-24 &
+"$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
+"$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
+wait
+echo "=================="
+echo "NDK:" "$NDK"
+echo "APP_PLATFORM=android-24"
 
 echo "=================="
 echo "MUPDF:"$MUPDF_JAVA
