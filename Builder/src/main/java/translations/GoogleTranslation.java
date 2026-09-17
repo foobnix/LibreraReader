@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -11,10 +13,34 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 public class GoogleTranslation {
 
-    private static final String KEY = "AIzaSyB-JpTJYLsj-wZiUOMHusU0QF-EbxfXFC-Wk7M";
+    // Kept out of the source: the GOOGLE_TRANSLATE_KEY environment variable, or
+    // google_translate_key in the global ~/.gradle/gradle.properties
+    private static final String KEY = loadKey();
+
+    private static String loadKey() {
+        String key = System.getenv("GOOGLE_TRANSLATE_KEY");
+        if (key != null && !key.trim().isEmpty()) {
+            return key.trim();
+        }
+        String gradleHome = System.getenv("GRADLE_USER_HOME");
+        File file = new File(gradleHome != null ? gradleHome : System.getProperty("user.home") + "/.gradle", "gradle.properties");
+        Properties properties = new Properties();
+        try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
+            properties.load(reader);
+        } catch (IOException e) {
+            throw new IllegalStateException("Cannot read " + file, e);
+        }
+        key = properties.getProperty("google_translate_key");
+        if (key == null || key.trim().isEmpty()) {
+            throw new IllegalStateException("google_translate_key is not set in " + file);
+        }
+        return key.trim();
+    }
 
     public static void main(String[] args) throws JSONException, IOException {
         String ln = translate("sun", "zh");
@@ -26,7 +52,7 @@ public class GoogleTranslation {
 
     public static String translate(String inputOriginal, String from, String toLang) throws JSONException, IOException {
         String input = URLEncoder.encode(inputOriginal, "UTF-8");
-        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY.replace("-", "") + "&q=" + input + "&source=" + from + "&target=" + toLang;
+        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY + "&q=" + input + "&source=" + from + "&target=" + toLang;
 
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);
