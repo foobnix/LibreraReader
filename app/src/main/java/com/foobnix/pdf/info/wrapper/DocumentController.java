@@ -10,6 +10,7 @@ import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -59,11 +60,13 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.PageLink;
 
@@ -213,6 +216,55 @@ public abstract class DocumentController {
         }
     }
 
+    /** The two screens a book is read on, whose panels come and go over the page. */
+    public static boolean isReader(final Activity a) {
+        return a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity;
+    }
+
+    /**
+     * In a full screen mode the system's bars come up with the reader's panels and go with
+     * them: they lie over the page, which keeps the size it has without them, and the panels
+     * reach in under them in their own colour.
+     */
+    public static boolean isBarsWithPanels(final Activity a) {
+        return isReader(a) && AppState.get().fullScreenMode != AppState.FULL_SCREEN_NORMAL && AppState.get().isEditMode;
+    }
+
+    private static void runBarsOverPanels(final Activity a) {
+        try {
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+            final View decorView = a.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /**
+     * Gives the panel the room the bars take over it, on top of the padding it was laid out
+     * with, so its own buttons stay clear of them while its colour runs on under them.
+     */
+    private static void padUnderBars(final View panel, int left, int top, int right, int bottom) {
+        if (panel == null) {
+            return;
+        }
+        Object tag = panel.getTag(R.id.basePadding);
+        if (!(tag instanceof Rect)) {
+            tag = new Rect(panel.getPaddingLeft(), panel.getPaddingTop(), panel.getPaddingRight(), panel.getPaddingBottom());
+            panel.setTag(R.id.basePadding, tag);
+        }
+        Rect base = (Rect) tag;
+        int l = base.left + left, t = base.top + top, r = base.right + right, b = base.bottom + bottom;
+        if (panel.getPaddingLeft() != l || panel.getPaddingTop() != t || panel.getPaddingRight() != r || panel.getPaddingBottom() != b) {
+            panel.setPadding(l, t, r, b);
+        }
+    }
+
     public static void runNormalScreen(final Activity a) {
         try {
             a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -233,7 +285,9 @@ public abstract class DocumentController {
 
     public static void chooseFullScreen(final Activity a, final int mode) {
 
-        if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
+        if (mode != AppState.FULL_SCREEN_NORMAL && isBarsWithPanels(a)) {
+            runBarsOverPanels(a);
+        } else if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
             runFullScreen(a);
         } else if (mode == AppState.FULL_SCREEN_NORMAL) {
             runNormalScreen(a);
@@ -423,6 +477,31 @@ public abstract class DocumentController {
                     statusBarHack.setBackgroundColor(barsShown(a, windowInsets).top > 0 ? barColor : Color.BLACK);
                 }
 
+                if (isReader(a)) {
+                    // What of the bars lies over the page rather than beside it: the panels at
+                    // the head and the foot carry it, in their own colour.
+                    Insets over = Insets.max(Insets.subtract(barsShown(a, windowInsets), insets), Insets.NONE);
+                    View top = a.findViewById(R.id.actionBar);
+                    if (top == null) {
+                        top = a.findViewById(R.id.titleBar);
+                    }
+                    View bottomPanel = a.findViewById(R.id.bottomBar1);
+                    if (bottomPanel == null) {
+                        bottomPanel = a.findViewById(R.id.bottomBar);
+                    }
+                    padUnderBars(top, over.left, over.top, over.right, 0);
+                    padUnderBars(bottomPanel, over.left, 0, over.right, over.bottom);
+
+                    // No scrim over the buttons at the foot while the panel is under them, so
+                    // they stand on the panel's colour; the scrim is back once they go.
+                    boolean overPanel = over.bottom > 0 || over.left > 0 || over.right > 0;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        a.getWindow().setNavigationBarContrastEnforced(!overPanel);
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : EdgeToEdge.getDefaultDarkScrim());
+                    }
+                }
+
                 // Only the page runs up behind the status bar. The drawer slides over
                 // the page, so it starts below the bar or its own title would be read
                 // through the clock.
@@ -456,6 +535,11 @@ public abstract class DocumentController {
         }
         Insets bars = barsShown(a, windowInsets);
         int mode = a instanceof MainTabs2 ? AppState.get().fullScreenMainMode : AppState.get().fullScreenMode;
+        // A reader in full screen has the bars only while its panels are up, and lays them
+        // over the page rather than making room - see isBarsWithPanels.
+        if (mode != AppState.FULL_SCREEN_NORMAL && isReader(a) && !a.isInMultiWindowMode()) {
+            bars = Insets.NONE;
+        }
         if (Build.VERSION.SDK_INT >= 35 || mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
             return bars;
         }

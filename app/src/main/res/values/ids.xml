@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The padding a panel was laid out with, before the system bars were added to it. -->
+    <item name="basePadding" type="id" />
+</resources>

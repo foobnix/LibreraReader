@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.ui2.MainTabs2;
 
 public class Keyboards {
@@ -90,6 +91,10 @@ public class Keyboards {
 
                 @Override
                 public void run() {
+                    // The reader's panels are up, and the bars with them.
+                    if (DocumentController.isBarsWithPanels(activity)) {
+                        return;
+                    }
                     if (Build.VERSION.SDK_INT >= 19) {
                         decorView.setSystemUiVisibility(//
                                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
@@ -117,7 +122,7 @@ public class Keyboards {
 
     public static void hideNavigationOnCreate(final Activity a) {
         try {
-            if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
+            if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL || DocumentController.isBarsWithPanels(a)) {
                 return;
             }
             final Window window = a.getWindow();
