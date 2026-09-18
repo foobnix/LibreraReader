@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Bihurtu dokumentuak (linean)</string>
    <string name="book_covers">Liburuen azalak</string>
    <string name="cover_image_size">Azaleko irudiaren tamaina</string>
+   <string name="cover_radius">Azalaren erradioa</string>
    <string name="column_count">Zutabe kopurua</string>
    <string name="show_book_covers">Erakutsi liburuen azalak</string>
    <string name="enable_effect_of_the_book_cover">Gaitu liburuen azalen efektuak</string>

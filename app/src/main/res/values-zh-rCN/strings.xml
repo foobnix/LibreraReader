@@ -39,6 +39,7 @@
    <string name="document_converter_online_">在线转换文档格式</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">缩略图大小</string>
+   <string name="cover_radius">封面圆角</string>
    <string name="column_count">列数</string>
    <string name="show_book_covers">显示书籍封面</string>
    <string name="enable_effect_of_the_book_cover">立体封面</string>

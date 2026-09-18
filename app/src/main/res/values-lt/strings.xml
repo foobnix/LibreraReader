@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Performuoti dokumentą (internete)</string>
    <string name="book_covers">Knygų viršeliai</string>
    <string name="cover_image_size">Knygos viršelio atvaizdo dydis</string>
+   <string name="cover_radius">Viršelio kampų apvalumas</string>
    <string name="column_count">Stulpelių skaičius</string>
    <string name="show_book_covers">Rodyti knygų viršelius</string>
    <string name="enable_effect_of_the_book_cover">Knygos viršelio efektas</string>

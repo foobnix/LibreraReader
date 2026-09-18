@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumentkonverterare (online)</string>
    <string name="book_covers">Bokomslag</string>
    <string name="cover_image_size">Cover bildstorlek</string>
+   <string name="cover_radius">Omslagets hörnradie</string>
    <string name="column_count">Kolumnräknar</string>
    <string name="show_book_covers">Visa bokomslag</string>
    <string name="enable_effect_of_the_book_cover">Aktivera effekten av bokomslaget</string>

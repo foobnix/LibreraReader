@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Канвертаваць дакумент онлайн</string>
    <string name="book_covers">Вокладкі кніг</string>
    <string name="cover_image_size">Памер мініяцюры</string>
+   <string name="cover_radius">Акругленне вокладкі</string>
    <string name="column_count">Слупкі</string>
    <string name="show_book_covers">Паказваць вокладкі кніг</string>
    <string name="enable_effect_of_the_book_cover">Імітацыя вокладак кніг</string>

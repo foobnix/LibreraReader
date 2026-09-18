@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Muunna tiedosto (online)</string>
    <string name="book_covers">Kirjojen kannet</string>
    <string name="cover_image_size">Kuvan koko</string>
+   <string name="cover_radius">Kannen pyöristys</string>
    <string name="column_count">Sarakkeiden lukumäärä</string>
    <string name="show_book_covers">Näytä kirjojen kannet</string>
    <string name="enable_effect_of_the_book_cover">Käytä kansiefektiä</string>

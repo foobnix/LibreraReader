@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumente online konvertieren</string>
    <string name="book_covers">Titelbilder</string>
    <string name="cover_image_size">Titelbildgröße</string>
+   <string name="cover_radius">Eckenradius der Titelbilder</string>
    <string name="column_count">Anzahl der Spalten</string>
    <string name="show_book_covers">Titelbilder anzeigen</string>
    <string name="enable_effect_of_the_book_cover">Titelbildeffekt aktivieren</string>

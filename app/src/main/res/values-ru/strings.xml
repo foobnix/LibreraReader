@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Онлайн-конвертация файлов</string>
    <string name="book_covers">Обложки книг</string>
    <string name="cover_image_size">Размер обложек</string>
+   <string name="cover_radius">Скругление обложки</string>
    <string name="column_count">Количество столбцов</string>
    <string name="show_book_covers">Показывать обложки книг</string>
    <string name="enable_effect_of_the_book_cover">Придать обложкам реалистичности</string>

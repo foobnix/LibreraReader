@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Онлайн-конвертер файлів</string>
    <string name="book_covers">Обкладинки книжок</string>
    <string name="cover_image_size">Розмір обкладинок</string>
+   <string name="cover_radius">Заокруглення обкладинки</string>
    <string name="column_count">Кількість стовпців</string>
    <string name="show_book_covers">Показувати обкладинки книжок</string>
    <string name="enable_effect_of_the_book_cover">Додати ефект палітурки</string>

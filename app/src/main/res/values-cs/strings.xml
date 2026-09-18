@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Online konvertor dokumentů</string>
    <string name="book_covers">Obaly knih</string>
    <string name="cover_image_size">Velikost miniatury</string>
+   <string name="cover_radius">Zaoblení obálky</string>
    <string name="column_count">Počet sloupců</string>
    <string name="show_book_covers">Zobrazit obaly knih</string>
    <string name="enable_effect_of_the_book_cover">Efekt hřbetu obalu knihy</string>

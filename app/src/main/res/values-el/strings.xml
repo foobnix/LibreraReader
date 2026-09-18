@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Μετατροπή εγγράφου σε απευθείας σύνδεση</string>
    <string name="book_covers">Εξώφυλλα βιβλίων</string>
    <string name="cover_image_size">Μέγεθος μικρογραφίας</string>
+   <string name="cover_radius">Στρογγύλεμα εξωφύλλου</string>
    <string name="column_count">Στήλες</string>
    <string name="show_book_covers">Εξώφυλλα βιβλίων</string>
    <string name="enable_effect_of_the_book_cover">Πλαστά εξώφυλλα βιβλίων</string>

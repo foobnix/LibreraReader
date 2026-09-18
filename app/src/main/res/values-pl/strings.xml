@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Konwerter dokumentów (online)</string>
    <string name="book_covers">Okładki książek</string>
    <string name="cover_image_size">Rozmiar okładki</string>
+   <string name="cover_radius">Zaokrąglenie okładki</string>
    <string name="column_count">Liczba kolumn</string>
    <string name="show_book_covers">Pokaż okładki książek</string>
    <string name="enable_effect_of_the_book_cover">Włącz efekt okładki</string>

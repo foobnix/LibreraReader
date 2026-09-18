@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Konverter dokumen (online)</string>
    <string name="book_covers">Sampul buku</string>
    <string name="cover_image_size">Ukuran gambar sampul</string>
+   <string name="cover_radius">Radius sampul</string>
    <string name="column_count">Hitungan kolom</string>
    <string name="show_book_covers">Tampilkan sampul buku</string>
    <string name="enable_effect_of_the_book_cover">Aktifkan efek sampul buku</string>

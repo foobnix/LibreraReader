@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Doiciméad a thiontú ar líne</string>
    <string name="book_covers">Clúdaigh leabhar</string>
    <string name="cover_image_size">Méid mionsamhlacha</string>
+   <string name="cover_radius">Cruinneas choirnéil an chlúdaigh</string>
    <string name="column_count">Colúin</string>
    <string name="show_book_covers">Clúdaigh leabhar taispeána</string>
    <string name="enable_effect_of_the_book_cover">Clúdaigh bréige leabhar priontála</string>

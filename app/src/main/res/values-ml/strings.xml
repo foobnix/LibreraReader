@@ -39,6 +39,7 @@
    <string name="document_converter_online_">പ്രമാണം ഓൺ‌ലൈനായി പരിവർത്തനം ചെയ്യുക</string>
    <string name="book_covers">പുസ്തക കവറുകൾ</string>
    <string name="cover_image_size">ലഘുചിത്ര വലുപ്പം</string>
+   <string name="cover_radius">കവറിന്റെ കോൺ വളവ്</string>
    <string name="column_count">നിരകൾ</string>
    <string name="show_book_covers">പുസ്തക കവറുകൾ പ്രദർശിപ്പിക്കുക</string>
    <string name="enable_effect_of_the_book_cover">മോക്ക് പ്രിന്റ് ബുക്ക് കവറുകൾ</string>

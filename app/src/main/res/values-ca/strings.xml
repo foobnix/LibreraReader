@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Converteix document en linia</string>
    <string name="book_covers">Cobertes dels llibres</string>
    <string name="cover_image_size">Mida de la miniatura</string>
+   <string name="cover_radius">Radi de la coberta</string>
    <string name="column_count">Columnes</string>
    <string name="show_book_covers">Mostra les cobertes dels llibres</string>
    <string name="enable_effect_of_the_book_cover">Simula les cobertes dels llibres impresos</string>

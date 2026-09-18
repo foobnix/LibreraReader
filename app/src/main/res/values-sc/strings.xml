@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Cunverte unu documentu in lìnia</string>
    <string name="book_covers">Coberteddas de sos libros</string>
    <string name="cover_image_size">Mannària de sas miniaduras</string>
+   <string name="cover_radius">Raju de sa cobertedda</string>
    <string name="column_count">Colunnas</string>
    <string name="show_book_covers">Ammustra sas coberteddas de sos libros</string>
    <string name="enable_effect_of_the_book_cover">Imprea s\'efetu cobertedda de sos libros</string>

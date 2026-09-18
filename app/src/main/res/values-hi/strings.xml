@@ -39,6 +39,7 @@
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
    <string name="book_covers">बुक कवर</string>
    <string name="cover_image_size">कवर छवि का आकार</string>
+   <string name="cover_radius">कवर का कोना गोलाई</string>
    <string name="column_count">स्तंभ गिनती</string>
    <string name="show_book_covers">पुस्तक कवर दिखाएं</string>
    <string name="enable_effect_of_the_book_cover">पुस्तक कवर के प्रभाव को सक्षम</string>

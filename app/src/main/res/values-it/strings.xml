@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertitore documenti (in linea)</string>
    <string name="book_covers">Copertine deii libri</string>
    <string name="cover_image_size">Dimensione Immagine di copertina</string>
+   <string name="cover_radius">Arrotondamento copertina</string>
    <string name="column_count">Numero di colonne</string>
    <string name="show_book_covers">Mostra copertine dei libri</string>
    <string name="enable_effect_of_the_book_cover">Usa effetto copertina</string>

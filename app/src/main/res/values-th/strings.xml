@@ -39,6 +39,7 @@
    <string name="document_converter_online_">ตัวแปลงเอกสาร (ออนไลน์)</string>
    <string name="book_covers">ปกหนังสือ</string>
    <string name="cover_image_size">ขนาดภาพปก</string>
+   <string name="cover_radius">ความโค้งมุมปก</string>
    <string name="column_count">จำนวนคอลัมน์</string>
    <string name="show_book_covers">แสดงปกหนังสือ</string>
    <string name="enable_effect_of_the_book_cover">เปิดใช้งานภาพปกหนังสือ</string>

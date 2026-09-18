@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertir documentos (en línea)</string>
    <string name="book_covers">Portadas de libros</string>
    <string name="cover_image_size">Tamaño de la imagen de la portada</string>
+   <string name="cover_radius">Radio de la portada</string>
    <string name="column_count">Número de columnas</string>
    <string name="show_book_covers">Mostrar portadas de los libros</string>
    <string name="enable_effect_of_the_book_cover">Habilitar efectos de las portadas</string>

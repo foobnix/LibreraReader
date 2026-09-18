@@ -39,6 +39,7 @@
    <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>
    <string name="book_covers">أغلفة الكتب</string>
    <string name="cover_image_size">حجم صورة الغلاف</string>
+   <string name="cover_radius">انحناء زوايا الغلاف</string>
    <string name="column_count">عدد الأعمدة</string>
    <string name="show_book_covers">عرض أغلفة الكتب</string>
    <string name="enable_effect_of_the_book_cover">تمكين تأثير غلاف الكتاب</string>

@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Document kubadilisha (mtandaoni)</string>
    <string name="book_covers">Kitabu kinashughulikia</string>
    <string name="cover_image_size">Ukubwa cover picha</string>
+   <string name="cover_radius">Mzingo wa pembe za jalada</string>
    <string name="column_count">Safu kuhesabu</string>
    <string name="show_book_covers">Onyesha inashughulikia kitabu</string>
    <string name="enable_effect_of_the_book_cover">Kuwawezesha athari za kitabu cover</string>

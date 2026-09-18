@@ -39,6 +39,7 @@
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
    <string name="book_covers">کتاب پوشش می دهد</string>
    <string name="cover_image_size">اندازه تصویر جلد</string>
+   <string name="cover_radius">گردی گوشه‌های جلد</string>
    <string name="column_count">تعداد ستون</string>
    <string name="show_book_covers">نمایش جلد کتاب</string>
    <string name="enable_effect_of_the_book_cover">فعال کردن اثر از جلد کتاب</string>

@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Конвертирайте документ онлайн</string>
    <string name="book_covers">Корици на книги</string>
    <string name="cover_image_size">Размер на миниатюрата</string>
+   <string name="cover_radius">Заобляне на корицата</string>
    <string name="column_count">Колони</string>
    <string name="show_book_covers">Обложки за дисплейни книги</string>
    <string name="enable_effect_of_the_book_cover">Макетни корици за печат на книги</string>

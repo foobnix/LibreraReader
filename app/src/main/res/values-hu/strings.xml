@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumentum konvertálása online</string>
    <string name="book_covers">Könyvborítók</string>
    <string name="cover_image_size">Miniatűr mérete</string>
+   <string name="cover_radius">Borító lekerekítése</string>
    <string name="column_count">Oszlopok</string>
    <string name="show_book_covers">Könyvborítók megjelenítése</string>
    <string name="enable_effect_of_the_book_cover">Valósághű borítók nyomtatása</string>

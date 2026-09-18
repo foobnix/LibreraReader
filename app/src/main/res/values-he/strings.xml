@@ -39,6 +39,7 @@
    <string name="document_converter_online_">ממיר מסמכים (באינטרנט)</string>
    <string name="book_covers">כריכת ספרים</string>
    <string name="cover_image_size">כיסוי תמונה בגודל</string>
+   <string name="cover_radius">עיגול פינות הכריכה</string>
    <string name="column_count">ספירת עמודות</string>
    <string name="show_book_covers">הצג כריכות ספרים</string>
    <string name="enable_effect_of_the_book_cover">אפשר השפעת עטיפת הספר</string>

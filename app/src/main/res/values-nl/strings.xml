@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Converteer document online</string>
    <string name="book_covers">Boekomslagen</string>
    <string name="cover_image_size">Boekomslag afbeelding grootte</string>
+   <string name="cover_radius">Afronding omslag</string>
    <string name="column_count">Aantal kolommen</string>
    <string name="show_book_covers">Toon boekomslag</string>
    <string name="enable_effect_of_the_book_cover">Boots gedrukte boekomslagen na</string>

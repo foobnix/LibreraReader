@@ -39,6 +39,7 @@
    <string name="document_converter_online_">문서 변환기 (온라인)</string>
    <string name="book_covers">도서 표지</string>
    <string name="cover_image_size">표지 이미지 크기</string>
+   <string name="cover_radius">표지 모서리 둥글기</string>
    <string name="column_count">열의 수</string>
    <string name="show_book_covers">책 표지보기</string>
    <string name="enable_effect_of_the_book_cover">책 표지 효과 사용</string>

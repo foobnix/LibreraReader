@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Құжатты онлайн түрлендіру</string>
    <string name="book_covers">Кітап қаптамалары</string>
    <string name="cover_image_size">Нобай өлшемі</string>
+   <string name="cover_radius">Қаптама бұрыштарының дөңгелектігі</string>
    <string name="column_count">Бағандар</string>
    <string name="show_book_covers">Кітап қаптамаларын көрсетіңіз</string>
    <string name="enable_effect_of_the_book_cover">Мұқабаларды басып шығаруға арналған қақпақ</string>

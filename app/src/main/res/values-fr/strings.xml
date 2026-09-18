@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertisseur de documents (en ligne)</string>
    <string name="book_covers">Couvertures de livre</string>
    <string name="cover_image_size">Taille de l\'image de couverture</string>
+   <string name="cover_radius">Arrondi de la couverture</string>
    <string name="column_count">Nombre de colonnes</string>
    <string name="show_book_covers">Afficher les couvertures de livres</string>
    <string name="enable_effect_of_the_book_cover">Activer effet de la couverture du livre</string>

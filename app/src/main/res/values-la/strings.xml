@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertor per rete</string>
    <string name="book_covers">Operimenti librorum</string>
    <string name="cover_image_size">Dimensionis operimentorum</string>
+   <string name="cover_radius">Radius operimenti</string>
    <string name="column_count">Quantitas columnarum</string>
    <string name="show_book_covers">Ostendere operimenta librarum</string>
    <string name="enable_effect_of_the_book_cover">Dare sinceroritatem ad involucris</string>

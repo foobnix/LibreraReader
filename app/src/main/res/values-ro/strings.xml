@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertor de documente (online)</string>
    <string name="book_covers">Coperți de cărți</string>
    <string name="cover_image_size">Dimensiunea imaginii copertă</string>
+   <string name="cover_radius">Rotunjirea copertei</string>
    <string name="column_count">Numarul de coloane</string>
    <string name="show_book_covers">Arătați cărțile</string>
    <string name="enable_effect_of_the_book_cover">Activați efectul de coperta cărții</string>

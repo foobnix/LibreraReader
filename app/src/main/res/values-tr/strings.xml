@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>
    <string name="book_covers">Kitap kapakları</string>
    <string name="cover_image_size">Kapak Resmi Boyutu</string>
+   <string name="cover_radius">Kapak köşe yuvarlaklığı</string>
    <string name="column_count">Sütun sayısı</string>
    <string name="show_book_covers">Kitap kapaklarını göster</string>
    <string name="enable_effect_of_the_book_cover">Kitap kapağı etkisini etkinleştir</string>
