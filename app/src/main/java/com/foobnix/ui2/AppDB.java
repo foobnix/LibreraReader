@@ -15,6 +15,7 @@ import com.foobnix.dao2.DictMeta;
 import com.foobnix.dao2.DictMetaDao;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
+import com.foobnix.ext.PubDate;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
@@ -119,6 +120,15 @@ public class AppDB {
         daoSession = daoMaster.newSession();
 
         fileMetaDao = daoSession.getFileMetaDao();
+
+        // Calibre's "no date" (0101-01-01, or 0100-12-31 after a time zone) used to be kept
+        // as a book published in the year 100 or 101.
+        try {
+            writableDatabase.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.Year.columnName +
+                                     " = NULL WHERE " + FileMetaDao.Properties.Year.columnName + " <= " + PubDate.UNDEFINED_YEAR);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
         if (AppsConfig.IS_LOG) {
             QueryBuilder.LOG_SQL = true;
@@ -652,10 +662,12 @@ public class AppDB {
 
     public enum SORT_BY {
         //
+        // In the order the sort menu lists them; the index is what is kept in the settings.
+        DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //
+        PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.Year),//
+        SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
         PATH(0, R.string.folder, FileMetaDao.Properties.ParentPath), //
         FILE_NAME(1, R.string.by_file_name, FileMetaDao.Properties.PathTxt), //
-        SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
-        DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //
         TITLE(4, R.string.by_title, FileMetaDao.Properties.Title), //
         AUTHOR(5, R.string.by_author, FileMetaDao.Properties.Author), //
         SERIES(6, R.string.by_series, FileMetaDao.Properties.Sequence), //
@@ -663,7 +675,6 @@ public class AppDB {
         PAGES(8, R.string.by_number_of_pages, FileMetaDao.Properties.Pages), //
         EXT(9, R.string.by_extension, FileMetaDao.Properties.Ext), //
         LANGUAGE(10, R.string.language, FileMetaDao.Properties.Lang),//
-        PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.Year),//
         PUBLISHER(12, R.string.publisher, FileMetaDao.Properties.Publisher),//
         RECENT_TIME(13, R.string.recent, FileMetaDao.Properties.IsRecentTime);//
 

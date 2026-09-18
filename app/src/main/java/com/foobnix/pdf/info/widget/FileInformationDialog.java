@@ -527,6 +527,7 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        TintUtil.roundCover(coverImage);
 
         IMG.getCoverPageWithEffect(a, file.getPath(), null)
            .into(coverImage);

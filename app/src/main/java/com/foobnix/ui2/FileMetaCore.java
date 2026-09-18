@@ -19,6 +19,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
+import com.foobnix.ext.PubDate;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -30,8 +31,6 @@ import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FileMetaCore {
 
@@ -175,19 +174,7 @@ public class FileMetaCore {
     }
 
     public static int extractYear(String input) {
-        try {
-            input = input.trim();
-            if (input.length() > 4) {
-                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
-                if (m.find()) {
-                    input = m.group();
-                }
-            }
-            return Integer.parseInt(input);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return -1;
+        return PubDate.yearOf(input);
     }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
@@ -323,11 +310,8 @@ public class FileMetaCore {
 
         String year = ebookMeta.getYear();
         if (year != null) {
-            if (year.startsWith("D:") && year.length() >= 7) {
-                ebookMeta.setYear(year.substring(2, 6));
-            } else if (year.contains("-")) {
-                ebookMeta.setYear(year.substring(0, year.indexOf("-")));
-            }
+            int y = PubDate.yearOf(year);
+            ebookMeta.setYear(y > 0 ? String.valueOf(y) : null);
         }
 
         return ebookMeta;
@@ -348,18 +332,10 @@ public class FileMetaCore {
             fileMeta.setPages(pagesCount);
         }
 
-        String yearString = meta.getYear();
-        if (TxtUtils.isNotEmpty(yearString)) {
-            try {
-                int year = extractYear(yearString);
-                LOG.d("extractYear", yearString, year);
-                if (year > 0) {
-                    fileMeta.setYear(year);
-                }
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+        // Set even when there is none, so a year read wrongly before — Calibre's "no date"
+        // taken for the year 100 — goes when the book is read again.
+        int year = extractYear(meta.getYear());
+        fileMeta.setYear(year > 0 ? year : null);
         fileMeta.setPublisher(meta.getPublisher());
         fileMeta.setIsbn(meta.getIsbn());
 

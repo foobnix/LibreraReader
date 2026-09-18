@@ -833,6 +833,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
 
             IMG.updateImageSizeBig(holder.imageParent, sizeDP);
+            TintUtil.roundCover(holder.imageParent);
 
             LayoutParams lp = holder.image.getLayoutParams();
 
@@ -862,9 +863,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (holder.imageParent instanceof CardView) {
                 boolean cardShows = AppState.get().isBorderAndShadow &&
                         AppState.get().appTheme != AppState.THEME_DARK_OLED;
-                ((CardView) holder.imageParent).setRadius(cardShows ? 0 :
-                        holder.imageParent.getResources()
-                                          .getDimension(R.dimen.cover_radius_small));
+                ((CardView) holder.imageParent).setRadius(cardShows ? 0 : TintUtil.coverRadius());
             }
 
             LayoutParams parentLp = IMG.updateImageSizeSmall(holder.imageParent);

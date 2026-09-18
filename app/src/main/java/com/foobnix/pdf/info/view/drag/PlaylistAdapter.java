@@ -82,7 +82,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);
         // The covers in the strip are cut to the same round they are everywhere else.
-        TintUtil.roundCorners(holder.imageView, Dips.dpToPx(6));
+        TintUtil.roundCover(holder.imageView);
 
         holder.imageView.setAdjustViewBounds(true);
         holder.imageView.setScaleType(ScaleType.CENTER_CROP);

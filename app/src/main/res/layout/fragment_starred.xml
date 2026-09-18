@@ -30,7 +30,7 @@
              round the rest of the bar is drawn in, rather than as underlined words. -->
         <ImageView
             android:id="@+id/onTags"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -40,7 +40,7 @@
 
         <ImageView
             android:id="@+id/onPlaylists"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -61,7 +61,7 @@
 
         <ImageView
             android:id="@+id/onShowMenu"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -71,7 +71,7 @@
 
         <ImageView
             android:id="@+id/onSort"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -92,7 +92,7 @@
 
         <ImageView
             android:id="@+id/onListGrid"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"

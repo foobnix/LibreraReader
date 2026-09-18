@@ -93,7 +93,7 @@
 
         <ImageView
             android:id="@+id/onSettings"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -102,7 +102,7 @@
 
         <ImageView
             android:id="@+id/search"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:contentDescription="@string/search"
@@ -111,7 +111,7 @@
 
         <ImageView
             android:id="@+id/onListGrid"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:contentDescription="@string/menu"

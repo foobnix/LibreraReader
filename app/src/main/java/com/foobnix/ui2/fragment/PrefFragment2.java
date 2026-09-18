@@ -1067,6 +1067,21 @@ public class PrefFragment2 extends UIFragment {
                                                  }
                                              });
 
+        final TextView coverRadius = inflate.findViewById(R.id.coverRadius);
+        asButton(coverRadius, String.valueOf(AppState.get().coverRadius));
+        coverRadius.setOnClickListener(v -> {
+            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            for (int i = 0; i <= TintUtil.COVER_RADIUS_MAX; i++) {
+                final int level = i;
+                popupMenu.getMenu().add(String.valueOf(level)).setOnMenuItemClickListener(item -> {
+                    AppState.get().coverRadius = level;
+                    onTheme();
+                    return false;
+                });
+            }
+            popupMenu.show();
+        });
+
         final TextView appFontScale = inflate.findViewById(R.id.appFontScale);
         appFontScale.setText(
 

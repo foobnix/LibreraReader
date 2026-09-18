@@ -28,6 +28,8 @@ import android.util.TypedValue;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
 
+import androidx.cardview.widget.CardView;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -42,6 +44,8 @@ public class TintUtil {
     public static final int SWATCH_RADIUS = Dips.dpToPx(6);
     public static final int SECTION_RADIUS = Dips.dpToPx(8);
     public static final int BADGE_RADIUS = Dips.dpToPx(20);
+    public static final int COVER_RADIUS_MAX = 4;
+    public static final int COVER_RADIUS_STEP_DP = 3;
     private static final int SWATCH_BORDER = Color.parseColor("#55888888");
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
@@ -205,6 +209,21 @@ public class TintUtil {
                     ((GradientDrawable) layer).setColor(color);
                 }
             }
+        }
+    }
+
+    /** The round every book cover is cut to, from the cover radius the user picked. */
+    public static int coverRadius() {
+        int level = Math.max(0, Math.min(COVER_RADIUS_MAX, AppState.get().coverRadius));
+        return Dips.dpToPx(level * COVER_RADIUS_STEP_DP);
+    }
+
+    /** Cuts a book cover to the round the user picked for covers. */
+    public static void roundCover(View view) {
+        if (view instanceof CardView) {
+            ((CardView) view).setRadius(coverRadius());
+        } else {
+            roundCorners(view, coverRadius());
         }
     }
 

@@ -40,6 +40,7 @@
    <string name="document_converter_online_">Convert Document Online</string>
    <string name="book_covers">Book Covers</string>
    <string name="cover_image_size">Thumbnail size</string>
+   <string name="cover_radius">Cover radius</string>
    <string name="column_count">Columns</string>
    <string name="show_book_covers">Display book covers</string>
    <string name="enable_effect_of_the_book_cover">Mock print book covers</string>
@@ -175,6 +176,7 @@
    <string name="no_serie">No series</string>
    <string name="no_genre">No genre</string>
    <string name="no_language">No language</string>
+   <string name="no_date">No date</string>
    <string name="without_series">N/A</string>
    <string name="folders">Folder</string>
    <string name="recent">Recent</string>

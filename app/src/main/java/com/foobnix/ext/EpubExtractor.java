@@ -387,7 +387,9 @@ public class EpubExtractor extends BaseExtractor {
             String number = null;
             String lang = null;
             String genre = "";
-            String date = null;
+            // Every date the package gives, with what it says it is the date of: the edition,
+            // the original, the file's own making — the first one is not always the one meant.
+            List<String[]> dates = new ArrayList<>();
             String calibreTimestamp = null;
             String publisher = "";
             String ibsn = "";
@@ -417,11 +419,8 @@ public class EpubExtractor extends BaseExtractor {
                             }
 
                             if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
-                                if (date != null && xpp.getAttributeCount() == 0) {
-                                    date = xpp.nextText();
-                                } else if (date == null) {
-                                    date = xpp.nextText();
-                                }
+                                String event = PubDate.event(xpp);
+                                dates.add(new String[]{event, xpp.nextText()});
                             }
 
                             if ("dc:subject".equals(xpp.getName()) || "dcns:subject".equals(xpp.getName())) {
@@ -524,6 +523,7 @@ public class EpubExtractor extends BaseExtractor {
                 LOG.d(e);
             }
             ebookMeta.setLang(lang);
+            String date = PubDate.published(dates);
             if (date == null) {
                 ebookMeta.setYear(calibreTimestamp);
             } else {

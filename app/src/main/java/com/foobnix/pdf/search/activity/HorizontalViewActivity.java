@@ -483,6 +483,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         };
         if (bookCover != null) {
             bookCover.setOnClickListener(onBookInfo);
+            TintUtil.roundCover(findViewById(R.id.bookCoverParent));
         }
         titleTxt.setOnClickListener(onBookInfo);
         chapterView.setOnClickListener(onBookInfo);

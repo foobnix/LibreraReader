@@ -135,7 +135,7 @@
 
         <ImageView
             android:id="@+id/isShowCloudsLine"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -144,7 +144,7 @@
 
         <ImageView
             android:id="@+id/onRefreshDropbox"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -153,7 +153,7 @@
 
         <ImageView
             android:id="@+id/onListGrid"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"

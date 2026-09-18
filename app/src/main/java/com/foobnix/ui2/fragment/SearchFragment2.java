@@ -236,6 +236,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     };
     boolean isOnTop = false;
     private String NO_SERIES = ":no-series";
+    private String NO_DATE = "---";
     private Stack<String> prevText = new Stack<String>();
     private ImageView onGridlList;
     ResultResponse<String> onAuthorSeriesClick = new ResultResponse<String>() {
@@ -400,6 +401,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         LOG.d("SearchFragment2 onCreateView");
 
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
+        NO_DATE = getString(R.string.no_date);
 
         handler = new Handler(Looper.getMainLooper());
 
@@ -525,31 +527,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        sortOrder.setOnClickListener(new OnClickListener() {
-
-            @Override public void onClick(View v) {
-                AppState.get().isSortAsc = !AppState.get().isSortAsc;
-                searchAndOrderAsync();
-            }
-        });
-        sortOrder.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
-        });
-
+        // The sort button says which way round the list runs; a long press turns it round.
         sortBy.setOnLongClickListener(new OnLongClickListener() {
 
             @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                AppState.get().isSortAsc = !AppState.get().isSortAsc;
+                recyclerView.scrollToPosition(0);
+                searchAndOrderAsync();
                 return true;
             }
         });
-        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+        sortOrder.setVisibility(View.GONE);
 
         bindAdapter(searchAdapter);
 
@@ -766,14 +754,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         setSearchHint(R.string.msg_loading);
         sortBy.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_476_sort_attributes :
                 R.drawable.glyphicons_477_sort_attributes_alt);
-        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_221_chevron_down :
-                R.drawable.glyphicons_222_chevron_up);
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
         // The mark alone says what it opens, so the field being sorted on is left to it.
         sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + getString(
-                AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName()));
-        sortOrder.setContentDescription(order);
+                AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName()) + ", " + order);
 
         populate();
 
@@ -884,7 +869,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             parentName = "---";
                         }
                     } else if (AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex()) {
-                        parentName = "" + it.getYear();
+                        parentName = it.getYear() == null ? NO_DATE : "" + it.getYear();
                     } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
                         parentName = it.getParentPath();
                         if (parentName != null) {
@@ -972,10 +957,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
             sortBy.setVisibility(View.VISIBLE);
-            sortOrder.setEnabled(true);
-            if (AppState.get().isVisibleSorting) {
-                sortOrder.setVisibility(View.VISIBLE);
-            }
 
             searchAdapter.clearItems();
             searchAdapter.getItemsList()
@@ -996,8 +977,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setEnabled(false);
             sortBy.setEnabled(false);
             sortBy.setVisibility(View.INVISIBLE);
-            sortOrder.setEnabled(false);
-            sortOrder.setVisibility(View.INVISIBLE);
 
             String empty = "";
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
@@ -1020,7 +999,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 empty = EMPTY_ID + getActivity().getString(R.string.no_language);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
                 setSearchHint(R.string.publication_date);
-                empty = EMPTY_ID + getActivity().getString(R.string.empy);
+                empty = EMPTY_ID + getActivity().getString(R.string.no_date);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLISHER) {
                 setSearchHint(R.string.publisher);
                 empty = EMPTY_ID + getActivity().getString(R.string.empy);
@@ -1222,7 +1201,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         LOG.d("SeachFragment2", "notifyFragment");
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
         if (!BooksService.isRunning) {
             onRefresh.setActivated(!BooksService.isRunning);

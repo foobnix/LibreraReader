@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/onBack"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -60,7 +60,7 @@
 
         <ImageView
             android:id="@+id/pasteFrom"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -72,7 +72,7 @@
 
         <ImageView
             android:id="@+id/createFolder"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -83,6 +83,7 @@
 
         <ImageView
             android:id="@+id/starIcon"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -94,7 +95,7 @@
 
         <ImageView
             android:id="@+id/onSort"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -115,7 +116,7 @@
 
         <ImageView
             android:id="@+id/onHome"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
@@ -124,7 +125,7 @@
 
         <ImageView
             android:id="@+id/onListGrid"
-            style="@style/buttonWhite"
+            style="@style/buttonTop"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"

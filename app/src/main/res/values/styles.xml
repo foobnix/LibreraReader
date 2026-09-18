@@ -73,6 +73,12 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <!-- An icon in a screen's top bar: a little more room either side than buttonWhite. -->
+    <style name="buttonTop" parent="buttonWhite">
+        <item name="android:layout_marginLeft">@dimen/top_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/top_button_margin</item>
+    </style>
+
     <style name="buttonWhiteClose" parent="buttonWhite">
         <item name="android:padding">4dip</item>
     </style>

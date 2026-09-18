@@ -115,6 +115,13 @@ public class FileMetaComparators {
             return compareInt(g1, g2);
         }
     };
+    public static Comparator<FileMeta> BR_BY_YEAR = new Comparator<FileMeta>() {
+        @Override public int compare(FileMeta o1, FileMeta o2) {
+            int g1 = o1.getYear() == null ? 0 : o1.getYear();
+            int g2 = o2.getYear() == null ? 0 : o2.getYear();
+            return compareInt(g1, g2);
+        }
+    };
     public static Comparator<FileMeta> BR_BY_TITLE = new Comparator<FileMeta>() {
         @Override public int compare(FileMeta o1, FileMeta o2) {
             try {

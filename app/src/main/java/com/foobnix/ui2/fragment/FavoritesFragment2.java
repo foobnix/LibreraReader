@@ -164,27 +164,22 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 p.show();
             });
 
-        sortOrder.setOnClickListener(new OnClickListener() {
+        // The sort button says which way round the list runs; a long press turns it round.
+        onSort.setOnLongClickListener(new View.OnLongClickListener() {
 
-            @Override public void onClick(View v) {
+            @Override public boolean onLongClick(View v) {
                 AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
                 onSort.setImageResource(
                         AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
                                 R.drawable.glyphicons_476_sort_attributes);
-                sortOrder.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_222_chevron_up :
-                        R.drawable.glyphicons_221_chevron_down);
-
                 populate();
-
+                return true;
             }
         });
+        sortOrder.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
+        onSort.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
                 R.drawable.glyphicons_476_sort_attributes);
-        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up :
-                R.drawable.glyphicons_221_chevron_down);
-
-        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         onSort.setOnClickListener(new OnClickListener() {
@@ -192,10 +187,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             @Override public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
+                        getActivity().getString(R.string.by_date), //
+                        getActivity().getString(R.string.publication_date), //
+                        getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.date_added), //
                         getActivity().getString(R.string.by_file_name), //
-                        getActivity().getString(R.string.by_date), //
-                        getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
@@ -204,10 +200,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                                                   );//
 
                 final List<Integer> ids = Arrays.asList(//
+                        AppState.BR_SORT_BY_DATE, //
+                        AppState.BR_SORT_BY_YEAR, //
+                        AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_STAR_TIME, //
                         AppState.BR_SORT_BY_PATH, //
-                        AppState.BR_SORT_BY_DATE, //
-                        AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
@@ -482,6 +479,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_YEAR) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_YEAR);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {

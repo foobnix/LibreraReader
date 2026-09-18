@@ -14,6 +14,8 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalirbeExtractor {
 
@@ -80,6 +82,7 @@ public class CalirbeExtractor {
             final FileInputStream inputStream = new FileInputStream(metadata);
             xpp.setInput(inputStream, "UTF-8");
 
+            List<String[]> dates = new ArrayList<>();
             int eventType = xpp.getEventType();
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -94,11 +97,8 @@ public class CalirbeExtractor {
                     }
 
                     if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
-                        if (meta.getYear() != null && xpp.getAttributeCount() == 0) {
-                            meta.setYear(xpp.nextText());
-                        } else if (meta.getYear() == null) {
-                            meta.setYear(xpp.nextText());
-                        }
+                        String event = PubDate.event(xpp);
+                        dates.add(new String[]{event, xpp.nextText()});
                     }
 
                     if ("dc:subject".equals(xpp.getName()) || "dcns:subject".equals(xpp.getName())) {
@@ -224,6 +224,7 @@ public class CalirbeExtractor {
                 eventType = xpp.next();
             }
             inputStream.close();
+            meta.setYear(PubDate.published(dates));
         } catch (Exception e) {
             LOG.e(e);
         }

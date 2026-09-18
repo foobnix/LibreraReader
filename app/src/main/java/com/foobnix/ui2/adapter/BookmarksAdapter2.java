@@ -129,6 +129,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             title = (TextView) view.findViewById(R.id.title);
             text = (TextView) view.findViewById(R.id.text);
             image = (ImageView) view.findViewById(R.id.image);
+            TintUtil.roundCover((View) image.getParent());
             cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
             remove = view.findViewById(R.id.remove);
             parent = (CardView) view;

@@ -42,6 +42,10 @@
     <dimen name="progress">2dip</dimen>
 
     <dimen name="panel_padding">3dip</dimen>
+    <dimen name="top_button_margin">4dip</dimen>
+    <!-- Between two top-bar icons are their paddings (3dip each) and margins: a field beside
+         an icon keeps its own margin as one icon's margin and padding, so the gaps match. -->
+    <dimen name="top_field_margin">7dip</dimen>
     <dimen name="panel_title_padding">8dip</dimen>
 
     
