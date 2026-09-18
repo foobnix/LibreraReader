@@ -15,7 +15,7 @@ else
 fi
 ####################################
 
-./link_to_mupdf_1.28.3.sh
+./link_to_mupdf_1.28.4.sh
 
 cd ../
 
@@ -61,7 +61,7 @@ fi
 SYMBOLS=$(mktemp -d)
 for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
   mkdir -p "$SYMBOLS/$ABI"
-  "$OBJCOPY" --only-keep-debug Builder/mupdf-1.28.3/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg"
+  "$OBJCOPY" --only-keep-debug Builder/mupdf-1.28.4/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg"
 done
 mkdir -p "$RELEASE_DIR"
 rm -f "$RELEASE_DIR/Librera-$VERSION-native-debug-symbols.zip"

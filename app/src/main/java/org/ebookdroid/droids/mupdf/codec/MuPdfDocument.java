@@ -1,6 +1,7 @@
 package org.ebookdroid.droids.mupdf.codec;
 
 import android.graphics.RectF;
+import android.os.Looper;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -22,6 +23,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MuPdfDocument extends AbstractCodecDocument {
@@ -253,8 +255,27 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private static native int findBookmarkPageInternal(long handle, int page, String text, String pageText, int range);
 
+    // the bookmark text is only a hint, on the ui thread it is skipped while a page is rendered
+    // (a heavy page holds the lock for seconds, waiting for it froze the ui: ANR)
+    private static boolean lockBookmark() {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            TempHolder.lock.lock();
+            return true;
+        }
+        try {
+            return TempHolder.lock.tryLock(BOOKMARK_UI_LOCK_MS, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            return false;
+        }
+    }
+
+    private static final long BOOKMARK_UI_LOCK_MS = 200;
+
     @Override public String getBookmarkText(int page) {
-        TempHolder.lock.lock();
+        if (!lockBookmark()) {
+            LOG.d("getBookmarkText skip, the document is busy");
+            return null;
+        }
         try {
             return isRecycled() || !hasBookmarkNatives ? null : getBookmarkTextInternal(documentHandle, page);
         } catch (UnsatisfiedLinkError e) {
@@ -268,7 +289,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     @Override public int findBookmarkPage(int page, String text, String pageText) {
-        TempHolder.lock.lock();
+        if (!lockBookmark()) {
+            LOG.d("findBookmarkPage skip, the document is busy");
+            return -1;
+        }
         try {
             return isRecycled() || !hasBookmarkNatives ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
         } catch (UnsatisfiedLinkError e) {

@@ -146,7 +146,7 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 
 | Library    | Version          | License              |
 |------------|------------------|----------------------|
-| MuPDF      | 1.28.3 (1.23.7)  | AGPL-3.0             |
+| MuPDF      | 1.28.4 (1.23.7)  | AGPL-3.0             |
 | DjVuLibre  | 3.5.28           | GPL-2.0-or-later     |
 | antiword   | 1.3.1            | GPL-2.0              |
 | libmobi    | 0.12             | LGPL-3.0-or-later    |

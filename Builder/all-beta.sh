@@ -32,7 +32,7 @@ else
 fi
 
 
-./link_to_mupdf_1.28.3.sh
+./link_to_mupdf_1.28.4.sh
 
 cd ../
 
