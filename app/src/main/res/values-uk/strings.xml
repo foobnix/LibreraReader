@@ -676,7 +676,7 @@
    <string name="warning_this_document_has_unsaved_changes">Попередження: у цьому документі є незбережені зміни</string>
    <string name="bold_headings">Жирний шрифт заголовків</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Перегляньте це коротке відео, щоб вимкнути всю рекламу на 1 годину</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Перегляньте це коротке відео, щоб вимкнути всю рекламу на 2 години</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Перегляньте це коротке відео, щоб вимкнути всю рекламу на 3 години</string>
    <string name="the_book_is_complete">Книга завершена.</string>
    <string name="time">Час</string>
    <string name="date_added">Дата додавання</string>

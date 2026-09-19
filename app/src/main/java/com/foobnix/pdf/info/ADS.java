@@ -38,7 +38,7 @@ public class ADS {
     public static int ADS_LIVE_SEC = 60 * 60;//60 min
     public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//4 min
 
-    public static int REWARDS_HOURS_IN_SECONDS = 2 * 60 * 60;//2 hours
+    public static int REWARDS_HOURS_IN_SECONDS = 3 * 60 * 60;//3 hours
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;

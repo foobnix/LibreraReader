@@ -676,7 +676,7 @@
    <string name="warning_this_document_has_unsaved_changes">تحذير: هذا المستند يحتوي على تغييرات غير محفوظة</string>
    <string name="bold_headings">عناوين بارزة</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة ساعة واحدة</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة ساعتين</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة 3 ساعات</string>
    <string name="the_book_is_complete">الكتاب مكتمل.</string>
    <string name="time">وقت</string>
    <string name="date_added">تاريخ الإضافة</string>
