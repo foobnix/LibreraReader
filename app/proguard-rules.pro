@@ -86,3 +86,10 @@
     private int mFlingDistance;
     private int mMinimumVelocity;
 }
+
+# EventBus finds @Subscribe methods by reflection over a subscriber and its superclasses,
+# stopping at java./android./androidx. names. Renamed, the androidx activities get walked
+# too, and their Android 12 picture-in-picture override (PictureInPictureUiState) fails to
+# resolve on older systems: NoClassDefFoundError at register() and a crash on launch.
+-keepnames class androidx.** extends android.app.Activity
+-keepnames class androidx.fragment.app.Fragment
