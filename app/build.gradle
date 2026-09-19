@@ -26,8 +26,13 @@ ext {
         versionNumber = FDroidVersionNumber
     }
 
+    // The MuPDF the native library was built from, when the release script says (-Pmupdf=1.28.4):
+    // it goes into the names of the APKs, bundles and mappings, so builds of both can sit side by side
+    mupdfVersion = project.findProperty("mupdf")
+    mupdfSuffix = mupdfVersion ? "-mupdf" + mupdfVersion : ""
+
     println ""
-    println "Version: [" + versionNumber + " - " + codeNumber + "]"
+    println "Version: [" + versionNumber + " - " + codeNumber + "]" + (mupdfVersion ? " MuPDF " + mupdfVersion : "")
 }
 
 android {
@@ -355,10 +360,10 @@ androidComponents {
             if (abi != null) {
                 def abiName = abi.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
                 output.versionCode.set(abiCodes.get(abi, 0) + codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}-${abiName}.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-${abiName}.apk")
             } else {
                 output.versionCode.set(codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}-uni.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-uni.apk")
             }
         }
     }
@@ -376,15 +381,17 @@ tasks.register("copyApks") {
 
         delete fileTree(buildsDir).include("*.apk", "*.aab", "*-mapping.txt")
 
-        // The version's own folder is emptied only when a release is about to be copied into it
+        // The version's own folder is emptied only when a release is about to be copied into it,
+        // and only of the builds of the same MuPDF: a release of the other one stays next to it
         if (project.hasProperty("release")) {
-            delete fileTree("$buildsDir/$versionNumber").include("*.apk", "*.aab", "*-mapping.txt")
+            def own = mupdfSuffix ? "*${mupdfSuffix}*" : "*"
+            delete fileTree("$buildsDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
         }
 
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
-                def appName = "Librera ${flavor.capitalize()}-${flavor == 'fdroid' ? FDroidVersionNumber : versionNumber}"
+                def appName = "Librera ${flavor.capitalize()}-${flavor == 'fdroid' ? FDroidVersionNumber : versionNumber}${mupdfSuffix}"
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 

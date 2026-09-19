@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# The whole release, built on one MuPDF: ./all-release.sh 1.28.4
+# (or through all-release-1.23.7.sh / all-release-1.28.4.sh). The MuPDF version goes into the
+# names of the APKs, bundles, mappings and native symbols, so both releases sit side by side.
+MUPDF=$1
+if [ -z "$MUPDF" ] || [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then
+  echo "Usage: $0 <mupdf version>, one of:" $(ls link_to_mupdf_*.sh | sed 's/link_to_mupdf_//; s/\.sh//')
+  exit 1
+fi
+
 #git reset --hard
 #git pull
 
@@ -15,7 +24,7 @@ else
 fi
 ####################################
 
-./link_to_mupdf_1.28.4.sh
+./link_to_mupdf_$MUPDF.sh || exit 1
 
 cd ../
 
@@ -26,18 +35,18 @@ cd ../
 #./gradlew assembleEbookaRelease bundleEbookaRelease
 
 
-./gradlew assembleLibreraRelease
-./gradlew assemblePdf_v2Release
-./gradlew assembleEbookaRelease
-./gradlew assemblePdf_classicRelease
-./gradlew assembleTts_readerRelease
-./gradlew assembleEpub_readerRelease
-./gradlew assembleProRelease
-./gradlew assembleTts_readerRelease
-./gradlew assembleEpub_readerRelease
-./gradlew assembleFdroidRelease
+./gradlew assembleLibreraRelease -Pmupdf=$MUPDF
+./gradlew assemblePdf_v2Release -Pmupdf=$MUPDF
+./gradlew assembleEbookaRelease -Pmupdf=$MUPDF
+./gradlew assemblePdf_classicRelease -Pmupdf=$MUPDF
+./gradlew assembleTts_readerRelease -Pmupdf=$MUPDF
+./gradlew assembleEpub_readerRelease -Pmupdf=$MUPDF
+./gradlew assembleProRelease -Pmupdf=$MUPDF
+./gradlew assembleTts_readerRelease -Pmupdf=$MUPDF
+./gradlew assembleEpub_readerRelease -Pmupdf=$MUPDF
+./gradlew assembleFdroidRelease -Pmupdf=$MUPDF
 
-./gradlew copyApks -Prelease
+./gradlew copyApks -Prelease -Pmupdf=$MUPDF
 ./gradlew -stop
 
 # Where copyApks puts the builds: librera_builds_dir in the global ~/.gradle/gradle.properties
@@ -61,11 +70,11 @@ fi
 SYMBOLS=$(mktemp -d)
 for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
   mkdir -p "$SYMBOLS/$ABI"
-  "$OBJCOPY" --only-keep-debug Builder/mupdf-1.28.4/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg"
+  "$OBJCOPY" --only-keep-debug Builder/mupdf-$MUPDF/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg"
 done
 mkdir -p "$RELEASE_DIR"
-rm -f "$RELEASE_DIR/Librera-$VERSION-native-debug-symbols.zip"
-(cd "$SYMBOLS" && zip -qr "$RELEASE_DIR/Librera-$VERSION-native-debug-symbols.zip" .)
+rm -f "$RELEASE_DIR/Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip"
+(cd "$SYMBOLS" && zip -qr "$RELEASE_DIR/Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip" .)
 rm -rf "$SYMBOLS"
 # Native debug end
 
