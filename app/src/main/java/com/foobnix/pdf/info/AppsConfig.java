@@ -33,6 +33,13 @@ public class AppsConfig {
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
+    /**
+     * How much of the tint colour the floating chrome keeps, 0-255. Two things bound it: the
+     * page has to be seen moving under the bars at all, and the white the labels are set in
+     * has to hold against the brightest thing that can pass beneath them - a white cover,
+     * which lightens the bar by whatever is let through.
+     */
+    public static final int APP_TRANSPARENCY = 240;
     public static final boolean
             IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");

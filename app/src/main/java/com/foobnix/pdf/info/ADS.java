@@ -212,7 +212,13 @@ public class ADS {
 
     }
 
+    /** Banner ads are switched off; rewarded and interstitial ads are left as they are. */
+    public static final boolean IS_BANNER_ENABLED = false;
+
     public synchronized void showBanner(final Activity a) {
+        if (!IS_BANNER_ENABLED) {
+            return;
+        }
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             return;
         }

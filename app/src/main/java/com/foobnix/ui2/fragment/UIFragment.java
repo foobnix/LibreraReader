@@ -187,7 +187,7 @@ public abstract class UIFragment<T> extends Fragment {
         // under it to show through, and a held-back bar only looks unlike the one above it.
         if (getActivity() instanceof MainTabs2) {
             floatingHeader.getBackground()
-                          .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+                          .setAlpha(AppsConfig.APP_TRANSPARENCY);
         }
         // Every notice raised at the top of a page stands in the chrome, whichever it is.
         floatingNotices.clear();
@@ -310,7 +310,7 @@ public abstract class UIFragment<T> extends Fragment {
             floatingHeader.setBackgroundColor(TintUtil.color);
         }
         if (floatingHeader.getBackground() != null) {
-            floatingHeader.getBackground().setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+            floatingHeader.getBackground().setAlpha(AppsConfig.APP_TRANSPARENCY);
         }
         headerSquared = false;
         floatingHeader.requestLayout();
@@ -323,7 +323,7 @@ public abstract class UIFragment<T> extends Fragment {
             notice.setBackgroundColor(TintUtil.color);
             if (overPage) {
                 notice.getBackground()
-                      .setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+                      .setAlpha(AppsConfig.APP_TRANSPARENCY);
             }
         }
     }

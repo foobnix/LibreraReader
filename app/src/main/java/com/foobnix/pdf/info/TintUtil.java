@@ -50,7 +50,7 @@ public class TintUtil {
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
     public static int cloudSyncColor = Color.parseColor("#66bb6a");// Color.parseColor("#9fd8bc");
-    public static int color = Color.parseColor(AppState.STYLE_COLORS.get(0));
+    public static int color = Color.parseColor(AppState.STYLE_COLORS.get(AppState.DEFAULT_STYLE_COLOR));
     private static List<Drawable> drawables = new ArrayList<Drawable>();
     private static List<GradientDrawable> drawableFill = new ArrayList<GradientDrawable>();
     private static List<View> drawables1 = new ArrayList<View>();

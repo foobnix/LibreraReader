@@ -227,7 +227,7 @@ import java.util.Map;
         GradientDrawable face = new GradientDrawable();
         face.setCornerRadius(Dips.DP_50);
         face.setColor(TintUtil.color);
-        face.setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        face.setAlpha(AppsConfig.APP_TRANSPARENCY);
 
         GradientDrawable mask = new GradientDrawable();
         mask.setCornerRadius(Dips.DP_50);

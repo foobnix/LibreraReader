@@ -316,6 +316,46 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
+    /**
+     * Keeps the floating bar clear of the system's buttons - only by as much of them as lies
+     * under it: with an ad beneath, the ad stands between the two and nothing is kept.
+     */
+    private void placeFloatingBar() {
+        if (indicator == null || !SlidingTabLayout.isFloating()) {
+            return;
+        }
+        View holder = (View) indicator.getParent();
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
+        int below = DocumentController.keptClearOf(this, insets).bottom;
+        int[] at = new int[2];
+        holder.getLocationInWindow(at);
+        int holderBottom = at[1] + holder.getHeight();
+        int windowBottom = indicator.getRootView().getHeight();
+        int covered = Math.max(0, Math.min(below, holderBottom - (windowBottom - below)));
+
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
+        int margin, bottom, padding = indicator.getPaddingTop();
+        if (SlidingTabLayout.isFlush()) {
+            // Square, the bar sits on the screen's edges, and carries the system's buttons
+            // under its own instead of leaving the page showing there.
+            margin = 0;
+            bottom = 0;
+            padding += covered;
+        } else {
+            margin = Dips.DP_10;
+            bottom = Dips.DP_8 + covered;
+        }
+        if (lp.leftMargin != margin || lp.rightMargin != margin || lp.bottomMargin != bottom) {
+            lp.leftMargin = lp.rightMargin = margin;
+            lp.bottomMargin = bottom;
+            indicator.setLayoutParams(lp);
+        }
+        if (indicator.getPaddingBottom() != padding) {
+            indicator.setPadding(indicator.getPaddingLeft(), indicator.getPaddingTop(),
+                                 indicator.getPaddingRight(), padding);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -533,13 +573,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (SlidingTabLayout.isFloating()) {
             // The bar floats clear of the system's own buttons, which the page now runs
             // under rather than stopping above.
-            indicator.post(() -> {
-                WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
-                int below = DocumentController.keptClearOf(MainTabs2.this, insets).bottom;
-                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
-                lp.bottomMargin = Dips.DP_8 + below;
-                indicator.setLayoutParams(lp);
-            });
+            // Placed again whenever what holds it is laid out anew - an ad coming in under the
+            // bar lifts it off the system's buttons.
+            final View barHolder = (View) indicator.getParent();
+            barHolder.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> indicator.post(this::placeFloatingBar));
+            indicator.post(this::placeFloatingBar);
         }
 
         if (AppState.get().tapPositionTop) {

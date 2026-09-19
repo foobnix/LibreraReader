@@ -93,8 +93,11 @@ public class AppState {
      * books reads as noise. Each of these clears 7:1 against the white the labels are set
      * in, with room to spare once the page lightens them.
      */
+    /** The theme colour a fresh install starts with: the indigo, second in STYLE_COLORS. */
+    public static final int DEFAULT_STYLE_COLOR = 1;
     public static final List<String> STYLE_COLORS = Arrays.asList(//
             "#1B2A4A", // Oxford navy - the leather-bound blue
+            "#3949AB", // indigo - the blue Librera wore before the redesign
             "#6B2131", // oxblood
             "#7A5230", // bronze
             "#000000" //
@@ -316,7 +319,7 @@ public class AppState {
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA
     public String tabsOrder9 = DEFAULTS_TABS_ORDER;
-    public int tintThemeColor = Color.parseColor(STYLE_COLORS.get(0));
+    public int tintThemeColor = Color.parseColor(STYLE_COLORS.get(DEFAULT_STYLE_COLOR));
     public boolean isUiTextColor = false;
     public int uiTextColor = Color.BLUE;
     public int uiTextColorUser = Color.MAGENTA;
@@ -561,7 +564,7 @@ public class AppState {
             (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 110)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
     /** How round book covers are cut, 0 (square) to 4; each step is TintUtil.COVER_RADIUS_STEP_DP. */
-    public int coverRadius = 2;
+    public int coverRadius = 0;
     @IgnoreHashCode public int tapZoneTop = TAP_PREV_PAGE;
     @IgnoreHashCode public int tapZoneBottom = TAP_NEXT_PAGE;
     @IgnoreHashCode public int tapZoneLeft = TAP_PREV_PAGE;
