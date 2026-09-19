@@ -819,6 +819,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
+        // The cover fills the corners of its card, so the card is cut to the cover's round:
+        // with a round of its own it would clip the cover to that instead.
+        if (holder.parent instanceof CardView) {
+            ((CardView) holder.parent).setRadius(TintUtil.coverRadius());
+        }
+
         if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
             if (holder.path != null) {
                 holder.path.setVisibility(View.GONE);

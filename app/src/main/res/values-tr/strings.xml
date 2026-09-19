@@ -175,6 +175,7 @@
    <string name="no_serie">Dizi yok</string>
    <string name="no_genre">Tür yok</string>
    <string name="no_language">Dil yok</string>
+   <string name="no_date">Tarih yok</string>
    <string name="without_series">Dizisiz</string>
    <string name="folders">Klasör</string>
    <string name="recent">Son</string>

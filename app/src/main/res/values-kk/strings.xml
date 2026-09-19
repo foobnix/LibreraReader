@@ -175,6 +175,7 @@
    <string name="no_serie">Серия жоқ</string>
    <string name="no_genre">Жанр жоқ</string>
    <string name="no_language">Тіл жоқ</string>
+   <string name="no_date">Күні жоқ</string>
    <string name="without_series">N / A</string>
    <string name="folders">Қалта</string>
    <string name="recent">Жақында</string>

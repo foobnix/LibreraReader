@@ -175,6 +175,7 @@
    <string name="no_serie">シリーズなし</string>
    <string name="no_genre">ジャンルなし</string>
    <string name="no_language">言語なし</string>
+   <string name="no_date">日付なし</string>
    <string name="without_series">シリーズなし</string>
    <string name="folders">フォルダ</string>
    <string name="recent">最近開いたファイル</string>

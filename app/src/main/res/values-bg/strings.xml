@@ -175,6 +175,7 @@
    <string name="no_serie">Няма серия</string>
    <string name="no_genre">Няма жанр</string>
    <string name="no_language">Няма език</string>
+   <string name="no_date">Без дата</string>
    <string name="without_series">N / A</string>
    <string name="folders">Папка</string>
    <string name="recent">Скорошен</string>

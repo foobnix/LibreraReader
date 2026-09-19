@@ -175,6 +175,7 @@
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
    <string name="no_language">Ei kieltä</string>
+   <string name="no_date">Ei päivämäärää</string>
    <string name="without_series">N/A</string>
    <string name="folders">Hakemisto</string>
    <string name="recent">Viimeisimmät</string>

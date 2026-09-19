@@ -175,6 +175,7 @@
    <string name="no_serie">தொடர் இல்லை</string>
    <string name="no_genre">எந்த வகையும் இல்லை</string>
    <string name="no_language">மொழி இல்லை</string>
+   <string name="no_date">தேதி இல்லை</string>
    <string name="without_series">பொருந்தாது</string>
    <string name="folders">கோப்புறை</string>
    <string name="recent">அண்மையில்</string>

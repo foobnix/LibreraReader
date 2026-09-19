@@ -175,6 +175,7 @@
    <string name="no_serie">ไม่มีซีรี่ส์</string>
    <string name="no_genre">ไม่มีประเภท</string>
    <string name="no_language">ไม่มีภาษา</string>
+   <string name="no_date">ไม่มีวันที่</string>
    <string name="without_series">ไม่มีซีรีย์</string>
    <string name="folders">โฟลเดอร์</string>
    <string name="recent">เมื่อเร็วๆนี้</string>

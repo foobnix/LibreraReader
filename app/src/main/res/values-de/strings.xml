@@ -175,6 +175,7 @@
    <string name="no_serie">Keine Reihe</string>
    <string name="no_genre">Kein Genre</string>
    <string name="no_language">Keine Sprache</string>
+   <string name="no_date">Kein Datum</string>
    <string name="without_series">N/A</string>
    <string name="folders">Ordner</string>
    <string name="recent">Verlauf</string>
