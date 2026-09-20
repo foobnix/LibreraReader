@@ -459,6 +459,33 @@ public class AppDB {
     }
 
     /** A completed listing changes only scan-owned fields, not reading or favorite state. */
+    public void publishDiscoveredBooks(String root, List<FileMeta> books) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null || books.isEmpty()) return;
+        Database db = dao.getDatabase();
+        db.beginTransaction();
+        try {
+            for (FileMeta book : books) {
+                if (book.getPath() == null) continue;
+                db.execSQL("INSERT OR IGNORE INTO FILE_META (PATH,TITLE,IS_SEARCH_BOOK) VALUES (?,?,?)",
+                        new Object[]{book.getPath(), book.getTitle(), book.getIsSearchBook() ? 1 : 0});
+                db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=?,"
+                                + "SIZE=COALESCE(?,SIZE),DATE=COALESCE(?,DATE),"
+                                + "PATH_TXT=COALESCE(?,PATH_TXT),EXT=COALESCE(?,EXT) WHERE PATH=?",
+                        new Object[]{book.getIsSearchBook() ? 1 : 0, book.getSize(),
+                                book.getDate(), book.getPathTxt(), book.getExt(), book.getPath()});
+                updateSidecarRevision(db, book);
+                db.execSQL("INSERT OR IGNORE INTO SCAN_MEMBERSHIP (ROOT,PATH) VALUES (?,?)",
+                        new Object[]{root, book.getPath()});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            dao.detachAll();
+        }
+    }
+
+    /** A completed listing changes only scan-owned fields, not reading or favorite state. */
     public void reconcileCompletedScan(List<FileMeta> found, Set<String> completeRoots) {
         reconcileCompletedScan(found, completeRoots, Collections.emptyMap());
     }
@@ -662,8 +689,6 @@ public class AppDB {
         Database db = fileMetaDao.getDatabase();
         db.beginTransaction();
         try {
-            db.execSQL("CREATE TABLE IF NOT EXISTS SCAN_MEMBERSHIP ("
-                    + "ROOT TEXT NOT NULL, PATH TEXT NOT NULL, PRIMARY KEY(ROOT,PATH))");
             for (String[] alias : aliases) migrateSafAliasRow(db, alias[0], alias[1]);
             db.setTransactionSuccessful();
         } finally {

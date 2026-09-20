@@ -34,6 +34,11 @@ final class SafDiscovery {
                 throws IOException, InterruptedException;
     }
 
+    interface BatchListener {
+        void discovered(List<FileMeta> books, Map<String, SafOpfRegistry.Entry> sidecars)
+                throws IOException;
+    }
+
     private static final class FolderResult {
         final Uri folder;
         final List<SafDocuments.Document> children;
@@ -51,13 +56,26 @@ final class SafDiscovery {
     static void collect(Context context, Uri root, List<FileMeta> output,
                         Map<String, SafOpfRegistry.Entry> sidecars, BooleanSupplier stopped)
             throws IOException, InterruptedException {
+        collect(context, root, output, sidecars, stopped, (books, entries) -> {});
+    }
+
+    static void collect(Context context, Uri root, List<FileMeta> output,
+                        Map<String, SafOpfRegistry.Entry> sidecars, BooleanSupplier stopped,
+                        BatchListener listener) throws IOException, InterruptedException {
         collect(root, output, sidecars, stopped,
-                (folder, cancelled) -> SafDocuments.list(context, folder, cancelled));
+                (folder, cancelled) -> SafDocuments.list(context, folder, cancelled), listener);
     }
 
     static void collect(Uri root, List<FileMeta> output,
                         Map<String, SafOpfRegistry.Entry> sidecars,
                         BooleanSupplier stopped, DirectoryListing listing)
+            throws IOException, InterruptedException {
+        collect(root, output, sidecars, stopped, listing, (books, entries) -> {});
+    }
+
+    static void collect(Uri root, List<FileMeta> output,
+                        Map<String, SafOpfRegistry.Entry> sidecars,
+                        BooleanSupplier stopped, DirectoryListing listing, BatchListener listener)
             throws IOException, InterruptedException {
         int parallelism = Math.max(1, Tunables.SAF_DISCOVERY_PARALLELISM);
         ExecutorService workers = Executors.newFixedThreadPool(parallelism);
@@ -91,15 +109,22 @@ final class SafDiscovery {
                     if (cause instanceof IOException) throw (IOException) cause;
                     throw new IOException("Cannot list SAF folder", cause);
                 }
-                recordSidecars(result.children, foundSidecars);
+                Map<String, SafOpfRegistry.Entry> batchSidecars = new HashMap<>();
+                List<FileMeta> batch = new ArrayList<>();
+                recordSidecars(result.children, batchSidecars);
                 for (SafDocuments.Document child : result.children) {
                     if (stopped.getAsBoolean()) throw new IOException("SAF scan cancelled");
                     if (child.directory) {
                         if (visited.add(SafDocumentIdentity.canonical(child.uri))) queued.add(child.uri);
                     } else if (child.name != null
                             && SearchCore.endWith(child.name, ExtUtils.seachExts)) {
-                        found.add(child.book());
+                        batch.add(child.book());
                     }
+                }
+                if (!batch.isEmpty()) {
+                    listener.discovered(batch, batchSidecars);
+                    found.addAll(batch);
+                    foundSidecars.putAll(batchSidecars);
                 }
             }
         } finally {

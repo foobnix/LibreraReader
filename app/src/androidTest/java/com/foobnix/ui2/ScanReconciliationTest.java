@@ -177,4 +177,40 @@ public class ScanReconciliationTest {
             AppDB.get().deleteBy(path);
         }
     }
+
+    @Test public void durablePartialDiscoveryPreservesUserEditsAndNeedsCompleteRemovalProof() {
+        String root = "content://scan-fixture/tree/" + UUID.randomUUID();
+        String path = "content://scan-fixture/document/" + UUID.randomUUID();
+        try {
+            FileMeta found = new FileMeta(path);
+            found.setTitle("Book");
+            found.setIsSearchBook(true);
+            AppDB.get().publishDiscoveredBooks(root, Collections.singletonList(found));
+            FileMeta reader = AppDB.get().load(path);
+            reader.setIsStar(true);
+            reader.setIsRecent(true);
+            AppDB.get().save(reader);
+            AppDB.get().updateReadingProgress(path, 0.6f);
+
+            // A failed scan does not call completed reconciliation. Repeated discovery
+            // must leave progress, favorites, and Recents with their current owners.
+            AppDB.get().publishDiscoveredBooks(root, Collections.singletonList(found));
+            FileMeta durable = AppDB.get().load(path);
+            assertEquals(Boolean.TRUE, durable.getIsSearchBook());
+            assertEquals(Boolean.TRUE, durable.getIsStar());
+            assertEquals(Boolean.TRUE, durable.getIsRecent());
+            assertEquals(0.6f, durable.getIsRecentProgress(), 0.0001f);
+
+            Map<String, Set<String>> absent = new HashMap<>();
+            absent.put(root, Collections.emptySet());
+            AppDB.get().reconcileCompletedScan(Collections.emptyList(),
+                    Collections.singleton(root), absent);
+            FileMeta removed = AppDB.get().load(path);
+            assertEquals(Boolean.FALSE, removed.getIsSearchBook());
+            assertEquals(Boolean.TRUE, removed.getIsStar());
+            assertEquals(0.6f, removed.getIsRecentProgress(), 0.0001f);
+        } finally {
+            AppDB.get().deleteBy(path);
+        }
+    }
 }

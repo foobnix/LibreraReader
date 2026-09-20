@@ -117,6 +117,12 @@ abstract class MessageWorker extends Worker {
                              .sendBroadcast(itent);
     }
 
+    protected void sendScanBatch() {
+        Intent intent = new Intent(BooksService.INTENT_NAME)
+                .putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_BATCH);
+        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+    }
+
     protected void sendProggressMessage(Collection<?> itemsMeta) {
         Intent itent =
                 new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_SEARCH_COUNT)
