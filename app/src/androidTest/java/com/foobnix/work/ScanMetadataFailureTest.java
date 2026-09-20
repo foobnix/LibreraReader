@@ -360,8 +360,10 @@ public class ScanMetadataFailureTest {
             FileMeta found = discovered.get(0);
             ControlledWorker worker = new ControlledWorker(context);
             long owner = ScanOwnership.claim();
+            boolean[] acknowledged = new boolean[1];
             assertTrue(worker.publishLocalMetadata(found, AppDB.get().load(book.getPath()),
-                    owner, () -> false));
+                    owner, () -> false, acknowledged));
+            assertFalse("A failed extraction must remain due for retry", acknowledged[0]);
             FileMeta afterFailure = AppDB.get().load(book.getPath());
             assertEquals("Known title", afterFailure.getTitle());
             assertEquals("Known author", afterFailure.getAuthor());
@@ -370,7 +372,9 @@ public class ScanMetadataFailureTest {
             assertEquals(Boolean.TRUE, afterFailure.getIsStar());
             assertEquals(Long.valueOf(book.length()), afterFailure.getSize());
             worker.fail = false;
-            assertTrue(worker.publishLocalMetadata(found, afterFailure, owner, () -> false));
+            assertTrue(worker.publishLocalMetadata(found, afterFailure,
+                    owner, () -> false, acknowledged));
+            assertTrue(acknowledged[0]);
             FileMeta recovered = AppDB.get().load(book.getPath());
             assertEquals("Recovered title", recovered.getTitle());
             assertTrue(recovered.getAuthor().contains("Writer"));

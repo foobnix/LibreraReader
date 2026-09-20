@@ -139,6 +139,11 @@ public class SearchAllBooksWorker extends MessageWorker {
             AppProfile.init(getApplicationContext());
             if (!ScanOwnership.write(scanGeneration, this::isStopped,
                     AppDB.get()::migrateAllSafRows)) return false;
+            String metadataSettings = MetadataRefreshPolicy.settingsKey();
+            SafStateStore metadataPreferences = SafStateStore.get(getApplicationContext(), "ScanMetadataRevisions");
+            SafStateStore failures = SafStateStore.get(getApplicationContext(), "ScanMetadataFailures");
+            String profileKey = AppProfile.getCurrent() + "|";
+            Map<String, String> appliedRevisions = new HashMap<>();
             ImageExtractor.clearErrors();
             itemsMeta = java.util.Collections.synchronizedList(new LinkedList<>());
             SafOpfRegistry.restore(getApplicationContext());
@@ -217,6 +222,10 @@ public class SearchAllBooksWorker extends MessageWorker {
                 Set<String> retained = new HashSet<>();
                 for (FileMeta row : AppDB.get().scanSnapshot()) retained.add(row.getPath());
                 SafStateStore.get(getApplicationContext(), "SafSidecars").retain(retained);
+                Set<String> revisions = new HashSet<>();
+                for (String path : retained) revisions.add(profileKey + path);
+                metadataPreferences.retain(revisions);
+                failures.retain(revisions);
             })) return false;
             handler.removeCallbacks(timer);
             if (!ScanOwnership.isCurrent(scanGeneration, this::isStopped)) return false;
@@ -236,12 +245,39 @@ public class SearchAllBooksWorker extends MessageWorker {
                 }
                 if (ExtUtils.isExteralSD(found.getPath()) && baseline.getState() == null)
                     baseline.setState(FileMetaCore.STATE_BASIC);
+                String revision = MetadataRefreshPolicy.revision(found,
+                        sidecars.get(found.getPath()), metadataSettings);
+                String revisionKey = profileKey + found.getPath();
+                if (metadataSettings.equals(MetadataRefreshPolicy.settingsKey())
+                        && !MetadataRefreshPolicy.needsExtraction(baseline,
+                                metadataPreferences.getString(revisionKey, null), revision)) continue;
+                if (!MetadataRefreshPolicy.retryDue(failures.getString(revisionKey, null), revision,
+                        System.currentTimeMillis())) continue;
+                boolean[] extracted = new boolean[1];
                 if (ExtUtils.isExteralSD(found.getPath())) {
                     if (!publishSafMetadata(found, baseline, sidecars.get(found.getPath()),
-                            scanGeneration, this::isStopped)) return false;
+                            scanGeneration, this::isStopped, extracted)) return false;
                 } else if (!publishLocalMetadata(found, baseline,
-                        scanGeneration, this::isStopped)) return false;
+                        scanGeneration, this::isStopped, extracted)) return false;
+                if (revision != null && extracted[0])
+                    appliedRevisions.put(revisionKey, revision);
+                if (!ScanOwnership.write(scanGeneration, this::isStopped, () -> {
+                    if (!metadataSettings.equals(MetadataRefreshPolicy.settingsKey())) return;
+                    SafStateStore.Editor edit = failures.edit();
+                    if (extracted[0]) edit.remove(revisionKey);
+                    else edit.putString(revisionKey, MetadataRefreshPolicy.failedRevision(
+                            failures.getString(revisionKey, null), revision, System.currentTimeMillis()));
+                    edit.commit();
+                })) return false;
             }
+            if (!ScanOwnership.write(scanGeneration, this::isStopped, () -> {
+                if (metadataSettings.equals(MetadataRefreshPolicy.settingsKey())) {
+                    SafStateStore.Editor editor = metadataPreferences.edit();
+                    for (Map.Entry<String, String> revision : appliedRevisions.entrySet())
+                        editor.putString(revision.getKey(), revision.getValue());
+                    editor.commit();
+                }
+            })) return false;
             itemsMeta.clear();
             handler.removeCallbacks(refreshTimer);
             CacheZipUtils.CacheDir.ZipService.removeCacheContent();
@@ -260,6 +296,12 @@ public class SearchAllBooksWorker extends MessageWorker {
 
     boolean publishLocalMetadata(FileMeta found, FileMeta baseline, long owner,
                                  java.util.function.BooleanSupplier stopped) {
+        return publishLocalMetadata(found, baseline, owner, stopped, new boolean[1]);
+    }
+
+    boolean publishLocalMetadata(FileMeta found, FileMeta baseline, long owner,
+                                 java.util.function.BooleanSupplier stopped,
+                                 boolean[] extractionSucceededResult) {
         FileMeta extracted = new FileMeta(found.getPath());
         File file = new File(found.getPath());
         FileMetaCore.get().upadteBasicMeta(extracted, file);
@@ -270,8 +312,10 @@ public class SearchAllBooksWorker extends MessageWorker {
             extractionSucceeded = true;
         } catch (Exception failure) { LOG.e(failure); }
         boolean completed = extractionSucceeded;
-        return ScanOwnership.write(owner, stopped,
+        boolean published = ScanOwnership.write(owner, stopped,
                 () -> AppDB.get().updateScannedMetadata(extracted, baseline, completed));
+        extractionSucceededResult[0] = published && completed;
+        return published;
     }
 
     boolean publishSafMetadata(FileMeta found, FileMeta baseline, long owner,
@@ -281,6 +325,12 @@ public class SearchAllBooksWorker extends MessageWorker {
 
     boolean publishSafMetadata(FileMeta found, FileMeta baseline, SafOpfRegistry.Entry sidecar,
                                long owner, java.util.function.BooleanSupplier stopped) {
+        return publishSafMetadata(found, baseline, sidecar, owner, stopped, new boolean[1]);
+    }
+
+    boolean publishSafMetadata(FileMeta found, FileMeta baseline, SafOpfRegistry.Entry sidecar,
+                               long owner, java.util.function.BooleanSupplier stopped,
+                               boolean[] extractionSucceededResult) {
         FileMeta extracted = new FileMeta(found.getPath());
         extracted.setTitle(found.getTitle());
         extracted.setPathTxt(found.getPathTxt());
@@ -297,8 +347,10 @@ public class SearchAllBooksWorker extends MessageWorker {
             extractionSucceeded = true;
         } catch (Exception failure) { LOG.e(failure); }
         boolean completed = extractionSucceeded;
-        return ScanOwnership.write(owner, stopped,
+        boolean published = ScanOwnership.write(owner, stopped,
                 () -> AppDB.get().updateScannedMetadata(extracted, baseline, completed));
+        extractionSucceededResult[0] = published && completed;
+        return published;
     }
 
     protected EbookMeta readSafMetadataForScan(FileMeta found) throws Exception {
