@@ -24,4 +24,19 @@ public class ScanSchemaMigrationTest {
             }
         }
     }
+    @Test public void sidecarRevisionUpgradePreservesBookProgressAndMembership() {
+        try (SQLiteDatabase db = SQLiteDatabase.create(null)) {
+            db.execSQL("CREATE TABLE FILE_META(PATH TEXT PRIMARY KEY,IS_RECENT_PROGRESS REAL)");
+            db.execSQL("INSERT INTO FILE_META VALUES('book',0.75)");
+            db.execSQL("CREATE TABLE SCAN_MEMBERSHIP(ROOT TEXT NOT NULL,PATH TEXT NOT NULL,PRIMARY KEY(ROOT,PATH))");
+            db.execSQL("INSERT INTO SCAN_MEMBERSHIP VALUES('root','book')");
+            new DatabaseUpgradeHelper(InstrumentationRegistry.getInstrumentation().getTargetContext(), null)
+                    .onUpgrade(new StandardDatabase(db), 11, 12);
+            try (Cursor row = db.rawQuery("SELECT IS_RECENT_PROGRESS,SAF_SIDECAR_REVISION FROM FILE_META", null)) {
+                assertTrue(row.moveToFirst()); assertEquals(0.75f, row.getFloat(0), 0); assertTrue(row.isNull(1));
+            }
+            assertEquals(1, android.database.DatabaseUtils.longForQuery(db, "SELECT COUNT(*) FROM SCAN_MEMBERSHIP", null));
+        }
+    }
+
 }

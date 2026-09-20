@@ -22,7 +22,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         List<Migration> migrations = getMigrations();
 
         for (Migration migration : migrations) {
-            if (oldVersion < migration.getVersion()) {
+            if (oldVersion < migration.getVersion() && migration.getVersion() <= newVersion) {
                 migration.runMigration(db);
                 Log.d("greenDAO", "Upgrading schema run " + migration.getVersion());
             }
@@ -42,6 +42,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV9());
         migrations.add(new MigrationV10());
         migrations.add(new MigrationV11());
+        migrations.add(new MigrationV12());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -171,6 +172,13 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
     private static class MigrationV11 implements Migration {
         @Override public Integer getVersion() { return 11; }
         @Override public void runMigration(Database db) { ScanTables.create(db); }
+    }
+
+    private static class MigrationV12 implements Migration {
+        @Override public Integer getVersion() { return 12; }
+        @Override public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE FILE_META ADD COLUMN SAF_SIDECAR_REVISION TEXT");
+        }
     }
 
     private interface Migration {

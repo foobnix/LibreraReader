@@ -29,7 +29,8 @@ public class CheckDeletedBooksMembershipTest {
         Uri duplicate = Uri.parse("content://" + authority + "/tree/library/document/duplicate");
         Uri fresh = Uri.parse("content://" + authority + "/tree/library/document/fresh");
         List<FileMeta> found = new ArrayList<>();
-        SafDiscovery.collect(root, found, () -> false, (folder, stopped) -> Arrays.asList(
+        SafDiscovery.collect(root, found, new HashMap<>(), () -> false,
+                (folder, stopped) -> Arrays.asList(
                 new SafDocuments.Document("excluded.epub", excluded, false, 1L, 1L),
                 new SafDocuments.Document("duplicate.epub", duplicate, false, 1L, 1L),
                 new SafDocuments.Document("fresh.epub", fresh, false, 1L, 1L)));
