@@ -3,12 +3,17 @@ package com.foobnix.work;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
 
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.Clouds;
@@ -20,8 +25,16 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import java.io.File;
-import java.util.LinkedList;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
+import static com.foobnix.pdf.info.AppsConfig.WORKER_POLICY;
 
 public class CheckDeletedBooksWorker extends MessageWorker {
 
@@ -29,102 +42,96 @@ public class CheckDeletedBooksWorker extends MessageWorker {
         super(context, workerParams);
     }
 
-    @Override public boolean doWorkInner() {
-        String errorID = AppProfile.getCurrent();
-        try {
-            Prefs.get().put(errorID, 0);
-            return doWork1();
-        }finally {
-            Prefs.get().remove(errorID, 0);
-        }
+    public static void run(Context context) {
+        Context app = context.getApplicationContext();
+        ScanOwnership.request(() -> enqueue(app));
     }
-     private boolean doWork1() {
-        LOG.d("worker-starts", "CheckDeletedBooksWorker start");
-        Tags2.migration();
 
-        List<FileMeta> all = AppDB.get()
-                                  .getAll();
+    private static void enqueue(Context context) {
+        long generation = ScanOwnership.claim();
+        OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class)
+                .setInputData(new Data.Builder().putLong(ScanOwnership.GENERATION, generation).build())
+                .build();
+        WorkManager.getInstance(context).enqueueUniqueWork(
+                SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, request);
+    }
 
-        for (FileMeta meta : all) {
-            if (meta == null) {
+    private long scanGeneration;
+
+    @Override protected boolean publishCompletion(Runnable action) {
+        return ScanOwnership.write(scanGeneration, this::isStopped, action);
+    }
+
+    @Override protected boolean reportsOwnCompletion() { return true; }
+
+    @Override protected boolean publishFailure(Runnable action) {
+        return ScanOwnership.write(scanGeneration, () -> false, action);
+    }
+
+    @Override public boolean doWorkInner() throws IOException {
+        long generation = ScanOwnership.adopt(
+                getInputData().getLong(ScanOwnership.GENERATION, 0));
+        final long owner = generation;
+        scanGeneration = generation;
+        if (!SearchAllBooksWorker.reconcileSelection(owner, this::isStopped)) return false;
+        Map<String, FileMeta> before = new HashMap<>();
+        for (FileMeta row : AppDB.get().scanSnapshot()) before.put(row.getPath(), row);
+        List<FileMeta> found = new ArrayList<>();
+        Set<String> completeRoots = new HashSet<>();
+        Set<String> incompleteLocal = new HashSet<>();
+        Map<String, Set<String>> rootMembership = new HashMap<>();
+        for (String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            if (path == null || path.trim().isEmpty() || ExtUtils.isExteralSD(path)) continue;
+            File root = new File(path);
+            List<FileMeta> fromRoot = new ArrayList<>();
+            try {
+                LocalDiscovery.collectPartial(root, ExtUtils.seachExts, fromRoot,
+                        () -> !ScanOwnership.isCurrent(owner, this::isStopped), File::listFiles, incompleteLocal);
+            } catch (IOException | RuntimeException unavailable) {
+                if (!ScanOwnership.isCurrent(owner, this::isStopped)) return false;
+                found.addAll(fromRoot);
+                LOG.e(unavailable);
                 continue;
             }
-
-            if (Clouds.isCloud(meta.getPath())) {
-                continue;
-            }
-
-            File bookFile = new File(meta.getPath());
-            if (ExtUtils.isMounted(bookFile)) {
-                if (!bookFile.exists()) {
-                    AppDB.get()
-                         .delete(meta);
-                    LOG.d("BooksService", "Delete-setIsSearchBook", meta.getPath());
-                }
-            }
-
+            found.addAll(fromRoot);
+            Set<String> paths = new HashSet<>();
+            for (FileMeta row : fromRoot) paths.add(row.getPath());
+            rootMembership.put(root.getPath(), paths);
+            completeRoots.add(root.getPath());
         }
-
-        List<FileMeta> localMeta = new LinkedList<FileMeta>();
-        if (JsonDB.isEmpty(BookCSS.get().searchPathsJson)) {
-            sendFinishMessage();
-            return true;
+        if (!reconcileFound(owner, this::isStopped, found, completeRoots, rootMembership,
+                AppData.get().getAllExcluded(), AppData.get().getAllSyncBooks(), incompleteLocal)) return false;
+        for (FileMeta row : found) {
+            if (isStopped()) return false;
+            if (before.containsKey(row.getPath())) continue;
+            FileMeta basic = new FileMeta(row.getPath());
+            FileMetaCore.get().upadteBasicMeta(basic, new File(row.getPath()));
+            FileMeta start = new FileMeta(row.getPath());
+            start.setTitle(row.getTitle());
+            if (!ScanOwnership.write(owner, this::isStopped,
+                    () -> AppDB.get().updateScannedMetadata(basic, start))) return false;
         }
-        if (isStopped()) {
-            return false;
-        }
-        for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (path != null && path.trim()
-                                    .length() > 0) {
-                final File root = new File(path);
-                if (root.isDirectory()) {
-                    LOG.d("Worker", "Search in " + root.getPath());
-                    SearchCore.search(localMeta, root, ExtUtils.seachExts);
-                }
-            }
-        }
-        if (isStopped()) {
-            return false;
-        }
-
-        boolean notifyResults = false;
-
-        for (FileMeta meta : localMeta) {
-            if (isStopped()) {
-                return false;
-            }
-            if (!all.contains(meta)) {
-                FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
-                LOG.d("CheckDeletedBooksWorker", "Add book", meta.getPath());
-                notifyResults = true;
-            }
-        }
-
-        List<FileMeta> allNone = AppDB.get()
-                                      .getAllByState(FileMetaCore.STATE_NONE);
-        for (FileMeta m : allNone) {
-            if (isStopped()) {
-                return false;
-            }
-            LOG.d("CheckDeletedBooksWorker", "STATE_NONE", m.getTitle(), m.getPath(), m.getTitle());
-            FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
-            notifyResults = true;
-        }
-
-        if (isStopped()) {
-            return false;
-        }
-        Clouds.get()
-              .syncronizeGet();
-        if (isStopped()) {
-            return false;
-        }
-        LOG.d("CheckDeletedBooksWorker", notifyResults);
-
-        //TagData.restoreTags();
+        if (isStopped()) return false;
+        Clouds.get().syncronizeGet();
+        if (isStopped()) return false;
         Tags2.updateTagsDB();
+        return ScanOwnership.isCurrent(owner, this::isStopped);
+    }
 
-        return true;
+    static boolean reconcileFound(long owner, java.util.function.BooleanSupplier stopped,
+                                  List<FileMeta> found, Set<String> completeRoots,
+                                  Map<String, Set<String>> rootMembership,
+                                  List<SimpleMeta> excluded, List<FileMeta> synced) {
+        return reconcileFound(owner, stopped, found, completeRoots, rootMembership, excluded, synced,
+                java.util.Collections.emptySet());
+    }
 
+    static boolean reconcileFound(long owner, java.util.function.BooleanSupplier stopped,
+                                  List<FileMeta> found, Set<String> completeRoots,
+                                  Map<String, Set<String>> rootMembership,
+                                  List<SimpleMeta> excluded, List<FileMeta> synced, Set<String> incompleteLocal) {
+        if (!ScanMembership.apply(found, excluded, synced, stopped)) return false;
+        return ScanOwnership.write(owner, stopped,
+                () -> AppDB.get().reconcileCompletedScan(found, completeRoots, rootMembership, incompleteLocal));
     }
 }

@@ -36,9 +36,12 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 public class AppDB {
 
@@ -341,6 +344,215 @@ public class AppDB {
         if (cached != null) cached.setIsRecentProgress(progress);
     }
 
+    public void initializeReadingProgress(String path, float progress, long time) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null) return;
+        dao.getDatabase().execSQL("UPDATE FILE_META SET "
+                        + "IS_RECENT_PROGRESS=COALESCE(IS_RECENT_PROGRESS,?),"
+                        + "IS_RECENT_TIME=COALESCE(IS_RECENT_TIME,?) WHERE PATH=?",
+                new Object[]{progress, time, path});
+        dao.detachAll();
+    }
+
+    public void updateAnnotationIfMissing(String path, String annotation) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null || annotation == null || annotation.isEmpty()) return;
+        dao.getDatabase().execSQL("UPDATE FILE_META SET ANNOTATION=? WHERE PATH=? "
+                        + "AND (ANNOTATION IS NULL OR ANNOTATION='')",
+                new Object[]{annotation, path});
+        dao.detachAll();
+    }
+
+    /** Detached rows, so discovery does not hold mutable DAO identity-cache objects. */
+    public List<FileMeta> scanSnapshot() {
+        FileMetaDao dao = fileMetaDao;
+        List<FileMeta> result = new ArrayList<>();
+        if (dao == null) return result;
+        try (Cursor cursor = dao.getDatabase().rawQuery("SELECT * FROM FILE_META", null)) {
+            while (cursor.moveToNext()) result.add(dao.readEntity(cursor, 0));
+        }
+        return result;
+    }
+
+    private static boolean underRoot(String path, Set<String> roots) {
+        for (String root : roots) {
+            if (path.equals(root) || path.startsWith(root.endsWith("/") ? root : root + "/")) return true;
+        }
+        return false;
+    }
+
+    /** Drop only membership of roots deliberately removed from the folder selection. */
+    public void reconcileDeselectedRoots(Set<String> selectedRoots, Set<String> explicitRemovals) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null) return;
+        Database db = dao.getDatabase();
+        Set<String> removedRoots = new HashSet<>();
+        Set<String> affected = new HashSet<>();
+        Set<String> selectedLocal = new HashSet<>();
+        for (String root : selectedRoots) if (!ExtUtils.isExteralSD(root)) selectedLocal.add(root);
+        db.beginTransaction();
+        try {
+            try (Cursor cursor = db.rawQuery("SELECT ROOT,PATH FROM SCAN_MEMBERSHIP", null)) {
+                while (cursor.moveToNext()) {
+                    String root = cursor.getString(0);
+                    if (!selectedRoots.contains(root)) {
+                        removedRoots.add(root);
+                        affected.add(cursor.getString(1));
+                    }
+                }
+            }
+            for (String root : explicitRemovals) {
+                if (selectedRoots.contains(root) || ExtUtils.isExteralSD(root)) continue;
+                // Legacy local scans had no membership records; the removed root itself
+                // is the only reliable scope for clearing those old scan flags.
+                try (Cursor cursor = db.rawQuery(
+                        "SELECT PATH FROM FILE_META WHERE IS_SEARCH_BOOK=1", null)) {
+                    while (cursor.moveToNext()) {
+                        String path = cursor.getString(0);
+                        if (!ExtUtils.isExteralSD(path)
+                                && underRoot(path, Collections.singleton(root))) affected.add(path);
+                    }
+                }
+            }
+            for (String root : removedRoots) {
+                db.execSQL("DELETE FROM SCAN_MEMBERSHIP WHERE ROOT=?", new Object[]{root});
+            }
+            for (String path : affected) {
+                if (!ExtUtils.isExteralSD(path) && underRoot(path, selectedLocal)) continue;
+                try (Cursor cursor = db.rawQuery(
+                        "SELECT 1 FROM SCAN_MEMBERSHIP WHERE PATH=? LIMIT 1",
+                        new String[]{path})) {
+                    if (!cursor.moveToFirst()) {
+                        db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=0 WHERE PATH=?",
+                                new Object[]{path});
+                    }
+                }
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            dao.detachAll();
+        }
+    }
+
+    /** A completed listing changes only scan-owned fields, not reading or favorite state. */
+    public void reconcileCompletedScan(List<FileMeta> found, Set<String> completeRoots) {
+        reconcileCompletedScan(found, completeRoots, Collections.emptyMap());
+    }
+
+    /** Track roots explicitly: SAF IDs are opaque and local roots may overlap. */
+    public void reconcileCompletedScan(List<FileMeta> found, Set<String> completeRoots,
+                                       Map<String, Set<String>> safMembership) {
+        reconcileCompletedScan(found, completeRoots, safMembership, Collections.emptySet());
+    }
+
+    public void reconcileCompletedScan(List<FileMeta> found, Set<String> completeRoots,
+                                       Map<String, Set<String>> safMembership, Set<String> incompleteLocal) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null) return;
+        org.greenrobot.greendao.database.Database db = dao.getDatabase();
+        Set<String> seen = new HashSet<>();
+        db.beginTransaction();
+        try {
+            for (FileMeta book : found) {
+                String path = book.getPath();
+                if (path == null || !seen.add(path)) continue;
+                db.execSQL("INSERT OR IGNORE INTO FILE_META (PATH,TITLE,IS_SEARCH_BOOK) VALUES (?,?,?)",
+                        new Object[]{path, book.getTitle(), book.getIsSearchBook() ? 1 : 0});
+                db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=? WHERE PATH=?",
+                        new Object[]{book.getIsSearchBook() ? 1 : 0, path});
+                if (ExtUtils.isExteralSD(path)) {
+                    db.execSQL("UPDATE FILE_META SET STATE=?,SIZE=COALESCE(?,SIZE),"
+                                    + "DATE=COALESCE(?,DATE),PATH_TXT=COALESCE(?,PATH_TXT),"
+                                    + "EXT=COALESCE(?,EXT) WHERE PATH=?",
+                            new Object[]{FileMetaCore.STATE_BASIC, book.getSize(), book.getDate(),
+                                    book.getPathTxt(), book.getExt(), path});
+                }
+            }
+            try (Cursor cursor = db.rawQuery(
+                    "SELECT PATH FROM FILE_META WHERE IS_SEARCH_BOOK=1", null)) {
+                while (cursor.moveToNext()) {
+                    String path = cursor.getString(0);
+                    if (!seen.contains(path) && !ExtUtils.isExteralSD(path)
+                            && underRoot(path, completeRoots) && !underRoot(path, incompleteLocal)) {
+                        db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=0 WHERE PATH=?",
+                                new Object[]{path});
+                    }
+                }
+            }
+            for (Map.Entry<String, Set<String>> root : safMembership.entrySet()) {
+                Set<String> previous = new HashSet<>();
+                try (Cursor cursor = db.rawQuery(
+                        "SELECT PATH FROM SCAN_MEMBERSHIP WHERE ROOT=?",
+                        new String[]{root.getKey()})) {
+                    while (cursor.moveToNext()) previous.add(cursor.getString(0));
+                }
+                db.execSQL("DELETE FROM SCAN_MEMBERSHIP WHERE ROOT=?",
+                        new Object[]{root.getKey()});
+                for (String path : root.getValue()) {
+                    db.execSQL("INSERT OR IGNORE INTO SCAN_MEMBERSHIP (ROOT,PATH) VALUES (?,?)",
+                            new Object[]{root.getKey(), path});
+                }
+                for (String path : previous) {
+                    if (seen.contains(path) || !ExtUtils.isExteralSD(path)) continue;
+                    try (Cursor cursor = db.rawQuery(
+                            "SELECT 1 FROM SCAN_MEMBERSHIP WHERE PATH=? LIMIT 1",
+                            new String[]{path})) {
+                        if (!cursor.moveToFirst()) {
+                            db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=0 WHERE PATH=?",
+                                    new Object[]{path});
+                        }
+                    }
+                }
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            dao.detachAll();
+        }
+    }
+
+    /** Compare metadata to the scan-start row in SQL, preserving intervening user edits. */
+    public void updateScannedMetadata(FileMeta extracted, FileMeta before) {
+        updateScannedMetadata(extracted, before, true);
+    }
+
+    /** A failed content read can update verified file facts, but cannot erase known metadata. */
+    public void updateScannedMetadata(FileMeta extracted, FileMeta before,
+                                      boolean extractionSucceeded) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null) return;
+        String[] columns = {"TITLE", "AUTHOR", "SEQUENCE", "GENRE", "CHILD", "ANNOTATION",
+                "S_INDEX", "EXT", "SIZE", "DATE", "DATE_TXT", "SIZE_TXT", "PATH_TXT",
+                "LANG", "PAGES", "KEYWORD", "YEAR", "STATE", "PUBLISHER", "ISBN", "PARENT_PATH"};
+        Set<String> basicMetadataColumns = new HashSet<>(java.util.Arrays.asList(
+                "EXT", "SIZE", "DATE", "DATE_TXT", "SIZE_TXT", "PATH_TXT", "PARENT_PATH"));
+        Object[] oldValues = metadataValues(before);
+        Object[] newValues = metadataValues(extracted);
+        StringBuilder sql = new StringBuilder("UPDATE FILE_META SET ");
+        java.util.List<Object> arguments = new java.util.ArrayList<>();
+        for (int i = 0; i < columns.length; i++) {
+            if (!extractionSucceeded && !basicMetadataColumns.contains(columns[i])) continue;
+            if (!arguments.isEmpty()) sql.append(',');
+            sql.append(columns[i]).append("=CASE WHEN ").append(columns[i])
+                    .append(" IS ? THEN ? ELSE ").append(columns[i]).append(" END");
+            arguments.add(oldValues[i]);
+            arguments.add(newValues[i]);
+        }
+        sql.append(" WHERE PATH=?");
+        arguments.add(extracted.getPath());
+        dao.getDatabase().execSQL(sql.toString(), arguments.toArray());
+        dao.detachAll();
+    }
+
+    private static Object[] metadataValues(FileMeta book) {
+        return new Object[]{book.getTitle(), book.getAuthor(), book.getSequence(), book.getGenre(),
+                book.getChild(), book.getAnnotation(), book.getSIndex(), book.getExt(),
+                book.getSize(), book.getDate(), book.getDateTxt(), book.getSizeTxt(), book.getPathTxt(),
+                book.getLang(), book.getPages(), book.getKeyword(), book.getYear(), book.getState(),
+                book.getPublisher(), book.getIsbn(), book.getParentPath()};
+    }
+
     public FileMeta getOrCreate(String path) {
         path = migrateSafIdentity(path);
         if (fileMetaDao == null) {
@@ -393,8 +605,6 @@ public class AppDB {
         Database db = fileMetaDao.getDatabase();
         db.beginTransaction();
         try {
-            db.execSQL("CREATE TABLE IF NOT EXISTS SCAN_MEMBERSHIP ("
-                    + "ROOT TEXT NOT NULL, PATH TEXT NOT NULL, PRIMARY KEY(ROOT,PATH))");
             for (String alias : aliases) {
                 FileMeta old = fileMetaDao.load(alias);
                 if (old == null) continue;

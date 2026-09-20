@@ -12,7 +12,7 @@ public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(10, "com.foobnix.dao2");
+        Schema schema = new Schema(11, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -62,6 +62,14 @@ public class Dao2Generator {
 
         String path = LocalPaths.repo("app/src/main/java");
         new DaoGenerator().generateAll(schema, path);
+        // Non-entity scan tables share the schema lifecycle with the generated DAOs.
+        java.nio.file.Path master = new File(path, "com/foobnix/dao2/DaoMaster.java").toPath();
+        String generated = new String(java.nio.file.Files.readAllBytes(master), java.nio.charset.StandardCharsets.UTF_8);
+        generated = generated.replace("DictMetaDao.createTable(db, ifNotExists);",
+                "DictMetaDao.createTable(db, ifNotExists);\n        ScanTables.create(db);");
+        generated = generated.replace("DictMetaDao.dropTable(db, ifExists);",
+                "DictMetaDao.dropTable(db, ifExists);\n        ScanTables.drop(db);");
+        java.nio.file.Files.write(master, generated.getBytes(java.nio.charset.StandardCharsets.UTF_8));
 
 
     }

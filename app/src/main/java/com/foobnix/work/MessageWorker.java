@@ -20,6 +20,17 @@ import java.io.IOException;
 import java.util.Collection;
 
 abstract class MessageWorker extends Worker {
+    private static int activeWorkers;
+
+    private static synchronized void started() {
+        activeWorkers++;
+        BooksService.isRunning = true;
+    }
+
+    private static synchronized boolean finished() {
+        BooksService.isRunning = --activeWorkers > 0;
+        return !BooksService.isRunning;
+    }
 
     public MessageWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -34,12 +45,12 @@ abstract class MessageWorker extends Worker {
 
     @NonNull @Override public Result doWork() {
         boolean notifyResult = false;
+        started();
         try {
             Prefs.get().init(getApplicationContext());
             LOG.d("MessageWorker-Status", "Status: #1 Started", this.getClass(), Thread.currentThread());
-            BooksService.isRunning = true;
             notifyResult = doWorkInner();
-            return Result.success();
+            return notifyResult ? Result.success() : Result.failure();
         } catch (Exception e) {
             LOG.e(e);
             return Result.failure();
@@ -49,18 +60,36 @@ abstract class MessageWorker extends Worker {
         } catch (Throwable e) {
             return Result.failure();
         } finally {
-            if (notifyResult) {
-                sendFinishMessage();
-            } else {
-                LOG.d("MessageWorker-Status", "Status: #0 Cancelled", this.getClass(), Thread.currentThread());
+            boolean lastWorker = finished();
+            if (reportsOwnCompletion()) {
+                if (!notifyResult || !publishCompletion(this::sendFinishMessage))
+                    publishFailure(() -> sendFinishMessage(getApplicationContext()));
+            } else if (lastWorker) {
+                if (notifyResult && publishCompletion(this::sendFinishMessage)) {
+                    // Success was published by the current worker.
+                } else {
+                    // Failure and cancellation must also release the library's busy UI.
+                    // Do not publish the success-only synchronization event.
+                    sendFinishMessage(getApplicationContext());
+                }
             }
-            BooksService.isRunning = false;
             LOG.d("MessageWorker-Status", "Status: #2 Finished", this.getClass(), Thread.currentThread());
         }
 
     }
 
-    abstract boolean doWorkInner() throws IOException;
+    abstract boolean doWorkInner() throws IOException, InterruptedException;
+
+    protected boolean publishCompletion(Runnable action) {
+        action.run();
+        return true;
+    }
+
+    /** Scans publish their own terminal event even while an obsolete worker unwinds. */
+    protected boolean reportsOwnCompletion() { return false; }
+
+    /** The current cancelled scan still releases its busy UI; a replaced scan is silent. */
+    protected boolean publishFailure(Runnable action) { return publishCompletion(action); }
 
     protected void sendFinishMessage() {
         try {

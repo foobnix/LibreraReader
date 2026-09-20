@@ -227,6 +227,7 @@ public class CalirbeExtractor {
             meta.setYear(PubDate.published(dates));
         } catch (Exception e) {
             LOG.e(e);
+            meta.markExtractionFailed();
         }
 
         return meta;
