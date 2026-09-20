@@ -123,6 +123,8 @@ public class CheckDeletedBooksWorker extends MessageWorker {
 
         //TagData.restoreTags();
         Tags2.updateTagsDB();
+        if (isStopped()) return false;
+        CoverWarmupWorker.run(getApplicationContext());
 
         return true;
 

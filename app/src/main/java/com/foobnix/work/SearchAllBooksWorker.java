@@ -239,6 +239,8 @@ public class SearchAllBooksWorker extends MessageWorker {
                 return false;
             }
             updateBookAnnotations();
+            if (isStopped()) return false;
+            CoverWarmupWorker.run(getApplicationContext());
         } finally {
             Prefs.get().remove(errorID, 0);
             handler.removeCallbacksAndMessages(null);
