@@ -462,7 +462,8 @@ public class AppDB {
                 db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=? WHERE PATH=?",
                         new Object[]{book.getIsSearchBook() ? 1 : 0, path});
                 if (ExtUtils.isExteralSD(path)) {
-                    db.execSQL("UPDATE FILE_META SET STATE=?,SIZE=COALESCE(?,SIZE),"
+                    db.execSQL("UPDATE FILE_META SET STATE=COALESCE(STATE,?),"
+                                    + "SIZE=COALESCE(?,SIZE),"
                                     + "DATE=COALESCE(?,DATE),PATH_TXT=COALESCE(?,PATH_TXT),"
                                     + "EXT=COALESCE(?,EXT) WHERE PATH=?",
                             new Object[]{FileMetaCore.STATE_BASIC, book.getSize(), book.getDate(),
@@ -606,23 +607,7 @@ public class AppDB {
         db.beginTransaction();
         try {
             for (String alias : aliases) {
-                FileMeta old = fileMetaDao.load(alias);
-                if (old == null) continue;
-                FileMeta current = fileMetaDao.load(identity);
-                if (current == null) {
-                    fileMetaDao.deleteByKey(alias);
-                    old.setPath(identity);
-                    fileMetaDao.insert(old);
-                } else {
-                    mergeSafAlias(current, old);
-                    fileMetaDao.update(current);
-                    fileMetaDao.deleteByKey(alias);
-                }
-                db.execSQL("INSERT OR IGNORE INTO SCAN_MEMBERSHIP(ROOT,PATH) "
-                                + "SELECT ROOT,? FROM SCAN_MEMBERSHIP WHERE PATH=?",
-                        new Object[]{identity, alias});
-                db.execSQL("DELETE FROM SCAN_MEMBERSHIP WHERE PATH=?", new Object[]{alias});
-                fileMetaDao.detachAll();
+                migrateSafAliasRow(db, alias, identity);
             }
             db.setTransactionSuccessful();
         } finally {
@@ -630,6 +615,52 @@ public class AppDB {
             fileMetaDao.detachAll();
         }
         return identity;
+    }
+
+    /** Migrate all legacy grant-bearing rows before scan snapshots or membership decisions. */
+    public synchronized void migrateAllSafRows() {
+        if (fileMetaDao == null) return;
+        List<String[]> aliases = new ArrayList<>();
+        try (Cursor cursor = fileMetaDao.getDatabase().rawQuery(
+                "SELECT PATH FROM FILE_META WHERE PATH LIKE 'content:%'", null)) {
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(0);
+                String identity = SafDocumentIdentity.canonical(Uri.parse(path)).toString();
+                if (!path.equals(identity)) aliases.add(new String[]{path, identity});
+            }
+        }
+        if (aliases.isEmpty()) return;
+        Database db = fileMetaDao.getDatabase();
+        db.beginTransaction();
+        try {
+            db.execSQL("CREATE TABLE IF NOT EXISTS SCAN_MEMBERSHIP ("
+                    + "ROOT TEXT NOT NULL, PATH TEXT NOT NULL, PRIMARY KEY(ROOT,PATH))");
+            for (String[] alias : aliases) migrateSafAliasRow(db, alias[0], alias[1]);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            fileMetaDao.detachAll();
+        }
+    }
+
+    private void migrateSafAliasRow(Database db, String alias, String identity) {
+        FileMeta old = fileMetaDao.load(alias);
+        if (old == null) return;
+        FileMeta current = fileMetaDao.load(identity);
+        if (current == null) {
+            fileMetaDao.deleteByKey(alias);
+            old.setPath(identity);
+            fileMetaDao.insert(old);
+        } else {
+            mergeSafAlias(current, old);
+            fileMetaDao.update(current);
+            fileMetaDao.deleteByKey(alias);
+        }
+        db.execSQL("INSERT OR IGNORE INTO SCAN_MEMBERSHIP(ROOT,PATH) "
+                        + "SELECT ROOT,? FROM SCAN_MEMBERSHIP WHERE PATH=?",
+                new Object[]{identity, alias});
+        db.execSQL("DELETE FROM SCAN_MEMBERSHIP WHERE PATH=?", new Object[]{alias});
+        fileMetaDao.detachAll();
     }
 
     private static void mergeSafAlias(FileMeta current, FileMeta old) {

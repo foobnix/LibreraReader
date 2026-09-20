@@ -1,6 +1,8 @@
 package com.foobnix.work;
 
 import android.content.Context;
+import android.net.Uri;
+import androidx.core.content.FileProvider;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.work.Data;
 import androidx.work.ListenableWorker;
@@ -25,6 +27,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import kotlin.coroutines.EmptyCoroutineContext;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -102,6 +107,48 @@ public class ScanMetadataFailureTest {
         }
     }
 
+    @Test public void replacedWorkerCannotPublishAfterBlockedMetadataOpen() throws Exception {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AppProfile.init(context);
+        String path = "content://scan-blocked-" + UUID.randomUUID() + "/book";
+        FileMeta old = new FileMeta(path);
+        old.setTitle("Known title");
+        old.setSize(10L);
+        AppDB.get().saveAll(Collections.singletonList(old));
+        CountDownLatch entered = new CountDownLatch(1);
+        CountDownLatch release = new CountDownLatch(1);
+        AtomicReference<Boolean> published = new AtomicReference<>();
+        SearchAllBooksWorker worker = new SearchAllBooksWorker(context, parameters()) {
+            @Override protected EbookMeta readSafMetadataForScan(FileMeta found) throws Exception {
+                entered.countDown();
+                if (!release.await(3, TimeUnit.SECONDS)) throw new IOException("Timed out fixture");
+                throw new IOException("Provider returned a failed content open");
+            }
+        };
+        FileMeta found = new FileMeta(path);
+        found.setTitle("Discovered title");
+        found.setSize(20L);
+        long oldOwner = ScanOwnership.claim();
+        Thread scan = new Thread(() -> published.set(worker.publishSafMetadata(
+                found, AppDB.get().load(path), oldOwner, () -> false)));
+        try {
+            scan.start();
+            assertTrue(entered.await(3, TimeUnit.SECONDS));
+            ScanOwnership.claim();
+            release.countDown();
+            scan.join(3000);
+            assertFalse(scan.isAlive());
+            assertEquals(Boolean.FALSE, published.get());
+            assertEquals("Known title", AppDB.get().load(path).getTitle());
+            assertEquals(Long.valueOf(10), AppDB.get().load(path).getSize());
+        } finally {
+            release.countDown();
+            scan.join(3000);
+            AppDB.get().deleteBy(path);
+        }
+    }
+
+
     private static WorkerParameters parameters() {
         return new WorkerParameters(UUID.randomUUID(), Data.EMPTY, Collections.emptyList(),
                 new WorkerParameters.RuntimeExtras(), 0, 0, Runnable::run,
@@ -121,6 +168,101 @@ public class ScanMetadataFailureTest {
         @Override protected EbookMeta readLocalMetadata(File source) throws IOException {
             if (fail) throw new IOException("Simulated content access failure");
             return super.readLocalMetadata(source);
+        }
+        @Override protected EbookMeta readSafMetadataForScan(FileMeta found) throws Exception {
+            if (fail) throw new IOException("Simulated provider failure");
+            return super.readSafMetadataForScan(found);
+        }
+    }
+
+    @Test public void safDiscoveryAndFailedExtractionRetainAnExistingFullRow() throws Exception {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AppProfile.init(context);
+        File source = File.createTempFile("scan-saf-meta-", ".fb2", context.getCacheDir());
+        Uri uri = FileProvider.getUriForFile(context,
+                context.getPackageName() + ".provider", source);
+        String path = uri.toString();
+        try {
+            String fb2 = "<?xml version='1.0' encoding='UTF-8'?>"
+                    + "<FictionBook xmlns='http://www.gribuser.ru/xml/fictionbook/2.0'>"
+                    + "<description><title-info><book-title>Provider recovered</book-title>"
+                    + "<author><first-name>New</first-name><last-name>Writer</last-name></author>"
+                    + "</title-info></description><body><section><p>Text</p></section></body>"
+                    + "</FictionBook>";
+            try (FileOutputStream output = new FileOutputStream(source)) {
+                output.write(fb2.getBytes(StandardCharsets.UTF_8));
+            }
+            FileMeta old = new FileMeta(path);
+            old.setTitle("Known provider title"); old.setAuthor("Known provider author");
+            old.setAnnotation("Known provider description"); old.setState(FileMetaCore.STATE_FULL);
+            old.setIsStar(true);
+            AppDB.get().saveAll(Collections.singletonList(old));
+            FileMeta found = new FileMeta(path);
+            found.setTitle("story.fb2"); found.setPathTxt("story.fb2");
+            found.setSize(source.length()); found.setDate(source.lastModified());
+            found.setExt("fb2"); found.setIsSearchBook(true);
+            AppDB.get().reconcileCompletedScan(Collections.singletonList(found),
+                    Collections.emptySet());
+            assertEquals(FileMetaCore.STATE_FULL,
+                    AppDB.get().load(path).getState().intValue());
+            ControlledWorker worker = new ControlledWorker(context);
+            long owner = ScanOwnership.claim();
+            assertTrue(worker.publishSafMetadata(found, AppDB.get().load(path), owner, () -> false));
+            FileMeta failed = AppDB.get().load(path);
+            assertEquals("Known provider title", failed.getTitle());
+            assertEquals("Known provider author", failed.getAuthor());
+            assertEquals("Known provider description", failed.getAnnotation());
+            assertEquals(FileMetaCore.STATE_FULL, failed.getState().intValue());
+            assertEquals(Boolean.TRUE, failed.getIsStar());
+            worker.fail = false;
+            assertTrue(worker.publishSafMetadata(found, failed, owner, () -> false));
+            FileMeta recovered = AppDB.get().load(path);
+            assertEquals("Provider recovered", recovered.getTitle());
+            assertTrue(recovered.getAuthor().contains("Writer"));
+            assertEquals(Boolean.TRUE, recovered.getIsStar());
+        } finally {
+            AppDB.get().deleteBy(path);
+            source.delete();
+        }
+    }
+
+    @Test public void newlyDiscoveredSafBookRemainsBasicUntilExtractionSucceeds() throws Exception {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AppProfile.init(context);
+        File source = File.createTempFile("scan-new-saf-", ".fb2", context.getCacheDir());
+        Uri uri = FileProvider.getUriForFile(context,
+                context.getPackageName() + ".provider", source);
+        String path = uri.toString();
+        try {
+            String fb2 = "<?xml version='1.0' encoding='UTF-8'?>"
+                    + "<FictionBook xmlns='http://www.gribuser.ru/xml/fictionbook/2.0'>"
+                    + "<description><title-info><book-title>New SAF title</book-title>"
+                    + "</title-info></description><body><section><p>Text</p></section></body>"
+                    + "</FictionBook>";
+            try (FileOutputStream output = new FileOutputStream(source)) {
+                output.write(fb2.getBytes(StandardCharsets.UTF_8));
+            }
+            FileMeta found = new FileMeta(path);
+            found.setTitle("new.fb2"); found.setPathTxt("new.fb2");
+            found.setSize(source.length()); found.setDate(source.lastModified());
+            found.setIsSearchBook(true);
+            AppDB.get().reconcileCompletedScan(Collections.singletonList(found),
+                    Collections.emptySet());
+            assertEquals(FileMetaCore.STATE_BASIC, AppDB.get().load(path).getState().intValue());
+            ControlledWorker worker = new ControlledWorker(context);
+            long owner = ScanOwnership.claim();
+            FileMeta baseline = AppDB.get().load(path);
+            assertTrue(worker.publishSafMetadata(found, baseline, owner, () -> false));
+            FileMeta afterFailure = AppDB.get().load(path);
+            assertEquals(FileMetaCore.STATE_BASIC, afterFailure.getState().intValue());
+            worker.fail = false;
+            assertTrue(worker.publishSafMetadata(found, afterFailure, owner, () -> false));
+            FileMeta recovered = AppDB.get().load(path);
+            assertEquals(FileMetaCore.STATE_FULL, recovered.getState().intValue());
+            assertEquals("New SAF title", recovered.getTitle());
+        } finally {
+            AppDB.get().deleteBy(path);
+            source.delete();
         }
     }
 

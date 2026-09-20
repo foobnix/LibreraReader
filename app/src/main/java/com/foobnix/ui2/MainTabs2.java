@@ -268,6 +268,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             String pathSAF = uri.toString();
 
             StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+            BookCSS.get().save(this);
 
             LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, BookCSS.get().pathSAF);
 

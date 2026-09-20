@@ -1,6 +1,7 @@
 package com.foobnix.work;
 
 import android.content.Context;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.work.Data;
@@ -68,42 +69,62 @@ public class CheckDeletedBooksWorker extends MessageWorker {
         return ScanOwnership.write(scanGeneration, () -> false, action);
     }
 
-    @Override public boolean doWorkInner() throws IOException {
+    @Override public boolean doWorkInner() throws IOException, InterruptedException {
         long generation = ScanOwnership.adopt(
                 getInputData().getLong(ScanOwnership.GENERATION, 0));
         final long owner = generation;
         scanGeneration = generation;
-        if (!SearchAllBooksWorker.reconcileSelection(owner, this::isStopped)) return false;
+        if (!SearchAllBooksWorker.reconcileSelection(generation, this::isStopped)) return false;
+        if (!ScanOwnership.write(owner, this::isStopped,
+                AppDB.get()::migrateAllSafRows)) return false;
         Map<String, FileMeta> before = new HashMap<>();
         for (FileMeta row : AppDB.get().scanSnapshot()) before.put(row.getPath(), row);
         List<FileMeta> found = new ArrayList<>();
         Set<String> completeRoots = new HashSet<>();
         Set<String> incompleteLocal = new HashSet<>();
-        Map<String, Set<String>> rootMembership = new HashMap<>();
+        Map<String, Set<String>> safMembership = new HashMap<>();
         for (String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (path == null || path.trim().isEmpty() || ExtUtils.isExteralSD(path)) continue;
-            File root = new File(path);
-            List<FileMeta> fromRoot = new ArrayList<>();
+            if (path == null || path.trim().isEmpty()) continue;
             try {
-                LocalDiscovery.collectPartial(root, ExtUtils.seachExts, fromRoot,
-                        () -> !ScanOwnership.isCurrent(owner, this::isStopped), File::listFiles, incompleteLocal);
+            if (ExtUtils.isExteralSD(path)) {
+                List<FileMeta> fromRoot = new ArrayList<>();
+                try { SafDiscovery.collect(getApplicationContext(), Uri.parse(path), fromRoot,
+                        () -> !ScanOwnership.isCurrent(owner, this::isStopped)); }
+                finally { found.addAll(fromRoot); }
+                Set<String> paths = new HashSet<>();
+                for (FileMeta row : fromRoot) paths.add(row.getPath());
+                safMembership.put(path, paths);
+                completeRoots.add(path);
+            } else {
+                File root = new File(path);
+                List<FileMeta> fromRoot = new ArrayList<>();
+                try {
+                    LocalDiscovery.collectPartial(root, ExtUtils.seachExts, fromRoot,
+                            () -> !ScanOwnership.isCurrent(owner, this::isStopped), File::listFiles, incompleteLocal);
+                } catch (IOException incomplete) {
+                    found.addAll(fromRoot);
+                    throw incomplete;
+                }
+                found.addAll(fromRoot);
+                Set<String> paths = new HashSet<>();
+                for (FileMeta row : fromRoot) paths.add(row.getPath());
+                safMembership.put(root.getPath(), paths);
+                completeRoots.add(root.getPath());
+            }
             } catch (IOException | RuntimeException unavailable) {
                 if (!ScanOwnership.isCurrent(owner, this::isStopped)) return false;
-                found.addAll(fromRoot);
                 LOG.e(unavailable);
-                continue;
             }
-            found.addAll(fromRoot);
-            Set<String> paths = new HashSet<>();
-            for (FileMeta row : fromRoot) paths.add(row.getPath());
-            rootMembership.put(root.getPath(), paths);
-            completeRoots.add(root.getPath());
         }
-        if (!reconcileFound(owner, this::isStopped, found, completeRoots, rootMembership,
+        Map<String, FileMeta> unique = new java.util.LinkedHashMap<>();
+        for (FileMeta row : found) unique.putIfAbsent(row.getPath(), row);
+        found.clear(); found.addAll(unique.values());
+        if (!reconcileFound(owner, this::isStopped, found, completeRoots, safMembership,
                 AppData.get().getAllExcluded(), AppData.get().getAllSyncBooks(), incompleteLocal)) return false;
         for (FileMeta row : found) {
             if (isStopped()) return false;
             if (before.containsKey(row.getPath())) continue;
+            if (ExtUtils.isExteralSD(row.getPath())) continue;
             FileMeta basic = new FileMeta(row.getPath());
             FileMetaCore.get().upadteBasicMeta(basic, new File(row.getPath()));
             FileMeta start = new FileMeta(row.getPath());
