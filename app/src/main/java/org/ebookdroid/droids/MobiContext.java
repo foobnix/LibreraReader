@@ -2,7 +2,9 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
 import com.foobnix.ext.EpubExtractor;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.model.AppSP;
@@ -17,19 +19,23 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 public class MobiContext extends PdfContext {
 
     String fileNameEpub = null;
 
-    public int originalHashCode;
     File cacheFile;
+
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + BookCSS.get().isEnableBBCode).hashCode();
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, ConversionCache.key(fileName + EpubProcessingSettings.key()) + "-mobi.epub");
         return cacheFile;
     }
 
@@ -37,34 +43,55 @@ public class MobiContext extends PdfContext {
     public CodecDocument openDocumentInner(String fileName, String password) {
 
         LOG.d("Context", "MobiContext", fileName);
-
-        if (!AppsConfig.IS_LOG && cacheFile.isFile()) {
-            fileNameEpub = cacheFile.getPath();
-            LOG.d("Context", "MobiContext cache", fileNameEpub);
-
-        } else {
-            try {
-                int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
-
-                FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
-                fileNameEpub = extract.path;
-                LOG.d("Context", "MobiContext outName", outName, extract.path);
-                if (BookCSS.get().isAutoHypens) {
-
-                    EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath(), null);
-                    fileNameEpub = cacheFile.getPath();
+        if (cacheFile == null) cacheFile = getCacheFileName(fileName);
+        ConversionCache.prepare(cacheFile);
+        AutoCloseable outputLease = null;
+        synchronized (BookCacheLeases.class) {
+            if (cacheFile.isFile()) outputLease = BookCacheLeases.acquire(cacheFile);
+        }
+        if (outputLease == null) {
+            String stem = "mobi-" + UUID.randomUUID();
+            File converted = new File(CacheZipUtils.CACHE_BOOK_DIR, stem + ".epub");
+            File processed = null;
+            AutoCloseable processingLease = null;
+            try (AutoCloseable conversionLease = BookCacheLeases.acquire(converted)) {
+                MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), stem);
+                File publishable = converted;
+                if (EpubProcessingSettings.isAutoHypens()) {
+                    synchronized (BookCacheLeases.class) {
+                        processed = BookCacheLeases.temporary(CacheZipUtils.CACHE_BOOK_DIR, "mobi-process-");
+                        processingLease = BookCacheLeases.acquire(processed);
+                    }
+                    EpubExtractor.proccessHypensApache(converted.getPath(), processed.getPath(), null);
+                    if (TempHolder.get().loadingCancelled.get())
+                        throw new IOException("MOBI processing cancelled");
+                    publishable = processed;
                 }
-                LOG.d("Context", "MobiContext extract", fileNameEpub);
-
-            } catch (Exception e) {
-                LOG.e(e);
+                synchronized (BookCacheLeases.class) {
+                    if (!cacheFile.isFile()) BookCacheLeases.publish(publishable, cacheFile);
+                    outputLease = BookCacheLeases.acquire(cacheFile);
+                }
+            } catch (Exception failure) {
+                throw new IllegalStateException("Cannot convert MOBI book", failure);
+            } finally {
+                if (processingLease != null) {
+                    try { processingLease.close(); } catch (Exception failure) { LOG.e(failure); }
+                }
+                BookCacheLeases.evict(converted);
+                if (processed != null) BookCacheLeases.evict(processed);
             }
         }
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileNameEpub, password);
+        fileNameEpub = cacheFile.getPath();
+        final MuPdfDocument muPdfDocument;
+        try {
+            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileNameEpub, password);
+        } finally {
+            try { outputLease.close(); } catch (Exception failure) { LOG.e(failure); }
+        }
 
         final File jsonFile = new File(cacheFile + ".json");
-        if (jsonFile.isFile()) {
+        if (JsonHelper.isValidMapFile(jsonFile)) {
             muPdfDocument.setFootNotes(JsonHelper.fileToMap(jsonFile));
             LOG.d("Load notes from file", jsonFile);
         } else {
@@ -79,7 +106,7 @@ public class MobiContext extends PdfContext {
 
                         // a cancelled extraction is empty or partial, it must not stay in the cache
                         if (!TempHolder.get().loadingCancelled.get()) {
-                            JsonHelper.mapToFile(jsonFile, notes);
+                            JsonHelper.mapToCacheFile(jsonFile, notes);
                             LOG.d("save notes to file", jsonFile);
                         }
 

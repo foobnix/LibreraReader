@@ -76,11 +76,11 @@ public class HtmlExtractor {
                 int svgNumbver = 0;
 
                 while ((line = input.readLine()) != null) {
-                    if (BookCSS.get().isEnableBBCode) {
+                    if (EpubProcessingSettings.isEnableBBCode()) {
                         line = TxtUtils.convertBBCodeToHtml(line);
                     }
 
-                    if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) {
+                    if (EpubProcessingSettings.documentStyle() == BookCSS.STYLES_ONLY_USER || EpubProcessingSettings.isExperimental()) {
                         if (line.contains("<math")) {
                             svgNumbver++;
                             findSVG = true;
@@ -102,7 +102,7 @@ public class HtmlExtractor {
 
                             Object lock = new Object();
 
-                            FileOutputStream out = new FileOutputStream(new File(CacheZipUtils.CACHE_BOOK_DIR, imageName));
+                            FileOutputStream out = new FileOutputStream(new File(outputDir, imageName));
 
                             WebViewUtils.renterToPng(imageName, svg, out, lock);
 
@@ -143,8 +143,8 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
+            if (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language())) {
+                HypenUtils.applyLanguage(EpubProcessingSettings.language());
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
@@ -165,7 +165,7 @@ public class HtmlExtractor {
             out.flush();
             out.close();
         } catch (Exception e) {
-            LOG.e(e);
+            throw e instanceof IOException ? (IOException) e : new IOException("Cannot convert HTML", e);
         }
 
         return new FooterNote(file.getPath(), null);
@@ -190,8 +190,8 @@ public class HtmlExtractor {
 
             boolean isFlag = false;
             HypenUtils.resetTokenizer();
-            if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
+            if (EpubProcessingSettings.isAutoHypens()) {
+                HypenUtils.applyLanguage(EpubProcessingSettings.language());
             }
             while ((line = input.readLine()) != null) {
 
@@ -223,7 +223,7 @@ public class HtmlExtractor {
 
             String string = Jsoup.clean(html.toString(), Safelist.basic());
 
-            if (BookCSS.get().isAutoHypens) {
+            if (EpubProcessingSettings.isAutoHypens()) {
                 string = HypenUtils.applyHypnes(string);
             }
 
@@ -233,7 +233,7 @@ public class HtmlExtractor {
             out.flush();
             out.close();
         } catch (Exception e) {
-            LOG.e(e);
+            throw e instanceof IOException ? (IOException) e : new IOException("Cannot convert MHT", e);
         }
 
         return new FooterNote(file.getPath(), null);

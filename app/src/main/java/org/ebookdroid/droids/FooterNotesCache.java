@@ -30,7 +30,7 @@ final class FooterNotesCache {
         if (notes == null || TempHolder.get().loadingCancelled.get()) {
             return false;
         }
-        if (!JsonHelper.mapToFileIfAbsent(jsonFile, notes)) {
+        if (!JsonHelper.mapToCacheFile(jsonFile, notes)) {
             return false;
         }
         if (TempHolder.get().loadingCancelled.get()) {

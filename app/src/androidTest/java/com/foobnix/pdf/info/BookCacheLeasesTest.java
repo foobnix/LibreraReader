@@ -72,12 +72,13 @@ public class BookCacheLeasesTest {
             assertArrayEquals(new byte[]{2,3}, Files.readAllBytes(output.toPath()));
         } finally { output.delete(); dir.delete(); }
     }
-    @Test public void replacementIsCompleteAndDoesNotEvictAnActiveOutput() throws Exception {
+    @Test public void activeOutputCannotBeReplacedThroughItsPathname() throws Exception {
         File dir = directory(), output = new File(dir, "processed.epub"), partial = new File(dir, "output.part");
         Files.write(output.toPath(), new byte[]{1}); Files.write(partial.toPath(), new byte[]{2,3});
         try (AutoCloseable lease = BookCacheLeases.acquire(output)) {
-            BookCacheLeases.publish(partial, output);
-            assertArrayEquals(new byte[]{2,3}, Files.readAllBytes(output.toPath()));
+            assertThrows(java.io.IOException.class, () -> BookCacheLeases.publish(partial, output));
+            assertArrayEquals(new byte[]{1}, Files.readAllBytes(output.toPath()));
+            assertArrayEquals(new byte[]{2,3}, Files.readAllBytes(partial.toPath()));
             assertFalse(BookCacheLeases.evict(output));
         } finally { output.delete(); partial.delete(); dir.delete(); }
     }
@@ -122,6 +123,80 @@ public class BookCacheLeasesTest {
         assertFalse(worker.isAlive());
         assertTrue(BookCacheLeases.evict(source));
         assertTrue(dir.delete());
+    }
+
+    @Test public void failedConversionLeavesNoReusableFile() throws Exception {
+        File dir = directory(), output = new File(dir, "converted.epub");
+        try {
+            assertThrows(java.io.IOException.class, () -> BookCacheLeases.buildFile(output, temp -> {
+                Files.write(temp.toPath(), new byte[]{1});
+                throw new java.io.IOException("conversion failed");
+            }));
+            assertFalse(output.exists());
+        } finally { output.delete(); dir.delete(); }
+    }
+
+    @Test public void firstConversionAfterRestartClearsAbandonedPrivateOutputs() throws Exception {
+        File root = directory(), staleFile = new File(root, "old.part");
+        File staleDirectory = new File(root, "old-directory.part");
+        assertTrue(staleDirectory.mkdir());
+        Files.write(staleFile.toPath(), new byte[]{1});
+        Files.write(new File(staleDirectory, "book.html").toPath(), new byte[]{2});
+        File next = BookCacheLeases.temporary(root, "next-");
+        try {
+            assertFalse(staleFile.exists());
+            assertFalse(staleDirectory.exists());
+            assertTrue(next.exists());
+        } finally {
+            next.delete();
+            root.delete();
+        }
+    }
+
+    @Test public void competingWritersPublishOneCompleteOutput() throws Exception {
+        File dir = directory(), output = new File(dir, "converted.epub");
+        CountDownLatch firstWriting = new CountDownLatch(1), releaseFirst = new CountDownLatch(1);
+        java.util.concurrent.atomic.AtomicReference<Throwable> failure = new java.util.concurrent.atomic.AtomicReference<>();
+        Thread first = new Thread(() -> {
+            try (BookCacheLeases.PublishedFile file = BookCacheLeases.buildFile(output, temp -> {
+                Files.write(temp.toPath(), new byte[]{1});
+                firstWriting.countDown();
+                assertTrue(releaseFirst.await(5, TimeUnit.SECONDS));
+                Files.write(temp.toPath(), new byte[]{1, 2, 3});
+            })) { assertArrayEquals(new byte[]{4, 5, 6}, Files.readAllBytes(file.file.toPath())); }
+            catch (Throwable error) { failure.set(error); }
+        });
+        first.start();
+        try {
+            assertTrue(firstWriting.await(5, TimeUnit.SECONDS));
+            assertFalse("Partial output became reusable", output.exists());
+            try (BookCacheLeases.PublishedFile second = BookCacheLeases.buildFile(output,
+                    temp -> Files.write(temp.toPath(), new byte[]{4, 5, 6}))) {
+                releaseFirst.countDown();
+                first.join(5000);
+                assertNull(failure.get());
+                assertArrayEquals(new byte[]{4, 5, 6}, Files.readAllBytes(second.file.toPath()));
+            }
+        } finally {
+            releaseFirst.countDown(); first.join(5000);
+            BookCacheLeases.evict(output); dir.delete();
+        }
+    }
+
+    @Test public void directoryPublicationProtectsHtmlAndSiblingImageTogether() throws Exception {
+        File root = directory(), target = new File(root, "converted-rtf");
+        try (BookCacheLeases.PublishedFile output = BookCacheLeases.buildDirectory(
+                target, "book.html", directory -> {
+                    Files.write(new File(directory, "book.html").toPath(),
+                            "<img src='cover.png'>".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                    Files.write(new File(directory, "cover.png").toPath(), new byte[]{1, 2});
+                })) {
+            assertTrue(output.file.isFile());
+            assertTrue(new File(target, "cover.png").isFile());
+            assertFalse(BookCacheLeases.evictTree(target));
+        }
+        assertTrue(BookCacheLeases.evictTree(target));
+        assertTrue(root.delete());
     }
     @Test public void startupSweepRemovesCrashDirectoriesWithoutFollowingLinksOrDeletingLeases() throws Exception {
         File dir = directory();

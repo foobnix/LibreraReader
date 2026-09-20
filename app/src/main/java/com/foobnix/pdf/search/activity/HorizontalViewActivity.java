@@ -54,7 +54,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.drive.GFile;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -998,7 +997,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     @Override
                     public void run() {
                         isCancelled = true;
-                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                         finish();
                     }
                 });

@@ -4,13 +4,16 @@ import android.text.TextUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.google.common.io.CharSource;
 import com.google.common.io.Files;
 
@@ -36,8 +39,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
+import java.util.UUID;
 
 public class MdContext extends PdfContext {
+    File cacheDirectory;
 
     public static final String OUT_FB2_XML = "md.html";
     public static final String SUMMARY_MD = "SUMMARY.md";
@@ -82,8 +87,7 @@ public class MdContext extends PdfContext {
         if (inputPath.endsWith(SUMMARY_MD)) {
             LOG.d("extractMd SUMMARY.md");
             File file = new File(outputDir, "md.epub");
-            try {
-                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(file));
+            try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(file))) {
                 zos.setLevel(0);
 
                 Fb2Extractor.writeToZip(zos, "mimetype", "application/epub+zip");
@@ -148,13 +152,9 @@ public class MdContext extends PdfContext {
 
 
                 LOG.d("Fb2Context convert true");
-                zos.close();
-
                 return new FooterNote(file.getPath(), null);
             } catch (Exception e) {
-                LOG.d("Fb2Context convert false error");
-                LOG.e(e);
-                return new FooterNote(null, null);
+                throw e instanceof IOException ? (IOException) e : new IOException("Cannot convert Markdown book", e);
             }
 
         }
@@ -181,7 +181,7 @@ public class MdContext extends PdfContext {
             out.flush();
             out.close();
         } catch (Exception e) {
-            LOG.e(e);
+            throw e instanceof IOException ? (IOException) e : new IOException("Cannot convert Markdown file", e);
         }
 
         return new FooterNote(file.getPath(), null);
@@ -196,11 +196,11 @@ public class MdContext extends PdfContext {
 
 
             HypenUtils.resetTokenizer();
-            if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
+            if (EpubProcessingSettings.isAutoHypens()) {
+                HypenUtils.applyLanguage(EpubProcessingSettings.language());
             }
 
-        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+        List<SimpleMeta> replacements = EpubProcessingSettings.replacements();
 
             String l;
             String line = "";
@@ -215,7 +215,7 @@ public class MdContext extends PdfContext {
                 }
 
 
-                if (BookCSS.get().isAutoHypens) {
+                if (EpubProcessingSettings.isAutoHypens()) {
                     line = HypenUtils.applyHypnes(line,replacements);
                 }
 
@@ -293,21 +293,27 @@ public class MdContext extends PdfContext {
     }
 
 
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
+
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-
-        Map<String, String> notes = null;
-        try {
-            FooterNote extract = extractMd(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
-            fileName = extract.path;
-            notes = extract.notes;
-            LOG.d("new file name", fileName);
-        } catch (Exception e) {
-            LOG.e(e);
+        boolean collection = fileName.endsWith(SUMMARY_MD);
+        String version = collection ? UUID.randomUUID().toString()
+                : fileName + sourceRevisionKey(fileName)
+                + EpubProcessingSettings.key();
+        File directory = cacheDirectory = new File(CacheZipUtils.CACHE_BOOK_DIR,
+                ConversionCache.key(version) + "-md-v2");
+        String mainName = collection ? "md.epub" : OUT_FB2_XML;
+        try (BookCacheLeases.PublishedFile output = ConversionCache.buildDirectory(
+                directory, mainName, staging -> extractMd(fileName, staging.getPath()))) {
+            MuPdfDocument document = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                    output.file.getPath(), password);
+            document.retainSource(directory);
+            return document;
+        } catch (Exception failure) {
+            throw new IllegalStateException("Cannot convert Markdown book", failure);
         }
-
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-        muPdfDocument.setFootNotes(notes);
-        return muPdfDocument;
     }
 }

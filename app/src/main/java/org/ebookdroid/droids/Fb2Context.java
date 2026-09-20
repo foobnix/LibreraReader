@@ -2,7 +2,9 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.JsonHelper;
@@ -15,26 +17,22 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import net.lingala.zip4j.ZipFile;
 
 public class Fb2Context extends PdfContext {
 
     File cacheFile;
 
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
+
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal +
-                AppState.get().isShowFooterNotesInText +
-                BookCSS.get().isAutoHypens +
-                AppSP.get().hypenLang +
-                AppState.get().isBionicMode +
-                AppState.get().enableImageScale +
-                AppSP.get().isDouble +
-                //AppState.get().isAccurateFontSize +
-                BookCSS.get().documentStyle +
-                BookCSS.get().isEnableBBCode +
-                BookCSS.get().isCapitalLetter;
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
+        fileNameOriginal = fileNameOriginal + EpubProcessingSettings.key();
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, ConversionCache.key(fileNameOriginal) + "-v2.epub");
         return cacheFile;
     }
 
@@ -45,36 +43,33 @@ public class Fb2Context extends PdfContext {
         if(cacheFile==null){
             cacheFile = getCacheFileName(fileName);
         }
-        String outName = null;
-
         Map<String, String> notes = null;
-        if (AppState.get().isShowFooterNotesInText) {
+        if (EpubProcessingSettings.isShowFooterNotesInText()) {
             notes = getNotes(fileName);
 
         }
 
-        if (cacheFile.isFile()) {
-            outName = cacheFile.getPath();
-        } else if (outName == null) {
-            outName = cacheFile.getPath();
-            Fb2Extractor.get().convert(fileName, outName, false, notes);
-            LOG.d("Fb2Context create", fileName, "to", outName);
-        }
-
-        LOG.d("Fb2Context open", outName);
-
+        File publishedOutput = cacheFile;
         try {
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
-            muPdfDocument.getPageCount();
-        } catch (Exception e) {
-            LOG.e(e);
-            LOG.d("Fb2Context Fix XML true");
-            if (cacheFile.isFile()) {
-                cacheFile.delete();
+            try (BookCacheLeases.PublishedFile output = convertFb2(fileName, cacheFile, false, notes)) {
+                muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                        output.file.getPath(), password);
+                muPdfDocument.getPageCount();
             }
-            Fb2Extractor.get().convert(fileName, outName, true, notes);
-            LOG.d("Fb2Context create 2", outName);
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+        } catch (Exception firstFailure) {
+            LOG.e(firstFailure);
+            if (muPdfDocument != null) {
+                muPdfDocument.recycle();
+                muPdfDocument = null;
+            }
+            File corrected = new File(cacheFile.getParentFile(), cacheFile.getName() + "-fixed.epub");
+            try (BookCacheLeases.PublishedFile output = convertFb2(fileName, corrected, true, notes)) {
+                muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                        output.file.getPath(), password);
+                publishedOutput = corrected;
+            } catch (Exception secondFailure) {
+                throw new IllegalStateException("Cannot convert FB2 book", secondFailure);
+            }
         }
 
         if (notes != null) {
@@ -88,22 +83,37 @@ public class Fb2Context extends PdfContext {
                     } catch (Throwable e) {
                         LOG.e(e);
                     }
-            }, new File(fileName));
+            }, new File(fileName), publishedOutput);
         }
 
         return muPdfDocument;
     }
 
+    private BookCacheLeases.PublishedFile convertFb2(String source, File target,
+                                                    boolean fixMarkup, Map<String, String> notes)
+            throws Exception {
+        return ConversionCache.buildFile(target, temporary -> {
+            if (!Fb2Extractor.get().convert(source, temporary.getPath(), fixMarkup, notes))
+                throw new IOException("FB2 conversion failed");
+            if (TempHolder.get().loadingCancelled.get())
+                throw new IOException("FB2 conversion was cancelled");
+            try (java.util.zip.ZipFile verified = new java.util.zip.ZipFile(temporary)) {
+                if (verified.getEntry("OEBPS/fb2.fb2") == null)
+                    throw new IOException("FB2 conversion omitted its document entry");
+            }
+        });
+    }
+
     public Map<String, String> getNotes(String fileName) {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
-        if (jsonFile.isFile()) {
+        if (JsonHelper.isValidMapFile(jsonFile)) {
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
             notes = Fb2Extractor.get().getFooterNotes(fileName);
             // a cancelled extraction is empty or partial, it must not stay in the cache
             if (!TempHolder.get().loadingCancelled.get()) {
-                JsonHelper.mapToFile(jsonFile, notes);
+                JsonHelper.mapToCacheFile(jsonFile, notes);
                 LOG.d("save notes to file", jsonFile);
             }
         }

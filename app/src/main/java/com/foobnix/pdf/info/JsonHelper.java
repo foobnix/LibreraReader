@@ -7,7 +7,6 @@ import org.librera.LinkedJSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -21,39 +20,64 @@ public class JsonHelper {
         return JsonHelper.jsonToMap(json);
     }
 
-    public static boolean mapToFile(File jsonFile, Map<String, String> notes) {
+    public static boolean isValidMapFile(File file) {
+        if (!file.isFile()) return false;
         try {
-            FileWriter fw = new FileWriter(jsonFile);
-            fw.write(JsonHelper.mapToJson(notes));
-            fw.flush();
-            fw.close();
+            new LinkedJSONObject(fileToString(file));
             return true;
-        } catch (Exception e) {
-            LOG.e(e);
+        } catch (Exception invalid) {
             return false;
         }
     }
 
-    /**
-     * Writes the map through a temporary file in the same folder and renames it into place, so a
-     * reader never opens a half-written cache. An existing jsonFile is left alone: whoever wrote
-     * it first wins. Returns whether this call is the one that created jsonFile.
-     */
+    public static boolean mapToFile(File jsonFile, Map<String, String> notes) {
+        return writeMap(jsonFile, notes, false, false);
+    }
+
+    private static boolean writeMap(File jsonFile, Map<String, String> notes, boolean cacheEntry, boolean repairInvalid) {
+        String json = JsonHelper.mapToJson(notes);
+        if (json.isEmpty()) return false;
+        File temporary = null;
+        try {
+            AutoCloseable lease;
+            synchronized (BookCacheLeases.class) {
+                temporary = BookCacheLeases.temporary(jsonFile.getParentFile(), "notes-");
+                lease = BookCacheLeases.acquire(temporary);
+            }
+            try (AutoCloseable writing = lease) {
+                try (java.io.FileOutputStream output = new java.io.FileOutputStream(temporary);
+                     java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                             output, java.nio.charset.StandardCharsets.UTF_8)) {
+                    writer.write(json);
+                    writer.flush();
+                    output.getFD().sync();
+                }
+                synchronized (BookCacheLeases.class) {
+                    if (cacheEntry && (repairInvalid ? isValidMapFile(jsonFile) : jsonFile.isFile()))
+                        return false;
+                    if ((jsonFile.exists() && !jsonFile.isFile()) ||
+                            BookCacheLeases.isProtected(jsonFile) || !temporary.renameTo(jsonFile))
+                        throw new java.io.IOException("Cannot publish notes cache: " + jsonFile);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        } finally {
+            if (temporary != null) temporary.delete();
+        }
+    }
+
+    /** A conversion-keyed notes entry is immutable once valid; corrupt entries can be repaired. */
+    public static boolean mapToCacheFile(File jsonFile, Map<String, String> notes) {
+        return !isValidMapFile(jsonFile) && writeMap(jsonFile, notes, true, true);
+    }
+
+    /** Publishes a complete map only if another writer has not already created the file. */
     public static boolean mapToFileIfAbsent(File jsonFile, Map<String, String> notes) {
-        if (jsonFile.isFile()) {
-            return false;
-        }
-        File temp = new File(jsonFile.getPath() + ".tmp." + System.nanoTime());
-        if (!mapToFile(temp, notes) || !temp.isFile()) {
-            temp.delete();
-            return false;
-        }
-        // another writer may have finished in the meantime: its file stays, this one goes
-        if (jsonFile.isFile() || !temp.renameTo(jsonFile)) {
-            temp.delete();
-            return false;
-        }
-        return true;
+        if (jsonFile.isFile()) return false;
+        return writeMap(jsonFile, notes, true, false);
     }
 
     public static String fileToString(File file) {

@@ -103,6 +103,13 @@ public class FooterNotesCacheTest {
     }
 
     @Test
+    public void repairsAnIncompleteCachedMap() throws Exception {
+        File json = folder.newFile("notes.json");
+        assertTrue(FooterNotesCache.save(json, notes()));
+        assertEquals(notes(), JsonHelper.fileToMap(json));
+    }
+
+    @Test
     public void saveAsyncWritesTheCacheOffThread() throws Exception {
         File json = new File(folder.getRoot(), "notes.json");
         FooterNotesCache.saveAsync(json, notes());

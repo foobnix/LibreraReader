@@ -143,7 +143,6 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
         if (pagesCount <= 0) {
-            CacheZipUtils.emptyAllCacheDirs();
             throw new IllegalArgumentException("Pages count: "+pagesCount);
         }
 

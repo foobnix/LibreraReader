@@ -8,6 +8,7 @@ import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
@@ -108,151 +109,151 @@ public class EpubExtractor extends BaseExtractor {
 
         }
 
-        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
-        zos.setLevel(0);
+        try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile))) {
+            zos.setLevel(0);
+            HypenUtils.applyLanguage(EpubProcessingSettings.language());
 
-        HypenUtils.applyLanguage(AppSP.get().hypenLang);
+            Map<String, String> svgs = new HashMap<>();
 
-        Map<String, String> svgs = new HashMap<>();
+            List<String> spine = new ArrayList<>();
+            Map<String, String> manifest = new HashMap<>();
+            if (EpubProcessingSettings.isReferenceMode()) {
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    String name = nextEntry.getName().toLowerCase(Locale.US);
+                    if (name.endsWith(".opf")) {
 
-        List<String> spine = new ArrayList<>();
-        Map<String, String> manifest = new HashMap<>();
-        if (AppState.get().isReferenceMode) {
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                String name = nextEntry.getName().toLowerCase(Locale.US);
-                if (name.endsWith(".opf")) {
+                        XmlPullParser xpp = XmlParser.buildPullParser();
+                        xpp.setInput(zipInputStream, "utf-8");
 
-                    XmlPullParser xpp = XmlParser.buildPullParser();
-                    xpp.setInput(zipInputStream, "utf-8");
+                        int eventType = xpp.getEventType();
 
-                    int eventType = xpp.getEventType();
+                        while (eventType != XmlPullParser.END_DOCUMENT) {
+                            if (eventType == XmlPullParser.START_TAG) {
+                                if ("item".equals(xpp.getName())) {
+                                    String id = xpp.getAttributeValue(null, "id");
+                                    String href = xpp.getAttributeValue(null, "href");
+                                    String nav = xpp.getAttributeValue(null, "properties");
 
-                    while (eventType != XmlPullParser.END_DOCUMENT) {
-                        if (eventType == XmlPullParser.START_TAG) {
-                            if ("item".equals(xpp.getName())) {
-                                String id = xpp.getAttributeValue(null, "id");
-                                String href = xpp.getAttributeValue(null, "href");
-                                String nav = xpp.getAttributeValue(null, "properties");
+                                    manifest.put(href, id);
+                                    LOG.d("isReferenceMode-manifest", id, href);
 
-                                manifest.put(href, id);
-                                LOG.d("isReferenceMode-manifest", id, href);
-
-                            } else if ("itemref".equals(xpp.getName())) {
-                                final String idref = xpp.getAttributeValue(null, "idref");
-                                final String linear = xpp.getAttributeValue(null, "linear");
-                                if ("no".equals(linear)) {
-                                    LOG.d("isReferenceMode-itemref skip", idref);
-                                } else {
-                                    spine.add(idref);
+                                } else if ("itemref".equals(xpp.getName())) {
+                                    final String idref = xpp.getAttributeValue(null, "idref");
+                                    final String linear = xpp.getAttributeValue(null, "linear");
+                                    if ("no".equals(linear)) {
+                                        LOG.d("isReferenceMode-itemref skip", idref);
+                                    } else {
+                                        spine.add(idref);
+                                    }
+                                    LOG.d("isReferenceMode-itemref", idref);
                                 }
-                                LOG.d("isReferenceMode-itemref", idref);
                             }
+                            eventType = xpp.next();
                         }
-                        eventType = xpp.next();
                     }
                 }
-            }
-            zipInputStream.close();
-            zipInputStream = Zips.buildZipArchiveInputStream(input);
-        }
-
-        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
-
-        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-            if (TempHolder.get().loadingCancelled.get()) {
-                break;
-            }
-            String name = nextEntry.getName();
-            String nameLow = name.toLowerCase(Locale.US);
-
-            if (nameLow.contains("encryption.xml") || //
-                    nameLow.contains("container.xml") || //
-                    nameLow.contains("nav") || //
-                    nameLow.contains("toc")//
-            ) {
-                LOG.d("nextEntry HTML skip", name);
-                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
-                continue;
+                zipInputStream.close();
+                zipInputStream = Zips.buildZipArchiveInputStream(input);
             }
 
-            if (nameLow.endsWith(".css")) {
-                InputStreamReader inputStreamReader = new InputStreamReader(zipInputStream);
-                BufferedReader in = new BufferedReader(inputStreamReader);
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                PrintWriter writer = new PrintWriter(out);
-                String line;
-                boolean skipInvalidCss = false;
+            List<SimpleMeta> replacements = EpubProcessingSettings.replacements();
 
-                while ((line = in.readLine()) != null) {
-                    if (line.indexOf('.', 200) > 0) {
-                        skipInvalidCss = true;
-                        break;
-                    }
-                    writer.println(line);
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled.get()) {
+                    throw new java.io.IOException("EPUB processing cancelled");
                 }
-                writer.close();
+                String name = nextEntry.getName();
+                String nameLow = name.toLowerCase(Locale.US);
 
-                LOG.d("Skip skipInvalidCss", name, skipInvalidCss);
-                if (!skipInvalidCss) {
-                    Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(out.toByteArray()));
+                if (nameLow.contains("encryption.xml") || //
+                        nameLow.contains("container.xml") || //
+                        nameLow.contains("nav") || //
+                        nameLow.contains("toc")//
+                ) {
+                    LOG.d("nextEntry HTML skip", name);
+                    Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+                    continue;
                 }
-            } else if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
 
-                int count = 0;
-                if (AppState.get().isReferenceMode) {
-                    String ch = "";
-                    for (String key : manifest.keySet()) {
-                        if (name.contains(key)) {
-                            ch = manifest.get(key);
+                if (nameLow.endsWith(".css")) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(zipInputStream);
+                    BufferedReader in = new BufferedReader(inputStreamReader);
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    PrintWriter writer = new PrintWriter(out);
+                    String line;
+                    boolean skipInvalidCss = false;
+
+                    while ((line = in.readLine()) != null) {
+                        if (line.indexOf('.', 200) > 0) {
+                            skipInvalidCss = true;
                             break;
                         }
+                        writer.println(line);
+                    }
+                    writer.close();
+
+                    LOG.d("Skip skipInvalidCss", name, skipInvalidCss);
+                    if (!skipInvalidCss) {
+                        Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(out.toByteArray()));
+                    }
+                } else if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
+
+                    int count = 0;
+                    if (EpubProcessingSettings.isReferenceMode()) {
+                        String ch = "";
+                        for (String key : manifest.keySet()) {
+                            if (name.contains(key)) {
+                                ch = manifest.get(key);
+                                break;
+                            }
+                        }
+
+                        count = spine.indexOf(ch) + 1;
+                        LOG.d("isReferenceMode ok", name, ch, count);
                     }
 
-                    count = spine.indexOf(ch) + 1;
-                    LOG.d("isReferenceMode ok", name, ch, count);
+                    ByteArrayOutputStream hStream = new ByteArrayOutputStream();
+
+                    Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count, replacements);
+
+
+                    Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
+                } else {
+                    LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
+                    Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
                 }
 
-                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count, replacements);
-
-
-                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
-            } else {
-                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled.get(), name);
-                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
             }
 
-        }
+            if (EpubProcessingSettings.isExperimental()) {
 
-        if (AppState.get().isExperimental) {
+                Object lock = new Object();
 
-            Object lock = new Object();
-
-            for (String key : svgs.keySet()) {
+                for (String key : svgs.keySet()) {
 
 
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                WebViewUtils.renterToPng(key, svgs.get(key), out, lock);
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    WebViewUtils.renterToPng(key, svgs.get(key), out, lock);
 
-                synchronized (lock) {
-                    lock.wait(2000);
+                    synchronized (lock) {
+                        lock.wait(2000);
+                    }
+
+    //                if (LibreraBuildConfig.LOG) {
+    //                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
+    //                    IO.writeString(file, svgs.get(key));
+    //                }
+
+                    Fb2Extractor.writeToZipNoClose(zos, key, new ByteArrayInputStream(out.toByteArray()));
+
+
                 }
-
-//                if (LibreraBuildConfig.LOG) {
-//                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
-//                    IO.writeString(file, svgs.get(key));
-//                }
-
-                Fb2Extractor.writeToZipNoClose(zos, key, new ByteArrayInputStream(out.toByteArray()));
-
-
             }
+
+        } finally {
+            zipInputStream.close();
         }
 
-        zipInputStream.close();
-
-        zos.close();
 
     }
 

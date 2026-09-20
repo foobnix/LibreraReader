@@ -3,10 +3,13 @@ package org.ebookdroid.droids;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -28,33 +31,44 @@ public class DocxContext extends PdfContext {
 
     File cacheFile;
 
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
+
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal +
-                BookCSS.get().isAutoHypens +
-                AppSP.get().hypenLang +
-                AppSP.get().isDouble +
-                AppState.get().isAccurateFontSize +
-                BookCSS.get().documentStyle+
-                BookCSS.get().isEnableBBCode +
-                BookCSS.get().isCapitalLetter;
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
+        fileNameOriginal = fileNameOriginal + EpubProcessingSettings.key();
+        cacheFile = new File(new File(CacheZipUtils.CACHE_BOOK_DIR,
+                ConversionCache.key(fileNameOriginal) + "-docx-v2"), "book.html");
         return cacheFile;
     }
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-        if (!cacheFile.isFile()) {
+        if (cacheFile == null) cacheFile = getCacheFileName(fileName);
+        try (BookCacheLeases.PublishedFile output = ConversionCache.buildDirectory(
+                cacheFile.getParentFile(), cacheFile.getName(),
+                directory -> convertDocx(new File(fileName), new File(directory, cacheFile.getName())))) {
+            MuPdfDocument document = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                    output.file.getPath(), password);
+            document.retainCacheSource(cacheFile.getParentFile());
+            return document;
+        } catch (Exception failure) {
+            throw new IllegalStateException("Cannot convert DOCX book", failure);
+        }
+    }
+
+    private void convertDocx(File source, File destination) throws IOException {
             DocumentConverter converter = new DocumentConverter().
                     imageConverter(new ImageConverter.ImgElement() {
                         @Override
                         public Map<String, String> convert(Image image) throws IOException {
 
 
-                            String imageName = cacheFile.getName() + "+" + image.hashCode() + "." + image.getContentType().replace("image/", "");
+                            String imageName = destination.getName() + "+" + image.hashCode() + "." + image.getContentType().replace("image/", "");
                             LOG.d("ImageConverter name", imageName);
 
-                            FileOutputStream out = new FileOutputStream(new File(cacheFile.getParent(), imageName));
+                            FileOutputStream out = new FileOutputStream(new File(destination.getParent(), imageName));
                             IOUtils.copyClose(image.getInputStream(), out);
 
 
@@ -65,40 +79,30 @@ public class DocxContext extends PdfContext {
                     });
 
 
-            Result<String> result = null;
             try {
-                result = converter.convertToHtml(new File(fileName));
+                Result<String> result = converter.convertToHtml(source);
 
                 String html = result.getValue();
                 html = html.replace("<br /><br />", "<empty-line />");
-                if (BookCSS.get().isEnableBBCode) {
+                if (EpubProcessingSettings.isEnableBBCode()) {
                     html = TxtUtils.convertBBCodeToHtml(html);
                 }
-                if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
-                    LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
-                    HypenUtils.applyLanguage(AppSP.get().hypenLang);
+                if (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language())) {
+                    LOG.d("docx-isAutoHypens", EpubProcessingSettings.isAutoHypens());
+                    HypenUtils.applyLanguage(EpubProcessingSettings.language());
                     HypenUtils.resetTokenizer();
                     html = HypenUtils.applyHypnes(html);
                 }
 
-                FileOutputStream out = new FileOutputStream(cacheFile);
-                out.write("<html><head></head><body>".getBytes());
-                out.write(html.getBytes());
-                out.write("</body></html>".getBytes());
-                out.close();
-
-                MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-                return muPdfDocument;
+                try (FileOutputStream out = new FileOutputStream(destination)) {
+                    out.write("<html><head></head><body>".getBytes());
+                    out.write(html.getBytes());
+                    out.write("</body></html>".getBytes());
+                    out.getFD().sync();
+                }
 
             } catch (IOException e) {
-                LOG.e(e);
-                return null;
+                throw e;
             }
-
-        }
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-        return muPdfDocument;
-
-
     }
 }

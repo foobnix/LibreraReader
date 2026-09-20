@@ -246,6 +246,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         // IDjvuRenderer: the DjVu render service LibreraX binds to.
         aidl = true
     }

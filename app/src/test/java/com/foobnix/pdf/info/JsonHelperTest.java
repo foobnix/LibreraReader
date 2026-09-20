@@ -76,6 +76,37 @@ public class JsonHelperTest {
     }
 
     @Test
+    public void mapToFileIfAbsentKeepsAnExistingInvalidFile() throws Exception {
+        File json = folder.newFile("notes.json");
+        assertFalse(JsonHelper.mapToFileIfAbsent(json, notes()));
+        assertEquals(0, json.length());
+    }
+
+    @Test
+    public void mapToCacheFileRepairsInvalidJsonAndPreservesACompleteMap() throws Exception {
+        File json = folder.newFile("notes.json");
+        assertTrue(JsonHelper.mapToCacheFile(json, notes()));
+        Map<String, String> other = new LinkedHashMap<>();
+        other.put("other", "a later extraction");
+        assertFalse(JsonHelper.mapToCacheFile(json, other));
+        assertEquals(notes(), JsonHelper.fileToMap(json));
+        assertEquals(1, folder.getRoot().listFiles().length);
+    }
+
+    @Test
+    public void mapToFileCannotReplaceAnActiveCacheEntry() throws Exception {
+        File json = new File(folder.getRoot(), "notes.json");
+        assertTrue(JsonHelper.mapToFile(json, notes()));
+        try (AutoCloseable lease = BookCacheLeases.acquire(json)) {
+            Map<String, String> other = new LinkedHashMap<>();
+            other.put("other", "a later extraction");
+            assertFalse(JsonHelper.mapToFile(json, other));
+            assertEquals(notes(), JsonHelper.fileToMap(json));
+        }
+        assertEquals(1, folder.getRoot().listFiles().length);
+    }
+
+    @Test
     public void mapToFileIfAbsentLeavesNoTemporaryFile() {
         File json = new File(folder.getRoot(), "notes.json");
         JsonHelper.mapToFileIfAbsent(json, notes());

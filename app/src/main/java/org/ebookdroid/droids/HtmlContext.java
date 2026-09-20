@@ -2,53 +2,65 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.FooterNote;
+import com.foobnix.ext.ConversionCache;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.ext.HtmlExtractor;
-import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import java.util.Map;
+import java.io.File;
+import java.util.Arrays;
+import java.util.UUID;
 
 public class HtmlContext extends PdfContext {
+    File cacheDirectory;
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
 
-    @Override
-    public CodecDocument openDocumentInner(String fileName, String password) {
+    @Override public CodecDocument openDocumentInner(String fileName, String password) {
         try {
             return openDocumentInnerForce(fileName, password, false);
-        } catch (Exception e1) {
-            LOG.e(e1);
+        } catch (RuntimeException firstFailure) {
+            LOG.e(firstFailure);
             return openDocumentInnerForce(fileName, password, true);
         }
-
     }
 
-    public CodecDocument openDocumentInnerForce(String fileName, String password, boolean forse) {
-
-
-//        if(AppsConfig.IS_LOG){
-//            MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-//            return muPdfDocument;
-//        }
-
-
-
-        Map<String, String> notes = null;
-        try {
-            FooterNote extract = HtmlExtractor.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), forse);
-
-            fileName = extract.path;
-            notes = extract.notes;
-            LOG.d("new file name", fileName);
-        } catch (Exception e) {
-            LOG.e(e);
+    public CodecDocument openDocumentInnerForce(String fileName, String password, boolean force) {
+        File directory = cacheDirectory = new File(CacheZipUtils.CACHE_BOOK_DIR,
+                ConversionCache.key(fileName + sourceRevisionKey(fileName)
+                        + EpubProcessingSettings.key() + force
+                        + (force ? "" : siblingImageRevision(new File(fileName)))) + "-html-v2");
+        try (BookCacheLeases.PublishedFile output = ConversionCache.buildDirectory(
+                directory, HtmlExtractor.OUT_FB2_XML,
+                staging -> HtmlExtractor.extract(fileName, staging.getPath(), force))) {
+            MuPdfDocument document = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                    output.file.getPath(), password);
+            document.retainSource(directory);
+            return document;
+        } catch (Exception failure) {
+            throw new IllegalStateException("Cannot convert HTML book", failure);
         }
-
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-        muPdfDocument.setFootNotes(notes);
-        return muPdfDocument;
     }
 
+    /** HtmlExtractor copies every sibling image, so they are inputs to the cache key. */
+    private static String siblingImageRevision(File source) {
+        File parent = source.getParentFile();
+        File[] images = parent == null ? null : parent.listFiles(ExtUtils::isImageFile);
+        if (images == null) return UUID.randomUUID().toString();
+        Arrays.sort(images, (left, right) -> left.getName().compareTo(right.getName()));
+        StringBuilder revision = new StringBuilder();
+        for (File image : images) {
+            if (!image.isFile() || image.lastModified() <= 0)
+                return UUID.randomUUID().toString();
+            revision.append('|').append(image.getName()).append(':')
+                    .append(image.length()).append(':').append(image.lastModified());
+        }
+        return revision.toString();
+    }
 }
