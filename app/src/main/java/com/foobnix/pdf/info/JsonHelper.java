@@ -7,7 +7,6 @@ import org.librera.LinkedJSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -21,15 +20,49 @@ public class JsonHelper {
         return JsonHelper.jsonToMap(json);
     }
 
-    public static void mapToFile(File jsonFile, Map<String, String> notes) {
+    public static boolean isValidMapFile(File file) {
+        if (!file.isFile()) return false;
         try {
-            FileWriter fw = new FileWriter(jsonFile);
-            fw.write(JsonHelper.mapToJson(notes));
-            fw.flush();
-            fw.close();
+            new LinkedJSONObject(fileToString(file));
+            return true;
+        } catch (Exception invalid) {
+            return false;
+        }
+    }
+
+    public static void mapToFile(File jsonFile, Map<String, String> notes) {
+        writeMap(jsonFile, notes, false);
+    }
+
+    private static void writeMap(File jsonFile, Map<String, String> notes, boolean cacheEntry) {
+        String json = JsonHelper.mapToJson(notes);
+        if (json.isEmpty()) return;
+        File temporary = null;
+        try {
+            temporary = BookCacheLeases.temporary(jsonFile.getParentFile(), "notes-");
+            try (AutoCloseable writing = BookCacheLeases.acquire(temporary)) {
+                try (java.io.FileOutputStream output = new java.io.FileOutputStream(temporary);
+                     java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                             output, java.nio.charset.StandardCharsets.UTF_8)) {
+                    writer.write(json);
+                    writer.flush();
+                    output.getFD().sync();
+                }
+                synchronized (BookCacheLeases.class) {
+                    if (!cacheEntry || !isValidMapFile(jsonFile))
+                        BookCacheLeases.publish(temporary, jsonFile);
+                }
+            }
         } catch (Exception e) {
             LOG.e(e);
+        } finally {
+            if (temporary != null) temporary.delete();
         }
+    }
+
+    /** A conversion-keyed notes entry is immutable once valid; corrupt entries can be repaired. */
+    public static void mapToCacheFile(File jsonFile, Map<String, String> notes) {
+        if (!isValidMapFile(jsonFile)) writeMap(jsonFile, notes, true);
     }
 
     public static String fileToString(File file) {
