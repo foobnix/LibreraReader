@@ -98,6 +98,35 @@ import java.util.List;
     private static volatile MediaSessionCompat sessionRef;
     private static volatile TTSService serviceRef;
 
+    enum ReaderTtsAction { START_BOOK, PAUSE, RESUME }
+
+    static ReaderTtsAction readerAction(String readerPath, String activePath,
+                                        boolean playing, boolean shutdown) {
+        if (readerPath == null || activePath == null || !readerPath.equals(activePath) || shutdown)
+            return ReaderTtsAction.START_BOOK;
+        return playing ? ReaderTtsAction.PAUSE : ReaderTtsAction.RESUME;
+    }
+
+    volatile String activeBookPath;
+    volatile int activePage;
+    volatile int activeParagraph;
+
+    void restoreActivePosition() {
+        if (activeBookPath == null) {
+            activeBookPath = AppSP.get().lastBookPath;
+            activePage = AppSP.get().lastBookPage;
+            activeParagraph = AppSP.get().lastBookParagraph;
+        }
+        AppSP.get().lastBookPath = activeBookPath;
+        AppSP.get().lastBookPage = activePage;
+        AppSP.get().lastBookParagraph = activeParagraph;
+    }
+
+    private void setActiveParagraph(int paragraph) {
+        activeParagraph = paragraph;
+        AppSP.get().lastBookParagraph = paragraph;
+    }
+
     public static void abandonAudioFocusCompat() {
         final TTSService service = serviceRef;
         if (service == null || service.mAudioManager == null) {
@@ -201,7 +230,7 @@ import java.util.List;
                 TTSNotification.showLast();
             } else {
                 if (isPlaying) {
-                    playPage("", AppSP.get().lastBookPage, null);
+                    playPage("", activePage, null);
                 }
             }
         }
@@ -296,8 +325,14 @@ import java.util.List;
             return;
         }
 
-        if (TTSEngine.get()
-                     .isPlaying()) {
+        String bookPath = controller == null || controller.getCurrentBook() == null
+                ? null : controller.getCurrentBook().getPath();
+        TTSService live = serviceRef;
+        ReaderTtsAction action = bookPath == null
+                ? (TTSEngine.get().isPlaying() ? ReaderTtsAction.PAUSE : ReaderTtsAction.START_BOOK)
+                : readerAction(bookPath, live == null ? null : live.activeBookPath,
+                        TTSEngine.get().isPlaying(), TTSEngine.get().isShutdown());
+        if (action == ReaderTtsAction.PAUSE) {
             PendingIntent next = PendingIntent.getService(context, 0,
                     new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class),
                     PendingIntent.FLAG_IMMUTABLE);
@@ -306,13 +341,13 @@ import java.util.List;
             } catch (CanceledException e) {
                 LOG.d(e);
             }
-        } else {
-            if (controller != null) {
-                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook()
-                                                                                        .getPath(), "",
-                        controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp,
-                        controller.getTitle());
-            }
+        } else if (action == ReaderTtsAction.RESUME && live != null) {
+            live.restoreActivePosition();
+            context.startService(new Intent(TTSNotification.TTS_PLAY, null, context, TTSService.class));
+        } else if (controller != null && bookPath != null) {
+            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, bookPath, "",
+                    controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp,
+                    controller.getTitle());
         }
     }
 
@@ -399,22 +434,22 @@ import java.util.List;
                         if (AppState.get().isFastBookmarkByTTS) {
                             if (isPlaying) {
                                 TTSEngine.get()
-                                         .fastTTSBookmakr(getBaseContext(), AppSP.get().lastBookPath,
-                                                 AppSP.get().lastBookPage + 1, AppSP.get().lastBookPageCount);
+                                                 .fastTTSBookmakr(getBaseContext(), activeBookPath,
+                                                 activePage + 1, AppSP.get().lastBookPageCount);
                             } else {
-                                playPage("", AppSP.get().lastBookPage, null);
+                                playPage("", activePage, null);
                             }
                         } else {
                             if (isPlaying) {
                                 stopMediaSesstionAndReleaweWakeLock();
                             } else {
-                                playPage("", AppSP.get().lastBookPage, null);
+                                playPage("", activePage, null);
                             }
                         }
                     } else if (KeyEvent.KEYCODE_MEDIA_NEXT == event.getKeyCode()) {
-                        playPage("", AppSP.get().lastBookPage + 1, null);
+                        playPage("", activePage + 1, null);
                     } else if (KeyEvent.KEYCODE_MEDIA_PREVIOUS == event.getKeyCode()) {
-                        playPage("", AppSP.get().lastBookPage - 1, null);
+                        playPage("", activePage - 1, null);
                     }
                 }
 
@@ -427,9 +462,10 @@ import java.util.List;
 
             @Override public void onPlayFromMediaId(String mediaId, Bundle extras) {
                 LOG.d(TAG, "onPlayFromMediaId", mediaId);
-                if (TxtUtils.isNotEmpty(mediaId) && !mediaId.equals(AppSP.get().lastBookPath)) {
+                if (TxtUtils.isNotEmpty(mediaId) && !mediaId.equals(activeBookPath)) {
                     // Switching books: start the newly chosen one from its saved position.
                     AppSP.get().lastBookPath = mediaId;
+                    activeBookPath = mediaId;
                     // Resume where the book was left off. The position is stored in AppBook as a
                     // fraction, so it needs the page count from the library metadata to resolve.
                     int page = 0;
@@ -444,9 +480,11 @@ import java.util.List;
                         LOG.e(e);
                     }
                     AppSP.get().lastBookPage = page;
+                    activePage = page;
+                    setActiveParagraph(0);
                     cache = null;
                 }
-                playPage("", AppSP.get().lastBookPage, null);
+                playPage("", activePage, null);
                 EventBus.getDefault()
                         .post(new TtsStatus());
                 TTSNotification.showLast();
@@ -746,9 +784,11 @@ import java.util.List;
 
             if (TTSEngine.get()
                          .isPlaying()) {
+                restoreActivePosition();
                 stopMediaSesstionAndReleaweWakeLock();
             } else {
-                playPage("", AppSP.get().lastBookPage, null);
+                restoreActivePosition();
+                playPage("", activePage, null);
             }
             TTSNotification.showLast();
         }
@@ -759,6 +799,7 @@ import java.util.List;
                 return START_STICKY;
             }
 
+            restoreActivePosition();
             stopMediaSesstionAndReleaweWakeLock();
             TTSNotification.showLast();
         }
@@ -771,7 +812,8 @@ import java.util.List;
                 return START_STICKY;
             }
 
-            playPage("", AppSP.get().lastBookPage, null);
+            restoreActivePosition();
+            playPage("", activePage, null);
             TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
@@ -783,8 +825,8 @@ import java.util.List;
                 return START_STICKY;
             }
 
-            AppSP.get().lastBookParagraph = 0;
-            playPage("", AppSP.get().lastBookPage + 1, null);
+            setActiveParagraph(0);
+            playPage("", activePage + 1, null);
         }
         if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
 
@@ -795,9 +837,9 @@ import java.util.List;
                 return START_STICKY;
             }
 
-            AppSP.get().lastBookParagraph = 0;
+            setActiveParagraph(0);
             //stopMediaSesstionAndReleaweWakeLock();
-            playPage("", AppSP.get().lastBookPage - 1, null);
+            playPage("", activePage - 1, null);
         }
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
@@ -808,7 +850,14 @@ import java.util.List;
             }
 
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
-            AppSP.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
+            String previousActiveBook = activeBookPath;
+            activeBookPath = intent.getStringExtra(EXTRA_PATH);
+            activePage = pageNumber;
+            activeParagraph = previousActiveBook != null
+                    && !previousActiveBook.equals(activeBookPath)
+                    ? 0 : AppSP.get().lastBookParagraph;
+            AppSP.get().lastBookPath = activeBookPath;
+            AppSP.get().lastBookParagraph = activeParagraph;
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
 
             if (pageNumber != -1) {
@@ -957,6 +1006,8 @@ import java.util.List;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
+        if (activeBookPath != null && !activeBookPath.equals(AppSP.get().lastBookPath))
+            restoreActivePosition();
         //releaseWakeLock();
         acquireWakeLock();
         mMediaSessionCompat.setActive(true);
@@ -976,6 +1027,7 @@ import java.util.List;
             EventBus.getDefault()
                     .post(new MessagePageNumber(pageNumber));
             AppSP.get().lastBookPage = pageNumber;
+            activePage = pageNumber;
             CodecDocument dc = getDC();
             if (dc == null) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
@@ -1076,11 +1128,11 @@ import java.util.List;
                                  }
                                  if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
                                      if (TxtUtils.isNotEmpty(preText1)) {
-                                         AppSP.get().lastBookParagraph =
-                                                 Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
+                                         setActiveParagraph(Integer.parseInt(
+                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")));
                                      } else {
-                                         AppSP.get().lastBookParagraph = Integer.parseInt(
-                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
+                                         setActiveParagraph(Integer.parseInt(
+                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1);
                                      }
                                      return;
                                  }
@@ -1098,8 +1150,8 @@ import java.util.List;
                                  }
 
                                  onPageSpeechFinished();
-                                 AppSP.get().lastBookParagraph = 0;
-                                 playPage(secondPart, AppSP.get().lastBookPage + 1, null);
+                                 setActiveParagraph(0);
+                                 playPage(secondPart, activePage + 1, null);
                              }
                          });
             } else {
@@ -1114,11 +1166,11 @@ import java.util.List;
                                  }
                                  if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
                                      if (TxtUtils.isNotEmpty(preText1)) {
-                                         AppSP.get().lastBookParagraph =
-                                                 Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
+                                         setActiveParagraph(Integer.parseInt(
+                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")));
                                      } else {
-                                         AppSP.get().lastBookParagraph = Integer.parseInt(
-                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
+                                         setActiveParagraph(Integer.parseInt(
+                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1);
                                      }
                                      return;
                                  }
@@ -1137,8 +1189,8 @@ import java.util.List;
                                  }
 
                                  onPageSpeechFinished();
-                                 AppSP.get().lastBookParagraph = 0;
-                                 playPage(secondPart, AppSP.get().lastBookPage + 1, null);
+                                 setActiveParagraph(0);
+                                 playPage(secondPart, activePage + 1, null);
                              }
                          });
             }
@@ -1148,20 +1200,22 @@ import java.util.List;
             TTSEngine.get()
                      .speek(firstPart);
 
-            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
+            TTSNotification.show(activeBookPath, pageNumber + 1, dc.getPageCount());
             LOG.d("TtsStatus send");
             EventBus.getDefault()
                     .post(new TtsStatus());
 
             TTSNotification.showLast();
 
+            final String progressBook = activeBookPath;
+            final int progressPageCount = AppSP.get().lastBookPageCount;
             new Thread(() -> {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                 }
-                AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
-                load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
+                AppBook load = SharedBooks.load(progressBook);
+                load.currentPageChanged(pageNumber + 1, progressPageCount);
 
                 SharedBooks.saveAsync(load);
                 AppProfile.save(this);
