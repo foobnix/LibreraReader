@@ -12,7 +12,7 @@ public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(11, "com.foobnix.dao2");
+        Schema schema = new Schema(12, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -55,6 +55,7 @@ public class Dao2Generator {
         note.addIntProperty("readCount");
         // "yyyy", "yyyy-MM" or "yyyy-MM-dd": sorts as text in date order.
         note.addStringProperty("pubDate");
+        note.addStringProperty("safSidecarRevision");
 
         Entity dict = schema.addEntity("DictMeta");
         dict.addStringProperty("key").primaryKey();

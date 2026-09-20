@@ -13,7 +13,9 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.SafOpfRegistry;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import java.io.File;
@@ -263,6 +265,70 @@ public class ScanMetadataFailureTest {
         } finally {
             AppDB.get().deleteBy(path);
             source.delete();
+        }
+    }
+
+    @Test public void inaccessibleCalibreSidecarCannotReplaceKnownMetadata() throws Exception {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AppProfile.init(context);
+        boolean previousCalibre = AppState.get().isUseCalibreOpf;
+        boolean previousNames = AppState.get().isShowOnlyOriginalFileNames;
+        File source = File.createTempFile("scan-opf-book-", ".fb2", context.getCacheDir());
+        File opf = File.createTempFile("scan-opf-meta-", ".opf", context.getCacheDir());
+        Uri uri = FileProvider.getUriForFile(context,
+                context.getPackageName() + ".provider", source);
+        String path = uri.toString();
+        try {
+            AppState.get().isUseCalibreOpf = true;
+            AppState.get().isShowOnlyOriginalFileNames = false;
+            assertTrue(opf.delete());
+            try (FileOutputStream output = new FileOutputStream(source)) {
+                output.write("<FictionBook><description><title-info><book-title>Source title"
+                        .concat("</book-title></title-info></description></FictionBook>")
+                        .getBytes(StandardCharsets.UTF_8));
+            }
+            FileMeta old = new FileMeta(path);
+            old.setTitle("Known Calibre title"); old.setAuthor("Known Calibre author");
+            old.setState(FileMetaCore.STATE_FULL);
+            AppDB.get().saveAll(Collections.singletonList(old));
+            FileMeta found = new FileMeta(path);
+            found.setTitle("book.fb2"); found.setPathTxt("book.fb2");
+            found.setSize(source.length()); found.setDate(source.lastModified());
+            SafOpfRegistry.Entry sidecar = new SafOpfRegistry.Entry(Uri.fromFile(opf),
+                    Collections.emptyMap(), "revision-1");
+            ControlledWorker worker = new ControlledWorker(context);
+            worker.fail = false;
+            long owner = ScanOwnership.claim();
+            assertTrue(worker.publishSafMetadata(found, AppDB.get().load(path), sidecar,
+                    owner, () -> false));
+            FileMeta afterFailure = AppDB.get().load(path);
+            assertEquals("Known Calibre title", afterFailure.getTitle());
+            assertEquals("Known Calibre author", afterFailure.getAuthor());
+            try (FileOutputStream output = new FileOutputStream(opf)) {
+                output.write("<package><metadata><dc:title xmlns:dc='http://purl.org/dc/elements/1.1/'>Partial title</dc:title><broken"
+                        .getBytes(StandardCharsets.UTF_8));
+            }
+            assertTrue(worker.publishSafMetadata(found, afterFailure, sidecar,
+                    owner, () -> false));
+            FileMeta afterMalformed = AppDB.get().load(path);
+            assertEquals("Known Calibre title", afterMalformed.getTitle());
+            assertEquals("Known Calibre author", afterMalformed.getAuthor());
+            try (FileOutputStream output = new FileOutputStream(opf)) {
+                output.write(("<package xmlns:dc='http://purl.org/dc/elements/1.1/'>"
+                        + "<metadata><dc:title>Recovered Calibre title</dc:title>"
+                        + "<dc:creator>Recovered author</dc:creator></metadata></package>")
+                        .getBytes(StandardCharsets.UTF_8));
+            }
+            assertTrue(worker.publishSafMetadata(found, afterMalformed, sidecar,
+                    owner, () -> false));
+            FileMeta recovered = AppDB.get().load(path);
+            assertEquals("Recovered Calibre title", recovered.getTitle());
+            assertEquals("Recovered author", recovered.getAuthor());
+        } finally {
+            AppState.get().isUseCalibreOpf = previousCalibre;
+            AppState.get().isShowOnlyOriginalFileNames = previousNames;
+            AppDB.get().deleteBy(path);
+            source.delete(); opf.delete();
         }
     }
 

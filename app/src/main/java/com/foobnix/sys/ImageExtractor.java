@@ -1,6 +1,7 @@
 package com.foobnix.sys;
 
 import com.foobnix.pdf.info.SafFileLink;
+import com.foobnix.pdf.info.SafDocumentIdentity;
 import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_FILES_ONLY;
 
 import android.content.Context;
@@ -48,6 +49,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.SafOpfRegistry;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -76,6 +78,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -296,18 +299,77 @@ public class ImageExtractor {
     }
 
 
+    private Bitmap coverFromSafSidecar(SafOpfRegistry.Entry entry, int width,
+                                      boolean[] transientFailure) {
+        Uri directCover = entry.siblingByLowerName.get("cover.jpg");
+        if (directCover != null) {
+            try (InputStream input = SafDocumentIdentity.openInputStream(c, directCover)) {
+                if (input != null) {
+                    Bitmap cover = BaseExtractor.arrayToBitmap(BaseExtractor.getEntryAsByte(input), width);
+                    if (cover != null) return cover;
+                }
+            } catch (Exception failure) {
+                LOG.e(failure);
+                transientFailure[0] = true;
+            }
+        }
+        try (InputStream input = trackSidecarRead(
+                SafDocumentIdentity.openInputStream(c, entry.opfUri), transientFailure)) {
+            if (input == null) return null;
+            EbookMeta meta = CalirbeExtractor.getBookMetaInformationFromStream(input,
+                    SafOpfRegistry.coverResolver(c, entry.siblingByLowerName,
+                            failure -> transientFailure[0] = true));
+            return meta == null ? null : BaseExtractor.arrayToBitmap(meta.coverImage, width);
+        } catch (Exception failure) {
+            LOG.e(failure);
+            transientFailure[0] = true;
+            return null;
+        }
+    }
+
+    private static InputStream trackSidecarRead(InputStream input, boolean[] transientFailure) {
+        return new java.io.FilterInputStream(input) {
+            @Override public int read() throws java.io.IOException {
+                try { return super.read(); }
+                catch (java.io.IOException failure) {
+                    transientFailure[0] = true;
+                    throw failure;
+                }
+            }
+
+            @Override public int read(byte[] bytes, int offset, int length) throws java.io.IOException {
+                try { return super.read(bytes, offset, length); }
+                catch (java.io.IOException failure) {
+                    transientFailure[0] = true;
+                    throw failure;
+                }
+            }
+        };
+    }
+
     private Bitmap proccessSAFCoverPage(PageUrl pageUrl) {
         Uri uri = Uri.parse(pageUrl.getPath());
         String displayName = ExtUtils.getFileName(pageUrl.getPath());
         SafFileLink link = null;
+        boolean[] sidecarReadFailed = new boolean[1];
         try {
-            Cursor cursor = c.getContentResolver().query(uri,
-                    new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null);
-            if (cursor != null) {
-                try {
-                    if (cursor.moveToFirst()) displayName = cursor.getString(0);
-                } finally {
-                    cursor.close();
+            if (AppState.get().isUseCalibreOpf) {
+                SafOpfRegistry.restore(c);
+                SafOpfRegistry.Entry sidecar = SafOpfRegistry.get(pageUrl.getPath());
+                if (sidecar != null) {
+                    Bitmap cover = coverFromSafSidecar(sidecar, pageUrl.getWidth(), sidecarReadFailed);
+                    if (cover != null) return cover;
+                }
+            }
+            for (Uri access : SafDocumentIdentity.accessCandidates(c, uri)) {
+                try (Cursor cursor = c.getContentResolver().query(access,
+                        new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null)) {
+                    if (cursor != null && cursor.moveToFirst()) {
+                        displayName = cursor.getString(0);
+                        break;
+                    }
+                } catch (Exception unavailableGrant) {
+                    // The staged-file link below tries the remaining grants independently.
                 }
             }
 
@@ -339,6 +401,9 @@ public class ImageExtractor {
             }
 
             if (cover == null) {
+                if (sidecarReadFailed[0]) {
+                    throw new TransientSafCoverException(pageUrl.getPath(), null);
+                }
                 String title = com.foobnix.android.utils.TxtUtils.isNotEmpty(fileMeta.getTitle()) ? fileMeta.getTitle() : displayName;
                 cover = BaseExtractor.getBookCoverWithTitle(fileMeta.getAuthor(), title, true);
                 pageUrl.tempWithWatermakr = true;
@@ -754,7 +819,7 @@ public class ImageExtractor {
 
             if (ExtUtils.isExteralSD(path)) {
                 if (ExtUtils.isImagePath(path)) {
-                    return c.getContentResolver().openInputStream(Uri.parse(path));
+                    return SafDocumentIdentity.openInputStream(c, Uri.parse(path));
                 }
                 int safPage = pageUrl.getPage();
                 if (safPage != COVER_PAGE && safPage != COVER_PAGE_WITH_EFFECT && safPage != COVER_PAGE_NO_EFFECT) {

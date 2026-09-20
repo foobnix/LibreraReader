@@ -354,6 +354,29 @@ public class AppDB {
         dao.detachAll();
     }
 
+    /** Scan-owned sidecar facts are independent of extracted metadata and user edits. */
+    public void updateSidecarRevision(FileMeta book, String revision) {
+        book.setSafSidecarRevision(revision);
+        updateSidecarRevision(fileMetaDao.getDatabase(), book);
+        fileMetaDao.detachAll();
+    }
+
+    private static void updateSidecarRevision(Database db, FileMeta book) {
+        if (book.getSafSidecarRevision() == null) return;
+        db.execSQL("UPDATE FILE_META SET SAF_SIDECAR_REVISION=? WHERE PATH=? "
+                        + "AND SAF_SIDECAR_REVISION IS NOT ?",
+                new Object[]{book.getSafSidecarRevision(), book.getPath(), book.getSafSidecarRevision()});
+    }
+
+    /** Unscanned picker/Recents books have no known sidecars; allow ordinary cover caching. */
+    private void initializeUnscannedSidecarRevision(FileMeta book) {
+        if (!ExtUtils.isExteralSD(book.getPath()) || book.getSafSidecarRevision() != null) return;
+        try (Cursor rows = fileMetaDao.getDatabase().rawQuery(
+                "SELECT 1 FROM SCAN_MEMBERSHIP WHERE PATH=? LIMIT 1", new String[]{book.getPath()})) {
+            if (!rows.moveToFirst()) book.setSafSidecarRevision("");
+        }
+    }
+
     public void updateAnnotationIfMissing(String path, String annotation) {
         FileMetaDao dao = fileMetaDao;
         if (dao == null || annotation == null || annotation.isEmpty()) return;
@@ -462,6 +485,7 @@ public class AppDB {
                 db.execSQL("UPDATE FILE_META SET IS_SEARCH_BOOK=? WHERE PATH=?",
                         new Object[]{book.getIsSearchBook() ? 1 : 0, path});
                 if (ExtUtils.isExteralSD(path)) {
+                    updateSidecarRevision(db, book);
                     db.execSQL("UPDATE FILE_META SET STATE=COALESCE(STATE,?),"
                                     + "SIZE=COALESCE(?,SIZE),"
                                     + "DATE=COALESCE(?,DATE),PATH_TXT=COALESCE(?,PATH_TXT),"
@@ -579,6 +603,11 @@ public class AppDB {
             load.setPages(100);
         }
 
+        if (fileMetaDao != null && load.getSafSidecarRevision() == null) {
+            initializeUnscannedSidecarRevision(load);
+            if (load.getSafSidecarRevision() != null) updateSidecarRevision(load, load.getSafSidecarRevision());
+        }
+
         if (load.getState() == null) {
             load.setState(FileMetaCore.STATE_NONE);
         }
@@ -680,6 +709,7 @@ public class AppDB {
         if (current.getTag() == null) current.setTag(old.getTag());
         if (current.getCusType() == null) current.setCusType(old.getCusType());
         if (current.getAnnotation() == null) current.setAnnotation(old.getAnnotation());
+        if (current.getSafSidecarRevision() == null) current.setSafSidecarRevision(old.getSafSidecarRevision());
         if (current.getState() == null || old.getState() != null
                 && old.getState() > current.getState()) {
             current.setTitle(old.getTitle());
@@ -721,6 +751,7 @@ public class AppDB {
 
         long time = System.currentTimeMillis();
         LOG.d("Save all begin");
+        for (FileMeta book : list) initializeUnscannedSidecarRevision(book);
         fileMetaDao.insertOrReplaceInTx(list, true);
         long end = System.currentTimeMillis() - time;
         LOG.d("Save all end", end / 1000, list.size());

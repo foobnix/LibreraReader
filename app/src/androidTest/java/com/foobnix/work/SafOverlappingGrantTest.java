@@ -46,8 +46,8 @@ public class SafOverlappingGrantTest {
         if (addedExtension) ExtUtils.seachExts.add(".epub");
         try {
             SafDiscovery.DirectoryListing listing = (folder, stopped) -> folders.get(folder);
-            SafDiscovery.collect(parentGrant, found, () -> false, listing);
-            SafDiscovery.collect(childGrant, found, () -> false, listing);
+            SafDiscovery.collect(parentGrant, found, new HashMap<>(), () -> false, listing);
+            SafDiscovery.collect(childGrant, found, new HashMap<>(), () -> false, listing);
             assertEquals(2, found.size());
             String identity = SafDocumentIdentity.canonical(parentBook).toString();
             assertEquals(identity, found.get(0).getPath());

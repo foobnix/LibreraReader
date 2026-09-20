@@ -56,6 +56,7 @@ public class FileMeta {
     private Integer filesCount;
     private Integer readCount;
     private String pubDate;
+    private String safSidecarRevision;
 
     @Generated
     public FileMeta() {
@@ -66,7 +67,7 @@ public class FileMeta {
     }
 
     @Generated
-    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year, Integer state, String publisher, String isbn, String parentPath, Integer filesCount, Integer readCount, String pubDate) {
+    public FileMeta(String path, String title, String author, String sequence, String genre, String child, String annotation, Integer sIndex, Integer cusType, String ext, Long size, Long date, String dateTxt, String sizeTxt, String pathTxt, Boolean isStar, Long isStarTime, Boolean isRecent, Long isRecentTime, Float isRecentProgress, Boolean isSearchBook, String lang, String tag, Integer pages, String keyword, Integer year, Integer state, String publisher, String isbn, String parentPath, Integer filesCount, Integer readCount, String pubDate, String safSidecarRevision) {
         this.path = path;
         this.title = title;
         this.author = author;
@@ -100,6 +101,7 @@ public class FileMeta {
         this.filesCount = filesCount;
         this.readCount = readCount;
         this.pubDate = pubDate;
+        this.safSidecarRevision = safSidecarRevision;
     }
 
     @Override
@@ -362,6 +364,10 @@ public class FileMeta {
     public void setReadCount(Integer readCount) {
         this.readCount = readCount;
     }
+
+    /** null means not yet scanned; an empty revision confirms there are no sidecars. */
+    public String getSafSidecarRevision() { return safSidecarRevision; }
+    public void setSafSidecarRevision(String revision) { safSidecarRevision = revision; }
 
     public String getPubDate() {
         return pubDate;
