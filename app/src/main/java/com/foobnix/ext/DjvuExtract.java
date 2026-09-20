@@ -32,11 +32,11 @@ public class DjvuExtract {
         try {
             doc = codecContex.openDocument(unZipPath, "");
             if (doc == null) {
-                return EbookMeta.Empty();
+                return EbookMeta.Failed();
             }
         } catch (RuntimeException e) {
             LOG.e(e);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
         EbookMeta meta = new EbookMeta(doc.getBookTitle(), doc.getBookAuthor());
         meta.setPagesCount(doc.getPageCount());

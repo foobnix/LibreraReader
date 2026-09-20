@@ -67,7 +67,7 @@ public class MobiExtract {
 
         } catch (Throwable e) {
             LOG.e(e);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
     }
 

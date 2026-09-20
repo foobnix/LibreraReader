@@ -24,6 +24,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+import org.ebookdroid.BookType;
 import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
@@ -394,11 +395,13 @@ public class EpubExtractor extends BaseExtractor {
             String calibreTimestamp = null;
             String publisher = "";
             String ibsn = "";
+            boolean foundMetadataEntry = false;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase(Locale.US);
 
                 if (name.endsWith(".opf") || name.endsWith("meta.xml")) {
+                    foundMetadataEntry = true;
 
                     XmlPullParser xpp = XmlParser.buildPullParser();
                     xpp.setInput(zipInputStream, "utf-8");
@@ -500,6 +503,7 @@ public class EpubExtractor extends BaseExtractor {
                 }
             }
             zipInputStream.close();
+            if (BookType.EPUB.is(path) && !foundMetadataEntry) return EbookMeta.Failed();
 
             author = TxtUtils.replaceFirst(author, ", ", "");
             ibsn = TxtUtils.replaceLast(ibsn, ",", "");
@@ -537,7 +541,7 @@ public class EpubExtractor extends BaseExtractor {
             return ebookMeta;
         } catch (Exception e) {
             LOG.e(e);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
     }
 

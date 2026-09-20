@@ -16,6 +16,7 @@ public class EbookMeta {
     private String year;
     private String publisher;
     private String isbn;
+    private boolean extractionFailed;
 
 
     public EbookMeta(String title, String author, byte[] coverImage) {
@@ -40,6 +41,16 @@ public class EbookMeta {
     public static EbookMeta Empty() {
         return new EbookMeta(null, null, null);
     }
+
+    /** Distinguishes a parser error from a valid book with no embedded metadata. */
+    public static EbookMeta Failed() {
+        EbookMeta result = Empty();
+        result.extractionFailed = true;
+        return result;
+    }
+
+    public boolean isExtractionFailed() { return extractionFailed; }
+    public void markExtractionFailed() { extractionFailed = true; }
 
     public String updateString(String input) {
         if (input == null) {

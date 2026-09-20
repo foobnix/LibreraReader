@@ -199,6 +199,7 @@ public class BookCSS {
     }
 
     public void resetToDefault(Context c) {
+        searchPathsJson = null;
         textAlign = TEXT_ALIGN_JUSTIFY;
 
         marginTop = 9;
@@ -251,9 +252,9 @@ public class BookCSS {
 
         List<String> res = new ArrayList<>();
         for (String item : objects) {
-            if (TxtUtils.isNotEmpty(item) && new File(item).isDirectory()) {
-                res.add(item);
-            }
+            if (TxtUtils.isEmpty(item)) continue;
+            // Temporary loss of access is a traversal failure, not deselection.
+            res.add(item);
         }
         return  res;
 
@@ -268,12 +269,13 @@ public class BookCSS {
         IO.readObj(AppProfile.syncCSS, instance);
 
         try {
+            boolean hasSavedSelection = instance.searchPathsJson != null;
             List<String> filtered = filtered(JsonDB.get(instance.searchPathsJson));
             instance.searchPathsJson = JsonDB.set(filtered);
 
             LOG.d("searchPaths-all", 1, instance.searchPathsJson,filtered);
 
-            if (TxtUtils.isListEmpty(filtered)) {
+            if (!hasSavedSelection) {
                 List<String> extFolders = ExtUtils.getAllExternalStorages(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {

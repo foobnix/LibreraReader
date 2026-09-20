@@ -41,6 +41,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
         migrations.add(new MigrationV10());
+        migrations.add(new MigrationV11());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -165,6 +166,11 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
                        " = substr('0000' || " + FileMetaDao.Properties.Year.columnName + ", -4, 4) WHERE " +
                        FileMetaDao.Properties.Year.columnName + " IS NOT NULL");
         }
+    }
+
+    private static class MigrationV11 implements Migration {
+        @Override public Integer getVersion() { return 11; }
+        @Override public void runMigration(Database db) { ScanTables.create(db); }
     }
 
     private interface Migration {

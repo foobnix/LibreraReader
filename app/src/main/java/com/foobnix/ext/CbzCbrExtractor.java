@@ -109,7 +109,6 @@ public class CbzCbrExtractor {
             if (BookType.CBZ.is(path) || isZip(path)) {
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
                 ArchiveEntry nextEntry = null;
-
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     String name = nextEntry.getName().toLowerCase(Locale.US);
                     if ("comicinfo.xml".equals(name)) {
@@ -195,8 +194,10 @@ public class CbzCbrExtractor {
             if (BookType.CBZ.is(path) || isZip(path)) {
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
                 ArchiveEntry nextEntry = null;
+                boolean sawEntry = false;
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    sawEntry = true;
                     String name = nextEntry.getName().toLowerCase(Locale.US);
 
                     if ("comicinfo.xml".equals(name)) {
@@ -206,7 +207,7 @@ public class CbzCbrExtractor {
 
                 if (nextEntry == null) {
                     zipInputStream.close();
-                    return EbookMeta.Empty();
+                    return sawEntry ? EbookMeta.Empty() : EbookMeta.Failed();
                 }
             } else if (BookType.CBR.is(path)) {
                 Archive archive = new Archive(new File(path));
@@ -338,7 +339,7 @@ public class CbzCbrExtractor {
             return ebookMeta;
         } catch (Exception e) {
             LOG.e(e);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
     }
 

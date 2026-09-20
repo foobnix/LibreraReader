@@ -220,9 +220,18 @@ public class FileMetaCore {
 
         } catch (Exception e) {
             LOG.w(e);
+            ebookMeta = EbookMeta.Failed();
         }
         return ebookMeta;
 
+    }
+
+    /** Scan publication must not treat a parser's filename fallback as extracted metadata. */
+    public EbookMeta getEbookMetaForScan(String path, CacheDir folder) throws IOException {
+        EbookMeta result = getEbookMeta(path, folder, true);
+        if (result == null || result.isExtractionFailed())
+            throw new IOException("Book metadata extraction failed: " + path);
+        return result;
     }
 
     private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
@@ -258,6 +267,7 @@ public class FileMetaCore {
         } else if (BookType.PDF.is(unZipPath)) {
             boolean needExtractMeta = AppState.get().isAuthorTitleFromMetaPDF ? true : isNeedToExtractPDFMeta(unZipPath);
             EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);
+            if (local.isExtractionFailed()) ebookMeta.markExtractionFailed();
             if (needExtractMeta) {
                 ebookMeta.setTitle(local.getTitle());
                 ebookMeta.setAuthor(local.getAuthor());

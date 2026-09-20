@@ -170,6 +170,8 @@ public class PrefDialogs {
                 AlertDialogs.showDialog(a, a.getString(R.string.remove_library_folder) + "\n\n" + path, a.getString(R.string.remove), () -> {
                     LOG.d("TEST", "Remove " + path);
                     BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                    BookCSS.get().save(a);
+                    com.foobnix.work.SearchAllBooksWorker.deselectRoot(a, path);
                     LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson);
                     recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
                     onChanges.run();

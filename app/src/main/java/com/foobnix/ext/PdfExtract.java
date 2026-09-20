@@ -33,10 +33,10 @@ public class PdfExtract {
             doc = codecContex.openDocument(unZipPath, "");
         } catch (RuntimeException e) {
             LOG.e(e, unZipPath);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
         if (doc == null) {
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
         String bookAuthor = doc.getBookAuthor();
         if(TxtUtils.isNotEmpty(bookAuthor)){
