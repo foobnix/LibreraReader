@@ -6,24 +6,41 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.SafDocumentIdentity;
 import com.foobnix.pdf.info.SafOpfRegistry;
+import com.foobnix.pdf.info.Tunables;
 import com.foobnix.pdf.info.io.SearchCore;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BooleanSupplier;
 
-/** Sequential selected-folder traversal; any incomplete listing invalidates removals. */
+/** Bounded selected-folder traversal; any incomplete listing invalidates removals. */
 final class SafDiscovery {
     private SafDiscovery() {}
 
     interface DirectoryListing {
         List<SafDocuments.Document> list(Uri folder, BooleanSupplier stopped)
                 throws IOException, InterruptedException;
+    }
+
+    private static final class FolderResult {
+        final Uri folder;
+        final List<SafDocuments.Document> children;
+        FolderResult(Uri folder, List<SafDocuments.Document> children) {
+            this.folder = folder;
+            this.children = children;
+        }
     }
 
     static void collect(Context context, Uri root, List<FileMeta> output,
@@ -42,24 +59,53 @@ final class SafDiscovery {
                         Map<String, SafOpfRegistry.Entry> sidecars,
                         BooleanSupplier stopped, DirectoryListing listing)
             throws IOException, InterruptedException {
-        walk(root, output, sidecars, stopped, new HashSet<>(), listing);
-    }
-
-    private static void walk(Uri folder, List<FileMeta> output,
-                             Map<String, SafOpfRegistry.Entry> sidecars,
-                             BooleanSupplier stopped, Set<Uri> visited, DirectoryListing listing)
-            throws IOException, InterruptedException {
-        if (stopped.getAsBoolean()) throw new IOException("SAF scan cancelled");
-        if (!visited.add(SafDocumentIdentity.canonical(folder))) return;
-        List<SafDocuments.Document> children = listing.list(folder, stopped);
-        recordSidecars(children, sidecars);
-        for (SafDocuments.Document child : children) {
-            if (stopped.getAsBoolean()) throw new IOException("SAF scan cancelled");
-            if (child.directory) {
-                walk(child.uri, output, sidecars, stopped, visited, listing);
-            } else if (child.name != null && SearchCore.endWith(child.name, ExtUtils.seachExts)) {
-                output.add(child.book());
+        int parallelism = Math.max(1, Tunables.SAF_DISCOVERY_PARALLELISM);
+        ExecutorService workers = Executors.newFixedThreadPool(parallelism);
+        ExecutorCompletionService<FolderResult> completed = new ExecutorCompletionService<>(workers);
+        ArrayDeque<Uri> queued = new ArrayDeque<>();
+        Set<Uri> visited = new HashSet<>();
+        List<FileMeta> found = new ArrayList<>();
+        Map<String, SafOpfRegistry.Entry> foundSidecars = new HashMap<>();
+        queued.add(root);
+        visited.add(SafDocumentIdentity.canonical(root));
+        int pending = 0;
+        try {
+            while (!queued.isEmpty() || pending != 0) {
+                if (stopped.getAsBoolean()) throw new IOException("SAF scan cancelled");
+                while (pending < parallelism && !queued.isEmpty()) {
+                    Uri folder = queued.remove();
+                    completed.submit(() -> new FolderResult(folder,
+                            listing.list(folder, () -> stopped.getAsBoolean()
+                                    || Thread.currentThread().isInterrupted())));
+                    pending++;
+                }
+                Future<FolderResult> next = completed.poll(100, TimeUnit.MILLISECONDS);
+                if (next == null) continue;
+                pending--;
+                FolderResult result;
+                try {
+                    result = next.get();
+                } catch (ExecutionException failed) {
+                    Throwable cause = failed.getCause();
+                    if (cause instanceof InterruptedException) throw (InterruptedException) cause;
+                    if (cause instanceof IOException) throw (IOException) cause;
+                    throw new IOException("Cannot list SAF folder", cause);
+                }
+                recordSidecars(result.children, foundSidecars);
+                for (SafDocuments.Document child : result.children) {
+                    if (stopped.getAsBoolean()) throw new IOException("SAF scan cancelled");
+                    if (child.directory) {
+                        if (visited.add(SafDocumentIdentity.canonical(child.uri))) queued.add(child.uri);
+                    } else if (child.name != null
+                            && SearchCore.endWith(child.name, ExtUtils.seachExts)) {
+                        found.add(child.book());
+                    }
+                }
             }
+        } finally {
+            output.addAll(found);
+            sidecars.putAll(foundSidecars);
+            workers.shutdownNow();
         }
     }
 
