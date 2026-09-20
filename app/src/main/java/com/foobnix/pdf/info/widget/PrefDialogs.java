@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
@@ -86,19 +85,13 @@ public class PrefDialogs {
     }
 
     /**
-     * Adds one folder to the library paths. The root, an external SD card and a path already
-     * in the list are each refused with a word on why, so the caller only has to say where to
-     * put the folder it picked.
+     * Adds one local or persisted SAF folder to the library paths.
      *
      * @return true when the list gained the path.
      */
     public static boolean addSearchPath(final Context a, final String nPath) {
         if ("/".equals(nPath)) {
             Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if (ExtUtils.isExteralSD(nPath)) {
-            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
             return false;
         }
         for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
@@ -109,6 +102,7 @@ public class PrefDialogs {
             }
         }
         BookCSS.get().searchPathsJson = JsonDB.add(BookCSS.get().searchPathsJson, nPath);
+        BookCSS.get().save(a);
         return true;
     }
 
@@ -162,11 +156,10 @@ public class PrefDialogs {
                 dialog.dismiss();
             }
         });
-        recentAdapter.setOnDeleClick(new ResultResponse<Uri>() {
+        recentAdapter.setOnDeleClick(new ResultResponse<String>() {
 
             @Override
-            public boolean onResultRecive(Uri result) {
-                final String path = result.getPath();
+            public boolean onResultRecive(String path) {
                 AlertDialogs.showDialog(a, a.getString(R.string.remove_library_folder) + "\n\n" + path, a.getString(R.string.remove), () -> {
                     LOG.d("TEST", "Remove " + path);
                     BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);

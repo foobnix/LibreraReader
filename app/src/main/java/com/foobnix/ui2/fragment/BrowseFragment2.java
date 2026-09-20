@@ -951,7 +951,7 @@ import java.util.Map;
                 return result;
             }
 
-            if (ExtUtils.isExteralSD(getInitPath())) {
+            if (ExtUtils.isExteralSD(AppState.get().displayPath)) {
 
                 List<FileMeta> items = new ArrayList<FileMeta>();
 
@@ -977,8 +977,9 @@ import java.util.Map;
                                     Document.COLUMN_SUMMARY, //
                             }, //
                             null, null, null); //
+                    LOG.d("newNode childCursor >> ", childCursor);
                     try {
-                        while (childCursor.moveToNext()) {
+                        while (childCursor != null && childCursor.moveToNext()) {
                             String COLUMN_DISPLAY_NAME = childCursor.getString(0);
                             String COLUMN_DOCUMENT_ID = childCursor.getString(1);
                             String COLUMN_ICON = childCursor.getString(2);
@@ -1015,6 +1016,7 @@ import java.util.Map;
                                     LOG.e(e);
                                 }
                                 meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
+                                meta.setPathTxt(COLUMN_DISPLAY_NAME);
 
                                 if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
                                     meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));

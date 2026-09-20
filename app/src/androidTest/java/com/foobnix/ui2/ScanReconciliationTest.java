@@ -5,6 +5,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -58,6 +59,76 @@ public class ScanReconciliationTest {
             AppDB.get().deleteBy(path);
         }
     }
+
+    @Test public void opaqueSafDocumentIdsUseCompletedRootMembershipForRemovals() {
+        String root = "content://scan-fixture/tree/" + UUID.randomUUID();
+        String path = "content://scan-fixture/document/opaque-" + UUID.randomUUID();
+        try {
+            FileMeta book = new FileMeta(path);
+            book.setTitle("Book");
+            book.setIsSearchBook(true);
+            book.setIsStar(true);
+            book.setIsRecent(true);
+            AppDB.get().saveAll(Collections.singletonList(book));
+            Map<String, Set<String>> membership = new HashMap<>();
+            membership.put(root, new HashSet<>(Collections.singleton(path)));
+            AppDB.get().reconcileCompletedScan(Collections.singletonList(book),
+                    Collections.singleton(root), membership);
+            assertEquals(Boolean.TRUE, AppDB.get().load(path).getIsSearchBook());
+
+            // Only a second complete listing can confirm absence from this root.
+            membership.put(root, Collections.emptySet());
+            AppDB.get().reconcileCompletedScan(Collections.emptyList(),
+                    Collections.singleton(root), membership);
+            FileMeta retained = AppDB.get().load(path);
+            assertEquals(Boolean.FALSE, retained.getIsSearchBook());
+            assertEquals(Boolean.TRUE, retained.getIsStar());
+            assertEquals(Boolean.TRUE, retained.getIsRecent());
+        } finally {
+            AppDB.get().deleteBy(path);
+        }
+    }
+
+    @Test public void deselectedSafRootClearsOnlyExclusiveMembership() {
+        String first = "content://scan-fixture/tree/" + UUID.randomUUID();
+        String second = "content://scan-fixture/tree/" + UUID.randomUUID();
+        String shared = "content://scan-fixture/document/" + UUID.randomUUID();
+        String exclusive = "content://scan-fixture/document/" + UUID.randomUUID();
+        try {
+            for (String path : new String[]{shared, exclusive}) {
+                FileMeta row = new FileMeta(path);
+                row.setTitle("Book");
+                row.setIsSearchBook(true);
+                row.setIsStar(true);
+                row.setIsRecent(true);
+                row.setIsRecentProgress(0.7f);
+                AppDB.get().saveAll(Collections.singletonList(row));
+            }
+            Map<String, Set<String>> membership = new HashMap<>();
+            membership.put(first, new HashSet<>(java.util.Arrays.asList(shared, exclusive)));
+            membership.put(second, Collections.singleton(shared));
+            AppDB.get().reconcileCompletedScan(java.util.Arrays.asList(
+                    AppDB.get().load(shared), AppDB.get().load(exclusive)),
+                    new HashSet<>(membership.keySet()), membership);
+
+            AppDB.get().reconcileDeselectedRoots(Collections.singleton(second),
+                    Collections.singleton(first));
+            assertEquals(Boolean.TRUE, AppDB.get().load(shared).getIsSearchBook());
+            FileMeta removed = AppDB.get().load(exclusive);
+            assertEquals(Boolean.FALSE, removed.getIsSearchBook());
+            assertEquals(Boolean.TRUE, removed.getIsStar());
+            assertEquals(Boolean.TRUE, removed.getIsRecent());
+            assertEquals(0.7f, removed.getIsRecentProgress(), 0.0001f);
+            // A stale membership row must not keep the shared book after its final root goes.
+            AppDB.get().reconcileDeselectedRoots(Collections.emptySet(),
+                    Collections.singleton(second));
+            assertEquals(Boolean.FALSE, AppDB.get().load(shared).getIsSearchBook());
+        } finally {
+            AppDB.get().deleteBy(shared);
+            AppDB.get().deleteBy(exclusive);
+        }
+    }
+
     @Test public void explicitLocalDeselectionPreservesUserStateAndOverlappingRoot() {
         String parent = "/scan-fixture-" + UUID.randomUUID();
         String nested = parent + "/nested";
@@ -82,6 +153,7 @@ public class ScanReconciliationTest {
             AppDB.get().deleteBy(path);
         }
     }
+
     @Test public void recordedLocalMembershipSurvivesInaccessibleSelectionUntilDeselected() {
         String root = "/scan-fixture-" + UUID.randomUUID();
         String path = root + "/book.epub";
