@@ -89,7 +89,7 @@ public class Fb2Extractor extends BaseExtractor {
     public static Map<Integer, String> epub3Pages = new HashMap<>();
     static Fb2Extractor inst = new Fb2Extractor();
     static Pattern pattern = Pattern.compile("<a id=\"page(\\d+)\"");
-    public Map<String, String> genresRus = new HashMap<>();
+    private volatile Map<String, String> genresRus = java.util.Collections.emptyMap();
 
     private Fb2Extractor() {
     }
@@ -720,10 +720,11 @@ public class Fb2Extractor extends BaseExtractor {
         }
     }
 
-    public void loadGenres() {
+    public synchronized void loadGenres() {
         if (!genresRus.isEmpty()) {
             return;
         }
+        Map<String, String> loaded = new HashMap<>();
         try {
             {
                 InputStream xmlStream = LibreraApp.context.getAssets().open("union_genres_ru_1.xml");
@@ -736,7 +737,7 @@ public class Fb2Extractor extends BaseExtractor {
                         if (xpp.getName().equals("genre")) {
                             String name = xpp.getAttributeValue(0);
                             String code = xpp.getAttributeValue(1);
-                            genresRus.put(code, name);
+                            loaded.put(code, name);
                             LOG.d("loadGenres-add-1", code, name);
                         }
                     }
@@ -755,8 +756,8 @@ public class Fb2Extractor extends BaseExtractor {
                         if (xpp.getName().equals("subgenres")) {
                             String name = xpp.getAttributeValue(1);
                             String code = xpp.getAttributeValue(2);
-                            if (!genresRus.containsKey(code)) {
-                                genresRus.put(code, name);
+                            if (!loaded.containsKey(code)) {
+                                loaded.put(code, name);
                             }
                             LOG.d("loadGenres-add-2", code, name);
                         }
@@ -765,6 +766,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 xmlStream.close();
             }
+            genresRus = java.util.Collections.unmodifiableMap(loaded);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1008,8 +1010,9 @@ public class Fb2Extractor extends BaseExtractor {
             authors = TxtUtils.replaceFirst(authors, ", ", "");
 
             loadGenres();
+            Map<String, String> genreNames = genresRus;
             for (String g : genre.split(",")) {
-                String value = genresRus.get(g.trim());
+                String value = genreNames.get(g.trim());
                 if (TxtUtils.isNotEmpty(value)) {
                     genre = genre.replace(g + ",", value + ",");
                     LOG.d("loadGenres-repalce", g, value);

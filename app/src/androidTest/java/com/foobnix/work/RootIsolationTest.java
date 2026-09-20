@@ -78,6 +78,47 @@ public class RootIsolationTest {
             book.delete(); folder.delete();
         }
     }
+    @Test public void partialSafRootStillExtractsConfirmedMetadataAfterProviderRuntimeFailure() throws Exception {
+        Context target = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AppProfile.init(target);
+        String id = "partial-" + UUID.randomUUID();
+        Uri root = android.provider.DocumentsContract.buildTreeDocumentUri("partial.fixture", id);
+        String book = android.provider.DocumentsContract.buildDocumentUri("partial.fixture", id + "-book").toString();
+        String retained = android.provider.DocumentsContract.buildDocumentUri("partial.fixture", id + "-offline-book").toString();
+        Context context = target;
+        String previous = com.foobnix.pdf.info.model.BookCSS.get().searchPathsJson;
+        FileMeta offline = new FileMeta(retained); offline.setIsSearchBook(true);
+        AppDB.get().save(offline);
+        AppDB.get().reconcileCompletedScan(Collections.singletonList(offline), Collections.singleton(root.toString()),
+                Collections.singletonMap(root.toString(), Collections.singleton(retained)));
+        boolean added = !ExtUtils.seachExts.contains(".epub");
+        if (added) ExtUtils.seachExts.add(".epub");
+        try {
+            com.foobnix.pdf.info.model.BookCSS.get().searchPathsJson = com.foobnix.android.utils.JsonDB.set(Collections.singletonList(root.toString()));
+            SearchAllBooksWorker worker = new SearchAllBooksWorker(context, parameters()) {
+                @Override protected void scanSafRoot(String rootPath, List<FileMeta> output,
+                        java.util.Map<String, com.foobnix.pdf.info.SafOpfRegistry.Entry> sidecars,
+                        List<com.foobnix.model.SimpleMeta> excluded, List<FileMeta> synced) {
+                    FileMeta discovered = new FileMeta(book);
+                    discovered.setTitle("Book.epub"); discovered.setSize(100L); discovered.setDate(1000L);
+                    output.add(discovered);
+                    throw new IllegalStateException("Provider failed after a confirmed discovery");
+                }
+                @Override protected EbookMeta readSafMetadataForScan(FileMeta found) {
+                    return new EbookMeta("Confirmed title", "Fixture author");
+                }
+            };
+            assertTrue(worker.doWorkInner());
+            assertEquals("Confirmed title", AppDB.get().load(book).getTitle());
+            assertTrue(AppDB.get().load(retained).getIsSearchBook());
+        } finally {
+            com.foobnix.pdf.info.model.BookCSS.get().searchPathsJson = previous;
+            AppDB.get().reconcileDeselectedRoots(SearchAllBooksWorker.selectedRoots(), Collections.singleton(root.toString()));
+            AppDB.get().deleteBy(book); AppDB.get().deleteBy(retained);
+            if (added) ExtUtils.seachExts.remove(".epub");
+        }
+    }
+
     private static WorkerParameters parameters() {
         return new WorkerParameters(UUID.randomUUID(), Data.EMPTY, Collections.emptyList(),
                 new WorkerParameters.RuntimeExtras(), 0, 0, Runnable::run,
