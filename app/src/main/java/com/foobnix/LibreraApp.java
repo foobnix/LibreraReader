@@ -18,6 +18,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
@@ -77,6 +78,7 @@ public class LibreraApp extends Application {
 
 
         AppsConfig.init(this);
+
         Dips.init(this);
         Prefs.get().init(this);
 
@@ -143,6 +145,7 @@ public class LibreraApp extends Application {
         TTSNotification.initChannels(this);
 
         CacheZipUtils.init(this);
+        BookCacheLeases.scheduleCleanup(CacheZipUtils::sweepAbandoned);
 
         IMG.init(this);
         TempHolder.get().loadingCancelled.set(true);

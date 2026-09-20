@@ -109,12 +109,19 @@ public class FileMetaCore {
 
     public static String getBookOverview(String path) {
         String info = "";
+        boolean archiveLocked = false;
         try {
 
             if (CalirbeExtractor.isCalibre(path)) {
                 return CalirbeExtractor.getBookOverview(path);
             }
 
+            // ZipApp is a single shared extraction directory. Keep the member
+            // in place until this overview reader has finished with it.
+            if (ExtUtils.isZip(path)) {
+                CacheZipUtils.cacheLock.lock();
+                archiveLocked = true;
+            }
             path = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
 
             if (BookType.EPUB.is(path)) {
@@ -141,6 +148,8 @@ public class FileMetaCore {
             }
         } catch (Exception e) {
             LOG.e(e);
+        } finally {
+            if (archiveLocked) CacheZipUtils.cacheLock.unlock();
         }
         return info;
     }

@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
@@ -66,6 +67,15 @@ public class CacheZipUtils {
         CacheDir.createCacheDirs();
     }
 
+    /** Only configured app-owned locations; do not traverse unrelated image caches. */
+    public static void sweepAbandoned() {
+        for (File directory : new File[]{CACHE_BOOK_DIR, ATTACHMENTS_CACHE_DIR, CACHE_WEB, CACHE_RECENT, CACHE_TEMP}) {
+            if (directory != null) BookCacheLeases.sweepAbandoned(directory);
+        }
+        if (CacheDir.parent != null) for (CacheDir directory : CacheDir.values())
+            BookCacheLeases.sweepAbandoned(directory.getDir());
+    }
+
     public static void createAllCacheDirs() {
         if (!CACHE_BOOK_DIR.exists()) {
             CACHE_BOOK_DIR.mkdirs();
@@ -102,7 +112,7 @@ public class CacheZipUtils {
             File[] files = CACHE_TEMP.listFiles();
             Arrays.sort(files, (f1, f2) -> Long.compare(f1.lastModified(), f2.lastModified()));
             if (files.length > 50) {
-                files[0].delete();
+                BookCacheLeases.evict(files[0]);
                 LOG.d("JavaCache save delete", files[0]);
             }
 
@@ -150,7 +160,7 @@ public class CacheZipUtils {
             }
             for (File file : files) {
                 if (file != null) {
-                    boolean result = file.delete();
+                    boolean result = BookCacheLeases.evict(file);
                     LOG.d("removeFile", file,result);
                 }
             }
@@ -173,7 +183,7 @@ public class CacheZipUtils {
 
                 if (file != null && !file.getName().startsWith(exept.getName())) {
                     if (file.isFile()) {
-                        file.delete();
+                        BookCacheLeases.evict(file);
                     }
                 }
             }
@@ -377,13 +387,7 @@ public class CacheZipUtils {
     }
 
     public static void deleteDir(File file) {
-        File[] contents = file.listFiles();
-        if (contents != null) {
-            for (File f : contents) {
-                deleteDir(f);
-            }
-        }
-        file.delete();
+        BookCacheLeases.evictTree(file);
     }
 
     public static void copyFile(File source, File dest) throws IOException {

@@ -917,7 +917,14 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
         // Analytics.onStop(this);
-        CacheDir.ZipApp.removeCacheContent();
+        // Overview and metadata readers keep this lock through their final
+        // read of a member in the shared ZipApp extraction directory.
+        com.foobnix.ext.CacheZipUtils.cacheLock.lock();
+        try {
+            CacheDir.ZipApp.removeCacheContent();
+        } finally {
+            com.foobnix.ext.CacheZipUtils.cacheLock.unlock();
+        }
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
