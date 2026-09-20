@@ -28,6 +28,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.ListPreloader.PreloadModelProvider;
+import com.bumptech.glide.ListPreloader.PreloadSizeProvider;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
+import com.bumptech.glide.util.FixedPreloadSizeProvider;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -47,6 +53,7 @@ import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -59,6 +66,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class UIFragment<T> extends Fragment {
@@ -74,6 +82,7 @@ public abstract class UIFragment<T> extends Fragment {
     private boolean headerPainted;
     /** A notice the tab raises in the chrome, painted with it rather than against it. */
     private final List<View> floatingNotices = new ArrayList<View>();
+    private RecyclerViewPreloader<FileMeta> coverPreloader;
     Handler handler;
     View adFrame;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -503,6 +512,12 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        detachCoverPreloader();
+        super.onDestroyView();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         floatingHeader = null;
@@ -594,6 +609,7 @@ public abstract class UIFragment<T> extends Fragment {
         if (onGridlList != null) {
             PopupHelper.updateGridOrListIcon(onGridlList, mode);
         }
+        detachCoverPreloader();
 
         if (mode == AppState.MODE_LIST) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -649,6 +665,8 @@ public abstract class UIFragment<T> extends Fragment {
             searchAdapter.setAdapterType(mode == AppState.MODE_COVERS ? FileMetaAdapter.ADAPTER_COVERS : FileMetaAdapter.ADAPTER_GRID);
             recyclerView.setLayoutManager(mGridManager);
             recyclerView.setAdapter(searchAdapter);
+            coverPreloader = buildCoverPreloader(searchAdapter);
+            if (coverPreloader != null) recyclerView.addOnScrollListener(coverPreloader);
 
         } else if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES)
                          .contains(mode)) {
@@ -696,6 +714,40 @@ public abstract class UIFragment<T> extends Fragment {
         if (recyclerView instanceof FastScrollRecyclerView) {
             ((FastScrollRecyclerView) recyclerView).myConfiguration();
         }
+    }
+
+    private void detachCoverPreloader() {
+        if (coverPreloader != null && recyclerView != null) {
+            recyclerView.removeOnScrollListener(coverPreloader);
+            coverPreloader = null;
+        }
+    }
+
+    private RecyclerViewPreloader<FileMeta> buildCoverPreloader(final FileMetaAdapter adapter) {
+        if (getActivity() == null || !AppState.get().isShowImages) return null;
+        final Context context = getActivity();
+        final int size = IMG.getImageSize();
+        PreloadModelProvider<FileMeta> models = new PreloadModelProvider<FileMeta>() {
+            @Override public List<FileMeta> getPreloadItems(int position) {
+                return coverPreloadItems(adapter, position);
+            }
+
+            @Override public RequestBuilder<?> getPreloadRequestBuilder(FileMeta item) {
+                if (!AppState.get().isShowImages) return null;
+                return IMG.getCoverPageWithEffect(context, item.getPath(), null).priority(Priority.NORMAL);
+            }
+        };
+        PreloadSizeProvider<FileMeta> sizes = new FixedPreloadSizeProvider<>(size, size);
+        return new RecyclerViewPreloader<>(Glide.with(context), models, sizes, 36);
+    }
+
+    static List<FileMeta> coverPreloadItems(FileMetaAdapter adapter, int position) {
+        if (position < 0 || position >= adapter.getItemCount()
+                || adapter.getItemViewType(position) != FileMetaAdapter.DISPLAY_TYPE_FILE)
+            return Collections.emptyList();
+        FileMeta item = adapter.getItem(position);
+        if (item == null || TxtUtils.isEmpty(item.getPath())) return Collections.emptyList();
+        return Collections.singletonList(item);
     }
 
     public boolean onKeyDown(int keyCode) {

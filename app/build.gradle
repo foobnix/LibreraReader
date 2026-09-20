@@ -308,6 +308,7 @@ dependencies {
 
     implementation(libs.zip4j)
     implementation(libs.glide)
+    implementation(libs.glide.recyclerview)
     annotationProcessor(libs.glide.compiler)
 
     implementation(libs.commons.logging.api)

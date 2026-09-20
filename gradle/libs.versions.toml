@@ -92,6 +92,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.16.0" }#not update
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
+glide-recyclerview = { module = "com.github.bumptech.glide:recyclerview-integration", version = "4.16.0" }
 mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
 
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.0" }
@@ -149,4 +150,3 @@ androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
-
