@@ -4,9 +4,9 @@ import com.foobnix.ext.CacheZipUtils;
 import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import java.io.File;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.CountDownLatch;
 import java.nio.file.Files;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 public class BookCacheLeasesTest {
@@ -101,6 +101,28 @@ public class BookCacheLeasesTest {
     }
 
 
+
+
+
+    @Test public void asynchronousMetadataKeepsItsPathUntilWorkFinishes() throws Exception {
+        File dir = directory(), source = new File(dir, "converted.epub");
+        Files.write(source.toPath(), new byte[]{1});
+        CountDownLatch started = new CountDownLatch(1), finish = new CountDownLatch(1);
+        Thread worker = BookCacheLeases.startLeasedThread("metadata-test", Thread.NORM_PRIORITY, () -> {
+            started.countDown();
+            try { finish.await(); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        }, source);
+        try {
+            assertTrue(started.await(5, TimeUnit.SECONDS));
+            assertFalse(BookCacheLeases.evict(source));
+        } finally {
+            finish.countDown();
+            worker.join(5000);
+        }
+        assertFalse(worker.isAlive());
+        assertTrue(BookCacheLeases.evict(source));
+        assertTrue(dir.delete());
+    }
     @Test public void startupSweepRemovesCrashDirectoriesWithoutFollowingLinksOrDeletingLeases() throws Exception {
         File dir = directory();
         File abandoned = new File(dir, ".evicted-orphan-directory"); assertTrue(abandoned.mkdir());

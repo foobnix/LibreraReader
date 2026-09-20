@@ -7,6 +7,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -90,9 +91,7 @@ EpubContext extends PdfContext {
             muPdfDocument.setFootNotes(notes);
         }
 
-        Thread t = new Thread("@T openDocument") {
-            @Override
-            public void run() {
+        BookCacheLeases.startLeasedThread("@T openDocument", Thread.MIN_PRIORITY, () -> {
                 try {
 
                     if (muPdfDocument.getFootNotes() == null) {
@@ -104,11 +103,7 @@ EpubContext extends PdfContext {
                 } catch (Throwable e) {
                     LOG.e(e);
                 }
-            }
-
-        };
-        t.setPriority(Thread.MIN_PRIORITY);
-        t.start();
+        }, new File(fileName));
 
         return muPdfDocument;
     }

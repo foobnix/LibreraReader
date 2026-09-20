@@ -8,6 +8,7 @@ import com.foobnix.ext.MobiExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -68,13 +69,12 @@ public class MobiContext extends PdfContext {
             LOG.d("Load notes from file", jsonFile);
         } else {
 
-            new Thread("@T mobi set footernotes") {
-                @Override
-                public void run() {
+            final String metadataPath = fileNameEpub;
+            BookCacheLeases.startLeasedThread("@T mobi set footernotes", Thread.NORM_PRIORITY, () -> {
                     Map<String, String> notes = null;
                     try {
-                        notes = EpubExtractor.get().getFooterNotes(fileNameEpub);
-                        LOG.d("new file name", fileNameEpub);
+                        notes = EpubExtractor.get().getFooterNotes(metadataPath);
+                        LOG.d("new file name", metadataPath);
                         muPdfDocument.setFootNotes(notes);
 
                         // a cancelled extraction is empty or partial, it must not stay in the cache
@@ -93,10 +93,7 @@ public class MobiContext extends PdfContext {
                         notes = null;
                         LOG.e(e);
                     }
-                }
-
-                ;
-            }.start();
+            }, new File(metadataPath));
         }
 
 

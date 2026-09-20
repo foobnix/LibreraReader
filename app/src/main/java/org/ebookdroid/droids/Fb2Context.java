@@ -6,6 +6,7 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -79,19 +80,15 @@ public class Fb2Context extends PdfContext {
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
         } else {
-            new Thread("@T fb2 set footnotes") {
-                @Override
-                public void run() {
+            final MuPdfDocument metadataDocument = muPdfDocument;
+            BookCacheLeases.startLeasedThread("@T fb2 set footnotes", Thread.NORM_PRIORITY, () -> {
                     try {
-                        muPdfDocument.setFootNotes(getNotes(fileName));
+                        metadataDocument.setFootNotes(getNotes(fileName));
                         removeTempFilesIfCancel();
                     } catch (Throwable e) {
                         LOG.e(e);
                     }
-                }
-
-                ;
-            }.start();
+            }, new File(fileName));
         }
 
         return muPdfDocument;

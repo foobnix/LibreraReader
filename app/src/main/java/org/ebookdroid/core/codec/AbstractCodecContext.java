@@ -8,6 +8,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
@@ -78,6 +79,20 @@ public abstract class AbstractCodecContext implements CodecContext {
 
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
+        File source = new File(fileNameOriginal);
+        AutoCloseable openingLease = BookCacheLeases.acquire(source);
+        try {
+            CodecDocument document = openDocumentWithProtectedSource(fileNameOriginal, password);
+            if (document instanceof AbstractCodecDocument) {
+                ((AbstractCodecDocument) document).retainSource(source);
+            }
+            return document;
+        } finally {
+            try { openingLease.close(); } catch (Exception e) { LOG.e(e); }
+        }
+    }
+
+    private CodecDocument openDocumentWithProtectedSource(String fileNameOriginal, String password) {
         LOG.d("Open-Document", fileNameOriginal);
         // TempHolder.loadingCancelled = false;
         if (ExtUtils.isZip(fileNameOriginal)) {
