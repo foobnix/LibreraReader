@@ -17,12 +17,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.function.Supplier;
+import java.util.function.Function;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SharedBooks {
 
 
     public static void updateProgress(List<FileMeta> list1, boolean updateTime, int limit) {
+        updateProgress(list1, updateTime, limit,
+                paths -> loadAll(paths, SharedBooks::readProgressFiles));
+    }
+
+    /** The loader seam lets tests place a reader save between snapshot and publication. */
+    static void updateProgress(List<FileMeta> list1, boolean updateTime, int limit,
+                               Function<List<String>, List<AppBook>> loader) {
         // The limit is kept in the signature for callers that still pass one, but every book
         // is refreshed now: the files behind it are read once for the whole list rather than
         // once per book, so the cut that used to pay for itself no longer buys anything - and
@@ -32,28 +42,44 @@ public class SharedBooks {
         long a = System.currentTimeMillis();
         preloadAll();
 
-        // Only the books whose bar has actually moved are written back: the whole shelf was
-        // being rewritten row by row on every refresh, for a handful of changes at most.
-        final List<FileMeta> changed = new ArrayList<>();
-        for (FileMeta meta : list) {
+        int[] changed = {0};
+        List<String> paths = new ArrayList<>(list.size());
+        for (FileMeta meta : list) paths.add(meta.getPath());
+        List<AppBook> progress = loader.apply(paths);
+        for (int i = 0; i < list.size(); i++) {
             try {
-                AppBook book = SharedBooks.load(meta.getPath());
-                final Float was = meta.getIsRecentProgress();
-                final Long wasTime = meta.getIsRecentTime();
-                meta.setIsRecentProgress(book.p);
-                if (updateTime) {
-                    meta.setIsRecentTime(book.t);
-                }
-                if (was == null || was != book.p || (updateTime && (wasTime == null || wasTime != book.t))) {
-                    changed.add(meta);
-                }
+                FileMeta meta = list.get(i);
+                AppBook snapshot = progress.get(i);
+                if (snapshot == null) continue;
+                cache.compute(ExtUtils.getFileName(meta.getPath()), (key, held) -> {
+                    AppBook book = held != null && held.t >= snapshot.t ? held : snapshot;
+                    Float was = meta.getIsRecentProgress();
+                    Long wasTime = meta.getIsRecentTime();
+                    if (was == null || was != book.p
+                            || (updateTime && (wasTime == null || wasTime != book.t))) {
+                        FileMeta current = AppDB.get().refreshReadingProgress(meta.getPath(), was,
+                                book.p, wasTime, book.t, updateTime);
+                        if (current != null) {
+                            // A newer cache save may still be waiting for its DB sync.
+                            boolean pendingReaderSave = held != null && held != snapshot
+                                    && held.t >= snapshot.t
+                                    && (current.getIsRecentTime() == null
+                                    || held.t >= current.getIsRecentTime());
+                            meta.setIsRecentProgress(pendingReaderSave
+                                    ? held.p : current.getIsRecentProgress());
+                            if (updateTime) meta.setIsRecentTime(pendingReaderSave
+                                    ? held.t : current.getIsRecentTime());
+                        }
+                        changed[0]++;
+                    }
+                    return held;
+                });
             } catch (Exception e) {
                 LOG.e(e);
             }
         }
-        AppDB.get().updateAll(changed);
         long b = System.currentTimeMillis() - a;
-        LOG.d("updateProgress-time:", list.size(), changed.size(), b / 1000.0);
+        LOG.d("updateProgress-time:", list.size(), changed[0], b / 1000.0);
     }
 
     public static Map<String, AppBook> cache = new ConcurrentHashMap<>();
@@ -162,11 +188,8 @@ public class SharedBooks {
             // the files can still be reading the page before it. What is already in hand wins
             // if it is the newer of the two, or the reader would watch the page they just left
             // turn back into the one before it.
-            final AppBook held = cache.get(entry.getKey());
-            if (held != null && held.t > merged.t) {
-                continue;
-            }
-            cache.put(entry.getKey(), merged);
+            cache.compute(entry.getKey(), (key, held) ->
+                    held != null && held.t > merged.t ? held : merged);
         }
         LOG.d("SharedBooks-preloadAll", cache.size());
     }
@@ -220,9 +243,8 @@ public class SharedBooks {
         }
         try {
             final AppBook book = load(path);
-            final FileMeta meta = AppDB.get().getOrCreate(path);
-            meta.setIsRecentProgress(book.p);
-            AppDB.get().update(meta);
+            AppDB.get().getOrCreate(path);
+            AppDB.get().updateReadingProgress(path, book.p);
             LOG.d("SharedBooks-syncToDb", path, book.p);
         } catch (Exception e) {
             LOG.e(e);
@@ -243,6 +265,36 @@ public class SharedBooks {
     }
 
     public static AppBook load(String fileName) {
+        return load(fileName, null);
+    }
+
+    private static Map<File, LinkedJSONObject> readProgressFiles() {
+        Map<File, LinkedJSONObject> result = new LinkedHashMap<>();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
+            result.put(file, IO.readJsonObject(file));
+        }
+        return result;
+    }
+
+    /** Read each profile file once for a list of uncached books. */
+    static List<AppBook> loadAll(List<String> paths, Supplier<Map<File, LinkedJSONObject>> readFiles) {
+        Map<File, LinkedJSONObject> files = null;
+        List<AppBook> result = new ArrayList<>(paths.size());
+        for (String path : paths) {
+            try {
+                if (!cache.containsKey(ExtUtils.getFileName(path)) && files == null) {
+                    files = readFiles.get();
+                }
+                result.add(load(path, files));
+            } catch (Exception failure) {
+                LOG.e(failure);
+                result.add(null);
+            }
+        }
+        return result;
+    }
+
+    private static AppBook load(String fileName, Map<File, LinkedJSONObject> files) {
         LOG.d("SharedBooks-load", fileName);
 
         // Keyed by the name the progress files themselves are keyed by, not by the full path.
@@ -261,8 +313,10 @@ public class SharedBooks {
         AppBook res = new AppBook(fileName);
         AppBook original = null;
 
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
-            final AppBook load = load(IO.readJsonObject(file), fileName);
+        if (files == null) files = readProgressFiles();
+        for (Map.Entry<File, LinkedJSONObject> source : files.entrySet()) {
+            File file = source.getKey();
+            final AppBook load = load(source.getValue(), fileName);
             if (TxtUtils.isEmpty(load.path)) {
                 continue;
             }
@@ -281,13 +335,13 @@ public class SharedBooks {
             original.pt = res.pt;
             original.t = Math.max(res.t, original.t);
             LOG.d("SharedBooks-load1 original", fileName, res.p);
-            cache.put(key, original);
-            return original;
+            AppBook concurrent = cache.putIfAbsent(key, original);
+            return concurrent == null ? original : concurrent;
         }
 
         LOG.d("SharedBooks-load1 general", fileName, res.p);
-        cache.put(key, res);
-        return res;
+        AppBook concurrent = cache.putIfAbsent(key, res);
+        return concurrent == null ? res : concurrent;
 
     }
 
