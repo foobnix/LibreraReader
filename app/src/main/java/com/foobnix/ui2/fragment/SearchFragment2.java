@@ -1052,6 +1052,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu()
                  .add(sortBy.getResName())
+                 .setIconSmall(AppState.get().sortBy == sortBy.getIndex() ? TintUtil.SORT_CURRENT_ICON : 0)
                  .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                      @Override public boolean onMenuItemClick(MenuItem item) {

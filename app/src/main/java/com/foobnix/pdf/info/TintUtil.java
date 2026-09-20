@@ -44,6 +44,8 @@ public class TintUtil {
     public static final int SWATCH_RADIUS = Dips.dpToPx(6);
     public static final int SECTION_RADIUS = Dips.dpToPx(8);
     public static final int BADGE_RADIUS = Dips.dpToPx(20);
+    /** The mark a sort menu puts on the sort the list is in. */
+    public static final int SORT_CURRENT_ICON = R.drawable.glyphicons_194_circle_empty_check;
     public static final int COVER_RADIUS_MAX = 4;
     public static final int COVER_RADIUS_STEP_DP = 3;
     private static final int SWATCH_BORDER = Color.parseColor("#55888888");

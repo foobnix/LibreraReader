@@ -218,6 +218,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     final int j = i;
                     menu.getMenu()
                         .add(name)
+                        .setIconSmall(AppState.get().sortByFavorite == ids.get(j) ? TintUtil.SORT_CURRENT_ICON : 0)
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {

@@ -44,6 +44,15 @@
         android:text="Item"
         android:textSize="20sp" />
 
+    <!-- A mark on the row, not an icon naming it: it follows the name instead of standing
+         in the icon column in front of it. -->
+    <ImageView
+        android:id="@+id/imageEnd"
+        android:layout_width="20dip"
+        android:layout_height="20dip"
+        android:layout_marginLeft="8dip"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/type1"
         android:layout_width="wrap_content"
