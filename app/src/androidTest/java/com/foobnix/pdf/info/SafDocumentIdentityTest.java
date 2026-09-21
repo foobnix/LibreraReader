@@ -28,6 +28,7 @@ public class SafDocumentIdentityTest {
         FileMeta legacy = new FileMeta(parent.toString());
         legacy.setTitle("Book"); legacy.setIsStar(true); legacy.setIsRecent(true);
         legacy.setIsRecentProgress(0.6f); legacy.setIsRecentTime(123L);
+        AppDB.get().migrateAllSafRows(); // A later import must invalidate this completed migration.
         AppDB.get().saveAll(java.util.Collections.singletonList(legacy));
         assertTrue(Boolean.TRUE.equals(AppDB.get().getAll().stream()
                 .filter(row -> parent.toString().equals(row.getPath()))
@@ -50,8 +51,9 @@ public class SafDocumentIdentityTest {
             assertEquals(identity, legacyBookmark.getPath());
             legacyBookmark.setPath(child.toString());
             assertEquals(identity, legacyBookmark.getPath());
-            assertEquals(Uri.parse(identity), SafDocumentIdentity.accessCandidates(context, Uri.parse(identity)).get(0));
-
+            // Remembering an address does not create permission or retain an unbounded history.
+            assertEquals(java.util.Collections.singletonList(Uri.parse(identity)),
+                    SafDocumentIdentity.accessCandidates(context, Uri.parse(identity)));
         } finally {
             SharedBooks.cache.remove(ExtUtils.getFileName(identity));
             AppDB.get().deleteBy(parent.toString()); AppDB.get().deleteBy(child.toString());
