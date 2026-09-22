@@ -26,11 +26,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-/**
- * Opens a book in LibreraX and waits for it to be closed there: the place it was closed at
- * is saved as the book's progress, the same as a book closed in Librera's own reader.
- * Nothing is shown unless LibreraX is missing, then the popup to download it.
- */
 public class LibreraXActivity extends Activity {
 
     private static final int REQUEST_READ = 1;
@@ -40,7 +35,6 @@ public class LibreraXActivity extends Activity {
     private boolean started;
 
     @Override protected void attachBaseContext(Context context) {
-        // the language chosen in the app, not the system one
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
@@ -129,10 +123,10 @@ public class LibreraXActivity extends Activity {
         finish();
     }
 
+    // kept small enough for an intent
     private static final int BOOKMARKS_MAX = 1000;
     private static final int BOOKMARK_TEXT_MAX = 500;
 
-    // this book's bookmarks, kept small enough for an intent
     private String bookmarksJson(String path) {
         final JSONArray array = new JSONArray();
         try {

@@ -9,6 +9,7 @@ import android.net.Uri;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -16,28 +17,22 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 /**
- * LibreraX as a fourth reading mode: the book is handed over with the place it is read at
- * (the percent and the text at the top of the page), and the place LibreraX closes it at
- * comes back as the result, see LibreraXActivity. The book's bookmarks go along to be
- * gone to, and stay Librera's: nothing about them comes back.
- *
- * The same extras are read by com.librerax.reader.ReaderActivity on the other side.
+ * The extras below are a contract with the LibreraX app: com.librerax.reader.ReaderActivity
+ * reads them and returns the place it closed the book at, see LibreraXActivity.
  */
 public class LibreraX {
 
     public static final String PACKAGE = "com.librerax";
-    // Started for a result: the reader LibreraX keeps for itself is singleTask and would
-    // answer at once with RESULT_CANCELED.
+    // The reader LibreraX keeps for itself is singleTask and answers at once with RESULT_CANCELED.
     public static final String READER_FOR_RESULT = "com.librerax.reader.ReaderForResultActivity";
-    public static final String DOWNLOAD_URL = "https://github.com/foobnix/LibreraReader/releases";
+    public static final String DOWNLOAD_URL_PLAY = "https://play.google.com/store/apps/details?id=" + PACKAGE;
+    public static final String DOWNLOAD_URL_GITHUB = "https://github.com/foobnix/LibreraReader/releases";
 
     public static final String EXTRA_PERCENT = "librera.percent";
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";
-    // the book's bookmarks as a JSON array of {text, p, pt, t}: listed in LibreraX and found
-    // there by percent and page text, never saved or drawn there
+    // a JSON array of {text, p, pt, t}
     public static final String EXTRA_BOOKMARKS = "librera.bookmarks";
 
-    // the activity a book is opened with in the current reading mode, for widgets and shortcuts
     public static Class<?> readerClass() {
         switch (AppSP.get().readingMode) {
             case AppState.READING_MODE_LIBRERAX:
@@ -53,7 +48,7 @@ public class LibreraX {
         return Apps.isPackageInstalled(PACKAGE, c);
     }
 
-    // percent > 0 opens the book at that place (a bookmark), else where it was left
+    // percent > 0 opens the book at that place, else where it was left
     public static void open(Context c, Uri uri, float percent, String pageText) {
         final Intent intent = new Intent(c, LibreraXActivity.class);
         intent.setData(uri);
@@ -67,11 +62,16 @@ public class LibreraX {
         c.startActivity(intent);
     }
 
+    public static String downloadUrl() {
+        return AppsConfig.IS_FDROID ? DOWNLOAD_URL_GITHUB : DOWNLOAD_URL_PLAY;
+    }
+
     public static void showNotInstalled(final Activity a, final Runnable onDismiss) {
+        final String url = downloadUrl();
         final AlertDialog dialog = new AlertDialog.Builder(a)
                 .setTitle(R.string.librerax)
-                .setMessage(a.getString(R.string.librerax_not_installed) + "\n\n" + DOWNLOAD_URL)
-                .setPositiveButton(R.string.download, (d, which) -> Urls.open(a, DOWNLOAD_URL))
+                .setMessage(a.getString(R.string.librerax_not_installed) + "\n\n" + url)
+                .setPositiveButton(R.string.download, (d, which) -> Urls.open(a, url))
                 .setNegativeButton(R.string.cancel, null)
                 .create();
         dialog.setOnDismissListener(d -> {
