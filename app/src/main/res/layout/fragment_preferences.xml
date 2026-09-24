@@ -1747,6 +1747,12 @@
                         app:tint="@color/tint_gray" />
                 </LinearLayout>
 
+                <CheckBox
+                    android:id="@+id/isSyncPullToRefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pull_to_start_sync" />
+
             </LinearLayout>
 
             <TextView

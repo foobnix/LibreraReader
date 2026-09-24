@@ -299,6 +299,20 @@ public class MainTabs2 extends AdsFragmentActivity {
         return isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout);
     }
 
+
+    public void updatePullToRefresh() {
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+        boolean onPrefs = false;
+        try {
+            onPrefs = pager != null && tabFragments.get(pager.getCurrentItem()) instanceof PrefFragment2;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        swipeRefreshLayout.setEnabled(isPullToRefreshEnable() && !onPrefs);
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

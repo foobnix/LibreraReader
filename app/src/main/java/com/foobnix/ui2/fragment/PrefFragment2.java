@@ -139,7 +139,7 @@ public class PrefFragment2 extends UIFragment {
             statusBarHack;
     TextView singIn, syncInfo, syncInfo2, syncHeader, syncNow;
     ProgressBar syncProgress;
-    CheckBox isEnableSync;
+    CheckBox isEnableSync, isSyncPullToRefresh;
     private TextView curBrightness, themeColor, profileLetter;
     private CheckBox isRememberDictionary;
     private TextView nextKeys;
@@ -338,21 +338,25 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+
+        isSyncPullToRefresh = inflate.findViewById(R.id.isSyncPullToRefresh);
+        isSyncPullToRefresh.setChecked(BookCSS.get().isSyncPullToRefresh);
+        isSyncPullToRefresh.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            BookCSS.get().isSyncPullToRefresh = isChecked;
+            if (getActivity() instanceof MainTabs2) {
+                ((MainTabs2) getActivity()).updatePullToRefresh();
+            }
+        });
+
         inflate.findViewById(R.id.isEnableSyncSettings)
                .setOnClickListener(v -> {
-                   final CheckBox isSyncPullToRefresh = new CheckBox(getActivity());
-                   isSyncPullToRefresh.setText(R.string.pull_to_start_sync);
-                   isSyncPullToRefresh.setChecked(BookCSS.get().isSyncPullToRefresh);
-                   isSyncPullToRefresh.setOnCheckedChangeListener(
-                           (buttonView, isChecked) -> BookCSS.get().isSyncPullToRefresh = isChecked);
-
                    final CheckBox isSyncWifiOnly = new CheckBox(getActivity());
                    isSyncWifiOnly.setText(R.string.wifi_sync_only);
                    isSyncWifiOnly.setChecked(BookCSS.get().isSyncWifiOnly);
                    isSyncWifiOnly.setOnCheckedChangeListener(
                            (buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
 
-                   AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly);
+                   AlertDialogs.showViewDialog(getActivity(), null, isSyncWifiOnly);
                });
 
         updateSyncInfo(null);
