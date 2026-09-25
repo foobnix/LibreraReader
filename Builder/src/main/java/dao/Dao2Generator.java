@@ -12,7 +12,7 @@ public class Dao2Generator {
 
     public static void main(String[] args) throws IOException, Exception {
 
-        Schema schema = new Schema(9, "com.foobnix.dao2");
+        Schema schema = new Schema(10, "com.foobnix.dao2");
 
         Entity note = schema.addEntity("FileMeta");
 
@@ -53,6 +53,8 @@ public class Dao2Generator {
         note.addStringProperty("parentPath").indexAsc("parentPath_asc", false).indexDesc("parentPath_desc", false);
         note.addIntProperty("filesCount");
         note.addIntProperty("readCount");
+        // "yyyy", "yyyy-MM" or "yyyy-MM-dd": sorts as text in date order.
+        note.addStringProperty("pubDate");
 
         Entity dict = schema.addEntity("DictMeta");
         dict.addStringProperty("key").primaryKey();

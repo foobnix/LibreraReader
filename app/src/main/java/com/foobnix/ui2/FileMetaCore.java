@@ -308,10 +308,9 @@ public class FileMetaCore {
             LOG.d("isFirstSurname1", before, "=>", ebookMeta.getAuthor());
         }
 
-        String year = ebookMeta.getYear();
-        if (year != null) {
-            int y = PubDate.yearOf(year);
-            ebookMeta.setYear(y > 0 ? String.valueOf(y) : null);
+        String date = ebookMeta.getYear();
+        if (date != null) {
+            ebookMeta.setYear(PubDate.published(date));
         }
 
         return ebookMeta;
@@ -334,7 +333,9 @@ public class FileMetaCore {
 
         // Set even when there is none, so a year read wrongly before — Calibre's "no date"
         // taken for the year 100 — goes when the book is read again.
-        int year = extractYear(meta.getYear());
+        String pubDate = PubDate.published(meta.getYear());
+        fileMeta.setPubDate(pubDate);
+        int year = extractYear(pubDate);
         fileMeta.setYear(year > 0 ? year : null);
         fileMeta.setPublisher(meta.getPublisher());
         fileMeta.setIsbn(meta.getIsbn());

@@ -70,6 +70,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -109,6 +110,27 @@ public class FileInformationDialog {
             sample.addView(t);
         }
 
+    }
+
+    /** The whole date beside the year: a day in the reader's own form, less than that as stored. */
+    private static String readableDate(String pubDate) {
+        if (pubDate == null || pubDate.length() <= 4) {
+            return "";
+        }
+        if (pubDate.length() < 10) {
+            return pubDate;
+        }
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.clear();
+            calendar.set(Integer.parseInt(pubDate.substring(0, 4)),
+                         Integer.parseInt(pubDate.substring(5, 7)) - 1,
+                         Integer.parseInt(pubDate.substring(8, 10)));
+            return ExtUtils.getDateFormat(calendar.getTimeInMillis());
+        } catch (Exception e) {
+            LOG.e(e);
+            return pubDate;
+        }
     }
 
     /**
@@ -210,6 +232,10 @@ public class FileInformationDialog {
         }
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
+        // Set in the colour the authors are set in: a fact that answers a tap looks the same
+        // wherever it stands on the sheet.
+        year.setTextColor(TintUtil.getColorInDayNighth());
+        ((TextView) dialog.findViewById(R.id.pubDate)).setText(readableDate(fileMeta.getPubDate()));
         year.setOnClickListener(v -> {
             EventBus.getDefault()
                     .post(new SearchMetaMsg(SEARCH_IN.YEAR, year.getText()
@@ -225,9 +251,11 @@ public class FileInformationDialog {
 
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
+        ((TextView) dialog.findViewById(R.id.bookExt)).setText(TxtUtils.nullToEmpty(fileMeta.getExt()));
 
         TextView publisher = (TextView) dialog.findViewById(R.id.publisher);
         publisher.setText(fileMeta.getPublisher());
+        publisher.setTextColor(TintUtil.getColorInDayNighth());
 
         publisher.setOnClickListener(v -> {
             EventBus.getDefault()

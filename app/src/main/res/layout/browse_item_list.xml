@@ -182,15 +182,6 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/browseDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="6dip"
-                        android:singleLine="true"
-                        android:text="12.03.2001"
-                        android:textSize="@dimen/text_subtitle" />
-
-                    <TextView
                         android:id="@+id/browserExt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -207,6 +198,15 @@
                         android:layout_marginLeft="6dip"
                         android:singleLine="true"
                         android:text="123 Kb"
+                        android:textSize="@dimen/text_subtitle" />
+
+                    <TextView
+                        android:id="@+id/browseDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dip"
+                        android:singleLine="true"
+                        android:text="12.03.2001"
                         android:textSize="@dimen/text_subtitle" />
 
                     <TextView

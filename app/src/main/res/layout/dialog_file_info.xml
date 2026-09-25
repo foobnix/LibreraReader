@@ -93,6 +93,18 @@
                             android:padding="7dip"
                             android:src="@drawable/glyphicons_67_tags" />
                     </LinearLayout>
+
+                    <!-- The kind of file the book is, said once under the marks, in caps, so it
+                         is read off the head without going down to the rows. -->
+                    <TextView
+                        android:id="@+id/bookExt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dip"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/text_subtitle" />
                 </LinearLayout>
 
                 <!-- Ringed like the close on the reading panel; the sheet draws the ring in the
@@ -220,7 +232,7 @@
                     android:orientation="vertical" />
             </LinearLayout>
 
-            <!-- Year -->
+            <!-- Publication date -->
             <LinearLayout
                 android:id="@+id/rowYear"
                 style="@style/infoRow"
@@ -231,13 +243,21 @@
                     style="@style/infoLabel"
                     android:layout_width="110dip"
                     android:layout_height="wrap_content"
-                    android:text="@string/year" />
+                    android:text="@string/publication_date" />
 
                 <TextView
                     android:id="@+id/year"
                     style="@style/infoValueLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/pubDate"
+                    style="@style/infoValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
                     android:layout_weight="1"
                     android:text="" />
             </LinearLayout>

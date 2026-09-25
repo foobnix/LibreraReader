@@ -54,6 +54,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         public final static Property ParentPath = new Property(29, String.class, "parentPath", false, "PARENT_PATH");
         public final static Property FilesCount = new Property(30, Integer.class, "filesCount", false, "FILES_COUNT");
         public final static Property ReadCount = new Property(31, Integer.class, "readCount", false, "READ_COUNT");
+        public final static Property PubDate = new Property(32, String.class, "pubDate", false, "PUB_DATE");
     }
 
 
@@ -100,7 +101,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
                 "\"ISBN\" TEXT," + // 28: isbn
                 "\"PARENT_PATH\" TEXT," + // 29: parentPath
                 "\"FILES_COUNT\" INTEGER," + // 30: filesCount
-                "\"READ_COUNT\" INTEGER);"); // 31: readCount
+                "\"READ_COUNT\" INTEGER," + // 31: readCount
+                "\"PUB_DATE\" TEXT);"); // 32: pubDate
         // Add Indexes
         db.execSQL("CREATE UNIQUE INDEX " + constraint + "path_asc ON FILE_META" +
                 " (\"PATH\" ASC);");
@@ -301,6 +303,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (readCount != null) {
             stmt.bindLong(32, readCount);
         }
+ 
+        String pubDate = entity.getPubDate();
+        if (pubDate != null) {
+            stmt.bindString(33, pubDate);
+        }
     }
 
     @Override
@@ -466,6 +473,11 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         if (readCount != null) {
             stmt.bindLong(32, readCount);
         }
+ 
+        String pubDate = entity.getPubDate();
+        if (pubDate != null) {
+            stmt.bindString(33, pubDate);
+        }
     }
 
     @Override
@@ -507,7 +519,8 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
             cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // isbn
             cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // parentPath
             cursor.isNull(offset + 30) ? null : cursor.getInt(offset + 30), // filesCount
-            cursor.isNull(offset + 31) ? null : cursor.getInt(offset + 31) // readCount
+            cursor.isNull(offset + 31) ? null : cursor.getInt(offset + 31), // readCount
+            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32) // pubDate
         );
         return entity;
     }
@@ -546,6 +559,7 @@ public class FileMetaDao extends AbstractDao<FileMeta, String> {
         entity.setParentPath(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
         entity.setFilesCount(cursor.isNull(offset + 30) ? null : cursor.getInt(offset + 30));
         entity.setReadCount(cursor.isNull(offset + 31) ? null : cursor.getInt(offset + 31));
+        entity.setPubDate(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
      }
     
     @Override

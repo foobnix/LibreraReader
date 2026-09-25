@@ -126,6 +126,8 @@ public class AppDB {
         try {
             writableDatabase.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.Year.columnName +
                                      " = NULL WHERE " + FileMetaDao.Properties.Year.columnName + " <= " + PubDate.UNDEFINED_YEAR);
+            writableDatabase.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.PubDate.columnName +
+                                     " = NULL WHERE " + FileMetaDao.Properties.Year.columnName + " IS NULL");
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -664,7 +666,7 @@ public class AppDB {
         //
         // In the order the sort menu lists them; the index is what is kept in the settings.
         DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //
-        PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.Year),//
+        PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.PubDate),//
         SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
         PATH(0, R.string.folder, FileMetaDao.Properties.ParentPath), //
         FILE_NAME(1, R.string.by_file_name, FileMetaDao.Properties.PathTxt), //

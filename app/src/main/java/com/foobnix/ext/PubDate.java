@@ -74,6 +74,24 @@ public class PubDate {
     }
 
     /**
+     * The whole date one string gives — "yyyy", "yyyy-MM" or "yyyy-MM-dd" — or null where
+     * there is none. The year is always the one {@link #yearOf} reads.
+     */
+    public static String published(String s) {
+        int year = yearOf(s);
+        if (year <= 0) {
+            return null;
+        }
+        String date = dateOf(s);
+        // Where reading from the front lands on another year, it read the wrong run of figures,
+        // and the month and day it went on to read are no better: the year alone is what is known.
+        if (date == null || year != Integer.parseInt(date.substring(0, 4))) {
+            return String.format(Locale.US, "%04d", year);
+        }
+        return date;
+    }
+
+    /**
      * The date a book was published, out of the dates its package gives: the earliest real
      * one, as Calibre takes it. A date the file says is when it was modified is not when the
      * book came out, and Calibre's "no date" is not a date at all.

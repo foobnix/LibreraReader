@@ -33,6 +33,28 @@ public class PubDateTest {
     }
 
     @Test
+    public void oneStringGivesTheWholeDateItHas() {
+        assertEquals("2004-03-15", PubDate.published("2004-03-15T04:00:00+00:00"));
+        assertEquals("2004-03-15", PubDate.published("D:20040315120000Z"));
+        assertEquals("2004-03", PubDate.published("2004-03"));
+        assertEquals("2004", PubDate.published("2004"));
+        assertEquals("2010", PubDate.published("03/16/2010 11:19:32 PM"));
+        assertNull(PubDate.published((String) null));
+        assertNull(PubDate.published("0101-01-01T00:00:00+00:00"));
+    }
+
+    /** The whole date loses nothing the year alone was read out of the same string. */
+    @Test
+    public void theYearOfTheWholeDateIsTheYearTheStringGives() {
+        for (String s : new String[]{"2010", "03/16/2010 11:19:32 PM", "03.16.2010 11:19:32 PM",
+                                     "03/16 1010 2010 11:19:32 PM", "03/16 1985 1010 11:19:32 PM",
+                                     "2010123213 11:19:32 PM", "122010123213 11:19:32 PM",
+                                     "D:20040315120000Z", "2004-03-15T04:00:00+00:00"}) {
+            assertEquals(s, PubDate.yearOf(s), PubDate.yearOf(PubDate.published(s)));
+        }
+    }
+
+    @Test
     public void theEarliestDateThatIsNotAModificationIsTheOne() {
         assertEquals("1999-05-01", PubDate.published(Arrays.asList(
                 new String[]{"modification", "1990-01-01"},

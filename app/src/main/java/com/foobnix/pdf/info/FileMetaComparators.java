@@ -9,6 +9,7 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import java.io.File;
 import java.util.Comparator;
+import java.util.Locale;
 
 public class FileMetaComparators {
     public static Comparator<FileMeta> BY_PATH = new Comparator<FileMeta>() {
@@ -117,9 +118,15 @@ public class FileMetaComparators {
     };
     public static Comparator<FileMeta> BR_BY_YEAR = new Comparator<FileMeta>() {
         @Override public int compare(FileMeta o1, FileMeta o2) {
-            int g1 = o1.getYear() == null ? 0 : o1.getYear();
-            int g2 = o2.getYear() == null ? 0 : o2.getYear();
-            return compareInt(g1, g2);
+            return pubDate(o1).compareTo(pubDate(o2));
+        }
+
+        /** "yyyy-MM-dd" runs in date order as text; a book with no date comes first. */
+        private String pubDate(FileMeta meta) {
+            if (TxtUtils.isNotEmpty(meta.getPubDate())) {
+                return meta.getPubDate();
+            }
+            return meta.getYear() == null ? "" : String.format(Locale.US, "%04d", meta.getYear());
         }
     };
     public static Comparator<FileMeta> BR_BY_TITLE = new Comparator<FileMeta>() {
