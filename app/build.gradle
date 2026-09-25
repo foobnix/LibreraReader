@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7338
-    FDroidVersionNumber = "9.6.25"
+    FDroidCodeNumber = 7358
+    FDroidVersionNumber = "9.6.29"
 }
 
 
@@ -451,7 +451,7 @@ tasks.register("incVersion") {
 
         File propsFile = new File(progejectDir, 'gradle.properties')
 
-        props.load(propsFile.newDataInputStream())
+        propsFile.withInputStream { props.load(it) }
 
         int appCodeNumber = Integer.parseInt(props.getProperty('appCodeNumber'))
         appCodeNumber += 4
@@ -462,8 +462,34 @@ tasks.register("incVersion") {
         props.setProperty('appCodeNumber', "" + appCodeNumber)
         props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
 
-        props.store(propsFile.newWriter(), null)
+        // Closed before the task ends, so the next gradle run reads the whole file.
+        propsFile.withWriter { props.store(it, null) }
 
         println "My Task: [incVersion]"
+    }
+}
+
+tasks.register("updateFDroid") {
+    File projectDir = layout.projectDirectory.getAsFile()
+    doLast {
+        Properties props = new Properties()
+        File propsFile = new File(projectDir, 'gradle.properties')
+        propsFile.withInputStream { props.load(it) }
+
+        String code = props.getProperty('appCodeNumber')
+        String version = props.getProperty('appVersionNumberBase') + "." + props.getProperty('appVersionNumberIndex')
+
+        // Written into build.gradle itself, so F-Droid's own build of the source carries it.
+        File buildFile = new File(projectDir, 'build.gradle')
+        String text = buildFile.getText('UTF-8')
+                .replaceFirst(/FDroidCodeNumber = \d+/, "FDroidCodeNumber = " + code)
+                .replaceFirst(/FDroidVersionNumber = "[^"]*"/, "FDroidVersionNumber = \"" + version + "\"")
+
+        if (!text.contains("FDroidCodeNumber = " + code) || !text.contains("FDroidVersionNumber = \"" + version + "\"")) {
+            throw new GradleException("updateFDroid: FDroidCodeNumber/FDroidVersionNumber not found in build.gradle")
+        }
+        buildFile.setText(text, 'UTF-8')
+
+        println "My Task: [updateFDroid] " + version + " - " + code
     }
 }
