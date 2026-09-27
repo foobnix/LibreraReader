@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7358
-    FDroidVersionNumber = "9.6.29"
+    FDroidCodeNumber = 7370
+    FDroidVersionNumber = "9.6.32"
 }
 
 
@@ -381,6 +381,14 @@ tasks.register("copyApks") {
 
         delete fileTree(buildsDir).include("*.apk", "*.aab", "*-mapping.txt")
 
+        // Second destination of the betas, the folder the testers read: librera_beta_dir in the
+        // global ~/.gradle/gradle.properties. Unset, a beta only goes to buildsDir.
+        def betaDir = project.hasProperty("beta") ? project.findProperty("librera_beta_dir") : null
+        if (betaDir) {
+            // Only our own builds: the folder holds the APKs of other projects as well
+            delete fileTree(betaDir).include("Librera *.apk", "Librera *.aab")
+        }
+
         // The version's own folder is emptied only when a release is about to be copied into it,
         // and only of the builds of the same MuPDF: a release of the other one stays next to it
         if (project.hasProperty("release")) {
@@ -399,6 +407,9 @@ tasks.register("copyApks") {
 
                 if (project.hasProperty("beta")) {
                     list.add(buildsDir)
+                    if (betaDir) {
+                        list.add(betaDir)
+                    }
                 }
 
 

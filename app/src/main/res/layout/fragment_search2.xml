@@ -135,15 +135,6 @@
                 android:tint="@color/white" />
 
             <ImageView
-                android:contentDescription="@string/update_library"
-                android:id="@+id/onRefresh"
-                style="@style/buttonTop"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:background="@drawable/bg_round_press"
-                android:src="@drawable/glyphicons_82_refresh" />
-
-            <ImageView
                 android:contentDescription="@string/cd_view_menu"
                 android:id="@+id/onGridList"
                 style="@style/buttonTop"

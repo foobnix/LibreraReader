@@ -211,6 +211,13 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_82_refresh"
+                    app:tint="@color/tint_gray" />
+
                 <TextView
                     android:id="@+id/onUpdateLibrary"
                     style="@style/textLink"

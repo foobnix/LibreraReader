@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -55,7 +54,6 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
@@ -67,7 +65,6 @@ import android.util.TypedValue;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -87,7 +84,6 @@ import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.work.CheckDeletedBooksWorker;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.foobnix.work.SelfTestWorker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -123,7 +119,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     TextView countBooks, layoutErrorOnRestart;
     Handler handler;
     ImageView sortBy, sortOrder, myAutoCompleteImage, cleanFilter, menu2;
-    View onRefresh, secondTopPanel, layoutError;
+    View secondTopPanel, layoutError;
+    /**
+     * Whether the library can be rebuilt right now. The screen used to read this off the
+     * refresh button's own state; the button is gone - the panel's Update does the rebuild -
+     * so the state is kept here.
+     */
+    boolean isLibraryReady = true;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
     Runnable hideKeyboard = new Runnable() {
@@ -160,7 +162,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchAndOrderAsync();
                 setSearchHint(R.string.library);
-                onRefresh.setActivated(true);
+                isLibraryReady = true;
 
                 if (AppsConfig.IS_LOG) {
                     setSearchHint(Apps.getApplicationName(getContext()));
@@ -172,9 +174,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     countBooks.setText("" + count);
                 }
                 setSearchHint(R.string.searching_please_wait_);
-                onRefresh.setActivated(false);
+                isLibraryReady = false;
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                onRefresh.setActivated(false);
+                isLibraryReady = false;
                 setSearchHint(R.string.extracting_information_from_books);
             } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 setSearchHint(intent.getStringExtra("TEXT"));
@@ -407,8 +409,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         secondTopPanel = view.findViewById(R.id.secondTopPanel);
         countBooks = (TextView) view.findViewById(R.id.countBooks);
-        onRefresh = view.findViewById(R.id.onRefresh);
-        onRefresh.setActivated(true);
+        isLibraryReady = true;
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (ImageView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
@@ -427,39 +428,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         layoutError.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
-                onRefresh.performClick();
-            }
-        });
-
-        onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override public boolean onLongClick(View v) {
-                if (BooksService.isRunning) {
-                    Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT)
-                         .show();
-                    return true;
-                }
-                if (AppState.get().isShowTestBooks) {
-                    AlertDialogs.showDialog(getActivity(), "Run the self-test? " + AppData.getTestFileName()
-                                                                                          .getName(),
-                            getString(R.string.ok), new Runnable() {
-
-                                @Override public void run() {
-                                    // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
-                                    getActivity().getWindow()
-                                                 .addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                                    OneTimeWorkRequest workRequest =
-                                            new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
-
-                                    //WorkManager.getInstance(getContext()).enqueue(workRequest);
-                                    WorkManager.getInstance(getContext())
-
-                                               .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY,
-                                                       workRequest);
-
-                                }
-                            }, null);
-                }
-                return true;
+                rebuildLibrary();
             }
         });
 
@@ -488,26 +457,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             @Override public void onClick(View v) {
                 popupMenu(onGridlList);
-            }
-        });
-
-        onRefresh.setOnClickListener(new OnClickListener() {
-
-            @Override public void onClick(View v) {
-
-                if (!onRefresh.isActivated()) {
-                    Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG)
-                         .show();
-                    return;
-                }
-                // The folders are managed in the preferences panel; this button only rebuilds
-                // the library from the folders already listed there, without asking again.
-                Prefs.get()
-                     .remove(AppProfile.getCurrent(), 0);
-                layoutError.setVisibility(View.GONE);
-                recyclerView.scrollToPosition(0);
-                seachAll();
-                ((AdsFragmentActivity) SearchFragment2.this.getActivity()).showInterstitialNoFinish();
             }
         });
 
@@ -1198,13 +1147,33 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+    /**
+     * Rebuilds the library from the folders listed in the preferences panel, without asking
+     * for them again. The library screen has no button of its own for this any more - the
+     * panel's Update does it - but the error line still offers it when a scan left nothing
+     * to show.
+     */
+    private void rebuildLibrary() {
+        if (!isLibraryReady) {
+            Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG)
+                 .show();
+            return;
+        }
+        Prefs.get()
+             .remove(AppProfile.getCurrent(), 0);
+        layoutError.setVisibility(View.GONE);
+        recyclerView.scrollToPosition(0);
+        seachAll();
+        ((AdsFragmentActivity) getActivity()).showInterstitialNoFinish();
+    }
+
     @Override public void notifyFragment() {
         LOG.d("SeachFragment2", "notifyFragment");
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
         }
         if (!BooksService.isRunning) {
-            onRefresh.setActivated(!BooksService.isRunning);
+            isLibraryReady = true;
             setSearchHint(R.string.library);
 
 //            if(AppsConfig.IS_LOG){
