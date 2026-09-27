@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# The whole release, built on one MuPDF: ./all-release.sh 1.28.4
-# (or through all-release-1.23.7.sh / all-release-1.28.4.sh). The MuPDF version goes into the
+# The whole release, built on one MuPDF: ./all-release.sh 1.28.5
+# (or through all-release-1.23.7.sh / all-release-1.28.5.sh). The MuPDF version goes into the
 # names of the APKs, bundles, mappings and native symbols, so both releases sit side by side.
 MUPDF=$1
 if [ -z "$MUPDF" ] || [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then

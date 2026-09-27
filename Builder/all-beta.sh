@@ -32,7 +32,19 @@ else
 fi
 
 
-./link_to_mupdf_1.28.4.sh
+# The betas of every MuPDF: ./all-beta.sh, or ./all-beta.sh 1.28.5 for one of them. The version
+# goes into the names of the APKs and the bundles (-Pmupdf), so the betas sit side by side.
+MUPDF_VERSIONS=("$@")
+if [ ${#MUPDF_VERSIONS[@]} -eq 0 ]; then
+  MUPDF_VERSIONS=(1.28.4 1.28.5)
+fi
+for MUPDF in "${MUPDF_VERSIONS[@]}"; do
+  if [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then
+    echo "ERROR: no MuPDF [$MUPDF], one of:" $(ls link_to_mupdf_*.sh | sed 's/link_to_mupdf_//; s/\.sh//')
+    exit 1
+  fi
+done
+echo "MuPDF: ${MUPDF_VERSIONS[*]}"
 
 cd ../
 
@@ -50,13 +62,25 @@ if [ -z "$CODE_AFTER" ] || [ "$CODE_AFTER" = "$CODE_BEFORE" ]; then
 fi
 echo "Version raised: $CODE_BEFORE -> $CODE_AFTER"
 
-./gradlew assembleProRelease || exit 1
-#./gradlew assembleLibreraRelease
-./gradlew assembleFdroidRelease || exit 1
+# One pass per MuPDF, the version is only raised once: every beta is of the same Librera
+for MUPDF in "${MUPDF_VERSIONS[@]}"; do
+  echo "=================="
+  echo "MuPDF: $MUPDF"
+  echo "=================="
 
-####################################
+  ./Builder/link_to_mupdf_$MUPDF.sh || exit 1
 
-./gradlew copyApks -Pbeta || exit 1
+  # the native library of the MuPDF before must not end up in these APKs
+  ./gradlew clean || exit 1
+
+  ./gradlew assembleProRelease -Pmupdf=$MUPDF || exit 1
+  #./gradlew assembleLibreraRelease -Pmupdf=$MUPDF
+  ./gradlew assembleFdroidRelease -Pmupdf=$MUPDF || exit 1
+
+  ####################################
+
+  ./gradlew copyApks -Pbeta -Pmupdf=$MUPDF || exit 1
+done
 ./gradlew -stop
 
 ####################################
