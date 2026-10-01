@@ -28,6 +28,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.SafReaderLaunch;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -70,6 +71,21 @@ public class TTSNotification {
     };
     private static Handler handler;
 
+    static String originalUriForPath(String bookPath) {
+        return TTSService.originalUriForPath(bookPath);
+    }
+
+    static Intent readerIntent(Context context, String bookPath, int page) {
+        boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+        Intent intent = new Intent(context, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+        intent.setAction(ACTION_TTS);
+        intent.setData(Uri.fromFile(new File(bookPath)));
+        String originalUri = originalUriForPath(bookPath);
+        if (TxtUtils.isNotEmpty(originalUri)) SafReaderLaunch.attach(context, intent, originalUri);
+        if (page > 0) intent.putExtra("page", page - 1);
+        return intent;
+    }
+
     @TargetApi(26)
     public static void initChannels(Context context) {
         TTSNotification.context = context;
@@ -106,18 +122,14 @@ public class TTSNotification {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_PLAYBACK);
 
-            FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
+            String originalUri = originalUriForPath(bookPath);
+            String identity = TxtUtils.isNotEmpty(originalUri) ? originalUri : bookPath;
+            FileMeta fileMeta = AppDB.get().getOrCreate(identity);
 
-            boolean isEasyMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+            Intent intent = readerIntent(context, bookPath, page);
 
-            Intent intent = new Intent(context, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);//TO-CHECK
-            intent.setAction(ACTION_TTS);
-            intent.setData(Uri.fromFile(new File(bookPath)));
-            if (page > 0) {
-                intent.putExtra("page", page - 1);
-            }
-
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             PendingIntent playPause = PendingIntent.getService(context, 0, new Intent(TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
             PendingIntent pause = PendingIntent.getService(context, 0, new Intent(TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
@@ -188,7 +200,7 @@ public class TTSNotification {
 
             publish.accept(null);
 
-            IMG.getCoverPageWithEffect(LibreraApp.context, bookPath, null).into(new CustomTarget<Bitmap>() {
+            IMG.getCoverPageWithEffect(LibreraApp.context, identity, null).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     publish.accept(resource);

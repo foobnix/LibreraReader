@@ -84,7 +84,9 @@ public abstract class AbstractCodecContext implements CodecContext {
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
         File source = new File(fileNameOriginal);
+        boolean reserved = BookCacheLeases.hasReservation(source);
         AutoCloseable openingLease = BookCacheLeases.acquire(source);
+        BookCacheLeases.beginManagedOpen();
         try (EpubProcessingSettings.Scope settings = captureProcessingSettings(fileNameOriginal)) {
             CodecDocument document = openDocumentWithProtectedSource(fileNameOriginal, password);
             if (document instanceof AbstractCodecDocument) {
@@ -93,6 +95,8 @@ public abstract class AbstractCodecContext implements CodecContext {
             if (document != null) CacheZipUtils.pruneBookCache();
             return document;
         } finally {
+            BookCacheLeases.endManagedOpen();
+            if (reserved) BookCacheLeases.cancelReservation(source);
             try { openingLease.close(); } catch (Exception e) { LOG.e(e); }
         }
     }

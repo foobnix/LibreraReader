@@ -83,7 +83,7 @@ public class HypenPanelHelper {
                             AppSP.get().lastBookLang = code;
                             hypenLang.setText(titleLang);
                             TxtUtils.underlineTextView(hypenLang);
-                            FileMeta load = AppDB.get().load(dc.getCurrentBook().getPath());
+                            FileMeta load = dc.getBookFileMeta();
                             if (load != null) {
                                 load.setLang(code);
                                 AppDB.get().update(load);

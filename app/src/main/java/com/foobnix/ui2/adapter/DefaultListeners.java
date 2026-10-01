@@ -213,15 +213,17 @@ public class DefaultListeners {
                 return false;
             }
 
-            if (ExtUtils.isExteralSD(result.getPath())) {
-                return false;
-            }
-
             if (isTagCicked(a, result)) {
                 return true;
             }
 
             File file = new File(result.getPath());
+
+            if (ExtUtils.isExteralSD(result.getPath())) {
+                Runnable onDeleteAction = () -> deleteFile(a, searchAdapter, result);
+                FileInformationDialog.showFileInfoDialog(a, result, onDeleteAction);
+                return true;
+            }
 
             if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
                 file = Clouds.getCacheFile(file.getPath());
@@ -260,8 +262,14 @@ public class DefaultListeners {
     private static void deleteFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
         boolean delete = false;
         if (ExtUtils.isExteralSD(result.getPath())) {
-            DocumentFile doc = DocumentFile.fromSingleUri(a, Uri.parse(result.getPath()));
-            delete = doc.delete();
+            try {
+                DocumentFile doc = DocumentFile.fromSingleUri(a,
+                        com.foobnix.pdf.info.SafDocumentIdentity.readableAccess(a,
+                                Uri.parse(result.getPath())));
+                delete = doc != null && doc.delete();
+            } catch (java.io.IOException failure) {
+                LOG.e(failure);
+            }
         } else if (Clouds.isCloud(result.getPath())) {
             removeCloudFile(a, searchAdapter, result);
         } else {
@@ -428,7 +436,7 @@ public class DefaultListeners {
             };
 
             if (ExtUtils.isExteralSD(result.getPath())) {
-                ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+                ShareDialog.show(a, file, result, onDeleteAction, -1, null, null);
             } else {
 
                 if (ExtUtils.doifFileExists(a, result.getPath())) {

@@ -57,7 +57,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get()
-                                                           .toCssString(fname)));
+                                                           .toCssString(fname), !(context instanceof EpubContext)));
         this.fname = fname;
         isEpub = ExtUtils.isTextFomat(fname);
         bookType = BookType.getByUri(fname);
@@ -106,10 +106,11 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private native static String setMetaData(long docHandle, final String key, String value);
 
-    private static long openFile(final int format, String fname, final String pwd, String css) {
+    private static long openFile(final int format, String fname, final String pwd, String css,
+                                 boolean consumeReservation) {
         File cacheSource = new File(fname);
         ConversionCache.prepare(cacheSource);
-        BookCacheLeases.readerOpened(cacheSource);
+        BookCacheLeases.readerOpened(cacheSource, consumeReservation);
         boolean opened = false;
         TempHolder.lock.lock();
         try {

@@ -50,8 +50,6 @@ import static com.foobnix.pdf.info.AppsConfig.CURRENT_BITMAP_ARGB;
 @GlideModule
 public class LibreraAppGlideModule extends AppGlideModule {
 
-    static Bitmap cache;
-    static String path;
 
     final static ModelLoader<String, Bitmap> modelLoader = new ModelLoader<String, Bitmap>() {
         @Nullable
@@ -70,10 +68,6 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (isCanced) {
                             return;
                         }
-                        if (s.equals(path)) {
-                            callback.onDataReady(cache);
-                            return;
-                        }
                         LOG.d("LibreraAppGlideModule loadData", s);
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
@@ -83,7 +77,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                                 bitmap = ImageExtractor.getInstance(LibreraApp.context).proccessOtherPage(s);
                                 if (bitmap == null) {
                                     LOG.d("Bitmap-test-1-cancel", bitmap, s);
-                                    callback.onDataReady(ImageExtractor.messageFileBitmap("#error null", ""));
+                                    callback.onLoadFailed(new java.io.IOException("No cover bitmap"));
                                     stream.close();
                                     return;
                                 }
@@ -99,8 +93,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                             LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                             callback.onDataReady(bitmap);
 
-                            path = s;
-                            cache = bitmap;
+
                         } else {
                             callback.onDataReady(BitmapFactory.decodeStream(stream));
                             stream.close();
@@ -108,7 +101,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         LOG.d("LibreraAppGlideModule onDataReady", stream);
 
                     } catch (Exception e) {
-                        callback.onDataReady(ImageExtractor.messageFileBitmap("#error", ""));
+                        callback.onLoadFailed(e);
 
                         LOG.e(e);
                     }
@@ -167,7 +160,8 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 canvas.drawBitmap(toTransform, 0f, 0f, paint);
                 return result;
             }else{
-                return result;
+                pool.put(result);
+                return toTransform;
             }
         }
 
@@ -191,11 +185,12 @@ public class LibreraAppGlideModule extends AppGlideModule {
 //        builder.setDiskCache(new DiskLruCacheFactory(f.getPath(), diskCacheSizeBytes));
 
 
+        int coverThreads = 1;
         builder.setSourceExecutor(
                 newSourceBuilder()
 
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
-                        .setThreadCount(1)
+                        .setThreadCount(coverThreads)
                         //.setThreadTimeoutMillis(2000)
                         .build());
 

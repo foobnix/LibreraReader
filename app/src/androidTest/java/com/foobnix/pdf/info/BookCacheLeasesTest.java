@@ -214,7 +214,6 @@ public class BookCacheLeasesTest {
         } finally { BookCacheLeases.evictTree(dir); safe.delete(); outside.delete(); }
     }
 
-
     @Test public void startupSweepLeavesUnrelatedNestedCachesAlone() throws Exception {
         File root = directory();
         File glide = new File(root, "image_manager_disk_cache"); assertTrue(glide.mkdir());

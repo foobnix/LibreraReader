@@ -1,6 +1,9 @@
 package com.foobnix.model;
 
+import android.net.Uri;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.SafDocumentIdentity;
 
 import java.io.File;
 
@@ -21,7 +24,7 @@ public class AppBookmark implements MyPath.RelativePath {
 
     public AppBookmark(String path, String text, float percent) {
         super();
-        this.path = MyPath.toRelative(path);
+        setPath(path);
         this.text = text;
         this.p = percent;
         t = System.currentTimeMillis();
@@ -38,11 +41,14 @@ public class AppBookmark implements MyPath.RelativePath {
     }
 
     public String getPath() {
-        return MyPath.toAbsolute(path);
+        String absolute = MyPath.toAbsolute(path);
+        return ExtUtils.isExteralSD(absolute)
+                ? SafDocumentIdentity.canonical(Uri.parse(absolute)).toString() : absolute;
     }
 
     public void setPath(String path) {
-        this.path = MyPath.toRelative(path);
+        this.path = MyPath.toRelative(ExtUtils.isExteralSD(path)
+                ? SafDocumentIdentity.canonical(Uri.parse(path)).toString() : path);
     }
 
     public float getPercent() {

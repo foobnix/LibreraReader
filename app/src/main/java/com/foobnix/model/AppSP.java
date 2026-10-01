@@ -16,6 +16,7 @@ public class AppSP {
 
     private static AppSP instance = new AppSP();
     public String lastBookPath;
+    public String lastBookOriginalUri;
 
     public int lastBookPage = 0;
     public int lastBookPageCount = 0;

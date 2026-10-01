@@ -79,6 +79,7 @@ import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.O) public class TTSService extends MediaBrowserServiceCompat {
     public static final String EXTRA_PATH = "EXTRA_PATH";
+    public static final String EXTRA_BOOK_IDENTITY = "EXTRA_BOOK_IDENTITY";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
     public static final String EXTRA_INT = "INT";
     private static final String TAG = "TTSService";
@@ -97,6 +98,8 @@ import java.util.List;
 
     private static volatile MediaSessionCompat sessionRef;
     private static volatile TTSService serviceRef;
+    volatile String activeBookPath;
+    volatile String activeBookIdentity;
 
     public static void abandonAudioFocusCompat() {
         final TTSService service = serviceRef;
@@ -311,7 +314,7 @@ import java.util.List;
                 TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook()
                                                                                         .getPath(), "",
                         controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp,
-                        controller.getTitle());
+                        controller.getTitle(), controller.getBookIdentity());
             }
         }
     }
@@ -319,6 +322,14 @@ import java.util.List;
     @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize,
                                     String title) {
+        String identity = path != null && path.equals(AppSP.get().lastBookPath)
+                && AppSP.get().lastBookOriginalUri != null
+                ? AppSP.get().lastBookOriginalUri : path;
+        playBookPage(page, path, anchor, width, height, fontSize, title, identity);
+    }
+
+    public static void playBookPage(int page, String path, String anchor, int width, int height,
+                                    int fontSize, String title, String identity) {
         LOG.d(TAG, "playBookPage1", page, path, width, height);
 
         TTSEngine.get()
@@ -330,7 +341,7 @@ import java.util.List;
         AppSP.get().lastBookTitle = title;
         AppSP.get().lastBookPage = page;
 
-        Intent intent = playBookIntent(page, path, anchor);
+        Intent intent = playBookIntent(page, path, anchor, identity);
 
         try {
             if (Build.VERSION.SDK_INT >= 26) {
@@ -343,11 +354,12 @@ import java.util.List;
         }
     }
 
-    private static Intent playBookIntent(int page, String path, String anchor) {
+    private static Intent playBookIntent(int page, String path, String anchor, String identity) {
         Intent intent = new Intent(LibreraApp.context, TTSService.class);
         intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
         intent.putExtra(EXTRA_INT, page);
         intent.putExtra(EXTRA_PATH, path);
+        intent.putExtra(EXTRA_BOOK_IDENTITY, identity);
         intent.putExtra(EXTRA_ANCHOR, anchor);
         return intent;
     }
@@ -399,7 +411,7 @@ import java.util.List;
                         if (AppState.get().isFastBookmarkByTTS) {
                             if (isPlaying) {
                                 TTSEngine.get()
-                                         .fastTTSBookmakr(getBaseContext(), AppSP.get().lastBookPath,
+                                         .fastTTSBookmakr(getBaseContext(), bookIdentity(),
                                                  AppSP.get().lastBookPage + 1, AppSP.get().lastBookPageCount);
                             } else {
                                 playPage("", AppSP.get().lastBookPage, null);
@@ -430,6 +442,9 @@ import java.util.List;
                 if (TxtUtils.isNotEmpty(mediaId) && !mediaId.equals(AppSP.get().lastBookPath)) {
                     // Switching books: start the newly chosen one from its saved position.
                     AppSP.get().lastBookPath = mediaId;
+                    activeBookPath = mediaId;
+                    activeBookIdentity = mediaId;
+                    AppSP.get().lastBookOriginalUri = null;
                     // Resume where the book was left off. The position is stored in AppBook as a
                     // fraction, so it needs the page count from the library metadata to resolve.
                     int page = 0;
@@ -809,6 +824,11 @@ import java.util.List;
 
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppSP.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
+            activeBookPath = AppSP.get().lastBookPath;
+            activeBookIdentity = intent.getStringExtra(EXTRA_BOOK_IDENTITY);
+            if (activeBookIdentity == null) activeBookIdentity = activeBookPath;
+            AppSP.get().lastBookOriginalUri = activeBookIdentity != null
+                    && activeBookIdentity.startsWith("content://") ? activeBookIdentity : null;
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
 
             if (pageNumber != -1) {
@@ -829,6 +849,25 @@ import java.util.List;
         updatePlaybackState();
         EventBus.getDefault()
                 .post(new TtsStatus());
+    }
+
+    static String bookIdentity() {
+        TTSService live = serviceRef;
+        if (live != null && live.activeBookIdentity != null) return live.activeBookIdentity;
+        String originalUri = AppSP.get().lastBookOriginalUri;
+        return originalUri != null && !originalUri.isEmpty() ? originalUri : AppSP.get().lastBookPath;
+    }
+
+    static String originalUriForPath(String physicalPath) {
+        TTSService live = serviceRef;
+        if (live != null && live.activeBookPath != null) {
+            return physicalPath != null && physicalPath.equals(live.activeBookPath)
+                    && live.activeBookIdentity != null
+                    && live.activeBookIdentity.startsWith("content://")
+                    ? live.activeBookIdentity : null;
+        }
+        return physicalPath != null && physicalPath.equals(AppSP.get().lastBookPath)
+                ? AppSP.get().lastBookOriginalUri : null;
     }
 
     public CodecDocument getDC() {
@@ -1155,12 +1194,13 @@ import java.util.List;
 
             TTSNotification.showLast();
 
+            final String progressIdentity = bookIdentity();
             new Thread(() -> {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                 }
-                AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
+                AppBook load = SharedBooks.load(progressIdentity);
                 load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
 
                 SharedBooks.saveAsync(load);

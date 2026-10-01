@@ -21,27 +21,44 @@ import com.foobnix.android.utils.Views;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.ArchiveMemberIdentity;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.BookCacheLeases;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ZipDialog {
     static AlertDialog create;
 
     public static void show(Activity a, File file, final Runnable onDismiss) {
+        show(a, file, file.getAbsolutePath(), onDismiss);
+    }
+
+    public static void show(Activity a, File file, String archiveSource, final Runnable onDismiss) {
+        final AtomicBoolean completed = new AtomicBoolean();
+        final Runnable finish = () -> {
+            if (onDismiss != null && completed.compareAndSet(false, true)) onDismiss.run();
+        };
         if(Apps.isDestroyedActivity(a)){
+            finish.run();
             return;
         }
 
         Pair<Boolean, String> res = CacheZipUtils.isSingleAndSupportEntry(file.getPath());
         if (res.first) {
-            extractAsyncProccess(a, res.second, file, onDismiss, true);
+            extractAsyncProccess(a, res.second, file, finish, true, archiveSource);
             return;
         }
 
@@ -50,20 +67,16 @@ public class ZipDialog {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (onDismiss != null) {
-                    onDismiss.run();
-                }
+                dialog.dismiss();
             }
         });
 
         try {
-            dialog.setView(getDialogContent(a, file, new Runnable() {
+            dialog.setView(getDialogContent(a, file, archiveSource, new Runnable() {
 
                 @Override
                 public void run() {
-                    if (onDismiss != null) {
-                        onDismiss.run();
-                    }
+                    finish.run();
                     if (create != null) {
                         create.dismiss();
                     }
@@ -75,16 +88,25 @@ public class ZipDialog {
         }
 
         if(Apps.isDestroyedActivity(a)){
+            finish.run();
             return;
         }
 
         create = dialog.create();
         create.setTitle(R.string.archive_files);
+        create.setOnDismissListener(ignored -> {
+            finish.run();
+        });
 
         create.show();
     }
 
     public static View getDialogContent(final Activity a, final File file, final Runnable onDismiss) {
+        return getDialogContent(a, file, file.getAbsolutePath(), onDismiss);
+    }
+
+    private static View getDialogContent(final Activity a, final File file,
+                                        final String archiveSource, final Runnable onDismiss) {
 
         final List<String> items = new ArrayList<String>();
 
@@ -128,7 +150,7 @@ public class ZipDialog {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 String name = items.get(position);
-                extractAsyncProccess(a, name, file, onDismiss, false);
+                extractAsyncProccess(a, name, file, onDismiss, false, archiveSource);
             }
         });
 
@@ -138,7 +160,17 @@ public class ZipDialog {
 
 
     public static void extractAsyncProccess(final Activity a, final String name, final File file, final Runnable onDismiss, final boolean single) {
-        new AsyncProgressTask<File>() {
+        extractAsyncProccess(a, name, file, onDismiss, single, file.getAbsolutePath());
+    }
+
+    public static void extractAsyncProccess(final Activity a, final String name, final File file,
+                                            final Runnable onDismiss, final boolean single,
+                                            final String archiveSource) {
+        final AutoCloseable pendingLease = BookCacheLeases.acquire(file);
+        final AtomicBoolean cancelled = new AtomicBoolean();
+        final AtomicBoolean outputReleased = new AtomicBoolean();
+        final AtomicReference<File> extractedOutput = new AtomicReference<>();
+        AsyncProgressTask<File> task = new AsyncProgressTask<File>() {
             @Override
             public Context getContext() {
                 return a;
@@ -146,33 +178,109 @@ public class ZipDialog {
 
             @Override
             protected File doInBackground(Object... params) {
-                return extractFile(a, name, file, single);
+                try (AutoCloseable activeLease = BookCacheLeases.acquire(file)) {
+                    pendingLease.close();
+                    File extracted = extractFile(a, name, file, single, archiveSource);
+                    if (extracted != null) {
+                        extractedOutput.set(extracted);
+                        if (cancelled.get() && outputReleased.compareAndSet(false, true))
+                            BookCacheLeases.cancelReservation(extracted);
+                    }
+                    return extracted;
+                } catch (Exception failure) {
+                    LOG.e(failure);
+                    return null;
+                }
             }
 
 
             @Override
             protected void onPostExecute(File file) {
                 super.onPostExecute(file);
+                try { pendingLease.close(); } catch (Exception failure) { LOG.e(failure); }
+                if (cancelled.get()) {
+                    if (onDismiss != null) onDismiss.run();
+                    return;
+                }
                 if (file == null) {
+                    if (onDismiss != null) onDismiss.run();
                     Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     return;
+                }
+                String identity = ArchiveMemberIdentity.forExtractedFile(file);
+                if (identity != null) {
+                    try {
+                        FileMeta meta = AppDB.get().getOrCreate(identity);
+                        if (meta.getTitle() == null || meta.getTitle().isEmpty()) {
+                            meta.setTitle(ExtUtils.getFileName(name));
+                            meta.setPathTxt(ExtUtils.getFileName(name));
+                            AppDB.get().update(meta);
+                        }
+                    } catch (Exception metadataFailure) { LOG.e(metadataFailure); }
                 }
                 if (onDismiss != null) {
                     onDismiss.run();
                 }
                 if (ExtUtils.isNotSupportedFile(file)) {
-                    ExtUtils.openWith(a, file);
+                    try {
+                        openDurableCopy(a, file);
+                    } finally {
+                        BookCacheLeases.cancelReservation(file);
+                    }
                 } else {
-                    ExtUtils.showDocumentWithoutDialog2(a, file);
+                    try {
+                        if (!ExtUtils.showDocumentWithoutDialog2(a, file))
+                            BookCacheLeases.cancelReservation(file);
+                    } catch (RuntimeException | Error failure) {
+                        BookCacheLeases.cancelReservation(file);
+                        throw failure;
+                    }
                 }
             }
 
+            @Override protected void onCancelled() {
+                cancelled.set(true);
+                File extracted = extractedOutput.get();
+                if (extracted != null && outputReleased.compareAndSet(false, true))
+                    BookCacheLeases.cancelReservation(extracted);
+                if (onDismiss != null) onDismiss.run();
+                try { pendingLease.close(); } catch (Exception failure) { LOG.e(failure); }
+                super.onCancelled();
+            }
+
             ;
-        }.execute();
+        };
+        try {
+            task.execute();
+        } catch (RuntimeException failure) {
+            try { pendingLease.close(); } catch (Exception ignored) { }
+            throw failure;
+        }
 
     }
 
+    /** Archive members have no original URI; keep an external handoff outside cache eviction. */
+    private static void openDurableCopy(Activity activity, File source) {
+        File output = null;
+        try {
+            output = ExtUtils.durableHandoffCopy(activity, source);
+            activity.startActivity(ExtUtils.createOpenFileIntent(activity, output));
+        } catch (Exception failure) {
+            LOG.e(failure);
+            if (output != null) output.delete();
+            Toast.makeText(activity, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+        }
+    }
+
     public static File extractFile(Activity a, String fileName, File file, boolean single) {
+        return extractFile(a, fileName, file, single, file.getAbsolutePath());
+    }
+
+    public static File extractFile(Activity a, String fileName, File file, boolean single,
+                                   String archiveSource) {
+        File staging = null;
+        AutoCloseable stagingLease = null;
+        boolean published = false;
         try {
             CacheZipUtils.CACHE_RECENT.mkdirs();
 
@@ -182,25 +290,29 @@ public class ZipDialog {
             }
 
             String outFileName = ExtUtils.getFileName(fileName);
-            File out = new File(CacheZipUtils.CACHE_RECENT, outFileName);
-            if (out.isFile()) {
-                return out;
-            }
+            String extractionId = UUID.randomUUID().toString();
+            staging = new File(CacheZipUtils.CACHE_RECENT, extractionId + ".part");
+            File completed = new File(CacheZipUtils.CACHE_RECENT, extractionId);
+            stagingLease = BookCacheLeases.acquire(staging);
+            if (!staging.mkdir()) throw new IOException("Cannot stage archive member");
+            File out = new File(staging, outFileName);
 
             // CacheZipUtils.removeFiles(CacheZipUtils.CACHE_UN_ZIP_DIR.listFiles());
 
             ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(file.getPath());
 
 
+            boolean found = false;
             ArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName();
                 LOG.d("extractFile", name, fileName);
-                if (name.equals(fileName) || single) {
+                if (name.equals(fileName)) {
 
                     LOG.d("File extract", out.getPath());
                     IOUtils.copyClose(zipInputStream, new FileOutputStream(out));
                     zipInputStream.close();
+                    found = true;
                 } else if (ExtUtils.isImagePath(name)) {
                     final File img = new File(out.getParentFile(), ExtUtils.getFileName(name));
                     LOG.d("Copy-image", name, ">>", img);
@@ -213,9 +325,23 @@ public class ZipDialog {
 
             zipInputStream.close();
             zipInputStream.release();
-            return out;
+            if (!found) throw new IOException("Archive member was not found: " + fileName);
+            ArchiveMemberIdentity.mark(staging,
+                    ArchiveMemberIdentity.create(archiveSource, fileName));
+            File result = new File(completed, outFileName);
+            synchronized (BookCacheLeases.class) {
+                BookCacheLeases.publish(staging, completed);
+                BookCacheLeases.reserve(result);
+            }
+            published = true;
+            return result;
         } catch (Exception e) {
             LOG.e(e);
+        } finally {
+            if (stagingLease != null) {
+                try { stagingLease.close(); } catch (Exception failure) { LOG.e(failure); }
+            }
+            if (!published && staging != null) BookCacheLeases.evictTree(staging);
         }
 
         return null;

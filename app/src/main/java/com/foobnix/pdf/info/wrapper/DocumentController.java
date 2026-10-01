@@ -46,6 +46,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.SafReaderLaunch;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
@@ -748,7 +749,7 @@ public abstract class DocumentController {
         try {
             if (TTSEngine.get().isPlaying()) {
 
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                AppBook bs = SettingsManager.getBookSettings(getBookIdentity());
 
                 if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
@@ -825,7 +826,7 @@ public abstract class DocumentController {
 
         try {
             if (getPageCount() != 0) {
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                AppBook bs = SettingsManager.getBookSettings(getBookIdentity());
                 int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
                 if (getCurentPage() != page) {
                     page = findBookmarkPage(page, null, bs.pt);
@@ -840,7 +841,23 @@ public abstract class DocumentController {
     }
 
     public FileMeta getBookFileMeta() {
-        return AppDB.get().getOrCreate(getCurrentBook().getPath());
+        return ExtUtils.readerBookMeta(getActivity().getIntent(), getCurrentBook().getPath());
+    }
+
+    public String getBookIdentity() {
+        return ExtUtils.recentPathFromIntent(getActivity().getIntent(), getCurrentBook().getPath());
+    }
+
+    public AppBookmark createBookmark(String text) {
+        AppBookmark bookmark = new AppBookmark(getBookIdentity(), text, getPercentage());
+        bookmark.pt = getBookmarkText();
+        return bookmark;
+    }
+
+    public String getBookDisplayName() {
+        FileMeta meta = getBookFileMeta();
+        return TxtUtils.isNotEmpty(meta.getPathTxt())
+                ? new File(meta.getPathTxt()).getName() : getCurrentBook().getName();
     }
 
     public String getBookFileMetaName() {
@@ -1096,8 +1113,15 @@ public abstract class DocumentController {
     }
 
     public void setCurrentBook(final File currentBook) {
+        String originalUri = SafReaderLaunch.original(activity.getIntent());
+        if (!currentBook.getPath().equals(AppSP.get().lastBookPath)
+                || !java.util.Objects.equals(originalUri, AppSP.get().lastBookOriginalUri)) {
+            AppSP.get().lastBookParagraph = 0;
+            AppSP.get().tempBookPage = -1;
+        }
         this.currentBook = currentBook;
         AppSP.get().lastBookPath = currentBook.getPath();
+        AppSP.get().lastBookOriginalUri = originalUri;
         TempHolder.get().loadingCancelled.set(false);
         LOG.d("setCurrentBook",currentBook);
     }

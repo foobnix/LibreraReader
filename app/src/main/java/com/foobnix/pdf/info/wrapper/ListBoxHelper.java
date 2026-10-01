@@ -54,9 +54,7 @@ public class ListBoxHelper {
                 try {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(),
-                                                                     text,
-                                                                     controller.getPercentage());
+                        final AppBookmark bookmark = controller.createBookmark(text);
                         bookmark.isF = isFloat.isChecked();
                         bookmark.pt = controller.getBookmarkText();
                         BookmarksData.get().add(bookmark);
@@ -93,10 +91,7 @@ public class ListBoxHelper {
     }
 
     public static void addBookmark(DocumentController controller, String text) {
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(),
-                                                     text,
-                                                     controller.getPercentage());
-        bookmark.pt = controller.getBookmarkText();
+        final AppBookmark bookmark = controller.createBookmark(text);
         BookmarksData.get().add(bookmark);
     }
 

@@ -31,6 +31,7 @@ public final class BookCacheLeases {
         @Override public void close() throws Exception { lease.close(); }
     }
     private static final Map<String, Integer> leases = new HashMap<>();
+    private static final Map<String, Integer> reservations = new HashMap<>();
     static final ExecutorService CLEANUP = Executors.newSingleThreadExecutor(work ->
             new Thread(() -> {
                 android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
@@ -42,9 +43,13 @@ public final class BookCacheLeases {
 
     private static final Set<String> initializedFolders = new HashSet<>();
     private static final Set<String> immutableRevisionNamedSources = new HashSet<>();
+    private static final ThreadLocal<Integer> managedOpenDepth = ThreadLocal.withInitial(() -> 0);
 
-
-
+    public static void beginManagedOpen() { managedOpenDepth.set(managedOpenDepth.get() + 1); }
+    public static void endManagedOpen() {
+        int depth = managedOpenDepth.get() - 1;
+        if (depth == 0) managedOpenDepth.remove(); else managedOpenDepth.set(depth);
+    }
 
     public static synchronized File temporary(File directory, String prefix) throws IOException {
         cleanAbandoned(directory);
@@ -65,7 +70,7 @@ public final class BookCacheLeases {
         if (files == null) return;
         for (File file : files) {
             String name = file.getName();
-            if (name.startsWith(".evicted-")) {
+            if (name.startsWith("saf-book-") || name.startsWith(".evicted-")) {
                 evictTree(file);
             }
         }
@@ -151,9 +156,10 @@ public final class BookCacheLeases {
         counts.computeIfPresent(key(file), (path, count) -> count == 1 ? null : count - 1);
     }
 
-
-
-
+    /** Keeps a returned staging file alive until its reader opens it. */
+    public static synchronized void reserve(File file) { add(reservations, file); }
+    public static synchronized void cancelReservation(File file) { remove(reservations, file); }
+    public static synchronized boolean hasReservation(File file) { return reservations.containsKey(key(file)); }
 
     /** Only cache publishers may mark paths whose immutable revision is in the name. */
     public static synchronized void registerImmutableRevisionNamedSource(File file) {
@@ -209,7 +215,15 @@ public final class BookCacheLeases {
         }
     }
 
-    public static synchronized void readerOpened(File file) { add(leases, file); }
+    public static synchronized void readerOpened(File file) {
+        readerOpened(file, true);
+    }
+    public static synchronized void readerOpened(File file, boolean consumeReservation) {
+        add(leases, file);
+        // AbstractCodecContext owns the reservation for the whole conversion/delegation.
+        // Direct MuPdfDocument callers still consume their own reservation here.
+        if (consumeReservation && managedOpenDepth.get() == 0) remove(reservations, file);
+    }
     public static synchronized void readerClosed(File file) { remove(leases, file); }
 
     private static boolean overlaps(String path, String protectedPath) {
@@ -227,7 +241,7 @@ public final class BookCacheLeases {
 
     /** A held directory protects descendants; a held child protects its ancestors. */
     public static synchronized boolean isProtected(File file) {
-        return protectedBy(leases, file);
+        return protectedBy(leases, file) || protectedBy(reservations, file);
     }
 
     public static synchronized boolean evict(File file) {
