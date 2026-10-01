@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import com.bumptech.glide.Priority;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,6 +32,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.dao2.FileMeta;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -218,16 +220,26 @@ public class IMG {
 
 
     public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run) {
+        return getCoverPageWithEffect(context, path, run, "");
+    }
+
+    public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, FileMeta book, ResourceReady run) {
+        return getCoverPageWithEffect(context, book.getPath(), run, book.getSize() + ":" + book.getDate());
+    }
+
+    private static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run,
+                                                                String revision) {
         int imageSize = IMG.getImageSize();
         String url = toUrl(path, ImageExtractor.COVER_PAGE, imageSize,false);
         return IMG.with(context)
            .asBitmap()
            .load(url)
+           .priority(Priority.HIGH)
            .override(imageSize)
                 .onlyRetrieveFromCache(false)
            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
            //.override(imageSize)
-              .signature(new ObjectKey(url.hashCode()))
+              .signature(new ObjectKey(url.hashCode() + ":" + revision))
            .listener(new RequestListener<>() {
                @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
                                                      boolean isFirstResource) {

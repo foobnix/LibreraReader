@@ -97,8 +97,8 @@ public class TTSEngine {
     }
 
     public static AppBookmark fastTTSBookmakr(DocumentController dc) {
-        AppBookmark bookmark = fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook()
-                                                                   .getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
+        AppBookmark bookmark = fastTTSBookmakr(dc.getActivity(), dc.getBookIdentity(),
+                dc.getCurentPageFirst1(), dc.getPageCount());
         if (bookmark != null) {
             bookmark.pt = dc.getBookmarkText();
             BookmarksData.get().add(bookmark);

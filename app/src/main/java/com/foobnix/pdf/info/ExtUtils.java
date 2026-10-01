@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.DocumentsContract;
+import android.provider.OpenableColumns;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Base64;
@@ -85,10 +87,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -100,6 +106,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ExtUtils {
     public static final String REFLOW_EPUB = "-reflow.epub";
@@ -117,6 +125,31 @@ public class ExtUtils {
     private static final String IMAGE_END = "<image-end>";
     public static Map<String, String> mimeCache = new HashMap<String, String>();
     public static List<String> seachExts = new ArrayList<String>();
+
+    private static final String SAF_OPEN_CACHE_DIR = "saf-open";
+    private static final long SAF_OPEN_CACHE_MAX_BYTES = 512L * 1024 * 1024;
+
+    public static String recentPathFromIntent(android.content.Intent intent, String localPath) {
+        String safUri = SafReaderLaunch.original(intent);
+        if (TxtUtils.isNotEmpty(safUri))
+            return SafDocumentIdentity.canonical(Uri.parse(safUri)).toString();
+        String member = localPath == null ? null
+                : ArchiveMemberIdentity.forExtractedFile(new File(localPath));
+        return member != null ? member : localPath;
+    }
+
+    /** Display metadata uses the logical book identity; codecs still use the staged path. */
+    public static FileMeta readerBookMeta(Intent intent, String localPath) {
+        return AppDB.get().getOrCreate(recentPathFromIntent(intent, localPath));
+    }
+
+    public static String safReaderTitle(Intent intent, String localPath) {
+        String path = recentPathFromIntent(intent, localPath);
+        if (!isExteralSD(path)) return null;
+        FileMeta meta = readerBookMeta(intent, localPath);
+        if (TxtUtils.isNotEmpty(meta.getTitle())) return meta.getTitle();
+        return TxtUtils.isNotEmpty(meta.getPathTxt()) ? meta.getPathTxt() : null;
+    }
     static List<String> video = Arrays.asList(".webm",
                                               ".m3u8",
                                               ".ts",
@@ -315,45 +348,200 @@ public class ExtUtils {
     }
 
     public static void openFile(Activity a, FileMeta meta) {
-        File file = new File(meta.getPath());
-
+        if (ArchiveMemberIdentity.isIdentity(meta.getPath())) {
+            String source = ArchiveMemberIdentity.source(meta.getPath());
+            String entry = ArchiveMemberIdentity.entry(meta.getPath());
+            if (source == null || entry == null) return;
+            if (isExteralSD(source)) {
+                new Thread(() -> {
+                    try {
+                        File staged = stageSafFile(a, Uri.parse(source), getFileName(source));
+                        new Handler(Looper.getMainLooper()).post(() ->
+                                ZipDialog.extractAsyncProccess(a, entry, staged,
+                                        () -> BookCacheLeases.cancelReservation(staged), false, source));
+                    } catch (Exception failure) { LOG.e(failure); }
+                }, "Reopen archive member").start();
+            } else {
+                ZipDialog.extractAsyncProccess(a, entry, new File(source), null, false, source);
+            }
+            return;
+        }
         if (ExtUtils.isExteralSD(meta.getPath())) {
             LOG.d("openFile isExteralSD");
-            CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
-            Uri uri = Uri.parse(meta.getPath());
-            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
-            if (!file.exists()) {
+            final Uri uri = Uri.parse(meta.getPath());
+            final String displayName = (meta.getPathTxt() != null && !meta.getPathTxt().isEmpty())
+                    ? meta.getPathTxt() : meta.getTitle();
+            final String originalSafUri = SafDocumentIdentity.canonical(uri).toString();
+            final Handler mainHandler = new Handler(Looper.getMainLooper());
+            new Thread(() -> {
                 try {
-                    InputStream inputStream = a.getContentResolver().openInputStream(uri);
-                    if (inputStream == null) {
-                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    CacheZipUtils.copyFile(inputStream, file);
-                    LOG.d("Create-file", file.getPath(), file.length());
+                    File cachedFile = stageSafFile(a, uri, displayName);
+                    mainHandler.post(() -> openLocalFile(a, cachedFile, originalSafUri));
                 } catch (Exception e) {
                     LOG.e(e);
+                    mainHandler.post(() -> Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show());
                 }
+            }).start();
+            return;
+        }
+
+        openLocalFile(a, new File(meta.getPath()), null);
+    }
+
+    static File stageSafFile(Context context, Uri uri, String fallbackName) throws Exception {
+        Exception lastFailure = null;
+        for (Uri access : SafDocumentIdentity.accessCandidates(context, uri)) {
+            try {
+                File staged = stageSafCandidate(context, access, fallbackName);
+                return staged;
+            } catch (Exception failure) {
+                lastFailure = failure;
+            }
+        }
+        if (lastFailure != null) throw lastFailure;
+        throw new IOException("Cannot access SAF book: " + uri);
+    }
+
+    private static File stageSafCandidate(Context context, Uri uri, String fallbackName) throws Exception {
+        ContentResolver resolver = context.getContentResolver();
+        String displayName = fallbackName;
+        // Persisted metadata cannot validate a remote cache entry.
+        long size = -1;
+        long modified = -1;
+
+        String[] projection = {
+                OpenableColumns.DISPLAY_NAME,
+                OpenableColumns.SIZE,
+                DocumentsContract.Document.COLUMN_LAST_MODIFIED
+        };
+        try (Cursor cursor = resolver.query(uri, projection, null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
+                int modifiedIndex = cursor.getColumnIndex(DocumentsContract.Document.COLUMN_LAST_MODIFIED);
+                if (nameIndex >= 0 && !cursor.isNull(nameIndex)) displayName = cursor.getString(nameIndex);
+                if (sizeIndex >= 0 && !cursor.isNull(sizeIndex)) size = cursor.getLong(sizeIndex);
+                if (modifiedIndex >= 0 && !cursor.isNull(modifiedIndex)) modified = cursor.getLong(modifiedIndex);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        // Providers may omit last-modified; download afresh in that case.
+        if (modified <= 0) modified = System.nanoTime();
+        String key = safCacheKey(SafDocumentIdentity.canonical(uri).toString());
+        String extension = extensionFromName(displayName);
+        String suffix = TxtUtils.isEmpty(extension) ? "" : "." + extension.toLowerCase(Locale.US);
+        File cacheDir = new File(context.getCacheDir(), SAF_OPEN_CACHE_DIR);
+        if (!cacheDir.isDirectory() && !cacheDir.mkdirs() && !cacheDir.isDirectory()) {
+            throw new IOException("Cannot create SAF open cache");
+        }
+        removeLegacyBookCacheLeases(cacheDir);
+        File cachedFile = new File(cacheDir, "source-" + key + "-" + size + "-" + modified + suffix);
+        synchronized (BookCacheLeases.class) {
+            if (cachedFile.isFile() && (size < 0 || cachedFile.length() == size)) {
+                BookCacheLeases.reserve(cachedFile);
+                BookCacheLeases.registerImmutableRevisionNamedSource(cachedFile);
+                pruneSafOpenCache(cacheDir, cachedFile);
+                LOG.d("openFile SAF cache hit", cachedFile.getPath());
+                return cachedFile;
             }
         }
 
-        if (ExtUtils.doifFileExists(a, file)) {
+        File tempFile = BookCacheLeases.temporary(cacheDir, "source-" + key + "-");
+        try (InputStream input = resolver.openInputStream(uri);
+             FileOutputStream output = new FileOutputStream(tempFile)) {
+            if (input == null) throw new IOException("Cannot open SAF file");
+            byte[] buffer = new byte[128 * 1024];
+            int count;
+            while ((count = input.read(buffer)) != -1) output.write(buffer, 0, count);
+            output.getFD().sync();
+        } catch (Exception e) {
+            tempFile.delete();
+            throw e;
+        }
+        if (size >= 0 && tempFile.length() != size) {
+            tempFile.delete();
+            throw new IOException("Incomplete SAF file: expected " + size + ", copied " + tempFile.length());
+        }
+        synchronized (BookCacheLeases.class) {
+            try {
+                // A concurrent open may already use this pathname. Give this download
+                // its own name so pathname readers and sibling lookups stay stable.
+                if (BookCacheLeases.isProtected(cachedFile)) {
+                    cachedFile = new File(cacheDir, "source-" + key + "-" + size + "-"
+                            + modified + "-" + UUID.randomUUID() + suffix);
+                }
+                BookCacheLeases.publish(tempFile, cachedFile);
+            } catch (IOException failure) {
+                tempFile.delete();
+                throw failure;
+            }
+            BookCacheLeases.reserve(cachedFile);
+            BookCacheLeases.registerImmutableRevisionNamedSource(cachedFile);
+            pruneSafOpenCache(cacheDir, cachedFile);
+        }
+        LOG.d("openFile SAF cached", cachedFile.getPath(), cachedFile.length());
+        return cachedFile;
+    }
 
+    private static void removeLegacyBookCacheLeases(File cacheDir) {
+        File[] legacyFiles = cacheDir.listFiles(file -> file.isFile()
+                && !file.getName().endsWith(".part")
+                && !file.getName().startsWith("source-")
+                && !file.getName().startsWith("processed-"));
+        if (legacyFiles != null) for (File legacyFile : legacyFiles) BookCacheLeases.evict(legacyFile);
+    }
+
+    private static void pruneSafOpenCache(File cacheDir, File protectedFile) {
+        File[] files = cacheDir.listFiles(file -> file.isFile() && !file.getName().endsWith(".part"));
+        if (files == null) return;
+        protectedFile.setLastModified(System.currentTimeMillis());
+        long total = 0;
+        for (File file : files) total += file.length();
+        Arrays.sort(files, (left, right) -> Long.compare(left.lastModified(), right.lastModified()));
+        for (File file : files) {
+            if (total <= SAF_OPEN_CACHE_MAX_BYTES) break;
+            if (file.equals(protectedFile)) continue;
+            long length = file.length();
+            if (BookCacheLeases.evict(file)) total -= length;
+        }
+    }
+
+    private static String safCacheKey(String uri) throws Exception {
+        byte[] digest = MessageDigest.getInstance("SHA-256").digest(uri.getBytes(StandardCharsets.UTF_8));
+        StringBuilder result = new StringBuilder(32);
+        for (int i = 0; i < 16; i++) result.append(String.format(Locale.US, "%02x", digest[i] & 0xff));
+        return result.toString();
+    }
+
+    private static void openLocalFile(Activity a, File file, String safUri) {
+        boolean handedOff = false;
+        try {
+            if (!ExtUtils.doifFileExists(a, file)) return;
             if (ExtUtils.isZip(file)) {
 
                 LOG.d("openFile isExteralSD zip");
                 if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
-                    ExtUtils.showDocumentWithoutDialog2(a, file);
+                    handedOff = ExtUtils.showDocumentWithoutDialog2(a, file, safUri);
                 } else {
-                    ZipDialog.show(a, file, null);
+                    AtomicBoolean released = new AtomicBoolean();
+                    ZipDialog.show(a, file, safUri == null ? file.getAbsolutePath() : safUri,
+                            safUri == null ? null : () -> {
+                        if (released.compareAndSet(false, true)) BookCacheLeases.cancelReservation(file);
+                    });
+                    handedOff = true;
                 }
             } else if (ExtUtils.isNotSupportedFile(file)) {
                 LOG.d("openFile isExteralSD isNotSupportedFile");
-                ExtUtils.openWith(a, file);
+                if (safUri == null) ExtUtils.openWith(a, file);
+                else ExtUtils.openWithSafUri(a, Uri.parse(safUri), file.getName());
             } else {
                 LOG.d("openFile isExteralSD normal");
-                ExtUtils.showDocumentWithoutDialog2(a, file);
+                handedOff = ExtUtils.showDocumentWithoutDialog2(a, file, safUri);
             }
+        } finally {
+            if (safUri != null && !handedOff) BookCacheLeases.cancelReservation(file);
         }
     }
 
@@ -362,6 +550,14 @@ public class ExtUtils {
             return false;
         }
         return path.startsWith("content:/");
+    }
+
+    public static boolean isAvailableBookSource(String path) {
+        if (path == null) return false;
+        if (isExteralSD(path)) return true;
+        if (ArchiveMemberIdentity.isIdentity(path))
+            return ArchiveMemberIdentity.sourceMayExist(path);
+        return new File(path).isFile();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static String getExtSDDisplayName(Context c, String path) {
@@ -767,9 +963,14 @@ public class ExtUtils {
     }
 
     public static boolean showDocumentWithoutDialog2(final Context c, final File file) {
+        return showDocumentWithoutDialog2(c, file, null);
+    }
+
+    public static boolean showDocumentWithoutDialog2(final Context c, final File file, final String safUri) {
         if (c == null) {
             return false;
         }
+        final boolean pendingSource = BookCacheLeases.hasReservation(file);
 
         if (AppState.get().isPrefFormatMode) {
 
@@ -777,20 +978,20 @@ public class ExtUtils {
 
             if (AppState.get().prefScrollMode.contains(ext)) {
                 AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, null);
+                showDocumentWithoutDialog(c, file, null, safUri);
                 return true;
             } else if (AppState.get().prefBookMode.contains(ext)) {
                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, null);
+                showDocumentWithoutDialog(c, file, null, safUri);
                 return true;
             } else if (AppState.get().prefMusicianMode.contains(ext)) {
                 AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, null);
+                showDocumentWithoutDialog(c, file, null, safUri);
                 return true;
             }
         }
         if (AppState.get().isRememberMode) {
-            showDocumentWithoutDialog(c, file, null);
+            showDocumentWithoutDialog(c, file, null, safUri);
             return true;
         }
 
@@ -905,35 +1106,40 @@ public class ExtUtils {
         builder.setView(view);
         builder.setCancelable(true);
         final AlertDialog dialog = builder.show();
+        final AtomicBoolean handedOff = new AtomicBoolean();
 
         vertical.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                handedOff.set(true);
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, null);
+                launchSelectedMode(c, file, safUri);
             }
         });
         horizontal.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                handedOff.set(true);
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, null);
+                launchSelectedMode(c, file, safUri);
             }
         });
 
         music.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                handedOff.set(true);
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, null);
+                launchSelectedMode(c, file, safUri);
             }
         });
 
         librerax.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                handedOff.set(true);
                 dialog.dismiss();
                 AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
-                showDocumentWithoutDialog(c, file, null);
+                launchSelectedMode(c, file, safUri);
             }
         });
 
@@ -951,6 +1157,7 @@ public class ExtUtils {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override public void onDismiss(DialogInterface dialog) {
                 IMG.resumeRequests(c);
+                if (!handedOff.get() && pendingSource) BookCacheLeases.cancelReservation(file);
             }
         });
 
@@ -958,7 +1165,20 @@ public class ExtUtils {
     }
 
     public static void showDocumentWithoutDialog(final Context c, final File file, String playlist) {
-        showDocumentWithoutDialog2(c, Uri.fromFile(file), 0.0f, playlist);
+        showDocumentWithoutDialog(c, file, playlist, null);
+    }
+
+    static void showDocumentWithoutDialog(final Context c, final File file, String playlist, String safUri) {
+        showDocumentWithoutDialog2(c, Uri.fromFile(file), 0.0f, playlist, null, null, safUri);
+    }
+
+    private static void launchSelectedMode(Context context, File file, String safUri) {
+        try {
+            showDocumentWithoutDialog(context, file, null, safUri);
+        } catch (RuntimeException | Error failure) {
+            if (BookCacheLeases.hasReservation(file)) BookCacheLeases.cancelReservation(file);
+            throw failure;
+        }
     }
 
     public static void showDocumentWithoutDialog2(final Context c,
@@ -971,9 +1191,20 @@ public class ExtUtils {
     // bookmarkText and bookmarkPageText find the page near the percent, see DocumentController.getBookmarkPage
     public static void showDocumentWithoutDialog2(final Context c, final Uri uri, final float percent, final String playList,
                                                   final String bookmarkText, final String bookmarkPageText) {
+        showDocumentWithoutDialog2(c, uri, percent, playList, bookmarkText, bookmarkPageText, null);
+    }
+
+    private static void showDocumentWithoutDialog2(final Context c, final Uri uri, final float percent,
+                                                    final String playList, final String bookmarkText,
+                                                    final String bookmarkPageText, final String safUri) {
+        if (safUri != null || (uri != null && "file".equals(uri.getScheme())
+                && BookCacheLeases.hasReservation(new File(uri.getPath())))) {
+            showDocumentInner(c, uri, percent, playList, bookmarkText, bookmarkPageText, safUri);
+            return;
+        }
         Safe.run(new Runnable() {
             @Override public void run() {
-                showDocumentInner(c, uri, percent, playList, bookmarkText, bookmarkPageText);
+                showDocumentInner(c, uri, percent, playList, bookmarkText, bookmarkPageText, safUri);
             }
         }, true);
     }
@@ -984,20 +1215,62 @@ public class ExtUtils {
 
     public static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist,
                                          String bookmarkText, String bookmarkPageText) {
+        showDocumentInner(c, uri, percent, playlist, bookmarkText, bookmarkPageText, null);
+    }
+
+    static void showDocumentInner(final Context c, final Uri uri, final float percent,
+                                  String playlist, String safUri) {
+        showDocumentInner(c, uri, percent, playlist, null, null, safUri);
+    }
+
+    static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist,
+                                  String bookmarkText, String bookmarkPageText, String safUri) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            if (uri != null && "file".equals(uri.getScheme())
+                    && BookCacheLeases.hasReservation(new File(uri.getPath())))
+                BookCacheLeases.cancelReservation(new File(uri.getPath()));
             return;
         }
         LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
 
         if (AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX && TxtUtils.isEmpty(playlist)
                 && !uri.getPath().endsWith(Playlists.L_PLAYLIST)) {
-            LibreraX.open(c, uri, percent, TxtUtils.isNotEmpty(bookmarkPageText) ? bookmarkPageText : bookmarkText);
+            File durable = null;
+            Uri destination;
+            try {
+                destination = safUri == null ? uri
+                        : SafDocumentIdentity.readableAccess(c, Uri.parse(safUri));
+            } catch (IOException failure) {
+                throw new IllegalStateException("Cannot reopen SAF book for external reader", failure);
+            }
+            String identity = safUri;
+            if (safUri == null && "file".equals(uri.getScheme())
+                    && CacheZipUtils.CACHE_RECENT != null
+                    && uri.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getAbsolutePath() + File.separator)) {
+                try {
+                    durable = durableHandoffCopy(c, new File(uri.getPath()));
+                    destination = Uri.fromFile(durable);
+                    identity = ArchiveMemberIdentity.forExtractedFile(new File(uri.getPath()));
+                    if (identity == null) identity = uri.getPath();
+                } catch (IOException failure) {
+                    throw new IllegalStateException("Cannot retain archive book for LibreraX", failure);
+                }
+            }
+            try {
+                LibreraX.open(c, destination, percent,
+                        TxtUtils.isNotEmpty(bookmarkPageText) ? bookmarkPageText : bookmarkText, identity);
+            } catch (RuntimeException | Error failure) {
+                if (durable != null) durable.delete();
+                throw failure;
+            }
+            if ("file".equals(uri.getScheme()) && BookCacheLeases.hasReservation(new File(uri.getPath())))
+                BookCacheLeases.cancelReservation(new File(uri.getPath()));
             return;
         }
 
         if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-            openHorizontalView(c, uri, percent, playlist, bookmarkText, bookmarkPageText);
+            openHorizontalView(c, uri, percent, playlist, bookmarkText, bookmarkPageText, safUri);
             return;
         }
 
@@ -1017,6 +1290,8 @@ public class ExtUtils {
             LOG.e(e);
         }
         intent.setData(checkPlaylisturi(uri, intent, playlist));
+
+        if (TxtUtils.isNotEmpty(safUri)) SafReaderLaunch.attach(c, intent, safUri);
 
         c.startActivity(intent);
     }
@@ -1038,7 +1313,26 @@ public class ExtUtils {
             @Override public void run() {
                 AppSP.get().readingMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK
                         ? AppState.READING_MODE_SCROLL : AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(a, file, playlist);
+                String safUri = SafReaderLaunch.original(a.getIntent());
+                if (safUri != null) {
+                    new Thread(() -> {
+                        try {
+                            File staged = stageSafFile(a, Uri.parse(safUri), file.getName());
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                try {
+                                    showDocumentWithoutDialog(a, staged, playlist, safUri);
+                                } catch (RuntimeException | Error failure) {
+                                    BookCacheLeases.cancelReservation(staged);
+                                    LOG.e(failure);
+                                }
+                            });
+                        } catch (Exception failure) {
+                            LOG.e(failure);
+                        }
+                    }, "SAF mode switch").start();
+                } else {
+                    showDocumentWithoutDialog(a, file, playlist);
+                }
             }
         });
     }
@@ -1059,13 +1353,15 @@ public class ExtUtils {
     }
 
     private static void openHorizontalView(final Context c, final Uri uri, final float percent, String playlist,
-                                           String bookmarkText, String bookmarkPageText) {
+                                           String bookmarkText, String bookmarkPageText, String safUri) {
         if (uri == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            if ("file".equals(uri.getScheme()) && BookCacheLeases.hasReservation(new File(uri.getPath())))
+                BookCacheLeases.cancelReservation(new File(uri.getPath()));
             return;
         }
 
@@ -1086,6 +1382,9 @@ public class ExtUtils {
             intent.putExtra(DocumentController.EXTRA_BOOKMARK_TEXT, bookmarkText);
             intent.putExtra(DocumentController.EXTRA_BOOKMARK_PAGE_TEXT, bookmarkPageText);
         }
+
+        if (TxtUtils.isNotEmpty(safUri)) SafReaderLaunch.attach(c, intent, safUri);
+
         c.startActivity(intent);
 
         // FileMetaDB.get().addRecent(file.getPath());
@@ -1125,6 +1424,66 @@ public class ExtUtils {
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(a, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** Send the provider-owned document directly; an external reader may reopen it later. */
+    public static void openWithSafUri(final Context context, final Uri uri, String displayName) {
+        try {
+            String mime = null;
+            try { mime = context.getContentResolver().getType(uri); }
+            catch (RuntimeException providerFailure) { LOG.e(providerFailure); }
+            if (TxtUtils.isEmpty(mime)) mime = getMimeType(displayName);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, mime);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            if (!(context instanceof Activity)) intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** A recipient can reopen this after our process exits; ordinary cache cleanup never owns it. */
+    public static File durableHandoffCopy(Context context, File source) throws IOException {
+        File directory = new File(context.getFilesDir(), "external-handoff");
+        if (!directory.isDirectory() && !directory.mkdirs()) throw new IOException("Cannot create handoff directory");
+        pruneDurableHandoffs(context);
+        File temporary = BookCacheLeases.temporary(directory, "handoff-");
+        File output = new File(directory, UUID.randomUUID() + "-" + source.getName());
+        try {
+            try (FileInputStream input = new FileInputStream(source);
+                 FileOutputStream stream = new FileOutputStream(temporary)) {
+                byte[] buffer = new byte[64 * 1024];
+                int count;
+                while ((count = input.read(buffer)) != -1) stream.write(buffer, 0, count);
+                stream.getFD().sync();
+            }
+            BookCacheLeases.publish(temporary, output);
+            return output;
+        } finally {
+            temporary.delete();
+        }
+    }
+
+    /** External readers may reopen a granted URI; retain copies for 30 days, then prune on launch or handoff. */
+    public static final long HANDOFF_RETENTION_MS = 30L * 24 * 60 * 60 * 1000;
+
+    public static void pruneDurableHandoffs(Context context) {
+        pruneDurableHandoffs(context, System.currentTimeMillis());
+    }
+
+    static void pruneDurableHandoffs(Context context, long now) {
+        File directory = new File(context.getFilesDir(), "external-handoff");
+        File[] copies = directory.listFiles();
+        if (copies == null) return;
+        long cutoff = now - HANDOFF_RETENTION_MS;
+        for (File copy : copies) {
+            if (copy.isFile() && !copy.getName().endsWith(".part")
+                    && copy.lastModified() > 0 && copy.lastModified() < cutoff) {
+                BookCacheLeases.evict(copy);
+            }
         }
     }
 
@@ -1953,7 +2312,10 @@ public class ExtUtils {
         Iterator<FileMeta> iterator = all.iterator();
         while (iterator.hasNext()) {
             FileMeta next = iterator.next();
-            if (!new File(next.getPath()).exists()) {
+            String path = next.getPath();
+            if (!path.startsWith("content://")
+                    && !(ArchiveMemberIdentity.isIdentity(path)
+                            ? ArchiveMemberIdentity.sourceMayExist(path) : new File(path).exists())) {
                 iterator.remove();
             }
         }

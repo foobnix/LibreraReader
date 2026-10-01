@@ -223,30 +223,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             LOG.d("bindFileMetaView-1", items.get(position).getTitle());
             bindFileMetaView(holder, position);
 
-            boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
-
-            //if (needRefresh) {
-            //FileMetaCore.reUpdateIfNeed(fileMeta);
-            // TempHolder.listHash++;
-            //AppDB.get().getDao().detach(fileMeta);
-            //}
-
-            IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(), bitmap -> {
-
-                try {
-                    if (position < items.size() && needRefresh) {
-                        FileMeta it = AppDB.get().load(fileMeta.getPath());
-
-                        if (it != null) {
-                            items.set(position, it);
-                            bindFileMetaView(holder, position);
-                        }
-                    }
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-            }).into(holder.image);
+            if (AppState.get().isShowImages) {
+                IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta, null).into(holder.image);
+            } else {
+                com.bumptech.glide.Glide.with(holder.image.getContext()).clear(holder.image);
+                holder.image.setImageDrawable(null);
+            }
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
 
@@ -340,7 +322,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     // book's does: no air round it, and the card cuts it to its own round.
                     coverFrame.setPadding(0, 0, 0, 0);
                     holder.image.setScaleType(ScaleType.CENTER_CROP);
-                    IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(),  new IMG.ResourceReady() {
+                    IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta,  new IMG.ResourceReady() {
                         @Override
                         public void onResourceReady(Bitmap bitmap) {
                             try {
@@ -721,12 +703,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.browserExt.setText(bookExt);
 
         if (holder.size != null) {
-            if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-                holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
-            } else {
-                holder.size.setText(fileMeta.getSizeTxt());
-
-            }
+            holder.size.setText(BookSizeText.format(fileMeta));
         }
         if (holder.date != null) {
             holder.date.setText(fileMeta.getDateTxt());

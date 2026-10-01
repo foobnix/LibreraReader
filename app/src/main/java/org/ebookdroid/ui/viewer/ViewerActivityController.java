@@ -130,10 +130,18 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             m_fileName = filePath;
             codecType = BookType.getByUri(m_fileName);
 
-            FileMeta meta = FileMetaCore.createMetaIfNeed(m_fileName, false);
-            title = meta.getTitle();
+            // The codec reads the staged file, but metadata belongs to the original book.
+            String bookPath = ExtUtils.recentPathFromIntent(intent, filePath);
+            boolean logicalBook = ExtUtils.isExteralSD(bookPath)
+                    || com.foobnix.pdf.info.ArchiveMemberIdentity.isIdentity(bookPath);
+            FileMeta meta = logicalBook
+                    ? ExtUtils.readerBookMeta(intent, filePath)
+                    : FileMetaCore.createMetaIfNeed(bookPath, false);
+            title = logicalBook
+                    ? ExtUtils.safReaderTitle(intent, filePath) : meta.getTitle();
             if (TxtUtils.isEmpty(title)) {
-                title = ExtUtils.getFileName(m_fileName);
+                title = TxtUtils.isNotEmpty(meta.getPathTxt())
+                        ? meta.getPathTxt() : ExtUtils.getFileName(bookPath);
             }
             LOG.d("Book-title", title);
 
@@ -156,8 +164,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             wrapperControlls.hideShowEditIcon();
 
-            controller.addRecent(filePath);
-            SettingsManager.getBookSettings(filePath);
+            controller.addRecent(ExtUtils.recentPathFromIntent(intent, filePath));
+            SettingsManager.getBookSettings(intent, filePath);
 
             final AppBook.Diff diff = new AppBook.Diff(null, SettingsManager.getBookSettings());
             onBookSettingsChanged(null, SettingsManager.getBookSettings(), diff);

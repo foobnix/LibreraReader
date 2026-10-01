@@ -51,9 +51,8 @@ public class LibreraXActivity extends Activity {
             finish();
             return;
         }
-        if ("file".equals(uri.getScheme())) {
-            path = uri.getPath();
-        }
+        path = getIntent().getStringExtra(LibreraX.EXTRA_BOOK_IDENTITY);
+        if (path == null) path = "file".equals(uri.getScheme()) ? uri.getPath() : uri.toString();
         // Recreated while LibreraX is open: the result is still to come.
         if (savedInstanceState != null && savedInstanceState.getBoolean(STATE_STARTED)) {
             started = true;
@@ -74,11 +73,12 @@ public class LibreraXActivity extends Activity {
 
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClassName(LibreraX.PACKAGE, LibreraX.READER_FOR_RESULT);
-        if (path != null) {
-            final File file = new File(path);
+        if ("file".equals(uri.getScheme())) {
+            final File file = new File(uri.getPath());
             intent.setDataAndType(ExtUtils.getUriProvider(this, file), ExtUtils.getMimeType(file));
         } else {
-            intent.setData(uri);
+            String mime = getContentResolver().getType(uri);
+            intent.setDataAndType(uri, mime == null ? "application/octet-stream" : mime);
         }
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(LibreraX.EXTRA_PERCENT, percent);

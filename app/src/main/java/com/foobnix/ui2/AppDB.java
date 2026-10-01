@@ -1,6 +1,7 @@
 package com.foobnix.ui2;
 
 import android.content.Context;
+import android.net.Uri;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -23,6 +24,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.SafDocumentIdentity;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.SearchFragment2;
@@ -63,7 +65,7 @@ public class AppDB {
                 continue;
             }
 
-            if (!new File(next.getPath()).isFile()) {
+            if (!ExtUtils.isAvailableBookSource(next.getPath())) {
                 iterator.remove();
             }
         }
@@ -228,7 +230,7 @@ public class AppDB {
             return;
         }
 
-        if (!new File(path).isFile()) {
+        if (!ExtUtils.isAvailableBookSource(path)) {
             LOG.d("Can't add to recent, it's not a file", path);
             return;
         }
@@ -245,7 +247,7 @@ public class AppDB {
     }
 
     public void addStarFile(String path) {
-        if (!new File(path).isFile()) {
+        if (!ExtUtils.isAvailableBookSource(path)) {
             LOG.d("Can't add to recent, it's not a file", path);
             return;
         }
@@ -324,10 +326,23 @@ public class AppDB {
         if (fileMetaDao == null) {
             return null;
         }
+        if (ExtUtils.isExteralSD(path))
+            path = SafDocumentIdentity.canonical(Uri.parse(path)).toString();
         return fileMetaDao.load(path);
     }
 
+    /** Update only reading progress, preserving concurrently extracted book metadata. */
+    public void updateReadingProgress(String path, float progress) {
+        FileMetaDao dao = fileMetaDao;
+        if (dao == null) return;
+        dao.getDatabase().execSQL("UPDATE FILE_META SET IS_RECENT_PROGRESS=? WHERE PATH=?",
+                new Object[]{progress, path});
+        FileMeta cached = dao.load(path);
+        if (cached != null) cached.setIsRecentProgress(progress);
+    }
+
     public FileMeta getOrCreate(String path) {
+        path = migrateSafIdentity(path);
         if (fileMetaDao == null) {
             FileMeta fileMeta = new FileMeta(path);
             fileMeta.setPages(200);
@@ -356,6 +371,97 @@ public class AppDB {
         }
 
         return load;
+    }
+
+    /** Merge old grant-bearing rows into the grant-neutral document key on first use. */
+    public synchronized String migrateSafIdentity(String path) {
+        if (!ExtUtils.isExteralSD(path)) return path;
+        String identity = SafDocumentIdentity.canonical(Uri.parse(path)).toString();
+        if (fileMetaDao == null) return identity;
+        List<String> aliases = new ArrayList<>();
+        try (Cursor cursor = fileMetaDao.getDatabase().rawQuery(
+                "SELECT PATH FROM FILE_META WHERE PATH LIKE 'content:%'", null)) {
+            while (cursor.moveToNext()) {
+                String candidate = cursor.getString(0);
+                if (!identity.equals(candidate) && identity.equals(
+                        SafDocumentIdentity.canonical(Uri.parse(candidate)).toString())) {
+                    aliases.add(candidate);
+                }
+            }
+        }
+        if (aliases.isEmpty()) return identity;
+        Database db = fileMetaDao.getDatabase();
+        db.beginTransaction();
+        try {
+            db.execSQL("CREATE TABLE IF NOT EXISTS SCAN_MEMBERSHIP ("
+                    + "ROOT TEXT NOT NULL, PATH TEXT NOT NULL, PRIMARY KEY(ROOT,PATH))");
+            for (String alias : aliases) {
+                FileMeta old = fileMetaDao.load(alias);
+                if (old == null) continue;
+                FileMeta current = fileMetaDao.load(identity);
+                if (current == null) {
+                    fileMetaDao.deleteByKey(alias);
+                    old.setPath(identity);
+                    fileMetaDao.insert(old);
+                } else {
+                    mergeSafAlias(current, old);
+                    fileMetaDao.update(current);
+                    fileMetaDao.deleteByKey(alias);
+                }
+                db.execSQL("INSERT OR IGNORE INTO SCAN_MEMBERSHIP(ROOT,PATH) "
+                                + "SELECT ROOT,? FROM SCAN_MEMBERSHIP WHERE PATH=?",
+                        new Object[]{identity, alias});
+                db.execSQL("DELETE FROM SCAN_MEMBERSHIP WHERE PATH=?", new Object[]{alias});
+                fileMetaDao.detachAll();
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+            fileMetaDao.detachAll();
+        }
+        return identity;
+    }
+
+    private static void mergeSafAlias(FileMeta current, FileMeta old) {
+        if (Boolean.TRUE.equals(old.getIsStar())) current.setIsStar(true);
+        if (old.getIsStarTime() != null && (current.getIsStarTime() == null
+                || old.getIsStarTime() > current.getIsStarTime()))
+            current.setIsStarTime(old.getIsStarTime());
+        if (Boolean.TRUE.equals(old.getIsRecent())) current.setIsRecent(true);
+        if (old.getIsRecentTime() != null && (current.getIsRecentTime() == null
+                || old.getIsRecentTime() > current.getIsRecentTime())) {
+            current.setIsRecentTime(old.getIsRecentTime());
+            current.setIsRecentProgress(old.getIsRecentProgress());
+        } else if (current.getIsRecentProgress() == null) {
+            current.setIsRecentProgress(old.getIsRecentProgress());
+        }
+        if (Boolean.TRUE.equals(old.getIsSearchBook())) current.setIsSearchBook(true);
+        if (current.getTag() == null) current.setTag(old.getTag());
+        if (current.getCusType() == null) current.setCusType(old.getCusType());
+        if (current.getAnnotation() == null) current.setAnnotation(old.getAnnotation());
+        if (current.getState() == null || old.getState() != null
+                && old.getState() > current.getState()) {
+            current.setTitle(old.getTitle());
+            current.setAuthor(old.getAuthor());
+            current.setSequence(old.getSequence());
+            current.setGenre(old.getGenre());
+            current.setChild(old.getChild());
+            current.setSIndex(old.getSIndex());
+            current.setExt(old.getExt());
+            current.setSize(old.getSize());
+            current.setDate(old.getDate());
+            current.setDateTxt(old.getDateTxt());
+            current.setSizeTxt(old.getSizeTxt());
+            current.setPathTxt(old.getPathTxt());
+            current.setLang(old.getLang());
+            current.setPages(old.getPages());
+            current.setKeyword(old.getKeyword());
+            current.setYear(old.getYear());
+            current.setPublisher(old.getPublisher());
+            current.setIsbn(old.getIsbn());
+            current.setParentPath(old.getParentPath());
+            current.setState(old.getState());
+        }
     }
 
     public void clearSession() {
