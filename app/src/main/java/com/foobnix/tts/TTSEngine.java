@@ -62,6 +62,19 @@ public class TTSEngine {
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
     volatile MediaPlayer mp;
+    // isSpeaking() becomes false between utterances, even while the book keeps playing.
+    private volatile boolean speechRequested;
+    private volatile SpeechRequest currentSpeechRequest;
+    private volatile boolean rangeTimingAvailable;
+    private boolean engineInitialized;
+    private long engineGeneration;
+    private Runnable pendingSpeech;
+
+    void noteRangeTiming(SpeechRequest request) {
+        if (currentSpeechRequest == request) rangeTimingAvailable = true;
+    }
+
+    boolean hasRangeTiming() { return rangeTimingAvailable; }
     Timer mTimer;
     Object helpObject = new Object();
     HashMap<String, String> map = new HashMap<String, String>();
@@ -76,6 +89,9 @@ public class TTSEngine {
         @Override public void onInit(int status) {
             LOG.d(TAG, "onInit", "SUCCESS", status == TextToSpeech.SUCCESS);
             if (status == TextToSpeech.ERROR) {
+                currentSpeechRequest = null;
+                speechRequested = false;
+                EventBus.getDefault().post(new TtsStatus());
                 Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG)
                      .show();
             }
@@ -138,9 +154,15 @@ public class TTSEngine {
     }
 
     public void shutdown() {
+        rangeTimingAvailable = false;
+        currentSpeechRequest = null;
+        speechRequested = false;
         LOG.d(TAG, "shutdown");
 
         synchronized (helpObject) {
+            engineGeneration++;
+            engineInitialized = false;
+            pendingSpeech = null;
             if (ttsEngine != null) {
 
                 ttsEngine.shutdown();
@@ -178,6 +200,7 @@ public class TTSEngine {
             // (Android then logs "is not allowed to bind to private engine" and stays silent).
             // In that case pick an engine that is actually present instead of inheriting the
             // broken default.
+            onLisnter = initializationListener(onLisnter);
             final String fallback = resolveUsableEngine(LibreraApp.context);
             if (fallback != null) {
                 LOG.d(TAG, "default TTS engine unusable, falling back to", fallback);
@@ -189,6 +212,25 @@ public class TTSEngine {
 
         return ttsEngine;
 
+    }
+
+    private OnInitListener initializationListener(OnInitListener callback) {
+        final long generation = ++engineGeneration;
+        engineInitialized = false;
+        return status -> {
+            synchronized (helpObject) {
+                if (engineGeneration != generation) return;
+                engineInitialized = status == TextToSpeech.SUCCESS;
+                if (!engineInitialized) {
+                    currentSpeechRequest = null;
+                    speechRequested = false;
+                }
+                callback.onInit(status);
+                Runnable pending = pendingSpeech;
+                pendingSpeech = null;
+                if (engineInitialized && pending != null) pending.run();
+            }
+        };
     }
 
     /**
@@ -244,6 +286,8 @@ public class TTSEngine {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) public void stop(MediaSessionCompat mediaSessionCompat) {
+        currentSpeechRequest = null;
+        speechRequested = false;
         if (mediaSessionCompat != null) {
             mediaSessionCompat.setActive(false);
         }
@@ -258,6 +302,7 @@ public class TTSEngine {
 
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            pendingSpeech = null;
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
@@ -273,9 +318,15 @@ public class TTSEngine {
     }
 
     public void stopDestroy() {
+        rangeTimingAvailable = false;
+        currentSpeechRequest = null;
+        speechRequested = false;
         LOG.d(TAG, "stop");
         TxtUtils.dictHash = "";
         synchronized (helpObject) {
+            engineGeneration++;
+            engineInitialized = false;
+            pendingSpeech = null;
             if (ttsEngine != null) {
                 ttsEngine.shutdown();
             }
@@ -287,18 +338,39 @@ public class TTSEngine {
     public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
         synchronized (helpObject) {
-            ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
+            ttsEngine = new TextToSpeech(LibreraApp.context, initializationListener(listener), engine);
         }
         return ttsEngine;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public void speek(final String text) {
+        speek(text, false);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public void speek(final String text, boolean continuing) {
+        speek(text, continuing, new SpeechRequest(0));
+    }
+
+    boolean speek(final String text, boolean continuing, SpeechRequest request) {
         synchronized (helpObject) {
-            speekLocked(text);
+            currentSpeechRequest = request;
+            try {
+                speekLocked(text, continuing, request);
+                return speechRequested;
+            } catch (RuntimeException e) {
+                LOG.e(e);
+                currentSpeechRequest = null;
+                pendingSpeech = null;
+                speechRequested = false;
+                if (ttsEngine != null) ttsEngine.stop();
+                EventBus.getDefault().post(new TtsStatus());
+                return false;
+            }
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP) private void speekLocked(final String text) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP) private void speekLocked(final String text,
+            final boolean continuing, final SpeechRequest request) {
         this.text = text;
 
         if (AppSP.get().tempBookPage != AppSP.get().lastBookPage) {
@@ -309,30 +381,29 @@ public class TTSEngine {
         LOG.d(TAG, "speek", AppSP.get().lastBookPage, "par", AppSP.get().lastBookParagraph);
 
         if (TxtUtils.isEmpty(text)) {
+            speechRequested = false;
             return;
         }
+        speechRequested = true;
         if (ttsEngine == null) {
             LOG.d("getTTS-status was null");
         } else {
             LOG.d("getTTS-status not null");
         }
 
-        ttsEngine = getTTS(new OnInitListener() {
-
-            @Override public void onInit(int status) {
-                LOG.d("getTTS-status", status);
-                if (status == TextToSpeech.SUCCESS) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                    }
-                    speek(text);
-                }
-            }
-        });
+        ttsEngine = getTTS();
 
         if (ttsEngine == null) {
             LOG.d(TAG, "speek: no TTS engine available");
+            currentSpeechRequest = null;
+            speechRequested = false;
+            return;
+        }
+
+        if (!engineInitialized) {
+            pendingSpeech = () -> {
+                if (currentSpeechRequest == request) speek(text, continuing, request);
+            };
             return;
         }
 
@@ -344,51 +415,10 @@ public class TTSEngine {
         LOG.d(TAG, "Speek s", AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek AppSP.get().lastBookParagraph", AppSP.get().lastBookParagraph);
 
-        if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
-            String[] parts = text.split(TxtUtils.TTS_PAUSE);
-            ttsEngine.playSilence(0l, TextToSpeech.QUEUE_FLUSH, mapTemp);
-            for (int i = AppSP.get().lastBookParagraph; i < parts.length; i++) {
-
-                String big = parts[i];
-                big = big.trim();
-
-                if (TxtUtils.isNotEmpty(big)) {
-                    if (big.length() == 1 && !Character.isLetterOrDigit(big.charAt(0))) {
-                        LOG.d("Skip: " + big);
-                        continue;
-
-                    }
-                    if (big.contains(TxtUtils.TTS_SKIP)) {
-                        continue;
-                    }
-
-                    if (big.contains(TxtUtils.TTS_STOP)) {
-                        HashMap<String, String> mapStop = new HashMap<String, String>();
-                        mapStop.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, STOP_SIGNAL);
-                        ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapStop);
-                        LOG.d("Add stop signal");
-                    }
-                    if (big.contains(TxtUtils.TTS_NEXT)) {
-                        ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
-                        LOG.d("next-page signal");
-                        break;
-                    }
-
-                    HashMap<String, String> mapTemp1 = new HashMap<String, String>();
-                    mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED_SIGNAL + i);
-
-                    ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp1);
-                    ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
-                    LOG.d("pageHTML-parts", i, big);
-                }
-            }
-            ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
-        } else {
-            String textToPlay = text.replace(TxtUtils.TTS_PAUSE, "");
-            LOG.d("pageHTML-parts-single", text);
-            ttsEngine.speak(textToPlay, TextToSpeech.QUEUE_FLUSH, map);
+        if (!SpeechQueue.enqueue(ttsEngine, text, continuing, AppState.get().ttsPauseDuration,
+                AppSP.get().lastBookParagraph, request)) {
+            throw new IllegalStateException("TTS rejected speech request");
         }
-
     }
 
     public void speakToFile(final DocumentController controller, final ResultResponse<String> info, int from, int to) {
@@ -522,6 +552,10 @@ public class TTSEngine {
             }
             return ttsEngine != null && ttsEngine.isSpeaking();
         }
+    }
+
+    boolean isPlaybackRequested() {
+        return !TempHolder.isRecordTTS && (isMp3() ? isPlaying() : speechRequested);
     }
 
     public boolean hasNoEngines() {

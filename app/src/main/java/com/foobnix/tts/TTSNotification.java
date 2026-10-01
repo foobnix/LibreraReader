@@ -160,7 +160,7 @@ public class TTSNotification {
                         mediaStyle.setShowActionsInCompactView(0, 1, 2);
                     }
 
-                    final boolean isPlaying = TTSEngine.get().isPlaying();
+                    final boolean isPlaying = TTSEngine.get().isPlaybackRequested();
 
                     TTSService.updatePlaybackState();
 
