@@ -614,6 +614,8 @@ public class TxtUtils {
             LOG.d("pageHTML [after replacments] ", pageHTML);
         }
 
+        pageHTML = TtsQuoteCleaner.clean(pageHTML);
+
         pageHTML = pageHTML.replace(" ,", ",");
         pageHTML = pageHTML.replace(",,", ",");
 
@@ -648,8 +650,7 @@ public class TxtUtils {
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.",
                     " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
+            pageHTML = TtsSentenceSplitter.protectShortAbbreviations(pageHTML);
 
             pageHTML = replaceAll(pageHTML, "(\\p{Alpha}+)\\.(\\p{Alpha}+)", "$1{dot}$2");
             pageHTML = replaceAll(pageHTML, "(\\p{Alpha}+)\\.(\\p{Alpha}+)", "$1{dot}$2");
@@ -658,10 +659,8 @@ public class TxtUtils {
 
             LOG.d("pageHTML [8f]", pageHTML);
 
-            for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
-                String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                pageHTML = pageHTML.replace(s, s + TTS_PAUSE + " ");
-            }
+            pageHTML = TtsSentenceSplitter.insertPauses(pageHTML,
+                    AppState.get().ttsSentecesDivs, TTS_PAUSE);
 
             LOG.d("pageHTML [9]", pageHTML);
 
