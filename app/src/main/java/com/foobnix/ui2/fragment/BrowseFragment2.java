@@ -429,13 +429,14 @@ import java.util.Map;
                     String name;
 
                     if (ExtUtils.isExteralSD(info)) {
-                        name = ExtUtils.getExtSDDisplayName(getContext(), info);
+                        name = com.foobnix.pdf.info.SafPathLabels.displayName(getContext(), info);
                     } else {
                         name = new File(info).getName();
                     }
 
                     menu.getMenu()
                         .add(name)
+                        .setSafFolder(ExtUtils.isExteralSD(info) ? info : null)
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -492,9 +493,10 @@ import java.util.Map;
                         if (TxtUtils.isEmpty(saf)) {
                             continue;
                         }
-                        String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
+                        String fileName = com.foobnix.pdf.info.SafPathLabels.displayName(getActivity(), saf);
                         menu.getMenu()
                             .add(fileName)
+                            .setSafFolder(saf)
                             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override public boolean onMenuItemClick(MenuItem item) {
@@ -531,13 +533,14 @@ import java.util.Map;
                     String name;
 
                     if (ExtUtils.isExteralSD(info)) {
-                        name = ExtUtils.getExtSDDisplayName(getContext(), info);
+                        name = com.foobnix.pdf.info.SafPathLabels.displayName(getContext(), info);
                     } else {
                         name = new File(info).getName();
                     }
 
                     menu.getMenu()
                         .add(name)
+                        .setSafFolder(ExtUtils.isExteralSD(info) ? info : null)
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -963,6 +966,7 @@ import java.util.Map;
                 childrenUri = ExtUtils.getChildUri(getContext(), uri);
 
                 if (childrenUri != null) {
+                    java.util.Map<Uri, String> childNames = new java.util.LinkedHashMap<>();
 
                     LOG.d("newNode uri >> ", uri);
                     LOG.d("newNode childrenUri >> ", childrenUri);
@@ -994,6 +998,7 @@ import java.util.Map;
                             meta.setAuthor(SearchFragment2.EMPTY_ID);
 
                             final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
+                            childNames.put(newNode, COLUMN_DISPLAY_NAME);
                             meta.setPath(newNode.toString());
                             LOG.d("newNode", newNode);
 
@@ -1031,6 +1036,7 @@ import java.util.Map;
                     } finally {
                         closeQuietly(childCursor);
                     }
+                    com.foobnix.pdf.info.SafPathLabels.rememberChildren(getContext(), uri, childNames);
                 }
                 return items;
 
@@ -1189,10 +1195,8 @@ import java.util.Map;
         }
 
         if (ExtUtils.isExteralSD(AppState.get().displayPath)) {
-            String id = ExtUtils.getExtSDDisplayName(getContext(), AppState.get().displayPath);
-
             TextView slash = new TextView(getActivity());
-            slash.setText(id);
+            com.foobnix.pdf.info.SafPathLabels.bindLocation(slash, AppState.get().displayPath);
             slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
             paths.addView(slash);
         } else {

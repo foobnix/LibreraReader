@@ -53,7 +53,8 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         }
 
 
-        holder.title.setText(ExtUtils.getFileName(item.getPath()));
+        com.foobnix.pdf.info.SafPathLabels.bind(holder.title,
+                m != null && m.getPathTxt() != null ? m.getPathTxt() : ExtUtils.getFileName(item.getPath()));
 
 
         holder.text.setText(item.text);
