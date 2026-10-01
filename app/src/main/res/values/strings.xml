@@ -236,7 +236,7 @@
    <string name="success">Success</string>
    <string name="please_wait">Please wait …</string>
    <string name="incorrect_value">Incorrect value</string>
-   <string name="this_directory_is_already_in_the_list">This catalog is already listed</string>
+   <string name="this_directory_is_already_in_the_list">This folder is already in your library</string>
    <string name="you_neet_to_apply_the_new_settings">Please apply your new settings</string>
    <string name="block_page_movement_horizontally">Locked: page-dragging is disabled</string>
    <string name="there_are_no_email_applications_installed_">No email client is installed</string>

@@ -62,6 +62,11 @@ final class SafDocuments {
                         cursor.isNull(4) ? null : cursor.getLong(4)));
             }
         }
+        java.util.Map<Uri, String> names = new java.util.LinkedHashMap<>();
+        for (Document document : documents) {
+            names.put(document.uri, document.name);
+        }
+        com.foobnix.pdf.info.SafPathLabels.rememberChildren(context, parent, names);
         return documents;
     }
 }

@@ -96,8 +96,7 @@ public class PrefDialogs {
         }
         for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
             if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
-                Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, str,
-                        a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
+                Toast.makeText(a, R.string.this_directory_is_already_in_the_list, Toast.LENGTH_LONG).show();
                 return false;
             }
         }
@@ -108,7 +107,7 @@ public class PrefDialogs {
 
     public static void chooseFolderDialog(final FragmentActivity a, final Runnable onChanges, final Runnable onScan) {
 
-        final PathAdapter recentAdapter = new PathAdapter();
+        final PathAdapter recentAdapter = new PathAdapter(a);
         recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -160,7 +159,7 @@ public class PrefDialogs {
 
             @Override
             public boolean onResultRecive(String path) {
-                AlertDialogs.showDialog(a, a.getString(R.string.remove_library_folder) + "\n\n" + path, a.getString(R.string.remove), () -> {
+                AlertDialogs.showFolderDialog(a, a.getString(R.string.remove_library_folder), path, a.getString(R.string.remove), () -> {
                     LOG.d("TEST", "Remove " + path);
                     BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
                     BookCSS.get().save(a);

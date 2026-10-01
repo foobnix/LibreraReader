@@ -262,7 +262,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof NameDividerViewHolder) {
             final NameDividerViewHolder holder = (NameDividerViewHolder) holderAll;
-            holder.title.setText(TxtUtils.formatTitle(fileMeta));
+            if (ExtUtils.isExteralSD(fileMeta.getParentPath())
+                    && fileMeta.getTitle() != null && fileMeta.getTitle().startsWith(fileMeta.getParentPath())) {
+                com.foobnix.pdf.info.SafPathLabels.bind(holder.title, fileMeta.getParentPath(),
+                        fileMeta.getTitle().substring(fileMeta.getParentPath().length()));
+            } else {
+                com.foobnix.pdf.info.SafPathLabels.bind(holder.title, TxtUtils.formatTitle(fileMeta));
+            }
             // bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
         } else if (holderAll instanceof DirectoryViewHolder) {
@@ -270,8 +276,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.parent.setContentDescription(holder.getString(R.string.folder) + " " + fileMeta.getTitle());
 
             holder.play.setVisibility(View.GONE);
-            holder.title.setText(fileMeta.getPathTxt());
-            holder.path.setText(fileMeta.getPath());
+            com.foobnix.pdf.info.SafPathLabels.bind(holder.title, fileMeta.getPathTxt());
+            com.foobnix.pdf.info.SafPathLabels.bind(holder.path, fileMeta.getPath());
 
 
 
@@ -690,11 +696,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
         if (holder.path != null) {
             if (AppState.get().isDisplayAnnotation) {
-                holder.path.setText(fileMeta.getAnnotation());
+                com.foobnix.pdf.info.SafPathLabels.bind(holder.path, fileMeta.getAnnotation());
                 holder.path.setSingleLine(false);
                 holder.path.setLines(3);
             } else {
-                holder.path.setText(fileMeta.getPathTxt());
+                com.foobnix.pdf.info.SafPathLabels.bind(holder.path, fileMeta.getPathTxt());
                 holder.path.setSingleLine();
             }
         }

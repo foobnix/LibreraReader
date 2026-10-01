@@ -130,7 +130,8 @@ public class MyPopupMenu {
 
                 final String stringRes = item.stringRes;
                 textView.setVisibility(TxtUtils.visibleIf(TxtUtils.isNotEmpty(stringRes)));
-                textView.setText(stringRes);
+                com.foobnix.pdf.info.SafPathLabels.bind(textView,
+                        item.safFolder == null ? stringRes : item.safFolder);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
                 // A head names what the rows under it choose between: set in caps, underlined,
@@ -659,6 +660,13 @@ public class MyPopupMenu {
     }
 
     public class Menu {
+        private String safFolder;
+
+        public Menu setSafFolder(String path) {
+            safFolder = path;
+            return this;
+        }
+
         String stringRes;
         int iconRes;
         Drawable drawable;

@@ -838,6 +838,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
+                        if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                            fm.setParentPath(parentName);
+                        }
                         count = 0;
                         last = parentName;
                         res.add(fm);
