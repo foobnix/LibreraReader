@@ -51,20 +51,24 @@ EpubContext extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d(TAG, fileName);
 
-        Map<String, String> notes = null;
-        if (AppState.get().isShowFooterNotesInText) {
-            notes = getNotes(fileName);
-            LOG.d("footer-notes-extracted");
-        }
         if (cacheFile == null) {
             cacheFile = getCacheFileName(fileName);
         }
-
-        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) && !cacheFile.isFile()) {
+        boolean process = AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens ||
+                AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode;
+        boolean cacheHit = process && cacheFile.isFile();
+        Map<String, String> notes = null;
+        if (AppState.get().isShowFooterNotesInText && !cacheHit) {
+            notes = getNotes(fileName);
+            LOG.d("footer-notes-extracted");
+        }
+        final File notesFile = new File(cacheFile + ".json");
+        final boolean saveNotes = notes != null && !notesFile.isFile() && !TempHolder.get().loadingCancelled.get();
+        if (process && !cacheHit) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
 
-        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) ? cacheFile.getPath() : fileName;
+        String bookPath = process && cacheFile.isFile() ? cacheFile.getPath() : fileName;
 
         if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");
@@ -88,6 +92,9 @@ EpubContext extends PdfContext {
 
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
+        }
+        if (saveNotes) {
+            saveNotesAsync(notesFile, notes);
         }
 
         Thread t = new Thread("@T openDocument") {
@@ -114,21 +121,35 @@ EpubContext extends PdfContext {
     }
 
     public Map<String, String> getNotes(String fileName) {
-        Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
         if (/** !LibreraBuildConfig.DEBUG && **/jsonFile.isFile()) {
             LOG.d("getNotes cache", fileName);
-            notes = JsonHelper.fileToMap(jsonFile);
-        } else {
-            LOG.d("getNotes extract", fileName);
-            notes = EpubExtractor.get().getFooterNotes(fileName);
-            // a cancelled extraction is empty or partial, it must not stay in the cache
-            if (!TempHolder.get().loadingCancelled.get()) {
-                JsonHelper.mapToFile(jsonFile, notes);
-                LOG.d("save notes to file", jsonFile);
-            }
+            return JsonHelper.fileToMap(jsonFile);
         }
-        return notes;
+        LOG.d("getNotes extract", fileName);
+        return EpubExtractor.get().getFooterNotes(fileName);
+    }
+
+    private void saveNotesAsync(final File jsonFile, final Map<String, String> notes) {
+        Thread save = new Thread(() -> {
+            android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_LOWEST);
+            File temp = new File(jsonFile + ".tmp." + Thread.currentThread().getId());
+            temp.delete();
+            boolean written = JsonHelper.mapToFile(temp, notes);
+            if (!written || !temp.isFile()) {
+                temp.delete();
+                return;
+            }
+            if (jsonFile.exists()) {
+                temp.delete();
+                return;
+            }
+            if (!temp.renameTo(jsonFile)) {
+                temp.delete();
+            }
+        }, "footnotes-cache-save");
+        save.setPriority(Thread.MIN_PRIORITY);
+        save.start();
     }
 
 }

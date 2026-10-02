@@ -21,14 +21,16 @@ public class JsonHelper {
         return JsonHelper.jsonToMap(json);
     }
 
-    public static void mapToFile(File jsonFile, Map<String, String> notes) {
+    public static boolean mapToFile(File jsonFile, Map<String, String> notes) {
         try {
             FileWriter fw = new FileWriter(jsonFile);
             fw.write(JsonHelper.mapToJson(notes));
             fw.flush();
             fw.close();
+            return true;
         } catch (Exception e) {
             LOG.e(e);
+            return false;
         }
     }
 
