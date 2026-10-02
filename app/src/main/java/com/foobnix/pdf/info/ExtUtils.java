@@ -932,6 +932,7 @@ public class ExtUtils {
         librerax.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 dialog.dismiss();
+                LibreraX.rememberView();
                 AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
                 showDocumentWithoutDialog(c, file, null);
             }

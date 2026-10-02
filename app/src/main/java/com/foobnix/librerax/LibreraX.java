@@ -32,6 +32,31 @@ public class LibreraX {
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";
     // a JSON array of {text, p, pt, t}
     public static final String EXTRA_BOOKMARKS = "librera.bookmarks";
+    // "scroll" for the vertical view, "paged" for the book view
+    public static final String EXTRA_VIEW = "librera.view";
+    public static final String VIEW_SCROLL = "scroll";
+    public static final String VIEW_PAGED = "paged";
+
+    private static boolean isView(int mode) {
+        return mode == AppState.READING_MODE_SCROLL || mode == AppState.READING_MODE_BOOK
+                || mode == AppState.READING_MODE_MUSICIAN;
+    }
+
+    // Called before readingMode becomes READING_MODE_LIBRERAX, which would lose the view in use.
+    public static void rememberView() {
+        final int mode = AppSP.get().readingMode;
+        if (isView(mode)) {
+            AppSP.get().libreraXView = mode;
+        }
+    }
+
+    public static String view() {
+        int mode = AppSP.get().readingMode;
+        if (!isView(mode)) {
+            mode = AppSP.get().libreraXView;
+        }
+        return mode == AppState.READING_MODE_BOOK ? VIEW_PAGED : VIEW_SCROLL;
+    }
 
     public static Class<?> readerClass() {
         switch (AppSP.get().readingMode) {

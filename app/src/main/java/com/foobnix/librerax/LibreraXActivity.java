@@ -83,6 +83,7 @@ public class LibreraXActivity extends Activity {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(LibreraX.EXTRA_PERCENT, percent);
         intent.putExtra(LibreraX.EXTRA_PAGE_TEXT, pageText);
+        intent.putExtra(LibreraX.EXTRA_VIEW, LibreraX.view());
         if (path != null) {
             intent.putExtra(LibreraX.EXTRA_BOOKMARKS, bookmarksJson(path));
         }

@@ -31,6 +31,8 @@ public class AppSP {
     public boolean isFirstTimeHorizontal = true;
 
     public int readingMode = AppState.READING_MODE_BOOK;
+    // the scroll, book or musician mode in use before LibreraX was chosen, see LibreraX.view
+    public int libreraXView = AppState.READING_MODE_BOOK;
     public long syncTime;
     public int syncTimeStatus;
     public String hypenLang = null;

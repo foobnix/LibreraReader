@@ -55,6 +55,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
@@ -1142,6 +1143,9 @@ public class PrefFragment2 extends UIFragment {
                 () -> AppState.get().isRememberMode ? AppSP.get().readingMode:AppState.READING_MODE_SELECT_MODE,//
                 value -> {
                     AppState.get().isRememberMode = value != AppState.READING_MODE_SELECT_MODE;
+                    if (value == AppState.READING_MODE_LIBRERAX) {
+                        LibreraX.rememberView();
+                    }
                     AppSP.get().readingMode = value;
                 },//
                 of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
@@ -424,6 +425,7 @@ public class ShareDialog {
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override public void run() {
+                            LibreraX.rememberView();
                             AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
                             ExtUtils.showDocumentWithoutDialog(a, file, null);
                         }
