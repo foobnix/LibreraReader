@@ -38,8 +38,8 @@ public class TxtExtract {
         File file = new File(outputDir, inputPath.hashCode() + "_.fb2");
 
         String encoding = "UTF-8";
-        if (AppState.get().isCharacterEncoding) {
-            encoding = AppState.get().characterEncoding;
+        if (EpubProcessingSettings.isCharacterEncoding()) {
+            encoding = EpubProcessingSettings.characterEncoding();
         } else {
             encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
         }
@@ -50,8 +50,8 @@ public class TxtExtract {
         String line;
         writer.println("<FictionBook>");
 
-        if (BookCSS.get().isAutoHypens) {
-            HypenUtils.applyLanguage(AppSP.get().hypenLang);
+        if (EpubProcessingSettings.isAutoHypens()) {
+            HypenUtils.applyLanguage(EpubProcessingSettings.language());
         }
 
         while ((line = input.readLine()) != null) {
@@ -70,7 +70,7 @@ public class TxtExtract {
                 writer.println(line);
                 writer.println("</title></section>");
             } else {
-                if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                if (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language())) {
                     line = HypenUtils.applyHypnes(line);
                 }
                 writer.println("<p>" + line + "</p>");
@@ -79,17 +79,18 @@ public class TxtExtract {
         writer.println("</FictionBook>");
         input.close();
         writer.close();
+        if (writer.checkError()) throw new IOException("Cannot finish converted TXT");
         return file.getPath();
     }
 
     public static String extract(String inputPath, String outputDir) throws IOException {
-        File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
+        File file = new File(outputDir, EpubProcessingSettings.isPreText() + OUT_FB2_XML);
 
         boolean isJSON = inputPath.endsWith(".json");
 
         String encoding = "UTF-8";
-        if (AppState.get().isCharacterEncoding) {
-            encoding = AppState.get().characterEncoding;
+        if (EpubProcessingSettings.isCharacterEncoding()) {
+            encoding = EpubProcessingSettings.characterEncoding();
         } else {
             encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
         }
@@ -100,7 +101,7 @@ public class TxtExtract {
 
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
-        if (AppState.get().isPreText) {
+        if (EpubProcessingSettings.isPreText()) {
             writer.println(
                     "<head><style>@page{margin:0px 0.5em} pre{margin:0px;white-space:pre !important;} {body:margin:0px}</style></head>");
         } else {
@@ -108,25 +109,24 @@ public class TxtExtract {
         }
         writer.println("<body>");
 
-        if (AppState.get().isPreText) {
+        if (EpubProcessingSettings.isPreText()) {
             writer.println("<pre>");
         }
 
-        if (AppState.get().isLineBreaksText) {
+        if (EpubProcessingSettings.isLineBreaksText()) {
             writer.println("<p>");
         }
 
-        if (BookCSS.get().isAutoHypens) {
-            HypenUtils.applyLanguage(AppSP.get().hypenLang);
+        if (EpubProcessingSettings.isAutoHypens()) {
+            HypenUtils.applyLanguage(EpubProcessingSettings.language());
         }
 
-        List<SimpleMeta> replacements = AppData.get()
-                                               .getAllTextReplaces();
+        List<SimpleMeta> replacements = EpubProcessingSettings.replacements();
 
         while ((line = input.readLine()) != null) {
             String outLn = null;
 
-            if (AppState.get().isPreText) {
+            if (EpubProcessingSettings.isPreText()) {
 
                 outLn = retab(line, 8);
                 outLn = TextUtils.htmlEncode(outLn);
@@ -137,7 +137,7 @@ public class TxtExtract {
 
             } else {
 
-                if (AppState.get().isLineBreaksText) {
+                if (EpubProcessingSettings.isLineBreaksText()) {
                     if (line.trim()
                             .length() == 0) {
                         outLn = "<br/>";
@@ -168,17 +168,18 @@ public class TxtExtract {
 
             writer.println(outLn);
         }
-        if (AppState.get().isLineBreaksText) {
+        if (EpubProcessingSettings.isLineBreaksText()) {
             writer.println("</p>");
         }
 
-        if (AppState.get().isPreText) {
+        if (EpubProcessingSettings.isPreText()) {
             writer.println("</pre>");
         }
         writer.println("</body></html>");
 
         input.close();
         writer.close();
+        if (writer.checkError()) throw new IOException("Cannot finish converted TXT");
 
         return file.getPath();
     }
@@ -217,7 +218,7 @@ public class TxtExtract {
             line = line.replace("\n", "");
             line = line.replace("\r", "");
             line = TextUtils.htmlEncode(line);
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+            if (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language())) {
                 line = HypenUtils.applyHypnes(line, replacements);
             }
             line = line.trim();

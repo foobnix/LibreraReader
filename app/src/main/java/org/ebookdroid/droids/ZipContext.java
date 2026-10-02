@@ -1,11 +1,11 @@
 package org.ebookdroid.droids;
 
-import androidx.core.util.Pair;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.ext.ConversionCache;
+import com.foobnix.pdf.info.BookCacheLeases;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecContext;
@@ -13,6 +13,9 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import androidx.core.util.Pair;
 
 public class ZipContext extends PdfContext {
 
@@ -21,30 +24,49 @@ public class ZipContext extends PdfContext {
         LOG.d("ZipContext begin", fileName);
 
 
-        Pair<Boolean, String> pack = CacheZipUtils.isSingleAndSupportEntry(fileName);
-        if (pack.first) {
-            LOG.d("ZipContext", "Singe archive entry");
-            Fb2Context fb2Context = new Fb2Context();
-            String etryPath = getFileNameSalt(fileName) + pack.second;
-            String path = new File(CacheDir.ZipApp.getDir(), etryPath).getPath();
-
-            File cacheFileName = fb2Context.getCacheFileName(path + getFileNameSalt(path));
-            LOG.d("ZipContext", etryPath, cacheFileName.getName());
-            if (cacheFileName.exists()) {
-                LOG.d("ZipContext", "FB2 cache exists");
-                return fb2Context.openDocumentInner(etryPath, password);
+        Pair<Boolean, String> member = CacheZipUtils.isSingleAndSupportEntryInner(fileName);
+        if (!member.first || member.second == null) return null;
+        try {
+            try (BookCacheLeases.PublishedFile extracted = extractMember(fileName, member.second)) {
+                String path = extracted.file.getPath();
+                // The archive revision and full member path are in this name;
+                // pruning may touch the file mtime without changing its content.
+                BookCacheLeases.registerImmutableRevisionNamedSource(extracted.file);
+                CodecContext ctx = BookType.getCodecContextByPath(path);
+                LOG.d("ZipContext", "open", path);
+                return ctx.openDocument(path, password);
             }
-        }
-
-
-        String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp, getFileNameSalt(fileName)).unZipPath;
-        if (ExtUtils.isZip(path)) {
+        } catch (Exception failure) {
+            LOG.e(failure);
             return null;
         }
+    }
 
-        CodecContext ctx = BookType.getCodecContextByPath(path);
-        LOG.d("ZipContext", "open", path);
-        return ctx.openDocument(path, password);
+    private static BookCacheLeases.PublishedFile extractMember(String archive, String member) throws Exception {
+        CacheZipUtils.createAllCacheDirs();
+        String suffix = member.substring(member.lastIndexOf('.') + 1);
+        String name = "archive-member-" + ConversionCache.key(new File(archive).getAbsolutePath()
+                + sourceRevisionKey(archive) + "|entry=" + member);
+        File output = new File(CacheZipUtils.CACHE_BOOK_DIR, name + "." + suffix);
+        return ConversionCache.buildFile(output, temporary -> {
+            ZipArchiveInputStream input = new ZipArchiveInputStream(archive);
+            try {
+                ArchiveEntry entry;
+                while ((entry = input.getNextEntry()) != null) {
+                    if (!member.equals(entry.getName())) continue;
+                    try (FileOutputStream out = new FileOutputStream(temporary)) {
+                        byte[] buffer = new byte[16 * 1024];
+                        int count;
+                        while ((count = input.read(buffer)) != -1) out.write(buffer, 0, count);
+                        out.getFD().sync();
+                    }
+                    return;
+                }
+                throw new IOException("Archive member disappeared: " + member);
+            } finally {
+                input.close();
+            }
+        });
     }
 
 }

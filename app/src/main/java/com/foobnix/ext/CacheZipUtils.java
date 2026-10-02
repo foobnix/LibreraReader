@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
@@ -29,8 +30,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.ZipEntry;
@@ -48,15 +53,17 @@ public class CacheZipUtils {
     public static File ATTACHMENTS_CACHE_DIR;
     static Pair<Boolean, String> cacheRes;
     static String cacheFile;
+    private static File legacyExternalBookDirectory;
 
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
+        legacyExternalBookDirectory = externalCacheDir == null ? null : new File(externalCacheDir, "Book");
         if (externalCacheDir == null) {
             externalCacheDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         }
         CacheDir.parent = externalCacheDir;
 
-        CACHE_BOOK_DIR = new File(externalCacheDir, "Book");
+        CACHE_BOOK_DIR = new File(c.getCacheDir(), "Book");
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
         CACHE_RECENT = new File(externalCacheDir, "Recent");
@@ -64,6 +71,17 @@ public class CacheZipUtils {
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
+    }
+
+    /** Only configured app-owned locations; do not traverse unrelated image caches. */
+    public static void sweepAbandoned() {
+        if (legacyExternalBookDirectory != null && !legacyExternalBookDirectory.equals(CACHE_BOOK_DIR))
+            BookCacheLeases.evictTree(legacyExternalBookDirectory);
+        for (File directory : new File[]{CACHE_BOOK_DIR, ATTACHMENTS_CACHE_DIR, CACHE_WEB, CACHE_RECENT, CACHE_TEMP}) {
+            if (directory != null) BookCacheLeases.sweepAbandoned(directory);
+        }
+        if (CacheDir.parent != null) for (CacheDir directory : CacheDir.values())
+            BookCacheLeases.sweepAbandoned(directory.getDir());
     }
 
     public static void createAllCacheDirs() {
@@ -102,7 +120,7 @@ public class CacheZipUtils {
             File[] files = CACHE_TEMP.listFiles();
             Arrays.sort(files, (f1, f2) -> Long.compare(f1.lastModified(), f2.lastModified()));
             if (files.length > 50) {
-                files[0].delete();
+                BookCacheLeases.evict(files[0]);
                 LOG.d("JavaCache save delete", files[0]);
             }
 
@@ -150,7 +168,7 @@ public class CacheZipUtils {
             }
             for (File file : files) {
                 if (file != null) {
-                    boolean result = file.delete();
+                    boolean result = evictCacheEntry(file);
                     LOG.d("removeFile", file,result);
                 }
             }
@@ -173,7 +191,7 @@ public class CacheZipUtils {
 
                 if (file != null && !file.getName().startsWith(exept.getName())) {
                     if (file.isFile()) {
-                        file.delete();
+                        BookCacheLeases.evict(file);
                     }
                 }
             }
@@ -198,6 +216,117 @@ public class CacheZipUtils {
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    /** Retain completed conversions between opens, evicting old inactive entries. */
+    public static void pruneBookCache() {
+        pruneBookCache(CACHE_BOOK_DIR, 512L * 1024 * 1024);
+    }
+
+    static void pruneBookCache(File root, long limit) {
+        if (root == null) return;
+        File[] entries = root.listFiles();
+        if (entries == null) return;
+        Map<String, List<File>> groups = new HashMap<>();
+        for (File entry : entries)
+            groups.computeIfAbsent(cacheUnitKey(entry), ignored -> new ArrayList<>()).add(entry);
+        List<List<File>> units = new ArrayList<>(groups.values());
+        Map<File, Long> sizes = new HashMap<>();
+        long total = 0;
+        long now = System.currentTimeMillis();
+        for (List<File> unit : units) {
+            boolean active = false;
+            for (File member : unit) active |= BookCacheLeases.isProtected(member);
+            for (File member : unit) {
+                if (active) member.setLastModified(now);
+                long bytes = cacheBytes(member);
+                total += bytes;
+                sizes.put(member, bytes);
+            }
+        }
+        units.sort((left, right) -> Long.compare(unitModified(left), unitModified(right)));
+        for (List<File> unit : units) {
+            boolean incomplete = unit.stream().anyMatch(file -> file.getName().endsWith(".part"));
+            if (total <= limit && !incomplete) continue;
+            // Remove the main file before its notes and extracted companions, so
+            // a failed deletion cannot leave a reusable output missing a sidecar.
+            unit.sort((left, right) -> Boolean.compare(isCompanion(left), isCompanion(right)));
+            List<File> hidden = new ArrayList<>();
+            long hiddenBytes = 0;
+            synchronized (BookCacheLeases.class) {
+                boolean active = false;
+                for (File member : unit) active |= BookCacheLeases.isProtected(member);
+                if (active) continue;
+                for (File member : unit) {
+                    if (!member.exists()) continue;
+                    File tombstone = new File(root, member.getName() + "-"
+                            + UUID.randomUUID() + ".part");
+                    if (!member.renameTo(tombstone)) break;
+                    BookCacheLeases.retireImmutableRevisionNamedSources(member);
+                    hidden.add(tombstone);
+                    hiddenBytes += sizes.getOrDefault(member, 0L);
+                }
+            }
+            // Renamed entries cannot be acquired by their published paths. Recursion
+            // runs outside the lease monitor; failed deletion remains accounted for.
+            total -= hiddenBytes;
+            for (File tombstone : hidden) {
+                if (!deleteHiddenTree(tombstone)) total += cacheBytes(tombstone);
+            }
+        }
+    }
+
+    private static boolean deleteHiddenTree(File entry) {
+        if (entry.isDirectory()) {
+            File[] children = entry.listFiles();
+            if (children == null) return false;
+            for (File child : children) if (!deleteHiddenTree(child)) return false;
+        }
+        return entry.delete();
+    }
+
+    private static boolean evictCacheEntry(File entry) {
+        File tombstone;
+        synchronized (BookCacheLeases.class) {
+            if (BookCacheLeases.isProtected(entry)) return false;
+            if (!entry.isDirectory()) return BookCacheLeases.evict(entry);
+            // Hide the published directory before recursive deletion. An I/O
+            // error must not leave its main file visible without siblings.
+            tombstone = new File(entry.getParentFile(), entry.getName() + "-"
+                    + UUID.randomUUID() + ".part");
+            if (!entry.renameTo(tombstone)) return false;
+            BookCacheLeases.retireImmutableRevisionNamedSources(entry);
+        }
+        return deleteHiddenTree(tombstone);
+    }
+
+    private static boolean isCompanion(File file) {
+        String name = file.getName();
+        return name.endsWith(".json") || name.endsWith("-source") || name.endsWith(".invalid");
+    }
+
+    static String cacheUnitKey(File file) {
+        String name = file.getName();
+        if (name.endsWith(".invalid")) return name.substring(0, name.length() - 8);
+        if (name.endsWith(".json")) return name.substring(0, name.length() - 5);
+        if (name.endsWith("-source")) return name.substring(0, name.length() - 7);
+        if (name.endsWith("-fixed.epub")) return name.substring(0, name.length() - 11);
+        return name;
+    }
+
+    private static long unitModified(List<File> unit) {
+        long modified = 0;
+        for (File member : unit) modified = Math.max(modified, member.lastModified());
+        return modified;
+    }
+
+    private static long cacheBytes(File entry) {
+        if (!entry.isDirectory()) return entry.length();
+        File[] children = entry.listFiles();
+        if (children == null) return 0;
+        long total = 0;
+        for (File child : children) total += cacheBytes(child);
+        return total;
     }
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
@@ -377,13 +506,7 @@ public class CacheZipUtils {
     }
 
     public static void deleteDir(File file) {
-        File[] contents = file.listFiles();
-        if (contents != null) {
-            for (File f : contents) {
-                deleteDir(f);
-            }
-        }
-        file.delete();
+        BookCacheLeases.evictTree(file);
     }
 
     public static void copyFile(File source, File dest) throws IOException {

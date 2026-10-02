@@ -2,7 +2,9 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
 import com.foobnix.ext.CbzCbrExtractor;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.github.junrar.Junrar;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -10,6 +12,9 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+import net.lingala.zip4j.ZipFile;
 
 
 
@@ -19,44 +24,37 @@ public class CbrContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".cbz");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, ConversionCache.key(fileNameOriginal) + "-v2.cbz");
         return cacheFile;
     }
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-
-        if (!cacheFile.isFile()) {
-            LOG.d("Type no cache file");
-            try {
-
-                if (CbzCbrExtractor.isZip(fileName)) {
-                    CacheZipUtils.copyFile(new File(fileName), cacheFile);
-                } else {
-
-                    String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
-
-                    File cbrDir = new File(extractDir);
-                    cbrDir.mkdirs();
-
-                    try {
-                        Junrar.extract(fileName,extractDir);
-                    } catch (OutOfMemoryError e) {
-                        LOG.e(e);
-                    }
-
-                    CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
-
-                    CacheZipUtils.deleteDir(cbrDir);
+        if (cacheFile == null) cacheFile = getCacheFileName(fileName);
+        try (BookCacheLeases.PublishedFile output = ConversionCache.buildFile(cacheFile, temporary -> {
+            if (CbzCbrExtractor.isZip(fileName)) {
+                CacheZipUtils.copyFile(new File(fileName), temporary);
+            } else {
+                File extracted = new File(CacheZipUtils.CACHE_BOOK_DIR,
+                        "cbr-" + UUID.randomUUID() + ".part");
+                try (AutoCloseable lease = BookCacheLeases.acquire(extracted)) {
+                    if (!extracted.mkdir()) throw new IOException("Cannot create CBR extraction directory");
+                    Junrar.extract(fileName, extracted.getPath());
+                    CacheZipUtils.zipFolder(extracted.getPath(), temporary.getPath());
+                } finally {
+                    BookCacheLeases.evictTree(extracted);
                 }
-
-            } catch (Exception e) {
-                LOG.e(e);
             }
+            try (java.util.zip.ZipFile verified = new java.util.zip.ZipFile(temporary)) {
+                if (!verified.entries().hasMoreElements())
+                    throw new IOException("CBR conversion produced an empty CBZ");
+            }
+        })) {
+            return new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                    output.file.getPath(), password);
+        } catch (Exception failure) {
+            throw new IllegalStateException("Cannot convert CBR book", failure);
         }
-
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-        return muPdfDocument;
     }
 
 }
