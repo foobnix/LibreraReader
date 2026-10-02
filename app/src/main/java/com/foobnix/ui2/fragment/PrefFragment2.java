@@ -2987,7 +2987,7 @@ public class PrefFragment2 extends UIFragment {
             View row = inflater.inflate(R.layout.path_item, searchPaths, false);
 
             TextView pathView = row.findViewById(R.id.browserPath);
-            pathView.setText(path);
+            com.foobnix.pdf.info.SafPathLabels.bind(pathView, path);
             pathView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             // Tagged as a link so the panel's colour pass reaches it, and the marks beside it
             // are cut from whatever colour that pass settles on.
@@ -3004,11 +3004,12 @@ public class PrefFragment2 extends UIFragment {
             if (remove instanceof ImageView) {
                 TintUtil.setTintImageNoAlpha((ImageView) remove, rowColor);
             }
-            remove.setOnClickListener(v -> AlertDialogs.showDialog(getActivity(),
-                    getString(R.string.remove_library_folder) + "\n\n" + path, getString(R.string.remove), () -> {
+            remove.setOnClickListener(v -> AlertDialogs.showFolderDialog(getActivity(),
+                    getString(R.string.remove_library_folder), path, getString(R.string.remove), () -> {
                         BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
                         showSearchPaths();
                         saveChanges();
+                        SearchAllBooksWorker.deselectRoot(getActivity(), path);
                         LOG.d("Save Changes", 3);
                     }));
 

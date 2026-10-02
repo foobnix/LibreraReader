@@ -120,7 +120,7 @@ public class AlertDialogs {
         showDialog(c, message, okButton, onAction, null);
     }
 
-    public static void showDialog(final Activity c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
+    public static AlertDialog showDialog(final Activity c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -153,6 +153,16 @@ public class AlertDialogs {
         });
 
         create.show();
+        return create;
+    }
+
+    public static void showFolderDialog(Activity activity, String heading, String path,
+                                        String okButton, Runnable onAction) {
+        AlertDialog dialog = showDialog(activity, heading + "\n\n"
+                + com.foobnix.pdf.info.SafPathLabels.displayName(activity, path), okButton, onAction, null);
+        com.foobnix.pdf.info.SafPathLabels.refresh(activity, path, label -> {
+            if (dialog.isShowing()) dialog.setMessage(heading + "\n\n" + label);
+        });
     }
 
     public static AlertDialog showViewDialog(final Activity c, final View child) {

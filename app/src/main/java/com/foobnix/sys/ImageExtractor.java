@@ -1,9 +1,13 @@
 package com.foobnix.sys;
 
+import com.foobnix.pdf.info.SafFileLink;
+import com.foobnix.pdf.info.SafDocumentIdentity;
 import static com.foobnix.pdf.info.io.SearchCore.SUPPORTED_EXT_FILES_ONLY;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.provider.DocumentsContract;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -45,6 +49,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.SafOpfRegistry;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -71,17 +76,29 @@ import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
 import mobi.librera.smartreflow.SmartReflow1;
 
 public class ImageExtractor {
+    /** A provider read failed; Glide must be allowed to retry this cover. */
+    public static final class TransientSafCoverException extends RuntimeException {
+        public TransientSafCoverException(String path, Throwable cause) {
+            super("Cannot read SAF cover: " + path, cause);
+        }
+    }
+    private static final Set<String> activeExtractions = ConcurrentHashMap.newKeySet();
 
     public static final int COVER_PAGE_WITH_EFFECT = -3;
     public static final int COVER_PAGE_NO_EFFECT = -2;
@@ -282,11 +299,135 @@ public class ImageExtractor {
     }
 
 
+    private Bitmap coverFromSafSidecar(SafOpfRegistry.Entry entry, int width,
+                                      boolean[] transientFailure) {
+        Uri directCover = entry.siblingByLowerName.get("cover.jpg");
+        if (directCover != null) {
+            try (InputStream input = SafDocumentIdentity.openInputStream(c, directCover)) {
+                if (input != null) {
+                    Bitmap cover = BaseExtractor.arrayToBitmap(BaseExtractor.getEntryAsByte(input), width);
+                    if (cover != null) return cover;
+                }
+            } catch (Exception failure) {
+                LOG.e(failure);
+                transientFailure[0] = true;
+            }
+        }
+        try (InputStream input = trackSidecarRead(
+                SafDocumentIdentity.openInputStream(c, entry.opfUri), transientFailure)) {
+            if (input == null) return null;
+            EbookMeta meta = CalirbeExtractor.getBookMetaInformationFromStream(input,
+                    SafOpfRegistry.coverResolver(c, entry.siblingByLowerName,
+                            failure -> transientFailure[0] = true));
+            return meta == null ? null : BaseExtractor.arrayToBitmap(meta.coverImage, width);
+        } catch (Exception failure) {
+            LOG.e(failure);
+            transientFailure[0] = true;
+            return null;
+        }
+    }
+
+    private static InputStream trackSidecarRead(InputStream input, boolean[] transientFailure) {
+        return new java.io.FilterInputStream(input) {
+            @Override public int read() throws java.io.IOException {
+                try { return super.read(); }
+                catch (java.io.IOException failure) {
+                    transientFailure[0] = true;
+                    throw failure;
+                }
+            }
+
+            @Override public int read(byte[] bytes, int offset, int length) throws java.io.IOException {
+                try { return super.read(bytes, offset, length); }
+                catch (java.io.IOException failure) {
+                    transientFailure[0] = true;
+                    throw failure;
+                }
+            }
+        };
+    }
+
+    private Bitmap proccessSAFCoverPage(PageUrl pageUrl) {
+        Uri uri = Uri.parse(pageUrl.getPath());
+        String displayName = ExtUtils.getFileName(pageUrl.getPath());
+        SafFileLink link = null;
+        boolean[] sidecarReadFailed = new boolean[1];
+        try {
+            if (AppState.get().isUseCalibreOpf) {
+                SafOpfRegistry.restore(c);
+                SafOpfRegistry.Entry sidecar = SafOpfRegistry.get(pageUrl.getPath());
+                if (sidecar != null) {
+                    Bitmap cover = coverFromSafSidecar(sidecar, pageUrl.getWidth(), sidecarReadFailed);
+                    if (cover != null) return cover;
+                }
+            }
+            for (Uri access : SafDocumentIdentity.accessCandidates(c, uri)) {
+                try (Cursor cursor = c.getContentResolver().query(access,
+                        new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null)) {
+                    if (cursor != null && cursor.moveToFirst()) {
+                        displayName = cursor.getString(0);
+                        break;
+                    }
+                } catch (Exception unavailableGrant) {
+                    // The staged-file link below tries the remaining grants independently.
+                }
+            }
+
+            link = new SafFileLink(c, uri, displayName);
+            String linkPath = link.file.getPath();
+            // Cover loading owns pixels, not library metadata. Avoid a second metadata pass
+            // and prevent filename guesses from overwriting authoritative OPF metadata.
+            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(linkPath, CacheDir.ZipApp, false);
+            String unZipPath = ebookMeta.getUnzipPath();
+            FileMeta fileMeta = AppDB.get().getOrCreate(pageUrl.getPath());
+
+            Bitmap cover = null;
+            if (ebookMeta.coverImage != null) {
+                cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
+            } else if (BookType.EPUB.is(unZipPath)) {
+                cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
+            } else if (BookType.FB2.is(unZipPath)) {
+                cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());
+            } else if (BookType.MOBI.is(unZipPath)) {
+                cover = BaseExtractor.arrayToBitmap(MobiExtract.getBookCover(unZipPath), pageUrl.getWidth());
+            } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
+                cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
+            } else if (BookType.PDF.is(unZipPath) || BookType.DJVU.is(unZipPath)) {
+                PageUrl symPageUrl = PageUrl.build(linkPath, pageUrl.getPage(), pageUrl.getWidth(), pageUrl.getHeight());
+                if (BookType.PDF.is(unZipPath) && Build.VERSION.SDK_INT >= 29) {
+                    cover = coverPDFNative(symPageUrl);
+                }
+                if (cover == null) cover = proccessOtherPage(symPageUrl);
+            }
+
+            if (cover == null) {
+                if (sidecarReadFailed[0]) {
+                    throw new TransientSafCoverException(pageUrl.getPath(), null);
+                }
+                String title = com.foobnix.android.utils.TxtUtils.isNotEmpty(fileMeta.getTitle()) ? fileMeta.getTitle() : displayName;
+                cover = BaseExtractor.getBookCoverWithTitle(fileMeta.getAuthor(), title, true);
+                pageUrl.tempWithWatermakr = true;
+            }
+            return cover;
+        } catch (Exception e) {
+            LOG.e(e);
+            throw new TransientSafCoverException(pageUrl.getPath(), e);
+        } finally {
+            if (link != null) {
+                try { link.close(); } catch (Exception e) { LOG.e(e); }
+            }
+        }
+    }
+
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
         String path = pageUrl.getPath();
 
         if (pageUrl.getHeight() == 0) {
             pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
+        }
+
+        if (ExtUtils.isExteralSD(path)) {
+            return proccessSAFCoverPage(pageUrl);
         }
 
         if (AppState.get().isFolderPreview) {
@@ -620,15 +761,25 @@ public class ImageExtractor {
         final String hash = "" + imageUri.hashCode();
         try {
             final InputStream streamInner;
+            while (sp.contains(hash) && activeExtractions.contains(hash)) {
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    throw new IOException(e);
+                }
+            }
             if (sp.contains(hash)) {
                 LOG.d("Error-crash", imageUri, hash);
                 return messageFile("#crash", "");
             }
             try {
+                activeExtractions.add(hash);
                 sp.edit().putBoolean(hash, true).commit();
                 streamInner = getStreamInner(imageUri, hash);
             } finally {
                 sp.edit().remove(hash).commit();
+                activeExtractions.remove(hash);
             }
             return streamInner;
         } finally {
@@ -668,10 +819,14 @@ public class ImageExtractor {
 
             if (ExtUtils.isExteralSD(path)) {
                 if (ExtUtils.isImagePath(path)) {
-                    return c.getContentResolver().openInputStream(Uri.parse(path));
+                    return SafDocumentIdentity.openInputStream(c, Uri.parse(path));
                 }
-                String display = ExtUtils.getFileName(Uri.decode(path));
-                return messageFile("", display);
+                int safPage = pageUrl.getPage();
+                if (safPage != COVER_PAGE && safPage != COVER_PAGE_WITH_EFFECT && safPage != COVER_PAGE_NO_EFFECT) {
+                    String display = ExtUtils.getFileName(Uri.decode(path));
+                    return messageFile("", display);
+                }
+                // fall through to cover extraction below
             }
 
             if (path.startsWith(Clouds.PREFIX_CLOUD)) {
@@ -766,6 +921,8 @@ public class ImageExtractor {
                 return bitmapToStreamRAW(proccessOtherPage(pageUrl));
             }
 
+        } catch (TransientSafCoverException e) {
+            throw e;
         } catch (MuPdfPasswordException e) {
             return messageFile("#password", ExtUtils.getFileName(path));
         } catch (final Exception e) {

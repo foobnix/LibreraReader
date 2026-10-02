@@ -49,6 +49,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.SafReaderLaunch;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
@@ -267,6 +268,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             String pathSAF = uri.toString();
 
             StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+            BookCSS.get().save(this);
 
             LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, BookCSS.get().pathSAF);
 
@@ -670,7 +672,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
 
             try {
-                AppBook book = SharedBooks.load(AppSP.get().lastBookPath);
+                AppBook book = SharedBooks.load(TxtUtils.isNotEmpty(AppSP.get().lastBookOriginalUri)
+                        ? AppSP.get().lastBookOriginalUri : AppSP.get().lastBookPath);
                 if (book.p > 0.9999) {
                     LOG.d("Open Last book skipped", book.p);
                     Toast.makeText(MainTabs2.this, R.string.the_book_is_complete, Toast.LENGTH_LONG).show();
@@ -688,6 +691,9 @@ public class MainTabs2 extends AdsFragmentActivity {
                         new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                 intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
+                if (TxtUtils.isNotEmpty(AppSP.get().lastBookOriginalUri)) {
+                    SafReaderLaunch.attach(MainTabs2.this, intent, AppSP.get().lastBookOriginalUri);
+                }
                 startActivity(intent);
             });
         }
@@ -917,7 +923,14 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
         // Analytics.onStop(this);
-        CacheDir.ZipApp.removeCacheContent();
+        // Overview and metadata readers keep this lock through their final
+        // read of a member in the shared ZipApp extraction directory.
+        com.foobnix.ext.CacheZipUtils.cacheLock.lock();
+        try {
+            CacheDir.ZipApp.removeCacheContent();
+        } finally {
+            com.foobnix.ext.CacheZipUtils.cacheLock.unlock();
+        }
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 

@@ -175,6 +175,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
                 setSearchHint(R.string.searching_please_wait_);
                 isLibraryReady = false;
+            } else if (BooksService.RESULT_SEARCH_BATCH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                handler.removeCallbacks(refreshPublishedBatch);
+                handler.postDelayed(refreshPublishedBatch, 250);
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 isLibraryReady = false;
                 setSearchHint(R.string.extracting_information_from_books);
@@ -188,6 +191,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
     };
+    private final Runnable refreshPublishedBatch = this::searchAndOrderAsync;
     Runnable sortAndSeach = new Runnable() {
 
         @Override public void run() {
@@ -673,9 +677,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
             LOG.d("checkForDeleteBooks", "run");
             //BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
-            OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(CheckDeletedBooksWorker.class).build();
-            WorkManager.getInstance(getContext())
-                       .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, workRequest);
+            CheckDeletedBooksWorker.run(getContext());
             //LOG.d("MessageWorker-Status checkForDeleteBooks");
         } catch (Exception e) {
             LOG.e(e);
@@ -840,6 +842,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
+                        if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                            fm.setParentPath(parentName);
+                        }
                         count = 0;
                         last = parentName;
                         res.add(fm);
@@ -1195,7 +1200,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+    @Override public void onDestroyView() {
+        if (handler != null) handler.removeCallbacks(refreshPublishedBatch);
+        super.onDestroyView();
+    }
+
     @Override public void onDestroy() {
+        if (handler != null) handler.removeCallbacks(refreshPublishedBatch);
         super.onDestroy();
         LOG.d("SearchFragment2 onDestroy");
         LocalBroadcastManager.getInstance(getActivity())

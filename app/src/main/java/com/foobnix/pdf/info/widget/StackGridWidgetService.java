@@ -16,7 +16,6 @@ import android.widget.RemoteViewsService;
 
 import androidx.core.util.TypedValueCompat;
 
-import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -27,7 +26,6 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.ui2.AppDB;
 
-import com.foobnix.LibreraApp;
 
 import java.io.File;
 import java.util.List;
@@ -87,8 +85,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         FileMeta uri = recent.get(position);
 
         try {
-            Bitmap image =
-                    Glide.with(LibreraApp.context).asBitmap().load(IMG.getCoverUrl(uri.getPath())).submit().get();
+            Bitmap image = IMG.getCoverPageWithEffect(context, uri, null).submit().get();
             v.setImageViewBitmap(R.id.imageView1, image);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 v.setViewLayoutWidth(R.id.imageView1, IMG.getImageSize(), COMPLEX_UNIT_PX);

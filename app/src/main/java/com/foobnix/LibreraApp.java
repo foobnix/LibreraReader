@@ -18,9 +18,11 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
@@ -77,6 +79,7 @@ public class LibreraApp extends Application {
 
 
         AppsConfig.init(this);
+
         Dips.init(this);
         Prefs.get().init(this);
 
@@ -143,6 +146,12 @@ public class LibreraApp extends Application {
         TTSNotification.initChannels(this);
 
         CacheZipUtils.init(this);
+        BookCacheLeases.scheduleCleanup(() -> {
+            ExtUtils.pruneDurableHandoffs(this);
+            BookCacheLeases.sweepAbandoned(getCacheDir());
+            BookCacheLeases.sweepAbandoned(new java.io.File(getCacheDir(), "saf-open"));
+            CacheZipUtils.sweepAbandoned();
+        });
 
         IMG.init(this);
         TempHolder.get().loadingCancelled.set(true);

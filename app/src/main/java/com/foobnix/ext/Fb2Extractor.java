@@ -14,6 +14,7 @@ import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -88,7 +89,7 @@ public class Fb2Extractor extends BaseExtractor {
     public static Map<Integer, String> epub3Pages = new HashMap<>();
     static Fb2Extractor inst = new Fb2Extractor();
     static Pattern pattern = Pattern.compile("<a id=\"page(\\d+)\"");
-    public Map<String, String> genresRus = new HashMap<>();
+    private volatile Map<String, String> genresRus = java.util.Collections.emptyMap();
 
     private Fb2Extractor() {
     }
@@ -139,13 +140,13 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static String accurateLine(String line) {
-        if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER) {
+        if (EpubProcessingSettings.documentStyle() == BookCSS.STYLES_ONLY_USER) {
             line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
             line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
             //line = line.replace("_", "_" + HypenUtils.SHY); //break image paths
         }
-        if (BookCSS.get().isEnableBBCode) {
+        if (EpubProcessingSettings.isEnableBBCode()) {
             line = TxtUtils.convertBBCodeToHtml(line);
         }
         return line;
@@ -195,14 +196,14 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-            if (AppState.get().isShowFooterNotesInText) {
+            if (EpubProcessingSettings.isShowFooterNotesInText()) {
                 line = includeFooterNotes(line, notes, name);
             }
 
             // LOG.d("gen-in", line);
             line = accurateLine(line);
 
-            if (AppState.get().isShowPageNumbers) {
+            if (EpubProcessingSettings.isShowPageNumbers()) {
                 Matcher matcher = pattern.matcher(line);
                 while (matcher.find()) {
                     int pageId = Integer.parseInt(matcher.group(1));
@@ -213,7 +214,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
             }
 
-            if (AppState.get().isReferenceMode) {
+            if (EpubProcessingSettings.isReferenceMode()) {
 
                 int index = line.indexOf("<p");
                 while (index >= 0) {
@@ -228,7 +229,7 @@ public class Fb2Extractor extends BaseExtractor {
             line = processRemoteImages(line);
 
 
-            if (AppState.get().isExperimental && svgs != null) {
+            if (EpubProcessingSettings.isExperimental() && svgs != null) {
 
 
                 line = line.replace("<m:", "<");
@@ -295,8 +296,8 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-            boolean isProcess = AppState.get().isEnableTextReplacement ||
-                    (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
+            boolean isProcess = EpubProcessingSettings.isEnableTextReplacement() ||
+                    (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language()));
             if (isProcess) {
                 line = HypenUtils.applyHypnes(line, replacements);
             }
@@ -304,8 +305,8 @@ public class Fb2Extractor extends BaseExtractor {
             if (!isValidXML) {
                 writer.println("<p>");
             }
-            if (!isValidXML && AppState.get().isCharacterEncoding) {
-                line = new String(line.getBytes("windows-1252"), AppState.get().characterEncoding);
+            if (!isValidXML && EpubProcessingSettings.isCharacterEncoding()) {
+                line = new String(line.getBytes("windows-1252"), EpubProcessingSettings.characterEncoding());
             }
             writer.println(line);
 
@@ -324,7 +325,7 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static synchronized String processRemoteImages(String line) {
-        if ((BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) && line.contains("<img src=\"http")) {
+        if ((EpubProcessingSettings.documentStyle() == BookCSS.STYLES_ONLY_USER || EpubProcessingSettings.isExperimental()) && line.contains("<img src=\"http")) {
             try {
                 String imgScr = "<img src=\"";
                 int i1 = line.indexOf(imgScr);
@@ -492,7 +493,7 @@ public class Fb2Extractor extends BaseExtractor {
         PrintWriter writer = new PrintWriter(out);
         String line;
 
-        HypenUtils.applyLanguage(AppSP.get().hypenLang);
+        HypenUtils.applyLanguage(EpubProcessingSettings.language());
 
         while ((line = input.readLine()) != null) {
             LOG.d("gen0-in", line);
@@ -719,10 +720,11 @@ public class Fb2Extractor extends BaseExtractor {
         }
     }
 
-    public void loadGenres() {
+    public synchronized void loadGenres() {
         if (!genresRus.isEmpty()) {
             return;
         }
+        Map<String, String> loaded = new HashMap<>();
         try {
             {
                 InputStream xmlStream = LibreraApp.context.getAssets().open("union_genres_ru_1.xml");
@@ -735,7 +737,7 @@ public class Fb2Extractor extends BaseExtractor {
                         if (xpp.getName().equals("genre")) {
                             String name = xpp.getAttributeValue(0);
                             String code = xpp.getAttributeValue(1);
-                            genresRus.put(code, name);
+                            loaded.put(code, name);
                             LOG.d("loadGenres-add-1", code, name);
                         }
                     }
@@ -754,8 +756,8 @@ public class Fb2Extractor extends BaseExtractor {
                         if (xpp.getName().equals("subgenres")) {
                             String name = xpp.getAttributeValue(1);
                             String code = xpp.getAttributeValue(2);
-                            if (!genresRus.containsKey(code)) {
-                                genresRus.put(code, name);
+                            if (!loaded.containsKey(code)) {
+                                loaded.put(code, name);
                             }
                             LOG.d("loadGenres-add-2", code, name);
                         }
@@ -764,6 +766,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 xmlStream.close();
             }
+            genresRus = java.util.Collections.unmodifiableMap(loaded);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1007,8 +1010,9 @@ public class Fb2Extractor extends BaseExtractor {
             authors = TxtUtils.replaceFirst(authors, ", ", "");
 
             loadGenres();
+            Map<String, String> genreNames = genresRus;
             for (String g : genre.split(",")) {
-                String value = genresRus.get(g.trim());
+                String value = genreNames.get(g.trim());
                 if (TxtUtils.isNotEmpty(value)) {
                     genre = genre.replace(g + ",", value + ",");
                     LOG.d("loadGenres-repalce", g, value);
@@ -1046,7 +1050,7 @@ public class Fb2Extractor extends BaseExtractor {
         } catch (Exception e) {
             LOG.w(e, "!!!!", inputFile);
         }
-        return EbookMeta.Empty();
+        return EbookMeta.Failed();
     }
 
     @Override
@@ -1273,9 +1277,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     public boolean convert(String inputFile, String toName, boolean fixHTML, Map<String, String> notes) {
 
-        try {
-            final FileOutputStream out = new FileOutputStream(new File(toName));
-            ZipOutputStream zos = new ZipOutputStream(out);
+        try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(toName)))) {
             zos.setLevel(0);
 
             writeToZip(zos, "mimetype", "application/epub+zip");
@@ -1288,21 +1290,19 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+            List<SimpleMeta> replacements = EpubProcessingSettings.replacements();
             ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes, replacements);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
-            zos.close();
-            out.close();
             return true;
         } catch (Exception e) {
             LOG.d("Fb2Context convert false error");
             LOG.e(e);
-        } catch (Throwable e) {
+            throw new IllegalStateException("FB2 conversion failed", e);
+        } catch (Error e) {
             LOG.e(e);
+            throw e;
         }
-        LOG.d("Fb2Context convert false");
-        return false;
     }
 
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes, List<SimpleMeta> replacements) throws Exception {
@@ -1314,8 +1314,8 @@ public class Fb2Extractor extends BaseExtractor {
 
         int count = 0;
 
-        if (BookCSS.get().isAutoHypens) {
-            HypenUtils.applyLanguage(AppSP.get().hypenLang);
+        if (EpubProcessingSettings.isAutoHypens()) {
+            HypenUtils.applyLanguage(EpubProcessingSettings.language());
         }
 
         boolean isFindBodyEnd = false;
@@ -1330,7 +1330,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled.get()) {
                 break;
             }
-            if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || fixXML) {
+            if (EpubProcessingSettings.documentStyle() == BookCSS.STYLES_ONLY_USER || fixXML) {
                 line = line.replace("<empty-line/>", "");
             }
 
@@ -1354,7 +1354,7 @@ public class Fb2Extractor extends BaseExtractor {
             line = accurateLine(line);
 
 
-            if (AppState.get().isShowFooterNotesInText) {
+            if (EpubProcessingSettings.isShowFooterNotesInText()) {
                 line = includeFooterNotes(line, notes, "OEBPS/fb2.fb2");
             }
 
@@ -1378,7 +1378,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = line.substring(0, indexOf) + "<a id=\"" + count + "\"></a>" + line.substring(indexOf);
                     }
 
-                    if (BookCSS.get().isCapitalLetter && ready) {
+                    if (EpubProcessingSettings.isCapitalLetter() && ready) {
                         int indexP = line.indexOf("<p");
                         if (indexP >= 0) {
                             line = capitalLetter(line, indexP);
@@ -1392,8 +1392,8 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    boolean isProcess = AppState.get().isEnableTextReplacement ||
-                            (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
+                    boolean isProcess = EpubProcessingSettings.isEnableTextReplacement() ||
+                            (EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language()));
                     if (isProcess) {
                         line = HypenUtils.applyHypnes(line, replacements);
                     }

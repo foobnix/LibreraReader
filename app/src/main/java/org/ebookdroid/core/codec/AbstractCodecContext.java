@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
@@ -56,7 +58,6 @@ public abstract class AbstractCodecContext implements CodecContext {
             //recycle();
             try {
                 Thread.sleep(1000);
-                CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
                 CacheZipUtils.removeFiles(CacheZipUtils.CACHE_TEMP.listFiles());
             }catch (Exception e){
                 LOG.w(e);
@@ -64,20 +65,43 @@ public abstract class AbstractCodecContext implements CodecContext {
         }
     }
 
-    public static long getFileNameSalt(String path) {
-        long hashCode = 0;
+    public static String sourceRevisionKey(String path) {
         try {
             File file = new File(path);
-            hashCode = file.length() + file.lastModified();
-            LOG.d("getFileNameSalt", path, file.length(), file.lastModified());
+            // Cache publishers register immutable sources whose pathname includes
+            // their revision. Their mtime is an LRU clock, not an input revision.
+            if (BookCacheLeases.isImmutableRevisionNamedSource(file)) return "|immutable-revision-in-path";
+            return "|length=" + file.length() + "|modified=" + file.lastModified();
         } catch (Exception e) {
             LOG.e(e);
+            return "|unreadable-revision=" + java.util.UUID.randomUUID();
         }
-        return hashCode;
     }
+
+    /** Text converters override this; binary codecs do not capture text-processing state. */
+    protected EpubProcessingSettings.Scope captureProcessingSettings(String path) { return null; }
 
     @Override
     public CodecDocument openDocument(String fileNameOriginal, String password) {
+        File source = new File(fileNameOriginal);
+        boolean reserved = BookCacheLeases.hasReservation(source);
+        AutoCloseable openingLease = BookCacheLeases.acquire(source);
+        BookCacheLeases.beginManagedOpen();
+        try (EpubProcessingSettings.Scope settings = captureProcessingSettings(fileNameOriginal)) {
+            CodecDocument document = openDocumentWithProtectedSource(fileNameOriginal, password);
+            if (document instanceof AbstractCodecDocument) {
+                ((AbstractCodecDocument) document).retainSource(source);
+            }
+            if (document != null) CacheZipUtils.pruneBookCache();
+            return document;
+        } finally {
+            BookCacheLeases.endManagedOpen();
+            if (reserved) BookCacheLeases.cancelReservation(source);
+            try { openingLease.close(); } catch (Exception e) { LOG.e(e); }
+        }
+    }
+
+    private CodecDocument openDocumentWithProtectedSource(String fileNameOriginal, String password) {
         LOG.d("Open-Document", fileNameOriginal);
         // TempHolder.loadingCancelled = false;
         if (ExtUtils.isZip(fileNameOriginal)) {
@@ -87,11 +111,7 @@ public abstract class AbstractCodecContext implements CodecContext {
 
         LOG.d("Open-Document 2 LANG:", AppSP.get().hypenLang, fileNameOriginal);
 
-        File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
-        if (!BookType.ODT.is(fileNameOriginal)) {
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), cacheFileName);
-            CacheZipUtils.removeDirs(CacheZipUtils.CACHE_BOOK_DIR.listFiles(), new File(cacheFileName+"-source"));
-        }
+        File cacheFileName = getCacheFileName(fileNameOriginal + sourceRevisionKey(fileNameOriginal));
 
         if (cacheFileName != null && cacheFileName.isFile()) {
             LOG.d("Open-Document from cache", fileNameOriginal);

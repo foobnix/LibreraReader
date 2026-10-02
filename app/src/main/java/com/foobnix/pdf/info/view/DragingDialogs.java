@@ -1244,7 +1244,7 @@ public class DragingDialogs {
                                                                                  controller.getBookWidth(),
                                                                                  controller.getBookHeight(),
                                                                                  BookCSS.get().fontSizeSp,
-                                                                                 controller.getTitle());
+                                                                                 controller.getTitle(), controller.getBookIdentity());
                                                      } else {
                                                          Toast.makeText(controller.getActivity(),
                                                                         R.string.incorrect_value,
@@ -1295,7 +1295,7 @@ public class DragingDialogs {
                         progressText.setText("");
 
                         ttsSpeakPath.setText(Html.fromHtml(
-                                "<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() +
+                                "<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getBookDisplayName() +
                                 "</b></u>", Html.FROM_HTML_MODE_LEGACY));
                         ttsSpeakPath.setOnClickListener(new OnClickListener() {
                             @Override public void onClick(View v) {
@@ -1308,7 +1308,7 @@ public class DragingDialogs {
                                                              BookCSS.get().ttsSpeakPath = nPath;
                                                              ttsSpeakPath.setText(Html.fromHtml(
                                                                      "<u>" + BookCSS.get().ttsSpeakPath + "/<b>" +
-                                                                     controller.getCurrentBook().getName() + "</b></u>",
+                                                                     controller.getBookDisplayName() + "</b></u>",
                                                                      Html.FROM_HTML_MODE_LEGACY));
                                                              dialog.dismiss();
                                                              return false;
@@ -1325,7 +1325,7 @@ public class DragingDialogs {
                             }
 
                             File dirFolder = new File(BookCSS.get().ttsSpeakPath,
-                                                      "TTS_" + controller.getCurrentBook().getName());
+                                                      "TTS_" + controller.getBookDisplayName());
                             boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName()
                                                                                                             .endsWith(
                                                                                                                     TTSEngine.WAV) ||
@@ -1988,7 +1988,7 @@ public class DragingDialogs {
                                                         controller.getBookWidth(),
                                                         controller.getBookHeight(),
                                                         BookCSS.get().fontSizeSp,
-                                                        controller.getTitle());
+                                                        controller.getTitle(), controller.getBookIdentity());
                             }
                         }
                     }
@@ -2983,7 +2983,7 @@ public class DragingDialogs {
                 objects.clear();
                 allData.clear();
 
-                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getBookIdentity());
 
                 final Comparator<AppBookmark> cmp = new Comparator<AppBookmark>() {
                     @Override public int compare(AppBookmark o1, AppBookmark o2) {
@@ -3145,7 +3145,7 @@ public class DragingDialogs {
                                                                             controller.getBookWidth(),
                                                                             controller.getBookHeight(),
                                                                             BookCSS.get().fontSizeSp,
-                                                                            controller.getTitle());
+                                                                            controller.getTitle(), controller.getBookIdentity());
                                                 } else {
                                                     ExtUtils.openWith(anchor.getContext(), aPath);
                                                 }
@@ -3303,7 +3303,7 @@ public class DragingDialogs {
                     @Override public void onClick(View v) {
                         PageImageState.get().isShowCuttingLine = false;
                         AppSP.get().isCut = false;
-                        AppBook bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
+                        AppBook bookSettings = SettingsManager.getBookSettings(controller.getBookIdentity());
                         boolean wasSplit = bookSettings.sp;
                         bookSettings.sp = false;
                         onRefreshDoc.run();
@@ -4922,7 +4922,7 @@ public class DragingDialogs {
                                              AppSP.get().hypenLang = code;
                                              hypenLang.setText(titleLang);
                                              TxtUtils.underlineTextView(hypenLang);
-                                             FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());
+                                             FileMeta load = controller.getBookFileMeta();
                                              if (load != null) {
                                                  load.setLang(code);
                                                  AppDB.get().update(load);

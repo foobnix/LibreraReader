@@ -8,6 +8,7 @@ import com.foobnix.mobi.parser.MobiParserIS;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import net.lingala.zip4j.ZipFile;
 
 public class MobiExtract {
 
@@ -15,11 +16,13 @@ public class MobiExtract {
         try {
             LibMobi.convertToEpub(inputPath, new File(outputDir, hashCode + "").getPath());
             File result = new File(outputDir, hashCode + ".epub");
+            if (!result.isFile() || result.length() == 0 || !new ZipFile(result).isValidZipFile()) {
+                throw new IOException("MOBI conversion did not produce a complete EPUB");
+            }
             return new FooterNote(result.getPath(), null);
         } catch (Exception e) {
-            LOG.e(e);
+            throw e instanceof IOException ? (IOException) e : new IOException("MOBI conversion failed", e);
         }
-        return new FooterNote("", null);
     }
 
     public static EbookMeta getBookMetaInformation(String path, boolean onlyTitle) throws IOException {
@@ -64,7 +67,7 @@ public class MobiExtract {
 
         } catch (Throwable e) {
             LOG.e(e);
-            return EbookMeta.Empty();
+            return EbookMeta.Failed();
         }
     }
 

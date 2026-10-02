@@ -66,7 +66,7 @@ public class BookmarkPanel {
 
         pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
 
-        List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
+        List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getBookIdentity());
         for (final AppBookmark appBookmark : all) {
 
             final int num = appBookmark.getPage(dc.getPageCount());

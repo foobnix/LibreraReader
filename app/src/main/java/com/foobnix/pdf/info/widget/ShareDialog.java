@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.SafReaderLaunch;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
@@ -87,7 +88,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.convert_to) + " PDF");
         }
         final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) ? true : file.canWrite();
-        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
+        final boolean isShowInfo = true;
 
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
@@ -238,6 +239,20 @@ public class ShareDialog {
 
     public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page,
                             final DocumentController dc, final Runnable hideShow) {
+        FileMeta resolved = null;
+        String safUri = a != null && a.getIntent() != null
+                ? SafReaderLaunch.original(a.getIntent())
+                : null;
+        if (safUri != null) {
+            resolved = AppDB.get().load(safUri);
+        }
+        show(a, file, resolved, onDeleteAction, page, dc, hideShow);
+    }
+
+    public static void show(final Activity a, final File file, final FileMeta preloadedMeta,
+                            final Runnable onDeleteAction, final int page,
+                            final DocumentController dc, final Runnable hideShow) {
+        final FileMeta capturedMeta = preloadedMeta;
 
         if (file == null) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG)
@@ -301,7 +316,7 @@ public class ShareDialog {
         boolean canDelete1 =
                 ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
-        final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
+        final boolean isShowInfo = true;
 
         final boolean isRemovedFromLibrary = AppData.get()
                                                     .getAllExcluded()
@@ -559,7 +574,7 @@ public class ShareDialog {
                             .post(new UpdateAllFragments());
 
                 } else if (isShowInfo && which == i++) {
-                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+                    FileInformationDialog.showFileInfoDialog(a, file, capturedMeta, onDeleteAction, true);
                 }
 
             }

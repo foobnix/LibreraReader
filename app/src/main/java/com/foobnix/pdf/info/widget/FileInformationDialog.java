@@ -36,7 +36,6 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -167,23 +166,41 @@ public class FileInformationDialog {
     }
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction) {
-        showFileInfoDialog(a, file, onDeleteAction, true);
+        showFileInfoDialog(a, file, null, onDeleteAction, true);
+    }
+
+    public static void showFileInfoDialog(final Activity a, final FileMeta preloaded, final Runnable onDeleteAction) {
+        showFileInfoDialog(a, new File(preloaded.getPath()), preloaded, onDeleteAction, true);
     }
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction,
                                           boolean firstTime) {
+        showFileInfoDialog(a, file, null, onDeleteAction, firstTime);
+    }
+
+    public static void showFileInfoDialog(final Activity a, final File file, final FileMeta preloadedMeta,
+                                          final Runnable onDeleteAction, boolean firstTime) {
         ADS.hideAdsTemp(a);
 
-        final FileMeta fileMeta = AppDB.get()
-                                       .getOrCreate(file.getPath());
+        final FileMeta fileMeta = preloadedMeta != null
+                ? preloadedMeta
+                : AppDB.get().getOrCreate(file.getPath());
+
+        // The "logical path" is the SAF URI (or Cloud path) when this is a SAF/cloud book;
+        // file.getPath() may be a symlink under our cache or a slash-normalized "content:/..." string,
+        // both of which break DB, Glide cache, and SafOpfRegistry lookups.
+        final String logicalPath = preloadedMeta != null && TxtUtils.isNotEmpty(preloadedMeta.getPath())
+                ? preloadedMeta.getPath()
+                : file.getPath();
+        final boolean isSaf = ExtUtils.isExteralSD(logicalPath);
 
         LOG.d("FileMeta-State", fileMeta.getState(), fileMeta.getTitle());
 
-        if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
+        if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle()) && !isSaf) {
 
             new AsyncProgressResultToastTask(a, new ResultResponse<Boolean>() {
                 @Override public boolean onResultRecive(Boolean result) {
-                    showFileInfoDialog(a, file, onDeleteAction, false);
+                    showFileInfoDialog(a, file, null, onDeleteAction, false);
                     return false;
                 }
             }) {
@@ -223,8 +240,10 @@ public class FileInformationDialog {
         final TextView bookmarks = (TextView) dialog.findViewById(R.id.bookmarks);
         final TextView bookmarksSection = (TextView) dialog.findViewById(R.id.bookmarksSection);
 
-        title.setText(fileMeta.getTitle());
-        ((TextView) dialog.findViewById(R.id.bookName)).setText(fileMeta.getTitle());
+        String displayTitle = TxtUtils.isNotEmpty(fileMeta.getTitle())
+                ? fileMeta.getTitle() : TxtUtils.nullToEmpty(fileMeta.getPathTxt());
+        title.setText(displayTitle);
+        ((TextView) dialog.findViewById(R.id.bookName)).setText(displayTitle);
         if (TxtUtils.isNotEmpty(fileMeta.getAuthor())) {
             showKeys(author,fileMeta.getAuthor(),SEARCH_IN.AUTHOR);
 
@@ -244,10 +263,7 @@ public class FileInformationDialog {
         });
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
-        pathView.setText(file.getPath());
-        if (AppsConfig.IS_LOG) {
-            pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
-        }
+        com.foobnix.pdf.info.SafPathLabels.bindLocation(pathView, logicalPath);
 
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
@@ -266,14 +282,11 @@ public class FileInformationDialog {
 
         ((TextView) dialog.findViewById(R.id.isbn)).setText(showKeys(fileMeta.getIsbn()));
 
-        if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            ((TextView) dialog.findViewById(R.id.size)).setText(
-                    fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
-        } else {
-            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
-        }
+        ((TextView) dialog.findViewById(R.id.size)).setText(
+                com.foobnix.ui2.adapter.BookSizeText.format(fileMeta));
 
-        ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
+        File mimeFile = isSaf ? new File(TxtUtils.nullToEmpty(fileMeta.getPathTxt())) : file;
+        ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(mimeFile));
 
         final TextView hypenLang = (TextView) dialog.findViewById(R.id.hypenLang);
         hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(fileMeta.getLang()));
@@ -309,7 +322,7 @@ public class FileInformationDialog {
 
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
         final TextView expand = (TextView) dialog.findViewById(R.id.expand);
-        String bookOverview = FileMetaCore.getBookOverview(file.getPath());
+        String bookOverview = isSaf ? "" : FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
         infoView.post(new Runnable() {
@@ -494,31 +507,35 @@ public class FileInformationDialog {
         convertFile.setVisibility(ExtUtils.isImageOrEpub(file) ? View.GONE : View.VISIBLE);
         convertFile.setVisibility(View.GONE);
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith))
-                .setOnClickListener(new OnClickListener() {
-
-                    @Override public void onClick(View v) {
-                        if (infoDialog != null) {
-                            infoDialog.dismiss();
-                            infoDialog = null;
-                        }
-                        ExtUtils.openWith(a, file);
-
+        View openWithView = TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith));
+        if (isSaf) {
+            openWithView.setVisibility(View.GONE);
+        } else {
+            openWithView.setOnClickListener(new OnClickListener() {
+                @Override public void onClick(View v) {
+                    if (infoDialog != null) {
+                        infoDialog.dismiss();
+                        infoDialog = null;
                     }
-                });
+                    ExtUtils.openWith(a, file);
+                }
+            });
+        }
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile))
-                .setOnClickListener(new OnClickListener() {
-
-                    @Override public void onClick(View v) {
-                        if (infoDialog != null) {
-                            infoDialog.dismiss();
-                            infoDialog = null;
-                        }
-                        ExtUtils.sendFileTo(a, file);
-
+        View sendFileView = TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile));
+        if (isSaf) {
+            sendFileView.setVisibility(View.GONE);
+        } else {
+            sendFileView.setOnClickListener(new OnClickListener() {
+                @Override public void onClick(View v) {
+                    if (infoDialog != null) {
+                        infoDialog.dismiss();
+                        infoDialog = null;
                     }
-                });
+                    ExtUtils.sendFileTo(a, file);
+                }
+            });
+        }
 
         TextView delete = TxtUtils.underlineTextView(dialog.findViewById(R.id.delete));
         if (onDeleteAction == null) {
@@ -532,7 +549,10 @@ public class FileInformationDialog {
                     infoDialog = null;
                 }
 
-                dialogDelete(a, file, onDeleteAction);
+                String deleteDisplayName = isSaf
+                        ? TxtUtils.nullToEmpty(fileMeta.getPathTxt())
+                        : null;
+                dialogDelete(a, file, deleteDisplayName, onDeleteAction);
 
             }
         });
@@ -557,13 +577,13 @@ public class FileInformationDialog {
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
         TintUtil.roundCover(coverImage);
 
-        IMG.getCoverPageWithEffect(a, file.getPath(), null)
+        IMG.getCoverPageWithEffect(a, logicalPath, null)
            .into(coverImage);
 
         coverImage.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(View v) {
-                showImage(a, file.getPath());
+                showImage(a, logicalPath);
             }
         });
 
@@ -769,16 +789,26 @@ public class FileInformationDialog {
     }
 
     public static void dialogDelete(final Activity a, final File file, final Runnable onDeleteAction) {
+        dialogDelete(a, file, null, onDeleteAction);
+    }
+
+    public static void dialogDelete(final Activity a, final File file, final String displayNameOverride,
+                                    final Runnable onDeleteAction) {
         if (file == null || onDeleteAction == null) {
             return;
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        String name = file.getName();
-        if (ExtUtils.isExteralSD(file.getPath())) {
-            try {
-                name = URLDecoder.decode(file.getName(), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                LOG.e(e);
+        String name;
+        if (displayNameOverride != null) {
+            name = displayNameOverride;
+        } else {
+            name = file.getName();
+            if (ExtUtils.isExteralSD(file.getPath())) {
+                try {
+                    name = URLDecoder.decode(file.getName(), "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    LOG.e(e);
+                }
             }
         }
 

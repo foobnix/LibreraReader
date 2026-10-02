@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import com.bumptech.glide.Priority;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,6 +32,10 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.MainTabs2;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ui2.AppDB;
+
+import java.io.File;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -218,16 +223,50 @@ public class IMG {
 
 
     public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run) {
+        FileMeta book = ExtUtils.isExteralSD(path) ? AppDB.get().load(path) : null;
+        return getCoverPageWithEffect(context, path, run,
+                book == null ? currentSourceRevision(path) : book.getSize() + ":" + book.getDate(),
+                book == null ? null : book.getSafSidecarRevision());
+    }
+
+    static String currentSourceRevision(String path) {
+        if (!ExtUtils.isExteralSD(path)) {
+            File file = new File(path);
+            return file.length() + ":" + file.lastModified();
+        }
+        FileMeta book = AppDB.get().load(path);
+        return book == null ? "unknown" : book.getSize() + ":" + book.getDate();
+    }
+
+    static String coverCacheSignature(String url, String revision, String sidecarRevision) {
+        return url + "|" + revision + "|" + sidecarRevision + "|"
+                + AppState.get().isUseCalibreOpf + "|" + AppState.get().isBookCoverEffect
+                + "|" + TintUtil.getColorInDayNighth();
+    }
+
+    public static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, FileMeta book, ResourceReady run) {
+        String revision = ExtUtils.isExteralSD(book.getPath())
+                ? book.getSize() + ":" + book.getDate() : currentSourceRevision(book.getPath());
+        return getCoverPageWithEffect(context, book.getPath(), run, revision, book.getSafSidecarRevision());
+    }
+
+    private static RequestBuilder<Bitmap> getCoverPageWithEffect(Context context, String path, ResourceReady run,
+                                                                String revision, String sidecarRevision) {
         int imageSize = IMG.getImageSize();
         String url = toUrl(path, ImageExtractor.COVER_PAGE, imageSize,false);
+        // Legacy rows with no confirmed revision must not reuse an ambiguous cover key.
+        boolean unknown = ExtUtils.isExteralSD(path) && sidecarRevision == null;
+        if (sidecarRevision == null) sidecarRevision = "";
         return IMG.with(context)
            .asBitmap()
            .load(url)
+           .priority(Priority.HIGH)
            .override(imageSize)
                 .onlyRetrieveFromCache(false)
-           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+           .diskCacheStrategy(unknown ? DiskCacheStrategy.NONE : DiskCacheStrategy.RESOURCE)
+           .skipMemoryCache(unknown)
            //.override(imageSize)
-              .signature(new ObjectKey(url.hashCode()))
+              .signature(new ObjectKey(coverCacheSignature(url, revision, sidecarRevision)))
            .listener(new RequestListener<>() {
                @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target,
                                                      boolean isFirstResource) {

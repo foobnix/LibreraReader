@@ -14,10 +14,15 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CalirbeExtractor {
+
+    public interface CoverResolver {
+        byte[] resolve(String href);
+    }
 
     public static boolean isCalibre(String path) {
         return getCalibreOPF(path) != null;
@@ -34,15 +39,25 @@ public class CalirbeExtractor {
     }
 
     public static String getBookOverview(String path) {
+        return getBookOverviewFromOpf(getCalibreOPF(path));
+    }
+
+    public static String getBookOverviewFromOpf(File metadata) {
+        if (metadata == null || !metadata.isFile()) {
+            return null;
+        }
+        try (FileInputStream is = new FileInputStream(metadata)) {
+            return getBookOverviewFromStream(is);
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public static String getBookOverviewFromStream(InputStream stream) {
         try {
-
-            File metadata = getCalibreOPF(path);
-            if (metadata==null || !metadata.isFile()) {
-                return null;
-            }
-
             XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(new FileInputStream(metadata), "UTF-8");
+            xpp.setInput(stream, "UTF-8");
 
             int eventType = xpp.getEventType();
 
@@ -68,25 +83,44 @@ public class CalirbeExtractor {
     }
 
     public static EbookMeta getBookMetaInformation(String path) {
-        EbookMeta meta = EbookMeta.Empty();
-        try {
+        return getBookMetaInformationFromOpf(getCalibreOPF(path));
+    }
 
-
-            File metadata = getCalibreOPF(path);
-
-            if (metadata ==null || !metadata.isFile()) {
+    public static EbookMeta getBookMetaInformationFromOpf(File metadata) {
+        if (metadata == null || !metadata.isFile()) {
+            return null;
+        }
+        final File rootFolder = metadata.getParentFile();
+        CoverResolver coverResolver = href -> {
+            try (FileInputStream fs = new FileInputStream(new File(rootFolder, href))) {
+                return BaseExtractor.getEntryAsByte(fs);
+            } catch (Exception e) {
+                LOG.e(e);
                 return null;
             }
+        };
+        try (FileInputStream is = new FileInputStream(metadata)) {
+            return getBookMetaInformationFromStream(is, coverResolver);
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
 
+    public static EbookMeta getBookMetaInformationFromStream(InputStream stream, CoverResolver coverResolver) {
+        EbookMeta meta = EbookMeta.Empty();
+        try {
             XmlPullParser xpp = XmlParser.buildPullParser();
-            final FileInputStream inputStream = new FileInputStream(metadata);
-            xpp.setInput(inputStream, "UTF-8");
+            xpp.setInput(stream, "UTF-8");
 
             List<String[]> dates = new ArrayList<>();
             int eventType = xpp.getEventType();
+            String rootName = null;
+            boolean closedRoot = false;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
+                    if (rootName == null) rootName = xpp.getName();
                     if ("dc:title".equals(xpp.getName()) || "dcns:title".equals(xpp.getName())) {
                         meta.setTitle(add(meta.getTitle(), " - ", xpp.nextText()));
                     }
@@ -206,27 +240,28 @@ public class CalirbeExtractor {
                     }
 
                     if ("reference".equals(xpp.getName()) && "cover".equals(xpp.getAttributeValue(null, "type"))) {
-                        try {
-                            String imgName = xpp.getAttributeValue(null, "href");
-                            File rootFolder = new File(path).getParentFile();
-                            final File img = new File(rootFolder, imgName);
-                            FileInputStream fileStream = new FileInputStream(img);
-                            meta.coverImage = BaseExtractor.getEntryAsByte(fileStream);
-                            LOG.d("reference-img", img.getPath(), img.isFile());
-                            fileStream.close();
-                        } catch (Exception e) {
-                            LOG.e(e);
+                        if (coverResolver != null) {
+                            try {
+                                String imgName = xpp.getAttributeValue(null, "href");
+                                meta.coverImage = coverResolver.resolve(imgName);
+                                LOG.d("reference-img", imgName, meta.coverImage != null);
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
                         }
-
                     }
 
                 }
+                if (eventType == XmlPullParser.END_TAG && xpp.getDepth() == 1
+                        && xpp.getName().equals(rootName)) closedRoot = true;
                 eventType = xpp.next();
             }
-            inputStream.close();
+            if (!closedRoot) meta.markExtractionFailed();
             meta.setYear(PubDate.published(dates));
+
         } catch (Exception e) {
             LOG.e(e);
+            meta.markExtractionFailed();
         }
 
         return meta;

@@ -79,7 +79,7 @@ public class BookmarksData {
             final AppBookmark next = iterator.next();
 
             if (AppState.get().isShowOnlyAvailabeBooks) {
-                if (!new File(next.getPath()).isFile()) {
+                if (!ExtUtils.isAvailableBookSource(next.getPath())) {
                     iterator.remove();
                     continue;
                 }

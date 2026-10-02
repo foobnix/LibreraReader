@@ -39,16 +39,14 @@ public class RtfExtract {
     public static FooterNote extract(String inputPath, final String outputDir, final String fileName) throws IOException {
 
         File file = new File(outputDir, fileName);
-        try {
-
-            final PrintWriter writer = new PrintWriter(file);
+        try (PrintWriter writer = new PrintWriter(file);
+             InputStream is = new FileInputStream(inputPath)) {
 
             writer.println("<!DOCTYPE html>");
             writer.println("<html>");
 
             writer.println("<body>");
 
-            InputStream is = new FileInputStream(inputPath);
             IRtfSource source = new RtfStreamSource(is);
             IRtfParser parser = new StandardRtfParser() {
                 @Override
@@ -61,9 +59,9 @@ public class RtfExtract {
                 }
             };
 
-            boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang);
+            boolean isEnableHypens = EpubProcessingSettings.isAutoHypens() && TxtUtils.isNotEmpty(EpubProcessingSettings.language());
             if (isEnableHypens) {
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
+                HypenUtils.applyLanguage(EpubProcessingSettings.language());
             }
 
             HypenUtils.resetTokenizer();
@@ -78,7 +76,7 @@ public class RtfExtract {
                 public void processExtractedText(String text) {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
-                    if (BookCSS.get().isEnableBBCode) {
+                    if (EpubProcessingSettings.isEnableBBCode()) {
                         htmlEncode = TxtUtils.convertBBCodeToHtml(htmlEncode);
                     }
                     if (isEnableHypens) {
@@ -224,9 +222,10 @@ public class RtfExtract {
             writer.println("</body></html>");
 
             writer.close();
+            if (writer.checkError()) throw new IOException("Cannot finish converted RTF");
 
         } catch (Exception e) {
-            LOG.e(e);
+            throw e instanceof IOException ? (IOException) e : new IOException("Cannot convert RTF", e);
         }
         return new FooterNote(file.getPath(), null);
     }
