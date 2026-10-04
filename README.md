@@ -23,7 +23,7 @@ and OPDS Catalogs
 
 [About LibreraX](https://github.com/foobnix/LibreraReader/blob/master/LIBRERAX.md)
 
-[LibreraX PRO testing for Android](https://github.com/foobnix/LibreraReader/releases/edit/9.6.39)
+[LibreraX PRO testing for Android](https://github.com/foobnix/LibreraReader/releases/)
 
 [LibreraX FREE testing for iOS, macOS](https://testflight.apple.com/join/XVU24NY9)
 
