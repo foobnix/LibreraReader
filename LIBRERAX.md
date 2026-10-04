@@ -81,11 +81,9 @@ LibreraX is the future of the Librera Reader app for Android and iOS, macOS.
 - Backup exports and imports the library, its metadata and the settings.
 - Light, dark and e-ink app themes, and the interface language.
 
-# Community
+## Links
 
 [LibreraX Community in Telegram](https://t.me/librera_reader_chat)
-
-# Download direct APK
 
 [LibreraX PRO testing for Android](https://github.com/foobnix/LibreraReader/releases/)
 
