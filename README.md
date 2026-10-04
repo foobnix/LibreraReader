@@ -21,7 +21,11 @@ and OPDS Catalogs
 
 ### Other Librera Applications
 
-[Librera X](LIBRERAX.md)
+[About LibreraX](https://github.com/foobnix/LibreraReader/blob/master/LIBRERAX.md)
+
+[LibreraX PRO testing for Android](https://github.com/foobnix/LibreraReader/releases/edit/9.6.39)
+
+[LibreraX FREE testing for iOS, macOS](https://testflight.apple.com/join/XVU24NY9)
 
 [Librera 1](https://librera1.com)
 
@@ -29,7 +33,7 @@ and OPDS Catalogs
 
 [FAQ](https://librera.mobi/faq/)
 
-[Telegram Chat](https://t.me/librera_reader_chat)
+[Librera Community in Telegram](https://t.me/librera_reader_chat)
 
 [Support on Patreon](https://www.patreon.com/librera)
 
