@@ -89,7 +89,10 @@ rm -f "$RELEASE_DIR/Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip"
 rm -rf "$SYMBOLS"
 # Native debug end
 
-rm -f "$BUILDS_DIR"/*.apk "$BUILDS_DIR"/*.aab "$BUILDS_DIR"/*-mapping.txt
+# The betas are not needed once the release of the same version is in its own folder
+for D in "$BUILDS_DIR" "$BUILDS_DIR/LibreraPro"; do
+  rm -f "$D"/*.apk "$D"/*.aab "$D"/*-mapping.txt
+done
 
 cd Builder
 ./remove_all.sh

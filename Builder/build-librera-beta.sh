@@ -91,4 +91,5 @@ done
 
 cd Builder
 ./remove_all.sh
-./install_all.sh
+# The betas are in a folder of their own now: LibreraPro inside librera_builds_dir
+./install_all.sh LibreraPro
