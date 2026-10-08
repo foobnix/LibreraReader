@@ -3,12 +3,14 @@ package org.ebookdroid.core.codec;
 import android.graphics.Bitmap;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.sys.TempHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 
 public abstract class AbstractCodecDocument implements CodecDocument {
 
@@ -17,6 +19,19 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     protected final long documentHandle;
 
     public String cacheFilename;
+    private final List<AutoCloseable> sourceLeases = new ArrayList<>();
+
+    /** Retain every source in a delegated open until the final document is recycled. */
+    public synchronized void retainSource(File file) {
+        sourceLeases.add(BookCacheLeases.acquire(file));
+    }
+
+    private synchronized void releaseSources() {
+        for (AutoCloseable lease : sourceLeases) {
+            try { lease.close(); } catch (Exception e) { LOG.e(e); }
+        }
+        sourceLeases.clear();
+    }
 
     protected AbstractCodecDocument(final CodecContext context, long documentHandle) {
         this.context = context;
@@ -70,9 +85,13 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         try {
             TempHolder.get().lastRecycledDocument = documentHandle;
             if (!isRecycled()) {
-                context.recycle();
-                context = null;
-                freeDocument();
+                try {
+                    context.recycle();
+                    context = null;
+                    freeDocument();
+                } finally {
+                    releaseSources();
+                }
             }
         } finally {
             TempHolder.lock.unlock();

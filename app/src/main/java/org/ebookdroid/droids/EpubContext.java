@@ -2,11 +2,14 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
 import com.foobnix.ext.EpubExtractor;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -18,32 +21,51 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
+import java.util.Locale;
 import java.util.Map;
 
 public class
 EpubContext extends PdfContext {
 
     private static final String TAG = "EpubContext";
+    private static final String PROCESSED_PREFIX = "processed-epub-";
     File cacheFile;
+
+    public static String processingSettingsKey() { return EpubProcessingSettings.key(); }
+
+    public static String prepareProcessingLanguage(String metadataLanguage) {
+        String language = AppState.get().isDefaultHyphenLanguage
+                ? AppState.get().defaultHyphenLanguageCode : metadataLanguage;
+        if (language == null || language.trim().isEmpty()) {
+            AppSP.get().hypenLang = null;
+            return null;
+        }
+        String code = language.trim().toLowerCase(Locale.US).split("[-_]", 2)[0];
+        if (code.length() == 3) {
+            for (String iso2 : Locale.getISOLanguages()) {
+                try {
+                    if (code.equals(Locale.forLanguageTag(iso2).getISO3Language())) {
+                        code = iso2;
+                        break;
+                    }
+                } catch (Exception ignored) { }
+            }
+        }
+        AppSP.get().hypenLang = code;
+        return code;
+    }
+
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        String language = null;
+        try { language = prepareProcessingLanguage(EpubExtractor.get().getBookMetaInformation(path).getLang()); }
+        catch (Exception failure) { LOG.e(failure); }
+        return EpubProcessingSettings.capture(language);
+    }
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         LOG.d(TAG, "getCacheFileName", fileNameOriginal, AppSP.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal +
-                AppState.get().isReferenceMode +
-                AppState.get().isShowPageNumbers +
-                AppState.get().isShowFooterNotesInText +
-                AppState.get().fullScreenMode +
-                //AppState.get().isAccurateFontSize +
-                BookCSS.get().documentStyle +
-                BookCSS.get().isAutoHypens +
-                AppState.get().isBionicMode +
-                AppSP.get().hypenLang +
-                AppState.get().enableImageScale +
-                AppState.get().textReplacementHash +
-                BookCSS.get().isEnableBBCode +
-                AppState.get().isExperimental)
-                .hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, PROCESSED_PREFIX + ConversionCache.key(fileNameOriginal + EpubProcessingSettings.key()) + ".epub");
         return cacheFile;
     }
 
@@ -52,7 +74,7 @@ EpubContext extends PdfContext {
         LOG.d(TAG, fileName);
 
         Map<String, String> notes = null;
-        if (AppState.get().isShowFooterNotesInText) {
+        if (EpubProcessingSettings.isShowFooterNotesInText()) {
             notes = getNotes(fileName);
             LOG.d("footer-notes-extracted");
         }
@@ -60,11 +82,38 @@ EpubContext extends PdfContext {
             cacheFile = getCacheFileName(fileName);
         }
 
-        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) && !cacheFile.isFile()) {
-            EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
+        ConversionCache.prepare(cacheFile);
+        AutoCloseable outputLease = null;
+        String bookPath = fileName;
+        if (EpubProcessingSettings.enabled()) {
+            synchronized (BookCacheLeases.class) {
+                if (cacheFile.isFile()) outputLease = BookCacheLeases.acquire(cacheFile);
+            }
+            if (outputLease == null) {
+                File temporary = null;
+                try {
+                    AutoCloseable writing;
+                    synchronized (BookCacheLeases.class) {
+                        temporary = BookCacheLeases.temporary(cacheFile.getParentFile(), "epub-process-");
+                        writing = BookCacheLeases.acquire(temporary);
+                    }
+                    try (AutoCloseable protectedOutput = writing) {
+                        EpubExtractor.proccessHypensApache(fileName, temporary.getPath(), notes);
+                        if (TempHolder.get().loadingCancelled.get())
+                            throw new java.io.IOException("EPUB processing cancelled");
+                        synchronized (BookCacheLeases.class) {
+                            if (!cacheFile.isFile()) BookCacheLeases.publish(temporary, cacheFile);
+                            outputLease = BookCacheLeases.acquire(cacheFile);
+                        }
+                    }
+                } catch (Exception failure) {
+                    LOG.e(failure);
+                } finally {
+                    if (temporary != null) temporary.delete();
+                }
+            }
+            if (outputLease != null) bookPath = cacheFile.getPath();
         }
-
-        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) ? cacheFile.getPath() : fileName;
 
         if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");
@@ -83,16 +132,21 @@ EpubContext extends PdfContext {
 
         }
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
+        final MuPdfDocument muPdfDocument;
+        try {
+            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
+        } finally {
+            if (outputLease != null) {
+                try { outputLease.close(); } catch (Exception failure) { LOG.e(failure); }
+            }
+        }
         muPdfDocument.cacheFilename = bookPath;
 
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
         }
 
-        Thread t = new Thread("@T openDocument") {
-            @Override
-            public void run() {
+        BookCacheLeases.startLeasedThread("@T openDocument", Thread.MIN_PRIORITY, () -> {
                 try {
 
                     if (muPdfDocument.getFootNotes() == null) {
@@ -104,11 +158,7 @@ EpubContext extends PdfContext {
                 } catch (Throwable e) {
                     LOG.e(e);
                 }
-            }
-
-        };
-        t.setPriority(Thread.MIN_PRIORITY);
-        t.start();
+        }, new File(fileName), cacheFile);
 
         return muPdfDocument;
     }
@@ -116,7 +166,7 @@ EpubContext extends PdfContext {
     public Map<String, String> getNotes(String fileName) {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
-        if (/** !LibreraBuildConfig.DEBUG && **/jsonFile.isFile()) {
+        if (/** !LibreraBuildConfig.DEBUG && **/JsonHelper.isValidMapFile(jsonFile)) {
             LOG.d("getNotes cache", fileName);
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
@@ -124,7 +174,7 @@ EpubContext extends PdfContext {
             notes = EpubExtractor.get().getFooterNotes(fileName);
             // a cancelled extraction is empty or partial, it must not stay in the cache
             if (!TempHolder.get().loadingCancelled.get()) {
-                JsonHelper.mapToFile(jsonFile, notes);
+                JsonHelper.mapToCacheFile(jsonFile, notes);
                 LOG.d("save notes to file", jsonFile);
             }
         }

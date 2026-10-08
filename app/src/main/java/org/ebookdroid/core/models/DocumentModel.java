@@ -2,7 +2,6 @@ package org.ebookdroid.core.models;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -227,7 +226,6 @@ public class DocumentModel extends ListenerProxy {
         int pagesCount = base.getDecodeService()
                              .getPageCount();
         if (pagesCount <= 0) {
-            CacheZipUtils.emptyAllCacheDirs();
             return null;
 
         }

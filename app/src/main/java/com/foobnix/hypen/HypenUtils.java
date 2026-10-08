@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -17,13 +18,16 @@ import java.util.StringTokenizer;
 public class HypenUtils {
 
     public static final String SHY = "&shy;";
-    public static Map<String, String> cache = new HashMap<>();
-    static boolean ignore = false;
-    static boolean ignore1 = false;
-    private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
+    public static Map<String, String> cache = new java.util.concurrent.ConcurrentHashMap<>();
+    private static final class TokenizerState {
+        boolean ignore, ignore1;
+        DefaultHyphenator hyphenator = new DefaultHyphenator(HyphenPattern.error);
+    }
+    private static final ThreadLocal<TokenizerState> state = ThreadLocal.withInitial(TokenizerState::new);
 
     public static void applyLanguage(String lang) {
         if (lang == null) {
+            state.get().hyphenator = new DefaultHyphenator(HyphenPattern.error);
             return;
         }
         try {
@@ -42,20 +46,19 @@ public class HypenUtils {
                     pattern = p;
                 }
             }
-            if (instance.pattern != pattern) {
-                instance = new DefaultHyphenator(pattern);
-                cache.clear();
+            if (state.get().hyphenator.pattern != pattern) {
+                state.get().hyphenator = new DefaultHyphenator(pattern);
             }
         } catch (Exception e) {
             LOG.e(e);
-            instance = new DefaultHyphenator(HyphenPattern.error);
+            state.get().hyphenator = new DefaultHyphenator(HyphenPattern.error);
         }
-        LOG.d("My-pattern-lang", instance.pattern.lang);
+        LOG.d("My-pattern-lang", state.get().hyphenator.pattern.lang);
 
     }
 
     public static String applyHypnes(String htmlEncode) {
-        List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
+        List<SimpleMeta> replacements = EpubProcessingSettings.replacements();
         return applyHypnesNewMy(htmlEncode, replacements);
     }
 
@@ -72,7 +75,7 @@ public class HypenUtils {
         String input = input2;
         final StringBuilder res = new StringBuilder();
 
-        if (AppState.get().isEnableTextReplacement && replacements != null) {
+        if (EpubProcessingSettings.isEnableTextReplacement() && replacements != null) {
             for (SimpleMeta it : replacements) {
                 if (TxtUtils.isNotEmpty(it.name)) {
                     if (it.name.startsWith("*")) {
@@ -85,6 +88,9 @@ public class HypenUtils {
             }
         }
 
+        final TokenizerState tokenizer = state.get();
+        final boolean bionicMode = EpubProcessingSettings.isBionicMode();
+        final boolean autoHyphens = EpubProcessingSettings.isAutoHypens();
         tokenize(input, new TokensListener() {
 
             @Override
@@ -96,11 +102,11 @@ public class HypenUtils {
             public void findText(String w) {
 
 
-                if (AppState.get().isBionicMode) {
+                if (bionicMode) {
                     res.append(TxtUtils.toBionicWord(w));
                     return;
                 }
-                if (!BookCSS.get().isAutoHypens) {
+                if (!autoHyphens) {
                     res.append(w);
                     return;
                 }
@@ -108,19 +114,20 @@ public class HypenUtils {
                 if (w.length() <= 3) {
                     res.append(w);
                 } else {
-                    String obj = cache.get(w);
+                    String cacheKey = tokenizer.hyphenator.pattern.lang + "|" + w;
+                    String obj = cache.get(cacheKey);
                     if (obj != null) {
                         res.append(obj);
                     } else {
                         try {
                             StringBuilder result = new StringBuilder();
-                            instance.hyphenate(w, result, SHY);
+                            tokenizer.hyphenator.hyphenate(w, result, SHY);
                             String join = result.toString();
                             res.append(join);
-                            cache.put(w, join);
+                            cache.put(cacheKey, join);
                         } catch (Exception e) {
                             res.append(w);
-                            cache.put(w, w);
+                            cache.put(cacheKey, w);
                         }
                     }
                 }
@@ -185,13 +192,13 @@ public class HypenUtils {
                 int find = w.indexOf("-");
                 String p1 = w.substring(0, find);
                 String p2 = w.substring(find + 1, w.length());
-                result = join(instance.hyphenate(p1), SHY) + "-" + join(instance.hyphenate(p2), SHY);
+                result = join(state.get().hyphenator.hyphenate(p1), SHY) + "-" + join(state.get().hyphenator.hyphenate(p2), SHY);
                 if (p2.contains("-")) {
                     result = result.replace("-" + SHY, "-");
                 }
 
             } else {
-                result = join(instance.hyphenate(w), SHY);
+                result = join(state.get().hyphenator.hyphenate(w), SHY);
             }
 
             if (startWithOther) {
@@ -224,35 +231,37 @@ public class HypenUtils {
     }
 
     public static void resetTokenizer() {
-        ignore = false;
-        ignore1 = false;
+        state.get().ignore = false;
+        state.get().ignore1 = false;
     }
 
 
     public static void tokenize(String in, TokensListener listener) {
 
+        TokenizerState tokenizer = state.get();
+        boolean experimental = EpubProcessingSettings.isExperimental();
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < in.length(); i++) {
             char ch = in.charAt(i);
 
             if (ch == '<') {
-                ignore1 = true;
+                tokenizer.ignore1 = true;
             }
             if (ch == '>') {
-                ignore1 = false;
+                tokenizer.ignore1 = false;
             }
             if (ch == '&') {
-                ignore = true;
+                tokenizer.ignore = true;
             }
             if (ch == ';') {
-                ignore = false;
+                tokenizer.ignore = false;
             }
 
             if (ch == '_') {
-                ignore = false;
+                tokenizer.ignore = false;
             }
 
-            if (ignore || ignore1) {
+            if (tokenizer.ignore || tokenizer.ignore1) {
                 if (res.length() > 0) {
                     listener.findText(res.toString());
                     res.setLength(0);
@@ -264,7 +273,7 @@ public class HypenUtils {
 
             if (Character.isLetter(ch)) {
                 res.append(ch);
-                if (AppState.get().isExperimental && (res.length() >= 30 && res.length() % 30 == 0)) {
+                if (experimental && (res.length() >= 30 && res.length() % 30 == 0)) {
                     res.append(" ");
                 }
             } else {

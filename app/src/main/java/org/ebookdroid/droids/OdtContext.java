@@ -2,10 +2,13 @@ package org.ebookdroid.droids;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.ConversionCache;
+import com.foobnix.ext.EpubProcessingSettings;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.BookCacheLeases;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -34,72 +37,54 @@ public class OdtContext extends PdfContext {
     File cacheFile;
     String fileNameCache;
 
+    @Override protected EpubProcessingSettings.Scope captureProcessingSettings(String path) {
+        return EpubProcessingSettings.capture();
+    }
+
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameCache = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isEnableBBCode + BookCSS.get().isCapitalLetter;
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameCache.hashCode() + "-0.html");
+        fileNameCache = fileNameOriginal + EpubProcessingSettings.key();
+        cacheFile = new File(new File(CacheZipUtils.CACHE_BOOK_DIR,
+                ConversionCache.key(fileNameCache) + "-odt-v2"), "book.html");
         return cacheFile;
     }
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-
-        try {
-            if (cacheFile.isFile()) {
-                LOG.d("OdtContext cache", cacheFile.getPath());
-                MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-                return muPdfDocument;
-            }
-
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
-
-            LocatedOpenDocumentFile documentFile = new LocatedOpenDocumentFile(fileName);
-
-            OpenDocument openDocument = documentFile.getAsDocument();
-
-            TextTranslator translator = new TextTranslator();
-
-            TranslationSettings settings = new TranslationSettings();
-
-            String root = CacheZipUtils.CACHE_BOOK_DIR.getPath();
-            settings.setCache(new DefaultFileCache(root));
-            settings.setImageStoreMode(ImageStoreMode.CACHE);
-
-            String tempFileName = fileNameCache.hashCode()+".tmp";
-
-            DocumentTranslatorUtil.Output output = DocumentTranslatorUtil.provideOutput(openDocument, settings, tempFileName + "-", ".html");
-
-
-
-            try {
-                translator.translate(openDocument, output.getWriter(), settings);
-            } finally {
-                output.getWriter().close();
-            }
-            documentFile.close();
-
-            LOG.d("OdtContext create", cacheFile.getPath());
-
-
-            try {
-                FileInputStream in = new FileInputStream(new File(root, tempFileName+"-0.html"));
-                OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
-
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null,null,0, new ArrayList<>());
-                out.close();
-                in.close();
-
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-
-        } catch (Exception e) {
-            LOG.e(e);
+        if (cacheFile == null) cacheFile = getCacheFileName(fileName);
+        try (BookCacheLeases.PublishedFile output = ConversionCache.buildDirectory(
+                cacheFile.getParentFile(), cacheFile.getName(), directory -> {
+                    LocatedOpenDocumentFile documentFile = new LocatedOpenDocumentFile(fileName);
+                    try {
+                        OpenDocument openDocument = documentFile.getAsDocument();
+                        TranslationSettings settings = new TranslationSettings();
+                        settings.setCache(new DefaultFileCache(directory.getPath()));
+                        settings.setImageStoreMode(ImageStoreMode.CACHE);
+                        DocumentTranslatorUtil.Output translated = DocumentTranslatorUtil.provideOutput(
+                                openDocument, settings, "source-", ".html");
+                        try {
+                            new TextTranslator().translate(openDocument, translated.getWriter(), settings);
+                        } finally {
+                            translated.getWriter().close();
+                        }
+                        try (FileInputStream in = new FileInputStream(new File(directory, "source-0.html"));
+                             OutputStream out = new BufferedOutputStream(
+                                     new FileOutputStream(new File(directory, cacheFile.getName())))) {
+                            HypenUtils.applyLanguage(EpubProcessingSettings.language());
+                            Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null,
+                                    out, null, null, 0, new ArrayList<>());
+                        }
+                    } finally {
+                        documentFile.close();
+                    }
+                })) {
+            MuPdfDocument document = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF,
+                    output.file.getPath(), password);
+            document.retainCacheSource(cacheFile.getParentFile());
+            return document;
+        } catch (Exception failure) {
+            throw new IllegalStateException("Cannot convert ODT book", failure);
         }
-
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
-        return muPdfDocument;
     }
 
 }
