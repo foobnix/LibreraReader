@@ -8,7 +8,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.sys.TempHolder;
 
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -51,20 +50,29 @@ EpubContext extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d(TAG, fileName);
 
-        Map<String, String> notes = null;
-        if (AppState.get().isShowFooterNotesInText) {
-            notes = getNotes(fileName);
-            LOG.d("footer-notes-extracted");
-        }
         if (cacheFile == null) {
             cacheFile = getCacheFileName(fileName);
         }
 
-        if ( /** LibreraBuildConfig.DEBUG || **/(AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) && !cacheFile.isFile()) {
+        final boolean process = /** LibreraBuildConfig.DEBUG || **/AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens ||
+                AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode;
+        final boolean cacheExists = cacheFile.isFile();
+        final boolean rewritten = EpubOpenPlan.isRewritten(process, cacheExists);
+
+        final File notesFile = FooterNotesCache.fileFor(cacheFile);
+        final boolean notesCached = notesFile.isFile();
+
+        Map<String, String> notes = null;
+        if (EpubOpenPlan.needsNotesBeforeOpen(AppState.get().isShowFooterNotesInText, process, cacheExists)) {
+            notes = loadNotes(fileName);
+            LOG.d("footer-notes-extracted");
+        }
+
+        if (process && !rewritten) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
 
-        String bookPath = (AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode) ? cacheFile.getPath() : fileName;
+        String bookPath = EpubOpenPlan.bookPath(process, cacheFile.isFile(), cacheFile.getPath(), fileName);
 
         if (AppsConfig.IS_LOG) {//accelerate open books
             File out = new File(cacheFile.getPath() + "-source");
@@ -88,6 +96,10 @@ EpubContext extends PdfContext {
 
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
+            if (!notesCached) {
+                // the map was just extracted: cache it, but let the book open first
+                FooterNotesCache.saveAsync(notesFile, notes);
+            }
         }
 
         Thread t = new Thread("@T openDocument") {
@@ -96,7 +108,13 @@ EpubContext extends PdfContext {
                 try {
 
                     if (muPdfDocument.getFootNotes() == null) {
-                        muPdfDocument.setFootNotes(getNotes(fileName));
+                        // a rewritten book carries the notes in its text; the map is read here,
+                        // for the note popups, and cached when it had to be extracted
+                        Map<String, String> background = loadNotes(fileName);
+                        muPdfDocument.setFootNotes(background);
+                        if (!notesCached) {
+                            FooterNotesCache.save(notesFile, background);
+                        }
                     }
                     muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
 
@@ -113,22 +131,15 @@ EpubContext extends PdfContext {
         return muPdfDocument;
     }
 
-    public Map<String, String> getNotes(String fileName) {
-        Map<String, String> notes = null;
-        final File jsonFile = new File(cacheFile + ".json");
+    /** The cached map when there is one, a fresh extraction when there is not. Writes nothing. */
+    public Map<String, String> loadNotes(String fileName) {
+        final File jsonFile = FooterNotesCache.fileFor(cacheFile);
         if (/** !LibreraBuildConfig.DEBUG && **/jsonFile.isFile()) {
             LOG.d("getNotes cache", fileName);
-            notes = JsonHelper.fileToMap(jsonFile);
-        } else {
-            LOG.d("getNotes extract", fileName);
-            notes = EpubExtractor.get().getFooterNotes(fileName);
-            // a cancelled extraction is empty or partial, it must not stay in the cache
-            if (!TempHolder.get().loadingCancelled.get()) {
-                JsonHelper.mapToFile(jsonFile, notes);
-                LOG.d("save notes to file", jsonFile);
-            }
+            return JsonHelper.fileToMap(jsonFile);
         }
-        return notes;
+        LOG.d("getNotes extract", fileName);
+        return EpubExtractor.get().getFooterNotes(fileName);
     }
 
 }
