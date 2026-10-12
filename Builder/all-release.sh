@@ -66,7 +66,13 @@ if [ -z "$VERSION_BASE" ] || [ -z "$VERSION_INDEX" ]; then
   exit 1
 fi
 VERSION=$VERSION_BASE.$VERSION_INDEX
-RELEASE_DIR="$BUILDS_DIR/$VERSION"
+# The version's folder in every release destination: librera_builds_dir, and librera_release_dir
+# when that one is set (the folder copyApks copies the APKs, bundles and mappings into as well)
+RELEASE_DIRS=("$BUILDS_DIR/$VERSION")
+RELEASE_DIR2=$(sed -n 's/^librera_release_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
+if [ -n "$RELEASE_DIR2" ]; then
+  RELEASE_DIRS+=("$RELEASE_DIR2/$VERSION")
+fi
 # llvm-objcopy of the NDK: librera_ndk_dir in the global ~/.gradle/gradle.properties
 NDK_DIR=$(sed -n 's/^librera_ndk_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
 if [ -z "$NDK_DIR" ]; then
@@ -83,9 +89,13 @@ for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
   mkdir -p "$SYMBOLS/$ABI"
   "$OBJCOPY" --only-keep-debug Builder/mupdf-$MUPDF/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg" || exit 1
 done
-mkdir -p "$RELEASE_DIR"
-rm -f "$RELEASE_DIR/Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip"
-(cd "$SYMBOLS" && zip -qr "$RELEASE_DIR/Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip" .)
+SYMBOLS_ZIP="Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip"
+for D in "${RELEASE_DIRS[@]}"; do
+  mkdir -p "$D"
+  rm -f "$D/$SYMBOLS_ZIP"
+  (cd "$SYMBOLS" && zip -qr "$D/$SYMBOLS_ZIP" .) || exit 1
+  echo "Symbols: $D/$SYMBOLS_ZIP"
+done
 rm -rf "$SYMBOLS"
 # Native debug end
 

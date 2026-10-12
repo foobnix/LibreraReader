@@ -398,9 +398,17 @@ tasks.register("copyApks") {
             delete fileTree("$betaDir/$betaFolder").include("${own}.apk", "${own}.aab")
         }
 
-        // The version's own folder is emptied only when a release is about to be copied into it
+        // Second destination of the releases, outside the cloud folders: librera_release_dir in
+        // the global ~/.gradle/gradle.properties. Unset, a release only goes to buildsDir.
+        def releaseDir = project.hasProperty("release") ? project.findProperty("librera_release_dir") : null
+
+        // A version's own folder is emptied only when a release is about to be copied into it,
+        // and only of the builds of the same MuPDF
         if (project.hasProperty("release")) {
             delete fileTree("$buildsDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
+            if (releaseDir) {
+                delete fileTree("$releaseDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
+            }
         }
 
         android.productFlavors.each { productFlavor ->
@@ -422,6 +430,9 @@ tasks.register("copyApks") {
 
                 if (project.hasProperty("release")) {
                     list.add("$buildsDir/$versionNumber")
+                    if (releaseDir) {
+                        list.add("$releaseDir/$versionNumber")
+                    }
                 }
                 list.each { dest ->
 

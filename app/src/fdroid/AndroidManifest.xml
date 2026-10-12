@@ -7,6 +7,16 @@
         tools:node="remove" />
 
     <application>
+        <!-- Android Auto is declared by this flavour alone: it is the one that is not published
+             on Google Play, whose Android Auto review the other flavours would have to pass.
+             res/xml/automotive_app_desc.xml, next to this manifest, holds <uses name="media"/>.
+             TTSService keeps its MediaBrowserService filter everywhere - without this meta-data
+             Android Auto does not list the app, while the media notification and the Bluetooth
+             and lock screen controls work as before. -->
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
         <!-- The same DjVu render service as the pro flavour: both are com.foobnix.pro.pdf.reader,
              and LibreraX cannot tell one from the other. See src/pro/AndroidManifest.xml. -->
         <service
