@@ -21,13 +21,11 @@ and OPDS Catalogs
 
 ### Other Librera Applications
 
-[About LibreraX](https://github.com/foobnix/LibreraReader/blob/master/LIBRERAX.md)
+[LibreraX](https://librera.app/librerax/)
 
-[LibreraX PRO testing for Android](https://github.com/foobnix/LibreraReader/releases/)
+[Librera1](https://librera.app/librera1/)
 
-[LibreraX FREE testing for iOS, macOS](https://testflight.apple.com/join/XVU24NY9)
-
-[Librera 1](https://librera1.com)
+[LibreraCommander](https://librera.app/librera-commander/)
 
 ### Links
 
