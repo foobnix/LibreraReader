@@ -48,7 +48,7 @@ public class AppProfile {
     public static final String DEVICE_PREFIX = "device.";
     public static File DOWNLOADS_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
+    public static final String DEVICE_MODEL = DEVICE_PREFIX + String.valueOf(Build.MODEL).replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
     public static final String APP_CSS_JSON = "app-CSS.json";
     public static final String APP_RECENT_JSON = "app-Recent.json";

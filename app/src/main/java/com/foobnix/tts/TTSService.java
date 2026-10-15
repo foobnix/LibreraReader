@@ -280,6 +280,11 @@ import java.util.List;
             }
             return false;
         }
+        if (TTSEngine.get()
+                     .hasUnknownLanguage()) {
+            openSettingsIntent(context);
+            return false;
+        }
         return true;
     }
 

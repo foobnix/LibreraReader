@@ -1,12 +1,15 @@
 package com.foobnix.tts;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.DisplayMetrics;
 
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 
@@ -14,95 +17,224 @@ import org.junit.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+/**
+ * Android initializes TextToSpeech asynchronously, so everything the engine is asked to do
+ * between construction and onInit has to wait for it.
+ */
 public class TtsInitializationTest {
-    @Test
-    public void pendingSpeechFollowsTheCurrentEngineLifecycle() throws Exception {
-        Context originalContext = LibreraApp.context;
-        // Android's JVM stubs omit device values needed by AppState's static initializer.
-        Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
-        java.lang.reflect.Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
-        unsafeField.setAccessible(true);
-        Object unsafe = unsafeField.get(null);
-        java.lang.reflect.Field model = android.os.Build.class.getField("MODEL");
-        Object modelBase = unsafeClass.getMethod("staticFieldBase", java.lang.reflect.Field.class).invoke(unsafe, model);
-        long modelOffset = (long) unsafeClass.getMethod("staticFieldOffset", java.lang.reflect.Field.class).invoke(unsafe, model);
-        java.lang.reflect.Method put = unsafeClass.getMethod("putObject", Object.class, long.class, Object.class);
-        Object originalModel = android.os.Build.MODEL;
-        put.invoke(unsafe, modelBase, modelOffset, "test");
-        java.io.File originalDownloads = com.foobnix.model.AppProfile.DOWNLOADS_DIR;
-        com.foobnix.model.AppProfile.DOWNLOADS_DIR = new java.io.File(".");
-        List<TextToSpeech.OnInitListener> callbacks = new ArrayList<>();
-        try (MockedStatic<Resources> resources = mockStatic(Resources.class)) {
-            Resources system = mock(Resources.class);
-            DisplayMetrics metrics = new DisplayMetrics();
-            metrics.density = metrics.scaledDensity = 1;
-            metrics.widthPixels = 1080;
-            metrics.heightPixels = 2160;
-            when(system.getDisplayMetrics()).thenReturn(metrics);
-            when(system.getConfiguration()).thenReturn(new android.content.res.Configuration());
-            resources.when(Resources::getSystem).thenReturn(system);
-        try (MockedStatic<LOG> logs = mockStatic(LOG.class);
-             MockedStatic<TTSEngine> singleton = mockStatic(TTSEngine.class);
-             MockedStatic<AppState> state = mockStatic(AppState.class);
-             MockedStatic<AppSP> preferences = mockStatic(AppSP.class);
-             MockedConstruction<TextToSpeech> engines = mockConstruction(TextToSpeech.class,
-                     (engine, context) -> callbacks.add((TextToSpeech.OnInitListener) context.arguments().get(1)))) {
-            LibreraApp.context = mock(Context.class);
-            AppState settings = mock(AppState.class);
-            settings.allowOtherMusic = true;
-            settings.ttsSpeed = 1;
-            state.when(AppState::get).thenReturn(settings);
-            preferences.when(AppSP::get).thenReturn(mock(AppSP.class));
-            TTSEngine engine = spy(new TTSEngine());
-            doReturn(false).when(engine).isMp3();
-            singleton.when(TTSEngine::get).thenReturn(engine);
-            engine.listener = status -> {};
 
-            engine.getTTS(); // The popup creates the engine before Play.
-            engine.speek("first");
-            engine.speek("latest");
-            TextToSpeech first = engines.constructed().get(0);
-            verify(first, never()).speak(anyString(), anyInt(), any());
+    @Test public void theLatestRequestIsKeptUntilInitializationSucceeds() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS(); // The popup creates the engine before Play is pressed.
+            tts.speek("first");
+            tts.speek("latest");
+
+            TextToSpeech engine = engines.constructed().get(0);
+            verify(engine, never()).speak(anyString(), anyInt(), any());
+
             callbacks.get(0).onInit(TextToSpeech.SUCCESS);
-            verify(first).speak(eq("latest"), eq(TextToSpeech.QUEUE_FLUSH), any());
+            verify(engine).speak(eq("latest"), eq(TextToSpeech.QUEUE_FLUSH), any());
+        });
+    }
 
-            engine.shutdown();
-            engine.speek("cancelled");
-            TextToSpeech second = engines.constructed().get(1);
-            engine.stop();
+    @Test public void stopDropsTheQueuedRequest() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS();
+            tts.speek("cancelled");
+            tts.stop();
+
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+            verify(engines.constructed().get(0), never()).speak(anyString(), anyInt(), any());
+        });
+    }
+
+    @Test public void aRestartedEngineIgnoresTheCallbackOfTheOldOne() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS();
+            tts.shutdown();
+            tts.speek("after restart");
+            assertEquals(2, engines.constructed().size());
+            TextToSpeech restarted = engines.constructed().get(1);
+
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+            assertFalse(tts.isInitialized());
+            verify(restarted, never()).speak(anyString(), anyInt(), any());
+
             callbacks.get(1).onInit(TextToSpeech.SUCCESS);
-            verify(second, never()).speak(anyString(), anyInt(), any());
+            verify(restarted).speak(eq("after restart"), eq(TextToSpeech.QUEUE_FLUSH), any());
+        });
+    }
 
-            engine.shutdown();
-            engine.speek("failed");
-            callbacks.get(2).onInit(TextToSpeech.ERROR);
-            engine.speek("retry");
-            assertEquals(4, engines.constructed().size());
-            verify(engines.constructed().get(2)).shutdown();
-            callbacks.get(2).onInit(TextToSpeech.SUCCESS); // Obsolete engine must not release the new request.
-            TextToSpeech fourth = engines.constructed().get(3);
-            verify(fourth, never()).speak(anyString(), anyInt(), any());
-            callbacks.get(3).onInit(TextToSpeech.SUCCESS);
-            verify(fourth).speak(eq("retry"), eq(TextToSpeech.QUEUE_FLUSH), any());
+    @Test public void anEngineThatFailedToInitializeIsReplacedOnTheNextRequest() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS();
+            tts.speek("failed");
+            callbacks.get(0).onInit(TextToSpeech.ERROR);
 
-            engine.shutdown();
-            engine.getTTS(status -> { throw new IllegalStateException("UI callback"); });
-            engine.speek("survives callback failure");
-            assertThrows(IllegalStateException.class, () -> callbacks.get(4).onInit(TextToSpeech.SUCCESS));
-            verify(engines.constructed().get(4)).speak(eq("survives callback failure"), anyInt(), any());
-            engine.shutdown();
-        }
+            tts.speek("retry");
+            assertEquals(2, engines.constructed().size());
+            verify(engines.constructed().get(0)).shutdown();
+
+            TextToSpeech replacement = engines.constructed().get(1);
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS); // The replaced engine owns nothing now.
+            verify(replacement, never()).speak(anyString(), anyInt(), any());
+
+            callbacks.get(1).onInit(TextToSpeech.SUCCESS);
+            verify(replacement).speak(eq("retry"), eq(TextToSpeech.QUEUE_FLUSH), any());
+        });
+    }
+
+    @Test public void queuedSpeechSurvivesAFailingInitListener() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS(status -> {
+                throw new IllegalStateException("UI callback");
+            });
+            tts.speek("survives callback failure");
+
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+            verify(engines.constructed().get(0)).speak(eq("survives callback failure"), anyInt(), any());
+        });
+    }
+
+    @Test public void aListenerArrivingWhileTheEngineConnectsIsStillNotified() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            tts.getTTS(); // Playback created the engine.
+            AtomicInteger reported = new AtomicInteger(Integer.MIN_VALUE);
+            tts.getTTS(reported::set); // The settings popup opens while it connects.
+            assertEquals(1, engines.constructed().size());
+
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+            assertEquals(TextToSpeech.SUCCESS, reported.get());
+        });
+    }
+
+    @Test public void aLanguageIsOnlyJudgedOnceTheEngineIsInitialized() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            TextToSpeech engine = tts.getTTS();
+            when(engine.getLanguage()).thenReturn(new Locale("eng", "USA", ""));
+            when(engine.isLanguageAvailable(any())).thenReturn(TextToSpeech.LANG_NOT_SUPPORTED);
+
+            assertFalse(tts.isInitialized());
+            assertFalse("still connecting - the language is not known yet", tts.hasUnknownLanguage());
+
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+            assertTrue(tts.isInitialized());
+            assertTrue("the engine cannot speak the language it reports", tts.hasUnknownLanguage());
+        });
+    }
+
+    @Test public void anAvailableLanguageNeedsNoSettings() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            TextToSpeech engine = tts.getTTS();
+            when(engine.getLanguage()).thenReturn(new Locale("deu", "DEU", ""));
+            when(engine.isLanguageAvailable(any())).thenReturn(TextToSpeech.LANG_COUNTRY_AVAILABLE);
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+
+            assertFalse(tts.hasUnknownLanguage());
+        });
+    }
+
+    @Test public void aLanguageTheEngineCannotSpeakReadsAsNoLanguage() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            TextToSpeech engine = tts.getTTS();
+            when(engine.getLanguage()).thenReturn(new Locale("eng", "USA", ""));
+            when(engine.isLanguageAvailable(any())).thenReturn(TextToSpeech.LANG_MISSING_DATA);
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+
+            assertEquals(TTSEngine.UNKNOWN, tts.getCurrentLang());
+        });
+    }
+
+    @Test public void anEngineWithoutAnyLanguageNeedsSettings() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            TextToSpeech engine = tts.getTTS();
+            when(engine.getLanguage()).thenReturn(new Locale("", "", ""));
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+
+            assertTrue(tts.hasUnknownLanguage());
+            verify(engine, never()).isLanguageAvailable(any());
+        });
+    }
+
+    private interface Scenario {
+        void run(TTSEngine tts, List<OnInitListener> callbacks, MockedConstruction<TextToSpeech> engines);
+    }
+
+    /**
+     * Runs the scenario against a TTSEngine whose TextToSpeech instances are mocks, collecting
+     * the OnInitListener each of them was constructed with so the test can decide when - and
+     * whether - initialization completes.
+     */
+    private void withTtsEngine(Scenario scenario) {
+        final Context originalContext = LibreraApp.context;
+        final File originalDownloads = AppProfile.DOWNLOADS_DIR;
+        // Nothing of the device is behind Android's JVM stubs, but the settings classes
+        // loaded below read it while initializing.
+        AppProfile.DOWNLOADS_DIR = new File(".");
+        final List<OnInitListener> callbacks = new ArrayList<OnInitListener>();
+        final Resources system = systemResources();
+        try (MockedStatic<Resources> resources = mockStatic(Resources.class)) {
+            resources.when(Resources::getSystem).thenReturn(system);
+            try (MockedStatic<LOG> logs = mockStatic(LOG.class);
+                 MockedStatic<TTSEngine> singleton = mockStatic(TTSEngine.class);
+                 MockedStatic<AppState> state = mockStatic(AppState.class);
+                 MockedStatic<AppSP> preferences = mockStatic(AppSP.class);
+                 MockedConstruction<TextToSpeech> engines = mockConstruction(TextToSpeech.class,
+                         (engine, context) -> callbacks.add((OnInitListener) context.arguments().get(1)))) {
+                LibreraApp.context = mock(Context.class);
+                AppState settings = mock(AppState.class);
+                settings.allowOtherMusic = true;
+                settings.ttsSpeed = 1;
+                state.when(AppState::get).thenReturn(settings);
+                preferences.when(AppSP::get).thenReturn(mock(AppSP.class));
+
+                TTSEngine tts = spy(new TTSEngine());
+                doReturn(false).when(tts).isMp3();
+                singleton.when(TTSEngine::get).thenReturn(tts);
+                tts.listener = status -> {
+                };
+                try {
+                    scenario.run(tts, callbacks, engines);
+                } finally {
+                    tts.shutdown();
+                }
+            }
         } finally {
             LibreraApp.context = originalContext;
-            put.invoke(unsafe, modelBase, modelOffset, originalModel);
-            com.foobnix.model.AppProfile.DOWNLOADS_DIR = originalDownloads;
+            AppProfile.DOWNLOADS_DIR = originalDownloads;
         }
+    }
+
+    private Resources systemResources() {
+        Resources system = mock(Resources.class);
+        DisplayMetrics metrics = new DisplayMetrics();
+        metrics.density = metrics.scaledDensity = 1;
+        metrics.widthPixels = 1080;
+        metrics.heightPixels = 2160;
+        when(system.getDisplayMetrics()).thenReturn(metrics);
+        when(system.getConfiguration()).thenReturn(new Configuration());
+        return system;
     }
 }
