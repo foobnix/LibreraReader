@@ -5,10 +5,12 @@ import android.os.ParcelFileDescriptor;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.AbstractCodecDocument;
+import org.ebookdroid.core.codec.BookmarkText;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -241,16 +243,6 @@ public class PdfiumDocument extends AbstractCodecDocument {
         throw new DocSearchNotSupported();
     }
 
-    @Override
-    public Map<String, String> getFootNotes() {
-        return null;
-    }
-
-    @Override
-    public List<String> getMediaAttachments() {
-        return null;
-    }
-
     // ---------------------------------------------------------------- metadata
 
     private Meta meta() {
@@ -321,14 +313,6 @@ public class PdfiumDocument extends AbstractCodecDocument {
 
     // ---------------------------------------------------------------- bookmarks
 
-    /** The page text saved with a bookmark, as MuPDF's own bookmark text is sized. */
-    private static final int BOOKMARK_TEXT_SIZE = 128;
-
-    /** The part of it that is searched; short enough to still fit on one page after re-layout. */
-    private static final int BOOKMARK_NEEDLE_SIZE = 64;
-
-    private static final int BOOKMARK_NEEDLE_MIN = 8;
-
     @Override
     public String getBookmarkText(final int page) {
         TempHolder.lock.lock();
@@ -336,7 +320,7 @@ public class PdfiumDocument extends AbstractCodecDocument {
             if (isRecycled()) {
                 return null;
             }
-            return collapse(pageText(page), BOOKMARK_TEXT_SIZE);
+            return BookmarkText.of(pageText(page));
         } catch (Throwable e) {
             LOG.e(e);
             return null;
@@ -346,35 +330,33 @@ public class PdfiumDocument extends AbstractCodecDocument {
     }
 
     /**
-     * The page a bookmark was made on, looked for around the page its percentage points at:
-     * <code>page</code>, <code>page + 1</code>, <code>page - 1</code> and so on. The bookmark's
-     * own text wins; the page text is only used while that is not found - the same order MuPDF's
-     * native search uses.
+     * The page a bookmark was made on, looked for around the page its percentage points at. The
+     * bookmark's own text wins; the page text is only used while that is not found - the order
+     * {@link BookmarkText} documents and MuPDF's native search uses.
      *
      * @return the 1-based page, or -1
      */
     @Override
     public int findBookmarkPage(final int page, final String text, final String pageText) {
-        final String needle1 = needle(text);
-        final String needle2 = needle(pageText);
+        final String needle1 = BookmarkText.needle(text);
+        final String needle2 = BookmarkText.needle(pageText);
         if (needle1 == null && needle2 == null) {
             return -1;
         }
-        final int range = 10;
         final int count = getPageCount();
         int found2 = -1;
 
         TempHolder.lock.lock();
         try {
-            for (int i = 0; i <= 2 * range && (needle1 != null || found2 == -1); i++) {
+            for (int i = 0; i <= 2 * BookmarkText.RANGE && (needle1 != null || found2 == -1); i++) {
                 if (isRecycled()) {
                     return -1;
                 }
-                final int candidate = i % 2 != 0 ? page + (i + 1) / 2 : page - i / 2;
+                final int candidate = BookmarkText.candidate(page, i);
                 if (candidate < 1 || candidate > count) {
                     continue;
                 }
-                final String haystack = collapse(pageText(candidate), 0);
+                final String haystack = BookmarkText.haystack(pageText(candidate));
                 if (haystack == null) {
                     continue;
                 }
@@ -428,47 +410,6 @@ public class PdfiumDocument extends AbstractCodecDocument {
         }
     }
 
-    /** The searched part of a bookmark's text, or null when it is too short to tell pages apart. */
-    private static String needle(final String text) {
-        final String needle = collapse(text, BOOKMARK_NEEDLE_SIZE);
-        return needle != null && needle.length() >= BOOKMARK_NEEDLE_MIN ? needle : null;
-    }
-
-    /**
-     * Collapses runs of whitespace to one space, as MuPDF's <code>bookmark_text</code> does, so
-     * the bookmarks of a document read by either engine match each other.
-     *
-     * @param limit the longest result, in characters; a word cut by it is dropped. 0 is no limit.
-     */
-    private static String collapse(final String src, final int limit) {
-        if (src == null) {
-            return null;
-        }
-        final StringBuilder out = new StringBuilder(limit > 0 ? limit : Math.min(src.length(), 4096));
-        boolean space = false;
-        int lastSpace = -1;
-        for (int i = 0; i < src.length(); i++) {
-            final char c = src.charAt(i);
-            if (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == 0) {
-                space = out.length() > 0;
-                continue;
-            }
-            if (limit > 0 && out.length() + (space ? 1 : 0) + 1 >= limit) {
-                if (!space && lastSpace > 0) {
-                    out.setLength(lastSpace);
-                }
-                break;
-            }
-            if (space) {
-                lastSpace = out.length();
-                out.append(' ');
-                space = false;
-            }
-            out.append(c);
-        }
-        return out.toString();
-    }
-
     // ---------------------------------------------------------------- annotations
 
     /**
@@ -477,6 +418,12 @@ public class PdfiumDocument extends AbstractCodecDocument {
      * @return the document, or <code>null</code> when MuPDF cannot open the file either
      */
     CodecDocument annotations() {
+        if (!Engines.IS_MUPDF) {
+            // There is no MuPDF in this build to own them. PDFium draws the annotations a
+            // document already carries, so the pages look right; listing one or writing one is
+            // what cannot be done, and the callers already treat null as "not available".
+            return null;
+        }
         CodecDocument local = annotDocument;
         if (local != null) {
             return local;

@@ -604,6 +604,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pdfEngineRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
@@ -625,14 +626,28 @@
                     android:text="MuPDF" />
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/epubEngineRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
-                android:layout_marginRight="5dip"
-                android:layout_marginBottom="4dip"
-                android:text="@string/msg_pdf_engine"
-                android:textSize="11sp" />
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="135dp"
+                    android:text="@string/epub_engine"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/epubEngine"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="MuPDF" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

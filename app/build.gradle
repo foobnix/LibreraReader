@@ -130,6 +130,50 @@ android {
             ]
             versionNameSuffix = '-fdroid'
         }
+        /**
+         * fdroid and pro, built without MuPDF: a PDF is rendered by PDFium, a reflowable book is
+         * laid out by foliate-js in a WebView and a comic archive has its images decoded straight
+         * to bitmaps. They load libLibreraDocs.so - DjVu, the .doc and .mobi converters and the
+         * bitmap scaler, built by Builder/build-nomupdf.sh - in place of the 23 MB libMuPDF.so.
+         *
+         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "JS" suffix,
+         * and AppsConfig.IS_FDROID the "fdroid" prefix. Each carries the application ID of the
+         * flavour it is built from, so it replaces that one on a device rather than sitting
+         * beside it.
+         */
+        fdroidJS {
+            minSdk = libs.versions.minSdk.get().toInteger()
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
+            manifestPlaceholders = [
+                    appName      : "Librera FD JS",
+                    appIcon      : "@mipmap/icon_pdf_pro",
+                    appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appGdriveKey : "",
+                    admobAppId   : "",
+                    admobBannerId: "",
+                    admobFullId  : "",
+                    admobRewardId  : "",
+                    appSafeMode  : "true"
+            ]
+            versionNameSuffix = '-fdroid-js'
+        }
+        proJS {
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
+            manifestPlaceholders = [
+                    appName      : "Librera JS",
+                    appIcon      : "@mipmap/icon_pdf_pro",
+                    appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appGdriveKey : pro_appGdriveKey,
+                    admobAppId   : "",
+                    admobBannerId: "",
+                    admobFullId  : "",
+                    admobRewardId  : "",
+                    appSafeMode  : "false"
+            ]
+            versionNameSuffix = '-js'
+        }
         librera {
             dimension = "version"
             applicationId = "com.foobnix.pdf.reader"
@@ -239,7 +283,29 @@ android {
     }
 
     sourceSets {
-        fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
+        // The hand-written stand-ins for Google Play services, the Drive API client and junrar,
+        // shared by every flavour that is built without those libraries (they come with
+        // :libDepPro, which those flavours do not depend on). src/<flavour>/java keeps only what
+        // is really that one flavour's, which is its LibreraBuildConfig.
+        fdroid {
+            java.srcDirs += 'src/noGms/java'
+            assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
+        }
+        // The MuPDF-free builds: libLibreraDocs.so in place of libMuPDF.so. src/main/jniLibs is
+        // part of every variant, so the library that is not wanted is dropped at packaging time
+        // instead - see the jniLibs excludes further down.
+        fdroidJS {
+            java.srcDirs += 'src/noGms/java'
+            jniLibs.srcDirs += 'src/noMupdf/jniLibs'
+            // Everything but the flavour's own LibreraBuildConfig is the F-Droid flavour's
+            manifest.srcFile 'src/fdroid/AndroidManifest.xml'
+            res.srcDirs += 'src/fdroid/res'
+            assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
+        }
+        proJS {
+            jniLibs.srcDirs += 'src/noMupdf/jniLibs'
+            manifest.srcFile 'src/pro/AndroidManifest.xml'
+        }
         // code for both JVM and device tests, like the old footnote code to compare with
         test.java.srcDirs += 'src/sharedTest/java'
         androidTest.java.srcDirs += 'src/sharedTest/java'
@@ -268,6 +334,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     proImplementation project(':libPro')
     fdroidImplementation project(':libPro')
+    proJSImplementation project(':libPro')
+    fdroidJSImplementation project(':libPro')
     implementation project(':libReflow')
 
     //implementation project(":shared")
@@ -340,6 +408,9 @@ dependencies {
     pdf_classicImplementation dep_pro
     epub_readerImplementation dep_pro
     proImplementation dep_pro
+    // fdroidJS, like fdroid, is built without Google Play services: the stand-ins for them live
+    // in src/noGms/java.
+    proJSImplementation dep_pro
 
 /** Testing **/
     testImplementation(libs.junit)
@@ -354,6 +425,16 @@ dependencies {
 // AGP 9 removed applicationVariants: per-ABI version codes and the APK names now come
 // from the Variant API, with the same values as before.
 androidComponents {
+    // The MuPDF-free flavours take libLibreraDocs.so from src/noMupdf/jniLibs and leave
+    // libMuPDF.so behind. src/main/jniLibs is part of every variant and is where the MuPDF build
+    // writes, so the library is dropped here rather than kept out of the source set.
+    onVariants(selector().withFlavor("version", "fdroidJS")) { variant ->
+        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+    }
+    onVariants(selector().withFlavor("version", "proJS")) { variant ->
+        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+    }
+
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
     onVariants(selector().all()) { variant ->
         def flavor = variant.flavorName ? variant.flavorName.capitalize() : ""
@@ -416,7 +497,9 @@ tasks.register("copyApks") {
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
-                def appName = "Librera ${flavor.capitalize()}-${flavor == 'fdroid' ? FDroidVersionNumber : versionNumber}${mupdfSuffix}"
+                // Both F-Droid flavours carry the F-Droid version; a build of either of them sets
+                // versionNumber to it anyway, since the task name holds "Fdroid".
+                def appName = "Librera ${flavor.capitalize()}-${flavor.startsWith('fdroid') ? FDroidVersionNumber : versionNumber}${mupdfSuffix}"
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 

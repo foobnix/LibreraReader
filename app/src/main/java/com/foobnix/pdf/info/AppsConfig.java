@@ -40,9 +40,13 @@ public class AppsConfig {
      * which lightens the bar by whatever is let through.
      */
     public static final int APP_TRANSPARENCY = 240;
+    /**
+     * The flavours that are not published on Google Play and are built without Google Play
+     * services: the F-Droid one and the MuPDF-free build of it, fdroidJS.
+     */
     public static final boolean
             IS_FDROID =
-            LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
+            LibreraBuildConfig.FLAVOR.startsWith("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
             "0E97B0A7D10574E204947584CD0F713C"
 
@@ -83,9 +87,14 @@ public class AppsConfig {
 
 
     static {
-        System.loadLibrary("MuPDF");
-        AppsConfig.MUPDF_FZ_VERSION = MuPdfDocument.getFzVersion();
-        Log.d("Librera", "MUPDF_VERSION " + MUPDF_FZ_VERSION);
+        // libMuPDF.so, or libLibreraDocs.so in a build made without MuPDF - which leaves
+        // MUPDF_FZ_VERSION empty, as every reader of it expects (they only ever ask whether it is
+        // MuPDF 1.11).
+        System.loadLibrary(Engines.NATIVE_LIBRARY);
+        if (Engines.IS_MUPDF) {
+            AppsConfig.MUPDF_FZ_VERSION = MuPdfDocument.getFzVersion();
+        }
+        Log.d("Librera", "lib" + Engines.NATIVE_LIBRARY + ".so MUPDF_VERSION " + MUPDF_FZ_VERSION);
     }
 
     public static boolean isPDF_DRAW_ENABLE() {

@@ -8,6 +8,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -42,8 +43,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
     int w, h;
     BookType bookType;
     private boolean isEpub = false;
-    private volatile Map<String, String> footNotes;
-    private volatile List<String> mediaAttachment;
     private int pagesCount = -1;
     private String fname;
 
@@ -99,6 +98,13 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private native static String setMetaData(long docHandle, final String key, String value);
 
     private static long openFile(final int format, String fname, final String pwd, String css) {
+        if (!Engines.IS_MUPDF) {
+            // A flavour built without MuPDF, reached through a format whose context has no other
+            // engine to offer - see Engines. The reader reports the file as one it cannot open,
+            // which is the truth, instead of dying on a missing native symbol.
+            throw new IllegalStateException("MuPDF is not in this build (lib"
+                    + Engines.NATIVE_LIBRARY + ".so): " + fname);
+        }
         TempHolder.lock.lock();
         try {
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
@@ -220,14 +226,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
             out.append(pageHTML);
         }
         return out.toString();
-    }
-
-    @Override public Map<String, String> getFootNotes() {
-        return footNotes;
-    }
-
-    public void setFootNotes(Map<String, String> footNotes) {
-        this.footNotes = footNotes;
     }
 
     @Override public synchronized List<OutlineLink> getOutline() {
@@ -473,13 +471,5 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     private native void deleteAnnotationInternal(long docHandle, long pageHandle, int annot_index);
-
-    public void setMediaAttachment(List<String> mediaAttachment) {
-        this.mediaAttachment = mediaAttachment;
-    }
-
-    @Override public List<String> getMediaAttachments() {
-        return mediaAttachment;
-    }
 
 }

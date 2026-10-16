@@ -134,6 +134,24 @@ public class CacheZipUtils {
     }
 
     @NonNull
+    /**
+     * Drops every cached table of contents. The outlines are serialized per book with their pages
+     * already resolved, and those page numbers came from whichever engine laid the book out - so
+     * they have to go when the engine changes, or the contents panel jumps to the wrong pages.
+     */
+    public static void removeOutlineCache() {
+        final File[] files = CACHE_TEMP == null ? null : CACHE_TEMP.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (File file : files) {
+            if (file != null && file.getName().endsWith("-outline")) {
+                LOG.d("JavaCache drop", file.getName());
+                file.delete();
+            }
+        }
+    }
+
     private static String makeKey(File file) {
         if (file == null) {
             return "no-file-outline";

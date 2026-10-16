@@ -13,6 +13,7 @@ import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -91,7 +92,11 @@ EpubContext extends PdfContext {
 
         }
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
+        final AbstractCodecDocument muPdfDocument = openReflowable(bookPath, password);
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
+        }
         muPdfDocument.cacheFilename = bookPath;
 
         if (notes != null) {

@@ -6,8 +6,8 @@ import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.HtmlExtractor;
 import com.foobnix.hypen.HypenUtils;
 
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.util.Map;
@@ -17,12 +17,17 @@ public class HtmlContext extends PdfContext {
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
         try {
-            return openDocumentInnerForce(fileName, password, false);
+            final CodecDocument document = openDocumentInnerForce(fileName, password, false);
+            if (document != null) {
+                return document;
+            }
+            // No engine could lay the page out as it is; the cleaned-up version is its second
+            // chance, which is what a throw from the engine has always been answered with
+            LOG.d("HtmlContext the page did not open, cleaning it up", fileName);
         } catch (Exception e1) {
             LOG.e(e1);
-            return openDocumentInnerForce(fileName, password, true);
         }
-
+        return openDocumentInnerForce(fileName, password, true);
     }
 
     public CodecDocument openDocumentInnerForce(String fileName, String password, boolean forse) {
@@ -46,9 +51,13 @@ public class HtmlContext extends PdfContext {
             LOG.e(e);
         }
 
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-        muPdfDocument.setFootNotes(notes);
-        return muPdfDocument;
+        AbstractCodecDocument document = openReflowableHtml(fileName, password);
+        if (document == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
+        }
+        document.setFootNotes(notes);
+        return document;
     }
 
 }

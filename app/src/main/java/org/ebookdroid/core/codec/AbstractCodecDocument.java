@@ -60,8 +60,29 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return null;
     }
 
+    /**
+     * The footnotes and the media attachments are not read by the engine: the format contexts
+     * extract them from the archive (see {@link org.ebookdroid.droids.EpubContext}) and hand them
+     * to whichever document they just opened, so both engines take them here.
+     */
+    protected volatile Map<String, String> footNotes;
+
+    protected volatile List<String> mediaAttachment;
+
     @Override public Map<String, String> getFootNotes() {
-        return null;
+        return footNotes;
+    }
+
+    public void setFootNotes(final Map<String, String> footNotes) {
+        this.footNotes = footNotes;
+    }
+
+    @Override public List<String> getMediaAttachments() {
+        return mediaAttachment;
+    }
+
+    public void setMediaAttachment(final List<String> mediaAttachment) {
+        this.mediaAttachment = mediaAttachment;
     }
 
     @Override public final void recycle() {

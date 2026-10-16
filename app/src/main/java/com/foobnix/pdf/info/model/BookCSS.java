@@ -587,24 +587,43 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+        return generatedCss(path, true);
+    }
+
+    /**
+     * The stylesheet handed to a rendering engine: the base stylesheet asset
+     * ({@link #userStyleCss}, or the user's edited copy of it) followed by the rules generated from
+     * the reading settings - margins, fonts, line height, indent, alignment, colours, custom CSS.
+     *
+     * @param includeBaseStylesheet whether to prepend the base asset. MuPDF needs it: it ships no
+     *                              UA stylesheet of its own, so that asset is what gives every
+     *                              element a <code>display</code>. A browser already has all of
+     *                              that, and the asset's <code>display:block !important</code>
+     *                              resets fight its layout, so the foliate-js engine leaves it out
+     *                              unless {@link com.foobnix.model.AppState#epubFoliateBaseCss}
+     *                              asks for it.
+     */
+    public String generatedCss(String path, boolean includeBaseStylesheet) {
 
         lineHeight12 = Math.max(10, lineHeight12);
 
         StringBuilder builder = new StringBuilder();
 
-        File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
-        if (!cssFile.exists()) {
-            try {
-                String css = IO.readStringFromAsset("app-Librera.css");
-                LOG.d("BookCSS-from asset");
+        if (includeBaseStylesheet) {
+            File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
+            if (!cssFile.exists()) {
+                try {
+                    String css = IO.readStringFromAsset("app-Librera.css");
+                    LOG.d("BookCSS-from asset");
+                    builder.append(css);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            } else {
+                String css = IO.readString(cssFile);
+                LOG.d("BookCSS-from file", cssFile);
                 builder.append(css);
-            } catch (Exception e) {
-                LOG.e(e);
             }
-        } else {
-            String css = IO.readString(cssFile);
-            LOG.d("BookCSS-from file", cssFile);
-            builder.append(css);
         }
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());

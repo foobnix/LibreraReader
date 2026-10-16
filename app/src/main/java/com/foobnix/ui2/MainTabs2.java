@@ -43,6 +43,7 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
+import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
@@ -82,7 +83,6 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -180,7 +180,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleAuth.isAuthorized(a) && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
@@ -276,22 +276,15 @@ public class MainTabs2 extends AdsFragmentActivity {
                 fr.displayAnyPath(pathSAF);
             }
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener(googleAccount -> {
-                AppSP.get().isEnableSync = true;
+            // GFile turns the sync on, rebuilds the Drive client, tells the screens showing the
+            // account to redraw and starts the first sync; what is left is this screen's own
+            // chrome and the word to the user.
+            if (GFile.onSignInResult(MainTabs2.this, data)) {
                 Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                EventBus.getDefault().post(new GDriveSycnEvent());
-                GFile.runSyncService(MainTabs2.this);
-
-                swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
-
-                AppSP.get().save();
-            }).addOnFailureListener(exception -> {
-                LOG.e(exception);
+            } else {
                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                AppSP.get().isEnableSync = false;
-                swipeRefreshLayout.setEnabled(false);
-                AppSP.get().save();
-            });
+            }
+            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
     }
 

@@ -4840,6 +4840,20 @@ public class DragingDialogs {
                     popupMenu.show();
                 });
 
+                // The base stylesheet is a replacement UA stylesheet written for MuPDF, which
+                // has none of its own. A browser does, so foliate-js is given only the generated
+                // rules unless this is on - which is here, beside the stylesheet picker, so the
+                // two can be compared on the book itself. Closing this drawer restarts the
+                // activity when the app state changed, so the book reopens with the new styling.
+                final CheckBox isFoliateBaseCss = inflate.findViewById(R.id.isFoliateBaseCss);
+                isFoliateBaseCss.setVisibility(
+                        ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
+                                && AppState.get().epubEngine == AppState.EPUB_ENGINE_FOLIATE
+                                ? View.VISIBLE : View.GONE);
+                isFoliateBaseCss.setChecked(AppState.get().epubFoliateBaseCss);
+                isFoliateBaseCss.setOnCheckedChangeListener(
+                        (buttonView, isChecked) -> AppState.get().epubFoliateBaseCss = isChecked);
+
                 // end styles
 
                 // hypens

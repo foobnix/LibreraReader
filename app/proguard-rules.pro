@@ -101,3 +101,14 @@
 -keepclasseswithmembernames,includedescriptorclasses class io.legere.pdfiumandroid.** {
     native <methods>;
 }
+
+# The foliate-js engine's bridge is reached from JavaScript by name: the page calls
+# librera.reply/fail/ready/log on the injected interface, so those methods may not be renamed or
+# stripped. AGP's default rules already keep @JavascriptInterface members; this says it outright
+# because the whole engine stops working silently without it.
+-keepclassmembers class org.ebookdroid.droids.foliate.codec.FoliateRenderer$Bridge {
+    @android.webkit.JavascriptInterface <methods>;
+}
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}

@@ -18,6 +18,7 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -185,6 +186,9 @@ public class AppState {
     /** Which engine renders a PDF: see {@link #pdfEngine}. */
     public final static int PDF_ENGINE_MUPDF = 0;
     public final static int PDF_ENGINE_PDFIUM = 1;
+    /** Which engine lays out a reflowable book: see {@link #epubEngine}. */
+    public final static int EPUB_ENGINE_MUPDF = 0;
+    public final static int EPUB_ENGINE_FOLIATE = 1;
     public final static int PAGE_NUMBER_FORMAT_NUMBER = 0;
     public final static int PAGE_NUMBER_FORMAT_PERCENT = 1;
     public final static int CHAPTER_FORMAT_1 = 0;
@@ -377,6 +381,40 @@ public class AppState {
      * opened, so the covers and the books follow the setting from the next open on.
      */
     public int pdfEngine = PDF_ENGINE_MUPDF;
+    /**
+     * The engine a reflowable book is laid out, rendered and read with: {@link #EPUB_ENGINE_MUPDF}
+     * (the default) or {@link #EPUB_ENGINE_FOLIATE}, which paginates it in a WebView with
+     * foliate-js. It applies to every format Librera converts to an .epub - epub, fb2, mobi, docx,
+     * odt, md, rtf - and is read by
+     * {@link org.ebookdroid.droids.mupdf.codec.PdfContext#openReflowable(String, String)} each time
+     * a book is opened, so a book already on screen keeps the engine it was opened with.
+     */
+    public int epubEngine = EPUB_ENGINE_MUPDF;
+    /**
+     * Whether foliate-js is also given the base stylesheet asset ({@link
+     * com.foobnix.pdf.info.model.BookCSS#userStyleCss}) on top of the rules BookCSS generates.
+     * Off by default: that asset is a replacement UA stylesheet written for MuPDF, which has none
+     * of its own, and its table and display resets fight a browser's own layout. On, so the two
+     * can be compared on the device.
+     */
+    public boolean epubFoliateBaseCss = false;
+
+    /**
+     * Which engine a PDF is to be rendered with, which in a build without MuPDF is PDFium however
+     * {@link #pdfEngine} was left. A JS flavour is installed over the flavour it replaces and
+     * reads its settings, so the stored value cannot be trusted to name an engine that is there.
+     */
+    public int getPdfEngine() {
+        return Engines.IS_MUPDF ? pdfEngine : PDF_ENGINE_PDFIUM;
+    }
+
+    /**
+     * Which engine a reflowable book is to be laid out with; foliate-js in a build without MuPDF.
+     * See {@link #getPdfEngine()}.
+     */
+    public int getEpubEngine() {
+        return Engines.IS_MUPDF ? epubEngine : EPUB_ENGINE_FOLIATE;
+    }
     // n,
     // 25 - 25%
     // persent
