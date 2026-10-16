@@ -106,6 +106,7 @@ import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.BooksService;
@@ -119,6 +120,7 @@ import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -973,6 +975,31 @@ public class PrefFragment2 extends UIFragment {
         appEngine.setText("" + AppsConfig.MUPDF_FZ_VERSION);
         asButton(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
+
+        // Which engine renders a PDF. The choice is read when a document is opened, so the books
+        // and the covers already on screen keep the engine they were opened with: the cover cache
+        // is dropped so the library redraws them with the new one.
+        final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
+        asButton(pdfEngine, pdfEngineName(AppState.get().pdfEngine));
+        pdfEngine.setOnClickListener(v -> {
+            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            for (final int engine : PDF_ENGINES) {
+                popupMenu.getMenu().add(pdfEngineName(engine)).setOnMenuItemClickListener(item -> {
+                    if (engine == AppState.PDF_ENGINE_PDFIUM && !PdfiumContext.isAvailable()) {
+                        Toast.makeText(v.getContext(), R.string.msg_pdf_engine_unavailable, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    if (AppState.get().pdfEngine != engine) {
+                        AppState.get().pdfEngine = engine;
+                        ImageExtractor.clearCodeDocument();
+                        TempHolder.listHash++;
+                    }
+                    asButton(pdfEngine, pdfEngineName(engine));
+                    return false;
+                });
+            }
+            popupMenu.show();
+        });
 
 //        appEngine.setOnClickListener(v -> {
 //            if (BooksService.isRunning) {
@@ -2845,6 +2872,14 @@ public class PrefFragment2 extends UIFragment {
         getActivity().finish();
         MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
 
+    }
+
+    /** The engines {@link AppState#pdfEngine} can be set to, in the order they are offered. */
+    private static final int[] PDF_ENGINES = {AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
+
+    /** The engine's name as the preference shows it; the libraries' own names, so untranslated. */
+    private static String pdfEngineName(final int engine) {
+        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF";
     }
 
     /**

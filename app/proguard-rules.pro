@@ -93,3 +93,11 @@
 # resolve on older systems: NoClassDefFoundError at register() and a crash on launch.
 -keepnames class androidx.** extends android.app.Activity
 -keepnames class androidx.fragment.app.Fragment
+
+# PdfiumAndroidKt (the second PDF engine) ships no consumer rules of its own. Its native code
+# constructs Size, PageAttributes, Link, Bookmark, Meta and WordRangeRect by name and calls back
+# into the JNI holders, so none of the package may be renamed or stripped.
+-keep class io.legere.pdfiumandroid.** { *; }
+-keepclasseswithmembernames,includedescriptorclasses class io.legere.pdfiumandroid.** {
+    native <methods>;
+}

@@ -182,6 +182,9 @@ public class AppState {
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
+    /** Which engine renders a PDF: see {@link #pdfEngine}. */
+    public final static int PDF_ENGINE_MUPDF = 0;
+    public final static int PDF_ENGINE_PDFIUM = 1;
     public final static int PAGE_NUMBER_FORMAT_NUMBER = 0;
     public final static int PAGE_NUMBER_FORMAT_PERCENT = 1;
     public final static int CHAPTER_FORMAT_1 = 0;
@@ -366,6 +369,14 @@ public class AppState {
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
     public int antiAliasLevel = 8;//0-8
+    /**
+     * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_MUPDF} (the
+     * default, the engine Librera has always used) or {@link #PDF_ENGINE_PDFIUM}. It applies to
+     * .pdf files only - every other format is MuPDF's - and is read by
+     * {@link org.ebookdroid.BookType#getCodecContextByPath(String)} each time a document is
+     * opened, so the covers and the books follow the setting from the next open on.
+     */
+    public int pdfEngine = PDF_ENGINE_MUPDF;
     // n,
     // 25 - 25%
     // persent

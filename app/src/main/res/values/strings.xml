@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
@@ -695,4 +695,8 @@
    <string name="text_and_background_color">Text and Background Color</string>
    <string name="librerax_not_installed">LibreraX is not installed. Download and install it, then open the book again.</string>
    <string name="remove_library_folder">Remove this folder from the library? The files in it will not be deleted.</string>
+   <!-- PDF render engine; translations follow, so lint is told not to ask for them yet -->
+   <string name="pdf_engine" tools:ignore="MissingTranslation">PDF engine</string>
+   <string name="msg_pdf_engine_unavailable" tools:ignore="MissingTranslation">This build does not include the PDFium libraries.</string>
+   <string name="msg_pdf_engine" tools:ignore="MissingTranslation">The engine that renders PDF files, and reads their text, outline and links. Applies to .pdf only; already opened books and covers follow it from the next time they are opened.</string>
 </resources>

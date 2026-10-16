@@ -24,6 +24,7 @@ kotlinxSerializationCore = "1.11.0"
 ksp = "2.3.12"
 legacySupportV4 = "1.0.0"
 okio = "3.18.2"
+pdfiumandroid = "2.0.3"
 pdfmpCompose = "1.0.13"
 
 recyclerview = "1.4.0"
@@ -115,6 +116,8 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+# PdfiumAndroidKt: the second PDF render engine, next to the bundled MuPDF
+pdfiumandroid = { module = "io.legere:pdfiumandroid", version.ref = "pdfiumandroid" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
 
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
