@@ -24,6 +24,7 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.IntentCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -73,7 +74,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
             Class clazz = LibreraX.readerClass();
 
-            Intent nintent = new Intent(Intent.ACTION_VIEW, (Uri) intent.getParcelableExtra("uri"));
+            Intent nintent = new Intent(Intent.ACTION_VIEW, IntentCompat.getParcelableExtra(intent, "uri", Uri.class));
             nintent.setClassName(context, clazz.getName());
             PendingIntent pendingIntent;
 

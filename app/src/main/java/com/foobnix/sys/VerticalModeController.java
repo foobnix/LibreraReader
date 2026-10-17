@@ -1036,7 +1036,7 @@ public class VerticalModeController extends DocumentController {
         try {
             return ctr.getDocumentModel().decodeService.getAttachemnts();
         } catch (Exception e) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
 
         }
     }

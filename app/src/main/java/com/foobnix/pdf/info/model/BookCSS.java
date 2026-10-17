@@ -558,7 +558,7 @@ public class BookCSS {
                 return filtered;
             }
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private Collection<String> getAllFontsFromFolder(String path) {
@@ -598,7 +598,7 @@ public class BookCSS {
         } catch (Exception e) {
             LOG.e(e);
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public boolean isUrlFont(String name) {

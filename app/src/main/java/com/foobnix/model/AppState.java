@@ -695,7 +695,7 @@ public class AppState {
         for (final String value : list.split(",")) {
             if (value != null && !value.trim()
                                        .equals("")) {
-                res.add(new Integer(value.trim()));
+                res.add(Integer.valueOf(value.trim()));
             }
         }
         Collections.sort(res);

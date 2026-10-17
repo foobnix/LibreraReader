@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -196,9 +198,9 @@ public class AppProfile {
     public static Drawable getProfileColorDrawable(Context c, String profile) {
         // Mutated, so each profile's round keeps its own colour instead of every round shown
         // taking the colour of the last one set.
-        GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular)
-                                                          .mutate();
+        GradientDrawable background =
+                (GradientDrawable) ContextCompat.getDrawable(c, R.drawable.bg_circular)
+                                                .mutate();
         AppState s = new AppState();
         File syncState = new File(AppProfile.SYNC_FOLDER_ROOT,
                 PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
@@ -208,9 +210,9 @@ public class AppProfile {
     }
 
     public static Drawable getProfileColorDrawable(Context c, int color) {
-        GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular)
-                                                          .mutate();
+        GradientDrawable background =
+                (GradientDrawable) ContextCompat.getDrawable(c, R.drawable.bg_circular)
+                                                .mutate();
         background.setColor(color);
         return background;
     }

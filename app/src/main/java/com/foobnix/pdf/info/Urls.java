@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.core.text.TextUtilsCompat;
-import androidx.core.view.ViewCompat;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.opds.OPDS;
@@ -28,8 +27,11 @@ public class Urls {
         try {
             return URLEncoder.encode(string, "UTF-8");
         } catch (UnsupportedEncodingException e) {
+            // Unreachable: every JVM has to support UTF-8. The checked exception still has to go
+            // somewhere, and handing back the string untouched beats encoding it with some other
+            // charset behind the caller's back.
             LOG.e(e);
-            return URLEncoder.encode(string);
+            return string;
         }
     }
 
@@ -148,7 +150,7 @@ public class Urls {
 
     public static boolean isRtl() {
         try {
-            return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL;
+            return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL;
         } catch (Exception e) {
             return false;
         }

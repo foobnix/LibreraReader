@@ -1060,7 +1060,7 @@ public class Dialogs {
         l.addView(bolderText);
 
         TextView defaults = new TextView(c);
-        defaults.setTextAppearance(c, R.style.textLinkStyle);
+        defaults.setTextAppearance(R.style.textLinkStyle);
         defaults.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(defaults);
         defaults.setOnClickListener(new View.OnClickListener() {
