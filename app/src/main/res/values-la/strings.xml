@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">No email application installed.</string>
    <string name="file_not_found">Plica abest</string>
    <string name="you_need_grant_permission5">Applicatio permissionem tuam requirit ut omnes libros tuos inveniat et ostentet.</string>
+   <string name="allow">Permittere</string>
+   <string name="storage">Repositorium</string>
+   <string name="add_all_books_with_permission">Omnes libros addere, licentia requiritur.</string>
+   <string name="add_folder_with_books">Plicam cum libris addere.</string>
    <string name="remind_msg">Persequi otium</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark for this page already exists</string>
    <string name="can_t_download">Tractum iri non possit</string>

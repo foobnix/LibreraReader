@@ -47,7 +47,7 @@ public class CacheZipUtils {
     public static File CACHE_RECENT;
     public static File CACHE_TEMP;
     public static File ATTACHMENTS_CACHE_DIR;
-    public static File CACHE_SAF_COVERS;
+    public static File CACHE_SAF_BOOKS;
     static Pair<Boolean, String> cacheRes;
     static String cacheFile;
 
@@ -63,7 +63,7 @@ public class CacheZipUtils {
         CACHE_WEB = new File(externalCacheDir, "WEB");
         CACHE_RECENT = new File(externalCacheDir, "Recent");
         CACHE_TEMP = new File(externalCacheDir, "Temp");
-        CACHE_SAF_COVERS = new File(externalCacheDir, "SafCovers");
+        CACHE_SAF_BOOKS = new File(externalCacheDir, "SafBooks");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
@@ -82,8 +82,8 @@ public class CacheZipUtils {
         if (!CACHE_TEMP.exists()) {
             CACHE_TEMP.mkdirs();
         }
-        if (!CACHE_SAF_COVERS.exists()) {
-            CACHE_SAF_COVERS.mkdirs();
+        if (!CACHE_SAF_BOOKS.exists()) {
+            CACHE_SAF_BOOKS.mkdirs();
         }
     }
 
@@ -96,37 +96,39 @@ public class CacheZipUtils {
     }
 
     // What the copies of storage books are allowed to take up; past it the oldest go first.
-    private static final long SAF_COVERS_CACHE_LIMIT = 100 * 1024 * 1024L;
+    private static final long SAF_BOOKS_CACHE_LIMIT = 500 * 1024 * 1024L;
 
     /**
-     * A book on added storage is reached through a document provider, and the readers that pull a
-     * cover out of a book want a file. So the book is copied here once and the cover is read from
-     * the copy; Glide keeps the cover itself, so a book is rarely copied more than once.
+     * A book on added storage is reached through a document provider, and the readers want a file:
+     * to read a cover out of a book, and to open it. So the book is copied here once and that copy
+     * is what is read.
      * <p>
      * Each copy sits in a folder of its own named after the document and keeps the book's own name
-     * inside it: the readers pick themselves by the extension, and a book whose cover cannot be
-     * read falls back to its name.
+     * inside it. Both matter. The readers pick themselves by the extension, so the name has to be
+     * the book's; and the path has to be the same every time, because everything the reader
+     * records about a book - where you are in it, what you marked - is filed under the path it was
+     * opened from. A copy in a shared folder, thrown away when the next book is opened, loses all
+     * of it.
      * <p>
-     * The copies outlive {@link #emptyAllCacheDirs()}, which runs as a book is opened and could
-     * take a copy away from under a cover being read at that moment. What holds them instead is
-     * the budget above and {@link #removeSafCovers()}.
+     * The copies outlive {@link #emptyAllCacheDirs()}, which runs as a book is opened. What holds
+     * them is the budget above and {@link #removeSafBookCopies()}.
      */
-    public static File getSafCoverCopy(Context c, String uri, String displayName) {
-        if (CACHE_SAF_COVERS == null || TxtUtils.isEmpty(displayName)) {
+    public static File getSafBookCopy(Context c, String uri, String displayName) {
+        if (CACHE_SAF_BOOKS == null || TxtUtils.isEmpty(displayName)) {
             return null;
         }
         try {
-            File dir = new File(CACHE_SAF_COVERS, Integer.toHexString(uri.hashCode()));
+            File dir = new File(CACHE_SAF_BOOKS, Integer.toHexString(uri.hashCode()));
             File dest = new File(dir, displayName);
 
             if (dest.isFile() && dest.length() > 0) {
-                // What was asked for last stays longest, so browsing does not throw out the
-                // covers of the folder being browsed.
+                // What was asked for last stays longest, so neither the folder being browsed nor
+                // the book being read is thrown out.
                 dir.setLastModified(System.currentTimeMillis());
                 return dest;
             }
 
-            trimSafCovers();
+            trimSafBooks(dir);
 
             if (!dir.isDirectory() && !dir.mkdirs()) {
                 return null;
@@ -135,7 +137,7 @@ public class CacheZipUtils {
             if (!copySafTo(c, uri, dest)) {
                 return null;
             }
-            LOG.d("saf-cover-copy", dest.getPath(), dest.length());
+            LOG.d("saf-book-copy", dest.getPath(), dest.length());
             return dest;
         } catch (Exception e) {
             LOG.e(e);
@@ -146,7 +148,7 @@ public class CacheZipUtils {
     /**
      * A copy of a storage document meant to be read once and thrown away with
      * {@link #removeSafScanCopy(File)} - what the library scan reads a book's metadata out
-     * of. Unlike {@link #getSafCoverCopy} nothing is kept, so a scan of a thousand books costs one
+     * of. Unlike {@link #getSafBookCopy} nothing is kept, so a scan of a thousand books costs one
      * book of disk rather than all of them.
      */
     public static File getSafScanCopy(Context c, String uri, String displayName) {
@@ -192,15 +194,15 @@ public class CacheZipUtils {
         return false;
     }
 
-    public static boolean isSafCoverCopy(String path) {
-        return path != null && CACHE_SAF_COVERS != null && path.startsWith(CACHE_SAF_COVERS.getPath());
+    public static boolean isSafBookCopy(String path) {
+        return path != null && CACHE_SAF_BOOKS != null && path.startsWith(CACHE_SAF_BOOKS.getPath());
     }
 
-    public static void removeSafCovers() {
-        if (CACHE_SAF_COVERS == null) {
+    public static void removeSafBookCopies() {
+        if (CACHE_SAF_BOOKS == null) {
             return;
         }
-        File[] dirs = CACHE_SAF_COVERS.listFiles();
+        File[] dirs = CACHE_SAF_BOOKS.listFiles();
         if (dirs == null) {
             return;
         }
@@ -209,10 +211,10 @@ public class CacheZipUtils {
         }
     }
 
-    // The oldest copies go first, so the cache stays inside its budget however long the browsing
-    // goes on.
-    private static void trimSafCovers() {
-        File[] dirs = CACHE_SAF_COVERS.listFiles();
+    // The oldest copies go first, so the cache stays inside its budget however long the reading
+    // goes on. The copy about to be made is never among them.
+    private static void trimSafBooks(File keep) {
+        File[] dirs = CACHE_SAF_BOOKS.listFiles();
         if (dirs == null || dirs.length == 0) {
             return;
         }
@@ -220,13 +222,16 @@ public class CacheZipUtils {
         for (File dir : dirs) {
             total += dirSize(dir);
         }
-        if (total <= SAF_COVERS_CACHE_LIMIT) {
+        if (total <= SAF_BOOKS_CACHE_LIMIT) {
             return;
         }
         Arrays.sort(dirs, new FilerByDate());
         for (File dir : dirs) {
-            if (total <= SAF_COVERS_CACHE_LIMIT) {
+            if (total <= SAF_BOOKS_CACHE_LIMIT) {
                 return;
+            }
+            if (keep != null && keep.getName().equals(dir.getName())) {
+                continue;
             }
             total -= dirSize(dir);
             deleteDir(dir);

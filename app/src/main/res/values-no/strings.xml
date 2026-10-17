@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">E-postprogrammet er ikke installert.</string>
    <string name="file_not_found">Fil ikke funnet</string>
    <string name="you_need_grant_permission5">Appen trenger din tillatelse til å finne og vise alle bøkene dine.</string>
+   <string name="allow">Tillat</string>
+   <string name="storage">Lagring</string>
+   <string name="add_all_books_with_permission">Legg til alle bøker, krever tillatelse.</string>
+   <string name="add_folder_with_books">Legg til en mappe med bøker.</string>
    <string name="remind_msg">Vennligst ta en pause for øynene dine og hvile litt.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmerke for denne siden finnes allerede</string>
    <string name="can_t_download">Kan ikke lastes ned</string>

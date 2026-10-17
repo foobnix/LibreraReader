@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">ไม่ได้ติดตั้งแอปพลิเคชันอีเมล</string>
    <string name="file_not_found">ไม่พบไฟล์</string>
    <string name="you_need_grant_permission5">แอปนี้ต้องการอนุญาตจากคุณเพื่อค้นหาและแสดงหนังสือทั้งหมดของคุณ</string>
+   <string name="allow">อนุญาต</string>
+   <string name="storage">ที่เก็บข้อมูล</string>
+   <string name="add_all_books_with_permission">เพิ่มหนังสือทั้งหมด ต้องได้รับอนุญาต</string>
+   <string name="add_folder_with_books">เพิ่มโฟลเดอร์ที่มีหนังสือ</string>
    <string name="remind_msg">กรุณาพักสายตาและพักสักหน่อย</string>
    <string name="bookmark_for_this_page_already_exists">บุ๊กมาร์กสำหรับหน้านี้มีอยู่แล้ว</string>
    <string name="can_t_download">ไม่สามารถดาวน์โหลดได้</string>

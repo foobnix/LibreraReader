@@ -291,9 +291,7 @@ import java.util.Map;
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
 
-        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
+        bindOnGrantPanel(view.findViewById(R.id.layoutOnGrant));
 
         // The sort button says which way round the list runs; a long press turns it round.
         onSort.setOnLongClickListener(new OnLongClickListener() {

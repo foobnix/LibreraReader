@@ -333,7 +333,7 @@ public class ImageExtractor {
 
         // The copy of a storage book lives in the cache and is not a book of the user's, so it
         // gets a record of its own instead of one in the library.
-        final boolean isSafCopy = CacheZipUtils.isSafCoverCopy(path);
+        final boolean isSafCopy = CacheZipUtils.isSafBookCopy(path);
         FileMeta fileMeta;
         if (isSafCopy) {
             fileMeta = new FileMeta(path);
@@ -714,7 +714,7 @@ public class ImageExtractor {
                 // A book the readers can open only as a file: with covers for added storage
                 // asked for, it is copied out once and the cover read from the copy.
                 File copy = AppState.get().isSafBookCovers ?
-                        CacheZipUtils.getSafCoverCopy(c, path, display) : null;
+                        CacheZipUtils.getSafBookCopy(c, path, display) : null;
                 if (copy == null) {
                     return messageFile("", display);
                 }

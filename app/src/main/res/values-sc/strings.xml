@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Perunu cliente de posta eletrònica installadu</string>
    <string name="file_not_found">Documentu no agatadu</string>
    <string name="you_need_grant_permission5">S\'aplicatzione tenet bisòngiu de su permissu tuo pro atzapare e ammustrare totu sos libros tuos.</string>
+   <string name="allow">Permite</string>
+   <string name="storage">Archiviatzione</string>
+   <string name="add_all_books_with_permission">Annanghe totu sos libros, tenet bisòngiu de permissu.</string>
+   <string name="add_folder_with_books">Annanghe una cartella cun libros.</string>
    <string name="remind_msg">Tempus de ti pasare!</string>
    <string name="bookmark_for_this_page_already_exists">Custu sinnalibru esistit giai</string>
    <string name="can_t_download">Iscarrigamentu de su documentu fallidu</string>

@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">No hi ha cap client de correu instal·lat</string>
    <string name="file_not_found">No s\'ha trobat el fitxer</string>
    <string name="you_need_grant_permission5">L\'aplicació necessita el teu permís per trobar i mostrar tots els teus llibres.</string>
+   <string name="allow">Permet</string>
+   <string name="storage">Emmagatzematge</string>
+   <string name="add_all_books_with_permission">Afegeix tots els llibres, cal permís.</string>
+   <string name="add_folder_with_books">Afegeix una carpeta amb llibres.</string>
    <string name="remind_msg">És hora de fer una pausa.</string>
    <string name="bookmark_for_this_page_already_exists">Aquest marcador ja existeix</string>
    <string name="can_t_download">No s\'ha pogut baixar el fitxer</string>

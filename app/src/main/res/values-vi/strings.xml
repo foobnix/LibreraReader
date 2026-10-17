@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Ứng dụng email không được cài đặt.</string>
    <string name="file_not_found">Tập tin không tìm thấy</string>
    <string name="you_need_grant_permission5">Ứng dụng cần sự cho phép của bạn để tìm và hiển thị tất cả sách của bạn.</string>
+   <string name="allow">Cho phép</string>
+   <string name="storage">Bộ nhớ</string>
+   <string name="add_all_books_with_permission">Thêm tất cả sách, cần quyền truy cập.</string>
+   <string name="add_folder_with_books">Thêm thư mục có sách.</string>
    <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark cho trang này đã tồn tại</string>
    <string name="can_t_download">Không thể tải xuống</string>

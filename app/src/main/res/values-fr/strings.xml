@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Application email non installée.</string>
    <string name="file_not_found">Fichier non trouvé</string>
    <string name="you_need_grant_permission5">L\'application a besoin de votre autorisation pour trouver et afficher tous vos livres.</string>
+   <string name="allow">Autoriser</string>
+   <string name="storage">Stockage</string>
+   <string name="add_all_books_with_permission">Ajouter tous les livres, autorisation requise.</string>
+   <string name="add_folder_with_books">Ajouter un dossier avec des livres.</string>
    <string name="remind_msg">S\'il vous plaît, prenez une pause pour vos yeux et reposez-vous un peu.</string>
    <string name="bookmark_for_this_page_already_exists">Un signet pour cette page existe déjà</string>
    <string name="can_t_download">Je ne peux pas télécharger</string>

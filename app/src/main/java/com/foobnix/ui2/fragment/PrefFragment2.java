@@ -48,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -1482,11 +1483,14 @@ public class PrefFragment2 extends UIFragment {
                     final CheckBox isShowSeriesNumberInTitle = new CheckBox(v.getContext());
                     isShowSeriesNumberInTitle.setText(R.string.show_series_number_in_title);
 
+                    final CheckBox isSafBookCovers = new CheckBox(v.getContext());
+                    isSafBookCovers.setText(R.string.show_storage_book_covers);
+
                     final AlertDialog d =
                             AlertDialogs.showViewDialog(getActivity(), null, isScanOnLaunch, isFirstSurname,
                                     isSkipFolderWithNOMEDIA,
                                     isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF, isUseCalibreOpf,
-                                    isDisplayAnnotation, isHideReadBook, isShowSeriesNumberInTitle);
+                                    isDisplayAnnotation, isHideReadBook, isShowSeriesNumberInTitle, isSafBookCovers);
 
                     isScanOnLaunch.setChecked(AppState.get().isScanOnLaunch);
                     isFirstSurname.setChecked(AppState.get().isFirstSurname);
@@ -1497,6 +1501,7 @@ public class PrefFragment2 extends UIFragment {
                     isDisplayAnnotation.setChecked(AppState.get().isDisplayAnnotation);
                     isHideReadBook.setChecked(AppState.get().isHideReadBook);
                     isShowSeriesNumberInTitle.setChecked(AppState.get().isShowSeriesNumberInTitle);
+                    isSafBookCovers.setChecked(AppState.get().isSafBookCovers);
 
                     final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
                         AppState.get().isScanOnLaunch = isScanOnLaunch.isChecked();
@@ -1537,6 +1542,15 @@ public class PrefFragment2 extends UIFragment {
                     isShowSeriesNumberInTitle.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                         @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             AppState.get().isShowSeriesNumberInTitle = isShowSeriesNumberInTitle.isChecked();
+                            TempHolder.listHash++;
+                            notifyFragment();
+                        }
+                    });
+                    // Nothing about the library itself changes, only what is drawn on the shelf,
+                    // so the rows are redrawn rather than the library rebuilt.
+                    isSafBookCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                        @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            AppState.get().isSafBookCovers = isSafBookCovers.isChecked();
                             TempHolder.listHash++;
                             notifyFragment();
                         }
@@ -1877,7 +1891,11 @@ public class PrefFragment2 extends UIFragment {
         showSearchPaths();
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
-        asButton(addFolder, "+ " + getString(R.string.add_folder));
+        asButton(addFolder, "+ " + getString(R.string.folder));
+
+        TextView addStorageFolder = inflate.findViewById(R.id.onConfigPathStorage);
+        asButton(addStorageFolder, "+ " + getString(R.string.storage));
+        addStorageFolder.setOnClickListener(v -> onAddStorageFolder());
 
         // Rebuilds the library from the folders now listed, without going through the dialog
         // to reach the same scan.
@@ -2815,9 +2833,9 @@ public class PrefFragment2 extends UIFragment {
                     DragingPopup.resetCache(getActivity());
 
                     CacheZipUtils.emptyAllCacheDirs();
-                    // The copies the covers of storage books are read from outlive the clean-up
-                    // that opening a book does, so they go here.
-                    CacheZipUtils.removeSafCovers();
+                    // The copies of storage books outlive the clean-up that opening a book does,
+                    // so they go here.
+                    CacheZipUtils.removeSafBookCopies();
 
 
                     final BookCSS b = new BookCSS();
@@ -3119,6 +3137,26 @@ public class PrefFragment2 extends UIFragment {
                                      return false;
                                  }
                              });
+    }
+
+    /**
+     * Asks the system for a folder and puts it into the library paths. This is the way in for
+     * books the app is not allowed to go looking for itself: the user hands the folder over, and
+     * what comes back is a document uri rather than a path.
+     */
+    public void onAddStorageFolder() {
+        MainTabs2.startAddLibraryStorage(getActivity());
+    }
+
+    /**
+     * Called once a folder the user picked has been put into the library paths. The library is
+     * rebuilt straight away: a folder added to the library that shows nothing until another
+     * button is pressed reads as a folder that did not work.
+     */
+    public void onStorageFolderAdded() {
+        showSearchPaths();
+        saveChanges();
+        onScan();
     }
 
     public void onFolderConfigDialog() {

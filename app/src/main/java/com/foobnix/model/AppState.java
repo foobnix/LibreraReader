@@ -637,8 +637,8 @@ public class AppState {
     public boolean isHideReadBook = false;
     public boolean isFolderPreview = false;
     // A book on added storage has to be copied out of the document provider before its cover can
-    // be read, so the covers are only drawn when asked for.
-    public boolean isSafBookCovers = false;
+    // be read. It is worth it: a shelf of blank books is worse than the wait.
+    public boolean isSafBookCovers = true;
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";

@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">沒有安裝電子郵件!</string>
    <string name="file_not_found">無結果</string>
    <string name="you_need_grant_permission5">該應用程式需要您的許可才能找到和顯示您的所有書籍。</string>
+   <string name="allow">允許</string>
+   <string name="storage">儲存空間</string>
+   <string name="add_all_books_with_permission">新增所有書籍，需要權限。</string>
+   <string name="add_folder_with_books">新增含書籍的資料夾。</string>
    <string name="remind_msg">請注意休息以保護視力</string>
    <string name="bookmark_for_this_page_already_exists">已有書簽</string>
    <string name="can_t_download">不能下載</string>

@@ -59,6 +59,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import android.util.TypedValue;
@@ -418,9 +419,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()) && getArguments()!=Bundle.EMPTY);
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
+        bindOnGrantPanel(view.findViewById(R.id.layoutOnGrant));
 
         layoutError = view.findViewById(R.id.layoutError);
         layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);
@@ -622,6 +621,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         Keyboards.close(getActivity());
 
+    }
+
+    /**
+     * The library also stands in a dialog over the reader, which is handed an empty bundle to
+     * say so. There the notice is left out: the dialog is not where a clear install is set up.
+     */
+    @Override protected boolean isOnGrantPanelAllowed() {
+        return getArguments() != Bundle.EMPTY;
     }
 
     @Override public void onResume() {

@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Ez dago posta-aplikaziorik instalatuta.</string>
    <string name="file_not_found">Fitxategia ez da aurkitu</string>
    <string name="you_need_grant_permission5">Aplikazioak zure baimena behar du zure liburu guztiak aurkitu eta bistaratzeko.</string>
+   <string name="allow">Baimendu</string>
+   <string name="storage">Biltegia</string>
+   <string name="add_all_books_with_permission">Gehitu liburu guztiak, baimena behar da.</string>
+   <string name="add_folder_with_books">Gehitu liburuak dituen karpeta bat.</string>
    <string name="remind_msg">Hartu arnasa eta eman atsedena begiei.</string>
    <string name="bookmark_for_this_page_already_exists">Laster marka hori badago</string>
    <string name="can_t_download">Ezin da deskargatu</string>

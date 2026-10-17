@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Barua pepe maombi si imewekwa.</string>
    <string name="file_not_found">Faili halijapatikana</string>
    <string name="you_need_grant_permission5">Programu inahitaji ruhusa yako ili kupata na kuonyesha vitabu vyako vyote.</string>
+   <string name="allow">Ruhusu</string>
+   <string name="storage">Hifadhi</string>
+   <string name="add_all_books_with_permission">Ongeza vitabu vyote, inahitaji ruhusa.</string>
+   <string name="add_folder_with_books">Ongeza folda yenye vitabu.</string>
    <string name="remind_msg">Tafadhali kuchukua mapumziko kwa macho yako na kupumzika kidogo.</string>
    <string name="bookmark_for_this_page_already_exists">Alamisho ya ukurasa huu tayari upo</string>
    <string name="can_t_download">Haiwezi kupakuliwa</string>

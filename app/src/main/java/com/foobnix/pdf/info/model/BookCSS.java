@@ -12,6 +12,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -242,6 +243,55 @@ public class BookCSS {
 
         LOG.d("BookCSS", "resetToDefault");
 
+    }
+
+    /**
+     * Whether the user has reached their books through the system's folder picker, either as a
+     * storage in the folders screen or as a library folder. Having done so, they are not asked
+     * again for the permission to go looking for books themselves.
+     */
+    public static boolean hasStorageAccess() {
+        try {
+            for (String path : StringDB.asList(get().pathSAF)) {
+                if (TxtUtils.isNotEmpty(path)) {
+                    return true;
+                }
+            }
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (ExtUtils.isExteralSD(path)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
+
+    /**
+     * Drops the storage roots the library falls back to when nothing else has been set. They are
+     * only a guess at where the books are, and without the permission to go looking the scan
+     * cannot read a single one of them. Once the user has handed over a folder of their own,
+     * leaving the roots in the list would show them folders that never fill.
+     */
+    public static void removeUnreadableStorageRoots(Context c) {
+        try {
+            List<String> roots = ExtUtils.getAllExternalStorages(c);
+            String external = Environment.getExternalStorageDirectory().getPath();
+            if (!roots.contains(external)) {
+                roots.add(external);
+            }
+            List<String> kept = new ArrayList<>();
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (TxtUtils.isNotEmpty(path) && !roots.contains(path)) {
+                    kept.add(path);
+                }
+            }
+            get().searchPathsJson = JsonDB.set(kept);
+            LOG.d("removeUnreadableStorageRoots", get().searchPathsJson);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public static List<String> filtered(List<String> objects) {

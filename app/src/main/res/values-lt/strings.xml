@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Elektroninio pašto programa neįdiegta</string>
    <string name="file_not_found">Failas nerastas</string>
    <string name="you_need_grant_permission5">Programai reikia jūsų leidimo, kad ji galėtų rasti ir rodyti visas jūsų knygas.</string>
+   <string name="allow">Leisti</string>
+   <string name="storage">Saugykla</string>
+   <string name="add_all_books_with_permission">Pridėti visas knygas, reikia leidimo.</string>
+   <string name="add_folder_with_books">Pridėti aplanką su knygomis.</string>
    <string name="remind_msg">Padarykite pertraukėlę ir leiskite pailsėti akims</string>
    <string name="bookmark_for_this_page_already_exists">Šis puslapis jau žymelėse</string>
    <string name="can_t_download">Negalima atsisiųsti</string>

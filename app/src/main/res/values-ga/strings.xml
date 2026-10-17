@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Níl aon chliant ríomhphoist suiteáilte</string>
    <string name="file_not_found">Níor aimsíodh comhad</string>
    <string name="you_need_grant_permission5">Teastaíonn do chead ón aip chun do chuid leabhar go léir a aimsiú agus a thaispeáint.</string>
+   <string name="allow">Ceadaigh</string>
+   <string name="storage">Stóráil</string>
+   <string name="add_all_books_with_permission">Cuir na leabhair go léir leis, cead de dhíth.</string>
+   <string name="add_folder_with_books">Cuir fillteán le leabhair leis.</string>
    <string name="remind_msg">Am chun sos a ghlacadh!</string>
    <string name="bookmark_for_this_page_already_exists">Tá an leabharmharc seo ann cheana féin</string>
    <string name="can_t_download">In ann an comhad a íoslódáil</string>

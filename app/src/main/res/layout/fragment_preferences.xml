@@ -188,8 +188,10 @@
                 android:layout_marginLeft="5dip"
                 android:orientation="vertical" />
 
-            <!-- Adding a folder and rebuilding the library from the folders now listed: one
-                 says what the library is made of, the other goes and makes it. -->
+            <!-- The two ways a folder gets into the library - one the app goes looking in, one
+                 the system hands over - and, under them, rebuilding the library from the folders
+                 now listed. Three of these do not sit on one line at every width, so what adds a
+                 folder and what rebuilds are kept apart. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -206,10 +208,25 @@
                     android:text="@string/add_folder"
                     android:textAllCaps="true" />
 
-                <View
+                <!-- The other way in: a folder handed over through the system's folder picker,
+                     for books the app is not allowed to go looking for itself. -->
+                <TextView
+                    android:id="@+id/onConfigPathStorage"
+                    style="@style/textLink"
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dip"
+                    android:padding="4dip"
+                    android:text="@string/add_resource"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
@@ -79,7 +80,11 @@ public class BookmarksData {
             final AppBookmark next = iterator.next();
 
             if (AppState.get().isShowOnlyAvailabeBooks) {
-                if (!new File(next.getPath()).isFile()) {
+                // A book on added storage is read from a copy of itself, and the copy is only
+                // kept while there is room for it. The book is still there on the storage, so a
+                // mark in it is not a mark in a book that has gone.
+                if (!CacheZipUtils.isSafBookCopy(next.getPath()) && !ExtUtils.isExteralSD(next.getPath())
+                    && !new File(next.getPath()).isFile()) {
                     iterator.remove();
                     continue;
                 }

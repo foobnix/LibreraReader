@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Sähköpostisovellusta ei ole asennettuna.</string>
    <string name="file_not_found">Tiedostoa ei löytynyt</string>
    <string name="you_need_grant_permission5">Sovellus tarvitsee lupasi kaikkien kirjojen löytämiseen ja näyttämiseen.</string>
+   <string name="allow">Salli</string>
+   <string name="storage">Tallennustila</string>
+   <string name="add_all_books_with_permission">Lisää kaikki kirjat, vaatii luvan.</string>
+   <string name="add_folder_with_books">Lisää kansio, jossa on kirjoja.</string>
    <string name="remind_msg">Pidä tauko ja lepuuta hetki silmiäsi!</string>
    <string name="bookmark_for_this_page_already_exists">Tälle sivulle on jo kirjanmerkki</string>
    <string name="can_t_download">Ei voida ladata</string>

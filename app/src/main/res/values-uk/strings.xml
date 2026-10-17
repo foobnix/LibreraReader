@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Застосунок для роботи з E-mail не встановлено</string>
    <string name="file_not_found">Файл не знайдено</string>
    <string name="you_need_grant_permission5">Додатку потрібен ваш дозвіл, щоб знайти та відобразити всі ваші книги.</string>
+   <string name="allow">Дозволити</string>
+   <string name="storage">Сховище</string>
+   <string name="add_all_books_with_permission">Додати всі книги, потрібен дозвіл.</string>
+   <string name="add_folder_with_books">Додати теку з книгами.</string>
    <string name="remind_msg">Настав час зробити перерву і дати очам трохи відпочити.</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для цієї сторінки вже існує</string>
    <string name="can_t_download">Неможливо завантажити</string>

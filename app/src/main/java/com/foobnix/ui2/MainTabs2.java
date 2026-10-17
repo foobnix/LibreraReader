@@ -46,7 +46,10 @@ import com.foobnix.drive.GFile;
 import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
+import androidx.fragment.app.Fragment;
+
 import com.foobnix.model.AppProfile;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -106,6 +109,7 @@ import mobi.librera.libgooglepro.RefiewForm;
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
+    public static final int REQUEST_CODE_ADD_LIBRARY_STORAGE = 124;
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     private static final String TAG = "MainTabs";
@@ -283,7 +287,101 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
+        } else if (requestCode == REQUEST_CODE_ADD_LIBRARY_STORAGE && resultCode == Activity.RESULT_OK) {
+            // The folders panel, when there is one, says it has a new folder itself: it has the
+            // list on screen and would otherwise go on showing the old one.
+            PrefFragment2 prefs = findPrefFragment();
+            if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null) && prefs != null) {
+                prefs.onStorageFolderAdded();
+            }
         }
+    }
+
+    /**
+     * Takes in a folder the user handed over through the system's picker, wherever it was asked
+     * for. It is kept as a storage too, so the folders screen can reach it, and put into the
+     * library paths; {@code rebuild} then says whether the library is scanned again here, which
+     * the caller may want to do itself once it has caught up with the new folder.
+     *
+     * @return whether this was the folder picker's answer and the folder was taken in.
+     */
+    public static boolean onAddLibraryStorageResult(Activity activity, int requestCode, int resultCode, Intent data,
+            boolean rebuild) {
+        if (requestCode != REQUEST_CODE_ADD_LIBRARY_STORAGE || resultCode != Activity.RESULT_OK || data == null
+                || data.getData() == null) {
+            return false;
+        }
+        Uri uri = data.getData();
+        activity.getContentResolver().takePersistableUriPermission(uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        String pathSAF = uri.toString();
+        StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+
+        LOG.d("REQUEST_CODE_ADD_LIBRARY_STORAGE", pathSAF);
+
+        // The folder is put into the library here rather than in the panel, so that it lands
+        // whether or not a panel is there to hear about it.
+        if (!PrefDialogs.addSearchPath(activity, pathSAF)) {
+            return false;
+        }
+        // The user has said where their books are. The storage roots the library started out
+        // guessing at are not readable without the permission they chose not to give, so they
+        // are taken out rather than left in the folders list showing nothing.
+        if (!Android6.canWrite(activity)) {
+            BookCSS.removeUnreadableStorageRoots(activity);
+        }
+        if (rebuild) {
+            AppProfile.save(activity);
+            SearchAllBooksWorker.run(activity);
+        }
+        return true;
+    }
+
+    /**
+     * Asks the system for a folder and puts it into the library. This is the way in for books the
+     * app is not allowed to go looking for itself: the user hands one folder over, and what comes
+     * back is a document uri rather than a path. The answer lands in
+     * {@link #onActivityResult(int, int, Intent)} under
+     * {@link #REQUEST_CODE_ADD_LIBRARY_STORAGE}, whichever screen asked for it.
+     */
+    public static void startAddLibraryStorage(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_READ_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION //
+                       );
+        try {
+            activity.startActivityForResult(intent, REQUEST_CODE_ADD_LIBRARY_STORAGE);
+        } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(activity, R.string.fail, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * The preferences panel, wherever it is. It is the left drawer most of the time, and a tab of
+     * its own when the user has asked for one.
+     */
+    private PrefFragment2 findPrefFragment() {
+        try {
+            Fragment drawer = getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+            if (drawer instanceof PrefFragment2 && drawer.isAdded()) {
+                return (PrefFragment2) drawer;
+            }
+            for (UIFragment fragment : tabFragments) {
+                if (fragment instanceof PrefFragment2 && fragment.isAdded()) {
+                    return (PrefFragment2) fragment;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     public boolean isPullToRefreshEnable() {

@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">No hay una aplicación de correo instalada.</string>
    <string name="file_not_found">Archivo no encontrado</string>
    <string name="you_need_grant_permission5">La aplicación necesita tu permiso para encontrar y mostrar todos tus libros.</string>
+   <string name="allow">Permitir</string>
+   <string name="storage">Almacenamiento</string>
+   <string name="add_all_books_with_permission">Agregar todos los libros, requiere permiso.</string>
+   <string name="add_folder_with_books">Agregar una carpeta con libros.</string>
    <string name="remind_msg">Por favor tómese un respiro y descanse sus ojos.</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador ya existe</string>
    <string name="can_t_download">No se puede descargar</string>

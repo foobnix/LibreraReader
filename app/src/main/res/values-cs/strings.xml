@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Není nainstalován žádný e-mailový klient</string>
    <string name="file_not_found">Soubor nenalezen</string>
    <string name="you_need_grant_permission5">Aplikace potřebuje vaše svolení k nalezení a zobrazení všech vašich knih.</string>
+   <string name="allow">Povolit</string>
+   <string name="storage">Úložiště</string>
+   <string name="add_all_books_with_permission">Přidat všechny knihy, vyžaduje oprávnění.</string>
+   <string name="add_folder_with_books">Přidat složku s knihami.</string>
    <string name="remind_msg">Je čas dát si přestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Tato záložka už existuje.</string>
    <string name="can_t_download">Soubor nelze stáhnout</string>

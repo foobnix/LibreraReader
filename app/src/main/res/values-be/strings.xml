@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Паштовы кліент не ўсталяваны</string>
    <string name="file_not_found">Файл не знойдзены</string>
    <string name="you_need_grant_permission5">Праграме патрабуецца ваш дазвол, каб знайсці і паказаць усе вашы кнігі.</string>
+   <string name="allow">Дазволіць</string>
+   <string name="storage">Сховішча</string>
+   <string name="add_all_books_with_permission">Дадаць усе кнігі, патрабуецца дазвол.</string>
+   <string name="add_folder_with_books">Дадаць папку з кнігамі.</string>
    <string name="remind_msg">Час зрабіць перапынак!</string>
    <string name="bookmark_for_this_page_already_exists">Гэтая закладка ўжо існуе</string>
    <string name="can_t_download">Немагчыма спампаваць файл</string>

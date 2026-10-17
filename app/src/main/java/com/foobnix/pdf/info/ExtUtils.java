@@ -319,21 +319,14 @@ public class ExtUtils {
 
         if (ExtUtils.isExteralSD(meta.getPath())) {
             LOG.d("openFile isExteralSD");
-            CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
-            Uri uri = Uri.parse(meta.getPath());
-            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
-            if (!file.exists()) {
-                try {
-                    InputStream inputStream = a.getContentResolver().openInputStream(uri);
-                    if (inputStream == null) {
-                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    CacheZipUtils.copyFile(inputStream, file);
-                    LOG.d("Create-file", file.getPath(), file.length());
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
+            // The reader opens a file, and files everything it learns about the book - where you
+            // are in it, what you marked - under the path it opened. So a storage book is read
+            // from a copy of its own that keeps the same path every time, rather than from a
+            // scratch file that the next book opened would throw away.
+            file = CacheZipUtils.getSafBookCopy(a, meta.getPath(), safCacheName(meta));
+            if (file == null) {
+                Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                return;
             }
         }
 
@@ -369,6 +362,22 @@ public class ExtUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * What to call the copy a storage book is opened from. The readers pick themselves by the
+     * extension, so the copy is named after the document - a book's title is not a file name: it
+     * carries no extension, and in the library it is the title read out of the book, which may
+     * carry a slash or a colon.
+     */
+    private static String safCacheName(FileMeta meta) {
+        String name = getFileName(Uri.decode(meta.getPath()));
+        if (TxtUtils.isNotEmpty(name) && name.contains(".")) {
+            return name;
+        }
+        String title = TxtUtils.isEmpty(meta.getTitle()) ? "book" : meta.getTitle();
+        title = title.replaceAll("[\\\\/:*?\"<>|]", "_");
+        return TxtUtils.isEmpty(meta.getExt()) ? title : title + "." + meta.getExt();
     }
 
     public static boolean isExteralSD(String path) {
@@ -1968,7 +1977,17 @@ public class ExtUtils {
         Iterator<FileMeta> iterator = all.iterator();
         while (iterator.hasNext()) {
             FileMeta next = iterator.next();
-            if (!new File(next.getPath()).exists()) {
+            String path = next.getPath();
+            if (path == null) {
+                iterator.remove();
+                continue;
+            }
+            // A book on added storage is named by a document uri, and no File can be asked
+            // whether it is still there: asking would drop every one of them.
+            if (isExteralSD(path)) {
+                continue;
+            }
+            if (!new File(path).exists()) {
                 iterator.remove();
             }
         }

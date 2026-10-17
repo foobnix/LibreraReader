@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Не е инсталиран клиент за имейл</string>
    <string name="file_not_found">Файлът не е намерен</string>
    <string name="you_need_grant_permission5">Приложението се нуждае от вашето разрешение, за да намери и покаже всички ваши книги.</string>
+   <string name="allow">Разреши</string>
+   <string name="storage">Хранилище</string>
+   <string name="add_all_books_with_permission">Добавяне на всички книги, изисква разрешение.</string>
+   <string name="add_folder_with_books">Добавяне на папка с книги.</string>
    <string name="remind_msg">Време за почивка!</string>
    <string name="bookmark_for_this_page_already_exists">Тази отметка вече съществува</string>
    <string name="can_t_download">Файлът не може да бъде свален</string>
