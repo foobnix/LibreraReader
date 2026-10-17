@@ -18,6 +18,15 @@ let view = null
 let config = null
 /** The visible Range of the page the book is on, from the paginator's own relocate event. */
 let visible = null
+/**
+ * Bumped on every relocate, so a navigation can wait for the one that belongs to it rather than
+ * reading a range left over from the page before.
+ */
+let relocateCount = 0
+/** Resolvers waiting on the next relocate; a timed-out one is harmless, its promise is settled. */
+const relocateWaiters = []
+/** How long to wait for a relocate before giving up on it, as long as painted()'s own backstop. */
+const RELOCATE_TIMEOUT_MS = 400
 
 const reply = (id, value) => window.librera.reply(id, JSON.stringify(value))
 const fail = (id, error) => window.librera.fail(id, String((error && error.stack) || error))
@@ -83,6 +92,28 @@ const painted = () => {
         // - sometimes stopped. So a timer backs the frames up rather than the call hanging. It is
         // long enough to cover a section that was slow to lay out, which 64ms was not.
         setTimeout(finish, 400)
+    })
+}
+
+/**
+ * Resolves once a relocate has happened since the counter read `since`.
+ *
+ * The paginator fires relocate asynchronously, after the frames painted() waits on, so without
+ * this a navigation can return while `visible` is still the range of the page before it. Usually
+ * the event has already arrived by the time this is called and it resolves at once; the timer is
+ * only for a navigation that moves nothing and so never relocates at all.
+ */
+const relocated = since => {
+    if (relocateCount !== since) return Promise.resolve()
+    return new Promise(resolve => {
+        let settled = false
+        const finish = () => {
+            if (settled) return
+            settled = true
+            resolve()
+        }
+        relocateWaiters.push(finish)
+        setTimeout(finish, RELOCATE_TIMEOUT_MS)
     })
 }
 
@@ -453,6 +484,8 @@ const handlers = {
             // The detail is foliate's own lastLocation: the visible range and the CFI for it,
             // which it computes on every relocate whether or not anyone asks.
             visible = event.detail ? event.detail.range : null
+            relocateCount++
+            for (const waiter of relocateWaiters.splice(0, relocateWaiters.length)) waiter()
         })
         view.addEventListener('load', () => {
             // Each section gets the styles as it loads; the paginator re-applies them itself on a
@@ -525,8 +558,16 @@ const handlers = {
      * that is simply blank - the end of a chapter - and redraw only the first.
      */
     async goTo({ index, fraction }) {
+        const since = relocateCount
         await view.renderer.goTo({ index, anchor: fraction })
         await painted()
+        // The count has to describe the page this call landed on, and `visible` only becomes that
+        // page's range when the paginator relocates - which it does after the frames above, not
+        // before them. Read without this wait it is the previous page's range, or null on the
+        // first move, and either way a page full of text reports 0 characters. Librera uses the
+        // count to tell a page drawn before it was ready from one that is genuinely the blank end
+        // of a chapter, so a wrong 0 there is a blank page it never redraws.
+        await relocated(since)
         return { chars: visible ? String(visible).length : 0 }
     },
 

@@ -186,12 +186,19 @@ public class FoliatePage extends AbstractCodecPage {
                 return null;
             }
             Bitmap drawn = renderer.capture(width, height);
-            // A page that draws as nothing at all, but has text on it, was drawn before the
-            // WebView had finished laying it out - the view is parked out of sight, where frames
-            // are throttled, so what "finished" means is not always what it says. One more go,
-            // which a page that is simply the end of a chapter never needs.
-            if (drawn != null && document.getPositionedChars() > 0 && isBlank(drawn)) {
-                LOG.d("FOLIATE! page drew blank, once more", pageNumber);
+            // A page that draws as nothing at all was drawn before the WebView had finished
+            // laying it out - the view is parked out of sight, where frames are throttled, so
+            // what "finished" means is not always what it says. One more go.
+            //
+            // The second go used to be kept for a page the engine said had text on it, so that
+            // the end of a chapter was not redrawn for nothing. That reads the count as evidence
+            // the count cannot give: the throttling that makes a capture early is the same
+            // throttling that leaves the count reading 0, so the pages that most needed redrawing
+            // were exactly the ones that never got it - a whole grid of thumbnails came back
+            // blank. A genuinely blank page now pays for one extra draw and is still blank.
+            if (drawn != null && isBlank(drawn)) {
+                LOG.d("FOLIATE! page drew blank, once more", pageNumber,
+                        document.getPositionedChars());
                 final Bitmap again = renderer.redraw(width, height);
                 if (again != null) {
                     drawn.recycle();

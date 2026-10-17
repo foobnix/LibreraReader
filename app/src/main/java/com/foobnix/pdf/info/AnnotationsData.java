@@ -120,6 +120,44 @@ public class AnnotationsData {
         return result;
     }
 
+    /**
+     * Every mark on every book, from every device, newest first. Each one keeps the path it was
+     * filed under, so a screen listing marks across books can say which book each belongs to.
+     */
+    public List<AppAnnotation> all() {
+        final List<AppAnnotation> result = new ArrayList<AppAnnotation>();
+        final Set<Long> seen = new HashSet<Long>();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_ANNOTATIONS_JSON)) {
+            try {
+                final LinkedJSONObject obj = IO.readJsonObject(file);
+                final Iterator<String> keys = obj.keys();
+                while (keys.hasNext()) {
+                    final String key = keys.next();
+                    final AppAnnotation annotation = new AppAnnotation();
+                    Objects.loadFromJson(annotation, obj.getJSONObject(key));
+                    if (annotation.path == null) {
+                        continue;
+                    }
+                    // The same mark copied onto two devices is still one mark
+                    if (!seen.add(annotation.t)) {
+                        continue;
+                    }
+                    annotation.file = file;
+                    result.add(annotation);
+                }
+            } catch (Exception e) {
+                LOG.e(e, file);
+            }
+        }
+        Collections.sort(result, new Comparator<AppAnnotation>() {
+            @Override
+            public int compare(final AppAnnotation a, final AppAnnotation b) {
+                return Long.compare(b.t, a.t);
+            }
+        });
+        return result;
+    }
+
     /** Whether this book has any marks at all - cheap enough to ask before every page is drawn. */
     public boolean hasAny(final String bookPath) {
         return !byBook(bookPath).isEmpty();

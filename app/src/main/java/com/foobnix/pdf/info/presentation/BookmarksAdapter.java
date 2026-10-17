@@ -194,7 +194,7 @@ public class BookmarksAdapter extends BaseAdapter {
      * A mark shown as it is on the page - highlighted, underlined or struck through, in the
      * colour it was made with - so the list reads as what the reader actually marked.
      */
-    private void styleAsMark(final TextView textView, final AppAnnotation mark) {
+    public static void styleAsMark(final TextView textView, final AppAnnotation mark) {
         final int color = AnnotationsPainter.parseColor(mark.color);
         final SpannableString text = new SpannableString(mark.text);
         final int end = text.length();
