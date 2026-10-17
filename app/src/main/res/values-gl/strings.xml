@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Resaltar letras iniciais</string>
    <string name="anti_aliasing_level">Nivel de suavizado (anti-aliasing)</string>
    <string name="folder_preview">Vista previa do cartafol</string>
+   <string name="show_storage_book_covers">Amosar portadas do almacenamento engadido</string>
    <string name="accent">Cor de acento</string>
    <string name="discarded_books">Libros descartados</string>
    <string name="show_print_edition_page_numbers_epub3">Amosar números de páxina da edición impresa (EPUB3)</string>

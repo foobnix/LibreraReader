@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
+   <string name="show_storage_book_covers">Показване на корици за добавеното хранилище</string>
    <string name="accent">Акцент</string>
    <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>

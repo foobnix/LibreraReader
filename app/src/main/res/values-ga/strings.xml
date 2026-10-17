@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Ag cur béime ar litreacha tosaigh</string>
    <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
+   <string name="show_storage_book_covers">Taispeáin clúdaigh don stóráil a cuireadh leis</string>
    <string name="accent">Aiceann</string>
    <string name="discarded_books">Leabhair caite</string>
    <string name="show_print_edition_page_numbers_epub3">Taispeáin uimhreacha leathanaigh eagrán priontála (epub3)</string>

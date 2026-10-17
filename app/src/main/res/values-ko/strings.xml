@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">첫 글자 강조</string>
    <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
    <string name="folder_preview">폴더 미리보기</string>
+   <string name="show_storage_book_covers">추가한 저장소의 표지 표시</string>
    <string name="accent">악센트</string>
    <string name="discarded_books">버려진 책들</string>
    <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>

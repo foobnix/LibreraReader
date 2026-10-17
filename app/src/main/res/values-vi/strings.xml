@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Làm nổi bật các chữ cái đầu tiên</string>
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
+   <string name="show_storage_book_covers">Hiển thị bìa cho bộ nhớ đã thêm</string>
    <string name="accent">Giọng</string>
    <string name="discarded_books">Sách bỏ đi</string>
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>

@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Kezdőbetűk kiemelése</string>
    <string name="anti_aliasing_level">Élsimítási szint</string>
    <string name="folder_preview">Mappa előnézete</string>
+   <string name="show_storage_book_covers">Borítók megjelenítése a hozzáadott tárhelyhez</string>
    <string name="accent">Hangsúly</string>
    <string name="discarded_books">Kiselejtezett könyveket</string>
    <string name="show_print_edition_page_numbers_epub3">Nyomtatott kiadás oldalszámainak megjelenítése (epub3)</string>

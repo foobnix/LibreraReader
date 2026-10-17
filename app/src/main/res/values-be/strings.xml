@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Вылучэнне пачатковых літар</string>
    <string name="anti_aliasing_level">Ўзровень згладжвання</string>
    <string name="folder_preview">Папярэдні прагляд папкі</string>
+   <string name="show_storage_book_covers">Паказваць вокладкі для дададзенага сховішча</string>
    <string name="accent">Акцэнт</string>
    <string name="discarded_books">Выкінутыя кнігі</string>
    <string name="show_print_edition_page_numbers_epub3">Паказаць нумары старонак друкаванага выдання (epub3)</string>

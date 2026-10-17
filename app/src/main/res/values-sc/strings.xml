@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Evidentziende sas lìteras initziales</string>
    <string name="anti_aliasing_level">Livellu de anti-iscalitadura</string>
    <string name="folder_preview">Antiprima de cartella</string>
+   <string name="show_storage_book_covers">Ammustra sas coberteddas de sa memòria annanta</string>
    <string name="accent">Atzentu</string>
    <string name="discarded_books">Libros iscartados</string>
    <string name="show_print_edition_page_numbers_epub3">Ammustra sos nùmeros de pàgina de s\'editzione imprentada (Epub3)</string>

@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Ressalta les lletres inicials</string>
    <string name="anti_aliasing_level">Nivell de suavitzat</string>
    <string name="folder_preview">Previsualització de la carpeta</string>
+   <string name="show_storage_book_covers">Mostra les cobertes de l\'emmagatzematge afegit</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Llibres descartats</string>
    <string name="show_print_edition_page_numbers_epub3">Mostra els números de pàgina de l\'edició impresa (Epub3)</string>

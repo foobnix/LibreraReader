@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Zvýraznění počátečních písmen</string>
    <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
+   <string name="show_storage_book_covers">Zobrazit obaly pro přidané úložiště</string>
    <string name="accent">Přízvuk</string>
    <string name="discarded_books">Vyřazené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>

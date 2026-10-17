@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Anfangsbuchstaben hervorheben</string>
    <string name="anti_aliasing_level">Anti-Aliasing-Stufe</string>
    <string name="folder_preview">Ordnervorschau</string>
+   <string name="show_storage_book_covers">Titelbilder für hinzugefügten Speicher anzeigen</string>
    <string name="accent">Akzent</string>
    <string name="discarded_books">Weggeworfene Bücher</string>
    <string name="show_print_edition_page_numbers_epub3">Seitenzahlen der gedruckten Ausgabe anzeigen (epub3)</string>

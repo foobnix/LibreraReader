@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Surlignage des lettres initiales</string>
    <string name="anti_aliasing_level">Niveau d\'anticrénelage</string>
    <string name="folder_preview">Aperçu du dossier</string>
+   <string name="show_storage_book_covers">Afficher les couvertures du stockage ajouté</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Livres jetés</string>
    <string name="show_print_edition_page_numbers_epub3">Afficher les numéros de page de l\'édition imprimée (epub3)</string>

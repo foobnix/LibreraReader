@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Бастауыш әріптерді белгілеу</string>
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
+   <string name="show_storage_book_covers">Қосылған жад үшін мұқабаларды көрсету</string>
    <string name="accent">Екпін</string>
    <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>

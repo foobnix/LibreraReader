@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Выделять начальные буквы</string>
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
+   <string name="show_storage_book_covers">Показывать обложки для добавленного хранилища</string>
    <string name="accent">Цвет акцента</string>
    <string name="discarded_books">Исключенные книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показывать номера страниц печатного издания (для EPUB3-формата)</string>

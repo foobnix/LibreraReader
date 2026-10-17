@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">突出顯示首字母</string>
    <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
+   <string name="show_storage_book_covers">顯示已新增儲存空間的封面</string>
    <string name="accent">口音</string>
    <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>

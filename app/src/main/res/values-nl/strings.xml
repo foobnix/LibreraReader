@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Beginletters markeren</string>
    <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
+   <string name="show_storage_book_covers">Toon omslagen voor toegevoegde opslag</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>

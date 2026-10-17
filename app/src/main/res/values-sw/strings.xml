@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Kuangazia herufi za mwanzo</string>
    <string name="anti_aliasing_level">Kiwango cha kupinga-aliasing</string>
    <string name="folder_preview">Hakikisho la folda</string>
+   <string name="show_storage_book_covers">Onyesha jalada za hifadhi iliyoongezwa</string>
    <string name="accent">Lafudhi</string>
    <string name="discarded_books">Vitabu vilivyotupwa</string>
    <string name="show_print_edition_page_numbers_epub3">Onyesha nambari za kurasa za toleo la kuchapisha (epub3)</string>

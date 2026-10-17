@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Utheving av forbokstaver</string>
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
+   <string name="show_storage_book_covers">Vis omslag for lagt til lagring</string>
    <string name="accent">Aksent</string>
    <string name="discarded_books">Kasserte bøker</string>
    <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>

@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">頭文字のハイライト</string>
    <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
    <string name="folder_preview">フォルダーのプレビュー</string>
+   <string name="show_storage_book_covers">追加したストレージの表紙を表示する</string>
    <string name="accent">アクセント</string>
    <string name="discarded_books">捨てられた本</string>
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>

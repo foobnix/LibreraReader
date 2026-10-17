@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Hasierako letrak nabarmentzea</string>
    <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
+   <string name="show_storage_book_covers">Erakutsi gehitutako biltegiaren azalak</string>
    <string name="accent">Azentua</string>
    <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>

@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">प्रारंभिक अक्षरों को हाइलाइट करना</string>
    <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
+   <string name="show_storage_book_covers">जोड़े गए संग्रहण के लिए कवर दिखाएं</string>
    <string name="accent">लहज़ा</string>
    <string name="discarded_books">छोड़ी गई किताबें</string>
    <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>

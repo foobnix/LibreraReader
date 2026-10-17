@@ -669,6 +669,7 @@
    <string name="highlighting_initial_letters">Evidențierea literelor inițiale</string>
    <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
+   <string name="show_storage_book_covers">Afișați coperțile pentru stocarea adăugată</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>

@@ -55,7 +55,16 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT = CHARIS_SIL;
+    /**
+     * The font a book is laid out in until the reader picks another one.
+     *
+     * One of the names the engines resolve themselves rather than a file in the font folder, so
+     * it needs nothing bundled and nothing downloaded: MuPDF maps it onto its own serif face and
+     * a WebView onto the system's. {@link #getTypeFaceForFont(String)} answers
+     * {@link android.graphics.Typeface#SERIF} for it, so the settings panel previews it properly
+     * too - which the name of a font with no file behind it could not.
+     */
+    public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
