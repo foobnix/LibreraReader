@@ -46,6 +46,7 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -210,7 +211,7 @@ public class PrefFragment2 extends UIFragment {
         if (profileLetter != null && getActivity() != null) {
             final String p = AppProfile.getCurrent();
             profileLetter.setText(TxtUtils.getFirstLetter(p));
-            profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
+            profileLetter.setBackground(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
             profileLetter.setContentDescription(p + " " + getString(R.string.profile));
         }
 
@@ -2759,7 +2760,7 @@ public class PrefFragment2 extends UIFragment {
         final String p = AppProfile.getCurrent();
 
         profileLetter.setText(TxtUtils.getFirstLetter(p));
-        profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(
+        profileLetter.setBackground(AppProfile.getProfileColorDrawable(
 
                 getActivity(), p));
 
@@ -2969,7 +2970,7 @@ public class PrefFragment2 extends UIFragment {
         }
         for (Drawable icon : button.getCompoundDrawables()) {
             if (icon != null) {
-                icon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
         }
     }
@@ -3054,7 +3055,7 @@ public class PrefFragment2 extends UIFragment {
         } else {
             int size = Dips.dpToPx(18);
             icon.setBounds(0, 0, size, size);
-            icon.setColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
+            icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         }
         button.setCompoundDrawables(icon, null, null, null);
         button.setCompoundDrawablePadding(Dips.DP_6);

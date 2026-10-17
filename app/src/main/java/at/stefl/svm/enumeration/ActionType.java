@@ -155,7 +155,7 @@ public enum ActionType {
     
     public SVMAction newActionObject() {
         try {
-            SVMAction result = actionObjectClass.newInstance();
+            SVMAction result = actionObjectClass.getDeclaredConstructor().newInstance();
             // TODO: remove me (debugging only)
             if (result instanceof UnsupportedAction) ((UnsupportedAction) result)
                     .setActionType(this);

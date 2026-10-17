@@ -95,19 +95,7 @@ public class Keyboards {
                     if (DocumentController.isBarsWithPanels(activity)) {
                         return;
                     }
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        decorView.setSystemUiVisibility(//
-                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
-                    } else {
-                        decorView.setSystemUiVisibility( //
-                                View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN); //
-                    }
+                    DocumentController.hideSystemBars(activity);
                     // Up to Android 10 the bars going away changes nothing the page is told -
                     // it is laid out stable - so it is asked to look at them again.
                     decorView.requestApplyInsets();
@@ -125,23 +113,7 @@ public class Keyboards {
             if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL || DocumentController.isBarsWithPanels(a)) {
                 return;
             }
-            final Window window = a.getWindow();
-            final WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
-
-            final View decorView = a.getWindow().getDecorView();
-            if (Build.VERSION.SDK_INT >= 19) {
-                decorView.setSystemUiVisibility(//
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
-                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
-                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-                                | View.SYSTEM_UI_FLAG_FULLSCREEN//
-                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
-            } else {
-                decorView.setSystemUiVisibility( //
-                        View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                | View.SYSTEM_UI_FLAG_FULLSCREEN); //
-            }
+            DocumentController.hideSystemBars(a);
         } catch (Exception e) {
             LOG.e(e);
         }

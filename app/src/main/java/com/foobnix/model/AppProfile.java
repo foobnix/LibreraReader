@@ -330,7 +330,7 @@ public class AppProfile {
                         TextView letter = layout.findViewById(R.id.profileLetter);
                         letter.setVisibility(View.VISIBLE);
                         letter.setText(TxtUtils.getFirstLetter(tagName));
-                        letter.setBackgroundDrawable(getProfileColorDrawable(a, tagName));
+                        letter.setBackground(getProfileColorDrawable(a, tagName));
 
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
                         // The cross in the colour links are drawn in, like the cross that drops

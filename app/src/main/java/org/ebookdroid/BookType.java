@@ -218,7 +218,7 @@ public enum BookType {
             LOG.d("getCodecContext comic", path);
             return comic;
         }
-        return type.contextClass.newInstance();
+        return type.contextClass.getDeclaredConstructor().newInstance();
     }
 
     /**

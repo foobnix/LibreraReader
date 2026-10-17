@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -531,7 +532,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             for (UITab tab : UITab.getOrdered()) {
                 LOG.d("getOrdered", tab, tab.isVisible());
                 if (tab.isVisible()) {
-                    tabFragments.add(tab.getClazz().newInstance());
+                    tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                 }
             }
             if (tabFragments.size() == 0) {
@@ -540,7 +541,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
                 for (UITab tab : UITab.getOrdered()) {
                     if (tab.isVisible()) {
-                        tabFragments.add(tab.getClazz().newInstance());
+                        tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                     }
                 }
             }
@@ -652,7 +653,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         indicator.setViewPager(pager);
 
-        indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
+        indicator.setDividerColors(ContextCompat.getColor(this, R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setTabsBackground(TintUtil.color);
 
@@ -1019,7 +1020,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        String language = newConfig.locale.getLanguage();
+        String language = newConfig.getLocales().get(0).getLanguage();
         float fontScale = newConfig.fontScale;
 
         LOG.d("ContextWrapper ConfigChanged", language, fontScale);

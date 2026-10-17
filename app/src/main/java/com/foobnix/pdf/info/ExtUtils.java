@@ -1704,7 +1704,7 @@ public class ExtUtils {
 
     public static List<String> getExternalStorageDirectories1(Context c) {
 
-        File[] list = ContextCompat.getExternalFilesDirs(c, null);
+        File[] list = c.getExternalFilesDirs(null);
         List<String> res = new ArrayList<String>();
         for (File f : list) {
             if (f != null && !f.getPath().endsWith("files")) {
@@ -1786,7 +1786,7 @@ public class ExtUtils {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
-                File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
+                File[] externalDirs = c.getExternalFilesDirs(null);
 
                 for (File file : externalDirs) {
                     if (file == null) {

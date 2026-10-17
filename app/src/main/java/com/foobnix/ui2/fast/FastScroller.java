@@ -39,7 +39,6 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.pdf.info.R;
@@ -252,8 +251,7 @@ public class FastScroller extends LinearLayout {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mBubbleView.setBackground(mBubbleImage);
         } else {
-            //noinspection deprecation
-            mBubbleView.setBackgroundDrawable(mBubbleImage);
+            mBubbleView.setBackground(mBubbleImage);
         }
     }
 
@@ -285,7 +283,7 @@ public class FastScroller extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
         case MotionEvent.ACTION_DOWN:
-            if (event.getX() < mHandleView.getX() - ViewCompat.getPaddingStart(mHandleView)) {
+            if (event.getX() < mHandleView.getX() - mHandleView.getPaddingStart()) {
                 return false;
             }
 

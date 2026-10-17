@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import android.os.Looper;
 
 /**
  * <p>AsyncTask enables proper and easy use of the UI thread. This class allows to
@@ -542,6 +543,7 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
      * @see #executeOnExecutor(java.util.concurrent.Executor, Object[])
      * @see #execute(Runnable)
      */
+    @SafeVarargs
     public final CopyAsyncTask<Params, Progress, Result> execute(Params... params) {
         return executeOnExecutor(sDefaultExecutor, params);
     }
@@ -579,6 +581,7 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
      *
      * @see #execute(Object[])
      */
+    @SafeVarargs
     public final CopyAsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
             Params... params) {
         if (mStatus != Status.PENDING) {
@@ -629,6 +632,7 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
      * @see #onProgressUpdate
      * @see #doInBackground
      */
+    @SafeVarargs
     protected final void publishProgress(Progress... values) {
         if (!isCancelled()) {
             sHandler.obtainMessage(MESSAGE_POST_PROGRESS,
@@ -646,6 +650,12 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
     }
 
     private static class InternalHandler extends Handler {
+        InternalHandler() {
+            // The no-arg Handler() picked up whatever Looper the calling thread had; this task
+            // posts its results to the UI, which is the only Looper it ever meant.
+            super(Looper.getMainLooper());
+        }
+
         @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
         @Override
         public void handleMessage(Message msg) {
@@ -671,6 +681,7 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
         final CopyAsyncTask mTask;
         final Data[] mData;
 
+        @SafeVarargs
         AsyncTaskResult(CopyAsyncTask task, Data... data) {
             mTask = task;
             mData = data;

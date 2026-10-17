@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -29,6 +30,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -187,11 +190,65 @@ public abstract class DocumentController {
         a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
     }
 
+    /**
+     * Whether the status bar and the navigation bar were last asked to go away.
+     *
+     * Up to Android 10 the room a hidden bar took goes on being reported, so the insets have to
+     * be corrected by hand (see {@link #barsShown}). That used to be read back off the decor
+     * view's system-ui flags; those are gone, and the controller has no getter before API 30, so
+     * what was asked for is remembered here instead. It is only ever read on that older path.
+     */
+    private static boolean statusBarHidden = false;
+
+    private static boolean navigationBarHidden = false;
+
+    /** The controller that puts the system's bars up and down on this window. */
+    private static WindowInsetsControllerCompat barsOf(final Activity a) {
+        final Window window = a.getWindow();
+        return WindowCompat.getInsetsController(window, window.getDecorView());
+    }
+
+    /**
+     * Lays the window out behind the system's bars and puts them up or down.
+     *
+     * This is what the old SYSTEM_UI_FLAG_LAYOUT_* trio and FLAG_FULLSCREEN did together: the
+     * page keeps the size it has whether or not the bars are showing, and the bars are drawn
+     * over it. Hidden bars come back on a swipe and go again by themselves, which is what
+     * SYSTEM_UI_FLAG_IMMERSIVE_STICKY meant.
+     */
+    private static void applyBars(final Activity a, final boolean hideStatus, final boolean hideNavigation) {
+        final Window window = a.getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        final WindowInsetsControllerCompat bars = barsOf(a);
+        bars.setSystemBarsBehavior(
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        if (hideStatus) {
+            bars.hide(WindowInsetsCompat.Type.statusBars());
+        } else {
+            bars.show(WindowInsetsCompat.Type.statusBars());
+        }
+        if (hideNavigation) {
+            bars.hide(WindowInsetsCompat.Type.navigationBars());
+        } else {
+            bars.show(WindowInsetsCompat.Type.navigationBars());
+        }
+        statusBarHidden = hideStatus;
+        navigationBarHidden = hideNavigation;
+    }
+
+    /**
+     * Puts both of the system's bars away, leaving the page the size it already had. They come
+     * back on a swipe and go again by themselves.
+     */
+    public static void hideSystemBars(final Activity a) {
+        applyBars(a, true, true);
+    }
+
     public static void runFullScreen(final Activity a) {
         try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // The status bar goes; the navigation bar is Keyboards.hideNavigation's to decide,
+            // which it does on a delay so a panel closing does not flash it back up.
+            applyBars(a, true, navigationBarHidden);
 
             Keyboards.hideNavigation(a);
 
@@ -206,15 +263,10 @@ public abstract class DocumentController {
      */
     public static void runFullScreenCutOut(final Activity a) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-            }
+            // The cut-out itself is EdgeToEdge's doing and holds whatever the bars are up to;
+            // what this mode adds over the plain one is only how far the page is let out, which
+            // keptClearOf works out from the insets.
+            applyBars(a, true, navigationBarHidden);
 
             Keyboards.hideNavigation(a);
 
@@ -239,14 +291,8 @@ public abstract class DocumentController {
 
     private static void runBarsOverPanels(final Activity a) {
         try {
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            final View decorView = a.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            // The bars come up with the panels and lie over the page, which keeps its size.
+            applyBars(a, false, false);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -274,17 +320,8 @@ public abstract class DocumentController {
 
     public static void runNormalScreen(final Activity a) {
         try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            // The bars come back and the page goes on running under them: the flags that put
-            // them away are dropped, the ones the page was laid out under them with are kept.
-            final View decorView = a.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-
+            // The bars come back and the page goes on running under them.
+            applyBars(a, false, false);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -563,10 +600,8 @@ public abstract class DocumentController {
         if (a == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.R || a.isInMultiWindowMode()) {
             return bars;
         }
-        int flags = a.getWindow().getDecorView().getSystemUiVisibility();
-        boolean statusAway = (flags & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0
-                || (a.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-        boolean navigationAway = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0;
+        boolean statusAway = statusBarHidden;
+        boolean navigationAway = navigationBarHidden;
         return Insets.of(navigationAway ? 0 : bars.left,
                          statusAway ? 0 : bars.top,
                          navigationAway ? 0 : bars.right,

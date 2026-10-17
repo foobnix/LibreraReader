@@ -182,6 +182,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.graphics.PorterDuffColorFilter;
 
 public class DragingDialogs {
     public final static int PREF_WIDTH = 330;
@@ -1801,13 +1802,13 @@ public class DragingDialogs {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
                         Drawable highlight = controller.getDrawable(R.drawable.glyphicons_695_text_background);
-                        highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        highlight.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable underline = controller.getDrawable(R.drawable.glyphicons_104_underline);
-                        underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        underline.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable strikeout = controller.getDrawable(R.drawable.glyphicons_105_strikethrough);
-                        strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        strikeout.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         menu.getMenu()
                             .add(R.string.highlight_of_text)
