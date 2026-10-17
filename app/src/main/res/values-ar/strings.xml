@@ -695,4 +695,9 @@
    <string name="watch">مشاهدة</string>
    <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>
    <string name="remove_library_folder">إزالة هذا المجلد من المكتبة؟ لن تُحذف الملفات الموجودة فيه.</string>
+   <string name="epub_engine">محرك EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView غير متوفر على هذا الجهاز.</string>
+   <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
+   <string name="pdf_engine">محرك PDF</string>
+   <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
 </resources>

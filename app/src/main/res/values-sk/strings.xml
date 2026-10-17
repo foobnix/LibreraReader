@@ -695,4 +695,9 @@
    <string name="watch">Pozrieť</string>
    <string name="librerax_not_installed">LibreraX nie je nainštalovaný. Stiahnite a nainštalujte ho a potom knihu otvorte znova.</string>
    <string name="remove_library_folder">Odstrániť tento priečinok z knižnice? Súbory v ňom nebudú vymazané.</string>
+   <string name="epub_engine">Jadro EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView nie je na tomto zariadení k dispozícii.</string>
+   <string name="base_stylesheet">Použiť základný štýl (foliate-js)</string>
+   <string name="pdf_engine">Jadro PDF</string>
+   <string name="msg_pdf_engine_unavailable">Toto zostavenie neobsahuje knižnice PDFium.</string>
 </resources>

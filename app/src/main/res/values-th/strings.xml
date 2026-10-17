@@ -695,4 +695,9 @@
    <string name="watch">ดู</string>
    <string name="librerax_not_installed">ยังไม่ได้ติดตั้ง LibreraX ดาวน์โหลดและติดตั้ง แล้วเปิดหนังสืออีกครั้ง</string>
    <string name="remove_library_folder">นำโฟลเดอร์นี้ออกจากห้องสมุดหรือไม่ ไฟล์ในโฟลเดอร์จะไม่ถูกลบ</string>
+   <string name="epub_engine">เอนจิน EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView ไม่พร้อมใช้งานบนอุปกรณ์นี้</string>
+   <string name="base_stylesheet">ใช้สไตล์ชีตพื้นฐาน (foliate-js)</string>
+   <string name="pdf_engine">เอนจิน PDF</string>
+   <string name="msg_pdf_engine_unavailable">บิลด์นี้ไม่มีไลบรารี PDFium</string>
 </resources>

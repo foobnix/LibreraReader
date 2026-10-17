@@ -695,4 +695,9 @@
    <string name="watch">צפה</string>
    <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
    <string name="remove_library_folder">להסיר את התיקייה הזו מהספרייה? הקבצים שבה לא יימחקו.</string>
+   <string name="epub_engine">מנוע EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView אינו זמין במכשיר הזה.</string>
+   <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
+   <string name="pdf_engine">מנוע PDF</string>
+   <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
 </resources>

@@ -695,4 +695,9 @@
    <string name="watch">Гледай</string>
    <string name="librerax_not_installed">LibreraX не е инсталиран. Изтеглете и го инсталирайте, след това отворете книгата отново.</string>
    <string name="remove_library_folder">Премахване на тази папка от библиотеката? Файловете в нея няма да бъдат изтрити.</string>
+   <string name="epub_engine">Двигател за EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView не е наличен на това устройство.</string>
+   <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
+   <string name="pdf_engine">Двигател за PDF</string>
+   <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
 </resources>

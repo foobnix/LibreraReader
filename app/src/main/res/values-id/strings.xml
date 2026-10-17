@@ -695,4 +695,9 @@
    <string name="watch">Tonton</string>
    <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
    <string name="remove_library_folder">Hapus folder ini dari pustaka? File di dalamnya tidak akan dihapus.</string>
+   <string name="epub_engine">Mesin EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView tidak tersedia di perangkat ini.</string>
+   <string name="base_stylesheet">Terapkan lembar gaya dasar (foliate-js)</string>
+   <string name="pdf_engine">Mesin PDF</string>
+   <string name="msg_pdf_engine_unavailable">Build ini tidak menyertakan pustaka PDFium.</string>
 </resources>

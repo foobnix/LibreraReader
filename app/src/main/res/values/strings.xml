@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
@@ -695,11 +695,9 @@
    <string name="text_and_background_color">Text and Background Color</string>
    <string name="librerax_not_installed">LibreraX is not installed. Download and install it, then open the book again.</string>
    <string name="remove_library_folder">Remove this folder from the library? The files in it will not be deleted.</string>
-   <!-- EPUB render engine; translations follow, so lint is told not to ask for them yet -->
-   <string name="epub_engine" tools:ignore="MissingTranslation">EPUB engine</string>
-   <string name="msg_epub_engine_unavailable" tools:ignore="MissingTranslation">A WebView is not available on this device.</string>
-   <string name="base_stylesheet" tools:ignore="MissingTranslation">Apply the base stylesheet (foliate-js)</string>
-   <!-- PDF render engine; translations follow, so lint is told not to ask for them yet -->
-   <string name="pdf_engine" tools:ignore="MissingTranslation">PDF engine</string>
-   <string name="msg_pdf_engine_unavailable" tools:ignore="MissingTranslation">This build does not include the PDFium libraries.</string>
+   <string name="epub_engine">EPUB engine</string>
+   <string name="msg_epub_engine_unavailable">A WebView is not available on this device.</string>
+   <string name="base_stylesheet">Apply the base stylesheet (foliate-js)</string>
+   <string name="pdf_engine">PDF engine</string>
+   <string name="msg_pdf_engine_unavailable">This build does not include the PDFium libraries.</string>
 </resources>

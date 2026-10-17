@@ -695,4 +695,9 @@
    <string name="watch">Vizionează</string>
    <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>
    <string name="remove_library_folder">Elimini acest dosar din bibliotecă? Fișierele din el nu vor fi șterse.</string>
+   <string name="epub_engine">Motor EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView nu este disponibil pe acest dispozitiv.</string>
+   <string name="base_stylesheet">Aplică foaia de stiluri de bază (foliate-js)</string>
+   <string name="pdf_engine">Motor PDF</string>
+   <string name="msg_pdf_engine_unavailable">Această versiune nu include bibliotecile PDFium.</string>
 </resources>

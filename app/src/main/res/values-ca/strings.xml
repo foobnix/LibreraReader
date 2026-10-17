@@ -695,4 +695,9 @@
    <string name="watch">Mira</string>
    <string name="librerax_not_installed">LibreraX no està instal·lat. Baixeu-lo i instal·leu-lo i torneu a obrir el llibre.</string>
    <string name="remove_library_folder">Voleu treure aquesta carpeta de la biblioteca? Els fitxers que conté no se suprimiran.</string>
+   <string name="epub_engine">Motor d\'EPUB</string>
+   <string name="msg_epub_engine_unavailable">El WebView no està disponible en aquest dispositiu.</string>
+   <string name="base_stylesheet">Aplica el full d\'estils base (foliate-js)</string>
+   <string name="pdf_engine">Motor de PDF</string>
+   <string name="msg_pdf_engine_unavailable">Aquesta compilació no inclou les biblioteques PDFium.</string>
 </resources>

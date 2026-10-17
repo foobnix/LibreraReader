@@ -38,6 +38,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
+import android.graphics.RectF;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
@@ -51,6 +52,12 @@ import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.Engines;
+import org.ebookdroid.BookType;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -708,9 +715,114 @@ public abstract class DocumentController {
         }
     }
 
+    /** The exact place the reader is, when the engine can name one; null otherwise. */
+    public String getLocation() {
+        try {
+            CodecDocument doc = getCodecDocument();
+            return doc != null ? doc.getLocation(getCurentPageFirst1()) : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * The page a saved location names, or -1.
+     *
+     * A location written by one engine means nothing to another - a CFI from foliate-js is not
+     * something MuPDF can resolve - and the engine says so rather than guessing, which is why the
+     * percentage is always saved beside it.
+     */
+    public int findLocationPage(String location) {
+        try {
+            CodecDocument doc = getCodecDocument();
+            if (doc != null && TxtUtils.isNotEmpty(location)) {
+                return doc.findLocationPage(location);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return -1;
+    }
+
+    /**
+     * Whether a mark on this book belongs inside the document itself.
+     *
+     * A PDF has carried its own annotations since long before this, and keeps doing so - another
+     * reader opening the file sees them. Everything else has nowhere inside the file to put one,
+     * so Librera keeps it: see {@link com.foobnix.model.AppAnnotation}. Two PDFs fall back to
+     * Librera's store as well - one in a build with no MuPDF to write the annotation with, and
+     * one that is encrypted, which is not a file to be rewriting.
+     */
+    public boolean isAnnotationsInsideDocument() {
+        try {
+            return Engines.IS_MUPDF
+                    && BookType.PDF.is(getCurrentBook().getPath())
+                    && !isPasswordProtected();
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+    }
+
+    /**
+     * Stores a mark on the words the reader selected, in Librera's own store.
+     *
+     * The anchor depends on what the engine laying this book out can promise - see
+     * {@link com.foobnix.model.AppAnnotation}. Asking for one means asking the engine, so this
+     * belongs off the UI thread; the caller already has a thread for it.
+     *
+     * @param page0 the page the selection is on, 0-based
+     * @param rects the selected rectangles, each normalized to the page
+     */
+    public AppAnnotation createAnnotation(final int page0, final List<RectF> rects, final String text,
+                                          final AnnotationType type, final String color) {
+        if (rects == null || rects.isEmpty()) {
+            return null;
+        }
+        final AppAnnotation annotation = new AppAnnotation(getCurrentBook().getPath());
+        annotation.setType(type);
+        annotation.color = color;
+        annotation.text = TxtUtils.isNotEmpty(text) ? text.trim() : "";
+        annotation.page = page0;
+        annotation.p = getPercentage();
+        if (isTextFormat()) {
+            // Reflowable: the rectangles mean nothing at another font size, so the characters
+            // have to be named instead - exactly if the engine can, by the page's text if not.
+            final CodecDocument doc = getCodecDocument();
+            final String cfi = doc != null ? doc.getLocation(page0 + 1, rects) : null;
+            if (TxtUtils.isNotEmpty(cfi)) {
+                annotation.cfi = cfi;
+            } else if (doc != null) {
+                annotation.pt = TxtUtils.nullToEmpty(doc.getBookmarkText(page0 + 1));
+            }
+        } else {
+            annotation.rects = AnnotationsFinder.write(rects);
+        }
+        AnnotationsData.get().add(annotation);
+        AnnotationsFinder.invalidate();
+        LOG.d("createAnnotation", annotation);
+        return annotation;
+    }
+
     // page is estimated by percent, returns the nearest page (+-10) with the text, else with the page text
     // saved at the position (finds the page after re-layout, font size change), else the page
     public int findBookmarkPage(int page, String text, String pageText) {
+        return findBookmarkPage(page, text, pageText, null);
+    }
+
+    /**
+     * The same, given an exact place to try first.
+     *
+     * The exact place wins when the engine understands it; otherwise this is what it always was -
+     * the page the percentage points at, corrected by searching the saved page text around it.
+     */
+    public int findBookmarkPage(int page, String text, String pageText, String location) {
+        final int exact = findLocationPage(location);
+        if (exact > 0) {
+            LOG.d("findBookmarkPage by location", exact, "instead of", page);
+            return exact;
+        }
         try {
             CodecDocument doc = getCodecDocument();
             if (doc != null && (TxtUtils.isNotEmpty(text) || TxtUtils.isNotEmpty(pageText))) {
@@ -792,6 +904,10 @@ public abstract class DocumentController {
             bs.updateFromAppState();
             if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
                 bs.pt = getBookmarkText();
+                // The exact place, when the engine can name one. It is written beside the
+                // percentage and the page text, never instead of them: another engine, an older
+                // version or another device has to be able to restore the position without it.
+                bs.cfi = getLocation();
             }
             SharedBooks.save(bs);
             // The row the shelves are drawn from is brought up to the file straight away, so a
@@ -828,7 +944,7 @@ public abstract class DocumentController {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
                 int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
                 if (getCurentPage() != page) {
-                    page = findBookmarkPage(page, null, bs.pt);
+                    page = findBookmarkPage(page, null, bs.pt, bs.cfi);
                     if (getCurentPage() != page) {
                         onGoToPage(page);
                     }
@@ -1059,6 +1175,16 @@ public abstract class DocumentController {
         deleteAnnotation(pageHander, page, index);
         showEditDialogIfNeed();
         saveAnnotationsToFile();
+    }
+
+    /** Removes one of Librera's own marks, the way tapping a PDF annotation removes that. */
+    public void removeAnnotation(final AppAnnotation annotation) {
+        if (annotation == null) {
+            return;
+        }
+        AnnotationsData.get().remove(annotation);
+        AnnotationsFinder.invalidate();
+        LOG.d("removeAnnotation", annotation);
     }
 
     public void showEditDialogIfNeed() {

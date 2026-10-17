@@ -695,4 +695,9 @@
    <string name="watch">Přehrát</string>
    <string name="librerax_not_installed">LibreraX není nainstalován. Stáhněte a nainstalujte jej a poté knihu otevřete znovu.</string>
    <string name="remove_library_folder">Odebrat tuto složku z knihovny? Soubory v ní nebudou smazány.</string>
+   <string name="epub_engine">Jádro EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView není na tomto zařízení k dispozici.</string>
+   <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
+   <string name="pdf_engine">Jádro PDF</string>
+   <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>
 </resources>

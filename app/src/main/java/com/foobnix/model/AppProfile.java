@@ -55,6 +55,7 @@ public class AppProfile {
     public static final String APP_EXCLUDE_JSON = "app-Exclude.json";
     public static final String APP_FAVORITE_JSON = "app-Favorite.json";
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
+    public static final String APP_ANNOTATIONS_JSON = "app-Annotations.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
     public static final String APP_TAGS_JSON2 = "app-Tags2.json";
@@ -81,6 +82,9 @@ public class AppProfile {
     public static File syncPlaylist;
     public static File syncProgress;
     public static File syncBookmarks;
+
+    /** The reader's own highlights and underlines; see AnnotationsData. */
+    public static File syncAnnotations;
 
     public static File syncFontFolder;
 
@@ -138,6 +142,7 @@ public class AppProfile {
 
         syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
         syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);
+        syncAnnotations = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_ANNOTATIONS_JSON);
         syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_PROGRESS_JSON);
         syncRecent = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_RECENT_JSON);
 

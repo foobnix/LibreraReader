@@ -695,4 +695,9 @@
    <string name="watch">देखें</string>
    <string name="librerax_not_installed">LibreraX इंस्टॉल नहीं है। इसे डाउनलोड और इंस्टॉल करें, फिर किताब दोबारा खोलें।</string>
    <string name="remove_library_folder">इस फ़ोल्डर को लाइब्रेरी से हटाएँ? इसमें मौजूद फ़ाइलें डिलीट नहीं होंगी।</string>
+   <string name="epub_engine">EPUB इंजन</string>
+   <string name="msg_epub_engine_unavailable">इस डिवाइस पर WebView उपलब्ध नहीं है।</string>
+   <string name="base_stylesheet">आधार स्टाइलशीट लागू करें (foliate-js)</string>
+   <string name="pdf_engine">PDF इंजन</string>
+   <string name="msg_pdf_engine_unavailable">इस बिल्ड में PDFium लाइब्रेरी शामिल नहीं हैं।</string>
 </resources>

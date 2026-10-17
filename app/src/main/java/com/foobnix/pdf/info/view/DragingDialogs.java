@@ -110,6 +110,8 @@ import com.foobnix.model.SimpleMeta;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.AnnotationsData;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -2309,10 +2311,13 @@ public class DragingDialogs {
                     }
                 });
 
-                if (!BookType.PDF.is(controller.getCurrentBook().
+                // Marking up used to be a PDF's privilege, because the annotation was written
+                // into the PDF and no other format has anywhere to put one. Librera keeps those
+                // itself now, so the only book that cannot be marked up is one with no text to
+                // mark - a comic, which is pictures.
+                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(controller.getCurrentBook().
 
-                        getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity ||
-                    controller.isPasswordProtected()) {
+                        getPath())) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -2870,6 +2875,9 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
+                if (appBookmark instanceof BookmarksAdapter.Header) {
+                    return;
+                }
                 if (appBookmark.isF) {
                     controller.floatingBookmark = appBookmark;
                 } else {
@@ -2892,7 +2900,13 @@ public class DragingDialogs {
                                            final View view,
                                            final int position,
                                            final long id) {
-                ListBoxHelper.showEditDeleteDialog(objects.get(position),
+                final AppBookmark item = objects.get(position);
+                // A section title is not a bookmark, and a mark's text belongs to the book - it
+                // is removed with the cross, not renamed here
+                if (item instanceof BookmarksAdapter.Header || item instanceof BookmarksAdapter.Mark) {
+                    return true;
+                }
+                ListBoxHelper.showEditDeleteDialog(item,
                                                    controller,
                                                    bookmarksAdapter,
                                                    objects,
@@ -2975,7 +2989,15 @@ public class DragingDialogs {
                 objects.clear();
                 allData.clear();
 
-                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+                final List<AppBookmark> bookmarksByBook =
+                        BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+
+                // The reader's own marks, shown in their own section below the bookmarks and in
+                // the colour and style they were made with
+                final List<AppBookmark> marksByBook = new ArrayList<AppBookmark>();
+                for (AppAnnotation mark : AnnotationsData.get().byBook(controller.getCurrentBook().getPath())) {
+                    marksByBook.add(new BookmarksAdapter.Mark(mark, controller.getCurrentBook().getPath()));
+                }
 
                 final Comparator<AppBookmark> cmp = new Comparator<AppBookmark>() {
                     @Override public int compare(AppBookmark o1, AppBookmark o2) {
@@ -2992,12 +3014,27 @@ public class DragingDialogs {
                         return Float.compare(o1.getPercent(), o2.getPercent());
                     }
                 };
-                objects.addAll(bookmarksByBook);
-                allData.addAll(bookmarksByBook);
-
-                Collections.sort(objects, cmp);
-
-                bookmarksAdapter.notifyDataSetChanged();
+                // Each section sorted on its own, then laid end to end, so sorting the list
+                // cannot shuffle the two together
+                final Runnable rebuild = new Runnable() {
+                    @Override public void run() {
+                        Collections.sort(bookmarksByBook, cmp);
+                        Collections.sort(marksByBook, cmp);
+                        objects.clear();
+                        if (!bookmarksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.bookmarks));
+                            objects.addAll(bookmarksByBook);
+                        }
+                        if (!marksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.select));
+                            objects.addAll(marksByBook);
+                        }
+                        allData.clear();
+                        allData.addAll(objects);
+                        bookmarksAdapter.notifyDataSetChanged();
+                    }
+                };
+                rebuild.run();
 
                 setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
@@ -3009,26 +3046,22 @@ public class DragingDialogs {
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 return a;

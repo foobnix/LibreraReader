@@ -695,4 +695,9 @@
    <string name="watch">見る</string>
    <string name="librerax_not_installed">LibreraX がインストールされていません。ダウンロードしてインストールしてから、もう一度本を開いてください。</string>
    <string name="remove_library_folder">このフォルダをライブラリから外しますか？フォルダ内のファイルは削除されません。</string>
+   <string name="epub_engine">EPUB エンジン</string>
+   <string name="msg_epub_engine_unavailable">この端末では WebView を利用できません。</string>
+   <string name="base_stylesheet">基本スタイルシートを適用 (foliate-js)</string>
+   <string name="pdf_engine">PDF エンジン</string>
+   <string name="msg_pdf_engine_unavailable">このビルドには PDFium ライブラリが含まれていません。</string>
 </resources>

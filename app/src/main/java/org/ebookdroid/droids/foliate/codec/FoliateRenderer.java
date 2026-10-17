@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,9 +22,11 @@ import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.AppsConfig;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -460,6 +463,99 @@ class FoliateRenderer {
         }
         // The paginator re-columnises on its own resize observer; let it settle
         return call("settle", new JSONObject(), CALL_TIMEOUT_MS) != null;
+    }
+
+    /** The CFI of the page the book is on, or null. */
+    String location() {
+        final String answer = call("location", new JSONObject(), CALL_TIMEOUT_MS);
+        if (answer == null) {
+            return null;
+        }
+        try {
+            final String cfi = new JSONObject(answer).optString("cfi");
+            return cfi == null || cfi.isEmpty() ? null : cfi;
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * Puts the book where a CFI points.
+     *
+     * @return the section and the fraction it landed on, for the page index to turn into a page,
+     *         or <code>null</code> when the CFI means nothing in this book
+     */
+    double[] resolve(final String cfi) {
+        final JSONObject args = new JSONObject();
+        try {
+            args.put("cfi", cfi);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+        final String answer = call("resolve", args, CALL_TIMEOUT_MS);
+        if (answer == null) {
+            return null;
+        }
+        try {
+            final JSONObject json = new JSONObject(answer);
+            final int index = json.optInt("index", -1);
+            if (index < 0) {
+                return null;
+            }
+            return new double[]{index, json.optDouble("fraction", 0)};
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /** The rectangles a CFI covers on the page now shown, as JSON, or null. */
+    String rects(final String cfi) {
+        final JSONObject args = new JSONObject();
+        try {
+            args.put("cfi", cfi);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+        return call("rects", args, CALL_TIMEOUT_MS);
+    }
+
+    /**
+     * A CFI for the characters under a selection on the page now shown, or null.
+     *
+     * @param rects the selected rectangles, each normalized to the page
+     */
+    String cfiAt(final List<RectF> rects) {
+        final JSONObject args = new JSONObject();
+        try {
+            final JSONArray array = new JSONArray();
+            for (RectF rect : rects) {
+                final JSONObject one = new JSONObject();
+                one.put("l", rect.left);
+                one.put("t", rect.top);
+                one.put("r", rect.right);
+                one.put("b", rect.bottom);
+                array.put(one);
+            }
+            args.put("rects", array);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+        final String answer = call("cfiAt", args, CALL_TIMEOUT_MS);
+        if (answer == null) {
+            return null;
+        }
+        try {
+            final String cfi = new JSONObject(answer).optString("cfi");
+            return cfi == null || cfi.isEmpty() ? null : cfi;
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     /** The current page's words with their rectangles, as JSON, or null. */

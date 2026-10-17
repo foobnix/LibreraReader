@@ -3,6 +3,7 @@ package org.ebookdroid.droids.foliate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
@@ -20,6 +21,10 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -733,6 +738,263 @@ public class FoliateEngineDeviceTest {
         } finally {
             document.recycle();
         }
+    }
+
+    // ---------------------------------------------------------------- the exact place
+
+    /**
+     * A CFI names the page it was taken on, and keeps naming the same words after the book has
+     * been laid out again at a different size - which is the whole point of it, and what the
+     * percentage cannot do.
+     */
+    @Test
+    public void aLocationFindsItsPageAgain() {
+        final int fontBefore = BookCSS.get().fontSizeSp;
+        try {
+            BookCSS.get().fontSizeSp = 18;
+            final String cfi;
+            final String wordsThere;
+            CodecDocument document = open(AppState.EPUB_ENGINE_FOLIATE);
+            try {
+                final int pages = document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+                final int target = Math.min(pages, 4);
+                cfi = document.getLocation(target);
+                assertNotNull("the engine named the place", cfi);
+                assertTrue("and it looks like a CFI: " + cfi, cfi.startsWith("epubcfi("));
+                assertEquals("it names the page it was taken on", target,
+                        document.findLocationPage(cfi));
+                wordsThere = pageWords(document, target - 1);
+                assertTrue("that page has text to compare", wordsThere.length() > 20);
+            } finally {
+                document.recycle();
+            }
+
+            // The same place, in a book paginated differently
+            BookCSS.get().fontSizeSp = 30;
+            document = open(AppState.EPUB_ENGINE_FOLIATE);
+            try {
+                final int pages = document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+                final int found = document.findLocationPage(cfi);
+                assertTrue("the place is still in the book: " + found + " of " + pages,
+                        found > 0 && found <= pages);
+                // Not the same page number - the book is longer now - but the same words
+                final String nowThere = pageWords(document, found - 1);
+                final String opening = wordsThere.substring(0, Math.min(30, wordsThere.length()));
+                assertTrue("the place still points at its own words: looked for '" + opening
+                                + "' and found '" + nowThere.substring(0, Math.min(60, nowThere.length())) + "'",
+                        nowThere.contains(opening));
+            } finally {
+                document.recycle();
+            }
+        } finally {
+            BookCSS.get().fontSizeSp = fontBefore;
+        }
+    }
+
+    /** A place one engine wrote means nothing to another, and it says so rather than guessing. */
+    @Test
+    public void aLocationFromAnotherEngineIsRefused() {
+        final CodecDocument mupdf = open(AppState.EPUB_ENGINE_MUPDF);
+        try {
+            assertNull("MuPDF names no place", mupdf.getLocation(1));
+            assertEquals("and resolves none", -1,
+                    mupdf.findLocationPage("epubcfi(/6/4!/4/2/2[x]/1:0)"));
+        } finally {
+            mupdf.recycle();
+        }
+
+        final CodecDocument foliate = open(AppState.EPUB_ENGINE_FOLIATE);
+        try {
+            foliate.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+            assertEquals("and nonsense is refused rather than guessed at", -1,
+                    foliate.findLocationPage("not a cfi at all"));
+            assertEquals("as is nothing", -1, foliate.findLocationPage(""));
+        } finally {
+            foliate.recycle();
+        }
+    }
+
+    /**
+     * A mark made at one font size is on the same words at another.
+     *
+     * This is the whole point of anchoring a mark with a CFI rather than with a rectangle: the
+     * reader highlights three words, changes the font, and the highlight is still on those three
+     * words on whatever page they have moved to.
+     */
+    @Test
+    public void aMarkFindsItsWordsAfterARelayout() {
+        final int fontBefore = BookCSS.get().fontSizeSp;
+        try {
+            BookCSS.get().fontSizeSp = 18;
+            final String cfi;
+            final String marked;
+            final int markedPage = 2;
+
+            CodecDocument document = open(AppState.EPUB_ENGINE_FOLIATE);
+            try {
+                document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+                final List<TextWord> selection = someWordsOn(document, markedPage - 1);
+                marked = AnnotationsFinder.textOf(selection);
+                assertTrue("there are words to mark: " + marked, marked.split(" ").length >= 3);
+
+                cfi = document.getLocation(markedPage, AnnotationsFinder.mergeLines(selection));
+                assertNotNull("the engine named the marked words", cfi);
+                assertTrue("and it looks like a CFI: " + cfi, cfi.startsWith("epubcfi("));
+
+                // On the page it was made on, it draws where it was made
+                final CodecPage page = document.getPageInner(markedPage - 1);
+                try {
+                    assertFalse("the mark has rectangles on its own page",
+                            page.getLocationRects(cfi).isEmpty());
+                } finally {
+                    page.recycle();
+                }
+            } finally {
+                document.recycle();
+            }
+
+            // The same mark, in a book paginated differently
+            BookCSS.get().fontSizeSp = 30;
+            document = open(AppState.EPUB_ENGINE_FOLIATE);
+            try {
+                final int pages = document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+                final int found = document.findLocationPage(cfi);
+                assertTrue("the marked words are still in the book: " + found + " of " + pages,
+                        found > 0 && found <= pages);
+
+                final CodecPage page = document.getPageInner(found - 1);
+                try {
+                    final List<RectF> rects = page.getLocationRects(cfi);
+                    assertFalse("the mark has rectangles on the page it moved to", rects.isEmpty());
+
+                    // What the mark now covers, read off the page rather than taken on trust
+                    final StringBuilder covered = new StringBuilder();
+                    for (TextWord[] line : page.getText()) {
+                        for (TextWord word : line) {
+                            if (word == null || word.w == null || word.w.trim().isEmpty()) {
+                                continue;
+                            }
+                            for (RectF rect : rects) {
+                                if (RectF.intersects(rect, word)) {
+                                    covered.append(word.w.trim()).append(' ');
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    final String first = marked.split(" ")[0];
+                    assertTrue("the mark is still on its own words: marked '" + marked
+                                    + "', now covers '" + covered.toString().trim() + "'",
+                            covered.toString().contains(first));
+                } finally {
+                    page.recycle();
+                }
+            } finally {
+                document.recycle();
+            }
+        } finally {
+            BookCSS.get().fontSizeSp = fontBefore;
+        }
+    }
+
+    /**
+     * A mark that has been saved and read back again draws on the page it belongs to.
+     *
+     * The halves are tested apart - the engine naming the words, and the store keeping them -
+     * and this is the join: what a page being decoded actually asks for, from the store the
+     * reader's marks came out of.
+     */
+    @Test
+    public void aStoredMarkIsFoundOnThePageBeingDrawn() {
+        AnnotationsData.get().removeAll(file.getPath());
+        final CodecDocument document = open(AppState.EPUB_ENGINE_FOLIATE);
+        try {
+            final int pages = document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+            assertTrue("a book of several pages to tell apart, got " + pages, pages >= 3);
+
+            final int marked = 2;
+            final List<TextWord> selection = someWordsOn(document, marked - 1);
+            final String cfi = document.getLocation(marked, AnnotationsFinder.mergeLines(selection));
+            assertNotNull("the engine named the marked words", cfi);
+
+            final AppAnnotation mark = new AppAnnotation(file.getPath());
+            mark.setType(AnnotationType.HIGHLIGHT);
+            mark.color = "#00FF00";
+            mark.text = AnnotationsFinder.textOf(selection);
+            mark.page = marked - 1;
+            mark.cfi = cfi;
+            AnnotationsData.get().add(mark);
+
+            final AnnotationsFinder finder = AnnotationsFinder.forBook(file.getPath());
+            assertFalse("the store has the mark", finder.isEmpty());
+
+            CodecPage page = document.getPageInner(marked - 1);
+            try {
+                final List<AnnotationsFinder.Drawn> drawn = finder.forPage(document, page, marked - 1);
+                assertEquals("one mark on its own page", 1, drawn.size());
+                assertEquals(mark.t, drawn.get(0).annotation.t);
+                assertEquals("#00FF00", drawn.get(0).annotation.color);
+                assertFalse("with somewhere to draw it", drawn.get(0).rects.isEmpty());
+            } finally {
+                page.recycle();
+            }
+
+            // And nothing on a page it is not on
+            final int elsewhere = marked == 1 ? 1 : 0;
+            page = document.getPageInner(elsewhere);
+            try {
+                assertTrue("no mark on another page",
+                        finder.forPage(document, page, elsewhere).isEmpty());
+            } finally {
+                page.recycle();
+            }
+        } finally {
+            document.recycle();
+            AnnotationsData.get().removeAll(file.getPath());
+        }
+    }
+
+    /** Three words in a row on one line of a page, as a reader would select them. */
+    private static List<TextWord> someWordsOn(final CodecDocument document, final int page) {
+        final List<TextWord> selection = new ArrayList<TextWord>();
+        final CodecPage codecPage = document.getPageInner(page);
+        assertNotNull(codecPage);
+        try {
+            for (TextWord[] line : codecPage.getText()) {
+                final List<TextWord> real = new ArrayList<TextWord>();
+                for (TextWord word : line) {
+                    if (word != null && word.w != null && word.w.trim().length() > 2) {
+                        real.add(word);
+                    }
+                }
+                if (real.size() >= 3) {
+                    selection.addAll(real.subList(0, 3));
+                    break;
+                }
+            }
+        } finally {
+            codecPage.recycle();
+        }
+        return selection;
+    }
+
+    /** The words of a page, as one string. */
+    private static String pageWords(final CodecDocument document, final int page) {
+        final StringBuilder out = new StringBuilder();
+        final CodecPage codecPage = document.getPageInner(page);
+        assertNotNull(codecPage);
+        try {
+            for (TextWord[] line : codecPage.getText()) {
+                for (TextWord word : line) {
+                    if (word.w != null) {
+                        out.append(word.w);
+                    }
+                }
+            }
+        } finally {
+            codecPage.recycle();
+        }
+        return out.toString().replaceAll("\\s+", " ").trim();
     }
 
     /**

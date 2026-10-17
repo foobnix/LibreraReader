@@ -39,6 +39,7 @@ import com.foobnix.ext.OdtExtractor;
 import com.foobnix.ext.RtfExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -573,6 +574,10 @@ public class ImageExtractor {
             TextWord[][] text = pageCodec.getText();
             PageImageState.get().pagesText.put(pageUrl.getPage(), text);
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+            // The reader's own marks, resolved on this thread for the same reason the text is:
+            // finding one in a reflowable book means searching, and the page is about to be drawn.
+            PageImageState.get().pagesMarks.put(pageUrl.getPage(),
+                    AnnotationsFinder.forCurrentBook().forPage(codeCache, pageCodec, pageUrl.getPage()));
             if (BookType.PDF.is(path)) {
                 PageImageState.get().pagesAnnotation.put(pageUrl.getPage(), pageCodec.getAnnotations());
             }

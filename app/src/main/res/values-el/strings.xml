@@ -695,4 +695,9 @@
    <string name="watch">Παρακολούθηση</string>
    <string name="librerax_not_installed">Το LibreraX δεν είναι εγκατεστημένο. Κατεβάστε και εγκαταστήστε το και, στη συνέχεια, ανοίξτε ξανά το βιβλίο.</string>
    <string name="remove_library_folder">Αφαίρεση αυτού του φακέλου από τη βιβλιοθήκη; Τα αρχεία του δεν θα διαγραφούν.</string>
+   <string name="epub_engine">Μηχανή EPUB</string>
+   <string name="msg_epub_engine_unavailable">Το WebView δεν είναι διαθέσιμο σε αυτή τη συσκευή.</string>
+   <string name="base_stylesheet">Εφαρμογή του βασικού φύλλου στυλ (foliate-js)</string>
+   <string name="pdf_engine">Μηχανή PDF</string>
+   <string name="msg_pdf_engine_unavailable">Αυτή η έκδοση δεν περιλαμβάνει τις βιβλιοθήκες PDFium.</string>
 </resources>

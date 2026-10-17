@@ -695,4 +695,9 @@
    <string name="watch">Pòmpia</string>
    <string name="librerax_not_installed">LibreraX no est installadu. Iscàrriga·lu e installa·lu, e a pustis torra a abèrrere su libru.</string>
    <string name="remove_library_folder">Bogare custa cartella dae sa biblioteca? Sos archìvios chi bi sunt no ant a èssere cantzellados.</string>   
+   <string name="epub_engine">Motore EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView no est a disponimentu in custu dispositivu.</string>
+   <string name="base_stylesheet">Àplica su fògiu de istiles de base (foliate-js)</string>
+   <string name="pdf_engine">Motore PDF</string>
+   <string name="msg_pdf_engine_unavailable">Custa versione no includet is librerias PDFium.</string>
 </resources>

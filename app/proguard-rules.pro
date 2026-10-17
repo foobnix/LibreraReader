@@ -14,6 +14,7 @@
                         com.foobnix.model.AppSP,
                         com.foobnix.model.AppBook,
                         com.foobnix.model.AppBookmark,
+                        com.foobnix.model.AppAnnotation,
                         com.foobnix.pdf.info.model.BookCSS,
                         com.foobnix.pdf.info.wrapper.PasswordState,
                         com.foobnix.pdf.info.Clouds {

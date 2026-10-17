@@ -695,4 +695,9 @@
    <string name="watch">观看</string>
    <string name="librerax_not_installed">尚未安装 LibreraX。请下载并安装，然后重新打开这本书。</string>
    <string name="remove_library_folder">要从书库中移除此文件夹吗？其中的文件不会被删除。</string>
+   <string name="epub_engine">EPUB 引擎</string>
+   <string name="msg_epub_engine_unavailable">此设备不支持 WebView。</string>
+   <string name="base_stylesheet">应用基础样式表 (foliate-js)</string>
+   <string name="pdf_engine">PDF 引擎</string>
+   <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 库。</string>
 </resources>

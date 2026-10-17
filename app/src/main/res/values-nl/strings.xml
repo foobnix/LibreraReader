@@ -695,4 +695,9 @@
    <string name="watch">Bekijken</string>
    <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
    <string name="remove_library_folder">Deze map uit de bibliotheek verwijderen? De bestanden erin worden niet verwijderd.</string>
+   <string name="epub_engine">EPUB-engine</string>
+   <string name="msg_epub_engine_unavailable">WebView is niet beschikbaar op dit apparaat.</string>
+   <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
+   <string name="pdf_engine">PDF-engine</string>
+   <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
 </resources>

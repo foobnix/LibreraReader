@@ -695,4 +695,9 @@
    <string name="watch">Xem</string>
    <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
    <string name="remove_library_folder">Xóa thư mục này khỏi thư viện? Các tệp bên trong sẽ không bị xóa.</string>
+   <string name="epub_engine">Công cụ EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView không khả dụng trên thiết bị này.</string>
+   <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
+   <string name="pdf_engine">Công cụ PDF</string>
+   <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
 </resources>

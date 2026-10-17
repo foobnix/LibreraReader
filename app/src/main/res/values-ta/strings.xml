@@ -695,4 +695,9 @@
    <string name="watch">பார்க்க</string>
    <string name="librerax_not_installed">LibreraX நிறுவப்படவில்லை. அதைப் பதிவிறக்கி நிறுவி, பின்னர் புத்தகத்தை மீண்டும் திறக்கவும்.</string>
    <string name="remove_library_folder">இந்தக் கோப்புறையை நூலகத்திலிருந்து அகற்றவா? அதிலுள்ள கோப்புகள் நீக்கப்படாது.</string>
+   <string name="epub_engine">EPUB இயந்திரம்</string>
+   <string name="msg_epub_engine_unavailable">இந்தச் சாதனத்தில் WebView கிடைக்கவில்லை.</string>
+   <string name="base_stylesheet">அடிப்படை பாணித்தாளைப் பயன்படுத்து (foliate-js)</string>
+   <string name="pdf_engine">PDF இயந்திரம்</string>
+   <string name="msg_pdf_engine_unavailable">இந்தப் பதிப்பில் PDFium நூலகங்கள் இல்லை.</string>
 </resources>

@@ -450,6 +450,8 @@ const handlers = {
         view = document.createElement('foliate-view')
         document.body.append(view)
         view.addEventListener('relocate', event => {
+            // The detail is foliate's own lastLocation: the visible range and the CFI for it,
+            // which it computes on every relocate whether or not anyone asks.
             visible = event.detail ? event.detail.range : null
         })
         view.addEventListener('load', () => {
@@ -533,6 +535,139 @@ const handlers = {
         await painted()
         await painted()
         return {}
+    },
+
+    /**
+     * The exact place the book is, as a CFI.
+     *
+     * foliate keeps one on `view.lastLocation` for every relocate, so this costs nothing beyond
+     * reading it.
+     */
+    async location() {
+        const last = view ? view.lastLocation : null
+        return { cfi: last && last.cfi ? String(last.cfi) : '' }
+    },
+
+    /**
+     * Puts the book where a CFI points and says where that turned out to be.
+     *
+     * The section and the fraction are what Librera's own page index turns back into a page
+     * number, the same pair `goTo` takes - so a place written on one device at one font size
+     * finds its words again at any other.
+     */
+    async resolve({ cfi }) {
+        const target = view.resolveNavigation(cfi)
+        if (!target || typeof target.index !== 'number') {
+            return { index: -1 }
+        }
+        await view.renderer.goTo(target)
+        await painted()
+        // Where it actually landed, rather than where it was aimed: an anchor inside a section
+        // resolves to a Range, and only the paginator knows which of its pages that fell on.
+        const renderer = view.renderer
+        const textPages = Math.max(1, (renderer.pages || 3) - 2)
+        const fraction = textPages <= 1 ? 0
+            : Math.min(1, Math.max(0, (renderer.page - 1) / (textPages - 1)))
+        return { index: target.index, fraction }
+    },
+
+    /**
+     * The rectangles a CFI covers on the page now shown.
+     *
+     * This is what draws a highlight the reader made earlier: the CFI is resolved back to the
+     * characters it was taken from, and those characters are wherever this layout has put them.
+     * Empty when the CFI is in another section or on another page, which is the usual answer.
+     */
+    async rects({ cfi }) {
+        const target = view.resolveNavigation(cfi)
+        const current = contents()
+        if (!target || !current || current.index !== target.index) {
+            return { rects: [] }
+        }
+        const doc = current.doc
+        const range = typeof target.anchor === 'function' ? target.anchor(doc) : null
+        if (!range || typeof range.getClientRects !== 'function') {
+            return { rects: [] }
+        }
+        const offset = frameOffset(doc)
+        if (!offset) {
+            return { rects: [] }
+        }
+        const size = pageSize()
+        const rects = []
+        for (const rect of range.getClientRects()) {
+            const box = normalize(rect, offset, size)
+            if (box) {
+                rects.push(box)
+            }
+        }
+        return { rects }
+    },
+
+    /**
+     * A CFI for the characters under a selection, so a mark made now is found again later.
+     *
+     * The selection arrives as rectangles of this page, because that is what Librera selects
+     * with - its own word boxes, not the browser's selection. Those boxes came from the
+     * characters the browser laid out there, so asking the browser which character is at a point
+     * inside the first box and inside the last gives back the same range the reader dragged over.
+     *
+     * Empty when the points land outside the section, which happens when the page has moved on
+     * since the selection was made.
+     */
+    async cfiAt({ rects }) {
+        const current = contents()
+        if (!current || !rects || !rects.length) {
+            return { cfi: '' }
+        }
+        const doc = current.doc
+        const offset = frameOffset(doc)
+        if (!offset) {
+            return { cfi: '' }
+        }
+        const size = pageSize()
+        // Back from a fraction of the page into the section's own pixels
+        const toPoint = (x, y) => ({ x: x * size.width - offset.left, y: y * size.height - offset.top })
+        const first = rects[0]
+        const last = rects[rects.length - 1]
+        // A hair inside each edge: exactly on it the browser may answer with the neighbour
+        const start = toPoint(first.l + 0.0005, (first.t + first.b) / 2)
+        const end = toPoint(last.r - 0.0005, (last.t + last.b) / 2)
+
+        const caret = (point) => {
+            if (doc.caretRangeFromPoint) {
+                return doc.caretRangeFromPoint(point.x, point.y)
+            }
+            if (doc.caretPositionFromPoint) {
+                const position = doc.caretPositionFromPoint(point.x, point.y)
+                if (!position) return null
+                const range = doc.createRange()
+                range.setStart(position.offsetNode, position.offset)
+                range.setEnd(position.offsetNode, position.offset)
+                return range
+            }
+            return null
+        }
+
+        const from = caret(start)
+        const to = caret(end)
+        if (!from || !to) {
+            return { cfi: '' }
+        }
+        const range = doc.createRange()
+        try {
+            range.setStart(from.startContainer, from.startOffset)
+            range.setEnd(to.endContainer, to.endOffset)
+            if (range.collapsed) {
+                // The end landed before the start - the selection runs the other way round
+                range.setStart(to.startContainer, to.startOffset)
+                range.setEnd(from.endContainer, from.endOffset)
+            }
+        } catch (e) {
+            return { cfi: '' }
+        }
+        const cfi = view.getCFI(current.index, range)
+        return { cfi: cfi ? String(cfi) : '' }
     },
 
     async words() {

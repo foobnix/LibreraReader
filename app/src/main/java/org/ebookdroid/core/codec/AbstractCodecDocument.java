@@ -124,6 +124,23 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return new ArrayList<String>();
     }
 
+    /**
+     * No location. A fixed-layout document does not need one - its page numbers never move - and
+     * MuPDF has nothing to offer for a reflowable book beyond the page text anchor it already
+     * provides through {@link #getBookmarkText(int)}.
+     */
+    @Override public String getLocation(int page) {
+        return null;
+    }
+
+    @Override public String getLocation(int page, java.util.List<android.graphics.RectF> rects) {
+        return null;
+    }
+
+    @Override public int findLocationPage(String location) {
+        return -1;
+    }
+
     @Override public String getBookmarkText(int page) {
         return null;
     }

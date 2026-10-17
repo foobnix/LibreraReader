@@ -695,4 +695,9 @@
    <string name="watch">Глядзець</string>
    <string name="librerax_not_installed">LibreraX не ўсталяваны. Спампуйце і ўсталюйце яго, потым адкрыйце кнігу зноў.</string>
    <string name="remove_library_folder">Выдаліць гэтую папку з бібліятэкі? Файлы ў ёй не будуць выдалены.</string>
+   <string name="epub_engine">Рухавік EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView недаступны на гэтай прыладзе.</string>
+   <string name="base_stylesheet">Ужываць базавую табліцу стыляў (foliate-js)</string>
+   <string name="pdf_engine">Рухавік PDF</string>
+   <string name="msg_pdf_engine_unavailable">Гэтая зборка не змяшчае бібліятэк PDFium.</string>
 </resources>

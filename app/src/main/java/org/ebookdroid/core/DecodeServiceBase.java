@@ -11,6 +11,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -352,6 +353,13 @@ public class DecodeServiceBase implements DecodeService {
 
             if (task.node.page.texts == null) {
                 task.node.page.texts = vuPage.getText();
+            }
+
+            // The reader's own marks. Resolved here, on the decode thread, because finding one in
+            // a reflowable book means searching text - not something to do while drawing.
+            if (task.node.page.marks == null) {
+                task.node.page.marks = AnnotationsFinder.forCurrentBook()
+                        .forPage(codecDocument, vuPage, task.node.page.index.docIndex);
             }
             // TempHolder.lock.unlock();
 

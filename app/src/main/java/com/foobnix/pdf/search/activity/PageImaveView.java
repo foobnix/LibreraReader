@@ -28,6 +28,9 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -49,6 +52,7 @@ import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -266,6 +270,32 @@ public class PageImaveView extends View {
 
     }
 
+    /** The reader's own marks for one of the pages on screen, keyed as the links are. */
+    public synchronized List<AnnotationsFinder.Drawn> getPageMarks(int number) {
+        if (AppSP.get().isCut || !isCropMappable(number)) {
+            return Collections.emptyList();
+        }
+        List<AnnotationsFinder.Drawn> marks = null;
+        if (AppSP.get().isDouble && number != 0) {
+            int page = pageNumber * 2;
+            if (AppSP.get().isDoubleCoverAlone) {
+                page--;
+            }
+            marks = PageImageState.get().pagesMarks.get(number == 1 ? page : page + 1);
+        } else {
+            marks = PageImageState.get().pagesMarks.get(pageNumber);
+        }
+        return marks != null ? marks : Collections.<AnnotationsFinder.Drawn>emptyList();
+    }
+
+    private void drawMarks(Canvas canvas, int number) {
+        for (AnnotationsFinder.Drawn mark : getPageMarks(number)) {
+            for (RectF rect : mark.rects) {
+                AnnotationsPainter.draw(canvas, transform(rect, number), mark.annotation);
+            }
+        }
+    }
+
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
     }
@@ -411,6 +441,13 @@ public class PageImaveView extends View {
                 canvas.drawLine(offset, 0, offset, drawableHeight, paintWrods);
             }
 
+            if (AppSP.get().isDouble) {
+                drawMarks(canvas, 1);
+                drawMarks(canvas, 2);
+            } else {
+                drawMarks(canvas, 0);
+            }
+
             List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);
             if (selectedWords != null) {
                 for (TextWord tw : selectedWords) {
@@ -547,6 +584,64 @@ public class PageImaveView extends View {
         RectF o = transform(pl.sourceRect, pl.number);
         c.drawLine(o.left, o.bottom, o.right, o.bottom, paintWrods);
         // c.drawText("" + pl.targetPage, o.right, o.bottom, paintWrods);
+    }
+
+    /**
+     * Removes one of Librera's own marks under a tap, when the eraser is on.
+     *
+     * @return whether a mark was there, in which case the tap was for it and nothing else
+     */
+    public boolean removeMarkAt(float x1, float y1) {
+        if (AppState.get().editWith != AppState.EDIT_DELETE) {
+            return false;
+        }
+        RectF tr = new RectF();
+        imageMatrix().mapRect(tr);
+        float[] f = new float[9];
+        imageMatrix().getValues(f);
+        final float scaleX = f[Matrix.MSCALE_X];
+        if (scaleX == 0) {
+            return false;
+        }
+        final float x = (x1 - tr.left) / scaleX;
+        final float y = (y1 - tr.top) / scaleX;
+        final RectF tapRect = new RectF(x, y, x, y);
+
+        int number = 0;
+        if (AppSP.get().isDouble) {
+            number = x < drawableWidth / 2 ? 1 : 2;
+        }
+        for (AnnotationsFinder.Drawn mark : getPageMarks(number)) {
+            for (RectF rect : mark.rects) {
+                if (!RectF.intersects(transform(rect, number), tapRect)) {
+                    continue;
+                }
+                AnnotationsData.get().remove(mark.annotation);
+                AnnotationsFinder.invalidate();
+                final List<AnnotationsFinder.Drawn> shown =
+                        PageImageState.get().pagesMarks.get(docPageOf(number));
+                if (shown != null) {
+                    final List<AnnotationsFinder.Drawn> marks = new ArrayList<AnnotationsFinder.Drawn>(shown);
+                    marks.remove(mark);
+                    PageImageState.get().pagesMarks.put(docPageOf(number), marks);
+                }
+                invalidate();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Which page of the book one of the pages on screen is, keyed as the links and text are. */
+    private int docPageOf(int number) {
+        if (!AppSP.get().isDouble || number == 0) {
+            return pageNumber;
+        }
+        int first = pageNumber * 2;
+        if (AppSP.get().isDoubleCoverAlone) {
+            first--;
+        }
+        return number == 1 ? first : first + 1;
     }
 
     public Pair<PageLink, Annotation> getPageLinkClicked(float x1, float y1) {
@@ -1063,7 +1158,11 @@ public class PageImaveView extends View {
                     }
                 }
 
-                if (!isIgronerClick) {
+                if (!isIgronerClick && removeMarkAt(event.getX(), event.getY())) {
+                    // The tap was on a mark and the eraser is on; it has gone and that is all
+                    // the tap meant
+                    isIgronerClick = false;
+                } else if (!isIgronerClick) {
                     int target = 0;
                     Pair<PageLink, Annotation> pair = getPageLinkClicked(event.getX(), event.getY());
                     PageLink pageLink = pair.first;

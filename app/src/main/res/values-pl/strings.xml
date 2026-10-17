@@ -695,4 +695,9 @@
    <string name="watch">Obejrzyj</string>
    <string name="librerax_not_installed">LibreraX nie jest zainstalowana. Pobierz ją i zainstaluj, a następnie ponownie otwórz książkę.</string>
    <string name="remove_library_folder">Usunąć ten folder z biblioteki? Pliki w nim nie zostaną usunięte.</string>
+   <string name="epub_engine">Silnik EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView jest niedostępny na tym urządzeniu.</string>
+   <string name="base_stylesheet">Zastosuj podstawowy arkusz stylów (foliate-js)</string>
+   <string name="pdf_engine">Silnik PDF</string>
+   <string name="msg_pdf_engine_unavailable">Ta kompilacja nie zawiera bibliotek PDFium.</string>
 </resources>

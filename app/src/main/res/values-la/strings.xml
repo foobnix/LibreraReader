@@ -695,4 +695,9 @@
    <string name="watch">Specta</string>
    <string name="librerax_not_installed">LibreraX non est installata. Depone et installa eam, deinde librum iterum aperi.</string>
    <string name="remove_library_folder">Hoc directorium ex bibliotheca removere? Fasciculi in eo non delebuntur.</string>
+   <string name="epub_engine">Machina EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView in hoc instrumento non praesto est.</string>
+   <string name="base_stylesheet">Tabulam stilorum basalem adhibere (foliate-js)</string>
+   <string name="pdf_engine">Machina PDF</string>
+   <string name="msg_pdf_engine_unavailable">Haec aedificatio bibliothecas PDFium non continet.</string>
 </resources>

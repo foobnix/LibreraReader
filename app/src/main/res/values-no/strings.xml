@@ -695,4 +695,9 @@
    <string name="watch">Se</string>
    <string name="librerax_not_installed">LibreraX er ikke installert. Last ned og installer den, og åpne boken på nytt.</string>
    <string name="remove_library_folder">Fjerne denne mappen fra biblioteket? Filene i den blir ikke slettet.</string>
+   <string name="epub_engine">EPUB-motor</string>
+   <string name="msg_epub_engine_unavailable">WebView er ikke tilgjengelig på denne enheten.</string>
+   <string name="base_stylesheet">Bruk grunnleggende stilark (foliate-js)</string>
+   <string name="pdf_engine">PDF-motor</string>
+   <string name="msg_pdf_engine_unavailable">Denne versjonen inneholder ikke PDFium-bibliotekene.</string>
 </resources>

@@ -695,4 +695,9 @@
    <string name="watch">Tazama</string>
    <string name="librerax_not_installed">LibreraX haijasakinishwa. Ipakue na uisakinishe, kisha ufungue kitabu tena.</string>
    <string name="remove_library_folder">Ondoa folda hii kwenye maktaba? Faili zilizomo hazitafutwa.</string>
+   <string name="epub_engine">Injini ya EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView haipatikani kwenye kifaa hiki.</string>
+   <string name="base_stylesheet">Tumia laha ya mitindo ya msingi (foliate-js)</string>
+   <string name="pdf_engine">Injini ya PDF</string>
+   <string name="msg_pdf_engine_unavailable">Toleo hili halina maktaba za PDFium.</string>
 </resources>

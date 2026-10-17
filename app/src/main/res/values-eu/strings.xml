@@ -695,4 +695,9 @@
    <string name="watch">Ikusi</string>
    <string name="librerax_not_installed">LibreraX ez dago instalatuta. Deskargatu eta instalatu, eta ireki liburua berriro.</string>
    <string name="remove_library_folder">Karpeta hau liburutegitik kendu? Bertako fitxategiak ez dira ezabatuko.</string>
+   <string name="epub_engine">EPUB motorra</string>
+   <string name="msg_epub_engine_unavailable">WebView ez dago erabilgarri gailu honetan.</string>
+   <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
+   <string name="pdf_engine">PDF motorra</string>
+   <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
 </resources>

@@ -312,6 +312,38 @@ public class FoliatePage extends AbstractCodecPage {
     }
 
     @Override
+    public List<RectF> getLocationRects(final String location) {
+        final List<RectF> result = new ArrayList<RectF>();
+        final FoliateRenderer renderer = document.getRenderer();
+        if (recycled || renderer == null || !renderer.isUsable()
+                || location == null || location.isEmpty()) {
+            return result;
+        }
+        final String json;
+        synchronized (document) {
+            if (!document.position(pageNumber)) {
+                return result;
+            }
+            json = renderer.rects(location);
+        }
+        if (json == null) {
+            return result;
+        }
+        try {
+            final JSONArray rects = new JSONObject(json).getJSONArray("rects");
+            for (int i = 0; i < rects.length(); i++) {
+                final JSONObject rect = rects.getJSONObject(i);
+                result.add(new RectF(
+                        (float) rect.optDouble("l", 0), (float) rect.optDouble("t", 0),
+                        (float) rect.optDouble("r", 0), (float) rect.optDouble("b", 0)));
+            }
+        } catch (Throwable e) {
+            LOG.e(e);
+        }
+        return result;
+    }
+
+    @Override
     public List<PageLink> getPageLinks() {
         final List<PageLink> result = new ArrayList<PageLink>();
         final FoliateRenderer renderer = document.getRenderer();

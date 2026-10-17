@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7434
-    FDroidVersionNumber = "9.6.48"
+    FDroidCodeNumber = 7438
+    FDroidVersionNumber = "9.6.49"
 }
 
 
@@ -29,7 +29,13 @@ ext {
     // The MuPDF the native library was built from, when the build script says (-Pmupdf=1.28.5):
     // it goes into the names of the APKs, bundles and mappings, so builds of both can sit side by side
     mupdfVersion = project.findProperty("mupdf")
-    mupdfSuffix = mupdfVersion ? "-mupdf" + mupdfVersion : ""
+
+    // A build that carries MuPDF says so in its name, as plain "mupdf" - which MuPDF it was built
+    // from is written beside the builds instead (mupdf<version>.txt), so a flavour keeps one name
+    // whatever it was built against. The JS flavours ship no MuPDF at all and say nothing, the
+    // same rule the app itself uses to decide whether MuPDF is there (see Engines.IS_MUPDF).
+    mupdfSuffix = "-mupdf"
+    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("JS") ? "" : mupdfSuffix }
 
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]" + (mupdfVersion ? " MuPDF " + mupdfVersion : "")
@@ -146,7 +152,7 @@ android {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera FD JS",
+                    appName      : "Librera FD-JS",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : "",
@@ -162,7 +168,7 @@ android {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera JS",
+                    appName      : "Librera PRO-JS",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appGdriveKey : pro_appGdriveKey,
@@ -438,15 +444,16 @@ androidComponents {
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
     onVariants(selector().all()) { variant ->
         def flavor = variant.flavorName ? variant.flavorName.capitalize() : ""
+        def suffix = mupdfSuffixFor(variant.flavorName)
         variant.outputs.each { output ->
             def abi = output.filters.find { it.filterType.name() == "ABI" }?.identifier
             if (abi != null) {
                 def abiName = abi.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
                 output.versionCode.set(abiCodes.get(abi, 0) + codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-${abiName}.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${suffix}-${abiName}.apk")
             } else {
                 output.versionCode.set(codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-uni.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${suffix}-uni.apk")
             }
         }
     }
@@ -462,9 +469,10 @@ tasks.register("copyApks") {
             throw new GradleException("librera_builds_dir is not set in ~/.gradle/gradle.properties")
         }
 
-        // Only the builds of the same MuPDF are replaced: the builds of the other one, of the same
-        // Librera, stay next to them (the beta script makes one pass per MuPDF)
-        def own = mupdfSuffix ? "*${mupdfSuffix}*" : "*"
+        // Every build of this Librera in the destination is replaced. The MuPDF no longer tells
+        // two builds apart - they have the same name - so there is nothing to keep back, and a
+        // JS build, which never carried the MuPDF marker, is pruned with the rest.
+        def own = "*"
 
         // The betas go into a folder of their own: the folders around it are shared with
         // LibreraX and the other projects
@@ -494,32 +502,30 @@ tasks.register("copyApks") {
             }
         }
 
+        def destinations = []
+        if (project.hasProperty("beta")) {
+            destinations.add("$buildsDir/$betaFolder")
+            if (betaDir) {
+                destinations.add("$betaDir/$betaFolder")
+            }
+        }
+        if (project.hasProperty("release")) {
+            destinations.add("$buildsDir/$versionNumber")
+            if (releaseDir) {
+                destinations.add("$releaseDir/$versionNumber")
+            }
+        }
+
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
                 // Both F-Droid flavours carry the F-Droid version; a build of either of them sets
                 // versionNumber to it anyway, since the task name holds "Fdroid".
-                def appName = "Librera ${flavor.capitalize()}-${flavor.startsWith('fdroid') ? FDroidVersionNumber : versionNumber}${mupdfSuffix}"
+                def appName = "Librera ${flavor.capitalize()}-${flavor.startsWith('fdroid') ? FDroidVersionNumber : versionNumber}${mupdfSuffixFor(flavor)}"
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                def list = []
-
-                if (project.hasProperty("beta")) {
-                    list.add("$buildsDir/$betaFolder")
-                    if (betaDir) {
-                        list.add("$betaDir/$betaFolder")
-                    }
-                }
-
-
-                if (project.hasProperty("release")) {
-                    list.add("$buildsDir/$versionNumber")
-                    if (releaseDir) {
-                        list.add("$releaseDir/$versionNumber")
-                    }
-                }
-                list.each { dest ->
+                destinations.each { dest ->
 
                     copy {
                         from(file("build/outputs/apk/${flavor}/release/")) {
@@ -550,6 +556,22 @@ tasks.register("copyApks") {
                     }
 
 
+                }
+            }
+        }
+
+        // Which MuPDF these builds were made from, as a file beside them: the APKs no longer say
+        // it, and the version matters when a crash has to be traced back to a MuPDF. One marker
+        // per destination, and the one from the pass before is cleared first, so what is named
+        // there is what the builds in that folder actually carry.
+        if (mupdfVersion) {
+            destinations.each { dest ->
+                def folder = project.file(dest)
+                if (folder.exists()) {
+                    delete fileTree(folder).include("mupdf*.txt")
+                    def marker = new File(folder, "mupdf${mupdfVersion}.txt")
+                    marker.text = "MuPDF ${mupdfVersion}\nLibrera ${versionNumber} (${codeNumber})\n"
+                    println "MuPDF marker: " + marker
                 }
             }
         }

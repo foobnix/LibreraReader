@@ -1,5 +1,6 @@
 package org.ebookdroid.droids.foliate.codec;
 
+import android.graphics.RectF;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -295,6 +296,98 @@ public class FoliateDocument extends AbstractCodecDocument {
     }
 
     // ---------------------------------------------------------------- bookmarks
+
+    /**
+     * The CFI of the page the reader is on.
+     *
+     * Positioning the book to read it would be wrong - the reader is already there, and moving
+     * the one WebView would move what everything else is about to draw - so this reports where
+     * the book actually is and says nothing when that is not the page being asked about.
+     */
+    @Override
+    public String getLocation(final int page) {
+        if (!FoliateRenderer.canWait()) {
+            // The periodic save asks for this on the main thread; a miss costs the exact place
+            // for this save, and the percentage beside it is unaffected
+            LOG.d("FOLIATE! getLocation skipped on the main thread");
+            return null;
+        }
+        final FoliateRenderer local = renderer;
+        if (local == null || isRecycled()) {
+            return null;
+        }
+        synchronized (this) {
+            if (index(width, height) == null || !position(page - 1)) {
+                return null;
+            }
+            return local.location();
+        }
+    }
+
+    /**
+     * A CFI for the characters under a selection on one page.
+     *
+     * The page is put back on screen first, as every other read of a page does, because the
+     * browser can only be asked what is at a point on the page it is actually showing.
+     */
+    @Override
+    public String getLocation(final int page, final List<RectF> rects) {
+        if (rects == null || rects.isEmpty()) {
+            return null;
+        }
+        if (!FoliateRenderer.canWait()) {
+            LOG.d("FOLIATE! getLocation(rects) skipped on the main thread");
+            return null;
+        }
+        final FoliateRenderer local = renderer;
+        if (local == null || isRecycled()) {
+            return null;
+        }
+        synchronized (this) {
+            if (index(width, height) == null || !position(page - 1)) {
+                return null;
+            }
+            return local.cfiAt(rects);
+        }
+    }
+
+    /**
+     * The page a CFI points at.
+     *
+     * @return the 1-based page, or -1 when the CFI is empty, is not a CFI, or no longer resolves
+     *         in this book
+     */
+    @Override
+    public int findLocationPage(final String location) {
+        if (TxtUtils.isEmpty(location)) {
+            return -1;
+        }
+        if (!FoliateRenderer.canWait()) {
+            // AbstractViewController.show() asks on the UI thread; the percentage covers it
+            LOG.d("FOLIATE! findLocationPage skipped on the main thread");
+            return -1;
+        }
+        final FoliateRenderer local = renderer;
+        if (local == null || isRecycled()) {
+            return -1;
+        }
+        synchronized (this) {
+            final FoliateIndex local$index = index(width, height);
+            if (local$index == null) {
+                return -1;
+            }
+            final double[] target = local.resolve(location);
+            if (target == null) {
+                LOG.d("FOLIATE! the location means nothing in this book", location);
+                return -1;
+            }
+            // The book has been moved to it, so the cached position has to say so
+            final int page = local$index.pageOf((int) target[0], target[1]);
+            positioned = page;
+            positionedChars = 0;
+            return page + 1;
+        }
+    }
 
     @Override
     public String getBookmarkText(final int page) {

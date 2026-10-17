@@ -695,4 +695,9 @@
    <string name="watch">İzle</string>
    <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>
    <string name="remove_library_folder">Bu klasör kitaplıktan kaldırılsın mı? İçindeki dosyalar silinmez.</string>
+   <string name="epub_engine">EPUB motoru</string>
+   <string name="msg_epub_engine_unavailable">Bu cihazda WebView kullanılamıyor.</string>
+   <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
+   <string name="pdf_engine">PDF motoru</string>
+   <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
 </resources>

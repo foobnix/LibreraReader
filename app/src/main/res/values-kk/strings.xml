@@ -695,4 +695,9 @@
    <string name="watch">Көру</string>
    <string name="librerax_not_installed">LibreraX орнатылмаған. Оны жүктеп алып орнатыңыз, содан кейін кітапты қайта ашыңыз.</string>
    <string name="remove_library_folder">Бұл қалтаны кітапханадан алып тастау керек пе? Ондағы файлдар жойылмайды.</string>
+   <string name="epub_engine">EPUB қозғалтқышы</string>
+   <string name="msg_epub_engine_unavailable">Бұл құрылғыда WebView қолжетімді емес.</string>
+   <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
+   <string name="pdf_engine">PDF қозғалтқышы</string>
+   <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
 </resources>

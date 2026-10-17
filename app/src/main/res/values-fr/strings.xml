@@ -695,4 +695,9 @@
    <string name="watch">Regarder</string>
    <string name="librerax_not_installed">LibreraX n\'est pas installé. Téléchargez-le et installez-le, puis rouvrez le livre.</string>
    <string name="remove_library_folder">Retirer ce dossier de la bibliothèque ? Les fichiers qu\'il contient ne seront pas supprimés.</string>
+   <string name="epub_engine">Moteur EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView n\'est pas disponible sur cet appareil.</string>
+   <string name="base_stylesheet">Appliquer la feuille de style de base (foliate-js)</string>
+   <string name="pdf_engine">Moteur PDF</string>
+   <string name="msg_pdf_engine_unavailable">Cette version n\'inclut pas les bibliothèques PDFium.</string>
 </resources>

@@ -695,4 +695,9 @@
    <string name="watch">Katso</string>
    <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
    <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>
+   <string name="epub_engine">EPUB-moottori</string>
+   <string name="msg_epub_engine_unavailable">WebView ei ole käytettävissä tässä laitteessa.</string>
+   <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
+   <string name="pdf_engine">PDF-moottori</string>
+   <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
 </resources>

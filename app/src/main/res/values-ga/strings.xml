@@ -695,4 +695,9 @@
    <string name="watch">Féach</string>
    <string name="librerax_not_installed">Níl LibreraX suiteáilte. Íoslódáil agus suiteáil é, ansin oscail an leabhar arís.</string>
    <string name="remove_library_folder">An fillteán seo a bhaint den leabharlann? Ní scriosfar na comhaid atá ann.</string>
+   <string name="epub_engine">Inneall EPUB</string>
+   <string name="msg_epub_engine_unavailable">Níl WebView ar fáil ar an ngléas seo.</string>
+   <string name="base_stylesheet">Cuir an bunstílbhileog i bhfeidhm (foliate-js)</string>
+   <string name="pdf_engine">Inneall PDF</string>
+   <string name="msg_pdf_engine_unavailable">Níl leabharlanna PDFium sa leagan seo.</string>
 </resources>

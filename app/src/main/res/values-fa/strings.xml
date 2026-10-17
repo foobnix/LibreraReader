@@ -695,4 +695,9 @@
    <string name="watch">تماشا</string>
    <string name="librerax_not_installed">LibreraX نصب نشده است. آن را دانلود و نصب کنید، سپس کتاب را دوباره باز کنید.</string>
    <string name="remove_library_folder">این پوشه از کتابخانه حذف شود؟ فایل‌های داخل آن پاک نمی‌شوند.</string>
+   <string name="epub_engine">موتور EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView در این دستگاه در دسترس نیست.</string>
+   <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
+   <string name="pdf_engine">موتور PDF</string>
+   <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>
 </resources>
