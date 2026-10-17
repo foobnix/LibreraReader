@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
@@ -22,6 +23,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.ui2.AppDB;
@@ -67,6 +69,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class GFile {
+    /** The Google consent screen a sign-in sends the user through when the scope is not granted yet. */
     public static final int REQUEST_CODE_SIGN_IN = 1110;
 
 
@@ -164,6 +167,8 @@ public class GFile {
         AppSP.get().isEnableSync = true;
         AppSP.get().save();
 
+        Toast.makeText(c, R.string.success, Toast.LENGTH_SHORT).show();
+
         buildDriveService(c);
 
         sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
@@ -173,25 +178,30 @@ public class GFile {
         runSyncService(c);
     }
 
+    /**
+     * A sign-in that ended with no account: Google refused, or the user backed out of the account
+     * chooser or the consent screen. It is said out loud wherever it happened - a sign-in that
+     * failed before any screen appeared used to leave the user tapping a button that did nothing.
+     */
     private static void onSignInFailed(final Activity c) {
         AppSP.get().isEnableSync = false;
         AppSP.get().save();
+
+        Toast.makeText(c, R.string.fail, Toast.LENGTH_SHORT).show();
         EventBus.getDefault().post(new GDriveSycnEvent());
     }
 
     /**
-     * The answer to the Google consent screen, handed over from the activity's
-     * {@code onActivityResult} under {@link #REQUEST_CODE_SIGN_IN}.
+     * The answer to the consent screen a sign-in sends the user through, handed over from the
+     * activity's {@code onActivityResult}. {@link GoogleAuth} carries on from there and ends the
+     * sign-in through {@link #onSignedIn(Activity)} or {@link #onSignInFailed(Activity)}, so both
+     * the screen and the user hear about it wherever the sign-in stopped.
      *
-     * @return <code>true</code> when an account was authorized
+     * @return <code>true</code> when this was a sign-in's answer and has been dealt with
      */
-    public static boolean onSignInResult(final Activity c, final android.content.Intent data) {
-        if (GoogleAuth.readResult(c, data)) {
-            onSignedIn(c);
-            return true;
-        }
-        onSignInFailed(c);
-        return false;
+    public static boolean onSignInActivityResult(final Activity c, final int requestCode, final int resultCode,
+                                                 final android.content.Intent data) {
+        return GoogleAuth.onActivityResult(c, requestCode, resultCode, data);
     }
 
     static SharedPreferences sp;

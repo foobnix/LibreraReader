@@ -251,7 +251,12 @@ public class BookCSS {
 
         List<String> res = new ArrayList<>();
         for (String item : objects) {
-            if (TxtUtils.isNotEmpty(item) && new File(item).isDirectory()) {
+            if (TxtUtils.isEmpty(item)) {
+                continue;
+            }
+            // A folder added through the system's folder picker is named by a document uri, which
+            // no File can be asked about; whether it still answers is for the scan to find out.
+            if (ExtUtils.isExteralSD(item) || new File(item).isDirectory()) {
                 res.add(item);
             }
         }

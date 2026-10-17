@@ -54,6 +54,12 @@ public class CheckDeletedBooksWorker extends MessageWorker {
                 continue;
             }
 
+            // A book on added storage is named by a document uri: there is no file to ask about,
+            // and the walk below is what notices it has gone.
+            if (ExtUtils.isExteralSD(meta.getPath())) {
+                continue;
+            }
+
             File bookFile = new File(meta.getPath());
             if (ExtUtils.isMounted(bookFile)) {
                 if (!bookFile.exists()) {
@@ -74,13 +80,19 @@ public class CheckDeletedBooksWorker extends MessageWorker {
             return false;
         }
         for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (path != null && path.trim()
-                                    .length() > 0) {
-                final File root = new File(path);
-                if (root.isDirectory()) {
-                    LOG.d("Worker", "Search in " + root.getPath());
-                    SearchCore.search(localMeta, root, ExtUtils.seachExts);
-                }
+            if (path == null || path.trim()
+                                    .length() == 0) {
+                continue;
+            }
+            if (ExtUtils.isExteralSD(path)) {
+                LOG.d("Worker", "Search in storage " + path);
+                SearchCore.searchSaf(localMeta, getApplicationContext(), path, ExtUtils.seachExts);
+                continue;
+            }
+            final File root = new File(path);
+            if (root.isDirectory()) {
+                LOG.d("Worker", "Search in " + root.getPath());
+                SearchCore.search(localMeta, root, ExtUtils.seachExts);
             }
         }
         if (isStopped()) {

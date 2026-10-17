@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7438
-    FDroidVersionNumber = "9.6.49"
+    FDroidCodeNumber = 7442
+    FDroidVersionNumber = "9.6.50"
 }
 
 
@@ -27,7 +27,7 @@ ext {
     }
 
     // The MuPDF the native library was built from, when the build script says (-Pmupdf=1.28.5):
-    // it goes into the names of the APKs, bundles and mappings, so builds of both can sit side by side
+    // it names the marker file written beside the builds.
     mupdfVersion = project.findProperty("mupdf")
 
     // A build that carries MuPDF says so in its name, as plain "mupdf" - which MuPDF it was built
@@ -127,6 +127,7 @@ android {
                     appName      : "Librera FD",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: "",
                     appGdriveKey : "",
                     admobAppId   : "",
                     admobBannerId: "",
@@ -155,6 +156,7 @@ android {
                     appName      : "Librera FD-JS",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: "",
                     appGdriveKey : "",
                     admobAppId   : "",
                     admobBannerId: "",
@@ -171,6 +173,7 @@ android {
                     appName      : "Librera PRO-JS",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: project.findProperty("proJS_appWebClientId") ?: "",
                     appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
@@ -187,6 +190,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
+                    appWebClientId: project.findProperty("librera_appWebClientId") ?: "",
                     appGdriveKey : librera_appGdriveKey,
                     admobAppId   : librera_admobAppId,
                     admobBannerId: librera_admobBannerId,
@@ -203,6 +207,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: project.findProperty("pro_appWebClientId") ?: "",
                     appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
@@ -218,6 +223,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_classic",
                     appRoundIcon : "@mipmap/launcher_classic",
+                    appWebClientId: project.findProperty("pdf_classic_appWebClientId") ?: "",
                     appGdriveKey : pdf_classic_appGdriveKey,
                     admobAppId   : pdf_classic_admobAppId,
                     admobBannerId: pdf_classic_admobBannerId,
@@ -233,6 +239,7 @@ android {
                     appName      : "Book Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
+                    appWebClientId: project.findProperty("ebooka_appWebClientId") ?: "",
                     appGdriveKey : ebooka_appGdriveKey,
                     admobAppId   : ebooka_admobAppId,
                     admobBannerId: ebooka_admobBannerId,
@@ -248,6 +255,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_2",
                     appRoundIcon : "@mipmap/launcher_pdf_v2",
+                    appWebClientId: project.findProperty("pdf_v2_appWebClientId") ?: "",
                     appGdriveKey : pdf_v2_appGdriveKey,
                     admobAppId   : pdf_v2_admobAppId,
                     admobBannerId: pdf_v2_admobBannerId,
@@ -263,6 +271,7 @@ android {
                     appName      : "TTS Reader",
                     appIcon      : "@mipmap/icon_tts_reader_app",
                     appRoundIcon : "@mipmap/launcher_tts_reader_app",
+                    appWebClientId: project.findProperty("tts_reader_appWebClientId") ?: "",
                     appGdriveKey : tts_reader_appGdriveKey,
                     admobAppId   : tts_reader_admobAppId,
                     admobBannerId: tts_reader_admobBannerId,
@@ -278,6 +287,7 @@ android {
                     appName      : "Epub Reader",
                     appIcon      : "@mipmap/icon_epub_reader",
                     appRoundIcon : "@mipmap/launcher_epub_reader",
+                    appWebClientId: project.findProperty("epub_reader_appWebClientId") ?: "",
                     appGdriveKey : epub_reader_appGdriveKey,
                     admobAppId   : epub_reader_admobAppId,
                     admobBannerId: epub_reader_admobBannerId,
@@ -312,6 +322,13 @@ android {
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
             manifest.srcFile 'src/pro/AndroidManifest.xml'
         }
+        // The "Sign in with Google" sheet needs Credential Manager and Google's own credential
+        // type, both of them :libDepPro's. The flavours built without that module take the
+        // stand-in for it that sits with the other ones in src/noGms/java.
+        ['librera', 'pro', 'proJS', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
+            getByName(gms).java.srcDirs += 'src/gms/java'
+        }
+
         // code for both JVM and device tests, like the old footnote code to compare with
         test.java.srcDirs += 'src/sharedTest/java'
         androidTest.java.srcDirs += 'src/sharedTest/java'
@@ -493,8 +510,7 @@ tasks.register("copyApks") {
         // the global ~/.gradle/gradle.properties. Unset, a release only goes to buildsDir.
         def releaseDir = project.hasProperty("release") ? project.findProperty("librera_release_dir") : null
 
-        // A version's own folder is emptied only when a release is about to be copied into it,
-        // and only of the builds of the same MuPDF
+        // A version's own folder is emptied only when a release is about to be copied into it
         if (project.hasProperty("release")) {
             delete fileTree("$buildsDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
             if (releaseDir) {

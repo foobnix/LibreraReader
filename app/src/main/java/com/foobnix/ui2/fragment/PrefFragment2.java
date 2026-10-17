@@ -2815,6 +2815,9 @@ public class PrefFragment2 extends UIFragment {
                     DragingPopup.resetCache(getActivity());
 
                     CacheZipUtils.emptyAllCacheDirs();
+                    // The copies the covers of storage books are read from outlive the clean-up
+                    // that opening a book does, so they go here.
+                    CacheZipUtils.removeSafCovers();
 
 
                     final BookCSS b = new BookCSS();
@@ -3067,7 +3070,10 @@ public class PrefFragment2 extends UIFragment {
             View row = inflater.inflate(R.layout.path_item, searchPaths, false);
 
             TextView pathView = row.findViewById(R.id.browserPath);
-            pathView.setText(path);
+            // A folder added through the system's folder picker is named by a document uri, which
+            // reads as nothing: it is shown under the provider's own name for it, as the folders
+            // screen shows it.
+            pathView.setText(ExtUtils.isExteralSD(path) ? ExtUtils.getExtSDDisplayName(getActivity(), path) : path);
             pathView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             // Tagged as a link so the panel's colour pass reaches it, and the marks beside it
             // are cut from whatever colour that pass settles on.

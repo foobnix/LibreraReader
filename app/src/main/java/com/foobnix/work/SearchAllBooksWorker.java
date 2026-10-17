@@ -94,14 +94,23 @@ public class SearchAllBooksWorker extends MessageWorker {
             handler.post(timer);
             LOG.d("SearchAllBooksWorker","searchPaths-all", 3, BookCSS.get().searchPathsJson);
             for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-                if (path != null) {
-                    final File root = new File(path);
-                    if (root.isDirectory()) {
-                        LOG.d("Search in: " + root.getPath());
-                        SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
-                        if (isStopped()) {
-                            return false;
-                        }
+                if (path == null) {
+                    continue;
+                }
+                if (ExtUtils.isExteralSD(path)) {
+                    LOG.d("Search in storage: " + path);
+                    SearchCore.searchSaf(itemsMeta, getApplicationContext(), path, ExtUtils.seachExts);
+                    if (isStopped()) {
+                        return false;
+                    }
+                    continue;
+                }
+                final File root = new File(path);
+                if (root.isDirectory()) {
+                    LOG.d("Search in: " + root.getPath());
+                    SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
+                    if (isStopped()) {
+                        return false;
                     }
                 }
             }
@@ -184,6 +193,11 @@ public class SearchAllBooksWorker extends MessageWorker {
                 if (isStopped()) {
                     return false;
                 }
+                // A book on added storage has no file to measure; the walk that found it filled
+                // these in from the provider's own answer.
+                if (ExtUtils.isExteralSD(meta.getPath())) {
+                    continue;
+                }
                 File file = new File(meta.getPath());
                 FileMetaCore.get().upadteBasicMeta(meta, file);
             }
@@ -195,6 +209,10 @@ public class SearchAllBooksWorker extends MessageWorker {
             for (FileMeta meta : itemsMeta) {
                 if (isStopped()) {
                     return false;
+                }
+                if (ExtUtils.isExteralSD(meta.getPath())) {
+                    FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
+                    continue;
                 }
                 //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
                 EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);

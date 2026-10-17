@@ -1,5 +1,7 @@
 package com.google.android.gms.auth.api.identity;
 
+import android.accounts.Account;
+
 import com.google.android.gms.common.api.Scope;
 
 import java.util.List;
@@ -15,6 +17,10 @@ public class AuthorizationRequest {
 
     public static class Builder {
         public Builder setRequestedScopes(List<Scope> scopes) {
+            return this;
+        }
+
+        public Builder setAccount(Account account) {
             return this;
         }
 

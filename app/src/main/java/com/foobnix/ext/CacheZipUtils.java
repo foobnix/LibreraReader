@@ -1,6 +1,7 @@
 package com.foobnix.ext;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class CacheZipUtils {
     public static File CACHE_RECENT;
     public static File CACHE_TEMP;
     public static File ATTACHMENTS_CACHE_DIR;
+    public static File CACHE_SAF_COVERS;
     static Pair<Boolean, String> cacheRes;
     static String cacheFile;
 
@@ -61,6 +63,7 @@ public class CacheZipUtils {
         CACHE_WEB = new File(externalCacheDir, "WEB");
         CACHE_RECENT = new File(externalCacheDir, "Recent");
         CACHE_TEMP = new File(externalCacheDir, "Temp");
+        CACHE_SAF_COVERS = new File(externalCacheDir, "SafCovers");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
@@ -79,6 +82,9 @@ public class CacheZipUtils {
         if (!CACHE_TEMP.exists()) {
             CACHE_TEMP.mkdirs();
         }
+        if (!CACHE_SAF_COVERS.exists()) {
+            CACHE_SAF_COVERS.mkdirs();
+        }
     }
 
     public static void emptyAllCacheDirs() {
@@ -87,6 +93,156 @@ public class CacheZipUtils {
         CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_WEB.listFiles());
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
+    }
+
+    // What the copies of storage books are allowed to take up; past it the oldest go first.
+    private static final long SAF_COVERS_CACHE_LIMIT = 100 * 1024 * 1024L;
+
+    /**
+     * A book on added storage is reached through a document provider, and the readers that pull a
+     * cover out of a book want a file. So the book is copied here once and the cover is read from
+     * the copy; Glide keeps the cover itself, so a book is rarely copied more than once.
+     * <p>
+     * Each copy sits in a folder of its own named after the document and keeps the book's own name
+     * inside it: the readers pick themselves by the extension, and a book whose cover cannot be
+     * read falls back to its name.
+     * <p>
+     * The copies outlive {@link #emptyAllCacheDirs()}, which runs as a book is opened and could
+     * take a copy away from under a cover being read at that moment. What holds them instead is
+     * the budget above and {@link #removeSafCovers()}.
+     */
+    public static File getSafCoverCopy(Context c, String uri, String displayName) {
+        if (CACHE_SAF_COVERS == null || TxtUtils.isEmpty(displayName)) {
+            return null;
+        }
+        try {
+            File dir = new File(CACHE_SAF_COVERS, Integer.toHexString(uri.hashCode()));
+            File dest = new File(dir, displayName);
+
+            if (dest.isFile() && dest.length() > 0) {
+                // What was asked for last stays longest, so browsing does not throw out the
+                // covers of the folder being browsed.
+                dir.setLastModified(System.currentTimeMillis());
+                return dest;
+            }
+
+            trimSafCovers();
+
+            if (!dir.isDirectory() && !dir.mkdirs()) {
+                return null;
+            }
+
+            if (!copySafTo(c, uri, dest)) {
+                return null;
+            }
+            LOG.d("saf-cover-copy", dest.getPath(), dest.length());
+            return dest;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * A copy of a storage document meant to be read once and thrown away with
+     * {@link #removeSafScanCopy(File)} - what the library scan reads a book's metadata out
+     * of. Unlike {@link #getSafCoverCopy} nothing is kept, so a scan of a thousand books costs one
+     * book of disk rather than all of them.
+     */
+    public static File getSafScanCopy(Context c, String uri, String displayName) {
+        if (CACHE_TEMP == null || TxtUtils.isEmpty(displayName)) {
+            return null;
+        }
+        try {
+            File dir = new File(CACHE_TEMP, "SafScan");
+            if (!dir.isDirectory() && !dir.mkdirs()) {
+                return null;
+            }
+            File dest = new File(dir, displayName);
+            return copySafTo(c, uri, dest) ? dest : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public static void removeSafScanCopy(File copy) {
+        try {
+            if (copy != null) {
+                copy.delete();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    // Written beside the copy and moved into place, so a copy that was cut short is never taken
+    // for a book.
+    private static boolean copySafTo(Context c, String uri, File dest) throws Exception {
+        InputStream in = c.getContentResolver().openInputStream(Uri.parse(uri));
+        if (in == null) {
+            return false;
+        }
+        File part = new File(dest.getParentFile(), dest.getName() + ".part");
+        copyFile(in, part);
+        if (part.renameTo(dest)) {
+            return true;
+        }
+        part.delete();
+        return false;
+    }
+
+    public static boolean isSafCoverCopy(String path) {
+        return path != null && CACHE_SAF_COVERS != null && path.startsWith(CACHE_SAF_COVERS.getPath());
+    }
+
+    public static void removeSafCovers() {
+        if (CACHE_SAF_COVERS == null) {
+            return;
+        }
+        File[] dirs = CACHE_SAF_COVERS.listFiles();
+        if (dirs == null) {
+            return;
+        }
+        for (File dir : dirs) {
+            deleteDir(dir);
+        }
+    }
+
+    // The oldest copies go first, so the cache stays inside its budget however long the browsing
+    // goes on.
+    private static void trimSafCovers() {
+        File[] dirs = CACHE_SAF_COVERS.listFiles();
+        if (dirs == null || dirs.length == 0) {
+            return;
+        }
+        long total = 0;
+        for (File dir : dirs) {
+            total += dirSize(dir);
+        }
+        if (total <= SAF_COVERS_CACHE_LIMIT) {
+            return;
+        }
+        Arrays.sort(dirs, new FilerByDate());
+        for (File dir : dirs) {
+            if (total <= SAF_COVERS_CACHE_LIMIT) {
+                return;
+            }
+            total -= dirSize(dir);
+            deleteDir(dir);
+        }
+    }
+
+    private static long dirSize(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null) {
+            return dir.length();
+        }
+        long size = 0;
+        for (File f : files) {
+            size += f.length();
+        }
+        return size;
     }
 
     public static void savaJavaCache(Object object, File file) {

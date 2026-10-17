@@ -1,6 +1,13 @@
 package com.foobnix.pdf.info.io;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.DocumentsContract;
+import android.provider.DocumentsContract.Document;
+
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
@@ -121,6 +128,149 @@ public class SearchCore {
         }
         return;
 
+    }
+
+    /**
+     * The same walk as {@link #search(List, File, List)}, over a folder the user added through the
+     * system's folder picker. Such a folder is reached only through a document provider, so there
+     * is nothing to list with {@link File}: every level is a query, and a book is named by the uri
+     * of its document rather than by a path.
+     * <p>
+     * What a row shows is read from the same query, because a document has no file behind it for
+     * {@link FileMetaCore#upadteBasicMeta} to measure.
+     */
+    public static void searchSaf(List<FileMeta> items, Context c, String treeUri, List<String> exts) {
+        if (items == null || c == null || TxtUtils.isEmpty(treeUri) || exts == null) {
+            return;
+        }
+        try {
+            Uri uri = Uri.parse(treeUri);
+            searchSaf(items, c, uri, uri, new ArrayList<>(exts), 0);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    // A document tree can be deep, and a provider is free to answer with whatever it likes, so the
+    // walk is given a floor it cannot go below.
+    private static final int SAF_MAX_DEPTH = 24;
+
+    private static void searchSaf(List<FileMeta> items,
+                                  Context c,
+                                  Uri treeUri,
+                                  Uri folderUri,
+                                  List<String> exts,
+                                  int depth) {
+        if (depth > SAF_MAX_DEPTH) {
+            LOG.d("find-saf-too-deep", folderUri);
+            return;
+        }
+        Uri childrenUri = ExtUtils.getChildUri(c, folderUri);
+        if (childrenUri == null) {
+            return;
+        }
+        Cursor cursor = null;
+        try {
+            cursor = c.getContentResolver()
+                      .query(childrenUri, new String[]{ //
+                              Document.COLUMN_DISPLAY_NAME, //
+                              Document.COLUMN_DOCUMENT_ID, //
+                              Document.COLUMN_LAST_MODIFIED, //
+                              Document.COLUMN_MIME_TYPE, //
+                              Document.COLUMN_SIZE, //
+                      }, null, null, null);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        if (cursor == null) {
+            LOG.d("find-saf-no-access", folderUri);
+            return;
+        }
+
+        // The whole level is read before anything is kept from it: a .nomedia among the children
+        // speaks for the folder, and it can come after the books in it.
+        List<FileMeta> found = new ArrayList<FileMeta>();
+        List<String> folders = new ArrayList<String>();
+        boolean hasNoMedia = false;
+        String parentName = safFolderName(c, folderUri);
+
+        try {
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(0);
+                String documentId = cursor.getString(1);
+                String lastModified = cursor.getString(2);
+                String mimeType = cursor.getString(3);
+                String size = cursor.getString(4);
+
+                if (TxtUtils.isEmpty(name) || TxtUtils.isEmpty(documentId)) {
+                    continue;
+                }
+                if (NOMEDIA.equals(name)) {
+                    hasNoMedia = true;
+                    continue;
+                }
+                if (name.startsWith(".")) {
+                    LOG.d("find-saf-skip-hidden", name);
+                    continue;
+                }
+
+                if (Document.MIME_TYPE_DIR.equals(mimeType)) {
+                    folders.add(documentId);
+                    continue;
+                }
+                if (!endWith(name, exts)) {
+                    continue;
+                }
+                // As on the device, a file with nothing in it is not a book. A provider that
+                // does not say how big a document is still gets the benefit of the doubt.
+                if (size != null && parseLong(size) <= 0) {
+                    continue;
+                }
+
+                FileMeta meta = new FileMeta(DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId)
+                                                              .toString());
+                FileMetaCore.get()
+                            .upadteBasicMetaSaf(meta, name, parseLong(size), parseLong(lastModified), parentName);
+                found.add(meta);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            try {
+                cursor.close();
+            } catch (Exception ignored) {
+            }
+        }
+
+        if (hasNoMedia && AppState.get().isSkipFolderWithNOMEDIA) {
+            LOG.d("find-saf-skip NOMEDIA", folderUri);
+            return;
+        }
+
+        items.addAll(found);
+
+        for (String documentId : folders) {
+            searchSaf(items, c, treeUri, DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId), exts,
+                    depth + 1);
+        }
+    }
+
+    // What the library shows as the folder a book sits in. A document uri says nothing to a
+    // reader, so the provider's own id for the folder is what is kept.
+    private static String safFolderName(Context c, Uri folderUri) {
+        try {
+            return Uri.decode(ExtUtils.getExtSDDisplayName(c, folderUri.toString()));
+        } catch (Exception e) {
+            return folderUri.toString();
+        }
+    }
+
+    private static long parseLong(String value) {
+        try {
+            return value == null ? 0 : Long.parseLong(value);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public static List<FileMeta> getFilesAndDirs(String path, boolean filterEmpty, boolean isDisplayAllFilesInFolder) {

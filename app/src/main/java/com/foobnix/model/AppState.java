@@ -636,6 +636,9 @@ public class AppState {
     public boolean isAlwaysOpenOnPage1 = false;
     public boolean isHideReadBook = false;
     public boolean isFolderPreview = false;
+    // A book on added storage has to be copied out of the document provider before its cover can
+    // be read, so the covers are only drawn when asked for.
+    public boolean isSafBookCovers = false;
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";

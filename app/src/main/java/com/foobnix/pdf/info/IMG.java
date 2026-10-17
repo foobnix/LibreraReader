@@ -253,7 +253,10 @@ public class IMG {
 
     public static String toUrl(final String path, final int page, final int width, boolean withHash) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0,false);
-        pdfUrl.setUnic(0);
+        // A book on added storage is drawn either as its name or as its own cover, and the two
+        // are told apart here so that turning the setting switches what is shown at once and
+        // neither picture has to be made twice.
+        pdfUrl.setUnic(AppState.get().isSafBookCovers && ExtUtils.isExteralSD(path) ? 1 : 0);
         if(withHash) {
             pdfUrl.hash =
                     ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();

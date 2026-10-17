@@ -28,6 +28,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.CbzCbrExtractor;
@@ -330,7 +331,16 @@ public class ImageExtractor {
             }
         }
 
-        FileMeta fileMeta = AppDB.get().getOrCreate(path);
+        // The copy of a storage book lives in the cache and is not a book of the user's, so it
+        // gets a record of its own instead of one in the library.
+        final boolean isSafCopy = CacheZipUtils.isSafCoverCopy(path);
+        FileMeta fileMeta;
+        if (isSafCopy) {
+            fileMeta = new FileMeta(path);
+            fileMeta.setState(FileMetaCore.STATE_NONE);
+        } else {
+            fileMeta = AppDB.get().getOrCreate(path);
+        }
 
         LOG.d("FileMeta-State", fileMeta.getState());
 
@@ -344,7 +354,9 @@ public class ImageExtractor {
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(unZipPath));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-            AppDB.get().save(fileMeta);
+            if (!isSafCopy) {
+                AppDB.get().save(fileMeta);
+            }
         }
 
         pageUrl.setPath(unZipPath);
@@ -622,6 +634,12 @@ public class ImageExtractor {
         if (imageUri == null) {
             imageUri = "";
         }
+        // The crash record is two synchronous preference writes, and it is only worth them where
+        // a native reader runs: a cover that is merely drawn or decoded by the platform cannot
+        // take the process down with it, and paying for it there doubles the cost of the cover.
+        if (!isCrashGuarded(imageUri)) {
+            return getStreamInner(imageUri, "");
+        }
         final String hash = "" + imageUri.hashCode();
         try {
             final InputStream streamInner;
@@ -639,6 +657,22 @@ public class ImageExtractor {
         } finally {
 
         }
+    }
+
+    private boolean isCrashGuarded(String imageUri) {
+        if (imageUri.startsWith(Safe.TXT_SAFE_RUN) || imageUri.startsWith("data:") || imageUri.startsWith("assets:")) {
+            return false;
+        }
+        try {
+            String path = PageUrl.fromString(imageUri).getPath();
+            if (ExtUtils.isExteralSD(path)) {
+                // Nothing but the name is drawn, unless the book is copied out and read.
+                return AppState.get().isSafBookCovers && !ExtUtils.isImagePath(path);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return true;
     }
 
     public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
@@ -676,7 +710,16 @@ public class ImageExtractor {
                     return c.getContentResolver().openInputStream(Uri.parse(path));
                 }
                 String display = ExtUtils.getFileName(Uri.decode(path));
-                return messageFile("", display);
+
+                // A book the readers can open only as a file: with covers for added storage
+                // asked for, it is copied out once and the cover read from the copy.
+                File copy = AppState.get().isSafBookCovers ?
+                        CacheZipUtils.getSafCoverCopy(c, path, display) : null;
+                if (copy == null) {
+                    return messageFile("", display);
+                }
+                path = copy.getPath();
+                pageUrl.setPath(path);
             }
 
             if (path.startsWith(Clouds.PREFIX_CLOUD)) {

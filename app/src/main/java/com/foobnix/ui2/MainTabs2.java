@@ -255,6 +255,14 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
+        // A sign-in answers for itself, whatever the answer is: the Google consent screen can
+        // come back cancelled, which the check below would otherwise swallow on the older
+        // devices.
+        if (GFile.onSignInActivityResult(this, requestCode, resultCode, data)) {
+            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+            return;
+        }
+
         if (Build.VERSION.SDK_INT < Android6.ANDROID_12_INT && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
             return;
@@ -275,16 +283,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
-        } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            // GFile turns the sync on, rebuilds the Drive client, tells the screens showing the
-            // account to redraw and starts the first sync; what is left is this screen's own
-            // chrome and the word to the user.
-            if (GFile.onSignInResult(MainTabs2.this, data)) {
-                Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-            }
-            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
     }
 

@@ -101,6 +101,11 @@ google-http-client-gson = { module = "com.google.http-client:google-http-client-
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version = "1.39.0" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.5.0" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "22.0.0" }
+# The "Sign in with Google" sheet the Drive sync picks its account from: Credential Manager,
+# with Google's own credential type and the Play services provider behind it.
+credentials = { module = "androidx.credentials:credentials", version = "1.6.0" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version = "1.6.0" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version = "1.2.1" }
 
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }

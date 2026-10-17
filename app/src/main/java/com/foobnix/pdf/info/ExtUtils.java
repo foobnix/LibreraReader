@@ -357,6 +357,20 @@ public class ExtUtils {
         }
     }
 
+    // The names a folder listing shows, matched the way SearchCore matches files on the device.
+    public static boolean isBrowseSupported(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return false;
+        }
+        String lowerCase = name.toLowerCase(Locale.US);
+        for (String s : browseExts) {
+            if (lowerCase.endsWith(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isExteralSD(String path) {
         if (path == null) {
             return false;

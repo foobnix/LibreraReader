@@ -1,9 +1,14 @@
 package com.foobnix.ui2;
 
 import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.DocumentsContract.Document;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -83,10 +88,17 @@ public class FileMetaCore {
 
         try {
             if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
-                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+                if (ExtUtils.isExteralSD(path)) {
+                    // There is no file behind a document uri: what a row shows is asked of the
+                    // provider, and the rest is read from a copy that is thrown away at once.
+                    FileMetaCore.get().upadteBasicMetaSaf(LibreraApp.context, fileMeta);
+                    FileMetaCore.get().udpateFullMetaSaf(LibreraApp.context, fileMeta);
+                } else {
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
-                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                    FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+                    FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                }
 
 
                 if (isSearhcBook) {
@@ -342,6 +354,94 @@ public class FileMetaCore {
 
         fileMeta.setState(STATE_FULL);
 
+    }
+
+    /**
+     * What {@link #upadteBasicMeta} fills in, for a book on a folder added through the system's
+     * folder picker: there is no file to measure, so the figures come from the query that found
+     * the document.
+     */
+    public void upadteBasicMetaSaf(FileMeta fileMeta, String displayName, long size, long date, String parentName) {
+        fileMeta.setTitle(displayName);
+
+        fileMeta.setSize(size);
+        fileMeta.setDate(date);
+        fileMeta.setParentPath(parentName);
+
+        fileMeta.setExt(ExtUtils.getFileExtension(displayName));
+        fileMeta.setSizeTxt(ExtUtils.readableFileSize(size));
+        fileMeta.setDateTxt(ExtUtils.getDateFormat(date));
+
+        if (BookType.FB2.is(displayName)) {
+            fileMeta.setPathTxt(TxtUtils.encode1251(displayName));
+        } else {
+            fileMeta.setPathTxt(displayName);
+        }
+        fileMeta.setState(STATE_BASIC);
+    }
+
+    /**
+     * Reads a book's author, series and the rest out of a document on added storage. The readers
+     * want a file, so the book is copied out, read and the copy thrown away at once - a library on
+     * added storage then costs one book of disk at a time instead of all of them.
+     */
+    public void udpateFullMetaSaf(Context c, FileMeta fileMeta) {
+        if (c == null || fileMeta == null) {
+            return;
+        }
+        if (TxtUtils.isEmpty(fileMeta.getTitle()) || fileMeta.getState() == null) {
+            upadteBasicMetaSaf(c, fileMeta);
+        }
+        File copy = CacheZipUtils.getSafScanCopy(c, fileMeta.getPath(), fileMeta.getTitle());
+        if (copy == null) {
+            return;
+        }
+        try {
+            String displayName = fileMeta.getTitle();
+            EbookMeta ebookMeta = getEbookMeta(copy.getPath(), CacheDir.ZipService, true);
+            udpateFullMeta(fileMeta, ebookMeta);
+            // A book that says nothing about itself keeps the name it is filed under, rather than
+            // the name of the copy it was read from.
+            if (TxtUtils.isEmpty(fileMeta.getTitle())) {
+                fileMeta.setTitle(displayName);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            CacheZipUtils.removeSafScanCopy(copy);
+        }
+    }
+
+    /**
+     * The same as {@link #upadteBasicMetaSaf(FileMeta, String, long, long, String)} for a document
+     * met on its own, with no listing to take the figures from: it asks the provider for them.
+     */
+    public boolean upadteBasicMetaSaf(Context c, FileMeta fileMeta) {
+        Cursor cursor = null;
+        try {
+            cursor = c.getContentResolver()
+                      .query(Uri.parse(fileMeta.getPath()), new String[]{ //
+                              Document.COLUMN_DISPLAY_NAME, //
+                              Document.COLUMN_LAST_MODIFIED, //
+                              Document.COLUMN_SIZE, //
+                      }, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                long size = cursor.isNull(2) ? 0 : cursor.getLong(2);
+                long date = cursor.isNull(1) ? 0 : cursor.getLong(1);
+                upadteBasicMetaSaf(fileMeta, cursor.getString(0), size, date, fileMeta.getParentPath());
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            if (cursor != null) {
+                try {
+                    cursor.close();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        return false;
     }
 
     public void upadteBasicMeta(FileMeta fileMeta, File file) {
