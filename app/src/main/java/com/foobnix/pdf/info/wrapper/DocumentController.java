@@ -481,14 +481,23 @@ public abstract class DocumentController {
      */
     public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int barColor) {
         if (a instanceof ComponentActivity) {
-            // Both bars clear, with the light icons they always had: the app paints the status
-            // bar's strip itself, and the buttons at the foot get the system's dark scrim
-            // wherever the system draws one.
+            // Both bars take the app's own colour, with the light icons they always had: the
+            // strip kept for the status bar is painted by the app, and the strip the buttons
+            // at the foot stand on is painted here. The system's scrim would leave that strip
+            // black under chrome that is not, which reads as a band cut off the screen.
             EdgeToEdge.enable((ComponentActivity) a,
                               SystemBarStyle.dark(Color.TRANSPARENT),
-                              SystemBarStyle.auto(EdgeToEdge.getDefaultLightScrim(),
-                                                  EdgeToEdge.getDefaultDarkScrim(),
-                                                  resources -> true));
+                              SystemBarStyle.dark(barColor));
+        }
+        // From Android 10 on, the style above leaves the bar clear and lets the system put its
+        // own scrim over whatever shows through. The colour is set here instead, and the scrim
+        // turned off, so the strip is the app's colour under buttons and under a gesture bar
+        // alike rather than a dark band on one and the page on the other.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            a.getWindow().setNavigationBarColor(barColor);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            a.getWindow().setNavigationBarContrastEnforced(false);
         }
         View parentParent = a.findViewById(R.id.parentParent);
         View statusBarHack = a.findViewById(R.id.systemBarHack);
@@ -536,13 +545,15 @@ public abstract class DocumentController {
                     padUnderBars(top, over.left, over.top, over.right, 0);
                     padUnderBars(bottomPanel, over.left, 0, over.right, over.bottom);
 
-                    // No scrim over the buttons at the foot while the panel is under them, so
-                    // they stand on the panel's colour; the scrim is back once they go.
+                    // Nothing over the buttons at the foot while the panel is under them, so
+                    // they stand on the panel's own colour; once the panel goes, the strip is
+                    // painted in the app's colour rather than left to the system's scrim.
                     boolean overPanel = over.bottom > 0 || over.left > 0 || over.right > 0;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        a.getWindow().setNavigationBarContrastEnforced(!overPanel);
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : EdgeToEdge.getDefaultDarkScrim());
+                        a.getWindow().setNavigationBarContrastEnforced(false);
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : barColor);
                     }
                 }
 
