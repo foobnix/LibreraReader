@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Zastosuj podstawowy arkusz stylów (foliate-js)</string>
    <string name="pdf_engine">Silnik PDF</string>
    <string name="msg_pdf_engine_unavailable">Ta kompilacja nie zawiera bibliotek PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: nasz nowy nowoczesny czytnik książek na Androida i iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: bezpośrednie pobranie APK</string>
 </resources>

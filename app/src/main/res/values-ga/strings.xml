@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Cuir an bunstílbhileog i bhfeidhm (foliate-js)</string>
    <string name="pdf_engine">Inneall PDF</string>
    <string name="msg_pdf_engine_unavailable">Níl leabharlanna PDFium sa leagan seo.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: ár léitheoir leabhar nua-aimseartha nua do Android agus iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: íoslódáil dhíreach APK</string>
 </resources>

@@ -705,6 +705,4 @@
    <string name="base_stylesheet">基本スタイルシートを適用 (foliate-js)</string>
    <string name="pdf_engine">PDF エンジン</string>
    <string name="msg_pdf_engine_unavailable">このビルドには PDFium ライブラリが含まれていません。</string>
-   <string name="librerax_tagline"><b>LibreraX</b>：Android と iOS のための、私たちの新しい書籍リーダー</string>
-   <string name="librerax_github"><b>GitHub</b>：APK を直接ダウンロード</string>
 </resources>

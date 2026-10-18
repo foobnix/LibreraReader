@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Terapkan lembar gaya dasar (foliate-js)</string>
    <string name="pdf_engine">Mesin PDF</string>
    <string name="msg_pdf_engine_unavailable">Build ini tidak menyertakan pustaka PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: pembaca buku modern baru kami untuk Android dan iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: unduh APK langsung</string>
 </resources>

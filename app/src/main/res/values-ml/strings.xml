@@ -705,6 +705,4 @@
    <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
    <string name="pdf_engine">PDF എഞ്ചിൻ</string>
    <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: Android-നും iOS-നും വേണ്ടിയുള്ള ഞങ്ങളുടെ പുതിയ ആധുനിക ബുക്ക് റീഡർ</string>
-   <string name="librerax_github"><b>GitHub</b>: APK നേരിട്ട് ഡൗൺലോഡ് ചെയ്യുക</string>
 </resources>

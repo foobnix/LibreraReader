@@ -705,6 +705,4 @@
    <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
    <string name="pdf_engine">محرك PDF</string>
    <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: قارئ الكتب الحديث الجديد لدينا لأندرويد و iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: تنزيل مباشر لملف APK</string>
 </resources>

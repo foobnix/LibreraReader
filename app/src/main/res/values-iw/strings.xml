@@ -705,6 +705,4 @@
    <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
    <string name="pdf_engine">מנוע PDF</string>
    <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: קורא הספרים המודרני החדש שלנו ל-Android ול-iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: הורדה ישירה של קובץ APK</string>
 </resources>

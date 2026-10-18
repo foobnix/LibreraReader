@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
    <string name="pdf_engine">PDF қозғалтқышы</string>
    <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: Android және iOS үшін біздің жаңа заманауи кітап оқығышымыз</string>
-   <string name="librerax_github"><b>GitHub</b>: APK файлын тікелей жүктеп алу</string>
 </resources>

@@ -705,6 +705,4 @@
    <string name="base_stylesheet">आधार स्टाइलशीट लागू करें (foliate-js)</string>
    <string name="pdf_engine">PDF इंजन</string>
    <string name="msg_pdf_engine_unavailable">इस बिल्ड में PDFium लाइब्रेरी शामिल नहीं हैं।</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: Android और iOS के लिए हमारा नया आधुनिक पुस्तक रीडर</string>
-   <string name="librerax_github"><b>GitHub</b>: APK सीधे डाउनलोड करें</string>
 </resources>

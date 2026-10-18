@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
    <string name="pdf_engine">Двигател за PDF</string>
    <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: нашата нова модерна четалка за книги за Android и iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: директно изтегляне на APK</string>
 </resources>

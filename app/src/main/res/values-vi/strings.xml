@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
    <string name="pdf_engine">Công cụ PDF</string>
    <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: trình đọc sách hiện đại mới của chúng tôi cho Android và iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: tải APK trực tiếp</string>
 </resources>

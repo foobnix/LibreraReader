@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Taikyti bazinį stilių aprašą (foliate-js)</string>
    <string name="pdf_engine">PDF variklis</string>
    <string name="msg_pdf_engine_unavailable">Ši versija neturi PDFium bibliotekų.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: mūsų nauja moderni knygų skaityklė, skirta Android ir iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: tiesioginis APK atsisiuntimas</string>
 </resources>

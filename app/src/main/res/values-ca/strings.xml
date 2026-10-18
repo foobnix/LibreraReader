@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Aplica el full d\'estils base (foliate-js)</string>
    <string name="pdf_engine">Motor de PDF</string>
    <string name="msg_pdf_engine_unavailable">Aquesta compilació no inclou les biblioteques PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: el nostre nou lector de llibres modern per a Android i iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: baixada directa de l\'APK</string>
 </resources>

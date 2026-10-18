@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Tabulam stilorum basalem adhibere (foliate-js)</string>
    <string name="pdf_engine">Machina PDF</string>
    <string name="msg_pdf_engine_unavailable">Haec aedificatio bibliothecas PDFium non continet.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: novus lector librorum noster pro Android et iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: APK directe depone</string>
 </resources>

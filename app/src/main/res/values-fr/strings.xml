@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Appliquer la feuille de style de base (foliate-js)</string>
    <string name="pdf_engine">Moteur PDF</string>
    <string name="msg_pdf_engine_unavailable">Cette version n\'inclut pas les bibliothèques PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b> : notre nouveau lecteur de livres moderne pour Android et iOS</string>
-   <string name="librerax_github"><b>GitHub</b> : téléchargement direct de l\'APK</string>
 </resources>

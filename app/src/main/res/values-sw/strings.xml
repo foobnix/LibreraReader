@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Tumia laha ya mitindo ya msingi (foliate-js)</string>
    <string name="pdf_engine">Injini ya PDF</string>
    <string name="msg_pdf_engine_unavailable">Toleo hili halina maktaba za PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: kisomaji chetu kipya cha kisasa cha vitabu kwa Android na iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: pakua APK moja kwa moja</string>
 </resources>

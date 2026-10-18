@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
    <string name="pdf_engine">PDF motoru</string>
    <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: Android ve iOS için yeni modern kitap okuyucumuz</string>
-   <string name="librerax_github"><b>GitHub</b>: doğrudan APK indirme</string>
 </resources>

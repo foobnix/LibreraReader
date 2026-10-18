@@ -705,6 +705,4 @@
    <string name="base_stylesheet">应用基础样式表 (foliate-js)</string>
    <string name="pdf_engine">PDF 引擎</string>
    <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 库。</string>
-   <string name="librerax_tagline"><b>LibreraX</b>：我们为 Android 和 iOS 打造的全新现代阅读器</string>
-   <string name="librerax_github"><b>GitHub</b>：直接下载 APK</string>
 </resources>

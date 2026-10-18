@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
    <string name="pdf_engine">PDF motorra</string>
    <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: gure liburu irakurgailu moderno berria Android eta iOSerako</string>
-   <string name="librerax_github"><b>GitHub</b>: APK deskarga zuzena</string>
 </resources>

@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
    <string name="pdf_engine">PDF-engine</string>
    <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: onze nieuwe moderne boeklezer voor Android en iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: APK rechtstreeks downloaden</string>
 </resources>

@@ -705,6 +705,4 @@
    <string name="base_stylesheet">அடிப்படை பாணித்தாளைப் பயன்படுத்து (foliate-js)</string>
    <string name="pdf_engine">PDF இயந்திரம்</string>
    <string name="msg_pdf_engine_unavailable">இந்தப் பதிப்பில் PDFium நூலகங்கள் இல்லை.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: Android மற்றும் iOS-க்கான எங்கள் புதிய நவீன புத்தக வாசிப்பான்</string>
-   <string name="librerax_github"><b>GitHub</b>: APK நேரடி பதிவிறக்கம்</string>
 </resources>

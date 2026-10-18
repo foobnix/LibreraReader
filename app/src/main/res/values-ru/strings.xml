@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Применять базовую таблицу стилей (foliate-js)</string>
    <string name="pdf_engine">Движок PDF</string>
    <string name="msg_pdf_engine_unavailable">В этой сборке нет библиотек PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: наша новая современная читалка книг для Android и iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: прямая загрузка APK</string>
 </resources>

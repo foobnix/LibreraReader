@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Použiť základný štýl (foliate-js)</string>
    <string name="pdf_engine">Jadro PDF</string>
    <string name="msg_pdf_engine_unavailable">Toto zostavenie neobsahuje knižnice PDFium.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: naša nová moderná čítačka kníh pre Android a iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: priame stiahnutie APK</string>
 </resources>

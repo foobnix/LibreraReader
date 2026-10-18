@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Alap stíluslap alkalmazása (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
    <string name="msg_pdf_engine_unavailable">Ez a build nem tartalmazza a PDFium könyvtárakat.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: az új modern könyvolvasónk Androidra és iOS-re</string>
-   <string name="librerax_github"><b>GitHub</b>: APK közvetlen letöltése</string>
 </resources>

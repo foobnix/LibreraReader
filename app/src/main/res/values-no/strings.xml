@@ -705,6 +705,4 @@
    <string name="base_stylesheet">Bruk grunnleggende stilark (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
    <string name="msg_pdf_engine_unavailable">Denne versjonen inneholder ikke PDFium-bibliotekene.</string>
-   <string name="librerax_tagline"><b>LibreraX</b>: vår nye moderne bokleser for Android og iOS</string>
-   <string name="librerax_github"><b>GitHub</b>: direkte nedlasting av APK</string>
 </resources>
