@@ -62,7 +62,7 @@
    <string name="web">Sivusto</string>
    <string name="beta_version">Beta-versio</string>
    <string name="archive">Arkisto</string>
-   <string name="rate_pdf_reader1">Kirjoita palautetta ja arvioi Google Playssa, se on meille erittäin tärkeätä</string>
+   <string name="rate_pdf_reader1">Jätä palautetta tästä sovelluksesta Google Playssa. Se on meille erittäin tärkeää</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Muotoiltu teksti (pseudografiikka)</string>
    <string name="continuous_text">Jatkuva teksti (ei rivinvaihtoja)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Rajaa reunukset symmetrisesti</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hae tekijöiden tiedot ja kirjan otsikot PDF-tiedoston metatiedoista</string>
    <string name="meta_tags">Metatunnisteet</string>
-   <string name="librera_pro">Hanki Librera PRO — mainokseton, ja se poistaa mainokset myös tästä sovelluksesta</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Mainokseton sovellus, joka poistaa mainokset myös tästä sovelluksesta</string>
    <string name="annotation">Huomautus</string>
    <string name="book">Kirja</string>
    <string name="information">Tiedoston tiedot</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
    <string name="pdf_engine">PDF-moottori</string>
    <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: uusi moderni kirjanlukijamme Androidille ja iOS:lle</string>
+   <string name="librerax_github"><b>GitHub</b>: APK:n suora lataus</string>
 </resources>

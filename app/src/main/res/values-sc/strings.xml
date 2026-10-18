@@ -62,7 +62,7 @@
    <string name="web">Pàgina printzipale</string>
    <string name="beta_version">Versione beta</string>
    <string name="archive">Archìviu</string>
-   <string name="rate_pdf_reader1">Pro praghere lassa·nos unu cummentu e vota·nos in Google Play: est de importu mannu pro s\'isvilupu benidore</string>
+   <string name="rate_pdf_reader1">Lassa unu cumentu subra custa aplicatzione in Google Play. Est meda importante pro nois</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Testu formatadu (psèudo-gràficas)</string>
    <string name="continuous_text">Testu sighidu (chene interrutziones de lìnia)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Mutzinadura de oros simmètrica</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Estrai sos nùmenes de sos autores e sos tìtulos de sos libros dae sos metadatos (PDF)</string>
    <string name="meta_tags">Etichetas meta</string>
-   <string name="librera_pro">Otene Librera PRO \\2014 chene publitzidade, e bogat sa publitzidade fintzas dae custa aplicatzione</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Un\'aplicatzione chene publitzidade chi bogat sa publitzidade fintzas dae custa aplicatzione</string>
    <string name="annotation">Annotatzione</string>
    <string name="book">Libru</string>
    <string name="information">Informatziones de su documentu</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Àplica su fògiu de istiles de base (foliate-js)</string>
    <string name="pdf_engine">Motore PDF</string>
    <string name="msg_pdf_engine_unavailable">Custa versione no includet is librerias PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: su letore de libros modernu nou nostru pro Android e iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: iscarrigamentu diretu de s\'APK</string>
 </resources>

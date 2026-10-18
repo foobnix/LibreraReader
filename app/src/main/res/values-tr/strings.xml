@@ -62,7 +62,7 @@
    <string name="web">Ana sayfa</string>
    <string name="beta_version">Beta sürümü</string>
    <string name="archive">Arşiv</string>
-   <string name="rate_pdf_reader1">Görüşleriniz bizim için çok önemli. Google Play\'de bizi değerlendirin</string>
+   <string name="rate_pdf_reader1">Lütfen bu uygulama hakkında Google Play\'de yorum bırakın. Bu bizim için çok önemli</string>
    <string name="___PREFERENCES___SECTION___">Seçenekler Bölümü</string>
    <string name="formatted_text">Biçimlendirilmiş metin (sahte grafik)</string>
    <string name="continuous_text">Sürekli metin (satır sonu yok)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Simetrik olarak kenar sınırları</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Meta kitabından yazarı ve PDF kitabının başlığını görüntüleme</string>
    <string name="meta_tags">Meta etiketleri</string>
-   <string name="librera_pro">Librera PRO\'yu edinin — reklamsız, ayrıca bu uygulamadaki reklamları da kaldırır</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Bu uygulamadaki reklamları da kaldıran reklamsız bir uygulama</string>
    <string name="annotation">Not</string>
    <string name="book">Kitap</string>
    <string name="information">Bilgi</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
    <string name="pdf_engine">PDF motoru</string>
    <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: Android ve iOS için yeni modern kitap okuyucumuz</string>
+   <string name="librerax_github"><b>GitHub</b>: doğrudan APK indirme</string>
 </resources>

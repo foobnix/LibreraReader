@@ -62,7 +62,7 @@
    <string name="web">Website</string>
    <string name="beta_version">Beta versie</string>
    <string name="archive">Archief</string>
-   <string name="rate_pdf_reader1">Schrijf uw feedback en waardeer ons op Google Play, het is zeer belangrijk voor ons</string>
+   <string name="rate_pdf_reader1">Laat een beoordeling van deze app achter op Google Play. Dat is heel belangrijk voor ons</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Opgemaakte tekst (pseudo-afbeeldingen)</string>
    <string name="continuous_text">Doorlopende tekst (geen regelafbreking)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Snijd de randen symmetrisch bij</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">De auteur en de titel van het PDF-boek van de metatags weergeven</string>
    <string name="meta_tags">Meta-tags</string>
-   <string name="librera_pro">Haal Librera PRO — advertentievrij, en het verwijdert ook de advertenties in deze app</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Een advertentievrije app die ook de advertenties uit deze app verwijdert</string>
    <string name="annotation">Aantekening</string>
    <string name="book">Boek</string>
    <string name="information">Informatie</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
    <string name="pdf_engine">PDF-engine</string>
    <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: onze nieuwe moderne boeklezer voor Android en iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: APK rechtstreeks downloaden</string>
 </resources>

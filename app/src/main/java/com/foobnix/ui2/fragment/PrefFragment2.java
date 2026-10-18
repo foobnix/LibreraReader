@@ -26,10 +26,13 @@ import android.view.View.OnClickListener;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
+import android.content.res.Resources;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import androidx.cardview.widget.CardView;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
@@ -61,6 +64,10 @@ import com.foobnix.librerax.LibreraX;
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.IntegerResponse;
@@ -78,6 +85,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
@@ -139,7 +147,7 @@ public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR =
             new Pair<>(R.string.preferences, R.drawable.glyphicons_5_settings);
 
-    private static final String WWW_SITE = "https://librera.mobi";
+    private static final String WWW_SITE = "https://librera.app/librera-reader/";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent, overlay,
@@ -220,6 +228,7 @@ public class PrefFragment2 extends UIFragment {
         }
         TxtUtils.updateAllLinks(inflate,true);
         paintLinkButtons(inflate);
+        paintLibreraXBlock(inflate);
 
     }
 
@@ -1860,8 +1869,7 @@ public class PrefFragment2 extends UIFragment {
         whatIsNew.setOnClickListener(new View.OnClickListener() {
 
             @Override public void onClick(View v) {
-                AndroidWhatsNew.show2(getActivity());
-
+                Urls.openWhatIsNew(getActivity());
             }
         });
 
@@ -2544,9 +2552,30 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        asButton(inflate.findViewById(R.id.onRateIt)).
+        // Which icon this is depends on the flavour installed, so it is asked of the package
+        // manager rather than named here. Set before paintLinkButtons runs, which is what folds
+        // the mark into the button beside it.
+        ImageView rateItIcon = inflate.findViewById(R.id.rateItIcon);
+        try {
+            rateItIcon.setImageDrawable(squareAppIcon());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
-                                                              setOnClickListener(new OnClickListener() {
+        // The LibreraX mark is drawn square; the two app icons above it are not, so it is
+        // given the same round rather than standing as the one hard-cornered tile of three.
+        roundCorners(inflate.findViewById(R.id.libreraXIcon));
+
+        TextView rateIt = inflate.findViewById(R.id.onRateIt);
+        // The words ask for a review on Google Play, which is not where an F-Droid build came
+        // from, so that build is not asked for one.
+        ((View) rateIt.getParent()).setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
+        asButton(rateIt);
+        // Set after asButton, which flattens a button's text to strip any underline it was
+        // carrying and would take the bold with it. Whichever flavour this is names itself.
+        rateIt.setText(TxtUtils.fromHtml("<b>" + Apps.getApplicationName(getActivity()) + "</b>: "
+                + getString(R.string.rate_pdf_reader1)));
+        rateIt.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(final View v) {
                 Urls.rateIT(getActivity());
@@ -2590,7 +2619,12 @@ public class PrefFragment2 extends UIFragment {
         });
 
         TextView proText = inflate.findViewById(R.id.downloadPRO);
+        // Nothing to sell to a reader who is already on PRO, and the F-Droid builds are not
+        // published on the store the offer leads to.
+        boolean isPro = AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(getActivity()));
+        ((View) proText.getParent()).setVisibility(TxtUtils.visibleIf(!isPro && !AppsConfig.IS_FDROID));
         asButton(proText);
+        proText.setText(getText(R.string.librera_pro));
         ((View) proText.getParent()).
 
                                             setOnClickListener(new OnClickListener() {
@@ -2599,6 +2633,23 @@ public class PrefFragment2 extends UIFragment {
                 Urls.openPdfPro(getActivity());
             }
         });
+
+        inflate.findViewById(R.id.libreraXAppStore)
+               .setOnClickListener(v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_APP_STORE));
+        inflate.findViewById(R.id.libreraXGooglePlay)
+               .setOnClickListener(v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_PLAY));
+
+        // A reader who came by F-Droid may have no Play store to take the badge up on, so that
+        // build is also shown where the APK itself can be fetched.
+        TextView libreraXGithub = inflate.findViewById(R.id.libreraXGithub);
+        libreraXGithub.setVisibility(TxtUtils.visibleIf(AppsConfig.IS_FDROID));
+        if (AppsConfig.IS_FDROID) {
+            asButton(libreraXGithub);
+            // After asButton, which flattens the text and would take the bold with it.
+            libreraXGithub.setText(getText(R.string.librerax_github));
+            libreraXGithub.setOnClickListener(
+                    v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_GITHUB));
+        }
 
         inflate.findViewById(R.id.cleanRecent)
                .
@@ -2906,6 +2957,7 @@ public class PrefFragment2 extends UIFragment {
 
         TxtUtils.updateAllLinks(inflate, true);
         paintLinkButtons(inflate);
+        paintLibreraXBlock(inflate);
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         return inflate;
 
@@ -2973,6 +3025,86 @@ public class PrefFragment2 extends UIFragment {
                 icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    /**
+     * The app's own icon, drawn square. What the package manager hands back is an adaptive
+     * icon, which cuts itself to whatever shape the launcher uses - a circle here - the moment
+     * it is drawn. Its two layers are drawn instead, over the bleed a square mask cuts, so the
+     * art comes out whole.
+     */
+    private Drawable squareAppIcon() {
+        Resources res = getResources();
+        String name = res.getResourceEntryName(getActivity().getApplicationInfo().icon);
+        // Two flavours keep an adaptive icon under the same name as their raster, and an
+        // adaptive icon wins the lookup from API 26 on. The rasters are kept a second time
+        // under drawable, where nothing shadows them, so the square art is asked for there
+        // first and the mipmap only answers for the flavours that have no adaptive version.
+        for (String kind : new String[]{"drawable", "mipmap"}) {
+            int id = res.getIdentifier(name, kind, getActivity().getPackageName());
+            if (id != 0) {
+                Drawable raster = ContextCompat.getDrawable(getActivity(), id);
+                if (raster instanceof BitmapDrawable) {
+                    return raster;
+                }
+            }
+        }
+        Drawable icon = Apps.getApplicationImage(getActivity());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || !(icon instanceof AdaptiveIconDrawable)) {
+            return icon;
+        }
+        AdaptiveIconDrawable adaptive = (AdaptiveIconDrawable) icon;
+        int size = Dips.dpToPx(72);
+        // The adaptive canvas is 108dp wide and only its middle 72dp is ever shown, so each
+        // layer is drawn half again as wide as the square and centred in it.
+        int bleed = size / 4;
+        Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        for (Drawable layer : new Drawable[]{adaptive.getBackground(), adaptive.getForeground()}) {
+            if (layer != null) {
+                layer.setBounds(-bleed, -bleed, size + bleed, size + bleed);
+                layer.draw(canvas);
+            }
+        }
+        return new BitmapDrawable(getResources(), bitmap);
+    }
+
+    /** Rounds a mark's corners the way an app icon is rounded, by a fifth of its own width. */
+    private void roundCorners(ImageView mark) {
+        if (mark == null || !(mark.getDrawable() instanceof BitmapDrawable)) {
+            return;
+        }
+        Bitmap bitmap = ((BitmapDrawable) mark.getDrawable()).getBitmap();
+        if (bitmap == null) {
+            return;
+        }
+        RoundedBitmapDrawable rounded = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+        rounded.setCornerRadius(bitmap.getWidth() * 0.22f);
+        mark.setImageDrawable(rounded);
+    }
+
+    /**
+     * The LibreraX block is not a link, but it stands in a column with two that are and has to
+     * read as one of them: it is given the same ring, in the colour the pass has just settled
+     * on, and the same insets TintUtil.asLinkButton gives a button.
+     */
+    private void paintLibreraXBlock(View inflate) {
+        View block = inflate.findViewById(R.id.libreraXBlock);
+        TextView link = inflate.findViewById(R.id.whatIsNew);
+        if (block == null || link == null) {
+            return;
+        }
+        block.setBackgroundResource(R.drawable.bg_button_outline);
+        // The same insets a button with a mark inside it takes, so the marks of the three
+        // boxes start at one edge.
+        block.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
+        if (block.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) block.getLayoutParams();
+            lp.leftMargin = lp.rightMargin = Dips.DP_8;
+            lp.topMargin = lp.bottomMargin = Dips.DP_4;
+            block.setLayoutParams(lp);
+        }
+        TintUtil.setRingColor(block, link.getCurrentTextColor());
     }
 
     /**
@@ -3058,11 +3190,13 @@ public class PrefFragment2 extends UIFragment {
             icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         }
         button.setCompoundDrawables(icon, null, null, null);
-        button.setCompoundDrawablePadding(Dips.DP_6);
-        // With a mark inside it the button leads with the mark, so the space in front of it is
-        // cut back to the same the mark has above and below - the wider inset a button of
-        // words starts with would leave the mark adrift from its own edge.
-        button.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_10, Dips.DP_4);
+        button.setCompoundDrawablePadding(Dips.DP_8);
+        // A button that leads with a mark is inset the same on both sides, so the mark stands
+        // clear of the ring instead of pressing against it.
+        button.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
+        // The mark is at the left edge, so the words start there too: centred, a second line
+        // would hang away from the mark the first line sits against.
+        button.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
         mark.setVisibility(View.GONE);
     }
 
@@ -3127,6 +3261,13 @@ public class PrefFragment2 extends UIFragment {
      * folders under this button, so the folder dialog is not put in the way of adding one.
      */
     public void onAddFolder() {
+        // The chooser browses the device itself, and without the permission to read it there is
+        // nothing in it to pick. So at that point this button means the permission: it is asked
+        // for here rather than opening a chooser onto an empty device.
+        if (!Android6.canWrite(getContext())) {
+            Android6.checkPermissions(getActivity(), false);
+            return;
+        }
         ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().dirLastPath)
                              .setOnSelectListener(new ResultResponse2<String, Dialog>() {
                                  @Override public boolean onResultRecive(String nPath, Dialog dialog) {

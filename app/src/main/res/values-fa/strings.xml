@@ -62,7 +62,7 @@
    <string name="web">وب</string>
    <string name="beta_version">نسخه بتا</string>
    <string name="archive">بایگانی</string>
-   <string name="rate_pdf_reader1">لطفا انتقادات و پیشنهادات خود را ارسال و امتیاز دادن به ما در گوگل بازی آن را برای ما بسیار مهم است</string>
+   <string name="rate_pdf_reader1">لطفاً نظر خود را درباره این برنامه در Google Play بنویسید. این برای ما بسیار مهم است</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">متن متنی (گرافیک شبه)</string>
    <string name="continuous_text">متن پیوسته (بدون شکستن خط)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">میانه های محصول به طور متقارن</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">نمایش نویسنده و عنوان کتاب PDF از برچسب های متا</string>
    <string name="meta_tags">برچسب های متا</string>
-   <string name="librera_pro">Librera PRO را بگیرید — بدون تبلیغات، و تبلیغات این برنامه را هم حذف می‌کند</string>
+   <string name="librera_pro"><b>Librera PRO</b>: برنامه‌ای بدون تبلیغات که تبلیغات این برنامه را هم حذف می‌کند</string>
    <string name="annotation">حاشیه نویسی</string>
    <string name="book">کتاب</string>
    <string name="information">اطلاعات</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
    <string name="pdf_engine">موتور PDF</string>
    <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: کتاب‌خوان مدرن جدید ما برای اندروید و iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: دانلود مستقیم APK</string>
 </resources>

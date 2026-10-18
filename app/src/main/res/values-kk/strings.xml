@@ -62,7 +62,7 @@
    <string name="web">Басты бет</string>
    <string name="beta_version">Бета нұсқасы</string>
    <string name="archive">Мұрағат</string>
-   <string name="rate_pdf_reader1">Пікір қалдырыңыз және Google Play-те бағалаңыз: әрі қарай даму үшін өте маңызды</string>
+   <string name="rate_pdf_reader1">Осы қолданба туралы пікірді Google Play-де қалдырыңыз. Бұл біз үшін өте маңызды</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Пішімделген мәтін (жалған графика)</string>
    <string name="continuous_text">Үздіксіз мәтін (жол үзілімі жоқ)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Айналдырылған дақыл</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Авторлардың атауын және метадеректерден кітаптың атауын шығарып алу (PDF)</string>
    <string name="meta_tags">Мета тегтері</string>
-   <string name="librera_pro">Librera PRO алыңыз — жарнамасыз, әрі осы қолданбадағы жарнаманы да жояды</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Осы қолданбадағы жарнаманы да алып тастайтын жарнамасыз қолданба</string>
    <string name="annotation">Аннотация</string>
    <string name="book">Кітап</string>
    <string name="information">Файл туралы ақпарат</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
    <string name="pdf_engine">PDF қозғалтқышы</string>
    <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: Android және iOS үшін біздің жаңа заманауи кітап оқығышымыз</string>
+   <string name="librerax_github"><b>GitHub</b>: APK файлын тікелей жүктеп алу</string>
 </resources>

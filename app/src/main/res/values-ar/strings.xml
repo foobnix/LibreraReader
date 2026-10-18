@@ -62,7 +62,7 @@
    <string name="web">شبكة</string>
    <string name="beta_version">النسخة التجريبية</string>
    <string name="archive">أرشيف</string>
-   <string name="rate_pdf_reader1">يرجى إرسال ملاحظاتك ومعدل لنا في Google Play من المهم جدا بالنسبة لنا</string>
+   <string name="rate_pdf_reader1">يرجى ترك تعليق عن هذا التطبيق على Google Play. هذا مهم جدًا لنا</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">نص منسق (رسومات زائفة)</string>
    <string name="continuous_text">النص المستمر (بدون فاصل سطر)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">عرض المؤلف وعنوان كتاب PDF من العلامات الوصفية</string>
    <string name="meta_tags">العلامات الفوقية</string>
-   <string name="librera_pro">احصل على Librera PRO — بلا إعلانات، وهو يزيل الإعلانات من هذا التطبيق أيضًا</string>
+   <string name="librera_pro"><b>Librera PRO</b>: تطبيق بدون إعلانات يزيل أيضًا الإعلانات من هذا التطبيق</string>
    <string name="annotation">حاشية</string>
    <string name="book">كتاب</string>
    <string name="information">معلومات</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
    <string name="pdf_engine">محرك PDF</string>
    <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: قارئ الكتب الحديث الجديد لدينا لأندرويد و iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: تنزيل مباشر لملف APK</string>
 </resources>

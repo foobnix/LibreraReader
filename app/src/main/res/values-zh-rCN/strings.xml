@@ -62,7 +62,7 @@
    <string name="web">官网</string>
    <string name="beta_version">测试版</string>
    <string name="archive">压缩包</string>
-   <string name="rate_pdf_reader1">请在Google Play反馈并评分:帮助我们改进</string>
+   <string name="rate_pdf_reader1">请在 Google Play 上为本应用留下评价。这对我们非常重要</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">格式化的文本(伪文本)</string>
    <string name="continuous_text">连续文本(不换行)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">对称裁剪</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">显示PDF元数据中的作者和书名</string>
    <string name="meta_tags">元标签</string>
-   <string name="librera_pro">获取 Librera PRO — 无广告，并且也会移除本应用中的广告</string>
+   <string name="librera_pro"><b>Librera PRO</b>：无广告应用，同时移除本应用中的广告</string>
    <string name="annotation">注释</string>
    <string name="book">书名</string>
    <string name="information">信息</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">应用基础样式表 (foliate-js)</string>
    <string name="pdf_engine">PDF 引擎</string>
    <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 库。</string>
+   <string name="librerax_tagline"><b>LibreraX</b>：我们为 Android 和 iOS 打造的全新现代阅读器</string>
+   <string name="librerax_github"><b>GitHub</b>：直接下载 APK</string>
 </resources>

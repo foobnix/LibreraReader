@@ -62,7 +62,7 @@
    <string name="web">Начална страница</string>
    <string name="beta_version">Бета версия</string>
    <string name="archive">Архив</string>
-   <string name="rate_pdf_reader1">Моля, оставете отзиви и ни оценете в google play: това е много важно за по-нататъшното развитие</string>
+   <string name="rate_pdf_reader1">Моля, оставете отзив за това приложение в Google Play. Това е много важно за нас</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Форматиран текст (псевдо-графика)</string>
    <string name="continuous_text">Непрекъснат текст (без прекъсвания на реда)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Симетрично отрязване</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Извличане на имена на автори и заглавия на книги от метаданни (pdf)</string>
    <string name="meta_tags">Мета тагове</string>
-   <string name="librera_pro">Вземете Librera PRO — без реклами, и премахва рекламите и в това приложение</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Приложение без реклами, което премахва рекламите и в това приложение</string>
    <string name="annotation">Анотация</string>
    <string name="book">Книга</string>
    <string name="information">Информация за файла</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
    <string name="pdf_engine">Двигател за PDF</string>
    <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: нашата нова модерна четалка за книги за Android и iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: директно изтегляне на APK</string>
 </resources>

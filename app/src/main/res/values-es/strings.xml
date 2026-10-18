@@ -62,7 +62,7 @@
    <string name="web">Página Web</string>
    <string name="beta_version">Versión beta</string>
    <string name="archive">Archivo</string>
-   <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y califíquenos en Google Play; es muy importante para nosotros</string>
+   <string name="rate_pdf_reader1">Deja tu opinión sobre esta aplicación en Google Play. Es muy importante para nosotros</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Texto formateado (pseudo gráficos)</string>
    <string name="continuous_text">Texto continuo (sin salto de línea)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Recortar bordes simétricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Mostrar el autor y el título del libro de las metaetiquetas</string>
    <string name="meta_tags">Metaetiquetas</string>
-   <string name="librera_pro">Consigue Librera PRO — sin anuncios, y también elimina los anuncios de esta aplicación</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Una aplicación sin anuncios que también quita los anuncios de esta aplicación</string>
    <string name="annotation">Anotación</string>
    <string name="book">Libro</string>
    <string name="information">Información</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Aplicar la hoja de estilos base (foliate-js)</string>
    <string name="pdf_engine">Motor PDF</string>
    <string name="msg_pdf_engine_unavailable">Esta compilación no incluye las bibliotecas PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: nuestro nuevo lector de libros moderno para Android e iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: descarga directa del APK</string>
 </resources>

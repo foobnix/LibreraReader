@@ -62,7 +62,7 @@
    <string name="web">Domovská stránka</string>
    <string name="beta_version">Beta verze</string>
    <string name="archive">Archiv</string>
-   <string name="rate_pdf_reader1">Prosím ohodnoťte nás na Google Play: Vaše zpětná vazba je velmi důležitá pro další vývoj aplikace</string>
+   <string name="rate_pdf_reader1">Zanechte prosím recenzi této aplikace na Google Play. Je to pro nás velmi důležité</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formátovaný text (pseudo grafika)</string>
    <string name="continuous_text">Průběžný text (bez přerušení řádku)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Zrcadlové oříznutí</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extrahovat jména autorů a názvy knih z metadat (PDF)</string>
    <string name="meta_tags">Meta tagy</string>
-   <string name="librera_pro">Pořiďte si Librera PRO — bez reklam, a odstraní reklamy i v této aplikaci</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikace bez reklam, která odstraní reklamy i z této aplikace</string>
    <string name="annotation">Poznámka</string>
    <string name="book">Kniha</string>
    <string name="information">Informace o souboru</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
    <string name="pdf_engine">Jádro PDF</string>
    <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: naše nová moderní čtečka knih pro Android a iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: přímé stažení APK</string>
 </resources>

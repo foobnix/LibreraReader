@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versi beta</string>
    <string name="archive">Arsipkan</string>
-   <string name="rate_pdf_reader1">Harap tulis umpan balik Anda dan beri nilai kami di Google Play sangat penting bagi kami</string>
+   <string name="rate_pdf_reader1">Beri ulasan tentang aplikasi ini di Google Play. Ini sangat penting bagi kami</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Teks terformat (grafis semu)</string>
    <string name="continuous_text">Teks terus menerus (tanpa jeda baris)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro">Dapatkan Librera PRO — tanpa iklan, dan juga menghapus iklan di aplikasi ini</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikasi bebas iklan yang juga menghapus iklan dari aplikasi ini</string>
    <string name="annotation">Anotasi</string>
    <string name="book">Buku</string>
    <string name="information">Informasi</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Terapkan lembar gaya dasar (foliate-js)</string>
    <string name="pdf_engine">Mesin PDF</string>
    <string name="msg_pdf_engine_unavailable">Build ini tidak menyertakan pustaka PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: pembaca buku modern baru kami untuk Android dan iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: unduh APK langsung</string>
 </resources>

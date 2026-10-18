@@ -63,7 +63,7 @@
    <string name="web">Home page</string>
    <string name="beta_version">Beta version</string>
    <string name="archive">Archive</string>
-   <string name="rate_pdf_reader1">Please leave feedback and rate us on Google Play: it\'s very important for further development</string>
+   <string name="rate_pdf_reader1">Please leave feedback about this app on Google Play. It\'s very important for us</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatted text (pseudo-graphics)</string>
    <string name="continuous_text">Continuous text (no line breaks)</string>
@@ -470,7 +470,7 @@
    <string name="crop_borders_symmetrically">Mirrored crop</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extract authors\' names and book titles from meta-data (PDF)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro">Get Librera PRO \u2014 ad-free, and it removes the ads from this app too</string>
+   <string name="librera_pro"><b>Librera PRO</b>: An ad-free app that also removes the ads from this app</string>
    <string name="annotation">Annotation</string>
    <string name="book">Book</string>
    <string name="information">File Info</string>

@@ -62,7 +62,7 @@
    <string name="web">ഹോം പേജ്</string>
    <string name="beta_version">ബീറ്റ പതിപ്പ്</string>
    <string name="archive">ശേഖരം</string>
-   <string name="rate_pdf_reader1">ദയവായി ഫീഡ്‌ബാക്ക് നൽകി ഞങ്ങളെ ഗൂഗിൾ പ്ലേയിൽ റേറ്റുചെയ്യുക: കൂടുതൽ വികസനത്തിന് ഇത് വളരെ പ്രധാനമാണ്</string>
+   <string name="rate_pdf_reader1">ദയവായി ഈ ആപ്പിനെക്കുറിച്ച് Google Play-യിൽ അഭിപ്രായം എഴുതുക. ഇത് ഞങ്ങൾക്ക് വളരെ പ്രധാനമാണ്</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">ഫോർമാറ്റുചെയ്‌ത വാചകം (സ്യൂഡോ ഗ്രാഫിക്സ്)</string>
    <string name="continuous_text">തുടർച്ചയായ വാചകം (ലൈൻ ബ്രേക്കുകളൊന്നുമില്ല)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">മിറർ ചെയ്ത വിള</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">മെറ്റാ ഡാറ്റയിൽ നിന്ന് (പി‌ഡി‌എഫ്) രചയിതാക്കളുടെ പേരുകളും പുസ്തക ശീർഷകങ്ങളും എക്‌സ്‌ട്രാക്റ്റുചെയ്യുക.</string>
    <string name="meta_tags">മെറ്റാ ടാഗുകൾ</string>
-   <string name="librera_pro">Librera PRO നേടൂ — പരസ്യങ്ങളില്ല, ഈ ആപ്പിലെ പരസ്യങ്ങളും നീക്കും</string>
+   <string name="librera_pro"><b>Librera PRO</b>: ഈ ആപ്പിലെ പരസ്യങ്ങളും നീക്കം ചെയ്യുന്ന പരസ്യരഹിത ആപ്പ്</string>
    <string name="annotation">വ്യാഖ്യാനം</string>
    <string name="book">പുസ്തകം</string>
    <string name="information">ഫയൽ വിവരം</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
    <string name="pdf_engine">PDF എഞ്ചിൻ</string>
    <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: Android-നും iOS-നും വേണ്ടിയുള്ള ഞങ്ങളുടെ പുതിയ ആധുനിക ബുക്ക് റീഡർ</string>
+   <string name="librerax_github"><b>GitHub</b>: APK നേരിട്ട് ഡൗൺലോഡ് ചെയ്യുക</string>
 </resources>

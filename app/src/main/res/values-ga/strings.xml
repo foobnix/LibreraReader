@@ -62,7 +62,7 @@
    <string name="web">Leathanach baile</string>
    <string name="beta_version">Leagan béite</string>
    <string name="archive">Cartlann</string>
-   <string name="rate_pdf_reader1">Fág aiseolas agus tabhair rátáil dúinn ar google play: tá sé an-tábhachtach tuilleadh forbartha a dhéanamh</string>
+   <string name="rate_pdf_reader1">Fág aiseolas faoin aip seo ar Google Play. Tá sé an-tábhachtach dúinn</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Téacs formáidithe (bréag-grafaicí)</string>
    <string name="continuous_text">Téacs leanúnach (gan aon bhriseadh líne)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Barr scáthánach</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Sleachta ainmneacha údair agus teidil leabhar ó mheiteashonraí (pdf)</string>
    <string name="meta_tags">Meiteachlibeanna</string>
-   <string name="librera_pro">Faigh Librera PRO — gan fógraí, agus baineann sé na fógraí den aip seo freisin</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aip gan fógraí a bhaineann na fógraí den aip seo freisin</string>
    <string name="annotation">Anótáil</string>
    <string name="book">Leabhar</string>
    <string name="information">Eolas comhaid</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Cuir an bunstílbhileog i bhfeidhm (foliate-js)</string>
    <string name="pdf_engine">Inneall PDF</string>
    <string name="msg_pdf_engine_unavailable">Níl leabharlanna PDFium sa leagan seo.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: ár léitheoir leabhar nua-aimseartha nua do Android agus iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: íoslódáil dhíreach APK</string>
 </resources>

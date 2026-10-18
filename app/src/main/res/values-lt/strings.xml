@@ -62,7 +62,7 @@
    <string name="web">Internetinis adresas</string>
    <string name="beta_version">Bandomoji versija</string>
    <string name="archive">Archyvas</string>
-   <string name="rate_pdf_reader1">Parašykite atsiliepimą ir įvertinkite programą Google Play parduotuvėje, tai mums labai svarbu</string>
+   <string name="rate_pdf_reader1">Palikite atsiliepimą apie šią programą Google Play. Tai mums labai svarbu</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatuotas tekstas (pseudo grafika)</string>
    <string name="continuous_text">Nuolatinis tekstas (be eilučių)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Sumažinti sienas simetriškai</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Rodoma autoriaus ir PDF knygos pavadinimo iš meta žymeles</string>
    <string name="meta_tags">Meta žymeles</string>
-   <string name="librera_pro">Įsigykite „Librera PRO“ — be reklamų, ir ji pašalina reklamas ir šioje programoje</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Programa be reklamų, kuri pašalina reklamas ir iš šios programos</string>
    <string name="annotation">Anotacija</string>
    <string name="book">Knyga</string>
    <string name="information">Informacija</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Taikyti bazinį stilių aprašą (foliate-js)</string>
    <string name="pdf_engine">PDF variklis</string>
    <string name="msg_pdf_engine_unavailable">Ši versija neturi PDFium bibliotekų.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: mūsų nauja moderni knygų skaityklė, skirta Android ir iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: tiesioginis APK atsisiuntimas</string>
 </resources>

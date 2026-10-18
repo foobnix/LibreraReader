@@ -62,7 +62,7 @@
    <string name="web">முகப்பு பக்கம்</string>
    <string name="beta_version">சோதனை பதிப்பு</string>
    <string name="archive">காப்பகம்</string>
-   <string name="rate_pdf_reader1">தயவுசெய்து கருத்துரைகளை விட்டுவிட்டு எங்களை கூகிள் விளையாட்டு இல் மதிப்பிடுங்கள்: மேலும் மேம்பாட்டுக்கு இது மிகவும் முக்கியமானது</string>
+   <string name="rate_pdf_reader1">Google Play இல் இந்த செயலி குறித்து கருத்து தெரிவிக்கவும். இது எங்களுக்கு மிகவும் முக்கியம்</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">வடிவமைக்கப்பட்ட உரை (போலி-கிராபிக்ஸ்)</string>
    <string name="continuous_text">தொடர்ச்சியான உரை (வரி முறிவுகள் இல்லை)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">பிரதிபலித்த வெட்டு</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">மெட்டாடேட்டா (PDF) இலிருந்து ஆசிரியர்களின் பெயர்கள் மற்றும் புத்தக தலைப்புகளை பிரித்தெடுக்கவும்</string>
    <string name="meta_tags">மெட்டா குறிச்சொற்கள்</string>
-   <string name="librera_pro">Librera PRO பெறுங்கள் — விளம்பரம் இல்லை, இந்த ஆப்பின் விளம்பரங்களையும் நீக்கும்</string>
+   <string name="librera_pro"><b>Librera PRO</b>: இந்த செயலியிலும் விளம்பரங்களை நீக்கும் விளம்பரமற்ற செயலி</string>
    <string name="annotation">சிறுகுறிப்பு</string>
    <string name="book">நூல்</string>
    <string name="information">கோப்பு தகவல்</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">அடிப்படை பாணித்தாளைப் பயன்படுத்து (foliate-js)</string>
    <string name="pdf_engine">PDF இயந்திரம்</string>
    <string name="msg_pdf_engine_unavailable">இந்தப் பதிப்பில் PDFium நூலகங்கள் இல்லை.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: Android மற்றும் iOS-க்கான எங்கள் புதிய நவீன புத்தக வாசிப்பான்</string>
+   <string name="librerax_github"><b>GitHub</b>: APK நேரடி பதிவிறக்கம்</string>
 </resources>

@@ -118,6 +118,10 @@ public class Urls {
         }
     }
 
+    public static void openWhatIsNew(Context a) {
+        open(a, "https://librera.app/librera-reader/what-is-new/");
+    }
+
     public static void openTTS(Context a) {
         try {
             open(a, "market://details?id=com.google.android.tts");

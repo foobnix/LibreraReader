@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Bản thử nghiệm</string>
    <string name="archive">Lưu trữ</string>
-   <string name="rate_pdf_reader1">Hãy viết thư phản hồi của bạn và đánh giá chúng tôi trên Google Play đó là rất quan trọng đối với chúng tôi</string>
+   <string name="rate_pdf_reader1">Hãy để lại đánh giá về ứng dụng này trên Google Play. Điều đó rất quan trọng với chúng tôi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Văn bản định dạng (đồ hoạ giả)</string>
    <string name="continuous_text">Văn bản liên tục (không bị ngắt dòng)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hiển thị tác giả và tựa đề của cuốn sách PDF từ các thẻ meta</string>
    <string name="meta_tags">Thẻ meta</string>
-   <string name="librera_pro">Tải Librera PRO — không quảng cáo, và cũng gỡ quảng cáo trong ứng dụng này</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Ứng dụng không quảng cáo, cũng gỡ quảng cáo khỏi ứng dụng này</string>
    <string name="annotation">Chú thích</string>
    <string name="book">Sách</string>
    <string name="information">Thông tin</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
    <string name="pdf_engine">Công cụ PDF</string>
    <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: trình đọc sách hiện đại mới của chúng tôi cho Android và iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: tải APK trực tiếp</string>
 </resources>

@@ -62,7 +62,7 @@
    <string name="web">Хатняя старонка</string>
    <string name="beta_version">Бэта-версія</string>
    <string name="archive">Архіў</string>
-   <string name="rate_pdf_reader1">Калі ласка, пакіньце водгук і ацаніце нас у Google Play: гэта вельмі важна для далейшага развіцця</string>
+   <string name="rate_pdf_reader1">Калі ласка, пакіньце водгук пра гэты дадатак у Google Play. Гэта вельмі важна для нас</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Фарматаваны тэкст (псеўдаграфіка)</string>
    <string name="continuous_text">Суцэльны тэкст (без разрываў радкоў)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Люстраны кадр</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Атрымаць імёны аўтараў і назвы кніг з мета-дадзеных (pdf)</string>
    <string name="meta_tags">Мета-тэгі</string>
-   <string name="librera_pro">Атрымайце Librera PRO — без рэкламы, і яна прыбірае рэкламу і ў гэтай праграме</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Дадатак без рэкламы, які прыбірае рэкламу і ў гэтым дадатку</string>
    <string name="annotation">Анатацыя</string>
    <string name="book">Кніга</string>
    <string name="information">Інфармацыя аб файле</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Ужываць базавую табліцу стыляў (foliate-js)</string>
    <string name="pdf_engine">Рухавік PDF</string>
    <string name="msg_pdf_engine_unavailable">Гэтая зборка не змяшчае бібліятэк PDFium.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: наша новая сучасная чыталка кніг для Android і iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: прамое спампаванне APK</string>
 </resources>

@@ -62,7 +62,7 @@
    <string name="web">Webgunea</string>
    <string name="beta_version">Beta bertsioa</string>
    <string name="archive">Fitxategia</string>
-   <string name="rate_pdf_reader1">Mesedez, idatzi zure iruzkinak eta baloratu iezaguzu Google Play-n; Guretzat oso garrantzitsua da</string>
+   <string name="rate_pdf_reader1">Utzi aplikazio honi buruzko iritzia Google Play-n. Oso garrantzitsua da guretzat</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatua duen testua (pseudo grafikoak)</string>
    <string name="continuous_text">Testu jarraia (lerro jauzirik gabe)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Moztu ertzak simetrikoki</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Erakutsi egilea eta liburuaren izenburua meta-etiketetatik</string>
    <string name="meta_tags">Metaetiketak</string>
-   <string name="librera_pro">Eskuratu Librera PRO — iragarkirik gabe, eta aplikazio honetako iragarkiak ere kentzen ditu</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Iragarkirik gabeko aplikazio bat, aplikazio honetako iragarkiak ere kentzen dituena</string>
    <string name="annotation">Oharra</string>
    <string name="book">Liburua</string>
    <string name="information">Informazioa</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
    <string name="pdf_engine">PDF motorra</string>
    <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: gure liburu irakurgailu moderno berria Android eta iOSerako</string>
+   <string name="librerax_github"><b>GitHub</b>: APK deskarga zuzena</string>
 </resources>

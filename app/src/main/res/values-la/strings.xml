@@ -62,7 +62,7 @@
    <string name="web">Situs</string>
    <string name="beta_version">Versicula beta</string>
    <string name="archive">Praeterita</string>
-   <string name="rate_pdf_reader1">Sis, cense apllicationem in google mercatu</string>
+   <string name="rate_pdf_reader1">Quaesumus sententiam de hac applicatione in Google Play relinque. Hoc nobis maximi momenti est</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatted text (pseudo graphics)</string>
    <string name="continuous_text">Textus continuus (sine fractionibus linearum)</string>
@@ -469,7 +469,7 @@
    <string name="crop_borders_symmetrically">Seges oras aequabiliter intortum</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Author imaginatio demonstrans appetibile, et in titulum libri de PDF tags meta</string>
    <string name="meta_tags">Metanotae</string>
-   <string name="librera_pro">Librera PRO cape — sine nuntiis, et nuntios etiam ex hac applicatione tollit</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Applicatio sine nuntiis, quae nuntios etiam ex hac applicatione tollit</string>
    <string name="annotation">Description</string>
    <string name="book">Liber</string>
    <string name="information">Information</string>
@@ -705,4 +705,6 @@
    <string name="base_stylesheet">Tabulam stilorum basalem adhibere (foliate-js)</string>
    <string name="pdf_engine">Machina PDF</string>
    <string name="msg_pdf_engine_unavailable">Haec aedificatio bibliothecas PDFium non continet.</string>
+   <string name="librerax_tagline"><b>LibreraX</b>: novus lector librorum noster pro Android et iOS</string>
+   <string name="librerax_github"><b>GitHub</b>: APK directe depone</string>
 </resources>
