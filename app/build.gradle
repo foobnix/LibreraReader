@@ -532,6 +532,23 @@ tasks.register("copyApks") {
             }
         }
 
+        // The builds the GitHub release carries, gathered under the version's own folder in a
+        // "github" subfolder: one 64-bit APK and one universal of each flavour published there,
+        // so the upload is one folder to drag rather than a pick through all of the splits.
+        def githubApks = [
+                fdroid  : ["*-arm64.apk", "*-uni.apk"],
+                fdroidJS: ["*-uni.apk"],
+                pro     : ["*-arm64.apk", "*-uni.apk"],
+                proJS   : ["*-uni.apk"],
+        ]
+        if (project.hasProperty("release")) {
+            destinations.each { dest ->
+                if (dest.endsWith("/$versionNumber")) {
+                    delete fileTree("$dest/github").include("*.apk")
+                }
+            }
+        }
+
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
@@ -571,6 +588,16 @@ tasks.register("copyApks") {
 
                     }
 
+                    if (project.hasProperty("release") && githubApks.containsKey(flavor)
+                            && dest.endsWith("/$versionNumber") && file(dest).exists()) {
+                        copy {
+                            from(file("build/outputs/apk/${flavor}/release/")) {
+                                githubApks[flavor].each { pattern -> include pattern }
+                            }
+                            into file("$dest/github")
+                        }
+                        println "Copy: '" + flavor + "' to " + dest + "/github"
+                    }
 
                 }
             }
