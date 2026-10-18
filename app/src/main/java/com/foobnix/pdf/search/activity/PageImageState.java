@@ -7,6 +7,8 @@ import android.util.SparseArray;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
+import com.foobnix.pdf.info.AnnotationsFinder;
+
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
@@ -23,6 +25,8 @@ public class PageImageState {
     public final SparseArray<TextWord[][]> pagesText = new SparseArray<TextWord[][]>();
     public final SparseArray<List<PageLink>> pagesLinks = new SparseArray<List<PageLink>>();
     public final SparseArray<List<Annotation>> pagesAnnotation = new SparseArray<List<Annotation>>();
+    /** The reader's own marks per page, resolved when the page is rendered. */
+    public final SparseArray<List<AnnotationsFinder.Drawn>> pagesMarks = new SparseArray<List<AnnotationsFinder.Drawn>>();
     /**
      * Normalized (0..1) crop rectangle actually applied to the rendered page bitmap, per page.
      * Text/link coordinates come from the codec in full-page space, so they have to be mapped
@@ -47,6 +51,7 @@ public class PageImageState {
         selectedWords.clear();
         pagesText.clear();
         pagesLinks.clear();
+        pagesMarks.clear();
         pagesCrop.clear();
     }
 

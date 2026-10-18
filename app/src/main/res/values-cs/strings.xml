@@ -62,7 +62,7 @@
    <string name="web">Domovská stránka</string>
    <string name="beta_version">Beta verze</string>
    <string name="archive">Archiv</string>
-   <string name="rate_pdf_reader1">Prosím ohodnoťte nás na Google Play: Vaše zpětná vazba je velmi důležitá pro další vývoj aplikace</string>
+   <string name="rate_pdf_reader1">Zanechte prosím recenzi této aplikace na Google Play. Je to pro nás velmi důležité</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formátovaný text (pseudo grafika)</string>
    <string name="continuous_text">Průběžný text (bez přerušení řádku)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Není nainstalován žádný e-mailový klient</string>
    <string name="file_not_found">Soubor nenalezen</string>
    <string name="you_need_grant_permission5">Aplikace potřebuje vaše svolení k nalezení a zobrazení všech vašich knih.</string>
+   <string name="allow">Povolit</string>
+   <string name="storage">Úložiště</string>
+   <string name="add_all_books_with_permission">Přidat všechny knihy, vyžaduje oprávnění.</string>
+   <string name="add_folder_with_books">Přidat složku s knihami.</string>
    <string name="remind_msg">Je čas dát si přestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Tato záložka už existuje.</string>
    <string name="can_t_download">Soubor nelze stáhnout</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Zrcadlové oříznutí</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extrahovat jména autorů a názvy knih z metadat (PDF)</string>
    <string name="meta_tags">Meta tagy</string>
-   <string name="librera_pro">Pořiďte si Librera PRO — bez reklam, a odstraní reklamy i v této aplikaci</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikace bez reklam, která odstraní reklamy i z této aplikace</string>
    <string name="annotation">Poznámka</string>
    <string name="book">Kniha</string>
    <string name="information">Informace o souboru</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Zvýraznění počátečních písmen</string>
    <string name="anti_aliasing_level">Úroveň antialiasingu (vyhlazování hran)</string>
    <string name="folder_preview">Náhled složky</string>
+   <string name="show_storage_book_covers">Zobrazit obaly pro přidané úložiště</string>
    <string name="accent">Přízvuk</string>
    <string name="discarded_books">Vyřazené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Přehrát</string>
    <string name="librerax_not_installed">LibreraX není nainstalován. Stáhněte a nainstalujte jej a poté knihu otevřete znovu.</string>
    <string name="remove_library_folder">Odebrat tuto složku z knihovny? Soubory v ní nebudou smazány.</string>
+   <string name="epub_engine">Jádro EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView není na tomto zařízení k dispozici.</string>
+   <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
+   <string name="pdf_engine">Jádro PDF</string>
+   <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>
 </resources>

@@ -62,7 +62,7 @@
    <string name="web">Situs</string>
    <string name="beta_version">Versicula beta</string>
    <string name="archive">Praeterita</string>
-   <string name="rate_pdf_reader1">Sis, cense apllicationem in google mercatu</string>
+   <string name="rate_pdf_reader1">Quaesumus sententiam de hac applicatione in Google Play relinque. Hoc nobis maximi momenti est</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatted text (pseudo graphics)</string>
    <string name="continuous_text">Textus continuus (sine fractionibus linearum)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">No email application installed.</string>
    <string name="file_not_found">Plica abest</string>
    <string name="you_need_grant_permission5">Applicatio permissionem tuam requirit ut omnes libros tuos inveniat et ostentet.</string>
+   <string name="allow">Permittere</string>
+   <string name="storage">Repositorium</string>
+   <string name="add_all_books_with_permission">Omnes libros addere, licentia requiritur.</string>
+   <string name="add_folder_with_books">Plicam cum libris addere.</string>
    <string name="remind_msg">Persequi otium</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark for this page already exists</string>
    <string name="can_t_download">Tractum iri non possit</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Seges oras aequabiliter intortum</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Author imaginatio demonstrans appetibile, et in titulum libri de PDF tags meta</string>
    <string name="meta_tags">Metanotae</string>
-   <string name="librera_pro">Librera PRO cape — sine nuntiis, et nuntios etiam ex hac applicatione tollit</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Applicatio sine nuntiis, quae nuntios etiam ex hac applicatione tollit</string>
    <string name="annotation">Description</string>
    <string name="book">Liber</string>
    <string name="information">Information</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Quatenus initialis litterae</string>
    <string name="anti_aliasing_level">Anti-aliasing gradu</string>
    <string name="folder_preview">Praevisio directorii</string>
+   <string name="show_storage_book_covers">Ostendere operimenta pro memoria addita</string>
    <string name="accent">Accentu</string>
    <string name="discarded_books">Abiectis libris</string>
    <string name="show_print_edition_page_numbers_epub3">Showe print edition page numbers (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Specta</string>
    <string name="librerax_not_installed">LibreraX non est installata. Depone et installa eam, deinde librum iterum aperi.</string>
    <string name="remove_library_folder">Hoc directorium ex bibliotheca removere? Fasciculi in eo non delebuntur.</string>
+   <string name="epub_engine">Machina EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView in hoc instrumento non praesto est.</string>
+   <string name="base_stylesheet">Tabulam stilorum basalem adhibere (foliate-js)</string>
+   <string name="pdf_engine">Machina PDF</string>
+   <string name="msg_pdf_engine_unavailable">Haec aedificatio bibliothecas PDFium non continet.</string>
 </resources>

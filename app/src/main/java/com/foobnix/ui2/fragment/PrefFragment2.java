@@ -26,10 +26,13 @@ import android.view.View.OnClickListener;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
+import android.content.res.Resources;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import androidx.cardview.widget.CardView;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
@@ -46,8 +49,10 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.PorterDuffColorFilter;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -59,6 +64,10 @@ import com.foobnix.librerax.LibreraX;
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.IntegerResponse;
@@ -70,15 +79,18 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
@@ -106,19 +118,21 @@ import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.droids.foliate.codec.FoliateContext;
+import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -133,7 +147,7 @@ public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR =
             new Pair<>(R.string.preferences, R.drawable.glyphicons_5_settings);
 
-    private static final String WWW_SITE = "https://librera.mobi";
+    private static final String WWW_SITE = "https://librera.app/librera-reader/";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent, overlay,
@@ -205,7 +219,7 @@ public class PrefFragment2 extends UIFragment {
         if (profileLetter != null && getActivity() != null) {
             final String p = AppProfile.getCurrent();
             profileLetter.setText(TxtUtils.getFirstLetter(p));
-            profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
+            profileLetter.setBackground(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
             profileLetter.setContentDescription(p + " " + getString(R.string.profile));
         }
 
@@ -214,6 +228,7 @@ public class PrefFragment2 extends UIFragment {
         }
         TxtUtils.updateAllLinks(inflate,true);
         paintLinkButtons(inflate);
+        paintLibreraXBlock(inflate);
 
     }
 
@@ -331,7 +346,7 @@ public class PrefFragment2 extends UIFragment {
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppSP.get().isEnableSync = isChecked;
             if (isChecked && getActivity() != null) {
-                if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
+                if (!GoogleAuth.isAuthorized(getActivity())) {
                     GFile.init(getActivity());
                 } else {
                     GFile.runSyncService(getActivity());
@@ -974,6 +989,62 @@ public class PrefFragment2 extends UIFragment {
         asButton(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
+        // A build without MuPDF has one engine for each: there is nothing to pick between, and
+        // AppState.getPdfEngine()/getEpubEngine() answer with it whatever these settings hold.
+        Views.visible(inflate.findViewById(R.id.pdfEngineRow), Engines.IS_MUPDF);
+        Views.visible(inflate.findViewById(R.id.epubEngineRow), Engines.IS_MUPDF);
+
+        // Which engine renders a PDF. The choice is read when a document is opened, so the books
+        // and the covers already on screen keep the engine they were opened with: the cover cache
+        // is dropped so the library redraws them with the new one.
+        final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
+        asButton(pdfEngine, pdfEngineName(AppState.get().pdfEngine));
+        pdfEngine.setOnClickListener(v -> {
+            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            for (final int engine : PDF_ENGINES) {
+                popupMenu.getMenu().add(pdfEngineName(engine)).setOnMenuItemClickListener(item -> {
+                    if (engine == AppState.PDF_ENGINE_PDFIUM && !PdfiumContext.isAvailable()) {
+                        Toast.makeText(v.getContext(), R.string.msg_pdf_engine_unavailable, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    if (AppState.get().pdfEngine != engine) {
+                        AppState.get().pdfEngine = engine;
+                        ImageExtractor.clearCodeDocument();
+                        TempHolder.listHash++;
+                    }
+                    asButton(pdfEngine, pdfEngineName(engine));
+                    return false;
+                });
+            }
+            popupMenu.show();
+        });
+
+        // Which engine lays out a reflowable book. Dropping the cached outline matters as much as
+        // dropping the covers: the TOC's page numbers are serialized per book, and they came from
+        // whichever engine produced them.
+        final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
+        asButton(epubEngine, epubEngineName(AppState.get().epubEngine));
+        epubEngine.setOnClickListener(v -> {
+            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            for (final int engine : EPUB_ENGINES) {
+                popupMenu.getMenu().add(epubEngineName(engine)).setOnMenuItemClickListener(item -> {
+                    if (engine == AppState.EPUB_ENGINE_FOLIATE && !FoliateContext.isAvailable()) {
+                        Toast.makeText(v.getContext(), R.string.msg_epub_engine_unavailable, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    if (AppState.get().epubEngine != engine) {
+                        AppState.get().epubEngine = engine;
+                        ImageExtractor.clearCodeDocument();
+                        CacheZipUtils.removeOutlineCache();
+                        TempHolder.listHash++;
+                    }
+                    asButton(epubEngine, epubEngineName(engine));
+                    return false;
+                });
+            }
+            popupMenu.show();
+        });
+
 //        appEngine.setOnClickListener(v -> {
 //            if (BooksService.isRunning) {
 //                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
@@ -1422,11 +1493,14 @@ public class PrefFragment2 extends UIFragment {
                     final CheckBox isShowSeriesNumberInTitle = new CheckBox(v.getContext());
                     isShowSeriesNumberInTitle.setText(R.string.show_series_number_in_title);
 
+                    final CheckBox isSafBookCovers = new CheckBox(v.getContext());
+                    isSafBookCovers.setText(R.string.show_storage_book_covers);
+
                     final AlertDialog d =
                             AlertDialogs.showViewDialog(getActivity(), null, isScanOnLaunch, isFirstSurname,
                                     isSkipFolderWithNOMEDIA,
                                     isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF, isUseCalibreOpf,
-                                    isDisplayAnnotation, isHideReadBook, isShowSeriesNumberInTitle);
+                                    isDisplayAnnotation, isHideReadBook, isShowSeriesNumberInTitle, isSafBookCovers);
 
                     isScanOnLaunch.setChecked(AppState.get().isScanOnLaunch);
                     isFirstSurname.setChecked(AppState.get().isFirstSurname);
@@ -1437,6 +1511,7 @@ public class PrefFragment2 extends UIFragment {
                     isDisplayAnnotation.setChecked(AppState.get().isDisplayAnnotation);
                     isHideReadBook.setChecked(AppState.get().isHideReadBook);
                     isShowSeriesNumberInTitle.setChecked(AppState.get().isShowSeriesNumberInTitle);
+                    isSafBookCovers.setChecked(AppState.get().isSafBookCovers);
 
                     final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
                         AppState.get().isScanOnLaunch = isScanOnLaunch.isChecked();
@@ -1477,6 +1552,15 @@ public class PrefFragment2 extends UIFragment {
                     isShowSeriesNumberInTitle.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                         @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                             AppState.get().isShowSeriesNumberInTitle = isShowSeriesNumberInTitle.isChecked();
+                            TempHolder.listHash++;
+                            notifyFragment();
+                        }
+                    });
+                    // Nothing about the library itself changes, only what is drawn on the shelf,
+                    // so the rows are redrawn rather than the library rebuilt.
+                    isSafBookCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                        @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                            AppState.get().isSafBookCovers = isSafBookCovers.isChecked();
                             TempHolder.listHash++;
                             notifyFragment();
                         }
@@ -1785,8 +1869,7 @@ public class PrefFragment2 extends UIFragment {
         whatIsNew.setOnClickListener(new View.OnClickListener() {
 
             @Override public void onClick(View v) {
-                AndroidWhatsNew.show2(getActivity());
-
+                Urls.openWhatIsNew(getActivity());
             }
         });
 
@@ -1817,7 +1900,11 @@ public class PrefFragment2 extends UIFragment {
         showSearchPaths();
 
         TextView addFolder = inflate.findViewById(R.id.onConfigPath);
-        asButton(addFolder, "+ " + getString(R.string.add_folder));
+        asButton(addFolder, "+ " + getString(R.string.folder));
+
+        TextView addStorageFolder = inflate.findViewById(R.id.onConfigPathStorage);
+        asButton(addStorageFolder, "+ " + getString(R.string.storage));
+        addStorageFolder.setOnClickListener(v -> onAddStorageFolder());
 
         // Rebuilds the library from the folders now listed, without going through the dialog
         // to reach the same scan.
@@ -2465,9 +2552,30 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        asButton(inflate.findViewById(R.id.onRateIt)).
+        // Which icon this is depends on the flavour installed, so it is asked of the package
+        // manager rather than named here. Set before paintLinkButtons runs, which is what folds
+        // the mark into the button beside it.
+        ImageView rateItIcon = inflate.findViewById(R.id.rateItIcon);
+        try {
+            rateItIcon.setImageDrawable(squareAppIcon());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
-                                                              setOnClickListener(new OnClickListener() {
+        // The LibreraX mark is drawn square; the two app icons above it are not, so it is
+        // given the same round rather than standing as the one hard-cornered tile of three.
+        roundCorners(inflate.findViewById(R.id.libreraXIcon));
+
+        TextView rateIt = inflate.findViewById(R.id.onRateIt);
+        // The words ask for a review on Google Play, which is not where an F-Droid build came
+        // from, so that build is not asked for one.
+        ((View) rateIt.getParent()).setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
+        asButton(rateIt);
+        // Set after asButton, which flattens a button's text to strip any underline it was
+        // carrying and would take the bold with it. Whichever flavour this is names itself.
+        rateIt.setText(TxtUtils.fromHtml("<b>" + Apps.getApplicationName(getActivity()) + "</b>: "
+                + getString(R.string.rate_pdf_reader1)));
+        rateIt.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(final View v) {
                 Urls.rateIT(getActivity());
@@ -2511,7 +2619,12 @@ public class PrefFragment2 extends UIFragment {
         });
 
         TextView proText = inflate.findViewById(R.id.downloadPRO);
+        // Nothing to sell to a reader who is already on PRO, and the F-Droid builds are not
+        // published on the store the offer leads to.
+        boolean isPro = AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(getActivity()));
+        ((View) proText.getParent()).setVisibility(TxtUtils.visibleIf(!isPro && !AppsConfig.IS_FDROID));
         asButton(proText);
+        proText.setText(getText(R.string.librera_pro));
         ((View) proText.getParent()).
 
                                             setOnClickListener(new OnClickListener() {
@@ -2520,6 +2633,23 @@ public class PrefFragment2 extends UIFragment {
                 Urls.openPdfPro(getActivity());
             }
         });
+
+        inflate.findViewById(R.id.libreraXAppStore)
+               .setOnClickListener(v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_APP_STORE));
+        inflate.findViewById(R.id.libreraXGooglePlay)
+               .setOnClickListener(v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_PLAY));
+
+        // A reader who came by F-Droid may have no Play store to take the badge up on, so that
+        // build is also shown where the APK itself can be fetched.
+        TextView libreraXGithub = inflate.findViewById(R.id.libreraXGithub);
+        libreraXGithub.setVisibility(TxtUtils.visibleIf(AppsConfig.IS_FDROID));
+        if (AppsConfig.IS_FDROID) {
+            asButton(libreraXGithub);
+            // After asButton, which flattens the text and would take the bold with it.
+            libreraXGithub.setText(getText(R.string.librerax_github));
+            libreraXGithub.setOnClickListener(
+                    v -> Urls.open(getActivity(), LibreraX.DOWNLOAD_URL_GITHUB));
+        }
 
         inflate.findViewById(R.id.cleanRecent)
                .
@@ -2681,7 +2811,7 @@ public class PrefFragment2 extends UIFragment {
         final String p = AppProfile.getCurrent();
 
         profileLetter.setText(TxtUtils.getFirstLetter(p));
-        profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(
+        profileLetter.setBackground(AppProfile.getProfileColorDrawable(
 
                 getActivity(), p));
 
@@ -2755,6 +2885,9 @@ public class PrefFragment2 extends UIFragment {
                     DragingPopup.resetCache(getActivity());
 
                     CacheZipUtils.emptyAllCacheDirs();
+                    // The copies of storage books outlive the clean-up that opening a book does,
+                    // so they go here.
+                    CacheZipUtils.removeSafBookCopies();
 
 
                     final BookCSS b = new BookCSS();
@@ -2824,6 +2957,7 @@ public class PrefFragment2 extends UIFragment {
 
         TxtUtils.updateAllLinks(inflate, true);
         paintLinkButtons(inflate);
+        paintLibreraXBlock(inflate);
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
         return inflate;
 
@@ -2845,6 +2979,22 @@ public class PrefFragment2 extends UIFragment {
         getActivity().finish();
         MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
 
+    }
+
+    /** The engines {@link AppState#pdfEngine} can be set to, in the order they are offered. */
+    private static final int[] PDF_ENGINES = {AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
+
+    /** The engines {@link AppState#epubEngine} can be set to, in the order they are offered. */
+    private static final int[] EPUB_ENGINES = {AppState.EPUB_ENGINE_MUPDF, AppState.EPUB_ENGINE_FOLIATE};
+
+    /** The engine's name as the preference shows it; the libraries' own names, so untranslated. */
+    private static String epubEngineName(final int engine) {
+        return engine == AppState.EPUB_ENGINE_FOLIATE ? "foliate-js" : "MuPDF";
+    }
+
+    /** The engine's name as the preference shows it; the libraries' own names, so untranslated. */
+    private static String pdfEngineName(final int engine) {
+        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF";
     }
 
     /**
@@ -2872,9 +3022,89 @@ public class PrefFragment2 extends UIFragment {
         }
         for (Drawable icon : button.getCompoundDrawables()) {
             if (icon != null) {
-                icon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    /**
+     * The app's own icon, drawn square. What the package manager hands back is an adaptive
+     * icon, which cuts itself to whatever shape the launcher uses - a circle here - the moment
+     * it is drawn. Its two layers are drawn instead, over the bleed a square mask cuts, so the
+     * art comes out whole.
+     */
+    private Drawable squareAppIcon() {
+        Resources res = getResources();
+        String name = res.getResourceEntryName(getActivity().getApplicationInfo().icon);
+        // Two flavours keep an adaptive icon under the same name as their raster, and an
+        // adaptive icon wins the lookup from API 26 on. The rasters are kept a second time
+        // under drawable, where nothing shadows them, so the square art is asked for there
+        // first and the mipmap only answers for the flavours that have no adaptive version.
+        for (String kind : new String[]{"drawable", "mipmap"}) {
+            int id = res.getIdentifier(name, kind, getActivity().getPackageName());
+            if (id != 0) {
+                Drawable raster = ContextCompat.getDrawable(getActivity(), id);
+                if (raster instanceof BitmapDrawable) {
+                    return raster;
+                }
+            }
+        }
+        Drawable icon = Apps.getApplicationImage(getActivity());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || !(icon instanceof AdaptiveIconDrawable)) {
+            return icon;
+        }
+        AdaptiveIconDrawable adaptive = (AdaptiveIconDrawable) icon;
+        int size = Dips.dpToPx(72);
+        // The adaptive canvas is 108dp wide and only its middle 72dp is ever shown, so each
+        // layer is drawn half again as wide as the square and centred in it.
+        int bleed = size / 4;
+        Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        for (Drawable layer : new Drawable[]{adaptive.getBackground(), adaptive.getForeground()}) {
+            if (layer != null) {
+                layer.setBounds(-bleed, -bleed, size + bleed, size + bleed);
+                layer.draw(canvas);
+            }
+        }
+        return new BitmapDrawable(getResources(), bitmap);
+    }
+
+    /** Rounds a mark's corners the way an app icon is rounded, by a fifth of its own width. */
+    private void roundCorners(ImageView mark) {
+        if (mark == null || !(mark.getDrawable() instanceof BitmapDrawable)) {
+            return;
+        }
+        Bitmap bitmap = ((BitmapDrawable) mark.getDrawable()).getBitmap();
+        if (bitmap == null) {
+            return;
+        }
+        RoundedBitmapDrawable rounded = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+        rounded.setCornerRadius(bitmap.getWidth() * 0.22f);
+        mark.setImageDrawable(rounded);
+    }
+
+    /**
+     * The LibreraX block is not a link, but it stands in a column with two that are and has to
+     * read as one of them: it is given the same ring, in the colour the pass has just settled
+     * on, and the same insets TintUtil.asLinkButton gives a button.
+     */
+    private void paintLibreraXBlock(View inflate) {
+        View block = inflate.findViewById(R.id.libreraXBlock);
+        TextView link = inflate.findViewById(R.id.whatIsNew);
+        if (block == null || link == null) {
+            return;
+        }
+        block.setBackgroundResource(R.drawable.bg_button_outline);
+        // The same insets a button with a mark inside it takes, so the marks of the three
+        // boxes start at one edge.
+        block.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
+        if (block.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) block.getLayoutParams();
+            lp.leftMargin = lp.rightMargin = Dips.DP_8;
+            lp.topMargin = lp.bottomMargin = Dips.DP_4;
+            block.setLayoutParams(lp);
+        }
+        TintUtil.setRingColor(block, link.getCurrentTextColor());
     }
 
     /**
@@ -2957,14 +3187,16 @@ public class PrefFragment2 extends UIFragment {
         } else {
             int size = Dips.dpToPx(18);
             icon.setBounds(0, 0, size, size);
-            icon.setColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
+            icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         }
         button.setCompoundDrawables(icon, null, null, null);
-        button.setCompoundDrawablePadding(Dips.DP_6);
-        // With a mark inside it the button leads with the mark, so the space in front of it is
-        // cut back to the same the mark has above and below - the wider inset a button of
-        // words starts with would leave the mark adrift from its own edge.
-        button.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_10, Dips.DP_4);
+        button.setCompoundDrawablePadding(Dips.DP_8);
+        // A button that leads with a mark is inset the same on both sides, so the mark stands
+        // clear of the ring instead of pressing against it.
+        button.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
+        // The mark is at the left edge, so the words start there too: centred, a second line
+        // would hang away from the mark the first line sits against.
+        button.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
         mark.setVisibility(View.GONE);
     }
 
@@ -2991,7 +3223,10 @@ public class PrefFragment2 extends UIFragment {
             View row = inflater.inflate(R.layout.path_item, searchPaths, false);
 
             TextView pathView = row.findViewById(R.id.browserPath);
-            pathView.setText(path);
+            // A folder added through the system's folder picker is named by a document uri, which
+            // reads as nothing: it is shown under the provider's own name for it, as the folders
+            // screen shows it.
+            pathView.setText(ExtUtils.isExteralSD(path) ? ExtUtils.getExtSDDisplayName(getActivity(), path) : path);
             pathView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             // Tagged as a link so the panel's colour pass reaches it, and the marks beside it
             // are cut from whatever colour that pass settles on.
@@ -3026,6 +3261,13 @@ public class PrefFragment2 extends UIFragment {
      * folders under this button, so the folder dialog is not put in the way of adding one.
      */
     public void onAddFolder() {
+        // The chooser browses the device itself, and without the permission to read it there is
+        // nothing in it to pick. So at that point this button means the permission: it is asked
+        // for here rather than opening a chooser onto an empty device.
+        if (!Android6.canWrite(getContext())) {
+            Android6.checkPermissions(getActivity(), false);
+            return;
+        }
         ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().dirLastPath)
                              .setOnSelectListener(new ResultResponse2<String, Dialog>() {
                                  @Override public boolean onResultRecive(String nPath, Dialog dialog) {
@@ -3037,6 +3279,26 @@ public class PrefFragment2 extends UIFragment {
                                      return false;
                                  }
                              });
+    }
+
+    /**
+     * Asks the system for a folder and puts it into the library paths. This is the way in for
+     * books the app is not allowed to go looking for itself: the user hands the folder over, and
+     * what comes back is a document uri rather than a path.
+     */
+    public void onAddStorageFolder() {
+        MainTabs2.startAddLibraryStorage(getActivity());
+    }
+
+    /**
+     * Called once a folder the user picked has been put into the library paths. The library is
+     * rebuilt straight away: a folder added to the library that shows nothing until another
+     * button is pressed reads as a folder that did not work.
+     */
+    public void onStorageFolderAdded() {
+        showSearchPaths();
+        saveChanges();
+        onScan();
     }
 
     public void onFolderConfigDialog() {

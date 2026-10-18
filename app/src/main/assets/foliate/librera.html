@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- The page is laid out by hand at the size Librera asked for; nothing may rescale it -->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<!--
+  The shell foliate-js runs in. Librera drives it through window.libreraCall and gets its answers
+  through the `librera` JavaScript interface; see FoliateRenderer. Nothing is reachable but the
+  one origin FoliateServer serves, which is what the policy below says.
+-->
+<!--
+  Everything the page may load comes from this one origin, which FoliateServer serves and which
+  refuses anything else, so a book cannot reach the network. frame-src has to allow blob: as well:
+  the paginator lays each section out by navigating its iframe to a blob URL it built from the
+  book's own zip entry.
+-->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self' blob: data:; script-src 'self'; style-src 'self' blob: 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' blob: data:; connect-src 'self' blob: data:; frame-src 'self' blob: data:; object-src 'none'; form-action 'none';">
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Replaced with the reader's own background as soon as the book is opened */
+    background: #FFFFFF;
+}
+foliate-view {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+<script type="module" src="./librera-bridge.js"></script>
+</body>
+</html>

@@ -4,6 +4,26 @@ layout: main
 
 # What is new
 
+### [10.0.0] foliate-js and PDFium engines, SAF folders in the library, highlights in EPUB
+
+**Reading engines**
+
+* Reflowable books now render in a WebView with foliate-js
+* PDFs now render with PDFium
+
+**Folders**
+
+* Icons are shown in the SAF folder browser
+* SAF folders can be added to the library
+
+**Annotations**
+
+* Underline and highlight in EPUB
+
+**LibreraX**
+
+* Open a book in LibreraX, our new modern reader for Android and iOS
+
 ### [9.5.7] Android Auto, faster Google Drive sync, MuPDF 1.28.3
 
 **Android Auto**

@@ -62,7 +62,7 @@
    <string name="web">Начална страница</string>
    <string name="beta_version">Бета версия</string>
    <string name="archive">Архив</string>
-   <string name="rate_pdf_reader1">Моля, оставете отзиви и ни оценете в google play: това е много важно за по-нататъшното развитие</string>
+   <string name="rate_pdf_reader1">Моля, оставете отзив за това приложение в Google Play. Това е много важно за нас</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Форматиран текст (псевдо-графика)</string>
    <string name="continuous_text">Непрекъснат текст (без прекъсвания на реда)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Не е инсталиран клиент за имейл</string>
    <string name="file_not_found">Файлът не е намерен</string>
    <string name="you_need_grant_permission5">Приложението се нуждае от вашето разрешение, за да намери и покаже всички ваши книги.</string>
+   <string name="allow">Разреши</string>
+   <string name="storage">Хранилище</string>
+   <string name="add_all_books_with_permission">Добавяне на всички книги, изисква разрешение.</string>
+   <string name="add_folder_with_books">Добавяне на папка с книги.</string>
    <string name="remind_msg">Време за почивка!</string>
    <string name="bookmark_for_this_page_already_exists">Тази отметка вече съществува</string>
    <string name="can_t_download">Файлът не може да бъде свален</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Симетрично отрязване</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Извличане на имена на автори и заглавия на книги от метаданни (pdf)</string>
    <string name="meta_tags">Мета тагове</string>
-   <string name="librera_pro">Вземете Librera PRO — без реклами, и премахва рекламите и в това приложение</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Приложение без реклами, което премахва рекламите и в това приложение</string>
    <string name="annotation">Анотация</string>
    <string name="book">Книга</string>
    <string name="information">Информация за файла</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
+   <string name="show_storage_book_covers">Показване на корици за добавеното хранилище</string>
    <string name="accent">Акцент</string>
    <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Гледай</string>
    <string name="librerax_not_installed">LibreraX не е инсталиран. Изтеглете и го инсталирайте, след това отворете книгата отново.</string>
    <string name="remove_library_folder">Премахване на тази папка от библиотеката? Файловете в нея няма да бъдат изтрити.</string>
+   <string name="epub_engine">Двигател за EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView не е наличен на това устройство.</string>
+   <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
+   <string name="pdf_engine">Двигател за PDF</string>
+   <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
 </resources>

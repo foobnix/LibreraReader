@@ -62,7 +62,7 @@
    <string name="web">Pàgina printzipale</string>
    <string name="beta_version">Versione beta</string>
    <string name="archive">Archìviu</string>
-   <string name="rate_pdf_reader1">Pro praghere lassa·nos unu cummentu e vota·nos in Google Play: est de importu mannu pro s\'isvilupu benidore</string>
+   <string name="rate_pdf_reader1">Lassa unu cumentu subra custa aplicatzione in Google Play. Est meda importante pro nois</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Testu formatadu (psèudo-gràficas)</string>
    <string name="continuous_text">Testu sighidu (chene interrutziones de lìnia)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Perunu cliente de posta eletrònica installadu</string>
    <string name="file_not_found">Documentu no agatadu</string>
    <string name="you_need_grant_permission5">S\'aplicatzione tenet bisòngiu de su permissu tuo pro atzapare e ammustrare totu sos libros tuos.</string>
+   <string name="allow">Permite</string>
+   <string name="storage">Archiviatzione</string>
+   <string name="add_all_books_with_permission">Annanghe totu sos libros, tenet bisòngiu de permissu.</string>
+   <string name="add_folder_with_books">Annanghe una cartella cun libros.</string>
    <string name="remind_msg">Tempus de ti pasare!</string>
    <string name="bookmark_for_this_page_already_exists">Custu sinnalibru esistit giai</string>
    <string name="can_t_download">Iscarrigamentu de su documentu fallidu</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Mutzinadura de oros simmètrica</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Estrai sos nùmenes de sos autores e sos tìtulos de sos libros dae sos metadatos (PDF)</string>
    <string name="meta_tags">Etichetas meta</string>
-   <string name="librera_pro">Otene Librera PRO \\2014 chene publitzidade, e bogat sa publitzidade fintzas dae custa aplicatzione</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Un\'aplicatzione chene publitzidade chi bogat sa publitzidade fintzas dae custa aplicatzione</string>
    <string name="annotation">Annotatzione</string>
    <string name="book">Libru</string>
    <string name="information">Informatziones de su documentu</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Evidentziende sas lìteras initziales</string>
    <string name="anti_aliasing_level">Livellu de anti-iscalitadura</string>
    <string name="folder_preview">Antiprima de cartella</string>
+   <string name="show_storage_book_covers">Ammustra sas coberteddas de sa memòria annanta</string>
    <string name="accent">Atzentu</string>
    <string name="discarded_books">Libros iscartados</string>
    <string name="show_print_edition_page_numbers_epub3">Ammustra sos nùmeros de pàgina de s\'editzione imprentada (Epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Pòmpia</string>
    <string name="librerax_not_installed">LibreraX no est installadu. Iscàrriga·lu e installa·lu, e a pustis torra a abèrrere su libru.</string>
    <string name="remove_library_folder">Bogare custa cartella dae sa biblioteca? Sos archìvios chi bi sunt no ant a èssere cantzellados.</string>   
+   <string name="epub_engine">Motore EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView no est a disponimentu in custu dispositivu.</string>
+   <string name="base_stylesheet">Àplica su fògiu de istiles de base (foliate-js)</string>
+   <string name="pdf_engine">Motore PDF</string>
+   <string name="msg_pdf_engine_unavailable">Custa versione no includet is librerias PDFium.</string>
 </resources>

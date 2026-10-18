@@ -212,7 +212,8 @@ public class Bitmaps {
 
             final Rect orig = canvas.getClipBounds();
             canvas.save();
-            canvas.clipRect(cr.left - vb.x, cr.top - vb.y, cr.right - vb.x, cr.bottom - vb.y, Region.Op.INTERSECT);
+            // Intersect is what clipRect does without an Op, which is why the Op overload went.
+            canvas.clipRect(cr.left - vb.x, cr.top - vb.y, cr.right - vb.x, cr.bottom - vb.y);
 
             //canvas.drawColor(Color.GREEN);
 

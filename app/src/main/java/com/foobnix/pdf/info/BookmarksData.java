@@ -5,10 +5,13 @@ import android.content.Context;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppAnnotation;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 
 import org.librera.LinkedJSONObject;
 
@@ -51,6 +54,14 @@ public class BookmarksData {
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.t, bookmark.file);
 
+        // A mark shown beside the bookmarks is still a mark: it is taken out of the marks, not
+        // looked for among the bookmarks, where it was never written.
+        if (bookmark instanceof BookmarksAdapter.Mark) {
+            AnnotationsData.get()
+                           .remove(((BookmarksAdapter.Mark) bookmark).mark);
+            return;
+        }
+
         try {
             LinkedJSONObject obj = IO.readJsonObject(bookmark.file);
             if (obj.has("" + bookmark.t)) {
@@ -78,11 +89,9 @@ public class BookmarksData {
         while (iterator.hasNext()) {
             final AppBookmark next = iterator.next();
 
-            if (AppState.get().isShowOnlyAvailabeBooks) {
-                if (!new File(next.getPath()).isFile()) {
-                    iterator.remove();
-                    continue;
-                }
+            if (AppState.get().isShowOnlyAvailabeBooks && !isBookAvailable(next.getPath())) {
+                iterator.remove();
+                continue;
             }
 
             if (!AppState.get().isShowFastBookmarks) {
@@ -96,6 +105,48 @@ public class BookmarksData {
         return all;
     }
 
+
+    /**
+     * Whether the book a mark was made in is still to be had.
+     *
+     * A book on added storage is read from a copy of itself, and the copy is only kept while
+     * there is room for it. The book is still there on the storage, so a mark in it is not a mark
+     * in a book that has gone.
+     */
+    private static boolean isBookAvailable(String path) {
+        if (path == null) {
+            return false;
+        }
+        if (CacheZipUtils.isSafBookCopy(path) || ExtUtils.isExteralSD(path)) {
+            return true;
+        }
+        return new File(path).isFile();
+    }
+
+    /**
+     * What the bookmarks screen shows: the bookmarks, and the reader's own marks beside them.
+     *
+     * A passage marked by selecting it is a bookmark to the reader who made it, and in a book
+     * read by an engine that works in locations rather than pages - foliate-js and its CFIs - it
+     * is the only kind of mark that names an exact place. The dialog inside the book has always
+     * shown the two together; the screen outside it now does too.
+     */
+    public List<AppBookmark> getAllWithMarks(Context c) {
+        final List<AppBookmark> all = getAll(c);
+        try {
+            for (AppAnnotation mark : AnnotationsData.get()
+                                                     .all()) {
+                if (AppState.get().isShowOnlyAvailabeBooks && !isBookAvailable(mark.getPath())) {
+                    continue;
+                }
+                all.add(new BookmarksAdapter.Mark(mark, mark.getPath()));
+            }
+            Collections.sort(all, BY_TIME);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return all;
+    }
 
     public List<AppBookmark> getAll() {
 

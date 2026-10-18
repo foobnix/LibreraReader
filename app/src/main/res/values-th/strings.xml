@@ -62,7 +62,7 @@
    <string name="web">เว็บ</string>
    <string name="beta_version">รุ่นเบต้า</string>
    <string name="archive">เอกสารเก่า</string>
-   <string name="rate_pdf_reader1">โปรดเขียนความคิดเห็นและให้คะแนนเราใน Google Play ความเห็นของคุณสำคัญมากในการพัฒนาแอพลิเคชั่นให้ดีขึ้น</string>
+   <string name="rate_pdf_reader1">โปรดแสดงความคิดเห็นเกี่ยวกับแอปนี้บน Google Play สิ่งนี้สำคัญมากสำหรับเรา</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">รูปแบบข้อความ (pseudo-graphics)</string>
    <string name="continuous_text">ข้อความต่อเนื่อง (ไม่แบ่งบรรทัด)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">ไม่ได้ติดตั้งแอปพลิเคชันอีเมล</string>
    <string name="file_not_found">ไม่พบไฟล์</string>
    <string name="you_need_grant_permission5">แอปนี้ต้องการอนุญาตจากคุณเพื่อค้นหาและแสดงหนังสือทั้งหมดของคุณ</string>
+   <string name="allow">อนุญาต</string>
+   <string name="storage">ที่เก็บข้อมูล</string>
+   <string name="add_all_books_with_permission">เพิ่มหนังสือทั้งหมด ต้องได้รับอนุญาต</string>
+   <string name="add_folder_with_books">เพิ่มโฟลเดอร์ที่มีหนังสือ</string>
    <string name="remind_msg">กรุณาพักสายตาและพักสักหน่อย</string>
    <string name="bookmark_for_this_page_already_exists">บุ๊กมาร์กสำหรับหน้านี้มีอยู่แล้ว</string>
    <string name="can_t_download">ไม่สามารถดาวน์โหลดได้</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">ครอบตัดขอบสมมาตร</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">แสดงชื่อผู้แต่งและชื่อหนังสือ PDF จากเมตาแท็ก</string>
    <string name="meta_tags">แท็ก meta</string>
-   <string name="librera_pro">รับ Librera PRO — ไม่มีโฆษณา และยังลบโฆษณาในแอปนี้ด้วย</string>
+   <string name="librera_pro"><b>Librera PRO</b>: แอปที่ไม่มีโฆษณา และลบโฆษณาในแอปนี้ด้วย</string>
    <string name="annotation">คำอธิบายประกอบ</string>
    <string name="book">หนังสือ</string>
    <string name="information">ข้อมูล</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">เน้นตัวอักษรเริ่มต้น</string>
    <string name="anti_aliasing_level">ระดับการต่อต้านนามแฝง</string>
    <string name="folder_preview">ดูตัวอย่างโฟลเดอร์</string>
+   <string name="show_storage_book_covers">แสดงปกสำหรับที่เก็บข้อมูลที่เพิ่ม</string>
    <string name="accent">สำเนียง</string>
    <string name="discarded_books">หนังสือที่ถูกทิ้ง</string>
    <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">ดู</string>
    <string name="librerax_not_installed">ยังไม่ได้ติดตั้ง LibreraX ดาวน์โหลดและติดตั้ง แล้วเปิดหนังสืออีกครั้ง</string>
    <string name="remove_library_folder">นำโฟลเดอร์นี้ออกจากห้องสมุดหรือไม่ ไฟล์ในโฟลเดอร์จะไม่ถูกลบ</string>
+   <string name="epub_engine">เอนจิน EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView ไม่พร้อมใช้งานบนอุปกรณ์นี้</string>
+   <string name="base_stylesheet">ใช้สไตล์ชีตพื้นฐาน (foliate-js)</string>
+   <string name="pdf_engine">เอนจิน PDF</string>
+   <string name="msg_pdf_engine_unavailable">บิลด์นี้ไม่มีไลบรารี PDFium</string>
 </resources>

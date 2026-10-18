@@ -97,10 +97,6 @@ public class PrefDialogs {
             Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
             return false;
         }
-        if (ExtUtils.isExteralSD(nPath)) {
-            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-            return false;
-        }
         for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
             if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
                 Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, str,

@@ -66,15 +66,29 @@ public abstract class BaseExtractor {
         c.drawColor(TintUtil.randomColor((title + author).hashCode()));
 
         int margin = Dips.dpToPx(10);
-        StaticLayout mTextLayout = new StaticLayout(title, pBold, c.getWidth() - margin * 2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        StaticLayout mTextLayout = staticLayout(title, pBold, c.getWidth() - margin * 2);
         c.translate(margin, Dips.dpToPx(20));
         mTextLayout.draw(c);
 
-        StaticLayout text2 = new StaticLayout(author, pNormal, c.getWidth() - margin * 2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        StaticLayout text2 = staticLayout(author, pNormal, c.getWidth() - margin * 2);
         c.translate(0, mTextLayout.getHeight() + (margin));
         text2.draw(c);
         return bitmap;
 
+    }
+
+    /**
+     * A centred block of text at the given width, built the way the deprecated
+     * {@link StaticLayout} constructor used to: centre alignment, spacing multiplier 1 with no
+     * extra, and no included font padding - the builder defaults that last one to true, so it is
+     * set back to false here to keep the cover text where it was.
+     */
+    private static StaticLayout staticLayout(CharSequence text, TextPaint paint, int width) {
+        return StaticLayout.Builder.obtain(text, 0, text.length(), paint, Math.max(0, width))
+                                   .setAlignment(Alignment.ALIGN_CENTER)
+                                   .setLineSpacing(0.0f, 1.0f)
+                                   .setIncludePad(false)
+                                   .build();
     }
 
     public static byte[] getBookCoverWithTitle(String title) {

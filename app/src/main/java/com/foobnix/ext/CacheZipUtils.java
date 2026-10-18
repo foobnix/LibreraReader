@@ -1,6 +1,7 @@
 package com.foobnix.ext;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class CacheZipUtils {
     public static File CACHE_RECENT;
     public static File CACHE_TEMP;
     public static File ATTACHMENTS_CACHE_DIR;
+    public static File CACHE_SAF_BOOKS;
     static Pair<Boolean, String> cacheRes;
     static String cacheFile;
 
@@ -61,6 +63,7 @@ public class CacheZipUtils {
         CACHE_WEB = new File(externalCacheDir, "WEB");
         CACHE_RECENT = new File(externalCacheDir, "Recent");
         CACHE_TEMP = new File(externalCacheDir, "Temp");
+        CACHE_SAF_BOOKS = new File(externalCacheDir, "SafBooks");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
@@ -79,6 +82,9 @@ public class CacheZipUtils {
         if (!CACHE_TEMP.exists()) {
             CACHE_TEMP.mkdirs();
         }
+        if (!CACHE_SAF_BOOKS.exists()) {
+            CACHE_SAF_BOOKS.mkdirs();
+        }
     }
 
     public static void emptyAllCacheDirs() {
@@ -87,6 +93,161 @@ public class CacheZipUtils {
         CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_WEB.listFiles());
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
+    }
+
+    // What the copies of storage books are allowed to take up; past it the oldest go first.
+    private static final long SAF_BOOKS_CACHE_LIMIT = 500 * 1024 * 1024L;
+
+    /**
+     * A book on added storage is reached through a document provider, and the readers want a file:
+     * to read a cover out of a book, and to open it. So the book is copied here once and that copy
+     * is what is read.
+     * <p>
+     * Each copy sits in a folder of its own named after the document and keeps the book's own name
+     * inside it. Both matter. The readers pick themselves by the extension, so the name has to be
+     * the book's; and the path has to be the same every time, because everything the reader
+     * records about a book - where you are in it, what you marked - is filed under the path it was
+     * opened from. A copy in a shared folder, thrown away when the next book is opened, loses all
+     * of it.
+     * <p>
+     * The copies outlive {@link #emptyAllCacheDirs()}, which runs as a book is opened. What holds
+     * them is the budget above and {@link #removeSafBookCopies()}.
+     */
+    public static File getSafBookCopy(Context c, String uri, String displayName) {
+        if (CACHE_SAF_BOOKS == null || TxtUtils.isEmpty(displayName)) {
+            return null;
+        }
+        try {
+            File dir = new File(CACHE_SAF_BOOKS, Integer.toHexString(uri.hashCode()));
+            File dest = new File(dir, displayName);
+
+            if (dest.isFile() && dest.length() > 0) {
+                // What was asked for last stays longest, so neither the folder being browsed nor
+                // the book being read is thrown out.
+                dir.setLastModified(System.currentTimeMillis());
+                return dest;
+            }
+
+            trimSafBooks(dir);
+
+            if (!dir.isDirectory() && !dir.mkdirs()) {
+                return null;
+            }
+
+            if (!copySafTo(c, uri, dest)) {
+                return null;
+            }
+            LOG.d("saf-book-copy", dest.getPath(), dest.length());
+            return dest;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * A copy of a storage document meant to be read once and thrown away with
+     * {@link #removeSafScanCopy(File)} - what the library scan reads a book's metadata out
+     * of. Unlike {@link #getSafBookCopy} nothing is kept, so a scan of a thousand books costs one
+     * book of disk rather than all of them.
+     */
+    public static File getSafScanCopy(Context c, String uri, String displayName) {
+        if (CACHE_TEMP == null || TxtUtils.isEmpty(displayName)) {
+            return null;
+        }
+        try {
+            File dir = new File(CACHE_TEMP, "SafScan");
+            if (!dir.isDirectory() && !dir.mkdirs()) {
+                return null;
+            }
+            File dest = new File(dir, displayName);
+            return copySafTo(c, uri, dest) ? dest : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public static void removeSafScanCopy(File copy) {
+        try {
+            if (copy != null) {
+                copy.delete();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    // Written beside the copy and moved into place, so a copy that was cut short is never taken
+    // for a book.
+    private static boolean copySafTo(Context c, String uri, File dest) throws Exception {
+        InputStream in = c.getContentResolver().openInputStream(Uri.parse(uri));
+        if (in == null) {
+            return false;
+        }
+        File part = new File(dest.getParentFile(), dest.getName() + ".part");
+        copyFile(in, part);
+        if (part.renameTo(dest)) {
+            return true;
+        }
+        part.delete();
+        return false;
+    }
+
+    public static boolean isSafBookCopy(String path) {
+        return path != null && CACHE_SAF_BOOKS != null && path.startsWith(CACHE_SAF_BOOKS.getPath());
+    }
+
+    public static void removeSafBookCopies() {
+        if (CACHE_SAF_BOOKS == null) {
+            return;
+        }
+        File[] dirs = CACHE_SAF_BOOKS.listFiles();
+        if (dirs == null) {
+            return;
+        }
+        for (File dir : dirs) {
+            deleteDir(dir);
+        }
+    }
+
+    // The oldest copies go first, so the cache stays inside its budget however long the reading
+    // goes on. The copy about to be made is never among them.
+    private static void trimSafBooks(File keep) {
+        File[] dirs = CACHE_SAF_BOOKS.listFiles();
+        if (dirs == null || dirs.length == 0) {
+            return;
+        }
+        long total = 0;
+        for (File dir : dirs) {
+            total += dirSize(dir);
+        }
+        if (total <= SAF_BOOKS_CACHE_LIMIT) {
+            return;
+        }
+        Arrays.sort(dirs, new FilerByDate());
+        for (File dir : dirs) {
+            if (total <= SAF_BOOKS_CACHE_LIMIT) {
+                return;
+            }
+            if (keep != null && keep.getName().equals(dir.getName())) {
+                continue;
+            }
+            total -= dirSize(dir);
+            deleteDir(dir);
+        }
+    }
+
+    private static long dirSize(File dir) {
+        File[] files = dir.listFiles();
+        if (files == null) {
+            return dir.length();
+        }
+        long size = 0;
+        for (File f : files) {
+            size += f.length();
+        }
+        return size;
     }
 
     public static void savaJavaCache(Object object, File file) {
@@ -134,6 +295,24 @@ public class CacheZipUtils {
     }
 
     @NonNull
+    /**
+     * Drops every cached table of contents. The outlines are serialized per book with their pages
+     * already resolved, and those page numbers came from whichever engine laid the book out - so
+     * they have to go when the engine changes, or the contents panel jumps to the wrong pages.
+     */
+    public static void removeOutlineCache() {
+        final File[] files = CACHE_TEMP == null ? null : CACHE_TEMP.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (File file : files) {
+            if (file != null && file.getName().endsWith("-outline")) {
+                LOG.d("JavaCache drop", file.getName());
+                file.delete();
+            }
+        }
+    }
+
     private static String makeKey(File file) {
         if (file == null) {
             return "no-file-outline";

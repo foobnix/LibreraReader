@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versi beta</string>
    <string name="archive">Arsipkan</string>
-   <string name="rate_pdf_reader1">Harap tulis umpan balik Anda dan beri nilai kami di Google Play sangat penting bagi kami</string>
+   <string name="rate_pdf_reader1">Beri ulasan tentang aplikasi ini di Google Play. Ini sangat penting bagi kami</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Teks terformat (grafis semu)</string>
    <string name="continuous_text">Teks terus menerus (tanpa jeda baris)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Aplikasi email tidak terinstal</string>
    <string name="file_not_found">Berkas tidak ditemukan</string>
    <string name="you_need_grant_permission5">Aplikasi ini memerlukan izin Anda untuk menemukan dan menampilkan semua buku Anda.</string>
+   <string name="allow">Izinkan</string>
+   <string name="storage">Penyimpanan</string>
+   <string name="add_all_books_with_permission">Tambahkan semua buku, perlu izin.</string>
+   <string name="add_folder_with_books">Tambahkan folder berisi buku.</string>
    <string name="remind_msg">Silakan istirahat untuk matamu dan istirahat sebentar.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark untuk halaman ini sudah ada</string>
    <string name="can_t_download">Tidak bisa mendownload</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro">Dapatkan Librera PRO — tanpa iklan, dan juga menghapus iklan di aplikasi ini</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikasi bebas iklan yang juga menghapus iklan dari aplikasi ini</string>
    <string name="annotation">Anotasi</string>
    <string name="book">Buku</string>
    <string name="information">Informasi</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Menyoroti huruf awal</string>
    <string name="anti_aliasing_level">Tingkat anti-aliasing</string>
    <string name="folder_preview">Pratinjau folder</string>
+   <string name="show_storage_book_covers">Tampilkan sampul untuk penyimpanan yang ditambahkan</string>
    <string name="accent">Aksen</string>
    <string name="discarded_books">Buku-buku yang dibuang</string>
    <string name="show_print_edition_page_numbers_epub3">Tampilkan nomor halaman edisi cetak (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Tonton</string>
    <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
    <string name="remove_library_folder">Hapus folder ini dari pustaka? File di dalamnya tidak akan dihapus.</string>
+   <string name="epub_engine">Mesin EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView tidak tersedia di perangkat ini.</string>
+   <string name="base_stylesheet">Terapkan lembar gaya dasar (foliate-js)</string>
+   <string name="pdf_engine">Mesin PDF</string>
+   <string name="msg_pdf_engine_unavailable">Build ini tidak menyertakan pustaka PDFium.</string>
 </resources>

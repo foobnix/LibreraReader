@@ -191,6 +191,9 @@ public class SharedBooks {
         }
         own.p = best.p;
         own.pt = best.pt;
+        // The exact place travels with the percentage it belongs to, or a device would show the
+        // newest percentage anchored by an older device's place
+        own.cfi = best.cfi;
         own.t = Math.max(best.t, own.t);
         return own;
     }
@@ -279,6 +282,7 @@ public class SharedBooks {
         if (original != null) {
             original.p = res.p;
             original.pt = res.pt;
+            original.cfi = res.cfi;
             original.t = Math.max(res.t, original.t);
             LOG.d("SharedBooks-load1 original", fileName, res.p);
             cache.put(key, original);

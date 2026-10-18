@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -43,9 +44,13 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
+import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
+import androidx.fragment.app.Fragment;
+
 import com.foobnix.model.AppProfile;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -82,7 +87,6 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -106,6 +110,7 @@ import mobi.librera.libgooglepro.RefiewForm;
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
+    public static final int REQUEST_CODE_ADD_LIBRARY_STORAGE = 124;
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     private static final String TAG = "MainTabs";
@@ -180,7 +185,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleAuth.isAuthorized(a) && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
@@ -255,6 +260,14 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
+        // A sign-in answers for itself, whatever the answer is: the Google consent screen can
+        // come back cancelled, which the check below would otherwise swallow on the older
+        // devices.
+        if (GFile.onSignInActivityResult(this, requestCode, resultCode, data)) {
+            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+            return;
+        }
+
         if (Build.VERSION.SDK_INT < Android6.ANDROID_12_INT && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
             return;
@@ -275,24 +288,101 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
-        } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener(googleAccount -> {
-                AppSP.get().isEnableSync = true;
-                Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                EventBus.getDefault().post(new GDriveSycnEvent());
-                GFile.runSyncService(MainTabs2.this);
-
-                swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
-
-                AppSP.get().save();
-            }).addOnFailureListener(exception -> {
-                LOG.e(exception);
-                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                AppSP.get().isEnableSync = false;
-                swipeRefreshLayout.setEnabled(false);
-                AppSP.get().save();
-            });
+        } else if (requestCode == REQUEST_CODE_ADD_LIBRARY_STORAGE && resultCode == Activity.RESULT_OK) {
+            // The folders panel, when there is one, says it has a new folder itself: it has the
+            // list on screen and would otherwise go on showing the old one.
+            PrefFragment2 prefs = findPrefFragment();
+            if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null) && prefs != null) {
+                prefs.onStorageFolderAdded();
+            }
         }
+    }
+
+    /**
+     * Takes in a folder the user handed over through the system's picker, wherever it was asked
+     * for. It is kept as a storage too, so the folders screen can reach it, and put into the
+     * library paths; {@code rebuild} then says whether the library is scanned again here, which
+     * the caller may want to do itself once it has caught up with the new folder.
+     *
+     * @return whether this was the folder picker's answer and the folder was taken in.
+     */
+    public static boolean onAddLibraryStorageResult(Activity activity, int requestCode, int resultCode, Intent data,
+            boolean rebuild) {
+        if (requestCode != REQUEST_CODE_ADD_LIBRARY_STORAGE || resultCode != Activity.RESULT_OK || data == null
+                || data.getData() == null) {
+            return false;
+        }
+        Uri uri = data.getData();
+        activity.getContentResolver().takePersistableUriPermission(uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        String pathSAF = uri.toString();
+        StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+
+        LOG.d("REQUEST_CODE_ADD_LIBRARY_STORAGE", pathSAF);
+
+        // The folder is put into the library here rather than in the panel, so that it lands
+        // whether or not a panel is there to hear about it.
+        if (!PrefDialogs.addSearchPath(activity, pathSAF)) {
+            return false;
+        }
+        // The user has said where their books are. The storage roots the library started out
+        // guessing at are not readable without the permission they chose not to give, so they
+        // are taken out rather than left in the folders list showing nothing.
+        if (!Android6.canWrite(activity)) {
+            BookCSS.removeUnreadableStorageRoots(activity);
+        }
+        if (rebuild) {
+            AppProfile.save(activity);
+            SearchAllBooksWorker.run(activity);
+        }
+        return true;
+    }
+
+    /**
+     * Asks the system for a folder and puts it into the library. This is the way in for books the
+     * app is not allowed to go looking for itself: the user hands one folder over, and what comes
+     * back is a document uri rather than a path. The answer lands in
+     * {@link #onActivityResult(int, int, Intent)} under
+     * {@link #REQUEST_CODE_ADD_LIBRARY_STORAGE}, whichever screen asked for it.
+     */
+    public static void startAddLibraryStorage(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_READ_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION //
+                       );
+        try {
+            activity.startActivityForResult(intent, REQUEST_CODE_ADD_LIBRARY_STORAGE);
+        } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(activity, R.string.fail, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * The preferences panel, wherever it is. It is the left drawer most of the time, and a tab of
+     * its own when the user has asked for one.
+     */
+    private PrefFragment2 findPrefFragment() {
+        try {
+            Fragment drawer = getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+            if (drawer instanceof PrefFragment2 && drawer.isAdded()) {
+                return (PrefFragment2) drawer;
+            }
+            for (UIFragment fragment : tabFragments) {
+                if (fragment instanceof PrefFragment2 && fragment.isAdded()) {
+                    return (PrefFragment2) fragment;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     public boolean isPullToRefreshEnable() {
@@ -442,7 +532,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             for (UITab tab : UITab.getOrdered()) {
                 LOG.d("getOrdered", tab, tab.isVisible());
                 if (tab.isVisible()) {
-                    tabFragments.add(tab.getClazz().newInstance());
+                    tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                 }
             }
             if (tabFragments.size() == 0) {
@@ -451,7 +541,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
                 for (UITab tab : UITab.getOrdered()) {
                     if (tab.isVisible()) {
-                        tabFragments.add(tab.getClazz().newInstance());
+                        tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                     }
                 }
             }
@@ -563,7 +653,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         indicator.setViewPager(pager);
 
-        indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
+        indicator.setDividerColors(ContextCompat.getColor(this, R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setTabsBackground(TintUtil.color);
 
@@ -930,7 +1020,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        String language = newConfig.locale.getLanguage();
+        String language = newConfig.getLocales().get(0).getLanguage();
         float fontScale = newConfig.fontScale;
 
         LOG.d("ContextWrapper ConfigChanged", language, fontScale);

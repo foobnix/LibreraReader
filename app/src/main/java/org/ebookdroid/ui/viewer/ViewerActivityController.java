@@ -149,7 +149,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             }
 
             LOG.d("codecType last", codecType);
-            documentModel = new DocumentModel(codecType, getView());
+            documentModel = new DocumentModel(codecType, m_fileName, getView());
             documentModel.addListener(ViewerActivityController.this);
 
             controller.setCurrentBook(new File(filePath));

@@ -62,7 +62,7 @@
    <string name="web">Website</string>
    <string name="beta_version">Beta versie</string>
    <string name="archive">Archief</string>
-   <string name="rate_pdf_reader1">Schrijf uw feedback en waardeer ons op Google Play, het is zeer belangrijk voor ons</string>
+   <string name="rate_pdf_reader1">Laat een beoordeling van deze app achter op Google Play. Dat is heel belangrijk voor ons</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Opgemaakte tekst (pseudo-afbeeldingen)</string>
    <string name="continuous_text">Doorlopende tekst (geen regelafbreking)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">E-mail applicatie niet geïnstalleerd.</string>
    <string name="file_not_found">Bestand niet gevonden</string>
    <string name="you_need_grant_permission5">De app heeft uw toestemming nodig om al uw boeken te vinden en weer te geven.</string>
+   <string name="allow">Toestaan</string>
+   <string name="storage">Opslag</string>
+   <string name="add_all_books_with_permission">Alle boeken toevoegen, toestemming vereist.</string>
+   <string name="add_folder_with_books">Een map met boeken toevoegen.</string>
    <string name="remind_msg">Neem een pauze voor je ogen en rust een beetje.</string>
    <string name="bookmark_for_this_page_already_exists">Bladwijzer voor deze pagina bestaat al</string>
    <string name="can_t_download">Kan bestand niet downloaden</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Snijd de randen symmetrisch bij</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">De auteur en de titel van het PDF-boek van de metatags weergeven</string>
    <string name="meta_tags">Meta-tags</string>
-   <string name="librera_pro">Haal Librera PRO — advertentievrij, en het verwijdert ook de advertenties in deze app</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Een advertentievrije app die ook de advertenties uit deze app verwijdert</string>
    <string name="annotation">Aantekening</string>
    <string name="book">Boek</string>
    <string name="information">Informatie</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Beginletters markeren</string>
    <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
+   <string name="show_storage_book_covers">Toon omslagen voor toegevoegde opslag</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Bekijken</string>
    <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
    <string name="remove_library_folder">Deze map uit de bibliotheek verwijderen? De bestanden erin worden niet verwijderd.</string>
+   <string name="epub_engine">EPUB-engine</string>
+   <string name="msg_epub_engine_unavailable">WebView is niet beschikbaar op dit apparaat.</string>
+   <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
+   <string name="pdf_engine">PDF-engine</string>
+   <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
 </resources>

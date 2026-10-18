@@ -513,6 +513,7 @@ public final class LengthUtils {
    *          objects to converts
    * @return array
    */
+  @SafeVarargs
   public static <T> T[] toArray(final T... objects) {
     return objects;
   }

@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Bản thử nghiệm</string>
    <string name="archive">Lưu trữ</string>
-   <string name="rate_pdf_reader1">Hãy viết thư phản hồi của bạn và đánh giá chúng tôi trên Google Play đó là rất quan trọng đối với chúng tôi</string>
+   <string name="rate_pdf_reader1">Hãy để lại đánh giá về ứng dụng này trên Google Play. Điều đó rất quan trọng với chúng tôi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Văn bản định dạng (đồ hoạ giả)</string>
    <string name="continuous_text">Văn bản liên tục (không bị ngắt dòng)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Ứng dụng email không được cài đặt.</string>
    <string name="file_not_found">Tập tin không tìm thấy</string>
    <string name="you_need_grant_permission5">Ứng dụng cần sự cho phép của bạn để tìm và hiển thị tất cả sách của bạn.</string>
+   <string name="allow">Cho phép</string>
+   <string name="storage">Bộ nhớ</string>
+   <string name="add_all_books_with_permission">Thêm tất cả sách, cần quyền truy cập.</string>
+   <string name="add_folder_with_books">Thêm thư mục có sách.</string>
    <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark cho trang này đã tồn tại</string>
    <string name="can_t_download">Không thể tải xuống</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hiển thị tác giả và tựa đề của cuốn sách PDF từ các thẻ meta</string>
    <string name="meta_tags">Thẻ meta</string>
-   <string name="librera_pro">Tải Librera PRO — không quảng cáo, và cũng gỡ quảng cáo trong ứng dụng này</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Ứng dụng không quảng cáo, cũng gỡ quảng cáo khỏi ứng dụng này</string>
    <string name="annotation">Chú thích</string>
    <string name="book">Sách</string>
    <string name="information">Thông tin</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Làm nổi bật các chữ cái đầu tiên</string>
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
+   <string name="show_storage_book_covers">Hiển thị bìa cho bộ nhớ đã thêm</string>
    <string name="accent">Giọng</string>
    <string name="discarded_books">Sách bỏ đi</string>
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Xem</string>
    <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
    <string name="remove_library_folder">Xóa thư mục này khỏi thư viện? Các tệp bên trong sẽ không bị xóa.</string>
+   <string name="epub_engine">Công cụ EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView không khả dụng trên thiết bị này.</string>
+   <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
+   <string name="pdf_engine">Công cụ PDF</string>
+   <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
 </resources>

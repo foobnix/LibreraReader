@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7434
-    FDroidVersionNumber = "9.6.48"
+    FDroidCodeNumber = 7447
+    FDroidVersionNumber = "10.0.0"
 }
 
 
@@ -27,9 +27,15 @@ ext {
     }
 
     // The MuPDF the native library was built from, when the build script says (-Pmupdf=1.28.5):
-    // it goes into the names of the APKs, bundles and mappings, so builds of both can sit side by side
+    // it names the marker file written beside the builds.
     mupdfVersion = project.findProperty("mupdf")
-    mupdfSuffix = mupdfVersion ? "-mupdf" + mupdfVersion : ""
+
+    // A build that carries MuPDF says so in its name, as plain "mupdf" - which MuPDF it was built
+    // from is written beside the builds instead (mupdf<version>.txt), so a flavour keeps one name
+    // whatever it was built against. The JS flavours ship no MuPDF at all and say nothing, the
+    // same rule the app itself uses to decide whether MuPDF is there (see Engines.IS_MUPDF).
+    mupdfSuffix = "-mupdf"
+    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("JS") ? "" : mupdfSuffix }
 
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]" + (mupdfVersion ? " MuPDF " + mupdfVersion : "")
@@ -121,6 +127,7 @@ android {
                     appName      : "Librera FD",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: "",
                     appGdriveKey : "",
                     admobAppId   : "",
                     admobBannerId: "",
@@ -130,6 +137,52 @@ android {
             ]
             versionNameSuffix = '-fdroid'
         }
+        /**
+         * fdroid and pro, built without MuPDF: a PDF is rendered by PDFium, a reflowable book is
+         * laid out by foliate-js in a WebView and a comic archive has its images decoded straight
+         * to bitmaps. They load libLibreraDocs.so - DjVu, the .doc and .mobi converters and the
+         * bitmap scaler, built by Builder/build-nomupdf.sh - in place of the 23 MB libMuPDF.so.
+         *
+         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "JS" suffix,
+         * and AppsConfig.IS_FDROID the "fdroid" prefix. Each carries the application ID of the
+         * flavour it is built from, so it replaces that one on a device rather than sitting
+         * beside it.
+         */
+        fdroidJS {
+            minSdk = libs.versions.minSdk.get().toInteger()
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
+            manifestPlaceholders = [
+                    appName      : "Librera FD-JS",
+                    appIcon      : "@mipmap/icon_pdf_pro",
+                    appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: "",
+                    appGdriveKey : "",
+                    admobAppId   : "",
+                    admobBannerId: "",
+                    admobFullId  : "",
+                    admobRewardId  : "",
+                    appSafeMode  : "true"
+            ]
+            versionNameSuffix = '-fdroid-js'
+        }
+        proJS {
+            dimension = "version"
+            applicationId = "com.foobnix.pro.pdf.reader"
+            manifestPlaceholders = [
+                    appName      : "Librera PRO-JS",
+                    appIcon      : "@mipmap/icon_pdf_pro",
+                    appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: project.findProperty("proJS_appWebClientId") ?: "",
+                    appGdriveKey : pro_appGdriveKey,
+                    admobAppId   : "",
+                    admobBannerId: "",
+                    admobFullId  : "",
+                    admobRewardId  : "",
+                    appSafeMode  : "false"
+            ]
+            versionNameSuffix = '-js'
+        }
         librera {
             dimension = "version"
             applicationId = "com.foobnix.pdf.reader"
@@ -137,6 +190,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
+                    appWebClientId: project.findProperty("librera_appWebClientId") ?: "",
                     appGdriveKey : librera_appGdriveKey,
                     admobAppId   : librera_admobAppId,
                     admobBannerId: librera_admobBannerId,
@@ -153,6 +207,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
+                    appWebClientId: project.findProperty("pro_appWebClientId") ?: "",
                     appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
@@ -168,6 +223,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_classic",
                     appRoundIcon : "@mipmap/launcher_classic",
+                    appWebClientId: project.findProperty("pdf_classic_appWebClientId") ?: "",
                     appGdriveKey : pdf_classic_appGdriveKey,
                     admobAppId   : pdf_classic_admobAppId,
                     admobBannerId: pdf_classic_admobBannerId,
@@ -183,6 +239,7 @@ android {
                     appName      : "Book Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
+                    appWebClientId: project.findProperty("ebooka_appWebClientId") ?: "",
                     appGdriveKey : ebooka_appGdriveKey,
                     admobAppId   : ebooka_admobAppId,
                     admobBannerId: ebooka_admobBannerId,
@@ -198,6 +255,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_2",
                     appRoundIcon : "@mipmap/launcher_pdf_v2",
+                    appWebClientId: project.findProperty("pdf_v2_appWebClientId") ?: "",
                     appGdriveKey : pdf_v2_appGdriveKey,
                     admobAppId   : pdf_v2_admobAppId,
                     admobBannerId: pdf_v2_admobBannerId,
@@ -213,6 +271,7 @@ android {
                     appName      : "TTS Reader",
                     appIcon      : "@mipmap/icon_tts_reader_app",
                     appRoundIcon : "@mipmap/launcher_tts_reader_app",
+                    appWebClientId: project.findProperty("tts_reader_appWebClientId") ?: "",
                     appGdriveKey : tts_reader_appGdriveKey,
                     admobAppId   : tts_reader_admobAppId,
                     admobBannerId: tts_reader_admobBannerId,
@@ -228,6 +287,7 @@ android {
                     appName      : "Epub Reader",
                     appIcon      : "@mipmap/icon_epub_reader",
                     appRoundIcon : "@mipmap/launcher_epub_reader",
+                    appWebClientId: project.findProperty("epub_reader_appWebClientId") ?: "",
                     appGdriveKey : epub_reader_appGdriveKey,
                     admobAppId   : epub_reader_admobAppId,
                     admobBannerId: epub_reader_admobBannerId,
@@ -239,7 +299,36 @@ android {
     }
 
     sourceSets {
-        fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
+        // The hand-written stand-ins for Google Play services, the Drive API client and junrar,
+        // shared by every flavour that is built without those libraries (they come with
+        // :libDepPro, which those flavours do not depend on). src/<flavour>/java keeps only what
+        // is really that one flavour's, which is its LibreraBuildConfig.
+        fdroid {
+            java.srcDirs += 'src/noGms/java'
+            assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
+        }
+        // The MuPDF-free builds: libLibreraDocs.so in place of libMuPDF.so. src/main/jniLibs is
+        // part of every variant, so the library that is not wanted is dropped at packaging time
+        // instead - see the jniLibs excludes further down.
+        fdroidJS {
+            java.srcDirs += 'src/noGms/java'
+            jniLibs.srcDirs += 'src/noMupdf/jniLibs'
+            // Everything but the flavour's own LibreraBuildConfig is the F-Droid flavour's
+            manifest.srcFile 'src/fdroid/AndroidManifest.xml'
+            res.srcDirs += 'src/fdroid/res'
+            assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
+        }
+        proJS {
+            jniLibs.srcDirs += 'src/noMupdf/jniLibs'
+            manifest.srcFile 'src/pro/AndroidManifest.xml'
+        }
+        // The "Sign in with Google" sheet needs Credential Manager and Google's own credential
+        // type, both of them :libDepPro's. The flavours built without that module take the
+        // stand-in for it that sits with the other ones in src/noGms/java.
+        ['librera', 'pro', 'proJS', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
+            getByName(gms).java.srcDirs += 'src/gms/java'
+        }
+
         // code for both JVM and device tests, like the old footnote code to compare with
         test.java.srcDirs += 'src/sharedTest/java'
         androidTest.java.srcDirs += 'src/sharedTest/java'
@@ -268,6 +357,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     proImplementation project(':libPro')
     fdroidImplementation project(':libPro')
+    proJSImplementation project(':libPro')
+    fdroidJSImplementation project(':libPro')
     implementation project(':libReflow')
 
     //implementation project(":shared")
@@ -307,6 +398,8 @@ dependencies {
 
 
     implementation(libs.zip4j)
+    // Second PDF render engine (Pdfium); the bundled MuPDF stays the default
+    implementation(libs.pdfiumandroid)
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
 
@@ -338,6 +431,9 @@ dependencies {
     pdf_classicImplementation dep_pro
     epub_readerImplementation dep_pro
     proImplementation dep_pro
+    // fdroidJS, like fdroid, is built without Google Play services: the stand-ins for them live
+    // in src/noGms/java.
+    proJSImplementation dep_pro
 
 /** Testing **/
     testImplementation(libs.junit)
@@ -352,18 +448,29 @@ dependencies {
 // AGP 9 removed applicationVariants: per-ABI version codes and the APK names now come
 // from the Variant API, with the same values as before.
 androidComponents {
+    // The MuPDF-free flavours take libLibreraDocs.so from src/noMupdf/jniLibs and leave
+    // libMuPDF.so behind. src/main/jniLibs is part of every variant and is where the MuPDF build
+    // writes, so the library is dropped here rather than kept out of the source set.
+    onVariants(selector().withFlavor("version", "fdroidJS")) { variant ->
+        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+    }
+    onVariants(selector().withFlavor("version", "proJS")) { variant ->
+        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+    }
+
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
     onVariants(selector().all()) { variant ->
         def flavor = variant.flavorName ? variant.flavorName.capitalize() : ""
+        def suffix = mupdfSuffixFor(variant.flavorName)
         variant.outputs.each { output ->
             def abi = output.filters.find { it.filterType.name() == "ABI" }?.identifier
             if (abi != null) {
                 def abiName = abi.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
                 output.versionCode.set(abiCodes.get(abi, 0) + codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-${abiName}.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${suffix}-${abiName}.apk")
             } else {
                 output.versionCode.set(codeNumber)
-                output.outputFileName.set("Librera ${flavor}-${versionNumber}${mupdfSuffix}-uni.apk")
+                output.outputFileName.set("Librera ${flavor}-${versionNumber}${suffix}-uni.apk")
             }
         }
     }
@@ -379,9 +486,10 @@ tasks.register("copyApks") {
             throw new GradleException("librera_builds_dir is not set in ~/.gradle/gradle.properties")
         }
 
-        // Only the builds of the same MuPDF are replaced: the builds of the other one, of the same
-        // Librera, stay next to them (the beta script makes one pass per MuPDF)
-        def own = mupdfSuffix ? "*${mupdfSuffix}*" : "*"
+        // Every build of this Librera in the destination is replaced. The MuPDF no longer tells
+        // two builds apart - they have the same name - so there is nothing to keep back, and a
+        // JS build, which never carried the MuPDF marker, is pruned with the rest.
+        def own = "*"
 
         // The betas go into a folder of their own: the folders around it are shared with
         // LibreraX and the other projects
@@ -402,8 +510,7 @@ tasks.register("copyApks") {
         // the global ~/.gradle/gradle.properties. Unset, a release only goes to buildsDir.
         def releaseDir = project.hasProperty("release") ? project.findProperty("librera_release_dir") : null
 
-        // A version's own folder is emptied only when a release is about to be copied into it,
-        // and only of the builds of the same MuPDF
+        // A version's own folder is emptied only when a release is about to be copied into it
         if (project.hasProperty("release")) {
             delete fileTree("$buildsDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
             if (releaseDir) {
@@ -411,30 +518,30 @@ tasks.register("copyApks") {
             }
         }
 
+        def destinations = []
+        if (project.hasProperty("beta")) {
+            destinations.add("$buildsDir/$betaFolder")
+            if (betaDir) {
+                destinations.add("$betaDir/$betaFolder")
+            }
+        }
+        if (project.hasProperty("release")) {
+            destinations.add("$buildsDir/$versionNumber")
+            if (releaseDir) {
+                destinations.add("$releaseDir/$versionNumber")
+            }
+        }
+
         android.productFlavors.each { productFlavor ->
             {
                 def flavor = productFlavor.name
-                def appName = "Librera ${flavor.capitalize()}-${flavor == 'fdroid' ? FDroidVersionNumber : versionNumber}${mupdfSuffix}"
+                // Both F-Droid flavours carry the F-Droid version; a build of either of them sets
+                // versionNumber to it anyway, since the task name holds "Fdroid".
+                def appName = "Librera ${flavor.capitalize()}-${flavor.startsWith('fdroid') ? FDroidVersionNumber : versionNumber}${mupdfSuffixFor(flavor)}"
 
                 //println "====  " + variant.buildType.name + " " +  flavor
 
-                def list = []
-
-                if (project.hasProperty("beta")) {
-                    list.add("$buildsDir/$betaFolder")
-                    if (betaDir) {
-                        list.add("$betaDir/$betaFolder")
-                    }
-                }
-
-
-                if (project.hasProperty("release")) {
-                    list.add("$buildsDir/$versionNumber")
-                    if (releaseDir) {
-                        list.add("$releaseDir/$versionNumber")
-                    }
-                }
-                list.each { dest ->
+                destinations.each { dest ->
 
                     copy {
                         from(file("build/outputs/apk/${flavor}/release/")) {
@@ -465,6 +572,22 @@ tasks.register("copyApks") {
                     }
 
 
+                }
+            }
+        }
+
+        // Which MuPDF these builds were made from, as a file beside them: the APKs no longer say
+        // it, and the version matters when a crash has to be traced back to a MuPDF. One marker
+        // per destination, and the one from the pass before is cleared first, so what is named
+        // there is what the builds in that folder actually carry.
+        if (mupdfVersion) {
+            destinations.each { dest ->
+                def folder = project.file(dest)
+                if (folder.exists()) {
+                    delete fileTree(folder).include("mupdf*.txt")
+                    def marker = new File(folder, "mupdf${mupdfVersion}.txt")
+                    marker.text = "MuPDF ${mupdfVersion}\nLibrera ${versionNumber} (${codeNumber})\n"
+                    println "MuPDF marker: " + marker
                 }
             }
         }

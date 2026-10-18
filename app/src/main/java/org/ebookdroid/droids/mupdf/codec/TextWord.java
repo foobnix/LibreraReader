@@ -13,11 +13,11 @@ public class TextWord extends RectF {
 
     public TextWord() {
         super();
-        w = new String();
+        w = "";
     }
 
     public TextWord(TextChar tc) {
-        w = new String();
+        w = "";
         Add(tc);
     }
 

@@ -62,7 +62,7 @@
    <string name="web">Toile</string>
    <string name="beta_version">Version bêta</string>
    <string name="archive">Archiver</string>
-   <string name="rate_pdf_reader1">S\'il vous plaît écrivez vos commentaires et votez pour nous sur Google Play, c\'est très important pour nous</string>
+   <string name="rate_pdf_reader1">Laissez un avis sur cette application sur Google Play. C\'est très important pour nous</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Texte formaté (pseudo graphiques)</string>
    <string name="continuous_text">Texte continu (pas de saut de ligne)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Application email non installée.</string>
    <string name="file_not_found">Fichier non trouvé</string>
    <string name="you_need_grant_permission5">L\'application a besoin de votre autorisation pour trouver et afficher tous vos livres.</string>
+   <string name="allow">Autoriser</string>
+   <string name="storage">Stockage</string>
+   <string name="add_all_books_with_permission">Ajouter tous les livres, autorisation requise.</string>
+   <string name="add_folder_with_books">Ajouter un dossier avec des livres.</string>
    <string name="remind_msg">S\'il vous plaît, prenez une pause pour vos yeux et reposez-vous un peu.</string>
    <string name="bookmark_for_this_page_already_exists">Un signet pour cette page existe déjà</string>
    <string name="can_t_download">Je ne peux pas télécharger</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Rogner les bordures symétriquement</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Affichage de l\'auteur et du titre du livre PDF à partir des meta balises</string>
    <string name="meta_tags">Meta balises</string>
-   <string name="librera_pro">Obtenez Librera PRO — sans publicité, et il supprime aussi les publicités de cette application</string>
+   <string name="librera_pro"><b>Librera PRO</b> : Une application sans publicité qui supprime aussi les publicités de cette application</string>
    <string name="annotation">Annotation</string>
    <string name="book">Livre</string>
    <string name="information">Information</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Surlignage des lettres initiales</string>
    <string name="anti_aliasing_level">Niveau d\'anticrénelage</string>
    <string name="folder_preview">Aperçu du dossier</string>
+   <string name="show_storage_book_covers">Afficher les couvertures du stockage ajouté</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Livres jetés</string>
    <string name="show_print_edition_page_numbers_epub3">Afficher les numéros de page de l\'édition imprimée (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Regarder</string>
    <string name="librerax_not_installed">LibreraX n\'est pas installé. Téléchargez-le et installez-le, puis rouvrez le livre.</string>
    <string name="remove_library_folder">Retirer ce dossier de la bibliothèque ? Les fichiers qu\'il contient ne seront pas supprimés.</string>
+   <string name="epub_engine">Moteur EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView n\'est pas disponible sur cet appareil.</string>
+   <string name="base_stylesheet">Appliquer la feuille de style de base (foliate-js)</string>
+   <string name="pdf_engine">Moteur PDF</string>
+   <string name="msg_pdf_engine_unavailable">Cette version n\'inclut pas les bibliothèques PDFium.</string>
 </resources>

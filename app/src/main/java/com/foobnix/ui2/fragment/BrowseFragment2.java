@@ -291,9 +291,7 @@ import java.util.Map;
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
 
-        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
+        bindOnGrantPanel(view.findViewById(R.id.layoutOnGrant));
 
         // The sort button says which way round the list runs; a long press turns it round.
         onSort.setOnLongClickListener(new OnLongClickListener() {
@@ -967,36 +965,46 @@ import java.util.Map;
                     LOG.d("newNode uri >> ", uri);
                     LOG.d("newNode childrenUri >> ", childrenUri);
 
+                    // Only the columns a row actually shows are asked for: a document provider
+                    // fills in every column it is given, and the storage behind it is slow.
                     Cursor childCursor = contentResolver.query(childrenUri, new String[]{ //
                                     Document.COLUMN_DISPLAY_NAME, //
                                     Document.COLUMN_DOCUMENT_ID, //
-                                    Document.COLUMN_ICON, //
                                     Document.COLUMN_LAST_MODIFIED, //
                                     Document.COLUMN_MIME_TYPE, //
                                     Document.COLUMN_SIZE, //
-                                    Document.COLUMN_SUMMARY, //
                             }, //
                             null, null, null); //
+                    final boolean isDisplayAll = AppState.get().isDisplayAllFilesInFolder;
                     try {
                         while (childCursor.moveToNext()) {
                             String COLUMN_DISPLAY_NAME = childCursor.getString(0);
                             String COLUMN_DOCUMENT_ID = childCursor.getString(1);
-                            String COLUMN_ICON = childCursor.getString(2);
-                            String COLUMN_LAST_MODIFIED = childCursor.getString(3);
-                            String COLUMN_MIME_TYPE = childCursor.getString(4);
-                            String COLUMN_SIZE = childCursor.getString(5);
-                            String COLUMN_SUMMARY = childCursor.getString(6);
+                            String COLUMN_LAST_MODIFIED = childCursor.getString(2);
+                            String COLUMN_MIME_TYPE = childCursor.getString(3);
+                            String COLUMN_SIZE = childCursor.getString(4);
 
-                            LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
+                            final boolean isDir = Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE);
+
+                            // A storage folder is filtered the way a folder on the device is:
+                            // without it every file the provider knows about is listed, and each
+                            // one costs a row, a sort and a cover.
+                            if (!isDisplayAll && COLUMN_DISPLAY_NAME != null) {
+                                if (COLUMN_DISPLAY_NAME.startsWith(".")) {
+                                    continue;
+                                }
+                                if (!isDir && !ExtUtils.isBrowseSupported(COLUMN_DISPLAY_NAME)) {
+                                    continue;
+                                }
+                            }
 
                             FileMeta meta = new FileMeta();
                             meta.setAuthor(SearchFragment2.EMPTY_ID);
 
                             final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
                             meta.setPath(newNode.toString());
-                            LOG.d("newNode", newNode);
 
-                            if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
+                            if (isDir) {
                                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                                 meta.setPathTxt(COLUMN_DISPLAY_NAME);
                                 meta.setTitle(COLUMN_DISPLAY_NAME);
@@ -1009,7 +1017,9 @@ import java.util.Map;
                                         meta.setSizeTxt(ExtUtils.readableFileSize(size));
                                     }
                                     if (COLUMN_LAST_MODIFIED != null) {
-                                        meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                        long date = Long.parseLong(COLUMN_LAST_MODIFIED);
+                                        meta.setDate(date);
+                                        meta.setDateTxt(ExtUtils.getDateFormat(date));
                                     }
                                 } catch (Exception e) {
                                     LOG.e(e);
@@ -1021,6 +1031,9 @@ import java.util.Map;
                                 } else {
                                     meta.setTitle(COLUMN_DISPLAY_NAME);
                                 }
+                                // The row carries its own name: left empty, every binding of it
+                                // asks the database for a record a storage file never has.
+                                meta.setPathTxt(meta.getTitle());
 
                             }
                             items.add(meta);
@@ -1488,6 +1501,17 @@ import java.util.Map;
                  new CompoundButton.OnCheckedChangeListener() {
                      @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                          AppState.get().isDisplayAllFilesInFolder = isChecked;
+
+                         populate();
+                     }
+                 });
+        // Reading a cover out of a book on added storage means copying the book out of the
+        // document provider first, so it is the user who says whether it is worth it.
+        p.getMenu()
+         .addCheckbox(getString(R.string.show_storage_book_covers), AppState.get().isSafBookCovers,
+                 new CompoundButton.OnCheckedChangeListener() {
+                     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                         AppState.get().isSafBookCovers = isChecked;
 
                          populate();
                      }

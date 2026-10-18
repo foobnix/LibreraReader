@@ -62,7 +62,7 @@
    <string name="web">Webgunea</string>
    <string name="beta_version">Beta bertsioa</string>
    <string name="archive">Fitxategia</string>
-   <string name="rate_pdf_reader1">Mesedez, idatzi zure iruzkinak eta baloratu iezaguzu Google Play-n; Guretzat oso garrantzitsua da</string>
+   <string name="rate_pdf_reader1">Utzi aplikazio honi buruzko iritzia Google Play-n. Oso garrantzitsua da guretzat</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatua duen testua (pseudo grafikoak)</string>
    <string name="continuous_text">Testu jarraia (lerro jauzirik gabe)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Ez dago posta-aplikaziorik instalatuta.</string>
    <string name="file_not_found">Fitxategia ez da aurkitu</string>
    <string name="you_need_grant_permission5">Aplikazioak zure baimena behar du zure liburu guztiak aurkitu eta bistaratzeko.</string>
+   <string name="allow">Baimendu</string>
+   <string name="storage">Biltegia</string>
+   <string name="add_all_books_with_permission">Gehitu liburu guztiak, baimena behar da.</string>
+   <string name="add_folder_with_books">Gehitu liburuak dituen karpeta bat.</string>
    <string name="remind_msg">Hartu arnasa eta eman atsedena begiei.</string>
    <string name="bookmark_for_this_page_already_exists">Laster marka hori badago</string>
    <string name="can_t_download">Ezin da deskargatu</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Moztu ertzak simetrikoki</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Erakutsi egilea eta liburuaren izenburua meta-etiketetatik</string>
    <string name="meta_tags">Metaetiketak</string>
-   <string name="librera_pro">Eskuratu Librera PRO — iragarkirik gabe, eta aplikazio honetako iragarkiak ere kentzen ditu</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Iragarkirik gabeko aplikazio bat, aplikazio honetako iragarkiak ere kentzen dituena</string>
    <string name="annotation">Oharra</string>
    <string name="book">Liburua</string>
    <string name="information">Informazioa</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Hasierako letrak nabarmentzea</string>
    <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
+   <string name="show_storage_book_covers">Erakutsi gehitutako biltegiaren azalak</string>
    <string name="accent">Azentua</string>
    <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Ikusi</string>
    <string name="librerax_not_installed">LibreraX ez dago instalatuta. Deskargatu eta instalatu, eta ireki liburua berriro.</string>
    <string name="remove_library_folder">Karpeta hau liburutegitik kendu? Bertako fitxategiak ez dira ezabatuko.</string>
+   <string name="epub_engine">EPUB motorra</string>
+   <string name="msg_epub_engine_unavailable">WebView ez dago erabilgarri gailu honetan.</string>
+   <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
+   <string name="pdf_engine">PDF motorra</string>
+   <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
 </resources>

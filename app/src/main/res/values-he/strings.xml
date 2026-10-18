@@ -62,7 +62,7 @@
    <string name="web">אינטרנט</string>
    <string name="beta_version">גירסת בטא</string>
    <string name="archive">ארכיון</string>
-   <string name="rate_pdf_reader1">אנא כתוב את המשוב שלך לדרג אותנו ב-גוגל פליי חשוב מאוד בשבילנו</string>
+   <string name="rate_pdf_reader1">אנא השאירו משוב על האפליקציה הזו ב-Google Play. זה חשוב לנו מאוד</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">טקסט מעוצב (גרפיקה פסאודו)</string>
    <string name="continuous_text">טקסט רציף (ללא הפסקה בשורה)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">יישום דואר אלקטרוני אינו מותקן.</string>
    <string name="file_not_found">הקובץ לא נמצא</string>
    <string name="you_need_grant_permission5">האפליקציה זקוקה לאישורך כדי למצוא ולהציג את כל הספרים שלך.</string>
+   <string name="allow">אישור</string>
+   <string name="storage">אחסון</string>
+   <string name="add_all_books_with_permission">הוספת כל הספרים, נדרשת הרשאה.</string>
+   <string name="add_folder_with_books">הוספת תיקייה עם ספרים.</string>
    <string name="remind_msg">קח הפסקה לעיניים שלך ותנוח קצת.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark עבור הדף הזה כבר קיים</string>
    <string name="can_t_download">לא ניתן להוריד</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">חתוך גבולות באופן סימטרי</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">הצגת המחבר והכותרת של ספר ה- PDF מתוך המטא-תגים</string>
    <string name="meta_tags">מטא תגים</string>
-   <string name="librera_pro">קבלו את Librera PRO — ללא פרסומות, והיא מסירה את הפרסומות גם מהאפליקציה הזו</string>
+   <string name="librera_pro"><b>Librera PRO</b>: אפליקציה ללא פרסומות שמסירה את הפרסומות גם מהאפליקציה הזו</string>
    <string name="annotation">ביאור</string>
    <string name="book">ספר</string>
    <string name="information">מידע</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">הדגשת אותיות ראשוניות</string>
    <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
+   <string name="show_storage_book_covers">הצג כריכות עבור האחסון שנוסף</string>
    <string name="accent">מִבטָא</string>
    <string name="discarded_books">ספרים שנזרקו</string>
    <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">צפה</string>
    <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
    <string name="remove_library_folder">להסיר את התיקייה הזו מהספרייה? הקבצים שבה לא יימחקו.</string>
+   <string name="epub_engine">מנוע EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView אינו זמין במכשיר הזה.</string>
+   <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
+   <string name="pdf_engine">מנוע PDF</string>
+   <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
 </resources>

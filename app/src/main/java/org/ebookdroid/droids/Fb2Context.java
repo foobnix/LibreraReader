@@ -10,6 +10,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -37,7 +38,7 @@ public class Fb2Context extends PdfContext {
         return cacheFile;
     }
 
-    MuPdfDocument muPdfDocument;
+    AbstractCodecDocument muPdfDocument;
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
@@ -63,7 +64,9 @@ public class Fb2Context extends PdfContext {
         LOG.d("Fb2Context open", outName);
 
         try {
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            muPdfDocument = openReflowable(outName, password);
+            // getPageCount() on a null is the NullPointerException this catch already relies on
+            // to mean "that did not open"; the retry below is what answers it
             muPdfDocument.getPageCount();
         } catch (Exception e) {
             LOG.e(e);
@@ -73,7 +76,12 @@ public class Fb2Context extends PdfContext {
             }
             Fb2Extractor.get().convert(fileName, outName, true, notes);
             LOG.d("Fb2Context create 2", outName);
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            muPdfDocument = openReflowable(outName, password);
+        }
+
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
         }
 
         if (notes != null) {

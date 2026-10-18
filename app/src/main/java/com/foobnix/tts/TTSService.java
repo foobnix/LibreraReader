@@ -42,6 +42,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.foobnix.LibreraApp;
@@ -377,8 +378,8 @@ import java.util.List;
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override public boolean onMediaButtonEvent(Intent intent) {
-                KeyEvent event = (KeyEvent) intent.getExtras()
-                                                  .get(Intent.EXTRA_KEY_EVENT);
+                KeyEvent event = IntentCompat.getParcelableExtra(intent, Intent.EXTRA_KEY_EVENT,
+                        KeyEvent.class);
 
                 boolean isPlaying = TTSEngine.get()
                                              .isPlaying();

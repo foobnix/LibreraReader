@@ -24,6 +24,7 @@ kotlinxSerializationCore = "1.11.0"
 ksp = "2.3.12"
 legacySupportV4 = "1.0.0"
 okio = "3.18.2"
+pdfiumandroid = "2.0.3"
 pdfmpCompose = "1.0.13"
 
 recyclerview = "1.4.0"
@@ -98,8 +99,13 @@ google-api-client-android = { module = "com.google.api-client:google-api-client-
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20260712-2.0.0" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.1.1" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version = "1.39.0" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.5.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "22.0.0" }
+# The "Sign in with Google" sheet the Drive sync picks its account from: Credential Manager,
+# with Google's own credential type and the Play services provider behind it.
+credentials = { module = "androidx.credentials:credentials", version = "1.6.0" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version = "1.6.0" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version = "1.2.1" }
 
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
@@ -115,6 +121,8 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+# PdfiumAndroidKt: the second PDF render engine, next to the bundled MuPDF
+pdfiumandroid = { module = "io.legere:pdfiumandroid", version.ref = "pdfiumandroid" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
 
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }

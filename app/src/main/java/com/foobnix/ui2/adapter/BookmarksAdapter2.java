@@ -21,6 +21,7 @@ import com.foobnix.model.MyPath;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.MainTabs2;
@@ -56,7 +57,13 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         holder.title.setText(ExtUtils.getFileName(item.getPath()));
 
 
-        holder.text.setText(item.text);
+        // A mark is shown as it is on the page - highlighted, underlined or struck through, in
+        // the colour it was made with - as the dialog inside the book shows it.
+        if (item instanceof BookmarksAdapter.Mark) {
+            BookmarksAdapter.styleAsMark(holder.text, ((BookmarksAdapter.Mark) item).mark);
+        } else {
+            holder.text.setText(item.text);
+        }
         holder.remove.setOnClickListener(new OnClickListener() {
 
             @Override

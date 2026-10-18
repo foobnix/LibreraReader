@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versione beta</string>
    <string name="archive">Archivio</string>
-   <string name="rate_pdf_reader1">Vota e commenta questa app su Google Play, è molto importante per noi!</string>
+   <string name="rate_pdf_reader1">Lascia una recensione di questa app su Google Play. È molto importante per noi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Testo formattato (grafica peggiore)</string>
    <string name="continuous_text">Testo continuo (nessuna interruzione di riga)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">L\'applicazione e-mail non è installata.</string>
    <string name="file_not_found">File non trovato</string>
    <string name="you_need_grant_permission5">L\'app necessita della tua autorizzazione per trovare e visualizzare tutti i tuoi libri.</string>
+   <string name="allow">Consenti</string>
+   <string name="storage">Archiviazione</string>
+   <string name="add_all_books_with_permission">Aggiungi tutti i libri, richiede autorizzazione.</string>
+   <string name="add_folder_with_books">Aggiungi una cartella con libri.</string>
    <string name="remind_msg">Si prega di prendere una pausa per i tuoi occhi e riposare un po \'.</string>
    <string name="bookmark_for_this_page_already_exists">Segnalibro per questa pagina esiste già</string>
    <string name="can_t_download">Non puoi scaricare</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Ritaglia i bordi simmetricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visualizzazione dell\'autore e del titolo del libro PDF dai meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro">Ottieni Librera PRO — senza pubblicità, e rimuove gli annunci anche da questa app</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Un\'app senza pubblicità che rimuove gli annunci anche da questa app</string>
    <string name="annotation">Annotazione</string>
    <string name="book">Libro</string>
    <string name="information">Informazione</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Evidenziando le lettere iniziali</string>
    <string name="anti_aliasing_level">Livello di anti-aliasing</string>
    <string name="folder_preview">Anteprima della cartella</string>
+   <string name="show_storage_book_covers">Mostra le copertine dell\'archivio aggiunto</string>
    <string name="accent">Accento</string>
    <string name="discarded_books">Libri scartati</string>
    <string name="show_print_edition_page_numbers_epub3">Mostra i numeri di pagina dell\'edizione cartacea (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Guarda</string>
    <string name="librerax_not_installed">LibreraX non è installato. Scaricalo e installalo, poi riapri il libro.</string>
    <string name="remove_library_folder">Rimuovere questa cartella dalla libreria? I file al suo interno non verranno eliminati.</string>
+   <string name="epub_engine">Motore EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView non è disponibile su questo dispositivo.</string>
+   <string name="base_stylesheet">Applica il foglio di stile di base (foliate-js)</string>
+   <string name="pdf_engine">Motore PDF</string>
+   <string name="msg_pdf_engine_unavailable">Questa build non include le librerie PDFium.</string>
 </resources>

@@ -33,12 +33,15 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -147,6 +150,51 @@ public abstract class UIFragment<T> extends Fragment {
      */
     public boolean hasFloatingHeader() {
         return true;
+    }
+
+    private View onGrantPanel;
+
+    /**
+     * The notice a clear install opens on. It offers the two ways there are to bring books in:
+     * letting the app look for them itself, or handing over one folder through the system's
+     * picker.
+     */
+    protected void bindOnGrantPanel(View layoutOnGrant) {
+        onGrantPanel = layoutOnGrant;
+        if (layoutOnGrant == null) {
+            return;
+        }
+        View onPermission = layoutOnGrant.findViewById(R.id.onGrantPermission);
+        if (onPermission != null) {
+            onPermission.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
+        }
+        View onChooseFolder = layoutOnGrant.findViewById(R.id.onGrantChooseFolder);
+        if (onChooseFolder != null) {
+            onChooseFolder.setOnClickListener(v -> MainTabs2.startAddLibraryStorage(getActivity()));
+        }
+        updateOnGrantPanel();
+    }
+
+    /**
+     * Whether this page asks for books at all. A page standing in a dialog has no room to, and
+     * says so by answering false.
+     */
+    protected boolean isOnGrantPanelAllowed() {
+        return true;
+    }
+
+    /**
+     * The notice stands only while there is still nothing the app can read: neither the
+     * permission to go looking for books, nor a folder the user has handed over. Either way in
+     * takes it down, so it is worked out again whenever the page comes back up - the answer
+     * changes while the user is away in the system's own screens.
+     */
+    protected void updateOnGrantPanel() {
+        if (onGrantPanel == null) {
+            return;
+        }
+        Views.visible(onGrantPanel,
+                isOnGrantPanelAllowed() && !Android6.canWrite(getContext()) && !BookCSS.hasStorageAccess());
     }
 
     /**
@@ -463,6 +511,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        updateOnGrantPanel();
         LOG.d("isSecondTime",isSecondTime);
         if (isSecondTime) {
             try {

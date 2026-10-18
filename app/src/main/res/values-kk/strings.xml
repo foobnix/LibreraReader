@@ -62,7 +62,7 @@
    <string name="web">Басты бет</string>
    <string name="beta_version">Бета нұсқасы</string>
    <string name="archive">Мұрағат</string>
-   <string name="rate_pdf_reader1">Пікір қалдырыңыз және Google Play-те бағалаңыз: әрі қарай даму үшін өте маңызды</string>
+   <string name="rate_pdf_reader1">Осы қолданба туралы пікірді Google Play-де қалдырыңыз. Бұл біз үшін өте маңызды</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Пішімделген мәтін (жалған графика)</string>
    <string name="continuous_text">Үздіксіз мәтін (жол үзілімі жоқ)</string>
@@ -241,6 +241,10 @@
    <string name="there_are_no_email_applications_installed_">Электрондық пошта клиенті орнатылмаған</string>
    <string name="file_not_found">Файл табылмады</string>
    <string name="you_need_grant_permission5">Қолданбаға барлық кітаптарыңызды табу және көрсету үшін сіздің рұқсатыңыз қажет.</string>
+   <string name="allow">Рұқсат беру</string>
+   <string name="storage">Жад</string>
+   <string name="add_all_books_with_permission">Барлық кітаптарды қосу, рұқсат қажет.</string>
+   <string name="add_folder_with_books">Кітаптары бар қалтаны қосу.</string>
    <string name="remind_msg">Үзіліс жасау уақыты!</string>
    <string name="bookmark_for_this_page_already_exists">Бұл бетбелгі бұрыннан бар</string>
    <string name="can_t_download">Файлды жүктеу мүмкін емес</string>
@@ -465,7 +469,7 @@
    <string name="crop_borders_symmetrically">Айналдырылған дақыл</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Авторлардың атауын және метадеректерден кітаптың атауын шығарып алу (PDF)</string>
    <string name="meta_tags">Мета тегтері</string>
-   <string name="librera_pro">Librera PRO алыңыз — жарнамасыз, әрі осы қолданбадағы жарнаманы да жояды</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Осы қолданбадағы жарнаманы да алып тастайтын жарнамасыз қолданба</string>
    <string name="annotation">Аннотация</string>
    <string name="book">Кітап</string>
    <string name="information">Файл туралы ақпарат</string>
@@ -665,6 +669,7 @@
    <string name="highlighting_initial_letters">Бастауыш әріптерді белгілеу</string>
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
+   <string name="show_storage_book_covers">Қосылған жад үшін мұқабаларды көрсету</string>
    <string name="accent">Екпін</string>
    <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
@@ -695,4 +700,9 @@
    <string name="watch">Көру</string>
    <string name="librerax_not_installed">LibreraX орнатылмаған. Оны жүктеп алып орнатыңыз, содан кейін кітапты қайта ашыңыз.</string>
    <string name="remove_library_folder">Бұл қалтаны кітапханадан алып тастау керек пе? Ондағы файлдар жойылмайды.</string>
+   <string name="epub_engine">EPUB қозғалтқышы</string>
+   <string name="msg_epub_engine_unavailable">Бұл құрылғыда WebView қолжетімді емес.</string>
+   <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
+   <string name="pdf_engine">PDF қозғалтқышы</string>
+   <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
 </resources>

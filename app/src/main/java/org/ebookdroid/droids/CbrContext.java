@@ -1,9 +1,7 @@
 package org.ebookdroid.droids;
 
-import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CbzCbrExtractor;
-import com.github.junrar.Junrar;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -25,35 +23,7 @@ public class CbrContext extends PdfContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
-
-        if (!cacheFile.isFile()) {
-            LOG.d("Type no cache file");
-            try {
-
-                if (CbzCbrExtractor.isZip(fileName)) {
-                    CacheZipUtils.copyFile(new File(fileName), cacheFile);
-                } else {
-
-                    String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
-
-                    File cbrDir = new File(extractDir);
-                    cbrDir.mkdirs();
-
-                    try {
-                        Junrar.extract(fileName,extractDir);
-                    } catch (OutOfMemoryError e) {
-                        LOG.e(e);
-                    }
-
-                    CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
-
-                    CacheZipUtils.deleteDir(cbrDir);
-                }
-
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+        CbzCbrExtractor.extractCbrToCbz(fileName, cacheFile);
 
         MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
         return muPdfDocument;

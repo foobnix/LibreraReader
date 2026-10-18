@@ -49,5 +49,15 @@ public abstract class AbstractCodecPage implements CodecPage {
         }
     }
 
+    /**
+     * No location rectangles. A fixed-layout page keeps its own rectangles with the mark, and
+     * MuPDF cannot name a place in a reflowable book, so both find their marks another way - see
+     * {@link com.foobnix.model.AppAnnotation}.
+     */
+    @Override
+    public List<android.graphics.RectF> getLocationRects(final String location) {
+        return Collections.emptyList();
+    }
+
     public abstract TextWord[][] getTextImpl();
 }

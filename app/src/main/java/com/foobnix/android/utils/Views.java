@@ -340,11 +340,7 @@ public class Views {
     }
 
     public static void setBackground(View view, Bitmap bitmap) {
-        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            view.setBackgroundDrawable(new BitmapDrawable(bitmap));
-        } else {
-            view.setBackground(new BitmapDrawable(Resources.getSystem(), bitmap));
-        }
+        view.setBackground(new BitmapDrawable(Resources.getSystem(), bitmap));
     }
 
 }

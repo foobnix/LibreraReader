@@ -196,7 +196,7 @@ public class MyPopupMenu {
                 } else if (item.drawable != null) {
                     profileLetter.setVisibility(View.VISIBLE);
                     profileLetter.setText(item.letter);
-                    profileLetter.setBackgroundDrawable(item.drawable);
+                    profileLetter.setBackground(item.drawable);
                     imageView.setVisibility(View.GONE);
                 } else {
                     imageView.setVisibility(View.GONE);

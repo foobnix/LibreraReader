@@ -41,6 +41,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.PorterDuffColorFilter;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -519,9 +520,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         int color = MagicHelper.getTextOrIconColor();
 
-        seekBar.getProgressDrawable().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        seekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 
-        seekBar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        seekBar.getThumb().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 
         onPageFlip1 = findViewById(R.id.autoScroll);
         onPageFlip1.setOnClickListener(new OnClickListener() {

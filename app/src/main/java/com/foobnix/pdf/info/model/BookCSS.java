@@ -12,6 +12,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -54,7 +55,16 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT = CHARIS_SIL;
+    /**
+     * The font a book is laid out in until the reader picks another one.
+     *
+     * One of the names the engines resolve themselves rather than a file in the font folder, so
+     * it needs nothing bundled and nothing downloaded: MuPDF maps it onto its own serif face and
+     * a WebView onto the system's. {@link #getTypeFaceForFont(String)} answers
+     * {@link android.graphics.Typeface#SERIF} for it, so the settings panel previews it properly
+     * too - which the name of a font with no file behind it could not.
+     */
+    public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
@@ -244,6 +254,55 @@ public class BookCSS {
 
     }
 
+    /**
+     * Whether the user has reached their books through the system's folder picker, either as a
+     * storage in the folders screen or as a library folder. Having done so, they are not asked
+     * again for the permission to go looking for books themselves.
+     */
+    public static boolean hasStorageAccess() {
+        try {
+            for (String path : StringDB.asList(get().pathSAF)) {
+                if (TxtUtils.isNotEmpty(path)) {
+                    return true;
+                }
+            }
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (ExtUtils.isExteralSD(path)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
+
+    /**
+     * Drops the storage roots the library falls back to when nothing else has been set. They are
+     * only a guess at where the books are, and without the permission to go looking the scan
+     * cannot read a single one of them. Once the user has handed over a folder of their own,
+     * leaving the roots in the list would show them folders that never fill.
+     */
+    public static void removeUnreadableStorageRoots(Context c) {
+        try {
+            List<String> roots = ExtUtils.getAllExternalStorages(c);
+            String external = Environment.getExternalStorageDirectory().getPath();
+            if (!roots.contains(external)) {
+                roots.add(external);
+            }
+            List<String> kept = new ArrayList<>();
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (TxtUtils.isNotEmpty(path) && !roots.contains(path)) {
+                    kept.add(path);
+                }
+            }
+            get().searchPathsJson = JsonDB.set(kept);
+            LOG.d("removeUnreadableStorageRoots", get().searchPathsJson);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static List<String> filtered(List<String> objects) {
         if (objects == null || objects.isEmpty()) {
             return Collections.emptyList();
@@ -251,7 +310,12 @@ public class BookCSS {
 
         List<String> res = new ArrayList<>();
         for (String item : objects) {
-            if (TxtUtils.isNotEmpty(item) && new File(item).isDirectory()) {
+            if (TxtUtils.isEmpty(item)) {
+                continue;
+            }
+            // A folder added through the system's folder picker is named by a document uri, which
+            // no File can be asked about; whether it still answers is for the scan to find out.
+            if (ExtUtils.isExteralSD(item) || new File(item).isDirectory()) {
                 res.add(item);
             }
         }
@@ -494,7 +558,7 @@ public class BookCSS {
                 return filtered;
             }
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private Collection<String> getAllFontsFromFolder(String path) {
@@ -534,7 +598,7 @@ public class BookCSS {
         } catch (Exception e) {
             LOG.e(e);
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public boolean isUrlFont(String name) {
@@ -587,24 +651,43 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+        return generatedCss(path, true);
+    }
+
+    /**
+     * The stylesheet handed to a rendering engine: the base stylesheet asset
+     * ({@link #userStyleCss}, or the user's edited copy of it) followed by the rules generated from
+     * the reading settings - margins, fonts, line height, indent, alignment, colours, custom CSS.
+     *
+     * @param includeBaseStylesheet whether to prepend the base asset. MuPDF needs it: it ships no
+     *                              UA stylesheet of its own, so that asset is what gives every
+     *                              element a <code>display</code>. A browser already has all of
+     *                              that, and the asset's <code>display:block !important</code>
+     *                              resets fight its layout, so the foliate-js engine leaves it out
+     *                              unless {@link com.foobnix.model.AppState#epubFoliateBaseCss}
+     *                              asks for it.
+     */
+    public String generatedCss(String path, boolean includeBaseStylesheet) {
 
         lineHeight12 = Math.max(10, lineHeight12);
 
         StringBuilder builder = new StringBuilder();
 
-        File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
-        if (!cssFile.exists()) {
-            try {
-                String css = IO.readStringFromAsset("app-Librera.css");
-                LOG.d("BookCSS-from asset");
+        if (includeBaseStylesheet) {
+            File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
+            if (!cssFile.exists()) {
+                try {
+                    String css = IO.readStringFromAsset("app-Librera.css");
+                    LOG.d("BookCSS-from asset");
+                    builder.append(css);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            } else {
+                String css = IO.readString(cssFile);
+                LOG.d("BookCSS-from file", cssFile);
                 builder.append(css);
-            } catch (Exception e) {
-                LOG.e(e);
             }
-        } else {
-            String css = IO.readString(cssFile);
-            LOG.d("BookCSS-from file", cssFile);
-            builder.append(css);
         }
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
