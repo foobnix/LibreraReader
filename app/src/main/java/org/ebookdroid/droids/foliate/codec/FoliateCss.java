@@ -28,6 +28,8 @@ import java.util.regex.Pattern;
  * <li><b>{@code src:url('/abs/path.ttf')}</b> is rewritten to {@link FoliateServer}'s font
  *     endpoint. A scheme-less absolute path resolves against the page, not the filesystem, so the
  *     user's fonts would silently not load.</li>
+ * <li><b>{@code font-family:'Charis SIL'}</b> and the other fonts built into MuPDF get a generic
+ *     family after them, as the WebView has no font by that name (see {@link #BUILT_IN_FONT}).</li>
  * </ul>
  *
  * The result is handed to foliate's {@code renderer.setStyles([before, after])}: {@link #before()}
@@ -44,6 +46,15 @@ public class FoliateCss {
 
     /** The exact declaration BookCSS emits; see the class comment. */
     private static final String FONT_SIZE_HACK = "font-size:medium !important;";
+
+    /**
+     * `font-family:'Charis SIL'` and the other fonts MuPDF carries inside itself. A browser has no
+     * font by those names; Android aliases Times New Roman, Arial and Courier to its own serif,
+     * sans and mono, but anything else - Charis SIL - falls back to the default sans-serif.
+     */
+    private static final Pattern BUILT_IN_FONT = Pattern.compile(
+            "font-family:'(" + Pattern.quote(BookCSS.TIMES_NEW_ROMAN) + "|" + Pattern.quote(BookCSS.ARIAL)
+                    + "|" + Pattern.quote(BookCSS.COURIER) + "|" + Pattern.quote(BookCSS.CHARIS_SIL) + ")'");
 
     /**
      * The stylesheet prepended to every section: what the base stylesheet asset would have given a
@@ -63,6 +74,10 @@ public class FoliateCss {
         css.append("t{font-style:italic;}");
         css.append("pn{font-size:0.8em;font-style:italic;}");
         css.append("x-small{font-size:0.6em;}");
+
+        // Headings centred unless the book says otherwise, as the base stylesheet does for MuPDF;
+        // a browser's own start alignment would let them inherit the body's justify instead
+        css.append("h1,h2,h3,h4,h5,h6{text-align:center;}");
 
         // FB2, for a book converted to epub
         css.append("section,title,subtitle,epigraph,text-author,date,poem,stanza,v,empty-line");
@@ -103,6 +118,12 @@ public class FoliateCss {
         // An image bigger than the column is clipped away by the pagination rather than shrunk
         css.append("img,svg,image{max-width:100% !important;max-height:100% !important;}");
 
+        // The paragraph indent is for paragraphs. text-indent is inherited, so without these a
+        // heading, a block image and an FB2 title would all be pushed in by it - the base
+        // stylesheet stops that for MuPDF with the same !important rules.
+        css.append("h1,h2,h3,h4,h5,h6,img,svg{text-indent:0 !important;}");
+        css.append("title>p,subtitle{text-align:center !important;text-indent:0 !important;}");
+
         return css.toString();
     }
 
@@ -124,7 +145,21 @@ public class FoliateCss {
         }
         css = css.replace(FONT_SIZE_HACK, "");
         css = PAGE_RULE.matcher(css).replaceAll("");
-        return rewriteFontUrls(css) + overrides();
+        return withGenericFallback(rewriteFontUrls(css)) + overrides();
+    }
+
+    /** Gives each of MuPDF's built-in font names the generic family that looks most like it. */
+    private static String withGenericFallback(final String css) {
+        final Matcher matcher = BUILT_IN_FONT.matcher(css);
+        final StringBuffer out = new StringBuffer(css.length());
+        while (matcher.find()) {
+            final String name = matcher.group(1);
+            final String generic = BookCSS.ARIAL.equals(name) ? "sans-serif"
+                    : BookCSS.COURIER.equals(name) ? "monospace" : "serif";
+            matcher.appendReplacement(out, Matcher.quoteReplacement(matcher.group() + "," + generic));
+        }
+        matcher.appendTail(out);
+        return out.toString();
     }
 
     /** Sends every `src:url('/abs/path.ttf')` through {@link FoliateServer}'s font endpoint. */
