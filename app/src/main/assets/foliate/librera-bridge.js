@@ -467,7 +467,10 @@ const applyStyles = () => {
     const dpr = window.devicePixelRatio || 1
     // The page is captured at device pixels while CSS lays out in CSS pixels, so the size MuPDF
     // would have been laid out with has to be divided by the ratio between them.
-    const root = ':root{font-size:' + (config.fontSizePx / dpr) + 'px;}'
+    // !important, as the root size is the reader's: calibre books put a class on <html>
+    // (`.calibre{font-size:1em}`), and with the same specificity and coming later it would reset
+    // the root to the WebView's 16px default, so the font size setting did nothing.
+    const root = ':root{font-size:' + (config.fontSizePx / dpr) + 'px !important;}'
     view.renderer.setStyles([root + (config.before || ''), config.after || ''])
 }
 

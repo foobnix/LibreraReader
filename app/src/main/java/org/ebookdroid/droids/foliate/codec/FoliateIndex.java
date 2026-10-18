@@ -27,6 +27,12 @@ class FoliateIndex {
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
+    /**
+     * Bumped when the bridge lays a page out differently for the same settings, which the key
+     * cannot see otherwise. 2: the root font size became !important.
+     */
+    private static final int FORMAT = 2;
+
     /** Pages in each section, in spine order. At least 1 each, so no section is unreachable. */
     private final int[] sectionPages;
 
@@ -118,7 +124,7 @@ class FoliateIndex {
         } catch (Throwable e) {
             LOG.e(e);
         }
-        return bookPath + "|" + length + "|" + modified + "|" + width + "x" + height
+        return FORMAT + "|" + bookPath + "|" + length + "|" + modified + "|" + width + "x" + height
                 + "|" + fontSizePx + "|" + css.hashCode();
     }
 
