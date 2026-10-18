@@ -1,0 +1,6 @@
+10.0.0
+* Reflowable books now render in a WebView with foliate-js, and PDFs with PDFium.
+* Icons are shown in the SAF folder browser.
+* SAF folders can be added to the library.
+* Underline and highlight in EPUB.
+* Open a book in LibreraX, our new modern reader for Android and iOS.
