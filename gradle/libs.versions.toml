@@ -94,12 +94,12 @@ glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.1
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
 mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
 
-google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.1" }
-google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20260916-2.0.0" }
-google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.2.0" }
+google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.0" }
+google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20260712-2.0.0" }
+google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.1.1" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version = "1.39.0" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.5.0" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "22.0.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
 
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
