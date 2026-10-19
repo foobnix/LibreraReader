@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Приложението се нуждае от вашето разрешение, за да намери и покаже всички ваши книги.</string>
    <string name="allow">Разреши</string>
    <string name="storage">Хранилище</string>
-   <string name="add_all_books_with_permission">Добавяне на всички книги, изисква разрешение.</string>
-   <string name="add_folder_with_books">Добавяне на папка с книги.</string>
+   <string name="add_all_books_with_permission">Моля, позволете на приложението да сканира папката „Изтегляния“, за да добавя автоматично книги към библиотеката ви.</string>
    <string name="save_settings_in_librera_folder">Запазване на настройките и напредъка в четенето в папката Librera.</string>
    <string name="regrant_folder_title">Разрешете отново достъп до папката</string>
    <string name="regrant_folder_msg">Приложението вече не може да чете %1$s: Android премахва достъпа до папките при преинсталиране на приложението. Изберете папката отново на следващия екран.</string>

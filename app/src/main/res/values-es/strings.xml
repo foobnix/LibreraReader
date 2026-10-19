@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">La aplicación necesita tu permiso para encontrar y mostrar todos tus libros.</string>
    <string name="allow">Permitir</string>
    <string name="storage">Almacenamiento</string>
-   <string name="add_all_books_with_permission">Agregar todos los libros, requiere permiso.</string>
-   <string name="add_folder_with_books">Agregar una carpeta con libros.</string>
+   <string name="add_all_books_with_permission">Permite que la aplicación examine tu carpeta de Descargas para añadir libros automáticamente a tu biblioteca, por favor.</string>
    <string name="save_settings_in_librera_folder">Guardar la configuración y el progreso de lectura en la carpeta Librera.</string>
    <string name="regrant_folder_title">Permitir de nuevo el acceso a la carpeta</string>
    <string name="regrant_folder_msg">La aplicación ya no puede leer %1$s: Android retira el acceso a las carpetas al reinstalar la aplicación. Vuelve a elegir la carpeta en la siguiente pantalla.</string>

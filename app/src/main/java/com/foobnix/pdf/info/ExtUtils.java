@@ -455,6 +455,70 @@ public class ExtUtils {
     private static final String EXTERNAL_STORAGE_DOCUMENTS = "com.android.externalstorage.documents";
 
     /**
+     * The file a document of the device's own storage is, when the app may read it by its path:
+     * a book kept in the history or the favourites while the app had only the folders handed
+     * over, read again once it has the permission - when the folders' grants are gone with a
+     * reinstall, the document uri can no longer be read at all.
+     *
+     * @return the path when that file is there and readable, otherwise null
+     */
+    /**
+     * The file a book entry stands for, whichever way it was kept: a document of the device's
+     * own storage by the path it has there, anything else as it is. The history and the
+     * favourites can hold one book both ways - kept with the folders handed over, and again with
+     * the permission - and this tells the two apart from two books.
+     */
+    public static String getBookKey(String path) {
+        if (!isExteralSD(path)) {
+            return path;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return path;
+            }
+            String id = path.contains("/document/") ? DocumentsContract.getDocumentId(uri)
+                                                    : DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return path;
+            }
+            String volume = id.substring(0, colon);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            return new File(root, id.substring(colon + 1)).getPath();
+        } catch (Exception e) {
+            return path;
+        }
+    }
+
+    public static String getSafDocumentPath(Context c, String path) {
+        if (c == null || !isExteralSD(path) || !Android6.canWrite(c)) {
+            return null;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return null;
+            }
+            String id = DocumentsContract.isDocumentUri(c, uri) ? DocumentsContract.getDocumentId(uri)
+                                                               : DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return null;
+            }
+            String volume = id.substring(0, colon);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            File file = new File(root, id.substring(colon + 1));
+            return file.canRead() ? file.getPath() : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
      * A book known by its path - from the history kept while the app had the permission, or from
      * another install - reached through a folder handed over in the system's picker instead. The
      * device storage provider names a document by its path, so a file inside a granted folder is
@@ -740,6 +804,12 @@ public class ExtUtils {
     public static String getFileName(String name) {
         if (TxtUtils.isEmpty(name)) {
             return "";
+        }
+        // A document uri carries its path encoded in one segment ("primary%3ADownload%2Fa.epub"):
+        // its name is the last part of that path, the same name the book has as a file - which is
+        // what the reading progress and the history are filed under.
+        if (isExteralSD(name)) {
+            name = Uri.decode(name);
         }
         if (!name.contains("/")) {
             return name;

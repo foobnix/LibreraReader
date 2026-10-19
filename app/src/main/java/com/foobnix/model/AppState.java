@@ -405,7 +405,10 @@ public class AppState {
      * reads its settings, so the stored value cannot be trusted to name an engine that is there.
      */
     public int getPdfEngine() {
-        return Engines.IS_MUPDF ? pdfEngine : PDF_ENGINE_PDFIUM;
+        if (!Engines.IS_MUPDF) {
+            return PDF_ENGINE_PDFIUM;
+        }
+        return Engines.IS_ENGINE_CHOICE ? pdfEngine : PDF_ENGINE_MUPDF;
     }
 
     /**
@@ -413,7 +416,10 @@ public class AppState {
      * See {@link #getPdfEngine()}.
      */
     public int getEpubEngine() {
-        return Engines.IS_MUPDF ? epubEngine : EPUB_ENGINE_FOLIATE;
+        if (!Engines.IS_MUPDF) {
+            return EPUB_ENGINE_FOLIATE;
+        }
+        return Engines.IS_ENGINE_CHOICE ? epubEngine : EPUB_ENGINE_MUPDF;
     }
     // n,
     // 25 - 25%

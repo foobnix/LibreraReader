@@ -4882,7 +4882,7 @@ public class DragingDialogs {
                 final CheckBox isFoliateBaseCss = inflate.findViewById(R.id.isFoliateBaseCss);
                 isFoliateBaseCss.setVisibility(
                         ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
-                                && AppState.get().epubEngine == AppState.EPUB_ENGINE_FOLIATE
+                                && AppState.get().getEpubEngine() == AppState.EPUB_ENGINE_FOLIATE
                                 ? View.VISIBLE : View.GONE);
                 isFoliateBaseCss.setChecked(AppState.get().epubFoliateBaseCss);
                 isFoliateBaseCss.setOnCheckedChangeListener(

@@ -244,8 +244,7 @@
    <string name="you_need_grant_permission5">The app needs your permission to find and display all your books.</string>
    <string name="allow">Allow</string>
    <string name="storage">Storage</string>
-   <string name="add_all_books_with_permission">Add all books, requires permission.</string>
-   <string name="add_folder_with_books">Add a folder with books.</string>
+   <string name="add_all_books_with_permission">Please allow the app to scan your Downloads folder to automatically add books to your library.</string>
    <string name="save_settings_in_librera_folder">Keep settings and reading progress in the Librera folder.</string>
    <string name="regrant_folder_title">Allow access to the folder again</string>
    <string name="regrant_folder_msg">The app can no longer read %1$s: Android forgets the folders you handed over when the app is reinstalled. Choose the folder again on the next screen.</string>

@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">該應用程式需要您的許可才能找到和顯示您的所有書籍。</string>
    <string name="allow">允許</string>
    <string name="storage">儲存空間</string>
-   <string name="add_all_books_with_permission">新增所有書籍，需要權限。</string>
-   <string name="add_folder_with_books">新增含書籍的資料夾。</string>
+   <string name="add_all_books_with_permission">請允許應用程式掃描「下載」資料夾，以便自動將書籍加入您的書庫。</string>
    <string name="save_settings_in_librera_folder">將設定和閱讀進度儲存在 Librera 資料夾中。</string>
    <string name="regrant_folder_title">再次允許存取資料夾</string>
    <string name="regrant_folder_msg">應用程式無法再讀取 %1$s：重新安裝應用程式後，Android 會移除資料夾存取權限。請在下一個畫面中重新選擇該資料夾。</string>

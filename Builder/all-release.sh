@@ -70,13 +70,15 @@ if [ -z "$VERSION_BASE" ] || [ -z "$VERSION_INDEX" ]; then
   exit 1
 fi
 VERSION=$VERSION_BASE.$VERSION_INDEX
-# The version's folder in every release destination: librera_builds_dir, and librera_release_dir
-# when that one is set (the folder copyApks copies the APKs, bundles and mappings into as well)
-RELEASE_DIRS=("$BUILDS_DIR/$VERSION")
-RELEASE_DIR2=$(sed -n 's/^librera_release_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
-if [ -n "$RELEASE_DIR2" ]; then
-  RELEASE_DIRS+=("$RELEASE_DIR2/$VERSION")
+# The version's folder in librera_release_dir, where copyApks put the APKs, bundles and mappings.
+# Never librera_builds_dir or librera_beta_dir: those are the Testing folders (Google Drive,
+# Dropbox) the testers read, and a release does not go into them.
+RELEASE_DIR=$(sed -n 's/^librera_release_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
+if [ -z "$RELEASE_DIR" ]; then
+  echo "ERROR: librera_release_dir is not set in ~/.gradle/gradle.properties"
+  exit 1
 fi
+RELEASE_DIRS=("$RELEASE_DIR/$VERSION")
 # llvm-objcopy of the NDK: librera_ndk_dir in the global ~/.gradle/gradle.properties
 NDK_DIR=$(sed -n 's/^librera_ndk_dir=//p' "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" | tail -n 1)
 if [ -z "$NDK_DIR" ]; then

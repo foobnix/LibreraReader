@@ -952,7 +952,10 @@ import java.util.Map;
                 return result;
             }
 
-            if (ExtUtils.isExteralSD(getInitPath())) {
+            // By the folder being listed, not the one the browser started in: a chooser opened on a
+            // storage folder and then walked to a folder on the device would otherwise read that
+            // path as a document uri, find no children, and show an empty folder
+            if (ExtUtils.isExteralSD(AppState.get().displayPath)) {
 
                 List<FileMeta> items = new ArrayList<FileMeta>();
 

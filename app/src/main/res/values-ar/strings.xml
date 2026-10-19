@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">يحتاج التطبيق إلى إذنك للعثور على جميع كتبك وعرضها.</string>
    <string name="allow">السماح</string>
    <string name="storage">التخزين</string>
-   <string name="add_all_books_with_permission">إضافة كل الكتب، يتطلب إذنًا.</string>
-   <string name="add_folder_with_books">إضافة مجلد به كتب.</string>
+   <string name="add_all_books_with_permission">يُرجى السماح للتطبيق بفحص مجلد التنزيلات لإضافة الكتب إلى مكتبتك تلقائيًا.</string>
    <string name="save_settings_in_librera_folder">احفظ الإعدادات وتقدّم القراءة في مجلد Librera.</string>
    <string name="regrant_folder_title">اسمح بالوصول إلى المجلد مرة أخرى</string>
    <string name="regrant_folder_msg">لم يعد بإمكان التطبيق قراءة %1$s: يزيل Android صلاحية الوصول إلى المجلدات عند إعادة تثبيت التطبيق. اختر المجلد مرة أخرى في الشاشة التالية.</string>

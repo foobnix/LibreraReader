@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">L\'application a besoin de votre autorisation pour trouver et afficher tous vos livres.</string>
    <string name="allow">Autoriser</string>
    <string name="storage">Stockage</string>
-   <string name="add_all_books_with_permission">Ajouter tous les livres, autorisation requise.</string>
-   <string name="add_folder_with_books">Ajouter un dossier avec des livres.</string>
+   <string name="add_all_books_with_permission">Veuillez autoriser l\'application à analyser votre dossier Téléchargements pour ajouter automatiquement des livres à votre bibliothèque.</string>
    <string name="save_settings_in_librera_folder">Enregistrer les paramètres et la progression de lecture dans le dossier Librera.</string>
    <string name="regrant_folder_title">Autoriser à nouveau l\'accès au dossier</string>
    <string name="regrant_folder_msg">L\'application ne peut plus lire %1$s : Android retire l\'accès aux dossiers lorsque l\'application est réinstallée. Choisissez à nouveau le dossier sur l\'écran suivant.</string>

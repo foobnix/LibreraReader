@@ -158,9 +158,9 @@ public abstract class UIFragment<T> extends Fragment {
     private View onGrantPanel;
 
     /**
-     * The notice a clear install opens on. It offers the two ways there are to bring books in:
-     * letting the app look for them itself, or handing over one folder through the system's
-     * picker.
+     * The notice a clear install opens on: it asks for the permission to go looking for books.
+     * A folder of books handed over through the system's picker (+ Storage in the menu) is the
+     * other way in; with one, the notice asks for the Librera folder instead.
      */
     protected void bindOnGrantPanel(View layoutOnGrant) {
         onGrantPanel = layoutOnGrant;
@@ -170,10 +170,6 @@ public abstract class UIFragment<T> extends Fragment {
         View onPermission = layoutOnGrant.findViewById(R.id.onGrantPermission);
         if (onPermission != null) {
             onPermission.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
-        }
-        View onChooseFolder = layoutOnGrant.findViewById(R.id.onGrantChooseFolder);
-        if (onChooseFolder != null) {
-            onChooseFolder.setOnClickListener(v -> MainTabs2.startAddLibraryStorage(getActivity()));
         }
         View onLibrera = layoutOnGrant.findViewById(R.id.onGrantLibrera);
         if (onLibrera != null) {
@@ -191,13 +187,10 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     /**
-     * The notice stands while the library has no folder to look in: on a clean install without
-     * the permission, and whenever the user has taken every folder out. The way in by permission
-     * is offered only while the app does not have it.
-     *
-     * Without the permission, once the books come from a folder handed over in the picker, it
-     * asks for the Librera folder instead, and goes on asking until it is handed over: without it
-     * the settings and reading progress live only in the app's own storage.
+     * Without the permission, the notice asks for it while no folder of books has been handed
+     * over through the picker. Once one has, that offer goes, and the notice asks for the Librera
+     * folder instead - for as long as the settings and reading progress are only in the app's own
+     * storage, where they would go with the app. With the permission there is nothing to ask.
      *
      * It is worked out again whenever the page comes back up - the answer changes while the user
      * is away in the system's own screens - and whenever the folders list changes (see
@@ -207,20 +200,18 @@ public abstract class UIFragment<T> extends Fragment {
         if (onGrantPanel == null) {
             return;
         }
-        List<String> folders = JsonDB.get(BookCSS.get().searchPathsJson);
-        boolean noFolders = folders.isEmpty();
         boolean canWrite = Android6.canWrite(getContext());
         boolean safFolders = false;
-        for (String folder : folders) {
+        for (String folder : JsonDB.get(BookCSS.get().searchPathsJson)) {
             safFolders |= ExtUtils.isExteralSD(folder);
         }
-        boolean needLibrera = !canWrite && safFolders && !LibreraSafSync.isActive(getContext());
+        boolean askPermission = !canWrite && !safFolders;
+        boolean askLibrera = !canWrite && safFolders && !LibreraSafSync.isActive(getContext())
+                && LibreraSafSync.isProfileHidden(getContext());
 
-        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (noFolders || needLibrera));
-        Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), noFolders && !canWrite);
-        Views.visible(onGrantPanel.findViewById(R.id.onGrantDivider), noFolders && !canWrite);
-        Views.visible(onGrantPanel.findViewById(R.id.onGrantChooseFolder), noFolders);
-        Views.visible(onGrantPanel.findViewById(R.id.onGrantLibrera), needLibrera);
+        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (askPermission || askLibrera));
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), askPermission);
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantLibrera), askLibrera);
     }
 
     /**

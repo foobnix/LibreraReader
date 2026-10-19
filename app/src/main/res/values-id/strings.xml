@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Aplikasi ini memerlukan izin Anda untuk menemukan dan menampilkan semua buku Anda.</string>
    <string name="allow">Izinkan</string>
    <string name="storage">Penyimpanan</string>
-   <string name="add_all_books_with_permission">Tambahkan semua buku, perlu izin.</string>
-   <string name="add_folder_with_books">Tambahkan folder berisi buku.</string>
+   <string name="add_all_books_with_permission">Harap izinkan aplikasi memindai folder Unduhan Anda untuk menambahkan buku ke perpustakaan secara otomatis.</string>
    <string name="save_settings_in_librera_folder">Simpan pengaturan dan kemajuan membaca di folder Librera.</string>
    <string name="regrant_folder_title">Izinkan lagi akses ke folder</string>
    <string name="regrant_folder_msg">Aplikasi tidak bisa lagi membaca %1$s: Android menghapus akses folder saat aplikasi dipasang ulang. Pilih folder itu lagi di layar berikutnya.</string>

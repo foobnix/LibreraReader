@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.foobnix.LibreraBuildConfig;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.DaoMaster;
@@ -228,7 +229,13 @@ public class AppDB {
             return;
         }
 
-        if (!new File(path).isFile()) {
+        // A book on added storage is read from a copy that goes with the next book opened, and
+        // with the app: the history names the document itself
+        String saf = CacheZipUtils.getSafUriOfCopy(path);
+        if (saf != null) {
+            path = saf;
+        }
+        if (!ExtUtils.isExteralSD(path) && !new File(path).isFile()) {
             LOG.d("Can't add to recent, it's not a file", path);
             return;
         }

@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Applicatio permissionem tuam requirit ut omnes libros tuos inveniat et ostentet.</string>
    <string name="allow">Permittere</string>
    <string name="storage">Repositorium</string>
-   <string name="add_all_books_with_permission">Omnes libros addere, licentia requiritur.</string>
-   <string name="add_folder_with_books">Plicam cum libris addere.</string>
+   <string name="add_all_books_with_permission">Quaeso, sine applicationem scrutari tabellarium Depromptorum, ut libri in bibliothecam tuam sponte addantur.</string>
    <string name="save_settings_in_librera_folder">Optiones et progressum legendi in folliculo Librera serva.</string>
    <string name="regrant_folder_title">Accessum ad folliculum iterum permitte</string>
    <string name="regrant_folder_msg">Applicatio %1$s iam legere non potest: Android accessum ad folliculos removet cum applicatio iterum instituitur. Folliculum iterum in proximo scrinio elige.</string>

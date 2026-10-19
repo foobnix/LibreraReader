@@ -83,6 +83,7 @@ import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.LibreraSafSync;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.Android6;
@@ -989,10 +990,10 @@ public class PrefFragment2 extends UIFragment {
         asButton(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
-        // A build without MuPDF has one engine for each: there is nothing to pick between, and
-        // AppState.getPdfEngine()/getEpubEngine() answer with it whatever these settings hold.
-        Views.visible(inflate.findViewById(R.id.pdfEngineRow), Engines.IS_MUPDF);
-        Views.visible(inflate.findViewById(R.id.epubEngineRow), Engines.IS_MUPDF);
+        // Only the fdroid flavour has engines to pick between; every other build has one for
+        // each, and AppState.getPdfEngine()/getEpubEngine() answer with it whatever these hold.
+        Views.visible(inflate.findViewById(R.id.pdfEngineRow), Engines.IS_ENGINE_CHOICE);
+        Views.visible(inflate.findViewById(R.id.epubEngineRow), Engines.IS_ENGINE_CHOICE);
 
         // Which engine renders a PDF. The choice is read when a document is opened, so the books
         // and the covers already on screen keep the engine they were opened with: the cover cache
@@ -1922,8 +1923,15 @@ public class PrefFragment2 extends UIFragment {
         // folders
 
         final TextView rootFolder = inflate.findViewById(R.id.rootFolder);
-        asButton(rootFolder, TxtUtils.smallPathFormat(AppSP.get().getRootPath(getActivity())));
-        rootFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder(getActivity(),
+        asButton(rootFolder, TxtUtils.smallPathFormat(LibreraSafSync.settingsFolder(getActivity())));
+        rootFolder.setOnClickListener(v -> {
+            // Without the permission the app's own folder list can reach no folder of the user's:
+            // the settings folder is handed over through the system's picker instead
+            if (!Android6.canWrite(getActivity())) {
+                LibreraSafSync.startPick(getActivity());
+                return;
+            }
+            ChooserDialogFragment.chooseFolder(getActivity(),
                                                                         AppSP.get().getRootPath(getActivity()))
                                                                 .setOnSelectListener(
                                                                         new ResultResponse2<String, Dialog>() {
@@ -1946,7 +1954,8 @@ public class PrefFragment2 extends UIFragment {
                                                                                 dialog.dismiss();
                                                                                 return false;
                                                                             }
-                                                                        }));
+                                                                        });
+        });
 
         final TextView fontFolder = inflate.findViewById(R.id.fontFolder);
         asButton(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));

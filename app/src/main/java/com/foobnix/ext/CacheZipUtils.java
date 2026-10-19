@@ -7,6 +7,7 @@ import android.os.Environment;
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
@@ -122,12 +123,15 @@ public class CacheZipUtils {
 
             keepOnlySafBook(dir);
 
-            if (dest.isFile() && dest.length() > 0) {
-                return dest;
-            }
-
             if (!dir.isDirectory() && !dir.mkdirs()) {
                 return null;
+            }
+            // Which document the copy is of, so the history can name the book rather than the
+            // copy: the copy goes when another book is opened, and with the app
+            IO.writeString(new File(dir, SAF_URI_FILE), uri);
+
+            if (dest.isFile() && dest.length() > 0) {
+                return dest;
             }
 
             if (!copySafTo(c, uri, dest)) {
@@ -222,6 +226,26 @@ public class CacheZipUtils {
         }
         part.delete();
         return false;
+    }
+
+    private static final String SAF_URI_FILE = ".uri";
+
+    /** The document a copy made by {@link #getSafBookCopy} is of, or null when it is not known. */
+    public static String getSafUriOfCopy(String path) {
+        if (!isSafBookCopy(path)) {
+            return null;
+        }
+        try {
+            File file = new File(new File(path).getParentFile(), SAF_URI_FILE);
+            if (!file.isFile()) {
+                return null;
+            }
+            String uri = IO.readString(file).trim();
+            return TxtUtils.isEmpty(uri) ? null : uri;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     public static boolean isSafBookCopy(String path) {

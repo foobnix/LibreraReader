@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Az alkalmazásnak szüksége van az engedélyedre az összes könyved megkereséséhez és megjelenítéséhez.</string>
    <string name="allow">Engedélyezés</string>
    <string name="storage">Tároló</string>
-   <string name="add_all_books_with_permission">Minden könyv hozzáadása, engedély szükséges.</string>
-   <string name="add_folder_with_books">Könyveket tartalmazó mappa hozzáadása.</string>
+   <string name="add_all_books_with_permission">Kérjük, engedélyezze, hogy az alkalmazás átvizsgálja a Letöltések mappát, és automatikusan hozzáadja a könyveket a könyvtárához.</string>
    <string name="save_settings_in_librera_folder">Beállítások és olvasási előrehaladás mentése a Librera mappába.</string>
    <string name="regrant_folder_title">Mappa-hozzáférés ismételt engedélyezése</string>
    <string name="regrant_folder_msg">Az alkalmazás már nem tudja olvasni ezt: %1$s. Az Android az alkalmazás újratelepítésekor visszavonja a mappák elérését. A következő képernyőn válassza ki újra a mappát.</string>

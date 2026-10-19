@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">S\'aplicatzione tenet bisòngiu de su permissu tuo pro atzapare e ammustrare totu sos libros tuos.</string>
    <string name="allow">Permite</string>
    <string name="storage">Archiviatzione</string>
-   <string name="add_all_books_with_permission">Annanghe totu sos libros, tenet bisòngiu de permissu.</string>
-   <string name="add_folder_with_books">Annanghe una cartella cun libros.</string>
+   <string name="add_all_books_with_permission">Pro praghere, permite a s\'aplicatzione de esaminare sa cartella de is Iscarrigamentos pro annànghere sos libros a sa biblioteca tua in manera automàtica.</string>
    <string name="save_settings_in_librera_folder">Sarva sas impostatziones e su progressu de letura in sa cartella Librera.</string>
    <string name="regrant_folder_title">Permite torra s\'atzessu a sa cartella</string>
    <string name="regrant_folder_msg">S\'aplicatzione no podet prus lèghere %1$s: Android bogat s\'atzessu a sas cartellas cando s\'aplicatzione benit torrada a installare. Torra a seberare sa cartella in s\'ischermu imbeniente.</string>

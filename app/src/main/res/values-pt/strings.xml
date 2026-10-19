@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">O aplicativo precisa da sua permissão para encontrar e exibir todos os seus livros.</string>
    <string name="allow">Permitir</string>
    <string name="storage">Armazenamento</string>
-   <string name="add_all_books_with_permission">Adicionar todos os livros, requer permissão.</string>
-   <string name="add_folder_with_books">Adicionar uma pasta com livros.</string>
+   <string name="add_all_books_with_permission">Permita que o app examine sua pasta de Downloads para adicionar livros automaticamente à sua biblioteca.</string>
    <string name="save_settings_in_librera_folder">Salvar as configurações e o progresso de leitura na pasta Librera.</string>
    <string name="regrant_folder_title">Permitir novamente o acesso à pasta</string>
    <string name="regrant_folder_msg">O aplicativo não consegue mais ler %1$s: o Android remove o acesso às pastas quando o aplicativo é reinstalado. Escolha a pasta novamente na próxima tela.</string>

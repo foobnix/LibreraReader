@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7451
-    FDroidVersionNumber = "10.0.1"
+    FDroidCodeNumber = 7455
+    FDroidVersionNumber = "10.0.2"
 }
 
 
@@ -506,16 +506,17 @@ tasks.register("copyApks") {
             delete fileTree("$betaDir/$betaFolder").include("${own}.apk", "${own}.aab")
         }
 
-        // Second destination of the releases, outside the cloud folders: librera_release_dir in
-        // the global ~/.gradle/gradle.properties. Unset, a release only goes to buildsDir.
+        // Where the releases go: librera_release_dir in the global ~/.gradle/gradle.properties,
+        // and only there. buildsDir and librera_beta_dir are the Testing folders the testers
+        // read (Google Drive, Dropbox); a release never goes into them.
         def releaseDir = project.hasProperty("release") ? project.findProperty("librera_release_dir") : null
+        if (project.hasProperty("release") && !releaseDir) {
+            throw new GradleException("librera_release_dir is not set in ~/.gradle/gradle.properties")
+        }
 
         // A version's own folder is emptied only when a release is about to be copied into it
         if (project.hasProperty("release")) {
-            delete fileTree("$buildsDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
-            if (releaseDir) {
-                delete fileTree("$releaseDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
-            }
+            delete fileTree("$releaseDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
         }
 
         def destinations = []
@@ -526,10 +527,7 @@ tasks.register("copyApks") {
             }
         }
         if (project.hasProperty("release")) {
-            destinations.add("$buildsDir/$versionNumber")
-            if (releaseDir) {
-                destinations.add("$releaseDir/$versionNumber")
-            }
+            destinations.add("$releaseDir/$versionNumber")
         }
 
         // The builds the GitHub release carries, gathered under the version's own folder in a

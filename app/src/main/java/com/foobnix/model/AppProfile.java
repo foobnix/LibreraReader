@@ -118,14 +118,17 @@ public class AppProfile {
             return;
         }
         profile = getCurrent();
-        // the profile kept in a Librera folder handed over through the picker is brought in first
+        // the profile kept in a Librera folder handed over through the picker is brought in first,
+        // and with the permission, the one kept in Download/Librera without it
         LibreraSafSync.pull(c);
+        LibreraSafSync.mergeDownloadLibrera(c);
         String appDB = "db-" + AppSP.get().getRootPath(c).hashCode() + "-" + profile;
         AppDB.get()
              .open(c, appDB);
 
         bookCount = AppDB.get()
                          .getCount();
+        AppData.get().clearRecentCache();
         LOG.d("AppProfile init bookCount", profile, bookCount,appDB);
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().getRootPath(c));

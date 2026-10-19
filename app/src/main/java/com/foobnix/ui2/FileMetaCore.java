@@ -1,5 +1,6 @@
 package com.foobnix.ui2;
 
+import android.provider.DocumentsContract;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
@@ -378,6 +379,43 @@ public class FileMetaCore {
             fileMeta.setPathTxt(displayName);
         }
         fileMeta.setState(STATE_BASIC);
+    }
+
+    /**
+     * The name, size and date of a document on added storage, read from its provider, for a book
+     * known only by its uri. Saved, so it is asked once.
+     */
+    public void updateBasicMetaSaf(Context c, FileMeta fileMeta) {
+        if (c == null || fileMeta == null) {
+            return;
+        }
+        Uri uri = Uri.parse(fileMeta.getPath());
+        String[] columns = {DocumentsContract.Document.COLUMN_DISPLAY_NAME, DocumentsContract.Document.COLUMN_SIZE,
+                DocumentsContract.Document.COLUMN_LAST_MODIFIED};
+        try (Cursor cursor = c.getContentResolver().query(uri, columns, null, null, null)) {
+            if (cursor == null || !cursor.moveToFirst()) {
+                return;
+            }
+            String name = cursor.getString(0);
+            if (TxtUtils.isEmpty(name)) {
+                return;
+            }
+            String parent = "";
+            String id = Uri.decode(DocumentsContract.getDocumentId(uri));
+            int slash = id.lastIndexOf('/');
+            if (slash > 0) {
+                parent = id.substring(0, slash);
+            }
+            String title = fileMeta.getTitle();
+            upadteBasicMetaSaf(fileMeta, name, cursor.getLong(1), cursor.getLong(2), parent);
+            // the title the book was read with stays: it is more than the file name
+            if (TxtUtils.isNotEmpty(title) && !title.equals(name)) {
+                fileMeta.setTitle(title);
+            }
+            AppDB.get().save(fileMeta);
+        } catch (Exception e) {
+            LOG.e(e, fileMeta.getPath());
+        }
     }
 
     /**

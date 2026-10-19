@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Uygulamanın tüm kitaplarınızı bulup görüntüleyebilmesi için izninize ihtiyacı var.</string>
    <string name="allow">İzin ver</string>
    <string name="storage">Depolama</string>
-   <string name="add_all_books_with_permission">Tüm kitapları ekle, izin gerekir.</string>
-   <string name="add_folder_with_books">Kitapların bulunduğu bir klasör ekle.</string>
+   <string name="add_all_books_with_permission">Kitapların kitaplığınıza otomatik olarak eklenmesi için lütfen uygulamanın İndirilenler klasörünüzü taramasına izin verin.</string>
    <string name="save_settings_in_librera_folder">Ayarları ve okuma ilerlemesini Librera klasörüne kaydet.</string>
    <string name="regrant_folder_title">Klasöre yeniden erişim izni ver</string>
    <string name="regrant_folder_msg">Uygulama artık %1$s klasörünü okuyamıyor: Android, uygulama yeniden yüklendiğinde klasör erişimini kaldırır. Sonraki ekranda klasörü yeniden seçin.</string>

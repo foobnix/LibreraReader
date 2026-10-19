@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Η εφαρμογή χρειάζεται την άδειά σας για να βρει και να εμφανίσει όλα τα βιβλία σας.</string>
    <string name="allow">Να επιτρέπεται</string>
    <string name="storage">Αποθηκευτικός χώρος</string>
-   <string name="add_all_books_with_permission">Προσθήκη όλων των βιβλίων, απαιτείται άδεια.</string>
-   <string name="add_folder_with_books">Προσθήκη φακέλου με βιβλία.</string>
+   <string name="add_all_books_with_permission">Επιτρέψτε στην εφαρμογή να σαρώνει τον φάκελο Λήψεις, ώστε να προσθέτει αυτόματα βιβλία στη βιβλιοθήκη σας.</string>
    <string name="save_settings_in_librera_folder">Αποθήκευση ρυθμίσεων και προόδου ανάγνωσης στον φάκελο Librera.</string>
    <string name="regrant_folder_title">Επιτρέψτε ξανά την πρόσβαση στον φάκελο</string>
    <string name="regrant_folder_msg">Η εφαρμογή δεν μπορεί πλέον να διαβάσει το %1$s: το Android καταργεί την πρόσβαση στους φακέλους όταν η εφαρμογή εγκαθίσταται ξανά. Επιλέξτε ξανά τον φάκελο στην επόμενη οθόνη.</string>

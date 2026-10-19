@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">이 앱은 사용자의 모든 책을 찾아 표시하기 위해 사용자의 권한이 필요합니다.</string>
    <string name="allow">허용</string>
    <string name="storage">저장소</string>
-   <string name="add_all_books_with_permission">모든 책 추가, 권한이 필요합니다.</string>
-   <string name="add_folder_with_books">책이 있는 폴더를 추가합니다.</string>
+   <string name="add_all_books_with_permission">책을 라이브러리에 자동으로 추가할 수 있도록 앱이 다운로드 폴더를 검색하도록 허용해 주세요.</string>
    <string name="save_settings_in_librera_folder">설정과 읽기 진행 상황을 Librera 폴더에 저장합니다.</string>
    <string name="regrant_folder_title">폴더 접근 다시 허용</string>
    <string name="regrant_folder_msg">앱이 더 이상 %1$s을(를) 읽을 수 없습니다. 앱을 다시 설치하면 Android가 폴더 접근 권한을 제거합니다. 다음 화면에서 폴더를 다시 선택하세요.</string>

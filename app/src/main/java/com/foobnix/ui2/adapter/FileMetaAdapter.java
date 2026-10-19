@@ -799,7 +799,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             });
         }
-        holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+        // A book on added storage is a favourite like any other: the list keeps its document uri
+        holder.star.setVisibility(View.VISIBLE);
 
         if (holder.signIcon != null) {
             holder.signIcon.setOnClickListener(new OnClickListener() {

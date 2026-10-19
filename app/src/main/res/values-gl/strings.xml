@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">A aplicación precisa o teu permiso para atopar e mostrar todos os teus libros.</string>
    <string name="allow">Permitir</string>
    <string name="storage">Almacenamento</string>
-   <string name="add_all_books_with_permission">Engadir todos os libros, require permiso.</string>
-   <string name="add_folder_with_books">Engadir un cartafol con libros.</string>
+   <string name="add_all_books_with_permission">Permite que a aplicación examine o teu cartafol de Descargas para engadir libros automaticamente á túa biblioteca.</string>
    <string name="save_settings_in_librera_folder">Gardar a configuración e o progreso de lectura no cartafol Librera.</string>
    <string name="regrant_folder_title">Permitir de novo o acceso ao cartafol</string>
    <string name="regrant_folder_msg">A aplicación xa non pode ler %1$s: Android retira o acceso aos cartafoles ao reinstalar a aplicación. Escolle de novo o cartafol na seguinte pantalla.</string>

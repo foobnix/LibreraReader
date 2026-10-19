@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">നിങ്ങളുടെ എല്ലാ പുസ്തകങ്ങളും കണ്ടെത്തി പ്രദർശിപ്പിക്കുന്നതിന് ആപ്പിന് നിങ്ങളുടെ അനുമതി ആവശ്യമാണ്.</string>
    <string name="allow">അനുവദിക്കുക</string>
    <string name="storage">സംഭരണം</string>
-   <string name="add_all_books_with_permission">എല്ലാ പുസ്തകങ്ങളും ചേർക്കുക, അനുമതി ആവശ്യമാണ്.</string>
-   <string name="add_folder_with_books">പുസ്തകങ്ങളുള്ള ഒരു ഫോൾഡർ ചേർക്കുക.</string>
+   <string name="add_all_books_with_permission">പുസ്തകങ്ങൾ നിങ്ങളുടെ ലൈബ്രറിയിലേക്ക് സ്വയം ചേർക്കാൻ, ഡൗൺലോഡ്സ് ഫോൾഡർ സ്കാൻ ചെയ്യാൻ ദയവായി ആപ്പിനെ അനുവദിക്കുക.</string>
    <string name="save_settings_in_librera_folder">ക്രമീകരണങ്ങളും വായനാ പുരോഗതിയും Librera ഫോൾഡറിൽ സൂക്ഷിക്കുക.</string>
    <string name="regrant_folder_title">ഫോൾഡറിലേക്കുള്ള ആക്സസ് വീണ്ടും അനുവദിക്കുക</string>
    <string name="regrant_folder_msg">ആപ്പിന് ഇനി %1$s വായിക്കാൻ കഴിയില്ല: ആപ്പ് വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ Android ഫോൾഡർ ആക്സസ് നീക്കം ചെയ്യുന്നു. അടുത്ത സ്ക്രീനിൽ ഫോൾഡർ വീണ്ടും തിരഞ്ഞെടുക്കുക.</string>

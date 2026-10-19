@@ -328,17 +328,32 @@ public class BookCSS {
     }
 
     /**
-     * A folder handed over through the system's picker, once the app may read the storage itself,
-     * as the plain path it stands for. The scan then walks it as files, as any other library
-     * folder, and the folders list shows where it is rather than a document uri. This matters
-     * most right after the permission is granted: the profile moves to the shared Librera
-     * folder, and the library folders kept there are often the uris from before.
+     * The library folders once the app may read the storage itself. A folder handed over through
+     * the system's picker was only ever the way in without the permission: one inside Download
+     * gives way to Download, the folder a library with the permission starts from, which holds it;
+     * one elsewhere becomes the plain path it stands for. The scan then walks them as files.
+     *
+     * A folder already turned into its path - by an earlier version, or before the permission
+     * went - is known by being one of the storages handed over ({@code pathSAF}); a folder the
+     * user added as a path themselves is left as it is.
      */
-    static List<String> withSafFoldersAsPaths(List<String> paths) {
+    static List<String> withSafFoldersAsPaths(List<String> paths, String storages) {
+        final String download = AppProfile.DOWNLOADS_DIR.getPath();
+        final List<String> handedOver = new ArrayList<>();
+        for (String saf : StringDB.asList(storages)) {
+            String file = ExtUtils.getSafTreePath(saf);
+            if (file != null) {
+                handedOver.add(file);
+            }
+        }
         List<String> res = new ArrayList<>();
         for (String path : paths) {
             String file = ExtUtils.getSafTreePath(path);
+            boolean fromStorage = file != null || handedOver.contains(path);
             String item = file != null ? file : path;
+            if (fromStorage && (item.equals(download) || item.startsWith(download + "/"))) {
+                item = download;
+            }
             if (!res.contains(item)) {
                 res.add(item);
             }
@@ -394,7 +409,7 @@ public class BookCSS {
             final boolean neverSet = TxtUtils.isEmpty(instance.searchPathsJson);
             List<String> filtered = filtered(JsonDB.get(instance.searchPathsJson));
             if (Android6.canWrite(c)) {
-                filtered = withSafFoldersAsPaths(filtered);
+                filtered = withSafFoldersAsPaths(filtered, instance.pathSAF);
             } else {
                 filtered = readableWithoutPermission(c, filtered);
             }

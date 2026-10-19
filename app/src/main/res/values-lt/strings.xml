@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Programai reikia jūsų leidimo, kad ji galėtų rasti ir rodyti visas jūsų knygas.</string>
    <string name="allow">Leisti</string>
    <string name="storage">Saugykla</string>
-   <string name="add_all_books_with_permission">Pridėti visas knygas, reikia leidimo.</string>
-   <string name="add_folder_with_books">Pridėti aplanką su knygomis.</string>
+   <string name="add_all_books_with_permission">Leiskite programai nuskaityti aplanką „Atsisiuntimai“, kad knygos būtų automatiškai įtrauktos į jūsų biblioteką.</string>
    <string name="save_settings_in_librera_folder">Išsaugoti nustatymus ir skaitymo eigą Librera aplanke.</string>
    <string name="regrant_folder_title">Vėl leisti prieigą prie aplanko</string>
    <string name="regrant_folder_msg">Programa nebegali skaityti %1$s: iš naujo įdiegus programą, Android pašalina prieigą prie aplankų. Kitame ekrane pasirinkite aplanką dar kartą.</string>

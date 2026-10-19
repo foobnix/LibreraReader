@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Appen trenger din tillatelse til å finne og vise alle bøkene dine.</string>
    <string name="allow">Tillat</string>
    <string name="storage">Lagring</string>
-   <string name="add_all_books_with_permission">Legg til alle bøker, krever tillatelse.</string>
-   <string name="add_folder_with_books">Legg til en mappe med bøker.</string>
+   <string name="add_all_books_with_permission">La appen skanne Nedlastinger-mappen din, slik at bøker legges til automatisk i biblioteket ditt.</string>
    <string name="save_settings_in_librera_folder">Lagre innstillinger og lesefremdrift i Librera-mappen.</string>
    <string name="regrant_folder_title">Gi tilgang til mappen igjen</string>
    <string name="regrant_folder_msg">Appen kan ikke lenger lese %1$s: Android fjerner mappetilgangen når appen installeres på nytt. Velg mappen igjen på neste skjerm.</string>

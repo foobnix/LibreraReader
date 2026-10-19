@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Aplikazioak zure baimena behar du zure liburu guztiak aurkitu eta bistaratzeko.</string>
    <string name="allow">Baimendu</string>
    <string name="storage">Biltegia</string>
-   <string name="add_all_books_with_permission">Gehitu liburu guztiak, baimena behar da.</string>
-   <string name="add_folder_with_books">Gehitu liburuak dituen karpeta bat.</string>
+   <string name="add_all_books_with_permission">Mesedez, utzi aplikazioari Deskargak karpeta arakatzen, liburuak zure liburutegira automatikoki gehitzeko.</string>
    <string name="save_settings_in_librera_folder">Gorde ezarpenak eta irakurketaren aurrerapena Librera karpetan.</string>
    <string name="regrant_folder_title">Baimendu berriro karpetarako sarbidea</string>
    <string name="regrant_folder_msg">Aplikazioak ezin du jada %1$s irakurri: Androidek karpetetarako sarbidea kentzen du aplikazioa berriro instalatzean. Aukeratu karpeta berriro hurrengo pantailan.</string>

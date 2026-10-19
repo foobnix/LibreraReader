@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Aplikace potřebuje vaše svolení k nalezení a zobrazení všech vašich knih.</string>
    <string name="allow">Povolit</string>
    <string name="storage">Úložiště</string>
-   <string name="add_all_books_with_permission">Přidat všechny knihy, vyžaduje oprávnění.</string>
-   <string name="add_folder_with_books">Přidat složku s knihami.</string>
+   <string name="add_all_books_with_permission">Povolte prosím aplikaci prohledávat složku Stažené soubory, aby mohla automaticky přidávat knihy do vaší knihovny.</string>
    <string name="save_settings_in_librera_folder">Ukládat nastavení a průběh čtení do složky Librera.</string>
    <string name="regrant_folder_title">Znovu povolit přístup ke složce</string>
    <string name="regrant_folder_msg">Aplikace už nemůže číst %1$s: Android při přeinstalaci aplikace odebere přístup ke složkám. Na další obrazovce složku vyberte znovu.</string>

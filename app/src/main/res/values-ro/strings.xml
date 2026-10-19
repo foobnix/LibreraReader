@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Aplicația are nevoie de permisiunea ta pentru a găsi și afișa toate cărțile tale.</string>
    <string name="allow">Permite</string>
    <string name="storage">Stocare</string>
-   <string name="add_all_books_with_permission">Adaugă toate cărțile, necesită permisiune.</string>
-   <string name="add_folder_with_books">Adaugă un dosar cu cărți.</string>
+   <string name="add_all_books_with_permission">Te rugăm să permiți aplicației să scaneze dosarul Descărcări pentru a adăuga automat cărți în biblioteca ta.</string>
    <string name="save_settings_in_librera_folder">Salvează setările și progresul lecturii în dosarul Librera.</string>
    <string name="regrant_folder_title">Permite din nou accesul la dosar</string>
    <string name="regrant_folder_msg">Aplicația nu mai poate citi %1$s: Android elimină accesul la dosare când aplicația este reinstalată. Alege din nou dosarul pe ecranul următor.</string>

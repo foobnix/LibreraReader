@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">این برنامه برای پیدا کردن و نمایش همه کتاب‌هایتان به اجازه شما نیاز دارد.</string>
    <string name="allow">اجازه</string>
    <string name="storage">حافظه</string>
-   <string name="add_all_books_with_permission">افزودن همه کتاب‌ها، نیازمند اجازه است.</string>
-   <string name="add_folder_with_books">افزودن پوشه‌ای با کتاب‌ها.</string>
+   <string name="add_all_books_with_permission">لطفاً به برنامه اجازه دهید پوشهٔ دانلودها را بررسی کند تا کتاب‌ها به‌طور خودکار به کتابخانهٔ شما اضافه شوند.</string>
    <string name="save_settings_in_librera_folder">ذخیره تنظیمات و پیشرفت مطالعه در پوشه Librera.</string>
    <string name="regrant_folder_title">دسترسی به پوشه را دوباره مجاز کنید</string>
    <string name="regrant_folder_msg">برنامه دیگر نمی‌تواند %1$s را بخواند: Android هنگام نصب مجدد برنامه، دسترسی به پوشه‌ها را حذف می‌کند. در صفحه بعد دوباره پوشه را انتخاب کنید.</string>

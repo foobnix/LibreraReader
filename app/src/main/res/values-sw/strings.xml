@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Programu inahitaji ruhusa yako ili kupata na kuonyesha vitabu vyako vyote.</string>
    <string name="allow">Ruhusu</string>
    <string name="storage">Hifadhi</string>
-   <string name="add_all_books_with_permission">Ongeza vitabu vyote, inahitaji ruhusa.</string>
-   <string name="add_folder_with_books">Ongeza folda yenye vitabu.</string>
+   <string name="add_all_books_with_permission">Tafadhali ruhusu programu ichanganue folda yako ya Vipakuliwa ili kuongeza vitabu kwenye maktaba yako kiotomatiki.</string>
    <string name="save_settings_in_librera_folder">Hifadhi mipangilio na maendeleo ya kusoma kwenye folda ya Librera.</string>
    <string name="regrant_folder_title">Ruhusu tena ufikiaji wa folda</string>
    <string name="regrant_folder_msg">Programu haiwezi tena kusoma %1$s: Android huondoa ufikiaji wa folda programu inaposakinishwa upya. Chagua folda tena kwenye skrini inayofuata.</string>

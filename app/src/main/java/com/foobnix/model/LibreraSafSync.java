@@ -9,6 +9,7 @@ import android.content.UriPermission;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.DocumentsContract;
@@ -64,6 +65,7 @@ public class LibreraSafSync {
     private static final String STATE_PREFIX = "f:";
     private static final String EXTERNAL_STORAGE = "com.android.externalstorage.documents";
     private static final String MIME_FILE = "application/octet-stream";
+    private static final String LIBRERA = "Librera";
 
     /** The profile that only ever exists without the permission; it is not the user's to share. */
     private static final String LOCAL_ONLY_PROFILE = AppProfile.PROFILE_PREFIX + "Demo";
@@ -111,8 +113,17 @@ public class LibreraSafSync {
                         | Intent.FLAG_GRANT_READ_URI_PERMISSION
                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // The picker opens on Download/Librera, made here if need be - the app may make folders
+            // in Download, and does keep the settings there - so the user has only to take it.
+            // A folder that is not there is not opened on (the picker falls back to wherever it
+            // was last), and the app cannot make one at the top of the storage without the
+            // permission, so failing that it opens on the storage itself, which offers to create
+            // one. The picker's own new folder dialog cannot be given a name.
+            File download = downloadLibrera();
+            download.mkdirs();
+            String id = download.isDirectory() ? "primary:" + Environment.DIRECTORY_DOWNLOADS + "/" + LIBRERA : "primary:";
             intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI,
-                    DocumentsContract.buildDocumentUri(EXTERNAL_STORAGE, "primary:Librera"));
+                    DocumentsContract.buildDocumentUri(EXTERNAL_STORAGE, id));
         }
         try {
             a.startActivityForResult(intent, REQUEST_CODE_LIBRERA_FOLDER);
@@ -234,6 +245,121 @@ public class LibreraSafSync {
         return AppsConfig.IS_LOG ? "BETA" : "Librera";
     }
 
+    /** The files a device's profile folder holds. */
+    private static final String[] PROFILE_FILES = {AppProfile.APP_STATE_JSON, AppProfile.APP_CSS_JSON,
+            AppProfile.APP_RECENT_JSON, AppProfile.APP_EXCLUDE_JSON, AppProfile.APP_FAVORITE_JSON,
+            AppProfile.APP_BOOKMARKS_JSON, AppProfile.APP_ANNOTATIONS_JSON, AppProfile.APP_PROGRESS_JSON,
+            AppProfile.APP_TAGS_JSON, AppProfile.APP_TAGS_JSON2};
+
+    /** Download/Librera: where the settings are kept without the permission, in plain sight. */
+    public static File downloadLibrera() {
+        return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), LIBRERA);
+    }
+
+    /**
+     * Whether the settings can be kept in Download/Librera by this install itself, as plain files.
+     *
+     * Without the permission an app may make folders and files in Download and read back what it
+     * made - and only that. Files an earlier install made, before the app was reinstalled, are
+     * still there but cannot be read, written, replaced or deleted (EACCES): the settings would
+     * silently never save. Those are told by being there yet unreadable. The folder has then to
+     * be handed over through the picker, and is kept in step with as any other Librera folder.
+     */
+    public static boolean isDownloadLibreraUsable(Context c) {
+        try {
+            File device = new File(downloadLibrera(),
+                    AppProfile.PROFILE_PREFIX + sharedProfile() + "/" + AppProfile.DEVICE_MODEL);
+            device.mkdirs();
+            if (!device.isDirectory()) {
+                return false;
+            }
+            for (String name : PROFILE_FILES) {
+                File file = new File(device, name);
+                if (file.exists() && !file.canRead()) {
+                    LOG.d("LibreraSafSync Download/Librera is an earlier install's", file);
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+    }
+
+    /**
+     * Where the settings are kept, as the user knows it: the Librera folder handed over when the
+     * app's own copy is kept in step with one, otherwise the folder they are written to.
+     */
+    public static String settingsFolder(Context c) {
+        if (isActive(c)) {
+            Uri tree = tree(c);
+            String path = ExtUtils.getSafTreePath(tree.toString());
+            if (path != null) {
+                return path;
+            }
+            try {
+                return Uri.decode(DocumentsContract.getTreeDocumentId(tree));
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return AppSP.get().getRootPath(c);
+    }
+
+    /** Whether the settings are in the app's own storage, where nothing else sees them. */
+    public static boolean isProfileHidden(Context c) {
+        return AppSP.get().getRootPath(c).equals(AppSP.get().getTempDir(c));
+    }
+
+    /**
+     * With the permission the settings are in /storage/emulated/0/Librera. What was kept in
+     * Download/Librera without it, and is newer, is brought over, so granting the permission
+     * later loses nothing. The files there are left as they are.
+     */
+    static void mergeDownloadLibrera(Context c) {
+        if (c == null || !Android6.canWrite(c)) {
+            return;
+        }
+        File from = downloadLibrera();
+        File to = new File(AppSP.get().getRootPath(c));
+        if (!from.isDirectory() || from.getAbsolutePath().equals(to.getAbsolutePath())) {
+            return;
+        }
+        File[] profiles = from.listFiles();
+        if (profiles == null) {
+            return;
+        }
+        for (File profile : profiles) {
+            if (profile.isDirectory() && isSynced(profile.getName())) {
+                mergeNewer(profile, new File(to, profile.getName()));
+            }
+        }
+    }
+
+    private static void mergeNewer(File from, File to) {
+        File[] children = from.listFiles();
+        if (children == null) {
+            return;
+        }
+        to.mkdirs();
+        for (File child : children) {
+            File target = new File(to, child.getName());
+            if (child.isDirectory()) {
+                mergeNewer(child, target);
+            } else if (!target.isFile() || child.lastModified() > target.lastModified()) {
+                try (InputStream in = new java.io.FileInputStream(child);
+                     OutputStream out = new FileOutputStream(target)) {
+                    copy(in, out);
+                    target.setLastModified(child.lastModified());
+                    LOG.d("LibreraSafSync merged", target);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        }
+    }
+
     /** Brings in what the Librera folder has newer. Blocks; it is run as the profile is loaded. */
     static void pull(Context c) {
         if (!isActive(c)) {
@@ -292,6 +418,14 @@ public class LibreraSafSync {
         final ContentResolver resolver = c.getContentResolver();
         final Uri tree = tree(c);
         final File root = new File(AppSP.get().getRootPath(c));
+
+        // The folder the settings are written to directly: copying it onto itself through a
+        // second door would truncate each file as it is read
+        final String treeFolder = ExtUtils.getSafTreePath(tree.toString());
+        if (treeFolder != null && new File(treeFolder).getAbsolutePath().equals(root.getAbsolutePath())) {
+            LOG.d("LibreraSafSync same folder, nothing to keep in step", treeFolder);
+            return;
+        }
 
         // The Librera folder: every file under a profile folder, and every folder by its path
         final Map<String, Remote> remoteFiles = new HashMap<>();

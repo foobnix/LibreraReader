@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Aplikacja potrzebuje Twojej zgody, aby znaleźć i wyświetlić wszystkie Twoje książki.</string>
    <string name="allow">Zezwól</string>
    <string name="storage">Pamięć</string>
-   <string name="add_all_books_with_permission">Dodaj wszystkie książki, wymaga uprawnienia.</string>
-   <string name="add_folder_with_books">Dodaj folder z książkami.</string>
+   <string name="add_all_books_with_permission">Zezwól aplikacji na przeszukiwanie folderu Pobrane, aby książki były automatycznie dodawane do biblioteki.</string>
    <string name="save_settings_in_librera_folder">Zapisuj ustawienia i postęp czytania w folderze Librera.</string>
    <string name="regrant_folder_title">Ponownie zezwól na dostęp do folderu</string>
    <string name="regrant_folder_msg">Aplikacja nie może już odczytać %1$s: Android usuwa dostęp do folderów po ponownej instalacji aplikacji. Wybierz folder ponownie na następnym ekranie.</string>

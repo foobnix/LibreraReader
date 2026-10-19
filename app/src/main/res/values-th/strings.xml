@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">แอปนี้ต้องการอนุญาตจากคุณเพื่อค้นหาและแสดงหนังสือทั้งหมดของคุณ</string>
    <string name="allow">อนุญาต</string>
    <string name="storage">ที่เก็บข้อมูล</string>
-   <string name="add_all_books_with_permission">เพิ่มหนังสือทั้งหมด ต้องได้รับอนุญาต</string>
-   <string name="add_folder_with_books">เพิ่มโฟลเดอร์ที่มีหนังสือ</string>
+   <string name="add_all_books_with_permission">โปรดอนุญาตให้แอปสแกนโฟลเดอร์ดาวน์โหลดของคุณ เพื่อเพิ่มหนังสือลงในคลังของคุณโดยอัตโนมัติ</string>
    <string name="save_settings_in_librera_folder">บันทึกการตั้งค่าและความคืบหน้าการอ่านไว้ในโฟลเดอร์ Librera</string>
    <string name="regrant_folder_title">อนุญาตให้เข้าถึงโฟลเดอร์อีกครั้ง</string>
    <string name="regrant_folder_msg">แอปอ่าน %1$s ไม่ได้อีกต่อไป: Android จะยกเลิกสิทธิ์เข้าถึงโฟลเดอร์เมื่อติดตั้งแอปใหม่ เลือกโฟลเดอร์อีกครั้งในหน้าจอถัดไป</string>

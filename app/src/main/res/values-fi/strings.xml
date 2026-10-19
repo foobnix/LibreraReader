@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Sovellus tarvitsee lupasi kaikkien kirjojen löytämiseen ja näyttämiseen.</string>
    <string name="allow">Salli</string>
    <string name="storage">Tallennustila</string>
-   <string name="add_all_books_with_permission">Lisää kaikki kirjat, vaatii luvan.</string>
-   <string name="add_folder_with_books">Lisää kansio, jossa on kirjoja.</string>
+   <string name="add_all_books_with_permission">Salli sovelluksen tutkia Lataukset-kansiosi, jotta kirjat lisätään automaattisesti kirjastoosi.</string>
    <string name="save_settings_in_librera_folder">Tallenna asetukset ja lukuedistyminen Librera-kansioon.</string>
    <string name="regrant_folder_title">Salli pääsy kansioon uudelleen</string>
    <string name="regrant_folder_msg">Sovellus ei voi enää lukea kohdetta %1$s: Android poistaa kansioiden käyttöoikeudet, kun sovellus asennetaan uudelleen. Valitse kansio uudelleen seuraavassa näkymässä.</string>

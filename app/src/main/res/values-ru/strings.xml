@@ -243,8 +243,7 @@
    <string name="you_need_grant_permission5">Приложению требуется ваше разрешение для поиска и отображения всех ваших книг.</string>
    <string name="allow">Разрешить</string>
    <string name="storage">Хранилище</string>
-   <string name="add_all_books_with_permission">Добавить все книги, нужно разрешение.</string>
-   <string name="add_folder_with_books">Добавить папку с книгами.</string>
+   <string name="add_all_books_with_permission">Пожалуйста, разрешите приложению просматривать папку «Загрузки», чтобы автоматически добавлять книги в вашу библиотеку.</string>
    <string name="save_settings_in_librera_folder">Хранить настройки и прогресс чтения в папке Librera.</string>
    <string name="regrant_folder_title">Снова разрешить доступ к папке</string>
    <string name="regrant_folder_msg">Приложение больше не может читать %1$s: Android забывает доступ к папкам при переустановке приложения. Выберите папку снова на следующем экране.</string>
