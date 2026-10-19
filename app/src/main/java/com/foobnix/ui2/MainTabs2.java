@@ -13,7 +13,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.content.UriPermission;
 import android.os.Build;
+import android.provider.DocumentsContract;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,6 +41,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
@@ -53,9 +56,11 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.LibreraSafSync;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.IMG;
@@ -63,6 +68,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -104,6 +110,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import mobi.librera.libgooglepro.RefiewForm;
 
@@ -267,6 +275,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
             return;
         }
+        if (LibreraSafSync.onActivityResult(this, requestCode, resultCode, data)) {
+            return;
+        }
 
         if (Build.VERSION.SDK_INT < Android6.ANDROID_12_INT && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
@@ -292,8 +303,20 @@ public class MainTabs2 extends AdsFragmentActivity {
             // The folders panel, when there is one, says it has a new folder itself: it has the
             // list on screen and would otherwise go on showing the old one.
             PrefFragment2 prefs = findPrefFragment();
-            if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null) && prefs != null) {
-                prefs.onStorageFolderAdded();
+            if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null)) {
+                if (prefs != null) {
+                    prefs.onStorageFolderAdded();
+                }
+                // the library's notice now asks for the Librera folder instead
+                updateOnGrantPanels();
+                // the folders tab, already showing, is moved onto it as well
+                if (!Android6.canWrite(this)) {
+                    for (UIFragment fragment : tabFragments) {
+                        if (fragment instanceof BrowseFragment2 && fragment.isAdded()) {
+                            ((BrowseFragment2) fragment).displayAnyPath(BookCSS.get().dirLastPath);
+                        }
+                    }
+                }
             }
         }
     }
@@ -317,13 +340,26 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
         String pathSAF = uri.toString();
-        StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+        // the same folder handed over again - after a reinstall - is not listed twice
+        if (!StringDB.asList(BookCSS.get().pathSAF).contains(pathSAF)) {
+            StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+        }
 
         LOG.d("REQUEST_CODE_ADD_LIBRARY_STORAGE", pathSAF);
 
         // The folder is put into the library here rather than in the panel, so that it lands
-        // whether or not a panel is there to hear about it.
-        if (!PrefDialogs.addSearchPath(activity, pathSAF)) {
+        // whether or not a panel is there to hear about it. With the permission to read the
+        // storage it goes in as the path it stands for, as a folder added from the file list does.
+        String libraryPath = pathSAF;
+        if (Android6.canWrite(activity)) {
+            String file = ExtUtils.getSafTreePath(pathSAF);
+            if (file != null) {
+                libraryPath = file;
+            }
+        }
+        // A folder already in the list is one whose access was given back, after a reinstall
+        boolean regranted = JsonDB.get(BookCSS.get().searchPathsJson).contains(libraryPath);
+        if (!regranted && !PrefDialogs.addSearchPath(activity, libraryPath)) {
             return false;
         }
         // The user has said where their books are. The storage roots the library started out
@@ -331,6 +367,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         // are taken out rather than left in the folders list showing nothing.
         if (!Android6.canWrite(activity)) {
             BookCSS.removeUnreadableStorageRoots(activity);
+            // The folders screen opens on it: without the permission it is the one place with
+            // books the user can browse.
+            BookCSS.get().dirLastPath = pathSAF;
         }
         if (rebuild) {
             AppProfile.save(activity);
@@ -350,12 +389,82 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (activity == null) {
             return;
         }
+        openLibraryStoragePicker(activity);
+    }
+
+    /** Every page's notice offering a way in for books, worked out again for the current folders. */
+    public void updateOnGrantPanels() {
+        if (tabFragments == null) {
+            return;
+        }
+        for (UIFragment fragment : tabFragments) {
+            if (fragment != null && fragment.isAdded()) {
+                fragment.updateOnGrantPanel();
+            }
+        }
+    }
+
+    /** The folders already asked about while the app has been running; each is asked about once. */
+    private static final Set<String> askedForLostStorage = new HashSet<>();
+
+    /**
+     * Asks again for a library folder handed over through the picker whose access is gone. Android
+     * forgets every such grant when the app is reinstalled, while the library folders come back
+     * with the profile from the Librera folder - so they would be listed and never read. The
+     * picker opens on the folder itself; the answer comes back as any other library folder does.
+     */
+    public static void askForLostLibraryStorage(Activity activity) {
+        if (activity == null || Android6.canWrite(activity)) {
+            return;
+        }
+        Set<String> granted = new HashSet<>();
+        for (UriPermission p : activity.getContentResolver().getPersistedUriPermissions()) {
+            granted.add(p.getUri().toString());
+        }
+        for (String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            if (!ExtUtils.isExteralSD(path) || granted.contains(path) || !askedForLostStorage.add(path)) {
+                continue;
+            }
+            Uri tree = Uri.parse(path);
+            String name;
+            try {
+                name = DocumentsContract.getTreeDocumentId(tree);
+            } catch (Exception e) {
+                name = path;
+            }
+            name = name.replaceFirst("^primary:", "");
+            LOG.d("askForLostLibraryStorage", path);
+            AlertDialogs.showDialog(activity, activity.getString(R.string.regrant_folder_title),
+                    activity.getString(R.string.regrant_folder_msg, name), activity.getString(R.string.choose_),
+                    () -> openLibraryStoragePicker(activity, tree), null);
+            return;
+        }
+    }
+
+    /** The system's folder picker, opened in Download, where books usually land. */
+    private static void openLibraryStoragePicker(Activity activity) {
+        openLibraryStoragePicker(activity, null);
+    }
+
+    /** @param at the tree uri of the folder to open on, or null for Download */
+    private static void openLibraryStoragePicker(Activity activity, Uri at) {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION //
                         | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION //
                         | Intent.FLAG_GRANT_READ_URI_PERMISSION //
                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION //
                        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Uri initial = DocumentsContract.buildDocumentUri("com.android.externalstorage.documents", "primary:Download");
+            if (at != null) {
+                try {
+                    initial = DocumentsContract.buildDocumentUri(at.getAuthority(), DocumentsContract.getTreeDocumentId(at));
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initial);
+        }
         try {
             activity.startActivityForResult(intent, REQUEST_CODE_ADD_LIBRARY_STORAGE);
         } catch (Exception e) {
@@ -927,6 +1036,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
+        askForLostLibraryStorage(this);
 
         try {
             if (pager != null) {

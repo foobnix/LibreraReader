@@ -422,6 +422,74 @@ const collectText = () => {
     return { html, text: plain.trim() }
 }
 
+/**
+ * Takes the book to a resolved target and says where in its section that turned out to be, as
+ * the fraction Librera's page index turns into a page.
+ *
+ * Where it actually landed, rather than where it was aimed: an anchor inside a section resolves
+ * to an element or a Range, and only the paginator knows which of its pages that fell on.
+ */
+const landOn = async target => {
+    await view.renderer.goTo(target)
+    await painted()
+    const renderer = view.renderer
+    const textPages = Math.max(1, (renderer.pages || 3) - 2)
+    return textPages <= 1 ? 0
+        : Math.min(1, Math.max(0, (renderer.page - 1) / (textPages - 1)))
+}
+
+/** The first rectangle with an area at or after a node, or null; an empty anchor has none. */
+const firstRect = (doc, node) => {
+    const area = rects => Array.from(rects || []).find(r => r.width > 0 && r.height > 0)
+    if (node && typeof node.getClientRects === 'function') {
+        const own = area(node.getClientRects())
+        if (own) return own
+    }
+    // `<a id="..."></a>` - the kind MOBI and FB2 conversions put before a heading - takes up no
+    // room, so the text after it stands in for it
+    const start = node && node.nodeType ? node : node?.startContainer
+    if (!start) return null
+    const walker = doc.createTreeWalker(doc.body || doc.documentElement,
+        NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT)
+    walker.currentNode = start
+    for (let i = 0, next = walker.nextNode(); next && i < 500; i++, next = walker.nextNode()) {
+        if (next.nodeType === Node.TEXT_NODE) {
+            if (!next.nodeValue.trim()) continue
+            const range = doc.createRange()
+            range.selectNodeContents(next)
+            const rect = area(range.getClientRects())
+            if (rect) return rect
+        } else if (next.localName === 'img' || next.localName === 'svg') {
+            const rect = area(next.getClientRects())
+            if (rect) return rect
+        }
+    }
+    return null
+}
+
+/**
+ * Where an anchor in the section on screen sits, as the fraction Librera's page index turns into
+ * a page - measured on the layout already there, so nothing moves.
+ *
+ * It is the page the paginator itself would scroll to for that anchor (see its scrollToAnchor):
+ * the column the anchor's first rectangle falls in. Null when the anchor cannot be measured.
+ */
+const fractionOfAnchor = (doc, anchor) => {
+    const renderer = view.renderer
+    const size = renderer.size
+    const textPages = Math.max(1, (renderer.pages || 3) - 2)
+    if (!size || textPages <= 1) return textPages <= 1 ? 0 : null
+    const rect = firstRect(doc, anchor)
+    if (!rect) return null
+    const vertical = (doc.defaultView?.getComputedStyle(doc.documentElement)?.writingMode || '')
+        .startsWith('vertical')
+    const rtl = !vertical && view.book?.dir === 'rtl'
+    const offset = rtl ? renderer.pages * size - rect.right
+        : vertical ? rect.top : rect.left
+    const page = Math.abs(Math.floor(offset / size) + (rtl ? -1 : 1))
+    return Math.min(1, Math.max(0, (page - 1) / (textPages - 1)))
+}
+
 /** The links on this page: a target section and fraction for an internal one, a url otherwise. */
 const collectLinks = async () => {
     const current = contents()
@@ -449,10 +517,15 @@ const collectLinks = async () => {
         try {
             const target = view.resolveNavigation(href)
             if (target && typeof target.index === 'number') {
-                links.push(Object.assign(rect, {
-                    index: target.index,
-                    fraction: typeof target.anchor === 'number' ? target.anchor : 0,
-                }))
+                let fraction = typeof target.anchor === 'number' ? target.anchor : 0
+                // A #fragment in this same section - every link of a MOBI or an FB2, whose whole
+                // book is one section - is measured where it lies, or it would open the section's
+                // first page. One in another section keeps that section's start.
+                if (typeof target.anchor === 'function' && target.index === current.index) {
+                    const measured = fractionOfAnchor(doc, target.anchor(doc))
+                    if (measured != null) fraction = measured
+                }
+                links.push(Object.assign(rect, { index: target.index, fraction }))
             }
         } catch (e) {
             // a href this book resolves to nothing; leave it out rather than guess
@@ -604,15 +677,7 @@ const handlers = {
         if (!target || typeof target.index !== 'number') {
             return { index: -1 }
         }
-        await view.renderer.goTo(target)
-        await painted()
-        // Where it actually landed, rather than where it was aimed: an anchor inside a section
-        // resolves to a Range, and only the paginator knows which of its pages that fell on.
-        const renderer = view.renderer
-        const textPages = Math.max(1, (renderer.pages || 3) - 2)
-        const fraction = textPages <= 1 ? 0
-            : Math.min(1, Math.max(0, (renderer.page - 1) / (textPages - 1)))
-        return { index: target.index, fraction }
+        return { index: target.index, fraction: await landOn(target) }
     },
 
     /**
@@ -729,9 +794,14 @@ const handlers = {
     /**
      * The table of contents, each entry resolved to the section and fraction it points at so
      * Librera can turn it into a page number through the index it already has.
+     *
+     * An entry with a #fragment points somewhere inside its section, and where that is depends
+     * on the layout, so the book is taken there to see. Without it every chapter of an FB2 - one
+     * section holding the whole book - would open the first page.
      */
     async toc() {
         const toc = []
+        const inside = []
         const walk = async (items, level) => {
             if (!items || level > 16) return
             for (const item of items) {
@@ -742,6 +812,7 @@ const handlers = {
                         if (target && typeof target.index === 'number') {
                             entry.index = target.index
                             entry.fraction = typeof target.anchor === 'number' ? target.anchor : 0
+                            if (typeof target.anchor === 'function') inside.push({ entry, target })
                         }
                     } catch (e) {
                         // an entry whose target is broken still belongs in the contents
@@ -752,6 +823,15 @@ const handlers = {
             }
         }
         await walk(view.book.toc, 0)
+        // Section by section, so each is laid out once however many entries point into it
+        inside.sort((a, b) => a.target.index - b.target.index)
+        for (const { entry, target } of inside) {
+            try {
+                entry.fraction = await landOn(target)
+            } catch (e) {
+                // the entry keeps the start of its section
+            }
+        }
         return { toc }
     },
 }

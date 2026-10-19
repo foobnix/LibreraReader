@@ -19,6 +19,9 @@ import java.util.Map;
 
 public class Fb2Context extends PdfContext {
 
+    /** Raised whenever what Fb2Extractor writes changes, so cached conversions are redone. */
+    private static final int CONVERTER_VERSION = 2;
+
     File cacheFile;
 
     @Override
@@ -33,7 +36,10 @@ public class Fb2Context extends PdfContext {
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +
                 BookCSS.get().isEnableBBCode +
-                BookCSS.get().isCapitalLetter;
+                BookCSS.get().isCapitalLetter +
+                // The converter's output version: a book converted before contents labels were
+                // written as XML (no &nbsp;) has to be converted again, or foliate shows no contents
+                CONVERTER_VERSION;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         return cacheFile;
     }

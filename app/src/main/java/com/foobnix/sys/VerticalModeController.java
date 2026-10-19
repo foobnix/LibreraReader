@@ -981,8 +981,12 @@ public class VerticalModeController extends DocumentController {
         }
 
 
-        outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
-        if (outline != null) {
+        final ArrayList<OutlineLinkWrapper> cached =
+                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        // An empty list is what a read that failed left behind, not the book's contents, so it
+        // is read again rather than kept
+        if (cached != null && !cached.isEmpty()) {
+            outline = cached;
             resultWrapper.onResultRecive(outline);
             return;
         }
@@ -991,7 +995,8 @@ public class VerticalModeController extends DocumentController {
 
             @Override
             public boolean onResultRecive(List<OutlineLink> outlineLinks) {
-                outline = new ArrayList<OutlineLinkWrapper>();
+                // Filled here and kept only once whole, so nobody is handed half of it
+                final ArrayList<OutlineLinkWrapper> result = new ArrayList<OutlineLinkWrapper>();
                 if (outlineLinks == null) {
                     return resultWrapper.onResultRecive(null);
                 }
@@ -1008,10 +1013,10 @@ public class VerticalModeController extends DocumentController {
                         }
                         if (TxtUtils.isNotEmpty(ol.getTitle())) {
                             if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                                result.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                             } else {
                                 int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                                result.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
                             }
 
                         }
@@ -1019,7 +1024,10 @@ public class VerticalModeController extends DocumentController {
                         LOG.e(e);
                     }
                 }
-                CacheZipUtils.savaJavaCache(outline, getCurrentBook());
+                if (!result.isEmpty()) {
+                    CacheZipUtils.savaJavaCache(result, getCurrentBook());
+                }
+                outline = result;
                 resultWrapper.onResultRecive(outline);
                 return true;
             }

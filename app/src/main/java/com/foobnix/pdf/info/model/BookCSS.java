@@ -20,6 +20,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -35,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -290,6 +292,8 @@ public class BookCSS {
             if (!roots.contains(external)) {
                 roots.add(external);
             }
+            // the Download folder a clean install starts with is one of those guesses too
+            roots.add(AppProfile.DOWNLOADS_DIR.getPath());
             List<String> kept = new ArrayList<>();
             for (String path : JsonDB.get(get().searchPathsJson)) {
                 if (TxtUtils.isNotEmpty(path) && !roots.contains(path)) {
@@ -323,28 +327,87 @@ public class BookCSS {
 
     }
 
+    /**
+     * A folder handed over through the system's picker, once the app may read the storage itself,
+     * as the plain path it stands for. The scan then walks it as files, as any other library
+     * folder, and the folders list shows where it is rather than a document uri. This matters
+     * most right after the permission is granted: the profile moves to the shared Librera
+     * folder, and the library folders kept there are often the uris from before.
+     */
+    static List<String> withSafFoldersAsPaths(List<String> paths) {
+        List<String> res = new ArrayList<>();
+        for (String path : paths) {
+            String file = ExtUtils.getSafTreePath(path);
+            String item = file != null ? file : path;
+            if (!res.contains(item)) {
+                res.add(item);
+            }
+        }
+        LOG.d("withSafFoldersAsPaths", paths, res);
+        return res;
+    }
+
+    /**
+     * Without the permission to read the storage the app can read only the folders handed over
+     * through the picker and its own; a path anywhere else - the Download default from before,
+     * a folder kept while the permission was there - would sit in the list and never fill.
+     */
+    static List<String> readableWithoutPermission(Context c, List<String> paths) {
+        String own = null;
+        try {
+            File files = c.getExternalFilesDir(null);
+            own = files != null ? files.getParent() : null;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        List<String> res = new ArrayList<>();
+        for (String path : paths) {
+            if (ExtUtils.isExteralSD(path) || (own != null && path.startsWith(own))) {
+                res.add(path);
+            }
+        }
+        return res;
+    }
+
     public void load1(Context c) {
         if (c == null) {
             return;
         }
         resetToDefault(c);
+        // the folders are the profile's own: a profile without any must not keep the last one's
+        instance.searchPathsJson = null;
 
         IO.readObj(AppProfile.syncCSS, instance);
 
+        // A storage handed over again used to be added again; each is kept once
+        String storages = "";
+        for (String saf : new LinkedHashSet<>(StringDB.asList(instance.pathSAF))) {
+            if (TxtUtils.isNotEmpty(saf)) {
+                storages = storages + (storages.isEmpty() ? StringDB.DIVIDER : "") + saf + StringDB.DIVIDER;
+            }
+        }
+        instance.pathSAF = storages;
+
         try {
+            // No list at all is a profile that has never had one; an empty one, a user who took
+            // every folder out
+            final boolean neverSet = TxtUtils.isEmpty(instance.searchPathsJson);
             List<String> filtered = filtered(JsonDB.get(instance.searchPathsJson));
+            if (Android6.canWrite(c)) {
+                filtered = withSafFoldersAsPaths(filtered);
+            } else {
+                filtered = readableWithoutPermission(c, filtered);
+            }
             instance.searchPathsJson = JsonDB.set(filtered);
 
             LOG.d("searchPaths-all", 1, instance.searchPathsJson,filtered);
 
-            if (TxtUtils.isListEmpty(filtered)) {
-                List<String> extFolders = ExtUtils.getAllExternalStorages(c);
-
-                if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
-                    extFolders.add(Environment.getExternalStorageDirectory().getPath());
-                }
-
-                instance.searchPathsJson = JsonDB.set(extFolders);
+            // With the permission, a clean install searches the Download folder, where books
+            // land, rather than the whole storage. Without it there is no folder until the user
+            // hands one over: Download could not be read, and would only sit in the list empty.
+            // A list the user emptied stays empty; the library then offers a way in itself.
+            if (TxtUtils.isListEmpty(filtered) && neverSet && Android6.canWrite(c)) {
+                instance.searchPathsJson = JsonDB.set(List.of(AppProfile.DOWNLOADS_DIR.getPath()));
                 LOG.d("searchPaths-all", 2, instance.searchPathsJson);
             }
         } catch (Exception e) {

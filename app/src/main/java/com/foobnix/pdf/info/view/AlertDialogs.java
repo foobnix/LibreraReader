@@ -121,7 +121,15 @@ public class AlertDialogs {
     }
 
     public static void showDialog(final Activity c, final String message, String okButton, final Runnable onAction, final Runnable onCancel) {
+        showDialog(c, null, message, okButton, onAction, onCancel);
+    }
+
+    public static void showDialog(final Activity c, final String title, final String message, String okButton,
+            final Runnable onAction, final Runnable onCancel) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        if (title != null) {
+            builder.setTitle(title);
+        }
         builder.setMessage(message);
         builder.setCancelable(true);
         builder.setPositiveButton(okButton, new DialogInterface.OnClickListener() {

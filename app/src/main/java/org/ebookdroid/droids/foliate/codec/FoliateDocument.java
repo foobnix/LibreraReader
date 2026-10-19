@@ -13,6 +13,7 @@ import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.droids.mupdf.codec.MuPdfOutline;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -265,6 +266,8 @@ public class FoliateDocument extends AbstractCodecDocument {
             return Collections.emptyList();
         }
         final String json = local.toc();
+        // Resolving the entries moved the book
+        invalidatePosition();
         if (json == null) {
             return Collections.emptyList();
         }
@@ -284,8 +287,14 @@ public class FoliateDocument extends AbstractCodecDocument {
                 // handle - which is not a MuPDF document.
                 // linkUri must carry the href: OutlineHelper.getCurrentChapterFile reads it to
                 // name the current chapter, and the footnote lookup keys on that name.
-                result.add(new OutlineLink(title, "#" + Math.max(1, page), entry.optInt("level", 0),
-                        getDocumentHandle(), entry.optString("href")));
+                final OutlineLink link = new OutlineLink(title, "#" + Math.max(1, page),
+                        entry.optInt("level", 0), getDocumentHandle(), entry.optString("href"));
+                // A book converted from FB2 marks its headings for MuPdfOutline; read them the
+                // same way, so the contents are the same as MuPDF lists
+                if (MuPdfOutline.readFb2Heading(link) && TxtUtils.isNotEmpty(link.getTitle().trim())) {
+                    link.setTitle(link.getTitle().trim());
+                    result.add(link);
+                }
             }
         } catch (Throwable e) {
             LOG.e(e);

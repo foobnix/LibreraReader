@@ -573,9 +573,15 @@ class FoliateRenderer {
         return call("links", new JSONObject(), CALL_TIMEOUT_MS);
     }
 
-    /** The book's table of contents with each entry's section and fraction, as JSON, or null. */
+    /**
+     * The book's table of contents with each entry's section and fraction, as JSON, or null.
+     *
+     * An entry that points inside a section is found by going to it, which leaves the book on
+     * another page. Every chapter of an FB2 is such an entry - the whole book is one section - so
+     * this can take as long as walking the book does.
+     */
     String toc() {
-        return call("toc", new JSONObject(), CALL_TIMEOUT_MS);
+        return call("toc", new JSONObject(), INDEX_TIMEOUT_MS);
     }
 
     // ---------------------------------------------------------------- plumbing

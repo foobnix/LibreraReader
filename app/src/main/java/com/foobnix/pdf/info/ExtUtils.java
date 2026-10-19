@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.UriPermission;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -317,13 +318,22 @@ public class ExtUtils {
     public static void openFile(Activity a, FileMeta meta) {
         File file = new File(meta.getPath());
 
-        if (ExtUtils.isExteralSD(meta.getPath())) {
+        String safPath = ExtUtils.isExteralSD(meta.getPath()) ? meta.getPath() : null;
+        // A book from the history, known by a path the app may no longer read: through a folder
+        // the user handed over it is still there to open.
+        if (safPath == null && !file.canRead() && !Android6.canWrite(a)) {
+            safPath = getSafUriForPath(a, meta.getPath());
+            LOG.d("openFile by storage", meta.getPath(), safPath);
+        }
+
+        if (safPath != null) {
             LOG.d("openFile isExteralSD");
             // The reader opens a file, and files everything it learns about the book - where you
             // are in it, what you marked - under the path it opened. So a storage book is read
             // from a copy of its own that keeps the same path every time, rather than from a
             // scratch file that the next book opened would throw away.
-            file = CacheZipUtils.getSafBookCopy(a, meta.getPath(), safCacheName(meta));
+            file = CacheZipUtils.getSafBookCopy(a, safPath,
+                    safPath.equals(meta.getPath()) ? safCacheName(meta) : file.getName());
             if (file == null) {
                 Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                 return;
@@ -401,6 +411,82 @@ public class ExtUtils {
             return path;
         }
         return id;
+    }
+
+    /**
+     * The folder a system picker's tree uri stands for, as a path: {@code primary:Download/Books}
+     * is {@code /storage/emulated/0/Download/Books}, {@code 1234-ABCD:Books} is
+     * {@code /storage/1234-ABCD/Books}.
+     *
+     * @return the path when the uri is a folder of the device's own storage that is there as a
+     *         directory, otherwise <code>null</code> - a cloud folder has no path
+     */
+    public static String getSafTreePath(String path) {
+        File folder = getSafTreeFolder(path);
+        return folder != null && folder.isDirectory() ? folder.getPath() : null;
+    }
+
+    /** The folder a tree uri of the device's own storage names, whether it can be read or not. */
+    private static File getSafTreeFolder(String path) {
+        if (!isExteralSD(path)) {
+            return null;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return null;
+            }
+            String id = DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return null;
+            }
+            String volume = id.substring(0, colon);
+            String inside = id.substring(colon + 1);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            return inside.isEmpty() ? root : new File(root, inside);
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    private static final String EXTERNAL_STORAGE_DOCUMENTS = "com.android.externalstorage.documents";
+
+    /**
+     * A book known by its path - from the history kept while the app had the permission, or from
+     * another install - reached through a folder handed over in the system's picker instead. The
+     * device storage provider names a document by its path, so a file inside a granted folder is
+     * that folder's id with the rest of the path after it.
+     *
+     * @return the document uri, or null when no granted folder holds the path
+     */
+    public static String getSafUriForPath(Context c, String path) {
+        if (c == null || TxtUtils.isEmpty(path) || isExteralSD(path)) {
+            return null;
+        }
+        String external = Environment.getExternalStorageDirectory().getPath();
+        String file = path.startsWith("/sdcard/") ? external + path.substring("/sdcard".length()) : path;
+        try {
+            for (UriPermission p : c.getContentResolver().getPersistedUriPermissions()) {
+                if (!p.isReadPermission()) {
+                    continue;
+                }
+                Uri tree = p.getUri();
+                File folder = getSafTreeFolder(tree.toString());
+                if (folder == null || !file.startsWith(folder.getPath() + "/")) {
+                    continue;
+                }
+                String treeId = DocumentsContract.getTreeDocumentId(tree);
+                String rest = file.substring(folder.getPath().length() + 1);
+                String id = treeId.endsWith(":") ? treeId + rest : treeId + "/" + rest;
+                return DocumentsContract.buildDocumentUriUsingTree(tree, id).toString();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static Uri getChildUri(Context c, Uri uri) {

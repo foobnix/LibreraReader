@@ -612,6 +612,10 @@ public abstract class HorizontalModeController extends DocumentController {
         return number == 1 ? first : first + 1;
     }
 
+    /** Who asked for the contents while they were still being read; see getOutline. */
+    private final List<com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>>> outlineWaiting =
+            new ArrayList<>();
+
     @Override
     public void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse,
                            boolean forse) {
@@ -625,63 +629,80 @@ public abstract class HorizontalModeController extends DocumentController {
             return;
         }
 
-        if (outline == null) {
-            outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        synchronized (outlineWaiting) {
             if (outline != null) {
                 outlineResonse.onResultRecive(outline);
                 return;
             }
+            // Asked again while the contents are still being read - the panel opened straight
+            // after the book did. It waits for the whole list rather than being handed an empty
+            // one it would show as a blank panel.
+            outlineWaiting.add(outlineResonse);
+            if (outlineWaiting.size() > 1) {
+                return;
+            }
+        }
 
-            outline = new ArrayList<>();
-            AppsConfig.executorServiceSingle.execute(() -> {
+        final ArrayList<OutlineLinkWrapper> cached =
+                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        // An empty list is what a read that failed or timed out left behind, not the book's
+        // contents, so it is read again rather than kept
+        if (cached != null && !cached.isEmpty()) {
+            publishOutline(cached);
+            return;
+        }
 
-                try {
-                    for (OutlineLink ol : codeDocument.getOutline()) {
-                        if (TempHolder.get().loadingCancelled.get()) {
-                            return;
-                        }
-
-                        if (Apps.isDestroyedActivity(activity)) {
-                            return;
-                        }
-
-                        if (codeDocument.isRecycled()) {
-                            return;
-                        }
-                        if (TxtUtils.isNotEmpty(ol.getTitle())) {
-                            if (ol.getLink() != null && ol.getLink()
-                                                          .startsWith("#") && !ol.getLink()
-                                                                                 .startsWith("#0")) {
-                                outline.add(
-                                        new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
-                            } else {
-                                int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(
-                                        new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
-                            }
-                        }
+        AppsConfig.executorServiceSingle.execute(() -> {
+            final ArrayList<OutlineLinkWrapper> result = new ArrayList<>();
+            try {
+                for (OutlineLink ol : codeDocument.getOutline()) {
+                    if (TempHolder.get().loadingCancelled.get()) {
+                        return;
                     }
 
-                    CacheZipUtils.savaJavaCache(outline, getCurrentBook());
-
-                    // setOutline(outline);
-                    if (outlineResonse != null) {
-                        getActivity().runOnUiThread(new Runnable() {
-
-                            @Override public void run() {
-                                outlineResonse.onResultRecive(outline);
-                            }
-                        });
-
+                    if (Apps.isDestroyedActivity(activity)) {
+                        return;
                     }
-                } catch (Exception e) {
-                    LOG.e(e);
+
+                    if (codeDocument.isRecycled()) {
+                        return;
+                    }
+                    if (TxtUtils.isNotEmpty(ol.getTitle())) {
+                        if (ol.getLink() != null && ol.getLink()
+                                                      .startsWith("#") && !ol.getLink()
+                                                                             .startsWith("#0")) {
+                            result.add(
+                                    new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                        } else {
+                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                            result.add(
+                                    new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                        }
+                    }
                 }
 
-            });
+                if (!result.isEmpty()) {
+                    CacheZipUtils.savaJavaCache(result, getCurrentBook());
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            getActivity().runOnUiThread(() -> publishOutline(result));
+        });
+    }
 
-        } else {
-            outlineResonse.onResultRecive(outline);
+    /** Keeps the contents and hands them to everyone who asked while they were being read. */
+    private void publishOutline(final ArrayList<OutlineLinkWrapper> result) {
+        final List<com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>>> waiting;
+        synchronized (outlineWaiting) {
+            outline = result;
+            waiting = new ArrayList<>(outlineWaiting);
+            outlineWaiting.clear();
+        }
+        for (com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> response : waiting) {
+            if (response != null) {
+                response.onResultRecive(result);
+            }
         }
 
     }

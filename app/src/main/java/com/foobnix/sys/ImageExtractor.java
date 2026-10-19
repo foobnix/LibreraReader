@@ -43,6 +43,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
@@ -702,8 +703,19 @@ public class ImageExtractor {
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
+        File coverCopy = null;
 
         try {
+
+            // A book from the history, known by a path the app may no longer read, is read
+            // through a folder the user handed over instead, as ExtUtils.openFile opens it
+            if (!ExtUtils.isExteralSD(path) && path.startsWith("/") && !Android6.canWrite(c)
+                    && !new File(path).canRead()) {
+                String saf = ExtUtils.getSafUriForPath(c, path);
+                if (saf != null) {
+                    path = saf;
+                }
+            }
 
             if (ExtUtils.isExteralSD(path)) {
                 if (ExtUtils.isImagePath(path)) {
@@ -712,12 +724,14 @@ public class ImageExtractor {
                 String display = ExtUtils.getFileName(Uri.decode(path));
 
                 // A book the readers can open only as a file: with covers for added storage
-                // asked for, it is copied out once and the cover read from the copy.
+                // asked for, the cover is read from a copy, thrown away again below unless it is
+                // the book being read.
                 File copy = AppState.get().isSafBookCovers ?
-                        CacheZipUtils.getSafBookCopy(c, path, display) : null;
+                        CacheZipUtils.getSafCoverCopy(c, path, display) : null;
                 if (copy == null) {
                     return messageFile("", display);
                 }
+                coverCopy = copy;
                 path = copy.getPath();
                 pageUrl.setPath(path);
             }
@@ -823,7 +837,7 @@ public class ImageExtractor {
             IMG.clearMemoryCache();
             return messageFile("#error", "");
         } finally {
-
+            CacheZipUtils.removeSafCoverCopy(coverCopy);
         }
     }
 

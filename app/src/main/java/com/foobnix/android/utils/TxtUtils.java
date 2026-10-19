@@ -1261,8 +1261,11 @@ public class TxtUtils {
                    .append((int) c)
                    .append(";");
             } else if (c == ' ') {
+                // Numeric, not &nbsp;: what this escapes goes into a converted book's XHTML and
+                // NCX, which foliate parses as XML - where &nbsp; is undefined and the whole file
+                // fails to parse, leaving a blank page or an empty table of contents
                 while (i + 1 < end && text.charAt(i + 1) == ' ') {
-                    out.append("&nbsp;");
+                    out.append("&#160;");
                     i++;
                 }
 

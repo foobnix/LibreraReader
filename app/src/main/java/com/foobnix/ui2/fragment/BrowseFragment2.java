@@ -94,6 +94,8 @@ import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.MdContext;
 
 import java.io.File;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -483,7 +485,8 @@ import java.util.Map;
                 // resources
 
                 if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
-                    List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
+                    // the same folder handed over more than once is still one folder
+                    Set<String> safs = new LinkedHashSet<>(StringDB.asList(BookCSS.get().pathSAF));
 
                     for (final String saf : safs) {
                         LOG.d("saf", saf);

@@ -118,6 +118,8 @@ public class AppProfile {
             return;
         }
         profile = getCurrent();
+        // the profile kept in a Librera folder handed over through the picker is brought in first
+        LibreraSafSync.pull(c);
         String appDB = "db-" + AppSP.get().getRootPath(c).hashCode() + "-" + profile;
         AppDB.get()
              .open(c, appDB);
@@ -232,6 +234,7 @@ public class AppProfile {
                    .save(a);
             AppSP.get()
                  .save();
+            LibreraSafSync.pushLater(a);
         }
     }
 

@@ -58,6 +58,7 @@
     </TableRow>
 
     <View
+        android:id="@+id/onGrantDivider"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginLeft="5dip"
@@ -83,6 +84,43 @@
 
         <TextView
             android:id="@+id/onGrantChooseFolderButton"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="6dip"
+            android:background="@drawable/bg_pill_outline"
+            android:gravity="center"
+            android:paddingLeft="16dip"
+            android:paddingTop="5dip"
+            android:paddingRight="16dip"
+            android:paddingBottom="5dip"
+            android:text="@string/choose_"
+            android:textAllCaps="true" />
+    </TableRow>
+
+    <!-- Without the permission, once books come from a folder handed over in the picker: the
+         settings and reading progress are kept in the Librera folder too, once it is handed
+         over the same way. It stays until it is. -->
+    <TableRow
+        android:id="@+id/onGrantLibrera"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingTop="4dip"
+        android:paddingBottom="4dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:text="@string/save_settings_in_librera_folder"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/onGrantLibreraButton"
             style="@style/textLinkWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -95,23 +95,22 @@ public class CacheZipUtils {
         CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
     }
 
-    // What the copies of storage books are allowed to take up; past it the oldest go first.
-    private static final long SAF_BOOKS_CACHE_LIMIT = 500 * 1024 * 1024L;
+    // Where a cover is read out of a storage book that is not the one being read
+    private static final String SAF_COVER_DIR = ".cover";
 
     /**
-     * A book on added storage is reached through a document provider, and the readers want a file:
-     * to read a cover out of a book, and to open it. So the book is copied here once and that copy
-     * is what is read.
+     * A book on added storage is reached through a document provider, and the readers want a file
+     * to open it. So the book being read is copied here, and that copy is what is read.
      * <p>
-     * Each copy sits in a folder of its own named after the document and keeps the book's own name
+     * The copy sits in a folder of its own named after the document and keeps the book's own name
      * inside it. Both matter. The readers pick themselves by the extension, so the name has to be
-     * the book's; and the path has to be the same every time, because everything the reader
-     * records about a book - where you are in it, what you marked - is filed under the path it was
-     * opened from. A copy in a shared folder, thrown away when the next book is opened, loses all
-     * of it.
+     * the book's; and the path has to be the same every time, because what the reader records
+     * about a book - what you marked, the engines' own caches - is filed under the path it was
+     * opened from. The position is filed under the book's name, so it outlives the copy.
      * <p>
-     * The copies outlive {@link #emptyAllCacheDirs()}, which runs as a book is opened. What holds
-     * them is the budget above and {@link #removeSafBookCopies()}.
+     * Only the book opened last is kept: a library on added storage would otherwise end up stored
+     * twice over. The copy outlives {@link #emptyAllCacheDirs()}, which runs as a book is opened,
+     * so reopening the book being read costs nothing.
      */
     public static File getSafBookCopy(Context c, String uri, String displayName) {
         if (CACHE_SAF_BOOKS == null || TxtUtils.isEmpty(displayName)) {
@@ -121,14 +120,11 @@ public class CacheZipUtils {
             File dir = new File(CACHE_SAF_BOOKS, Integer.toHexString(uri.hashCode()));
             File dest = new File(dir, displayName);
 
+            keepOnlySafBook(dir);
+
             if (dest.isFile() && dest.length() > 0) {
-                // What was asked for last stays longest, so neither the folder being browsed nor
-                // the book being read is thrown out.
-                dir.setLastModified(System.currentTimeMillis());
                 return dest;
             }
-
-            trimSafBooks(dir);
 
             if (!dir.isDirectory() && !dir.mkdirs()) {
                 return null;
@@ -142,6 +138,40 @@ public class CacheZipUtils {
         } catch (Exception e) {
             LOG.e(e);
             return null;
+        }
+    }
+
+    /**
+     * The file a cover of a storage book is read from: the copy of the book being read if it is
+     * that book, otherwise a copy of its own to be thrown away with {@link #removeSafCoverCopy}
+     * once the cover is out. Either way it is under the copies' folder, so
+     * {@link #isSafBookCopy(String)} keeps it out of the library.
+     */
+    public static File getSafCoverCopy(Context c, String uri, String displayName) {
+        if (CACHE_SAF_BOOKS == null || TxtUtils.isEmpty(displayName)) {
+            return null;
+        }
+        try {
+            File reading = new File(new File(CACHE_SAF_BOOKS, Integer.toHexString(uri.hashCode())), displayName);
+            if (reading.isFile() && reading.length() > 0) {
+                return reading;
+            }
+            File dir = new File(CACHE_SAF_BOOKS, SAF_COVER_DIR);
+            if (!dir.isDirectory() && !dir.mkdirs()) {
+                return null;
+            }
+            File dest = new File(dir, Integer.toHexString(uri.hashCode()) + "-" + displayName);
+            return copySafTo(c, uri, dest) ? dest : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /** Throws away a copy made for a cover; the copy of the book being read is left alone. */
+    public static void removeSafCoverCopy(File copy) {
+        if (copy != null && copy.getParentFile() != null && SAF_COVER_DIR.equals(copy.getParentFile().getName())) {
+            copy.delete();
         }
     }
 
@@ -211,43 +241,17 @@ public class CacheZipUtils {
         }
     }
 
-    // The oldest copies go first, so the cache stays inside its budget however long the reading
-    // goes on. The copy about to be made is never among them.
-    private static void trimSafBooks(File keep) {
+    // Every other book's copy goes; the covers' folder empties itself as each cover is read
+    private static void keepOnlySafBook(File keep) {
         File[] dirs = CACHE_SAF_BOOKS.listFiles();
-        if (dirs == null || dirs.length == 0) {
+        if (dirs == null) {
             return;
         }
-        long total = 0;
         for (File dir : dirs) {
-            total += dirSize(dir);
-        }
-        if (total <= SAF_BOOKS_CACHE_LIMIT) {
-            return;
-        }
-        Arrays.sort(dirs, new FilerByDate());
-        for (File dir : dirs) {
-            if (total <= SAF_BOOKS_CACHE_LIMIT) {
-                return;
+            if (!dir.getName().equals(keep.getName()) && !dir.getName().equals(SAF_COVER_DIR)) {
+                deleteDir(dir);
             }
-            if (keep != null && keep.getName().equals(dir.getName())) {
-                continue;
-            }
-            total -= dirSize(dir);
-            deleteDir(dir);
         }
-    }
-
-    private static long dirSize(File dir) {
-        File[] files = dir.listFiles();
-        if (files == null) {
-            return dir.length();
-        }
-        long size = 0;
-        for (File f : files) {
-            size += f.length();
-        }
-        return size;
     }
 
     public static void savaJavaCache(Object object, File file) {

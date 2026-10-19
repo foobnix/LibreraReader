@@ -246,6 +246,9 @@
    <string name="storage">Storage</string>
    <string name="add_all_books_with_permission">Add all books, requires permission.</string>
    <string name="add_folder_with_books">Add a folder with books.</string>
+   <string name="save_settings_in_librera_folder">Keep settings and reading progress in the Librera folder.</string>
+   <string name="regrant_folder_title">Allow access to the folder again</string>
+   <string name="regrant_folder_msg">The app can no longer read %1$s: Android forgets the folders you handed over when the app is reinstalled. Choose the folder again on the next screen.</string>
    <string name="remind_msg">Time to take a break!</string>
    <string name="bookmark_for_this_page_already_exists">This bookmark already exists</string>
    <string name="can_t_download">Unable to download file</string>

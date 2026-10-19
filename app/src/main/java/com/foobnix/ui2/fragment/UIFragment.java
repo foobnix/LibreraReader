@@ -33,6 +33,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.Views;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -41,6 +42,8 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.model.LibreraSafSync;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -172,6 +175,10 @@ public abstract class UIFragment<T> extends Fragment {
         if (onChooseFolder != null) {
             onChooseFolder.setOnClickListener(v -> MainTabs2.startAddLibraryStorage(getActivity()));
         }
+        View onLibrera = layoutOnGrant.findViewById(R.id.onGrantLibrera);
+        if (onLibrera != null) {
+            onLibrera.setOnClickListener(v -> LibreraSafSync.startPick(getActivity()));
+        }
         updateOnGrantPanel();
     }
 
@@ -184,17 +191,36 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     /**
-     * The notice stands only while there is still nothing the app can read: neither the
-     * permission to go looking for books, nor a folder the user has handed over. Either way in
-     * takes it down, so it is worked out again whenever the page comes back up - the answer
-     * changes while the user is away in the system's own screens.
+     * The notice stands while the library has no folder to look in: on a clean install without
+     * the permission, and whenever the user has taken every folder out. The way in by permission
+     * is offered only while the app does not have it.
+     *
+     * Without the permission, once the books come from a folder handed over in the picker, it
+     * asks for the Librera folder instead, and goes on asking until it is handed over: without it
+     * the settings and reading progress live only in the app's own storage.
+     *
+     * It is worked out again whenever the page comes back up - the answer changes while the user
+     * is away in the system's own screens - and whenever the folders list changes (see
+     * MainTabs2.updateOnGrantPanels).
      */
-    protected void updateOnGrantPanel() {
+    public void updateOnGrantPanel() {
         if (onGrantPanel == null) {
             return;
         }
-        Views.visible(onGrantPanel,
-                isOnGrantPanelAllowed() && !Android6.canWrite(getContext()) && !BookCSS.hasStorageAccess());
+        List<String> folders = JsonDB.get(BookCSS.get().searchPathsJson);
+        boolean noFolders = folders.isEmpty();
+        boolean canWrite = Android6.canWrite(getContext());
+        boolean safFolders = false;
+        for (String folder : folders) {
+            safFolders |= ExtUtils.isExteralSD(folder);
+        }
+        boolean needLibrera = !canWrite && safFolders && !LibreraSafSync.isActive(getContext());
+
+        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (noFolders || needLibrera));
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), noFolders && !canWrite);
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantDivider), noFolders && !canWrite);
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantChooseFolder), noFolders);
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantLibrera), needLibrera);
     }
 
     /**

@@ -3217,6 +3217,11 @@ public class PrefFragment2 extends UIFragment {
         if (searchPaths == null) {
             return;
         }
+        // The library offers a way in for books once it is left with no folder, and takes the
+        // offer down again as soon as it has one
+        if (getActivity() instanceof MainTabs2) {
+            ((MainTabs2) getActivity()).updateOnGrantPanels();
+        }
         searchPaths.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
