@@ -1,0 +1,27 @@
+name: Issue title
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  add-app-to-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || "";
+            const app = body.match(/### Application\s*\n+\s*(.+?)\s*(\n|$)/)?.[1];
+            if (!app || app === "_No response_") return;
+            const params = { owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number };
+            await github.rest.issues.addLabels({ ...params, labels: [app] });
+            const m = issue.title.match(/^\[(Bug|Feature)\]\s*:?\s*(.*)$/i);
+            if (!m) return;
+            const title = `[${m[1]}][${app}]: ${m[2]}`;
+            if (title === issue.title) return;
+            await github.rest.issues.update({ ...params, title });
