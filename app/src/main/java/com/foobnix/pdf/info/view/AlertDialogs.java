@@ -208,7 +208,7 @@ public class AlertDialogs {
     }
 
     public static void showTTSDebug(DocumentController controller) {
-        TextView t = new TextView(controller.getActivity());
+        TextView t = new SelectableTextView(controller.getActivity());
         t.setMinWidth(Dips.DP_800);
         t.setTextIsSelectable(true);
         //t.setMinHeight(Dips.DP_800);

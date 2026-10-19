@@ -134,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/title"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/serie" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/metaSeries"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -252,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:text="" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/pubDate"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -297,7 +297,7 @@
                     android:layout_height="wrap_content"
                     android:text="ISBN" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/isbn"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -340,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/my_tags" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/tagsList"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -363,7 +363,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/language" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/hypenLang"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -385,7 +385,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/by_extension" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/info"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -408,7 +408,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/size" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/size"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -430,7 +430,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/by_date" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/date"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -440,7 +440,7 @@
             </LinearLayout>
 
             <!-- The kind of file, kept for the log build; it has no row of its own to show in. -->
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/mimeType"
                 style="@style/infoValue"
                 android:layout_width="match_parent"
@@ -461,7 +461,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/file_path" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/path"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -502,7 +502,7 @@
                     android:text="@string/edit" />
             </LinearLayout>
 
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/metaInfo"
                 style="@style/infoValue"
                 android:layout_width="match_parent"
@@ -527,7 +527,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/meta_tags" />
 
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/metaTagsInfo"
                 style="@style/infoValue"
                 android:layout_width="match_parent"
@@ -542,7 +542,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/bookmarks" />
 
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/bookmarks"
                 style="@style/infoValue"
                 android:layout_width="match_parent"

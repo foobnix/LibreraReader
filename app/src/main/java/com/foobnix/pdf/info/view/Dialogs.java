@@ -1326,7 +1326,7 @@ public class Dialogs {
         if (activity == null) {
             return;
         }
-        TextView text = new TextView(activity);
+        TextView text = new SelectableTextView(activity);
         text.setText(textString);
         text.setTextIsSelectable(true);
         text.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);

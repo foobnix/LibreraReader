@@ -650,6 +650,40 @@ public abstract class UIFragment<T> extends Fragment {
         AppsConfig.executorService.submit(target);
     }
 
+    /** Width of one grid column in dp, 0 when the list is not a grid. */
+    private int gridColumnDP;
+    private int gridMinColumns = 1;
+
+    /**
+     * How many columns fit the list's own width. Not the display's: in a freeform window, split
+     * screen or on a desktop the app gets only part of the display, and columns counted for all of
+     * it squeeze every cover to a sliver.
+     */
+    private int gridColumns() {
+        int widthDP = Dips.pxToDp(recyclerView.getWidth());
+        if (widthDP <= 0) {
+            // Not laid out yet: the window's width, which the list will soon fill.
+            widthDP = recyclerView.getResources().getConfiguration().screenWidthDp;
+        }
+        return Math.max(gridMinColumns, widthDP / Math.max(1, gridColumnDP));
+    }
+
+    /** Recounts the columns when the window is resized, without waiting for the list to be rebuilt. */
+    private final View.OnLayoutChangeListener onGridResize = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        if (right - left == oldRight - oldLeft || gridColumnDP <= 0) {
+            return;
+        }
+        if (!(recyclerView.getLayoutManager() instanceof GridLayoutManager)) {
+            return;
+        }
+        final GridLayoutManager grid = (GridLayoutManager) recyclerView.getLayoutManager();
+        final int num = gridColumns();
+        if (grid.getSpanCount() != num) {
+            // Not in the middle of the layout pass that reported the new width.
+            recyclerView.post(() -> grid.setSpanCount(num));
+        }
+    };
+
     public void onGridList(int mode,
                            ImageView onGridlList,
                            final FileMetaAdapter searchAdapter,
@@ -661,6 +695,10 @@ public abstract class UIFragment<T> extends Fragment {
             PopupHelper.updateGridOrListIcon(onGridlList, mode);
         }
 
+        gridColumnDP = 0;
+        recyclerView.removeOnLayoutChangeListener(onGridResize);
+        recyclerView.addOnLayoutChangeListener(onGridResize);
+
         if (mode == AppState.MODE_LIST) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
@@ -668,14 +706,16 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setAdapter(searchAdapter);
 
         } else if (mode == AppState.MODE_COVERS || mode == AppState.MODE_GRID) {
-            final int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
+            gridColumnDP = AppState.get().coverBigSize;
+            gridMinColumns = 1;
 
-            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), gridColumns());
 
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
                 public int getSpanSize(int pos) {
+                    final int num = mGridManager.getSpanCount();
                     if (pos < 0 || pos >= searchAdapter.getItemCount()) {
                         return 1;
                     }
@@ -722,13 +762,15 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(authorsAdapter);
         } else if (mode == AppState.MODE_LIST_COMPACT) {
-            final int num = Math.max(2, Dips.screenWidthDP() / Dips.dpToPx(300));
-            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            gridColumnDP = 300;
+            gridMinColumns = 2;
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), gridColumns());
 
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
                 public int getSpanSize(int pos) {
+                    final int num = mGridManager.getSpanCount();
 
                     if (pos < 0 || pos >= searchAdapter.getItemCount()) {
                         return 1;

@@ -575,7 +575,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView columsCount = inflate.findViewById(R.id.columsCount);
-        columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
+        columsCount.setText("" + windowWidthDP() / AppState.get().coverBigSize);
         asButton(columsCount);
         columsCount.setOnClickListener(new OnClickListener() {
 
@@ -588,7 +588,7 @@ public class PrefFragment2 extends UIFragment {
                      .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                          @Override public boolean onMenuItemClick(MenuItem item) {
-                             int result = Dips.screenWidthDP() / k - 8;
+                             int result = windowWidthDP() / k - 8;
 
                              TempHolder.listHash++;
                              AppState.get().coverBigSize = result;
@@ -627,7 +627,7 @@ public class PrefFragment2 extends UIFragment {
                                 AppState.get().coverSmallSize = 80;
                                 TempHolder.listHash++;
 
-                                columsCount.setText("" + Dips.screenWidthDP() / AppState.get().coverBigSize);
+                                columsCount.setText("" + windowWidthDP() / AppState.get().coverBigSize);
                                 asButton(columsCount);
 
                                 coverSmallSize.init(40, max, AppState.get().coverSmallSize);
@@ -3495,6 +3495,11 @@ public class PrefFragment2 extends UIFragment {
             prefix = getActivity().getString(R.string.large) + " (+" + (int) f1 + ")";
         }
         return prefix;
+    }
+
+    /** The app window's width - what the library grid has to fill - not the whole display's. */
+    private int windowWidthDP() {
+        return getResources().getConfiguration().screenWidthDp;
     }
 
 }
