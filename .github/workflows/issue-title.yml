@@ -19,9 +19,10 @@ jobs:
             const app = body.match(/### Application\s*\n+\s*(.+?)\s*(\n|$)/)?.[1];
             if (!app || app === "_No response_") return;
             const params = { owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number };
-            await github.rest.issues.addLabels({ ...params, labels: [app] });
             const m = issue.title.match(/^\[(Bug|Feature)\]\s*:?\s*(.*)$/i);
+            const type = m ? (m[1].toLowerCase() === "bug" ? "bug" : "enhancement") : null;
+            await github.rest.issues.addLabels({ ...params, labels: type ? [type, app] : [app] });
             if (!m) return;
-            const title = `[${m[1]}][${app}]: ${m[2]}`;
+            const title = `[${app}]: ${m[2]}`;
             if (title === issue.title) return;
             await github.rest.issues.update({ ...params, title });
