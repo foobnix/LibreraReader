@@ -24,6 +24,19 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Rendering engine
+      description: Which engine is used to open the book?
+      options:
+        - MuPDF
+        - PDFium
+        - foliate-js
+        - Not sure
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:

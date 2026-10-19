@@ -1,13 +1,12 @@
-name: Bug report
-description: Report a problem with Librera
-title: "[Bug]: "
-labels: ["bug"]
+name: Feature request
+description: Suggest a new feature or improvement for Librera
+title: "[Feature]: "
 body:
   - type: dropdown
     id: app
     attributes:
       label: Application
-      description: Which application are you using?
+      description: Which application is this request for?
       options:
         - Librera
         - Librera F-Droid
@@ -24,15 +23,27 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Rendering engine
+      description: Which engine does this request relate to?
+      options:
+        - MuPDF
+        - PDFium
+        - foliate-js
+        - Not sure
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: Describe the problem, the steps to reproduce it, and what you expected to happen
+      description: Describe the feature you would like and why it would be useful
       placeholder: |
-        1. Open a book...
-        2. Tap on...
-        3. See the error
+        I would like to be able to...
+        This would help because...
     validations:
       required: true
 
@@ -40,6 +51,6 @@ body:
     id: screenshots
     attributes:
       label: Screenshots
-      description: Drag and drop or paste screenshots here
+      description: Drag and drop or paste screenshots or mockups here
     validations:
       required: false
