@@ -245,6 +245,9 @@
    <string name="storage">Сховище</string>
    <string name="add_all_books_with_permission">Додати всі книги, потрібен дозвіл.</string>
    <string name="add_folder_with_books">Додати теку з книгами.</string>
+   <string name="save_settings_in_librera_folder">Зберігати налаштування та прогрес читання в папці Librera.</string>
+   <string name="regrant_folder_title">Знову дозволити доступ до папки</string>
+   <string name="regrant_folder_msg">Застосунок більше не може читати %1$s: Android забуває доступ до папок під час перевстановлення застосунку. Виберіть папку знову на наступному екрані.</string>
    <string name="remind_msg">Настав час зробити перерву і дати очам трохи відпочити.</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для цієї сторінки вже існує</string>
    <string name="can_t_download">Неможливо завантажити</string>

@@ -245,6 +245,9 @@
    <string name="storage">Speicher</string>
    <string name="add_all_books_with_permission">Alle Bücher hinzufügen, Berechtigung erforderlich.</string>
    <string name="add_folder_with_books">Verzeichnis mit Büchern hinzufügen.</string>
+   <string name="save_settings_in_librera_folder">Einstellungen und Lesefortschritt im Ordner Librera speichern.</string>
+   <string name="regrant_folder_title">Zugriff auf den Ordner erneut erlauben</string>
+   <string name="regrant_folder_msg">Die App kann %1$s nicht mehr lesen: Android entfernt den Ordnerzugriff, wenn die App neu installiert wird. Wählen Sie den Ordner im nächsten Bildschirm erneut aus.</string>
    <string name="remind_msg">Bitte gönne deinen Augen eine Pause.</string>
    <string name="bookmark_for_this_page_already_exists">Lesezeichen bereits vorhanden</string>
    <string name="can_t_download">Kann nicht heruntergeladen werden</string>

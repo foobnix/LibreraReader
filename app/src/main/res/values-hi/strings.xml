@@ -245,6 +245,9 @@
    <string name="storage">संग्रहण</string>
    <string name="add_all_books_with_permission">सभी पुस्तकें जोड़ें, अनुमति आवश्यक है।</string>
    <string name="add_folder_with_books">पुस्तकों वाला फ़ोल्डर जोड़ें।</string>
+   <string name="save_settings_in_librera_folder">सेटिंग्स और पढ़ने की प्रगति Librera फ़ोल्डर में सहेजें।</string>
+   <string name="regrant_folder_title">फ़ोल्डर तक पहुँच फिर से दें</string>
+   <string name="regrant_folder_msg">ऐप अब %1$s नहीं पढ़ सकता: ऐप को दोबारा इंस्टॉल करने पर Android फ़ोल्डरों की पहुँच हटा देता है। अगली स्क्रीन पर फ़ोल्डर फिर से चुनें।</string>
    <string name="remind_msg">कृपया अपनी आँखों के लिए एक ब्रेक ले लो और थोड़ा आराम करो।</string>
    <string name="bookmark_for_this_page_already_exists">इस पृष्ठ के लिए बुकमार्क पहले से मौजूद</string>
    <string name="can_t_download">डाउनलोड नहीं कर सकता</string>

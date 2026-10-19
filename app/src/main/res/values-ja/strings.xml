@@ -245,6 +245,9 @@
    <string name="storage">ストレージ</string>
    <string name="add_all_books_with_permission">すべての本を追加（許可が必要です）</string>
    <string name="add_folder_with_books">本の入ったフォルダーを追加します。</string>
+   <string name="save_settings_in_librera_folder">設定と読書の進捗を Librera フォルダに保存します。</string>
+   <string name="regrant_folder_title">フォルダへのアクセスを再度許可</string>
+   <string name="regrant_folder_msg">アプリは %1$s を読み取れなくなりました。アプリを再インストールすると、Android はフォルダへのアクセス権を削除します。次の画面でもう一度フォルダを選択してください。</string>
    <string name="remind_msg">休憩の時間です！</string>
    <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
    <string name="can_t_download">ダウンロードできません</string>

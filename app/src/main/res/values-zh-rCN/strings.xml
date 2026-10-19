@@ -245,6 +245,9 @@
    <string name="storage">存储</string>
    <string name="add_all_books_with_permission">添加所有书籍，需要权限。</string>
    <string name="add_folder_with_books">添加含书籍的文件夹。</string>
+   <string name="save_settings_in_librera_folder">将设置和阅读进度保存在 Librera 文件夹中。</string>
+   <string name="regrant_folder_title">再次允许访问文件夹</string>
+   <string name="regrant_folder_msg">应用无法再读取 %1$s：重新安装应用后，Android 会移除文件夹访问权限。请在下一个屏幕中重新选择该文件夹。</string>
    <string name="remind_msg">该休息一会儿了！</string>
    <string name="bookmark_for_this_page_already_exists">书签已存在</string>
    <string name="can_t_download">无法下载文件</string>

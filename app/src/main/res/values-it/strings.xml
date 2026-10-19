@@ -245,6 +245,9 @@
    <string name="storage">Archiviazione</string>
    <string name="add_all_books_with_permission">Aggiungi tutti i libri, richiede autorizzazione.</string>
    <string name="add_folder_with_books">Aggiungi una cartella con libri.</string>
+   <string name="save_settings_in_librera_folder">Salva le impostazioni e i progressi di lettura nella cartella Librera.</string>
+   <string name="regrant_folder_title">Consenti di nuovo l\'accesso alla cartella</string>
+   <string name="regrant_folder_msg">L\'app non può più leggere %1$s: Android rimuove l\'accesso alle cartelle quando l\'app viene reinstallata. Scegli di nuovo la cartella nella schermata successiva.</string>
    <string name="remind_msg">Si prega di prendere una pausa per i tuoi occhi e riposare un po \'.</string>
    <string name="bookmark_for_this_page_already_exists">Segnalibro per questa pagina esiste già</string>
    <string name="can_t_download">Non puoi scaricare</string>

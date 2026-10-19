@@ -245,6 +245,9 @@
    <string name="storage">Almacenamento</string>
    <string name="add_all_books_with_permission">Engadir todos os libros, require permiso.</string>
    <string name="add_folder_with_books">Engadir un cartafol con libros.</string>
+   <string name="save_settings_in_librera_folder">Gardar a configuración e o progreso de lectura no cartafol Librera.</string>
+   <string name="regrant_folder_title">Permitir de novo o acceso ao cartafol</string>
+   <string name="regrant_folder_msg">A aplicación xa non pode ler %1$s: Android retira o acceso aos cartafoles ao reinstalar a aplicación. Escolle de novo o cartafol na seguinte pantalla.</string>
    <string name="remind_msg">É hora de facer unha pausa!</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador xa existe</string>
    <string name="can_t_download">Non se pode descargar o ficheiro</string>

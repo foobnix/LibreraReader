@@ -245,6 +245,9 @@
    <string name="storage">Úložiště</string>
    <string name="add_all_books_with_permission">Přidat všechny knihy, vyžaduje oprávnění.</string>
    <string name="add_folder_with_books">Přidat složku s knihami.</string>
+   <string name="save_settings_in_librera_folder">Ukládat nastavení a průběh čtení do složky Librera.</string>
+   <string name="regrant_folder_title">Znovu povolit přístup ke složce</string>
+   <string name="regrant_folder_msg">Aplikace už nemůže číst %1$s: Android při přeinstalaci aplikace odebere přístup ke složkám. Na další obrazovce složku vyberte znovu.</string>
    <string name="remind_msg">Je čas dát si přestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Tato záložka už existuje.</string>
    <string name="can_t_download">Soubor nelze stáhnout</string>

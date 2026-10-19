@@ -245,6 +245,9 @@
    <string name="storage">저장소</string>
    <string name="add_all_books_with_permission">모든 책 추가, 권한이 필요합니다.</string>
    <string name="add_folder_with_books">책이 있는 폴더를 추가합니다.</string>
+   <string name="save_settings_in_librera_folder">설정과 읽기 진행 상황을 Librera 폴더에 저장합니다.</string>
+   <string name="regrant_folder_title">폴더 접근 다시 허용</string>
+   <string name="regrant_folder_msg">앱이 더 이상 %1$s을(를) 읽을 수 없습니다. 앱을 다시 설치하면 Android가 폴더 접근 권한을 제거합니다. 다음 화면에서 폴더를 다시 선택하세요.</string>
    <string name="remind_msg">휴식시간입니다.</string>
    <string name="bookmark_for_this_page_already_exists">이미 존재하는 북마크입니다.</string>
    <string name="can_t_download">다운로드 할 수 없음</string>

@@ -245,6 +245,9 @@
    <string name="storage">சேமிப்பு</string>
    <string name="add_all_books_with_permission">அனைத்து புத்தகங்களையும் சேர்க்க, அனுமதி தேவை.</string>
    <string name="add_folder_with_books">புத்தகங்கள் உள்ள கோப்புறையைச் சேர்க்கவும்.</string>
+   <string name="save_settings_in_librera_folder">அமைப்புகளையும் வாசிப்பு முன்னேற்றத்தையும் Librera கோப்புறையில் சேமிக்கவும்.</string>
+   <string name="regrant_folder_title">கோப்புறைக்கான அணுகலை மீண்டும் அனுமதிக்கவும்</string>
+   <string name="regrant_folder_msg">செயலியால் இனி %1$s ஐப் படிக்க முடியாது: செயலியை மீண்டும் நிறுவும்போது Android கோப்புறை அணுகலை நீக்குகிறது. அடுத்த திரையில் கோப்புறையை மீண்டும் தேர்ந்தெடுக்கவும்.</string>
    <string name="remind_msg">ஓய்வு எடுக்க நேரம்!</string>
    <string name="bookmark_for_this_page_already_exists">இந்த புத்தககுற ஏற்கனவே உள்ளது</string>
    <string name="can_t_download">கோப்பை பதிவிறக்க முடியவில்லை</string>

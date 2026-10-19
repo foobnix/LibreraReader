@@ -245,6 +245,9 @@
    <string name="storage">Úložisko</string>
    <string name="add_all_books_with_permission">Pridať všetky knihy, vyžaduje povolenie.</string>
    <string name="add_folder_with_books">Pridať priečinok s knihami.</string>
+   <string name="save_settings_in_librera_folder">Ukladať nastavenia a priebeh čítania do priečinka Librera.</string>
+   <string name="regrant_folder_title">Znova povoliť prístup k priečinku</string>
+   <string name="regrant_folder_msg">Aplikácia už nemôže čítať %1$s: Android pri preinštalovaní aplikácie odstráni prístup k priečinkom. Na ďalšej obrazovke priečinok vyberte znova.</string>
    <string name="remind_msg">Dajte si prestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Táto záložka už existuje</string>
    <string name="can_t_download">Súbor nie je možné stiahnuť</string>

@@ -245,6 +245,9 @@
    <string name="storage">Stockage</string>
    <string name="add_all_books_with_permission">Ajouter tous les livres, autorisation requise.</string>
    <string name="add_folder_with_books">Ajouter un dossier avec des livres.</string>
+   <string name="save_settings_in_librera_folder">Enregistrer les paramètres et la progression de lecture dans le dossier Librera.</string>
+   <string name="regrant_folder_title">Autoriser à nouveau l\'accès au dossier</string>
+   <string name="regrant_folder_msg">L\'application ne peut plus lire %1$s : Android retire l\'accès aux dossiers lorsque l\'application est réinstallée. Choisissez à nouveau le dossier sur l\'écran suivant.</string>
    <string name="remind_msg">S\'il vous plaît, prenez une pause pour vos yeux et reposez-vous un peu.</string>
    <string name="bookmark_for_this_page_already_exists">Un signet pour cette page existe déjà</string>
    <string name="can_t_download">Je ne peux pas télécharger</string>

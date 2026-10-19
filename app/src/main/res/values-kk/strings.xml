@@ -245,6 +245,9 @@
    <string name="storage">Жад</string>
    <string name="add_all_books_with_permission">Барлық кітаптарды қосу, рұқсат қажет.</string>
    <string name="add_folder_with_books">Кітаптары бар қалтаны қосу.</string>
+   <string name="save_settings_in_librera_folder">Баптаулар мен оқу барысын Librera қалтасында сақтау.</string>
+   <string name="regrant_folder_title">Қалтаға қолжетімділікке қайта рұқсат беру</string>
+   <string name="regrant_folder_msg">Қолданба енді %1$s оқи алмайды: қолданба қайта орнатылғанда Android қалталарға қолжетімділікті жояды. Келесі экранда қалтаны қайта таңдаңыз.</string>
    <string name="remind_msg">Үзіліс жасау уақыты!</string>
    <string name="bookmark_for_this_page_already_exists">Бұл бетбелгі бұрыннан бар</string>
    <string name="can_t_download">Файлды жүктеу мүмкін емес</string>

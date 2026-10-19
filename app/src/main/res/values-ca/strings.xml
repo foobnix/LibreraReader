@@ -245,6 +245,9 @@
    <string name="storage">Emmagatzematge</string>
    <string name="add_all_books_with_permission">Afegeix tots els llibres, cal permís.</string>
    <string name="add_folder_with_books">Afegeix una carpeta amb llibres.</string>
+   <string name="save_settings_in_librera_folder">Desa la configuració i el progrés de lectura a la carpeta Librera.</string>
+   <string name="regrant_folder_title">Torna a permetre l\'accés a la carpeta</string>
+   <string name="regrant_folder_msg">L\'aplicació ja no pot llegir %1$s: Android elimina l\'accés a les carpetes quan es reinstal·la l\'aplicació. Torna a triar la carpeta a la pantalla següent.</string>
    <string name="remind_msg">És hora de fer una pausa.</string>
    <string name="bookmark_for_this_page_already_exists">Aquest marcador ja existeix</string>
    <string name="can_t_download">No s\'ha pogut baixar el fitxer</string>

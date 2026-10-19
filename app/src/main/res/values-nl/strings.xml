@@ -245,6 +245,9 @@
    <string name="storage">Opslag</string>
    <string name="add_all_books_with_permission">Alle boeken toevoegen, toestemming vereist.</string>
    <string name="add_folder_with_books">Een map met boeken toevoegen.</string>
+   <string name="save_settings_in_librera_folder">Instellingen en leesvoortgang opslaan in de map Librera.</string>
+   <string name="regrant_folder_title">Toegang tot de map opnieuw toestaan</string>
+   <string name="regrant_folder_msg">De app kan %1$s niet meer lezen: Android trekt de maptoegang in als de app opnieuw wordt geïnstalleerd. Kies de map opnieuw in het volgende scherm.</string>
    <string name="remind_msg">Neem een pauze voor je ogen en rust een beetje.</string>
    <string name="bookmark_for_this_page_already_exists">Bladwijzer voor deze pagina bestaat al</string>
    <string name="can_t_download">Kan bestand niet downloaden</string>

@@ -245,6 +245,9 @@
    <string name="storage">Lagring</string>
    <string name="add_all_books_with_permission">Lägg till alla böcker, kräver behörighet.</string>
    <string name="add_folder_with_books">Lägg till en mapp med böcker.</string>
+   <string name="save_settings_in_librera_folder">Spara inställningar och läsframsteg i mappen Librera.</string>
+   <string name="regrant_folder_title">Tillåt åtkomst till mappen igen</string>
+   <string name="regrant_folder_msg">Appen kan inte längre läsa %1$s: Android tar bort mappåtkomsten när appen installeras om. Välj mappen igen på nästa skärm.</string>
    <string name="remind_msg">Ta en paus för dina ögon och vila lite.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmärke för denna sida finns redan</string>
    <string name="can_t_download">Det går inte att ladda ner</string>

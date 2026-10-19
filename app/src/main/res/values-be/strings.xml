@@ -245,6 +245,9 @@
    <string name="storage">Сховішча</string>
    <string name="add_all_books_with_permission">Дадаць усе кнігі, патрабуецца дазвол.</string>
    <string name="add_folder_with_books">Дадаць папку з кнігамі.</string>
+   <string name="save_settings_in_librera_folder">Захоўваць налады і прагрэс чытання ў папцы Librera.</string>
+   <string name="regrant_folder_title">Зноў дазволіць доступ да папкі</string>
+   <string name="regrant_folder_msg">Праграма больш не можа чытаць %1$s: Android забывае доступ да папак пры пераўсталёўцы праграмы. Выберыце папку зноў на наступным экране.</string>
    <string name="remind_msg">Час зрабіць перапынак!</string>
    <string name="bookmark_for_this_page_already_exists">Гэтая закладка ўжо існуе</string>
    <string name="can_t_download">Немагчыма спампаваць файл</string>

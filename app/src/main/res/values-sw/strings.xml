@@ -245,6 +245,9 @@
    <string name="storage">Hifadhi</string>
    <string name="add_all_books_with_permission">Ongeza vitabu vyote, inahitaji ruhusa.</string>
    <string name="add_folder_with_books">Ongeza folda yenye vitabu.</string>
+   <string name="save_settings_in_librera_folder">Hifadhi mipangilio na maendeleo ya kusoma kwenye folda ya Librera.</string>
+   <string name="regrant_folder_title">Ruhusu tena ufikiaji wa folda</string>
+   <string name="regrant_folder_msg">Programu haiwezi tena kusoma %1$s: Android huondoa ufikiaji wa folda programu inaposakinishwa upya. Chagua folda tena kwenye skrini inayofuata.</string>
    <string name="remind_msg">Tafadhali kuchukua mapumziko kwa macho yako na kupumzika kidogo.</string>
    <string name="bookmark_for_this_page_already_exists">Alamisho ya ukurasa huu tayari upo</string>
    <string name="can_t_download">Haiwezi kupakuliwa</string>

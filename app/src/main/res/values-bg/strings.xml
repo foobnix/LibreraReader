@@ -245,6 +245,9 @@
    <string name="storage">Хранилище</string>
    <string name="add_all_books_with_permission">Добавяне на всички книги, изисква разрешение.</string>
    <string name="add_folder_with_books">Добавяне на папка с книги.</string>
+   <string name="save_settings_in_librera_folder">Запазване на настройките и напредъка в четенето в папката Librera.</string>
+   <string name="regrant_folder_title">Разрешете отново достъп до папката</string>
+   <string name="regrant_folder_msg">Приложението вече не може да чете %1$s: Android премахва достъпа до папките при преинсталиране на приложението. Изберете папката отново на следващия екран.</string>
    <string name="remind_msg">Време за почивка!</string>
    <string name="bookmark_for_this_page_already_exists">Тази отметка вече съществува</string>
    <string name="can_t_download">Файлът не може да бъде свален</string>

@@ -245,6 +245,9 @@
    <string name="storage">אחסון</string>
    <string name="add_all_books_with_permission">הוספת כל הספרים, נדרשת הרשאה.</string>
    <string name="add_folder_with_books">הוספת תיקייה עם ספרים.</string>
+   <string name="save_settings_in_librera_folder">שמירת ההגדרות והתקדמות הקריאה בתיקייה Librera.</string>
+   <string name="regrant_folder_title">אפשר שוב גישה לתיקייה</string>
+   <string name="regrant_folder_msg">האפליקציה כבר לא יכולה לקרוא את %1$s: Android מסיר את הגישה לתיקיות כשהאפליקציה מותקנת מחדש. בחר שוב את התיקייה במסך הבא.</string>
    <string name="remind_msg">קח הפסקה לעיניים שלך ותנוח קצת.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark עבור הדף הזה כבר קיים</string>
    <string name="can_t_download">לא ניתן להוריד</string>

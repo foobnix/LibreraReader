@@ -245,6 +245,9 @@
    <string name="storage">Biltegia</string>
    <string name="add_all_books_with_permission">Gehitu liburu guztiak, baimena behar da.</string>
    <string name="add_folder_with_books">Gehitu liburuak dituen karpeta bat.</string>
+   <string name="save_settings_in_librera_folder">Gorde ezarpenak eta irakurketaren aurrerapena Librera karpetan.</string>
+   <string name="regrant_folder_title">Baimendu berriro karpetarako sarbidea</string>
+   <string name="regrant_folder_msg">Aplikazioak ezin du jada %1$s irakurri: Androidek karpetetarako sarbidea kentzen du aplikazioa berriro instalatzean. Aukeratu karpeta berriro hurrengo pantailan.</string>
    <string name="remind_msg">Hartu arnasa eta eman atsedena begiei.</string>
    <string name="bookmark_for_this_page_already_exists">Laster marka hori badago</string>
    <string name="can_t_download">Ezin da deskargatu</string>

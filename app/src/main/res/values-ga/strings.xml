@@ -245,6 +245,9 @@
    <string name="storage">Stóráil</string>
    <string name="add_all_books_with_permission">Cuir na leabhair go léir leis, cead de dhíth.</string>
    <string name="add_folder_with_books">Cuir fillteán le leabhair leis.</string>
+   <string name="save_settings_in_librera_folder">Sábháil socruithe agus dul chun cinn léitheoireachta san fhillteán Librera.</string>
+   <string name="regrant_folder_title">Ceadaigh rochtain ar an bhfillteán arís</string>
+   <string name="regrant_folder_msg">Ní féidir leis an aip %1$s a léamh a thuilleadh: baineann Android rochtain ar fhillteáin nuair a athshuiteáiltear an aip. Roghnaigh an fillteán arís ar an gcéad scáileán eile.</string>
    <string name="remind_msg">Am chun sos a ghlacadh!</string>
    <string name="bookmark_for_this_page_already_exists">Tá an leabharmharc seo ann cheana féin</string>
    <string name="can_t_download">In ann an comhad a íoslódáil</string>
