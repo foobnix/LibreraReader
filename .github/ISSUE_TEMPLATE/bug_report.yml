@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a problem with Librera
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: app
+    attributes:
+      label: Application
+      description: Which application are you using?
+      options:
+        - Librera
+        - Librera F-Droid
+        - LibreraX
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Application version
+      description: You can find it in Settings → About
+      placeholder: e.g. 8.9.150
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the problem, the steps to reproduce it, and what you expected to happen
+      placeholder: |
+        1. Open a book...
+        2. Tap on...
+        3. See the error
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop or paste screenshots here
+    validations:
+      required: false
