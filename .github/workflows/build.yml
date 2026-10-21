@@ -333,47 +333,53 @@ jobs:
       - name: Prepare APK artifact
         shell: bash
         run: |
-          set -e
+          set -euo pipefail
 
-          APK_PATH=$(find app/build/outputs/apk/pro/release \
+          APK_DIR="app/build/outputs/apk/pro/release"
+
+          echo "Available APKs:"
+          find "$APK_DIR" -maxdepth 1 -type f -name '*.apk' -print
+
+          APK_PATH=$(find "$APK_DIR" \
             -maxdepth 1 \
             -type f \
-            -name "Librera Pro-*-arm64.apk" \
+            -name '*.apk' \
             | head -n 1)
 
           if [ -z "$APK_PATH" ]; then
-            echo "ERROR: Pro ARM64 APK not found."
-
-            echo
-            echo "Available APKs:"
-            find app/build/outputs/apk \
-              -type f \
-              -name "*.apk" \
-              -print
-
+            echo "ERROR: No APK was generated in $APK_DIR"
+            find app/build/outputs/apk -type f -name '*.apk' -print
             exit 1
           fi
 
-          VERSION=$(basename "$APK_PATH" \
-            | sed -E 's/^Librera Pro-([0-9.]+)-arm64\.apk$/\1/')
+          BUILD_TOOLS=$(find "$ANDROID_HOME/build-tools" \
+            -mindepth 1 -maxdepth 1 -type d \
+            -printf '%f\n' | sort -V | tail -n 1)
 
-          if [ -z "$VERSION" ] ||
-             [ "$VERSION" = "$(basename "$APK_PATH")" ]; then
-            echo "ERROR: Could not determine app version."
+          AAPT="$ANDROID_HOME/build-tools/$BUILD_TOOLS/aapt"
+
+          if [ ! -x "$AAPT" ]; then
+            echo "ERROR: aapt not found: $AAPT"
+            exit 1
+          fi
+
+          VERSION=$("$AAPT" dump badging "$APK_PATH" \
+            | sed -n "s/^package:.*versionName='\([^']*\)'.*/\1/p" \
+            | head -n 1)
+
+          if [ -z "$VERSION" ]; then
+            echo "ERROR: Could not read versionName from APK manifest."
             exit 1
           fi
 
           mkdir -p artifacts
-
           OUTPUT="artifacts/Librera-Pro-${VERSION}-ARM64.apk"
-
           cp "$APK_PATH" "$OUTPUT"
 
           echo "APP_VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "APK_PATH=$OUTPUT" >> "$GITHUB_ENV"
 
-          echo
-          echo "Prepared APK:"
+          echo "Prepared APK: $OUTPUT"
           ls -lh "$OUTPUT"
 
 
