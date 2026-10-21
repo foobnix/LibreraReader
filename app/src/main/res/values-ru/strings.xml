@@ -62,7 +62,7 @@
    <string name="web">Веб-ссылка:</string>
    <string name="beta_version">Бета-версия:</string>
    <string name="archive">Архив версий:</string>
-   <string name="rate_pdf_reader1">Пожалуйста, напишите свой отзыв и оцените нас в Google Play. Это очень важно для развития приложения.</string>
+   <string name="rate_pdf_reader1">Пожалуйста, напишите отзыв об этом приложении в Google Play. Это очень важно для нас</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Форматированный текст (псевдографика)</string>
    <string name="continuous_text">Непрерывный текст (без разрыва строк)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">Приложения для работы с E-mail не установлены</string>
    <string name="file_not_found">Файл не найден</string>
    <string name="you_need_grant_permission5">Приложению требуется ваше разрешение для поиска и отображения всех ваших книг.</string>
+   <string name="allow">Разрешить</string>
+   <string name="storage">Хранилище</string>
+   <string name="add_all_books_with_permission">Пожалуйста, разрешите приложению просматривать папку «Загрузки», чтобы автоматически добавлять книги в вашу библиотеку.</string>
+   <string name="save_settings_in_librera_folder">Хранить настройки и прогресс чтения в папке Librera.</string>
+   <string name="regrant_folder_title">Снова разрешить доступ к папке</string>
+   <string name="regrant_folder_msg">Приложение больше не может читать %1$s: Android забывает доступ к папкам при переустановке приложения. Выберите папку снова на следующем экране.</string>
    <string name="remind_msg">Пришло время сделать перерыв и дать глазам немного отдохнуть</string>
    <string name="bookmark_for_this_page_already_exists">Закладка для этой страницы уже существует</string>
    <string name="can_t_download">Скачать нельзя</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Симметричная обрезка полей</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Отображать имена авторов и названия PDF-книг, используя информацию метаданных</string>
    <string name="meta_tags">Метаданные</string>
-   <string name="librera_pro">Установите Librera PRO — без рекламы, и она убирает рекламу и в этом приложении</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Приложение без рекламы, которое убирает рекламу и в этом приложении</string>
    <string name="annotation">Аннотация</string>
    <string name="book">Книга</string>
    <string name="information">Дата/формат/размер файла</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Выделять начальные буквы</string>
    <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
+   <string name="show_storage_book_covers">Показывать обложки для добавленного хранилища</string>
    <string name="accent">Цвет акцента</string>
    <string name="discarded_books">Исключенные книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показывать номера страниц печатного издания (для EPUB3-формата)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Смотреть</string>
    <string name="librerax_not_installed">LibreraX не установлена. Скачайте и установите её, затем откройте книгу снова.</string>
    <string name="remove_library_folder">Убрать эту папку из библиотеки? Файлы в ней не будут удалены.</string>
+   <string name="epub_engine">Движок EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView недоступен на этом устройстве.</string>
+   <string name="base_stylesheet">Применять базовую таблицу стилей (foliate-js)</string>
+   <string name="pdf_engine">Движок PDF</string>
+   <string name="msg_pdf_engine_unavailable">В этой сборке нет библиотек PDFium.</string>
 </resources>

@@ -78,6 +78,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.graphics.PorterDuffColorFilter;
 
 public class DialogsPlaylist {
     public static final int LIMIT_MAX_BOOKS = 50;
@@ -555,7 +556,7 @@ public class DialogsPlaylist {
         if (playlistMark != null) {
             int markSize = (int) playListName.getTextSize();
             playlistMark.setBounds(0, 0, markSize, markSize);
-            playlistMark.setColorFilter(playlistAccent, PorterDuff.Mode.SRC_IN);
+            playlistMark.setColorFilter(new PorterDuffColorFilter(playlistAccent, PorterDuff.Mode.SRC_IN));
             playListName.setCompoundDrawables(playlistMark, null, null, null);
             playListName.setCompoundDrawablePadding(Dips.DP_6);
         }

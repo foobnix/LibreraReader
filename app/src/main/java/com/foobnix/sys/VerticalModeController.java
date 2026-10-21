@@ -27,6 +27,9 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.MyProgressDialog;
@@ -428,6 +431,10 @@ public class VerticalModeController extends DocumentController {
             LOG.d("Can't underlineText");
             return;
         }
+        if (!isAnnotationsInsideDocument()) {
+            markSelection(color, type);
+            return;
+        }
         final int first = ctr.getDocumentController().getFirstVisiblePage();
         final int last = ctr.getDocumentController().getLastVisiblePage();
         for (int i = first; i < last + 1; i++) {
@@ -475,6 +482,55 @@ public class VerticalModeController extends DocumentController {
         }
     }
 
+
+    /**
+     * A mark kept by Librera rather than written into the document.
+     *
+     * Everything but a PDF comes here. The words are already selected on the pages on screen, so
+     * this is only a matter of naming them: the engine is asked for that, off this thread,
+     * because for a reflowable book it means putting the page back on screen to look.
+     */
+    private void markSelection(final int color, final AnnotationType type) {
+        final int first = ctr.getDocumentController().getFirstVisiblePage();
+        final int last = ctr.getDocumentController().getLastVisiblePage();
+        final String colorText = AnnotationsPainter.toHex(color);
+        for (int i = first; i < last + 1; i++) {
+            final Page page = ctr.getDocumentModel().getPageByDocIndex(i);
+            if (page == null || page.selectedText == null || page.selectedText.isEmpty()) {
+                continue;
+            }
+            final int index = i;
+            final List<TextWord> words = new ArrayList<TextWord>(page.selectedText);
+            new Thread("@T markSelection") {
+                @Override
+                public void run() {
+                    try {
+                        final List<RectF> rects = AnnotationsFinder.mergeLines(words);
+                        final AppAnnotation annotation = createAnnotation(index, rects,
+                                AnnotationsFinder.textOf(words), type, colorText);
+                        if (annotation == null) {
+                            return;
+                        }
+                        // Show it at once rather than waiting for the page to be decoded again
+                        final List<AnnotationsFinder.Drawn> marks = page.marks == null
+                                ? new ArrayList<AnnotationsFinder.Drawn>()
+                                : new ArrayList<AnnotationsFinder.Drawn>(page.marks);
+                        marks.add(new AnnotationsFinder.Drawn(annotation, rects));
+                        page.marks = marks;
+                        page.selectedText = new ArrayList<TextWord>();
+                        ctr.getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ctr.getDocumentController().toggleRenderingEffects();
+                            }
+                        });
+                    } catch (Throwable e) {
+                        LOG.e(e);
+                    }
+                }
+            }.start();
+        }
+    }
 
     @Override
     public void onAutoScroll() {
@@ -925,8 +981,12 @@ public class VerticalModeController extends DocumentController {
         }
 
 
-        outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
-        if (outline != null) {
+        final ArrayList<OutlineLinkWrapper> cached =
+                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        // An empty list is what a read that failed left behind, not the book's contents, so it
+        // is read again rather than kept
+        if (cached != null && !cached.isEmpty()) {
+            outline = cached;
             resultWrapper.onResultRecive(outline);
             return;
         }
@@ -935,7 +995,8 @@ public class VerticalModeController extends DocumentController {
 
             @Override
             public boolean onResultRecive(List<OutlineLink> outlineLinks) {
-                outline = new ArrayList<OutlineLinkWrapper>();
+                // Filled here and kept only once whole, so nobody is handed half of it
+                final ArrayList<OutlineLinkWrapper> result = new ArrayList<OutlineLinkWrapper>();
                 if (outlineLinks == null) {
                     return resultWrapper.onResultRecive(null);
                 }
@@ -952,10 +1013,10 @@ public class VerticalModeController extends DocumentController {
                         }
                         if (TxtUtils.isNotEmpty(ol.getTitle())) {
                             if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                                result.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
                             } else {
                                 int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                                result.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
                             }
 
                         }
@@ -963,7 +1024,10 @@ public class VerticalModeController extends DocumentController {
                         LOG.e(e);
                     }
                 }
-                CacheZipUtils.savaJavaCache(outline, getCurrentBook());
+                if (!result.isEmpty()) {
+                    CacheZipUtils.savaJavaCache(result, getCurrentBook());
+                }
+                outline = result;
                 resultWrapper.onResultRecive(outline);
                 return true;
             }
@@ -980,7 +1044,7 @@ public class VerticalModeController extends DocumentController {
         try {
             return ctr.getDocumentModel().decodeService.getAttachemnts();
         } catch (Exception e) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
 
         }
     }

@@ -24,6 +24,9 @@ android {
 dependencies {
     api(libs.junrar)
     api(libs.play.services.auth)
+    api(libs.credentials)
+    api(libs.credentials.play.services.auth)
+    api(libs.googleid)
     api(libs.google.api.services.drive)
     api(libs.google.api.client.android)
     api(libs.google.oauth.client.jetty)

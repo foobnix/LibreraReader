@@ -62,7 +62,7 @@
    <string name="web">ഹോം പേജ്</string>
    <string name="beta_version">ബീറ്റ പതിപ്പ്</string>
    <string name="archive">ശേഖരം</string>
-   <string name="rate_pdf_reader1">ദയവായി ഫീഡ്‌ബാക്ക് നൽകി ഞങ്ങളെ ഗൂഗിൾ പ്ലേയിൽ റേറ്റുചെയ്യുക: കൂടുതൽ വികസനത്തിന് ഇത് വളരെ പ്രധാനമാണ്</string>
+   <string name="rate_pdf_reader1">ദയവായി ഈ ആപ്പിനെക്കുറിച്ച് Google Play-യിൽ അഭിപ്രായം എഴുതുക. ഇത് ഞങ്ങൾക്ക് വളരെ പ്രധാനമാണ്</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">ഫോർമാറ്റുചെയ്‌ത വാചകം (സ്യൂഡോ ഗ്രാഫിക്സ്)</string>
    <string name="continuous_text">തുടർച്ചയായ വാചകം (ലൈൻ ബ്രേക്കുകളൊന്നുമില്ല)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">ഇമെയിൽ ക്ലയന്റുകളൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
    <string name="file_not_found">ഫയൽ കാണുന്നില്ല</string>
    <string name="you_need_grant_permission5">നിങ്ങളുടെ എല്ലാ പുസ്തകങ്ങളും കണ്ടെത്തി പ്രദർശിപ്പിക്കുന്നതിന് ആപ്പിന് നിങ്ങളുടെ അനുമതി ആവശ്യമാണ്.</string>
+   <string name="allow">അനുവദിക്കുക</string>
+   <string name="storage">സംഭരണം</string>
+   <string name="add_all_books_with_permission">പുസ്തകങ്ങൾ നിങ്ങളുടെ ലൈബ്രറിയിലേക്ക് സ്വയം ചേർക്കാൻ, ഡൗൺലോഡ്സ് ഫോൾഡർ സ്കാൻ ചെയ്യാൻ ദയവായി ആപ്പിനെ അനുവദിക്കുക.</string>
+   <string name="save_settings_in_librera_folder">ക്രമീകരണങ്ങളും വായനാ പുരോഗതിയും Librera ഫോൾഡറിൽ സൂക്ഷിക്കുക.</string>
+   <string name="regrant_folder_title">ഫോൾഡറിലേക്കുള്ള ആക്സസ് വീണ്ടും അനുവദിക്കുക</string>
+   <string name="regrant_folder_msg">ആപ്പിന് ഇനി %1$s വായിക്കാൻ കഴിയില്ല: ആപ്പ് വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ Android ഫോൾഡർ ആക്സസ് നീക്കം ചെയ്യുന്നു. അടുത്ത സ്ക്രീനിൽ ഫോൾഡർ വീണ്ടും തിരഞ്ഞെടുക്കുക.</string>
    <string name="remind_msg">വിശ്രമിക്കാനുള്ള സമയം!</string>
    <string name="bookmark_for_this_page_already_exists">ഈ ബുക്ക്മാർക്ക് ഇതിനകം നിലവിലുണ്ട്</string>
    <string name="can_t_download">ഫയൽ ഡ download ൺലോഡ് ചെയ്യാൻ കഴിയില്ല</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">മിറർ ചെയ്ത വിള</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">മെറ്റാ ഡാറ്റയിൽ നിന്ന് (പി‌ഡി‌എഫ്) രചയിതാക്കളുടെ പേരുകളും പുസ്തക ശീർഷകങ്ങളും എക്‌സ്‌ട്രാക്റ്റുചെയ്യുക.</string>
    <string name="meta_tags">മെറ്റാ ടാഗുകൾ</string>
-   <string name="librera_pro">Librera PRO നേടൂ — പരസ്യങ്ങളില്ല, ഈ ആപ്പിലെ പരസ്യങ്ങളും നീക്കും</string>
+   <string name="librera_pro"><b>Librera PRO</b>: ഈ ആപ്പിലെ പരസ്യങ്ങളും നീക്കം ചെയ്യുന്ന പരസ്യരഹിത ആപ്പ്</string>
    <string name="annotation">വ്യാഖ്യാനം</string>
    <string name="book">പുസ്തകം</string>
    <string name="information">ഫയൽ വിവരം</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">പ്രാരംഭ അക്ഷരങ്ങൾ ഹൈലൈറ്റ് ചെയ്യുന്നു</string>
    <string name="anti_aliasing_level">ആന്റി-അലിയാസിംഗ് ലെവൽ</string>
    <string name="folder_preview">ഫോൾഡർ പ്രിവ്യൂ</string>
+   <string name="show_storage_book_covers">ചേർത്ത സംഭരണത്തിനായി കവറുകൾ കാണിക്കുക</string>
    <string name="accent">ഉച്ചാരണം</string>
    <string name="discarded_books">ഉപേക്ഷിച്ച പുസ്തകങ്ങൾ</string>
    <string name="show_print_edition_page_numbers_epub3">പ്രിന്റ് എഡിഷൻ പേജ് നമ്പറുകൾ കാണിക്കുക (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">കാണുക</string>
    <string name="librerax_not_installed">LibreraX ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല. ഇത് ഡൗൺലോഡ് ചെയ്ത് ഇൻസ്റ്റാൾ ചെയ്യുക, തുടർന്ന് പുസ്തകം വീണ്ടും തുറക്കുക.</string>
    <string name="remove_library_folder">ഈ ഫോൾഡർ ലൈബ്രറിയിൽ നിന്ന് നീക്കം ചെയ്യണോ? അതിലെ ഫയലുകൾ ഇല്ലാതാക്കില്ല.</string>
+   <string name="epub_engine">EPUB എഞ്ചിൻ</string>
+   <string name="msg_epub_engine_unavailable">ഈ ഉപകരണത്തിൽ WebView ലഭ്യമല്ല.</string>
+   <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
+   <string name="pdf_engine">PDF എഞ്ചിൻ</string>
+   <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
 </resources>

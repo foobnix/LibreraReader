@@ -21,15 +21,39 @@ public class JsonHelper {
         return JsonHelper.jsonToMap(json);
     }
 
-    public static void mapToFile(File jsonFile, Map<String, String> notes) {
+    public static boolean mapToFile(File jsonFile, Map<String, String> notes) {
         try {
             FileWriter fw = new FileWriter(jsonFile);
             fw.write(JsonHelper.mapToJson(notes));
             fw.flush();
             fw.close();
+            return true;
         } catch (Exception e) {
             LOG.e(e);
+            return false;
         }
+    }
+
+    /**
+     * Writes the map through a temporary file in the same folder and renames it into place, so a
+     * reader never opens a half-written cache. An existing jsonFile is left alone: whoever wrote
+     * it first wins. Returns whether this call is the one that created jsonFile.
+     */
+    public static boolean mapToFileIfAbsent(File jsonFile, Map<String, String> notes) {
+        if (jsonFile.isFile()) {
+            return false;
+        }
+        File temp = new File(jsonFile.getPath() + ".tmp." + System.nanoTime());
+        if (!mapToFile(temp, notes) || !temp.isFile()) {
+            temp.delete();
+            return false;
+        }
+        // another writer may have finished in the meantime: its file stays, this one goes
+        if (jsonFile.isFile() || !temp.renameTo(jsonFile)) {
+            temp.delete();
+            return false;
+        }
+        return true;
     }
 
     public static String fileToString(File file) {

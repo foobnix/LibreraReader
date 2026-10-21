@@ -269,7 +269,7 @@ public abstract class DragingPopup {
             contentView = getContentView(inflater);
         } catch (Exception e) {
             LOG.e(e);
-            contentView = new TextView(popupView.getContext());
+            contentView = new SelectableTextView(popupView.getContext());
             ((TextView) contentView).setText(LOG.toString(e));
             ((TextView) contentView).setTextIsSelectable(true);
         }

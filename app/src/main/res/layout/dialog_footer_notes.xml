@@ -19,14 +19,14 @@
         android:scrollbarStyle="outsideInset"
         android:layout_weight="1" >
 
-        <TextView
+        <com.foobnix.pdf.info.view.SelectableTextView
             android:padding="4dip"
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="note"
             android:textIsSelectable="true" >
-        </TextView>
+        </com.foobnix.pdf.info.view.SelectableTextView>
     </ScrollView>
 
     <TextView

@@ -10,6 +10,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.zwobble.mammoth.DocumentConverter;
@@ -87,7 +88,7 @@ public class DocxContext extends PdfContext {
                 out.write("</body></html>".getBytes());
                 out.close();
 
-                MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
+                AbstractCodecDocument muPdfDocument = openReflowableHtml(cacheFile.getPath(), password);
                 return muPdfDocument;
 
             } catch (IOException e) {
@@ -96,7 +97,7 @@ public class DocxContext extends PdfContext {
             }
 
         }
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
+        AbstractCodecDocument muPdfDocument = openReflowableHtml(cacheFile.getPath(), password);
         return muPdfDocument;
 
 

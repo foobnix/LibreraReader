@@ -62,7 +62,7 @@
    <string name="web">Ana sayfa</string>
    <string name="beta_version">Beta sürümü</string>
    <string name="archive">Arşiv</string>
-   <string name="rate_pdf_reader1">Görüşleriniz bizim için çok önemli. Google Play\'de bizi değerlendirin</string>
+   <string name="rate_pdf_reader1">Lütfen bu uygulama hakkında Google Play\'de yorum bırakın. Bu bizim için çok önemli</string>
    <string name="___PREFERENCES___SECTION___">Seçenekler Bölümü</string>
    <string name="formatted_text">Biçimlendirilmiş metin (sahte grafik)</string>
    <string name="continuous_text">Sürekli metin (satır sonu yok)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">E-posta uygulaması yüklü değil.</string>
    <string name="file_not_found">Dosya bulunamadı</string>
    <string name="you_need_grant_permission5">Uygulamanın tüm kitaplarınızı bulup görüntüleyebilmesi için izninize ihtiyacı var.</string>
+   <string name="allow">İzin ver</string>
+   <string name="storage">Depolama</string>
+   <string name="add_all_books_with_permission">Kitapların kitaplığınıza otomatik olarak eklenmesi için lütfen uygulamanın İndirilenler klasörünüzü taramasına izin verin.</string>
+   <string name="save_settings_in_librera_folder">Ayarları ve okuma ilerlemesini Librera klasörüne kaydet.</string>
+   <string name="regrant_folder_title">Klasöre yeniden erişim izni ver</string>
+   <string name="regrant_folder_msg">Uygulama artık %1$s klasörünü okuyamıyor: Android, uygulama yeniden yüklendiğinde klasör erişimini kaldırır. Sonraki ekranda klasörü yeniden seçin.</string>
    <string name="remind_msg">Lütfen gözleriniz için biraz ara verin ve dinlenin.</string>
    <string name="bookmark_for_this_page_already_exists">Bu yer imi zaten var</string>
    <string name="can_t_download">Dosya indirilemiyor</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Simetrik olarak kenar sınırları</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Meta kitabından yazarı ve PDF kitabının başlığını görüntüleme</string>
    <string name="meta_tags">Meta etiketleri</string>
-   <string name="librera_pro">Librera PRO\'yu edinin — reklamsız, ayrıca bu uygulamadaki reklamları da kaldırır</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Bu uygulamadaki reklamları da kaldıran reklamsız bir uygulama</string>
    <string name="annotation">Not</string>
    <string name="book">Kitap</string>
    <string name="information">Bilgi</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Ilk harfleri vurgulama</string>
    <string name="anti_aliasing_level">Kenar yumuşatma seviyesi</string>
    <string name="folder_preview">Klasör önizlemesi</string>
+   <string name="show_storage_book_covers">Eklenen depolama için kapakları göster</string>
    <string name="accent">Aksan</string>
    <string name="discarded_books">Atılan kitaplar</string>
    <string name="show_print_edition_page_numbers_epub3">Basılı baskı sayfa numaralarını göster (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">İzle</string>
    <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>
    <string name="remove_library_folder">Bu klasör kitaplıktan kaldırılsın mı? İçindeki dosyalar silinmez.</string>
+   <string name="epub_engine">EPUB motoru</string>
+   <string name="msg_epub_engine_unavailable">Bu cihazda WebView kullanılamıyor.</string>
+   <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
+   <string name="pdf_engine">PDF motoru</string>
+   <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
 </resources>

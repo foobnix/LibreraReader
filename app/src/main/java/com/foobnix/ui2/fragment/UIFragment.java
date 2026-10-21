@@ -33,12 +33,18 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.JsonDB;
+import com.foobnix.android.utils.Views;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.model.LibreraSafSync;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -147,6 +153,65 @@ public abstract class UIFragment<T> extends Fragment {
      */
     public boolean hasFloatingHeader() {
         return true;
+    }
+
+    private View onGrantPanel;
+
+    /**
+     * The notice a clear install opens on: it asks for the permission to go looking for books.
+     * A folder of books handed over through the system's picker (+ Storage in the menu) is the
+     * other way in; with one, the notice asks for the Librera folder instead.
+     */
+    protected void bindOnGrantPanel(View layoutOnGrant) {
+        onGrantPanel = layoutOnGrant;
+        if (layoutOnGrant == null) {
+            return;
+        }
+        View onPermission = layoutOnGrant.findViewById(R.id.onGrantPermission);
+        if (onPermission != null) {
+            onPermission.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
+        }
+        View onLibrera = layoutOnGrant.findViewById(R.id.onGrantLibrera);
+        if (onLibrera != null) {
+            onLibrera.setOnClickListener(v -> LibreraSafSync.startPick(getActivity()));
+        }
+        updateOnGrantPanel();
+    }
+
+    /**
+     * Whether this page asks for books at all. A page standing in a dialog has no room to, and
+     * says so by answering false.
+     */
+    protected boolean isOnGrantPanelAllowed() {
+        return true;
+    }
+
+    /**
+     * Without the permission, the notice asks for it while no folder of books has been handed
+     * over through the picker. Once one has, that offer goes, and the notice asks for the Librera
+     * folder instead - for as long as the settings and reading progress are only in the app's own
+     * storage, where they would go with the app. With the permission there is nothing to ask.
+     *
+     * It is worked out again whenever the page comes back up - the answer changes while the user
+     * is away in the system's own screens - and whenever the folders list changes (see
+     * MainTabs2.updateOnGrantPanels).
+     */
+    public void updateOnGrantPanel() {
+        if (onGrantPanel == null) {
+            return;
+        }
+        boolean canWrite = Android6.canWrite(getContext());
+        boolean safFolders = false;
+        for (String folder : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            safFolders |= ExtUtils.isExteralSD(folder);
+        }
+        boolean askPermission = !canWrite && !safFolders;
+        boolean askLibrera = !canWrite && safFolders && !LibreraSafSync.isActive(getContext())
+                && LibreraSafSync.isProfileHidden(getContext());
+
+        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (askPermission || askLibrera));
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), askPermission);
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantLibrera), askLibrera);
     }
 
     /**
@@ -463,6 +528,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        updateOnGrantPanel();
         LOG.d("isSecondTime",isSecondTime);
         if (isSecondTime) {
             try {
@@ -584,6 +650,40 @@ public abstract class UIFragment<T> extends Fragment {
         AppsConfig.executorService.submit(target);
     }
 
+    /** Width of one grid column in dp, 0 when the list is not a grid. */
+    private int gridColumnDP;
+    private int gridMinColumns = 1;
+
+    /**
+     * How many columns fit the list's own width. Not the display's: in a freeform window, split
+     * screen or on a desktop the app gets only part of the display, and columns counted for all of
+     * it squeeze every cover to a sliver.
+     */
+    private int gridColumns() {
+        int widthDP = Dips.pxToDp(recyclerView.getWidth());
+        if (widthDP <= 0) {
+            // Not laid out yet: the window's width, which the list will soon fill.
+            widthDP = recyclerView.getResources().getConfiguration().screenWidthDp;
+        }
+        return Math.max(gridMinColumns, widthDP / Math.max(1, gridColumnDP));
+    }
+
+    /** Recounts the columns when the window is resized, without waiting for the list to be rebuilt. */
+    private final View.OnLayoutChangeListener onGridResize = (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        if (right - left == oldRight - oldLeft || gridColumnDP <= 0) {
+            return;
+        }
+        if (!(recyclerView.getLayoutManager() instanceof GridLayoutManager)) {
+            return;
+        }
+        final GridLayoutManager grid = (GridLayoutManager) recyclerView.getLayoutManager();
+        final int num = gridColumns();
+        if (grid.getSpanCount() != num) {
+            // Not in the middle of the layout pass that reported the new width.
+            recyclerView.post(() -> grid.setSpanCount(num));
+        }
+    };
+
     public void onGridList(int mode,
                            ImageView onGridlList,
                            final FileMetaAdapter searchAdapter,
@@ -595,6 +695,10 @@ public abstract class UIFragment<T> extends Fragment {
             PopupHelper.updateGridOrListIcon(onGridlList, mode);
         }
 
+        gridColumnDP = 0;
+        recyclerView.removeOnLayoutChangeListener(onGridResize);
+        recyclerView.addOnLayoutChangeListener(onGridResize);
+
         if (mode == AppState.MODE_LIST) {
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
@@ -602,14 +706,16 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setAdapter(searchAdapter);
 
         } else if (mode == AppState.MODE_COVERS || mode == AppState.MODE_GRID) {
-            final int num = Math.max(1, Dips.screenWidthDP() / AppState.get().coverBigSize);
+            gridColumnDP = AppState.get().coverBigSize;
+            gridMinColumns = 1;
 
-            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), gridColumns());
 
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
                 public int getSpanSize(int pos) {
+                    final int num = mGridManager.getSpanCount();
                     if (pos < 0 || pos >= searchAdapter.getItemCount()) {
                         return 1;
                     }
@@ -656,13 +762,15 @@ public abstract class UIFragment<T> extends Fragment {
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(authorsAdapter);
         } else if (mode == AppState.MODE_LIST_COMPACT) {
-            final int num = Math.max(2, Dips.screenWidthDP() / Dips.dpToPx(300));
-            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), num);
+            gridColumnDP = 300;
+            gridMinColumns = 2;
+            GridLayoutManager mGridManager = new GridLayoutManager(getActivity(), gridColumns());
 
             mGridManager.setSpanSizeLookup(new SpanSizeLookup() {
 
                 @Override
                 public int getSpanSize(int pos) {
+                    final int num = mGridManager.getSpanCount();
 
                     if (pos < 0 || pos >= searchAdapter.getItemCount()) {
                         return 1;

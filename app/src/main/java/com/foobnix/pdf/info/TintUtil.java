@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import android.content.Context;
 import android.util.TypedValue;
+import android.graphics.PorterDuffColorFilter;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
 
@@ -543,13 +544,13 @@ public class TintUtil {
             ((GradientDrawable) drawable).setStroke(STROKE, color);
             ((GradientDrawable) drawable).setCornerRadius(RADIUS);
         } else {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
         }
     }
 
     public static Drawable setDrawableTint(Drawable drawable, int color, int alpha) {
         try {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
             drawable.setAlpha(alpha);
         } catch (Exception e) {
             LOG.e(e);
@@ -558,7 +559,7 @@ public class TintUtil {
     }
     public static Drawable setDrawableTint(Drawable drawable, int color) {
         try {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -579,7 +580,7 @@ public class TintUtil {
                 ((GradientDrawable) drawable).setStroke(STROKE, color);
                 ((GradientDrawable) drawable).setCornerRadius(RADIUS);
             } else {
-                drawable.setColorFilter(color, Mode.SRC_ATOP);
+                drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
             }
         }
         for (GradientDrawable drawable : drawableFill) {
@@ -644,7 +645,7 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(colorDrawable.getCurrent());
         } else {
-            txtView.setBackgroundDrawable(colorDrawable);
+            txtView.setBackground(colorDrawable);
         }
     }
 
@@ -655,7 +656,7 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(colorDrawable.getCurrent());
         } else {
-            txtView.setBackgroundDrawable(colorDrawable);
+            txtView.setBackground(colorDrawable);
         }
     }
 
@@ -664,7 +665,7 @@ public class TintUtil {
         if (txtView == null || txtView.getBackground() == null) {
             return;
         }
-        txtView.getBackground().setColorFilter(color, Mode.SRC_ATOP);
+        txtView.getBackground().setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
 
     }
 
@@ -673,7 +674,7 @@ public class TintUtil {
         if (txtView == null || txtView.getBackground() == null) {
             return;
         }
-        txtView.getBackground().setColorFilter(color, Mode.SRC_ATOP);
+        txtView.getBackground().setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
 
         StateListDrawable states = new StateListDrawable();
 
@@ -694,7 +695,7 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(states);
         } else {
-            txtView.setBackgroundDrawable(states);
+            txtView.setBackground(states);
         }
     }
 

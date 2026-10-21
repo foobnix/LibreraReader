@@ -202,6 +202,7 @@ public class CollectionUtil {
         return true;
     }
     
+    @SafeVarargs
     public static <E> boolean addAll(Collection<? super E> c, E... array) {
         boolean result = false;
         
@@ -918,6 +919,7 @@ public class CollectionUtil {
     
     // TODO: implement key/value generator
     // TODO: implement multiple put (put to multiple maps)
+    @SafeVarargs
     public static <K, V> void putAll(Map<? super K, ? super V> map,
             ObjectTransformer<? super V, ? extends K> keyGenerator, V... values) {
         V value;
@@ -930,6 +932,7 @@ public class CollectionUtil {
         }
     }
     
+    @SafeVarargs
     public static <K, V> void putAllNotNull(Map<? super K, ? super V> map,
             ObjectTransformer<? super V, ? extends K> keyGenerator, V... values) {
         V value;
@@ -943,6 +946,7 @@ public class CollectionUtil {
         }
     }
     
+    @SafeVarargs
     public static <K, V> HashMap<K, V> toHashMap(
             ObjectTransformer<? super V, ? extends K> keyGenerator, V... values) {
         HashMap<K, V> result = new HashMap<K, V>();
@@ -950,6 +954,7 @@ public class CollectionUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <K, V> HashMap<K, V> toHashMapNotNull(
             ObjectTransformer<? super V, ? extends K> keyGenerator, V... values) {
         HashMap<K, V> result = new HashMap<K, V>();

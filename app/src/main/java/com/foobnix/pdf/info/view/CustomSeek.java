@@ -258,7 +258,7 @@ public class CustomSeek extends FrameLayout {
     }
 
     public void addMyPopupMenu(final MyPopupMenu menu) {
-        titleText.setTextAppearance(getContext(), R.style.textLink);
+        titleText.setTextAppearance(R.style.textLink);
 
         // The word opens a menu, so it is a link like any other, and marked as one. A dialog
         // that draws its links as ringed buttons picks this one up with the rest and takes

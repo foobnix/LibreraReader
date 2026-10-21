@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -48,13 +50,14 @@ public class AppProfile {
     public static final String DEVICE_PREFIX = "device.";
     public static File DOWNLOADS_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
+    public static final String DEVICE_MODEL = DEVICE_PREFIX + String.valueOf(Build.MODEL).replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
     public static final String APP_CSS_JSON = "app-CSS.json";
     public static final String APP_RECENT_JSON = "app-Recent.json";
     public static final String APP_EXCLUDE_JSON = "app-Exclude.json";
     public static final String APP_FAVORITE_JSON = "app-Favorite.json";
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
+    public static final String APP_ANNOTATIONS_JSON = "app-Annotations.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
     public static final String APP_TAGS_JSON2 = "app-Tags2.json";
@@ -81,6 +84,9 @@ public class AppProfile {
     public static File syncPlaylist;
     public static File syncProgress;
     public static File syncBookmarks;
+
+    /** The reader's own highlights and underlines; see AnnotationsData. */
+    public static File syncAnnotations;
 
     public static File syncFontFolder;
 
@@ -112,12 +118,17 @@ public class AppProfile {
             return;
         }
         profile = getCurrent();
+        // the profile kept in a Librera folder handed over through the picker is brought in first,
+        // and with the permission, the one kept in Download/Librera without it
+        LibreraSafSync.pull(c);
+        LibreraSafSync.mergeDownloadLibrera(c);
         String appDB = "db-" + AppSP.get().getRootPath(c).hashCode() + "-" + profile;
         AppDB.get()
              .open(c, appDB);
 
         bookCount = AppDB.get()
                          .getCount();
+        AppData.get().clearRecentCache();
         LOG.d("AppProfile init bookCount", profile, bookCount,appDB);
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().getRootPath(c));
@@ -138,6 +149,7 @@ public class AppProfile {
 
         syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
         syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);
+        syncAnnotations = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_ANNOTATIONS_JSON);
         syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_PROGRESS_JSON);
         syncRecent = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_RECENT_JSON);
 
@@ -191,9 +203,9 @@ public class AppProfile {
     public static Drawable getProfileColorDrawable(Context c, String profile) {
         // Mutated, so each profile's round keeps its own colour instead of every round shown
         // taking the colour of the last one set.
-        GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular)
-                                                          .mutate();
+        GradientDrawable background =
+                (GradientDrawable) ContextCompat.getDrawable(c, R.drawable.bg_circular)
+                                                .mutate();
         AppState s = new AppState();
         File syncState = new File(AppProfile.SYNC_FOLDER_ROOT,
                 PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
@@ -203,9 +215,9 @@ public class AppProfile {
     }
 
     public static Drawable getProfileColorDrawable(Context c, int color) {
-        GradientDrawable background = (GradientDrawable) c.getResources()
-                                                          .getDrawable(R.drawable.bg_circular)
-                                                          .mutate();
+        GradientDrawable background =
+                (GradientDrawable) ContextCompat.getDrawable(c, R.drawable.bg_circular)
+                                                .mutate();
         background.setColor(color);
         return background;
     }
@@ -225,6 +237,7 @@ public class AppProfile {
                    .save(a);
             AppSP.get()
                  .save();
+            LibreraSafSync.pushLater(a);
         }
     }
 
@@ -325,7 +338,7 @@ public class AppProfile {
                         TextView letter = layout.findViewById(R.id.profileLetter);
                         letter.setVisibility(View.VISIBLE);
                         letter.setText(TxtUtils.getFirstLetter(tagName));
-                        letter.setBackgroundDrawable(getProfileColorDrawable(a, tagName));
+                        letter.setBackground(getProfileColorDrawable(a, tagName));
 
                         ImageView delete = (ImageView) layout.findViewById(R.id.delete1);
                         // The cross in the colour links are drawn in, like the cross that drops

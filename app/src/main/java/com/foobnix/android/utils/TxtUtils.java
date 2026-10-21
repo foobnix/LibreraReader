@@ -48,11 +48,14 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -633,13 +636,7 @@ public class TxtUtils {
                 }
             }
             LOG.d("pageHTML [8b]", pageHTML);
-            for (String r : shortList) {
-                if (!r.startsWith("!")) {
-                    String r1 = r;
-                    String r2 = r.replace(".", "{dot}");
-                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
-                }
-            }
+            pageHTML = protectAbbreviations(pageHTML, shortList);
             LOG.d("pageHTML [8c]", pageHTML);
 
             pageHTML = replaceAll(pageHTML,
@@ -691,6 +688,69 @@ public class TxtUtils {
                           .matcher(input)
                           .replaceAll(replacement);
         }
+    }
+
+    /**
+     * Hides the dots of the abbreviations from the sentence splitter as {dot}. The dictionary holds
+     * some four thousand rules and a page carries a handful of them, so instead of searching the
+     * whole page for every rule, one scan of the page collects the rules that are in it.
+     * <p>
+     * The rules that are found are applied exactly as before: literally, and in the order of the
+     * list, because one rule can take away the match of a later one.
+     *
+     * @param abbreviations the whole list; the "!" rules belong to the pass before this one
+     */
+    static String protectAbbreviations(String text, List<String> abbreviations) {
+        if (isEmpty(text)) {
+            return text;
+        }
+
+        // a rule can only be found behind a space, and only where the character after the space is
+        // its first one: that is the one character the scan below has to look at
+        Map<Character, List<String>> byFirstChar = new HashMap<>();
+        Set<String> found = new HashSet<>();
+        for (String r : abbreviations) {
+            if (r.isEmpty() || r.charAt(0) == '!' || r.indexOf('.') < 0) {
+                // another pass, or a rule that would be replaced by itself
+                continue;
+            }
+            if (r.indexOf('{') >= 0 || r.indexOf('}') >= 0) {
+                // this pass writes {dot}: such a rule can match text that is not there yet while
+                // the scan runs, so it keeps its own search over the page
+                found.add(r);
+                continue;
+            }
+            List<String> sameFirstChar = byFirstChar.get(r.charAt(0));
+            if (sameFirstChar == null) {
+                sameFirstChar = new ArrayList<>();
+                byFirstChar.put(r.charAt(0), sameFirstChar);
+            }
+            sameFirstChar.add(r);
+        }
+
+        for (int space = text.indexOf(' '); space >= 0 && space + 1 < text.length();
+             space = text.indexOf(' ', space + 1)) {
+            List<String> sameFirstChar = byFirstChar.get(text.charAt(space + 1));
+            if (sameFirstChar == null) {
+                continue;
+            }
+            for (int i = 0; i < sameFirstChar.size(); i++) {
+                String r = sameFirstChar.get(i);
+                if (text.startsWith(r, space + 1)) {
+                    found.add(r);
+                }
+            }
+        }
+
+        if (found.isEmpty()) {
+            return text;
+        }
+        for (String r : abbreviations) {
+            if (found.contains(r)) {
+                text = text.replace(" " + r, " " + r.replace(".", "{dot}"));
+            }
+        }
+        return text;
     }
 
     public static void loadShotList() {
@@ -1201,8 +1261,11 @@ public class TxtUtils {
                    .append((int) c)
                    .append(";");
             } else if (c == ' ') {
+                // Numeric, not &nbsp;: what this escapes goes into a converted book's XHTML and
+                // NCX, which foliate parses as XML - where &nbsp; is undefined and the whole file
+                // fails to parse, leaving a blank page or an empty table of contents
                 while (i + 1 < end && text.charAt(i + 1) == ' ') {
-                    out.append("&nbsp;");
+                    out.append("&#160;");
                     i++;
                 }
 

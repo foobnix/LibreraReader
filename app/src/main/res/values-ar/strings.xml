@@ -62,7 +62,7 @@
    <string name="web">شبكة</string>
    <string name="beta_version">النسخة التجريبية</string>
    <string name="archive">أرشيف</string>
-   <string name="rate_pdf_reader1">يرجى إرسال ملاحظاتك ومعدل لنا في Google Play من المهم جدا بالنسبة لنا</string>
+   <string name="rate_pdf_reader1">يرجى ترك تعليق عن هذا التطبيق على Google Play. هذا مهم جدًا لنا</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">نص منسق (رسومات زائفة)</string>
    <string name="continuous_text">النص المستمر (بدون فاصل سطر)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">تطبيق البريد الإلكتروني غير مثبتة.</string>
    <string name="file_not_found">لم يتم العثور على الملف</string>
    <string name="you_need_grant_permission5">يحتاج التطبيق إلى إذنك للعثور على جميع كتبك وعرضها.</string>
+   <string name="allow">السماح</string>
+   <string name="storage">التخزين</string>
+   <string name="add_all_books_with_permission">يُرجى السماح للتطبيق بفحص مجلد التنزيلات لإضافة الكتب إلى مكتبتك تلقائيًا.</string>
+   <string name="save_settings_in_librera_folder">احفظ الإعدادات وتقدّم القراءة في مجلد Librera.</string>
+   <string name="regrant_folder_title">اسمح بالوصول إلى المجلد مرة أخرى</string>
+   <string name="regrant_folder_msg">لم يعد بإمكان التطبيق قراءة %1$s: يزيل Android صلاحية الوصول إلى المجلدات عند إعادة تثبيت التطبيق. اختر المجلد مرة أخرى في الشاشة التالية.</string>
    <string name="remind_msg">يرجى أخذ قسط من الراحة لعينيك والراحة قليلا.</string>
    <string name="bookmark_for_this_page_already_exists">مرجعية لهذه الصفحة موجود بالفعل</string>
    <string name="can_t_download">لا يمكن تحميل</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">عرض المؤلف وعنوان كتاب PDF من العلامات الوصفية</string>
    <string name="meta_tags">العلامات الفوقية</string>
-   <string name="librera_pro">احصل على Librera PRO — بلا إعلانات، وهو يزيل الإعلانات من هذا التطبيق أيضًا</string>
+   <string name="librera_pro"><b>Librera PRO</b>: تطبيق بدون إعلانات يزيل أيضًا الإعلانات من هذا التطبيق</string>
    <string name="annotation">حاشية</string>
    <string name="book">كتاب</string>
    <string name="information">معلومات</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">تسليط الضوء على الحروف الأولية</string>
    <string name="anti_aliasing_level">مستوى الصقل</string>
    <string name="folder_preview">معاينة المجلد</string>
+   <string name="show_storage_book_covers">عرض الأغلفة للتخزين المضاف</string>
    <string name="accent">لهجة</string>
    <string name="discarded_books">الكتب المهملة</string>
    <string name="show_print_edition_page_numbers_epub3">إظهار أرقام صفحات الطبعة المطبوعة (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">مشاهدة</string>
    <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>
    <string name="remove_library_folder">إزالة هذا المجلد من المكتبة؟ لن تُحذف الملفات الموجودة فيه.</string>
+   <string name="epub_engine">محرك EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView غير متوفر على هذا الجهاز.</string>
+   <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
+   <string name="pdf_engine">محرك PDF</string>
+   <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
 </resources>

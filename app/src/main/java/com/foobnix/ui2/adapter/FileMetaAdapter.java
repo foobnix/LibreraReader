@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -742,8 +743,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             // The line is as wide as the row and filled by a fraction of itself, so it keeps
             // the same air on both sides whatever the screen is.
             TintUtil.setProgressLine(holder.idProgressBg,
-                                     holder.idProgressBg.getResources()
-                                                        .getColor(R.color.lt_grey_dima),
+                                     ContextCompat.getColor(holder.idProgressBg.getContext(),
+                                             R.color.lt_grey_dima),
                                      TintUtil.color,
                                      recentProgress);
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
@@ -798,7 +799,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             });
         }
-        holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+        // A book on added storage is a favourite like any other: the list keeps its document uri
+        holder.star.setVisibility(View.VISIBLE);
 
         if (holder.signIcon != null) {
             holder.signIcon.setOnClickListener(new OnClickListener() {

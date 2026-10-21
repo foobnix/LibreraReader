@@ -3,6 +3,7 @@ package com.foobnix.sys;
 import android.content.Context;
 import android.graphics.Rect;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -25,6 +27,7 @@ import org.ebookdroid.common.touch.IGestureDetector;
 import org.ebookdroid.common.touch.IMultiTouchListener;
 import org.ebookdroid.common.touch.TouchManager;
 import org.ebookdroid.core.AbstractViewController;
+import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -172,6 +175,21 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
             alowConfirm = false;
             Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
+
+            if (annotation2 == null && AppState.get().editWith == AppState.EDIT_DELETE) {
+                // Librera's own marks, which every format can have - the eraser removes one the
+                // same way it removes an annotation written into a PDF
+                final Pair<Page, AnnotationsFinder.Drawn> mark = avc.isMarkTap(e.getX(), e.getY());
+                if (mark != null) {
+                    docCtrl.removeAnnotation(mark.second.annotation);
+                    final java.util.List<AnnotationsFinder.Drawn> marks =
+                            new java.util.ArrayList<AnnotationsFinder.Drawn>(mark.first.marks);
+                    marks.remove(mark.second);
+                    mark.first.marks = marks;
+                    avc.toggleRenderingEffects();
+                    return true;
+                }
+            }
 
             if (annotation2 == null && annotation != null) {
                 annotation = null;

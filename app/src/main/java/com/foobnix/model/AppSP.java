@@ -7,7 +7,6 @@ import android.os.Environment;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Urls;
 
 import java.io.File;
@@ -82,11 +81,23 @@ public class AppSP {
         LOG.d("rootPath2","getRootPath-1",rootPath1, currentProfile);
         if(instance.currentProfile.isEmpty()) {
             if (!Android6.canWrite(c)) {
-                instance.rootPath1 = getTempDir(c);
-                instance.currentProfile = "Demo";
+                if (LibreraSafSync.isActive(c)) {
+                    // the Librera folder handed over: the app's own copy, kept in step with it
+                    instance.rootPath1 = getTempDir(c);
+                    instance.currentProfile = LibreraSafSync.sharedProfile();
+                } else if (LibreraSafSync.isDownloadLibreraUsable(c)) {
+                    // the settings in plain sight, in Download/Librera, written there directly
+                    instance.rootPath1 = LibreraSafSync.downloadLibrera().getPath();
+                    instance.currentProfile = LibreraSafSync.sharedProfile();
+                } else {
+                    // Download/Librera holds an earlier install's settings, which this one cannot
+                    // read until the folder is handed over through the picker
+                    instance.rootPath1 = getTempDir(c);
+                    instance.currentProfile = "Demo";
+                }
             } else {
                 instance.rootPath1 =getRootDir();
-                instance.currentProfile = AppsConfig.IS_LOG ? "BETA" : "Librera";
+                instance.currentProfile = LibreraSafSync.sharedProfile();
             }
 
         }

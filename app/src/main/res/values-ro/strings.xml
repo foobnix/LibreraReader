@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versiune beta</string>
    <string name="archive">Arhiva</string>
-   <string name="rate_pdf_reader1">Vă rugăm să scrieți feedback-ul dvs. și să ne evaluați pe Google Play. Este foarte important pentru noi</string>
+   <string name="rate_pdf_reader1">Lăsați o recenzie despre această aplicație pe Google Play. Este foarte important pentru noi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Textul formatat (pseudo grafică)</string>
    <string name="continuous_text">Text continuu (fără rupere de linie)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">Aplicație email neinstalată.</string>
    <string name="file_not_found">Fișierul nu a fost găsit</string>
    <string name="you_need_grant_permission5">Aplicația are nevoie de permisiunea ta pentru a găsi și afișa toate cărțile tale.</string>
+   <string name="allow">Permite</string>
+   <string name="storage">Stocare</string>
+   <string name="add_all_books_with_permission">Te rugăm să permiți aplicației să scaneze dosarul Descărcări pentru a adăuga automat cărți în biblioteca ta.</string>
+   <string name="save_settings_in_librera_folder">Salvează setările și progresul lecturii în dosarul Librera.</string>
+   <string name="regrant_folder_title">Permite din nou accesul la dosar</string>
+   <string name="regrant_folder_msg">Aplicația nu mai poate citi %1$s: Android elimină accesul la dosare când aplicația este reinstalată. Alege din nou dosarul pe ecranul următor.</string>
    <string name="remind_msg">Vă rugăm să luați o pauză pentru ochi și să vă odihniți puțin.</string>
    <string name="bookmark_for_this_page_already_exists">Marcaj pentru această pagină există deja</string>
    <string name="can_t_download">Nu se poate descărca</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Afișarea autorului și a titlului cărții PDF din etichetele meta</string>
    <string name="meta_tags">Meta etichete</string>
-   <string name="librera_pro">Ia Librera PRO — fără reclame, și elimină reclamele și din această aplicație</string>
+   <string name="librera_pro"><b>Librera PRO</b>: O aplicație fără reclame care elimină reclamele și din această aplicație</string>
    <string name="annotation">Adnotare</string>
    <string name="book">Carte</string>
    <string name="information">Informație</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Evidențierea literelor inițiale</string>
    <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
+   <string name="show_storage_book_covers">Afișați coperțile pentru stocarea adăugată</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Vizionează</string>
    <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>
    <string name="remove_library_folder">Elimini acest dosar din bibliotecă? Fișierele din el nu vor fi șterse.</string>
+   <string name="epub_engine">Motor EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView nu este disponibil pe acest dispozitiv.</string>
+   <string name="base_stylesheet">Aplică foaia de stiluri de bază (foliate-js)</string>
+   <string name="pdf_engine">Motor PDF</string>
+   <string name="msg_pdf_engine_unavailable">Această versiune nu include bibliotecile PDFium.</string>
 </resources>

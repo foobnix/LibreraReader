@@ -16,7 +16,19 @@ import java.util.StringTokenizer;
 
 public class HypenUtils {
 
-    public static final String SHY = "&shy;";
+    /**
+     * The soft hyphen the hyphenator breaks words with, written as a numeric character reference
+     * rather than {@code &shy;}.
+     *
+     * The name {@code shy} is an HTML entity. It is not defined in XML, and the books this is
+     * written into are XHTML carrying no DTD that would define it - so an XML parser stops dead
+     * at the first one. MuPDF parses the markup loosely and never minded, but foliate-js hands
+     * each section to the browser's own XML parser, which rejects the document and renders only
+     * the part before the first break. A hyphenated section came out blank: an empty reading page
+     * and an empty thumbnail for every page in it. {@code &#173;} is the same character, is valid
+     * XML with no DTD at all, and is read identically by both engines.
+     */
+    public static final String SHY = "&#173;";
     public static Map<String, String> cache = new HashMap<>();
     static boolean ignore = false;
     static boolean ignore1 = false;

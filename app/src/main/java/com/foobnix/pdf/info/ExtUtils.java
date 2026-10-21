@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.UriPermission;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -317,23 +318,25 @@ public class ExtUtils {
     public static void openFile(Activity a, FileMeta meta) {
         File file = new File(meta.getPath());
 
-        if (ExtUtils.isExteralSD(meta.getPath())) {
+        String safPath = ExtUtils.isExteralSD(meta.getPath()) ? meta.getPath() : null;
+        // A book from the history, known by a path the app may no longer read: through a folder
+        // the user handed over it is still there to open.
+        if (safPath == null && !file.canRead() && !Android6.canWrite(a)) {
+            safPath = getSafUriForPath(a, meta.getPath());
+            LOG.d("openFile by storage", meta.getPath(), safPath);
+        }
+
+        if (safPath != null) {
             LOG.d("openFile isExteralSD");
-            CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
-            Uri uri = Uri.parse(meta.getPath());
-            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
-            if (!file.exists()) {
-                try {
-                    InputStream inputStream = a.getContentResolver().openInputStream(uri);
-                    if (inputStream == null) {
-                        Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    CacheZipUtils.copyFile(inputStream, file);
-                    LOG.d("Create-file", file.getPath(), file.length());
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
+            // The reader opens a file, and files everything it learns about the book - where you
+            // are in it, what you marked - under the path it opened. So a storage book is read
+            // from a copy of its own that keeps the same path every time, rather than from a
+            // scratch file that the next book opened would throw away.
+            file = CacheZipUtils.getSafBookCopy(a, safPath,
+                    safPath.equals(meta.getPath()) ? safCacheName(meta) : file.getName());
+            if (file == null) {
+                Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                return;
             }
         }
 
@@ -357,6 +360,36 @@ public class ExtUtils {
         }
     }
 
+    // The names a folder listing shows, matched the way SearchCore matches files on the device.
+    public static boolean isBrowseSupported(String name) {
+        if (TxtUtils.isEmpty(name)) {
+            return false;
+        }
+        String lowerCase = name.toLowerCase(Locale.US);
+        for (String s : browseExts) {
+            if (lowerCase.endsWith(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * What to call the copy a storage book is opened from. The readers pick themselves by the
+     * extension, so the copy is named after the document - a book's title is not a file name: it
+     * carries no extension, and in the library it is the title read out of the book, which may
+     * carry a slash or a colon.
+     */
+    private static String safCacheName(FileMeta meta) {
+        String name = getFileName(Uri.decode(meta.getPath()));
+        if (TxtUtils.isNotEmpty(name) && name.contains(".")) {
+            return name;
+        }
+        String title = TxtUtils.isEmpty(meta.getTitle()) ? "book" : meta.getTitle();
+        title = title.replaceAll("[\\\\/:*?\"<>|]", "_");
+        return TxtUtils.isEmpty(meta.getExt()) ? title : title + "." + meta.getExt();
+    }
+
     public static boolean isExteralSD(String path) {
         if (path == null) {
             return false;
@@ -378,6 +411,146 @@ public class ExtUtils {
             return path;
         }
         return id;
+    }
+
+    /**
+     * The folder a system picker's tree uri stands for, as a path: {@code primary:Download/Books}
+     * is {@code /storage/emulated/0/Download/Books}, {@code 1234-ABCD:Books} is
+     * {@code /storage/1234-ABCD/Books}.
+     *
+     * @return the path when the uri is a folder of the device's own storage that is there as a
+     *         directory, otherwise <code>null</code> - a cloud folder has no path
+     */
+    public static String getSafTreePath(String path) {
+        File folder = getSafTreeFolder(path);
+        return folder != null && folder.isDirectory() ? folder.getPath() : null;
+    }
+
+    /** The folder a tree uri of the device's own storage names, whether it can be read or not. */
+    private static File getSafTreeFolder(String path) {
+        if (!isExteralSD(path)) {
+            return null;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return null;
+            }
+            String id = DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return null;
+            }
+            String volume = id.substring(0, colon);
+            String inside = id.substring(colon + 1);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            return inside.isEmpty() ? root : new File(root, inside);
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    private static final String EXTERNAL_STORAGE_DOCUMENTS = "com.android.externalstorage.documents";
+
+    /**
+     * The file a document of the device's own storage is, when the app may read it by its path:
+     * a book kept in the history or the favourites while the app had only the folders handed
+     * over, read again once it has the permission - when the folders' grants are gone with a
+     * reinstall, the document uri can no longer be read at all.
+     *
+     * @return the path when that file is there and readable, otherwise null
+     */
+    /**
+     * The file a book entry stands for, whichever way it was kept: a document of the device's
+     * own storage by the path it has there, anything else as it is. The history and the
+     * favourites can hold one book both ways - kept with the folders handed over, and again with
+     * the permission - and this tells the two apart from two books.
+     */
+    public static String getBookKey(String path) {
+        if (!isExteralSD(path)) {
+            return path;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return path;
+            }
+            String id = path.contains("/document/") ? DocumentsContract.getDocumentId(uri)
+                                                    : DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return path;
+            }
+            String volume = id.substring(0, colon);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            return new File(root, id.substring(colon + 1)).getPath();
+        } catch (Exception e) {
+            return path;
+        }
+    }
+
+    public static String getSafDocumentPath(Context c, String path) {
+        if (c == null || !isExteralSD(path) || !Android6.canWrite(c)) {
+            return null;
+        }
+        try {
+            Uri uri = Uri.parse(path);
+            if (!EXTERNAL_STORAGE_DOCUMENTS.equals(uri.getAuthority())) {
+                return null;
+            }
+            String id = DocumentsContract.isDocumentUri(c, uri) ? DocumentsContract.getDocumentId(uri)
+                                                               : DocumentsContract.getTreeDocumentId(uri);
+            int colon = id.indexOf(':');
+            if (colon <= 0) {
+                return null;
+            }
+            String volume = id.substring(0, colon);
+            File root = "primary".equalsIgnoreCase(volume) ? Environment.getExternalStorageDirectory()
+                                                           : new File("/storage", volume);
+            File file = new File(root, id.substring(colon + 1));
+            return file.canRead() ? file.getPath() : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * A book known by its path - from the history kept while the app had the permission, or from
+     * another install - reached through a folder handed over in the system's picker instead. The
+     * device storage provider names a document by its path, so a file inside a granted folder is
+     * that folder's id with the rest of the path after it.
+     *
+     * @return the document uri, or null when no granted folder holds the path
+     */
+    public static String getSafUriForPath(Context c, String path) {
+        if (c == null || TxtUtils.isEmpty(path) || isExteralSD(path)) {
+            return null;
+        }
+        String external = Environment.getExternalStorageDirectory().getPath();
+        String file = path.startsWith("/sdcard/") ? external + path.substring("/sdcard".length()) : path;
+        try {
+            for (UriPermission p : c.getContentResolver().getPersistedUriPermissions()) {
+                if (!p.isReadPermission()) {
+                    continue;
+                }
+                Uri tree = p.getUri();
+                File folder = getSafTreeFolder(tree.toString());
+                if (folder == null || !file.startsWith(folder.getPath() + "/")) {
+                    continue;
+                }
+                String treeId = DocumentsContract.getTreeDocumentId(tree);
+                String rest = file.substring(folder.getPath().length() + 1);
+                String id = treeId.endsWith(":") ? treeId + rest : treeId + "/" + rest;
+                return DocumentsContract.buildDocumentUriUsingTree(tree, id).toString();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public static Uri getChildUri(Context c, Uri uri) {
@@ -631,6 +804,12 @@ public class ExtUtils {
     public static String getFileName(String name) {
         if (TxtUtils.isEmpty(name)) {
             return "";
+        }
+        // A document uri carries its path encoded in one segment ("primary%3ADownload%2Fa.epub"):
+        // its name is the last part of that path, the same name the book has as a file - which is
+        // what the reading progress and the history are filed under.
+        if (isExteralSD(name)) {
+            name = Uri.decode(name);
         }
         if (!name.contains("/")) {
             return name;
@@ -1681,7 +1860,7 @@ public class ExtUtils {
 
     public static List<String> getExternalStorageDirectories1(Context c) {
 
-        File[] list = ContextCompat.getExternalFilesDirs(c, null);
+        File[] list = c.getExternalFilesDirs(null);
         List<String> res = new ArrayList<String>();
         for (File f : list) {
             if (f != null && !f.getPath().endsWith("files")) {
@@ -1763,7 +1942,7 @@ public class ExtUtils {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
-                File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
+                File[] externalDirs = c.getExternalFilesDirs(null);
 
                 for (File file : externalDirs) {
                     if (file == null) {
@@ -1954,7 +2133,17 @@ public class ExtUtils {
         Iterator<FileMeta> iterator = all.iterator();
         while (iterator.hasNext()) {
             FileMeta next = iterator.next();
-            if (!new File(next.getPath()).exists()) {
+            String path = next.getPath();
+            if (path == null) {
+                iterator.remove();
+                continue;
+            }
+            // A book on added storage is named by a document uri, and no File can be asked
+            // whether it is still there: asking would drop every one of them.
+            if (isExteralSD(path)) {
+                continue;
+            }
+            if (!new File(path).exists()) {
                 iterator.remove();
             }
         }

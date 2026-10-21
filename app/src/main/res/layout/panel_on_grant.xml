@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The notice a clear install opens on: there are no books yet, and the app asks for the
+    permission to go looking for them. Once the user has handed over a folder of books through
+    the system's picker instead (+ Storage), that offer goes and the notice asks for the Librera
+    folder, to keep the settings and reading progress in. Shared by the library and the folders
+    screen.
+
+    A table rather than rows, so that the buttons come out the same width: the column they share
+    is measured to the wider of them, whatever each one says. The words differ in every language,
+    so there is no width here to hard-code.
+
+    The words column both stretches and shrinks. Stretching alone pushes the button off the
+    edge of the screen the moment a sentence is long enough - which it is in most languages -
+    and a button that cannot be seen cannot be pressed. Shrinking lets the sentence wrap onto
+    a second line instead, and the button keeps the width it needs.
+-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutOnGrant"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green_msg"
+    android:paddingTop="4dip"
+    android:paddingBottom="4dip"
+    android:shrinkColumns="0"
+    android:stretchColumns="0">
+
+    <TableRow
+        android:id="@+id/onGrantPermission"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingTop="4dip"
+        android:paddingBottom="4dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:text="@string/add_all_books_with_permission"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/onGrantPermissionButton"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="6dip"
+            android:background="@drawable/bg_pill_outline"
+            android:gravity="center"
+            android:paddingLeft="16dip"
+            android:paddingTop="5dip"
+            android:paddingRight="16dip"
+            android:paddingBottom="5dip"
+            android:text="@string/allow"
+            android:textAllCaps="true" />
+    </TableRow>
+
+    <!-- Without the permission, once books come from a folder handed over in the picker: the
+         settings and reading progress are kept in the Librera folder too, once it is handed
+         over the same way - and straight away after a reinstall, to have back the settings an earlier
+         install kept in Download/Librera. It stays until it is. -->
+    <TableRow
+        android:id="@+id/onGrantLibrera"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingTop="4dip"
+        android:paddingBottom="4dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:text="@string/save_settings_in_librera_folder"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/onGrantLibreraButton"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="6dip"
+            android:background="@drawable/bg_pill_outline"
+            android:gravity="center"
+            android:paddingLeft="16dip"
+            android:paddingTop="5dip"
+            android:paddingRight="16dip"
+            android:paddingBottom="5dip"
+            android:text="@string/choose_"
+            android:textAllCaps="true" />
+    </TableRow>
+
+</TableLayout>

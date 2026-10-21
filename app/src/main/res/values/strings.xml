@@ -63,7 +63,7 @@
    <string name="web">Home page</string>
    <string name="beta_version">Beta version</string>
    <string name="archive">Archive</string>
-   <string name="rate_pdf_reader1">Please leave feedback and rate us on Google Play: it\'s very important for further development</string>
+   <string name="rate_pdf_reader1">Please leave feedback about this app on Google Play. It\'s very important for us</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatted text (pseudo-graphics)</string>
    <string name="continuous_text">Continuous text (no line breaks)</string>
@@ -242,6 +242,12 @@
    <string name="there_are_no_email_applications_installed_">No email client is installed</string>
    <string name="file_not_found">File not found</string>
    <string name="you_need_grant_permission5">The app needs your permission to find and display all your books.</string>
+   <string name="allow">Allow</string>
+   <string name="storage">Storage</string>
+   <string name="add_all_books_with_permission">Please allow the app to scan your Downloads folder to automatically add books to your library.</string>
+   <string name="save_settings_in_librera_folder">Keep settings and reading progress in the Librera folder.</string>
+   <string name="regrant_folder_title">Allow access to the folder again</string>
+   <string name="regrant_folder_msg">The app can no longer read %1$s: Android forgets the folders you handed over when the app is reinstalled. Choose the folder again on the next screen.</string>
    <string name="remind_msg">Time to take a break!</string>
    <string name="bookmark_for_this_page_already_exists">This bookmark already exists</string>
    <string name="can_t_download">Unable to download file</string>
@@ -466,7 +472,7 @@
    <string name="crop_borders_symmetrically">Mirrored crop</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extract authors\' names and book titles from meta-data (PDF)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro">Get Librera PRO \u2014 ad-free, and it removes the ads from this app too</string>
+   <string name="librera_pro"><b>Librera PRO</b>: An ad-free app that also removes the ads from this app</string>
    <string name="annotation">Annotation</string>
    <string name="book">Book</string>
    <string name="information">File Info</string>
@@ -666,6 +672,7 @@
    <string name="highlighting_initial_letters">Highlighting initial letters</string>
    <string name="anti_aliasing_level">Anti-aliasing level</string>
    <string name="folder_preview">Folder preview</string>
+   <string name="show_storage_book_covers">Show covers for added storage</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Discarded books</string>
    <string name="show_print_edition_page_numbers_epub3">Show print edition page numbers (Epub3)</string>
@@ -695,4 +702,9 @@
    <string name="text_and_background_color">Text and Background Color</string>
    <string name="librerax_not_installed">LibreraX is not installed. Download and install it, then open the book again.</string>
    <string name="remove_library_folder">Remove this folder from the library? The files in it will not be deleted.</string>
+   <string name="epub_engine">EPUB engine</string>
+   <string name="msg_epub_engine_unavailable">A WebView is not available on this device.</string>
+   <string name="base_stylesheet">Apply the base stylesheet (foliate-js)</string>
+   <string name="pdf_engine">PDF engine</string>
+   <string name="msg_pdf_engine_unavailable">This build does not include the PDFium libraries.</string>
 </resources>

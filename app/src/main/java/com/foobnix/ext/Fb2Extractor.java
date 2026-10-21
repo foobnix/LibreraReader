@@ -1325,6 +1325,9 @@ public class Fb2Extractor extends BaseExtractor {
         boolean firstLine = true;
 
         boolean ready = true;
+        // The skeleton that makes the FictionBook markup a document with a body - see Fb2Xhtml.
+        // Without it foliate's paginator measures a null body and the book falls back to MuPDF.
+        final Fb2Xhtml xhtml = new Fb2Xhtml();
         HypenUtils.resetTokenizer();
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled.get()) {
@@ -1343,7 +1346,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 firstLine = false;
-                writer.println(line);
+                writer.println(xhtml.apply(line));
                 continue;
             }
 
@@ -1398,7 +1401,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line, replacements);
                     }
                 }
-                writer.print(line);
+                writer.print(xhtml.apply(line));
             }
 
         }

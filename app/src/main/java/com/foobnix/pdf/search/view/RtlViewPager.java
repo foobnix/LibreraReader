@@ -19,11 +19,11 @@ package com.foobnix.pdf.search.view;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.collection.ArrayMap;
 import androidx.core.text.TextUtilsCompat;
-import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -145,7 +145,7 @@ public class RtlViewPager extends ViewPager {
     }
 
     protected boolean isRtl() {
-        return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL;
+        return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL;
     }
 
     @Override

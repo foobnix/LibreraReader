@@ -62,7 +62,7 @@
    <string name="web">官網</string>
    <string name="beta_version">測試版</string>
    <string name="archive">檔案</string>
-   <string name="rate_pdf_reader1">請回饋，並在google play store評價，這對後續開發非常重要</string>
+   <string name="rate_pdf_reader1">請在 Google Play 上為本應用程式留下評價。這對我們非常重要</string>
    <string name="___PREFERENCES___SECTION___">偏好</string>
    <string name="formatted_text">格式文本（偽圖形）</string>
    <string name="continuous_text">連續文本（不換行）</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">沒有安裝電子郵件!</string>
    <string name="file_not_found">無結果</string>
    <string name="you_need_grant_permission5">該應用程式需要您的許可才能找到和顯示您的所有書籍。</string>
+   <string name="allow">允許</string>
+   <string name="storage">儲存空間</string>
+   <string name="add_all_books_with_permission">請允許應用程式掃描「下載」資料夾，以便自動將書籍加入您的書庫。</string>
+   <string name="save_settings_in_librera_folder">將設定和閱讀進度儲存在 Librera 資料夾中。</string>
+   <string name="regrant_folder_title">再次允許存取資料夾</string>
+   <string name="regrant_folder_msg">應用程式無法再讀取 %1$s：重新安裝應用程式後，Android 會移除資料夾存取權限。請在下一個畫面中重新選擇該資料夾。</string>
    <string name="remind_msg">請注意休息以保護視力</string>
    <string name="bookmark_for_this_page_already_exists">已有書簽</string>
    <string name="can_t_download">不能下載</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">裁剪邊界對稱</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">從PDF元標籤顯示作者和書名</string>
    <string name="meta_tags">元標籤</string>
-   <string name="librera_pro">取得 Librera PRO — 無廣告，並且也會移除本應用程式中的廣告</string>
+   <string name="librera_pro"><b>Librera PRO</b>：無廣告應用程式，同時移除本應用程式中的廣告</string>
    <string name="annotation">簡介</string>
    <string name="book">書名</string>
    <string name="information">資訊</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">突出顯示首字母</string>
    <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
+   <string name="show_storage_book_covers">顯示已新增儲存空間的封面</string>
    <string name="accent">口音</string>
    <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">觀看</string>
    <string name="librerax_not_installed">尚未安裝 LibreraX。請下載並安裝，然後重新開啟這本書。</string>
    <string name="remove_library_folder">要從書庫中移除此資料夾嗎？其中的檔案不會被刪除。</string>
+   <string name="epub_engine">EPUB 引擎</string>
+   <string name="msg_epub_engine_unavailable">此裝置不支援 WebView。</string>
+   <string name="base_stylesheet">套用基礎樣式表 (foliate-js)</string>
+   <string name="pdf_engine">PDF 引擎</string>
+   <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 程式庫。</string>
 </resources>

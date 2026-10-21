@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!--
+          Debug builds only. Somewhere for the foliate engine's WebView to be attached while its
+          tests run: Chromium builds no subframe tree for a WebView outside a window, so the engine
+          needs an activity on screen, and in the app that activity is the reader.
+          See FoliateHostActivity and FoliateRenderer.
+        -->
+        <activity
+            android:name="org.ebookdroid.droids.foliate.FoliateHostActivity"
+            android:exported="false"
+            android:label="Foliate test host"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+    </application>
+
+</manifest>

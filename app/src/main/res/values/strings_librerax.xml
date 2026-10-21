@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="librerax" translatable="false">LibreraX</string>
+    <string name="librerax_tagline"><b>LibreraX</b>: Our new modern book reader for Android and iOS</string>
+    <string name="librerax_github"><b>GitHub</b>: direct APK download</string>
+    <string name="app_store" translatable="false">App Store</string>
+    <string name="google_play" translatable="false">Google Play</string>
 </resources>

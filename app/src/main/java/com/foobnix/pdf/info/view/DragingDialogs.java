@@ -110,6 +110,8 @@ import com.foobnix.model.SimpleMeta;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.AnnotationsData;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -180,6 +182,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.graphics.PorterDuffColorFilter;
 
 public class DragingDialogs {
     public final static int PREF_WIDTH = 330;
@@ -1019,14 +1022,6 @@ public class DragingDialogs {
                     }
                 });
 
-                controller.runTimer(1000, new Runnable() {
-                    @Override public void run() {
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.bold(ttsLang);
-                    }
-                });
-
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                 TxtUtils.bold(ttsLang);
@@ -1807,13 +1802,13 @@ public class DragingDialogs {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
                         Drawable highlight = controller.getDrawable(R.drawable.glyphicons_695_text_background);
-                        highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        highlight.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable underline = controller.getDrawable(R.drawable.glyphicons_104_underline);
-                        underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        underline.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable strikeout = controller.getDrawable(R.drawable.glyphicons_105_strikethrough);
-                        strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        strikeout.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         menu.getMenu()
                             .add(R.string.highlight_of_text)
@@ -2317,10 +2312,13 @@ public class DragingDialogs {
                     }
                 });
 
-                if (!BookType.PDF.is(controller.getCurrentBook().
+                // Marking up used to be a PDF's privilege, because the annotation was written
+                // into the PDF and no other format has anywhere to put one. Librera keeps those
+                // itself now, so the only book that cannot be marked up is one with no text to
+                // mark - a comic, which is pictures.
+                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(controller.getCurrentBook().
 
-                        getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity ||
-                    controller.isPasswordProtected()) {
+                        getPath())) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -2878,6 +2876,9 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
+                if (appBookmark instanceof BookmarksAdapter.Header) {
+                    return;
+                }
                 if (appBookmark.isF) {
                     controller.floatingBookmark = appBookmark;
                 } else {
@@ -2900,7 +2901,13 @@ public class DragingDialogs {
                                            final View view,
                                            final int position,
                                            final long id) {
-                ListBoxHelper.showEditDeleteDialog(objects.get(position),
+                final AppBookmark item = objects.get(position);
+                // A section title is not a bookmark, and a mark's text belongs to the book - it
+                // is removed with the cross, not renamed here
+                if (item instanceof BookmarksAdapter.Header || item instanceof BookmarksAdapter.Mark) {
+                    return true;
+                }
+                ListBoxHelper.showEditDeleteDialog(item,
                                                    controller,
                                                    bookmarksAdapter,
                                                    objects,
@@ -2983,7 +2990,15 @@ public class DragingDialogs {
                 objects.clear();
                 allData.clear();
 
-                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+                final List<AppBookmark> bookmarksByBook =
+                        BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+
+                // The reader's own marks, shown in their own section below the bookmarks and in
+                // the colour and style they were made with
+                final List<AppBookmark> marksByBook = new ArrayList<AppBookmark>();
+                for (AppAnnotation mark : AnnotationsData.get().byBook(controller.getCurrentBook().getPath())) {
+                    marksByBook.add(new BookmarksAdapter.Mark(mark, controller.getCurrentBook().getPath()));
+                }
 
                 final Comparator<AppBookmark> cmp = new Comparator<AppBookmark>() {
                     @Override public int compare(AppBookmark o1, AppBookmark o2) {
@@ -3000,12 +3015,27 @@ public class DragingDialogs {
                         return Float.compare(o1.getPercent(), o2.getPercent());
                     }
                 };
-                objects.addAll(bookmarksByBook);
-                allData.addAll(bookmarksByBook);
-
-                Collections.sort(objects, cmp);
-
-                bookmarksAdapter.notifyDataSetChanged();
+                // Each section sorted on its own, then laid end to end, so sorting the list
+                // cannot shuffle the two together
+                final Runnable rebuild = new Runnable() {
+                    @Override public void run() {
+                        Collections.sort(bookmarksByBook, cmp);
+                        Collections.sort(marksByBook, cmp);
+                        objects.clear();
+                        if (!bookmarksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.bookmarks));
+                            objects.addAll(bookmarksByBook);
+                        }
+                        if (!marksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.select));
+                            objects.addAll(marksByBook);
+                        }
+                        allData.clear();
+                        allData.addAll(objects);
+                        bookmarksAdapter.notifyDataSetChanged();
+                    }
+                };
+                rebuild.run();
 
                 setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
@@ -3017,26 +3047,22 @@ public class DragingDialogs {
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 return a;
@@ -4847,6 +4873,20 @@ public class DragingDialogs {
 
                     popupMenu.show();
                 });
+
+                // The base stylesheet is a replacement UA stylesheet written for MuPDF, which
+                // has none of its own. A browser does, so foliate-js is given only the generated
+                // rules unless this is on - which is here, beside the stylesheet picker, so the
+                // two can be compared on the book itself. Closing this drawer restarts the
+                // activity when the app state changed, so the book reopens with the new styling.
+                final CheckBox isFoliateBaseCss = inflate.findViewById(R.id.isFoliateBaseCss);
+                isFoliateBaseCss.setVisibility(
+                        ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
+                                && AppState.get().getEpubEngine() == AppState.EPUB_ENGINE_FOLIATE
+                                ? View.VISIBLE : View.GONE);
+                isFoliateBaseCss.setChecked(AppState.get().epubFoliateBaseCss);
+                isFoliateBaseCss.setOnCheckedChangeListener(
+                        (buttonView, isChecked) -> AppState.get().epubFoliateBaseCss = isChecked);
 
                 // end styles
 

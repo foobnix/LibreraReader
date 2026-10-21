@@ -46,6 +46,9 @@ LOCAL_LDLIBS = -ljnigraphics
 LOCAL_LDLIBS += -llog
 LOCAL_LDLIBS += -lz
 LOCAL_LDLIBS += -lm
+# the knobs of MuPDF's own makefile: only a shared library can honour them
+LOCAL_LDLIBS += $(MUPDF_EXTRA_LDLIBS)
+LOCAL_LDFLAGS += $(MUPDF_EXTRA_LDFLAGS)
 
 
 

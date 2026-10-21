@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -60,7 +61,11 @@ public class MobiContext extends PdfContext {
             }
         }
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileNameEpub, password);
+        final AbstractCodecDocument muPdfDocument = openReflowable(fileNameEpub, password);
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
+        }
 
         final File jsonFile = new File(cacheFile + ".json");
         if (jsonFile.isFile()) {

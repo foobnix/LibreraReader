@@ -6,6 +6,8 @@ import android.graphics.RectF;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
+import android.util.Pair;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
@@ -164,7 +166,13 @@ public abstract class AbstractViewController extends AbstractComponentController
             int toPage = currentPage != null ? currentPage.docIndex : 0;
 
             CodecDocument doc = getBase().getDecodeService() != null ? getBase().getDecodeService().getCodecDocument() : null;
-            if (doc != null && TxtUtils.isNotEmpty(bs.pt)) {
+            // The exact place the book was left, when the engine that laid it out can name one.
+            // It is the whole answer when it resolves, so the page text is not searched on top of
+            // it - that would trade an exact page for an approximate one.
+            final int exact = doc != null && TxtUtils.isNotEmpty(bs.cfi) ? doc.findLocationPage(bs.cfi) : -1;
+            if (exact > 0) {
+                toPage = exact - 1;
+            } else if (doc != null && TxtUtils.isNotEmpty(bs.pt)) {
                 int found = doc.findBookmarkPage(toPage + 1, null, bs.pt);
                 if (found > 0) {
                     toPage = found - 1;
@@ -595,6 +603,34 @@ public abstract class AbstractViewController extends AbstractComponentController
         }
         return null;
 
+    }
+
+    /**
+     * The mark of Librera's own under a tap, with the page it is on, or null.
+     *
+     * The same walk as {@link #isAnnotationTap}, over the marks Librera keeps rather than the
+     * ones inside the document, so the eraser works the same for either.
+     */
+    public final Pair<Page, AnnotationsFinder.Drawn> isMarkTap(final float x, final float y) {
+        final float zoom = base.getZoomModel().getZoom();
+        final RectF rect = new RectF(x, y, x, y);
+        rect.offset(getScrollX(), getScrollY());
+
+        for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
+            final RectF bounds = page.getBounds(zoom);
+            if (!RectF.intersects(bounds, rect) || LengthUtils.isEmpty(page.marks)) {
+                continue;
+            }
+            for (AnnotationsFinder.Drawn mark : page.marks) {
+                for (RectF normalized : mark.rects) {
+                    final RectF onScreen = page.getPageRegion(bounds, new RectF(normalized));
+                    if (onScreen != null && RectF.intersects(onScreen, rect)) {
+                        return new Pair<Page, AnnotationsFinder.Drawn>(page, mark);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     protected final boolean processLinkTap(final float x, final float y) {

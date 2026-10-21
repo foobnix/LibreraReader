@@ -2,6 +2,7 @@ package com.foobnix.tts;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.icu.util.ULocale;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.content.Intent;
@@ -46,8 +47,10 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -56,11 +59,17 @@ public class TTSEngine {
     public static final String FINISHED_SIGNAL = "Finished";
     public static final String STOP_SIGNAL = "Stoped";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
+    public static final String UNKNOWN = "---";
     public static final String WAV = ".wav";
     public static final String MP3 = ".mp3";
     private static final String TAG = "TTSEngine";
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
+    private boolean initialized;
+    private boolean initializationFailed;
+    private String pendingText;
+    private int generation;
+    private final List<OnInitListener> lateInitListeners = new ArrayList<OnInitListener>();
     volatile MediaPlayer mp;
     Timer mTimer;
     Object helpObject = new Object();
@@ -69,6 +78,25 @@ public class TTSEngine {
 
     public boolean isInit() {
         return ttsEngine != null;
+    }
+
+    /**
+     * @return true once the engine reported a successful onInit - before that nothing can be
+     *         asked about the voice or the language.
+     */
+    public boolean isInitialized() {
+        synchronized (helpObject) {
+            return ttsEngine != null && initialized;
+        }
+    }
+
+    /**
+     * @return true when an initialized engine has no language it can actually speak, which is
+     *         what the system TTS settings are offered for. Only an initialized engine can
+     *         answer this: while it is still connecting the language is not known yet.
+     */
+    public boolean hasUnknownLanguage() {
+        return isInitialized() && UNKNOWN.equals(getCurrentLang());
     }
 
     OnInitListener listener = new OnInitListener() {
@@ -141,8 +169,12 @@ public class TTSEngine {
         LOG.d(TAG, "shutdown");
 
         synchronized (helpObject) {
+            generation++;
+            initialized = false;
+            initializationFailed = false;
+            pendingText = null;
+            lateInitListeners.clear();
             if (ttsEngine != null) {
-
                 ttsEngine.shutdown();
             }
             ttsEngine = null;
@@ -168,27 +200,74 @@ public class TTSEngine {
                                          .mp3BookPathGet());
             }
 
+            if (initializationFailed) {
+                shutdown();
+            }
             if (ttsEngine != null) {
+                // The engine is shared, so a caller that arrives while it is still connecting
+                // would never hear about initialization: it owns no OnInitListener of its own.
+                if (!initialized && onLisnter != null) {
+                    lateInitListeners.add(onLisnter);
+                }
                 return ttsEngine;
             }
-            if (onLisnter == null) {
-                onLisnter = listener;
-            }
+            final OnInitListener callback = onLisnter == null ? listener : onLisnter;
             // The system default engine can point at a package that is no longer installed
             // (Android then logs "is not allowed to bind to private engine" and stays silent).
             // In that case pick an engine that is actually present instead of inheriting the
             // broken default.
             final String fallback = resolveUsableEngine(LibreraApp.context);
+            final int currentGeneration = ++generation;
+            initialized = false;
+            OnInitListener init = status -> {
+                final List<OnInitListener> waiting = new ArrayList<OnInitListener>();
+                synchronized (helpObject) {
+                    if (generation != currentGeneration) {
+                        return;
+                    }
+                    initialized = status == TextToSpeech.SUCCESS;
+                    initializationFailed = !initialized;
+                    if (!initialized) {
+                        pendingText = null;
+                    }
+                    waiting.add(callback);
+                    waiting.addAll(lateInitListeners);
+                    lateInitListeners.clear();
+                }
+                try {
+                    for (OnInitListener waiter : waiting) {
+                        notifyInit(waiter, status);
+                    }
+                } finally {
+                    synchronized (helpObject) {
+                        if (generation == currentGeneration && initialized && pendingText != null) {
+                            String queued = pendingText;
+                            pendingText = null;
+                            speekLocked(queued);
+                        }
+                    }
+                }
+            };
             if (fallback != null) {
                 LOG.d(TAG, "default TTS engine unusable, falling back to", fallback);
-                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter, fallback);
+                ttsEngine = new TextToSpeech(LibreraApp.context, init, fallback);
             } else {
-                ttsEngine = new TextToSpeech(LibreraApp.context, onLisnter);
+                ttsEngine = new TextToSpeech(LibreraApp.context, init);
             }
         }
 
         return ttsEngine;
 
+    }
+
+    private static void notifyInit(OnInitListener waiter, int status) {
+        try {
+            waiter.onInit(status);
+        } catch (Exception e) {
+            // onInit arrives on the main thread: one broken listener must not take down the
+            // others, nor the queued speech that is drained afterwards.
+            LOG.e(e);
+        }
     }
 
     /**
@@ -258,6 +337,7 @@ public class TTSEngine {
 
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            pendingText = null;
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
@@ -275,21 +355,8 @@ public class TTSEngine {
     public void stopDestroy() {
         LOG.d(TAG, "stop");
         TxtUtils.dictHash = "";
-        synchronized (helpObject) {
-            if (ttsEngine != null) {
-                ttsEngine.shutdown();
-            }
-            ttsEngine = null;
-        }
-        AppSP.get().lastBookParagraph = 0;
-    }
-
-    public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
-        synchronized (helpObject) {
-            ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
-        }
-        return ttsEngine;
+        AppSP.get().lastBookParagraph = 0;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) public void speek(final String text) {
@@ -317,24 +384,18 @@ public class TTSEngine {
             LOG.d("getTTS-status not null");
         }
 
-        ttsEngine = getTTS(new OnInitListener() {
-
-            @Override public void onInit(int status) {
-                LOG.d("getTTS-status", status);
-                if (status == TextToSpeech.SUCCESS) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                    }
-                    speek(text);
-                }
-            }
-        });
+        ttsEngine = getTTS();
 
         if (ttsEngine == null) {
             LOG.d(TAG, "speek: no TTS engine available");
             return;
         }
+        if (!initialized) {
+            LOG.d(TAG, "speek: waiting for TTS initialization");
+            pendingText = text;
+            return;
+        }
+        pendingText = null;
 
         ttsEngine.setPitch(AppState.get().ttsPitch);
         if (AppState.get().ttsSpeed == 0.0f) {
@@ -533,18 +594,29 @@ public class TTSEngine {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP) public String getCurrentLang() {
+    /**
+     * @return the display name of the language the engine speaks, or {@link #UNKNOWN} when it
+     *         has none it can speak: an engine without voice data accepts a speech request and
+     *         then never answers it, so an unusable language has to read as no language.
+     */
+    @SuppressWarnings("deprecation") public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice()
-                                                                                                                    .getLocale() != null) {
-                return ttsEngine.getDefaultVoice()
-                                .getLocale()
-                                .getDisplayLanguage();
+            TextToSpeech engine = ttsEngine;
+            // Both answers come from the engine's own settings - the client caches the language
+            // it was handed before onInit, and availability is a single query. getDefaultVoice()
+            // would instead fetch the whole voice list over Binder on every call.
+            Locale language = engine != null ? engine.getLanguage() : null;
+            if (language != null && !language.getLanguage()
+                                             .isEmpty() &&
+                engine.isLanguageAvailable(language) >= TextToSpeech.LANG_AVAILABLE) {
+                // The language arrives as a legacy three-letter code ("deu"), which ICU - unlike
+                // java.util.Locale - resolves to a display name.
+                return new ULocale(language.getLanguage()).getDisplayLanguage();
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-        return "---";
+        return UNKNOWN;
     }
 
     public int getEngineCount() {
@@ -575,7 +647,7 @@ public class TTSEngine {
         } catch (Exception e) {
             LOG.e(e);
         }
-        return "---";
+        return UNKNOWN;
     }
 
     public void loadMP3(String ttsPlayMp3Path) {

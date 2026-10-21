@@ -11,6 +11,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -68,7 +69,7 @@ public class DocContext extends PdfContext {
 
         }
 
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, cacheFile.getPath(), password);
+        AbstractCodecDocument muPdfDocument = openReflowableHtml(cacheFile.getPath(), password);
         return muPdfDocument;
     }
 

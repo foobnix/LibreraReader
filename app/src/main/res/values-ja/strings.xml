@@ -62,7 +62,7 @@
    <string name="web">ウェブ</string>
    <string name="beta_version">ベータ版</string>
    <string name="archive">アーカイブ</string>
-   <string name="rate_pdf_reader1">Google Playでフィードバックと評価をお願いします：今後の開発のために非常に重要なことです</string>
+   <string name="rate_pdf_reader1">Google Play でこのアプリのレビューをお願いします。私たちにとってとても大切です</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">フォーマットされたテキスト（擬似グラフィックス）</string>
    <string name="continuous_text">連続テキスト（改行なし）</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">メールアプリがインストールされていません。</string>
    <string name="file_not_found">ファイルが見つかりません</string>
    <string name="you_need_grant_permission5">アプリがあなたの蔵書をすべて検索して表示するには、あなたの許可が必要です。</string>
+   <string name="allow">許可</string>
+   <string name="storage">ストレージ</string>
+   <string name="add_all_books_with_permission">本を自動的にライブラリに追加するため、アプリにダウンロードフォルダのスキャンを許可してください。</string>
+   <string name="save_settings_in_librera_folder">設定と読書の進捗を Librera フォルダに保存します。</string>
+   <string name="regrant_folder_title">フォルダへのアクセスを再度許可</string>
+   <string name="regrant_folder_msg">アプリは %1$s を読み取れなくなりました。アプリを再インストールすると、Android はフォルダへのアクセス権を削除します。次の画面でもう一度フォルダを選択してください。</string>
    <string name="remind_msg">休憩の時間です！</string>
    <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
    <string name="can_t_download">ダウンロードできません</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著者名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
-   <string name="librera_pro">Librera PRO を入手 — 広告なし。このアプリの広告も消えます</string>
+   <string name="librera_pro"><b>Librera PRO</b>：広告なしのアプリ。このアプリの広告も消えます</string>
    <string name="annotation">注釈</string>
    <string name="book">本</string>
    <string name="information">情報</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">頭文字のハイライト</string>
    <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
    <string name="folder_preview">フォルダーのプレビュー</string>
+   <string name="show_storage_book_covers">追加したストレージの表紙を表示する</string>
    <string name="accent">アクセント</string>
    <string name="discarded_books">捨てられた本</string>
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">見る</string>
    <string name="librerax_not_installed">LibreraX がインストールされていません。ダウンロードしてインストールしてから、もう一度本を開いてください。</string>
    <string name="remove_library_folder">このフォルダをライブラリから外しますか？フォルダ内のファイルは削除されません。</string>
+   <string name="epub_engine">EPUB エンジン</string>
+   <string name="msg_epub_engine_unavailable">この端末では WebView を利用できません。</string>
+   <string name="base_stylesheet">基本スタイルシートを適用 (foliate-js)</string>
+   <string name="pdf_engine">PDF エンジン</string>
+   <string name="msg_pdf_engine_unavailable">このビルドには PDFium ライブラリが含まれていません。</string>
 </resources>

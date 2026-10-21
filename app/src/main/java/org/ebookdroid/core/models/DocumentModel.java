@@ -48,11 +48,20 @@ public class DocumentModel extends ListenerProxy {
     private Page[] pages = EMPTY_PAGES;
 
     public DocumentModel(final BookType activityType, IView view) {
+        this(activityType, null, view);
+    }
+
+    /**
+     * @param fileName the book that will be opened, when it is known: a PDF is read by the engine
+     *                 {@link com.foobnix.model.AppState#pdfEngine} asks for, and the name is what
+     *                 {@link BookType#getCodecContextByType(BookType, String)} picks it by
+     */
+    public DocumentModel(final BookType activityType, final String fileName, IView view) {
         super(CurrentPageListener.class);
-        LOG.d("Document activityType Type", activityType);
+        LOG.d("Document activityType Type", activityType, fileName);
         if (activityType != null) {
             try {
-                context = BookType.getCodecContextByType(activityType);
+                context = BookType.getCodecContextByType(activityType, fileName);
                 LOG.d("Document context Type", context);
                 decodeService = new DecodeServiceBase(context, view);
             } catch (final Throwable th) {

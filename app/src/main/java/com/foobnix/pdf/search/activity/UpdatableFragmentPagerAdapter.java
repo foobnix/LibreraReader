@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.collection.LongSparseArray;
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -193,7 +194,7 @@ public abstract class UpdatableFragmentPagerAdapter extends PagerAdapter {
             mFragments.clear();
             if (fss != null) {
                 for (long fs : fss) {
-                    mSavedStates.put(fs, (Fragment.SavedState) bundle.getParcelable(Long.toString(fs)));
+                    mSavedStates.put(fs, BundleCompat.getParcelable(bundle, Long.toString(fs), Fragment.SavedState.class));
                 }
             }
             Iterable<String> keys = bundle.keySet();

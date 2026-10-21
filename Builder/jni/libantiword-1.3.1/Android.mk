@@ -26,7 +26,7 @@ LOCAL_SRC_FILES := \
 	wordwin.c xmalloc.c xml.c
 
 
-LOCAL_LDLIBS  := -llog
+# a static library: -llog is linked by libMuPDF.so, where ndk-build does not ignore it
 
 
 include $(BUILD_STATIC_LIBRARY)

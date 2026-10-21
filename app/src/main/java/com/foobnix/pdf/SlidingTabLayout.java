@@ -37,6 +37,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.sys.DoubleClickListener;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
+import androidx.core.content.ContextCompat;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give
@@ -428,7 +429,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }
@@ -553,7 +554,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 // TintUtil.addTextView(tabTitleView);
                 Drawable drawable = null;
                 try {
-                    drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
+                    drawable = ContextCompat.getDrawable(getContext(), adapter.getIconResId(i));
                     //drawable = new ScaleDrawable(drawable.getCurrent(),0,Dips.DP_10,Dips.DP_10);
                     int size = Dips.dpToPx(isIconsAlone() ? TAB_ICON_ALONE_DIPS : TAB_ICON_DIPS);
                     drawable.setBounds(0,0,size,size);

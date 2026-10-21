@@ -1,29 +1,30 @@
 [versions]
-agp = "9.3.2"
+agp = "9.4.1"
 #agp = "9.2"
 appcompat = "1.8.0"
 billing = "9.1.0"
 cardview = "1.0.0"
 commonsLoggingApi = "1.1"
-coreKtx = "1.19.0"
+coreKtx = "1.19.1"
 eventbus = "3.3.1"
-firebaseBom = "34.19.0"
+firebaseBom = "35.0.2"
 
 
 googleServices = "4.5.0"
 greendao = "3.3.0"
 
-guava = "33.7.1-android"
+guava = "33.7.2-android"
 jsoup = "1.23.2"
 junit = "4.13.2"
-mockito = "5.23.0"
-juniversalchardet = "2.5.0"
-junrar = "8.1.1"
-kotlin = "2.4.20"
+mockito = "5.24.0"
+juniversalchardet = "2.5.1"
+junrar = "8.1.2"
+kotlin = "2.4.21"
 kotlinxSerializationCore = "1.11.0"
-ksp = "2.3.4"
+ksp = "2.3.12"
 legacySupportV4 = "1.0.0"
 okio = "3.18.2"
+pdfiumandroid = "2.0.3"
 pdfmpCompose = "1.0.13"
 
 recyclerview = "1.4.0"
@@ -46,7 +47,7 @@ minSdk="24"
 jvmTarget = "21"
 
 composeHotReload = "1.2.0"
-composeMultiplatform = "1.12.0"
+composeMultiplatform = "1.12.2"
 
 androidx-activity = "1.13.0"
 spmForKmp = "1.9.5"
@@ -54,10 +55,10 @@ junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 material = "1.14.0"
 kotlinx-coroutines="1.11.0"
-material3 = "1.10.0-alpha05"
+material3 = "1.13.0-alpha02"
 androidx-lifecycle = "2.11.0"
 zip4j="2.11.6"
-workRuntime="2.11.2"
+workRuntime="2.12.0"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -98,8 +99,13 @@ google-api-client-android = { module = "com.google.api-client:google-api-client-
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20260712-2.0.0" }
 google-http-client-gson = { module = "com.google.http-client:google-http-client-gson", version = "2.1.1" }
 google-oauth-client-jetty = { module = "com.google.oauth-client:google-oauth-client-jetty", version = "1.39.0" }
-play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.4.0" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.6.0" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version = "25.5.0" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "22.0.0" }
+# The "Sign in with Google" sheet the Drive sync picks its account from: Credential Manager,
+# with Google's own credential type and the Play services provider behind it.
+credentials = { module = "androidx.credentials:credentials", version = "1.6.0" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version = "1.6.0" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version = "1.2.1" }
 
 greendao-api = { module = "org.greenrobot:greendao-api", version.ref = "greendao" }
 greenrobot-greendao = { module = "org.greenrobot:greendao", version.ref = "greendao" }
@@ -115,6 +121,8 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+# PdfiumAndroidKt: the second PDF render engine, next to the bundled MuPDF
+pdfiumandroid = { module = "io.legere:pdfiumandroid", version.ref = "pdfiumandroid" }
 pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfmpCompose" }
 
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }

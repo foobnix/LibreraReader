@@ -62,7 +62,7 @@
    <string name="web">Página Web</string>
    <string name="beta_version">Versión beta</string>
    <string name="archive">Archivo</string>
-   <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y califíquenos en Google Play; es muy importante para nosotros</string>
+   <string name="rate_pdf_reader1">Deja tu opinión sobre esta aplicación en Google Play. Es muy importante para nosotros</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Texto formateado (pseudo gráficos)</string>
    <string name="continuous_text">Texto continuo (sin salto de línea)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">No hay una aplicación de correo instalada.</string>
    <string name="file_not_found">Archivo no encontrado</string>
    <string name="you_need_grant_permission5">La aplicación necesita tu permiso para encontrar y mostrar todos tus libros.</string>
+   <string name="allow">Permitir</string>
+   <string name="storage">Almacenamiento</string>
+   <string name="add_all_books_with_permission">Permite que la aplicación examine tu carpeta de Descargas para añadir libros automáticamente a tu biblioteca, por favor.</string>
+   <string name="save_settings_in_librera_folder">Guardar la configuración y el progreso de lectura en la carpeta Librera.</string>
+   <string name="regrant_folder_title">Permitir de nuevo el acceso a la carpeta</string>
+   <string name="regrant_folder_msg">La aplicación ya no puede leer %1$s: Android retira el acceso a las carpetas al reinstalar la aplicación. Vuelve a elegir la carpeta en la siguiente pantalla.</string>
    <string name="remind_msg">Por favor tómese un respiro y descanse sus ojos.</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador ya existe</string>
    <string name="can_t_download">No se puede descargar</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Recortar bordes simétricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Mostrar el autor y el título del libro de las metaetiquetas</string>
    <string name="meta_tags">Metaetiquetas</string>
-   <string name="librera_pro">Consigue Librera PRO — sin anuncios, y también elimina los anuncios de esta aplicación</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Una aplicación sin anuncios que también quita los anuncios de esta aplicación</string>
    <string name="annotation">Anotación</string>
    <string name="book">Libro</string>
    <string name="information">Información</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Resaltando letras iniciales</string>
    <string name="anti_aliasing_level">Nivel de suavizado</string>
    <string name="folder_preview">Vista previa de la carpeta</string>
+   <string name="show_storage_book_covers">Mostrar portadas del almacenamiento agregado</string>
    <string name="accent">Acento</string>
    <string name="discarded_books">Libros descartados</string>
    <string name="show_print_edition_page_numbers_epub3">Mostrar los números de página de la edición impresa (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Ver</string>
    <string name="librerax_not_installed">LibreraX no está instalado. Descárgalo e instálalo y vuelve a abrir el libro.</string>
    <string name="remove_library_folder">¿Quitar esta carpeta de la biblioteca? Los archivos que contiene no se eliminarán.</string>
+   <string name="epub_engine">Motor EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView no está disponible en este dispositivo.</string>
+   <string name="base_stylesheet">Aplicar la hoja de estilos base (foliate-js)</string>
+   <string name="pdf_engine">Motor PDF</string>
+   <string name="msg_pdf_engine_unavailable">Esta compilación no incluye las bibliotecas PDFium.</string>
 </resources>

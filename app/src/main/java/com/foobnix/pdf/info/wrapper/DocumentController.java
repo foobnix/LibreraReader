@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -29,6 +30,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -38,6 +41,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
+import android.graphics.RectF;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
@@ -51,6 +55,12 @@ import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.Engines;
+import org.ebookdroid.BookType;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -180,11 +190,65 @@ public abstract class DocumentController {
         a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
     }
 
+    /**
+     * Whether the status bar and the navigation bar were last asked to go away.
+     *
+     * Up to Android 10 the room a hidden bar took goes on being reported, so the insets have to
+     * be corrected by hand (see {@link #barsShown}). That used to be read back off the decor
+     * view's system-ui flags; those are gone, and the controller has no getter before API 30, so
+     * what was asked for is remembered here instead. It is only ever read on that older path.
+     */
+    private static boolean statusBarHidden = false;
+
+    private static boolean navigationBarHidden = false;
+
+    /** The controller that puts the system's bars up and down on this window. */
+    private static WindowInsetsControllerCompat barsOf(final Activity a) {
+        final Window window = a.getWindow();
+        return WindowCompat.getInsetsController(window, window.getDecorView());
+    }
+
+    /**
+     * Lays the window out behind the system's bars and puts them up or down.
+     *
+     * This is what the old SYSTEM_UI_FLAG_LAYOUT_* trio and FLAG_FULLSCREEN did together: the
+     * page keeps the size it has whether or not the bars are showing, and the bars are drawn
+     * over it. Hidden bars come back on a swipe and go again by themselves, which is what
+     * SYSTEM_UI_FLAG_IMMERSIVE_STICKY meant.
+     */
+    private static void applyBars(final Activity a, final boolean hideStatus, final boolean hideNavigation) {
+        final Window window = a.getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        final WindowInsetsControllerCompat bars = barsOf(a);
+        bars.setSystemBarsBehavior(
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        if (hideStatus) {
+            bars.hide(WindowInsetsCompat.Type.statusBars());
+        } else {
+            bars.show(WindowInsetsCompat.Type.statusBars());
+        }
+        if (hideNavigation) {
+            bars.hide(WindowInsetsCompat.Type.navigationBars());
+        } else {
+            bars.show(WindowInsetsCompat.Type.navigationBars());
+        }
+        statusBarHidden = hideStatus;
+        navigationBarHidden = hideNavigation;
+    }
+
+    /**
+     * Puts both of the system's bars away, leaving the page the size it already had. They come
+     * back on a swipe and go again by themselves.
+     */
+    public static void hideSystemBars(final Activity a) {
+        applyBars(a, true, true);
+    }
+
     public static void runFullScreen(final Activity a) {
         try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // The status bar goes; the navigation bar is Keyboards.hideNavigation's to decide,
+            // which it does on a delay so a panel closing does not flash it back up.
+            applyBars(a, true, navigationBarHidden);
 
             Keyboards.hideNavigation(a);
 
@@ -199,15 +263,10 @@ public abstract class DocumentController {
      */
     public static void runFullScreenCutOut(final Activity a) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-            }
+            // The cut-out itself is EdgeToEdge's doing and holds whatever the bars are up to;
+            // what this mode adds over the plain one is only how far the page is let out, which
+            // keptClearOf works out from the insets.
+            applyBars(a, true, navigationBarHidden);
 
             Keyboards.hideNavigation(a);
 
@@ -232,14 +291,8 @@ public abstract class DocumentController {
 
     private static void runBarsOverPanels(final Activity a) {
         try {
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            final View decorView = a.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            // The bars come up with the panels and lie over the page, which keeps its size.
+            applyBars(a, false, false);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -267,17 +320,8 @@ public abstract class DocumentController {
 
     public static void runNormalScreen(final Activity a) {
         try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-            // The bars come back and the page goes on running under them: the flags that put
-            // them away are dropped, the ones the page was laid out under them with are kept.
-            final View decorView = a.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-
+            // The bars come back and the page goes on running under them.
+            applyBars(a, false, false);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -437,14 +481,23 @@ public abstract class DocumentController {
      */
     public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int barColor) {
         if (a instanceof ComponentActivity) {
-            // Both bars clear, with the light icons they always had: the app paints the status
-            // bar's strip itself, and the buttons at the foot get the system's dark scrim
-            // wherever the system draws one.
+            // Both bars take the app's own colour, with the light icons they always had: the
+            // strip kept for the status bar is painted by the app, and the strip the buttons
+            // at the foot stand on is painted here. The system's scrim would leave that strip
+            // black under chrome that is not, which reads as a band cut off the screen.
             EdgeToEdge.enable((ComponentActivity) a,
                               SystemBarStyle.dark(Color.TRANSPARENT),
-                              SystemBarStyle.auto(EdgeToEdge.getDefaultLightScrim(),
-                                                  EdgeToEdge.getDefaultDarkScrim(),
-                                                  resources -> true));
+                              SystemBarStyle.dark(barColor));
+        }
+        // From Android 10 on, the style above leaves the bar clear and lets the system put its
+        // own scrim over whatever shows through. The colour is set here instead, and the scrim
+        // turned off, so the strip is the app's colour under buttons and under a gesture bar
+        // alike rather than a dark band on one and the page on the other.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            a.getWindow().setNavigationBarColor(barColor);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            a.getWindow().setNavigationBarContrastEnforced(false);
         }
         View parentParent = a.findViewById(R.id.parentParent);
         View statusBarHack = a.findViewById(R.id.systemBarHack);
@@ -492,13 +545,15 @@ public abstract class DocumentController {
                     padUnderBars(top, over.left, over.top, over.right, 0);
                     padUnderBars(bottomPanel, over.left, 0, over.right, over.bottom);
 
-                    // No scrim over the buttons at the foot while the panel is under them, so
-                    // they stand on the panel's colour; the scrim is back once they go.
+                    // Nothing over the buttons at the foot while the panel is under them, so
+                    // they stand on the panel's own colour; once the panel goes, the strip is
+                    // painted in the app's colour rather than left to the system's scrim.
                     boolean overPanel = over.bottom > 0 || over.left > 0 || over.right > 0;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        a.getWindow().setNavigationBarContrastEnforced(!overPanel);
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : EdgeToEdge.getDefaultDarkScrim());
+                        a.getWindow().setNavigationBarContrastEnforced(false);
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : barColor);
                     }
                 }
 
@@ -556,10 +611,8 @@ public abstract class DocumentController {
         if (a == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.R || a.isInMultiWindowMode()) {
             return bars;
         }
-        int flags = a.getWindow().getDecorView().getSystemUiVisibility();
-        boolean statusAway = (flags & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0
-                || (a.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-        boolean navigationAway = (flags & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0;
+        boolean statusAway = statusBarHidden;
+        boolean navigationAway = navigationBarHidden;
         return Insets.of(navigationAway ? 0 : bars.left,
                          statusAway ? 0 : bars.top,
                          navigationAway ? 0 : bars.right,
@@ -708,9 +761,114 @@ public abstract class DocumentController {
         }
     }
 
+    /** The exact place the reader is, when the engine can name one; null otherwise. */
+    public String getLocation() {
+        try {
+            CodecDocument doc = getCodecDocument();
+            return doc != null ? doc.getLocation(getCurentPageFirst1()) : null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * The page a saved location names, or -1.
+     *
+     * A location written by one engine means nothing to another - a CFI from foliate-js is not
+     * something MuPDF can resolve - and the engine says so rather than guessing, which is why the
+     * percentage is always saved beside it.
+     */
+    public int findLocationPage(String location) {
+        try {
+            CodecDocument doc = getCodecDocument();
+            if (doc != null && TxtUtils.isNotEmpty(location)) {
+                return doc.findLocationPage(location);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return -1;
+    }
+
+    /**
+     * Whether a mark on this book belongs inside the document itself.
+     *
+     * A PDF has carried its own annotations since long before this, and keeps doing so - another
+     * reader opening the file sees them. Everything else has nowhere inside the file to put one,
+     * so Librera keeps it: see {@link com.foobnix.model.AppAnnotation}. Two PDFs fall back to
+     * Librera's store as well - one in a build with no MuPDF to write the annotation with, and
+     * one that is encrypted, which is not a file to be rewriting.
+     */
+    public boolean isAnnotationsInsideDocument() {
+        try {
+            return Engines.IS_MUPDF
+                    && BookType.PDF.is(getCurrentBook().getPath())
+                    && !isPasswordProtected();
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+    }
+
+    /**
+     * Stores a mark on the words the reader selected, in Librera's own store.
+     *
+     * The anchor depends on what the engine laying this book out can promise - see
+     * {@link com.foobnix.model.AppAnnotation}. Asking for one means asking the engine, so this
+     * belongs off the UI thread; the caller already has a thread for it.
+     *
+     * @param page0 the page the selection is on, 0-based
+     * @param rects the selected rectangles, each normalized to the page
+     */
+    public AppAnnotation createAnnotation(final int page0, final List<RectF> rects, final String text,
+                                          final AnnotationType type, final String color) {
+        if (rects == null || rects.isEmpty()) {
+            return null;
+        }
+        final AppAnnotation annotation = new AppAnnotation(getCurrentBook().getPath());
+        annotation.setType(type);
+        annotation.color = color;
+        annotation.text = TxtUtils.isNotEmpty(text) ? text.trim() : "";
+        annotation.page = page0;
+        annotation.p = getPercentage();
+        if (isTextFormat()) {
+            // Reflowable: the rectangles mean nothing at another font size, so the characters
+            // have to be named instead - exactly if the engine can, by the page's text if not.
+            final CodecDocument doc = getCodecDocument();
+            final String cfi = doc != null ? doc.getLocation(page0 + 1, rects) : null;
+            if (TxtUtils.isNotEmpty(cfi)) {
+                annotation.cfi = cfi;
+            } else if (doc != null) {
+                annotation.pt = TxtUtils.nullToEmpty(doc.getBookmarkText(page0 + 1));
+            }
+        } else {
+            annotation.rects = AnnotationsFinder.write(rects);
+        }
+        AnnotationsData.get().add(annotation);
+        AnnotationsFinder.invalidate();
+        LOG.d("createAnnotation", annotation);
+        return annotation;
+    }
+
     // page is estimated by percent, returns the nearest page (+-10) with the text, else with the page text
     // saved at the position (finds the page after re-layout, font size change), else the page
     public int findBookmarkPage(int page, String text, String pageText) {
+        return findBookmarkPage(page, text, pageText, null);
+    }
+
+    /**
+     * The same, given an exact place to try first.
+     *
+     * The exact place wins when the engine understands it; otherwise this is what it always was -
+     * the page the percentage points at, corrected by searching the saved page text around it.
+     */
+    public int findBookmarkPage(int page, String text, String pageText, String location) {
+        final int exact = findLocationPage(location);
+        if (exact > 0) {
+            LOG.d("findBookmarkPage by location", exact, "instead of", page);
+            return exact;
+        }
         try {
             CodecDocument doc = getCodecDocument();
             if (doc != null && (TxtUtils.isNotEmpty(text) || TxtUtils.isNotEmpty(pageText))) {
@@ -792,6 +950,10 @@ public abstract class DocumentController {
             bs.updateFromAppState();
             if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
                 bs.pt = getBookmarkText();
+                // The exact place, when the engine can name one. It is written beside the
+                // percentage and the page text, never instead of them: another engine, an older
+                // version or another device has to be able to restore the position without it.
+                bs.cfi = getLocation();
             }
             SharedBooks.save(bs);
             // The row the shelves are drawn from is brought up to the file straight away, so a
@@ -828,7 +990,7 @@ public abstract class DocumentController {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
                 int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
                 if (getCurentPage() != page) {
-                    page = findBookmarkPage(page, null, bs.pt);
+                    page = findBookmarkPage(page, null, bs.pt, bs.cfi);
                     if (getCurentPage() != page) {
                         onGoToPage(page);
                     }
@@ -1059,6 +1221,16 @@ public abstract class DocumentController {
         deleteAnnotation(pageHander, page, index);
         showEditDialogIfNeed();
         saveAnnotationsToFile();
+    }
+
+    /** Removes one of Librera's own marks, the way tapping a PDF annotation removes that. */
+    public void removeAnnotation(final AppAnnotation annotation) {
+        if (annotation == null) {
+            return;
+        }
+        AnnotationsData.get().remove(annotation);
+        AnnotationsFinder.invalidate();
+        LOG.d("removeAnnotation", annotation);
     }
 
     public void showEditDialogIfNeed() {

@@ -783,7 +783,7 @@ public class FileInformationDialog {
         }
 
         builder.setMessage("⛔" + a.getString(R.string.do_you_want_to_delete_this_file_1) + "\n\n\"" + name + "\"")
-               .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+               .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                    @Override public void onClick(final DialogInterface dialog, final int id) {
 
                        if (Clouds.isLibreraSyncRootFolder(file.getPath())) {

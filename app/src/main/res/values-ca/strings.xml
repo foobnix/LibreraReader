@@ -62,7 +62,7 @@
    <string name="web">Pàgina web</string>
    <string name="beta_version">Versió beta</string>
    <string name="archive">Arxiu</string>
-   <string name="rate_pdf_reader1">Si us plau, doneu-nos la vostra opinió i valoure-nos a Google Play: és molt important per el futur desenvolupament</string>
+   <string name="rate_pdf_reader1">Deixeu una ressenya sobre aquesta aplicació a Google Play. És molt important per a nosaltres</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Text formatat (pseudo-gràfics)</string>
    <string name="continuous_text">Text continu (sense salts de línia)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">No hi ha cap client de correu instal·lat</string>
    <string name="file_not_found">No s\'ha trobat el fitxer</string>
    <string name="you_need_grant_permission5">L\'aplicació necessita el teu permís per trobar i mostrar tots els teus llibres.</string>
+   <string name="allow">Permet</string>
+   <string name="storage">Emmagatzematge</string>
+   <string name="add_all_books_with_permission">Si us plau, permet que l\'aplicació analitzi la carpeta Baixades per afegir llibres automàticament a la teva biblioteca.</string>
+   <string name="save_settings_in_librera_folder">Desa la configuració i el progrés de lectura a la carpeta Librera.</string>
+   <string name="regrant_folder_title">Torna a permetre l\'accés a la carpeta</string>
+   <string name="regrant_folder_msg">L\'aplicació ja no pot llegir %1$s: Android elimina l\'accés a les carpetes quan es reinstal·la l\'aplicació. Torna a triar la carpeta a la pantalla següent.</string>
    <string name="remind_msg">És hora de fer una pausa.</string>
    <string name="bookmark_for_this_page_already_exists">Aquest marcador ja existeix</string>
    <string name="can_t_download">No s\'ha pogut baixar el fitxer</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Retall simètric</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extreu els noms dels autors i els títols dels llibres de les meta-dades (PDF)</string>
    <string name="meta_tags">Meta etiquetes</string>
-   <string name="librera_pro">Obtén Librera PRO — sense anuncis, i també elimina els anuncis d\'aquesta aplicació</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Una aplicació sense anuncis que també treu els anuncis d\'aquesta aplicació</string>
    <string name="annotation">Anotació</string>
    <string name="book">Llibre</string>
    <string name="information">Informació del fitxer</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Ressalta les lletres inicials</string>
    <string name="anti_aliasing_level">Nivell de suavitzat</string>
    <string name="folder_preview">Previsualització de la carpeta</string>
+   <string name="show_storage_book_covers">Mostra les cobertes de l\'emmagatzematge afegit</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Llibres descartats</string>
    <string name="show_print_edition_page_numbers_epub3">Mostra els números de pàgina de l\'edició impresa (Epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Mira</string>
    <string name="librerax_not_installed">LibreraX no està instal·lat. Baixeu-lo i instal·leu-lo i torneu a obrir el llibre.</string>
    <string name="remove_library_folder">Voleu treure aquesta carpeta de la biblioteca? Els fitxers que conté no se suprimiran.</string>
+   <string name="epub_engine">Motor d\'EPUB</string>
+   <string name="msg_epub_engine_unavailable">El WebView no està disponible en aquest dispositiu.</string>
+   <string name="base_stylesheet">Aplica el full d\'estils base (foliate-js)</string>
+   <string name="pdf_engine">Motor de PDF</string>
+   <string name="msg_pdf_engine_unavailable">Aquesta compilació no inclou les biblioteques PDFium.</string>
 </resources>

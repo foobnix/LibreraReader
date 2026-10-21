@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.CacheControl;
 import okhttp3.Request;
 import okhttp3.Response;
+import androidx.core.content.IntentCompat;
 
 public class SendReceiveActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,7 @@ public class SendReceiveActivity extends Activity {
 
         new File(BookCSS.get().downlodsPath).mkdirs();
 
-        Uri fileUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        Uri fileUri = IntentCompat.getParcelableExtra(intent, Intent.EXTRA_STREAM, Uri.class);
         LOG.d("SendReceiveActivity", "fileUri 1", fileUri);
 
         if (fileUri == null && intent.getExtras() != null) {
@@ -175,8 +176,10 @@ public class SendReceiveActivity extends Activity {
         }
 
         if (extras != null && getIntent().getData() == null) {
-            Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
-            final Object text = res != null ? res : extras.get(Intent.EXTRA_TEXT);
+            // Both extras are documented as CharSequence, which is the typed getter that
+            // replaces the untyped Bundle.get(String).
+            Object res = Build.VERSION.SDK_INT >= 23 ? extras.getCharSequence(Intent.EXTRA_PROCESS_TEXT) : null;
+            final Object text = res != null ? res : extras.getCharSequence(Intent.EXTRA_TEXT);
 
             LOG.d("SendReceiveActivity", "updateIntent res", res);
             LOG.d("SendReceiveActivity", "updateIntent()-text", text);

@@ -62,7 +62,7 @@
    <string name="web">முகப்பு பக்கம்</string>
    <string name="beta_version">சோதனை பதிப்பு</string>
    <string name="archive">காப்பகம்</string>
-   <string name="rate_pdf_reader1">தயவுசெய்து கருத்துரைகளை விட்டுவிட்டு எங்களை கூகிள் விளையாட்டு இல் மதிப்பிடுங்கள்: மேலும் மேம்பாட்டுக்கு இது மிகவும் முக்கியமானது</string>
+   <string name="rate_pdf_reader1">Google Play இல் இந்த செயலி குறித்து கருத்து தெரிவிக்கவும். இது எங்களுக்கு மிகவும் முக்கியம்</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">வடிவமைக்கப்பட்ட உரை (போலி-கிராபிக்ஸ்)</string>
    <string name="continuous_text">தொடர்ச்சியான உரை (வரி முறிவுகள் இல்லை)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">மின்னஞ்சல் கிளையன்ட் எதுவும் நிறுவப்படவில்லை</string>
    <string name="file_not_found">கோப்பு கிடைக்கவில்லை</string>
    <string name="you_need_grant_permission5">உங்கள் புத்தகங்கள் அனைத்தையும் கண்டறிந்து காண்பிக்க, இந்தச் செயலிக்கு உங்கள் அனுமதி தேவை.</string>
+   <string name="allow">அனுமதி</string>
+   <string name="storage">சேமிப்பு</string>
+   <string name="add_all_books_with_permission">புத்தகங்களை உங்கள் நூலகத்தில் தானாகச் சேர்க்க, பதிவிறக்கங்கள் கோப்புறையை ஸ்கேன் செய்ய ஆப்ஸை அனுமதிக்கவும்.</string>
+   <string name="save_settings_in_librera_folder">அமைப்புகளையும் வாசிப்பு முன்னேற்றத்தையும் Librera கோப்புறையில் சேமிக்கவும்.</string>
+   <string name="regrant_folder_title">கோப்புறைக்கான அணுகலை மீண்டும் அனுமதிக்கவும்</string>
+   <string name="regrant_folder_msg">செயலியால் இனி %1$s ஐப் படிக்க முடியாது: செயலியை மீண்டும் நிறுவும்போது Android கோப்புறை அணுகலை நீக்குகிறது. அடுத்த திரையில் கோப்புறையை மீண்டும் தேர்ந்தெடுக்கவும்.</string>
    <string name="remind_msg">ஓய்வு எடுக்க நேரம்!</string>
    <string name="bookmark_for_this_page_already_exists">இந்த புத்தககுற ஏற்கனவே உள்ளது</string>
    <string name="can_t_download">கோப்பை பதிவிறக்க முடியவில்லை</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">பிரதிபலித்த வெட்டு</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">மெட்டாடேட்டா (PDF) இலிருந்து ஆசிரியர்களின் பெயர்கள் மற்றும் புத்தக தலைப்புகளை பிரித்தெடுக்கவும்</string>
    <string name="meta_tags">மெட்டா குறிச்சொற்கள்</string>
-   <string name="librera_pro">Librera PRO பெறுங்கள் — விளம்பரம் இல்லை, இந்த ஆப்பின் விளம்பரங்களையும் நீக்கும்</string>
+   <string name="librera_pro"><b>Librera PRO</b>: இந்த செயலியிலும் விளம்பரங்களை நீக்கும் விளம்பரமற்ற செயலி</string>
    <string name="annotation">சிறுகுறிப்பு</string>
    <string name="book">நூல்</string>
    <string name="information">கோப்பு தகவல்</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">ஆரம்ப எழுத்துக்களை முன்னிலைப்படுத்துகிறது</string>
    <string name="anti_aliasing_level">மாற்று மாற்று நிலை</string>
    <string name="folder_preview">கோப்புறை முன்னோட்டம்</string>
+   <string name="show_storage_book_covers">சேர்க்கப்பட்ட சேமிப்பகத்திற்கான அட்டைகளைக் காண்பி</string>
    <string name="accent">உச்சரிப்பு</string>
    <string name="discarded_books">நிராகரிக்கப்பட்ட புத்தகங்கள்</string>
    <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">பார்க்க</string>
    <string name="librerax_not_installed">LibreraX நிறுவப்படவில்லை. அதைப் பதிவிறக்கி நிறுவி, பின்னர் புத்தகத்தை மீண்டும் திறக்கவும்.</string>
    <string name="remove_library_folder">இந்தக் கோப்புறையை நூலகத்திலிருந்து அகற்றவா? அதிலுள்ள கோப்புகள் நீக்கப்படாது.</string>
+   <string name="epub_engine">EPUB இயந்திரம்</string>
+   <string name="msg_epub_engine_unavailable">இந்தச் சாதனத்தில் WebView கிடைக்கவில்லை.</string>
+   <string name="base_stylesheet">அடிப்படை பாணித்தாளைப் பயன்படுத்து (foliate-js)</string>
+   <string name="pdf_engine">PDF இயந்திரம்</string>
+   <string name="msg_pdf_engine_unavailable">இந்தப் பதிப்பில் PDFium நூலகங்கள் இல்லை.</string>
 </resources>

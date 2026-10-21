@@ -31,6 +31,16 @@ public class AppBook implements CurrentPageListener {
 
     public float p; //percent
     public String pt; //page text at p, restores the position after re-layout (font size change, other device)
+    /**
+     * The exact place in the book, when the engine can name one - a CFI from foliate-js.
+     *
+     * It sits beside the percentage rather than replacing it. The percentage is what every other
+     * engine, every older version of the app and every other device understands, and a version
+     * that knows nothing of this field drops it when it rewrites the book's entry - so the
+     * position has to survive without it. When it is there and the engine understands it, it is
+     * exact: the same words after any font size, screen or device.
+     */
+    public String cfi;
     public long t;//time
     public String ln;
 
@@ -38,7 +48,7 @@ public class AppBook implements CurrentPageListener {
 
     @Override
     public int hashCode() {
-        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + pt + ln + rtl;
+        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + pt + cfi + ln + rtl;
         LOG.d("hashCode-appbook", s);
         return s.hashCode();
     }
@@ -88,7 +98,9 @@ public class AppBook implements CurrentPageListener {
         }
         float percent = MyMath.percent(page, pages);
         if (percent != p) {
-            pt = null; //text of the old page, DocumentController.saveCurrentPageAsync() sets the new one
+            //text and place of the old page, DocumentController.saveCurrentPageAsync() sets the new ones
+            pt = null;
+            cfi = null;
         }
         this.p = percent;
         LOG.d("currentPageChanged", page, pages, p);

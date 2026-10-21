@@ -62,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Beta-versjon</string>
    <string name="archive">Arkiv</string>
-   <string name="rate_pdf_reader1">Vennligst skriv din tilbakemelding og vurder oss på Google Play. Det er veldig viktig for oss</string>
+   <string name="rate_pdf_reader1">Legg igjen en tilbakemelding om denne appen på Google Play. Det er veldig viktig for oss</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatert tekst (pseudo grafikk)</string>
    <string name="continuous_text">Kontinuerlig tekst (ingen linjeskift)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">E-postprogrammet er ikke installert.</string>
    <string name="file_not_found">Fil ikke funnet</string>
    <string name="you_need_grant_permission5">Appen trenger din tillatelse til å finne og vise alle bøkene dine.</string>
+   <string name="allow">Tillat</string>
+   <string name="storage">Lagring</string>
+   <string name="add_all_books_with_permission">La appen skanne Nedlastinger-mappen din, slik at bøker legges til automatisk i biblioteket ditt.</string>
+   <string name="save_settings_in_librera_folder">Lagre innstillinger og lesefremdrift i Librera-mappen.</string>
+   <string name="regrant_folder_title">Gi tilgang til mappen igjen</string>
+   <string name="regrant_folder_msg">Appen kan ikke lenger lese %1$s: Android fjerner mappetilgangen når appen installeres på nytt. Velg mappen igjen på neste skjerm.</string>
    <string name="remind_msg">Vennligst ta en pause for øynene dine og hvile litt.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmerke for denne siden finnes allerede</string>
    <string name="can_t_download">Kan ikke lastes ned</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Beskjær kantene symmetrisk</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Viser forfatteren og tittelen til PDF-boken fra metatagsene</string>
    <string name="meta_tags">Metatagger</string>
-   <string name="librera_pro">Skaff Librera PRO — uten annonser, og det fjerner annonsene i denne appen også</string>
+   <string name="librera_pro"><b>Librera PRO</b>: En reklamefri app som også fjerner annonsene i denne appen</string>
    <string name="annotation">Merknad</string>
    <string name="book">Bok</string>
    <string name="information">Informasjon</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Utheving av forbokstaver</string>
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
+   <string name="show_storage_book_covers">Vis omslag for lagt til lagring</string>
    <string name="accent">Aksent</string>
    <string name="discarded_books">Kasserte bøker</string>
    <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Se</string>
    <string name="librerax_not_installed">LibreraX er ikke installert. Last ned og installer den, og åpne boken på nytt.</string>
    <string name="remove_library_folder">Fjerne denne mappen fra biblioteket? Filene i den blir ikke slettet.</string>
+   <string name="epub_engine">EPUB-motor</string>
+   <string name="msg_epub_engine_unavailable">WebView er ikke tilgjengelig på denne enheten.</string>
+   <string name="base_stylesheet">Bruk grunnleggende stilark (foliate-js)</string>
+   <string name="pdf_engine">PDF-motor</string>
+   <string name="msg_pdf_engine_unavailable">Denne versjonen inneholder ikke PDFium-bibliotekene.</string>
 </resources>

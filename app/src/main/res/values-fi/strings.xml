@@ -62,7 +62,7 @@
    <string name="web">Sivusto</string>
    <string name="beta_version">Beta-versio</string>
    <string name="archive">Arkisto</string>
-   <string name="rate_pdf_reader1">Kirjoita palautetta ja arvioi Google Playssa, se on meille erittäin tärkeätä</string>
+   <string name="rate_pdf_reader1">Jätä palautetta tästä sovelluksesta Google Playssa. Se on meille erittäin tärkeää</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Muotoiltu teksti (pseudografiikka)</string>
    <string name="continuous_text">Jatkuva teksti (ei rivinvaihtoja)</string>
@@ -241,6 +241,12 @@
    <string name="there_are_no_email_applications_installed_">Sähköpostisovellusta ei ole asennettuna.</string>
    <string name="file_not_found">Tiedostoa ei löytynyt</string>
    <string name="you_need_grant_permission5">Sovellus tarvitsee lupasi kaikkien kirjojen löytämiseen ja näyttämiseen.</string>
+   <string name="allow">Salli</string>
+   <string name="storage">Tallennustila</string>
+   <string name="add_all_books_with_permission">Salli sovelluksen tutkia Lataukset-kansiosi, jotta kirjat lisätään automaattisesti kirjastoosi.</string>
+   <string name="save_settings_in_librera_folder">Tallenna asetukset ja lukuedistyminen Librera-kansioon.</string>
+   <string name="regrant_folder_title">Salli pääsy kansioon uudelleen</string>
+   <string name="regrant_folder_msg">Sovellus ei voi enää lukea kohdetta %1$s: Android poistaa kansioiden käyttöoikeudet, kun sovellus asennetaan uudelleen. Valitse kansio uudelleen seuraavassa näkymässä.</string>
    <string name="remind_msg">Pidä tauko ja lepuuta hetki silmiäsi!</string>
    <string name="bookmark_for_this_page_already_exists">Tälle sivulle on jo kirjanmerkki</string>
    <string name="can_t_download">Ei voida ladata</string>
@@ -465,7 +471,7 @@
    <string name="crop_borders_symmetrically">Rajaa reunukset symmetrisesti</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hae tekijöiden tiedot ja kirjan otsikot PDF-tiedoston metatiedoista</string>
    <string name="meta_tags">Metatunnisteet</string>
-   <string name="librera_pro">Hanki Librera PRO — mainokseton, ja se poistaa mainokset myös tästä sovelluksesta</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Mainokseton sovellus, joka poistaa mainokset myös tästä sovelluksesta</string>
    <string name="annotation">Huomautus</string>
    <string name="book">Kirja</string>
    <string name="information">Tiedoston tiedot</string>
@@ -665,6 +671,7 @@
    <string name="highlighting_initial_letters">Korostamalla alkukirjaimia</string>
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
+   <string name="show_storage_book_covers">Näytä kannet lisätystä sijainnista</string>
    <string name="accent">Aksentti</string>
    <string name="discarded_books">Hylätyt kirjat</string>
    <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
@@ -695,4 +702,9 @@
    <string name="watch">Katso</string>
    <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
    <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>
+   <string name="epub_engine">EPUB-moottori</string>
+   <string name="msg_epub_engine_unavailable">WebView ei ole käytettävissä tässä laitteessa.</string>
+   <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
+   <string name="pdf_engine">PDF-moottori</string>
+   <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
 </resources>

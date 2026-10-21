@@ -8,6 +8,7 @@ import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 import com.github.junrar.Archive;
+import com.github.junrar.Junrar;
 import com.github.junrar.rarfile.FileHeader;
 
 import org.ebookdroid.BookType;
@@ -24,6 +25,46 @@ import java.util.List;
 import java.util.Locale;
 
 public class CbzCbrExtractor {
+
+    /**
+     * Repacks a .cbr - a RAR archive of images - into a .cbz, a zip of the same images, which is
+     * what both comic engines read. A .cbr that is really a zip (they are common enough) is only
+     * copied.
+     *
+     * The result is left in the book cache, so this runs once per file.
+     *
+     * @param cacheFile where to write the .cbz; left alone when it is already there
+     */
+    public static void extractCbrToCbz(final String fileName, final File cacheFile) {
+        if (cacheFile.isFile()) {
+            return;
+        }
+        LOG.d("Type no cache file");
+        try {
+            if (isZip(fileName)) {
+                CacheZipUtils.copyFile(new File(fileName), cacheFile);
+                return;
+            }
+
+            final String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
+
+            final File cbrDir = new File(extractDir);
+            cbrDir.mkdirs();
+
+            try {
+                Junrar.extract(fileName, extractDir);
+            } catch (OutOfMemoryError e) {
+                LOG.e(e);
+            }
+
+            CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
+
+            CacheZipUtils.deleteDir(cbrDir);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static boolean isZip(String path) {
         try {
             byte[] buffer = new byte[2];

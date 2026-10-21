@@ -70,6 +70,7 @@ public class ArrayUtil {
         return (T) result;
     }
     
+    @SafeVarargs
     public static <E> E getFirstNotNull(E... array) {
         E element;
         
@@ -211,6 +212,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <T extends Collection<? super E>, E> T toCollection(T c,
             E... array) {
         CollectionUtil.addAll(c, array);
@@ -319,6 +321,7 @@ public class ArrayUtil {
         return c;
     }
     
+    @SafeVarargs
     public static <E> HashSet<E> toHashSet(E... array) {
         return toCollection(new HashSet<E>(array.length), array);
     }
@@ -392,6 +395,7 @@ public class ArrayUtil {
         return toCollection(new HashSet<Double>(array.length), array, off, len);
     }
     
+    @SafeVarargs
     public static <E> ArrayList<E> toArrayList(E... array) {
         return toCollection(new ArrayList<E>(array.length), array);
     }
@@ -470,6 +474,7 @@ public class ArrayUtil {
                 len);
     }
     
+    @SafeVarargs
     public static <E extends Comparable<E>> E getGreatest(E... array) {
         if (array.length == 0) throw new NoSuchElementException();
         
@@ -484,6 +489,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E> E getGreatest(Comparator<? super E> comparator,
             E... array) {
         if (array.length == 0) throw new NoSuchElementException();
@@ -499,6 +505,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E extends Comparable<E>> E getGreatestNotNull(E... array) {
         E result = null;
         E element;
@@ -514,6 +521,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E> E getGreatestNotNull(Comparator<? super E> comparator,
             E... array) {
         E result = null;
@@ -638,6 +646,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E extends Comparable<? super E>> E getSmallest(E... array) {
         if (array.length == 0) throw new NoSuchElementException();
         
@@ -652,6 +661,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E> E getSmallest(Comparator<? super E> comparator,
             E... array) {
         if (array.length == 0) throw new NoSuchElementException();
@@ -667,6 +677,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E extends Comparable<? super E>> E getSmallestNotNull(
             E... array) {
         E result = null;
@@ -683,6 +694,7 @@ public class ArrayUtil {
         return result;
     }
     
+    @SafeVarargs
     public static <E> E getSmallestNotNull(Comparator<? super E> comparator,
             E... array) {
         E result = null;
