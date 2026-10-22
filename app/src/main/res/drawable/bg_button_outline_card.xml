@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The ring of bg_button_outline, cut to the same round the cards are rather than to a pill:
+     for the boxes about the app, which run to several lines and an app's mark, and would bulge
+     at the ends as a pill. The ring is recoloured to the theme when it is bound. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#3c888888">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/transparent" />
+            <stroke android:width="1dp" android:color="@color/tint_gray" />
+            <corners android:radius="@dimen/radius" />
+        </shape>
+    </item>
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="@dimen/radius" />
+        </shape>
+    </item>
+</ripple>

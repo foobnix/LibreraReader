@@ -80,9 +80,14 @@ public class ConfLineView extends FrameLayout {
         MyPopupMenu popup = new MyPopupMenu(getContext(), valueView);
         for (ConfAction it : actions) {
             popup.getMenu()
-                 .add(it.nameResId)
-                    .add(it.name)
+                 .add(it.menuText(getContext()))
                  .setOnMenuItemClickListener(item -> {
+                     if (!it.isAvailable()) {
+                         if (it.otherwise != null) {
+                             it.otherwise.run();
+                         }
+                         return true;
+                     }
                      onChange.onResult(it.actionInt);
                      it.setTextTo(valueView);
                      TintUtil.asLinkButton(valueView);

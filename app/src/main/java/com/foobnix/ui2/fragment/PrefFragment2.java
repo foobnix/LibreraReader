@@ -339,6 +339,7 @@ public class PrefFragment2 extends UIFragment {
     @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                                        final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.fragment_preferences, container, false);
+        markAppBoxes(inflate);
 
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
@@ -1228,12 +1229,16 @@ public class PrefFragment2 extends UIFragment {
         ((ConfLineView) inflate.findViewById(R.id.configLongClick)).init(//
                 () -> AppState.get().defaultLongClick,//
                 value -> AppState.get().defaultLongClick = value,//
-                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION),//
-                of(R.string.book_menu, AppState.ACTION_BOOK_MENU));
+                // marked as the book menu marks file info
+                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION).mark("ⓘ"),//
+                of(R.string.book_menu, AppState.ACTION_BOOK_MENU).mark("☰"));
 
         configSingleClick = (ConfLineView) inflate.findViewById(R.id.configSingeClick);
         configSingleClick.init(//
-                () -> AppState.get().isRememberMode ? AppSP.get().readingMode:AppState.READING_MODE_SELECT_MODE,//
+                // LibreraX remembered but not installed opens the mode chooser, and reads so here
+                () -> AppState.get().isRememberMode && !(AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX
+                        && !LibreraX.isInstalled(getActivity())) ? AppSP.get().readingMode
+                        : AppState.READING_MODE_SELECT_MODE,//
                 value -> {
                     AppState.get().isRememberMode = value != AppState.READING_MODE_SELECT_MODE;
                     if (value == AppState.READING_MODE_LIBRERAX) {
@@ -1242,13 +1247,21 @@ public class PrefFragment2 extends UIFragment {
                     AppSP.get().readingMode = value;
                 },//
                 of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//
-                of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL),//
-                of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK),//
-                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX),//
-                of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN),//
-                of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER),//
-                of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH)//
+                // marked in the list as the open-with menus mark the same modes
+                of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL).mark("①"),//
+                of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK).mark("②"),//
+                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX).mark("③")
+                        // not installed, it cannot open books: the download is offered instead
+                        .requires(() -> LibreraX.isInstalled(getActivity()),
+                                () -> LibreraX.showNotInstalled(getActivity(), null)),//
+                of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN).mark("Ⓜ"),//
+                of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER).mark("Ⓣ"),//
+                of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH).mark("⎘")//
                               );
+
+        // The two taps' buttons stand one over the other: one width, whichever value is longer
+        TintUtil.sameWidth(inflate.findViewById(R.id.configLongClick).findViewById(R.id.value),
+                configSingleClick.findViewById(R.id.value));
 
         inflate.findViewById(R.id.moreModeSettings)
                .
@@ -3037,9 +3050,29 @@ public class PrefFragment2 extends UIFragment {
         }
         TextView button = (TextView) text;
         TintUtil.asLinkButton(button);
+        if (Boolean.TRUE.equals(button.getTag(R.id.cardShape))) {
+            button.setBackgroundResource(R.drawable.bg_button_outline_card);
+        }
         drawIconInside(button);
         paintLinkButton(button);
         return button;
+    }
+
+    /**
+     * The buttons about the app itself, under its section: boxes of several lines, most with an
+     * app's mark in them, kept to the round the cards are rather than drawn as pills.
+     */
+    private static final int[] APP_BOXES = {R.id.onRateIt, R.id.downloadPRO, R.id.libreraXGithub,
+            R.id.whatIsNew, R.id.libraryLicenses, R.id.onMailSupport, R.id.openWeb, R.id.openBeta,
+            R.id.openWiki, R.id.onTelegram};
+
+    private static void markAppBoxes(View root) {
+        for (int id : APP_BOXES) {
+            View view = root.findViewById(id);
+            if (view != null) {
+                view.setTag(R.id.cardShape, Boolean.TRUE);
+            }
+        }
     }
 
     /** Cuts a button's ring and its mark from the colour its own word is drawn in. */
@@ -3123,7 +3156,7 @@ public class PrefFragment2 extends UIFragment {
         if (block == null || link == null) {
             return;
         }
-        block.setBackgroundResource(R.drawable.bg_button_outline);
+        block.setBackgroundResource(R.drawable.bg_button_outline_card);
         // The same insets a button with a mark inside it takes, so the marks of the three
         // boxes start at one edge.
         block.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
@@ -3218,7 +3251,9 @@ public class PrefFragment2 extends UIFragment {
             icon.setBounds(0, 0, size, size);
             icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         }
-        button.setCompoundDrawables(icon, null, null, null);
+        // A chevron the button already ends with, as one that opens a list does, is kept
+        Drawable[] current = button.getCompoundDrawablesRelative();
+        button.setCompoundDrawablesRelative(icon, null, current[2], null);
         button.setCompoundDrawablePadding(Dips.DP_8);
         // A button that leads with a mark is inset the same on both sides, so the mark stands
         // clear of the ring instead of pressing against it.

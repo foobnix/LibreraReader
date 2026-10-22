@@ -1182,12 +1182,16 @@ public class TxtUtils {
         TextView textView = (TextView) view;
         String text = textView.getText()
                               .toString();
-        textView.setText(underline(text));
-        return textView;
+        return underline(textView, text);
     }
 
+    /** Sets a link's words underlined - or plain on a link drawn as a ringed button, which the ring marks instead. */
     public static TextView underline(TextView textView, String text) {
-        textView.setText(underline(text));
+        if (Boolean.TRUE.equals(textView.getTag(R.id.linkButton))) {
+            textView.setText(text);
+        } else {
+            textView.setText(underline(text));
+        }
         return textView;
     }
 

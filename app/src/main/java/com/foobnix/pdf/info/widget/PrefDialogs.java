@@ -203,7 +203,17 @@ public class PrefDialogs {
      */
     public static void asFilledButton(TextView button) {
         GradientDrawable pill = new GradientDrawable();
-        pill.setColor(TintUtil.color);
+        // A black theme colour on a dark theme would fill the button with the ground it stands
+        // on: it is drawn as a white ring there instead. On the light theme black still shows.
+        boolean darkTheme = AppState.get().appTheme == AppState.THEME_DARK
+                || AppState.get().appTheme == AppState.THEME_DARK_OLED;
+        if (darkTheme && Color.luminance(TintUtil.color) < 0.02f) {
+            pill.setColor(Color.TRANSPARENT);
+            pill.setStroke(Dips.dpToPx(1), Color.WHITE);
+        } else {
+            pill.setColor(TintUtil.color);
+        }
+        button.setTextColor(Color.WHITE);
         pill.setCornerRadius(Dips.dpToPx(20));
         button.setBackground(new RippleDrawable(ColorStateList.valueOf(0x40FFFFFF), pill, null));
     }

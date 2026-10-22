@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The chevron a settings button that opens a list ends with; tinted to the button's text. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M6,9l6,6l6,-6"
+        android:strokeWidth="2"
+        android:strokeColor="#FF000000"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

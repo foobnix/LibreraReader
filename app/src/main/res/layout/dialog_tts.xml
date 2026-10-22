@@ -176,7 +176,7 @@
 
             <TextView
                 android:id="@+id/ttsPauseDuration"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="350" />
@@ -197,7 +197,7 @@
 
             <TextView
                 android:id="@+id/timerTime"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minEms="2"

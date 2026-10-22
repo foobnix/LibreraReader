@@ -93,6 +93,13 @@
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
+    <!-- A link that opens a list to choose from: it ends in a chevron, which the ringed-button
+         pass sizes and tints to the word; the tint here is for a link drawn without that pass. -->
+    <style name="textLinkDropdown" parent="textLink">
+        <item name="android:drawableEnd">@drawable/ic_chevron_down</item>
+        <item name="android:drawableTint">?android:attr/textColorLink</item>
+    </style>
+
     <style name="textLinkWhite" parent="textLink">
         <item name="android:tag">textLinkWhite</item>
         <item name="android:textColor">#ffffff</item>

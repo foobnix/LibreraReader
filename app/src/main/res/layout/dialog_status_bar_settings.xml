@@ -230,7 +230,7 @@
 
             <TextView
                 android:id="@+id/statusBarPosition"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -252,7 +252,7 @@
 
             <TextView
                 android:id="@+id/pageNumberFormat"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -274,7 +274,7 @@
 
             <TextView
                 android:id="@+id/chapterFormat"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
