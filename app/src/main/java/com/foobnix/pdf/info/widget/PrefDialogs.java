@@ -2,6 +2,13 @@ package com.foobnix.pdf.info.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import com.foobnix.pdf.info.wrapper.UITab;
+import android.util.TypedValue;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
+import com.foobnix.ui2.fragment.UIFragment;
+import com.foobnix.ui2.fragment.PrefFragment2;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -141,7 +148,11 @@ public class PrefDialogs {
                             BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
                             showFolders[0].run();
                             onChanges.run();
-                        })));
+                        }), () -> {
+                    create.dismiss();
+                    PrefFragment2.closeLeftMenu(a);
+                    openLibraryFolder(a, path);
+                }));
             }
             folders.setVisibility(paths.isEmpty() ? View.GONE : View.VISIBLE);
         };
@@ -225,7 +236,8 @@ public class PrefDialogs {
     }
 
     /** One folder of the library: its mark in a round of the theme colour, its name, where it is, and the button that drops it. */
-    public static View folderRow(Context c, LinearLayout parent, String path, int accent, Runnable onRemove) {
+    public static View folderRow(Context c, LinearLayout parent, String path, int accent, Runnable onRemove,
+                                 Runnable onOpen) {
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_folder_item, parent, false);
         String[] namePlace = folderNameAndPlace(c, path);
 
@@ -248,7 +260,32 @@ public class PrefDialogs {
         remove.setColorFilter(place.getCurrentTextColor());
         remove.setContentDescription(c.getString(R.string.remove) + " " + namePlace[0]);
         remove.setOnClickListener(v -> onRemove.run());
+
+        // The row itself opens the folder, to see what the library finds in it
+        TypedValue pressed = new TypedValue();
+        c.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, pressed, true);
+        row.setBackgroundResource(pressed.resourceId);
+        row.setOnClickListener(v -> onOpen.run());
         return row;
+    }
+
+    /**
+     * Shows a library folder in the Folder tab. A folder handed over through the system's picker
+     * is shown as the folder it stands for once the app may read the storage itself, as the
+     * folder chooser shows it.
+     */
+    public static void openLibraryFolder(Activity a, String path) {
+        String target = path;
+        if (ExtUtils.isExteralSD(path) && Android6.canWrite(a)) {
+            String file = ExtUtils.getSafTreePath(path);
+            if (file != null) {
+                target = file;
+            }
+        }
+        LocalBroadcastManager.getInstance(a)
+                             .sendBroadcast(new Intent(UIFragment.INTENT_TINT_CHANGE).putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                     UITab.getCurrentTabIndex(UITab.BrowseFragment)));
+        EventBus.getDefault().post(new OpenDirMessage(target));
     }
 
     /**

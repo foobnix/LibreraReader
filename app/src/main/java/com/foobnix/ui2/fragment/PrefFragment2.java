@@ -1259,10 +1259,6 @@ public class PrefFragment2 extends UIFragment {
                 of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH).mark("⎘")//
                               );
 
-        // The two taps' buttons stand one over the other: one width, whichever value is longer
-        TintUtil.sameWidth(inflate.findViewById(R.id.configLongClick).findViewById(R.id.value),
-                configSingleClick.findViewById(R.id.value));
-
         inflate.findViewById(R.id.moreModeSettings)
                .
 
@@ -3294,13 +3290,12 @@ public class PrefFragment2 extends UIFragment {
                         BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
                         showSearchPaths();
                         saveChanges();
-                    }));
+                    }), () -> {
+                closeLeftMenu(getActivity());
+                PrefDialogs.openLibraryFolder(getActivity(), path);
+            });
             // The panel is narrower than the dialog, and its other rows start near the edge
             row.setPadding(Dips.dpToPx(8), row.getPaddingTop(), row.getPaddingRight(), row.getPaddingBottom());
-            TypedValue pressed = new TypedValue();
-            getActivity().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, pressed, true);
-            row.setBackgroundResource(pressed.resourceId);
-            row.setOnClickListener(v -> onFolderConfigDialog());
             searchPaths.addView(row);
         }
     }
@@ -3491,7 +3486,7 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
-    private static void closeLeftMenu(FragmentActivity activity) {
+    public static void closeLeftMenu(FragmentActivity activity) {
         try {
             final DrawerLayout drawerLayout = activity.findViewById(R.id.drawer_layout);
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

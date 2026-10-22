@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- A tap and what it does, as every other settings row: the name takes what is left and
+     wraps there, the value has the width of the values above it and one line. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:padding="5dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/text"
-        android:minWidth="135dp"
         android:textStyle="bold"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:maxLines="1"
         android:text="Action" />
 
     <TextView
         android:id="@+id/value"
         style="@style/textLinkDropdown"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/pref_value_width"
         android:layout_height="wrap_content"
-        android:minWidth="100dip"
-        android:singleLine="false"
         android:text="..." />
 </LinearLayout>

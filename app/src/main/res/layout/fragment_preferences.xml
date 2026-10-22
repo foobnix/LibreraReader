@@ -426,41 +426,43 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/tabs_position"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tapPositionTop"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/top" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/screen"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/fullscreen"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/no" />
             </LinearLayout>
@@ -472,16 +474,16 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/orientation"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/screenOrientation"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="@string/automatic" />
@@ -490,19 +492,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/language"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appLang"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="Russian" />
@@ -511,82 +514,86 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/font_size"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appFontScale"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="Normal" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/theme"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/themeColor"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/light" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/cover_radius"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/coverRadius"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="0" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip"
                 android:visibility="gone">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/engine"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appEngine"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="Librera_111" />
             </LinearLayout>
@@ -599,16 +606,16 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/pdf_engine"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/pdfEngine"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="MuPDF" />
@@ -622,16 +629,16 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/epub_engine"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/epubEngine"
                     style="@style/textLinkDropdown"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="MuPDF" />
@@ -1402,51 +1409,51 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/show" />
 
                     <TextView
                         android:id="@+id/widgetForRecent"
                         style="@style/textLinkDropdown"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:minWidth="100dip"
                         android:text="@string/recent" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/layout" />
 
                     <TextView
                         android:id="@+id/widgetLayout"
                         style="@style/textLinkDropdown"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:minWidth="100dip"
                         android:text="@string/grid" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
@@ -1454,15 +1461,15 @@
 
                     <TextView
                         android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/number_of_books" />
 
                     <TextView
                         android:id="@+id/widgetItemsCount"
                         style="@style/textLinkDropdown"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:textAllCaps="true" />
