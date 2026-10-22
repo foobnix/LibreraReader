@@ -285,6 +285,24 @@ public class BookCSS {
      * cannot read a single one of them. Once the user has handed over a folder of their own,
      * leaving the roots in the list would show them folders that never fill.
      */
+    /**
+     * Called as the permission to read the storage is given: a library with no folder gets the
+     * Download folder, where books land. Without the permission the list could only hold folders
+     * handed over through the picker, so an empty one then is no choice the user made - and it
+     * may have been kept from that time and carried over (LibreraSafSync.mergeDownloadLibrera).
+     *
+     * @return whether the folder was added.
+     */
+    public static boolean addDownloadsIfNoFolders(Context c) {
+        if (!Android6.canWrite(c) || !JsonDB.isEmpty(get().searchPathsJson)) {
+            return false;
+        }
+        get().searchPathsJson = JsonDB.set(List.of(AppProfile.DOWNLOADS_DIR.getPath()));
+        AppProfile.save(c);
+        LOG.d("addDownloadsIfNoFolders", get().searchPathsJson);
+        return true;
+    }
+
     public static void removeUnreadableStorageRoots(Context c) {
         try {
             List<String> roots = ExtUtils.getAllExternalStorages(c);
@@ -413,7 +431,15 @@ public class BookCSS {
             } else {
                 filtered = readableWithoutPermission(c, filtered);
             }
-            instance.searchPathsJson = JsonDB.set(filtered);
+            // Without the permission a clean install has no folder - but the list is left unset
+            // rather than saved empty. The settings kept then are carried over once the
+            // permission is given (LibreraSafSync.mergeDownloadLibrera), and an empty list among
+            // them would read as one the user emptied: Download, below, would never be added.
+            if (neverSet && TxtUtils.isListEmpty(filtered) && !Android6.canWrite(c)) {
+                instance.searchPathsJson = null;
+            } else {
+                instance.searchPathsJson = JsonDB.set(filtered);
+            }
 
             LOG.d("searchPaths-all", 1, instance.searchPathsJson,filtered);
 

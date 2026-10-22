@@ -95,6 +95,8 @@ public class AppProfile {
     public static File FONT_LOCAL_ZIP;
 
     public static String profile = "";
+    /** Where {@link #profile} was loaded from; see init. */
+    private static String profileRootPath = "";
     public static long bookCount;
 
 
@@ -113,11 +115,16 @@ public class AppProfile {
         AppSP.get()
              .init(c);
 
-        if (profile.equals(getCurrent())) {
+        // The same profile in another place is another profile: granting the permission moves
+        // the settings from Download/Librera to /storage/emulated/0/Librera under the same name,
+        // and skipped on the name alone the app went on reading - and writing - the old place.
+        final String rootPath = AppSP.get().getRootPath(c);
+        if (profile.equals(getCurrent()) && rootPath.equals(profileRootPath)) {
             LOG.d("AppProfile skip", profile);
             return;
         }
         profile = getCurrent();
+        profileRootPath = rootPath;
         // the profile kept in a Librera folder handed over through the picker is brought in first,
         // and with the permission, the one kept in Download/Librera without it
         LibreraSafSync.pull(c);
@@ -511,6 +518,7 @@ public class AppProfile {
 
     public static void clear() {
         profile = "";
+        profileRootPath = "";
         AppState.get().isLoaded = false;
     }
 }

@@ -242,6 +242,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (requestCode == MY_PERMISSIONS_REQUEST_WES) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LOG.d("PermissionGranted","Granted");
+                onStoragePermissionGranted();
                 SearchAllBooksWorker.run(this);
             }else{
                 LOG.d("PermissionGranted","NOT Granted");
@@ -258,6 +259,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             AppSP.get().currentProfile="";
             AppSP.get().save();
             AppProfile.init(this);
+            onStoragePermissionGranted();
             SearchAllBooksWorker.run(this);
         }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
@@ -407,6 +409,22 @@ public class MainTabs2 extends AdsFragmentActivity {
             AppProfile.save(this);
             updateOnGrantPanels();
         }, () -> PrefFragment2.updateLibrary(this));
+    }
+
+    /**
+     * The storage can be read now: a library left with no folder is given Download, and the
+     * folders panel and the notices offering a way in are brought up to date with it. Nothing
+     * happens when the permission was not given after all.
+     */
+    private void onStoragePermissionGranted() {
+        if (!BookCSS.addDownloadsIfNoFolders(this)) {
+            return;
+        }
+        PrefFragment2 prefs = findPrefFragment();
+        if (prefs != null) {
+            prefs.onLibraryFoldersChanged();
+        }
+        updateOnGrantPanels();
     }
 
     /** Every page's notice offering a way in for books, worked out again for the current folders. */

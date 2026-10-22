@@ -3305,6 +3305,11 @@ public class PrefFragment2 extends UIFragment {
         }
     }
 
+    /** The library folders were changed elsewhere - the permission given, say: the list here follows. */
+    public void onLibraryFoldersChanged() {
+        showSearchPaths();
+    }
+
     /**
      * Picks a folder and puts it straight into the library paths. The panel already lists the
      * folders under this button, so the folder dialog is not put in the way of adding one.
