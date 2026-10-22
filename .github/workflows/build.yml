@@ -167,6 +167,7 @@ jobs:
           tts_reader_admobRewardId=
 
           pro_appGdriveKey=${{ secrets.PRO_GDRIVE_CLIENT_ID }}
+          pro_appWebClientId=${{ secrets.PRO_WEB_CLIENT_ID }}
           pro_admobAppId=
           pro_admobBannerId=
           pro_admobFullId=
