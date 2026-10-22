@@ -32,6 +32,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -230,7 +231,27 @@ public class PrefFragment2 extends UIFragment {
         TxtUtils.updateAllLinks(inflate,true);
         paintLinkButtons(inflate);
         paintLibreraXBlock(inflate);
+        paintLibraryFolders();
 
+    }
+
+    /**
+     * The library folders drawn again in the colours now picked: Update is filled in the theme
+     * colour, the cards' marks and the folders' rounds in the link colour, and neither is part of
+     * the panel's own colour pass.
+     */
+    private void paintLibraryFolders() {
+        if (inflate == null || getActivity() == null) {
+            return;
+        }
+        View update = inflate.findViewById(R.id.onUpdateLibrary);
+        if (update instanceof TextView) {
+            PrefDialogs.asFilledButton((TextView) update);
+        }
+        if (inflate.findViewById(R.id.addLibraryFolder) != null) {
+            PrefDialogs.tintAddCards(inflate, TxtUtils.getLinkTextColor(getActivity()));
+        }
+        showSearchPaths();
     }
 
     @Subscribe public void updateSyncInfo(GDriveSycnEvent event) {
@@ -318,6 +339,7 @@ public class PrefFragment2 extends UIFragment {
     @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                                        final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.fragment_preferences, container, false);
+        markAppBoxes(inflate);
 
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
@@ -821,7 +843,7 @@ public class PrefFragment2 extends UIFragment {
         View closeMenu = inflate.findViewById(R.id.closeMenu);
         closeMenu.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
-                closeLeftMenu();
+                closeLeftMenu(getActivity());
             }
         });
         closeMenu.setVisibility(TxtUtils.visibleIf(AppState.get().isEnableAccessibility));
@@ -1207,12 +1229,16 @@ public class PrefFragment2 extends UIFragment {
         ((ConfLineView) inflate.findViewById(R.id.configLongClick)).init(//
                 () -> AppState.get().defaultLongClick,//
                 value -> AppState.get().defaultLongClick = value,//
-                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION),//
-                of(R.string.book_menu, AppState.ACTION_BOOK_MENU));
+                // marked as the book menu marks file info
+                of(R.string.file_info, AppState.ACTION_BOOK_INFORMATION).mark("ⓘ"),//
+                of(R.string.book_menu, AppState.ACTION_BOOK_MENU).mark("☰"));
 
         configSingleClick = (ConfLineView) inflate.findViewById(R.id.configSingeClick);
         configSingleClick.init(//
-                () -> AppState.get().isRememberMode ? AppSP.get().readingMode:AppState.READING_MODE_SELECT_MODE,//
+                // LibreraX remembered but not installed opens the mode chooser, and reads so here
+                () -> AppState.get().isRememberMode && !(AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX
+                        && !LibreraX.isInstalled(getActivity())) ? AppSP.get().readingMode
+                        : AppState.READING_MODE_SELECT_MODE,//
                 value -> {
                     AppState.get().isRememberMode = value != AppState.READING_MODE_SELECT_MODE;
                     if (value == AppState.READING_MODE_LIBRERAX) {
@@ -1221,13 +1247,21 @@ public class PrefFragment2 extends UIFragment {
                     AppSP.get().readingMode = value;
                 },//
                 of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//
-                of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL),//
-                of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK),//
-                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX),//
-                of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN),//
-                of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER),//
-                of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH)//
+                // marked in the list as the open-with menus mark the same modes
+                of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL).mark("①"),//
+                of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK).mark("②"),//
+                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX).mark("③")
+                        // not installed, it cannot open books: the download is offered instead
+                        .requires(() -> LibreraX.isInstalled(getActivity()),
+                                () -> LibreraX.showNotInstalled(getActivity(), null)),//
+                of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN).mark("Ⓜ"),//
+                of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER).mark("Ⓣ"),//
+                of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH).mark("⎘")//
                               );
+
+        // The two taps' buttons stand one over the other: one width, whichever value is longer
+        TintUtil.sameWidth(inflate.findViewById(R.id.configLongClick).findViewById(R.id.value),
+                configSingleClick.findViewById(R.id.value));
 
         inflate.findViewById(R.id.moreModeSettings)
                .
@@ -1900,18 +1934,17 @@ public class PrefFragment2 extends UIFragment {
         searchPaths = inflate.findViewById(R.id.searchPaths);
         showSearchPaths();
 
-        TextView addFolder = inflate.findViewById(R.id.onConfigPath);
-        asButton(addFolder, "+ " + getString(R.string.folder));
-
-        TextView addStorageFolder = inflate.findViewById(R.id.onConfigPathStorage);
-        asButton(addStorageFolder, "+ " + getString(R.string.storage));
-        addStorageFolder.setOnClickListener(v -> onAddStorageFolder());
+        // The cards and the button the library folders dialog has, drawn the same here.
+        int accent = TxtUtils.getLinkTextColor(getActivity());
+        PrefDialogs.tintAddCards(inflate, accent);
+        inflate.findViewById(R.id.addLibraryFolder).setOnClickListener(v -> onAddFolder());
+        inflate.findViewById(R.id.addLibraryStorage).setOnClickListener(v -> onAddStorageFolder());
 
         // Rebuilds the library from the folders now listed, without going through the dialog
         // to reach the same scan.
-        View updateLibrary = asButton(inflate.findViewById(R.id.onUpdateLibrary));
+        TextView updateLibrary = inflate.findViewById(R.id.onUpdateLibrary);
+        PrefDialogs.asFilledButton(updateLibrary);
         updateLibrary.setOnClickListener(v -> onScan());
-        addFolder.setOnClickListener(v -> onAddFolder());
 
         asButton(inflate.findViewById(R.id.importButton))
                 .setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));
@@ -2523,7 +2556,7 @@ public class PrefFragment2 extends UIFragment {
                                                                 setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(final View v) {
-                closeLeftMenu();
+                closeLeftMenu(getActivity());
                 Dialogs.showLinksColorDialog(getActivity(), new Runnable() {
 
                     @Override public void run() {
@@ -3017,9 +3050,29 @@ public class PrefFragment2 extends UIFragment {
         }
         TextView button = (TextView) text;
         TintUtil.asLinkButton(button);
+        if (Boolean.TRUE.equals(button.getTag(R.id.cardShape))) {
+            button.setBackgroundResource(R.drawable.bg_button_outline_card);
+        }
         drawIconInside(button);
         paintLinkButton(button);
         return button;
+    }
+
+    /**
+     * The buttons about the app itself, under its section: boxes of several lines, most with an
+     * app's mark in them, kept to the round the cards are rather than drawn as pills.
+     */
+    private static final int[] APP_BOXES = {R.id.onRateIt, R.id.downloadPRO, R.id.libreraXGithub,
+            R.id.whatIsNew, R.id.libraryLicenses, R.id.onMailSupport, R.id.openWeb, R.id.openBeta,
+            R.id.openWiki, R.id.onTelegram};
+
+    private static void markAppBoxes(View root) {
+        for (int id : APP_BOXES) {
+            View view = root.findViewById(id);
+            if (view != null) {
+                view.setTag(R.id.cardShape, Boolean.TRUE);
+            }
+        }
     }
 
     /** Cuts a button's ring and its mark from the colour its own word is drawn in. */
@@ -3103,7 +3156,7 @@ public class PrefFragment2 extends UIFragment {
         if (block == null || link == null) {
             return;
         }
-        block.setBackgroundResource(R.drawable.bg_button_outline);
+        block.setBackgroundResource(R.drawable.bg_button_outline_card);
         // The same insets a button with a mark inside it takes, so the marks of the three
         // boxes start at one edge.
         block.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
@@ -3198,7 +3251,9 @@ public class PrefFragment2 extends UIFragment {
             icon.setBounds(0, 0, size, size);
             icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         }
-        button.setCompoundDrawables(icon, null, null, null);
+        // A chevron the button already ends with, as one that opens a list does, is kept
+        Drawable[] current = button.getCompoundDrawablesRelative();
+        button.setCompoundDrawablesRelative(icon, null, current[2], null);
         button.setCompoundDrawablePadding(Dips.DP_8);
         // A button that leads with a mark is inset the same on both sides, so the mark stands
         // clear of the ring instead of pressing against it.
@@ -3216,11 +3271,9 @@ public class PrefFragment2 extends UIFragment {
     }
 
     /**
-     * The folders the library is built from, one row a folder: a folder mark, the path itself
-     * across the width of the panel, and a round button to drop it. Run together in one block
-     * of text a long path wrapped into the next and neither could be told from the other. The
-     * middle of a path is what gives way when it will not fit - the drive it is on and the
-     * folder it ends in are what name it.
+     * The folders the library is built from, one row a folder, as the library folders dialog
+     * lists them: the folder's name over where it is, and a button to drop it. A tap on a row
+     * opens the dialog itself.
      */
     private void showSearchPaths() {
         if (searchPaths == null) {
@@ -3232,39 +3285,21 @@ public class PrefFragment2 extends UIFragment {
             ((MainTabs2) getActivity()).updateOnGrantPanels();
         }
         searchPaths.removeAllViews();
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
-        for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            View row = inflater.inflate(R.layout.path_item, searchPaths, false);
-
-            TextView pathView = row.findViewById(R.id.browserPath);
-            // A folder added through the system's folder picker is named by a document uri, which
-            // reads as nothing: it is shown under the provider's own name for it, as the folders
-            // screen shows it.
-            pathView.setText(ExtUtils.isExteralSD(path) ? ExtUtils.getExtSDDisplayName(getActivity(), path) : path);
-            pathView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            // Tagged as a link so the panel's colour pass reaches it, and the marks beside it
-            // are cut from whatever colour that pass settles on.
-            pathView.setTag("textLink");
-            TxtUtils.setLinkTextColor(pathView);
-            int rowColor = pathView.getCurrentTextColor();
-
-            View mark = row.findViewById(R.id.image1);
-            if (mark instanceof ImageView) {
-                TintUtil.setTintImageNoAlpha((ImageView) mark, rowColor);
-            }
-
-            View remove = row.findViewById(R.id.delete);
-            if (remove instanceof ImageView) {
-                TintUtil.setTintImageNoAlpha((ImageView) remove, rowColor);
-            }
-            remove.setOnClickListener(v -> AlertDialogs.showDialog(getActivity(),
+        int accent = TxtUtils.getLinkTextColor(getActivity());
+        List<String> paths = JsonDB.get(BookCSS.get().searchPathsJson);
+        Collections.sort(paths);
+        for (final String path : paths) {
+            View row = PrefDialogs.folderRow(getActivity(), searchPaths, path, accent, () -> AlertDialogs.showDialog(getActivity(),
                     getString(R.string.remove_library_folder) + "\n\n" + path, getString(R.string.remove), () -> {
                         BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
                         showSearchPaths();
                         saveChanges();
-                        LOG.d("Save Changes", 3);
                     }));
-
+            // The panel is narrower than the dialog, and its other rows start near the edge
+            row.setPadding(Dips.dpToPx(8), row.getPaddingTop(), row.getPaddingRight(), row.getPaddingBottom());
+            TypedValue pressed = new TypedValue();
+            getActivity().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, pressed, true);
+            row.setBackgroundResource(pressed.resourceId);
             row.setOnClickListener(v -> onFolderConfigDialog());
             searchPaths.addView(row);
         }
@@ -3414,36 +3449,46 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onScan() {
-        if (getActivity() == null) {
+        updateLibrary(getActivity());
+    }
+
+    /**
+     * Rebuilds the library from the folders now listed and shows it, with the interstitial
+     * after. The panel's Update and the library's own update button both end here.
+     */
+    public static void updateLibrary(FragmentActivity activity) {
+        if (activity == null) {
             return;
         }
 
         // A scan already under way is left to finish: starting a second one over the same
         // folders would have the two writing the library out from under each other. The
         // reader is told why nothing happened, as everywhere else that waits on this.
-        if (PrefDialogs.isBookSeriviceIsRunning(getActivity())) {
+        if (PrefDialogs.isBookSeriviceIsRunning(activity)) {
             return;
         }
-        AppProfile.save(getActivity());
-        closeLeftMenu();
+        AppProfile.save(activity);
+        closeLeftMenu(activity);
 
-        //BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
-        SearchAllBooksWorker.run(getActivity());
+        //BooksService.startForeground(activity, BooksService.ACTION_SEARCH_ALL);
+        SearchAllBooksWorker.run(activity);
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                                                                  .putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
                                                                          UITab.getCurrentTabIndex(
                                                                                  UITab.SearchFragment));//
 
-        LocalBroadcastManager.getInstance(getActivity())
+        LocalBroadcastManager.getInstance(activity)
                              .sendBroadcast(intent);
 
-        ((AdsFragmentActivity) PrefFragment2.this.getActivity()).showInterstitialNoFinish();
+        if (activity instanceof AdsFragmentActivity) {
+            ((AdsFragmentActivity) activity).showInterstitialNoFinish();
+        }
     }
 
-    private void closeLeftMenu() {
+    private static void closeLeftMenu(FragmentActivity activity) {
         try {
-            final DrawerLayout drawerLayout = getActivity().findViewById(R.id.drawer_layout);
+            final DrawerLayout drawerLayout = activity.findViewById(R.id.drawer_layout);
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START, !Dips.isEInk());
             }

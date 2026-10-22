@@ -397,7 +397,7 @@ import java.util.Map;
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
                 menu.getMenu()
-                    .add(R.string.memory)
+                    .add(R.string.internal_storage)
                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override public boolean onMenuItemClick(MenuItem item) {
@@ -412,7 +412,7 @@ import java.util.Map;
                                                   .getPath();
                 if (new File(pathDownloads).isDirectory()) {
                     menu.getMenu()
-                        .add(getString(R.string.memory) + "/" + ExtUtils.getFileName(pathDownloads))
+                        .add(getString(R.string.internal_storage) + "/" + ExtUtils.getFileName(pathDownloads))
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -494,12 +494,17 @@ import java.util.Map;
                             continue;
                         }
                         String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
+                        // With all files access the folder is opened as the folder it stands for,
+                        // and named as one - Internal storage/Download/Books - rather than browsed
+                        // through the picker's grant under its picker name, primary:Download/Books.
+                        String filePath = Android6.canWrite(getActivity()) ? ExtUtils.getSafTreePath(saf) : null;
+                        final String target = filePath != null ? filePath : saf;
                         menu.getMenu()
-                            .add(fileName)
+                            .add(filePath != null ? internalStorageLabel(filePath) : fileName)
                             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override public boolean onMenuItemClick(MenuItem item) {
-                                    displayAnyPath(saf);
+                                    displayAnyPath(target);
                                     return false;
                                 }
                             })
@@ -1474,6 +1479,19 @@ import java.util.Map;
                     }
                 });
 
+    }
+
+    /**
+     * A folder of the device's own storage as the storage menu names it: the storage by name and
+     * the folders in it after - Internal storage/Download/Books - as the Download entry above it
+     * reads. A folder elsewhere keeps its path.
+     */
+    private String internalStorageLabel(String path) {
+        String root = Environment.getExternalStorageDirectory().getPath();
+        if (path.equals(root) || path.startsWith(root + "/")) {
+            return getString(R.string.internal_storage) + path.substring(root.length());
+        }
+        return path;
     }
 
     public void onGridList() {

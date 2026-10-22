@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Контраст пен жарықтық түймесін көрсету</string>
    <string name="text_and_background_color">Мәтін және фон түсі</string>
    <string name="library_folders">Кітапхана қалталары</string>
+   <string name="library_folders_hint">Кітаптар осы қалталар мен олардың ішкі қалталарынан ізделеді.</string>
+   <string name="add_folder_hint">Бір қалтаны таңдаңыз</string>
+   <string name="add_storage_hint">SD картасы немесе USB жинақтағышы</string>
    <string name="watch">Көру</string>
    <string name="librerax_not_installed">LibreraX орнатылмаған. Оны жүктеп алып орнатыңыз, содан кейін кітапты қайта ашыңыз.</string>
    <string name="remove_library_folder">Бұл қалтаны кітапханадан алып тастау керек пе? Ондағы файлдар жойылмайды.</string>

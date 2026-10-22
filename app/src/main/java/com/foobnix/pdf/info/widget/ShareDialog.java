@@ -275,7 +275,7 @@ public class ShareDialog {
                 items.add("① "+AppState.get().nameVerticalMode);
             }
 
-            items.add("Ⓧ " + a.getString(R.string.librerax));
+            items.add("③ " + a.getString(R.string.librerax));
 
             if (dc.isMusicianMode() == false) {
                 items.add("Ⓜ "+AppState.get().nameMusicianMode);

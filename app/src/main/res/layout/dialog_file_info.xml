@@ -477,48 +477,6 @@
                 android:layout_marginBottom="6dip"
                 android:background="#33888888" />
 
-            <!-- Annotation: too long for a row, so it is given its own name and the width of
-                 the sheet under it. -->
-            <LinearLayout
-                android:id="@+id/rowAnnotation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/infoBlockLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/annotation" />
-
-                <TextView
-                    android:id="@+id/editAnnotation"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/edit"
-                    android:text="@string/edit" />
-            </LinearLayout>
-
-            <com.foobnix.pdf.info.view.SelectableTextView
-                android:id="@+id/metaInfo"
-                style="@style/infoValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="6"
-                android:text="@string/msg_loading" />
-
-            <TextView
-                android:id="@+id/expand"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="@string/more" />
-
             <!-- Meta tags: what the file itself carries, shown as it was written. -->
             <TextView
                 android:id="@+id/metaTags"
@@ -550,6 +508,40 @@
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:text="" />
+
+            <!-- Annotation: too long for a row, so it is given its own name and the width of
+                 the sheet under it - and, read in full rather than cut to a few lines, it comes
+                 last, after everything shorter, so it pushes nothing out of sight. -->
+            <LinearLayout
+                android:id="@+id/rowAnnotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/infoBlockLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/annotation" />
+
+                <TextView
+                    android:id="@+id/editAnnotation"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/edit"
+                    android:text="@string/edit" />
+            </LinearLayout>
+
+            <com.foobnix.pdf.info.view.SelectableTextView
+                android:id="@+id/metaInfo"
+                style="@style/infoValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_loading" />
+
 
             <!-- What can be done to the file, set apart from what is known about it. -->
             <LinearLayout

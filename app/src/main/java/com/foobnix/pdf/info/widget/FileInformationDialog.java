@@ -36,7 +36,6 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -245,9 +244,6 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if (AppsConfig.IS_LOG) {
-            pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
-        }
 
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
@@ -308,29 +304,12 @@ public class FileInformationDialog {
         });
 
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
-        final TextView expand = (TextView) dialog.findViewById(R.id.expand);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
-        infoView.post(new Runnable() {
-            @Override public void run() {
-                int lineCount = infoView.getLineCount();
-                boolean showExpandView = lineCount > 0 && infoView.getLayout()
-                                                                  .getEllipsisCount(lineCount - 1) > 0;
-                expand.setVisibility(showExpandView ? View.VISIBLE : View.GONE);
-                infoView.setTextIsSelectable(!showExpandView);
-            }
-        });
-
-        expand.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
-                infoView.setMaxLines(Integer.MAX_VALUE);
-                infoView.setEllipsize(null);
-                infoView.setTextIsSelectable(true);
-                expand.setVisibility(View.GONE);
-            }
-        });
+        // The annotation is read in full, at the end of the sheet, rather than cut to a few
+        // lines behind a More: it is what the book is about.
+        infoView.setTextIsSelectable(true);
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
@@ -631,7 +610,12 @@ public class FileInformationDialog {
             editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
         }
         // A fact the book has none of is left out rather than shown empty. The name, the author
-        // and the annotation stay whatever they hold - each carries the word that edits it.
+        // and the annotation stay whatever they hold - each carries the word that edits it -
+        // except an annotation that cannot be edited: with nothing in it and no way to write
+        // one, it would end the sheet with a name over nothing.
+        if (editAnnotation.getVisibility() != View.VISIBLE && TxtUtils.isEmpty(infoView.getText().toString().trim())) {
+            Views.gone(dialog.findViewById(R.id.rowAnnotation), infoView);
+        }
         hideRowIfEmpty(dialog, R.id.rowYear, R.id.year);
         hideRowIfEmpty(dialog, R.id.rowPublisher, R.id.publisher);
         hideRowIfEmpty(dialog, R.id.rowIsbn, R.id.isbn);
@@ -643,7 +627,6 @@ public class FileInformationDialog {
         TintUtil.asLinkButton(editTitle, 0);
         TintUtil.asLinkButton(editAuthor, 0);
         TintUtil.asLinkButton(editAnnotation, 0);
-        TintUtil.asLinkButton(expand, 0);
         TintUtil.asLinkButton(convertFile, 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.openWith), 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.sendFile), 0);

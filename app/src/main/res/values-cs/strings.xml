@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Tlačítko pro zobrazení kontrastu a jasu</string>
    <string name="text_and_background_color">Barva textu a pozadí</string>
    <string name="library_folders">Složky knihovny</string>
+   <string name="library_folders_hint">Knihy se hledají v těchto složkách a jejich podsložkách.</string>
+   <string name="add_folder_hint">Vyberte jednu složku</string>
+   <string name="add_storage_hint">SD karta nebo USB disk</string>
    <string name="watch">Přehrát</string>
    <string name="librerax_not_installed">LibreraX není nainstalován. Stáhněte a nainstalujte jej a poté knihu otevřete znovu.</string>
    <string name="remove_library_folder">Odebrat tuto složku z knihovny? Soubory v ní nebudou smazány.</string>

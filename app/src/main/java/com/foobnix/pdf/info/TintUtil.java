@@ -25,7 +25,9 @@ import android.widget.TextView;
 
 import android.content.Context;
 import android.util.TypedValue;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
 
@@ -263,7 +265,9 @@ public class TintUtil {
         if (button == null) {
             return;
         }
-        // Any underline the text was carrying goes with it - the ring says it can be pressed.
+        // Any underline the text was carrying goes with it - the ring says it can be pressed -
+        // and the button is marked, so a value written into it later is not underlined either.
+        button.setTag(R.id.linkButton, Boolean.TRUE);
         button.setText(button.getText()
                              .toString());
         button.setBackgroundResource(R.drawable.bg_button_outline);
@@ -278,7 +282,62 @@ public class TintUtil {
             lp.topMargin = lp.bottomMargin = Dips.DP_4;
             button.setLayoutParams(lp);
         }
+        drawDropdown(button);
         setRingColor(button, button.getCurrentTextColor());
+    }
+
+    /**
+     * Keeps buttons that stand in one column at one width - the widest of them - so a short word
+     * or a button without a chevron does not leave a ragged edge among the rest. Kept as the
+     * values in them change, as they are rewritten whenever a new one is picked.
+     */
+    public static void sameWidth(final View... buttons) {
+        final View.OnLayoutChangeListener keep = (v, l, t, r, b, ol, ot, or, ob) -> {
+            int widest = 0;
+            for (View button : buttons) {
+                if (button != null && button.getVisibility() != View.GONE) {
+                    widest = Math.max(widest, button.getWidth());
+                }
+            }
+            final int width = widest;
+            for (final View button : buttons) {
+                if (button != null && button.getMinimumWidth() < width) {
+                    // not in the middle of the layout pass that reported the width
+                    button.post(() -> button.setMinimumWidth(width));
+                }
+            }
+        };
+        for (View button : buttons) {
+            if (button != null) {
+                button.addOnLayoutChangeListener(keep);
+            }
+        }
+    }
+
+    /**
+     * A button that opens a list to choose from ends in a chevron - the textLinkDropdown style
+     * puts it there - so a choice reads apart from an action. The chevron is sized and tinted to
+     * the word here, again each time the button is drawn, as its value is rewritten whenever a
+     * new one is picked.
+     */
+    private static void drawDropdown(TextView button) {
+        Drawable[] current = button.getCompoundDrawablesRelative();
+        if (current[2] == null) {
+            return;
+        }
+        Drawable chevron = ContextCompat.getDrawable(button.getContext(), R.drawable.ic_chevron_down);
+        if (chevron == null) {
+            return;
+        }
+        chevron = chevron.mutate();
+        int size = Dips.dpToPx(16);
+        chevron.setBounds(0, 0, size, size);
+        chevron.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
+        button.setCompoundDrawableTintList(null);
+        button.setCompoundDrawablesRelative(current[0], current[1], chevron, current[3]);
+        button.setCompoundDrawablePadding(Dips.DP_8);
+        // The rounded ends are kept clear: the words start further in, the chevron sits near the end
+        button.setPaddingRelative(Dips.dpToPx(18), Dips.DP_4, Dips.dpToPx(12), Dips.DP_4);
     }
 
     /**

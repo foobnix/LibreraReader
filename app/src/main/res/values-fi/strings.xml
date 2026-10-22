@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Näytä kontrasti ja kirkkaus -painike</string>
    <string name="text_and_background_color">Tekstin ja taustan väri</string>
    <string name="library_folders">Kirjaston kansiot</string>
+   <string name="library_folders_hint">Kirjoja etsitään näistä kansioista ja niiden alikansioista.</string>
+   <string name="add_folder_hint">Valitse yksi kansio</string>
+   <string name="add_storage_hint">SD-kortti tai USB-asema</string>
    <string name="watch">Katso</string>
    <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
    <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>

@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Показать кнопку контрастности и яркости</string>
    <string name="text_and_background_color">Цвет текста и фона</string>
    <string name="library_folders">Папки библиотеки</string>
+   <string name="library_folders_hint">Книги ищутся в этих папках и их подпапках.</string>
+   <string name="add_folder_hint">Выберите одну папку</string>
+   <string name="add_storage_hint">SD-карта или USB-накопитель</string>
    <string name="watch">Смотреть</string>
    <string name="librerax_not_installed">LibreraX не установлена. Скачайте и установите её, затем откройте книгу снова.</string>
    <string name="remove_library_folder">Убрать эту папку из библиотеки? Файлы в ней не будут удалены.</string>

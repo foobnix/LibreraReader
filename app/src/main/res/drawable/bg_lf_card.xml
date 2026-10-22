@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Library folders dialog: a way to add a folder, drawn as a card - a thin neutral ring, rounder
+     than a button, that reads on a light dialog and a dark one alike. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#3c888888">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/transparent" />
+            <stroke android:width="1dp" android:color="#66888888" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</ripple>

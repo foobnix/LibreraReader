@@ -111,6 +111,19 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <!-- The library folders and the library rebuilt from them, as the preferences
+                 panel offers them, without opening the panel. -->
+            <ImageView
+                android:id="@+id/onUpdateLibrary"
+                style="@style/buttonTop"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:background="@drawable/bg_round_press"
+                android:clickable="true"
+                android:contentDescription="@string/update_library"
+                android:src="@drawable/glyphicons_82_refresh"
+                android:tint="@color/white" />
+
             <ImageView
                 android:contentDescription="@string/cd_sort_results"
                 android:id="@+id/sortBy"

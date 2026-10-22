@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Botão de exibição de contraste e brilho</string>
    <string name="text_and_background_color">Cor do texto e do fundo</string>
    <string name="library_folders">Pastas da biblioteca</string>
+   <string name="library_folders_hint">Os livros são procurados nestas pastas e em suas subpastas.</string>
+   <string name="add_folder_hint">Escolha uma pasta</string>
+   <string name="add_storage_hint">Cartão SD ou pen drive</string>
    <string name="watch">Assistir</string>
    <string name="librerax_not_installed">O LibreraX não está instalado. Baixe e instale-o e abra o livro novamente.</string>
    <string name="remove_library_folder">Remover esta pasta da biblioteca? Os arquivos nela não serão excluídos.</string>

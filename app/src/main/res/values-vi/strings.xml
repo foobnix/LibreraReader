@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Nút hiển thị độ tương phản và độ sáng</string>
    <string name="text_and_background_color">Màu chữ và màu nền</string>
    <string name="library_folders">Thư mục thư viện</string>
+   <string name="library_folders_hint">Sách được tìm trong các thư mục này và thư mục con của chúng.</string>
+   <string name="add_folder_hint">Chọn một thư mục</string>
+   <string name="add_storage_hint">Thẻ SD hoặc ổ USB</string>
    <string name="watch">Xem</string>
    <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
    <string name="remove_library_folder">Xóa thư mục này khỏi thư viện? Các tệp bên trong sẽ không bị xóa.</string>

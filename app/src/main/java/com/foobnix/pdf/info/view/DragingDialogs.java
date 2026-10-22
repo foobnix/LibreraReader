@@ -1451,6 +1451,9 @@ public class DragingDialogs {
 
                 // The links in this dialog are drawn as ringed buttons, as the settings panel
                 // draws its own.
+                // The voice and the names of the sliders under it stand in one column, one width
+                TintUtil.sameWidth(view.findViewById(R.id.ttsSettings), seekBarSpeed.getTitleText(),
+                        seekBarPitch.getTitleText(), seekVolume.getTitleText());
                 TintUtil.asLinkButtons(view);
 
 
@@ -4552,6 +4555,8 @@ public class DragingDialogs {
 
                 final TextView tapzoneCustomize = inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);
+                // In the column of values, as wide as they are
+                TintUtil.sameWidth(tapzoneCustomize, inflate.findViewById(R.id.tapzoneSize));
                 tapzoneCustomize.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View arg0) {
                         TapZoneDialog.show(controller.getActivity());
@@ -5180,7 +5185,7 @@ public class DragingDialogs {
 
 // align
                 final TextView textAlign = inflate.findViewById(R.id.textAlign);
-                textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                TxtUtils.underline(textAlign, (alignConst.get(BookCSS.get().textAlign)));
                 textAlign.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
@@ -5189,7 +5194,7 @@ public class DragingDialogs {
                             popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                                 @Override public boolean onMenuItemClick(MenuItem item) {
                                     BookCSS.get().textAlign = key;
-                                    textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                                    TxtUtils.underline(textAlign, (alignConst.get(BookCSS.get().textAlign)));
                                     return false;
                                 }
                             });
@@ -5266,9 +5271,9 @@ public class DragingDialogs {
                                                                   BookCSS.get()
                                                                          .resetToDefault(controller.getActivity());
 
-                                                                  fontsFolder.setText(TxtUtils.underline(TxtUtils.lastTwoPath(
+                                                                  TxtUtils.underline(fontsFolder, (TxtUtils.lastTwoPath(
                                                                           BookCSS.get().fontFolder)));
-                                                                  textAlign.setText(TxtUtils.underline(alignConst.get(
+                                                                  TxtUtils.underline(textAlign, (alignConst.get(
                                                                           BookCSS.get().textAlign)));
 
                                                                   fontWeight.reset(BookCSS.get().fontWeight / 100);
@@ -5297,6 +5302,10 @@ public class DragingDialogs {
                                                           });
                             }
                         });
+
+                // The links in this dialog are drawn as ringed buttons, as the settings
+                // panel draws its own.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }

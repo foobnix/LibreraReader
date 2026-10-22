@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Mostrar el botón de contraste y brillo</string>
    <string name="text_and_background_color">Color del texto y del fondo</string>
    <string name="library_folders">Carpetas de la biblioteca</string>
+   <string name="library_folders_hint">Los libros se buscan en estas carpetas y sus subcarpetas.</string>
+   <string name="add_folder_hint">Elige una carpeta</string>
+   <string name="add_storage_hint">Tarjeta SD o unidad USB</string>
    <string name="watch">Ver</string>
    <string name="librerax_not_installed">LibreraX no está instalado. Descárgalo e instálalo y vuelve a abrir el libro.</string>
    <string name="remove_library_folder">¿Quitar esta carpeta de la biblioteca? Los archivos que contiene no se eliminarán.</string>

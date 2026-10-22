@@ -392,6 +392,23 @@ public class MainTabs2 extends AdsFragmentActivity {
         openLibraryStoragePicker(activity);
     }
 
+    /**
+     * The library folders, to add to and take from, and Update to rebuild the library from them -
+     * the preferences panel's own dialog, for the library's top bar. Through the panel when there
+     * is one, so its list of folders follows what is changed here.
+     */
+    public void showLibraryFolders() {
+        PrefFragment2 prefs = findPrefFragment();
+        if (prefs != null) {
+            prefs.onFolderConfigDialog();
+            return;
+        }
+        PrefDialogs.chooseFolderDialog(this, () -> {
+            AppProfile.save(this);
+            updateOnGrantPanels();
+        }, () -> PrefFragment2.updateLibrary(this));
+    }
+
     /** Every page's notice offering a way in for books, worked out again for the current folders. */
     public void updateOnGrantPanels() {
         if (tabFragments == null) {

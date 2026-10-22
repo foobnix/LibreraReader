@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Visa kontrast- och ljusstyrkeknappen</string>
    <string name="text_and_background_color">Text- och bakgrundsfärg</string>
    <string name="library_folders">Bibliotekets mappar</string>
+   <string name="library_folders_hint">Böcker söks i dessa mappar och deras undermappar.</string>
+   <string name="add_folder_hint">Välj en mapp</string>
+   <string name="add_storage_hint">SD-kort eller USB-enhet</string>
    <string name="watch">Titta</string>
    <string name="librerax_not_installed">LibreraX är inte installerat. Ladda ner och installera det och öppna sedan boken igen.</string>
    <string name="remove_library_folder">Ta bort den här mappen från biblioteket? Filerna i den raderas inte.</string>

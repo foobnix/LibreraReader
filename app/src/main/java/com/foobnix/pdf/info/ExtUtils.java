@@ -968,6 +968,12 @@ public class ExtUtils {
                 return true;
             }
         }
+        // LibreraX remembered but no longer installed cannot open the book: the reader is asked
+        // which mode to open it in instead, as with no mode remembered
+        if (AppState.get().isRememberMode && AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX
+                && !LibreraX.isInstalled(c)) {
+            AppState.get().isRememberMode = false;
+        }
         if (AppState.get().isRememberMode) {
             showDocumentWithoutDialog(c, file, null);
             return true;
@@ -979,7 +985,7 @@ public class ExtUtils {
         final TextView horizontal = (TextView) view.findViewById(R.id.horizontal);
         final TextView music = (TextView) view.findViewById(R.id.music);
         final TextView librerax = (TextView) view.findViewById(R.id.librerax);
-        librerax.setText("Ⓧ " + c.getString(R.string.librerax));
+        librerax.setText("③ " + c.getString(R.string.librerax));
 
         final EditText verticalEdit = (EditText) view.findViewById(R.id.verticalEdit);
         final EditText horizontalEdit = (EditText) view.findViewById(R.id.horizontalEdit);

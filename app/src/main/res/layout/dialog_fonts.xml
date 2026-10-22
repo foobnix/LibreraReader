@@ -342,7 +342,7 @@
 
             <TextView
                 android:id="@+id/capitalLetterSize"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"

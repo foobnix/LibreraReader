@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Kontrast- und Helligkeitstaste anzeigen</string>
    <string name="text_and_background_color">Text- und Hintergrundfarbe</string>
    <string name="library_folders">Bibliotheksordner</string>
+   <string name="library_folders_hint">Bücher werden in diesen Ordnern und ihren Unterordnern gesucht.</string>
+   <string name="add_folder_hint">Einen Ordner auswählen</string>
+   <string name="add_storage_hint">SD-Karte oder USB-Laufwerk</string>
    <string name="watch">Ansehen</string>
    <string name="librerax_not_installed">LibreraX ist nicht installiert. Lade es herunter, installiere es und öffne das Buch dann erneut.</string>
    <string name="remove_library_folder">Diesen Ordner aus der Bibliothek entfernen? Die Dateien darin werden nicht gelöscht.</string>

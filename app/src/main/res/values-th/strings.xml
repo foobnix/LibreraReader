@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">แสดงปุ่มปรับความคมชัดและความสว่าง</string>
    <string name="text_and_background_color">สีข้อความและสีพื้นหลัง</string>
    <string name="library_folders">โฟลเดอร์ห้องสมุด</string>
+   <string name="library_folders_hint">ค้นหาหนังสือในโฟลเดอร์เหล่านี้และโฟลเดอร์ย่อย</string>
+   <string name="add_folder_hint">เลือกหนึ่งโฟลเดอร์</string>
+   <string name="add_storage_hint">การ์ด SD หรือไดรฟ์ USB</string>
    <string name="watch">ดู</string>
    <string name="librerax_not_installed">ยังไม่ได้ติดตั้ง LibreraX ดาวน์โหลดและติดตั้ง แล้วเปิดหนังสืออีกครั้ง</string>
    <string name="remove_library_folder">นำโฟลเดอร์นี้ออกจากห้องสมุดหรือไม่ ไฟล์ในโฟลเดอร์จะไม่ถูกลบ</string>
