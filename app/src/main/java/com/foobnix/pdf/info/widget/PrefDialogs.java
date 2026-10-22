@@ -282,6 +282,11 @@ public class PrefDialogs {
                 target = file;
             }
         }
+        // The Folder tab listens only while it is the tab on screen, so the folder is also left
+        // where it looks when it comes up: as its last folder, with the lists marked as changed
+        AppState.get().displayPath = target;
+        BookCSS.get().dirLastPath = target;
+        TempHolder.listHash++;
         LocalBroadcastManager.getInstance(a)
                              .sendBroadcast(new Intent(UIFragment.INTENT_TINT_CHANGE).putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
                                      UITab.getCurrentTabIndex(UITab.BrowseFragment)));

@@ -44,7 +44,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
+                android:singleLine="true"
                 android:text="@string/add_folder"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp" />
@@ -97,7 +99,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
+                android:singleLine="true"
                 android:text="@string/add_resource"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp" />
