@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The library folders: what they are for, the folders themselves, the two ways to add one, and
+     Update to rebuild the library from them. Drawn whole here, title and buttons included, as the
+     platform's dialog frame would set them in its own capitals and spacing. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/libraryFoldersTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="@string/library_folders"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:lineSpacingExtra="2sp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="@string/library_folders_hint"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp" />
+
+        <!-- One row a folder, filled in by the dialog. -->
+        <LinearLayout
+            android:id="@+id/libraryFolders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical" />
+
+        <include
+            layout="@layout/library_folders_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:id="@+id/libraryFoldersCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/cancel"
+                android:textSize="14sp" />
+
+            <!-- Filled in the theme colour by the dialog. -->
+            <TextView
+                android:id="@+id/libraryFoldersUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minWidth="88dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:text="@string/update_library"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

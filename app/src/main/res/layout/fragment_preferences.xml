@@ -188,63 +188,33 @@
                 android:layout_marginLeft="5dip"
                 android:orientation="vertical" />
 
-            <!-- The two ways a folder gets into the library - one the app goes looking in, one
-                 the system hands over - and, under them, rebuilding the library from the folders
-                 now listed. Three of these do not sit on one line at every width, so what adds a
-                 folder and what rebuilds are kept apart. -->
-            <LinearLayout
+            <!-- The two ways a folder gets into the library, and under them the library rebuilt
+                 from the folders now listed - the cards and the button the library folders dialog
+                 has, so the two read as one thing. -->
+            <include
+                layout="@layout/library_folders_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp" />
 
-                <TextView
-                    android:id="@+id/onConfigPath"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:padding="4dip"
-                    android:text="@string/add_folder"
-                    android:textAllCaps="true" />
-
-                <!-- The other way in: a folder handed over through the system's folder picker,
-                     for books the app is not allowed to go looking for itself. -->
-                <TextView
-                    android:id="@+id/onConfigPathStorage"
-                    style="@style/textLink"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dip"
-                    android:padding="4dip"
-                    android:text="@string/add_resource"
-                    android:textAllCaps="true" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|right"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip"
-                    android:src="@drawable/glyphicons_82_refresh"
-                    app:tint="@color/tint_gray" />
-
-                <TextView
-                    android:id="@+id/onUpdateLibrary"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:padding="4dip"
-                    android:text="@string/update_library"
-                    android:textAllCaps="true" />
-            </LinearLayout>
+            <!-- Filled in the theme colour by the panel, as the dialog fills its own. -->
+            <TextView
+                android:id="@+id/onUpdateLibrary"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minWidth="120dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:text="@string/update_library"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <View
                 android:tag="with_tint1"

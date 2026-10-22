@@ -79,6 +79,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
@@ -465,6 +466,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 searchEditText.setText("");
                 recyclerView.scrollToPosition(0);
                 searchAndOrderAsync();
+            }
+        });
+
+        view.findViewById(R.id.onUpdateLibrary).setOnClickListener(v -> {
+            if (getActivity() instanceof MainTabs2) {
+                ((MainTabs2) getActivity()).showLibraryFolders();
             }
         });
 

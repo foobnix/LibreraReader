@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">כפתור הצג ניגודיות ובהירות</string>
    <string name="text_and_background_color">צבע טקסט ורקע</string>
    <string name="library_folders">תיקיות הספרייה</string>
+   <string name="library_folders_hint">ספרים מחופשים בתיקיות אלה ובתתי־התיקיות שלהן.</string>
+   <string name="add_folder_hint">בחרו תיקייה אחת</string>
+   <string name="add_storage_hint">כרטיס SD או כונן USB</string>
    <string name="watch">צפה</string>
    <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
    <string name="remove_library_folder">להסיר את התיקייה הזו מהספרייה? הקבצים שבה לא יימחקו.</string>

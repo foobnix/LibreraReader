@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">Κουμπί εμφάνισης αντίθεσης και φωτεινότητας</string>
    <string name="text_and_background_color">Κείμενο και χρώμα φόντου</string>
    <string name="library_folders">Φάκελοι βιβλιοθήκης</string>
+   <string name="library_folders_hint">Τα βιβλία αναζητούνται σε αυτούς τους φακέλους και τους υποφακέλους τους.</string>
+   <string name="add_folder_hint">Επιλέξτε έναν φάκελο</string>
+   <string name="add_storage_hint">Κάρτα SD ή μονάδα USB</string>
    <string name="watch">Παρακολούθηση</string>
    <string name="librerax_not_installed">Το LibreraX δεν είναι εγκατεστημένο. Κατεβάστε και εγκαταστήστε το και, στη συνέχεια, ανοίξτε ξανά το βιβλίο.</string>
    <string name="remove_library_folder">Αφαίρεση αυτού του φακέλου από τη βιβλιοθήκη; Τα αρχεία του δεν θα διαγραφούν.</string>

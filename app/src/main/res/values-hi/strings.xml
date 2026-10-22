@@ -699,6 +699,9 @@
    <string name="show_contrast_and_brightness_button">कंट्रास्ट और ब्राइटनेस बटन दिखाएँ</string>
    <string name="text_and_background_color">पाठ और पृष्ठभूमि का रंग</string>
    <string name="library_folders">लाइब्रेरी फ़ोल्डर</string>
+   <string name="library_folders_hint">किताबें इन फ़ोल्डरों और उनके सबफ़ोल्डरों में खोजी जाती हैं।</string>
+   <string name="add_folder_hint">एक फ़ोल्डर चुनें</string>
+   <string name="add_storage_hint">SD कार्ड या USB ड्राइव</string>
    <string name="watch">देखें</string>
    <string name="librerax_not_installed">LibreraX इंस्टॉल नहीं है। इसे डाउनलोड और इंस्टॉल करें, फिर किताब दोबारा खोलें।</string>
    <string name="remove_library_folder">इस फ़ोल्डर को लाइब्रेरी से हटाएँ? इसमें मौजूद फ़ाइलें डिलीट नहीं होंगी।</string>

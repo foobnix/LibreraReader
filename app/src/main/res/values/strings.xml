@@ -3,6 +3,9 @@
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
    <string name="library_folders">Library Folders</string>
+   <string name="library_folders_hint">Books are found in these folders and their subfolders.</string>
+   <string name="add_folder_hint">Pick one folder</string>
+   <string name="add_storage_hint">SD card or USB drive</string>
    <string name="add_folder">Add folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
