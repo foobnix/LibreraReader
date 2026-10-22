@@ -163,6 +163,7 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -1735,9 +1736,7 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
                 final LinearLayout linearLayoutColor = view.findViewById(R.id.colorsLine);
                 linearLayoutColor.removeAllViews();
-                List<String> colors = new ArrayList<String>(AppState.COLORS);
-                colors.remove(0);
-                colors.remove(0);
+                List<String> colors = AppState.ANNOTATION_COLORS;
 
                 final ImageView underLine = view.findViewById(R.id.onUnderline);
                 final ImageView strike = view.findViewById(R.id.onStrike);
@@ -2319,9 +2318,13 @@ public class DragingDialogs {
                 // into the PDF and no other format has anywhere to put one. Librera keeps those
                 // itself now, so the only book that cannot be marked up is one with no text to
                 // mark - a comic, which is pictures.
-                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(controller.getCurrentBook().
-
-                        getPath())) {
+                // A text book - an epub, fb2, mobi - is marked up only when foliate-js lays it
+                // out: MuPDF draws it as pictures of pages that are laid out again at every font
+                // size, with nothing for a mark to stay on.
+                final String bookPath = controller.getCurrentBook().getPath();
+                final boolean textWithoutFoliate = ExtUtils.isTextFomat(bookPath)
+                        && !(controller.getCodecDocument() instanceof FoliateDocument);
+                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath) || textWithoutFoliate) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);

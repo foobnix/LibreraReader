@@ -96,6 +96,22 @@ public class AppState {
      */
     /** The theme colour a fresh install starts with: the indigo, second in STYLE_COLORS. */
     public static final int DEFAULT_STYLE_COLOR = 1;
+    /**
+     * The colours a highlight, an underline or a strike-through is made in: the handful readers
+     * reach for, rather than every colour the app knows, so the row fits without scrolling. Black
+     * is for a line; a highlight in it would hide the words.
+     */
+    public static final List<String> ANNOTATION_COLORS = Arrays.asList(//
+            "#FFEB3B", // yellow
+            "#76FF03", // green
+            "#40C4FF", // blue
+            "#FF4081", // pink
+            "#FF9100", // orange
+            "#E53935", // red
+            "#AA00FF", // purple
+            "#000000" // black
+                                                                      );
+
     public static final List<String> STYLE_COLORS = Arrays.asList(//
             "#1B2A4A", // Oxford navy - the leather-bound blue
             "#3949AB", // indigo - the blue Librera wore before the redesign
@@ -511,7 +527,7 @@ public class AppState {
     public boolean isBookCoverEffect = false;
     public int editWith = EDIT_NONE;
     public String annotationDrawColor = "";
-    public String annotationTextColor = COLORS.get(2);
+    public String annotationTextColor = ANNOTATION_COLORS.get(0);
     public int editAlphaColor = 100;
 
     public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
