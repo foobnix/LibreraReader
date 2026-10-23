@@ -1,5 +1,10 @@
 package com.foobnix.pdf.info;
 
+import android.os.Handler;
+import android.os.Looper;
+import org.greenrobot.eventbus.EventBus;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -174,6 +179,29 @@ public class IMG {
             }
         });
 
+    }
+
+    /**
+     * The app can read files it could not before - a folder handed over again, or the permission
+     * to read the storage given. A book it could not open meanwhile was given a cover drawn from
+     * its name, and that cover is kept under the book's own key, so it would stay: every cover is
+     * dropped, and the lists drawn again once the cache is empty, so each is made from the book.
+     */
+    public static void onAccessRegained() {
+        clearMemoryCache();
+        AppsConfig.executorService.execute(() -> {
+            try {
+                if (LibreraApp.context != null) {
+                    Glide.get(LibreraApp.context).clearDiskCache();
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            new Handler(Looper.getMainLooper()).post(() -> {
+                clearMemoryCache();
+                EventBus.getDefault().post(new UpdateAllFragments());
+            });
+        });
     }
 
     public static void clearCache(String path) {

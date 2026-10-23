@@ -306,6 +306,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             // list on screen and would otherwise go on showing the old one.
             PrefFragment2 prefs = findPrefFragment();
             if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null)) {
+                // A folder handed over again: its books' covers were drawn from their names
+                IMG.onAccessRegained();
                 if (prefs != null) {
                     prefs.onStorageFolderAdded();
                 }
@@ -417,6 +419,9 @@ public class MainTabs2 extends AdsFragmentActivity {
      * happens when the permission was not given after all.
      */
     private void onStoragePermissionGranted() {
+        if (Android6.canWrite(this)) {
+            IMG.onAccessRegained();
+        }
         if (!BookCSS.addDownloadsIfNoFolders(this)) {
             return;
         }
