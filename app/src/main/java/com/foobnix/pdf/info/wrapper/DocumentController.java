@@ -1,5 +1,12 @@
 package com.foobnix.pdf.info.wrapper;
 
+import android.content.pm.ApplicationInfo;
+import android.widget.TextView;
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
+import org.ebookdroid.droids.pdfium.codec.PdfiumDocument;
+import org.ebookdroid.droids.djvu.codec.DjvuDocument;
+import org.ebookdroid.droids.comic.codec.ComicDocument;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -745,6 +752,37 @@ public abstract class DocumentController {
 
     public float getPercentage() {
         return MyMath.percent(getCurentPageFirst1(), getPageCount());
+    }
+
+    /**
+     * In a debuggable build, the reading mode's name in the bottom bar is followed by the engine
+     * that lays the book out - [MuPDF], [foliate-js], [PDFium] - to tell at a glance which one is
+     * at work, as the engine asked for can fall back to MuPDF. Once the book is open, and again
+     * on every update, so the name is kept whatever rewrote it meanwhile.
+     */
+    public static void showEngineInDebug(TextView modeName, DocumentController dc) {
+        if (modeName == null || dc == null || dc.getActivity() == null
+                || (dc.getActivity().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) == 0) {
+            return;
+        }
+        CodecDocument doc = dc.getCodecDocument();
+        if (doc == null) {
+            return;
+        }
+        String engine;
+        if (doc instanceof FoliateDocument) {
+            engine = "foliate-js";
+        } else if (doc instanceof PdfiumDocument) {
+            engine = "PDFium";
+        } else if (doc instanceof DjvuDocument) {
+            engine = "DjVu";
+        } else if (doc instanceof ComicDocument) {
+            engine = "Comic";
+        } else {
+            engine = "MuPDF";
+        }
+        String text = modeName.getText().toString().replaceAll(" \\[[^\\]]*\\]$", "");
+        modeName.setText(text + " [" + engine + "]");
     }
 
     public CodecDocument getCodecDocument() {

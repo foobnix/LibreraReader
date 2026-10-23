@@ -736,6 +736,7 @@ public class DocumentWrapperUI {
 
     public void updateUI() {
         //hideShowAnnotationLine();
+        DocumentController.showEngineInDebug((TextView) dc.getActivity().findViewById(R.id.modeName), dc);
         final int max = dc.getPageCount();
         final int current = dc.getCurentPage();
 
