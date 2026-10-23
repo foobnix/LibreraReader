@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.TextView;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
@@ -187,6 +188,19 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     /**
+     * Whether the notice asks for the permission: by default while there is none and no folder
+     * of books has been handed over through the picker either.
+     */
+    protected boolean isAskingPermission(boolean canWrite, boolean safFolders) {
+        return !canWrite && !safFolders;
+    }
+
+    /** What the notice says the permission would give this page. */
+    protected int permissionMessage() {
+        return R.string.add_all_books_with_permission;
+    }
+
+    /**
      * Without the permission, the notice asks for it while no folder of books has been handed
      * over through the picker. Once one has, that offer goes, and the notice asks for the Librera
      * folder instead - for as long as the settings and reading progress are only in the app's own
@@ -205,9 +219,13 @@ public abstract class UIFragment<T> extends Fragment {
         for (String folder : JsonDB.get(BookCSS.get().searchPathsJson)) {
             safFolders |= ExtUtils.isExteralSD(folder);
         }
-        boolean askPermission = !canWrite && !safFolders;
-        boolean askLibrera = !canWrite && safFolders && !LibreraSafSync.isActive(getContext())
+        boolean askPermission = isAskingPermission(canWrite, safFolders);
+        boolean askLibrera = !askPermission && !canWrite && safFolders && !LibreraSafSync.isActive(getContext())
                 && LibreraSafSync.isProfileHidden(getContext());
+        TextView message = onGrantPanel.findViewById(R.id.onGrantPermissionText);
+        if (message != null) {
+            message.setText(permissionMessage());
+        }
 
         Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (askPermission || askLibrera));
         Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), askPermission);

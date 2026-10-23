@@ -244,6 +244,7 @@
    <string name="allow">Leisti</string>
    <string name="storage">Saugykla</string>
    <string name="add_all_books_with_permission">Leiskite programai nuskaityti aplanką „Atsisiuntimai“, kad knygos būtų automatiškai įtrauktos į jūsų biblioteką.</string>
+   <string name="allow_access_to_see_files">Leiskite prieigą prie visų failų, kad matytumėte šio aplanko knygas. Be jos rodomi tik jo aplankai.</string>
    <string name="save_settings_in_librera_folder">Išsaugoti nustatymus ir skaitymo eigą Librera aplanke.</string>
    <string name="regrant_folder_title">Vėl leisti prieigą prie aplanko</string>
    <string name="regrant_folder_msg">Programa nebegali skaityti %1$s: iš naujo įdiegus programą, Android pašalina prieigą prie aplankų. Kitame ekrane pasirinkite aplanką dar kartą.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Knygų ieškoma šiuose aplankuose ir jų poaplankiuose.</string>
    <string name="add_folder_hint">Pasirinkite vieną aplanką</string>
    <string name="add_storage_hint">SD kortelė arba USB diskas</string>
+   <string name="folder_no_access">Nėra prieigos · palieskite, kad leistumėte vėl</string>
    <string name="watch">Žiūrėti</string>
    <string name="librerax_not_installed">LibreraX neįdiegta. Atsisiųskite ir įdiekite ją, tada vėl atidarykite knygą.</string>
    <string name="remove_library_folder">Pašalinti šį aplanką iš bibliotekos? Jame esantys failai nebus ištrinti.</string>

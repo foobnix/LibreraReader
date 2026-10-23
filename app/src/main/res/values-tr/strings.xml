@@ -244,6 +244,7 @@
    <string name="allow">İzin ver</string>
    <string name="storage">Depolama</string>
    <string name="add_all_books_with_permission">Kitapların kitaplığınıza otomatik olarak eklenmesi için lütfen uygulamanın İndirilenler klasörünüzü taramasına izin verin.</string>
+   <string name="allow_access_to_see_files">Bu klasördeki kitapları görmek için tüm dosyalara erişime izin verin. İzin olmadan yalnızca klasörleri gösterilir.</string>
    <string name="save_settings_in_librera_folder">Ayarları ve okuma ilerlemesini Librera klasörüne kaydet.</string>
    <string name="regrant_folder_title">Klasöre yeniden erişim izni ver</string>
    <string name="regrant_folder_msg">Uygulama artık %1$s klasörünü okuyamıyor: Android, uygulama yeniden yüklendiğinde klasör erişimini kaldırır. Sonraki ekranda klasörü yeniden seçin.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Kitaplar bu klasörlerde ve alt klasörlerinde aranır.</string>
    <string name="add_folder_hint">Bir klasör seçin</string>
    <string name="add_storage_hint">SD kart veya USB sürücü</string>
+   <string name="folder_no_access">Erişim yok · yeniden izin vermek için dokunun</string>
    <string name="watch">İzle</string>
    <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>
    <string name="remove_library_folder">Bu klasör kitaplıktan kaldırılsın mı? İçindeki dosyalar silinmez.</string>

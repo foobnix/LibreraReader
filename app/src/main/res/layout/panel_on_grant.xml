@@ -33,7 +33,9 @@
         android:paddingTop="4dip"
         android:paddingBottom="4dip">
 
+        <!-- Each page says what the permission would give it; see UIFragment.permissionMessage. -->
         <TextView
+            android:id="@+id/onGrantPermissionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

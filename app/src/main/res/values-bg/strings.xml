@@ -244,6 +244,7 @@
    <string name="allow">Разреши</string>
    <string name="storage">Хранилище</string>
    <string name="add_all_books_with_permission">Моля, позволете на приложението да сканира папката „Изтегляния“, за да добавя автоматично книги към библиотеката ви.</string>
+   <string name="allow_access_to_see_files">Разрешете достъп до всички файлове, за да виждате книгите в тази папка. Без него се показват само папките ѝ.</string>
    <string name="save_settings_in_librera_folder">Запазване на настройките и напредъка в четенето в папката Librera.</string>
    <string name="regrant_folder_title">Разрешете отново достъп до папката</string>
    <string name="regrant_folder_msg">Приложението вече не може да чете %1$s: Android премахва достъпа до папките при преинсталиране на приложението. Изберете папката отново на следващия екран.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Книгите се търсят в тези папки и техните подпапки.</string>
    <string name="add_folder_hint">Изберете една папка</string>
    <string name="add_storage_hint">SD карта или USB устройство</string>
+   <string name="folder_no_access">Няма достъп · докоснете, за да разрешите отново</string>
    <string name="watch">Гледай</string>
    <string name="librerax_not_installed">LibreraX не е инсталиран. Изтеглете и го инсталирайте, след това отворете книгата отново.</string>
    <string name="remove_library_folder">Премахване на тази папка от библиотеката? Файловете в нея няма да бъдат изтрити.</string>

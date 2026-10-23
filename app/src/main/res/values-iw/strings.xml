@@ -244,6 +244,7 @@
    <string name="allow">אישור</string>
    <string name="storage">אחסון</string>
    <string name="add_all_books_with_permission">נא לאפשר לאפליקציה לסרוק את תיקיית ההורדות כדי להוסיף ספרים לספרייה שלך באופן אוטומטי.</string>
+   <string name="allow_access_to_see_files">אפשרו גישה לכל הקבצים כדי לראות את הספרים בתיקייה זו. בלעדיה מוצגות רק התיקיות שבה.</string>
    <string name="save_settings_in_librera_folder">שמירת ההגדרות והתקדמות הקריאה בתיקייה Librera.</string>
    <string name="regrant_folder_title">אפשר שוב גישה לתיקייה</string>
    <string name="regrant_folder_msg">האפליקציה כבר לא יכולה לקרוא את %1$s: Android מסיר את הגישה לתיקיות כשהאפליקציה מותקנת מחדש. בחר שוב את התיקייה במסך הבא.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">ספרים מחופשים בתיקיות אלה ובתתי־התיקיות שלהן.</string>
    <string name="add_folder_hint">בחרו תיקייה אחת</string>
    <string name="add_storage_hint">כרטיס SD או כונן USB</string>
+   <string name="folder_no_access">אין גישה · הקישו כדי לאפשר שוב</string>
    <string name="watch">צפה</string>
    <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
    <string name="remove_library_folder">להסיר את התיקייה הזו מהספרייה? הקבצים שבה לא יימחקו.</string>

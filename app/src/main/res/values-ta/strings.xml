@@ -244,6 +244,7 @@
    <string name="allow">அனுமதி</string>
    <string name="storage">சேமிப்பு</string>
    <string name="add_all_books_with_permission">புத்தகங்களை உங்கள் நூலகத்தில் தானாகச் சேர்க்க, பதிவிறக்கங்கள் கோப்புறையை ஸ்கேன் செய்ய ஆப்ஸை அனுமதிக்கவும்.</string>
+   <string name="allow_access_to_see_files">இந்தக் கோப்புறையில் உள்ள புத்தகங்களைப் பார்க்க எல்லா கோப்புகளுக்கும் அணுகலை அனுமதிக்கவும். இல்லையெனில் அதன் கோப்புறைகள் மட்டுமே காட்டப்படும்.</string>
    <string name="save_settings_in_librera_folder">அமைப்புகளையும் வாசிப்பு முன்னேற்றத்தையும் Librera கோப்புறையில் சேமிக்கவும்.</string>
    <string name="regrant_folder_title">கோப்புறைக்கான அணுகலை மீண்டும் அனுமதிக்கவும்</string>
    <string name="regrant_folder_msg">செயலியால் இனி %1$s ஐப் படிக்க முடியாது: செயலியை மீண்டும் நிறுவும்போது Android கோப்புறை அணுகலை நீக்குகிறது. அடுத்த திரையில் கோப்புறையை மீண்டும் தேர்ந்தெடுக்கவும்.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">இந்தக் கோப்புறைகளிலும் அவற்றின் துணைக் கோப்புறைகளிலும் புத்தகங்கள் தேடப்படும்.</string>
    <string name="add_folder_hint">ஒரு கோப்புறையைத் தேர்வுசெய்க</string>
    <string name="add_storage_hint">SD கார்டு அல்லது USB டிரைவ்</string>
+   <string name="folder_no_access">அணுகல் இல்லை · மீண்டும் அனுமதிக்க தட்டவும்</string>
    <string name="watch">பார்க்க</string>
    <string name="librerax_not_installed">LibreraX நிறுவப்படவில்லை. அதைப் பதிவிறக்கி நிறுவி, பின்னர் புத்தகத்தை மீண்டும் திறக்கவும்.</string>
    <string name="remove_library_folder">இந்தக் கோப்புறையை நூலகத்திலிருந்து அகற்றவா? அதிலுள்ள கோப்புகள் நீக்கப்படாது.</string>

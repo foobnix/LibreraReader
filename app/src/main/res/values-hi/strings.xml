@@ -244,6 +244,7 @@
    <string name="allow">अनुमति दें</string>
    <string name="storage">संग्रहण</string>
    <string name="add_all_books_with_permission">कृपया ऐप को अपने डाउनलोड फ़ोल्डर को स्कैन करने दें, ताकि किताबें अपने-आप आपकी लाइब्रेरी में जुड़ जाएँ।</string>
+   <string name="allow_access_to_see_files">इस फ़ोल्डर में किताबें देखने के लिए सभी फ़ाइलों तक पहुँच की अनुमति दें। इसके बिना केवल इसके फ़ोल्डर दिखते हैं।</string>
    <string name="save_settings_in_librera_folder">सेटिंग्स और पढ़ने की प्रगति Librera फ़ोल्डर में सहेजें।</string>
    <string name="regrant_folder_title">फ़ोल्डर तक पहुँच फिर से दें</string>
    <string name="regrant_folder_msg">ऐप अब %1$s नहीं पढ़ सकता: ऐप को दोबारा इंस्टॉल करने पर Android फ़ोल्डरों की पहुँच हटा देता है। अगली स्क्रीन पर फ़ोल्डर फिर से चुनें।</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">किताबें इन फ़ोल्डरों और उनके सबफ़ोल्डरों में खोजी जाती हैं।</string>
    <string name="add_folder_hint">एक फ़ोल्डर चुनें</string>
    <string name="add_storage_hint">SD कार्ड या USB ड्राइव</string>
+   <string name="folder_no_access">पहुँच नहीं · फिर से अनुमति देने के लिए टैप करें</string>
    <string name="watch">देखें</string>
    <string name="librerax_not_installed">LibreraX इंस्टॉल नहीं है। इसे डाउनलोड और इंस्टॉल करें, फिर किताब दोबारा खोलें।</string>
    <string name="remove_library_folder">इस फ़ोल्डर को लाइब्रेरी से हटाएँ? इसमें मौजूद फ़ाइलें डिलीट नहीं होंगी।</string>

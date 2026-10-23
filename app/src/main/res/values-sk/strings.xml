@@ -244,6 +244,7 @@
    <string name="allow">Povoliť</string>
    <string name="storage">Úložisko</string>
    <string name="add_all_books_with_permission">Povoľte, prosím, aplikácii prehľadávať priečinok Stiahnuté súbory, aby mohla automaticky pridávať knihy do vašej knižnice.</string>
+   <string name="allow_access_to_see_files">Povoľte prístup ku všetkým súborom, aby ste videli knihy v tomto priečinku. Bez neho sa zobrazujú iba jeho priečinky.</string>
    <string name="save_settings_in_librera_folder">Ukladať nastavenia a priebeh čítania do priečinka Librera.</string>
    <string name="regrant_folder_title">Znova povoliť prístup k priečinku</string>
    <string name="regrant_folder_msg">Aplikácia už nemôže čítať %1$s: Android pri preinštalovaní aplikácie odstráni prístup k priečinkom. Na ďalšej obrazovke priečinok vyberte znova.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Knihy sa hľadajú v týchto priečinkoch a ich podpriečinkoch.</string>
    <string name="add_folder_hint">Vyberte jeden priečinok</string>
    <string name="add_storage_hint">SD karta alebo USB disk</string>
+   <string name="folder_no_access">Bez prístupu · ťuknutím povolíte znova</string>
    <string name="watch">Pozrieť</string>
    <string name="librerax_not_installed">LibreraX nie je nainštalovaný. Stiahnite a nainštalujte ho a potom knihu otvorte znova.</string>
    <string name="remove_library_folder">Odstrániť tento priečinok z knižnice? Súbory v ňom nebudú vymazané.</string>

@@ -244,6 +244,7 @@
    <string name="allow">Να επιτρέπεται</string>
    <string name="storage">Αποθηκευτικός χώρος</string>
    <string name="add_all_books_with_permission">Επιτρέψτε στην εφαρμογή να σαρώνει τον φάκελο Λήψεις, ώστε να προσθέτει αυτόματα βιβλία στη βιβλιοθήκη σας.</string>
+   <string name="allow_access_to_see_files">Επιτρέψτε την πρόσβαση σε όλα τα αρχεία για να δείτε τα βιβλία σε αυτόν τον φάκελο. Χωρίς αυτήν εμφανίζονται μόνο οι φάκελοί του.</string>
    <string name="save_settings_in_librera_folder">Αποθήκευση ρυθμίσεων και προόδου ανάγνωσης στον φάκελο Librera.</string>
    <string name="regrant_folder_title">Επιτρέψτε ξανά την πρόσβαση στον φάκελο</string>
    <string name="regrant_folder_msg">Η εφαρμογή δεν μπορεί πλέον να διαβάσει το %1$s: το Android καταργεί την πρόσβαση στους φακέλους όταν η εφαρμογή εγκαθίσταται ξανά. Επιλέξτε ξανά τον φάκελο στην επόμενη οθόνη.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Τα βιβλία αναζητούνται σε αυτούς τους φακέλους και τους υποφακέλους τους.</string>
    <string name="add_folder_hint">Επιλέξτε έναν φάκελο</string>
    <string name="add_storage_hint">Κάρτα SD ή μονάδα USB</string>
+   <string name="folder_no_access">Χωρίς πρόσβαση · πατήστε για να επιτρέψετε ξανά</string>
    <string name="watch">Παρακολούθηση</string>
    <string name="librerax_not_installed">Το LibreraX δεν είναι εγκατεστημένο. Κατεβάστε και εγκαταστήστε το και, στη συνέχεια, ανοίξτε ξανά το βιβλίο.</string>
    <string name="remove_library_folder">Αφαίρεση αυτού του φακέλου από τη βιβλιοθήκη; Τα αρχεία του δεν θα διαγραφούν.</string>

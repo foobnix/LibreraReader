@@ -244,6 +244,7 @@
    <string name="allow">Permite</string>
    <string name="storage">Stocare</string>
    <string name="add_all_books_with_permission">Te rugăm să permiți aplicației să scaneze dosarul Descărcări pentru a adăuga automat cărți în biblioteca ta.</string>
+   <string name="allow_access_to_see_files">Permiteți accesul la toate fișierele pentru a vedea cărțile din acest dosar. Fără acesta sunt afișate doar dosarele lui.</string>
    <string name="save_settings_in_librera_folder">Salvează setările și progresul lecturii în dosarul Librera.</string>
    <string name="regrant_folder_title">Permite din nou accesul la dosar</string>
    <string name="regrant_folder_msg">Aplicația nu mai poate citi %1$s: Android elimină accesul la dosare când aplicația este reinstalată. Alege din nou dosarul pe ecranul următor.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Cărțile sunt căutate în aceste dosare și în subdosarele lor.</string>
    <string name="add_folder_hint">Alegeți un dosar</string>
    <string name="add_storage_hint">Card SD sau unitate USB</string>
+   <string name="folder_no_access">Fără acces · atingeți pentru a permite din nou</string>
    <string name="watch">Vizionează</string>
    <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>
    <string name="remove_library_folder">Elimini acest dosar din bibliotecă? Fișierele din el nu vor fi șterse.</string>

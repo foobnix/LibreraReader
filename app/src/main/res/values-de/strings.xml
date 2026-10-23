@@ -244,6 +244,7 @@
    <string name="allow">Zulassen</string>
    <string name="storage">Speicher</string>
    <string name="add_all_books_with_permission">Bitte erlaube der App, deinen Download-Ordner zu durchsuchen, um Bücher automatisch zu deiner Bibliothek hinzuzufügen.</string>
+   <string name="allow_access_to_see_files">Erlauben Sie den Zugriff auf alle Dateien, um die Bücher in diesem Ordner zu sehen. Ohne ihn werden nur seine Ordner angezeigt.</string>
    <string name="save_settings_in_librera_folder">Einstellungen und Lesefortschritt im Ordner Librera speichern.</string>
    <string name="regrant_folder_title">Zugriff auf den Ordner erneut erlauben</string>
    <string name="regrant_folder_msg">Die App kann %1$s nicht mehr lesen: Android entfernt den Ordnerzugriff, wenn die App neu installiert wird. Wählen Sie den Ordner im nächsten Bildschirm erneut aus.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Bücher werden in diesen Ordnern und ihren Unterordnern gesucht.</string>
    <string name="add_folder_hint">Einen Ordner auswählen</string>
    <string name="add_storage_hint">SD-Karte oder USB-Laufwerk</string>
+   <string name="folder_no_access">Kein Zugriff · zum erneuten Erlauben tippen</string>
    <string name="watch">Ansehen</string>
    <string name="librerax_not_installed">LibreraX ist nicht installiert. Lade es herunter, installiere es und öffne das Buch dann erneut.</string>
    <string name="remove_library_folder">Diesen Ordner aus der Bibliothek entfernen? Die Dateien darin werden nicht gelöscht.</string>

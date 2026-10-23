@@ -244,6 +244,7 @@
    <string name="allow">Izinkan</string>
    <string name="storage">Penyimpanan</string>
    <string name="add_all_books_with_permission">Harap izinkan aplikasi memindai folder Unduhan Anda untuk menambahkan buku ke perpustakaan secara otomatis.</string>
+   <string name="allow_access_to_see_files">Izinkan akses ke semua file untuk melihat buku di folder ini. Tanpanya, hanya foldernya yang ditampilkan.</string>
    <string name="save_settings_in_librera_folder">Simpan pengaturan dan kemajuan membaca di folder Librera.</string>
    <string name="regrant_folder_title">Izinkan lagi akses ke folder</string>
    <string name="regrant_folder_msg">Aplikasi tidak bisa lagi membaca %1$s: Android menghapus akses folder saat aplikasi dipasang ulang. Pilih folder itu lagi di layar berikutnya.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Buku dicari di folder ini dan subfoldernya.</string>
    <string name="add_folder_hint">Pilih satu folder</string>
    <string name="add_storage_hint">Kartu SD atau drive USB</string>
+   <string name="folder_no_access">Tanpa akses · ketuk untuk mengizinkan lagi</string>
    <string name="watch">Tonton</string>
    <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
    <string name="remove_library_folder">Hapus folder ini dari pustaka? File di dalamnya tidak akan dihapus.</string>

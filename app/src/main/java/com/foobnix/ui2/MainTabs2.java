@@ -452,28 +452,45 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (activity == null || Android6.canWrite(activity)) {
             return;
         }
-        Set<String> granted = new HashSet<>();
-        for (UriPermission p : activity.getContentResolver().getPersistedUriPermissions()) {
-            granted.add(p.getUri().toString());
-        }
         for (String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
-            if (!ExtUtils.isExteralSD(path) || granted.contains(path) || !askedForLostStorage.add(path)) {
+            if (!isLostLibraryStorage(activity, path) || !askedForLostStorage.add(path)) {
                 continue;
             }
-            Uri tree = Uri.parse(path);
-            String name;
-            try {
-                name = DocumentsContract.getTreeDocumentId(tree);
-            } catch (Exception e) {
-                name = path;
-            }
-            name = name.replaceFirst("^primary:", "");
             LOG.d("askForLostLibraryStorage", path);
-            AlertDialogs.showDialog(activity, activity.getString(R.string.regrant_folder_title),
-                    activity.getString(R.string.regrant_folder_msg, name), activity.getString(R.string.choose_),
-                    () -> openLibraryStoragePicker(activity, tree), null);
+            askToRegrantLibraryStorage(activity, path);
             return;
         }
+    }
+
+    /** Whether this is a folder handed over through the picker that the app holds no grant for. */
+    public static boolean isLostLibraryStorage(Context c, String path) {
+        if (c == null || !ExtUtils.isExteralSD(path)) {
+            return false;
+        }
+        for (UriPermission p : c.getContentResolver().getPersistedUriPermissions()) {
+            if (p.getUri().toString().equals(path)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Says the folder can no longer be read and offers to hand it over again: the picker opens on
+     * the folder itself, and the answer comes back as any other library folder does.
+     */
+    public static void askToRegrantLibraryStorage(Activity activity, String path) {
+        Uri tree = Uri.parse(path);
+        String name;
+        try {
+            name = DocumentsContract.getTreeDocumentId(tree);
+        } catch (Exception e) {
+            name = path;
+        }
+        name = name.replaceFirst("^primary:", "");
+        AlertDialogs.showDialog(activity, activity.getString(R.string.regrant_folder_title),
+                activity.getString(R.string.regrant_folder_msg, name), activity.getString(R.string.choose_),
+                () -> openLibraryStoragePicker(activity, tree), null);
     }
 
     /** The system's folder picker, opened in Download, where books usually land. */

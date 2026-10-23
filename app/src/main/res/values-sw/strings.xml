@@ -244,6 +244,7 @@
    <string name="allow">Ruhusu</string>
    <string name="storage">Hifadhi</string>
    <string name="add_all_books_with_permission">Tafadhali ruhusu programu ichanganue folda yako ya Vipakuliwa ili kuongeza vitabu kwenye maktaba yako kiotomatiki.</string>
+   <string name="allow_access_to_see_files">Ruhusu ufikiaji wa faili zote ili kuona vitabu katika folda hii. Bila hivyo, folda zake pekee zinaonyeshwa.</string>
    <string name="save_settings_in_librera_folder">Hifadhi mipangilio na maendeleo ya kusoma kwenye folda ya Librera.</string>
    <string name="regrant_folder_title">Ruhusu tena ufikiaji wa folda</string>
    <string name="regrant_folder_msg">Programu haiwezi tena kusoma %1$s: Android huondoa ufikiaji wa folda programu inaposakinishwa upya. Chagua folda tena kwenye skrini inayofuata.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Vitabu hutafutwa katika folda hizi na folda zake ndogo.</string>
    <string name="add_folder_hint">Chagua folda moja</string>
    <string name="add_storage_hint">Kadi ya SD au kiendeshi cha USB</string>
+   <string name="folder_no_access">Hakuna ufikiaji · gusa ili kuruhusu tena</string>
    <string name="watch">Tazama</string>
    <string name="librerax_not_installed">LibreraX haijasakinishwa. Ipakue na uisakinishe, kisha ufungue kitabu tena.</string>
    <string name="remove_library_folder">Ondoa folda hii kwenye maktaba? Faili zilizomo hazitafutwa.</string>

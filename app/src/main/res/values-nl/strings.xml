@@ -244,6 +244,7 @@
    <string name="allow">Toestaan</string>
    <string name="storage">Opslag</string>
    <string name="add_all_books_with_permission">Sta de app toe je map Downloads te doorzoeken, zodat boeken automatisch aan je bibliotheek worden toegevoegd.</string>
+   <string name="allow_access_to_see_files">Sta toegang tot alle bestanden toe om de boeken in deze map te zien. Zonder toegang worden alleen de mappen getoond.</string>
    <string name="save_settings_in_librera_folder">Instellingen en leesvoortgang opslaan in de map Librera.</string>
    <string name="regrant_folder_title">Toegang tot de map opnieuw toestaan</string>
    <string name="regrant_folder_msg">De app kan %1$s niet meer lezen: Android trekt de maptoegang in als de app opnieuw wordt geïnstalleerd. Kies de map opnieuw in het volgende scherm.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Boeken worden gezocht in deze mappen en hun submappen.</string>
    <string name="add_folder_hint">Kies één map</string>
    <string name="add_storage_hint">SD-kaart of USB-stick</string>
+   <string name="folder_no_access">Geen toegang · tik om opnieuw toe te staan</string>
    <string name="watch">Bekijken</string>
    <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
    <string name="remove_library_folder">Deze map uit de bibliotheek verwijderen? De bestanden erin worden niet verwijderd.</string>

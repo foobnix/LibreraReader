@@ -244,6 +244,7 @@
    <string name="allow">അനുവദിക്കുക</string>
    <string name="storage">സംഭരണം</string>
    <string name="add_all_books_with_permission">പുസ്തകങ്ങൾ നിങ്ങളുടെ ലൈബ്രറിയിലേക്ക് സ്വയം ചേർക്കാൻ, ഡൗൺലോഡ്സ് ഫോൾഡർ സ്കാൻ ചെയ്യാൻ ദയവായി ആപ്പിനെ അനുവദിക്കുക.</string>
+   <string name="allow_access_to_see_files">ഈ ഫോൾഡറിലെ പുസ്തകങ്ങൾ കാണാൻ എല്ലാ ഫയലുകളിലേക്കും ആക്സസ് അനുവദിക്കുക. അതില്ലാതെ ഇതിലെ ഫോൾഡറുകൾ മാത്രമേ കാണിക്കൂ.</string>
    <string name="save_settings_in_librera_folder">ക്രമീകരണങ്ങളും വായനാ പുരോഗതിയും Librera ഫോൾഡറിൽ സൂക്ഷിക്കുക.</string>
    <string name="regrant_folder_title">ഫോൾഡറിലേക്കുള്ള ആക്സസ് വീണ്ടും അനുവദിക്കുക</string>
    <string name="regrant_folder_msg">ആപ്പിന് ഇനി %1$s വായിക്കാൻ കഴിയില്ല: ആപ്പ് വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ Android ഫോൾഡർ ആക്സസ് നീക്കം ചെയ്യുന്നു. അടുത്ത സ്ക്രീനിൽ ഫോൾഡർ വീണ്ടും തിരഞ്ഞെടുക്കുക.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">ഈ ഫോൾഡറുകളിലും അവയുടെ ഉപഫോൾഡറുകളിലും പുസ്തകങ്ങൾ തിരയുന്നു.</string>
    <string name="add_folder_hint">ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
    <string name="add_storage_hint">SD കാർഡ് അല്ലെങ്കിൽ USB ഡ്രൈവ്</string>
+   <string name="folder_no_access">ആക്സസ് ഇല്ല · വീണ്ടും അനുവദിക്കാൻ ടാപ്പ് ചെയ്യുക</string>
    <string name="watch">കാണുക</string>
    <string name="librerax_not_installed">LibreraX ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല. ഇത് ഡൗൺലോഡ് ചെയ്ത് ഇൻസ്റ്റാൾ ചെയ്യുക, തുടർന്ന് പുസ്തകം വീണ്ടും തുറക്കുക.</string>
    <string name="remove_library_folder">ഈ ഫോൾഡർ ലൈബ്രറിയിൽ നിന്ന് നീക്കം ചെയ്യണോ? അതിലെ ഫയലുകൾ ഇല്ലാതാക്കില്ല.</string>

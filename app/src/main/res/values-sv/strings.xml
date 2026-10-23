@@ -244,6 +244,7 @@
    <string name="allow">Tillåt</string>
    <string name="storage">Lagring</string>
    <string name="add_all_books_with_permission">Låt appen söka igenom mappen Hämtade filer så att böcker läggs till automatiskt i ditt bibliotek.</string>
+   <string name="allow_access_to_see_files">Tillåt åtkomst till alla filer för att se böckerna i den här mappen. Utan den visas bara dess mappar.</string>
    <string name="save_settings_in_librera_folder">Spara inställningar och läsframsteg i mappen Librera.</string>
    <string name="regrant_folder_title">Tillåt åtkomst till mappen igen</string>
    <string name="regrant_folder_msg">Appen kan inte längre läsa %1$s: Android tar bort mappåtkomsten när appen installeras om. Välj mappen igen på nästa skärm.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Böcker söks i dessa mappar och deras undermappar.</string>
    <string name="add_folder_hint">Välj en mapp</string>
    <string name="add_storage_hint">SD-kort eller USB-enhet</string>
+   <string name="folder_no_access">Ingen åtkomst · tryck för att tillåta igen</string>
    <string name="watch">Titta</string>
    <string name="librerax_not_installed">LibreraX är inte installerat. Ladda ner och installera det och öppna sedan boken igen.</string>
    <string name="remove_library_folder">Ta bort den här mappen från biblioteket? Filerna i den raderas inte.</string>

@@ -406,7 +406,7 @@ import java.util.Map;
                             return false;
                         }
                     })
-                    .setIcon(R.drawable.glyphicons_336_folder);
+                    .setIcon(R.drawable.ic_lf_folder);
 
                 String pathDownloads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                                                   .getPath();
@@ -421,7 +421,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
 
                 for (final String info : extFolders) {
@@ -443,7 +443,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
 
                 }
 
@@ -457,7 +457,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
                 if (AppSP.get().isEnableSync) {
                     menu.getMenu()
@@ -470,7 +470,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
 
 //                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -516,7 +516,7 @@ import java.util.Map;
                                     return false;
                                 }
                             })
-                            .setIcon(R.drawable.glyphicons_336_folder);
+                            .setIcon(R.drawable.ic_lf_storage);
 
                     }
 
@@ -575,7 +575,7 @@ import java.util.Map;
                                 return true;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_145_folder_open);
+                        .setIcon(R.drawable.ic_lf_storage_add);
 
                 }
 
@@ -1141,6 +1141,33 @@ import java.util.Map;
         BookCSS.get().dirLastPath = path;
 
         populate();
+        updateOnGrantPanel();
+    }
+
+    /**
+     * Here the notice is about the folder on screen: without the permission a folder of the
+     * device's storage shows only the folders in it, never a book, even when other folders were
+     * handed over through the picker. A folder handed over, a cloud and the app's own folder
+     * show everything, and ask for nothing.
+     */
+    @Override protected boolean isAskingPermission(boolean canWrite, boolean safFolders) {
+        return !canWrite && isHiddenWithoutPermission(AppState.get().displayPath);
+    }
+
+    @Override protected int permissionMessage() {
+        return R.string.allow_access_to_see_files;
+    }
+
+    private boolean isHiddenWithoutPermission(String path) {
+        if (TxtUtils.isEmpty(path) || ExtUtils.isExteralSD(path) || Clouds.isCloud(path) || getContext() == null) {
+            return false;
+        }
+        File appFolder = getContext().getExternalFilesDir(null);
+        if (appFolder != null && appFolder.getParentFile() != null
+                && path.startsWith(appFolder.getParentFile().getPath())) {
+            return false;
+        }
+        return path.startsWith("/storage/") || path.startsWith("/sdcard");
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT) public void closeQuietly(AutoCloseable closeable) {

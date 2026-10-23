@@ -244,6 +244,7 @@
    <string name="allow">Дазволіць</string>
    <string name="storage">Сховішча</string>
    <string name="add_all_books_with_permission">Калі ласка, дазвольце праграме праглядаць папку «Спампоўкі», каб аўтаматычна дадаваць кнігі ў вашу бібліятэку.</string>
+   <string name="allow_access_to_see_files">Дазвольце доступ да ўсіх файлаў, каб бачыць кнігі ў гэтай папцы. Без яго паказваюцца толькі яе папкі.</string>
    <string name="save_settings_in_librera_folder">Захоўваць налады і прагрэс чытання ў папцы Librera.</string>
    <string name="regrant_folder_title">Зноў дазволіць доступ да папкі</string>
    <string name="regrant_folder_msg">Праграма больш не можа чытаць %1$s: Android забывае доступ да папак пры пераўсталёўцы праграмы. Выберыце папку зноў на наступным экране.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Кнігі шукаюцца ў гэтых папках і іх падпапках.</string>
    <string name="add_folder_hint">Выберыце адну папку</string>
    <string name="add_storage_hint">SD-карта або USB-назапашвальнік</string>
+   <string name="folder_no_access">Няма доступу · націсніце, каб дазволіць зноў</string>
    <string name="watch">Глядзець</string>
    <string name="librerax_not_installed">LibreraX не ўсталяваны. Спампуйце і ўсталюйце яго, потым адкрыйце кнігу зноў.</string>
    <string name="remove_library_folder">Выдаліць гэтую папку з бібліятэкі? Файлы ў ёй не будуць выдалены.</string>

@@ -244,6 +244,7 @@
    <string name="allow">Permitir</string>
    <string name="storage">Armazenamento</string>
    <string name="add_all_books_with_permission">Permita que o app examine sua pasta de Downloads para adicionar livros automaticamente à sua biblioteca.</string>
+   <string name="allow_access_to_see_files">Permita o acesso a todos os arquivos para ver os livros desta pasta. Sem isso, só as pastas dela são mostradas.</string>
    <string name="save_settings_in_librera_folder">Salvar as configurações e o progresso de leitura na pasta Librera.</string>
    <string name="regrant_folder_title">Permitir novamente o acesso à pasta</string>
    <string name="regrant_folder_msg">O aplicativo não consegue mais ler %1$s: o Android remove o acesso às pastas quando o aplicativo é reinstalado. Escolha a pasta novamente na próxima tela.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Os livros são procurados nestas pastas e em suas subpastas.</string>
    <string name="add_folder_hint">Escolha uma pasta</string>
    <string name="add_storage_hint">Cartão SD ou pen drive</string>
+   <string name="folder_no_access">Sem acesso · toque para permitir de novo</string>
    <string name="watch">Assistir</string>
    <string name="librerax_not_installed">O LibreraX não está instalado. Baixe e instale-o e abra o livro novamente.</string>
    <string name="remove_library_folder">Remover esta pasta da biblioteca? Os arquivos nela não serão excluídos.</string>

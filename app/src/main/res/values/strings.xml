@@ -6,6 +6,7 @@
    <string name="library_folders_hint">Books are found in these folders and their subfolders.</string>
    <string name="add_folder_hint">Pick one folder</string>
    <string name="add_storage_hint">SD card or USB drive</string>
+   <string name="folder_no_access">No access · tap to allow again</string>
    <string name="add_folder">Add folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
@@ -248,6 +249,7 @@
    <string name="allow">Allow</string>
    <string name="storage">Storage</string>
    <string name="add_all_books_with_permission">Please allow the app to scan your Downloads folder to automatically add books to your library.</string>
+   <string name="allow_access_to_see_files">Allow access to all files to see the books in this folder. Without it, only its folders are shown.</string>
    <string name="save_settings_in_librera_folder">Keep settings and reading progress in the Librera folder.</string>
    <string name="regrant_folder_title">Allow access to the folder again</string>
    <string name="regrant_folder_msg">The app can no longer read %1$s: Android forgets the folders you handed over when the app is reinstalled. Choose the folder again on the next screen.</string>

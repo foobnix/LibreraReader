@@ -244,6 +244,7 @@
    <string name="allow">允許</string>
    <string name="storage">儲存空間</string>
    <string name="add_all_books_with_permission">請允許應用程式掃描「下載」資料夾，以便自動將書籍加入您的書庫。</string>
+   <string name="allow_access_to_see_files">允許存取所有檔案即可查看此資料夾中的書籍。否則只會顯示其中的資料夾。</string>
    <string name="save_settings_in_librera_folder">將設定和閱讀進度儲存在 Librera 資料夾中。</string>
    <string name="regrant_folder_title">再次允許存取資料夾</string>
    <string name="regrant_folder_msg">應用程式無法再讀取 %1$s：重新安裝應用程式後，Android 會移除資料夾存取權限。請在下一個畫面中重新選擇該資料夾。</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">在這些資料夾及其子資料夾中尋找書籍。</string>
    <string name="add_folder_hint">選擇一個資料夾</string>
    <string name="add_storage_hint">SD 卡或 USB 隨身碟</string>
+   <string name="folder_no_access">無存取權限 · 輕觸以重新允許</string>
    <string name="watch">觀看</string>
    <string name="librerax_not_installed">尚未安裝 LibreraX。請下載並安裝，然後重新開啟這本書。</string>
    <string name="remove_library_folder">要從書庫中移除此資料夾嗎？其中的檔案不會被刪除。</string>

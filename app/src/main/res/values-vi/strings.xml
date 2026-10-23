@@ -244,6 +244,7 @@
    <string name="allow">Cho phép</string>
    <string name="storage">Bộ nhớ</string>
    <string name="add_all_books_with_permission">Vui lòng cho phép ứng dụng quét thư mục Tải xuống để tự động thêm sách vào thư viện của bạn.</string>
+   <string name="allow_access_to_see_files">Cho phép truy cập tất cả tệp để xem sách trong thư mục này. Nếu không, chỉ các thư mục con được hiển thị.</string>
    <string name="save_settings_in_librera_folder">Lưu cài đặt và tiến độ đọc trong thư mục Librera.</string>
    <string name="regrant_folder_title">Cho phép truy cập thư mục lần nữa</string>
    <string name="regrant_folder_msg">Ứng dụng không thể đọc %1$s nữa: Android xóa quyền truy cập thư mục khi ứng dụng được cài đặt lại. Hãy chọn lại thư mục ở màn hình tiếp theo.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Sách được tìm trong các thư mục này và thư mục con của chúng.</string>
    <string name="add_folder_hint">Chọn một thư mục</string>
    <string name="add_storage_hint">Thẻ SD hoặc ổ USB</string>
+   <string name="folder_no_access">Không có quyền truy cập · chạm để cho phép lại</string>
    <string name="watch">Xem</string>
    <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
    <string name="remove_library_folder">Xóa thư mục này khỏi thư viện? Các tệp bên trong sẽ không bị xóa.</string>

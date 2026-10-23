@@ -244,6 +244,7 @@
    <string name="allow">Дозволити</string>
    <string name="storage">Сховище</string>
    <string name="add_all_books_with_permission">Будь ласка, дозвольте застосунку переглядати папку «Завантаження», щоб автоматично додавати книги до вашої бібліотеки.</string>
+   <string name="allow_access_to_see_files">Дозвольте доступ до всіх файлів, щоб бачити книги в цій папці. Без нього показуються лише її папки.</string>
    <string name="save_settings_in_librera_folder">Зберігати налаштування та прогрес читання в папці Librera.</string>
    <string name="regrant_folder_title">Знову дозволити доступ до папки</string>
    <string name="regrant_folder_msg">Застосунок більше не може читати %1$s: Android забуває доступ до папок під час перевстановлення застосунку. Виберіть папку знову на наступному екрані.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Книги шукаються в цих папках та їхніх підпапках.</string>
    <string name="add_folder_hint">Виберіть одну папку</string>
    <string name="add_storage_hint">SD-карта або USB-накопичувач</string>
+   <string name="folder_no_access">Немає доступу · торкніться, щоб дозволити знову</string>
    <string name="watch">Дивитися</string>
    <string name="librerax_not_installed">LibreraX не встановлено. Завантажте та встановіть її, потім відкрийте книгу знову.</string>
    <string name="remove_library_folder">Прибрати цю теку з бібліотеки? Файли в ній не буде видалено.</string>

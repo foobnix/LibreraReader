@@ -244,6 +244,7 @@
    <string name="allow">Consenti</string>
    <string name="storage">Archiviazione</string>
    <string name="add_all_books_with_permission">Consenti all\'app di analizzare la cartella Download per aggiungere automaticamente i libri alla tua libreria.</string>
+   <string name="allow_access_to_see_files">Consenti l\'accesso a tutti i file per vedere i libri in questa cartella. Senza, vengono mostrate solo le sue cartelle.</string>
    <string name="save_settings_in_librera_folder">Salva le impostazioni e i progressi di lettura nella cartella Librera.</string>
    <string name="regrant_folder_title">Consenti di nuovo l\'accesso alla cartella</string>
    <string name="regrant_folder_msg">L\'app non può più leggere %1$s: Android rimuove l\'accesso alle cartelle quando l\'app viene reinstallata. Scegli di nuovo la cartella nella schermata successiva.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">I libri vengono cercati in queste cartelle e nelle loro sottocartelle.</string>
    <string name="add_folder_hint">Scegli una cartella</string>
    <string name="add_storage_hint">Scheda SD o unità USB</string>
+   <string name="folder_no_access">Nessun accesso · tocca per consentirlo di nuovo</string>
    <string name="watch">Guarda</string>
    <string name="librerax_not_installed">LibreraX non è installato. Scaricalo e installalo, poi riapri il libro.</string>
    <string name="remove_library_folder">Rimuovere questa cartella dalla libreria? I file al suo interno non verranno eliminati.</string>

@@ -244,6 +244,7 @@
    <string name="allow">Permittere</string>
    <string name="storage">Repositorium</string>
    <string name="add_all_books_with_permission">Quaeso, sine applicationem scrutari tabellarium Depromptorum, ut libri in bibliothecam tuam sponte addantur.</string>
+   <string name="allow_access_to_see_files">Permitte aditum ad omnia documenta ut libros in hoc scrinio videas. Sine eo sola eius scrinia ostenduntur.</string>
    <string name="save_settings_in_librera_folder">Optiones et progressum legendi in folliculo Librera serva.</string>
    <string name="regrant_folder_title">Accessum ad folliculum iterum permitte</string>
    <string name="regrant_folder_msg">Applicatio %1$s iam legere non potest: Android accessum ad folliculos removet cum applicatio iterum instituitur. Folliculum iterum in proximo scrinio elige.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Libri in his scriniis eorumque subscriniis quaeruntur.</string>
    <string name="add_folder_hint">Unum scrinium elige</string>
    <string name="add_storage_hint">Charta SD vel instrumentum USB</string>
+   <string name="folder_no_access">Nullus aditus · tange ut iterum permittas</string>
    <string name="watch">Specta</string>
    <string name="librerax_not_installed">LibreraX non est installata. Depone et installa eam, deinde librum iterum aperi.</string>
    <string name="remove_library_folder">Hoc directorium ex bibliotheca removere? Fasciculi in eo non delebuntur.</string>

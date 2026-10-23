@@ -244,6 +244,7 @@
    <string name="allow">Permitir</string>
    <string name="storage">Almacenamiento</string>
    <string name="add_all_books_with_permission">Permite que la aplicación examine tu carpeta de Descargas para añadir libros automáticamente a tu biblioteca, por favor.</string>
+   <string name="allow_access_to_see_files">Permite el acceso a todos los archivos para ver los libros de esta carpeta. Sin él solo se muestran sus carpetas.</string>
    <string name="save_settings_in_librera_folder">Guardar la configuración y el progreso de lectura en la carpeta Librera.</string>
    <string name="regrant_folder_title">Permitir de nuevo el acceso a la carpeta</string>
    <string name="regrant_folder_msg">La aplicación ya no puede leer %1$s: Android retira el acceso a las carpetas al reinstalar la aplicación. Vuelve a elegir la carpeta en la siguiente pantalla.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Los libros se buscan en estas carpetas y sus subcarpetas.</string>
    <string name="add_folder_hint">Elige una carpeta</string>
    <string name="add_storage_hint">Tarjeta SD o unidad USB</string>
+   <string name="folder_no_access">Sin acceso · toca para permitirlo de nuevo</string>
    <string name="watch">Ver</string>
    <string name="librerax_not_installed">LibreraX no está instalado. Descárgalo e instálalo y vuelve a abrir el libro.</string>
    <string name="remove_library_folder">¿Quitar esta carpeta de la biblioteca? Los archivos que contiene no se eliminarán.</string>

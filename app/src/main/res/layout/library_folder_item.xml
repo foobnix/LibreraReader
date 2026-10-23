@@ -52,6 +52,16 @@
             android:singleLine="true"
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="13sp" />
+
+        <!-- Shown for a folder handed over through the picker whose access is gone. -->
+        <TextView
+            android:id="@+id/folderNoAccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/folder_no_access"
+            android:textColor="#E53935"
+            android:textSize="13sp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ImageView

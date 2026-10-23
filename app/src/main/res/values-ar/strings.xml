@@ -244,6 +244,7 @@
    <string name="allow">السماح</string>
    <string name="storage">التخزين</string>
    <string name="add_all_books_with_permission">يُرجى السماح للتطبيق بفحص مجلد التنزيلات لإضافة الكتب إلى مكتبتك تلقائيًا.</string>
+   <string name="allow_access_to_see_files">اسمح بالوصول إلى جميع الملفات لرؤية الكتب في هذا المجلد. بدونه تُعرض مجلداته فقط.</string>
    <string name="save_settings_in_librera_folder">احفظ الإعدادات وتقدّم القراءة في مجلد Librera.</string>
    <string name="regrant_folder_title">اسمح بالوصول إلى المجلد مرة أخرى</string>
    <string name="regrant_folder_msg">لم يعد بإمكان التطبيق قراءة %1$s: يزيل Android صلاحية الوصول إلى المجلدات عند إعادة تثبيت التطبيق. اختر المجلد مرة أخرى في الشاشة التالية.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">يتم البحث عن الكتب في هذه المجلدات ومجلداتها الفرعية.</string>
    <string name="add_folder_hint">اختر مجلدًا واحدًا</string>
    <string name="add_storage_hint">بطاقة SD أو محرك USB</string>
+   <string name="folder_no_access">لا يوجد وصول · انقر للسماح مجددًا</string>
    <string name="watch">مشاهدة</string>
    <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>
    <string name="remove_library_folder">إزالة هذا المجلد من المكتبة؟ لن تُحذف الملفات الموجودة فيه.</string>

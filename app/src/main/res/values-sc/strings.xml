@@ -244,6 +244,7 @@
    <string name="allow">Permite</string>
    <string name="storage">Archiviatzione</string>
    <string name="add_all_books_with_permission">Pro praghere, permite a s\'aplicatzione de esaminare sa cartella de is Iscarrigamentos pro annànghere sos libros a sa biblioteca tua in manera automàtica.</string>
+   <string name="allow_access_to_see_files">Permite s\'atzessu a totu sos archìvios pro bìdere sos libros de custa cartella. Sena, si mustrant isceti sas cartellas suas.</string>
    <string name="save_settings_in_librera_folder">Sarva sas impostatziones e su progressu de letura in sa cartella Librera.</string>
    <string name="regrant_folder_title">Permite torra s\'atzessu a sa cartella</string>
    <string name="regrant_folder_msg">S\'aplicatzione no podet prus lèghere %1$s: Android bogat s\'atzessu a sas cartellas cando s\'aplicatzione benit torrada a installare. Torra a seberare sa cartella in s\'ischermu imbeniente.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Sos libros si chircant in custas cartellas e in sas sutacartellas issoro.</string>
    <string name="add_folder_hint">Sèbera una cartella</string>
    <string name="add_storage_hint">Ischeda SD o unidade USB</string>
+   <string name="folder_no_access">Chene atzessu · toca pro lu permìtere torra</string>
    <string name="watch">Pòmpia</string>
    <string name="librerax_not_installed">LibreraX no est installadu. Iscàrriga·lu e installa·lu, e a pustis torra a abèrrere su libru.</string>
    <string name="remove_library_folder">Bogare custa cartella dae sa biblioteca? Sos archìvios chi bi sunt no ant a èssere cantzellados.</string>   

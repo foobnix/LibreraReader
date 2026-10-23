@@ -244,6 +244,7 @@
    <string name="allow">Salli</string>
    <string name="storage">Tallennustila</string>
    <string name="add_all_books_with_permission">Salli sovelluksen tutkia Lataukset-kansiosi, jotta kirjat lisätään automaattisesti kirjastoosi.</string>
+   <string name="allow_access_to_see_files">Salli pääsy kaikkiin tiedostoihin nähdäksesi tämän kansion kirjat. Ilman sitä näytetään vain sen kansiot.</string>
    <string name="save_settings_in_librera_folder">Tallenna asetukset ja lukuedistyminen Librera-kansioon.</string>
    <string name="regrant_folder_title">Salli pääsy kansioon uudelleen</string>
    <string name="regrant_folder_msg">Sovellus ei voi enää lukea kohdetta %1$s: Android poistaa kansioiden käyttöoikeudet, kun sovellus asennetaan uudelleen. Valitse kansio uudelleen seuraavassa näkymässä.</string>
@@ -702,6 +703,7 @@
    <string name="library_folders_hint">Kirjoja etsitään näistä kansioista ja niiden alikansioista.</string>
    <string name="add_folder_hint">Valitse yksi kansio</string>
    <string name="add_storage_hint">SD-kortti tai USB-asema</string>
+   <string name="folder_no_access">Ei käyttöoikeutta · napauta salliaksesi uudelleen</string>
    <string name="watch">Katso</string>
    <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
    <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>

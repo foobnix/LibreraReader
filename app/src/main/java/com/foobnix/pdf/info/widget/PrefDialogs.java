@@ -247,14 +247,24 @@ public class PrefDialogs {
         row.findViewById(R.id.folderMark).setBackground(round);
 
         ImageView icon = row.findViewById(R.id.folderIcon);
-        // A whole storage is marked as one; a folder in it as a folder
-        icon.setImageResource(namePlace[2] != null ? R.drawable.ic_lf_storage : R.drawable.ic_lf_folder);
+        // Marked as it was added, with the mark of the card that adds it: a folder the app reads
+        // itself (Add folder), or one handed over through the system's picker (Add storage)
+        icon.setImageResource(ExtUtils.isExteralSD(path) ? R.drawable.ic_lf_storage : R.drawable.ic_lf_folder);
         icon.setColorFilter(accent);
 
         ((TextView) row.findViewById(R.id.folderName)).setText(namePlace[0]);
         TextView place = row.findViewById(R.id.folderPlace);
         place.setText(namePlace[1]);
         place.setVisibility(TxtUtils.isEmpty(namePlace[1]) ? View.GONE : View.VISIBLE);
+
+        // A folder handed over through the picker that can no longer be read says so; a tap on
+        // it asks for it again (see openLibraryFolder). With the permission it is read as the
+        // folder it stands for, and needs no grant.
+        boolean readableAsPath = Android6.canWrite(c) && ExtUtils.getSafTreePath(path) != null;
+        if (!readableAsPath && MainTabs2.isLostLibraryStorage(c, path)) {
+            row.findViewById(R.id.folderNoAccess).setVisibility(View.VISIBLE);
+            icon.setAlpha(0.5f);
+        }
 
         ImageView remove = row.findViewById(R.id.folderRemove);
         remove.setColorFilter(place.getCurrentTextColor());
@@ -282,6 +292,12 @@ public class PrefDialogs {
                 target = file;
             }
         }
+        // A folder handed over through the picker whose grant is gone - after a reinstall, say -
+        // cannot be opened: it is asked for again instead of showing nothing
+        if (ExtUtils.isExteralSD(target) && MainTabs2.isLostLibraryStorage(a, target)) {
+            MainTabs2.askToRegrantLibraryStorage(a, target);
+            return;
+        }
         // The Folder tab listens only while it is the tab on screen, so the folder is also left
         // where it looks when it comes up: as its last folder, with the lists marked as changed
         AppState.get().displayPath = target;
@@ -298,9 +314,9 @@ public class PrefDialogs {
      * storage it is on, then the folders it sits in - so {@code /storage/emulated/0/Download/Books}
      * and {@code primary:Download/Books} handed over through the picker both read "Books" in
      * "Internal storage › Download". A whole storage is named by the storage, with its path under
-     * it, and the third value is then set.
+     * it.
      *
-     * @return name, place, and non-null when the folder is a whole storage
+     * @return name, place, and the path when the folder is a whole storage (unused by the row)
      */
     static String[] folderNameAndPlace(Context c, String path) {
         final String internal = c.getString(R.string.internal_storage);
