@@ -112,6 +112,13 @@ class FoliateIndex {
     /**
      * The key everything that could change the pagination is folded into. A different key means a
      * different file, so a stale index is never read rather than being overwritten.
+     *
+     * A book converted into {@link CacheZipUtils#CACHE_BOOK_DIR} is keyed without its date. Its
+     * name already says what its content follows from - the source book with its size and date,
+     * and the conversion settings - and AbstractCodecContext keeps only the book opened last
+     * there, so going back to a book converts it again and gives the copy a new date. Keyed on
+     * that date, the index was thrown away with it and the whole book walked again on top of the
+     * conversion; the length still tells a different conversion apart.
      */
     static String key(final String bookPath, final int width, final int height, final int fontSizePx,
                       final String css) {
@@ -120,12 +127,19 @@ class FoliateIndex {
         try {
             final File book = new File(bookPath);
             length = book.length();
-            modified = book.lastModified();
+            modified = isConverted(book) ? 0 : book.lastModified();
         } catch (Throwable e) {
             LOG.e(e);
         }
         return FORMAT + "|" + bookPath + "|" + length + "|" + modified + "|" + width + "x" + height
                 + "|" + fontSizePx + "|" + css.hashCode();
+    }
+
+    /** Whether a book is a converted copy in the book cache rather than the reader's own file. */
+    static boolean isConverted(final File book) {
+        final File dir = CacheZipUtils.CACHE_BOOK_DIR;
+        final File parent = book.getAbsoluteFile().getParentFile();
+        return dir != null && parent != null && parent.equals(dir.getAbsoluteFile());
     }
 
     /** Where an index with this key lives: beside MuPDF's own accelerator files. */

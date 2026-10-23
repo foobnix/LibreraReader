@@ -103,6 +103,13 @@ class FoliateRenderer {
 
     private volatile int pageHeight;
 
+    /**
+     * Where the last open's time went, in ms: {@code create} the WebView, {@code ready} the shell
+     * importing foliate, and the bridge's own {@code fetch}, {@code parse} and {@code first}
+     * section. For the logs and the benchmark.
+     */
+    volatile JSONObject openTimes = new JSONObject();
+
     FoliateRenderer(final Context context, final String bookPath) {
         this.context = context;
         this.bookPath = bookPath;
@@ -135,6 +142,7 @@ class FoliateRenderer {
         this.pageWidth = Math.max(1, width);
         this.pageHeight = Math.max(1, height);
 
+        final long started = System.currentTimeMillis();
         final CountDownLatch created = new CountDownLatch(1);
         handler.post(new Runnable() {
             @Override
@@ -151,16 +159,25 @@ class FoliateRenderer {
         if (!await(created, READY_TIMEOUT_MS, "create") || web == null) {
             return -1;
         }
+        final long createdAt = System.currentTimeMillis();
         if (!await(ready, READY_TIMEOUT_MS, "ready")) {
             return -1;
         }
+        final long readyAt = System.currentTimeMillis();
 
         final String answer = call("open", config(), CALL_TIMEOUT_MS);
         if (answer == null) {
             return -1;
         }
         try {
-            return new JSONObject(answer).optInt("sections", -1);
+            final JSONObject json = new JSONObject(answer);
+            final JSONObject times = json.optJSONObject("ms") == null ? new JSONObject() : json.getJSONObject("ms");
+            times.put("create", createdAt - started);
+            times.put("ready", readyAt - createdAt);
+            times.put("total", System.currentTimeMillis() - started);
+            openTimes = times;
+            LOG.d("FOLIATE! open ms", times);
+            return json.optInt("sections", -1);
         } catch (Throwable e) {
             LOG.e(e);
             return -1;
@@ -339,6 +356,24 @@ class FoliateRenderer {
                 counts[i] = Math.max(1, array.getInt(i));
             }
             return counts;
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    /**
+     * The same walk, also saying where each section's time went; see the bridge's index. For the
+     * benchmark.
+     *
+     * @return the bridge's whole answer - {@code pages} and {@code profile} - or <code>null</code>
+     */
+    JSONObject indexProfile() {
+        try {
+            final JSONObject args = new JSONObject();
+            args.put("profile", true);
+            final String answer = call("index", args, INDEX_TIMEOUT_MS);
+            return answer == null ? null : new JSONObject(answer);
         } catch (Throwable e) {
             LOG.e(e);
             return null;

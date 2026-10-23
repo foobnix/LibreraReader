@@ -27,6 +27,8 @@ let relocateCount = 0
 const relocateWaiters = []
 /** How long to wait for a relocate before giving up on it, as long as painted()'s own backstop. */
 const RELOCATE_TIMEOUT_MS = 400
+/** How long a section's embedded fonts may take to load before it is measured without them. */
+const FONTS_TIMEOUT_MS = 3000
 
 const reply = (id, value) => window.librera.reply(id, JSON.stringify(value))
 const fail = (id, error) => window.librera.fail(id, String((error && error.stack) || error))
@@ -115,6 +117,27 @@ const relocated = since => {
         relocateWaiters.push(finish)
         setTimeout(finish, RELOCATE_TIMEOUT_MS)
     })
+}
+
+/**
+ * Resolves once the section on screen is laid out for good, so its page count and the page an
+ * anchor is on can be read - without waiting for anything to be drawn.
+ *
+ * The paginator measures a section synchronously while loading it, so both are already known
+ * when its goTo resolves: the iframe's load event it waits for comes after the section's
+ * stylesheets and images, and its expand() forces the layout to measure it. The one thing that
+ * still moves the text afterwards is a web font the book embeds, which arrives after the layout
+ * that asked for it; the paginator lays the section out again when the fonts are ready, and this
+ * waits for that. Frames - what painted() waits for - change nothing here, and waiting for two of
+ * them per section was half the time a walk of the book took.
+ */
+const laidOut = () => {
+    const current = contents()
+    const fonts = current && current.doc ? current.doc.fonts : null
+    if (!fonts || fonts.status !== 'loading') return Promise.resolve()
+    // The paginator's own handler was registered on the same promise first, so it has relaid
+    // the section out by the time this resolves. The timer is for a font that never arrives.
+    return Promise.race([fonts.ready, new Promise(resolve => setTimeout(resolve, FONTS_TIMEOUT_MS))])
 }
 
 /** The section document currently loaded, or null. */
@@ -431,7 +454,7 @@ const collectText = () => {
  */
 const landOn = async target => {
     await view.renderer.goTo(target)
-    await painted()
+    await laidOut()
     const renderer = view.renderer
     const textPages = Math.max(1, (renderer.pages || 3) - 2)
     return textPages <= 1 ? 0
@@ -488,6 +511,49 @@ const fractionOfAnchor = (doc, anchor) => {
         : vertical ? rect.top : rect.left
     const page = Math.abs(Math.floor(offset / size) + (rtl ? -1 : 1))
     return Math.min(1, Math.max(0, (page - 1) / (textPages - 1)))
+}
+
+/**
+ * The contents as toc() answers them, resolved by the last index walk, with the page size they
+ * were resolved at. Null before a walk, and stale once the page size changes; the styles are set
+ * once, at open, so the size is all a layout can change by.
+ */
+let walkedToc = null
+
+const layoutKey = () => {
+    const size = pageSize()
+    return size.width + 'x' + size.height
+}
+
+/**
+ * The table of contents in order, each entry resolved to its section, and the entries whose
+ * place inside it depends on the layout - those with a #fragment - for the caller to land on.
+ */
+const contentsEntries = () => {
+    const toc = []
+    const inside = []
+    const walk = (items, level) => {
+        if (!items || level > 16) return
+        for (const item of items) {
+            if (item.label) {
+                const entry = { title: String(item.label).trim(), level, href: item.href || '' }
+                try {
+                    const target = item.href ? view.resolveNavigation(item.href) : null
+                    if (target && typeof target.index === 'number') {
+                        entry.index = target.index
+                        entry.fraction = typeof target.anchor === 'number' ? target.anchor : 0
+                        if (typeof target.anchor === 'function') inside.push({ entry, target })
+                    }
+                } catch (e) {
+                    // an entry whose target is broken still belongs in the contents
+                }
+                toc.push(entry)
+            }
+            walk(item.subitems, level + 1)
+        }
+    }
+    walk(view.book.toc, 0)
+    return { toc, inside }
 }
 
 /** The links on this page: a target section and fraction for an internal one, a url otherwise. */
@@ -551,6 +617,7 @@ const handlers = {
     /** Creates the view, opens the book, and sets the page up as one paginated column. */
     async open(cfg) {
         config = cfg
+        walkedToc = null
         document.documentElement.style.background = cfg.background
         document.body.style.background = cfg.background
 
@@ -569,11 +636,14 @@ const handlers = {
             applyStyles()
         })
 
+        const started = performance.now()
         const response = await fetch(cfg.book)
         if (!response.ok) throw new Error('could not read the book: ' + response.status)
         const blob = await response.blob()
+        const fetched = performance.now()
         // The name decides the format foliate picks; it is an epub by the time it reaches here
         await view.open(new File([blob], 'book.epub', { type: 'application/epub+zip' }))
+        const parsed = performance.now()
 
         const renderer = view.renderer
         const dpr = window.devicePixelRatio || 1
@@ -595,10 +665,17 @@ const handlers = {
 
         await renderer.goTo({ index: 0, anchor: 0 })
         await painted()
+        // Where the open went: reading the book across the bridge, foliate parsing its package
+        // and contents, and laying out and drawing the first section
+        const ms = {
+            fetch: Math.round(fetched - started),
+            parse: Math.round(parsed - fetched),
+            first: Math.round(performance.now() - parsed),
+        }
         log('open: ' + view.book.sections.length + ' sections, page '
             + document.documentElement.clientWidth + 'x' + document.documentElement.clientHeight
-            + ' at dpr ' + dpr)
-        return { sections: view.book.sections.length }
+            + ' at dpr ' + dpr + ', ms ' + JSON.stringify(ms))
+        return { sections: view.book.sections.length, ms }
     },
 
     /**
@@ -607,24 +684,86 @@ const handlers = {
      * This is the only way to a real page count: the paginator knows how many pages a section
      * holds only once it has columnised it. `pages` counts two blank pages either side of the
      * text, which is why they come off here.
+     *
+     * Nothing is drawn on the way - see laidOut() for why the count needs no frame - which
+     * roughly halves the walk. And while each section is laid out, the contents entries that
+     * point inside it are landed on, so toc() needs no walk of its own; loading every section
+     * again for them took as long as this whole walk.
+     *
+     * With `profile` it also says where each section's time went, for the benchmark: `load` is
+     * foliate reading the section out of the zip and rewriting its links to blob URLs, `parse`
+     * the iframe navigating to it and parsing it, `layout` the paginator columnising it,
+     * `fonts` the wait for its web fonts, and `toc` landing on its contents entries.
      */
-    async index() {
+    async index({ profile } = {}) {
         const renderer = view.renderer
         const count = view.book.sections.length
         const pages = []
+        const times = profile ? [] : null
+        const { toc, inside } = contentsEntries()
+        const entriesIn = new Map()
+        for (const item of inside) {
+            const list = entriesIn.get(item.target.index)
+            if (list) list.push(item)
+            else entriesIn.set(item.target.index, [item])
+        }
+        let loadedAt = 0
+        const onLoad = () => { loadedAt = performance.now() }
+        if (profile) view.addEventListener('load', onLoad)
         for (let i = 0; i < count; i++) {
+            const section = view.book.sections[i]
+            const load = section.load
+            let readAt = 0
+            if (profile) {
+                loadedAt = 0
+                section.load = async () => {
+                    try {
+                        return await load.call(section)
+                    } finally {
+                        readAt = performance.now()
+                    }
+                }
+            }
+            const started = performance.now()
             try {
                 await renderer.goTo({ index: i, anchor: 0 })
-                await painted()
+                const shown = performance.now()
+                await laidOut()
                 pages.push(Math.max(1, (renderer.pages || 3) - 2))
+                const counted = performance.now()
+                // Within the section on screen, so each of these only scrolls it
+                for (const { entry, target } of entriesIn.get(i) || []) {
+                    try {
+                        entry.fraction = await landOn(target)
+                    } catch (e) {
+                        // the entry keeps the start of its section
+                    }
+                }
+                if (profile) {
+                    // The section on screen when the walk began is not loaded again
+                    const read = readAt || started
+                    const loaded = loadedAt || read
+                    times.push({
+                        load: Math.round(read - started),
+                        parse: Math.round(loaded - read),
+                        layout: Math.round(shown - loaded),
+                        fonts: Math.round(counted - shown),
+                        toc: Math.round(performance.now() - counted),
+                    })
+                }
             } catch (e) {
                 // A section that will not lay out still has to occupy a page, or every page after
                 // it would be numbered wrongly.
                 log('section ' + i + ' did not lay out: ' + e)
                 pages.push(1)
+                if (profile) times.push({ failed: Math.round(performance.now() - started) })
+            } finally {
+                if (profile) section.load = load
             }
         }
-        return { pages }
+        if (profile) view.removeEventListener('load', onLoad)
+        walkedToc = { layout: layoutKey(), toc }
+        return profile ? { pages, profile: times } : { pages }
     },
 
     /**
@@ -798,31 +937,16 @@ const handlers = {
      * An entry with a #fragment points somewhere inside its section, and where that is depends
      * on the layout, so the book is taken there to see. Without it every chapter of an FB2 - one
      * section holding the whole book - would open the first page.
+     *
+     * After an index walk at this page size there is nothing left to do: the walk landed on the
+     * entries while it had each section laid out, so this answers at once instead of loading
+     * every section of the book a second time.
      */
     async toc() {
-        const toc = []
-        const inside = []
-        const walk = async (items, level) => {
-            if (!items || level > 16) return
-            for (const item of items) {
-                if (item.label) {
-                    const entry = { title: String(item.label).trim(), level, href: item.href || '' }
-                    try {
-                        const target = item.href ? view.resolveNavigation(item.href) : null
-                        if (target && typeof target.index === 'number') {
-                            entry.index = target.index
-                            entry.fraction = typeof target.anchor === 'number' ? target.anchor : 0
-                            if (typeof target.anchor === 'function') inside.push({ entry, target })
-                        }
-                    } catch (e) {
-                        // an entry whose target is broken still belongs in the contents
-                    }
-                    toc.push(entry)
-                }
-                await walk(item.subitems, level + 1)
-            }
+        if (walkedToc && walkedToc.layout === layoutKey()) {
+            return { toc: walkedToc.toc }
         }
-        await walk(view.book.toc, 0)
+        const { toc, inside } = contentsEntries()
         // Section by section, so each is laid out once however many entries point into it
         inside.sort((a, b) => a.target.index - b.target.index)
         for (const { entry, target } of inside) {
