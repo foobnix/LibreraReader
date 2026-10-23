@@ -79,7 +79,7 @@ for MUPDF in "${MUPDF_VERSIONS[@]}"; do
   ./gradlew clean || exit 1
 
   ./gradlew assembleProRelease -Pmupdf=$MUPDF || exit 1
-  #./gradlew assembleLibreraRelease -Pmupdf=$MUPDF
+  ./gradlew assembleLibreraRelease -Pmupdf=$MUPDF || exit 1
   ./gradlew assembleFdroidRelease -Pmupdf=$MUPDF || exit 1
   
   # proJS holds no MuPDF, so -Pmupdf says nothing about what is in it; it is passed all the same
