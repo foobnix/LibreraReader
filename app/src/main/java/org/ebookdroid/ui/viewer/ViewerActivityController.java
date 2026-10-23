@@ -34,6 +34,8 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.librerax.BookOpenGuard;
+import com.foobnix.librerax.LibreraX;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -179,7 +181,19 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             if (stringExtra == null) {
                 stringExtra = "";
             }
-            startDecoding(m_fileName, stringExtra);
+            final String password = stringExtra;
+            final VerticalViewActivity activity = getManagedComponent();
+            // The app died opening this book last time: offer LibreraX before trying again
+            if (BookOpenGuard.crashedLastTime(activity, m_fileName)) {
+                BookOpenGuard.opened(activity, m_fileName);
+                LibreraX.showCannotOpen(activity, intent.getData(), true, () -> {
+                    BookOpenGuard.opening(activity, m_fileName);
+                    startDecoding(m_fileName, password);
+                });
+            } else {
+                BookOpenGuard.opening(activity, m_fileName);
+                startDecoding(m_fileName, password);
+            }
         }
 
     }
@@ -240,6 +254,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void onDestroy() {
+        // Closed, not crashed: whatever happened, it is not a crash to remember
+        BookOpenGuard.opened(getManagedComponent(), m_fileName);
         if (wrapperControlls != null) {
             wrapperControlls.onDestroy();
         }
@@ -650,9 +666,16 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         currentPageChanged(dm.getCurrentIndex().docIndex, -1);
                         onBookLoaded.run();
 
+                        BookOpenGuard.openedSoon(getManagedComponent().view.getView(), m_fileName);
+                        if (dm.getPageCount() == 0) {
+                            LibreraX.showCannotOpen(getManagedComponent(), intent.getData(), false, null);
+                        }
                     } catch (final Throwable th) {
                         result = th;
                     }
+                }
+                if (result != null) {
+                    BookOpenGuard.opened(getManagedComponent(), m_fileName);
                 }
 
                 super.onPostExecute(result);
@@ -664,8 +687,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     askPassword(m_fileName, promptId);
 
                 } else if (result != null) {
-                    final String msg = result.getMessage();
-                    showErrorDlg(R.string.msg_unexpected_error, msg);
+                    LibreraX.showCannotOpen(getManagedComponent(), intent.getData(), false, null);
                 }
             } catch (final Throwable th) {
                 LOG.e(th);

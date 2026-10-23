@@ -712,4 +712,10 @@
    <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
    <string name="pdf_engine">מנוע PDF</string>
    <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
+   <string name="book_open_failed">לא ניתן היה לפתוח ספר זה.</string>
+   <string name="book_open_crashed">בפעם הקודמת היישום נסגר באופן בלתי צפוי בזמן פתיחת ספר זה.</string>
+   <string name="try_librerax">נסו לפתוח אותו ב-LibreraX.</string>
+   <string name="get_librerax">ייתכן ש-LibreraX יוכל לפתוח אותו. הורידו אותו מכאן:</string>
+   <string name="open_in_librerax">פתיחה ב-LibreraX</string>
+   <string name="try_again">ניסיון חוזר</string>
 </resources>

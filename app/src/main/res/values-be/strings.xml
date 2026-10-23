@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Ужываць базавую табліцу стыляў (foliate-js)</string>
    <string name="pdf_engine">Рухавік PDF</string>
    <string name="msg_pdf_engine_unavailable">Гэтая зборка не змяшчае бібліятэк PDFium.</string>
+   <string name="book_open_failed">Не ўдалося адкрыць гэтую кнігу.</string>
+   <string name="book_open_crashed">Мінулым разам праграма нечакана закрылася падчас адкрыцця гэтай кнігі.</string>
+   <string name="try_librerax">Паспрабуйце адкрыць яе ў LibreraX.</string>
+   <string name="get_librerax">LibreraX можа адкрыць яе. Спампуйце тут:</string>
+   <string name="open_in_librerax">Адкрыць у LibreraX</string>
+   <string name="try_again">Паспрабаваць зноў</string>
 </resources>

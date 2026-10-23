@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
    <string name="pdf_engine">Двигател за PDF</string>
    <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
+   <string name="book_open_failed">Тази книга не може да бъде отворена.</string>
+   <string name="book_open_crashed">Последния път приложението се затвори неочаквано при отваряне на тази книга.</string>
+   <string name="try_librerax">Опитайте да я отворите в LibreraX.</string>
+   <string name="get_librerax">LibreraX може да успее да я отвори. Изтеглете го оттук:</string>
+   <string name="open_in_librerax">Отваряне в LibreraX</string>
+   <string name="try_again">Опитай отново</string>
 </resources>

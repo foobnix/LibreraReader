@@ -62,6 +62,12 @@ EpubContext extends PdfContext {
 
         final boolean process = /** LibreraBuildConfig.DEBUG || **/AppState.get().isEnableTextReplacement || BookCSS.get().isAutoHypens ||
                 AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText || BookCSS.get().isEnableBBCode;
+        // A copy cut short by the app dying while converting - before proccessHypens wrote it
+        // aside first - would be reused for good, and the book never open again
+        if (cacheFile.isFile() && !new ZipFile(cacheFile).isValidZipFile()) {
+            LOG.d(TAG, "converted copy is not a whole zip, converting again", cacheFile);
+            cacheFile.delete();
+        }
         final boolean cacheExists = cacheFile.isFile();
         final boolean rewritten = EpubOpenPlan.isRewritten(process, cacheExists);
 

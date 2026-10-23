@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
    <string name="pdf_engine">PDF motorra</string>
    <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
+   <string name="book_open_failed">Ezin izan da liburu hau ireki.</string>
+   <string name="book_open_crashed">Aplikazioa ustekabean itxi zen azken aldiz liburu hau irekitzean.</string>
+   <string name="try_librerax">Saiatu LibreraX-en irekitzen.</string>
+   <string name="get_librerax">Baliteke LibreraX-ek irekitzea. Deskargatu hemen:</string>
+   <string name="open_in_librerax">Ireki LibreraX-en</string>
+   <string name="try_again">Saiatu berriro</string>
 </resources>

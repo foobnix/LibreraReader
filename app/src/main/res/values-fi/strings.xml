@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
    <string name="pdf_engine">PDF-moottori</string>
    <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
+   <string name="book_open_failed">Tätä kirjaa ei voitu avata.</string>
+   <string name="book_open_crashed">Sovellus sulkeutui odottamatta, kun tätä kirjaa avattiin viimeksi.</string>
+   <string name="try_librerax">Kokeile avata se LibreraX:ssä.</string>
+   <string name="get_librerax">LibreraX saattaa pystyä avaamaan sen. Lataa se täältä:</string>
+   <string name="open_in_librerax">Avaa LibreraX:ssä</string>
+   <string name="try_again">Yritä uudelleen</string>
 </resources>

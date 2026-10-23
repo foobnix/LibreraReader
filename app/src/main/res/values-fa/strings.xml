@@ -712,4 +712,10 @@
    <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
    <string name="pdf_engine">موتور PDF</string>
    <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>
+   <string name="book_open_failed">این کتاب باز نشد.</string>
+   <string name="book_open_crashed">دفعهٔ قبل برنامه هنگام باز کردن این کتاب به‌طور غیرمنتظره بسته شد.</string>
+   <string name="try_librerax">باز کردن آن را در LibreraX امتحان کنید.</string>
+   <string name="get_librerax">شاید LibreraX بتواند آن را باز کند. از اینجا دانلود کنید:</string>
+   <string name="open_in_librerax">باز کردن در LibreraX</string>
+   <string name="try_again">تلاش دوباره</string>
 </resources>

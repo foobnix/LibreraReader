@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
    <string name="pdf_engine">Jádro PDF</string>
    <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>
+   <string name="book_open_failed">Tuto knihu se nepodařilo otevřít.</string>
+   <string name="book_open_crashed">Aplikace se při posledním otevírání této knihy neočekávaně ukončila.</string>
+   <string name="try_librerax">Zkuste ji otevřít v LibreraX.</string>
+   <string name="get_librerax">LibreraX ji možná dokáže otevřít. Stáhněte si ji zde:</string>
+   <string name="open_in_librerax">Otevřít v LibreraX</string>
+   <string name="try_again">Zkusit znovu</string>
 </resources>

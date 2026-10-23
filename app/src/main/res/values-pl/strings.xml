@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Zastosuj podstawowy arkusz stylów (foliate-js)</string>
    <string name="pdf_engine">Silnik PDF</string>
    <string name="msg_pdf_engine_unavailable">Ta kompilacja nie zawiera bibliotek PDFium.</string>
+   <string name="book_open_failed">Nie udało się otworzyć tej książki.</string>
+   <string name="book_open_crashed">Ostatnim razem aplikacja nieoczekiwanie zamknęła się podczas otwierania tej książki.</string>
+   <string name="try_librerax">Spróbuj otworzyć ją w LibreraX.</string>
+   <string name="get_librerax">LibreraX może ją otworzyć. Pobierz go tutaj:</string>
+   <string name="open_in_librerax">Otwórz w LibreraX</string>
+   <string name="try_again">Spróbuj ponownie</string>
 </resources>

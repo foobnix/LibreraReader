@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Εφαρμογή του βασικού φύλλου στυλ (foliate-js)</string>
    <string name="pdf_engine">Μηχανή PDF</string>
    <string name="msg_pdf_engine_unavailable">Αυτή η έκδοση δεν περιλαμβάνει τις βιβλιοθήκες PDFium.</string>
+   <string name="book_open_failed">Δεν ήταν δυνατό το άνοιγμα αυτού του βιβλίου.</string>
+   <string name="book_open_crashed">Την τελευταία φορά η εφαρμογή έκλεισε απροσδόκητα κατά το άνοιγμα αυτού του βιβλίου.</string>
+   <string name="try_librerax">Δοκιμάστε να το ανοίξετε στο LibreraX.</string>
+   <string name="get_librerax">Το LibreraX ίσως μπορεί να το ανοίξει. Κατεβάστε το εδώ:</string>
+   <string name="open_in_librerax">Άνοιγμα στο LibreraX</string>
+   <string name="try_again">Δοκιμάστε ξανά</string>
 </resources>

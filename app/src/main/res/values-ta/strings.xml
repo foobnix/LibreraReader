@@ -712,4 +712,10 @@
    <string name="base_stylesheet">அடிப்படை பாணித்தாளைப் பயன்படுத்து (foliate-js)</string>
    <string name="pdf_engine">PDF இயந்திரம்</string>
    <string name="msg_pdf_engine_unavailable">இந்தப் பதிப்பில் PDFium நூலகங்கள் இல்லை.</string>
+   <string name="book_open_failed">இந்தப் புத்தகத்தைத் திறக்க முடியவில்லை.</string>
+   <string name="book_open_crashed">கடந்த முறை இந்தப் புத்தகத்தைத் திறக்கும்போது ஆப் எதிர்பாராமல் மூடப்பட்டது.</string>
+   <string name="try_librerax">இதை LibreraX-இல் திறந்து பாருங்கள்.</string>
+   <string name="get_librerax">LibreraX இதைத் திறக்கக்கூடும். இங்கிருந்து பதிவிறக்குங்கள்:</string>
+   <string name="open_in_librerax">LibreraX-இல் திற</string>
+   <string name="try_again">மீண்டும் முயல்க</string>
 </resources>

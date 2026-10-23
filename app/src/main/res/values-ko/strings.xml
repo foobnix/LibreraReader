@@ -712,4 +712,10 @@
    <string name="base_stylesheet">기본 스타일시트 적용 (foliate-js)</string>
    <string name="pdf_engine">PDF 엔진</string>
    <string name="msg_pdf_engine_unavailable">이 빌드에는 PDFium 라이브러리가 포함되어 있지 않습니다.</string>
+   <string name="book_open_failed">이 책을 열 수 없습니다.</string>
+   <string name="book_open_crashed">지난번 이 책을 여는 중에 앱이 예기치 않게 종료되었습니다.</string>
+   <string name="try_librerax">LibreraX에서 열어 보세요.</string>
+   <string name="get_librerax">LibreraX에서 열 수 있을지도 모릅니다. 여기에서 다운로드하세요:</string>
+   <string name="open_in_librerax">LibreraX에서 열기</string>
+   <string name="try_again">다시 시도</string>
 </resources>

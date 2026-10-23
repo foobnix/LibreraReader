@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Aplica el full d\'estils base (foliate-js)</string>
    <string name="pdf_engine">Motor de PDF</string>
    <string name="msg_pdf_engine_unavailable">Aquesta compilació no inclou les biblioteques PDFium.</string>
+   <string name="book_open_failed">No s\'ha pogut obrir aquest llibre.</string>
+   <string name="book_open_crashed">L\'aplicació es va tancar inesperadament en obrir aquest llibre l\'última vegada.</string>
+   <string name="try_librerax">Proveu d\'obrir-lo amb LibreraX.</string>
+   <string name="get_librerax">És possible que LibreraX el pugui obrir. Baixeu-lo aquí:</string>
+   <string name="open_in_librerax">Obre amb LibreraX</string>
+   <string name="try_again">Torna-ho a provar</string>
 </resources>

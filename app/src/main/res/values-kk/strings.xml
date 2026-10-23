@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
    <string name="pdf_engine">PDF қозғалтқышы</string>
    <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
+   <string name="book_open_failed">Бұл кітапты ашу мүмкін болмады.</string>
+   <string name="book_open_crashed">Өткен жолы бұл кітапты ашу кезінде қолданба күтпеген жерден жабылды.</string>
+   <string name="try_librerax">Оны LibreraX-те ашып көріңіз.</string>
+   <string name="get_librerax">LibreraX оны аша алуы мүмкін. Осы жерден жүктеп алыңыз:</string>
+   <string name="open_in_librerax">LibreraX-те ашу</string>
+   <string name="try_again">Қайталау</string>
 </resources>

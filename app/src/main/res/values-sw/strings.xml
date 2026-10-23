@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Tumia laha ya mitindo ya msingi (foliate-js)</string>
    <string name="pdf_engine">Injini ya PDF</string>
    <string name="msg_pdf_engine_unavailable">Toleo hili halina maktaba za PDFium.</string>
+   <string name="book_open_failed">Kitabu hiki hakikuweza kufunguliwa.</string>
+   <string name="book_open_crashed">Programu ilifungwa ghafla wakati wa kufungua kitabu hiki mara ya mwisho.</string>
+   <string name="try_librerax">Jaribu kukifungua katika LibreraX.</string>
+   <string name="get_librerax">Huenda LibreraX ikaweza kukifungua. Ipakue hapa:</string>
+   <string name="open_in_librerax">Fungua katika LibreraX</string>
+   <string name="try_again">Jaribu tena</string>
 </resources>

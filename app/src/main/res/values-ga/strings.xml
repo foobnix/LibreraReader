@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Cuir an bunstílbhileog i bhfeidhm (foliate-js)</string>
    <string name="pdf_engine">Inneall PDF</string>
    <string name="msg_pdf_engine_unavailable">Níl leabharlanna PDFium sa leagan seo.</string>
+   <string name="book_open_failed">Níorbh fhéidir an leabhar seo a oscailt.</string>
+   <string name="book_open_crashed">Dúnadh an aip gan choinne agus an leabhar seo á oscailt an uair dheireanach.</string>
+   <string name="try_librerax">Bain triail as é a oscailt in LibreraX.</string>
+   <string name="get_librerax">B\'fhéidir go mbeidh LibreraX in ann é a oscailt. Íoslódáil anseo é:</string>
+   <string name="open_in_librerax">Oscail in LibreraX</string>
+   <string name="try_again">Bain triail eile as</string>
 </resources>

@@ -72,19 +72,33 @@ public class EpubExtractor extends BaseExtractor {
         return inst;
     }
 
+    /**
+     * Writes the converted book to {@code output} only once it is whole.
+     *
+     * Whoever opens the book next takes a file at {@code output} as a finished conversion and
+     * opens it from then on. Written there directly, an app killed half way - by a crash in the
+     * reader, the system, or the reader closing it during the open - left a truncated zip that
+     * every later open reused, and the book never opened again. So it is written beside it and
+     * renamed into place when the conversion ran to the end; otherwise nothing is left at
+     * {@code output}, and the next open converts again.
+     */
     public static void proccessHypens(String input, String output, Map<String, String> notes) {
+        final File partial = new File(output + ".part");
         try {
             // proccessHypensDefault(input, output);
             LOG.d("proccessHypens begin");
-            proccessHypensApache(input, output, notes);
+            partial.delete();
+            proccessHypensApache(input, partial.getPath(), notes);
+            if (TempHolder.get().loadingCancelled.get()) {
+                LOG.d("proccessHypens cancelled");
+            } else if (!partial.renameTo(new File(output))) {
+                LOG.d("proccessHypens could not move", partial, output);
+            }
             LOG.d("proccessHypens end");
         } catch (Exception e) {
             LOG.e(e);
-            try {
-
-            } catch (Exception e1) {
-                LOG.e(e1);
-            }
+        } finally {
+            partial.delete();
         }
 
     }

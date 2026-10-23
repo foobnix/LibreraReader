@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
    <string name="pdf_engine">Công cụ PDF</string>
    <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
+   <string name="book_open_failed">Không thể mở cuốn sách này.</string>
+   <string name="book_open_crashed">Lần trước ứng dụng đã đóng đột ngột khi mở cuốn sách này.</string>
+   <string name="try_librerax">Hãy thử mở bằng LibreraX.</string>
+   <string name="get_librerax">LibreraX có thể mở được. Tải xuống tại đây:</string>
+   <string name="open_in_librerax">Mở bằng LibreraX</string>
+   <string name="try_again">Thử lại</string>
 </resources>

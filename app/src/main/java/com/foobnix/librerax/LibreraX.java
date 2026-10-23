@@ -92,6 +92,51 @@ public class LibreraX {
         return AppsConfig.IS_FDROID ? DOWNLOAD_URL_GITHUB : DOWNLOAD_URL_PLAY;
     }
 
+    /**
+     * Offers LibreraX for a book this app could not open: opening it threw, it came up with no
+     * pages, or the app died opening it last time. With LibreraX installed the same book opens
+     * there; without it, the page to get it from - Google Play, or GitHub for the F-Droid build.
+     *
+     * @param crashed    the app died opening it last time, rather than failing just now
+     * @param onTryAgain when not null, a button to open it here once more; the dialog then cannot
+     *                   be dismissed without a choice, as the book is not open behind it
+     */
+    public static void showCannotOpen(final Activity a, final Uri uri, final boolean crashed,
+                                      final Runnable onTryAgain) {
+        if (a == null || a.isFinishing()) {
+            return;
+        }
+        final boolean installed = isInstalled(a);
+        final String url = downloadUrl();
+        String message = a.getString(crashed ? R.string.book_open_crashed : R.string.book_open_failed) + "\n\n";
+        message += installed ? a.getString(R.string.try_librerax) : a.getString(R.string.get_librerax) + "\n" + url;
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a)
+                .setTitle(R.string.librerax)
+                .setMessage(message);
+        if (installed && uri != null) {
+            builder.setPositiveButton(R.string.open_in_librerax, (d, which) -> {
+                open(a, uri, 0f, null);
+                a.finish();
+            });
+        } else {
+            builder.setPositiveButton(R.string.download, (d, which) -> {
+                Urls.open(a, url);
+                if (onTryAgain != null) {
+                    a.finish();
+                }
+            });
+        }
+        if (onTryAgain != null) {
+            builder.setNegativeButton(R.string.try_again, (d, which) -> onTryAgain.run());
+            builder.setNeutralButton(R.string.close, (d, which) -> a.finish());
+            builder.setCancelable(false);
+        } else {
+            builder.setNegativeButton(R.string.close, null);
+        }
+        builder.show();
+    }
+
     public static void showNotInstalled(final Activity a, final Runnable onDismiss) {
         final String url = downloadUrl();
         final AlertDialog dialog = new AlertDialog.Builder(a)

@@ -712,4 +712,10 @@
    <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
    <string name="pdf_engine">PDF എഞ്ചിൻ</string>
    <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
+   <string name="book_open_failed">ഈ പുസ്തകം തുറക്കാൻ കഴിഞ്ഞില്ല.</string>
+   <string name="book_open_crashed">കഴിഞ്ഞ തവണ ഈ പുസ്തകം തുറക്കുമ്പോൾ ആപ്പ് അപ്രതീക്ഷിതമായി അടഞ്ഞു.</string>
+   <string name="try_librerax">ഇത് LibreraX-ൽ തുറന്നുനോക്കൂ.</string>
+   <string name="get_librerax">LibreraX-ന് ഇത് തുറക്കാൻ കഴിഞ്ഞേക്കും. ഇവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യൂ:</string>
+   <string name="open_in_librerax">LibreraX-ൽ തുറക്കുക</string>
+   <string name="try_again">വീണ്ടും ശ്രമിക്കുക</string>
 </resources>

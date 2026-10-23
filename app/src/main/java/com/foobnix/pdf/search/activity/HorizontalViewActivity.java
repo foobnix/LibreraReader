@@ -113,6 +113,8 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.foobnix.librerax.BookOpenGuard;
+import com.foobnix.librerax.LibreraX;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -145,6 +147,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     Handler flippingHandler = new Handler(Looper.getMainLooper());
     Handler handlerTimer = new Handler(Looper.getMainLooper());
     CopyAsyncTask loadinAsyncTask;
+    /** The book being opened, as BookOpenGuard knows it. */
+    private String guardedBook;
     Dialog rotatoinDialog;
     volatile Boolean isInitPosistion = null;
     volatile int isInitOrientation;
@@ -1082,12 +1086,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     finish();
                     return;
                 }
+                if ((Integer) result == 0) {
+                    BookOpenGuard.openedSoon(viewPager, guardedBook);
+                } else {
+                    BookOpenGuard.opened(HorizontalViewActivity.this, guardedBook);
+                }
                 if ((Integer) result == -2) {
-                    Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
-                         .show();
                     AppState.get().isEditMode = true;
                     hideShow();
                     onClose.setVisibility(View.VISIBLE);
+                    LibreraX.showCannotOpen(HorizontalViewActivity.this, getIntent().getData(), false, null);
                     return;
                 }
                 if ((Integer) result == -1) {
@@ -1209,6 +1217,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     // RecentUpates.updateAll(HorizontalViewActivity.this);
                     if (dc.getPageCount() == 0) {
                         onClose.setVisibility(View.VISIBLE);
+                        LibreraX.showCannotOpen(HorizontalViewActivity.this, getIntent().getData(), false, null);
                     }
 
                     HypenPanelHelper.init(parentParent, dc);
@@ -1219,7 +1228,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             ;
         };
-        loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
+        // The app died opening this book last time: offer LibreraX before trying again
+        guardedBook = Apps.getBookPathFromActivity(this);
+        if (BookOpenGuard.crashedLastTime(this, guardedBook)) {
+            BookOpenGuard.opened(this, guardedBook);
+            LibreraX.showCannotOpen(this, getIntent().getData(), true, () -> {
+                if (loadinAsyncTask != null) {
+                    BookOpenGuard.opening(this, guardedBook);
+                    loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
+                }
+            });
+        } else {
+            BookOpenGuard.opening(this, guardedBook);
+            loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
+        }
         updateIconMode();
         BrightnessHelper.updateOverlay(overlay);
 
@@ -1564,6 +1586,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Closed, not crashed: whatever happened, it is not a crash to remember
+        BookOpenGuard.opened(this, guardedBook);
 
         if (loadinAsyncTask != null) {
             try {

@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
    <string name="pdf_engine">PDF motoru</string>
    <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
+   <string name="book_open_failed">Bu kitap açılamadı.</string>
+   <string name="book_open_crashed">Uygulama, bu kitap son açılırken beklenmedik şekilde kapandı.</string>
+   <string name="try_librerax">LibreraX ile açmayı deneyin.</string>
+   <string name="get_librerax">LibreraX bunu açabilir. Buradan indirin:</string>
+   <string name="open_in_librerax">LibreraX ile aç</string>
+   <string name="try_again">Tekrar dene</string>
 </resources>

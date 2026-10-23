@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Alap stíluslap alkalmazása (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
    <string name="msg_pdf_engine_unavailable">Ez a build nem tartalmazza a PDFium könyvtárakat.</string>
+   <string name="book_open_failed">Ezt a könyvet nem sikerült megnyitni.</string>
+   <string name="book_open_crashed">Az alkalmazás legutóbb váratlanul bezárult a könyv megnyitása közben.</string>
+   <string name="try_librerax">Próbálja megnyitni a LibreraX-ben.</string>
+   <string name="get_librerax">Lehet, hogy a LibreraX meg tudja nyitni. Töltse le innen:</string>
+   <string name="open_in_librerax">Megnyitás a LibreraX-ben</string>
+   <string name="try_again">Újra</string>
 </resources>

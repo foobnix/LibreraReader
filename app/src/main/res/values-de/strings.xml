@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Basis-Stylesheet anwenden (foliate-js)</string>
    <string name="pdf_engine">PDF-Modul</string>
    <string name="msg_pdf_engine_unavailable">Diese Version enthält die PDFium-Bibliotheken nicht.</string>
+   <string name="book_open_failed">Dieses Buch konnte nicht geöffnet werden.</string>
+   <string name="book_open_crashed">Die App wurde beim letzten Öffnen dieses Buches unerwartet beendet.</string>
+   <string name="try_librerax">Versuchen Sie, es in LibreraX zu öffnen.</string>
+   <string name="get_librerax">LibreraX kann es möglicherweise öffnen. Laden Sie es hier herunter:</string>
+   <string name="open_in_librerax">In LibreraX öffnen</string>
+   <string name="try_again">Erneut versuchen</string>
 </resources>

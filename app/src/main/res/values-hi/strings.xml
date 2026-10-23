@@ -712,4 +712,10 @@
    <string name="base_stylesheet">आधार स्टाइलशीट लागू करें (foliate-js)</string>
    <string name="pdf_engine">PDF इंजन</string>
    <string name="msg_pdf_engine_unavailable">इस बिल्ड में PDFium लाइब्रेरी शामिल नहीं हैं।</string>
+   <string name="book_open_failed">यह पुस्तक खोली नहीं जा सकी।</string>
+   <string name="book_open_crashed">पिछली बार इस पुस्तक को खोलते समय ऐप अप्रत्याशित रूप से बंद हो गया था।</string>
+   <string name="try_librerax">इसे LibreraX में खोलकर देखें।</string>
+   <string name="get_librerax">LibreraX इसे खोल सकता है। इसे यहाँ से डाउनलोड करें:</string>
+   <string name="open_in_librerax">LibreraX में खोलें</string>
+   <string name="try_again">फिर से कोशिश करें</string>
 </resources>

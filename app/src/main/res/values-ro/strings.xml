@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Aplică foaia de stiluri de bază (foliate-js)</string>
    <string name="pdf_engine">Motor PDF</string>
    <string name="msg_pdf_engine_unavailable">Această versiune nu include bibliotecile PDFium.</string>
+   <string name="book_open_failed">Această carte nu a putut fi deschisă.</string>
+   <string name="book_open_crashed">Ultima dată aplicația s-a închis neașteptat în timp ce deschidea această carte.</string>
+   <string name="try_librerax">Încercați să o deschideți în LibreraX.</string>
+   <string name="get_librerax">Este posibil ca LibreraX să o poată deschide. Descărcați-l de aici:</string>
+   <string name="open_in_librerax">Deschide în LibreraX</string>
+   <string name="try_again">Reîncercați</string>
 </resources>

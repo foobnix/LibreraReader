@@ -712,4 +712,10 @@
    <string name="base_stylesheet">Appliquer la feuille de style de base (foliate-js)</string>
    <string name="pdf_engine">Moteur PDF</string>
    <string name="msg_pdf_engine_unavailable">Cette version n\'inclut pas les bibliothèques PDFium.</string>
+   <string name="book_open_failed">Impossible d\'ouvrir ce livre.</string>
+   <string name="book_open_crashed">L\'application s\'est fermée de manière inattendue lors de la dernière ouverture de ce livre.</string>
+   <string name="try_librerax">Essayez de l\'ouvrir dans LibreraX.</string>
+   <string name="get_librerax">LibreraX pourra peut-être l\'ouvrir. Téléchargez-le ici :</string>
+   <string name="open_in_librerax">Ouvrir dans LibreraX</string>
+   <string name="try_again">Réessayer</string>
 </resources>

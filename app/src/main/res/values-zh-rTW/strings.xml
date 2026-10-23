@@ -712,4 +712,10 @@
    <string name="base_stylesheet">套用基礎樣式表 (foliate-js)</string>
    <string name="pdf_engine">PDF 引擎</string>
    <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 程式庫。</string>
+   <string name="book_open_failed">無法開啟這本書。</string>
+   <string name="book_open_crashed">上次開啟這本書時應用程式意外關閉。</string>
+   <string name="try_librerax">請嘗試用 LibreraX 開啟。</string>
+   <string name="get_librerax">LibreraX 或許能開啟它。在此下載：</string>
+   <string name="open_in_librerax">用 LibreraX 開啟</string>
+   <string name="try_again">重試</string>
 </resources>
