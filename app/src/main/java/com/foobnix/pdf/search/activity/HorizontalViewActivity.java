@@ -2195,6 +2195,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         if (AppsConfig.IS_LOG && animated) {
             modeName.setText(R.string.mode_horizontally);
+            // the name was just rewritten: the engine is put back after it
+            DocumentController.showEngineInDebug(modeName, dc);
         }
 
         if (!animated || AppState.get().appTheme == AppState.THEME_INK) {

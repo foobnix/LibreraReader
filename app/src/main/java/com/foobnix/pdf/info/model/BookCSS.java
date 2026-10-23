@@ -91,6 +91,99 @@ public class BookCSS {
     public String dictPath;
     public String fontFolder;
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 24 : 20;
+
+    /**
+     * foliate-js keeps a font size and page margins of its own: it lays a page out differently
+     * from MuPDF, so the values that read well in one are not the ones that read well in the
+     * other, and a reader switching engines would otherwise have to set them again each time.
+     * fontSizeSp and the margins above are MuPDF's. See {@link #fontSize(boolean)} and the rest.
+     */
+    public volatile int fontSizeSpFoliate = FOLIATE_FONT_SIZE;
+    public int marginTopFoliate = FOLIATE_MARGIN_TOP;
+    public int marginBottomFoliate = FOLIATE_MARGIN_BOTTOM;
+    public int marginLeftFoliate = FOLIATE_MARGIN_SIDE;
+    public int marginRightFoliate = FOLIATE_MARGIN_SIDE;
+
+    /** foliate-js's own line spacing, in tenths of an em; lineHeight12 is MuPDF's. */
+    public int lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
+
+    public static final int FOLIATE_LINE_HEIGHT = 15;
+    public static final int FOLIATE_FONT_SIZE = 20;
+    public static final int FOLIATE_MARGIN_TOP = 6;
+    public static final int FOLIATE_MARGIN_BOTTOM = 4;
+    public static final int FOLIATE_MARGIN_SIDE = 5;
+
+    public int fontSize(boolean foliate) {
+        return foliate ? fontSizeSpFoliate : fontSizeSp;
+    }
+
+    public void setFontSize(boolean foliate, int value) {
+        if (foliate) {
+            fontSizeSpFoliate = value;
+        } else {
+            fontSizeSp = value;
+        }
+    }
+
+    public int lineHeight(boolean foliate) {
+        return foliate ? lineHeight12Foliate : lineHeight12;
+    }
+
+    public void setLineHeight(boolean foliate, int value) {
+        if (foliate) {
+            lineHeight12Foliate = value;
+        } else {
+            lineHeight12 = value;
+        }
+    }
+
+    public int marginTop(boolean foliate) {
+        return foliate ? marginTopFoliate : marginTop;
+    }
+
+    public int marginBottom(boolean foliate) {
+        return foliate ? marginBottomFoliate : marginBottom;
+    }
+
+    public int marginLeft(boolean foliate) {
+        return foliate ? marginLeftFoliate : marginLeft;
+    }
+
+    public int marginRight(boolean foliate) {
+        return foliate ? marginRightFoliate : marginRight;
+    }
+
+    public void setMarginTop(boolean foliate, int value) {
+        if (foliate) {
+            marginTopFoliate = value;
+        } else {
+            marginTop = value;
+        }
+    }
+
+    public void setMarginBottom(boolean foliate, int value) {
+        if (foliate) {
+            marginBottomFoliate = value;
+        } else {
+            marginBottom = value;
+        }
+    }
+
+    public void setMarginLeft(boolean foliate, int value) {
+        if (foliate) {
+            marginLeftFoliate = value;
+        } else {
+            marginLeft = value;
+        }
+    }
+
+    public void setMarginRight(boolean foliate, int value) {
+        if (foliate) {
+            marginRightFoliate = value;
+        } else {
+            marginRight = value;
+        }
+    }
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
     public String dirLastPath;
@@ -219,9 +312,15 @@ public class BookCSS {
         marginRight = 10;
         marginLeft = 10;
 
+        marginTopFoliate = FOLIATE_MARGIN_TOP;
+        marginBottomFoliate = FOLIATE_MARGIN_BOTTOM;
+        marginLeftFoliate = FOLIATE_MARGIN_SIDE;
+        marginRightFoliate = FOLIATE_MARGIN_SIDE;
+
         emptyLine = 1;
 
         lineHeight12 = 14;
+        lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
         paragraphHeight = 1;
         textIndent = 10;
         fontWeight = 400;
@@ -772,8 +871,15 @@ public class BookCSS {
      *                              asks for it.
      */
     public String generatedCss(String path, boolean includeBaseStylesheet) {
+        return generatedCss(path, includeBaseStylesheet, false);
+    }
+
+    /** @param foliate written for foliate-js, which keeps a line spacing of its own */
+    public String generatedCss(String path, boolean includeBaseStylesheet, boolean foliate) {
 
         lineHeight12 = Math.max(10, lineHeight12);
+        lineHeight12Foliate = Math.max(10, lineHeight12Foliate);
+        final int lineHeight = lineHeight(foliate);
 
         StringBuilder builder = new StringBuilder();
 
@@ -861,7 +967,7 @@ public class BookCSS {
                 builder.append(String.format("color:%s !important;", textColor));
             }
             //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 
@@ -874,7 +980,7 @@ public class BookCSS {
             builder.append("}");
             // </P> end
             builder.append("sub, sup{");
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append("}");
 
 

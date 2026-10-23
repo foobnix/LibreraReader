@@ -135,7 +135,7 @@ public class FoliateCss {
     static String after(final String bookPath) {
         String css;
         try {
-            css = BookCSS.get().generatedCss(bookPath, AppState.get().epubFoliateBaseCss);
+            css = BookCSS.get().generatedCss(bookPath, AppState.get().epubFoliateBaseCss, true);
         } catch (Throwable e) {
             LOG.e(e);
             return overrides();
@@ -178,13 +178,13 @@ public class FoliateCss {
     }
 
     /**
-     * The em size in device pixels, the same value MuPDF is laid out with
-     * ({@code Dips.spToPx(fontSizeSp)}). The page is captured at device pixels, so the bridge
+     * The em size in device pixels: foliate-js's own font size, kept apart from MuPDF's
+     * ({@code Dips.spToPx(fontSizeSpFoliate)}). The page is captured at device pixels, so the bridge
      * divides this by {@code window.devicePixelRatio} to get the CSS pixels to set on the root.
      */
     static int rootFontSizePx() {
         try {
-            return Math.max(1, Dips.spToPx(BookCSS.get().fontSizeSp));
+            return Math.max(1, Dips.spToPx(BookCSS.get().fontSizeSpFoliate));
         } catch (Throwable e) {
             LOG.e(e);
             return 16;
@@ -192,7 +192,7 @@ public class FoliateCss {
     }
 
     /**
-     * The page margins in device pixels, the same ones MuPDF is given.
+     * The page margins in device pixels: foliate-js's own, kept apart from MuPDF's.
      *
      * BookCSS stores a margin in tenths of an em and writes `@page` with twice that - so a stored
      * 10 is `em(20)`, two ems (see {@code BookCSS.em} and the `@page` block it builds). The
@@ -206,10 +206,10 @@ public class FoliateCss {
         final BookCSS css = BookCSS.get();
         final float em = rootFontSizePx();
         // `margin * 2 / 10` ems, as @page gets it
-        final float sides = (css.marginLeft + css.marginRight) * 0.2f * em;
+        final float sides = (css.marginLeftFoliate + css.marginRightFoliate) * 0.2f * em;
         // @page takes a line off the bottom margin; the paginator has one value for both, so the
         // two are averaged rather than one of them being dropped
-        final float band = (css.marginTop + Math.max(0, css.marginBottom - 1)) * 0.5f * 0.2f * em;
+        final float band = (css.marginTopFoliate + Math.max(0, css.marginBottomFoliate - 1)) * 0.5f * 0.2f * em;
         return new int[]{Math.max(0, Math.round(sides)), Math.max(0, Math.round(band))};
     }
 

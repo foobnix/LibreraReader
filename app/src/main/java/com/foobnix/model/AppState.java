@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import com.foobnix.LibreraBuildConfig;
+
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
 
 import android.content.Context;
@@ -391,12 +393,13 @@ public class AppState {
     public int antiAliasLevel = 8;//0-8
     /**
      * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_MUPDF} (the
-     * default, the engine Librera has always used) or {@link #PDF_ENGINE_PDFIUM}. It applies to
+     * engine Librera has always used, and the default) or {@link #PDF_ENGINE_PDFIUM}, the default
+     * in the F-Droid flavour. It applies to
      * .pdf files only - every other format is MuPDF's - and is read by
      * {@link org.ebookdroid.BookType#getCodecContextByPath(String)} each time a document is
      * opened, so the covers and the books follow the setting from the next open on.
      */
-    public int pdfEngine = PDF_ENGINE_MUPDF;
+    public int pdfEngine = "fdroid".equals(LibreraBuildConfig.FLAVOR) ? PDF_ENGINE_PDFIUM : PDF_ENGINE_MUPDF;
     /**
      * The engine a reflowable book is laid out, rendered and read with: {@link #EPUB_ENGINE_MUPDF}
      * (the default) or {@link #EPUB_ENGINE_FOLIATE}, which paginates it in a WebView with
