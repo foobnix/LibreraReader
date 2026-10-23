@@ -113,7 +113,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
             int isImageScale = AppState.get().enableImageScale ? 1 : 0;
 
             LOG.d("accel cache1", fname);
-            String accel = new EpubContext().getCacheFileName(fname)
+            // MuPDF checks a saved layout against the page size, the font size and the CSS, but
+            // knows nothing of Librera's image scaling, so that goes into the name
+            String accel = new EpubContext().getCacheFileName(fname + isImageScale)
                                             .getPath() + "+accel";
             accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
             LOG.d("accel cache2", accel, new File(accel).exists());

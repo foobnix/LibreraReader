@@ -82,7 +82,9 @@ public class HypenUtils {
         //LOG.d("applyHypnesNewMy-input",input);
 
         String input = input2;
-        final StringBuilder res = new StringBuilder();
+        // Read once per line rather than once per word: AppState.get() is synchronized
+        final boolean bionic = AppState.get().isBionicMode;
+        final boolean hyphens = BookCSS.get().isAutoHypens;
 
         if (AppState.get().isEnableTextReplacement && replacements != null) {
             for (SimpleMeta it : replacements) {
@@ -97,6 +99,9 @@ public class HypenUtils {
             }
         }
 
+        // Room for a soft hyphen in a word in every few, so the text is not copied as it grows
+        final StringBuilder res = new StringBuilder(input.length() + input.length() / 4);
+
         tokenize(input, new TokensListener() {
 
             @Override
@@ -108,11 +113,11 @@ public class HypenUtils {
             public void findText(String w) {
 
 
-                if (AppState.get().isBionicMode) {
+                if (bionic) {
                     res.append(TxtUtils.toBionicWord(w));
                     return;
                 }
-                if (!BookCSS.get().isAutoHypens) {
+                if (!hyphens) {
                     res.append(w);
                     return;
                 }
@@ -242,9 +247,13 @@ public class HypenUtils {
 
 
     public static void tokenize(String in, TokensListener listener) {
+        // Read once, not for every letter: AppState.get() is synchronized, and asking it for each
+        // letter was most of the time converting a book took
+        final boolean splitLongWords = AppState.get().isExperimental;
 
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < in.length(); i++) {
+        final int length = in.length();
+        for (int i = 0; i < length; i++) {
             char ch = in.charAt(i);
 
             if (ch == '<') {
@@ -276,7 +285,7 @@ public class HypenUtils {
 
             if (Character.isLetter(ch)) {
                 res.append(ch);
-                if (AppState.get().isExperimental && (res.length() >= 30 && res.length() % 30 == 0)) {
+                if (splitLongWords && (res.length() >= 30 && res.length() % 30 == 0)) {
                     res.append(" ");
                 }
             } else {
