@@ -78,6 +78,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     private int loadingCount = 0;
 
     private String m_fileName;
+    /** The mark this open left on the book, as BookOpenGuard knows it. */
+    private String guardMark;
     private String title;
 
     private DocumentWrapperUI wrapperControlls;
@@ -185,13 +187,13 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             final VerticalViewActivity activity = getManagedComponent();
             // The app died opening this book last time: offer LibreraX before trying again
             if (BookOpenGuard.crashedLastTime(activity, m_fileName)) {
-                BookOpenGuard.opened(activity, m_fileName);
+                BookOpenGuard.forget(activity, m_fileName);
                 LibreraX.showCannotOpen(activity, intent.getData(), true, () -> {
-                    BookOpenGuard.opening(activity, m_fileName);
+                    guardMark = BookOpenGuard.opening(activity, m_fileName);
                     startDecoding(m_fileName, password);
                 });
             } else {
-                BookOpenGuard.opening(activity, m_fileName);
+                guardMark = BookOpenGuard.opening(activity, m_fileName);
                 startDecoding(m_fileName, password);
             }
         }
@@ -255,7 +257,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     public void onDestroy() {
         // Closed, not crashed: whatever happened, it is not a crash to remember
-        BookOpenGuard.opened(getManagedComponent(), m_fileName);
+        BookOpenGuard.opened(getManagedComponent(), m_fileName, guardMark);
         if (wrapperControlls != null) {
             wrapperControlls.onDestroy();
         }
@@ -666,7 +668,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         currentPageChanged(dm.getCurrentIndex().docIndex, -1);
                         onBookLoaded.run();
 
-                        BookOpenGuard.openedSoon(getManagedComponent().view.getView(), m_fileName);
+                        BookOpenGuard.openedSoon(getManagedComponent().view.getView(), m_fileName, guardMark);
                         if (dm.getPageCount() == 0) {
                             LibreraX.showCannotOpen(getManagedComponent(), intent.getData(), false, null);
                         }
@@ -675,7 +677,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     }
                 }
                 if (result != null) {
-                    BookOpenGuard.opened(getManagedComponent(), m_fileName);
+                    BookOpenGuard.opened(getManagedComponent(), m_fileName, guardMark);
                 }
 
                 super.onPostExecute(result);

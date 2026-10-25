@@ -718,4 +718,7 @@
    <string name="get_librerax">Huenda LibreraX ikaweza kukifungua. Ipakue hapa:</string>
    <string name="open_in_librerax">Fungua katika LibreraX</string>
    <string name="try_again">Jaribu tena</string>
+   <string name="export_to_librerax">Hamisha kwenda LibreraX</string>
+   <string name="update_librerax">Sasisha LibreraX hadi toleo jipya zaidi ili kuleta kutoka Librera.</string>
+   <string name="reading_progress">Maendeleo ya kusoma</string>
 </resources>

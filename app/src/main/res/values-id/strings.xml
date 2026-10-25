@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX mungkin dapat membukanya. Unduh di sini:</string>
    <string name="open_in_librerax">Buka di LibreraX</string>
    <string name="try_again">Coba lagi</string>
+   <string name="export_to_librerax">Ekspor ke LibreraX</string>
+   <string name="update_librerax">Perbarui LibreraX ke versi terbaru untuk mengimpor dari Librera.</string>
+   <string name="reading_progress">Kemajuan membaca</string>
 </resources>

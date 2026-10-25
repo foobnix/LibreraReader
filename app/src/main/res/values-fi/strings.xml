@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX saattaa pystyä avaamaan sen. Lataa se täältä:</string>
    <string name="open_in_librerax">Avaa LibreraX:ssä</string>
    <string name="try_again">Yritä uudelleen</string>
+   <string name="export_to_librerax">Vie LibreraX:ään</string>
+   <string name="update_librerax">Päivitä LibreraX uusimpaan versioon tuodaksesi tiedot Librerasta.</string>
+   <string name="reading_progress">Lukuedistyminen</string>
 </resources>

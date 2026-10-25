@@ -147,8 +147,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     Handler flippingHandler = new Handler(Looper.getMainLooper());
     Handler handlerTimer = new Handler(Looper.getMainLooper());
     CopyAsyncTask loadinAsyncTask;
-    /** The book being opened, as BookOpenGuard knows it. */
+    /** The book being opened, as BookOpenGuard knows it, and the mark this open left on it. */
     private String guardedBook;
+    private String guardMark;
     Dialog rotatoinDialog;
     volatile Boolean isInitPosistion = null;
     volatile int isInitOrientation;
@@ -1087,9 +1088,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     return;
                 }
                 if ((Integer) result == 0) {
-                    BookOpenGuard.openedSoon(viewPager, guardedBook);
+                    BookOpenGuard.openedSoon(viewPager, guardedBook, guardMark);
                 } else {
-                    BookOpenGuard.opened(HorizontalViewActivity.this, guardedBook);
+                    BookOpenGuard.opened(HorizontalViewActivity.this, guardedBook, guardMark);
                 }
                 if ((Integer) result == -2) {
                     AppState.get().isEditMode = true;
@@ -1231,15 +1232,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // The app died opening this book last time: offer LibreraX before trying again
         guardedBook = Apps.getBookPathFromActivity(this);
         if (BookOpenGuard.crashedLastTime(this, guardedBook)) {
-            BookOpenGuard.opened(this, guardedBook);
+            BookOpenGuard.forget(this, guardedBook);
             LibreraX.showCannotOpen(this, getIntent().getData(), true, () -> {
                 if (loadinAsyncTask != null) {
-                    BookOpenGuard.opening(this, guardedBook);
+                    guardMark = BookOpenGuard.opening(this, guardedBook);
                     loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
                 }
             });
         } else {
-            BookOpenGuard.opening(this, guardedBook);
+            guardMark = BookOpenGuard.opening(this, guardedBook);
             loadinAsyncTask.executeOnExecutor(AppsConfig.executorServiceSingle);
         }
         updateIconMode();
@@ -1587,7 +1588,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         // Closed, not crashed: whatever happened, it is not a crash to remember
-        BookOpenGuard.opened(this, guardedBook);
+        BookOpenGuard.opened(this, guardedBook, guardMark);
 
         if (loadinAsyncTask != null) {
             try {
@@ -1665,7 +1666,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
-        //dc.saveCurrentPageAsync();
+        if (dc != null) {
+            dc.saveCurrentPageOnPause();
+        }
         //handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
         GFile.runSyncService(this);

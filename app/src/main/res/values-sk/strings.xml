@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX ju možno dokáže otvoriť. Stiahnite si ju tu:</string>
    <string name="open_in_librerax">Otvoriť v LibreraX</string>
    <string name="try_again">Skúsiť znova</string>
+   <string name="export_to_librerax">Exportovať do LibreraX</string>
+   <string name="update_librerax">Aktualizujte LibreraX na najnovšiu verziu, aby ste mohli importovať z Librera.</string>
+   <string name="reading_progress">Postup čítania</string>
 </resources>

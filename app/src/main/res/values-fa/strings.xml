@@ -718,4 +718,7 @@
    <string name="get_librerax">شاید LibreraX بتواند آن را باز کند. از اینجا دانلود کنید:</string>
    <string name="open_in_librerax">باز کردن در LibreraX</string>
    <string name="try_again">تلاش دوباره</string>
+   <string name="export_to_librerax">صدور به LibreraX</string>
+   <string name="update_librerax">برای وارد کردن از Librera، LibreraX را به آخرین نسخه به‌روز کنید.</string>
+   <string name="reading_progress">پیشرفت مطالعه</string>
 </resources>

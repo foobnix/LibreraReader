@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX kan het mogelijk openen. Download het hier:</string>
    <string name="open_in_librerax">Openen in LibreraX</string>
    <string name="try_again">Opnieuw proberen</string>
+   <string name="export_to_librerax">Exporteren naar LibreraX</string>
+   <string name="update_librerax">Werk LibreraX bij naar de nieuwste versie om vanuit Librera te importeren.</string>
+   <string name="reading_progress">Leesvoortgang</string>
 </resources>

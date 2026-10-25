@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX fortasse eum aperire poterit. Hinc depromite:</string>
    <string name="open_in_librerax">Aperi in LibreraX</string>
    <string name="try_again">Iterum conare</string>
+   <string name="export_to_librerax">Exporta in LibreraX</string>
+   <string name="update_librerax">Renova LibreraX ad ultimam versionem ut ex Librera importes.</string>
+   <string name="reading_progress">Progressus lectionis</string>
 </resources>

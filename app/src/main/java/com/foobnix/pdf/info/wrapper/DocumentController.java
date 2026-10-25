@@ -944,7 +944,7 @@ public abstract class DocumentController {
         try {
             if (TTSEngine.get().isPlaying()) {
 
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                AppBook bs = SettingsManager.refreshBookSettings(getCurrentBook().getPath());
 
                 if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
@@ -1020,16 +1020,38 @@ public abstract class DocumentController {
         return AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN;
     }
 
+    /**
+     * Writes the position the moment the reader leaves the screen - locked, sent to the
+     * background, or closed.
+     *
+     * Nothing was written on pause: a page turned only queued a write a second later, so a
+     * phone locked straight after a page turn kept the new page only in memory, for a process
+     * the system may kill in the background before it ever comes back to the front.
+     */
+    public void saveCurrentPageOnPause() {
+        handler2.removeCallbacks(saveCurrentPageRunnable);
+        if (activity.isFinishing()) {
+            // The document may already be closed, so its text cannot be asked for: what is in
+            // memory - the page, kept up to date on every page turn - is what is written.
+            SharedBooks.save(SettingsManager.getBookSettings());
+        } else {
+            saveCurrentPageAsync();
+        }
+    }
+
     public void onResume() {
         resetReadTimer();
 
         try {
             if (getPageCount() != 0) {
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                AppBook bs = SettingsManager.refreshBookSettings(getCurrentBook().getPath());
                 int page = bs.getCurrentPage(getPageCount()).viewIndex + 1;
-                if (getCurentPage() != page) {
+                // Both pages counted from 1. The book mode's getCurentPage() counts from 0, so it
+                // never equalled the saved page, and every return to the front searched the
+                // page text and turned the page, on the main thread, even with nothing to do.
+                if (getCurentPageFirst1() != page) {
                     page = findBookmarkPage(page, null, bs.pt, bs.cfi);
-                    if (getCurentPage() != page) {
+                    if (getCurentPageFirst1() != page) {
                         onGoToPage(page);
                     }
                 }

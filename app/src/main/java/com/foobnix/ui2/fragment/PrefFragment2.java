@@ -1948,6 +1948,16 @@ public class PrefFragment2 extends UIFragment {
         asButton(inflate.findViewById(R.id.exportButton))
                 .setOnClickListener(v -> PrefDialogs.exportDialog(getActivity()));
 
+        roundCorners(inflate.findViewById(R.id.exportToLibreraXIcon));
+        TextView exportToLibreraX = (TextView) asButton(inflate.findViewById(R.id.exportToLibreraX));
+        // A one-line button: the mark is kept to a glyph's size, not the 36dp of the app boxes
+        Drawable libreraXMark = exportToLibreraX.getCompoundDrawablesRelative()[0];
+        if (libreraXMark != null) {
+            libreraXMark.setBounds(0, 0, Dips.dpToPx(22), Dips.dpToPx(22));
+            exportToLibreraX.setCompoundDrawablesRelative(libreraXMark, null, null, null);
+        }
+        exportToLibreraX.setOnClickListener(v -> LibreraX.exportTo(getActivity()));
+
 
         // folders
 

@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX อาจเปิดได้ ดาวน์โหลดได้ที่นี่:</string>
    <string name="open_in_librerax">เปิดใน LibreraX</string>
    <string name="try_again">ลองอีกครั้ง</string>
+   <string name="export_to_librerax">ส่งออกไปยัง LibreraX</string>
+   <string name="update_librerax">อัปเดต LibreraX เป็นเวอร์ชันล่าสุดเพื่อนำเข้าจาก Librera</string>
+   <string name="reading_progress">ความคืบหน้าการอ่าน</string>
 </resources>

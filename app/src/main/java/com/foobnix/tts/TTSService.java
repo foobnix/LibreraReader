@@ -1162,7 +1162,7 @@ import java.util.List;
                 AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
                 load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
 
-                SharedBooks.saveAsync(load);
+                SharedBooks.saveNow(load);
                 AppProfile.save(this);
             }, "@T TTS Save").start();
         }

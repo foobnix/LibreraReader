@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX bunu açabilir. Buradan indirin:</string>
    <string name="open_in_librerax">LibreraX ile aç</string>
    <string name="try_again">Tekrar dene</string>
+   <string name="export_to_librerax">LibreraX\'e aktar</string>
+   <string name="update_librerax">Librera\'dan içe aktarmak için LibreraX\'i en son sürüme güncelleyin.</string>
+   <string name="reading_progress">Okuma ilerlemesi</string>
 </resources>

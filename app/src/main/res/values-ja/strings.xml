@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX なら開ける可能性があります。こちらからダウンロードしてください:</string>
    <string name="open_in_librerax">LibreraX で開く</string>
    <string name="try_again">再試行</string>
+   <string name="export_to_librerax">LibreraX にエクスポート</string>
+   <string name="update_librerax">Librera からインポートするには、LibreraX を最新版に更新してください。</string>
+   <string name="reading_progress">読書の進捗</string>
 </resources>

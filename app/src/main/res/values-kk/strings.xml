@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX оны аша алуы мүмкін. Осы жерден жүктеп алыңыз:</string>
    <string name="open_in_librerax">LibreraX-те ашу</string>
    <string name="try_again">Қайталау</string>
+   <string name="export_to_librerax">LibreraX-ке экспорттау</string>
+   <string name="update_librerax">Librera-дан импорттау үшін LibreraX-ті соңғы нұсқаға жаңартыңыз.</string>
+   <string name="reading_progress">Оқу барысы</string>
 </resources>

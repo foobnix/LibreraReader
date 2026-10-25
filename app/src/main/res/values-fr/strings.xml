@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX pourra peut-être l\'ouvrir. Téléchargez-le ici :</string>
    <string name="open_in_librerax">Ouvrir dans LibreraX</string>
    <string name="try_again">Réessayer</string>
+   <string name="export_to_librerax">Exporter vers LibreraX</string>
+   <string name="update_librerax">Mettez à jour LibreraX vers la dernière version pour importer depuis Librera.</string>
+   <string name="reading_progress">Progression de lecture</string>
 </resources>

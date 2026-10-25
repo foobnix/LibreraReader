@@ -251,6 +251,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onPause();
         LOG.d("onPause", this.getClass());
         getController().onPause();
+        try {
+            getController().getListener().saveCurrentPageOnPause();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
         AppProfile.save(this);

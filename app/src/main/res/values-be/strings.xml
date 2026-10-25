@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX можа адкрыць яе. Спампуйце тут:</string>
    <string name="open_in_librerax">Адкрыць у LibreraX</string>
    <string name="try_again">Паспрабаваць зноў</string>
+   <string name="export_to_librerax">Экспарт у LibreraX</string>
+   <string name="update_librerax">Абнавіце LibreraX да апошняй версіі, каб імпартаваць з Librera.</string>
+   <string name="reading_progress">Прагрэс чытання</string>
 </resources>

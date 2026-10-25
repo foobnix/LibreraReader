@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX gali pavykti ją atidaryti. Atsisiųskite čia:</string>
    <string name="open_in_librerax">Atidaryti su LibreraX</string>
    <string name="try_again">Bandyti dar kartą</string>
+   <string name="export_to_librerax">Eksportuoti į LibreraX</string>
+   <string name="update_librerax">Atnaujinkite LibreraX iki naujausios versijos, kad galėtumėte importuoti iš Librera.</string>
+   <string name="reading_progress">Skaitymo eiga</string>
 </resources>

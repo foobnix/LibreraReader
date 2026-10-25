@@ -718,4 +718,7 @@
    <string name="get_librerax">Baliteke LibreraX-ek irekitzea. Deskargatu hemen:</string>
    <string name="open_in_librerax">Ireki LibreraX-en</string>
    <string name="try_again">Saiatu berriro</string>
+   <string name="export_to_librerax">Esportatu LibreraX-era</string>
+   <string name="update_librerax">Eguneratu LibreraX azken bertsiora Librera-tik inportatzeko.</string>
+   <string name="reading_progress">Irakurketaren aurrerapena</string>
 </resources>

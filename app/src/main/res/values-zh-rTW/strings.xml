@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX 或許能開啟它。在此下載：</string>
    <string name="open_in_librerax">用 LibreraX 開啟</string>
    <string name="try_again">重試</string>
+   <string name="export_to_librerax">匯出到 LibreraX</string>
+   <string name="update_librerax">請將 LibreraX 更新至最新版本，以便從 Librera 匯入。</string>
+   <string name="reading_progress">閱讀進度</string>
 </resources>

@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX có thể mở được. Tải xuống tại đây:</string>
    <string name="open_in_librerax">Mở bằng LibreraX</string>
    <string name="try_again">Thử lại</string>
+   <string name="export_to_librerax">Xuất sang LibreraX</string>
+   <string name="update_librerax">Cập nhật LibreraX lên phiên bản mới nhất để nhập từ Librera.</string>
+   <string name="reading_progress">Tiến độ đọc</string>
 </resources>

@@ -718,4 +718,7 @@
    <string name="get_librerax">Podet èssere chi LibreraX ddu potat abèrrere. Iscàrriga·ddu dae inoghe:</string>
    <string name="open_in_librerax">Aberi in LibreraX</string>
    <string name="try_again">Torra a proare</string>
+   <string name="export_to_librerax">Esporta a LibreraX</string>
+   <string name="update_librerax">Agiorna LibreraX a s\'ùrtima versione pro importare dae Librera.</string>
+   <string name="reading_progress">Progressu de letura</string>
 </resources>

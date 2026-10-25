@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX-ന് ഇത് തുറക്കാൻ കഴിഞ്ഞേക്കും. ഇവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യൂ:</string>
    <string name="open_in_librerax">LibreraX-ൽ തുറക്കുക</string>
    <string name="try_again">വീണ്ടും ശ്രമിക്കുക</string>
+   <string name="export_to_librerax">LibreraX-ലേക്ക് എക്സ്പോർട്ട് ചെയ്യുക</string>
+   <string name="update_librerax">Librera-യിൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യാൻ LibreraX ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക.</string>
+   <string name="reading_progress">വായനാ പുരോഗതി</string>
 </resources>

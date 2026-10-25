@@ -3,7 +3,6 @@ package com.foobnix.android.utils;
 import com.foobnix.mobi.parser.IOUtils;
 
 import com.foobnix.LibreraApp;
-import com.foobnix.pdf.info.AppsConfig;
 
 import org.librera.JSONArray;
 import org.librera.JSONException;
@@ -21,12 +20,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class IO {
 
     static HashMap<Integer, Object> locks = new HashMap<>();
 
-    public static Object getLock(File file) {
+    /**
+     * The thread every background write goes through, in the order the writes were asked for.
+     *
+     * It used to be the app's one shared worker, the same thread that renders book pages and
+     * reads outlines - so a page turned and the phone locked left the reading position queued
+     * behind work that could take seconds, and a process killed in the background in the
+     * meantime never wrote it at all.
+     */
+    private static final ExecutorService writer = Executors.newSingleThreadExecutor(r -> new Thread(r, "@T IO writer"));
+
+    // Two threads asking for the same file at once could each make a lock of their own.
+    public static synchronized Object getLock(File file) {
         Object l = locks.get(file.hashCode());
         if (l == null) {
             l = new Object();
@@ -40,7 +52,7 @@ public class IO {
 
     public static void writeObj(File file, Object o) {
         //new Thread(() -> writeObjAsync(file, o), "@T writeObj").start();
-        AppsConfig.executorServiceSingle.execute(() -> writeObjSync(file, o));
+        writer.execute(() -> writeObjSync(file, o));
     }
 
     public static void writeObjSync(File file, Object o) {
@@ -89,8 +101,35 @@ public class IO {
 
     }
 
-    public static volatile String cacheFile;
-    public static volatile String cacheString;
+    /**
+     * The last file read or written, held as one value so its name and its content can never
+     * come from two different files.
+     *
+     * They used to be two separate fields. A thread that had set the name but not yet the
+     * content left a moment where another thread asking for that file was handed the previous
+     * file's text - and a save reading the progress file that way wrote it back as some other
+     * file plus one book, losing every other book's position. Nor was the content ever checked
+     * against the disk, so a file replaced by sync went on being read as it was before.
+     */
+    private static final class Cached {
+        final String path;
+        final long modified;
+        final long length;
+        final String content;
+
+        Cached(File file, String content) {
+            this.path = file.getPath();
+            this.modified = file.lastModified();
+            this.length = file.length();
+            this.content = content;
+        }
+
+        boolean isFor(File file) {
+            return path.equals(file.getPath()) && modified == file.lastModified() && length == file.length();
+        }
+    }
+
+    private static volatile Cached cached;
 
     public static String readString(File file) {
         return readString(file, false);
@@ -109,16 +148,15 @@ public class IO {
 
 
     public static String readString(File file, boolean withSeparator) {
-        if (file.getPath().equals(cacheFile)) {
+        final Cached hit = cached;
+        if (!withSeparator && hit != null && hit.isFor(file)) {
             LOG.d("lib-IO", "read cache", file);
-            return cacheString;
+            return hit.content;
         }
         synchronized (getLock(file)) {
 
             try {
                 if (!file.exists()) {
-                    cacheString = "";
-                    cacheFile = file.getPath();
                     return "";
                 }
                 LOG.d("lib-IO", "read file", file);
@@ -134,14 +172,14 @@ public class IO {
                     }
                 }
                 reader.close();
-                cacheFile = file.getPath();
-                cacheString = builder.toString();
-                return cacheString;
+                final String content = builder.toString();
+                if (!withSeparator) {
+                    cached = new Cached(file, content);
+                }
+                return content;
             } catch (Exception e) {
                 LOG.e(e);
             }
-            cacheFile = file.getPath();
-            cacheString = "";
             return "";
         }
     }
@@ -157,13 +195,32 @@ public class IO {
                 LOG.d("lib-IO", "write file", file);
                 new File(file.getParent()).mkdirs();
 
-                OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-                out.write(string.getBytes());
-                out.flush();
-                out.close();
+                // Written beside the file and then put in its place, so the file is always
+                // either the old content or the new one. Written in place, a process killed
+                // in the background part way through - a locked phone is where that happens -
+                // left it empty or cut short, and an unreadable progress file reads as no
+                // progress at all: every book back to its first page.
+                final File tmp = new File(file.getPath() + ".tmp");
+                OutputStream out = new BufferedOutputStream(new FileOutputStream(tmp));
+                try {
+                    out.write(string.getBytes());
+                    out.flush();
+                } finally {
+                    out.close();
+                }
+                if (!tmp.renameTo(file)) {
+                    LOG.d("lib-IO", "rename failed, writing in place", file);
+                    tmp.delete();
+                    OutputStream direct = new BufferedOutputStream(new FileOutputStream(file));
+                    try {
+                        direct.write(string.getBytes());
+                        direct.flush();
+                    } finally {
+                        direct.close();
+                    }
+                }
 
-                cacheString = string;
-                cacheFile = file.getPath();
+                cached = new Cached(file, string);
 
             } catch (Exception e) {
                 LOG.e(e);

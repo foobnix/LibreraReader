@@ -718,4 +718,7 @@
    <string name="get_librerax">Lehet, hogy a LibreraX meg tudja nyitni. Töltse le innen:</string>
    <string name="open_in_librerax">Megnyitás a LibreraX-ben</string>
    <string name="try_again">Újra</string>
+   <string name="export_to_librerax">Exportálás a LibreraX-be</string>
+   <string name="update_librerax">Frissítse a LibreraX-et a legújabb verzióra a Librerából való importáláshoz.</string>
+   <string name="reading_progress">Olvasási előrehaladás</string>
 </resources>

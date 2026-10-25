@@ -15,9 +15,12 @@ import org.librera.LinkedJSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SharedBooks {
 
@@ -233,14 +236,21 @@ public class SharedBooks {
     }
 
     public static void deleteProgress(String path) {
-        cache.clear();
-        for (File fileName : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
-            LinkedJSONObject linkedJsonObject = IO.readJsonObject(fileName);
-            String key = ExtUtils.getFileName(path);
-            if (linkedJsonObject.has(key)) {
-                linkedJsonObject.remove(key);
-                IO.writeObjSync(fileName, linkedJsonObject);
-                LOG.d("deleteProgress", path);
+        final String key = ExtUtils.getFileName(path);
+        synchronized (fileLock) {
+            // A record still waiting to be written would put the book straight back.
+            synchronized (pending) {
+                pending.remove(key);
+            }
+            written.remove(key);
+            cache.clear();
+            for (File fileName : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
+                LinkedJSONObject linkedJsonObject = IO.readJsonObject(fileName);
+                if (linkedJsonObject.has(key)) {
+                    linkedJsonObject.remove(key);
+                    IO.writeObjSync(fileName, linkedJsonObject);
+                    LOG.d("deleteProgress", path);
+                }
             }
         }
     }
@@ -316,11 +326,35 @@ public class SharedBooks {
         save(bs, true);
     }
 
-    public static void saveAsync(AppBook bs) {
+    /** The same, written before this returns: for a thread of its own that may not live long. */
+    public static void saveNow(AppBook bs) {
         save(bs, false);
     }
 
-    private static void save(AppBook bs, boolean inThread) {
+    /**
+     * Each book's newest record not yet in this device's progress file. A save only ever adds
+     * to it, and whichever write comes next takes all of it.
+     *
+     * A save used to read the file, put its book in and hand the whole file to a background
+     * write. Two saves close together - the reader's and the read-aloud service's, or two books -
+     * each read the file before the other's write had landed, and whichever wrote last put back
+     * the position the other had just moved on from. Writes queued in one order and run in
+     * another did the same. Now the file is only ever read and written by one write at a time,
+     * and a write carries the newest record of every book, so its order no longer matters.
+     */
+    private static final Map<String, LinkedJSONObject> pending = new LinkedHashMap<>();
+
+    /** Held for the whole read-and-write of this device's progress file. */
+    private static final Object fileLock = new Object();
+
+    /**
+     * The progress file's own thread. It used to share the app's one worker with page rendering
+     * and outline loading, so a page turned just before the phone was locked could wait behind
+     * them - and be lost with the process if the system killed it in the background first.
+     */
+    private static final ExecutorService writer = Executors.newSingleThreadExecutor(r -> new Thread(r, "@T SharedBooks"));
+
+    private static void save(AppBook bs, boolean inBackground) {
         if (bs == null) {
             LOG.d("SharedBooks-Save", "null");
             return;
@@ -331,42 +365,63 @@ public class SharedBooks {
             return;
         }
 
-        if (!hasChanged(ExtUtils.getFileName(bs.path), bs.hashCode())) {
+        if (bs.p > 1 || bs.p < 0) {
+            bs.p = 0;
+        }
+
+        final String fileName = ExtUtils.getFileName(bs.path);
+        if (!hasChanged(fileName, bs.hashCode())) {
             LOG.d("SharedBooks-Save", "skip", bs.path);
             return;
         }
-        LOG.d("SharedBooks-Save", "inThread " + inThread);
+        LOG.d("SharedBooks-Save", "inBackground " + inBackground);
 
         try {
-            final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
-
-            if (bs.p > 1 || bs.p < 0) {
-                bs.p = 0;
-            }
-
-            final String fileName = ExtUtils.getFileName(bs.path);
+            // Taken now, on the thread that changed it: the write may run later, and must write
+            // the record as it is at this save, not as it is by then.
             final LinkedJSONObject value = Objects.toJSONObject(bs);
-            obj.put(fileName, value);
             cache.put(fileName, bs);
-
+            synchronized (pending) {
+                pending.put(fileName, value);
+            }
             LOG.d("SharedBooks-Save", value);
-
 
             // Our own file is about to change, so the next pass over the files has to read it
             // again rather than trust what it read last time.
             lastRead.remove(AppProfile.syncProgress.getPath());
 
-            if (inThread) {
-                IO.writeObj(AppProfile.syncProgress, obj);
+            if (inBackground) {
+                writer.execute(SharedBooks::flush);
             } else {
-                IO.writeObjSync(AppProfile.syncProgress, obj);
+                flush();
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-
-
     }
 
+    /** Writes every record still waiting into this device's progress file, in one pass. */
+    public static void flush() {
+        synchronized (fileLock) {
+            final Map<String, LinkedJSONObject> batch;
+            synchronized (pending) {
+                if (pending.isEmpty()) {
+                    return;
+                }
+                batch = new LinkedHashMap<>(pending);
+                pending.clear();
+            }
+            try {
+                final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+                for (Map.Entry<String, LinkedJSONObject> entry : batch.entrySet()) {
+                    obj.put(entry.getKey(), entry.getValue());
+                }
+                IO.writeObjSync(AppProfile.syncProgress, obj);
+                LOG.d("SharedBooks-flush", batch.keySet());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+    }
 
 }

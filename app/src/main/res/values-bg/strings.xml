@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX може да успее да я отвори. Изтеглете го оттук:</string>
    <string name="open_in_librerax">Отваряне в LibreraX</string>
    <string name="try_again">Опитай отново</string>
+   <string name="export_to_librerax">Експорт в LibreraX</string>
+   <string name="update_librerax">Обновете LibreraX до последната версия, за да импортирате от Librera.</string>
+   <string name="reading_progress">Напредък в четенето</string>
 </resources>

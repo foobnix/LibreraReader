@@ -2,6 +2,7 @@ package org.ebookdroid.common.settings;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppBook;
+import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
@@ -30,6 +31,39 @@ public class SettingsManager {
         }
     }
 
+
+    /**
+     * The open book's record, brought up to date with the files when the reader comes back to
+     * the front - read aloud in the background, or read on another device and synced.
+     *
+     * {@link #getBookSettings(String)} replaces the record with whatever the files hold, and
+     * that was wrong here: sync clears the cache every time the reader is paused, so the files
+     * were read afresh on every unlock, and a page turned just before the lock - not written
+     * yet, or written after the files were read - was thrown away and the reader turned back to
+     * the page before it. The record on screen is kept unless the files hold a newer position.
+     */
+    public static AppBook refreshBookSettings(final String fileName) {
+        lock.writeLock().lock();
+        try {
+            final AppBook held = current;
+            final AppBook loaded = SharedBooks.load(fileName);
+            if (held != null && held != loaded && held.t > loaded.t
+                    && ExtUtils.getFileName(held.path).equals(ExtUtils.getFileName(fileName))) {
+                LOG.d("load-refreshBookSettings", "keep held", held.p, loaded.p);
+                held.path = fileName;
+                SharedBooks.cache.put(ExtUtils.getFileName(fileName), held);
+                return held;
+            }
+            current = loaded;
+            LOG.d("load-refreshBookSettings", current.p, fileName);
+            return current;
+        } catch (Exception e) {
+            LOG.e(e);
+            return current;
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
 
     public static AppBook getBookSettings() {
         lock.readLock().lock();

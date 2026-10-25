@@ -718,4 +718,7 @@
    <string name="get_librerax">LibreraX에서 열 수 있을지도 모릅니다. 여기에서 다운로드하세요:</string>
    <string name="open_in_librerax">LibreraX에서 열기</string>
    <string name="try_again">다시 시도</string>
+   <string name="export_to_librerax">LibreraX로 내보내기</string>
+   <string name="update_librerax">Librera에서 가져오려면 LibreraX를 최신 버전으로 업데이트하세요.</string>
+   <string name="reading_progress">읽기 진행률</string>
 </resources>

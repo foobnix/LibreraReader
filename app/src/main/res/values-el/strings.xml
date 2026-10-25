@@ -718,4 +718,7 @@
    <string name="get_librerax">Το LibreraX ίσως μπορεί να το ανοίξει. Κατεβάστε το εδώ:</string>
    <string name="open_in_librerax">Άνοιγμα στο LibreraX</string>
    <string name="try_again">Δοκιμάστε ξανά</string>
+   <string name="export_to_librerax">Εξαγωγή στο LibreraX</string>
+   <string name="update_librerax">Ενημερώστε το LibreraX στην τελευταία έκδοση για εισαγωγή από το Librera.</string>
+   <string name="reading_progress">Πρόοδος ανάγνωσης</string>
 </resources>

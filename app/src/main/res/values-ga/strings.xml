@@ -718,4 +718,7 @@
    <string name="get_librerax">B\'fhéidir go mbeidh LibreraX in ann é a oscailt. Íoslódáil anseo é:</string>
    <string name="open_in_librerax">Oscail in LibreraX</string>
    <string name="try_again">Bain triail eile as</string>
+   <string name="export_to_librerax">Easpórtáil go LibreraX</string>
+   <string name="update_librerax">Nuashonraigh LibreraX go dtí an leagan is déanaí chun iompórtáil ó Librera.</string>
+   <string name="reading_progress">Dul chun cinn léitheoireachta</string>
 </resources>

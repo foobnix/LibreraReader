@@ -718,4 +718,7 @@
    <string name="get_librerax">ייתכן ש-LibreraX יוכל לפתוח אותו. הורידו אותו מכאן:</string>
    <string name="open_in_librerax">פתיחה ב-LibreraX</string>
    <string name="try_again">ניסיון חוזר</string>
+   <string name="export_to_librerax">ייצוא ל-LibreraX</string>
+   <string name="update_librerax">יש לעדכן את LibreraX לגרסה האחרונה כדי לייבא מ-Librera.</string>
+   <string name="reading_progress">התקדמות קריאה</string>
 </resources>
