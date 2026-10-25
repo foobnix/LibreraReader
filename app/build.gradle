@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7487
-    FDroidVersionNumber = "10.0.10"
+    FDroidCodeNumber = 7491
+    FDroidVersionNumber = "10.0.11"
 }
 
 
@@ -495,20 +495,19 @@ tasks.register("copyApks") {
         // LibreraX and the other projects
         def betaFolder = "LibreraPro"
 
-        if (project.hasProperty("beta")) {
-            delete fileTree("$buildsDir/$betaFolder").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
-        }
+        // A beta and a release both replace what is in the Testing folders the testers read
+        delete fileTree("$buildsDir/$betaFolder").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
 
-        // Second destination of the betas, the folder the testers read: librera_beta_dir in the
-        // global ~/.gradle/gradle.properties. Unset, a beta only goes to buildsDir.
-        def betaDir = project.hasProperty("beta") ? project.findProperty("librera_beta_dir") : null
+        // Second Testing folder (Dropbox): librera_beta_dir in the global
+        // ~/.gradle/gradle.properties. Unset, the builds only go to buildsDir (Google Drive).
+        def betaDir = project.findProperty("librera_beta_dir")
         if (betaDir) {
-            delete fileTree("$betaDir/$betaFolder").include("${own}.apk", "${own}.aab")
+            delete fileTree("$betaDir/$betaFolder").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
         }
 
-        // Where the releases go: librera_release_dir in the global ~/.gradle/gradle.properties,
-        // and only there. buildsDir and librera_beta_dir are the Testing folders the testers
-        // read (Google Drive, Dropbox); a release never goes into them.
+        // Where the releases are kept: librera_release_dir in the global
+        // ~/.gradle/gradle.properties, a folder per version. A release goes to the Testing
+        // folders as well, so the testers have the released builds in the usual place.
         def releaseDir = project.hasProperty("release") ? project.findProperty("librera_release_dir") : null
         if (project.hasProperty("release") && !releaseDir) {
             throw new GradleException("librera_release_dir is not set in ~/.gradle/gradle.properties")
@@ -519,12 +518,9 @@ tasks.register("copyApks") {
             delete fileTree("$releaseDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
         }
 
-        def destinations = []
-        if (project.hasProperty("beta")) {
-            destinations.add("$buildsDir/$betaFolder")
-            if (betaDir) {
-                destinations.add("$betaDir/$betaFolder")
-            }
+        def destinations = ["$buildsDir/$betaFolder"]
+        if (betaDir) {
+            destinations.add("$betaDir/$betaFolder")
         }
         if (project.hasProperty("release")) {
             destinations.add("$releaseDir/$versionNumber")

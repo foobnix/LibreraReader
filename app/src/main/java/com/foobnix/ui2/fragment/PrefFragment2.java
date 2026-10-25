@@ -2479,13 +2479,15 @@ public class PrefFragment2 extends UIFragment {
 
             CheckBox isAccentTextColor = inflate.findViewById(R.id.isAccentTextColor);
 
+            // Restored before the listener is set: onAccent overwrites the status bar colors, and
+            // building this screen must not reset the ones the user chose in the reader
+            isAccentTextColor.setChecked(AppState.get().isUiTextColor);
             isAccentTextColor.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                 @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     AppState.get().isUiTextColor = b;
                     onAccent.run();
                 }
             });
-            isAccentTextColor.setChecked(AppState.get().isUiTextColor);
 
             for (String color : AppState.ACCENT_COLORS) {
                 final int intColor = Color.parseColor(color);
