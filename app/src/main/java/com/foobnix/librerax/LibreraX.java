@@ -24,6 +24,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.MyProgressDialog;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -217,6 +218,8 @@ public class LibreraX {
 
     private static void export(final Activity a, final List<String> names) {
         final String profile = AppProfile.getCurrent();
+        final MyProgressDialog wait = MyProgressDialog.show(a, a.getString(R.string.please_wait));
+        wait.setCancelable(false);
         new Thread(() -> {
             File zip = null;
             final List<Uri> books = new ArrayList<>();
@@ -230,6 +233,9 @@ public class LibreraX {
             a.runOnUiThread(() -> {
                 if (a.isFinishing()) {
                     return;
+                }
+                if (wait != null && wait.isShowing()) {
+                    wait.dismiss();
                 }
                 if (done == null) {
                     Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
