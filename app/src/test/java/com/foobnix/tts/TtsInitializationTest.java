@@ -1,6 +1,9 @@
 package com.foobnix.tts;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.speech.tts.TextToSpeech;
@@ -26,6 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Answers.CALLS_REAL_METHODS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -178,6 +182,48 @@ public class TtsInitializationTest {
         });
     }
 
+    @Test public void anEngineOutsideTheSystemImageIsNamed() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            // A phone without Google's engine: the only one is user-installed and no default
+            // is set, so Android's getDefaultEngine() has nothing to report.
+            installEngines("org.woheller69.ttsengine");
+            TextToSpeech engine = tts.getTTS();
+            TextToSpeech.EngineInfo sherpa = new TextToSpeech.EngineInfo();
+            sherpa.name = "org.woheller69.ttsengine";
+            sherpa.label = "SherpaTTS";
+            List<TextToSpeech.EngineInfo> installed = new ArrayList<TextToSpeech.EngineInfo>();
+            installed.add(sherpa);
+            when(engine.getEngines()).thenReturn(installed);
+            callbacks.get(0).onInit(TextToSpeech.SUCCESS);
+
+            assertEquals("SherpaTTS", tts.getCurrentEngineName());
+        });
+    }
+
+    @Test public void noEnginesIsKnownBeforeTheEngineIsCreated() throws Exception {
+        withTtsEngine((tts, callbacks, engines) -> {
+            installEngines();
+            assertTrue(tts.hasNoEngines());
+            assertEquals(0, engines.constructed().size());
+
+            installEngines("com.reecedunn.espeak");
+            assertFalse(tts.hasNoEngines());
+        });
+    }
+
+    private static void installEngines(String... packages) {
+        List<ResolveInfo> services = new ArrayList<ResolveInfo>();
+        for (String name : packages) {
+            ResolveInfo info = new ResolveInfo();
+            info.serviceInfo = new ServiceInfo();
+            info.serviceInfo.packageName = name;
+            services.add(info);
+        }
+        PackageManager pm = mock(PackageManager.class);
+        when(pm.queryIntentServices(any(), anyInt())).thenReturn(services);
+        when(LibreraApp.context.getPackageManager()).thenReturn(pm);
+    }
+
     private interface Scenario {
         void run(TTSEngine tts, List<OnInitListener> callbacks, MockedConstruction<TextToSpeech> engines);
     }
@@ -198,7 +244,7 @@ public class TtsInitializationTest {
         try (MockedStatic<Resources> resources = mockStatic(Resources.class)) {
             resources.when(Resources::getSystem).thenReturn(system);
             try (MockedStatic<LOG> logs = mockStatic(LOG.class);
-                 MockedStatic<TTSEngine> singleton = mockStatic(TTSEngine.class);
+                 MockedStatic<TTSEngine> singleton = mockStatic(TTSEngine.class, CALLS_REAL_METHODS);
                  MockedStatic<AppState> state = mockStatic(AppState.class);
                  MockedStatic<AppSP> preferences = mockStatic(AppSP.class);
                  MockedConstruction<TextToSpeech> engines = mockConstruction(TextToSpeech.class,

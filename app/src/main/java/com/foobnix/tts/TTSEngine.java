@@ -65,6 +65,8 @@ public class TTSEngine {
     private static final String TAG = "TTSEngine";
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
+    // The engine Librera asked for by name, or null when it left the choice to the system.
+    private volatile String enginePackage;
     private boolean initialized;
     private boolean initializationFailed;
     private String pendingText;
@@ -178,6 +180,7 @@ public class TTSEngine {
                 ttsEngine.shutdown();
             }
             ttsEngine = null;
+            enginePackage = null;
         }
 
     }
@@ -217,6 +220,7 @@ public class TTSEngine {
             // In that case pick an engine that is actually present instead of inheriting the
             // broken default.
             final String fallback = resolveUsableEngine(LibreraApp.context);
+            enginePackage = fallback;
             final int currentGeneration = ++generation;
             initialized = false;
             OnInitListener init = status -> {
@@ -275,9 +279,8 @@ public class TTSEngine {
      */
     static String resolveUsableEngine(Context c) {
         try {
-            final List<ResolveInfo> installed = c.getPackageManager()
-                    .queryIntentServices(new Intent(TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE), 0);
-            if (installed == null || installed.isEmpty()) {
+            final List<ResolveInfo> installed = installedEngines(c);
+            if (installed.isEmpty()) {
                 return null;
             }
 
@@ -312,6 +315,12 @@ public class TTSEngine {
             LOG.e(e);
             return null;
         }
+    }
+
+    private static List<ResolveInfo> installedEngines(Context c) {
+        final List<ResolveInfo> installed = c.getPackageManager()
+                .queryIntentServices(new Intent(TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE), 0);
+        return installed == null ? new ArrayList<ResolveInfo>() : installed;
     }
 
     public synchronized boolean isShutdown() {
@@ -586,12 +595,7 @@ public class TTSEngine {
     }
 
     public boolean hasNoEngines() {
-        try {
-            return ttsEngine != null && (ttsEngine.getEngines() == null || ttsEngine.getEngines()
-                                                                                    .size() == 0);
-        } catch (Exception e) {
-            return true;
-        }
+        return getEngineCount() == 0;
     }
 
     /**
@@ -619,24 +623,26 @@ public class TTSEngine {
         return UNKNOWN;
     }
 
+    /**
+     * @return how many engines are installed, or -1 when that cannot be told. Asked of the
+     *         package manager rather than of a TextToSpeech, which may not have been created yet.
+     */
     public int getEngineCount() {
         try {
-            if (ttsEngine == null || ttsEngine.getEngines() == null) {
-                return -1;
-            }
-
-            return ttsEngine.getEngines()
-                            .size();
+            return LibreraApp.context == null ? -1 : installedEngines(LibreraApp.context).size();
         } catch (Exception e) {
             LOG.e(e);
         }
-        return 0;
+        return -1;
     }
 
     public String getCurrentEngineName() {
         try {
             if (ttsEngine != null) {
-                String enginePackage = ttsEngine.getDefaultEngine();
+                // The engine Librera named is the one it is bound to. Otherwise it is the system
+                // default - which Android only reports when one is set or is part of the system
+                // image, so without Google's engine it is often null.
+                String enginePackage = this.enginePackage != null ? this.enginePackage : ttsEngine.getDefaultEngine();
                 List<EngineInfo> engines = ttsEngine.getEngines();
                 for (final EngineInfo eInfo : engines) {
                     if (eInfo.name.equals(enginePackage)) {

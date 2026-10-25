@@ -123,6 +123,12 @@ public class Urls {
     }
 
     public static void openTTS(Context a) {
+        if (AppsConfig.IS_FDROID) {
+            // Google's engine comes from Google Play, which a phone without Google services
+            // does not have - offer one that F-Droid has instead.
+            open(a, "https://f-droid.org/packages/org.woheller69.ttsengine");
+            return;
+        }
         try {
             open(a, "market://details?id=com.google.android.tts");
         } catch (Exception e) {

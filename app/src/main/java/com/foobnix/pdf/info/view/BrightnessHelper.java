@@ -43,8 +43,10 @@ public class BrightnessHelper {
     boolean isMovementStart;
     private float x;
     private float y;
+    private final Context context;
 
     public BrightnessHelper(Context c) {
+        context = c;
         updateCurrentValue();
     }
 
@@ -58,7 +60,7 @@ public class BrightnessHelper {
 
             if (appBrightness == AppState.AUTO_BRIGTNESS) {
                 myBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
-            } else if (appBrightness == 0) {
+            } else if (appBrightness <= 0) {// below zero dims with the overlay
                 if (AppState.get().isAllowMinBrigthness) {
                     myBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
                 } else {
@@ -81,7 +83,7 @@ public class BrightnessHelper {
         }
     }
 
-    public static int getSystemBrigtnessInt(final Activity a) {
+    public static int getSystemBrigtnessInt(final Context a) {
         try {
             int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
 
@@ -131,24 +133,11 @@ public class BrightnessHelper {
             }
         });
 
+        // brightness never changes the bluelight filter settings
+        appBrightness(value);
         if (value == AppState.AUTO_BRIGTNESS) {
-            isEnableBlueFilter(false);
-            // AppState.get().blueLightAlpha = 0;
-
-            appBrightness(AppState.AUTO_BRIGTNESS);
             textView.setText(textView.getContext().getString(R.string.system_brightness));
-
-        } else if (value < 0) {
-            isEnableBlueFilter (true);
-            blueLightAlpha(Math.abs(value));
-            appBrightness(0);
-
-            textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         } else {
-            isEnableBlueFilter(false);
-            // AppState.get().blueLightAlpha = 0;
-            appBrightness(value);
-
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         }
 
@@ -161,23 +150,28 @@ public class BrightnessHelper {
         if (overlay == null) {
             return;
         }
-        if (isEnableBlueFilter()) {
-            overlay.setVisibility(View.VISIBLE);
-            int alpha;
+        int filterAlpha = isEnableBlueFilter() ? overlayAlpha(blueLightAlpha()) : 0;
+        int dimAlpha = appBrightness() < 0 && appBrightness() != AppState.AUTO_BRIGTNESS ? overlayAlpha(-appBrightness()) : 0;
 
-            if (AppState.get().isAllowMinBrigthness) {
-                alpha = Math.min(200, (200 * blueLightAlpha()) / 100);
-            } else {
-                alpha = Math.min(160, (160 * blueLightAlpha()) / 100);
-            }
-
-
-            LOG.d("blueLightAlpha-value", alpha);
-
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, alpha));
-        } else {
+        if (filterAlpha == 0 && dimAlpha == 0) {
             overlay.setVisibility(View.GONE);
+            return;
         }
+        overlay.setVisibility(View.VISIBLE);
+
+        // one view draws the filter color, then black dimming on top of it
+        int filterColor = ColorUtils.setAlphaComponent(AppState.get().blueLightColor, filterAlpha);
+        int dimColor = Color.argb(dimAlpha, 0, 0, 0);
+        int color = ColorUtils.compositeColors(dimColor, filterColor);
+
+        LOG.d("blueLightAlpha-value", filterAlpha, dimAlpha);
+
+        overlay.setBackgroundColor(color);
+    }
+
+    private static int overlayAlpha(int percent) {
+        int max = AppState.get().isAllowMinBrigthness ? 200 : 160;
+        return Math.min(max, (max * percent) / 100);
 
     }
 
@@ -279,7 +273,7 @@ public class BrightnessHelper {
         if (appBrightness() == AppState.AUTO_BRIGTNESS) {
             value = systemBrigtnessInt;
         } else {
-            value = isEnableBlueFilter() ? blueLightAlpha() * -1 : appBrightness();
+            value = appBrightness();
         }
 
         customBrightness.init(-100, 100, value);
@@ -290,8 +284,6 @@ public class BrightnessHelper {
             public boolean onResultRecive(int result) {
                 customBrightness.setValueText("" + result);
                 EventBus.getDefault().post(new MessegeBrightness(result));
-
-                isEnableBlueFilter.setChecked(isEnableBlueFilter());
                 return false;
             }
         });
@@ -311,9 +303,6 @@ public class BrightnessHelper {
                     customBrightness.setEnabled(true);
                     EventBus.getDefault().post(new MessegeBrightness(systemBrigtnessInt));
                 }
-
-                isEnableBlueFilter.setChecked(isEnableBlueFilter());
-
             }
         });
 
@@ -362,10 +351,10 @@ public class BrightnessHelper {
 
 
     public void updateCurrentValue() {
-        if (isEnableBlueFilter()) {
-            currentPercent = blueLightAlpha() * -1;
+        if (appBrightness() == AppState.AUTO_BRIGTNESS) {
+            currentPercent = context != null ? getSystemBrigtnessInt(context) : 50;
         } else {
-            currentPercent = appBrightness() == AppState.AUTO_BRIGTNESS ? 0 : appBrightness();
+            currentPercent = appBrightness();
         }
     }
 
@@ -403,7 +392,9 @@ public class BrightnessHelper {
             float plus;
             if (!isMovementStart) { // On first call update y and enable isMovementStart and do not change brightness.
                 this.y = event.getY();
-                plus = currentPercent;
+                isMovementStart = true;
+                EventBus.getDefault().post(new MessegeBrightness(appBrightness()));
+                return true;
             } else {
                 lastPercent = (int) (yDiff * 100 / MIN);
                 plus = getMinMaxValue(lastPercent + currentPercent);
