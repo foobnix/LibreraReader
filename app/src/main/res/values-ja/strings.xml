@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">大文字を表示する</string>
    <string name="size">サイズ</string>
    <string name="quick_bookmark_by_the_headset">ヘッドセットによる高速ブックマーク（開始/停止ボタン）</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">ページ下部にTTSボタンを表示</string>
    <string name="slider_scale">スライダーの目盛り</string>
    <string name="chapter_format">章形式</string>
    <string name="play_a_music_file">音楽ファイルを再生する</string>

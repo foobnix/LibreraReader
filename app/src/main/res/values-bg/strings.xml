@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Оловни глави с инициали</string>
    <string name="size">Размер</string>
    <string name="quick_bookmark_by_the_headset">Активиране на отдалечени отметки (бутон за старт / стоп)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Показване на бутоните за TTS в долната част на страницата</string>
    <string name="slider_scale">Плъзгаща скала</string>
    <string name="chapter_format">Легенда</string>
    <string name="play_a_music_file">Възпроизвеждане на аудио файл</string>

@@ -152,6 +152,7 @@ import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TTSTracks;
+import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -1196,6 +1197,16 @@ public class DragingDialogs {
                 isFastBookmarkByTTS.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isFastBookmarkByTTS = isChecked;
+                    }
+                });
+
+                CheckBox isShowTtsPageControls = view.findViewById(R.id.isShowTtsPageControls);
+                isShowTtsPageControls.setChecked(AppState.get().isShowTtsPageControls);
+                isShowTtsPageControls.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowTtsPageControls = isChecked;
+                        // the screens show or hide the controls on the page when the status changes
+                        EventBus.getDefault().post(new TtsStatus());
                     }
                 });
 

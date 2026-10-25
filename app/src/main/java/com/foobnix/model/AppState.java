@@ -495,6 +495,7 @@ public class AppState {
     public List<Integer> prevKeys = PREV_KEYS;
     @IgnoreHashCode public boolean isUseVolumeKeys = true;
     @IgnoreHashCode public boolean isFastBookmarkByTTS = false;
+    @IgnoreHashCode public boolean isShowTtsPageControls = true;
     @IgnoreHashCode public boolean isReverseKeys = Dips.isSmallScreen();
     @IgnoreHashCode public boolean isVisibleSorting = true;
     @IgnoreHashCode public boolean isShowBookmarsPanelInMusicMode = true;

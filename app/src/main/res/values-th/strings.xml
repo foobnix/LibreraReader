@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">แสดงตัวพิมพ์ใหญ่</string>
    <string name="size">ขนาด</string>
    <string name="quick_bookmark_by_the_headset">บุ๊คมาร์คด่วนด้วยปุ่มstart stop บนสายหูฟัง</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">แสดงปุ่ม TTS ที่ด้านล่างของหน้า</string>
    <string name="slider_scale">สเกลเลื่อน</string>
    <string name="chapter_format">รูปแบบบท</string>
    <string name="play_a_music_file">เล่นไฟล์เพลง</string>

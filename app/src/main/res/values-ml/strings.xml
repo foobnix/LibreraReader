@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">ഇനീഷ്യലുകൾ ഉള്ള ലീഡ് ചാപ്റ്ററുകൾ</string>
    <string name="size">വലുപ്പം</string>
    <string name="quick_bookmark_by_the_headset">വിദൂര ബുക്ക്മാർക്കുകൾ പ്രാപ്തമാക്കുക (ആരംഭ / നിർത്തുക ബട്ടൺ)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">പേജിന്റെ താഴെ TTS ബട്ടണുകൾ കാണിക്കുക</string>
    <string name="slider_scale">സ്ലൈഡർ സ്കെയിൽ</string>
    <string name="chapter_format">ഇതിഹാസം</string>
    <string name="play_a_music_file">ഒരു ഓഡിയോ ഫയൽ പ്ലേ ചെയ്യുക</string>

@@ -507,6 +507,7 @@
    <string name="show_the_capital_letter">Lead chapters with initials</string>
    <string name="size">Size</string>
    <string name="quick_bookmark_by_the_headset">Enable remote bookmarks (Start/Stop button)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Show TTS buttons at the bottom of the page</string>
    <string name="slider_scale">Slider scale</string>
    <string name="chapter_format">Legend</string>
    <string name="play_a_music_file">Play an audio file</string>

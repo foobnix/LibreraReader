@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Erakutsi letra larria</string>
    <string name="size">Tamaina</string>
    <string name="quick_bookmark_by_the_headset">Urrutiko laster-markak</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Erakutsi TTS botoiak orriaren behealdean</string>
    <string name="slider_scale">Graduatzaileen eskala</string>
    <string name="chapter_format">Kapituluaren formatua</string>
    <string name="play_a_music_file">Erreproduzitu musika fitxategia</string>

@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Comezar capítulos con inicial</string>
    <string name="size">Tamaño</string>
    <string name="quick_bookmark_by_the_headset">Activar marcadores remotos (botón Iniciar/Parar)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Amosar os botóns de TTS na parte inferior da páxina</string>
    <string name="slider_scale">Escala do control deslizante</string>
    <string name="chapter_format">Lenda</string>
    <string name="play_a_music_file">Reproducir ficheiro de son</string>

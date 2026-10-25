@@ -328,6 +328,17 @@ public class TTSControlsView extends FrameLayout {
         }
     }
 
+    /**
+     * The line that stands on the page itself while the panels are closed: only the marks, with
+     * no sheet behind them, in the colour of the status line below the words, and see-through
+     * so the words under them still show.
+     */
+    public void onPage() {
+        hideStop();
+        setTintColor(TintUtil.getStatusBarTextColor());
+        setAlpha(0.6f);
+    }
+
     public void addOnDialogRunnable(final Runnable run) {
         // The mark that opens the settings stays hidden: the line carries the four controls
         // that play the book and nothing else, and the settings are reached from the bar.

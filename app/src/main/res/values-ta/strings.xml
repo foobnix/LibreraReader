@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">முதலெழுத்துகளுடன் முன்னணி அத்தியாயங்கள்</string>
    <string name="size">அளவு</string>
    <string name="quick_bookmark_by_the_headset">தொலை புக்மார்க்குகளை இயக்கவும் (தொடக்க / நிறுத்து பொத்தானை)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">பக்கத்தின் கீழே TTS பொத்தான்களைக் காட்டு</string>
    <string name="slider_scale">ஸ்லைடர் அளவு</string>
    <string name="chapter_format">புராண</string>
    <string name="play_a_music_file">ஆடியோ கோப்பை இயக்கு</string>

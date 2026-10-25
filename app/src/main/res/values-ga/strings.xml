@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Caibidlí tosaigh le ceannlitreacha</string>
    <string name="size">Méid</string>
    <string name="quick_bookmark_by_the_headset">Leabharmharcanna iargúlta a chumasú (cnaipe tosaithe / stad)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Taispeáin cnaipí TTS ag bun an leathanaigh</string>
    <string name="slider_scale">Scála sleamhnáin</string>
    <string name="chapter_format">Finscéal</string>
    <string name="play_a_music_file">Comhad fuaime a sheinm</string>

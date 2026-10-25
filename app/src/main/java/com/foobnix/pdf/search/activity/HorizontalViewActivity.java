@@ -138,6 +138,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     ImageView bookCover;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
+    TTSControlsView ttsActivePage;
     FrameLayout anchor;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
@@ -677,6 +678,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
         ttsActive = findViewById(R.id.ttsActive);
         moveTtsControlsIntoPanel();
+        ttsActivePage = findViewById(R.id.ttsActivePage);
+        ttsActivePage.onPage();
 
         // ttsActive.setOnClickListener(new View.OnClickListener() {
         //
@@ -1203,6 +1206,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     ttsActive.setDC(dc);
                     ttsActive.hideStop();
+                    ttsActivePage.setDC(dc);
                     ttsActive.addOnDialogRunnable(new Runnable() {
 
                         @Override
@@ -2201,6 +2205,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void hideShow(boolean animated) {
+        showTtsPageControls();
         if (AppState.get().isEnableAccessibility) {
             //animated = false;
             //AppState.get().isEditMode = true;
@@ -2386,14 +2391,36 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     /**
-     * The reading controls stand with the panels, not over the page. They were shown for as
-     * long as speech was running, which left them lying across the words being read.
+     * The reading controls stand with the panels while they are open. With the panels closed a
+     * second line of them stands on the page, below the words, unless the TTS dialog's advanced
+     * settings turn it off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
         ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
+        showTtsPageControls();
+    }
+
+    /**
+     * Set at once when the panels start to move, not when their animation ends, so the line on
+     * the page comes and goes with the tap.
+     */
+    private void showTtsPageControls() {
+        if (ttsActivePage == null) {
+            return;
+        }
+        // Above the status line where it is at the foot of the page, else on the foot itself
+        final boolean statusBelow = AppState.get().statusBarPosition != AppState.STATUSBAR_POSITION_TOP;
+        if (ttsActivePage.getLayoutParams() instanceof RelativeLayout.LayoutParams) {
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) ttsActivePage.getLayoutParams();
+            lp.addRule(RelativeLayout.ABOVE, statusBelow ? R.id.bottomPanel : 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, statusBelow ? 0 : RelativeLayout.TRUE);
+            ttsActivePage.setLayoutParams(lp);
+        }
+        ttsActivePage.setTintColor(TintUtil.getStatusBarTextColor());
+        ttsActivePage.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && !AppState.get().isEditMode && AppState.get().isShowTtsPageControls));
     }
 
     @Override

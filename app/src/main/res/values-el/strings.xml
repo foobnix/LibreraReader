@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Κεφάλαια με αρχικά</string>
    <string name="size">Μέγεθος</string>
    <string name="quick_bookmark_by_the_headset">Ενεργοποίηση απομακρυσμένων σελιδοδεικτών (κουμπί έναρξης / διακοπής)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Εμφάνιση κουμπιών TTS στο κάτω μέρος της σελίδας</string>
    <string name="slider_scale">Ρυθμιστική κλίμακα</string>
    <string name="chapter_format">Θρύλος</string>
    <string name="play_a_music_file">Αναπαραγωγή αρχείου ήχου</string>

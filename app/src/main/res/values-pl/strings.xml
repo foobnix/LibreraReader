@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Inicjał na początku rozdziału</string>
    <string name="size">Rozmiar</string>
    <string name="quick_bookmark_by_the_headset">Włącz szybkie zakładki (przycisk Start/Stop)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Pokaż przyciski TTS na dole strony</string>
    <string name="slider_scale">Skala suwaka</string>
    <string name="chapter_format">Format legendy</string>
    <string name="play_a_music_file">Odtwórz plik muzyczny</string>

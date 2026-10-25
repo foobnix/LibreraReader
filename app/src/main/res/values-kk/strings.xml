@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">Бастапқы бөлімдері бар жетекші басшылары</string>
    <string name="size">Өлшемі</string>
    <string name="quick_bookmark_by_the_headset">Қашықтағы бетбелгілерді қосу (Start / Stop түймешігі)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS түймелерін беттің төменгі жағында көрсету</string>
    <string name="slider_scale">Слайдер шкаласы</string>
    <string name="chapter_format">Мәтіннің пішімі</string>
    <string name="play_a_music_file">Аудио файлды ойнату</string>

@@ -207,6 +207,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dip" />
 
+        <!-- The same controls, buttons only, on the page itself while the panels are closed
+             and speech is running; hidden by the TTS dialog's advanced settings. -->
+        <com.foobnix.tts.TTSControlsView
+            android:id="@+id/ttsActivePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dip"
+            android:visibility="gone" />
+
         <FrameLayout
             android:id="@+id/overlay"
             android:layout_width="match_parent"

@@ -257,6 +257,7 @@ public class DocumentWrapperUI {
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
+    TTSControlsView ttsActivePage;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
     public View.OnClickListener onShowContext = new View.OnClickListener() {
@@ -1224,6 +1225,9 @@ public class DocumentWrapperUI {
         ttsActive.setDC(dc);
         ttsActive.hideStop();
         moveTtsControlsIntoPanel();
+        ttsActivePage = a.findViewById(R.id.ttsActivePage);
+        ttsActivePage.setDC(dc);
+        ttsActivePage.onPage();
         ttsActive.addOnDialogRunnable(new Runnable() {
 
             @Override
@@ -1757,6 +1761,7 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
+        showTtsPageControls();
         hideShowAnnotationLine();
 
         if (AppState.get().isEnableAccessibility) {
@@ -1836,14 +1841,24 @@ public class DocumentWrapperUI {
     }
 
     /**
-     * The reading controls stand with the panels, not over the page. They were shown for as
-     * long as speech was running, which left them lying across the words being read.
+     * The reading controls stand with the panels while they are open. With the panels closed a
+     * second line of them stands on the page, below the words, unless the TTS dialog's advanced
+     * settings turn it off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
         ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
+        showTtsPageControls();
+    }
+
+    private void showTtsPageControls() {
+        if (ttsActivePage == null) {
+            return;
+        }
+        ttsActivePage.setTintColor(TintUtil.getStatusBarTextColor());
+        ttsActivePage.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && !AppState.get().isEditMode && AppState.get().isShowTtsPageControls));
     }
 
     public void hide() {

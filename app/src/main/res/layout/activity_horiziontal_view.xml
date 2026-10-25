@@ -484,6 +484,19 @@
             <include layout="@layout/document_footer" />
         </FrameLayout>
 
+        <!-- The same controls, buttons only, above the status line while the panels are
+             closed and speech is running; hidden by the TTS dialog's advanced settings. The
+             screen sets it on the foot of the page when the status line is at the top. -->
+        <com.foobnix.tts.TTSControlsView
+            android:id="@+id/ttsActivePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomPanel"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dip"
+            android:visibility="gone" />
+
 
         <FrameLayout
             android:id="@+id/overlay"

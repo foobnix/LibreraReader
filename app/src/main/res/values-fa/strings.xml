@@ -502,6 +502,7 @@
    <string name="show_the_capital_letter">نمایش نامه بزرگ</string>
    <string name="size">اندازه</string>
    <string name="quick_bookmark_by_the_headset">نشانک سریع توسط هدست</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">نمایش دکمه‌های TTS در پایین صفحه</string>
    <string name="slider_scale">مقیاس لغزان</string>
    <string name="chapter_format">فرمت فصل</string>
    <string name="play_a_music_file">یک فایل موسیقی را پخش کنید</string>
