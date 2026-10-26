@@ -9,9 +9,11 @@ import android.os.Bundle;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppAnnotation;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AnnotationsData;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -66,10 +68,12 @@ public class LibreraXActivity extends Activity {
 
         float percent = getIntent().getFloatExtra(LibreraX.EXTRA_PERCENT, 0f);
         String pageText = getIntent().getStringExtra(LibreraX.EXTRA_PAGE_TEXT);
+        String cfi = null;
         if (percent <= 0f && path != null) {
             final AppBook bs = SharedBooks.load(path);
             percent = bs.p;
             pageText = bs.pt;
+            cfi = bs.cfi;
         }
 
         final Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -83,11 +87,14 @@ public class LibreraXActivity extends Activity {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(LibreraX.EXTRA_PERCENT, percent);
         intent.putExtra(LibreraX.EXTRA_PAGE_TEXT, pageText);
+        intent.putExtra(LibreraX.EXTRA_CFI, cfi);
         intent.putExtra(LibreraX.EXTRA_VIEW, LibreraX.view());
+        intent.putExtra(LibreraX.EXTRA_FULLSCREEN, LibreraX.fullscreen());
         if (path != null) {
             intent.putExtra(LibreraX.EXTRA_BOOKMARKS, bookmarksJson(path));
+            intent.putExtra(LibreraX.EXTRA_ANNOTATIONS, annotationsJson(path));
         }
-        LOG.d("LibreraX-open", path, percent, pageText);
+        LOG.d("LibreraX-open", path, percent, pageText, cfi);
 
         try {
             startActivityForResult(intent, REQUEST_READ);
@@ -127,6 +134,7 @@ public class LibreraXActivity extends Activity {
     // kept small enough for an intent
     private static final int BOOKMARKS_MAX = 1000;
     private static final int BOOKMARK_TEXT_MAX = 500;
+    private static final int ANNOTATIONS_MAX = 500;
 
     private String bookmarksJson(String path) {
         final JSONArray array = new JSONArray();
@@ -153,6 +161,30 @@ public class LibreraXActivity extends Activity {
         return array.toString();
     }
 
+    // The words are sent whole: LibreraX finds the highlight by them.
+    private String annotationsJson(String path) {
+        final JSONArray array = new JSONArray();
+        try {
+            for (AppAnnotation a : AnnotationsData.get().byBook(path)) {
+                if (array.length() >= ANNOTATIONS_MAX) {
+                    break;
+                }
+                array.put(new JSONObject()
+                        .put("t", a.t)
+                        .put("type", a.type)
+                        .put("color", a.color)
+                        .put("text", a.text)
+                        .put("page", a.page)
+                        .put("p", (double) a.p)
+                        .put("rects", a.rects)
+                        .put("cfi", a.cfi));
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return array.toString();
+    }
+
     private static String cut(String text) {
         if (text == null) {
             return "";
@@ -169,6 +201,10 @@ public class LibreraXActivity extends Activity {
             final AppBook bs = SharedBooks.load(path);
             bs.p = percent;
             bs.pt = TxtUtils.isEmpty(pageText) ? null : pageText;
+            // The place read in LibreraX is its page text: the CFI and the offset into the page
+            // are of the place before, and the vertical view, which trusts the CFI, went back there.
+            bs.cfi = null;
+            bs.y = 0;
             bs.t = System.currentTimeMillis();
             SharedBooks.save(bs);
             SharedBooks.syncToDb(path);

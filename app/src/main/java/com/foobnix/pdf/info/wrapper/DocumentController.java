@@ -85,6 +85,9 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.ebookdroid.core.codec.CodecDocument;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import org.ebookdroid.core.codec.PageLink;
 
 import java.io.File;
@@ -987,11 +990,17 @@ public abstract class DocumentController {
             AppBook bs = SettingsManager.getBookSettings();
             bs.updateFromAppState();
             if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
-                bs.pt = getBookmarkText();
-                // The exact place, when the engine can name one. It is written beside the
-                // percentage and the page text, never instead of them: another engine, an older
-                // version or another device has to be able to restore the position without it.
-                bs.cfi = getLocation();
+                // foliate answers only off the main thread, which is where this save runs: there
+                // the page text and the place are read on a thread of their own and written after
+                if (getCodecDocument() instanceof FoliateDocument && Looper.myLooper() == Looper.getMainLooper()) {
+                    savePlaceInBackground(bs, getCurentPageFirst1());
+                } else {
+                    bs.pt = getBookmarkText();
+                    // The exact place, when the engine can name one. It is written beside the
+                    // percentage and the page text, never instead of them: another engine, an older
+                    // version or another device has to be able to restore the position without it.
+                    bs.cfi = getLocation();
+                }
             }
             SharedBooks.save(bs);
             // The row the shelves are drawn from is brought up to the file straight away, so a
@@ -1006,6 +1015,39 @@ public abstract class DocumentController {
             LOG.e(e);
         }
 
+    }
+
+    private static final long PLACE_READ_DELAY_MS = 2000;
+    private static final ScheduledExecutorService placeReader =
+            Executors.newSingleThreadScheduledExecutor(r -> new Thread(r, "@T PlaceRead"));
+    private ScheduledFuture<?> placeRead;
+
+    // Read once the page has stood still: a turn, and the next page drawn ahead of it, need the
+    // same renderer and are not kept waiting on this. A newer page cancels the read still to come.
+    private void savePlaceInBackground(final AppBook bs, final int page) {
+        final float p = bs.p;
+        if (placeRead != null) {
+            placeRead.cancel(false);
+        }
+        placeRead = placeReader.schedule(() -> {
+            try {
+                final CodecDocument doc = getCodecDocument();
+                if (doc == null || bs.p != p || bs.pt != null) {
+                    return;
+                }
+                final String pt = doc.getBookmarkText(page);
+                final String cfi = doc.getLocation(page);
+                // the page turned meanwhile: currentPageChanged has cleared the place for the new one
+                if (pt == null || bs.p != p || bs.pt != null) {
+                    return;
+                }
+                bs.pt = pt;
+                bs.cfi = cfi;
+                SharedBooks.save(bs);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }, PLACE_READ_DELAY_MS, TimeUnit.MILLISECONDS);
     }
 
     public boolean isBookMode() {

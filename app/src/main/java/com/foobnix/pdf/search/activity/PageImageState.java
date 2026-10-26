@@ -47,7 +47,16 @@ public class PageImageState {
         return instance;
     }
 
+    /**
+     * Changes whenever the text, links and marks held per page are thrown away. They are filled
+     * only while a page is rendered, so a page image kept from before - Glide holds them in
+     * memory across readers - would come back with no marks and no text: it is part of the key
+     * the images are cached under.
+     */
+    public volatile int pagesGeneration;
+
     public void clearResouces() {
+        pagesGeneration++;
         selectedWords.clear();
         pagesText.clear();
         pagesLinks.clear();

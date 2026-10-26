@@ -62,12 +62,18 @@ public class LibreraX {
 
     public static final String EXTRA_PERCENT = "librera.percent";
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";
+    // the foliate engine's CFI of the place, of Librera's own copy of the book: right to the paragraph
+    public static final String EXTRA_CFI = "librera.cfi";
     // a JSON array of {text, p, pt, t}
     public static final String EXTRA_BOOKMARKS = "librera.bookmarks";
+    // a JSON array of the book's highlights as Librera keeps them: {t, type, color, text, page, p, rects, cfi}
+    public static final String EXTRA_ANNOTATIONS = "librera.annotations";
     // "scroll" for the vertical view, "paged" for the book view
     public static final String EXTRA_VIEW = "librera.view";
     public static final String VIEW_SCROLL = "scroll";
     public static final String VIEW_PAGED = "paged";
+    // true when the reader is in full screen here, with or without the cutout
+    public static final String EXTRA_FULLSCREEN = "librera.fullscreen";
 
     // Export to LibreraX: the current profile's files below, zipped as profile.X/device.Y/app-*.json
     public static final String IMPORT_ACTIVITY = "com.librerax.LibreraImportActivity";
@@ -133,6 +139,10 @@ public class LibreraX {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         c.startActivity(intent);
+    }
+
+    public static boolean fullscreen() {
+        return AppState.get().fullScreenMode != AppState.FULL_SCREEN_NORMAL;
     }
 
     public static String downloadUrl() {

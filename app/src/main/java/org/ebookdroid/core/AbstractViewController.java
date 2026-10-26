@@ -1,6 +1,7 @@
 package org.ebookdroid.core;
 
 import android.graphics.PointF;
+import android.os.Looper;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -30,6 +31,7 @@ import org.ebookdroid.common.touch.TouchManager;
 import org.ebookdroid.common.touch.TouchManager.Touch;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
@@ -166,14 +168,11 @@ public abstract class AbstractViewController extends AbstractComponentController
             int toPage = currentPage != null ? currentPage.docIndex : 0;
 
             CodecDocument doc = getBase().getDecodeService() != null ? getBase().getDecodeService().getCodecDocument() : null;
-            // The exact place the book was left, when the engine that laid it out can name one.
-            // It is the whole answer when it resolves, so the page text is not searched on top of
-            // it - that would trade an exact page for an approximate one.
-            final int exact = doc != null && TxtUtils.isNotEmpty(bs.cfi) ? doc.findLocationPage(bs.cfi) : -1;
-            if (exact > 0) {
-                toPage = exact - 1;
-            } else if (doc != null && TxtUtils.isNotEmpty(bs.pt)) {
-                int found = doc.findBookmarkPage(toPage + 1, null, bs.pt);
+            // foliate reads no page on the UI thread, where this runs: the book opens at the
+            // percentage and the exact place is looked for on a thread of its own
+            final boolean later = doc instanceof FoliateDocument && Looper.myLooper() == Looper.getMainLooper();
+            if (!later) {
+                final int found = placeOf(doc, bs.cfi, bs.pt, toPage);
                 if (found > 0) {
                     toPage = found - 1;
                 }
@@ -184,9 +183,54 @@ public abstract class AbstractViewController extends AbstractComponentController
             }
 
 
+            final boolean find = later && !AppState.get().isAlwaysOpenOnPage1;
+            final String cfi = bs.cfi;
+            final String pt = bs.pt;
             goToPage(toPage, bs.x, bs.y);
+            if (find) {
+                goToPlaceLater(doc, cfi, pt, bs.x, toPage);
+            }
 
         }
+    }
+
+    /**
+     * The 1-based page the book was left on, or -1. The exact place, when the engine that laid it
+     * out can name one, is the whole answer when it resolves, so the page text is not searched on
+     * top of it - that would trade an exact page for an approximate one.
+     */
+    private static int placeOf(final CodecDocument doc, final String cfi, final String pt, final int near) {
+        if (doc == null) {
+            return -1;
+        }
+        final int exact = TxtUtils.isNotEmpty(cfi) ? doc.findLocationPage(cfi) : -1;
+        if (exact > 0) {
+            return exact;
+        }
+        return TxtUtils.isNotEmpty(pt) ? doc.findBookmarkPage(near + 1, null, pt) : -1;
+    }
+
+    /**
+     * Moves to the place found unless the reader has already moved on from the page opened at.
+     * The place is taken before the book is opened at the percentage: that clears it for the page
+     * opened at, and the save that follows writes that page's own.
+     */
+    private void goToPlaceLater(final CodecDocument doc, final String cfi, final String pt, final float x,
+                                final int opened) {
+        if (TxtUtils.isEmpty(cfi) && TxtUtils.isEmpty(pt)) {
+            return;
+        }
+        new Thread(() -> {
+            final int found = placeOf(doc, cfi, pt, opened);
+            if (found <= 0 || found - 1 == opened) {
+                return;
+            }
+            base.getActivity().runOnUiThread(() -> {
+                if (getBase().getDocumentModel().getCurrentViewPageIndex() == opened) {
+                    goToPage(found - 1, x, 0);
+                }
+            });
+        }, "@T PlaceFind").start();
     }
 
     protected final void updatePosition(final Page page, final ViewState viewState) {
