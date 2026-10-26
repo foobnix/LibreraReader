@@ -22,7 +22,6 @@ android {
 }
 
 dependencies {
-    api(libs.junrar)
     api(libs.play.services.auth)
     api(libs.credentials)
     api(libs.credentials.play.services.auth)

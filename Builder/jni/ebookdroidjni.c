@@ -3,14 +3,7 @@
 #include <android/log.h>
 #include <android/bitmap.h>
 
-/*
- * Nothing below calls into fitz; the header is here for the MuPDF build alone. The no-MuPDF
- * build (Android-nomupdf.mk, -DLIBRERA_NO_MUPDF) has MuPDF's generated headers nowhere on its
- * include path, so it must not be read there.
- */
-#ifndef LIBRERA_NO_MUPDF
 #include <mupdf/fitz.h>
-#endif
 
 static void* handler = NULL;
 static int present = 0;

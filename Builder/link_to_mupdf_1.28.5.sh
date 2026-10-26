@@ -62,6 +62,15 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
+# The second target, the flavours without MuPDF (the JS ones): the same libraries but libmupdf.so,
+# in libs-nomupdf, which is filled from libs once the build below is done
+LIBS_NOMUPDF=$BUILD_DIR/../app/src/noMupdf/jniLibs
+rm -rf $LIBS_NOMUPDF
+mkdir -p $LIBS_NOMUPDF
+for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
+  ln -s $MUPDF_JAVA/libs-nomupdf/$ABI $LIBS_NOMUPDF
+done
+
 if [ "$1" == "copy" ]; then
 
 cp -rpv $DEST/html/css-apply.c    $SRC/css-apply.c
@@ -144,6 +153,15 @@ fi
 "$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86         APP_PLATFORM=android-24 &
 "$NDK" NDK_APPLICATION_MK=jni/Application.mk APP_ABI=x86_64      APP_PLATFORM=android-24
 wait
+
+# libs-nomupdf: every library of libs but libmupdf.so - the very same files, so a DjVu, a .doc,
+# a .mobi or a comic is read by the same binary in both targets
+rm -rf $MUPDF_JAVA/libs-nomupdf
+for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
+  mkdir -p $MUPDF_JAVA/libs-nomupdf/$ABI
+  cp -p $MUPDF_JAVA/libs/$ABI/*.so $MUPDF_JAVA/libs-nomupdf/$ABI/
+  rm -f $MUPDF_JAVA/libs-nomupdf/$ABI/libmupdf.so
+done
 echo "=================="
 echo "NDK:" "$NDK"
 echo "APP_PLATFORM=android-24"
@@ -151,5 +169,6 @@ echo "APP_PLATFORM=android-24"
 echo "=================="
 echo "MUPDF:"$MUPDF_JAVA
 echo "JNI:"$LIBS
+echo "JNI without MuPDF:"$LIBS_NOMUPDF
 echo "=================="
 fi

@@ -5,7 +5,7 @@ LOCAL_CFLAGS    := $(APP_CFLAGS)
 LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
 LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
-LOCAL_MODULE  := antiword
+LOCAL_MODULE  := antiword_static
 
 LOCAL_CFLAGS += -funwind-tables -Wl,--no-merge-exidx-entries
 LOCAL_CFLAGS += -DCR3_ANTIWORD_PATCH_2=0 -DCR3_ANTIWORD_PATCH=0
@@ -26,7 +26,7 @@ LOCAL_SRC_FILES := \
 	wordwin.c xmalloc.c xml.c
 
 
-# a static library: -llog is linked by libMuPDF.so, where ndk-build does not ignore it
+# a static library: -llog is linked by libantiword.so (Librera-libs.mk), where ndk-build does not ignore it
 
 
 include $(BUILD_STATIC_LIBRARY)

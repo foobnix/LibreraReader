@@ -155,6 +155,7 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 | hqx        | 1.2              | LGPL-2.1-or-later    |
 | LAME       | 3.100            | LGPL-2.0-or-later    |
 | libwebp    | 1.3.2            | BSD-3-Clause         |
+| libarchive | 3.8.10           | BSD-2-Clause         |
 
 | Component                                 | License                       |
 |-------------------------------------------|-------------------------------|
@@ -190,7 +191,6 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 | com.google.guava:guava                      | 33.6.0-android | Apache-2.0                  |
 | org.commonmark:commonmark                   | 0.29.0         | BSD-2-Clause                |
 | org.commonmark:commonmark-ext-gfm-tables    | 0.29.0         | BSD-2-Clause                |
-| com.github.junrar:junrar                       | 7.6.0                    | UnRar License                    |
 
 Librera is distributed under the GPL v3
 

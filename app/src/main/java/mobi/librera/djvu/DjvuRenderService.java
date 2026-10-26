@@ -111,7 +111,8 @@ public class DjvuRenderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Touching AppsConfig loads libMuPDF.so, which holds djvulibre and its JNI bridge.
+        // Touching AppsConfig loads the native libraries, libdjvu.so - djvulibre and its JNI
+        // bridge - among them.
         LOG.d(TAG, "onCreate", AppsConfig.MUPDF_FZ_VERSION);
         // Copies left behind by a process that did not get to close its documents.
         File[] stale = copies().listFiles();

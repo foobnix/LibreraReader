@@ -7,10 +7,11 @@ import com.foobnix.LibreraBuildConfig;
  *
  * The flavours whose names end in JS are built without MuPDF: a PDF is rendered by PDFium, a
  * reflowable book is laid out by foliate-js in a WebView, and a comic archive has its images
- * decoded straight to bitmaps by {@link org.ebookdroid.droids.comic.codec.ComicContext}. What is
- * left of Librera's native code that is not MuPDF - DjVu, the {@code .doc} and {@code .mobi}
- * converters and the bitmap scaler - is built into {@code libLibreraDocs.so}
- * (Builder/jni/Android-nomupdf.mk), which is the library those flavours load.
+ * decoded straight to bitmaps by {@link org.ebookdroid.droids.comic.codec.ComicContext}. The rest
+ * of Librera's native code - DjVu, the {@code .doc} and {@code .mobi} converters, the bitmap
+ * scaler - is not MuPDF: each part is a library of its own ({@link #NATIVE_LIBRARIES},
+ * Builder/jni/Librera-libs.mk), the very same in every flavour, and those flavours carry all of
+ * them but {@code libmupdf.so}.
  *
  * This lives apart from {@link AppsConfig}, which holds everything else of the kind, for one
  * reason: AppsConfig loads the native library in a static initializer, so the first read of any
@@ -40,8 +41,15 @@ public final class Engines {
     public static final boolean IS_ENGINE_CHOICE = IS_MUPDF
             && ("fdroid".equals(LibreraBuildConfig.FLAVOR) || "pro".equals(LibreraBuildConfig.FLAVOR));
 
-    /** The native library holding the document code: {@code lib<this>.so}. */
-    public static final String NATIVE_LIBRARY = IS_MUPDF ? "MuPDF" : "LibreraDocs";
+    /** MuPDF and its JNI, {@code lib<this>.so}, in the flavours built with it. */
+    public static final String MUPDF_LIBRARY = "mupdf";
+
+    /**
+     * The native libraries every flavour carries and loads, with MuPDF or without:
+     * {@code lib<name>.so} each. libarchive.so and liblame.so are loaded by the classes that use
+     * them ({@link com.foobnix.ext.NativeArchive}, the MP3 encoder).
+     */
+    public static final String[] NATIVE_LIBRARIES = {"djvu", "mobi", "antiword", "hqx"};
 
     private Engines() {
     }

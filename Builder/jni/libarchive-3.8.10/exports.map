@@ -1,0 +1,7 @@
+/* libarchive.so exports the JNI entry points of ../librera_archive.c and nothing of libarchive */
+{
+    global:
+        Java_com_foobnix_ext_NativeArchive_*;
+    local:
+        *;
+};

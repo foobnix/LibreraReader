@@ -10,7 +10,6 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Engines;
 
 import org.ebookdroid.core.codec.CodecContext;
-import org.ebookdroid.droids.CbrContext;
 import org.ebookdroid.droids.DocContext;
 import org.ebookdroid.droids.DocxContext;
 import org.ebookdroid.droids.EpubContext;
@@ -24,7 +23,6 @@ import org.ebookdroid.droids.OdtContext;
 import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
 import org.ebookdroid.droids.ZipContext;
-import org.ebookdroid.droids.comic.codec.ComicCbrContext;
 import org.ebookdroid.droids.comic.codec.ComicContext;
 import org.ebookdroid.droids.djvu.codec.DjvuContext;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -47,8 +45,9 @@ public enum BookType {
     PDF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("pdf", "xps") : list("pdf"), list("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
     TIFF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("tiff", "tif") : list("xxx"), list("image/tiff")),
 
-    CBZ(PdfContext.class, false, true, list("cbz"), list("application/x-cbz","application/comicbook+zip")),
-    CBR(CbrContext.class, false, true, list("cbr"), list("application/x-cbr","application/comicbook+rar")),
+    // Comics are read by the comic engine in every build, MuPDF or not: libarchive in place
+    CBZ(ComicContext.class, false, true, list("cbz"), list("application/x-cbz","application/comicbook+zip")),
+    CBR(ComicContext.class, false, true, list("cbr"), list("application/x-cbr","application/comicbook+rar")),
 
     ODT(OdtContext.class, true, true, list("odt"), list("application/vnd.oasis.opendocument.text")),
 
@@ -213,31 +212,7 @@ public enum BookType {
             LOG.d("getCodecContext PDFium", path);
             return pdfium;
         }
-        final CodecContext comic = comicContext(type);
-        if (comic != null) {
-            LOG.d("getCodecContext comic", path);
-            return comic;
-        }
         return type.contextClass.getDeclaredConstructor().newInstance();
-    }
-
-    /**
-     * The comic engine, which decodes the archive's images straight to bitmaps, for the builds
-     * that have no MuPDF to open a .cbz as a document.
-     *
-     * @return the context, or <code>null</code> when this is not a comic or MuPDF is to read it
-     */
-    private static CodecContext comicContext(final BookType type) {
-        if (Engines.IS_MUPDF) {
-            return null;
-        }
-        if (type == CBZ) {
-            return new ComicContext();
-        }
-        if (type == CBR) {
-            return new ComicCbrContext();
-        }
-        return null;
     }
 
     /**

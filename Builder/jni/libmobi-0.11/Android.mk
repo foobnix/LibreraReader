@@ -33,6 +33,6 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/src $(LOCAL_PATH)/tools
 LOCAL_CFLAGS += -std=c99
 LOCAL_CFLAGS += -DUSE_XMLWRITER
 
-# a static library: -lz is linked by libMuPDF.so, where ndk-build does not ignore it
+# a static library: -lz is linked by libmupdf.so, where ndk-build does not ignore it
 
 include $(BUILD_STATIC_LIBRARY)

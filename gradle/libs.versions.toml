@@ -18,7 +18,6 @@ jsoup = "1.23.2"
 junit = "4.13.2"
 mockito = "5.24.0"
 juniversalchardet = "2.5.1"
-junrar = "8.1.2"
 kotlin = "2.4.21"
 kotlinxSerializationCore = "1.11.0"
 ksp = "2.3.12"
@@ -116,7 +115,6 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 # real XmlPullParser for JVM unit tests (android.jar only has stubs)
 kxml2 = { module = "net.sf.kxml:kxml2", version = "2.3.0" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
-junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
 

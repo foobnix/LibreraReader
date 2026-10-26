@@ -381,7 +381,7 @@ endif
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_extract
 
 # Upstream builds this module as libmupdf_java.so and links it here; Librera links it into
-# libMuPDF.so instead, so it is a static library and ndk-build ignores every link setting on it.
+# libmupdf.so instead, so it is a static library and ndk-build ignores every link setting on it.
 # The libraries it needs (-ljnigraphics -llog -lz -lm) and MUPDF_EXTRA_LDLIBS/LDFLAGS are on the
 # shared library, in Android-<mupdf version>.mk.
 

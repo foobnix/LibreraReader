@@ -103,7 +103,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             // engine to offer - see Engines. The reader reports the file as one it cannot open,
             // which is the truth, instead of dying on a missing native symbol.
             throw new IllegalStateException("MuPDF is not in this build (lib"
-                    + Engines.NATIVE_LIBRARY + ".so): " + fname);
+                    + Engines.MUPDF_LIBRARY + ".so): " + fname);
         }
         TempHolder.lock.lock();
         try {

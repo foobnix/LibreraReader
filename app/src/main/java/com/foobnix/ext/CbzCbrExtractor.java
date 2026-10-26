@@ -2,21 +2,11 @@ package com.foobnix.ext;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.mobi.parser.IOUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.ZipArchiveInputStream;
-import com.foobnix.sys.Zips;
-import com.github.junrar.Archive;
-import com.github.junrar.Junrar;
-import com.github.junrar.rarfile.FileHeader;
 
-import org.ebookdroid.BookType;
+import org.ebookdroid.droids.comic.codec.ComicDocument;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,46 +14,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * What the library shows of a comic archive - its cover, page count and ComicInfo.xml - read
+ * the same way for a .cbz and a .cbr, with {@link NativeArchive}, out of the file as it is.
+ */
 public class CbzCbrExtractor {
 
-    /**
-     * Repacks a .cbr - a RAR archive of images - into a .cbz, a zip of the same images, which is
-     * what both comic engines read. A .cbr that is really a zip (they are common enough) is only
-     * copied.
-     *
-     * The result is left in the book cache, so this runs once per file.
-     *
-     * @param cacheFile where to write the .cbz; left alone when it is already there
-     */
-    public static void extractCbrToCbz(final String fileName, final File cacheFile) {
-        if (cacheFile.isFile()) {
-            return;
-        }
-        LOG.d("Type no cache file");
-        try {
-            if (isZip(fileName)) {
-                CacheZipUtils.copyFile(new File(fileName), cacheFile);
-                return;
-            }
-
-            final String extractDir = CacheZipUtils.CACHE_BOOK_DIR + "/" + "CBR_" + fileName.hashCode();
-
-            final File cbrDir = new File(extractDir);
-            cbrDir.mkdirs();
-
-            try {
-                Junrar.extract(fileName, extractDir);
-            } catch (OutOfMemoryError e) {
-                LOG.e(e);
-            }
-
-            CacheZipUtils.zipFolder(extractDir, cacheFile.getPath());
-
-            CacheZipUtils.deleteDir(cbrDir);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
+    private static final String COMIC_INFO = "comicinfo.xml";
 
     public static boolean isZip(String path) {
         try {
@@ -96,101 +53,55 @@ public class CbzCbrExtractor {
         return false;
     }
 
+    /** The files in the archive, ComicInfo.xml aside: what a comic's pages are counted as. */
     public static int getPageCount(String path) {
-        int count = 0;
-        try {
-            if (BookType.CBZ.is(path) || isZip(path)) {
-
-                ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
-                ArchiveEntry nextEntry = null;
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (nextEntry.isDirectory()) {
-                        continue;
-                    }
-
-                    String name = nextEntry.getName().toLowerCase(Locale.US);
-                    if ("comicinfo.xml".equals(name)) {
-                        continue;
-                    }
-
-                    count++;
-                }
-                zipInputStream.close();
-            } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
-
-                for (FileHeader it : archive.getFileHeaders()) {
-                    if (it.isDirectory()) {
-                        continue;
-                    }
-
-                    String name = it.getFileName().toLowerCase(Locale.US);
-                    if ("comicinfo.xml".equals(name)) {
-                        continue;
-                    }
-
-                    count++;
-                }
-
-                archive.close();
-            }
-        } catch (Exception e) {
-            LOG.e(e);
+        final NativeArchive archive = NativeArchive.open(path);
+        if (archive == null) {
+            return 0;
         }
-        return count;
+        try {
+            int count = 0;
+            for (final String name : archive.getNames()) {
+                if (name != null && !COMIC_INFO.equals(name.toLowerCase(Locale.US))) {
+                    count++;
+                }
+            }
+            return count;
+        } finally {
+            archive.close();
+        }
+    }
+
+    /** The ComicInfo.xml at the top of the archive, or <code>null</code>. */
+    private static byte[] readComicInfo(String path) {
+        final NativeArchive archive = NativeArchive.open(path);
+        if (archive == null) {
+            return null;
+        }
+        try {
+            final List<String> names = archive.getNames();
+            for (int i = 0; i < names.size(); i++) {
+                final String name = names.get(i);
+                if (name != null && COMIC_INFO.equals(name.toLowerCase(Locale.US))) {
+                    return archive.read(i);
+                }
+            }
+            return null;
+        } finally {
+            archive.close();
+        }
     }
 
     public static String getBookOverview(String path) {
         String info = "";
         try {
-            ZipArchiveInputStream zipInputStream = null;
-            ByteArrayOutputStream byteArrayStream = null;
-            ByteArrayInputStream inputStream = null;
-
-            if (BookType.CBZ.is(path) || isZip(path)) {
-                zipInputStream = Zips.buildZipArchiveInputStream(path);
-                ArchiveEntry nextEntry = null;
-
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    String name = nextEntry.getName().toLowerCase(Locale.US);
-                    if ("comicinfo.xml".equals(name)) {
-                        break;
-                    }
-                }
-
-                if (nextEntry == null) {
-                    zipInputStream.close();
-                    return "";
-                }
-            } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
-                byteArrayStream = new ByteArrayOutputStream();
-
-                for (FileHeader it : archive.getFileHeaders()) {
-                    if (it.isDirectory()) {
-                        continue;
-                    }
-
-                    String name = it.getFileName().toLowerCase(Locale.US);
-                    if ("comicinfo.xml".equals(name)) {
-                        archive.extractFile(it, byteArrayStream);
-                        break;
-                    }
-                }
-                archive.close();
-
-                if (byteArrayStream.size() == 0) {
-                    return "";
-                }
+            final byte[] comicInfo = readComicInfo(path);
+            if (comicInfo == null || comicInfo.length == 0) {
+                return "";
             }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
-            if (zipInputStream != null) {
-                xpp.setInput(zipInputStream, "utf-8");
-            } else if (byteArrayStream != null) {
-                inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
-                xpp.setInput(inputStream, "utf-8");
-            }
+            xpp.setInput(new ByteArrayInputStream(comicInfo), "utf-8");
 
             int eventType = xpp.getEventType();
 
@@ -203,13 +114,6 @@ public class CbzCbrExtractor {
                 }
                 eventType = xpp.next();
             }
-
-            if (zipInputStream != null) {
-                zipInputStream.close();
-            } else if (byteArrayStream != null) {
-                byteArrayStream.close();
-                inputStream.close();
-            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -218,10 +122,6 @@ public class CbzCbrExtractor {
 
     public static EbookMeta getBookMetaInformation(String path) {
         try {
-            ZipArchiveInputStream zipInputStream = null;
-            ByteArrayOutputStream byteArrayStream = null;
-            ByteArrayInputStream inputStream = null;
-
             String title = null;
             String author = "";
             String series = null;
@@ -233,51 +133,13 @@ public class CbzCbrExtractor {
             String pageCount = null;
             String isbn = "";
 
-            if (BookType.CBZ.is(path) || isZip(path)) {
-                zipInputStream = Zips.buildZipArchiveInputStream(path);
-                ArchiveEntry nextEntry = null;
-
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    String name = nextEntry.getName().toLowerCase(Locale.US);
-
-                    if ("comicinfo.xml".equals(name)) {
-                        break;
-                    }
-                }
-
-                if (nextEntry == null) {
-                    zipInputStream.close();
-                    return EbookMeta.Empty();
-                }
-            } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
-                byteArrayStream = new ByteArrayOutputStream();
-
-                for (FileHeader it : archive.getFileHeaders()) {
-                    if (it.isDirectory()) {
-                        continue;
-                    }
-
-                    String name = it.getFileName().toLowerCase(Locale.US);
-                    if ("comicinfo.xml".equals(name)) {
-                        archive.extractFile(it, byteArrayStream);
-                        break;
-                    }
-                }
-                archive.close();
-
-                if (byteArrayStream.size() == 0) {
-                    return EbookMeta.Empty();
-                }
+            final byte[] comicInfo = readComicInfo(path);
+            if (comicInfo == null || comicInfo.length == 0) {
+                return EbookMeta.Empty();
             }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
-            if (zipInputStream != null) {
-                xpp.setInput(zipInputStream, "utf-8");
-            } else if (byteArrayStream != null) {
-                inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
-                xpp.setInput(inputStream, "utf-8");
-            }
+            xpp.setInput(new ByteArrayInputStream(comicInfo), "utf-8");
 
             int eventType = xpp.getEventType();
 
@@ -334,13 +196,6 @@ public class CbzCbrExtractor {
                 eventType = xpp.next();
             }
 
-            if (zipInputStream != null) {
-                zipInputStream.close();
-            } else if (byteArrayStream != null) {
-                byteArrayStream.close();
-                inputStream.close();
-            }
-
             author = TxtUtils.replaceFirst(author, ", ", "");
 
             EbookMeta ebookMeta = new EbookMeta(title, author, series, genre.replaceAll(",$", ""));
@@ -383,96 +238,55 @@ public class CbzCbrExtractor {
         }
     }
 
+    /**
+     * The cover: an image whose file name says it is the cover, or else the first page in
+     * reading order - the page the comic engine opens on.
+     *
+     * @return the image's bytes, empty when the archive holds no image or cannot be read
+     */
     public static byte[] getBookCover(String path) {
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
-            if (BookType.CBZ.is(path) || isZip(path)) {
-
-                ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(path);
-                ArchiveEntry nextEntry = null;
-
-                List<String> names = new ArrayList<String>();
-                String firstTemp = null;
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-
-                    String name = nextEntry.getName();
-                    String fileName = ExtUtils.getFileName(name);
-                    if (firstTemp == null) {
-                        firstTemp = fileName;
-                    }
-                    if (fileName.startsWith(".")) {
-                        continue;
-                    }
-
-                    if (ExtUtils.isImagePath(name)) {
-                        names.add(name);
-                    }
-                }
-                zipInputStream.close();
-                try {
-                    Collections.sort(names);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-                zipInputStream = new ZipArchiveInputStream(path);
-                nextEntry = null;
-
-                if (names.isEmpty() && firstTemp != null) {
-                    names.add(firstTemp);
-                }
-
-                String first = names.get(0);
-                LOG.d("cbz-Name-first", first);
-                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                    if (nextEntry.getName().equals(first)) {
-                        LOG.d("cbz-Name-first-eq", nextEntry.getName());
-                        IOUtils.copyClose(zipInputStream, out);
-                        break;
-                    }
-                }
-                zipInputStream.close();
-            } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
-
-                List<FileHeader> fileHeaders = archive.getFileHeaders();
-                Collections.sort(fileHeaders, new Comparator<FileHeader>() {
-                    @Override public int compare(FileHeader o1, FileHeader o2) {
-                        return o1.getFileName().compareTo(o2.getFileName());
-                    }
-                });
-
-                FileHeader fileHeader = fileHeaders.get(0);
-
-                if (fileHeader.isDirectory()) {
-                    fileHeader = fileHeaders.get(1);
-                }
-
-                for (FileHeader it : fileHeaders) {
-                    if (it.isDirectory()) {
-                        continue;
-                    }
-                    String lowerCase = it.getFileName().toLowerCase(Locale.US);
-                    if (lowerCase.contains("\\")) {
-                        lowerCase = lowerCase.substring(lowerCase.indexOf("\\") + 1);
-                    }
-
-                    if (lowerCase.contains("cover")) {
-                        fileHeader = it;
-                        break;
-                    }
-                }
-
-                LOG.d("fileHeader", fileHeader.getFileName());
-
-                LOG.d("EXtract CBR", fileHeader.getFileName());
-                archive.extractFile(fileHeader, out);
-                archive.close();
-            }
-        } catch (Exception e) {
-            LOG.e(e);
+        final NativeArchive archive = NativeArchive.open(path);
+        if (archive == null) {
+            return new byte[0];
         }
-        return out.toByteArray();
+        try {
+            final List<String> names = archive.getNames();
+            final List<Integer> images = new ArrayList<Integer>();
+            for (int i = 0; i < names.size(); i++) {
+                if (ComicDocument.isImage(names.get(i))) {
+                    images.add(i);
+                }
+            }
+            if (images.isEmpty()) {
+                return new byte[0];
+            }
+            Collections.sort(images, new Comparator<Integer>() {
+                @Override
+                public int compare(final Integer a, final Integer b) {
+                    return ComicDocument.naturalCompare(names.get(a), names.get(b));
+                }
+            });
+
+            int cover = images.get(0);
+            for (final int i : images) {
+                if (fileName(names.get(i)).contains("cover")) {
+                    cover = i;
+                    break;
+                }
+            }
+            LOG.d("comic cover", path, names.get(cover));
+
+            final byte[] bytes = archive.read(cover);
+            return bytes != null ? bytes : new byte[0];
+        } finally {
+            archive.close();
+        }
+    }
+
+    /** The name without its folders, lower-cased; RAR on Windows separates them with a backslash. */
+    private static String fileName(final String name) {
+        final String lower = name.toLowerCase(Locale.US);
+        final int slash = Math.max(lower.lastIndexOf('/'), lower.lastIndexOf('\\'));
+        return lower.substring(slash + 1);
     }
 }

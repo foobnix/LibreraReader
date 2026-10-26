@@ -87,14 +87,18 @@ public class AppsConfig {
 
 
     static {
-        // libMuPDF.so, or libLibreraDocs.so in a build made without MuPDF - which leaves
-        // MUPDF_FZ_VERSION empty, as every reader of it expects (they only ever ask whether it is
-        // MuPDF 1.11).
-        System.loadLibrary(Engines.NATIVE_LIBRARY);
+        // libmupdf.so where the build has it - without it MUPDF_FZ_VERSION stays empty, as every
+        // reader of it expects (they only ever ask whether it is MuPDF 1.11) - and the libraries
+        // every build has
         if (Engines.IS_MUPDF) {
+            System.loadLibrary(Engines.MUPDF_LIBRARY);
             AppsConfig.MUPDF_FZ_VERSION = MuPdfDocument.getFzVersion();
         }
-        Log.d("Librera", "lib" + Engines.NATIVE_LIBRARY + ".so MUPDF_VERSION " + MUPDF_FZ_VERSION);
+        for (final String library : Engines.NATIVE_LIBRARIES) {
+            System.loadLibrary(library);
+        }
+        Log.d("Librera", "native " + java.util.Arrays.toString(Engines.NATIVE_LIBRARIES)
+                + (Engines.IS_MUPDF ? " + MuPDF " + MUPDF_FZ_VERSION : ""));
     }
 
     public static boolean isPDF_DRAW_ENABLE() {

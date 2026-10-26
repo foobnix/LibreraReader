@@ -82,7 +82,7 @@ public class PdfiumEngineDeviceTest {
     public void setUp() throws Exception {
         final Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         AppsConfig.IS_LOG = false;
-        // Touching AppsConfig loads libMuPDF
+        // Touching AppsConfig loads libmupdf.so
         assertNotNull(AppsConfig.MUPDF_FZ_VERSION);
         CacheZipUtils.init(context);
         CacheZipUtils.createAllCacheDirs();
@@ -285,7 +285,7 @@ public class PdfiumEngineDeviceTest {
             assertTrue("a paragraph was written: " + html, html.contains("<p>") && html.contains("</p>"));
             assertTrue("MuPDF writes the same text", mupdf.getPage(0).getPageHTML().contains(TEXT));
 
-            // Only PDFium's: MuPdfPage.getCharCount has no native behind it in the bundled libMuPDF
+            // Only PDFium's: MuPdfPage.getCharCount has no native behind it in the bundled libmupdf.so
             assertEquals("the characters of the page", TEXT.length(), pdfium.getPage(0).getCharCount());
 
             // What a bookmark keeps of the page it was made on

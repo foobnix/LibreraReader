@@ -28,7 +28,7 @@
     *;
 }
 
-# libMuPDF.so creates these objects and sets their fields by name (Builder/jni).
+# libmupdf.so creates these objects and sets their fields by name (Builder/jni).
 -keep class org.ebookdroid.core.codec.CodecPageInfo {
     int width;
     int height;

@@ -140,8 +140,9 @@ android {
         /**
          * fdroid and pro, built without MuPDF: a PDF is rendered by PDFium, a reflowable book is
          * laid out by foliate-js in a WebView and a comic archive has its images decoded straight
-         * to bitmaps. They load libLibreraDocs.so - DjVu, the .doc and .mobi converters and the
-         * bitmap scaler, built by Builder/build-nomupdf.sh - in place of the 23 MB libMuPDF.so.
+         * to bitmaps. They carry every native library the other flavours do - DjVu, the .doc and
+         * .mobi converters, the bitmap scaler, the comic archives, LAME, each a library of its
+         * own (Builder/jni/Librera-libs.mk) - but the 23 MB libmupdf.so.
          *
          * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "JS" suffix,
          * and AppsConfig.IS_FDROID the "fdroid" prefix. Each carries the application ID of the
@@ -299,7 +300,7 @@ android {
     }
 
     sourceSets {
-        // The hand-written stand-ins for Google Play services, the Drive API client and junrar,
+        // The hand-written stand-ins for Google Play services and the Drive API client,
         // shared by every flavour that is built without those libraries (they come with
         // :libDepPro, which those flavours do not depend on). src/<flavour>/java keeps only what
         // is really that one flavour's, which is its LibreraBuildConfig.
@@ -307,9 +308,10 @@ android {
             java.srcDirs += 'src/noGms/java'
             assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
         }
-        // The MuPDF-free builds: libLibreraDocs.so in place of libMuPDF.so. src/main/jniLibs is
-        // part of every variant, so the library that is not wanted is dropped at packaging time
-        // instead - see the jniLibs excludes further down.
+        // The MuPDF-free builds take their native libraries from src/noMupdf/jniLibs: the
+        // libs-nomupdf the link script fills, every library of the MuPDF build but libmupdf.so.
+        // src/main/jniLibs is part of every variant too, and the flavour's copies win over it;
+        // libmupdf.so, which only it has, is dropped - see the jniLibs excludes further down.
         fdroidJS {
             java.srcDirs += 'src/noGms/java'
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
@@ -448,14 +450,14 @@ dependencies {
 // AGP 9 removed applicationVariants: per-ABI version codes and the APK names now come
 // from the Variant API, with the same values as before.
 androidComponents {
-    // The MuPDF-free flavours take libLibreraDocs.so from src/noMupdf/jniLibs and leave
-    // libMuPDF.so behind. src/main/jniLibs is part of every variant and is where the MuPDF build
-    // writes, so the library is dropped here rather than kept out of the source set.
+    // The MuPDF-free flavours take their libraries from src/noMupdf/jniLibs, which has no
+    // libmupdf.so. src/main/jniLibs is part of every variant and does have it, so the one
+    // library is dropped here rather than kept out of the source set.
     onVariants(selector().withFlavor("version", "fdroidJS")) { variant ->
-        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+        variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
     onVariants(selector().withFlavor("version", "proJS")) { variant ->
-        variant.packaging.jniLibs.excludes.add("**/libMuPDF.so")
+        variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
 
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]

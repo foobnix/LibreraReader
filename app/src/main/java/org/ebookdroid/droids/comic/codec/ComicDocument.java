@@ -4,17 +4,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.mobi.parser.IOUtils;
-
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.model.FileHeader;
+import com.foobnix.ext.NativeArchive;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,7 +19,9 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * A comic archive: the images inside it, in reading order, one per page. See {@link ComicContext}.
+ * A comic archive - a .cbz or a .cbr - the images inside it, in reading order, one per page. Both
+ * are read with libarchive in place ({@link NativeArchive}), so neither is extracted or repacked
+ * first. See {@link ComicContext}.
  */
 public class ComicDocument extends AbstractCodecDocument {
 
@@ -38,14 +36,15 @@ public class ComicDocument extends AbstractCodecDocument {
             BookType.list(".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".jfif", ".avif", ".heic", ".heif");
 
     private final String fname;
-    private final ZipFile archive;
-    private final List<FileHeader> pages;
+    private final NativeArchive archive;
+    /** The entries of the archive that are pages, by their index in the archive, in page order. */
+    private final List<Integer> pages;
 
     /** Page sizes, read off each image's header the first time that page is asked about. */
     private final CodecPageInfo[] pageInfo;
 
-    private ComicDocument(final ComicContext context, final String fname, final ZipFile archive,
-                          final List<FileHeader> pages) {
+    private ComicDocument(final ComicContext context, final String fname, final NativeArchive archive,
+                          final List<Integer> pages) {
         super(context, HANDLES.incrementAndGet());
         this.fname = fname;
         this.archive = archive;
@@ -54,18 +53,21 @@ public class ComicDocument extends AbstractCodecDocument {
     }
 
     /**
-     * Opens a .cbz, or anything else that is a zip of images.
+     * Opens a .cbz or a .cbr - whatever the name says, a zip or a RAR of images.
      *
      * @return the document, or <code>null</code> when the archive cannot be read or holds no
      *         image at all - which is what tells the reader to report the file as broken
      */
     static ComicDocument open(final ComicContext context, final String fname) {
         try {
-            final ZipFile archive = new ZipFile(fname);
-            final List<FileHeader> pages = readPages(archive);
+            final NativeArchive archive = NativeArchive.open(fname);
+            if (archive == null) {
+                return null;
+            }
+            final List<Integer> pages = readPages(archive);
             if (pages.isEmpty()) {
                 LOG.d("COMIC! no images in", fname);
-                close(archive);
+                archive.close();
                 return null;
             }
             LOG.d("COMIC! >>> open [document]", fname, pages.size(), "pages");
@@ -78,26 +80,27 @@ public class ComicDocument extends AbstractCodecDocument {
 
     /**
      * The archive's images in the order they are to be read, which for a comic is the order of
-     * their names - the only ordering a .cbz carries.
+     * their names - the only ordering a comic archive carries.
      */
-    private static List<FileHeader> readPages(final ZipFile archive) throws Exception {
-        final List<FileHeader> pages = new ArrayList<FileHeader>();
-        for (final FileHeader header : archive.getFileHeaders()) {
-            if (header.isDirectory() || !isImage(header.getFileName())) {
-                continue;
+    private static List<Integer> readPages(final NativeArchive archive) {
+        final List<String> names = archive.getNames();
+        final List<Integer> pages = new ArrayList<Integer>();
+        for (int i = 0; i < names.size(); i++) {
+            // only a file has a name here
+            if (isImage(names.get(i))) {
+                pages.add(i);
             }
-            pages.add(header);
         }
-        Collections.sort(pages, new Comparator<FileHeader>() {
+        Collections.sort(pages, new Comparator<Integer>() {
             @Override
-            public int compare(final FileHeader a, final FileHeader b) {
-                return naturalCompare(a.getFileName(), b.getFileName());
+            public int compare(final Integer a, final Integer b) {
+                return naturalCompare(names.get(a), names.get(b));
             }
         });
         return pages;
     }
 
-    private static boolean isImage(final String name) {
+    public static boolean isImage(final String name) {
         if (name == null) {
             return false;
         }
@@ -121,7 +124,7 @@ public class ComicDocument extends AbstractCodecDocument {
      * {@code page9} comes before {@code page10}, which a plain string sort gets wrong and most
      * comics are numbered without leading zeros.
      */
-    static int naturalCompare(final String a, final String b) {
+    public static int naturalCompare(final String a, final String b) {
         int i = 0;
         int j = 0;
         while (i < a.length() && j < b.length()) {
@@ -229,9 +232,9 @@ public class ComicDocument extends AbstractCodecDocument {
     /**
      * Reads one image out of the archive.
      *
-     * The whole entry is read into memory, which is what a zip of compressed images gives anyway -
-     * there is no seeking inside a deflated entry - and a comic page is a few hundred kilobytes.
-     * Synchronized because one zip4j archive hands out one entry stream at a time.
+     * The whole entry is read into memory, which is what an archive of compressed images gives
+     * anyway - there is no seeking inside a compressed entry - and a comic page is a few hundred
+     * kilobytes. Synchronized because one archive is read one entry at a time.
      *
      * @return the image's bytes, or <code>null</code> when the entry cannot be read
      */
@@ -239,22 +242,11 @@ public class ComicDocument extends AbstractCodecDocument {
         if (isRecycled() || pageNumber < 0 || pageNumber >= pages.size()) {
             return null;
         }
-        InputStream in = null;
-        try {
-            in = archive.getInputStream(pages.get(pageNumber));
-            return IOUtils.toByteArray(in);
-        } catch (Throwable e) {
-            LOG.e(e, fname, pageNumber);
-            return null;
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (Throwable e) {
-                    LOG.e(e);
-                }
-            }
+        final byte[] bytes = archive.read(pages.get(pageNumber));
+        if (bytes == null) {
+            LOG.d("COMIC! cannot read page", fname, pageNumber);
         }
+        return bytes;
     }
 
     // ---------------------------------------------------------------- the rest of the contract
@@ -299,17 +291,6 @@ public class ComicDocument extends AbstractCodecDocument {
 
     @Override
     protected void freeDocument() {
-        close(archive);
-    }
-
-    private static void close(final ZipFile archive) {
-        if (archive == null) {
-            return;
-        }
-        try {
-            archive.close();
-        } catch (Throwable e) {
-            LOG.e(e);
-        }
+        archive.close();
     }
 }

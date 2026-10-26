@@ -70,11 +70,6 @@ for MUPDF in "${MUPDF_VERSIONS[@]}"; do
 
   ./Builder/link_to_mupdf_$MUPDF.sh || exit 1
 
-  # libLibreraDocs.so, for the flavours built without MuPDF: it is DjVu, the .doc and .mobi
-  # converters and the bitmap scaler, which libMuPDF.so would otherwise have carried. It reads
-  # libjpeg out of the MuPDF tree, so it goes after link_to_mupdf put that tree in place.
-  ./Builder/build-nomupdf.sh $MUPDF || exit 1
-
   # the native library of the MuPDF before must not end up in these APKs
   ./gradlew clean || exit 1
 

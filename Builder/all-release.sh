@@ -55,7 +55,8 @@ cd ../
 ./gradlew -stop
 
 # Native debug symbols for Play Console crash reports (App bundle explorer > Downloads > Assets):
-# debug info of the unstripped libMuPDF.so from ndk-build, one folder per ABI
+# debug info of every unstripped library from ndk-build - libmupdf.so and the ones of
+# Builder/jni/Librera-libs.mk, libarchive.so and liblame.so - one folder per ABI
 VERSION_BASE=$(sed -n 's/^appVersionNumberBase=//p' app/gradle.properties)
 VERSION_INDEX=$(sed -n 's/^appVersionNumberIndex=//p' app/gradle.properties)
 if [ -z "$VERSION_BASE" ] || [ -z "$VERSION_INDEX" ]; then
@@ -86,7 +87,9 @@ fi
 SYMBOLS=$(mktemp -d)
 for ABI in armeabi-v7a arm64-v8a x86 x86_64; do
   mkdir -p "$SYMBOLS/$ABI"
-  "$OBJCOPY" --only-keep-debug Builder/mupdf-$MUPDF/platform/librera/obj/local/$ABI/libMuPDF.so "$SYMBOLS/$ABI/libMuPDF.so.dbg" || exit 1
+  for LIB in Builder/mupdf-$MUPDF/platform/librera/obj/local/$ABI/*.so; do
+    "$OBJCOPY" --only-keep-debug "$LIB" "$SYMBOLS/$ABI/$(basename "$LIB").dbg" || exit 1
+  done
 done
 SYMBOLS_ZIP="Librera-$VERSION-mupdf$MUPDF-native-debug-symbols.zip"
 for D in "${RELEASE_DIRS[@]}"; do
