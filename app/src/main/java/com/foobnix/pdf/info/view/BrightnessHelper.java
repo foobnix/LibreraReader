@@ -83,6 +83,18 @@ public class BrightnessHelper {
         }
     }
 
+    public static void applySystemBrigtness(final Activity a) {
+        try {
+            final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
+            if (lp.screenBrightness != WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE) {
+                lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+                a.getWindow().setAttributes(lp);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static int getSystemBrigtnessInt(final Context a) {
         try {
             int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
@@ -101,7 +113,11 @@ public class BrightnessHelper {
         return 50;
     }
 
-    public static synchronized void onMessegeBrightness(final Handler h, MessegeBrightness msg, final TextView textView, final View overlay) {
+    public static void onMessegeBrightness(final Handler h, MessegeBrightness msg, final TextView textView, final View overlay) {
+        onMessegeBrightness(h, msg, textView, overlay, true);
+    }
+
+    public static synchronized void onMessegeBrightness(final Handler h, MessegeBrightness msg, final TextView textView, final View overlay, final boolean apply) {
         int value = msg.getValue();
         textView.setVisibility(View.VISIBLE);
         h.removeCallbacksAndMessages(null);
@@ -117,7 +133,7 @@ public class BrightnessHelper {
 
             @Override
             public void onClick(View v) {
-                onMessegeBrightness(h, new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
+                onMessegeBrightness(h, new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay, apply);
                 EventBus.getDefault().post(new MessegeBrightness(AppState.AUTO_BRIGTNESS));
 
                 Activity inflate = (Activity) textView.getContext();
@@ -141,8 +157,10 @@ public class BrightnessHelper {
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         }
 
-        BrightnessHelper.applyBrigtness((Activity) textView.getContext());
-        updateOverlay(overlay);
+        if (apply) {
+            BrightnessHelper.applyBrigtness((Activity) textView.getContext());
+            updateOverlay(overlay);
+        }
 
     }
 

@@ -152,7 +152,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "https://librera.app/librera-reader/";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
-    View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent, overlay,
+    View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent,
             statusBarHack;
     TextView singIn, syncInfo, syncInfo2, syncHeader, syncNow;
     ProgressBar syncProgress;
@@ -2848,12 +2848,6 @@ public class PrefFragment2 extends UIFragment {
 
         statusBarHack = getActivity().findViewById(R.id.systemBarHack);
 
-        overlay =
-
-                getActivity().
-
-                                     findViewById(R.id.overlay);
-
         TextView onProfile = inflate.findViewById(R.id.onProfile);
 
         profileLetter = inflate.findViewById(R.id.profileLetter);
@@ -3383,13 +3377,7 @@ public class PrefFragment2 extends UIFragment {
     @Override public void onResume() {
         super.onResume();
 
-        BrightnessHelper.updateOverlay(overlay);
-        BrightnessHelper.showBlueLigthDialogAndBrightness(getActivity(), inflate, new Runnable() {
-
-            @Override public void run() {
-                BrightnessHelper.updateOverlay(overlay);
-            }
-        });
+        BrightnessHelper.showBlueLigthDialogAndBrightness(getActivity(), inflate, null);
 
         rotationText();
 

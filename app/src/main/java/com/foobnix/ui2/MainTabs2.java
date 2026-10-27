@@ -71,6 +71,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
+import androidx.lifecycle.Lifecycle;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyProgressBar;
@@ -575,8 +576,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         // testIntentHandler();
 
        // if (Android6.canWrite(this)) {
-            BrightnessHelper.applyBrigtness(this);
-            BrightnessHelper.updateOverlay(overlay);
+            BrightnessHelper.applySystemBrigtness(this);
+            overlay.setVisibility(View.GONE);
     //    }
         GFile.runSyncService(this);
     }
@@ -1035,7 +1036,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
+        if (!getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+            return;
+        }
+        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay, false);
     }
 
     @Subscribe
@@ -1087,6 +1091,8 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
+        BrightnessHelper.applySystemBrigtness(this);
+        overlay.setVisibility(View.GONE);
 
         LocalBroadcastManager.getInstance(this)
                              .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
