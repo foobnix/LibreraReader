@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -17,26 +16,27 @@ import android.view.Gravity;
 import android.graphics.Outline;
 import android.view.ViewOutlineProvider;
 import android.view.ViewGroup;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import android.content.Context;
+import android.util.TypedValue;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
+
+import androidx.cardview.widget.CardView;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,17 +47,51 @@ public class TintUtil {
     public static final int SWATCH_RADIUS = Dips.dpToPx(6);
     public static final int SECTION_RADIUS = Dips.dpToPx(8);
     public static final int BADGE_RADIUS = Dips.dpToPx(20);
+    /** The mark a sort menu puts on the sort the list is in. */
+    public static final int SORT_CURRENT_ICON = R.drawable.glyphicons_194_circle_empty_check;
+    public static final int COVER_RADIUS_MAX = 4;
+    public static final int COVER_RADIUS_STEP_DP = 3;
     private static final int SWATCH_BORDER = Color.parseColor("#55888888");
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
     public static int cloudSyncColor = Color.parseColor("#66bb6a");// Color.parseColor("#9fd8bc");
-    public static int color = Color.parseColor(AppState.STYLE_COLORS.get(0));
+    public static int color = Color.parseColor(AppState.STYLE_COLORS.get(AppState.DEFAULT_STYLE_COLOR));
     private static List<Drawable> drawables = new ArrayList<Drawable>();
     private static List<GradientDrawable> drawableFill = new ArrayList<GradientDrawable>();
     private static List<View> drawables1 = new ArrayList<View>();
 
     public static int COLOR_TINT_GRAY = Color.parseColor("#009688");
     public static int COLOR_ORANGE = Color.parseColor("#FF8C00");
+
+    /**
+     * Whether a view drawn in this context sits on a light surface - the theme's colour for the
+     * given attribute, measured rather than assumed. The two readers choose a light or dark
+     * theme by different rules (one by the book's day mode, one by the app's theme), so what is
+     * drawn on their sheets asks the theme it is in rather than repeating either rule. An
+     * attribute the theme cannot give falls back to the window background.
+     */
+    public static boolean isLightSurface(Context c, int attr) {
+        if (c == null) {
+            return false;
+        }
+        Integer surface = resolveColor(c, attr);
+        if (surface == null) {
+            surface = resolveColor(c, android.R.attr.colorBackground);
+        }
+        return surface != null && ColorUtils.calculateLuminance(surface) > 0.5;
+    }
+
+    private static Integer resolveColor(Context c, int attr) {
+        TypedValue value = new TypedValue();
+        if (!c.getTheme()
+              .resolveAttribute(attr, value, true)) {
+            return null;
+        }
+        if (value.type < TypedValue.TYPE_FIRST_COLOR_INT || value.type > TypedValue.TYPE_LAST_COLOR_INT) {
+            return null;
+        }
+        return value.data;
+    }
 
     public static int getColorInDayNighth() {
         if(AppState.get().appTheme == AppState.THEME_INK){
@@ -71,6 +105,40 @@ public class TintUtil {
             return Color.BLACK;
         }
         return AppState.get().isDayNotInvert ? TintUtil.color : Color.LTGRAY;
+    }
+
+    /**
+     * The colour an Ink mark is drawn in: white where it stands on a dark surface - the
+     * reader's bars, the head of a dialog - and black where it stands on the page. The surface
+     * is the first background painted under the mark; with none painted, the theme's own.
+     */
+    public static int inkMarkColor(View view) {
+        return isOnDarkSurface(view) ? Color.WHITE : Color.BLACK;
+    }
+
+    private static boolean isOnDarkSurface(View view) {
+        for (View v = view; v != null; v = v.getParent() instanceof View ? (View) v.getParent() : null) {
+            Integer painted = paintedColor(v.getBackground());
+            if (painted != null) {
+                return ColorUtils.calculateLuminance(painted) < 0.5;
+            }
+        }
+        return view != null && !isLightSurface(view.getContext(), android.R.attr.colorBackground);
+    }
+
+    /** The colour a background fills with, or null for one that fills nothing - a ring, a ripple. */
+    private static Integer paintedColor(Drawable background) {
+        if (background == null) {
+            return null;
+        }
+        Drawable current = background.getCurrent();
+        Integer color = null;
+        if (current instanceof ColorDrawable) {
+            color = ((ColorDrawable) current).getColor();
+        } else if (current instanceof GradientDrawable && ((GradientDrawable) current).getColor() != null) {
+            color = ((GradientDrawable) current).getColor().getDefaultColor();
+        }
+        return color == null || Color.alpha(color) == 0 ? null : color;
     }
 
     static Random random = new Random();
@@ -95,18 +163,22 @@ public class TintUtil {
         }
     }
 
-    public static int getStatusBarColor() {
+    /**
+     * The colour of the reader's own status line - page, clock, battery - in the day or the
+     * night scheme. Nothing to do with the system's status bar.
+     */
+    public static int getStatusBarTextColor() {
         return AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : AppState.get().statusBarColorNight;
     }
 
     public static int tintRandomColor() {
-        AppState.get().tintColor = Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
-        TintUtil.color = AppState.get().tintColor;
-        return AppState.get().tintColor;
+        AppState.get().tintThemeColor = Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
+        TintUtil.color = AppState.get().tintThemeColor;
+        return AppState.get().tintThemeColor;
     }
 
     public static void init() {
-        color = AppState.get().tintColor;
+        color = AppState.get().tintThemeColor;
     }
 
     public static void clean() {
@@ -125,14 +197,39 @@ public class TintUtil {
     }
 
     public static void setBackgroundFillColor(View textView, int color) {
-        try {
-            GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        if (textView == null || textView.getBackground() == null) {
+            return;
+        }
+        Drawable background = textView.getBackground().getCurrent();
+        if (background instanceof GradientDrawable) {
+            GradientDrawable drawable = (GradientDrawable) background;
             drawable.setColor(color);
             drawable.setCornerRadius(RADIUS);
-        }catch (Exception e){
-            LOG.e(e);
+        } else if (background instanceof LayerDrawable) {
+            // A ripple keeps its shape in its layers: fill the content, leave the mask and the round alone.
+            LayerDrawable layers = (LayerDrawable) background.mutate();
+            for (int i = 0; i < layers.getNumberOfLayers(); i++) {
+                Drawable layer = layers.getDrawable(i);
+                if (layers.getId(i) != android.R.id.mask && layer instanceof GradientDrawable) {
+                    ((GradientDrawable) layer).setColor(color);
+                }
+            }
         }
+    }
 
+    /** The round every book cover is cut to, from the cover radius the user picked. */
+    public static int coverRadius() {
+        int level = Math.max(0, Math.min(COVER_RADIUS_MAX, AppState.get().coverRadius));
+        return Dips.dpToPx(level * COVER_RADIUS_STEP_DP);
+    }
+
+    /** Cuts a book cover to the round the user picked for covers. */
+    public static void roundCover(View view) {
+        if (view instanceof CardView) {
+            ((CardView) view).setRadius(coverRadius());
+        } else {
+            roundCorners(view, coverRadius());
+        }
     }
 
     /**
@@ -168,7 +265,9 @@ public class TintUtil {
         if (button == null) {
             return;
         }
-        // Any underline the text was carrying goes with it - the ring says it can be pressed.
+        // Any underline the text was carrying goes with it - the ring says it can be pressed -
+        // and the button is marked, so a value written into it later is not underlined either.
+        button.setTag(R.id.linkButton, Boolean.TRUE);
         button.setText(button.getText()
                              .toString());
         button.setBackgroundResource(R.drawable.bg_button_outline);
@@ -183,7 +282,62 @@ public class TintUtil {
             lp.topMargin = lp.bottomMargin = Dips.DP_4;
             button.setLayoutParams(lp);
         }
+        drawDropdown(button);
         setRingColor(button, button.getCurrentTextColor());
+    }
+
+    /**
+     * Keeps buttons that stand in one column at one width - the widest of them - so a short word
+     * or a button without a chevron does not leave a ragged edge among the rest. Kept as the
+     * values in them change, as they are rewritten whenever a new one is picked.
+     */
+    public static void sameWidth(final View... buttons) {
+        final View.OnLayoutChangeListener keep = (v, l, t, r, b, ol, ot, or, ob) -> {
+            int widest = 0;
+            for (View button : buttons) {
+                if (button != null && button.getVisibility() != View.GONE) {
+                    widest = Math.max(widest, button.getWidth());
+                }
+            }
+            final int width = widest;
+            for (final View button : buttons) {
+                if (button != null && button.getMinimumWidth() < width) {
+                    // not in the middle of the layout pass that reported the width
+                    button.post(() -> button.setMinimumWidth(width));
+                }
+            }
+        };
+        for (View button : buttons) {
+            if (button != null) {
+                button.addOnLayoutChangeListener(keep);
+            }
+        }
+    }
+
+    /**
+     * A button that opens a list to choose from ends in a chevron - the textLinkDropdown style
+     * puts it there - so a choice reads apart from an action. The chevron is sized and tinted to
+     * the word here, again each time the button is drawn, as its value is rewritten whenever a
+     * new one is picked.
+     */
+    private static void drawDropdown(TextView button) {
+        Drawable[] current = button.getCompoundDrawablesRelative();
+        if (current[2] == null) {
+            return;
+        }
+        Drawable chevron = ContextCompat.getDrawable(button.getContext(), R.drawable.ic_chevron_down);
+        if (chevron == null) {
+            return;
+        }
+        chevron = chevron.mutate();
+        int size = Dips.dpToPx(16);
+        chevron.setBounds(0, 0, size, size);
+        chevron.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
+        button.setCompoundDrawableTintList(null);
+        button.setCompoundDrawablesRelative(current[0], current[1], chevron, current[3]);
+        button.setCompoundDrawablePadding(Dips.DP_8);
+        // The rounded ends are kept clear: the words start further in, the chevron sits near the end
+        button.setPaddingRelative(Dips.dpToPx(18), Dips.DP_4, Dips.dpToPx(12), Dips.DP_4);
     }
 
     /**
@@ -200,23 +354,6 @@ public class TintUtil {
             asLinkButton((TextView) root);
             alignInRow((TextView) root);
         }
-    }
-
-    /**
-     * A word at the foot of a dialog, drawn as one of the panel's buttons. The frame a dialog
-     * stands its own buttons in keeps a tall floor under them for a finger to land on, and the
-     * ring is drawn on the button itself - so left alone it comes out a ring far taller than
-     * the word inside it. The floor is taken away and the ring left to the word and its air.
-     */
-    public static void asDialogButton(TextView button) {
-        if (button == null) {
-            return;
-        }
-        asLinkButton(button, 0);
-        button.setMinHeight(0);
-        button.setMinimumHeight(0);
-        button.setMinWidth(0);
-        button.setMinimumWidth(0);
     }
 
     /**
@@ -281,7 +418,10 @@ public class TintUtil {
     }
 
     public static void setBackgroundFillColorBottomRight(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return;
+        }
         drawable.setColor(color);
         drawable.setCornerRadii(new float[]{0, 0, 0, 0, RADIUS * 2, RADIUS * 2, 0, 0});
     }
@@ -411,14 +551,32 @@ public class TintUtil {
         }
     }
 
+    /**
+     * The shape a view is drawn on, or null where its background is something else - a ripple
+     * put there in place of the shape the view was laid out with.
+     */
+    private static GradientDrawable gradientBackground(View view) {
+        if (view == null || view.getBackground() == null) {
+            return null;
+        }
+        Drawable background = view.getBackground().getCurrent();
+        return background instanceof GradientDrawable ? (GradientDrawable) background : null;
+    }
+
     public static void setStrokeColor(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return;
+        }
         drawable.setStroke(STROKE, color);
         drawable.setCornerRadius(RADIUS);
     }
 
     public static GradientDrawable setStrokeColorWithDash(View textView, int color) {
-        GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
+        GradientDrawable drawable = gradientBackground(textView);
+        if (drawable == null) {
+            return null;
+        }
         drawable.setStroke(Dips.DP_2, color,Dips.DP_6,Dips.DP_6);
         drawable.setCornerRadius(RADIUS);
         return drawable;
@@ -445,13 +603,13 @@ public class TintUtil {
             ((GradientDrawable) drawable).setStroke(STROKE, color);
             ((GradientDrawable) drawable).setCornerRadius(RADIUS);
         } else {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
         }
     }
 
     public static Drawable setDrawableTint(Drawable drawable, int color, int alpha) {
         try {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
             drawable.setAlpha(alpha);
         } catch (Exception e) {
             LOG.e(e);
@@ -460,7 +618,7 @@ public class TintUtil {
     }
     public static Drawable setDrawableTint(Drawable drawable, int color) {
         try {
-            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -481,7 +639,7 @@ public class TintUtil {
                 ((GradientDrawable) drawable).setStroke(STROKE, color);
                 ((GradientDrawable) drawable).setCornerRadius(RADIUS);
             } else {
-                drawable.setColorFilter(color, Mode.SRC_ATOP);
+                drawable.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
             }
         }
         for (GradientDrawable drawable : drawableFill) {
@@ -546,7 +704,7 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(colorDrawable.getCurrent());
         } else {
-            txtView.setBackgroundDrawable(colorDrawable);
+            txtView.setBackground(colorDrawable);
         }
     }
 
@@ -557,7 +715,7 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(colorDrawable.getCurrent());
         } else {
-            txtView.setBackgroundDrawable(colorDrawable);
+            txtView.setBackground(colorDrawable);
         }
     }
 
@@ -566,7 +724,7 @@ public class TintUtil {
         if (txtView == null || txtView.getBackground() == null) {
             return;
         }
-        txtView.getBackground().setColorFilter(color, Mode.SRC_ATOP);
+        txtView.getBackground().setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
 
     }
 
@@ -575,7 +733,7 @@ public class TintUtil {
         if (txtView == null || txtView.getBackground() == null) {
             return;
         }
-        txtView.getBackground().setColorFilter(color, Mode.SRC_ATOP);
+        txtView.getBackground().setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
 
         StateListDrawable states = new StateListDrawable();
 
@@ -596,18 +754,8 @@ public class TintUtil {
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(states);
         } else {
-            txtView.setBackgroundDrawable(states);
+            txtView.setBackground(states);
         }
-    }
-
-    @SuppressLint("NewApi")
-    public static void setStatusBarColor(Activity activity) {
-        setStatusBarColor(activity, TintUtil.color);
-    }
-
-    @SuppressLint("NewApi")
-    public static void setStatusBarColor(Activity activity, int color) {
-
     }
 
     public static void grayScaleImageView(ImageView v) {

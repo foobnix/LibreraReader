@@ -5,6 +5,7 @@ import android.graphics.RectF;
 
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.bitmaps.Bitmaps;
@@ -41,6 +42,8 @@ public class Page {
     TextWord[][] texts;
     public List<TextWord> selectedText = new ArrayList<TextWord>();
     public List<Annotation> annotations;
+    /** The reader's own marks on this page, resolved once when the page is decoded. */
+    public List<AnnotationsFinder.Drawn> marks;
 
     public RectF selectionAnnotion;
     public boolean isLastPage = false;

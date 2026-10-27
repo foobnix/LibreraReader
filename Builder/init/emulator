@@ -1,2 +1,2 @@
 #!/bin/bash    
-/home/dev/Android/Sdk/emulator/emulator1 $@ -feature -Vulkan
+"${ANDROID_HOME:-$HOME/Android/Sdk}/emulator/emulator1" "$@" -feature -Vulkan

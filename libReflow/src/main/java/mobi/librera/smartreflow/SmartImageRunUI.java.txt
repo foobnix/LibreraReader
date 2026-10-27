@@ -27,8 +27,7 @@ public class SmartImageRunUI {
 
     static GraphicsConfiguration gc;
 
-    //static String img = "/home/ivan-dev/Downloads/testSM/2.jpg";
-    static String img = "/home/ivan-dev/IdeaProjects/SmartReflow/images/sample1.png";
+    static String img = System.getenv("LIBRERA_SMARTREFLOW_DIR") + "/images/sample1.png";
 
     public static void main(String[] args) throws Exception {
         runIU(img);
@@ -126,7 +125,7 @@ public class SmartImageRunUI {
         open1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File my = new File("/home/ivan-dev/IdeaProjects/SmartReflow/src1");
+                File my = new File(System.getenv("LIBRERA_SMARTREFLOW_DIR") + "/src1");
                 if (!my.exists()) {
                     my = new File(System.getProperty("user.dir"));
 

@@ -33,4 +33,6 @@ google-services.*
 /appCompose/build/
 /Builder/mupdf-1.23.7/
 /Builder/mupdf-1.28.3/
-.github
+/Builder/mupdf-1.28.4/
+/Builder/mupdf-1.28.5/
+/.claude/

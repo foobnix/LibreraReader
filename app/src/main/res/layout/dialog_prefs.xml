@@ -233,7 +233,7 @@
 
             <TextView
                 android:id="@+id/screenOrientation"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/orientation" />
@@ -281,7 +281,7 @@
 
             <TextView
                 android:id="@+id/characterEncoding"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -357,7 +357,7 @@
 
             <TextView
                 android:id="@+id/textFontName"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -369,6 +369,8 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="4dip"
+                android:background="@drawable/bg_border_ltgray"
                 android:layout_weight="0"
                 android:padding="8dip"
                 android:contentDescription="@string/cd_download_more_fonts"
@@ -710,9 +712,11 @@
                 android:src="@drawable/glyphicons_580_translate"
                 app:tint="@color/tint_gray" />
 
+            <!-- The words take what the dictionary button leaves them, and wrap there; the button
+                 is held to a width that leaves them room, its name cut short past it. -->
             <CheckBox
                 android:id="@+id/isRememberDictionary"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
@@ -720,14 +724,17 @@
 
             <TextView
                 android:id="@+id/selectedDictionaly"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="180dp"
                 android:text="GoogleTranslate" />
         </LinearLayout>
 
+        <!-- The row takes the dialog's width and the button its words': in a row only as wide as
+             what is in it, a weighted button was squeezed and its name cut short. -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -746,7 +753,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dip"
-                android:layout_weight="1"
                 android:text="@string/bluelight_filter" />
 
         </LinearLayout>

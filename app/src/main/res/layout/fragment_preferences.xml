@@ -135,7 +135,7 @@
 
                 <TextView
                     android:id="@+id/onProfile"
-                    style="@style/textLink"
+                    style="@style/textLinkDropdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BETA"
@@ -188,39 +188,33 @@
                 android:layout_marginLeft="5dip"
                 android:orientation="vertical" />
 
-            <!-- Adding a folder and rebuilding the library from the folders now listed: one
-                 says what the library is made of, the other goes and makes it. -->
-            <LinearLayout
+            <!-- The two ways a folder gets into the library, and under them the library rebuilt
+                 from the folders now listed - the cards and the button the library folders dialog
+                 has, so the two read as one thing. -->
+            <include
+                layout="@layout/library_folders_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp" />
 
-                <TextView
-                    android:id="@+id/onConfigPath"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:padding="4dip"
-                    android:text="@string/add_folder"
-                    android:textAllCaps="true" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/onUpdateLibrary"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:padding="4dip"
-                    android:text="@string/update_library"
-                    android:textAllCaps="true" />
-            </LinearLayout>
+            <!-- Filled in the theme colour by the panel, as the dialog fills its own. -->
+            <TextView
+                android:id="@+id/onUpdateLibrary"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minWidth="120dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:text="@string/update_library"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <View
                 android:tag="with_tint1"
@@ -391,11 +385,12 @@
                         android:textSize="11sp" />
                 </LinearLayout>
 
+                <!-- Centred under the formats: the mark beside the button is folded into it, so
+                     the button is all the row holds. -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
+                    android:gravity="center">
 
                     <ImageView
                         android:layout_width="@dimen/wh_button"
@@ -408,7 +403,7 @@
 
                     <TextView
                         android:id="@+id/moreLybraryettings"
-                        style="@style/textLink"
+                        style="@style/textLinkDropdown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/library_settings" />
@@ -431,41 +426,43 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/tabs_position"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tapPositionTop"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/top" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/screen"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/fullscreen"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/no" />
             </LinearLayout>
@@ -477,16 +474,16 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/orientation"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/screenOrientation"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="@string/automatic" />
@@ -495,19 +492,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/language"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appLang"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="Russian" />
@@ -516,63 +514,134 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/font_size"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appFontScale"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:minWidth="100dip"
                     android:text="Normal" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/theme"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/themeColor"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="@string/light" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cover_radius"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/coverRadius"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="5dip"
                 android:visibility="gone">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:minWidth="135dp"
                     android:text="@string/engine"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/appEngine"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
                     android:layout_height="wrap_content"
                     android:text="Librera_111" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pdfEngineRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pdf_engine"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pdfEngine"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="MuPDF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/epubEngineRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/epub_engine"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/epubEngine"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip"
+                    android:text="MuPDF" />
             </LinearLayout>
 
             <LinearLayout
@@ -1108,7 +1177,7 @@
                 <TextView
                     android:id="@+id/docConverter"
 
-                    style="@style/textLink"
+                    style="@style/textLinkDropdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/document_converter_online_" />
@@ -1225,7 +1294,7 @@
 
                 <TextView
                     android:id="@+id/columsCount"
-                    style="@style/textLink"
+                    style="@style/textLinkDropdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dip"
@@ -1340,51 +1409,51 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/show" />
 
                     <TextView
                         android:id="@+id/widgetForRecent"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
+                        style="@style/textLinkDropdown"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:minWidth="100dip"
                         android:text="@string/recent" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/layout" />
 
                     <TextView
                         android:id="@+id/widgetLayout"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
+                        style="@style/textLinkDropdown"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:minWidth="100dip"
                         android:text="@string/grid" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
                     android:gravity="center_vertical"
@@ -1392,15 +1461,15 @@
 
                     <TextView
                         android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                    android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:minWidth="135dp"
                         android:text="@string/number_of_books" />
 
                     <TextView
                         android:id="@+id/widgetItemsCount"
-                        style="@style/textLink"
-                        android:layout_width="wrap_content"
+                        style="@style/textLinkDropdown"
+                        android:layout_width="@dimen/pref_value_width"
                         android:layout_height="wrap_content"
                         android:text="2"
                         android:textAllCaps="true" />
@@ -1451,6 +1520,30 @@
                     android:minWidth="100dip"
                     android:text="@string/export_" />
 
+            </LinearLayout>
+
+            <!-- Hands this profile to LibreraX, see LibreraX.exportTo. asButton draws the mark
+                 inside the button. -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dip"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/exportToLibreraXIcon"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:contentDescription="@string/librerax"
+                    android:src="@drawable/icon_librerax"
+                    android:tag="@string/no_tint" />
+
+                <TextView
+                    android:id="@+id/exportToLibreraX"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/export_to_librerax" />
             </LinearLayout>
 
             <FrameLayout
@@ -1663,12 +1756,43 @@
                     android:padding="4dip"
                     android:text="ivan@gmail.com" />
 
-                <TextView
-                    android:id="@+id/syncInfo2"
+                <!-- The last sync, and a small wheel beside it while one is running - the only
+                     place in the app a sync is drawn. Tapping the line opens the sync log. -->
+                <LinearLayout
+                    android:id="@+id/syncStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="4dip"
-                    android:text="ivan@gmail.com" />
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/syncInfo2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="4dip"
+                        android:text="ivan@gmail.com" />
+
+                    <ProgressBar
+                        android:id="@+id/syncProgress"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dip"
+                        android:layout_marginRight="6dip"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <!-- Starts a sync by hand; shown only while an account is signed in. -->
+                <TextView
+                    android:id="@+id/syncNow"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/sync"
+                    android:visibility="gone" />
 
 
                 <LinearLayout
@@ -1695,6 +1819,12 @@
                         app:tint="@color/tint_gray" />
                 </LinearLayout>
 
+                <CheckBox
+                    android:id="@+id/isSyncPullToRefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pull_to_start_sync" />
+
             </LinearLayout>
 
             <TextView
@@ -1706,13 +1836,43 @@
                 android:background="@drawable/bg_search_second"
                 android:text="Product: Lirbi Free" />
 
+            <!-- Under the section title the app asks for its own rating first, then offers
+                 Librera PRO, then LibreraX. -->
             <LinearLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
-                android:padding="4dip"
+                android:paddingTop="4dip"
+                android:paddingBottom="4dip"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/rateItIcon"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_margin="4dip"
+                    android:src="@drawable/glyphicons_13_heart"
+                    android:tag="@string/no_tint" />
+
+                <TextView
+                    android:id="@+id/onRateIt"
+                    style="@style/textLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:singleLine="false"
+                    android:text="@string/rate_pdf_reader1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="4dip"
+                android:paddingBottom="4dip"
                 android:visibility="visible">
 
                 <ImageView
@@ -1726,7 +1886,7 @@
                 <TextView
                     android:id="@+id/downloadPRO"
                     style="@style/textLink"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="2dp"
@@ -1734,6 +1894,85 @@
                     android:text="@string/librera_pro" />
             </LinearLayout>
 
+            <!-- LibreraX, the reader this one is growing into, on both of its stores. The badges
+                 are the stores' own artwork and are tagged no_tint so the theme colour pass
+                 leaves them alone. -->
+            <!-- Bare here: paintLibreraXBlock gives it the ring, the colour and the insets
+                 TintUtil.asLinkButton gives every link button, so the three boxes in this
+                 section square off with each other. -->
+            <LinearLayout
+                android:id="@+id/libreraXBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/libreraXIcon"
+                        android:layout_width="@dimen/wh_button"
+                        android:layout_height="@dimen/wh_button"
+                        android:layout_marginRight="6dip"
+                        android:contentDescription="@string/librerax"
+                        android:src="@drawable/icon_librerax"
+                        android:tag="@string/no_tint" />
+
+                    <TextView
+                        android:id="@+id/libreraXAbout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="2dp"
+                        android:text="@string/librerax_tagline" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/libreraXAppStore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dip"
+                        android:layout_margin="6dip"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/bg_clickable"
+                        android:contentDescription="@string/app_store"
+                        android:src="@drawable/badge_app_store"
+                        android:tag="@string/no_tint" />
+
+                    <!-- Google's badge carries its own clear space inside the picture, so it is
+                         drawn taller to put the two badges on the same line. -->
+                    <ImageView
+                        android:id="@+id/libreraXGooglePlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dip"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/bg_clickable"
+                        android:contentDescription="@string/google_play"
+                        android:src="@drawable/badge_google_play"
+                        android:tag="@string/no_tint" />
+                </LinearLayout>
+
+                <!-- The F-Droid builds are not on Google Play, so they are also given the
+                     place the APK can be fetched from by hand. Shown by PrefFragment2. -->
+                <TextView
+                    android:id="@+id/libreraXGithub"
+                    style="@style/textLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="@string/librerax_github"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/pVersion"
@@ -1823,7 +2062,7 @@
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="http://librera.mobi" />
+                    android:text="https://librera.app/librera-reader/" />
             </LinearLayout>
 
             <LinearLayout
@@ -1873,34 +2112,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/telegram_channel"
                 android:visibility="gone" />
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left|center_vertical"
-                android:orientation="horizontal"
-                android:padding="4dip"
-                android:visibility="visible">
-
-                <ImageView
-                    android:layout_width="@dimen/wh_button"
-                    android:layout_height="@dimen/wh_button"
-                    android:layout_margin="4dip"
-                    android:src="@drawable/glyphicons_13_heart"
-                    app:tint="@color/tint_gray" />
-
-                <TextView
-                    android:id="@+id/onRateIt"
-                    style="@style/textLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="2dip"
-                    android:singleLine="false"
-                    android:text="@string/rate_pdf_reader1" />
-            </LinearLayout>
 
 
         </LinearLayout>

@@ -5,10 +5,11 @@ import android.content.Intent;
 import com.foobnix.OpenerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Engines;
 
 import org.ebookdroid.core.codec.CodecContext;
-import org.ebookdroid.droids.CbrContext;
 import org.ebookdroid.droids.DocContext;
 import org.ebookdroid.droids.DocxContext;
 import org.ebookdroid.droids.EpubContext;
@@ -22,8 +23,10 @@ import org.ebookdroid.droids.OdtContext;
 import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
 import org.ebookdroid.droids.ZipContext;
+import org.ebookdroid.droids.comic.codec.ComicContext;
 import org.ebookdroid.droids.djvu.codec.DjvuContext;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
+import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,11 +37,17 @@ import java.util.Map;
 
 public enum BookType {
 
-    PDF(PdfContext.class, false, false, list("pdf", "xps"), list("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
-    TIFF(PdfContext.class, false, false, list("tiff", "tif"), list("image/tiff")),
+    /**
+     * .xps and .tiff share MuPDF's context with the PDFs and are read by MuPDF alone - PDFium
+     * reads neither - so a build without MuPDF does not offer them. "xxx" is how this enum says
+     * "no extension", as DOCX does below.
+     */
+    PDF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("pdf", "xps") : list("pdf"), list("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
+    TIFF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("tiff", "tif") : list("xxx"), list("image/tiff")),
 
-    CBZ(PdfContext.class, false, true, list("cbz"), list("application/x-cbz","application/comicbook+zip")),
-    CBR(CbrContext.class, false, true, list("cbr"), list("application/x-cbr","application/comicbook+rar")),
+    // Comics are read by the comic engine in every build, MuPDF or not: libarchive in place
+    CBZ(ComicContext.class, false, true, list("cbz"), list("application/x-cbz","application/comicbook+zip")),
+    CBR(ComicContext.class, false, true, list("cbr"), list("application/x-cbr","application/comicbook+rar")),
 
     ODT(OdtContext.class, true, true, list("odt"), list("application/vnd.oasis.opendocument.text")),
 
@@ -159,8 +168,17 @@ public enum BookType {
 
 
     public static CodecContext getCodecContextByType(BookType activityType) {
+        return getCodecContextByType(activityType, null);
+    }
+
+    /**
+     * @param path the document the context will open, when it is known: a PDF may be read by
+     *             either engine, and the name is what tells a .pdf from the .xps and .tiff files
+     *             that share its {@link BookType}
+     */
+    public static CodecContext getCodecContextByType(BookType activityType, String path) {
         try {
-            return activityType.contextClass.newInstance();
+            return newContext(activityType, path);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -170,11 +188,51 @@ public enum BookType {
     public static CodecContext getCodecContextByPath(String path) {
         CodecContext ctx = null;
         try {
-            ctx = getByUri(path).contextClass.newInstance();
+            ctx = newContext(getByUri(path), path);
         } catch (Exception e) {
             LOG.e(e);
         }
         return ctx;
+    }
+
+    /**
+     * The context that reads this format, which for a PDF is the engine
+     * {@link AppState#pdfEngine} asks for.
+     *
+     * @param path the file, when it is known; a PDF is recognised by its type alone, so it is only
+     *             needed to keep .xps and .tiff - which share {@link #PDF} and {@link #TIFF}'s
+     *             MuPDF context - away from PDFium, which reads PDFs only
+     */
+    private static CodecContext newContext(final BookType type, final String path) throws Exception {
+        if (type == null) {
+            return null;
+        }
+        if (isPdfiumWanted(type, path)) {
+            final CodecContext pdfium = new PdfiumContext();
+            LOG.d("getCodecContext PDFium", path);
+            return pdfium;
+        }
+        return type.contextClass.getDeclaredConstructor().newInstance();
+    }
+
+    /**
+     * Whether PDFium should open this document: the setting asks for it, the format is PDF, and
+     * the native libraries are on this device.
+     */
+    private static boolean isPdfiumWanted(final BookType type, final String path) {
+        if (type != PDF || AppState.get().getPdfEngine() != AppState.PDF_ENGINE_PDFIUM) {
+            return false;
+        }
+        // BookType.PDF also covers .xps, which PDFium cannot read, so only a name that says
+        // .pdf goes to it - and a request that comes without a name stays on MuPDF.
+        if (path == null || !path.toLowerCase(Locale.US).endsWith(".pdf")) {
+            return false;
+        }
+        if (!PdfiumContext.isAvailable()) {
+            LOG.d("getCodecContext PDFium is not available, staying on MuPDF");
+            return false;
+        }
+        return true;
     }
 
     public String getFirstMimeTime() {

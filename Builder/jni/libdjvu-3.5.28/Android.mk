@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := djvu
+LOCAL_MODULE    := djvu_static
 
 LOCAL_CFLAGS    := $(APP_CFLAGS) -fexceptions -DHAVE_CONFIG_H
 LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)

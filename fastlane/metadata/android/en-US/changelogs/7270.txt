@@ -1,0 +1,7 @@
+9.6.7
+* New design: floating rounded tabs, round buttons, rounded dialogs and menus, new theme colours.
+* Redesigned settings, book info and TTS dialogs.
+* Library button and one-tap Vertical/Paged switch in the reader.
+* BBCode formatting in books.
+* Bookmarks and reading position stay on the right page after font changes and sync.
+* Favourites use a heart.

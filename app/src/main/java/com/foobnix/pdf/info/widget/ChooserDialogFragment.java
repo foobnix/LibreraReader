@@ -19,6 +19,8 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.fragment.BrowseFragment2;
@@ -44,6 +46,15 @@ public class ChooserDialogFragment extends DialogFragment {
     }
 
     public static ChooserDialogFragment chooseFolder(FragmentActivity a, String initPath) {
+        // A folder handed over through the system's picker is opened as the folder it stands for
+        // once the app may read the storage itself: the chooser hands back the path it shows,
+        // and Internal storage/Download/Books is what the library should keep, not the grant.
+        if (ExtUtils.isExteralSD(initPath) && Android6.canWrite(a)) {
+            String file = ExtUtils.getSafTreePath(initPath);
+            if (file != null) {
+                initPath = file;
+            }
+        }
         ChooserDialogFragment ch = new ChooserDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BrowseFragment2.EXTRA_TYPE, BrowseFragment2.TYPE_SELECT_FOLDER);

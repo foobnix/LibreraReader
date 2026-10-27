@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Prevod dokumentov online</string>
    <string name="book_covers">Obálky kníh</string>
    <string name="cover_image_size">Veľkosť obálky</string>
+   <string name="cover_radius">Zaoblenie obálky</string>
    <string name="column_count">Stĺpce</string>
    <string name="show_book_covers">Zobraziť obálky kníh</string>
    <string name="enable_effect_of_the_book_cover">Efekt chrbátu knihy</string>
@@ -61,7 +62,7 @@
    <string name="web">Domovská stránka</string>
    <string name="beta_version">Beta verzie</string>
    <string name="archive">Archív</string>
-   <string name="rate_pdf_reader1">Zanechajte spätnú väzbu a ohodnoťte nás na Google Play? je to veľmi dôležité pre budúci vývoj</string>
+   <string name="rate_pdf_reader1">Zanechajte prosím recenziu tejto aplikácie na Google Play. Je to pre nás veľmi dôležité</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formátovaný text (pseudografika)</string>
    <string name="continuous_text">Nepretržitý text (bez prerušenia riadku)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Štýly</string>
    <string name="document_styles">Dokument</string>
    <string name="automatic_hyphenation">Zapnúť delenie slov</string>
+   <string name="parse_bbcode_tags">Spracovávať značky BBCode</string>
    <string name="empty_line">Prázdny riadok</string>
    <string name="margin_width">Okraje stránky</string>
    <string name="top">Hore</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Žiadna séria</string>
    <string name="no_genre">Žiadny žáner</string>
    <string name="no_language">Žiadny jazyk</string>
+   <string name="no_date">Bez dátumu</string>
    <string name="without_series">Nedostupné</string>
    <string name="folders">Priečinky</string>
    <string name="recent">Nedávne</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-mailový klient nie je nainštalovaný</string>
    <string name="file_not_found">Súbor sa nenašiel</string>
    <string name="you_need_grant_permission5">Aplikácia potrebuje vaše povolenie na vyhľadanie a zobrazenie všetkých vašich kníh.</string>
+   <string name="allow">Povoliť</string>
+   <string name="storage">Úložisko</string>
+   <string name="add_all_books_with_permission">Povoľte, prosím, aplikácii prehľadávať priečinok Stiahnuté súbory, aby mohla automaticky pridávať knihy do vašej knižnice.</string>
+   <string name="allow_access_to_see_files">Povoľte prístup ku všetkým súborom, aby ste videli knihy v tomto priečinku. Bez neho sa zobrazujú iba jeho priečinky.</string>
+   <string name="save_settings_in_librera_folder">Ukladať nastavenia a priebeh čítania do priečinka Librera.</string>
+   <string name="regrant_folder_title">Znova povoliť prístup k priečinku</string>
+   <string name="regrant_folder_msg">Aplikácia už nemôže čítať %1$s: Android pri preinštalovaní aplikácie odstráni prístup k priečinkom. Na ďalšej obrazovke priečinok vyberte znova.</string>
    <string name="remind_msg">Dajte si prestávku!</string>
    <string name="bookmark_for_this_page_already_exists">Táto záložka už existuje</string>
    <string name="can_t_download">Súbor nie je možné stiahnuť</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Režim čítania</string>
    <string name="convert_to">Previesť do</string>
-   <string name="mode_vertical">Režim posúvania"</string>
-   <string name="mode_horizontally">Režim knihy</string>
+   <string name="mode_vertical">Zvislý</string>
+   <string name="mode_horizontally">Stránkový</string>
    <string name="mode_musician">Režim hudobníka"</string>
    <string name="save">Uložiť</string>
    <string name="remember_choice">Zapamätať si výber</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Strana</string>
    <string name="page">Strana</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Vybrať…</string>
+   <string name="choose_">Vybrať</string>
    <string name="crop_white_borders">Orezať biele okraje</string>
    <string name="full_screen">Celá obrazovka</string>
    <string name="go">Prejsť</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Zrkadlové orezanie</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Získať mená autorov a názvy kníh z metaúdajov PDF</string>
    <string name="meta_tags">Metaznačky</string>
-   <string name="librera_pro">Získajte Librera PRO — bez reklám, a odstráni reklamy aj v tejto aplikácii</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikácia bez reklám, ktorá odstráni reklamy aj z tejto aplikácie</string>
    <string name="annotation">Anotácia</string>
    <string name="book">Kniha</string>
    <string name="information">Informácie o súbore</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Začínať kapitoly iniciálou</string>
    <string name="size">Veľkosť</string>
    <string name="quick_bookmark_by_the_headset">Povoliť vzdialené záložky (tlačidlo Spustiť/Zastaviť)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Zobraziť tlačidlá TTS v dolnej časti stránky</string>
    <string name="slider_scale">Stupnica posúvača</string>
    <string name="chapter_format">Legenda</string>
    <string name="play_a_music_file">Prehrať zvukový súbor</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Tmavý OLED</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Nový profil</string>
+   <string name="add_profile">Pridať profil</string>
    <string name="main">Hlavné</string>
    <string name="do_you_want_to_switch_profile_">Prepnúť na tento profil?</string>
    <string name="sync_error">Chyba synchronizácie</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Celkom strán</string>
    <string name="close_menu">Zavrieť ponuku</string>
    <string name="go_to_page">Prejsť na stranu</string>
-   <string name="update_library">Aktualizovať knižnicu</string>
+   <string name="update_library">Aktualizovať</string>
    <string name="ascending">Vzostupne</string>
    <string name="descending">Zostupne</string>
    <string name="remove">Odstrániť</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Zvýrazniť začiatočné písmená</string>
    <string name="anti_aliasing_level">Úroveň vyhladenia</string>
    <string name="folder_preview">Náhľad priečinka</string>
+   <string name="show_storage_book_covers">Zobraziť obálky pre pridané úložisko</string>
    <string name="accent">Farba zvýraznenia</string>
    <string name="discarded_books">Vyradené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobraziť čísla strán tlačeného vydania (Epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Upozornenie: tento dokument obsahuje neuložené zmeny</string>
    <string name="bold_headings">Tučné nadpisy</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Pozrite si toto krátke video a na 1 hodinu vypnete všetky reklamy.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Pozrite si toto krátke video a na 2 hodinu vypnete všetky reklamy.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Pozrite si toto krátke video a na 3 hodiny vypnete všetky reklamy.</string>
    <string name="the_book_is_complete">Kniha je kompletná.</string>
    <string name="time">Čas</string>
    <string name="date_added">Dátum pridania</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Zobraziť tlačidlo kontrastu a jasu</string>
    <string name="text_and_background_color">Farba textu a pozadia</string>
    <string name="library_folders">Priečinky knižnice</string>
+   <string name="library_folders_hint">Knihy sa hľadajú v týchto priečinkoch a ich podpriečinkoch.</string>
+   <string name="add_folder_hint">Vyberte jeden priečinok</string>
+   <string name="add_storage_hint">SD karta alebo USB disk</string>
+   <string name="folder_no_access">Bez prístupu · ťuknutím povolíte znova</string>
    <string name="watch">Pozrieť</string>
+   <string name="librerax_not_installed">LibreraX nie je nainštalovaný. Stiahnite a nainštalujte ho a potom knihu otvorte znova.</string>
+   <string name="remove_library_folder">Odstrániť tento priečinok z knižnice? Súbory v ňom nebudú vymazané.</string>
+   <string name="epub_engine">Jadro EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView nie je na tomto zariadení k dispozícii.</string>
+   <string name="base_stylesheet">Použiť základný štýl (foliate-js)</string>
+   <string name="pdf_engine">Jadro PDF</string>
+   <string name="msg_pdf_engine_unavailable">Toto zostavenie neobsahuje knižnice PDFium.</string>
+   <string name="book_open_failed">Túto knihu sa nepodarilo otvoriť.</string>
+   <string name="book_open_crashed">Aplikácia sa pri poslednom otváraní tejto knihy neočakávane ukončila.</string>
+   <string name="try_librerax">Skúste ju otvoriť v LibreraX.</string>
+   <string name="get_librerax">LibreraX ju možno dokáže otvoriť. Stiahnite si ju tu:</string>
+   <string name="open_in_librerax">Otvoriť v LibreraX</string>
+   <string name="try_again">Skúsiť znova</string>
+   <string name="export_to_librerax">Exportovať do LibreraX</string>
+   <string name="update_librerax">Aktualizujte LibreraX na najnovšiu verziu, aby ste mohli importovať z Librera.</string>
+   <string name="reading_progress">Postup čítania</string>
 </resources>

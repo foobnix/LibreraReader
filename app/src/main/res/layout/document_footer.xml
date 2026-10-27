@@ -102,15 +102,6 @@
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/linkHistory"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:contentDescription="@string/back"
-                android:src="@drawable/glyphicons_885_step_back"
-                android:visibility="visible" />
-
-            <ImageView
                 android:id="@+id/onShowSearch"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
@@ -190,6 +181,17 @@
                 android:textAllCaps="true"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/linkHistory"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:contentDescription="@string/back"
+                android:src="@drawable/glyphicons_885_step_back"
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout

@@ -1,5 +1,10 @@
 package com.foobnix.pdf.info;
 
+import android.os.Handler;
+import android.os.Looper;
+import org.greenrobot.eventbus.EventBus;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -34,9 +39,11 @@ import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
+import java.io.File;
+
 public class IMG {
 
-    public static final float WIDTH_DK = 1.4f;
+    public static final float WIDTH_DK = 1.5f;
     public static final int TWO_LINE_COVER_SIZE = 74;
     public static Drawable bookBGWithMark;
     public static Drawable bookBGNoMark;
@@ -174,6 +181,29 @@ public class IMG {
 
     }
 
+    /**
+     * The app can read files it could not before - a folder handed over again, or the permission
+     * to read the storage given. A book it could not open meanwhile was given a cover drawn from
+     * its name, and that cover is kept under the book's own key, so it would stay: every cover is
+     * dropped, and the lists drawn again once the cache is empty, so each is made from the book.
+     */
+    public static void onAccessRegained() {
+        clearMemoryCache();
+        AppsConfig.executorService.execute(() -> {
+            try {
+                if (LibreraApp.context != null) {
+                    Glide.get(LibreraApp.context).clearDiskCache();
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            new Handler(Looper.getMainLooper()).post(() -> {
+                clearMemoryCache();
+                EventBus.getDefault().post(new UpdateAllFragments());
+            });
+        });
+    }
+
     public static void clearCache(String path) {
         try {
 
@@ -253,7 +283,18 @@ public class IMG {
 
     public static String toUrl(final String path, final int page, final int width, boolean withHash) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0,false);
-        pdfUrl.setUnic(0);
+        // A book on added storage is drawn either as its name or as its own cover, and the two
+        // are told apart here so that turning the setting switches what is shown at once and
+        // neither picture has to be made twice.
+        pdfUrl.setUnic(AppState.get().isSafBookCovers && ExtUtils.isExteralSD(path) ? 1 : 0);
+        // A book from the history the app can only reach through a folder handed over in the
+        // picker has its cover read that way (see ImageExtractor); it is told apart from the name
+        // drawn for it while there was no such folder.
+        if (AppState.get().isSafBookCovers && path != null && path.startsWith("/")
+                && !Android6.canWrite(LibreraApp.context) && !new File(path).canRead()
+                && ExtUtils.getSafUriForPath(LibreraApp.context, path) != null) {
+            pdfUrl.setUnic(2);
+        }
         if(withHash) {
             pdfUrl.hash =
                     ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();

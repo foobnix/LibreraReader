@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
@@ -274,6 +275,8 @@ public class ShareDialog {
                 items.add("① "+AppState.get().nameVerticalMode);
             }
 
+            items.add("③ " + a.getString(R.string.librerax));
+
             if (dc.isMusicianMode() == false) {
                 items.add("Ⓜ "+AppState.get().nameMusicianMode);
             }
@@ -417,6 +420,16 @@ public class ShareDialog {
                             }
                         });
                     }
+                }
+                if (dc != null && which == i++) {
+                    dc.onCloseActivityFinal(new Runnable() {
+
+                        @Override public void run() {
+                            LibreraX.rememberView();
+                            AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
+                            ExtUtils.showDocumentWithoutDialog(a, file, null);
+                        }
+                    });
                 }
                 if (dc != null && dc.isMusicianMode() == false && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {

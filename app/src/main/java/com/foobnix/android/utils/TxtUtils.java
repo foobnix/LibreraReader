@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
@@ -28,7 +27,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -50,11 +48,14 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -146,6 +147,85 @@ public class TxtUtils {
         return builder.toString()
                       .trim();
     }
+
+    public static String replaceBBTag(String text, String tag, String openHtml, String closeHtml) {
+        text = text.replace("[" + tag + "]", openHtml)
+                   .replace("[/" + tag + "]", closeHtml)
+                   .replace("[" + tag.toUpperCase(Locale.US) + "]", openHtml)
+                   .replace("[/" + tag.toUpperCase(Locale.US) + "]", closeHtml);
+        if (text.contains("&lt;")) {
+            text = text.replace("&lt;" + tag + "&gt;", openHtml)
+                       .replace("&lt;/" + tag + "&gt;", closeHtml)
+                       .replace("&lt;" + tag.toUpperCase(Locale.US) + "&gt;", openHtml)
+                       .replace("&lt;/" + tag.toUpperCase(Locale.US) + "&gt;", closeHtml);
+        }
+        return text;
+    }
+
+    public static String convertBBCodeToHtml(String text) {
+        if (text == null || text.length() < 3) {
+            return text;
+        }
+        if (!text.contains("[") && !text.contains("&lt;")) {
+            return text;
+        }
+
+        text = replaceBBTag(text, "i", "<i>", "</i>");
+        text = replaceBBTag(text, "em", "<em>", "</em>");
+        text = replaceBBTag(text, "b", "<b>", "</b>");
+        text = replaceBBTag(text, "strong", "<strong>", "</strong>");
+        text = replaceBBTag(text, "u", "<span style=\"text-decoration:underline;\">", "</span>");
+        text = replaceBBTag(text, "s", "<span style=\"text-decoration:line-through;\">", "</span>");
+        text = replaceBBTag(text, "strike", "<span style=\"text-decoration:line-through;\">", "</span>");
+        text = replaceBBTag(text, "h1", "<h1>", "</h1>");
+        text = replaceBBTag(text, "h2", "<h2>", "</h2>");
+        text = replaceBBTag(text, "h3", "<h3>", "</h3>");
+        text = replaceBBTag(text, "h4", "<h4>", "</h4>");
+        text = replaceBBTag(text, "h5", "<h5>", "</h5>");
+        text = replaceBBTag(text, "h6", "<h6>", "</h6>");
+        text = replaceBBTag(text, "sub", "<sub>", "</sub>");
+        text = replaceBBTag(text, "sup", "<sup>", "</sup>");
+        text = replaceBBTag(text, "code", "<code>", "</code>");
+        text = replaceBBTag(text, "center", "<span style=\"display:block; text-align:center;\">", "</span>");
+        text = replaceBBTag(text, "left", "<span style=\"display:block; text-align:left;\">", "</span>");
+        text = replaceBBTag(text, "right", "<span style=\"display:block; text-align:right;\">", "</span>");
+        text = replaceBBTag(text, "quote", "<blockquote style=\"border-left:3px solid #888; padding-left:10px;\">", "</blockquote>");
+        text = replaceBBTag(text, "list", "<ul>", "</ul>");
+        text = replaceBBTag(text, "ul", "<ul>", "</ul>");
+        text = replaceBBTag(text, "ol", "<ol>", "</ol>");
+        text = replaceBBTag(text, "li", "<li>", "</li>");
+        text = replaceBBTag(text, "table", "<table>", "</table>");
+        text = replaceBBTag(text, "tr", "<tr>", "</tr>");
+        text = replaceBBTag(text, "th", "<th>", "</th>");
+        text = replaceBBTag(text, "td", "<td>", "</td>");
+        text = replaceBBTag(text, "pre", "<pre>", "</pre>");
+
+        text = replaceBBTag(text, "spoiler", "", "");
+
+        if (text.contains("[")) {
+            text = text.replace("[hr]", "<hr/>").replace("[HR]", "<hr/>")
+                       .replace("[br]", "<br/>").replace("[BR]", "<br/>")
+                       .replace("[*]", "<li>");
+
+            text = text.replaceAll("(?i)\\[(?:url|video)\\]([^\\[\\]\"<>]+)\\[/(?:url|video)\\]", "<a href=\"$1\">$1</a>");
+            text = text.replaceAll("(?i)\\[img\\]([^\\[\\]\"<>]+)\\[/img\\]", "<img src=\"$1\"/>");
+
+            if (text.contains("=")) {
+                text = text.replaceAll("(?i)\\[list=[^\\]]*\\]", "<ul>");
+                text = text.replaceAll("(?i)\\[spoiler=([^\\]]+)\\]", "<b><i>$1</i></b>");
+                text = text.replaceAll("(?i)\\[quote=([^\\]]+)\\]", "<blockquote style=\"border-left:3px solid #888; padding-left:10px;\"><b><i>$1</i></b>");
+                text = text.replaceAll("(?i)\\[color=([^\\]]+)\\](.*?)\\[/color\\]", "<span style=\"color:$1\">$2</span>");
+                text = text.replaceAll("(?i)\\[size=([0-9]+)%?\\](.*?)\\[/size\\]", "<span style=\"font-size:$1%\">$2</span>");
+                text = text.replaceAll("(?i)\\[font=([^\\]]+)\\](.*?)\\[/font\\]", "<span style=\"font-family:$1\">$2</span>");
+                text = text.replaceAll("(?i)\\[url=([^\\]\"<>]+)\\]", "<a href=\"$1\">");
+                text = text.replaceAll("(?i)\\[code=[^\\]]*\\]", "<code>");
+            }
+            text = text.replace("[/url]", "</a>").replace("[/URL]", "</a>");
+        }
+
+        return text;
+    }
+
 
     public static String toBionicWord(String w) {
         LOG.d("toBionicWord", w);
@@ -556,13 +636,7 @@ public class TxtUtils {
                 }
             }
             LOG.d("pageHTML [8b]", pageHTML);
-            for (String r : shortList) {
-                if (!r.startsWith("!")) {
-                    String r1 = r;
-                    String r2 = r.replace(".", "{dot}");
-                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
-                }
-            }
+            pageHTML = protectAbbreviations(pageHTML, shortList);
             LOG.d("pageHTML [8c]", pageHTML);
 
             pageHTML = replaceAll(pageHTML,
@@ -614,6 +688,69 @@ public class TxtUtils {
                           .matcher(input)
                           .replaceAll(replacement);
         }
+    }
+
+    /**
+     * Hides the dots of the abbreviations from the sentence splitter as {dot}. The dictionary holds
+     * some four thousand rules and a page carries a handful of them, so instead of searching the
+     * whole page for every rule, one scan of the page collects the rules that are in it.
+     * <p>
+     * The rules that are found are applied exactly as before: literally, and in the order of the
+     * list, because one rule can take away the match of a later one.
+     *
+     * @param abbreviations the whole list; the "!" rules belong to the pass before this one
+     */
+    static String protectAbbreviations(String text, List<String> abbreviations) {
+        if (isEmpty(text)) {
+            return text;
+        }
+
+        // a rule can only be found behind a space, and only where the character after the space is
+        // its first one: that is the one character the scan below has to look at
+        Map<Character, List<String>> byFirstChar = new HashMap<>();
+        Set<String> found = new HashSet<>();
+        for (String r : abbreviations) {
+            if (r.isEmpty() || r.charAt(0) == '!' || r.indexOf('.') < 0) {
+                // another pass, or a rule that would be replaced by itself
+                continue;
+            }
+            if (r.indexOf('{') >= 0 || r.indexOf('}') >= 0) {
+                // this pass writes {dot}: such a rule can match text that is not there yet while
+                // the scan runs, so it keeps its own search over the page
+                found.add(r);
+                continue;
+            }
+            List<String> sameFirstChar = byFirstChar.get(r.charAt(0));
+            if (sameFirstChar == null) {
+                sameFirstChar = new ArrayList<>();
+                byFirstChar.put(r.charAt(0), sameFirstChar);
+            }
+            sameFirstChar.add(r);
+        }
+
+        for (int space = text.indexOf(' '); space >= 0 && space + 1 < text.length();
+             space = text.indexOf(' ', space + 1)) {
+            List<String> sameFirstChar = byFirstChar.get(text.charAt(space + 1));
+            if (sameFirstChar == null) {
+                continue;
+            }
+            for (int i = 0; i < sameFirstChar.size(); i++) {
+                String r = sameFirstChar.get(i);
+                if (text.startsWith(r, space + 1)) {
+                    found.add(r);
+                }
+            }
+        }
+
+        if (found.isEmpty()) {
+            return text;
+        }
+        for (String r : abbreviations) {
+            if (found.contains(r)) {
+                text = text.replace(" " + r, " " + r.replace(".", "{dot}"));
+            }
+        }
+        return text;
     }
 
     public static void loadShotList() {
@@ -1045,12 +1182,16 @@ public class TxtUtils {
         TextView textView = (TextView) view;
         String text = textView.getText()
                               .toString();
-        textView.setText(underline(text));
-        return textView;
+        return underline(textView, text);
     }
 
+    /** Sets a link's words underlined - or plain on a link drawn as a ringed button, which the ring marks instead. */
     public static TextView underline(TextView textView, String text) {
-        textView.setText(underline(text));
+        if (Boolean.TRUE.equals(textView.getTag(R.id.linkButton))) {
+            textView.setText(text);
+        } else {
+            textView.setText(underline(text));
+        }
         return textView;
     }
 
@@ -1082,14 +1223,14 @@ public class TxtUtils {
         }
     }
 
+    private static final Pattern FOOTER_NOTE = Pattern.compile("[\\[{][0-9]+[}\\]]");
+
     public static boolean isFooterNote(String text) {
         if (text == null) {
             return false;
         }
-        Pattern p = Pattern.compile("[\\[{][0-9]+[}\\]]");
         text = text.trim();
-        return text.length() < 30 && (p.matcher(text)
-                                       .find());
+        return text.length() < 30 && FOOTER_NOTE.matcher(text).find();
     }
 
     public static String escapeHtml(CharSequence text) {
@@ -1124,8 +1265,11 @@ public class TxtUtils {
                    .append((int) c)
                    .append(";");
             } else if (c == ' ') {
+                // Numeric, not &nbsp;: what this escapes goes into a converted book's XHTML and
+                // NCX, which foliate parses as XML - where &nbsp; is undefined and the whole file
+                // fails to parse, leaving a blank page or an empty table of contents
                 while (i + 1 < end && text.charAt(i + 1) == ' ') {
-                    out.append("&nbsp;");
+                    out.append("&#160;");
                     i++;
                 }
 
@@ -1407,7 +1551,7 @@ public class TxtUtils {
             } else {
                 LOG.d("updateAllLinks parent is not ViewGroup");
             }
-            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+            if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
                 color = Color.WHITE;
             }
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
@@ -1432,17 +1576,19 @@ public class TxtUtils {
     }
 
     public static void setLinkTextColor(TextView txt) {
+        txt.setTextColor(getLinkTextColor(txt.getContext()));
+    }
 
-        int color = AppState.get().uiTextColor;
+    /** The colour a link is drawn in: the one picked for the interface, else the theme's own. */
+    public static int getLinkTextColor(Context c) {
         if (AppState.get().isUiTextColor) {
-            color = AppState.get().uiTextColor;
-        } else {
-            TypedArray out = txt.getContext()
-                                .getTheme()
-                                .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
-            color = out.getColor(0, Color.WHITE);
+            return AppState.get().uiTextColor;
         }
-        txt.setTextColor(color);
+        TypedArray out = c.getTheme()
+                          .obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+        int color = out.getColor(0, Color.WHITE);
+        out.recycle();
+        return color;
     }
 
     public static void updateAllLinks(ViewGroup parent, int color, boolean accentImages) {
@@ -1484,13 +1630,11 @@ public class TxtUtils {
                         if ((imageView.getId() == R.id.closePopup || imageView.getId() == R.id.onIconAction) && !AppState.get().isUiTextColor) {
                             imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                         } else if (AppState.get().appTheme == AppState.THEME_INK) {
-                            // Ink is black on white throughout: a mark is drawn in the same
-                            // black the words around it are, not in an accent that leaves it
-                            // invisible on the page. The two marks above are the exception -
-                            // they stand on a tinted bar rather than on the page.
-                            imageView.setImageTintList(ColorStateList.valueOf(Color.BLACK));
+                            // Ink is black and white only: a mark on the black bars is drawn in
+                            // white, a mark on the page in the black of the words around it.
+                            imageView.setImageTintList(ColorStateList.valueOf(TintUtil.inkMarkColor(imageView)));
                         } else if (accentImages || AppState.get().isUiTextColor) {
-                            if (AppState.get().uiTextColor == AppState.get().tintColor) {
+                            if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {
                                 imageView.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                             } else {
                                 imageView.setImageTintList(tint);

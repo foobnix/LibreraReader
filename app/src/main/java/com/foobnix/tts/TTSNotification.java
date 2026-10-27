@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -128,7 +126,7 @@ public class TTSNotification {
             PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
 
-            final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
+            final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintThemeColor;
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
 

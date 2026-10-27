@@ -94,6 +94,8 @@ import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.MdContext;
 
 import java.io.File;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -181,6 +183,8 @@ import java.util.Map;
             Collections.sort(items, FileMetaComparators.BY_DATE);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
             Collections.sort(items, FileMetaComparators.BY_SIZE);
+        } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_YEAR) {
+            Collections.sort(items, FileMetaComparators.BR_BY_YEAR);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_NUMBER) {
             Collections.sort(items, FileMetaComparators.BR_BY_NUMBER1);
         } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PAGES) {
@@ -225,7 +229,7 @@ import java.util.Map;
         GradientDrawable face = new GradientDrawable();
         face.setCornerRadius(Dips.DP_50);
         face.setColor(TintUtil.color);
-        face.setAlpha(SlidingTabLayout.FLOATING_ALPHA);
+        face.setAlpha(AppsConfig.APP_TRANSPARENCY);
 
         GradientDrawable mask = new GradientDrawable();
         mask.setCornerRadius(Dips.DP_50);
@@ -289,42 +293,20 @@ import java.util.Map;
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
         pasteFrom = (ImageView) view.findViewById(R.id.pasteFrom);
 
-        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()));
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(),false));
+        bindOnGrantPanel(view.findViewById(R.id.layoutOnGrant));
 
-        sortOrder.setOnClickListener(new OnClickListener() {
-
-            @Override public void onClick(View v) {
-                AppState.get().sortByReverse = !AppState.get().sortByReverse;
-                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
-                        R.drawable.glyphicons_476_sort_attributes);
-                sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up :
-                        R.drawable.glyphicons_221_chevron_down);
-
-                populate();
-
-            }
-        });
-
-        sortOrder.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
-        });
-
+        // The sort button says which way round the list runs; a long press turns it round.
         onSort.setOnLongClickListener(new OnLongClickListener() {
 
             @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                AppState.get().sortByReverse = !AppState.get().sortByReverse;
+                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
+                        R.drawable.glyphicons_476_sort_attributes);
+                populate();
                 return true;
             }
         });
-        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+        sortOrder.setVisibility(View.GONE);
 
         openAsBook.setOnClickListener(new OnClickListener() {
 
@@ -343,10 +325,7 @@ import java.util.Map;
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
                 R.drawable.glyphicons_476_sort_attributes);
-        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up :
-                R.drawable.glyphicons_221_chevron_down);
 
-        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         onAction = view.findViewById(R.id.onAction);
@@ -418,7 +397,7 @@ import java.util.Map;
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
                 menu.getMenu()
-                    .add(R.string.memory)
+                    .add(R.string.internal_storage)
                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override public boolean onMenuItemClick(MenuItem item) {
@@ -427,13 +406,13 @@ import java.util.Map;
                             return false;
                         }
                     })
-                    .setIcon(R.drawable.glyphicons_336_folder);
+                    .setIcon(R.drawable.ic_lf_folder);
 
                 String pathDownloads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                                                   .getPath();
                 if (new File(pathDownloads).isDirectory()) {
                     menu.getMenu()
-                        .add(getString(R.string.memory) + "/" + ExtUtils.getFileName(pathDownloads))
+                        .add(getString(R.string.internal_storage) + "/" + ExtUtils.getFileName(pathDownloads))
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -442,7 +421,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
 
                 for (final String info : extFolders) {
@@ -464,7 +443,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
 
                 }
 
@@ -478,7 +457,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
                 if (AppSP.get().isEnableSync) {
                     menu.getMenu()
@@ -491,7 +470,7 @@ import java.util.Map;
                                 return false;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_336_folder);
+                        .setIcon(R.drawable.ic_lf_folder);
                 }
 
 //                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -506,7 +485,8 @@ import java.util.Map;
                 // resources
 
                 if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
-                    List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
+                    // the same folder handed over more than once is still one folder
+                    Set<String> safs = new LinkedHashSet<>(StringDB.asList(BookCSS.get().pathSAF));
 
                     for (final String saf : safs) {
                         LOG.d("saf", saf);
@@ -514,12 +494,17 @@ import java.util.Map;
                             continue;
                         }
                         String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
+                        // With all files access the folder is opened as the folder it stands for,
+                        // and named as one - Internal storage/Download/Books - rather than browsed
+                        // through the picker's grant under its picker name, primary:Download/Books.
+                        String filePath = Android6.canWrite(getActivity()) ? ExtUtils.getSafTreePath(saf) : null;
+                        final String target = filePath != null ? filePath : saf;
                         menu.getMenu()
-                            .add(fileName)
+                            .add(filePath != null ? internalStorageLabel(filePath) : fileName)
                             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                 @Override public boolean onMenuItemClick(MenuItem item) {
-                                    displayAnyPath(saf);
+                                    displayAnyPath(target);
                                     return false;
                                 }
                             })
@@ -531,7 +516,7 @@ import java.util.Map;
                                     return false;
                                 }
                             })
-                            .setIcon(R.drawable.glyphicons_336_folder);
+                            .setIcon(R.drawable.ic_lf_storage);
 
                     }
 
@@ -590,7 +575,7 @@ import java.util.Map;
                                 return true;
                             }
                         })
-                        .setIcon(R.drawable.glyphicons_145_folder_open);
+                        .setIcon(R.drawable.ic_lf_storage_add);
 
                 }
 
@@ -731,24 +716,24 @@ import java.util.Map;
             @Override public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
-                        getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_date), //
+                        getActivity().getString(R.string.publication_date), //
                         getActivity().getString(R.string.by_size), //
+                        getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
-                        getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_extension) //
                                                   );//
 
                 final List<Integer> ids = Arrays.asList(//
-                        AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_DATE, //
+                        AppState.BR_SORT_BY_YEAR, //
                         AppState.BR_SORT_BY_SIZE, //
+                        AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
-                        AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_EXT//
                                                        );//
 
@@ -758,6 +743,7 @@ import java.util.Map;
                     final int j = i;
                     menu.getMenu()
                         .add(name)
+                        .setIconSmall(AppState.get().sortByBrowse == ids.get(j) ? TintUtil.SORT_CURRENT_ICON : 0)
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -969,7 +955,10 @@ import java.util.Map;
                 return result;
             }
 
-            if (ExtUtils.isExteralSD(getInitPath())) {
+            // By the folder being listed, not the one the browser started in: a chooser opened on a
+            // storage folder and then walked to a folder on the device would otherwise read that
+            // path as a document uri, find no children, and show an empty folder
+            if (ExtUtils.isExteralSD(AppState.get().displayPath)) {
 
                 List<FileMeta> items = new ArrayList<FileMeta>();
 
@@ -985,36 +974,46 @@ import java.util.Map;
                     LOG.d("newNode uri >> ", uri);
                     LOG.d("newNode childrenUri >> ", childrenUri);
 
+                    // Only the columns a row actually shows are asked for: a document provider
+                    // fills in every column it is given, and the storage behind it is slow.
                     Cursor childCursor = contentResolver.query(childrenUri, new String[]{ //
                                     Document.COLUMN_DISPLAY_NAME, //
                                     Document.COLUMN_DOCUMENT_ID, //
-                                    Document.COLUMN_ICON, //
                                     Document.COLUMN_LAST_MODIFIED, //
                                     Document.COLUMN_MIME_TYPE, //
                                     Document.COLUMN_SIZE, //
-                                    Document.COLUMN_SUMMARY, //
                             }, //
                             null, null, null); //
+                    final boolean isDisplayAll = AppState.get().isDisplayAllFilesInFolder;
                     try {
                         while (childCursor.moveToNext()) {
                             String COLUMN_DISPLAY_NAME = childCursor.getString(0);
                             String COLUMN_DOCUMENT_ID = childCursor.getString(1);
-                            String COLUMN_ICON = childCursor.getString(2);
-                            String COLUMN_LAST_MODIFIED = childCursor.getString(3);
-                            String COLUMN_MIME_TYPE = childCursor.getString(4);
-                            String COLUMN_SIZE = childCursor.getString(5);
-                            String COLUMN_SUMMARY = childCursor.getString(6);
+                            String COLUMN_LAST_MODIFIED = childCursor.getString(2);
+                            String COLUMN_MIME_TYPE = childCursor.getString(3);
+                            String COLUMN_SIZE = childCursor.getString(4);
 
-                            LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
+                            final boolean isDir = Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE);
+
+                            // A storage folder is filtered the way a folder on the device is:
+                            // without it every file the provider knows about is listed, and each
+                            // one costs a row, a sort and a cover.
+                            if (!isDisplayAll && COLUMN_DISPLAY_NAME != null) {
+                                if (COLUMN_DISPLAY_NAME.startsWith(".")) {
+                                    continue;
+                                }
+                                if (!isDir && !ExtUtils.isBrowseSupported(COLUMN_DISPLAY_NAME)) {
+                                    continue;
+                                }
+                            }
 
                             FileMeta meta = new FileMeta();
                             meta.setAuthor(SearchFragment2.EMPTY_ID);
 
                             final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
                             meta.setPath(newNode.toString());
-                            LOG.d("newNode", newNode);
 
-                            if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
+                            if (isDir) {
                                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                                 meta.setPathTxt(COLUMN_DISPLAY_NAME);
                                 meta.setTitle(COLUMN_DISPLAY_NAME);
@@ -1027,7 +1026,9 @@ import java.util.Map;
                                         meta.setSizeTxt(ExtUtils.readableFileSize(size));
                                     }
                                     if (COLUMN_LAST_MODIFIED != null) {
-                                        meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                        long date = Long.parseLong(COLUMN_LAST_MODIFIED);
+                                        meta.setDate(date);
+                                        meta.setDateTxt(ExtUtils.getDateFormat(date));
                                     }
                                 } catch (Exception e) {
                                     LOG.e(e);
@@ -1039,6 +1040,9 @@ import java.util.Map;
                                 } else {
                                     meta.setTitle(COLUMN_DISPLAY_NAME);
                                 }
+                                // The row carries its own name: left empty, every binding of it
+                                // asks the database for a record a storage file never has.
+                                meta.setPathTxt(meta.getTitle());
 
                             }
                             items.add(meta);
@@ -1135,6 +1139,33 @@ import java.util.Map;
         BookCSS.get().dirLastPath = path;
 
         populate();
+        updateOnGrantPanel();
+    }
+
+    /**
+     * Here the notice is about the folder on screen: without the permission a folder of the
+     * device's storage shows only the folders in it, never a book, even when other folders were
+     * handed over through the picker. A folder handed over, a cloud and the app's own folder
+     * show everything, and ask for nothing.
+     */
+    @Override protected boolean isAskingPermission(boolean canWrite, boolean safFolders) {
+        return !canWrite && isHiddenWithoutPermission(AppState.get().displayPath);
+    }
+
+    @Override protected int permissionMessage() {
+        return R.string.allow_access_to_see_files;
+    }
+
+    private boolean isHiddenWithoutPermission(String path) {
+        if (TxtUtils.isEmpty(path) || ExtUtils.isExteralSD(path) || Clouds.isCloud(path) || getContext() == null) {
+            return false;
+        }
+        File appFolder = getContext().getExternalFilesDir(null);
+        if (appFolder != null && appFolder.getParentFile() != null
+                && path.startsWith(appFolder.getParentFile().getPath())) {
+            return false;
+        }
+        return path.startsWith("/storage/") || path.startsWith("/sdcard");
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT) public void closeQuietly(AutoCloseable closeable) {
@@ -1475,6 +1506,19 @@ import java.util.Map;
 
     }
 
+    /**
+     * A folder of the device's own storage as the storage menu names it: the storage by name and
+     * the folders in it after - Internal storage/Download/Books - as the Download entry above it
+     * reads. A folder elsewhere keeps its path.
+     */
+    private String internalStorageLabel(String path) {
+        String root = Environment.getExternalStorageDirectory().getPath();
+        if (path.equals(root) || path.startsWith(root + "/")) {
+            return getString(R.string.internal_storage) + path.substring(root.length());
+        }
+        return path;
+    }
+
     public void onGridList() {
         onGridList(AppState.get().broseMode, onListGrid, searchAdapter, null);
 
@@ -1506,6 +1550,17 @@ import java.util.Map;
                  new CompoundButton.OnCheckedChangeListener() {
                      @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                          AppState.get().isDisplayAllFilesInFolder = isChecked;
+
+                         populate();
+                     }
+                 });
+        // Reading a cover out of a book on added storage means copying the book out of the
+        // document provider first, so it is the user who says whether it is worth it.
+        p.getMenu()
+         .addCheckbox(getString(R.string.show_storage_book_covers), AppState.get().isSafBookCovers,
+                 new CompoundButton.OnCheckedChangeListener() {
+                     @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                         AppState.get().isSafBookCovers = isChecked;
 
                          populate();
                      }
@@ -1556,7 +1611,6 @@ import java.util.Map;
     @Override public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
 
     }

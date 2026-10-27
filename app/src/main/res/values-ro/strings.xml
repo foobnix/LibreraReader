@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertor de documente (online)</string>
    <string name="book_covers">Coperți de cărți</string>
    <string name="cover_image_size">Dimensiunea imaginii copertă</string>
+   <string name="cover_radius">Rotunjirea copertei</string>
    <string name="column_count">Numarul de coloane</string>
    <string name="show_book_covers">Arătați cărțile</string>
    <string name="enable_effect_of_the_book_cover">Activați efectul de coperta cărții</string>
@@ -61,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versiune beta</string>
    <string name="archive">Arhiva</string>
-   <string name="rate_pdf_reader1">Vă rugăm să scrieți feedback-ul dvs. și să ne evaluați pe Google Play. Este foarte important pentru noi</string>
+   <string name="rate_pdf_reader1">Lăsați o recenzie despre această aplicație pe Google Play. Este foarte important pentru noi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Textul formatat (pseudo grafică)</string>
    <string name="continuous_text">Text continuu (fără rupere de linie)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Stiluri</string>
    <string name="document_styles">Stilurile documentului</string>
    <string name="automatic_hyphenation">Automată despărțirea în silabe</string>
+   <string name="parse_bbcode_tags">Procesează etichetele BBCode</string>
    <string name="empty_line">Linie goală</string>
    <string name="margin_width">Lățimea marginii</string>
    <string name="top">Partea de sus</string>
@@ -173,9 +175,10 @@
    <string name="no_serie">Nici o serie</string>
    <string name="no_genre">Nici un gen</string>
    <string name="no_language">Nici o limbă</string>
+   <string name="no_date">Fără dată</string>
    <string name="without_series">Fără serii</string>
    <string name="folders">Dosare</string>
-   <string name="recent">Recent</string>
+   <string name="recent">Recente</string>
    <string name="clear_all">Curata tot</string>
    <string name="search_history_and_autocomplete">Istoricul căutărilor și autocompletarea</string>
    <string name="press_any_key">Apăsați orice tastă</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Aplicație email neinstalată.</string>
    <string name="file_not_found">Fișierul nu a fost găsit</string>
    <string name="you_need_grant_permission5">Aplicația are nevoie de permisiunea ta pentru a găsi și afișa toate cărțile tale.</string>
+   <string name="allow">Permite</string>
+   <string name="storage">Stocare</string>
+   <string name="add_all_books_with_permission">Te rugăm să permiți aplicației să scaneze dosarul Descărcări pentru a adăuga automat cărți în biblioteca ta.</string>
+   <string name="allow_access_to_see_files">Permiteți accesul la toate fișierele pentru a vedea cărțile din acest dosar. Fără acesta sunt afișate doar dosarele lui.</string>
+   <string name="save_settings_in_librera_folder">Salvează setările și progresul lecturii în dosarul Librera.</string>
+   <string name="regrant_folder_title">Permite din nou accesul la dosar</string>
+   <string name="regrant_folder_msg">Aplicația nu mai poate citi %1$s: Android elimină accesul la dosare când aplicația este reinstalată. Alege din nou dosarul pe ecranul următor.</string>
    <string name="remind_msg">Vă rugăm să luați o pauză pentru ochi și să vă odihniți puțin.</string>
    <string name="bookmark_for_this_page_already_exists">Marcaj pentru această pagină există deja</string>
    <string name="can_t_download">Nu se poate descărca</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Selectați modul de citire</string>
    <string name="convert_to">Schimbați în</string>
-   <string name="mode_vertical">Modul \"Derulați\"</string>
-   <string name="mode_horizontally">Modul \"Rezervați\"</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginat</string>
    <string name="mode_musician">Modul \"Muzician\"</string>
    <string name="save">Salvați</string>
    <string name="remember_choice">Ține minte alegerea</string>
@@ -325,7 +335,7 @@
    <string name="___SELECT___TEXT___SECTION___"></string>
    <string name="highlight_of_text">A evidenția</string>
    <string name="underline_of_text">Sublinia</string>
-   <string name="strikethrough_of_text">Strikethrough</string>
+   <string name="strikethrough_of_text">Tăiat</string>
    <string name="text">Text</string>
    <string name="bookmark_on_page_">Marcaj pe pagină</string>
    <string name="share">Distribuiți</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Pagină</string>
    <string name="page">Pagină</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Alegeți...</string>
+   <string name="choose_">Alegeți</string>
    <string name="crop_white_borders">Decupați marginile albe</string>
    <string name="full_screen">Ecran complet</string>
    <string name="go">Du-te</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Trasați marginile în mod simetric</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Afișarea autorului și a titlului cărții PDF din etichetele meta</string>
    <string name="meta_tags">Meta etichete</string>
-   <string name="librera_pro">Ia Librera PRO — fără reclame, și elimină reclamele și din această aplicație</string>
+   <string name="librera_pro"><b>Librera PRO</b>: O aplicație fără reclame care elimină reclamele și din această aplicație</string>
    <string name="annotation">Adnotare</string>
    <string name="book">Carte</string>
    <string name="information">Informație</string>
@@ -473,7 +483,7 @@
    <string name="do_you_want_to_delete_this_file_1">Ștergeți definitiv acest fișier? Nu poate fi recuperat.</string>
    <string name="logout">Deconectare</string>
    <string name="cloud_not_connected">Cloud nu este conectat</string>
-   <string name="cloud_sync_folder">Cloud sync folder</string>
+   <string name="cloud_sync_folder">Dosar de sincronizare în cloud</string>
    <string name="clouds">Nori</string>
    <string name="librera_cloud">Librera nor</string>
    <string name="hide_search_bar">Ascundeți bara de căutare</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Afișați litera principală</string>
    <string name="size">Mărimea</string>
    <string name="quick_bookmark_by_the_headset">Marcaj rapid de la setul cu cască</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Afișează butoanele TTS în partea de jos a paginii</string>
    <string name="slider_scale">Glisor scară</string>
    <string name="chapter_format">Formatul capitolului</string>
    <string name="play_a_music_file">Redați un fișier de muzică</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Întuneric oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Profil nou</string>
+   <string name="add_profile">Adaugă profil</string>
    <string name="main">Principal</string>
    <string name="do_you_want_to_switch_profile_">Treci la alt profil?</string>
    <string name="sync_error">Sincronizare eroare</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Pagini totale</string>
    <string name="close_menu">Închide meniul</string>
    <string name="go_to_page">Mergi la pagina</string>
-   <string name="update_library">Biblioteca de actualizare</string>
+   <string name="update_library">Actualizează</string>
    <string name="ascending">Ascendent</string>
    <string name="descending">Descendentă</string>
    <string name="remove">Elimina</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Evidențierea literelor inițiale</string>
    <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
+   <string name="show_storage_book_covers">Afișați coperțile pentru stocarea adăugată</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Atenție: acest document are modificări nesalvate</string>
    <string name="bold_headings">Titluri îngroșate</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Urmărește acest scurt videoclip pentru a dezactiva toate reclamele timp de o oră</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Urmărește acest scurt videoclip pentru a dezactiva toate reclamele timp de 2 ore</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Urmărește acest scurt videoclip pentru a dezactiva toate reclamele timp de 3 ore</string>
    <string name="the_book_is_complete">Cartea este completă.</string>
    <string name="time">Timp</string>
    <string name="date_added">Data adăugării</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Butonul pentru afișarea contrastului și a luminozității</string>
    <string name="text_and_background_color">Text și culoare de fundal</string>
    <string name="library_folders">Dosarele bibliotecii</string>
+   <string name="library_folders_hint">Cărțile sunt căutate în aceste dosare și în subdosarele lor.</string>
+   <string name="add_folder_hint">Alegeți un dosar</string>
+   <string name="add_storage_hint">Card SD sau unitate USB</string>
+   <string name="folder_no_access">Fără acces · atingeți pentru a permite din nou</string>
    <string name="watch">Vizionează</string>
+   <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>
+   <string name="remove_library_folder">Elimini acest dosar din bibliotecă? Fișierele din el nu vor fi șterse.</string>
+   <string name="epub_engine">Motor EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView nu este disponibil pe acest dispozitiv.</string>
+   <string name="base_stylesheet">Aplică foaia de stiluri de bază (foliate-js)</string>
+   <string name="pdf_engine">Motor PDF</string>
+   <string name="msg_pdf_engine_unavailable">Această versiune nu include bibliotecile PDFium.</string>
+   <string name="book_open_failed">Această carte nu a putut fi deschisă.</string>
+   <string name="book_open_crashed">Ultima dată aplicația s-a închis neașteptat în timp ce deschidea această carte.</string>
+   <string name="try_librerax">Încercați să o deschideți în LibreraX.</string>
+   <string name="get_librerax">Este posibil ca LibreraX să o poată deschide. Descărcați-l de aici:</string>
+   <string name="open_in_librerax">Deschide în LibreraX</string>
+   <string name="try_again">Reîncercați</string>
+   <string name="export_to_librerax">Exportă în LibreraX</string>
+   <string name="update_librerax">Actualizați LibreraX la cea mai recentă versiune pentru a importa din Librera.</string>
+   <string name="reading_progress">Progresul lecturii</string>
 </resources>

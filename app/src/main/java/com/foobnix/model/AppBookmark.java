@@ -7,6 +7,7 @@ import java.io.File;
 public class AppBookmark implements MyPath.RelativePath {
     public String path;
     public String text;
+    public String pt; // page text, to find the bookmark page when the book is re-laid out (font size change)
 
     public float p;
     public long t;

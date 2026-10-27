@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Belge dönüştürücü (çevrimiçi)</string>
    <string name="book_covers">Kitap kapakları</string>
    <string name="cover_image_size">Kapak Resmi Boyutu</string>
+   <string name="cover_radius">Kapak köşe yuvarlaklığı</string>
    <string name="column_count">Sütun sayısı</string>
    <string name="show_book_covers">Kitap kapaklarını göster</string>
    <string name="enable_effect_of_the_book_cover">Kitap kapağı etkisini etkinleştir</string>
@@ -61,7 +62,7 @@
    <string name="web">Ana sayfa</string>
    <string name="beta_version">Beta sürümü</string>
    <string name="archive">Arşiv</string>
-   <string name="rate_pdf_reader1">Görüşleriniz bizim için çok önemli. Google Play\'de bizi değerlendirin</string>
+   <string name="rate_pdf_reader1">Lütfen bu uygulama hakkında Google Play\'de yorum bırakın. Bu bizim için çok önemli</string>
    <string name="___PREFERENCES___SECTION___">Seçenekler Bölümü</string>
    <string name="formatted_text">Biçimlendirilmiş metin (sahte grafik)</string>
    <string name="continuous_text">Sürekli metin (satır sonu yok)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Stiller</string>
    <string name="document_styles">Belge</string>
    <string name="automatic_hyphenation">Hecelemeyi aç</string>
+   <string name="parse_bbcode_tags">BBCode etiketlerini işle</string>
    <string name="empty_line">Boş Hattı</string>
    <string name="margin_width">Kenar Boşlukları</string>
    <string name="top">Üst</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Dizi yok</string>
    <string name="no_genre">Tür yok</string>
    <string name="no_language">Dil yok</string>
+   <string name="no_date">Tarih yok</string>
    <string name="without_series">Dizisiz</string>
    <string name="folders">Klasör</string>
    <string name="recent">Son</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-posta uygulaması yüklü değil.</string>
    <string name="file_not_found">Dosya bulunamadı</string>
    <string name="you_need_grant_permission5">Uygulamanın tüm kitaplarınızı bulup görüntüleyebilmesi için izninize ihtiyacı var.</string>
+   <string name="allow">İzin ver</string>
+   <string name="storage">Depolama</string>
+   <string name="add_all_books_with_permission">Kitapların kitaplığınıza otomatik olarak eklenmesi için lütfen uygulamanın İndirilenler klasörünüzü taramasına izin verin.</string>
+   <string name="allow_access_to_see_files">Bu klasördeki kitapları görmek için tüm dosyalara erişime izin verin. İzin olmadan yalnızca klasörleri gösterilir.</string>
+   <string name="save_settings_in_librera_folder">Ayarları ve okuma ilerlemesini Librera klasörüne kaydet.</string>
+   <string name="regrant_folder_title">Klasöre yeniden erişim izni ver</string>
+   <string name="regrant_folder_msg">Uygulama artık %1$s klasörünü okuyamıyor: Android, uygulama yeniden yüklendiğinde klasör erişimini kaldırır. Sonraki ekranda klasörü yeniden seçin.</string>
    <string name="remind_msg">Lütfen gözleriniz için biraz ara verin ve dinlenin.</string>
    <string name="bookmark_for_this_page_already_exists">Bu yer imi zaten var</string>
    <string name="can_t_download">Dosya indirilemiyor</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Okuma Kipi</string>
    <string name="convert_to">Şuna dönüştür</string>
-   <string name="mode_vertical">Kaydırma kipi</string>
-   <string name="mode_horizontally">Kitap kipi</string>
+   <string name="mode_vertical">Dikey</string>
+   <string name="mode_horizontally">Sayfalı</string>
    <string name="mode_musician">Müzisyen kipi</string>
    <string name="save">Kaydet</string>
    <string name="remember_choice">Seçimi hatırla</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Sayfa</string>
    <string name="page">Sayfa</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Seç ...</string>
+   <string name="choose_">Seç</string>
    <string name="crop_white_borders">Beyaz kenarları kes</string>
    <string name="full_screen">Tam ekran yap</string>
    <string name="go">Git</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Simetrik olarak kenar sınırları</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Meta kitabından yazarı ve PDF kitabının başlığını görüntüleme</string>
    <string name="meta_tags">Meta etiketleri</string>
-   <string name="librera_pro">Librera PRO\'yu edinin — reklamsız, ayrıca bu uygulamadaki reklamları da kaldırır</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Bu uygulamadaki reklamları da kaldıran reklamsız bir uygulama</string>
    <string name="annotation">Not</string>
    <string name="book">Kitap</string>
    <string name="information">Bilgi</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Büyük harf göster</string>
    <string name="size">Boyut</string>
    <string name="quick_bookmark_by_the_headset">Kulaklıkla hızlı yer imi</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS düğmelerini sayfanın altında göster</string>
    <string name="slider_scale">Kaymak ölçeği</string>
    <string name="chapter_format">Bölüm formatı</string>
    <string name="play_a_music_file">Bir müzik dosyası çal</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Karanlık OLED</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Yeni profil</string>
+   <string name="add_profile">Profil ekle</string>
    <string name="main">Ana</string>
    <string name="do_you_want_to_switch_profile_">Başka bir profile geçilsin mi?</string>
    <string name="sync_error">Senkronizasyon hatası</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Toplam sayfa</string>
    <string name="close_menu">Menüyü kapat</string>
    <string name="go_to_page">Sayfaya git</string>
-   <string name="update_library">Kütüphaneyi güncelle</string>
+   <string name="update_library">Güncelle</string>
    <string name="ascending">Artan</string>
    <string name="descending">Azalan</string>
    <string name="remove">Kaldır</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Ilk harfleri vurgulama</string>
    <string name="anti_aliasing_level">Kenar yumuşatma seviyesi</string>
    <string name="folder_preview">Klasör önizlemesi</string>
+   <string name="show_storage_book_covers">Eklenen depolama için kapakları göster</string>
    <string name="accent">Aksan</string>
    <string name="discarded_books">Atılan kitaplar</string>
    <string name="show_print_edition_page_numbers_epub3">Basılı baskı sayfa numaralarını göster (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Uyarı: bu belgede kaydedilmemiş değişiklikler var</string>
    <string name="bold_headings">Kalın başlıklar</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Bu kısa videoyu izleyerek 1 saat boyunca tüm reklamları kapatabilirsiniz.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bu kısa videoyu izleyerek 2 saat boyunca tüm reklamları kapatabilirsiniz.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Bu kısa videoyu izleyerek 3 saat boyunca tüm reklamları kapatabilirsiniz.</string>
    <string name="the_book_is_complete">Kitap tamamlandı.</string>
    <string name="time">Zaman</string>
    <string name="date_added">Eklenme tarihi</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Kontrast ve parlaklık düğmesini göster</string>
    <string name="text_and_background_color">Metin ve arka plan rengi</string>
    <string name="library_folders">Kitaplık klasörleri</string>
+   <string name="library_folders_hint">Kitaplar bu klasörlerde ve alt klasörlerinde aranır.</string>
+   <string name="add_folder_hint">Bir klasör seçin</string>
+   <string name="add_storage_hint">SD kart veya USB sürücü</string>
+   <string name="folder_no_access">Erişim yok · yeniden izin vermek için dokunun</string>
    <string name="watch">İzle</string>
+   <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>
+   <string name="remove_library_folder">Bu klasör kitaplıktan kaldırılsın mı? İçindeki dosyalar silinmez.</string>
+   <string name="epub_engine">EPUB motoru</string>
+   <string name="msg_epub_engine_unavailable">Bu cihazda WebView kullanılamıyor.</string>
+   <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
+   <string name="pdf_engine">PDF motoru</string>
+   <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
+   <string name="book_open_failed">Bu kitap açılamadı.</string>
+   <string name="book_open_crashed">Uygulama, bu kitap son açılırken beklenmedik şekilde kapandı.</string>
+   <string name="try_librerax">LibreraX ile açmayı deneyin.</string>
+   <string name="get_librerax">LibreraX bunu açabilir. Buradan indirin:</string>
+   <string name="open_in_librerax">LibreraX ile aç</string>
+   <string name="try_again">Tekrar dene</string>
+   <string name="export_to_librerax">LibreraX\'e aktar</string>
+   <string name="update_librerax">Librera\'dan içe aktarmak için LibreraX\'i en son sürüme güncelleyin.</string>
+   <string name="reading_progress">Okuma ilerlemesi</string>
 </resources>

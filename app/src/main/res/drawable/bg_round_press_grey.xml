@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A mark with nothing drawn around it, answering a tap in a round behind it. The tap is a
+     mid grey, the one the ringed buttons use, so it shows on a white sheet as well as on the
+     dark bars. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#66808080">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</ripple>

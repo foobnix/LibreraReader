@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -55,19 +54,18 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import android.util.TypedValue;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -81,13 +79,13 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.work.CheckDeletedBooksWorker;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.foobnix.work.SelfTestWorker;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -123,7 +121,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     TextView countBooks, layoutErrorOnRestart;
     Handler handler;
     ImageView sortBy, sortOrder, myAutoCompleteImage, cleanFilter, menu2;
-    View onRefresh, secondTopPanel, layoutError;
+    View secondTopPanel, layoutError;
+    /**
+     * Whether the library can be rebuilt right now. The screen used to read this off the
+     * refresh button's own state; the button is gone - the panel's Update does the rebuild -
+     * so the state is kept here.
+     */
+    boolean isLibraryReady = true;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
     Runnable hideKeyboard = new Runnable() {
@@ -160,7 +164,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchAndOrderAsync();
                 setSearchHint(R.string.library);
-                onRefresh.setActivated(true);
+                isLibraryReady = true;
 
                 if (AppsConfig.IS_LOG) {
                     setSearchHint(Apps.getApplicationName(getContext()));
@@ -172,9 +176,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     countBooks.setText("" + count);
                 }
                 setSearchHint(R.string.searching_please_wait_);
-                onRefresh.setActivated(false);
+                isLibraryReady = false;
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                onRefresh.setActivated(false);
+                isLibraryReady = false;
                 setSearchHint(R.string.extracting_information_from_books);
             } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 setSearchHint(intent.getStringExtra("TEXT"));
@@ -236,6 +240,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     };
     boolean isOnTop = false;
     private String NO_SERIES = ":no-series";
+    private String NO_DATE = "---";
     private Stack<String> prevText = new Stack<String>();
     private ImageView onGridlList;
     ResultResponse<String> onAuthorSeriesClick = new ResultResponse<String>() {
@@ -400,13 +405,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         LOG.d("SearchFragment2 onCreateView");
 
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
+        NO_DATE = getString(R.string.no_date);
 
         handler = new Handler(Looper.getMainLooper());
 
         secondTopPanel = view.findViewById(R.id.secondTopPanel);
         countBooks = (TextView) view.findViewById(R.id.countBooks);
-        onRefresh = view.findViewById(R.id.onRefresh);
-        onRefresh.setActivated(true);
+        isLibraryReady = true;
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (ImageView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
@@ -415,9 +420,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        View layoutOnGrant = view.findViewById(R.id.layoutOnGrant);
-        Views.visible(layoutOnGrant, !Android6.canWrite(getContext()) && getArguments()!=Bundle.EMPTY);
-        layoutOnGrant.setOnClickListener(v -> Android6.checkPermissions(getActivity(), false));
+        bindOnGrantPanel(view.findViewById(R.id.layoutOnGrant));
 
         layoutError = view.findViewById(R.id.layoutError);
         layoutErrorOnRestart = view.findViewById(R.id.layoutErrorOnRestart);
@@ -425,39 +428,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         layoutError.setOnClickListener(new OnClickListener() {
             @Override public void onClick(View v) {
-                onRefresh.performClick();
-            }
-        });
-
-        onRefresh.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override public boolean onLongClick(View v) {
-                if (BooksService.isRunning) {
-                    Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT)
-                         .show();
-                    return true;
-                }
-                if (AppState.get().isShowTestBooks) {
-                    AlertDialogs.showDialog(getActivity(), "Run the self-test? " + AppData.getTestFileName()
-                                                                                          .getName(),
-                            getString(R.string.ok), new Runnable() {
-
-                                @Override public void run() {
-                                    // BooksService.startForeground(getActivity(), BooksService.ACTION_RUN_SELF_TEST);
-                                    getActivity().getWindow()
-                                                 .addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                                    OneTimeWorkRequest workRequest =
-                                            new OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
-
-                                    //WorkManager.getInstance(getContext()).enqueue(workRequest);
-                                    WorkManager.getInstance(getContext())
-
-                                               .enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY,
-                                                       workRequest);
-
-                                }
-                            }, null);
-                }
-                return true;
+                rebuildLibrary();
             }
         });
 
@@ -489,32 +460,18 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        onRefresh.setOnClickListener(new OnClickListener() {
-
-            @Override public void onClick(View v) {
-
-                if (!onRefresh.isActivated()) {
-                    Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG)
-                         .show();
-                    return;
-                }
-                // The folders are managed in the preferences panel; this button only rebuilds
-                // the library from the folders already listed there, without asking again.
-                Prefs.get()
-                     .remove(AppProfile.getCurrent(), 0);
-                layoutError.setVisibility(View.GONE);
-                recyclerView.scrollToPosition(0);
-                seachAll();
-                ((AdsFragmentActivity) SearchFragment2.this.getActivity()).showInterstitialNoFinish();
-            }
-        });
-
         cleanFilter.setOnClickListener(new OnClickListener() {
 
             @Override public void onClick(View v) {
                 searchEditText.setText("");
                 recyclerView.scrollToPosition(0);
                 searchAndOrderAsync();
+            }
+        });
+
+        view.findViewById(R.id.onUpdateLibrary).setOnClickListener(v -> {
+            if (getActivity() instanceof MainTabs2) {
+                ((MainTabs2) getActivity()).showLibraryFolders();
             }
         });
 
@@ -525,31 +482,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        sortOrder.setOnClickListener(new OnClickListener() {
-
-            @Override public void onClick(View v) {
-                AppState.get().isSortAsc = !AppState.get().isSortAsc;
-                searchAndOrderAsync();
-            }
-        });
-        sortOrder.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
-        });
-
+        // The sort button says which way round the list runs; a long press turns it round.
         sortBy.setOnLongClickListener(new OnLongClickListener() {
 
             @Override public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                AppState.get().isSortAsc = !AppState.get().isSortAsc;
+                recyclerView.scrollToPosition(0);
+                searchAndOrderAsync();
                 return true;
             }
         });
-        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+        sortOrder.setVisibility(View.GONE);
 
         bindAdapter(searchAdapter);
 
@@ -687,6 +630,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     }
 
+    /**
+     * The library also stands in a dialog over the reader, which is handed an empty bundle to
+     * say so. There the notice is left out: the dialog is not where a clear install is set up.
+     */
+    @Override protected boolean isOnGrantPanelAllowed() {
+        return getArguments() != Bundle.EMPTY;
+    }
+
     @Override public void onResume() {
         super.onResume();
         menu2.setVisibility(getActivity().findViewById(R.id.imageMenu1) == null ? View.GONE : View.VISIBLE);
@@ -766,14 +717,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         setSearchHint(R.string.msg_loading);
         sortBy.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_476_sort_attributes :
                 R.drawable.glyphicons_477_sort_attributes_alt);
-        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_221_chevron_down :
-                R.drawable.glyphicons_222_chevron_up);
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
         // The mark alone says what it opens, so the field being sorted on is left to it.
         sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + getString(
-                AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName()));
-        sortOrder.setContentDescription(order);
+                AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName()) + ", " + order);
 
         populate();
 
@@ -884,7 +832,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             parentName = "---";
                         }
                     } else if (AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex()) {
-                        parentName = "" + it.getYear();
+                        parentName = it.getYear() == null ? NO_DATE : "" + it.getYear();
                     } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
                         parentName = it.getParentPath();
                         if (parentName != null) {
@@ -972,10 +920,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
             sortBy.setVisibility(View.VISIBLE);
-            sortOrder.setEnabled(true);
-            if (AppState.get().isVisibleSorting) {
-                sortOrder.setVisibility(View.VISIBLE);
-            }
 
             searchAdapter.clearItems();
             searchAdapter.getItemsList()
@@ -996,8 +940,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setEnabled(false);
             sortBy.setEnabled(false);
             sortBy.setVisibility(View.INVISIBLE);
-            sortOrder.setEnabled(false);
-            sortOrder.setVisibility(View.INVISIBLE);
 
             String empty = "";
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
@@ -1020,7 +962,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 empty = EMPTY_ID + getActivity().getString(R.string.no_language);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
                 setSearchHint(R.string.publication_date);
-                empty = EMPTY_ID + getActivity().getString(R.string.empy);
+                empty = EMPTY_ID + getActivity().getString(R.string.no_date);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLISHER) {
                 setSearchHint(R.string.publisher);
                 empty = EMPTY_ID + getActivity().getString(R.string.empy);
@@ -1073,6 +1015,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu()
                  .add(sortBy.getResName())
+                 .setIconSmall(AppState.get().sortBy == sortBy.getIndex() ? TintUtil.SORT_CURRENT_ICON : 0)
                  .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                      @Override public boolean onMenuItemClick(MenuItem item) {
@@ -1218,14 +1161,33 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
     }
 
+    /**
+     * Rebuilds the library from the folders listed in the preferences panel, without asking
+     * for them again. The library screen has no button of its own for this any more - the
+     * panel's Update does it - but the error line still offers it when a scan left nothing
+     * to show.
+     */
+    private void rebuildLibrary() {
+        if (!isLibraryReady) {
+            Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG)
+                 .show();
+            return;
+        }
+        Prefs.get()
+             .remove(AppProfile.getCurrent(), 0);
+        layoutError.setVisibility(View.GONE);
+        recyclerView.scrollToPosition(0);
+        seachAll();
+        ((AdsFragmentActivity) getActivity()).showInterstitialNoFinish();
+    }
+
     @Override public void notifyFragment() {
         LOG.d("SeachFragment2", "notifyFragment");
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
         if (!BooksService.isRunning) {
-            onRefresh.setActivated(!BooksService.isRunning);
+            isLibraryReady = true;
             setSearchHint(R.string.library);
 
 //            if(AppsConfig.IS_LOG){

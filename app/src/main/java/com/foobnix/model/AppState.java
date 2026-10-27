@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import com.foobnix.LibreraBuildConfig;
+
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
 
 import android.content.Context;
@@ -18,6 +20,7 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -93,8 +96,27 @@ public class AppState {
      * books reads as noise. Each of these clears 7:1 against the white the labels are set
      * in, with room to spare once the page lightens them.
      */
+    /** The theme colour a fresh install starts with: the indigo, second in STYLE_COLORS. */
+    public static final int DEFAULT_STYLE_COLOR = 1;
+    /**
+     * The colours a highlight, an underline or a strike-through is made in: the handful readers
+     * reach for, rather than every colour the app knows, so the row fits without scrolling. Black
+     * is for a line; a highlight in it would hide the words.
+     */
+    public static final List<String> ANNOTATION_COLORS = Arrays.asList(//
+            "#FFEB3B", // yellow
+            "#76FF03", // green
+            "#40C4FF", // blue
+            "#FF4081", // pink
+            "#FF9100", // orange
+            "#E53935", // red
+            "#AA00FF", // purple
+            "#000000" // black
+                                                                      );
+
     public static final List<String> STYLE_COLORS = Arrays.asList(//
             "#1B2A4A", // Oxford navy - the leather-bound blue
+            "#3949AB", // indigo - the blue Librera wore before the redesign
             "#6B2131", // oxblood
             "#7A5230", // bronze
             "#000000" //
@@ -175,9 +197,16 @@ public class AppState {
     public final static int BR_SORT_BY_EXT = 6;// not possible
     public final static int BR_SORT_BY_AUTHOR = 7;// not possible
     public final static int BR_SORT_BY_STAR_TIME = 8;
+    public final static int BR_SORT_BY_YEAR = 9;
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
+    /** Which engine renders a PDF: see {@link #pdfEngine}. */
+    public final static int PDF_ENGINE_MUPDF = 0;
+    public final static int PDF_ENGINE_PDFIUM = 1;
+    /** Which engine lays out a reflowable book: see {@link #epubEngine}. */
+    public final static int EPUB_ENGINE_MUPDF = 0;
+    public final static int EPUB_ENGINE_FOLIATE = 1;
     public final static int PAGE_NUMBER_FORMAT_NUMBER = 0;
     public final static int PAGE_NUMBER_FORMAT_PERCENT = 1;
     public final static int CHAPTER_FORMAT_1 = 0;
@@ -191,6 +220,7 @@ public class AppState {
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
     public final static int READING_MODE_SELECT_MODE = 6;
+    public final static int READING_MODE_LIBRERAX = 7;
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
             "lingvo", //
@@ -314,7 +344,7 @@ public class AppState {
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA
     public String tabsOrder9 = DEFAULTS_TABS_ORDER;
-    public int tintColor = Color.parseColor(STYLE_COLORS.get(0));
+    public int tintThemeColor = Color.parseColor(STYLE_COLORS.get(DEFAULT_STYLE_COLOR));
     public boolean isUiTextColor = false;
     public int uiTextColor = Color.BLUE;
     public int uiTextColorUser = Color.MAGENTA;
@@ -341,6 +371,8 @@ public class AppState {
     //public boolean isFullScreenMain = false;
     public boolean isAccurateFontSize = false;
     public boolean isShowFooterNotesInText = false;
+    // EPUB footnotes: java.util.zip opens entries faster, zip4j works better on some old Android versions
+    @IgnoreHashCode public boolean isJavaZip = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
     public boolean isCharacterEncoding = false;
     public String characterEncoding = "UTF-8";
     @IgnoreHashCode public boolean isEditMode = true;
@@ -359,6 +391,55 @@ public class AppState {
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
     public int antiAliasLevel = 8;//0-8
+    /**
+     * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_MUPDF} (the
+     * engine Librera has always used, and the default) or {@link #PDF_ENGINE_PDFIUM}, the default
+     * in the F-Droid flavour. It applies to
+     * .pdf files only - every other format is MuPDF's - and is read by
+     * {@link org.ebookdroid.BookType#getCodecContextByPath(String)} each time a document is
+     * opened, so the covers and the books follow the setting from the next open on.
+     */
+    public int pdfEngine = "fdroid".equals(LibreraBuildConfig.FLAVOR) ? PDF_ENGINE_PDFIUM : PDF_ENGINE_MUPDF;
+    /**
+     * The engine a reflowable book is laid out, rendered and read with: {@link #EPUB_ENGINE_MUPDF}
+     * (the default) or {@link #EPUB_ENGINE_FOLIATE}, which paginates it in a WebView with
+     * foliate-js. It applies to every format Librera converts to an .epub - epub, fb2, mobi, docx,
+     * odt, md, rtf - and is read by
+     * {@link org.ebookdroid.droids.mupdf.codec.PdfContext#openReflowable(String, String)} each time
+     * a book is opened, so a book already on screen keeps the engine it was opened with.
+     */
+    public int epubEngine = EPUB_ENGINE_MUPDF;
+    /**
+     * Whether foliate-js is also given the base stylesheet asset ({@link
+     * com.foobnix.pdf.info.model.BookCSS#userStyleCss}) on top of the rules BookCSS generates.
+     * Off by default: that asset is a replacement UA stylesheet written for MuPDF, which has none
+     * of its own, and its table and display resets fight a browser's own layout. On, so the two
+     * can be compared on the device.
+     */
+    public boolean epubFoliateBaseCss = false;
+
+    /**
+     * Which engine a PDF is to be rendered with, which in a build without MuPDF is PDFium however
+     * {@link #pdfEngine} was left. A JS flavour is installed over the flavour it replaces and
+     * reads its settings, so the stored value cannot be trusted to name an engine that is there.
+     */
+    public int getPdfEngine() {
+        if (!Engines.IS_MUPDF) {
+            return PDF_ENGINE_PDFIUM;
+        }
+        return Engines.IS_ENGINE_CHOICE ? pdfEngine : PDF_ENGINE_MUPDF;
+    }
+
+    /**
+     * Which engine a reflowable book is to be laid out with; foliate-js in a build without MuPDF.
+     * See {@link #getPdfEngine()}.
+     */
+    public int getEpubEngine() {
+        if (!Engines.IS_MUPDF) {
+            return EPUB_ENGINE_FOLIATE;
+        }
+        return Engines.IS_ENGINE_CHOICE ? epubEngine : EPUB_ENGINE_MUPDF;
+    }
     // n,
     // 25 - 25%
     // persent
@@ -374,7 +455,7 @@ public class AppState {
     public boolean isOpenLastBook = false;
     // sort by
     public boolean isSortAsc = false;
-    public int sortBy = AppDB.SORT_BY.DATA.ordinal();
+    public int sortBy = AppDB.SORT_BY.DATA.getIndex();
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
     public int sortByFavorite = BR_SORT_BY_STAR_TIME;
@@ -414,6 +495,7 @@ public class AppState {
     public List<Integer> prevKeys = PREV_KEYS;
     @IgnoreHashCode public boolean isUseVolumeKeys = true;
     @IgnoreHashCode public boolean isFastBookmarkByTTS = false;
+    @IgnoreHashCode public boolean isShowTtsPageControls = true;
     @IgnoreHashCode public boolean isReverseKeys = Dips.isSmallScreen();
     @IgnoreHashCode public boolean isVisibleSorting = true;
     @IgnoreHashCode public boolean isShowBookmarsPanelInMusicMode = true;
@@ -449,7 +531,7 @@ public class AppState {
     public boolean isBookCoverEffect = false;
     public int editWith = EDIT_NONE;
     public String annotationDrawColor = "";
-    public String annotationTextColor = COLORS.get(2);
+    public String annotationTextColor = ANNOTATION_COLORS.get(0);
     public int editAlphaColor = 100;
 
     public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
@@ -556,6 +638,8 @@ public class AppState {
     public int coverBigSize =
             (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 110)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
+    /** How round book covers are cut, 0 (square) to 4; each step is TintUtil.COVER_RADIUS_STEP_DP. */
+    public int coverRadius = 0;
     @IgnoreHashCode public int tapZoneTop = TAP_PREV_PAGE;
     @IgnoreHashCode public int tapZoneBottom = TAP_NEXT_PAGE;
     @IgnoreHashCode public int tapZoneLeft = TAP_PREV_PAGE;
@@ -578,6 +662,9 @@ public class AppState {
     public boolean isAlwaysOpenOnPage1 = false;
     public boolean isHideReadBook = false;
     public boolean isFolderPreview = false;
+    // A book on added storage has to be copied out of the document provider before its cover can
+    // be read. It is worth it: a shelf of blank books is worse than the wait.
+    public boolean isSafBookCovers = true;
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";
@@ -634,7 +721,7 @@ public class AppState {
         for (final String value : list.split(",")) {
             if (value != null && !value.trim()
                                        .equals("")) {
-                res.add(new Integer(value.trim()));
+                res.add(Integer.valueOf(value.trim()));
             }
         }
         Collections.sort(res);
@@ -665,7 +752,7 @@ public class AppState {
             isRememberMode = false;
             isReverseKeys = true;
             isScrollAnimation = false;
-            tintColor = Color.BLACK;
+            tintThemeColor = Color.BLACK;
             bolderTextOnImage = true;
             isEnableBCOptional1 = true;
             brigtnessImage = -50;

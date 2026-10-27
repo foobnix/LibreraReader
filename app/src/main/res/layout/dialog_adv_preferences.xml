@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/rotateViewPager"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/horizontal" />
@@ -66,7 +66,7 @@
 
             <TextView
                 android:id="@+id/rtlText"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/left_to_rigth" />
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/rotate"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -110,7 +110,7 @@
 
             <TextView
                 android:id="@+id/tapzoneSize"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minEms="2"
@@ -149,7 +149,7 @@
 
             <TextView
                 android:id="@+id/remindRestTime"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120 min" />
@@ -171,7 +171,7 @@
 
             <TextView
                 android:id="@+id/doubleTapValue"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/close_book" />
@@ -223,7 +223,7 @@
 
             <TextView
                 android:id="@+id/pageQuality"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.2" />
@@ -242,7 +242,7 @@
 
             <TextView
                 android:id="@+id/pagesInMemory"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2" />
@@ -261,7 +261,7 @@
 
             <TextView
                 android:id="@+id/inactivityTime"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2" />
@@ -280,7 +280,7 @@
 
             <TextView
                 android:id="@+id/antiAliasLevel"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8" />

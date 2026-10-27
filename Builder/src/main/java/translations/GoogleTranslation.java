@@ -1,5 +1,7 @@
 package translations;
 
+import paths.LocalPaths;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,7 +16,9 @@ import java.nio.charset.Charset;
 
 public class GoogleTranslation {
 
-    private static final String KEY = "AIzaSyB-JpTJYLsj-wZiUOMHusU0QF-EbxfXFC-Wk7M";
+    // Kept out of the source: google_translate_key in the global ~/.gradle/gradle.properties,
+    // or the GOOGLE_TRANSLATE_KEY environment variable
+    private static final String KEY = LocalPaths.property("google_translate_key");
 
     public static void main(String[] args) throws JSONException, IOException {
         String ln = translate("sun", "zh");
@@ -26,7 +30,7 @@ public class GoogleTranslation {
 
     public static String translate(String inputOriginal, String from, String toLang) throws JSONException, IOException {
         String input = URLEncoder.encode(inputOriginal, "UTF-8");
-        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY.replace("-", "") + "&q=" + input + "&source=" + from + "&target=" + toLang;
+        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY + "&q=" + input + "&source=" + from + "&target=" + toLang;
 
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);

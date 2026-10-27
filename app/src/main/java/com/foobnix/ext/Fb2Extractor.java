@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
@@ -145,6 +144,9 @@ public class Fb2Extractor extends BaseExtractor {
             line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
             //line = line.replace("_", "_" + HypenUtils.SHY); //break image paths
+        }
+        if (BookCSS.get().isEnableBBCode) {
+            line = TxtUtils.convertBBCodeToHtml(line);
         }
         return line;
     }
@@ -356,53 +358,129 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static String includeFooterNotes(String line, Map<String, String> notes, String name) {
-        if (notes == null) {
+        if (notes == null || notes.isEmpty() || line.indexOf('[') < 0 && line.indexOf('{') < 0) {
             return line;
         }
+        String suffix = "#" + name;
+        int length = line.length();
+        StringBuilder out = null;
+        int copied = 0;
+        // notes of a run like "[1][2]</a></sup>" go after the whole run
+        StringBuilder pending = null;
+        int pendingAt = 0;
 
-        int beginIndex = -1;
-        int endIndex = -1;
-        StringBuffer out = new StringBuffer();
-
-        for (int i = 0; i < line.length(); i++) {
+        int i = 0;
+        while (i < length) {
             char c = line.charAt(i);
+            if (c == '<') {
+                int close;
+                if (line.startsWith("<!--", i)) {
+                    close = line.indexOf("-->", i + 4);
+                    close = close < 0 ? -1 : close + 2;
+                } else {
+                    close = line.indexOf('>', i + 1);
+                }
+                if (close < 0) {
+                    break; // the tag goes on in the next line, the rest is not text
+                }
+                if (pending != null) {
+                    if (line.startsWith("</", i)) {
+                        pendingAt = close + 1;
+                    } else {
+                        out = appendNotes(out, line, copied, pendingAt, pending);
+                        copied = pendingAt;
+                        pending = null;
+                    }
+                }
+                i = close + 1;
+                continue;
+            }
             if (c == '[' || c == '{') {
-                beginIndex = i;
-            }
-            if (c == ']' || c == '}') {
-                endIndex = i;
-            }
-            out.append(c);
-
-            if (beginIndex > 0 && endIndex > beginIndex && endIndex - beginIndex < 6) {
-                String number = line.substring(beginIndex, endIndex + 1);
-                beginIndex = -1;
-                endIndex = -1;
-
-                int end = line.indexOf('>', i);
-                int k = end - i;
-                if (end > i && k < 8) {
-                    out.append(line.substring(i + 1, end + 1));
-                    i += k;
-                }
-
-                LOG.d("includeFooterNotes", number, number + "#" + name);
-
-                String value = notes.get(number + "#" + name);
-                if (value != null) {
-                    value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();// two times!
-                    value = value.replaceAll("^[0-9]+", "").trim();
-
-                    out.append(" <t>[");
-                    out.append(TxtUtils.escapeHtml(value));
-                    out.append("]</t>");
+                int end = referenceEnd(line, i);
+                if (end > 0) {
+                    String value = notes.get(line.substring(i, end + 1) + suffix);
+                    if (value != null) {
+                        if (pending == null) {
+                            pending = new StringBuilder();
+                        }
+                        pending.append(" <t>[")
+                               .append(TxtUtils.escapeHtml(noteText(value, line.substring(i + 1, end))))
+                               .append("]</t>");
+                        pendingAt = end + 1;
+                        i = end + 1;
+                        continue;
+                    }
                 }
             }
-
+            if (pending != null) {
+                out = appendNotes(out, line, copied, pendingAt, pending);
+                copied = pendingAt;
+                pending = null;
+            }
+            i++;
         }
-        return out.toString();
+        if (pending != null) {
+            out = appendNotes(out, line, copied, pendingAt, pending);
+            copied = pendingAt;
+        }
+        if (out == null) {
+            return line;
+        }
+        return out.append(line, copied, length).toString();
+    }
+
+    private static StringBuilder appendNotes(StringBuilder out, String line, int from, int to, CharSequence notes) {
+        if (out == null) {
+            out = new StringBuilder(line.length() + notes.length() + 16);
+        }
+        return out.append(line, from, to).append(notes);
+    }
+
+    // index of the bracket closing a reference like "[12]" or "{a}", at most 4 characters inside
+    private static int referenceEnd(String line, int open) {
+        int limit = Math.min(line.length(), open + 6);
+        for (int j = open + 1; j < limit; j++) {
+            char c = line.charAt(j);
+            if (c == ']' || c == '}') {
+                return j;
+            }
+            if (c == '[' || c == '{' || c == '<') {
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+    // note text without its own number: "[12] text", "{12} text", "12. text", "12) text", "12 text"
+    private static String noteText(String value, String label) {
+        value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
+        int close = label.length() + 1;
+        for (int pass = 0; pass < 2; pass++) { // "[1] {1} text"
+            if (value.length() > close && (value.charAt(0) == '[' || value.charAt(0) == '{')
+                    && (value.charAt(close) == ']' || value.charAt(close) == '}') && value.startsWith(label, 1)) {
+                value = value.substring(close + 1).trim();
+            }
+        }
+        if (isDigits(label) && value.startsWith(label)) {
+            int end = label.length();
+            if (end < value.length() && (value.charAt(end) == '.' || value.charAt(end) == ')')) {
+                end++;
+            }
+            if (end == value.length() || Character.isWhitespace(value.charAt(end))) {
+                value = value.substring(end).trim();
+            }
+        }
+        return value;
+    }
+
+    private static boolean isDigits(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return !text.isEmpty();
     }
 
     @Deprecated
@@ -975,89 +1053,206 @@ public class Fb2Extractor extends BaseExtractor {
     public Map<String, String> getFooterNotes(String inputFile) {
         Map<String, String> map = new HashMap<String, String>();
         try {
-
             XmlPullParser xpp = XmlParser.buildPullParser();
-            final FileInputStream inputStream = new FileInputStream(inputFile);
-            xpp.setInput(inputStream, findHeaderEncoding(inputFile));
-            int eventType = xpp.getEventType();
+            // counts what the parser has read, to know about where it is when it reaches a <binary>
+            final CountingInputStream inputStream = new CountingInputStream(new FileInputStream(inputFile));
+            try {
+                xpp.setInput(inputStream, findHeaderEncoding(inputFile));
+                int eventType = xpp.getEventType();
 
-            String sectionId = null;
-            StringBuilder text = null;
-            boolean isLink = false;
-            String link = null;
-            String key = "";
+                // "[1]" -> "n1" for the latest link with that text, and the other way round
+                Map<String, String> targetByKey = new HashMap<String, String>();
+                Map<String, List<String>> keysById = new HashMap<String, List<String>>();
 
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                if (TempHolder.get().loadingCancelled.get()) {
-                    break;
-                }
-                if (eventType == XmlPullParser.START_TAG) {
-                    if (xpp.getName().equals("a")) {
-                        // String type = xpp.getAttributeValue(null, "type");
-                        // if ("note".equals(type)) {
-                        isLink = true;
+                String sectionId = null;
+                StringBuilder text = null;
+                boolean isLink = false;
+                String link = null;
+                StringBuilder key = new StringBuilder();
+                boolean checkBinary = true;
 
-                        link = xpp.getAttributeValue(null, "l:href");
-                        if (link == null) {
-                            link = xpp.getAttributeValue(null, "xlink:href");
-                        }
-
-                        // }
-                    } else if (xpp.getName().equals("section")) {
-                        sectionId = xpp.getAttributeValue(null, "id");
-                        text = new StringBuilder();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (TempHolder.get().loadingCancelled.get()) {
+                        break;
                     }
-                } else if (eventType == XmlPullParser.TEXT) {
-                    if (sectionId != null) {
-                        String trim = xpp.getText().trim();
-                        if (trim.length() > 0) {
-                            text.append(trim + " ");
-                        }
-                    }
-                    if (isLink) {
-                        key = key + " " + xpp.getText();
-                        LOG.d("key", key);
-                    }
-                } else if (eventType == XmlPullParser.END_TAG) {
-                    if (sectionId != null && xpp.getName().equals("section")) {
-                        String keyEnd = StreamUtils.getKeyByValue(map, sectionId);
-
-                        map.put(keyEnd, text.toString().trim());//1
-                        keyEnd = keyEnd + "#OEBPS/fb2.fb2";
-                        map.put(keyEnd, text.toString().trim());//2
-
-                        LOG.d("getFooterNotes-section", sectionId, keyEnd, ">", text.toString());
-                        LOG.d("getFooterNotesFb2-section", keyEnd, text.toString().trim());
-                        sectionId = null;
-                        text = null;
-                    } else if (xpp.getName().equals("a")) {
-
-                        if (isLink && link != null) {
-                            key = key.trim();
-                            if (!TxtUtils.isFooterNote(key)) {
-                                key = "[" + link + "]";
+                    if (eventType == XmlPullParser.START_TAG) {
+                        String tag = xpp.getName();
+                        if (tag.equals("a")) {
+                            isLink = true;
+                            link = xpp.getAttributeValue(null, "l:href");
+                            if (link == null) {
+                                link = xpp.getAttributeValue(null, "xlink:href");
                             }
-                            link = link.replace("#", "");
-                            map.put(key, link.trim());
-                            LOG.d("getFooterNotes-link", key, ">", link);
-                            LOG.d("getFooterNotesFb2-link", key, link);
-
-
-                            key = "";
+                        } else if (tag.equals("section")) {
+                            sectionId = xpp.getAttributeValue(null, "id");
+                            text = new StringBuilder();
+                        } else if (checkBinary && tag.equals("binary")) {
+                            // the base64 images at the end are most of the file, no need to parse them unless
+                            // a body follows; the parser reads ahead, so look from a bit before where it is
+                            checkBinary = false;
+                            if (!hasBodyAfterBinary(inputFile, Math.max(0, inputStream.count - 64 * 1024))) {
+                                break;
+                            }
                         }
-                        if (isLink) {
+                    } else if (eventType == XmlPullParser.TEXT) {
+                        if (sectionId != null || isLink) {
+                            String value = xpp.getText();
+                            if (sectionId != null) {
+                                String trim = value.trim();
+                                if (trim.length() > 0) {
+                                    text.append(trim).append(' ');
+                                }
+                            }
+                            if (isLink) {
+                                key.append(' ').append(value);
+                            }
+                        }
+                    } else if (eventType == XmlPullParser.END_TAG) {
+                        String tag = xpp.getName();
+                        if (sectionId != null && tag.equals("section")) {
+                            List<String> keys = keysById.remove(sectionId);
+                            if (keys != null) {
+                                String note = text.toString().trim();
+                                for (String k : keys) {
+                                    if (sectionId.equals(targetByKey.get(k))) {
+                                        targetByKey.remove(k);
+                                        map.put(k, note);
+                                        map.put(k + "#OEBPS/fb2.fb2", note);
+                                    }
+                                }
+                            }
+                            sectionId = null;
+                            text = null;
+                        } else if (tag.equals("a")) {
+                            if (isLink && link != null) {
+                                String k = key.toString().trim();
+                                if (!TxtUtils.isFooterNote(k)) {
+                                    k = "[" + link + "]";
+                                }
+                                String id = link.replace("#", "").trim();
+                                map.put(k, id);
+                                targetByKey.put(k, id);
+                                List<String> keys = keysById.get(id);
+                                if (keys == null) {
+                                    keys = new ArrayList<String>(1);
+                                    keysById.put(id, keys);
+                                }
+                                if (!keys.contains(k)) {
+                                    keys.add(k);
+                                }
+                                key.setLength(0);
+                            }
                             isLink = false;
                         }
                     }
+                    eventType = xpp.next();
                 }
-
-                eventType = xpp.next();
+            } finally {
+                inputStream.close();
             }
-            inputStream.close();
         } catch (Exception e) {
             LOG.e(e);
         }
         return map;
+    }
+
+    private static final byte[] BINARY_TAG = {'<', 'b', 'i', 'n', 'a', 'r', 'y'};
+    private static final byte[] BODY_TAG = {'<', 'b', 'o', 'd', 'y'};
+    // searching 8 MB of images: String.indexOf is fast on Android 7 and slow on 16, a byte loop the other way round
+    private static final boolean SEARCH_BYTES = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O;
+
+    // true when a <body> comes after the first <binary> found from the given offset
+    static boolean hasBodyAfterBinary(String file, long from) {
+        return hasBodyAfterBinary(file, from, SEARCH_BYTES);
+    }
+
+    static boolean hasBodyAfterBinary(String file, long from, boolean searchBytes) {
+        try (InputStream in = new FileInputStream(file)) {
+            while (from > 0) {
+                long skipped = in.skip(from);
+                if (skipped <= 0) {
+                    break;
+                }
+                from -= skipped;
+            }
+            byte[] buffer = new byte[64 * 1024];
+            int keep = 0; // end of the previous read, a tag can start there
+            boolean binary = false;
+            int n;
+            while ((n = in.read(buffer, keep, buffer.length - keep)) != -1) {
+                int end = keep + n;
+                // ISO-8859-1 keeps bytes and chars one to one
+                String chunk = searchBytes ? null : new String(buffer, 0, end, java.nio.charset.StandardCharsets.ISO_8859_1);
+                int at = 0;
+                if (!binary) {
+                    int index = searchBytes ? indexOf(buffer, 0, end, BINARY_TAG) : chunk.indexOf("<binary");
+                    if (index >= 0) {
+                        binary = true;
+                        at = index + BINARY_TAG.length;
+                    }
+                }
+                if (binary && (searchBytes ? indexOf(buffer, at, end, BODY_TAG) : chunk.indexOf("<body", at)) >= 0) {
+                    return true;
+                }
+                keep = Math.min(BINARY_TAG.length - 1, end);
+                System.arraycopy(buffer, end - keep, buffer, 0, keep);
+            }
+            return !binary; // no <binary> found from there: keep parsing to be safe
+        } catch (IOException e) {
+            LOG.e(e);
+            return true;
+        }
+    }
+
+    private static int indexOf(byte[] buffer, int from, int to, byte[] tag) {
+        for (int i = from; i + tag.length <= to; i++) {
+            if (buffer[i] == '<' && startsWith(buffer, i, tag)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static boolean startsWith(byte[] buffer, int from, byte[] tag) {
+        for (int i = 1; i < tag.length; i++) {
+            if (buffer[from + i] != tag[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static class CountingInputStream extends java.io.FilterInputStream {
+        long count;
+
+        CountingInputStream(InputStream in) {
+            super(in);
+        }
+
+        @Override
+        public int read() throws IOException {
+            int b = super.read();
+            if (b >= 0) {
+                count++;
+            }
+            return b;
+        }
+
+        @Override
+        public int read(byte[] b, int off, int len) throws IOException {
+            int n = super.read(b, off, len);
+            if (n > 0) {
+                count += n;
+            }
+            return n;
+        }
+
+        @Override
+        public long skip(long n) throws IOException {
+            long skipped = super.skip(n);
+            count += skipped;
+            return skipped;
+        }
     }
 
     @Deprecated
@@ -1130,6 +1325,9 @@ public class Fb2Extractor extends BaseExtractor {
         boolean firstLine = true;
 
         boolean ready = true;
+        // The skeleton that makes the FictionBook markup a document with a body - see Fb2Xhtml.
+        // Without it foliate's paginator measures a null body and the book falls back to MuPDF.
+        final Fb2Xhtml xhtml = new Fb2Xhtml();
         HypenUtils.resetTokenizer();
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled.get()) {
@@ -1148,7 +1346,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 firstLine = false;
-                writer.println(line);
+                writer.println(xhtml.apply(line));
                 continue;
             }
 
@@ -1203,7 +1401,7 @@ public class Fb2Extractor extends BaseExtractor {
                         line = HypenUtils.applyHypnes(line, replacements);
                     }
                 }
-                writer.print(line);
+                writer.print(xhtml.apply(line));
             }
 
         }

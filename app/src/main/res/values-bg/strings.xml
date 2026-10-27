@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Конвертирайте документ онлайн</string>
    <string name="book_covers">Корици на книги</string>
    <string name="cover_image_size">Размер на миниатюрата</string>
+   <string name="cover_radius">Заобляне на корицата</string>
    <string name="column_count">Колони</string>
    <string name="show_book_covers">Обложки за дисплейни книги</string>
    <string name="enable_effect_of_the_book_cover">Макетни корици за печат на книги</string>
@@ -61,7 +62,7 @@
    <string name="web">Начална страница</string>
    <string name="beta_version">Бета версия</string>
    <string name="archive">Архив</string>
-   <string name="rate_pdf_reader1">Моля, оставете отзиви и ни оценете в google play: това е много важно за по-нататъшното развитие</string>
+   <string name="rate_pdf_reader1">Моля, оставете отзив за това приложение в Google Play. Това е много важно за нас</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Форматиран текст (псевдо-графика)</string>
    <string name="continuous_text">Непрекъснат текст (без прекъсвания на реда)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Стилове</string>
    <string name="document_styles">Документ</string>
    <string name="automatic_hyphenation">Дайте възможност за тирене</string>
+   <string name="parse_bbcode_tags">Обработка на BBCode тагове</string>
    <string name="empty_line">Строфа почивка</string>
    <string name="margin_width">Полета на страницата</string>
    <string name="top">Отгоре</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Няма серия</string>
    <string name="no_genre">Няма жанр</string>
    <string name="no_language">Няма език</string>
+   <string name="no_date">Без дата</string>
    <string name="without_series">N / A</string>
    <string name="folders">Папка</string>
    <string name="recent">Скорошен</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Не е инсталиран клиент за имейл</string>
    <string name="file_not_found">Файлът не е намерен</string>
    <string name="you_need_grant_permission5">Приложението се нуждае от вашето разрешение, за да намери и покаже всички ваши книги.</string>
+   <string name="allow">Разреши</string>
+   <string name="storage">Хранилище</string>
+   <string name="add_all_books_with_permission">Моля, позволете на приложението да сканира папката „Изтегляния“, за да добавя автоматично книги към библиотеката ви.</string>
+   <string name="allow_access_to_see_files">Разрешете достъп до всички файлове, за да виждате книгите в тази папка. Без него се показват само папките ѝ.</string>
+   <string name="save_settings_in_librera_folder">Запазване на настройките и напредъка в четенето в папката Librera.</string>
+   <string name="regrant_folder_title">Разрешете отново достъп до папката</string>
+   <string name="regrant_folder_msg">Приложението вече не може да чете %1$s: Android премахва достъпа до папките при преинсталиране на приложението. Изберете папката отново на следващия екран.</string>
    <string name="remind_msg">Време за почивка!</string>
    <string name="bookmark_for_this_page_already_exists">Тази отметка вече съществува</string>
    <string name="can_t_download">Файлът не може да бъде свален</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Режим на четене</string>
    <string name="convert_to">Конвертирате в</string>
-   <string name="mode_vertical">Режим на превъртане</string>
-   <string name="mode_horizontally">Книжен режим</string>
+   <string name="mode_vertical">Вертикално</string>
+   <string name="mode_horizontally">По страници</string>
    <string name="mode_musician">Режим на музикант</string>
    <string name="save">Запази</string>
    <string name="remember_choice">Запомни избора</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Страница</string>
    <string name="page">Страница</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Избирам...</string>
+   <string name="choose_">Избирам</string>
    <string name="crop_white_borders">Култура бяло пространство</string>
    <string name="full_screen">Цял екран</string>
    <string name="go">Отивам</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Симетрично отрязване</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Извличане на имена на автори и заглавия на книги от метаданни (pdf)</string>
    <string name="meta_tags">Мета тагове</string>
-   <string name="librera_pro">Вземете Librera PRO — без реклами, и премахва рекламите и в това приложение</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Приложение без реклами, което премахва рекламите и в това приложение</string>
    <string name="annotation">Анотация</string>
    <string name="book">Книга</string>
    <string name="information">Информация за файла</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Оловни глави с инициали</string>
    <string name="size">Размер</string>
    <string name="quick_bookmark_by_the_headset">Активиране на отдалечени отметки (бутон за старт / стоп)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Показване на бутоните за TTS в долната част на страницата</string>
    <string name="slider_scale">Плъзгаща скала</string>
    <string name="chapter_format">Легенда</string>
    <string name="play_a_music_file">Възпроизвеждане на аудио файл</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Тъмно оледо</string>
    <string name="profile">Профил</string>
    <string name="new_profile">Нов профил</string>
+   <string name="add_profile">Добави профил</string>
    <string name="main">Основен</string>
    <string name="do_you_want_to_switch_profile_">Да преминете към този профил?</string>
    <string name="sync_error">Грешка при синхронизиране</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Общо страници</string>
    <string name="close_menu">Затвори менюто</string>
    <string name="go_to_page">Отиди на страница</string>
-   <string name="update_library">Актуализиране на библиотека</string>
+   <string name="update_library">Актуализиране</string>
    <string name="ascending">Възходящ</string>
    <string name="descending">Низходящ</string>
    <string name="remove">Премахване</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
+   <string name="show_storage_book_covers">Показване на корици за добавеното хранилище</string>
    <string name="accent">Акцент</string>
    <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Предупреждение: този документ има незапазени промени</string>
    <string name="bold_headings">Удебелени заглавия</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Гледайте това кратко видео, за да изключите всички реклами за 1 час</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Гледайте това кратко видео, за да изключите всички реклами за 2 часа</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Гледайте това кратко видео, за да изключите всички реклами за 3 часа</string>
    <string name="the_book_is_complete">Книгата е завършена.</string>
    <string name="time">Време</string>
    <string name="date_added">Дата на добавяне</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Бутон за показване на контраст и яркост</string>
    <string name="text_and_background_color">Цвят на текста и фона</string>
    <string name="library_folders">Папки на библиотеката</string>
+   <string name="library_folders_hint">Книгите се търсят в тези папки и техните подпапки.</string>
+   <string name="add_folder_hint">Изберете една папка</string>
+   <string name="add_storage_hint">SD карта или USB устройство</string>
+   <string name="folder_no_access">Няма достъп · докоснете, за да разрешите отново</string>
    <string name="watch">Гледай</string>
+   <string name="librerax_not_installed">LibreraX не е инсталиран. Изтеглете и го инсталирайте, след това отворете книгата отново.</string>
+   <string name="remove_library_folder">Премахване на тази папка от библиотеката? Файловете в нея няма да бъдат изтрити.</string>
+   <string name="epub_engine">Двигател за EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView не е наличен на това устройство.</string>
+   <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
+   <string name="pdf_engine">Двигател за PDF</string>
+   <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
+   <string name="book_open_failed">Тази книга не може да бъде отворена.</string>
+   <string name="book_open_crashed">Последния път приложението се затвори неочаквано при отваряне на тази книга.</string>
+   <string name="try_librerax">Опитайте да я отворите в LibreraX.</string>
+   <string name="get_librerax">LibreraX може да успее да я отвори. Изтеглете го оттук:</string>
+   <string name="open_in_librerax">Отваряне в LibreraX</string>
+   <string name="try_again">Опитай отново</string>
+   <string name="export_to_librerax">Експорт в LibreraX</string>
+   <string name="update_librerax">Обновете LibreraX до последната версия, за да импортирате от Librera.</string>
+   <string name="reading_progress">Напредък в четенето</string>
 </resources>

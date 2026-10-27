@@ -1,5 +1,6 @@
 package banner;
 
+import paths.LocalPaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -28,10 +29,10 @@ public class ScreenshotsGenerator {
     public static void main(String[] args) throws Exception {
         System.out.println("Start banners");
 
-        String bg = "/home/data/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
-        String phone = "/home/data/Dropbox/Projects/Librera/Screenshots/6p.png";
-        String screenshot = "/home/data/Dropbox/Projects/Librera/Screenshots/Source/";
-        String out = "/home/data/Dropbox/Projects/Librera/Screenshots/gen/";
+        String bg = LocalPaths.property("librera_projects_dir", "Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ");
+        String phone = LocalPaths.property("librera_projects_dir", "Librera/Screenshots/6p.png");
+        String screenshot = LocalPaths.property("librera_projects_dir", "Librera/Screenshots/Source/");
+        String out = LocalPaths.property("librera_projects_dir", "Librera/Screenshots/gen/");
 
         for (File file : new File(out).listFiles()) {
             if (file.isFile()) {

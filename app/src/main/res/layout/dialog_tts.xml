@@ -176,7 +176,7 @@
 
             <TextView
                 android:id="@+id/ttsPauseDuration"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="350" />
@@ -197,7 +197,7 @@
 
             <TextView
                 android:id="@+id/timerTime"
-                style="@style/textLink"
+                style="@style/textLinkDropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minEms="2"
@@ -280,6 +280,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quick_bookmark_by_the_headset" />
+
+        <CheckBox
+            android:id="@+id/isShowTtsPageControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_tts_buttons_at_the_bottom_of_the_page" />
 
         <TextView
             android:id="@+id/ttsSkeakToFile"

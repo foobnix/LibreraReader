@@ -20,6 +20,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.drive.GoogleAuth;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -29,7 +30,6 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.api.services.drive.model.File;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -77,7 +77,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppSP.get().isEnableSync = isChecked;
             if (isChecked && getActivity() != null) {
-                if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
+                if (!GoogleAuth.isAuthorized(getActivity())) {
                     GFile.init(getActivity());
                 } else {
                     GFile.runSyncService(getActivity());
@@ -98,13 +98,7 @@ public class GoogleDriveFragment2 extends UIFragment<FileMeta> {
             isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly =
                     isChecked);
 
-            final CheckBox isShowSyncWheel = new CheckBox(getActivity());
-            isShowSyncWheel.setText(getString(R.string.animate_sync_progress));
-            isShowSyncWheel.setChecked(BookCSS.get().isSyncAnimation);
-            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncAnimation =
-                    isChecked);
-
-            AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly, isShowSyncWheel);
+            AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly);
         });
 
         updateSyncInfo(null);

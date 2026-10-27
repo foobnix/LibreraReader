@@ -60,19 +60,44 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return null;
     }
 
+    /**
+     * The footnotes and the media attachments are not read by the engine: the format contexts
+     * extract them from the archive (see {@link org.ebookdroid.droids.EpubContext}) and hand them
+     * to whichever document they just opened, so both engines take them here.
+     */
+    protected volatile Map<String, String> footNotes;
+
+    protected volatile List<String> mediaAttachment;
+
     @Override public Map<String, String> getFootNotes() {
-        return null;
+        return footNotes;
+    }
+
+    public void setFootNotes(final Map<String, String> footNotes) {
+        this.footNotes = footNotes;
+    }
+
+    @Override public List<String> getMediaAttachments() {
+        return mediaAttachment;
+    }
+
+    public void setMediaAttachment(final List<String> mediaAttachment) {
+        this.mediaAttachment = mediaAttachment;
     }
 
     @Override public final void recycle() {
         //LOG.d("ACD","recycle",isRecycled());
-        TempHolder.get().lastRecycledDocument = documentHandle;
-        if (!isRecycled()) {
-            context.recycle();
-            context = null;
-            freeDocument();
+        TempHolder.lock.lock();
+        try {
+            TempHolder.get().lastRecycledDocument = documentHandle;
+            if (!isRecycled()) {
+                context.recycle();
+                context = null;
+                freeDocument();
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
-
     }
 
     @Override public final boolean isRecycled() {
@@ -97,6 +122,31 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override public List<String> getMetaKeys() {
         return new ArrayList<String>();
+    }
+
+    /**
+     * No location. A fixed-layout document does not need one - its page numbers never move - and
+     * MuPDF has nothing to offer for a reflowable book beyond the page text anchor it already
+     * provides through {@link #getBookmarkText(int)}.
+     */
+    @Override public String getLocation(int page) {
+        return null;
+    }
+
+    @Override public String getLocation(int page, java.util.List<android.graphics.RectF> rects) {
+        return null;
+    }
+
+    @Override public int findLocationPage(String location) {
+        return -1;
+    }
+
+    @Override public String getBookmarkText(int page) {
+        return null;
+    }
+
+    @Override public int findBookmarkPage(int page, String text, String pageText) {
+        return -1;
     }
 
 }

@@ -2,6 +2,9 @@ package com.foobnix;
 
 import static com.foobnix.pdf.info.AppsConfig.SEARCH_FRAGMENT_WORKER_NAME;
 
+import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -10,7 +13,6 @@ import android.os.StrictMode;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.multidex.MultiDexApplication;
 import androidx.work.Configuration;
 import androidx.work.WorkManager;
 
@@ -31,8 +33,26 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
-public class LibreraApp extends MultiDexApplication {
+import java.util.concurrent.atomic.AtomicReference;
+
+public class LibreraApp extends Application {
     public static Context context;
+
+    /**
+     * The activity on screen, if any.
+     *
+     * Only the foliate-js engine needs this, and it needs it for a hard reason: Chromium builds no
+     * subframe tree for a WebView that is not attached to a window, so the iframe foliate
+     * paginates a book in never navigates and never reports its size. The engine therefore parks
+     * its WebView off-screen in whatever activity is up. See
+     * {@link org.ebookdroid.droids.foliate.codec.FoliateRenderer}.
+     */
+    private static final AtomicReference<Activity> resumed = new AtomicReference<Activity>();
+
+    /** The activity on screen, or <code>null</code>. */
+    public static Activity getResumedActivity() {
+        return resumed.get();
+    }
 
 
     @Override
@@ -59,6 +79,38 @@ public class LibreraApp extends MultiDexApplication {
         //AppsConfig.loadEngine(this);
 
         context = getApplicationContext();
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override public void onActivityResumed(final Activity activity) {
+                resumed.set(activity);
+            }
+
+            @Override public void onActivityPaused(final Activity activity) {
+                resumed.compareAndSet(activity, null);
+            }
+
+            @Override public void onActivityDestroyed(final Activity activity) {
+                resumed.compareAndSet(activity, null);
+            }
+
+            @Override public void onActivityCreated(final Activity activity, final Bundle state) {
+            }
+
+            @Override public void onActivityStarted(final Activity activity) {
+            }
+
+            @Override public void onActivityStopped(final Activity activity) {
+            }
+
+            @Override public void onActivitySaveInstanceState(final Activity activity, final Bundle state) {
+            }
+        });
+
+        // The DjVu render service's process draws pages for another app and nothing else:
+        // it needs none of the reader, and must not cancel or prune the reader's work.
+        if (isDjvuRenderProcess()) {
+            return;
+        }
         if (!WorkManager.isInitialized()) {
             WorkManager.initialize(this, new Configuration.Builder().setMinimumLoggingLevel(Log.DEBUG).build());
         }
@@ -189,6 +241,28 @@ public class LibreraApp extends MultiDexApplication {
 
 
 
+
+    private static boolean isDjvuRenderProcess() {
+        String name = null;
+        if (Build.VERSION.SDK_INT >= 28) {
+            name = Application.getProcessName();
+        } else {
+            try (java.io.FileInputStream in = new java.io.FileInputStream("/proc/self/cmdline")) {
+                byte[] buf = new byte[256];
+                int n = in.read(buf);
+                if (n > 0) {
+                    int end = 0;
+                    while (end < n && buf[end] != 0) {
+                        end++;
+                    }
+                    name = new String(buf, 0, end);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return name != null && name.endsWith(":djvu");
+    }
 
     @Override
     public void onLowMemory() {

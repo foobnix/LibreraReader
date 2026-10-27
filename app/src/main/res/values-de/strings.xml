@@ -23,7 +23,7 @@
    <string name="black">Dunkel</string>
    <string name="theme_color">Farbe</string>
    <string name="widget">Widget</string>
-   <string name="show">Show</string>
+   <string name="show">Anzeigen</string>
    <string name="layout">Layout</string>
    <string name="number_of_books">Bücher</string>
    <string name="remember_reading_mode">Lesemodus merken</string>
@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumente online konvertieren</string>
    <string name="book_covers">Titelbilder</string>
    <string name="cover_image_size">Titelbildgröße</string>
+   <string name="cover_radius">Eckenradius der Titelbilder</string>
    <string name="column_count">Anzahl der Spalten</string>
    <string name="show_book_covers">Titelbilder anzeigen</string>
    <string name="enable_effect_of_the_book_cover">Titelbildeffekt aktivieren</string>
@@ -61,7 +62,7 @@
    <string name="web">Internet</string>
    <string name="beta_version">Betaversion</string>
    <string name="archive">Archivieren</string>
-   <string name="rate_pdf_reader1">Bitte schreiben Sie Ihre Meinung und bewerten Sie uns auf Google Play. Es ist für die weitere Entwicklung der App sehr wichtig!</string>
+   <string name="rate_pdf_reader1">Bitte hinterlassen Sie eine Bewertung dieser App bei Google Play. Das ist sehr wichtig für uns</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatierter Text (Pseudo-Grafik)</string>
    <string name="continuous_text">Durchgehender Text (keine Zeilenumbrüche)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Stile</string>
    <string name="document_styles">Dokumentenstile</string>
    <string name="automatic_hyphenation">Automatische Silbentrennung</string>
+   <string name="parse_bbcode_tags">BBCode-Tags verarbeiten</string>
    <string name="empty_line">Leere Zeile</string>
    <string name="margin_width">Randbreite</string>
    <string name="top">Oben</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Keine Reihe</string>
    <string name="no_genre">Kein Genre</string>
    <string name="no_language">Keine Sprache</string>
+   <string name="no_date">Kein Datum</string>
    <string name="without_series">N/A</string>
    <string name="folders">Ordner</string>
    <string name="recent">Verlauf</string>
@@ -198,7 +201,7 @@
    <string name="proxy_type">Proxy-Typ</string>
    <string name="server">Server</string>
    <string name="port">Port</string>
-   <string name="user">User</string>
+   <string name="user">Benutzer</string>
    <string name="other_settings">Andere Einstellungen</string>
    <string name="folder_for_downloaded_books">Downloads</string>
    <string name="display_large_book_covers_in_the_catalog">Große Titelbilder in der Übersicht anzeigen</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-Mail-Anwendung nicht installiert</string>
    <string name="file_not_found">Datei nicht gefunden</string>
    <string name="you_need_grant_permission5">Die App benötigt Ihre Erlaubnis, um alle Ihre Bücher zu finden und anzuzeigen.</string>
+   <string name="allow">Zulassen</string>
+   <string name="storage">Speicher</string>
+   <string name="add_all_books_with_permission">Bitte erlaube der App, deinen Download-Ordner zu durchsuchen, um Bücher automatisch zu deiner Bibliothek hinzuzufügen.</string>
+   <string name="allow_access_to_see_files">Erlauben Sie den Zugriff auf alle Dateien, um die Bücher in diesem Ordner zu sehen. Ohne ihn werden nur seine Ordner angezeigt.</string>
+   <string name="save_settings_in_librera_folder">Einstellungen und Lesefortschritt im Ordner Librera speichern.</string>
+   <string name="regrant_folder_title">Zugriff auf den Ordner erneut erlauben</string>
+   <string name="regrant_folder_msg">Die App kann %1$s nicht mehr lesen: Android entfernt den Ordnerzugriff, wenn die App neu installiert wird. Wählen Sie den Ordner im nächsten Bildschirm erneut aus.</string>
    <string name="remind_msg">Bitte gönne deinen Augen eine Pause.</string>
    <string name="bookmark_for_this_page_already_exists">Lesezeichen bereits vorhanden</string>
    <string name="can_t_download">Kann nicht heruntergeladen werden</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Lesemodus wählen</string>
    <string name="convert_to">Konvertieren zu</string>
-   <string name="mode_vertical">\„Vertikales Blättern\“</string>
-   <string name="mode_horizontally">\„Horizontales Blättern\“ (Buch)</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Seitenweise</string>
    <string name="mode_musician">\„Musiker\“</string>
    <string name="save">Speichern</string>
    <string name="remember_choice">Auswahl merken</string>
@@ -312,7 +322,7 @@
    <string name="to_read">Start</string>
    <string name="to_paly_pause">Play/Pause</string>
    <string name="text_to_speech">Einstellungen Text-zu-Sprache</string>
-   <string name="speed1">Speed</string>
+   <string name="speed1">Geschwindigkeit</string>
    <string name="pitch1">Tonhöhe</string>
    <string name="sound_volume">Lautstärke</string>
    <string name="next">Nächste</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Seite</string>
    <string name="page">Seite</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Wählen...</string>
+   <string name="choose_">Wählen</string>
    <string name="crop_white_borders">Leerraum beschneiden</string>
    <string name="full_screen">Vollbild</string>
    <string name="go">Anwenden</string>
@@ -373,7 +383,7 @@
    <string name="display_settings">Bildschirmeinstellungen</string>
    <string name="image_format">Bildformat</string>
    <string name="enable_vibration_for_some_actions">Vibration für einige Aktionen aktivieren</string>
-   <string name="image">Image</string>
+   <string name="image">Bild</string>
    <string name="transparency">Transparenz</string>
    <string name="write_feedback">Feedback</string>
    <string name="clear_all_marked">Alle markierten löschen</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Ränder symmetrisch beschneiden</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Autors und Titel aus den Dokument-Metadaten extrahieren (PDF)</string>
    <string name="meta_tags">Meta-Tags</string>
-   <string name="librera_pro">Hol dir Librera PRO — werbefrei, und es entfernt auch die Werbung in dieser App</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Eine werbefreie App, die auch die Werbung in dieser App entfernt</string>
    <string name="annotation">Anmerkung</string>
    <string name="book">Buch</string>
    <string name="information">Dateiinformation</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Kapitelinitiale verwenden</string>
    <string name="size">Größe</string>
    <string name="quick_bookmark_by_the_headset">Schnelles Lesezeichen per Headset (Start/Stop-Knopf)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS-Schaltflächen unten auf der Seite anzeigen</string>
    <string name="slider_scale">Schieberegler</string>
    <string name="chapter_format">Kapitelformat</string>
    <string name="play_a_music_file">Audiodatei abspielen</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Dunkles Layout für OLED-Bildschirme</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Neues Profil</string>
+   <string name="add_profile">Profil hinzufügen</string>
    <string name="main">Hauptprofil</string>
    <string name="do_you_want_to_switch_profile_">Zu einem anderen Profil wechseln?</string>
    <string name="sync_error">Synchronisierungsfehler</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Alle Seiten</string>
    <string name="close_menu">Menü schließen</string>
    <string name="go_to_page">Gehe zur Seite</string>
-   <string name="update_library">Bibliothek aktualisieren</string>
+   <string name="update_library">Aktualisieren</string>
    <string name="ascending">Aufsteigend</string>
    <string name="descending">Absteigend</string>
    <string name="remove">Entfernen</string>
@@ -652,15 +664,16 @@
    <string name="accessibility">Barrierefreiheit</string>
    <string name="web_search_google">Websuche (Google, ...)</string>
    <string name="synced_books">Synchronisierte Bücher</string>
-   <string name="smart_reflow">Smart reflow</string>
+   <string name="smart_reflow">Intelligenter Umbruch</string>
    <string name="user_styles">Benutzer-Stile</string>
-   <string name="engine">Engine</string>
+   <string name="engine">Modul</string>
    <string name="restart_manually">Diese Änderung erfordert einen manuellen Neustart der Anwendung</string>
    <string name="search_in_the_library">Suche in der Bibliothek</string>
    <string name="update_metadata">Metadaten aktualisieren</string>
    <string name="highlighting_initial_letters">Anfangsbuchstaben hervorheben</string>
    <string name="anti_aliasing_level">Anti-Aliasing-Stufe</string>
    <string name="folder_preview">Ordnervorschau</string>
+   <string name="show_storage_book_covers">Titelbilder für hinzugefügten Speicher anzeigen</string>
    <string name="accent">Akzent</string>
    <string name="discarded_books">Weggeworfene Bücher</string>
    <string name="show_print_edition_page_numbers_epub3">Seitenzahlen der gedruckten Ausgabe anzeigen (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Warnung: Dieses Dokument enthält ungespeicherte Änderungen</string>
    <string name="bold_headings">Fettgedruckte Überschriften</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Sehen Sie sich dieses kurze Video an, um alle Werbeanzeigen für 1 Stunde auszuschalten.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Sehen Sie sich dieses kurze Video an, um alle Werbeanzeigen für 2 Stunden auszuschalten.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Sehen Sie sich dieses kurze Video an, um alle Werbeanzeigen für 3 Stunden auszuschalten.</string>
    <string name="the_book_is_complete">Das Buch ist fertig.</string>
    <string name="time">Zeit</string>
    <string name="date_added">Datum hinzugefügt</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Kontrast- und Helligkeitstaste anzeigen</string>
    <string name="text_and_background_color">Text- und Hintergrundfarbe</string>
    <string name="library_folders">Bibliotheksordner</string>
+   <string name="library_folders_hint">Bücher werden in diesen Ordnern und ihren Unterordnern gesucht.</string>
+   <string name="add_folder_hint">Einen Ordner auswählen</string>
+   <string name="add_storage_hint">SD-Karte oder USB-Laufwerk</string>
+   <string name="folder_no_access">Kein Zugriff · zum erneuten Erlauben tippen</string>
    <string name="watch">Ansehen</string>
+   <string name="librerax_not_installed">LibreraX ist nicht installiert. Lade es herunter, installiere es und öffne das Buch dann erneut.</string>
+   <string name="remove_library_folder">Diesen Ordner aus der Bibliothek entfernen? Die Dateien darin werden nicht gelöscht.</string>
+   <string name="epub_engine">EPUB-Modul</string>
+   <string name="msg_epub_engine_unavailable">WebView ist auf diesem Gerät nicht verfügbar.</string>
+   <string name="base_stylesheet">Basis-Stylesheet anwenden (foliate-js)</string>
+   <string name="pdf_engine">PDF-Modul</string>
+   <string name="msg_pdf_engine_unavailable">Diese Version enthält die PDFium-Bibliotheken nicht.</string>
+   <string name="book_open_failed">Dieses Buch konnte nicht geöffnet werden.</string>
+   <string name="book_open_crashed">Die App wurde beim letzten Öffnen dieses Buches unerwartet beendet.</string>
+   <string name="try_librerax">Versuchen Sie, es in LibreraX zu öffnen.</string>
+   <string name="get_librerax">LibreraX kann es möglicherweise öffnen. Laden Sie es hier herunter:</string>
+   <string name="open_in_librerax">In LibreraX öffnen</string>
+   <string name="try_again">Erneut versuchen</string>
+   <string name="export_to_librerax">Nach LibreraX exportieren</string>
+   <string name="update_librerax">Aktualisieren Sie LibreraX auf die neueste Version, um aus Librera zu importieren.</string>
+   <string name="reading_progress">Lesefortschritt</string>
 </resources>

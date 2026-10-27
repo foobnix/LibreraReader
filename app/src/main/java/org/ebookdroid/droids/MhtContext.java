@@ -6,6 +6,7 @@ import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.HtmlExtractor;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -26,7 +27,11 @@ public class MhtContext extends PdfContext {
             LOG.e(e);
         }
 
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
+        AbstractCodecDocument muPdfDocument = openReflowableHtml(fileName, password);
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
+        }
         muPdfDocument.setFootNotes(notes);
         return muPdfDocument;
     }

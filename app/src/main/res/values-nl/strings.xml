@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Converteer document online</string>
    <string name="book_covers">Boekomslagen</string>
    <string name="cover_image_size">Boekomslag afbeelding grootte</string>
+   <string name="cover_radius">Afronding omslag</string>
    <string name="column_count">Aantal kolommen</string>
    <string name="show_book_covers">Toon boekomslag</string>
    <string name="enable_effect_of_the_book_cover">Boots gedrukte boekomslagen na</string>
@@ -61,7 +62,7 @@
    <string name="web">Website</string>
    <string name="beta_version">Beta versie</string>
    <string name="archive">Archief</string>
-   <string name="rate_pdf_reader1">Schrijf uw feedback en waardeer ons op Google Play, het is zeer belangrijk voor ons</string>
+   <string name="rate_pdf_reader1">Laat een beoordeling van deze app achter op Google Play. Dat is heel belangrijk voor ons</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Opgemaakte tekst (pseudo-afbeeldingen)</string>
    <string name="continuous_text">Doorlopende tekst (geen regelafbreking)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Stijlen</string>
    <string name="document_styles">Document stijlen</string>
    <string name="automatic_hyphenation">Automatische woordafbreking</string>
+   <string name="parse_bbcode_tags">BBCode-tags verwerken</string>
    <string name="empty_line">Lege regel</string>
    <string name="margin_width">Margebreedte</string>
    <string name="top">Bovenkant</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Geen serie</string>
    <string name="no_genre">Geen genre</string>
    <string name="no_language">Geen taal</string>
+   <string name="no_date">Geen datum</string>
    <string name="without_series">Zonder serie</string>
    <string name="folders">Mappen</string>
    <string name="recent">Recent</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-mail applicatie niet geïnstalleerd.</string>
    <string name="file_not_found">Bestand niet gevonden</string>
    <string name="you_need_grant_permission5">De app heeft uw toestemming nodig om al uw boeken te vinden en weer te geven.</string>
+   <string name="allow">Toestaan</string>
+   <string name="storage">Opslag</string>
+   <string name="add_all_books_with_permission">Sta de app toe je map Downloads te doorzoeken, zodat boeken automatisch aan je bibliotheek worden toegevoegd.</string>
+   <string name="allow_access_to_see_files">Sta toegang tot alle bestanden toe om de boeken in deze map te zien. Zonder toegang worden alleen de mappen getoond.</string>
+   <string name="save_settings_in_librera_folder">Instellingen en leesvoortgang opslaan in de map Librera.</string>
+   <string name="regrant_folder_title">Toegang tot de map opnieuw toestaan</string>
+   <string name="regrant_folder_msg">De app kan %1$s niet meer lezen: Android trekt de maptoegang in als de app opnieuw wordt geïnstalleerd. Kies de map opnieuw in het volgende scherm.</string>
    <string name="remind_msg">Neem een pauze voor je ogen en rust een beetje.</string>
    <string name="bookmark_for_this_page_already_exists">Bladwijzer voor deze pagina bestaat al</string>
    <string name="can_t_download">Kan bestand niet downloaden</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Selecteer de leesmodus</string>
    <string name="convert_to">Omzetten naar</string>
-   <string name="mode_vertical">Scroll modus</string>
-   <string name="mode_horizontally">Boek modus</string>
+   <string name="mode_vertical">Verticaal</string>
+   <string name="mode_horizontally">Per pagina</string>
    <string name="mode_musician">Musicus modus</string>
    <string name="save">Opslaan</string>
    <string name="remember_choice">Onthoud de keuze</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Kiezen...</string>
+   <string name="choose_">Kiezen</string>
    <string name="crop_white_borders">Witte randen uitsnijden</string>
    <string name="full_screen">Volledig scherm</string>
    <string name="go">Gaan</string>
@@ -424,7 +434,7 @@
    <string name="keywords">Trefwoorden</string>
    <string name="number">Nummer</string>
    <string name="percent">Procent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Prijzen</string>
    <string name="close_book_and_application">Librera sluiten</string>
    <string name="percent_and_number">Percentage en nummer</string>
    <string name="current_page">Huidige pagina</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Snijd de randen symmetrisch bij</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">De auteur en de titel van het PDF-boek van de metatags weergeven</string>
    <string name="meta_tags">Meta-tags</string>
-   <string name="librera_pro">Haal Librera PRO — advertentievrij, en het verwijdert ook de advertenties in deze app</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Een advertentievrije app die ook de advertenties uit deze app verwijdert</string>
    <string name="annotation">Aantekening</string>
    <string name="book">Boek</string>
    <string name="information">Informatie</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Begin hoofdstukken met een hoofdletter</string>
    <string name="size">Grootte</string>
    <string name="quick_bookmark_by_the_headset">Snelle bladwijzer door de headset</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS-knoppen onderaan de pagina tonen</string>
    <string name="slider_scale">Schuifschaal</string>
    <string name="chapter_format">Hoofdstuk formaat</string>
    <string name="play_a_music_file">Speel een muziekbestand</string>
@@ -534,7 +545,7 @@
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
    <string name="paste">Plakken</string>
    <string name="move">Verplaatsen</string>
-   <string name="tag_manager">Tag manager</string>
+   <string name="tag_manager">Tagbeheer</string>
    <string name="the_file_already_exists_">Het bestand bestaat al</string>
    <string name="please_wait_books_are_being_processed_">Een ogenblik geduld, boeken worden verwerkt</string>
    <string name="system_brightness">Systeem helderheid</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Donkere oled</string>
    <string name="profile">Profiel</string>
    <string name="new_profile">Nieuw profiel</string>
+   <string name="add_profile">Profiel toevoegen</string>
    <string name="main">Hoofd</string>
    <string name="do_you_want_to_switch_profile_">Overschakelen naar een ander profiel?</string>
    <string name="sync_error">Synchronisatiefout</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Totaal pagina\'s</string>
    <string name="close_menu">Menu sluiten</string>
    <string name="go_to_page">Ga naar pagina</string>
-   <string name="update_library">Bibliotheek bijwerken</string>
+   <string name="update_library">Bijwerken</string>
    <string name="ascending">Oplopend</string>
    <string name="descending">Aflopend</string>
    <string name="remove">Verwijderen</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Beginletters markeren</string>
    <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
+   <string name="show_storage_book_covers">Toon omslagen voor toegevoegde opslag</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Waarschuwing: dit document bevat niet-opgeslagen wijzigingen</string>
    <string name="bold_headings">Vetgedrukte koppen</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Bekijk dit korte filmpje om alle advertenties 1 uur lang uit te schakelen.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Bekijk dit korte filmpje om alle advertenties 2 uur lang uit te schakelen.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Bekijk dit korte filmpje om alle advertenties 3 uur lang uit te schakelen.</string>
    <string name="the_book_is_complete">Het boek is af.</string>
    <string name="time">Tijd</string>
    <string name="date_added">Datum toegevoegd</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Toon de knop voor contrast en helderheid</string>
    <string name="text_and_background_color">Tekst- en achtergrondkleur</string>
    <string name="library_folders">Bibliotheekmappen</string>
+   <string name="library_folders_hint">Boeken worden gezocht in deze mappen en hun submappen.</string>
+   <string name="add_folder_hint">Kies één map</string>
+   <string name="add_storage_hint">SD-kaart of USB-stick</string>
+   <string name="folder_no_access">Geen toegang · tik om opnieuw toe te staan</string>
    <string name="watch">Bekijken</string>
+   <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>
+   <string name="remove_library_folder">Deze map uit de bibliotheek verwijderen? De bestanden erin worden niet verwijderd.</string>
+   <string name="epub_engine">EPUB-engine</string>
+   <string name="msg_epub_engine_unavailable">WebView is niet beschikbaar op dit apparaat.</string>
+   <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
+   <string name="pdf_engine">PDF-engine</string>
+   <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
+   <string name="book_open_failed">Dit boek kon niet worden geopend.</string>
+   <string name="book_open_crashed">De app is de vorige keer onverwacht gesloten tijdens het openen van dit boek.</string>
+   <string name="try_librerax">Probeer het te openen in LibreraX.</string>
+   <string name="get_librerax">LibreraX kan het mogelijk openen. Download het hier:</string>
+   <string name="open_in_librerax">Openen in LibreraX</string>
+   <string name="try_again">Opnieuw proberen</string>
+   <string name="export_to_librerax">Exporteren naar LibreraX</string>
+   <string name="update_librerax">Werk LibreraX bij naar de nieuwste versie om vanuit Librera te importeren.</string>
+   <string name="reading_progress">Leesvoortgang</string>
 </resources>

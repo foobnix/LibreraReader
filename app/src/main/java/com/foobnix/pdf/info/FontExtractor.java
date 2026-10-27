@@ -49,7 +49,7 @@ public class FontExtractor {
                 try {
                     synchronized (lock) {
                         String[] bookFiles = c.getAssets().list("books");
-                        LOG.d("bookFiles",bookFiles);
+                        LOG.d("bookFiles", (Object[]) bookFiles);
 
                         //critically important copy CSS
                         String[] rootFiles = c.getAssets().list("");

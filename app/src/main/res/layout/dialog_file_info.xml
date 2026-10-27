@@ -24,7 +24,9 @@
             android:paddingBottom="10dip">
 
             <!-- The head: the cover, the name of the book beside it, and under the name the two
-                 marks that act on the book itself rather than tell anything about it. -->
+                 marks that act on the book itself rather than tell anything about it. The cross
+                 that closes the sheet stands at the head's far corner - the sheet keeps no foot
+                 of buttons of its own. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +93,32 @@
                             android:padding="7dip"
                             android:src="@drawable/glyphicons_67_tags" />
                     </LinearLayout>
+
+                    <!-- The kind of file the book is, said once under the marks, in caps, so it
+                         is read off the head without going down to the rows. -->
+                    <TextView
+                        android:id="@+id/bookExt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dip"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/text_subtitle" />
                 </LinearLayout>
+
+                <!-- Ringed like the close on the reading panel; the sheet draws the ring in the
+                     cross's own colour. -->
+                <ImageView
+                    android:id="@+id/closeInfo"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="6dip"
+                    android:background="@drawable/bg_round_button"
+                    android:contentDescription="@string/close"
+                    android:padding="8dip"
+                    android:src="@drawable/glyphicons_599_menu_close" />
             </LinearLayout>
 
             <!-- Title -->
@@ -107,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/title"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -166,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/serie" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/metaSeries"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -205,7 +232,7 @@
                     android:orientation="vertical" />
             </LinearLayout>
 
-            <!-- Year -->
+            <!-- Publication date -->
             <LinearLayout
                 android:id="@+id/rowYear"
                 style="@style/infoRow"
@@ -216,13 +243,21 @@
                     style="@style/infoLabel"
                     android:layout_width="110dip"
                     android:layout_height="wrap_content"
-                    android:text="@string/year" />
+                    android:text="@string/publication_date" />
 
                 <TextView
                     android:id="@+id/year"
                     style="@style/infoValueLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+                <com.foobnix.pdf.info.view.SelectableTextView
+                    android:id="@+id/pubDate"
+                    style="@style/infoValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
                     android:layout_weight="1"
                     android:text="" />
             </LinearLayout>
@@ -262,7 +297,7 @@
                     android:layout_height="wrap_content"
                     android:text="ISBN" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/isbn"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -305,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/my_tags" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/tagsList"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -328,7 +363,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/language" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/hypenLang"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -350,7 +385,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/by_extension" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/info"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -373,7 +408,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/size" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/size"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -395,7 +430,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/by_date" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/date"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -405,7 +440,7 @@
             </LinearLayout>
 
             <!-- The kind of file, kept for the log build; it has no row of its own to show in. -->
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/mimeType"
                 style="@style/infoValue"
                 android:layout_width="match_parent"
@@ -426,7 +461,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/file_path" />
 
-                <TextView
+                <com.foobnix.pdf.info.view.SelectableTextView
                     android:id="@+id/path"
                     style="@style/infoValue"
                     android:layout_width="0dp"
@@ -442,8 +477,41 @@
                 android:layout_marginBottom="6dip"
                 android:background="#33888888" />
 
+            <!-- Meta tags: what the file itself carries, shown as it was written. -->
+            <TextView
+                android:id="@+id/metaTags"
+                style="@style/infoBlockLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/meta_tags" />
+
+            <com.foobnix.pdf.info.view.SelectableTextView
+                android:id="@+id/metaTagsInfo"
+                style="@style/infoValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <!-- Bookmarks -->
+            <TextView
+                android:id="@+id/bookmarksSection"
+                style="@style/infoBlockLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bookmarks" />
+
+            <com.foobnix.pdf.info.view.SelectableTextView
+                android:id="@+id/bookmarks"
+                style="@style/infoValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="" />
+
             <!-- Annotation: too long for a row, so it is given its own name and the width of
-                 the sheet under it. -->
+                 the sheet under it - and, read in full rather than cut to a few lines, it comes
+                 last, after everything shorter, so it pushes nothing out of sight. -->
             <LinearLayout
                 android:id="@+id/rowAnnotation"
                 android:layout_width="match_parent"
@@ -467,54 +535,13 @@
                     android:text="@string/edit" />
             </LinearLayout>
 
-            <TextView
+            <com.foobnix.pdf.info.view.SelectableTextView
                 android:id="@+id/metaInfo"
                 style="@style/infoValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="6"
                 android:text="@string/msg_loading" />
 
-            <TextView
-                android:id="@+id/expand"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="@string/more" />
-
-            <!-- Meta tags: what the file itself carries, shown as it was written. -->
-            <TextView
-                android:id="@+id/metaTags"
-                style="@style/infoBlockLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/meta_tags" />
-
-            <TextView
-                android:id="@+id/metaTagsInfo"
-                style="@style/infoValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
-
-            <!-- Bookmarks -->
-            <TextView
-                android:id="@+id/bookmarksSection"
-                style="@style/infoBlockLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/bookmarks" />
-
-            <TextView
-                android:id="@+id/bookmarks"
-                style="@style/infoValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="5"
-                android:text="" />
 
             <!-- What can be done to the file, set apart from what is known about it. -->
             <LinearLayout

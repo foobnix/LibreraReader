@@ -33,9 +33,20 @@ public class AppsConfig {
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
+    /**
+     * How much of the tint colour the floating chrome keeps, 0-255. Two things bound it: the
+     * page has to be seen moving under the bars at all, and the white the labels are set in
+     * has to hold against the brightest thing that can pass beneath them - a white cover,
+     * which lightens the bar by whatever is let through.
+     */
+    public static final int APP_TRANSPARENCY = 240;
+    /**
+     * The flavours that are not published on Google Play and are built without Google Play
+     * services: the F-Droid one and the MuPDF-free build of it, fdroidJS.
+     */
     public static final boolean
             IS_FDROID =
-            LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
+            LibreraBuildConfig.FLAVOR.startsWith("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
             "0E97B0A7D10574E204947584CD0F713C"
 
@@ -76,9 +87,18 @@ public class AppsConfig {
 
 
     static {
-        System.loadLibrary("MuPDF");
-        AppsConfig.MUPDF_FZ_VERSION = MuPdfDocument.getFzVersion();
-        Log.d("Librera", "MUPDF_VERSION " + MUPDF_FZ_VERSION);
+        // libmupdf.so where the build has it - without it MUPDF_FZ_VERSION stays empty, as every
+        // reader of it expects (they only ever ask whether it is MuPDF 1.11) - and the libraries
+        // every build has
+        if (Engines.IS_MUPDF) {
+            System.loadLibrary(Engines.MUPDF_LIBRARY);
+            AppsConfig.MUPDF_FZ_VERSION = MuPdfDocument.getFzVersion();
+        }
+        for (final String library : Engines.NATIVE_LIBRARIES) {
+            System.loadLibrary(library);
+        }
+        Log.d("Librera", "native " + java.util.Arrays.toString(Engines.NATIVE_LIBRARIES)
+                + (Engines.IS_MUPDF ? " + MuPDF " + MUPDF_FZ_VERSION : ""));
     }
 
     public static boolean isPDF_DRAW_ENABLE() {

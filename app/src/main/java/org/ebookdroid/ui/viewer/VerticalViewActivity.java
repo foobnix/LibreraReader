@@ -230,6 +230,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // The library dialog opens over the reader, and the folder it asks for is handed back
+        // here rather than to the main screen. It says nothing about which page to turn to.
+        if (MainTabs2.onAddLibraryStorageResult(this, requestCode, resultCode, data, true)) {
+            return;
+        }
         if (resultCode == RESULT_OK) {
             int
                     page =
@@ -246,6 +251,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onPause();
         LOG.d("onPause", this.getClass());
         getController().onPause();
+        try {
+            getController().getListener().saveCurrentPageOnPause();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
         AppProfile.save(this);

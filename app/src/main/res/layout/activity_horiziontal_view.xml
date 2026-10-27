@@ -215,10 +215,10 @@
                             android:tag="no_tint" />
                     </androidx.cardview.widget.CardView>
 
-                <!-- Only as wide as the words in it, so the cover and the name it belongs to
-                     are centred in the bar together rather than the name alone. A long name
-                     is cut short by the ems below rather than run out under the buttons. -->
+                <!-- A fixed width (60% of the screen, set in HorizontalViewActivity), so the cover
+                     beside it stays in place when the chapter changes. Long names are cut short. -->
                 <LinearLayout
+                    android:id="@+id/titleBlock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -226,12 +226,10 @@
 
                     <TextView
                         android:id="@+id/title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:ellipsize="end"
                         android:gravity="center"
-                        android:maxEms="18"
                         android:singleLine="true"
                         android:text="@string/msg_loading"
                         android:textColor="#ffffff"
@@ -240,12 +238,10 @@
 
                     <TextView
                         android:id="@+id/chapter"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:ellipsize="end"
                         android:gravity="center"
-                        android:maxEms="22"
                         android:singleLine="true"
                         android:text="@string/msg_loading"
                         android:textColor="#ffffff"
@@ -425,7 +421,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_2_hour"
+                    android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_3_hour"
                     android:textColor="@color/white_alpha_dd" />
 
                 <TextView
@@ -487,6 +483,19 @@
 
             <include layout="@layout/document_footer" />
         </FrameLayout>
+
+        <!-- The same controls, buttons only, above the status line while the panels are
+             closed and speech is running; hidden by the TTS dialog's advanced settings. The
+             screen sets it on the foot of the page when the status line is at the top. -->
+        <com.foobnix.tts.TTSControlsView
+            android:id="@+id/ttsActivePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomPanel"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dip"
+            android:visibility="gone" />
 
 
         <FrameLayout

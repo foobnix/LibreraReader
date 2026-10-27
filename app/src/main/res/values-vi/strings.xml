@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Chuyển đổi tài liệu (trực tuyến)</string>
    <string name="book_covers">Bao gồm sách</string>
    <string name="cover_image_size">Kích thước ảnh bìa</string>
+   <string name="cover_radius">Bo góc bìa sách</string>
    <string name="column_count">Số cột</string>
    <string name="show_book_covers">Hiển thị bìa sách</string>
    <string name="enable_effect_of_the_book_cover">Kích hoạt tính năng tác dụng của bìa sách</string>
@@ -61,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Bản thử nghiệm</string>
    <string name="archive">Lưu trữ</string>
-   <string name="rate_pdf_reader1">Hãy viết thư phản hồi của bạn và đánh giá chúng tôi trên Google Play đó là rất quan trọng đối với chúng tôi</string>
+   <string name="rate_pdf_reader1">Hãy để lại đánh giá về ứng dụng này trên Google Play. Điều đó rất quan trọng với chúng tôi</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Văn bản định dạng (đồ hoạ giả)</string>
    <string name="continuous_text">Văn bản liên tục (không bị ngắt dòng)</string>
@@ -88,9 +89,10 @@
    <string name="right">Bên phải</string>
    <string name="center">Trung tâm</string>
    <string name="custom_css">CSS tùy chỉnh</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Kiểu</string>
    <string name="document_styles">Kiểu tài liệu</string>
    <string name="automatic_hyphenation">Dấu gạch nối tự động</string>
+   <string name="parse_bbcode_tags">Xử lý thẻ BBCode</string>
    <string name="empty_line">Hết đường</string>
    <string name="margin_width">Chiều rộng lề</string>
    <string name="top">Lên trên bên</string>
@@ -160,7 +162,7 @@
    <string name="minutes">Biên bản</string>
    <string name="close_book">Đóng Sách</string>
    <string name="background">Lý lịch</string>
-   <string name="dialog_color_picker">Color Picker</string>
+   <string name="dialog_color_picker">Bộ chọn màu</string>
    <string name="invalid_color_value">Giá trị màu không hợp lệ</string>
    <string name="add">Thêm vào</string>
    <string name="search">Tìm kiếm</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Không có serie</string>
    <string name="no_genre">Không có thể loại</string>
    <string name="no_language">Không ngôn ngữ</string>
+   <string name="no_date">Không có ngày</string>
    <string name="without_series">Không có hàng loạt</string>
    <string name="folders">Thư mục</string>
    <string name="recent">Mới đây</string>
@@ -183,7 +186,7 @@
    <string name="next_keys">Phím tiếp theo:</string>
    <string name="prev_keys">Phím Prev:</string>
    <string name="starred">Đóng vai chính</string>
-   <string name="bookmarks">Bookmarks</string>
+   <string name="bookmarks">Dấu trang</string>
    <string name="back">Trở lại</string>
    <string name="import_bookmarks">Import Bookmarks</string>
    <string name="email">E-mail</string>
@@ -192,7 +195,7 @@
    <string name="bookmark_by_date">Theo ngày</string>
    <string name="bookmark_by_book">Bởi cuốn sách</string>
    <string name="network">Mạng</string>
-   <string name="catalogs">Catalogs</string>
+   <string name="catalogs">Danh mục</string>
    <string name="proxy_server_settings">Cài đặt máy chủ proxy</string>
    <string name="use_proxy_server">Sử dụng máy chủ proxy</string>
    <string name="proxy_type">Loại proxy</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Ứng dụng email không được cài đặt.</string>
    <string name="file_not_found">Tập tin không tìm thấy</string>
    <string name="you_need_grant_permission5">Ứng dụng cần sự cho phép của bạn để tìm và hiển thị tất cả sách của bạn.</string>
+   <string name="allow">Cho phép</string>
+   <string name="storage">Bộ nhớ</string>
+   <string name="add_all_books_with_permission">Vui lòng cho phép ứng dụng quét thư mục Tải xuống để tự động thêm sách vào thư viện của bạn.</string>
+   <string name="allow_access_to_see_files">Cho phép truy cập tất cả tệp để xem sách trong thư mục này. Nếu không, chỉ các thư mục con được hiển thị.</string>
+   <string name="save_settings_in_librera_folder">Lưu cài đặt và tiến độ đọc trong thư mục Librera.</string>
+   <string name="regrant_folder_title">Cho phép truy cập thư mục lần nữa</string>
+   <string name="regrant_folder_msg">Ứng dụng không thể đọc %1$s nữa: Android xóa quyền truy cập thư mục khi ứng dụng được cài đặt lại. Hãy chọn lại thư mục ở màn hình tiếp theo.</string>
    <string name="remind_msg">Hãy nghỉ ngơi và đôi mắt của bạn nghỉ ngơi.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark cho trang này đã tồn tại</string>
    <string name="can_t_download">Không thể tải xuống</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Chọn chế độ đọc</string>
    <string name="convert_to">Chuyển đổi sang</string>
-   <string name="mode_vertical">Chế độ \"Di chuyển\"</string>
-   <string name="mode_horizontally">Chế độ \"Sách\"</string>
+   <string name="mode_vertical">Dọc</string>
+   <string name="mode_horizontally">Theo trang</string>
    <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
    <string name="save">Tiết kiệm</string>
    <string name="remember_choice">Nhớ sự lựa chọn</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Trang</string>
    <string name="page">Trang</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Chọn...</string>
+   <string name="choose_">Chọn</string>
    <string name="crop_white_borders">Cắt viền màu trắng</string>
    <string name="full_screen">Toàn màn hình</string>
    <string name="go">Đi</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Cắt biên giới đối xứng</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hiển thị tác giả và tựa đề của cuốn sách PDF từ các thẻ meta</string>
    <string name="meta_tags">Thẻ meta</string>
-   <string name="librera_pro">Tải Librera PRO — không quảng cáo, và cũng gỡ quảng cáo trong ứng dụng này</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Ứng dụng không quảng cáo, cũng gỡ quảng cáo khỏi ứng dụng này</string>
    <string name="annotation">Chú thích</string>
    <string name="book">Sách</string>
    <string name="information">Thông tin</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Hiển thị chữ cái viết hoa</string>
    <string name="size">Kích thước</string>
    <string name="quick_bookmark_by_the_headset">Đánh dấu nhanh bằng tai nghe</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Hiển thị các nút TTS ở cuối trang</string>
    <string name="slider_scale">Thang trượt</string>
    <string name="chapter_format">Định dạng chương</string>
    <string name="play_a_music_file">Phát tệp nhạc</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Bóng tối</string>
    <string name="profile">Hồ sơ</string>
    <string name="new_profile">Hồ sơ mới</string>
+   <string name="add_profile">Thêm hồ sơ</string>
    <string name="main">Chủ yếu</string>
    <string name="do_you_want_to_switch_profile_">Chuyển sang hồ sơ khác?</string>
    <string name="sync_error">Lỗi đồng bộ hóa</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Tổng số trang</string>
    <string name="close_menu">Đóng menu</string>
    <string name="go_to_page">Đi đến trang</string>
-   <string name="update_library">Thư viện cập nhật</string>
+   <string name="update_library">Cập nhật</string>
    <string name="ascending">Tăng dần</string>
    <string name="descending">Giảm dần</string>
    <string name="remove">Tẩy</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Làm nổi bật các chữ cái đầu tiên</string>
    <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
+   <string name="show_storage_book_covers">Hiển thị bìa cho bộ nhớ đã thêm</string>
    <string name="accent">Giọng</string>
    <string name="discarded_books">Sách bỏ đi</string>
    <string name="show_print_edition_page_numbers_epub3">Hiển thị số trang của ấn bản in (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Cảnh báo: tài liệu này có những thay đổi chưa được lưu</string>
    <string name="bold_headings">Tiêu đề in đậm</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Hãy xem video ngắn này để tắt tất cả quảng cáo trong 1 giờ.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Hãy xem video ngắn này để tắt tất cả quảng cáo trong 2 giờ.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Hãy xem video ngắn này để tắt tất cả quảng cáo trong 3 giờ.</string>
    <string name="the_book_is_complete">Cuốn sách đã hoàn thành.</string>
    <string name="time">Thời gian</string>
    <string name="date_added">Ngày thêm</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Nút hiển thị độ tương phản và độ sáng</string>
    <string name="text_and_background_color">Màu chữ và màu nền</string>
    <string name="library_folders">Thư mục thư viện</string>
+   <string name="library_folders_hint">Sách được tìm trong các thư mục này và thư mục con của chúng.</string>
+   <string name="add_folder_hint">Chọn một thư mục</string>
+   <string name="add_storage_hint">Thẻ SD hoặc ổ USB</string>
+   <string name="folder_no_access">Không có quyền truy cập · chạm để cho phép lại</string>
    <string name="watch">Xem</string>
+   <string name="librerax_not_installed">LibreraX chưa được cài đặt. Hãy tải xuống và cài đặt, sau đó mở lại sách.</string>
+   <string name="remove_library_folder">Xóa thư mục này khỏi thư viện? Các tệp bên trong sẽ không bị xóa.</string>
+   <string name="epub_engine">Công cụ EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView không khả dụng trên thiết bị này.</string>
+   <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
+   <string name="pdf_engine">Công cụ PDF</string>
+   <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
+   <string name="book_open_failed">Không thể mở cuốn sách này.</string>
+   <string name="book_open_crashed">Lần trước ứng dụng đã đóng đột ngột khi mở cuốn sách này.</string>
+   <string name="try_librerax">Hãy thử mở bằng LibreraX.</string>
+   <string name="get_librerax">LibreraX có thể mở được. Tải xuống tại đây:</string>
+   <string name="open_in_librerax">Mở bằng LibreraX</string>
+   <string name="try_again">Thử lại</string>
+   <string name="export_to_librerax">Xuất sang LibreraX</string>
+   <string name="update_librerax">Cập nhật LibreraX lên phiên bản mới nhất để nhập từ Librera.</string>
+   <string name="reading_progress">Tiến độ đọc</string>
 </resources>

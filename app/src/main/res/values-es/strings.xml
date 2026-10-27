@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Convertir documentos (en línea)</string>
    <string name="book_covers">Portadas de libros</string>
    <string name="cover_image_size">Tamaño de la imagen de la portada</string>
+   <string name="cover_radius">Radio de la portada</string>
    <string name="column_count">Número de columnas</string>
    <string name="show_book_covers">Mostrar portadas de los libros</string>
    <string name="enable_effect_of_the_book_cover">Habilitar efectos de las portadas</string>
@@ -61,12 +62,12 @@
    <string name="web">Página Web</string>
    <string name="beta_version">Versión beta</string>
    <string name="archive">Archivo</string>
-   <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y califíquenos en Google Play; es muy importante para nosotros</string>
+   <string name="rate_pdf_reader1">Deja tu opinión sobre esta aplicación en Google Play. Es muy importante para nosotros</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Texto formateado (pseudo gráficos)</string>
    <string name="continuous_text">Texto continuo (sin salto de línea)</string>
    <string name="customize_fonts">Personalizar fuentes</string>
-   <string name="regular_font">Regular</string>
+   <string name="regular_font">Normal</string>
    <string name="bold_font">Negrita</string>
    <string name="italic_font">Cursiva</string>
    <string name="bold_italic_font">Cursiva y negrita</string>
@@ -91,6 +92,7 @@
    <string name="styles">Estilos</string>
    <string name="document_styles">Documento</string>
    <string name="automatic_hyphenation">Activar separación (-)</string>
+   <string name="parse_bbcode_tags">Interpretar etiquetas BBCode</string>
    <string name="empty_line">Espacio entre estrofas</string>
    <string name="margin_width">Márgenes</string>
    <string name="top">Arriba</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Sin serie</string>
    <string name="no_genre">Sin género</string>
    <string name="no_language">Sin idioma</string>
+   <string name="no_date">Sin fecha</string>
    <string name="without_series">Sin series</string>
    <string name="folders">Carpetas</string>
    <string name="recent">Reciente</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">No hay una aplicación de correo instalada.</string>
    <string name="file_not_found">Archivo no encontrado</string>
    <string name="you_need_grant_permission5">La aplicación necesita tu permiso para encontrar y mostrar todos tus libros.</string>
+   <string name="allow">Permitir</string>
+   <string name="storage">Almacenamiento</string>
+   <string name="add_all_books_with_permission">Permite que la aplicación examine tu carpeta de Descargas para añadir libros automáticamente a tu biblioteca, por favor.</string>
+   <string name="allow_access_to_see_files">Permite el acceso a todos los archivos para ver los libros de esta carpeta. Sin él solo se muestran sus carpetas.</string>
+   <string name="save_settings_in_librera_folder">Guardar la configuración y el progreso de lectura en la carpeta Librera.</string>
+   <string name="regrant_folder_title">Permitir de nuevo el acceso a la carpeta</string>
+   <string name="regrant_folder_msg">La aplicación ya no puede leer %1$s: Android retira el acceso a las carpetas al reinstalar la aplicación. Vuelve a elegir la carpeta en la siguiente pantalla.</string>
    <string name="remind_msg">Por favor tómese un respiro y descanse sus ojos.</string>
    <string name="bookmark_for_this_page_already_exists">Este marcador ya existe</string>
    <string name="can_t_download">No se puede descargar</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Modo de lectura</string>
    <string name="convert_to">Convertir a</string>
-   <string name="mode_vertical">Modo \"Desplazarse\"</string>
-   <string name="mode_horizontally">Modo \"Libro\"</string>
+   <string name="mode_vertical">Vertical</string>
+   <string name="mode_horizontally">Paginado</string>
    <string name="mode_musician">Modo \"Músico\"</string>
    <string name="save">Guardar</string>
    <string name="remember_choice">Recordar elección</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Página</string>
    <string name="page">Página</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Escoger...</string>
+   <string name="choose_">Escoger</string>
    <string name="crop_white_borders">Recortar bordes blancos</string>
    <string name="full_screen">Pantalla completa</string>
    <string name="go">Ir</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Recortar bordes simétricamente</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Mostrar el autor y el título del libro de las metaetiquetas</string>
    <string name="meta_tags">Metaetiquetas</string>
-   <string name="librera_pro">Consigue Librera PRO — sin anuncios, y también elimina los anuncios de esta aplicación</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Una aplicación sin anuncios que también quita los anuncios de esta aplicación</string>
    <string name="annotation">Anotación</string>
    <string name="book">Libro</string>
    <string name="information">Información</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Mostrar la letra mayúscula</string>
    <string name="size">Tamaño</string>
    <string name="quick_bookmark_by_the_headset">Marcadores remotos</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Mostrar los botones de TTS en la parte inferior de la página</string>
    <string name="slider_scale">Escala del control deslizante</string>
    <string name="chapter_format">Formato de capítulo</string>
    <string name="play_a_music_file">Reproducir archivo de música</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">OLED oscuro</string>
    <string name="profile">Perfil</string>
    <string name="new_profile">Nuevo perfil</string>
+   <string name="add_profile">Añadir perfil</string>
    <string name="main">Principal</string>
    <string name="do_you_want_to_switch_profile_">¿Cambiar a otro perfil?</string>
    <string name="sync_error">Error de sincronización</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Paginas totales</string>
    <string name="close_menu">Cerrar menú</string>
    <string name="go_to_page">Ir a la página</string>
-   <string name="update_library">Biblioteca de actualización</string>
+   <string name="update_library">Actualizar</string>
    <string name="ascending">Ascendente</string>
    <string name="descending">Descendiendo</string>
    <string name="remove">Eliminar</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Resaltando letras iniciales</string>
    <string name="anti_aliasing_level">Nivel de suavizado</string>
    <string name="folder_preview">Vista previa de la carpeta</string>
+   <string name="show_storage_book_covers">Mostrar portadas del almacenamiento agregado</string>
    <string name="accent">Acento</string>
    <string name="discarded_books">Libros descartados</string>
    <string name="show_print_edition_page_numbers_epub3">Mostrar los números de página de la edición impresa (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Advertencia: este documento tiene cambios sin guardar.</string>
    <string name="bold_headings">Encabezados en negrita</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Mira este breve vídeo para desactivar todos los anuncios durante 1 hora.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Mire este breve video para desactivar todos los anuncios durante 2 horas.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Mire este breve video para desactivar todos los anuncios durante 3 horas.</string>
    <string name="the_book_is_complete">El libro está completo.</string>
    <string name="time">Tiempo</string>
    <string name="date_added">Fecha añadida</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Mostrar el botón de contraste y brillo</string>
    <string name="text_and_background_color">Color del texto y del fondo</string>
    <string name="library_folders">Carpetas de la biblioteca</string>
+   <string name="library_folders_hint">Los libros se buscan en estas carpetas y sus subcarpetas.</string>
+   <string name="add_folder_hint">Elige una carpeta</string>
+   <string name="add_storage_hint">Tarjeta SD o unidad USB</string>
+   <string name="folder_no_access">Sin acceso · toca para permitirlo de nuevo</string>
    <string name="watch">Ver</string>
+   <string name="librerax_not_installed">LibreraX no está instalado. Descárgalo e instálalo y vuelve a abrir el libro.</string>
+   <string name="remove_library_folder">¿Quitar esta carpeta de la biblioteca? Los archivos que contiene no se eliminarán.</string>
+   <string name="epub_engine">Motor EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView no está disponible en este dispositivo.</string>
+   <string name="base_stylesheet">Aplicar la hoja de estilos base (foliate-js)</string>
+   <string name="pdf_engine">Motor PDF</string>
+   <string name="msg_pdf_engine_unavailable">Esta compilación no incluye las bibliotecas PDFium.</string>
+   <string name="book_open_failed">No se pudo abrir este libro.</string>
+   <string name="book_open_crashed">La aplicación se cerró inesperadamente al abrir este libro la última vez.</string>
+   <string name="try_librerax">Intente abrirlo en LibreraX.</string>
+   <string name="get_librerax">Es posible que LibreraX pueda abrirlo. Descárguelo aquí:</string>
+   <string name="open_in_librerax">Abrir en LibreraX</string>
+   <string name="try_again">Reintentar</string>
+   <string name="export_to_librerax">Exportar a LibreraX</string>
+   <string name="update_librerax">Actualiza LibreraX a la última versión para importar desde Librera.</string>
+   <string name="reading_progress">Progreso de lectura</string>
 </resources>

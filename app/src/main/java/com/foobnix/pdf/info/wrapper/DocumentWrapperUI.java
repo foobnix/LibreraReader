@@ -48,6 +48,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.OutlineHelper.Info;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.PorterDuffColorFilter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
@@ -256,6 +257,7 @@ public class DocumentWrapperUI {
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
+    TTSControlsView ttsActivePage;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
     public View.OnClickListener onShowContext = new View.OnClickListener() {
@@ -735,6 +737,7 @@ public class DocumentWrapperUI {
 
     public void updateUI() {
         //hideShowAnnotationLine();
+        DocumentController.showEngineInDebug((TextView) dc.getActivity().findViewById(R.id.modeName), dc);
         final int max = dc.getPageCount();
         final int current = dc.getCurentPage();
 
@@ -1222,6 +1225,9 @@ public class DocumentWrapperUI {
         ttsActive.setDC(dc);
         ttsActive.hideStop();
         moveTtsControlsIntoPanel();
+        ttsActivePage = a.findViewById(R.id.ttsActivePage);
+        ttsActivePage.setDC(dc);
+        ttsActivePage.onPage();
         ttsActive.addOnDialogRunnable(new Runnable() {
 
             @Override
@@ -1333,9 +1339,6 @@ public class DocumentWrapperUI {
         updateSeekBarColorAndSize();
         BrightnessHelper.updateOverlay(overlay);
 
-        // bottom 1
-        TintUtil.setStatusBarColor(a);
-
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
@@ -1410,7 +1413,7 @@ public class DocumentWrapperUI {
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
         //int textColor = MagicHelper.getTextOrIconColor();
-        int textColor = TintUtil.getStatusBarColor();
+        int textColor = TintUtil.getStatusBarTextColor();
 
         TintUtil.setTintText(bookName, textColor);
         TintUtil.setTintImageWithAlpha(textToSpeachTop, textColor);
@@ -1478,15 +1481,15 @@ public class DocumentWrapperUI {
     public void tintSpeed() {
         try {
             int tintColor = MagicHelper.getTintColor();
-            speedSeekBar.getProgressDrawable().mutate().setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 
-            speedSeekBar.getThumb().setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+            speedSeekBar.getThumb().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 
             int color = MagicHelper.getTextOrIconColor();
 
-            seekBar.getProgressDrawable().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            seekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 
-            seekBar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            seekBar.getThumb().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 
             //line1.getBackground().
             TintUtil.setStrokeColorWithDash(line1, tintColor);
@@ -1758,6 +1761,7 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
+        showTtsPageControls();
         hideShowAnnotationLine();
 
         if (AppState.get().isEnableAccessibility) {
@@ -1837,14 +1841,24 @@ public class DocumentWrapperUI {
     }
 
     /**
-     * The reading controls stand with the panels, not over the page. They were shown for as
-     * long as speech was running, which left them lying across the words being read.
+     * The reading controls stand with the panels while they are open. With the panels closed a
+     * second line of them stands on the page, below the words, unless the TTS dialog's advanced
+     * settings turn it off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
         ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
+        showTtsPageControls();
+    }
+
+    private void showTtsPageControls() {
+        if (ttsActivePage == null) {
+            return;
+        }
+        ttsActivePage.setTintColor(TintUtil.getStatusBarTextColor());
+        ttsActivePage.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && !AppState.get().isEditMode && AppState.get().isShowTtsPageControls));
     }
 
     public void hide() {

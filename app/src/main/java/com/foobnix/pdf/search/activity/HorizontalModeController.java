@@ -16,7 +16,11 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
+import android.graphics.RectF;
 import com.foobnix.model.AppSP;
+import com.foobnix.pdf.info.AnnotationsPainter;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.model.AppAnnotation;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.AppsConfig;
@@ -52,6 +56,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 
 public abstract class HorizontalModeController extends DocumentController {
@@ -65,6 +71,10 @@ public abstract class HorizontalModeController extends DocumentController {
     private boolean isTextFormat = false;
     private SharedPreferences matrixSP;
     private volatile boolean isClosed = false;
+
+    @Override public CodecDocument getCodecDocument() {
+        return codeDocument;
+    }
 
     @Override public boolean hasPDFAnnotations() {
         return false;
@@ -163,9 +173,10 @@ public abstract class HorizontalModeController extends DocumentController {
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
         if (percent > 0.0f) {
-            currentPage = Math.round(pagesCount * percent) - 1;
+            currentPage = getBookmarkPage(percent, activity.getIntent().getStringExtra(EXTRA_BOOKMARK_TEXT),
+                                          activity.getIntent().getStringExtra(EXTRA_BOOKMARK_PAGE_TEXT)) - 1;
         } else if (pagesCount > 0) {
-            currentPage = bs.getCurrentPage(getPageCount()).viewIndex;
+            currentPage = findBookmarkPage(bs.getCurrentPage(getPageCount()).viewIndex + 1, null, bs.pt, bs.cfi) - 1;
         }
         if (AppState.get().isAlwaysOpenOnPage1) {
             currentPage = 0;
@@ -527,10 +538,83 @@ public abstract class HorizontalModeController extends DocumentController {
 
     }
 
-    @Override public void underlineText(int color, float width, AnnotationType type) {
-        // TODO Auto-generated method stub
-
+    /**
+     * A mark on the words selected in paged mode.
+     *
+     * Paged mode has no decode service to write a PDF annotation through - it renders through
+     * {@link com.foobnix.sys.ImageExtractor} - so every format, a PDF included, is marked in
+     * Librera's own store here. A PDF read in scroll mode still gets a real PDF annotation, and
+     * the two are drawn the same way, so a book marked in one mode reads correctly in the other.
+     */
+    @Override public void underlineText(final int color, float width, final AnnotationType type) {
+        final int page = currentPage;
+        final List<TextWord> words = PageImageState.get().getSelectedWords(page);
+        if (words == null || words.isEmpty()) {
+            LOG.d("underlineText: nothing selected");
+            return;
+        }
+        final String colorText = AnnotationsPainter.toHex(color);
+        // Grouped by which of the two pages on screen each word is on, so a selection dragged
+        // across the fold is two marks, each anchored to its own page
+        final Map<Integer, List<TextWord>> byNumber = new LinkedHashMap<Integer, List<TextWord>>();
+        for (TextWord word : new ArrayList<TextWord>(words)) {
+            List<TextWord> group = byNumber.get(word.number);
+            if (group == null) {
+                group = new ArrayList<TextWord>();
+                byNumber.put(word.number, group);
+            }
+            group.add(word);
+        }
+        new Thread("@T underlineText") {
+            @Override public void run() {
+                try {
+                    for (Map.Entry<Integer, List<TextWord>> entry : byNumber.entrySet()) {
+                        final int docPage = docPageOf(page, entry.getKey());
+                        final List<RectF> rects = AnnotationsFinder.mergeLines(entry.getValue());
+                        final AppAnnotation annotation = createAnnotation(docPage, rects,
+                                AnnotationsFinder.textOf(entry.getValue()), type, colorText);
+                        if (annotation == null) {
+                            continue;
+                        }
+                        // Show it now; the page is not going to be rendered again by itself
+                        final List<AnnotationsFinder.Drawn> shown = PageImageState.get().pagesMarks.get(docPage);
+                        final List<AnnotationsFinder.Drawn> marks = shown == null
+                                ? new ArrayList<AnnotationsFinder.Drawn>()
+                                : new ArrayList<AnnotationsFinder.Drawn>(shown);
+                        marks.add(new AnnotationsFinder.Drawn(annotation, rects));
+                        PageImageState.get().pagesMarks.put(docPage, marks);
+                    }
+                    activity.runOnUiThread(new Runnable() {
+                        @Override public void run() {
+                            clearSelectedText();
+                        }
+                    });
+                } catch (Throwable e) {
+                    LOG.e(e);
+                }
+            }
+        }.start();
     }
+
+    /**
+     * Which page of the book one of the pages on screen is, keyed as the links and the text are.
+     *
+     * @param number 0 for a single page, 1 and 2 for the left and right of a two-page spread
+     */
+    private int docPageOf(final int page, final int number) {
+        if (!AppSP.get().isDouble || number == 0) {
+            return page;
+        }
+        int first = page * 2;
+        if (AppSP.get().isDoubleCoverAlone) {
+            first--;
+        }
+        return number == 1 ? first : first + 1;
+    }
+
+    /** Who asked for the contents while they were still being read; see getOutline. */
+    private final List<com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>>> outlineWaiting =
+            new ArrayList<>();
 
     @Override
     public void getOutline(final com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> outlineResonse,
@@ -545,63 +629,80 @@ public abstract class HorizontalModeController extends DocumentController {
             return;
         }
 
-        if (outline == null) {
-            outline = (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        synchronized (outlineWaiting) {
             if (outline != null) {
                 outlineResonse.onResultRecive(outline);
                 return;
             }
+            // Asked again while the contents are still being read - the panel opened straight
+            // after the book did. It waits for the whole list rather than being handed an empty
+            // one it would show as a blank panel.
+            outlineWaiting.add(outlineResonse);
+            if (outlineWaiting.size() > 1) {
+                return;
+            }
+        }
 
-            outline = new ArrayList<>();
-            AppsConfig.executorServiceSingle.execute(() -> {
+        final ArrayList<OutlineLinkWrapper> cached =
+                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+        // An empty list is what a read that failed or timed out left behind, not the book's
+        // contents, so it is read again rather than kept
+        if (cached != null && !cached.isEmpty()) {
+            publishOutline(cached);
+            return;
+        }
 
-                try {
-                    for (OutlineLink ol : codeDocument.getOutline()) {
-                        if (TempHolder.get().loadingCancelled.get()) {
-                            return;
-                        }
-
-                        if (Apps.isDestroyedActivity(activity)) {
-                            return;
-                        }
-
-                        if (codeDocument.isRecycled()) {
-                            return;
-                        }
-                        if (TxtUtils.isNotEmpty(ol.getTitle())) {
-                            if (ol.getLink() != null && ol.getLink()
-                                                          .startsWith("#") && !ol.getLink()
-                                                                                 .startsWith("#0")) {
-                                outline.add(
-                                        new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
-                            } else {
-                                int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(
-                                        new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
-                            }
-                        }
+        AppsConfig.executorServiceSingle.execute(() -> {
+            final ArrayList<OutlineLinkWrapper> result = new ArrayList<>();
+            try {
+                for (OutlineLink ol : codeDocument.getOutline()) {
+                    if (TempHolder.get().loadingCancelled.get()) {
+                        return;
                     }
 
-                    CacheZipUtils.savaJavaCache(outline, getCurrentBook());
-
-                    // setOutline(outline);
-                    if (outlineResonse != null) {
-                        getActivity().runOnUiThread(new Runnable() {
-
-                            @Override public void run() {
-                                outlineResonse.onResultRecive(outline);
-                            }
-                        });
-
+                    if (Apps.isDestroyedActivity(activity)) {
+                        return;
                     }
-                } catch (Exception e) {
-                    LOG.e(e);
+
+                    if (codeDocument.isRecycled()) {
+                        return;
+                    }
+                    if (TxtUtils.isNotEmpty(ol.getTitle())) {
+                        if (ol.getLink() != null && ol.getLink()
+                                                      .startsWith("#") && !ol.getLink()
+                                                                             .startsWith("#0")) {
+                            result.add(
+                                    new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
+                        } else {
+                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                            result.add(
+                                    new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.linkUri));
+                        }
+                    }
                 }
 
-            });
+                if (!result.isEmpty()) {
+                    CacheZipUtils.savaJavaCache(result, getCurrentBook());
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            getActivity().runOnUiThread(() -> publishOutline(result));
+        });
+    }
 
-        } else {
-            outlineResonse.onResultRecive(outline);
+    /** Keeps the contents and hands them to everyone who asked while they were being read. */
+    private void publishOutline(final ArrayList<OutlineLinkWrapper> result) {
+        final List<com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>>> waiting;
+        synchronized (outlineWaiting) {
+            outline = result;
+            waiting = new ArrayList<>(outlineWaiting);
+            outlineWaiting.clear();
+        }
+        for (com.foobnix.android.utils.ResultResponse<List<OutlineLinkWrapper>> response : waiting) {
+            if (response != null) {
+                response.onResultRecive(result);
+            }
         }
 
     }

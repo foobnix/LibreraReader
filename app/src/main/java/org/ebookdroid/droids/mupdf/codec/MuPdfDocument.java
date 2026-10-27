@@ -1,12 +1,14 @@
 package org.ebookdroid.droids.mupdf.codec;
 
 import android.graphics.RectF;
+import android.os.Looper;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
@@ -22,6 +24,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MuPdfDocument extends AbstractCodecDocument {
@@ -36,15 +39,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
     public static final String META_INFO_PRODUCER = "info:Producer";
     public static final String META_INFO_CREATIONDATE = "info:CreationDate";
     public static final String META_INFO_MODIFICATIONDATE = "info:ModDate";
-    private static long cacheHandle;
-    private static int cacheWH;
-    private static long cacheSize;
-    private static int cacheCount;
+    private static volatile PageCountCache pageCountCache;
     int w, h;
     BookType bookType;
     private boolean isEpub = false;
-    private volatile Map<String, String> footNotes;
-    private volatile List<String> mediaAttachment;
     private int pagesCount = -1;
     private String fname;
 
@@ -100,6 +98,13 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private native static String setMetaData(long docHandle, final String key, String value);
 
     private static long openFile(final int format, String fname, final String pwd, String css) {
+        if (!Engines.IS_MUPDF) {
+            // A flavour built without MuPDF, reached through a format whose context has no other
+            // engine to offer - see Engines. The reader reports the file as one it cannot open,
+            // which is the truth, instead of dying on a missing native symbol.
+            throw new IllegalStateException("MuPDF is not in this build (lib"
+                    + Engines.MUPDF_LIBRARY + ".so): " + fname);
+        }
         TempHolder.lock.lock();
         try {
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
@@ -108,7 +113,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
             int isImageScale = AppState.get().enableImageScale ? 1 : 0;
 
             LOG.d("accel cache1", fname);
-            String accel = new EpubContext().getCacheFileName(fname)
+            // MuPDF checks a saved layout against the page size, the font size and the CSS, but
+            // knows nothing of Librera's image scaling, so that goes into the name
+            String accel = new EpubContext().getCacheFileName(fname + isImageScale)
                                             .getPath() + "+accel";
             accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
             LOG.d("accel cache2", accel, new File(accel).exists());
@@ -147,26 +154,40 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return count;
     }
 
+    // Immutable so the lock-free cache check always sees a consistent key and count
+    private static final class PageCountCache {
+        final long handle;
+        final int wh;
+        final int size;
+        final int count;
+
+        PageCountCache(long handle, int wh, int size, int count) {
+            this.handle = handle;
+            this.wh = wh;
+            this.size = size;
+            this.count = count;
+        }
+    }
+
     private int getPageCountSafe(long handle, int w, int h, int size) {
 
         LOG.d("getPageCountSafe w h size", w, h, size);
 
-        if (handle == cacheHandle && size == cacheSize && w + h == cacheWH) {
-            LOG.d("getPageCount from cache", cacheCount);
-            return cacheCount;
+        final PageCountCache cache = pageCountCache;
+        if (cache != null && cache.handle == handle && cache.size == size && cache.wh == w + h) {
+            LOG.d("getPageCount from cache", cache.count);
+            return cache.count;
         }
         TempHolder.lock.lock();
         try {
-            cacheHandle = handle;
-            cacheSize = size;
-            cacheWH = w + h;
             if(isRecycled()){
                 LOG.d("getPageCount","getPageCount isRecycled");
                 return 0;
             }
-            cacheCount = getPageCount(handle, w, h, size);
-            LOG.d("getPageCount put to  cache", cacheCount);
-            return cacheCount;
+            final int count = getPageCount(handle, w, h, size);
+            pageCountCache = new PageCountCache(handle, w + h, size, count);
+            LOG.d("getPageCount put to  cache", count);
+            return count;
         } catch (Exception e) {
             return -1;
         } finally {
@@ -183,6 +204,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public void setMeta(String key, String value) {
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                LOG.d("setMeta skip isRecycled");
+                return;
+            }
             LOG.d(this.getClass(), "setMetaData", key, value);
             setMetaData(documentHandle, key, value);
         } finally {
@@ -205,14 +230,6 @@ public class MuPdfDocument extends AbstractCodecDocument {
         return out.toString();
     }
 
-    @Override public Map<String, String> getFootNotes() {
-        return footNotes;
-    }
-
-    public void setFootNotes(Map<String, String> footNotes) {
-        this.footNotes = footNotes;
-    }
-
     @Override public synchronized List<OutlineLink> getOutline() {
         if (isRecycled()) {
             LOG.d("getOutline doc isRecycled");
@@ -230,6 +247,61 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public int getPageCount() {
         LOG.d("MuPdfDocument,getPageCount", getW(), getH(), BookCSS.get().fontSizeSp);
         return getPageCountWithException(documentHandle, getW(), getH(), BookCSS.get().fontSizeSp);
+    }
+
+    private static volatile boolean hasBookmarkNatives = true;
+
+    private static native String getBookmarkTextInternal(long handle, int page);
+
+    private static native int findBookmarkPageInternal(long handle, int page, String text, String pageText, int range);
+
+    // the bookmark text is only a hint, on the ui thread it is skipped while a page is rendered
+    // (a heavy page holds the lock for seconds, waiting for it froze the ui: ANR)
+    private static boolean lockBookmark() {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            TempHolder.lock.lock();
+            return true;
+        }
+        try {
+            return TempHolder.lock.tryLock(BOOKMARK_UI_LOCK_MS, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            return false;
+        }
+    }
+
+    private static final long BOOKMARK_UI_LOCK_MS = 200;
+
+    @Override public String getBookmarkText(int page) {
+        if (!lockBookmark()) {
+            LOG.d("getBookmarkText skip, the document is busy");
+            return null;
+        }
+        try {
+            return isRecycled() || !hasBookmarkNatives ? null : getBookmarkTextInternal(documentHandle, page);
+        } catch (UnsatisfiedLinkError e) {
+            // a native library built before the bookmark functions were added
+            hasBookmarkNatives = false;
+            LOG.e(e);
+            return null;
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    @Override public int findBookmarkPage(int page, String text, String pageText) {
+        if (!lockBookmark()) {
+            LOG.d("findBookmarkPage skip, the document is busy");
+            return -1;
+        }
+        try {
+            return isRecycled() || !hasBookmarkNatives ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
+        } catch (UnsatisfiedLinkError e) {
+            hasBookmarkNatives = false;
+            LOG.e(e);
+            return -1;
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     @Override public CodecPageInfo getUnifiedPageInfo() {
@@ -262,6 +334,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
         final CodecPageInfo info = new CodecPageInfo();
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return null;
+            }
             final int res = getPageInfo(documentHandle, pageNumber + 1, info);
             if (res == -1) {
                 return null;
@@ -278,7 +353,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override protected void freeDocument() {
         TempHolder.lock.lock();
         try {
-            cacheHandle = -1;
+            pageCountCache = null;
             free(documentHandle);
         } finally {
             TempHolder.lock.unlock();
@@ -290,6 +365,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public String getMeta(final String option) {
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return "";
+            }
 
             if (true) {
                 return getMeta(documentHandle, option);
@@ -351,6 +429,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return false;
+            }
             LOG.d("hasChanges internal");
             isHasChanges = hasChangesInternal(documentHandle);
             return isHasChanges;
@@ -363,6 +444,10 @@ public class MuPdfDocument extends AbstractCodecDocument {
         LOG.d("Save Annotations saveInternal 1");
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                LOG.d("Save Annotations skip isRecycled");
+                return;
+            }
             saveInternal(documentHandle, path);
             LOG.d("Save Annotations saveInternal 2");
         } finally {
@@ -377,6 +462,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override public void deleteAnnotation(long pageHandle, int index) {
         TempHolder.lock.lock();
         try {
+            if (isRecycled()) {
+                return;
+            }
             deleteAnnotationInternal(documentHandle, pageHandle, index);
         } finally {
             TempHolder.lock.unlock();
@@ -385,13 +473,5 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     private native void deleteAnnotationInternal(long docHandle, long pageHandle, int annot_index);
-
-    public void setMediaAttachment(List<String> mediaAttachment) {
-        this.mediaAttachment = mediaAttachment;
-    }
-
-    @Override public List<String> getMediaAttachments() {
-        return mediaAttachment;
-    }
 
 }

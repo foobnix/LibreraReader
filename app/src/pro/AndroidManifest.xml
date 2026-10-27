@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- DjVu pages, text and contents drawn for LibreraX, which has no DjVu code of its own.
+             Its own process: a document that crashes djvulibre takes nothing else with it.
+             The protocol is src/main/aidl/mobi/librera/djvu/IDjvuRenderer.aidl. -->
+        <service
+            android:name="mobi.librera.djvu.DjvuRenderService"
+            android:exported="true"
+            android:process=":djvu">
+            <intent-filter>
+                <action android:name="mobi.librera.djvu.RENDER" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

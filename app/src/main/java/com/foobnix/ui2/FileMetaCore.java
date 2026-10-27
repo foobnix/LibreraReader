@@ -1,9 +1,15 @@
 package com.foobnix.ui2;
 
+import android.provider.DocumentsContract;
 import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.DocumentsContract.Document;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -19,6 +25,7 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
+import com.foobnix.ext.PubDate;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -30,8 +37,6 @@ import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FileMetaCore {
 
@@ -84,10 +89,17 @@ public class FileMetaCore {
 
         try {
             if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
-                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+                if (ExtUtils.isExteralSD(path)) {
+                    // There is no file behind a document uri: what a row shows is asked of the
+                    // provider, and the rest is read from a copy that is thrown away at once.
+                    FileMetaCore.get().upadteBasicMetaSaf(LibreraApp.context, fileMeta);
+                    FileMetaCore.get().udpateFullMetaSaf(LibreraApp.context, fileMeta);
+                } else {
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
-                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                    FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+                    FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                }
 
 
                 if (isSearhcBook) {
@@ -175,19 +187,7 @@ public class FileMetaCore {
     }
 
     public static int extractYear(String input) {
-        try {
-            input = input.trim();
-            if (input.length() > 4) {
-                Matcher m = Pattern.compile("(19|20)[0-9]{2}").matcher(input);
-                if (m.find()) {
-                    input = m.group();
-                }
-            }
-            return Integer.parseInt(input);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return -1;
+        return PubDate.yearOf(input);
     }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
@@ -321,13 +321,9 @@ public class FileMetaCore {
             LOG.d("isFirstSurname1", before, "=>", ebookMeta.getAuthor());
         }
 
-        String year = ebookMeta.getYear();
-        if (year != null) {
-            if (year.startsWith("D:") && year.length() >= 7) {
-                ebookMeta.setYear(year.substring(2, 6));
-            } else if (year.contains("-")) {
-                ebookMeta.setYear(year.substring(0, year.indexOf("-")));
-            }
+        String date = ebookMeta.getYear();
+        if (date != null) {
+            ebookMeta.setYear(PubDate.published(date));
         }
 
         return ebookMeta;
@@ -348,23 +344,142 @@ public class FileMetaCore {
             fileMeta.setPages(pagesCount);
         }
 
-        String yearString = meta.getYear();
-        if (TxtUtils.isNotEmpty(yearString)) {
-            try {
-                int year = extractYear(yearString);
-                LOG.d("extractYear", yearString, year);
-                if (year > 0) {
-                    fileMeta.setYear(year);
-                }
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+        // Set even when there is none, so a year read wrongly before — Calibre's "no date"
+        // taken for the year 100 — goes when the book is read again.
+        String pubDate = PubDate.published(meta.getYear());
+        fileMeta.setPubDate(pubDate);
+        int year = extractYear(pubDate);
+        fileMeta.setYear(year > 0 ? year : null);
         fileMeta.setPublisher(meta.getPublisher());
         fileMeta.setIsbn(meta.getIsbn());
 
         fileMeta.setState(STATE_FULL);
 
+    }
+
+    /**
+     * What {@link #upadteBasicMeta} fills in, for a book on a folder added through the system's
+     * folder picker: there is no file to measure, so the figures come from the query that found
+     * the document.
+     */
+    public void upadteBasicMetaSaf(FileMeta fileMeta, String displayName, long size, long date, String parentName) {
+        fileMeta.setTitle(displayName);
+
+        fileMeta.setSize(size);
+        fileMeta.setDate(date);
+        fileMeta.setParentPath(parentName);
+
+        fileMeta.setExt(ExtUtils.getFileExtension(displayName));
+        fileMeta.setSizeTxt(ExtUtils.readableFileSize(size));
+        fileMeta.setDateTxt(ExtUtils.getDateFormat(date));
+
+        if (BookType.FB2.is(displayName)) {
+            fileMeta.setPathTxt(TxtUtils.encode1251(displayName));
+        } else {
+            fileMeta.setPathTxt(displayName);
+        }
+        fileMeta.setState(STATE_BASIC);
+    }
+
+    /**
+     * The name, size and date of a document on added storage, read from its provider, for a book
+     * known only by its uri. Saved, so it is asked once.
+     */
+    public void updateBasicMetaSaf(Context c, FileMeta fileMeta) {
+        if (c == null || fileMeta == null) {
+            return;
+        }
+        Uri uri = Uri.parse(fileMeta.getPath());
+        String[] columns = {DocumentsContract.Document.COLUMN_DISPLAY_NAME, DocumentsContract.Document.COLUMN_SIZE,
+                DocumentsContract.Document.COLUMN_LAST_MODIFIED};
+        try (Cursor cursor = c.getContentResolver().query(uri, columns, null, null, null)) {
+            if (cursor == null || !cursor.moveToFirst()) {
+                return;
+            }
+            String name = cursor.getString(0);
+            if (TxtUtils.isEmpty(name)) {
+                return;
+            }
+            String parent = "";
+            String id = Uri.decode(DocumentsContract.getDocumentId(uri));
+            int slash = id.lastIndexOf('/');
+            if (slash > 0) {
+                parent = id.substring(0, slash);
+            }
+            String title = fileMeta.getTitle();
+            upadteBasicMetaSaf(fileMeta, name, cursor.getLong(1), cursor.getLong(2), parent);
+            // the title the book was read with stays: it is more than the file name
+            if (TxtUtils.isNotEmpty(title) && !title.equals(name)) {
+                fileMeta.setTitle(title);
+            }
+            AppDB.get().save(fileMeta);
+        } catch (Exception e) {
+            LOG.e(e, fileMeta.getPath());
+        }
+    }
+
+    /**
+     * Reads a book's author, series and the rest out of a document on added storage. The readers
+     * want a file, so the book is copied out, read and the copy thrown away at once - a library on
+     * added storage then costs one book of disk at a time instead of all of them.
+     */
+    public void udpateFullMetaSaf(Context c, FileMeta fileMeta) {
+        if (c == null || fileMeta == null) {
+            return;
+        }
+        if (TxtUtils.isEmpty(fileMeta.getTitle()) || fileMeta.getState() == null) {
+            upadteBasicMetaSaf(c, fileMeta);
+        }
+        File copy = CacheZipUtils.getSafScanCopy(c, fileMeta.getPath(), fileMeta.getTitle());
+        if (copy == null) {
+            return;
+        }
+        try {
+            String displayName = fileMeta.getTitle();
+            EbookMeta ebookMeta = getEbookMeta(copy.getPath(), CacheDir.ZipService, true);
+            udpateFullMeta(fileMeta, ebookMeta);
+            // A book that says nothing about itself keeps the name it is filed under, rather than
+            // the name of the copy it was read from.
+            if (TxtUtils.isEmpty(fileMeta.getTitle())) {
+                fileMeta.setTitle(displayName);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            CacheZipUtils.removeSafScanCopy(copy);
+        }
+    }
+
+    /**
+     * The same as {@link #upadteBasicMetaSaf(FileMeta, String, long, long, String)} for a document
+     * met on its own, with no listing to take the figures from: it asks the provider for them.
+     */
+    public boolean upadteBasicMetaSaf(Context c, FileMeta fileMeta) {
+        Cursor cursor = null;
+        try {
+            cursor = c.getContentResolver()
+                      .query(Uri.parse(fileMeta.getPath()), new String[]{ //
+                              Document.COLUMN_DISPLAY_NAME, //
+                              Document.COLUMN_LAST_MODIFIED, //
+                              Document.COLUMN_SIZE, //
+                      }, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                long size = cursor.isNull(2) ? 0 : cursor.getLong(2);
+                long date = cursor.isNull(1) ? 0 : cursor.getLong(1);
+                upadteBasicMetaSaf(fileMeta, cursor.getString(0), size, date, fileMeta.getParentPath());
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            if (cursor != null) {
+                try {
+                    cursor.close();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        return false;
     }
 
     public void upadteBasicMeta(FileMeta fileMeta, File file) {

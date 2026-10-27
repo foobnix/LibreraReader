@@ -42,6 +42,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.IntentCompat;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.foobnix.LibreraApp;
@@ -281,9 +282,7 @@ import java.util.List;
             return false;
         }
         if (TTSEngine.get()
-                     .isInit() && TTSEngine.get()
-                                           .getCurrentLang()
-                                           .equals("---")) {
+                     .hasUnknownLanguage()) {
             openSettingsIntent(context);
             return false;
         }
@@ -379,8 +378,8 @@ import java.util.List;
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override public boolean onMediaButtonEvent(Intent intent) {
-                KeyEvent event = (KeyEvent) intent.getExtras()
-                                                  .get(Intent.EXTRA_KEY_EVENT);
+                KeyEvent event = IntentCompat.getParcelableExtra(intent, Intent.EXTRA_KEY_EVENT,
+                        KeyEvent.class);
 
                 boolean isPlaying = TTSEngine.get()
                                              .isPlaying();
@@ -462,6 +461,12 @@ import java.util.List;
 
             @Override public void onStop() {
                 dispatchAction(TTSNotification.TTS_STOP_DESTROY);
+            }
+
+            @Override public void onCustomAction(String action, Bundle extras) {
+                if (TTSNotification.TTS_STOP_DESTROY.equals(action)) {
+                    dispatchAction(TTSNotification.TTS_STOP_DESTROY);
+                }
             }
 
             @Override public void onSkipToNext() {
@@ -727,6 +732,17 @@ import java.util.List;
             TTSEngine.get()
                      .stopDestroy();
 
+            // stopMediaSesstionAndReleaweWakeLock() keeps the session active for a paused
+            // player; closing has to end it, or the system keeps showing the media controls.
+            try {
+                mMediaSessionCompat.setPlaybackState(new PlaybackStateCompat.Builder()
+                        .setState(PlaybackStateCompat.STATE_STOPPED, 0, 0f)
+                        .build());
+                mMediaSessionCompat.setActive(false);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
             EventBus.getDefault()
                     .post(new TtsStatus());
 
@@ -913,6 +929,12 @@ import java.util.List;
                     // that keeps the bar moving smoothly between page updates.
                     .setState(playing ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED,
                             currentPositionMs(), playing ? 1f : 0f)
+                    // Android 13+ draws the media notification's buttons from this state and
+                    // ignores the notification's own actions, so the close button has to be here.
+                    .addCustomAction(new PlaybackStateCompat.CustomAction.Builder(
+                            TTSNotification.TTS_STOP_DESTROY,
+                            LibreraApp.context.getString(R.string.close),
+                            R.drawable.ic_tts_close).build())
                     .build());
         } catch (Exception e) {
             LOG.e(e);
@@ -1163,7 +1185,7 @@ import java.util.List;
                 AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
                 load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
 
-                SharedBooks.saveAsync(load);
+                SharedBooks.saveNow(load);
                 AppProfile.save(this);
             }, "@T TTS Save").start();
         }

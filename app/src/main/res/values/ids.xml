@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The padding a panel was laid out with, before the system bars were added to it. -->
+    <item name="basePadding" type="id" />
+    <!-- Set on a settings button drawn as a box rather than a pill: see bg_button_outline_card. -->
+    <item name="cardShape" type="id" />
+    <!-- Set on a link drawn as a ringed button: its words are not underlined, as the ring already
+         says it can be pressed. -->
+    <item name="linkButton" type="id" />
+</resources>

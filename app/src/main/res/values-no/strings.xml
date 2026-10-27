@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumentkonverter (online)</string>
    <string name="book_covers">Bokomslag</string>
    <string name="cover_image_size">Dekk bildestørrelse</string>
+   <string name="cover_radius">Avrunding av omslag</string>
    <string name="column_count">Kolonne telling</string>
    <string name="show_book_covers">Vis bokomslag</string>
    <string name="enable_effect_of_the_book_cover">Aktiver effekten av bokomslaget</string>
@@ -61,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Beta-versjon</string>
    <string name="archive">Arkiv</string>
-   <string name="rate_pdf_reader1">Vennligst skriv din tilbakemelding og vurder oss på Google Play. Det er veldig viktig for oss</string>
+   <string name="rate_pdf_reader1">Legg igjen en tilbakemelding om denne appen på Google Play. Det er veldig viktig for oss</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatert tekst (pseudo grafikk)</string>
    <string name="continuous_text">Kontinuerlig tekst (ingen linjeskift)</string>
@@ -88,9 +89,10 @@
    <string name="right">Høyre side</string>
    <string name="center">Senter</string>
    <string name="custom_css">Tilpasset CSS</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Stiler</string>
    <string name="document_styles">Dokumentstiler</string>
    <string name="automatic_hyphenation">Automatisk bindestrek</string>
+   <string name="parse_bbcode_tags">Behandle BBCode-tagger</string>
    <string name="empty_line">Tom linje</string>
    <string name="margin_width">Marginbredde</string>
    <string name="top">Øverste side</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen sjanger</string>
    <string name="no_language">Ingen språk</string>
+   <string name="no_date">Ingen dato</string>
    <string name="without_series">Uten serie</string>
    <string name="folders">Mapper</string>
    <string name="recent">Nylig</string>
@@ -191,7 +194,7 @@
    <string name="filter">Filter</string>
    <string name="bookmark_by_date">Etter dato</string>
    <string name="bookmark_by_book">Ved bok</string>
-   <string name="network">Network</string>
+   <string name="network">Nettverk</string>
    <string name="catalogs">Kataloger</string>
    <string name="proxy_server_settings">Proxy-serverinnstillinger</string>
    <string name="use_proxy_server">Bruk proxy-server</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-postprogrammet er ikke installert.</string>
    <string name="file_not_found">Fil ikke funnet</string>
    <string name="you_need_grant_permission5">Appen trenger din tillatelse til å finne og vise alle bøkene dine.</string>
+   <string name="allow">Tillat</string>
+   <string name="storage">Lagring</string>
+   <string name="add_all_books_with_permission">La appen skanne Nedlastinger-mappen din, slik at bøker legges til automatisk i biblioteket ditt.</string>
+   <string name="allow_access_to_see_files">Tillat tilgang til alle filer for å se bøkene i denne mappen. Uten det vises bare mappene i den.</string>
+   <string name="save_settings_in_librera_folder">Lagre innstillinger og lesefremdrift i Librera-mappen.</string>
+   <string name="regrant_folder_title">Gi tilgang til mappen igjen</string>
+   <string name="regrant_folder_msg">Appen kan ikke lenger lese %1$s: Android fjerner mappetilgangen når appen installeres på nytt. Velg mappen igjen på neste skjerm.</string>
    <string name="remind_msg">Vennligst ta en pause for øynene dine og hvile litt.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmerke for denne siden finnes allerede</string>
    <string name="can_t_download">Kan ikke lastes ned</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Velg lesemodus</string>
    <string name="convert_to">Konvertere til</string>
-   <string name="mode_vertical">Modus \"bla\"</string>
-   <string name="mode_horizontally">Modus \"bok\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Sidevis</string>
    <string name="mode_musician">Modus \"musiker\"</string>
    <string name="save">Lagre</string>
    <string name="remember_choice">Husk valg</string>
@@ -334,12 +344,12 @@
    <string name="search_in_document">Søk i dokument</string>
    <string name="web_dict_oxfort">Nettordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
-   <string name="font">Font</string>
+   <string name="font">Skrift</string>
    <string name="font_name">Skriftnavn</string>
    <string name="text_page">Side</string>
    <string name="page">Side</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Velge...</string>
+   <string name="choose_">Velge</string>
    <string name="crop_white_borders">Beskjær hvite grenser</string>
    <string name="full_screen">Full skjerm</string>
    <string name="go">Gå</string>
@@ -424,7 +434,7 @@
    <string name="keywords">Nøkkelord</string>
    <string name="number">Antall</string>
    <string name="percent">Prosent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Utmerkelser</string>
    <string name="close_book_and_application">Lukk bok og søknad</string>
    <string name="percent_and_number">Prosent og tall</string>
    <string name="current_page">Nåværende side</string>
@@ -443,7 +453,7 @@
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Vil du slette denne taggen fra alle bøkene?</string>
    <string name="by_number_of_pages">Antall sider</string>
    <string name="by_number_in_serie">Nummer i serie</string>
-   <string name="by_extension">Extension</string>
+   <string name="by_extension">Filtype</string>
    <string name="recent_favorites_tags">Nylig, favoritter, tagger</string>
    <string name="line_spacing">Linjeavstand</string>
    <string name="paragraph_spacing">Avsnittsavstand</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Beskjær kantene symmetrisk</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Viser forfatteren og tittelen til PDF-boken fra metatagsene</string>
    <string name="meta_tags">Metatagger</string>
-   <string name="librera_pro">Skaff Librera PRO — uten annonser, og det fjerner annonsene i denne appen også</string>
+   <string name="librera_pro"><b>Librera PRO</b>: En reklamefri app som også fjerner annonsene i denne appen</string>
    <string name="annotation">Merknad</string>
    <string name="book">Bok</string>
    <string name="information">Informasjon</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Vis hovedstaven</string>
    <string name="size">Størrelse</string>
    <string name="quick_bookmark_by_the_headset">Rask bokmerke av hodesettet</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Vis TTS-knapper nederst på siden</string>
    <string name="slider_scale">Slider skala</string>
    <string name="chapter_format">Kapittelformat</string>
    <string name="play_a_music_file">Spill en musikkfil</string>
@@ -518,7 +529,7 @@
    <string name="pause">Pause</string>
    <string name="favorite">Favoritt</string>
    <string name="playlists">Spillelister</string>
-   <string name="tags">Tags</string>
+   <string name="tags">Tagger</string>
    <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
    <string name="delete_this_bookmark_">Slett dette bokmerket?</string>
    <string name="zoom_in_out_with_lock_enable">Zoome inn / ut med lås aktivering</string>
@@ -534,7 +545,7 @@
    <string name="turn_the_page_on_the_last_word">Vri siden på siste ord</string>
    <string name="paste">Lim inn</string>
    <string name="move">Bevege seg</string>
-   <string name="tag_manager">Tag manager</string>
+   <string name="tag_manager">Taggbehandling</string>
    <string name="the_file_already_exists_">Filen eksisterer allerede.</string>
    <string name="please_wait_books_are_being_processed_">Vent, bøker blir behandlet</string>
    <string name="system_brightness">Systemets lysstyrke</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Mørk oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Ny profil</string>
+   <string name="add_profile">Legg til profil</string>
    <string name="main">Hoved-</string>
    <string name="do_you_want_to_switch_profile_">Bytt til en annen profil?</string>
    <string name="sync_error">Synkroniseringsfeil</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Totalt antall sider</string>
    <string name="close_menu">Lukke meny</string>
    <string name="go_to_page">Gå til side</string>
-   <string name="update_library">Oppdater bibliotek</string>
+   <string name="update_library">Oppdater</string>
    <string name="ascending">Stigende</string>
    <string name="descending">Synkende</string>
    <string name="remove">Ta vekk</string>
@@ -652,7 +664,7 @@
    <string name="accessibility">Tilgjengelighet</string>
    <string name="web_search_google">Nettsøk (Google, ...)</string>
    <string name="synced_books">Synkroniserte bøker</string>
-   <string name="smart_reflow">Smart reflow</string>
+   <string name="smart_reflow">Smart omflyt</string>
    <string name="user_styles">Brukerstiler</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denne endringen krever en manuell omstart av programmet</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Utheving av forbokstaver</string>
    <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
+   <string name="show_storage_book_covers">Vis omslag for lagt til lagring</string>
    <string name="accent">Aksent</string>
    <string name="discarded_books">Kasserte bøker</string>
    <string name="show_print_edition_page_numbers_epub3">Vis sidenummer for trykte utgaver (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Advarsel: dette dokumentet har ulagrede endringer</string>
    <string name="bold_headings">Fet skrift</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Se denne korte videoen for å slå av all reklame i 1 time</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Se denne korte videoen for å slå av all reklame i to timer</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Se denne korte videoen for å slå av all reklame i tre timer</string>
    <string name="the_book_is_complete">Boken er komplett.</string>
    <string name="time">Tid</string>
    <string name="date_added">Dato lagt til</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Vis kontrast- og lysstyrkeknappen</string>
    <string name="text_and_background_color">Tekst- og bakgrunnsfarge</string>
    <string name="library_folders">Bibliotekmapper</string>
+   <string name="library_folders_hint">Bøker letes etter i disse mappene og deres undermapper.</string>
+   <string name="add_folder_hint">Velg én mappe</string>
+   <string name="add_storage_hint">SD-kort eller USB-stasjon</string>
+   <string name="folder_no_access">Ingen tilgang · trykk for å tillate igjen</string>
    <string name="watch">Se</string>
+   <string name="librerax_not_installed">LibreraX er ikke installert. Last ned og installer den, og åpne boken på nytt.</string>
+   <string name="remove_library_folder">Fjerne denne mappen fra biblioteket? Filene i den blir ikke slettet.</string>
+   <string name="epub_engine">EPUB-motor</string>
+   <string name="msg_epub_engine_unavailable">WebView er ikke tilgjengelig på denne enheten.</string>
+   <string name="base_stylesheet">Bruk grunnleggende stilark (foliate-js)</string>
+   <string name="pdf_engine">PDF-motor</string>
+   <string name="msg_pdf_engine_unavailable">Denne versjonen inneholder ikke PDFium-bibliotekene.</string>
+   <string name="book_open_failed">Denne boken kunne ikke åpnes.</string>
+   <string name="book_open_crashed">Appen ble uventet avsluttet sist denne boken ble åpnet.</string>
+   <string name="try_librerax">Prøv å åpne den i LibreraX.</string>
+   <string name="get_librerax">LibreraX kan kanskje åpne den. Last den ned her:</string>
+   <string name="open_in_librerax">Åpne i LibreraX</string>
+   <string name="try_again">Prøv igjen</string>
+   <string name="export_to_librerax">Eksporter til LibreraX</string>
+   <string name="update_librerax">Oppdater LibreraX til nyeste versjon for å importere fra Librera.</string>
+   <string name="reading_progress">Lesefremdrift</string>
 </resources>

@@ -39,6 +39,7 @@
    <string name="document_converter_online_">تحويل المستندات (عبر الإنترنت)</string>
    <string name="book_covers">أغلفة الكتب</string>
    <string name="cover_image_size">حجم صورة الغلاف</string>
+   <string name="cover_radius">انحناء زوايا الغلاف</string>
    <string name="column_count">عدد الأعمدة</string>
    <string name="show_book_covers">عرض أغلفة الكتب</string>
    <string name="enable_effect_of_the_book_cover">تمكين تأثير غلاف الكتاب</string>
@@ -61,7 +62,7 @@
    <string name="web">شبكة</string>
    <string name="beta_version">النسخة التجريبية</string>
    <string name="archive">أرشيف</string>
-   <string name="rate_pdf_reader1">يرجى إرسال ملاحظاتك ومعدل لنا في Google Play من المهم جدا بالنسبة لنا</string>
+   <string name="rate_pdf_reader1">يرجى ترك تعليق عن هذا التطبيق على Google Play. هذا مهم جدًا لنا</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">نص منسق (رسومات زائفة)</string>
    <string name="continuous_text">النص المستمر (بدون فاصل سطر)</string>
@@ -91,6 +92,7 @@
    <string name="styles">الأنماط</string>
    <string name="document_styles">أنماط المستند</string>
    <string name="automatic_hyphenation">الواصلة التلقائي</string>
+   <string name="parse_bbcode_tags">معالجة وسوم BBCode</string>
    <string name="empty_line">خط فارغ</string>
    <string name="margin_width">عرض الهوامش</string>
    <string name="top">الجانب العلوي</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
    <string name="no_genre">لا يوجد نوع</string>
    <string name="no_language">لا لغة</string>
+   <string name="no_date">بدون تاريخ</string>
    <string name="without_series">بدون سلسلة</string>
    <string name="folders">المجلدات</string>
    <string name="recent">السجل</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">تطبيق البريد الإلكتروني غير مثبتة.</string>
    <string name="file_not_found">لم يتم العثور على الملف</string>
    <string name="you_need_grant_permission5">يحتاج التطبيق إلى إذنك للعثور على جميع كتبك وعرضها.</string>
+   <string name="allow">السماح</string>
+   <string name="storage">التخزين</string>
+   <string name="add_all_books_with_permission">يُرجى السماح للتطبيق بفحص مجلد التنزيلات لإضافة الكتب إلى مكتبتك تلقائيًا.</string>
+   <string name="allow_access_to_see_files">اسمح بالوصول إلى جميع الملفات لرؤية الكتب في هذا المجلد. بدونه تُعرض مجلداته فقط.</string>
+   <string name="save_settings_in_librera_folder">احفظ الإعدادات وتقدّم القراءة في مجلد Librera.</string>
+   <string name="regrant_folder_title">اسمح بالوصول إلى المجلد مرة أخرى</string>
+   <string name="regrant_folder_msg">لم يعد بإمكان التطبيق قراءة %1$s: يزيل Android صلاحية الوصول إلى المجلدات عند إعادة تثبيت التطبيق. اختر المجلد مرة أخرى في الشاشة التالية.</string>
    <string name="remind_msg">يرجى أخذ قسط من الراحة لعينيك والراحة قليلا.</string>
    <string name="bookmark_for_this_page_already_exists">مرجعية لهذه الصفحة موجود بالفعل</string>
    <string name="can_t_download">لا يمكن تحميل</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">حدد وضع القراءة</string>
    <string name="convert_to">حول الى</string>
-   <string name="mode_vertical">الوضع \"التمرير\"</string>
-   <string name="mode_horizontally">وضع \"كتاب\"</string>
+   <string name="mode_vertical">عمودي</string>
+   <string name="mode_horizontally">صفحات</string>
    <string name="mode_musician">وضع \"موسيقي\"</string>
    <string name="save">حفظ</string>
    <string name="remember_choice">تذكر الخيار</string>
@@ -339,7 +349,7 @@
    <string name="text_page">صفحة</string>
    <string name="page">صفحة</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">اختر...</string>
+   <string name="choose_">اختر</string>
    <string name="crop_white_borders">إزالة الحدود البيضاء</string>
    <string name="full_screen">تكبير الشاشة</string>
    <string name="go">ذهاب</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">حدود المحاصيل متناظرة</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">عرض المؤلف وعنوان كتاب PDF من العلامات الوصفية</string>
    <string name="meta_tags">العلامات الفوقية</string>
-   <string name="librera_pro">احصل على Librera PRO — بلا إعلانات، وهو يزيل الإعلانات من هذا التطبيق أيضًا</string>
+   <string name="librera_pro"><b>Librera PRO</b>: تطبيق بدون إعلانات يزيل أيضًا الإعلانات من هذا التطبيق</string>
    <string name="annotation">حاشية</string>
    <string name="book">كتاب</string>
    <string name="information">معلومات</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">اعرض الحرف الكبير</string>
    <string name="size">بحجم</string>
    <string name="quick_bookmark_by_the_headset">المرجعية السريعة من قبل سماعة الرأس</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">إظهار أزرار TTS أسفل الصفحة</string>
    <string name="slider_scale">مقياس المنزلق</string>
    <string name="chapter_format">تنسيق الفصل</string>
    <string name="play_a_music_file">تشغيل ملف موسيقى</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">الظلام الظلام</string>
    <string name="profile">الملف الشخصي</string>
    <string name="new_profile">الملف الشخصي الجديد</string>
+   <string name="add_profile">إضافة ملف شخصي</string>
    <string name="main">الأساسية</string>
    <string name="do_you_want_to_switch_profile_">التبديل إلى ملف تعريف آخر؟</string>
    <string name="sync_error">خطأ في المزامنة</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">إجمالي الصفحات</string>
    <string name="close_menu">إغلاق القائمة</string>
    <string name="go_to_page">انتقل إلى صفحة</string>
-   <string name="update_library">مكتبة التحديث</string>
+   <string name="update_library">تحديث</string>
    <string name="ascending">تصاعدي</string>
    <string name="descending">تنازلي</string>
    <string name="remove">إزالة</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">تسليط الضوء على الحروف الأولية</string>
    <string name="anti_aliasing_level">مستوى الصقل</string>
    <string name="folder_preview">معاينة المجلد</string>
+   <string name="show_storage_book_covers">عرض الأغلفة للتخزين المضاف</string>
    <string name="accent">لهجة</string>
    <string name="discarded_books">الكتب المهملة</string>
    <string name="show_print_edition_page_numbers_epub3">إظهار أرقام صفحات الطبعة المطبوعة (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">تحذير: هذا المستند يحتوي على تغييرات غير محفوظة</string>
    <string name="bold_headings">عناوين بارزة</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة ساعة واحدة</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة ساعتين</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">شاهد هذا الفيديو القصير لإيقاف جميع الإعلانات لمدة 3 ساعات</string>
    <string name="the_book_is_complete">الكتاب مكتمل.</string>
    <string name="time">وقت</string>
    <string name="date_added">تاريخ الإضافة</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">زر إظهار التباين والسطوع</string>
    <string name="text_and_background_color">لون النص والخلفية</string>
    <string name="library_folders">مجلدات المكتبة</string>
+   <string name="library_folders_hint">يتم البحث عن الكتب في هذه المجلدات ومجلداتها الفرعية.</string>
+   <string name="add_folder_hint">اختر مجلدًا واحدًا</string>
+   <string name="add_storage_hint">بطاقة SD أو محرك USB</string>
+   <string name="folder_no_access">لا يوجد وصول · انقر للسماح مجددًا</string>
    <string name="watch">مشاهدة</string>
+   <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>
+   <string name="remove_library_folder">إزالة هذا المجلد من المكتبة؟ لن تُحذف الملفات الموجودة فيه.</string>
+   <string name="epub_engine">محرك EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView غير متوفر على هذا الجهاز.</string>
+   <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
+   <string name="pdf_engine">محرك PDF</string>
+   <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
+   <string name="book_open_failed">تعذّر فتح هذا الكتاب.</string>
+   <string name="book_open_crashed">أُغلق التطبيق بشكل غير متوقع أثناء فتح هذا الكتاب في المرة السابقة.</string>
+   <string name="try_librerax">جرّب فتحه في LibreraX.</string>
+   <string name="get_librerax">قد يتمكن LibreraX من فتحه. نزّله من هنا:</string>
+   <string name="open_in_librerax">فتح في LibreraX</string>
+   <string name="try_again">إعادة المحاولة</string>
+   <string name="export_to_librerax">تصدير إلى LibreraX</string>
+   <string name="update_librerax">حدّث LibreraX إلى أحدث إصدار للاستيراد من Librera.</string>
+   <string name="reading_progress">تقدّم القراءة</string>
 </resources>

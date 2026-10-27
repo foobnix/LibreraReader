@@ -39,6 +39,7 @@
    <string name="document_converter_online_">文檔格式線上轉換</string>
    <string name="book_covers">書籍封面</string>
    <string name="cover_image_size">封面大小</string>
+   <string name="cover_radius">封面圓角</string>
    <string name="column_count">列數</string>
    <string name="show_book_covers">顯示封面</string>
    <string name="enable_effect_of_the_book_cover">仿真封面</string>
@@ -61,7 +62,7 @@
    <string name="web">官網</string>
    <string name="beta_version">測試版</string>
    <string name="archive">檔案</string>
-   <string name="rate_pdf_reader1">請回饋，並在google play store評價，這對後續開發非常重要</string>
+   <string name="rate_pdf_reader1">請在 Google Play 上為本應用程式留下評價。這對我們非常重要</string>
    <string name="___PREFERENCES___SECTION___">偏好</string>
    <string name="formatted_text">格式文本（偽圖形）</string>
    <string name="continuous_text">連續文本（不換行）</string>
@@ -91,6 +92,7 @@
    <string name="styles">樣式</string>
    <string name="document_styles">文檔樣式</string>
    <string name="automatic_hyphenation">自動斷字</string>
+   <string name="parse_bbcode_tags">解析 BBCode 標籤</string>
    <string name="empty_line">標題間距</string>
    <string name="margin_width">頁邊空白</string>
    <string name="top">上邊</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">無叢書</string>
    <string name="no_genre">無流派</string>
    <string name="no_language">無語言</string>
+   <string name="no_date">無日期</string>
    <string name="without_series">無叢書</string>
    <string name="folders">檔夾</string>
    <string name="recent">最近</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">沒有安裝電子郵件!</string>
    <string name="file_not_found">無結果</string>
    <string name="you_need_grant_permission5">該應用程式需要您的許可才能找到和顯示您的所有書籍。</string>
+   <string name="allow">允許</string>
+   <string name="storage">儲存空間</string>
+   <string name="add_all_books_with_permission">請允許應用程式掃描「下載」資料夾，以便自動將書籍加入您的書庫。</string>
+   <string name="allow_access_to_see_files">允許存取所有檔案即可查看此資料夾中的書籍。否則只會顯示其中的資料夾。</string>
+   <string name="save_settings_in_librera_folder">將設定和閱讀進度儲存在 Librera 資料夾中。</string>
+   <string name="regrant_folder_title">再次允許存取資料夾</string>
+   <string name="regrant_folder_msg">應用程式無法再讀取 %1$s：重新安裝應用程式後，Android 會移除資料夾存取權限。請在下一個畫面中重新選擇該資料夾。</string>
    <string name="remind_msg">請注意休息以保護視力</string>
    <string name="bookmark_for_this_page_already_exists">已有書簽</string>
    <string name="can_t_download">不能下載</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___">上下文選單</string>
    <string name="select_the_reading_mode">閱讀模式</string>
    <string name="convert_to">轉換為</string>
-   <string name="mode_vertical">滾動模式</string>
-   <string name="mode_horizontally">書籍模式</string>
+   <string name="mode_vertical">上下捲動</string>
+   <string name="mode_horizontally">左右翻頁</string>
    <string name="mode_musician">樂師模式</string>
    <string name="save">保存</string>
    <string name="remember_choice">記住選擇</string>
@@ -339,7 +349,7 @@
    <string name="text_page">頁</string>
    <string name="page">頁</string>
    <string name="___INDEFINITE___SECTION___">無限</string>
-   <string name="choose_">請選擇...</string>
+   <string name="choose_">請選擇</string>
    <string name="crop_white_borders">切除白邊</string>
    <string name="full_screen">全屏模式</string>
    <string name="go">前往</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">裁剪邊界對稱</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">從PDF元標籤顯示作者和書名</string>
    <string name="meta_tags">元標籤</string>
-   <string name="librera_pro">取得 Librera PRO — 無廣告，並且也會移除本應用程式中的廣告</string>
+   <string name="librera_pro"><b>Librera PRO</b>：無廣告應用程式，同時移除本應用程式中的廣告</string>
    <string name="annotation">簡介</string>
    <string name="book">書名</string>
    <string name="information">資訊</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">顯示大寫字母</string>
    <string name="size">尺寸</string>
    <string name="quick_bookmark_by_the_headset">耳機快速書簽</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">在頁面底部顯示 TTS 按鈕</string>
    <string name="slider_scale">滑塊刻度</string>
    <string name="chapter_format">章節格式</string>
    <string name="play_a_music_file">播放音頻文件</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">黑暗有機電激光顯示</string>
    <string name="profile">配置檔</string>
    <string name="new_profile">新建配置檔</string>
+   <string name="add_profile">新增配置檔</string>
    <string name="main">主要</string>
    <string name="do_you_want_to_switch_profile_">您要切換配置檔嗎？</string>
    <string name="sync_error">同步錯誤</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">總頁數</string>
    <string name="close_menu">關閉菜單</string>
    <string name="go_to_page">轉到頁面</string>
-   <string name="update_library">更新庫</string>
+   <string name="update_library">更新</string>
    <string name="ascending">上升</string>
    <string name="descending">降序</string>
    <string name="remove">去掉</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">突出顯示首字母</string>
    <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
+   <string name="show_storage_book_covers">顯示已新增儲存空間的封面</string>
    <string name="accent">口音</string>
    <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">警告：此文件有未儲存的更改</string>
    <string name="bold_headings">粗體標題</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">觀看此短視頻，即可在 1 小時內關閉所有廣告。</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">觀看此短視頻，即可在 2 小時內關閉所有廣告。</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">觀看此短視頻，即可在 3 小時內關閉所有廣告。</string>
    <string name="the_book_is_complete">這本書已經完成了。</string>
    <string name="time">時間</string>
    <string name="date_added">新增日期</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">顯示對比度和亮度按鈕</string>
    <string name="text_and_background_color">文字和背景顏色</string>
    <string name="library_folders">書庫資料夾</string>
+   <string name="library_folders_hint">在這些資料夾及其子資料夾中尋找書籍。</string>
+   <string name="add_folder_hint">選擇一個資料夾</string>
+   <string name="add_storage_hint">SD 卡或 USB 隨身碟</string>
+   <string name="folder_no_access">無存取權限 · 輕觸以重新允許</string>
    <string name="watch">觀看</string>
+   <string name="librerax_not_installed">尚未安裝 LibreraX。請下載並安裝，然後重新開啟這本書。</string>
+   <string name="remove_library_folder">要從書庫中移除此資料夾嗎？其中的檔案不會被刪除。</string>
+   <string name="epub_engine">EPUB 引擎</string>
+   <string name="msg_epub_engine_unavailable">此裝置不支援 WebView。</string>
+   <string name="base_stylesheet">套用基礎樣式表 (foliate-js)</string>
+   <string name="pdf_engine">PDF 引擎</string>
+   <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 程式庫。</string>
+   <string name="book_open_failed">無法開啟這本書。</string>
+   <string name="book_open_crashed">上次開啟這本書時應用程式意外關閉。</string>
+   <string name="try_librerax">請嘗試用 LibreraX 開啟。</string>
+   <string name="get_librerax">LibreraX 或許能開啟它。在此下載：</string>
+   <string name="open_in_librerax">用 LibreraX 開啟</string>
+   <string name="try_again">重試</string>
+   <string name="export_to_librerax">匯出到 LibreraX</string>
+   <string name="update_librerax">請將 LibreraX 更新至最新版本，以便從 Librera 匯入。</string>
+   <string name="reading_progress">閱讀進度</string>
 </resources>

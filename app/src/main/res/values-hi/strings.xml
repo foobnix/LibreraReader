@@ -39,6 +39,7 @@
    <string name="document_converter_online_">दस्तावेज़ कनवर्टर (ऑनलाइन)</string>
    <string name="book_covers">बुक कवर</string>
    <string name="cover_image_size">कवर छवि का आकार</string>
+   <string name="cover_radius">कवर का कोना गोलाई</string>
    <string name="column_count">स्तंभ गिनती</string>
    <string name="show_book_covers">पुस्तक कवर दिखाएं</string>
    <string name="enable_effect_of_the_book_cover">पुस्तक कवर के प्रभाव को सक्षम</string>
@@ -61,7 +62,7 @@
    <string name="web">वेब</string>
    <string name="beta_version">बीटा संस्करण</string>
    <string name="archive">संग्रह</string>
-   <string name="rate_pdf_reader1">आपकी प्रतिक्रिया के बारे में है और यह हमारे लिए बहुत महत्वपूर्ण है गूगल प्ले पर हमें कृपया दर</string>
+   <string name="rate_pdf_reader1">कृपया Google Play पर इस ऐप के बारे में प्रतिक्रिया दें। यह हमारे लिए बहुत महत्वपूर्ण है</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">प्रारूपित पाठ (छद्म ग्राफिक्स)</string>
    <string name="continuous_text">निरंतर पाठ (कोई लाइन ब्रेक नहीं)</string>
@@ -91,6 +92,7 @@
    <string name="styles">शैलियाँ</string>
    <string name="document_styles">दस्तावेज़ शैलियाँ</string>
    <string name="automatic_hyphenation">स्वत: हायफ़नेशन</string>
+   <string name="parse_bbcode_tags">BBCode टैग संसाधित करें</string>
    <string name="empty_line">खाली पंक्ति</string>
    <string name="margin_width">मार्जिन चौड़ाई</string>
    <string name="top">ऊपर की ओर</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">कोई सीरी नहीं</string>
    <string name="no_genre">कोई शैली नहीं</string>
    <string name="no_language">कोई भाषा नहीं</string>
+   <string name="no_date">कोई तारीख नहीं</string>
    <string name="without_series">श्रृंखला के बिना</string>
    <string name="folders">फ़ोल्डर</string>
    <string name="recent">हाल का</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">ईमेल आवेदन स्थापित नहीं।</string>
    <string name="file_not_found">फाइल नहीं मिली</string>
    <string name="you_need_grant_permission5">इस ऐप को आपकी सभी पुस्तकों को खोजने और प्रदर्शित करने के लिए आपकी अनुमति की आवश्यकता है।</string>
+   <string name="allow">अनुमति दें</string>
+   <string name="storage">संग्रहण</string>
+   <string name="add_all_books_with_permission">कृपया ऐप को अपने डाउनलोड फ़ोल्डर को स्कैन करने दें, ताकि किताबें अपने-आप आपकी लाइब्रेरी में जुड़ जाएँ।</string>
+   <string name="allow_access_to_see_files">इस फ़ोल्डर में किताबें देखने के लिए सभी फ़ाइलों तक पहुँच की अनुमति दें। इसके बिना केवल इसके फ़ोल्डर दिखते हैं।</string>
+   <string name="save_settings_in_librera_folder">सेटिंग्स और पढ़ने की प्रगति Librera फ़ोल्डर में सहेजें।</string>
+   <string name="regrant_folder_title">फ़ोल्डर तक पहुँच फिर से दें</string>
+   <string name="regrant_folder_msg">ऐप अब %1$s नहीं पढ़ सकता: ऐप को दोबारा इंस्टॉल करने पर Android फ़ोल्डरों की पहुँच हटा देता है। अगली स्क्रीन पर फ़ोल्डर फिर से चुनें।</string>
    <string name="remind_msg">कृपया अपनी आँखों के लिए एक ब्रेक ले लो और थोड़ा आराम करो।</string>
    <string name="bookmark_for_this_page_already_exists">इस पृष्ठ के लिए बुकमार्क पहले से मौजूद</string>
    <string name="can_t_download">डाउनलोड नहीं कर सकता</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">रीडिंग मोड का चयन करें</string>
    <string name="convert_to">में बदलें</string>
-   <string name="mode_vertical">मोड \"स्क्रॉल करें\"</string>
-   <string name="mode_horizontally">मोड \"पुस्तक\"</string>
+   <string name="mode_vertical">लंबवत</string>
+   <string name="mode_horizontally">पृष्ठवार</string>
    <string name="mode_musician">मोड \"संगीतकार\"</string>
    <string name="save">बचाना</string>
    <string name="remember_choice">पसंद याद रखें</string>
@@ -339,7 +349,7 @@
    <string name="text_page">पृष्ठ</string>
    <string name="page">पृष्ठ</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">चुनें...</string>
+   <string name="choose_">चुनें</string>
    <string name="crop_white_borders">सफेद सीमाओं फसल</string>
    <string name="full_screen">पूर्ण स्क्रीन</string>
    <string name="go">चले जाओ</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">सीमाओं को सममित रूप से क्रॉप करें</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">मेटा टैग से पीडीएफ पुस्तक के लेखक और शीर्षक को प्रदर्शित करना</string>
    <string name="meta_tags">मेटा टैग</string>
-   <string name="librera_pro">Librera PRO लें — बिना विज्ञापन, और यह इस ऐप के विज्ञापन भी हटा देता है</string>
+   <string name="librera_pro"><b>Librera PRO</b>: विज्ञापन-मुक्त ऐप, जो इस ऐप से भी विज्ञापन हटा देता है</string>
    <string name="annotation">टिप्पणी</string>
    <string name="book">किताब</string>
    <string name="information">जानकारी</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">पूंजी पत्र दिखाएं</string>
    <string name="size">आकार</string>
    <string name="quick_bookmark_by_the_headset">हेडसेट द्वारा त्वरित बुकमार्क</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">पृष्ठ के नीचे TTS बटन दिखाएँ</string>
    <string name="slider_scale">स्लाइडर पैमाने</string>
    <string name="chapter_format">अध्याय प्रारूप</string>
    <string name="play_a_music_file">एक संगीत फ़ाइल चलाएं</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">गहरे रंग का</string>
    <string name="profile">प्रोफ़ाइल</string>
    <string name="new_profile">नई प्रोफ़ाइल</string>
+   <string name="add_profile">प्रोफ़ाइल जोड़ें</string>
    <string name="main">मुख्य</string>
    <string name="do_you_want_to_switch_profile_">किसी अन्य प्रोफ़ाइल पर स्विच करें?</string>
    <string name="sync_error">सिंक त्रुटि</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">कुल पृष्ठ</string>
    <string name="close_menu">बंद मेनू</string>
    <string name="go_to_page">पृष्ठ पर जाओ</string>
-   <string name="update_library">लाइब्रेरी को अपडेट करें</string>
+   <string name="update_library">अपडेट करें</string>
    <string name="ascending">आरोही</string>
    <string name="descending">उतरते</string>
    <string name="remove">हटाना</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">प्रारंभिक अक्षरों को हाइलाइट करना</string>
    <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
+   <string name="show_storage_book_covers">जोड़े गए संग्रहण के लिए कवर दिखाएं</string>
    <string name="accent">लहज़ा</string>
    <string name="discarded_books">छोड़ी गई किताबें</string>
    <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">चेतावनी: इस दस्तावेज़ में सहेजे नहीं गए परिवर्तन हैं</string>
    <string name="bold_headings">बोल्ड हेडिंग्स</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">एक घंटे के लिए सभी विज्ञापन बंद करने के लिए यह छोटा वीडियो देखें।</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">दो घंटे के लिए सभी विज्ञापन बंद करने के लिए यह छोटा वीडियो देखें।</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">तीन घंटे के लिए सभी विज्ञापन बंद करने के लिए यह छोटा वीडियो देखें।</string>
    <string name="the_book_is_complete">पुस्तक पूर्ण हो गई है।</string>
    <string name="time">समय</string>
    <string name="date_added">तिथि जोड़ी</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">कंट्रास्ट और ब्राइटनेस बटन दिखाएँ</string>
    <string name="text_and_background_color">पाठ और पृष्ठभूमि का रंग</string>
    <string name="library_folders">लाइब्रेरी फ़ोल्डर</string>
+   <string name="library_folders_hint">किताबें इन फ़ोल्डरों और उनके सबफ़ोल्डरों में खोजी जाती हैं।</string>
+   <string name="add_folder_hint">एक फ़ोल्डर चुनें</string>
+   <string name="add_storage_hint">SD कार्ड या USB ड्राइव</string>
+   <string name="folder_no_access">पहुँच नहीं · फिर से अनुमति देने के लिए टैप करें</string>
    <string name="watch">देखें</string>
+   <string name="librerax_not_installed">LibreraX इंस्टॉल नहीं है। इसे डाउनलोड और इंस्टॉल करें, फिर किताब दोबारा खोलें।</string>
+   <string name="remove_library_folder">इस फ़ोल्डर को लाइब्रेरी से हटाएँ? इसमें मौजूद फ़ाइलें डिलीट नहीं होंगी।</string>
+   <string name="epub_engine">EPUB इंजन</string>
+   <string name="msg_epub_engine_unavailable">इस डिवाइस पर WebView उपलब्ध नहीं है।</string>
+   <string name="base_stylesheet">आधार स्टाइलशीट लागू करें (foliate-js)</string>
+   <string name="pdf_engine">PDF इंजन</string>
+   <string name="msg_pdf_engine_unavailable">इस बिल्ड में PDFium लाइब्रेरी शामिल नहीं हैं।</string>
+   <string name="book_open_failed">यह पुस्तक खोली नहीं जा सकी।</string>
+   <string name="book_open_crashed">पिछली बार इस पुस्तक को खोलते समय ऐप अप्रत्याशित रूप से बंद हो गया था।</string>
+   <string name="try_librerax">इसे LibreraX में खोलकर देखें।</string>
+   <string name="get_librerax">LibreraX इसे खोल सकता है। इसे यहाँ से डाउनलोड करें:</string>
+   <string name="open_in_librerax">LibreraX में खोलें</string>
+   <string name="try_again">फिर से कोशिश करें</string>
+   <string name="export_to_librerax">LibreraX में निर्यात करें</string>
+   <string name="update_librerax">Librera से आयात करने के लिए LibreraX को नवीनतम संस्करण में अपडेट करें।</string>
+   <string name="reading_progress">पढ़ने की प्रगति</string>
 </resources>

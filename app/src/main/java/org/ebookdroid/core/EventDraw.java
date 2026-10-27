@@ -16,6 +16,8 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -149,6 +151,7 @@ public class EventDraw implements IEvent {
         }
         // drawSomething(page);
         // drawHighlights(page);
+        drawAnnotations(page);
         drawSelectedText(page);
 
         return res;
@@ -245,6 +248,20 @@ public class EventDraw implements IEvent {
         p.setColor(Color.MAGENTA);
         p.setAlpha(40);
         canvas.drawRect(rect, p);
+    }
+
+    /** The reader's own highlights, underlines and strikethroughs. */
+    private void drawAnnotations(final Page page) {
+        if (LengthUtils.isEmpty(page.marks)) {
+            return;
+        }
+        for (final AnnotationsFinder.Drawn mark : page.marks) {
+            for (final RectF normalized : mark.rects) {
+                final RectF rect = page.getPageRegion(pageBounds, new RectF(normalized));
+                rect.offset(-viewState.viewBase.x, -viewState.viewBase.y);
+                AnnotationsPainter.draw(canvas, rect, mark.annotation);
+            }
+        }
     }
 
     private void drawSelectedText(final Page page) {

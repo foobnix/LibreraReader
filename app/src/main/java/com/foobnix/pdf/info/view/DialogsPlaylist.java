@@ -78,6 +78,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.graphics.PorterDuffColorFilter;
 
 public class DialogsPlaylist {
     public static final int LIMIT_MAX_BOOKS = 50;
@@ -96,6 +97,8 @@ public class DialogsPlaylist {
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_playlist));
+        // Drawn as the settings panel draws its buttons: a ring in the colour of the word.
+        TintUtil.asLinkButton(add);
 
         final List<String> items = Playlists.getAllPlaylists();
 
@@ -124,7 +127,9 @@ public class DialogsPlaylist {
                         if (file != null) {
                             img.setVisibility(View.GONE);
                         }
-                        TintUtil.setTintImageWithAlpha(img, Color.GRAY);
+                        // The cross in the colour links are drawn in.
+                        final int deleteColor = TxtUtils.getLinkTextColor(a);
+                        TintUtil.setTintImageNoAlpha(img, deleteColor);
                         img.setOnClickListener(new OnClickListener() {
 
                             @Override public void onClick(View v) {
@@ -551,7 +556,7 @@ public class DialogsPlaylist {
         if (playlistMark != null) {
             int markSize = (int) playListName.getTextSize();
             playlistMark.setBounds(0, 0, markSize, markSize);
-            playlistMark.setColorFilter(playlistAccent, PorterDuff.Mode.SRC_IN);
+            playlistMark.setColorFilter(new PorterDuffColorFilter(playlistAccent, PorterDuff.Mode.SRC_IN));
             playListName.setCompoundDrawables(playlistMark, null, null, null);
             playListName.setCompoundDrawablePadding(Dips.DP_6);
         }

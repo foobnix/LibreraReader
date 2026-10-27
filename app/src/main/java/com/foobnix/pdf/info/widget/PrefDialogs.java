@@ -2,14 +2,23 @@ package com.foobnix.pdf.info.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import com.foobnix.pdf.info.wrapper.UITab;
+import android.util.TypedValue;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
+import com.foobnix.ui2.fragment.UIFragment;
+import com.foobnix.ui2.fragment.PrefFragment2;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Environment;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
@@ -42,6 +51,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
@@ -50,7 +60,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
-import com.foobnix.pdf.info.presentation.PathAdapter;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
@@ -66,7 +75,9 @@ import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -97,10 +108,6 @@ public class PrefDialogs {
             Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
             return false;
         }
-        if (ExtUtils.isExteralSD(nPath)) {
-            Toast.makeText(a, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-            return false;
-        }
         for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
             if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
                 Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, str,
@@ -112,71 +119,85 @@ public class PrefDialogs {
         return true;
     }
 
+    /**
+     * The library folders, to add to and take from, and the library rebuilt from them. The
+     * preferences panel opens it from its list of folders, and the library from the update button
+     * on its top bar. Adding a folder keeps the dialog up with the folder in its list, so the
+     * folders can be put right first and the library rebuilt once, with Update.
+     *
+     * @param onChanges run each time the list changes, for whoever keeps it on screen or on disk
+     * @param onScan    run by Update, to rebuild the library from the folders now listed
+     */
     public static void chooseFolderDialog(final FragmentActivity a, final Runnable onChanges, final Runnable onScan) {
-
-        final PathAdapter recentAdapter = new PathAdapter();
-        recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-        // The dialog names what it holds, as the panel's section does.
-        builder.setTitle(R.string.library_folders);
+        final View view = LayoutInflater.from(builder.getContext()).inflate(R.layout.dialog_library_folders, null, false);
+        builder.setView(view);
+        final AlertDialog create = builder.create();
 
-        final ListView list = new ListView(a);
-        // No rule drawn between the folders: the rows carry their own spacing.
-        list.setDivider(null);
-        list.setDividerHeight(0);
+        final int accent = TxtUtils.getLinkTextColor(a);
+        final LinearLayout folders = view.findViewById(R.id.libraryFolders);
 
-        list.setAdapter(recentAdapter);
-
-        builder.setView(list);
-
-        builder.setPositiveButton(R.string.search, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                onScan.run();
+        final Runnable[] showFolders = new Runnable[1];
+        showFolders[0] = () -> {
+            folders.removeAllViews();
+            List<String> paths = JsonDB.get(BookCSS.get().searchPathsJson);
+            Collections.sort(paths);
+            for (final String path : paths) {
+                folders.addView(folderRow(a, folders, path, accent, () -> AlertDialogs.showDialog(a,
+                        a.getString(R.string.remove_library_folder) + "\n\n" + path, a.getString(R.string.remove), () -> {
+                            BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                            showFolders[0].run();
+                            onChanges.run();
+                        }), () -> {
+                    create.dismiss();
+                    PrefFragment2.closeLeftMenu(a);
+                    openLibraryFolder(a, path);
+                }));
             }
-        });
+            folders.setVisibility(paths.isEmpty() ? View.GONE : View.VISIBLE);
+        };
+        showFolders[0].run();
 
-        builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                ChooserDialogFragment.chooseFolder(a, BookCSS.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        // The folder goes straight into the list the caller keeps; this dialog
-                        // is not put back up over it.
-                        addSearchPath(a, nPath);
-                        dialog.dismiss();
+        tintAddCards(view, accent);
+
+        view.findViewById(R.id.addLibraryFolder).setOnClickListener(v -> {
+            // The chooser browses the device itself, and without the permission to read it there
+            // is nothing in it to pick: the permission is asked for instead, as the panel does.
+            if (!Android6.canWrite(a)) {
+                Android6.checkPermissions(a, false);
+                return;
+            }
+            ChooserDialogFragment.chooseFolder(a, BookCSS.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                @Override
+                public boolean onResultRecive(String nPath, Dialog dialog) {
+                    if (addSearchPath(a, nPath)) {
+                        showFolders[0].run();
                         onChanges.run();
-                        return false;
                     }
-
-                });
-
-            }
+                    dialog.dismiss();
+                    return false;
+                }
+            });
         });
 
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        recentAdapter.setOnDeleClick(new ResultResponse<Uri>() {
-
-            @Override
-            public boolean onResultRecive(Uri result) {
-                String path = result.getPath();
-                LOG.d("TEST", "Remove " + path);
-                BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
-                LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson);
-                recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
-                onChanges.run();
-                return false;
-            }
+        // The system's picker answers the activity, which adds the folder and rebuilds the
+        // library itself; this dialog would only go on listing the folders without it.
+        view.findViewById(R.id.addLibraryStorage).setOnClickListener(v -> {
+            create.dismiss();
+            MainTabs2.startAddLibraryStorage(a);
         });
 
-        AlertDialog create = builder.create();
+        TextView cancel = view.findViewById(R.id.libraryFoldersCancel);
+        cancel.setTextColor(accent);
+        cancel.setOnClickListener(v -> create.dismiss());
+
+        TextView update = view.findViewById(R.id.libraryFoldersUpdate);
+        asFilledButton(update);
+        update.setOnClickListener(v -> {
+            create.dismiss();
+            onScan.run();
+        });
+
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override
@@ -185,6 +206,165 @@ public class PrefDialogs {
             }
         });
         create.show();
+    }
+
+    /**
+     * The library folders' main action, a pill filled in the theme colour - the colour the panel's
+     * headers and the chooser's buttons are filled in - as the dialog and the panel both draw it.
+     */
+    public static void asFilledButton(TextView button) {
+        GradientDrawable pill = new GradientDrawable();
+        // A black theme colour on a dark theme would fill the button with the ground it stands
+        // on: it is drawn as a white ring there instead. On the light theme black still shows.
+        boolean darkTheme = AppState.get().appTheme == AppState.THEME_DARK
+                || AppState.get().appTheme == AppState.THEME_DARK_OLED;
+        if (darkTheme && Color.luminance(TintUtil.color) < 0.02f) {
+            pill.setColor(Color.TRANSPARENT);
+            pill.setStroke(Dips.dpToPx(1), Color.WHITE);
+        } else {
+            pill.setColor(TintUtil.color);
+        }
+        button.setTextColor(Color.WHITE);
+        pill.setCornerRadius(Dips.dpToPx(20));
+        button.setBackground(new RippleDrawable(ColorStateList.valueOf(0x40FFFFFF), pill, null));
+    }
+
+    /** The marks on the add folder and add storage cards, in the theme colour. */
+    public static void tintAddCards(View root, int accent) {
+        ((ImageView) root.findViewById(R.id.addLibraryFolderIcon)).setColorFilter(accent);
+        ((ImageView) root.findViewById(R.id.addLibraryStorageIcon)).setColorFilter(accent);
+    }
+
+    /** One folder of the library: its mark in a round of the theme colour, its name, where it is, and the button that drops it. */
+    public static View folderRow(Context c, LinearLayout parent, String path, int accent, Runnable onRemove,
+                                 Runnable onOpen) {
+        View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_folder_item, parent, false);
+        String[] namePlace = folderNameAndPlace(c, path);
+
+        GradientDrawable round = new GradientDrawable();
+        round.setShape(GradientDrawable.OVAL);
+        round.setColor((accent & 0x00FFFFFF) | 0x26000000);
+        row.findViewById(R.id.folderMark).setBackground(round);
+
+        ImageView icon = row.findViewById(R.id.folderIcon);
+        // Marked as it was added, with the mark of the card that adds it: a folder the app reads
+        // itself (Add folder), or one handed over through the system's picker (Add storage)
+        icon.setImageResource(ExtUtils.isExteralSD(path) ? R.drawable.ic_lf_storage : R.drawable.ic_lf_folder);
+        icon.setColorFilter(accent);
+
+        ((TextView) row.findViewById(R.id.folderName)).setText(namePlace[0]);
+        TextView place = row.findViewById(R.id.folderPlace);
+        place.setText(namePlace[1]);
+        place.setVisibility(TxtUtils.isEmpty(namePlace[1]) ? View.GONE : View.VISIBLE);
+
+        // A folder handed over through the picker that can no longer be read says so; a tap on
+        // it asks for it again (see openLibraryFolder). With the permission it is read as the
+        // folder it stands for, and needs no grant.
+        boolean readableAsPath = Android6.canWrite(c) && ExtUtils.getSafTreePath(path) != null;
+        if (!readableAsPath && MainTabs2.isLostLibraryStorage(c, path)) {
+            row.findViewById(R.id.folderNoAccess).setVisibility(View.VISIBLE);
+            icon.setAlpha(0.5f);
+        }
+
+        ImageView remove = row.findViewById(R.id.folderRemove);
+        remove.setColorFilter(place.getCurrentTextColor());
+        remove.setContentDescription(c.getString(R.string.remove) + " " + namePlace[0]);
+        remove.setOnClickListener(v -> onRemove.run());
+
+        // The row itself opens the folder, to see what the library finds in it
+        TypedValue pressed = new TypedValue();
+        c.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, pressed, true);
+        row.setBackgroundResource(pressed.resourceId);
+        row.setOnClickListener(v -> onOpen.run());
+        return row;
+    }
+
+    /**
+     * Shows a library folder in the Folder tab. A folder handed over through the system's picker
+     * is shown as the folder it stands for once the app may read the storage itself, as the
+     * folder chooser shows it.
+     */
+    public static void openLibraryFolder(Activity a, String path) {
+        String target = path;
+        if (ExtUtils.isExteralSD(path) && Android6.canWrite(a)) {
+            String file = ExtUtils.getSafTreePath(path);
+            if (file != null) {
+                target = file;
+            }
+        }
+        // A folder handed over through the picker whose grant is gone - after a reinstall, say -
+        // cannot be opened: it is asked for again instead of showing nothing
+        if (ExtUtils.isExteralSD(target) && MainTabs2.isLostLibraryStorage(a, target)) {
+            MainTabs2.askToRegrantLibraryStorage(a, target);
+            return;
+        }
+        // The Folder tab listens only while it is the tab on screen, so the folder is also left
+        // where it looks when it comes up: as its last folder, with the lists marked as changed
+        AppState.get().displayPath = target;
+        BookCSS.get().dirLastPath = target;
+        TempHolder.listHash++;
+        LocalBroadcastManager.getInstance(a)
+                             .sendBroadcast(new Intent(UIFragment.INTENT_TINT_CHANGE).putExtra(MainTabs2.EXTRA_PAGE_NUMBER,
+                                     UITab.getCurrentTabIndex(UITab.BrowseFragment)));
+        EventBus.getDefault().post(new OpenDirMessage(target));
+    }
+
+    /**
+     * A library folder as the dialog names it: the folder's own name, and where it is - the
+     * storage it is on, then the folders it sits in - so {@code /storage/emulated/0/Download/Books}
+     * and {@code primary:Download/Books} handed over through the picker both read "Books" in
+     * "Internal storage › Download". A whole storage is named by the storage, with its path under
+     * it.
+     *
+     * @return name, place, and the path when the folder is a whole storage (unused by the row)
+     */
+    static String[] folderNameAndPlace(Context c, String path) {
+        final String internal = c.getString(R.string.internal_storage);
+        String storage;
+        String inside;
+        String whole;
+        if (ExtUtils.isExteralSD(path)) {
+            String id = ExtUtils.getExtSDDisplayName(c, path);
+            int colon = id.indexOf(':');
+            if (id.startsWith("content:") || colon < 0) {
+                return new String[]{id, "", null};
+            }
+            String volume = id.substring(0, colon);
+            storage = "primary".equals(volume) ? internal : volume;
+            inside = id.substring(colon + 1);
+            whole = "";
+        } else {
+            String root = Environment.getExternalStorageDirectory().getPath();
+            if (path.equals(root) || path.startsWith(root + "/")) {
+                storage = internal;
+                inside = path.substring(root.length());
+            } else if (path.startsWith("/storage/") && path.length() > "/storage/".length()) {
+                String rest = path.substring("/storage/".length());
+                int slash = rest.indexOf('/');
+                storage = slash < 0 ? rest : rest.substring(0, slash);
+                inside = slash < 0 ? "" : rest.substring(slash);
+            } else {
+                File file = new File(path);
+                String parentPath = file.getParent();
+                return new String[]{TxtUtils.isEmpty(file.getName()) ? path : file.getName(),
+                        parentPath == null ? "" : parentPath, null};
+            }
+            whole = path;
+        }
+        List<String> parts = new ArrayList<>();
+        for (String part : inside.split("/")) {
+            if (part.length() > 0) {
+                parts.add(part);
+            }
+        }
+        if (parts.isEmpty()) {
+            return new String[]{storage, whole, whole};
+        }
+        StringBuilder place = new StringBuilder(storage);
+        for (int i = 0; i < parts.size() - 1; i++) {
+            place.append(" \u203A ").append(parts.get(i));
+        }
+        return new String[]{parts.get(parts.size() - 1), place.toString(), null};
     }
 
     public static void importDialog(final FragmentActivity activity) {

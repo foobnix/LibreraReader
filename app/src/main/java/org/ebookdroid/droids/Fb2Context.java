@@ -7,8 +7,10 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -16,6 +18,9 @@ import java.io.File;
 import java.util.Map;
 
 public class Fb2Context extends PdfContext {
+
+    /** Raised whenever what Fb2Extractor writes changes, so cached conversions are redone. */
+    private static final int CONVERTER_VERSION = 2;
 
     File cacheFile;
 
@@ -30,12 +35,16 @@ public class Fb2Context extends PdfContext {
                 AppSP.get().isDouble +
                 //AppState.get().isAccurateFontSize +
                 BookCSS.get().documentStyle +
-                BookCSS.get().isCapitalLetter;
+                BookCSS.get().isEnableBBCode +
+                BookCSS.get().isCapitalLetter +
+                // The converter's output version: a book converted before contents labels were
+                // written as XML (no &nbsp;) has to be converted again, or foliate shows no contents
+                CONVERTER_VERSION;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         return cacheFile;
     }
 
-    MuPdfDocument muPdfDocument;
+    AbstractCodecDocument muPdfDocument;
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
@@ -61,7 +70,9 @@ public class Fb2Context extends PdfContext {
         LOG.d("Fb2Context open", outName);
 
         try {
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            muPdfDocument = openReflowable(outName, password);
+            // getPageCount() on a null is the NullPointerException this catch already relies on
+            // to mean "that did not open"; the retry below is what answers it
             muPdfDocument.getPageCount();
         } catch (Exception e) {
             LOG.e(e);
@@ -71,7 +82,12 @@ public class Fb2Context extends PdfContext {
             }
             Fb2Extractor.get().convert(fileName, outName, true, notes);
             LOG.d("Fb2Context create 2", outName);
-            muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
+            muPdfDocument = openReflowable(outName, password);
+        }
+
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
         }
 
         if (notes != null) {
@@ -102,8 +118,11 @@ public class Fb2Context extends PdfContext {
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
             notes = Fb2Extractor.get().getFooterNotes(fileName);
-            JsonHelper.mapToFile(jsonFile, notes);
-            LOG.d("save notes to file", jsonFile);
+            // a cancelled extraction is empty or partial, it must not stay in the cache
+            if (!TempHolder.get().loadingCancelled.get()) {
+                JsonHelper.mapToFile(jsonFile, notes);
+                LOG.d("save notes to file", jsonFile);
+            }
         }
         return notes;
     }

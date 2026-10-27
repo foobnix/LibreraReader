@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info.view;
 
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -92,6 +94,10 @@ public class Dialogs {
         final DragLinearLayout root = new DragLinearLayout(activity);
         root.setOrientation(LinearLayout.VERTICAL);
 
+        // Buttons and marks take the colour the settings panel's links do, so they read as the
+        // panel's own rather than a white or a blue of their own.
+        final int linkColor = TxtUtils.getLinkTextColor(activity);
+
 
         LinearLayout dicts = UI.verticalLayout(activity);
 
@@ -155,16 +161,14 @@ public class Dialogs {
 
 
                 ImageView img = new ImageView(activity);
-                img.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
+                img.setPadding(Dips.DP_3, Dips.DP_3, Dips.DP_3, Dips.DP_3);
                 img.setMaxWidth(Dips.DP_20);
                 img.setMaxHeight(Dips.DP_20);
 
                 img.setImageResource(R.drawable.glyphicons_599_menu_close);
-                TintUtil.setTintImageWithAlpha(img);
-                // The mark that drops a rule stands in a round of its own, as the mark that
-                // closes a panel does, drawn in the colour the mark itself is.
-                img.setBackgroundResource(R.drawable.bg_round_button);
-                TintUtil.setRingColor(img, TintUtil.color);
+                img.setBackgroundResource(R.drawable.bg_round_press_grey);
+                // The cross that drops a rule, drawn in the colour links are.
+                TintUtil.setTintImageNoAlpha(img, linkColor);
 
                 img.setOnClickListener(new OnClickListener() {
                     @Override
@@ -180,7 +184,7 @@ public class Dialogs {
                 move.setMaxHeight(Dips.DP_20);
 
                 move.setImageResource(R.drawable.glyphicons_600_menu);
-                TintUtil.setTintImageWithAlpha(move);
+                TintUtil.setTintImageNoAlpha(move, linkColor);
 
 
                 from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
@@ -400,6 +404,10 @@ public class Dialogs {
         line.addView(export, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
         line.addView(importFile, new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
 
+        // The colour goes on first: the ring is cut from whatever colour the word is.
+        add.setTextColor(linkColor);
+        export.setTextColor(linkColor);
+        importFile.setTextColor(linkColor);
         TintUtil.asLinkButton(add, 0);
         TintUtil.asLinkButton(export, 0);
         TintUtil.asLinkButton(importFile, 0);
@@ -437,6 +445,7 @@ public class Dialogs {
         addDict.setSingleLine();
         addDict.setEllipsize(TextUtils.TruncateAt.END);
         root.addView(addDict);
+        addDict.setTextColor(linkColor);
         TintUtil.asLinkButton(addDict);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
@@ -447,6 +456,7 @@ public class Dialogs {
 
         restore.setText(R.string.restore_defaults_short);
         root.addView(restore);
+        restore.setTextColor(linkColor);
         TintUtil.asLinkButton(restore);
 
 
@@ -527,19 +537,43 @@ public class Dialogs {
 
         result.setTextSize(12);
         result.setText(GFile.debugOut.toString());
-        result.setMinWidth(Dips.dpToPx(1000));
-        result.setMinHeight(Dips.dpToPx(1000));
 
-        TextView t = UI.uText(a, a.getString(R.string.clear_log));
-        t.setTextSize(16);
-        t.setOnClickListener(v -> GFile.clearDebug());
+        // The log scrolls on its own, so the button under it stays in view however long the log
+        // runs. Clearing sits at the foot of the sheet, drawn as the panel's buttons are: a ring
+        // in the link colour.
+        ScrollView scroll = new ScrollView(a);
+        scroll.addView(result);
 
-        AlertDialogs.showViewDialog(a, new Runnable() {
-            @Override
-            public void run() {
-                flag.set(false);
-            }
-        }, t, result);
+        TextView clear = new TextView(a);
+        clear.setText(R.string.clear_log);
+        TypedArray link = a.obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
+        ColorStateList linkColor = link.getColorStateList(0);
+        link.recycle();
+        if (linkColor != null) {
+            clear.setTextColor(linkColor);
+        }
+        clear.setOnClickListener(v -> {
+            GFile.clearDebug();
+            result.setText(GFile.debugOut.toString());
+        });
+
+        LinearLayout root = new LinearLayout(a);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+        root.addView(scroll, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                           (int) (Dips.screenHeight() * 0.6)));
+        root.addView(clear);
+        TintUtil.asLinkButton(clear);
+
+        AlertDialog dialog = new AlertDialog.Builder(a)
+                .setView(root)
+                .setNegativeButton(R.string.close, null)
+                .create();
+        dialog.setOnDismissListener(d -> {
+            flag.set(false);
+            Keyboards.hideNavigation(a);
+        });
+        dialog.show();
     }
 
     public static void testWebView(final Activity a, final String path) {
@@ -1026,7 +1060,7 @@ public class Dialogs {
         l.addView(bolderText);
 
         TextView defaults = new TextView(c);
-        defaults.setTextAppearance(c, R.style.textLinkStyle);
+        defaults.setTextAppearance(R.style.textLinkStyle);
         defaults.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(defaults);
         defaults.setOnClickListener(new View.OnClickListener() {
@@ -1129,6 +1163,8 @@ public class Dialogs {
         final ListView list = (ListView) inflate.findViewById(R.id.listView1);
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_tag));
+        // Drawn as the settings panel draws its buttons: a ring in the colour of the word.
+        TintUtil.asLinkButton(add);
 
         final List<String> allTags = Tags2.getAllTags();
         final List<String> fileTags = Tags2.getAllTagsByFile(file);
@@ -1159,7 +1195,9 @@ public class Dialogs {
                 text.setChecked(fileTags.contains(tagName));
 
                 ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
-                TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
+                // The cross in the colour links are drawn in.
+                final int deleteColor = TxtUtils.getLinkTextColor(a);
+                TintUtil.setTintImageNoAlpha(delete, deleteColor);
                 delete.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1288,7 +1326,7 @@ public class Dialogs {
         if (activity == null) {
             return;
         }
-        TextView text = new TextView(activity);
+        TextView text = new SelectableTextView(activity);
         text.setText(textString);
         text.setTextIsSelectable(true);
         text.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);

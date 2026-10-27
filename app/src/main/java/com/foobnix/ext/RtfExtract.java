@@ -78,6 +78,9 @@ public class RtfExtract {
                 public void processExtractedText(String text) {
 
                     String htmlEncode = TextUtils.htmlEncode(text);
+                    if (BookCSS.get().isEnableBBCode) {
+                        htmlEncode = TxtUtils.convertBBCodeToHtml(htmlEncode);
+                    }
                     if (isEnableHypens) {
                         htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }

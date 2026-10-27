@@ -1,11 +1,14 @@
 package org.ebookdroid.core;
 
 import android.graphics.PointF;
+import android.os.Looper;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
+import android.util.Pair;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
@@ -27,6 +30,8 @@ import org.ebookdroid.common.touch.MultiTouchGestureDetector;
 import org.ebookdroid.common.touch.TouchManager;
 import org.ebookdroid.common.touch.TouchManager.Touch;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
@@ -162,14 +167,70 @@ public abstract class AbstractViewController extends AbstractComponentController
             PageIndex currentPage = bs.getCurrentPage(getBase().getDocumentModel().getPageCount());
             int toPage = currentPage != null ? currentPage.docIndex : 0;
 
+            CodecDocument doc = getBase().getDecodeService() != null ? getBase().getDecodeService().getCodecDocument() : null;
+            // foliate reads no page on the UI thread, where this runs: the book opens at the
+            // percentage and the exact place is looked for on a thread of its own
+            final boolean later = doc instanceof FoliateDocument && Looper.myLooper() == Looper.getMainLooper();
+            if (!later) {
+                final int found = placeOf(doc, bs.cfi, bs.pt, toPage);
+                if (found > 0) {
+                    toPage = found - 1;
+                }
+            }
+
             if (AppState.get().isAlwaysOpenOnPage1) {
                 toPage = 0;
             }
 
 
+            final boolean find = later && !AppState.get().isAlwaysOpenOnPage1;
+            final String cfi = bs.cfi;
+            final String pt = bs.pt;
             goToPage(toPage, bs.x, bs.y);
+            if (find) {
+                goToPlaceLater(doc, cfi, pt, bs.x, toPage);
+            }
 
         }
+    }
+
+    /**
+     * The 1-based page the book was left on, or -1. The exact place, when the engine that laid it
+     * out can name one, is the whole answer when it resolves, so the page text is not searched on
+     * top of it - that would trade an exact page for an approximate one.
+     */
+    private static int placeOf(final CodecDocument doc, final String cfi, final String pt, final int near) {
+        if (doc == null) {
+            return -1;
+        }
+        final int exact = TxtUtils.isNotEmpty(cfi) ? doc.findLocationPage(cfi) : -1;
+        if (exact > 0) {
+            return exact;
+        }
+        return TxtUtils.isNotEmpty(pt) ? doc.findBookmarkPage(near + 1, null, pt) : -1;
+    }
+
+    /**
+     * Moves to the place found unless the reader has already moved on from the page opened at.
+     * The place is taken before the book is opened at the percentage: that clears it for the page
+     * opened at, and the save that follows writes that page's own.
+     */
+    private void goToPlaceLater(final CodecDocument doc, final String cfi, final String pt, final float x,
+                                final int opened) {
+        if (TxtUtils.isEmpty(cfi) && TxtUtils.isEmpty(pt)) {
+            return;
+        }
+        new Thread(() -> {
+            final int found = placeOf(doc, cfi, pt, opened);
+            if (found <= 0 || found - 1 == opened) {
+                return;
+            }
+            base.getActivity().runOnUiThread(() -> {
+                if (getBase().getDocumentModel().getCurrentViewPageIndex() == opened) {
+                    goToPage(found - 1, x, 0);
+                }
+            });
+        }, "@T PlaceFind").start();
     }
 
     protected final void updatePosition(final Page page, final ViewState viewState) {
@@ -586,6 +647,34 @@ public abstract class AbstractViewController extends AbstractComponentController
         }
         return null;
 
+    }
+
+    /**
+     * The mark of Librera's own under a tap, with the page it is on, or null.
+     *
+     * The same walk as {@link #isAnnotationTap}, over the marks Librera keeps rather than the
+     * ones inside the document, so the eraser works the same for either.
+     */
+    public final Pair<Page, AnnotationsFinder.Drawn> isMarkTap(final float x, final float y) {
+        final float zoom = base.getZoomModel().getZoom();
+        final RectF rect = new RectF(x, y, x, y);
+        rect.offset(getScrollX(), getScrollY());
+
+        for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
+            final RectF bounds = page.getBounds(zoom);
+            if (!RectF.intersects(bounds, rect) || LengthUtils.isEmpty(page.marks)) {
+                continue;
+            }
+            for (AnnotationsFinder.Drawn mark : page.marks) {
+                for (RectF normalized : mark.rects) {
+                    final RectF onScreen = page.getPageRegion(bounds, new RectF(normalized));
+                    if (onScreen != null && RectF.intersects(onScreen, rect)) {
+                        return new Pair<Page, AnnotationsFinder.Drawn>(page, mark);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     protected final boolean processLinkTap(final float x, final float y) {

@@ -28,6 +28,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.CbzCbrExtractor;
@@ -39,9 +40,10 @@ import com.foobnix.ext.OdtExtractor;
 import com.foobnix.ext.RtfExtract;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
@@ -81,7 +83,6 @@ import java.util.Locale;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
 import mobi.librera.smartreflow.SmartReflow1;
-import okhttp3.Request;
 
 public class ImageExtractor {
 
@@ -331,7 +332,16 @@ public class ImageExtractor {
             }
         }
 
-        FileMeta fileMeta = AppDB.get().getOrCreate(path);
+        // The copy of a storage book lives in the cache and is not a book of the user's, so it
+        // gets a record of its own instead of one in the library.
+        final boolean isSafCopy = CacheZipUtils.isSafBookCopy(path);
+        FileMeta fileMeta;
+        if (isSafCopy) {
+            fileMeta = new FileMeta(path);
+            fileMeta.setState(FileMetaCore.STATE_NONE);
+        } else {
+            fileMeta = AppDB.get().getOrCreate(path);
+        }
 
         LOG.d("FileMeta-State", fileMeta.getState());
 
@@ -345,7 +355,9 @@ public class ImageExtractor {
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(unZipPath));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-            AppDB.get().save(fileMeta);
+            if (!isSafCopy) {
+                AppDB.get().save(fileMeta);
+            }
         }
 
         pageUrl.setPath(unZipPath);
@@ -575,6 +587,10 @@ public class ImageExtractor {
             TextWord[][] text = pageCodec.getText();
             PageImageState.get().pagesText.put(pageUrl.getPage(), text);
             PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+            // The reader's own marks, resolved on this thread for the same reason the text is:
+            // finding one in a reflowable book means searching, and the page is about to be drawn.
+            PageImageState.get().pagesMarks.put(pageUrl.getPage(),
+                    AnnotationsFinder.forCurrentBook().forPage(codeCache, pageCodec, pageUrl.getPage()));
             if (BookType.PDF.is(path)) {
                 PageImageState.get().pagesAnnotation.put(pageUrl.getPage(), pageCodec.getAnnotations());
             }
@@ -619,6 +635,12 @@ public class ImageExtractor {
         if (imageUri == null) {
             imageUri = "";
         }
+        // The crash record is two synchronous preference writes, and it is only worth them where
+        // a native reader runs: a cover that is merely drawn or decoded by the platform cannot
+        // take the process down with it, and paying for it there doubles the cost of the cover.
+        if (!isCrashGuarded(imageUri)) {
+            return getStreamInner(imageUri, "");
+        }
         final String hash = "" + imageUri.hashCode();
         try {
             final InputStream streamInner;
@@ -638,6 +660,22 @@ public class ImageExtractor {
         }
     }
 
+    private boolean isCrashGuarded(String imageUri) {
+        if (imageUri.startsWith(Safe.TXT_SAFE_RUN) || imageUri.startsWith("data:") || imageUri.startsWith("assets:")) {
+            return false;
+        }
+        try {
+            String path = PageUrl.fromString(imageUri).getPath();
+            if (ExtUtils.isExteralSD(path)) {
+                // Nothing but the name is drawn, unless the book is copied out and read.
+                return AppState.get().isSafBookCovers && !ExtUtils.isImagePath(path);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return true;
+    }
+
     public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
@@ -647,18 +685,8 @@ public class ImageExtractor {
             return messageFile("safe run", "stub");
 
         }
-        if (imageUri.startsWith("http")) {
-
-            Request request = new Request.Builder()//
-                    .header("User-Agent", OPDS.USER_AGENT)
-                    .header("Accept-Language", AppState.get().getAppLang())
-                    .url(imageUri)//
-                    .build();//
-
-            LOG.d("https!!!", imageUri);
-            return OPDS.client.newCall(request).execute().body().byteStream();
-        }
-
+        // Pictures off the network never come here: Glide fetches and decodes those itself, at
+        // the size they are shown at (see OkHttpUrlLoader).
         if (imageUri.startsWith("data:")) {
             String uri = imageUri;
             // uri = uri.replace("data:image/png;base64,", "");
@@ -675,15 +703,37 @@ public class ImageExtractor {
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
+        File coverCopy = null;
 
         try {
+
+            // A book from the history, known by a path the app may no longer read, is read
+            // through a folder the user handed over instead, as ExtUtils.openFile opens it
+            if (!ExtUtils.isExteralSD(path) && path.startsWith("/") && !Android6.canWrite(c)
+                    && !new File(path).canRead()) {
+                String saf = ExtUtils.getSafUriForPath(c, path);
+                if (saf != null) {
+                    path = saf;
+                }
+            }
 
             if (ExtUtils.isExteralSD(path)) {
                 if (ExtUtils.isImagePath(path)) {
                     return c.getContentResolver().openInputStream(Uri.parse(path));
                 }
                 String display = ExtUtils.getFileName(Uri.decode(path));
-                return messageFile("", display);
+
+                // A book the readers can open only as a file: with covers for added storage
+                // asked for, the cover is read from a copy, thrown away again below unless it is
+                // the book being read.
+                File copy = AppState.get().isSafBookCovers ?
+                        CacheZipUtils.getSafCoverCopy(c, path, display) : null;
+                if (copy == null) {
+                    return messageFile("", display);
+                }
+                coverCopy = copy;
+                path = copy.getPath();
+                pageUrl.setPath(path);
             }
 
             if (path.startsWith(Clouds.PREFIX_CLOUD)) {
@@ -787,7 +837,7 @@ public class ImageExtractor {
             IMG.clearMemoryCache();
             return messageFile("#error", "");
         } finally {
-
+            CacheZipUtils.removeSafCoverCopy(coverCopy);
         }
     }
 

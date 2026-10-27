@@ -4,6 +4,8 @@ import static com.foobnix.model.AppProfile.SYNC_FOLDER_DEVICE_PROFILE;
 
 import android.net.Uri;
 
+import com.foobnix.pdf.info.Android6;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
@@ -27,6 +29,9 @@ import org.librera.JSONArray;
 import org.librera.JSONException;
 import org.librera.LinkedJSONObject;
 
+import java.util.Set;
+import java.util.HashSet;
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -267,6 +272,12 @@ public class AppData {
     }
 
     public void addFavorite(SimpleMeta simpleMeta) {
+        // A book on added storage starred while read from its copy is kept by its document uri:
+        // the copy goes with the next book opened
+        String saf = CacheZipUtils.getSafUriOfCopy(simpleMeta.getPath());
+        if (saf != null) {
+            simpleMeta = new SimpleMeta(saf, simpleMeta.time);
+        }
         add(simpleMeta, AppProfile.syncFavorite);
         EventBus.getDefault()
                 .post(new NotifyAllFragments());
@@ -307,11 +318,35 @@ public class AppData {
 
         AppDB.get().clearAllFavorites();
 
+        final boolean canReadPaths = Android6.canWrite(LibreraApp.context);
+        final Map<String, FileMeta> favoriteByKey = new HashMap<>();
         for (SimpleMeta s : favorites) {
             s = SimpleMeta.SyncSimpleMeta(s);
+            // kept while the app had only folders handed over: by its path, now it has the
+            // permission
+            String file = ExtUtils.getSafDocumentPath(LibreraApp.context, s.getPath());
+            if (file != null) {
+                s = new SimpleMeta(file, s.time);
+            }
 
-            if (new File(s.getPath()).isFile() || Clouds.isCloudFile(s.getPath())) {
+            if (new File(s.getPath()).isFile() || Clouds.isCloudFile(s.getPath())
+                    || ExtUtils.isExteralSD(s.getPath())) {
+                // one book kept both ways - by its document uri and by its path - is listed once,
+                // the way this app can open it now
+                String key = ExtUtils.getBookKey(s.getPath());
+                FileMeta held = favoriteByKey.get(key);
+                if (held != null) {
+                    if (ExtUtils.isExteralSD(held.getPath()) == canReadPaths) {
+                        res.remove(held);
+                    } else {
+                        continue;
+                    }
+                }
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
+                favoriteByKey.put(key, meta);
+                if (ExtUtils.isExteralSD(s.getPath()) && (meta.getSize() == null || meta.getSize() == 0)) {
+                    FileMetaCore.get().updateBasicMetaSaf(LibreraApp.context, meta);
+                }
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
@@ -386,6 +421,16 @@ public class AppData {
     List<FileMeta> recentCache = new ArrayList<FileMeta>();
     long recentCacheTime = 0;
 
+    /**
+     * Forgets the history read last. It is held for a moment so a burst of screens asking for it
+     * costs one read, but a profile loaded in that moment - the Librera folder handed over, the
+     * permission granted - has a history of its own, and the old one would be shown in its place.
+     */
+    public void clearRecentCache() {
+        recentCacheTime = 0;
+        recentCache = new ArrayList<FileMeta>();
+    }
+
     public List<FileMeta> getAllRecent(boolean updateProgress) {
 
         if (System.currentTimeMillis() - recentCacheTime < 2000) {
@@ -400,15 +445,55 @@ public class AppData {
         LOG.d("getAllRecent");
         List<FileMeta> res = new ArrayList<>();
 
+        Map<String, String> libraryByName = null;
+        Set<String> recentKeys = new HashSet<>();
         for (SimpleMeta it : recent) {
             SimpleMeta s = SimpleMeta.SyncSimpleMeta(it);
+            String path = s.getPath();
 
-            if (!new File(s.getPath()).isFile()) {
-                LOG.d("getAllRecent can't find file", s.getPath());
+            // A book on added storage the history knows by the copy it was read from: the copy is
+            // gone with the next book, or with the app, but the book is still in the library -
+            // through the folder handed over, or by its path once the permission is there
+            if (CacheZipUtils.isSafBookCopy(path) && !new File(path).isFile()) {
+                String book = CacheZipUtils.getSafUriOfCopy(path);
+                if (book == null) {
+                    if (libraryByName == null) {
+                        libraryByName = new HashMap<>();
+                        for (FileMeta it2 : AppDB.get().getAll()) {
+                            libraryByName.put(ExtUtils.getFileName(it2.getPath()), it2.getPath());
+                        }
+                    }
+                    book = libraryByName.get(ExtUtils.getFileName(path));
+                }
+                if (book != null) {
+                    path = book;
+                }
+            }
+
+            // kept while the app had only folders handed over: by its path, now it has the
+            // permission
+            String file = ExtUtils.getSafDocumentPath(LibreraApp.context, path);
+            if (file != null) {
+                path = file;
+            }
+
+            if (!ExtUtils.isExteralSD(path) && !new File(path).isFile()) {
+                LOG.d("getAllRecent can't find file", path);
                 continue;
             }
 
-            FileMeta meta = AppDB.get().getOrCreate(s.getPath());
+            // one book kept both ways - by its document uri and by its path - is listed once:
+            // the history is newest first, so the newest of the two stays
+            if (!recentKeys.add(ExtUtils.getBookKey(path))) {
+                continue;
+            }
+            FileMeta meta = AppDB.get().getOrCreate(path);
+            // A book on added storage the library scan has not reached - the scan still going, or
+            // cut short - knows only its document uri; its name, size and date come from the
+            // document itself, the way the scan would have filled them in
+            if (ExtUtils.isExteralSD(path) && (meta.getSize() == null || meta.getSize() == 0)) {
+                FileMetaCore.get().updateBasicMetaSaf(LibreraApp.context, meta);
+            }
             if (res.contains(meta)) {
                 continue;
             }

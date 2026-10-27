@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Құжатты онлайн түрлендіру</string>
    <string name="book_covers">Кітап қаптамалары</string>
    <string name="cover_image_size">Нобай өлшемі</string>
+   <string name="cover_radius">Қаптама бұрыштарының дөңгелектігі</string>
    <string name="column_count">Бағандар</string>
    <string name="show_book_covers">Кітап қаптамаларын көрсетіңіз</string>
    <string name="enable_effect_of_the_book_cover">Мұқабаларды басып шығаруға арналған қақпақ</string>
@@ -61,7 +62,7 @@
    <string name="web">Басты бет</string>
    <string name="beta_version">Бета нұсқасы</string>
    <string name="archive">Мұрағат</string>
-   <string name="rate_pdf_reader1">Пікір қалдырыңыз және Google Play-те бағалаңыз: әрі қарай даму үшін өте маңызды</string>
+   <string name="rate_pdf_reader1">Осы қолданба туралы пікірді Google Play-де қалдырыңыз. Бұл біз үшін өте маңызды</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Пішімделген мәтін (жалған графика)</string>
    <string name="continuous_text">Үздіксіз мәтін (жол үзілімі жоқ)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Стильдер</string>
    <string name="document_styles">Құжат</string>
    <string name="automatic_hyphenation">Тасымалдауды қосу</string>
+   <string name="parse_bbcode_tags">BBCode тегтерін өңдеу</string>
    <string name="empty_line">Бос жол</string>
    <string name="margin_width">Бет жағы</string>
    <string name="top">Жоғарғы</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Серия жоқ</string>
    <string name="no_genre">Жанр жоқ</string>
    <string name="no_language">Тіл жоқ</string>
+   <string name="no_date">Күні жоқ</string>
    <string name="without_series">N / A</string>
    <string name="folders">Қалта</string>
    <string name="recent">Жақында</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Электрондық пошта клиенті орнатылмаған</string>
    <string name="file_not_found">Файл табылмады</string>
    <string name="you_need_grant_permission5">Қолданбаға барлық кітаптарыңызды табу және көрсету үшін сіздің рұқсатыңыз қажет.</string>
+   <string name="allow">Рұқсат беру</string>
+   <string name="storage">Жад</string>
+   <string name="add_all_books_with_permission">Кітаптарды кітапханаңызға автоматты түрде қосу үшін қолданбаға «Жүктеулер» қалтасын қарап шығуға рұқсат беріңіз.</string>
+   <string name="allow_access_to_see_files">Осы қалтадағы кітаптарды көру үшін барлық файлдарға қол жеткізуге рұқсат беріңіз. Онсыз тек оның қалталары көрсетіледі.</string>
+   <string name="save_settings_in_librera_folder">Баптаулар мен оқу барысын Librera қалтасында сақтау.</string>
+   <string name="regrant_folder_title">Қалтаға қолжетімділікке қайта рұқсат беру</string>
+   <string name="regrant_folder_msg">Қолданба енді %1$s оқи алмайды: қолданба қайта орнатылғанда Android қалталарға қолжетімділікті жояды. Келесі экранда қалтаны қайта таңдаңыз.</string>
    <string name="remind_msg">Үзіліс жасау уақыты!</string>
    <string name="bookmark_for_this_page_already_exists">Бұл бетбелгі бұрыннан бар</string>
    <string name="can_t_download">Файлды жүктеу мүмкін емес</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Оқу режимі</string>
    <string name="convert_to">Ауыстыру</string>
-   <string name="mode_vertical">Жылжыту режимі</string>
-   <string name="mode_horizontally">Кітап режимі</string>
+   <string name="mode_vertical">Тік</string>
+   <string name="mode_horizontally">Беттеп</string>
    <string name="mode_musician">Музыканттың режимі</string>
    <string name="save">Сақтау</string>
    <string name="remember_choice">Таңдауын есте сақтаңыз</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Бет</string>
    <string name="page">Бет</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Таңдау...</string>
+   <string name="choose_">Таңдау</string>
    <string name="crop_white_borders">Ақ кеңістікті қиып алыңыз</string>
    <string name="full_screen">Толық экран</string>
    <string name="go">Барыңыз</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Айналдырылған дақыл</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Авторлардың атауын және метадеректерден кітаптың атауын шығарып алу (PDF)</string>
    <string name="meta_tags">Мета тегтері</string>
-   <string name="librera_pro">Librera PRO алыңыз — жарнамасыз, әрі осы қолданбадағы жарнаманы да жояды</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Осы қолданбадағы жарнаманы да алып тастайтын жарнамасыз қолданба</string>
    <string name="annotation">Аннотация</string>
    <string name="book">Кітап</string>
    <string name="information">Файл туралы ақпарат</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Бастапқы бөлімдері бар жетекші басшылары</string>
    <string name="size">Өлшемі</string>
    <string name="quick_bookmark_by_the_headset">Қашықтағы бетбелгілерді қосу (Start / Stop түймешігі)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS түймелерін беттің төменгі жағында көрсету</string>
    <string name="slider_scale">Слайдер шкаласы</string>
    <string name="chapter_format">Мәтіннің пішімі</string>
    <string name="play_a_music_file">Аудио файлды ойнату</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Қараңғы</string>
    <string name="profile">Профиль</string>
    <string name="new_profile">Жаңа профиль</string>
+   <string name="add_profile">Профиль қосу</string>
    <string name="main">Бастысы</string>
    <string name="do_you_want_to_switch_profile_">Басқа профильге ауысу керек пе?</string>
    <string name="sync_error">Синхрондау қатесі</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Жалпы беттер</string>
    <string name="close_menu">Мәзірді жабыңыз</string>
    <string name="go_to_page">Бетке өту</string>
-   <string name="update_library">Кітапхананы жаңарту</string>
+   <string name="update_library">Жаңарту</string>
    <string name="ascending">Көтерілуде</string>
    <string name="descending">Кему</string>
    <string name="remove">Алып тастаңыз</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Бастауыш әріптерді белгілеу</string>
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
+   <string name="show_storage_book_covers">Қосылған жад үшін мұқабаларды көрсету</string>
    <string name="accent">Екпін</string>
    <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Ескерту: бұл құжатта сақталмаған өзгерістер бар</string>
    <string name="bold_headings">Қалың шрифтпен жазылған тақырыптар</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Барлық жарнамаларды 1 сағатқа өшіру үшін осы қысқа бейнені көріңіз</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Барлық жарнамаларды 2 сағатқа өшіру үшін осы қысқа бейнені көріңіз</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Барлық жарнамаларды 3 сағатқа өшіру үшін осы қысқа бейнені көріңіз</string>
    <string name="the_book_is_complete">Кітап толықтай дайын.</string>
    <string name="time">Уақыт</string>
    <string name="date_added">Қосылған күні</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Контраст пен жарықтық түймесін көрсету</string>
    <string name="text_and_background_color">Мәтін және фон түсі</string>
    <string name="library_folders">Кітапхана қалталары</string>
+   <string name="library_folders_hint">Кітаптар осы қалталар мен олардың ішкі қалталарынан ізделеді.</string>
+   <string name="add_folder_hint">Бір қалтаны таңдаңыз</string>
+   <string name="add_storage_hint">SD картасы немесе USB жинақтағышы</string>
+   <string name="folder_no_access">Қол жеткізу жоқ · қайта рұқсат беру үшін түртіңіз</string>
    <string name="watch">Көру</string>
+   <string name="librerax_not_installed">LibreraX орнатылмаған. Оны жүктеп алып орнатыңыз, содан кейін кітапты қайта ашыңыз.</string>
+   <string name="remove_library_folder">Бұл қалтаны кітапханадан алып тастау керек пе? Ондағы файлдар жойылмайды.</string>
+   <string name="epub_engine">EPUB қозғалтқышы</string>
+   <string name="msg_epub_engine_unavailable">Бұл құрылғыда WebView қолжетімді емес.</string>
+   <string name="base_stylesheet">Негізгі стиль кестесін қолдану (foliate-js)</string>
+   <string name="pdf_engine">PDF қозғалтқышы</string>
+   <string name="msg_pdf_engine_unavailable">Бұл құрастырмада PDFium кітапханалары жоқ.</string>
+   <string name="book_open_failed">Бұл кітапты ашу мүмкін болмады.</string>
+   <string name="book_open_crashed">Өткен жолы бұл кітапты ашу кезінде қолданба күтпеген жерден жабылды.</string>
+   <string name="try_librerax">Оны LibreraX-те ашып көріңіз.</string>
+   <string name="get_librerax">LibreraX оны аша алуы мүмкін. Осы жерден жүктеп алыңыз:</string>
+   <string name="open_in_librerax">LibreraX-те ашу</string>
+   <string name="try_again">Қайталау</string>
+   <string name="export_to_librerax">LibreraX-ке экспорттау</string>
+   <string name="update_librerax">Librera-дан импорттау үшін LibreraX-ті соңғы нұсқаға жаңартыңыз.</string>
+   <string name="reading_progress">Оқу барысы</string>
 </resources>

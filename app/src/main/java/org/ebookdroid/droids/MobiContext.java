@@ -9,8 +9,10 @@ import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
@@ -26,7 +28,7 @@ public class MobiContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang).hashCode();
+        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + BookCSS.get().isEnableBBCode).hashCode();
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
         return cacheFile;
     }
@@ -59,7 +61,11 @@ public class MobiContext extends PdfContext {
             }
         }
 
-        final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileNameEpub, password);
+        final AbstractCodecDocument muPdfDocument = openReflowable(fileNameEpub, password);
+        if (muPdfDocument == null) {
+            // No engine could open it; openReflowable has logged why
+            return null;
+        }
 
         final File jsonFile = new File(cacheFile + ".json");
         if (jsonFile.isFile()) {
@@ -76,8 +82,11 @@ public class MobiContext extends PdfContext {
                         LOG.d("new file name", fileNameEpub);
                         muPdfDocument.setFootNotes(notes);
 
-                        JsonHelper.mapToFile(jsonFile, notes);
-                        LOG.d("save notes to file", jsonFile);
+                        // a cancelled extraction is empty or partial, it must not stay in the cache
+                        if (!TempHolder.get().loadingCancelled.get()) {
+                            JsonHelper.mapToFile(jsonFile, notes);
+                            LOG.d("save notes to file", jsonFile);
+                        }
 
                         removeTempFilesIfCancel();
 

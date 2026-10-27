@@ -1,6 +1,7 @@
 package com.foobnix.pdf;
 
 import android.content.Context;
+import com.foobnix.pdf.info.AppsConfig;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -36,6 +37,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.sys.DoubleClickListener;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
+import androidx.core.content.ContextCompat;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give
@@ -77,13 +79,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * stops this far short of that, so the ends are round without closing into circles.
      */
     private static final int FLOATING_RADIUS_INSET_DIPS = 4;
-    /**
-     * How much of the tint colour the floating chrome keeps. Two things bound it: the page
-     * has to be seen moving under the bars at all, and the white the labels are set in has
-     * to hold against the brightest thing that can pass beneath them - a white cover, which
-     * lightens the bar by whatever is let through.
-     */
-    public static final int FLOATING_ALPHA = 230;
     /** The patch the chosen tab keeps behind its icon and name. */
     private static final int PATCH_ALPHA = 46;
     /** The ripple a tap leaves on a tab, over that same patch. */
@@ -161,7 +156,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
      */
     /** The tint the floating chrome is painted in: the colour, with the page kept showing. */
     public static int floatingTint(int color) {
-        return setColorAlpha(color, FLOATING_ALPHA);
+        return setColorAlpha(color, AppsConfig.APP_TRANSPARENCY);
     }
 
     public void setTabsBackground(int color) {
@@ -174,7 +169,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
         boolean ink = AppState.get().appTheme == AppState.THEME_INK;
         floatingPill = new GradientDrawable();
-        floatingPill.setColor(ink ? pageColor() : setColorAlpha(color, FLOATING_ALPHA));
+        floatingPill.setColor(ink ? pageColor() : setColorAlpha(color, AppsConfig.APP_TRANSPARENCY));
         if (ink) {
             floatingPill.setStroke(Dips.DP_1, TintUtil.color);
         }
@@ -194,11 +189,48 @@ public class SlidingTabLayout extends HorizontalScrollView {
         applyFloatingRadius(h);
     }
 
-    /** The corners are cut from the height, so the pill keeps its shape at any text size. */
+    /**
+     * The corners are cut from the height, so the pill keeps its shape at any text size, and
+     * follow the cover radius: the default level is the pill as drawn, 0 a square bar, and
+     * the top level a full stadium.
+     */
     private void applyFloatingRadius(int height) {
         if (floatingPill != null && height > 0) {
-            floatingPill.setCornerRadius(Math.max(0, height / 2f - Dips.dpToPx(FLOATING_RADIUS_INSET_DIPS)));
+            float stadium = height / 2f;
+            float pill = Math.max(0, stadium - Dips.dpToPx(FLOATING_RADIUS_INSET_DIPS));
+            int level = Math.max(0, Math.min(TintUtil.COVER_RADIUS_MAX, AppState.get().coverRadius));
+            float radius = level <= 2 ? pill * level / 2f : pill + (stadium - pill) * (level - 2) / 2f;
+            floatingPill.setCornerRadius(radius);
+
+            // The chosen tab's patch sits inside the bar and is cut to the same round: fully
+            // rounded from the default pill up, and following the bar's corners below it.
+            patchRadius = level >= 2 ? Dips.DP_50 : Math.max(0, radius - getPaddingLeft());
+            if (getmTabStrip() != null) {
+                for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
+                    applyPatchRadius(getmTabStrip().getChildAt(i).getBackground());
+                }
+            }
         }
+    }
+
+    private void applyPatchRadius(Drawable background) {
+        if (background instanceof GradientDrawable) {
+            ((GradientDrawable) background).setCornerRadius(patchRadius);
+        } else if (background instanceof RippleDrawable) {
+            RippleDrawable ripple = (RippleDrawable) background;
+            for (int i = 0; i < ripple.getNumberOfLayers(); i++) {
+                applyPatchRadius(ripple.getDrawable(i));
+            }
+            Drawable mask = ripple.findDrawableByLayerId(android.R.id.mask);
+            if (mask != null) {
+                applyPatchRadius(mask);
+            }
+        }
+    }
+
+    /** A square bar is not lifted off the page: it runs to the screen's edges and foot. */
+    public static boolean isFlush() {
+        return isFloating() && AppState.get().coverRadius <= 0;
     }
 
     /** What the page behind the bar is painted with, for the themes that must hide it. */
@@ -216,11 +248,15 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * A tab-shaped patch. The radius is past any height a tab can reach, and a round rect
      * is drawn no rounder than half its own side, so the ends come out fully rounded.
      */
-    private boolean showTabPatch = true;
+    // Off for now: the chosen tab is told apart by nothing but the page it opens.
+    private boolean showTabPatch = false;
 
-    private static GradientDrawable roundedPatch(int color) {
+    /** The round of a tab's patch; the bar sets it once it knows its own height. */
+    private float patchRadius = AppState.get().coverRadius <= 0 ? 0 : Dips.DP_50;
+
+    private GradientDrawable roundedPatch(int color) {
         GradientDrawable patch = new GradientDrawable();
-        patch.setCornerRadius(Dips.DP_50);
+        patch.setCornerRadius(patchRadius);
         patch.setColor(color);
         return patch;
     }
@@ -243,6 +279,21 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
     }
 
+    /**
+     * Whether the tabs stand on a strip painted in the tint colour rather than on the page.
+     * On Ink the tint is black, so tabs there are drawn in white as on every other theme;
+     * tabs on the page keep the black the page's words are set in.
+     */
+    private boolean tabsOnTint = false;
+
+    public void setTabsOnTint(boolean value) {
+        tabsOnTint = value;
+    }
+
+    private boolean isInkOnPage() {
+        return AppState.get().appTheme == AppState.THEME_INK && !tabsOnTint;
+    }
+
     private void setTabPatch(View tab, boolean isSelected) {
         if (!isFloating()) {
             return;
@@ -252,6 +303,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
             return;
         }
         try {
+            if (!(tab.getBackground() instanceof RippleDrawable)) {
+                return;
+            }
             Drawable patch = ((RippleDrawable) tab.getBackground()).getDrawable(0);
             boolean ink = AppState.get().appTheme == AppState.THEME_INK;
             int color = setColorAlpha(ink ? TintUtil.color : Color.WHITE, PATCH_ALPHA);
@@ -263,6 +317,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private void clearTabPatch(View tab) {
         try {
+            if (!(tab.getBackground() instanceof RippleDrawable)) {
+                return;
+            }
             Drawable patch = ((RippleDrawable) tab.getBackground()).getDrawable(0);
             ((GradientDrawable) patch).setColor(Color.TRANSPARENT);
         } catch (Exception e) {
@@ -372,7 +429,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mViewPager = viewPager;
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            viewPager.addOnPageChangeListener(new InternalViewPagerListener());
             populateTabStrip();
         }
     }
@@ -390,7 +447,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
         // only leaves a patch of grey behind while the screen catches up with it.
         boolean ink = AppState.get().appTheme == AppState.THEME_INK;
 
-        if (isFloating()) {
+        if (isFlush()) {
+            // A square bar answers a tap with the page it opens and nothing drawn on itself.
+            textView.setBackground(null);
+        } else if (isFloating()) {
             // Rounded all the way round, as in LibreraX: only the pill's own corners are
             // held back. The mask keeps the ripple of a tap to the same shape.
             if (ink) {
@@ -494,7 +554,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 // TintUtil.addTextView(tabTitleView);
                 Drawable drawable = null;
                 try {
-                    drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
+                    drawable = ContextCompat.getDrawable(getContext(), adapter.getIconResId(i));
                     //drawable = new ScaleDrawable(drawable.getCurrent(),0,Dips.DP_10,Dips.DP_10);
                     int size = Dips.dpToPx(isIconsAlone() ? TAB_ICON_ALONE_DIPS : TAB_ICON_DIPS);
                     drawable.setBounds(0,0,size,size);
@@ -512,7 +572,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView.setCompoundDrawablePadding(
                         isIconsAlone() ? 0 : isFloating() ? Dips.DP_1 : Dips.dpToPx(5));
 
-                if (AppState.get().appTheme == AppState.THEME_INK) {
+                if (isInkOnPage()) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
                     tabTitleView.setTextColor(TintUtil.color);
                 } else {
@@ -604,7 +664,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 drawable = childAt.getCompoundDrawables()[0];
             }
 
-            if (AppState.get().appTheme == AppState.THEME_INK) {
+            if (isInkOnPage()) {
                 TintUtil.setDrawableTint(drawable, TintUtil.color);
                 childAt.setTextColor(TintUtil.color);
             } else {

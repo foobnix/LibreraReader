@@ -55,12 +55,14 @@ public class MyPopupMenu {
     List<Menu> list = new ArrayList<Menu>();
     private View anchor;
     private boolean isTabsActivity;
+    private boolean isLightSurface;
     private OnDismissListener onDismissListener;
 
     public MyPopupMenu(Context c, View anchor) {
         this.c = c;
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+        isLightSurface = TintUtil.isLightSurface(c, android.R.attr.colorBackgroundFloating);
 
 
     }
@@ -69,12 +71,31 @@ public class MyPopupMenu {
         this.c = anchor.getContext();
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+        isLightSurface = TintUtil.isLightSurface(c, android.R.attr.colorBackgroundFloating);
 
 
     }
 
     public void show() {
         show(-1, false);
+    }
+
+    /** The colour every icon in the menu is drawn in, on the surface the menu stands on. */
+    private void tintMenuIcon(ImageView imageView) {
+        if (isTabsActivity) {
+            if (AppState.get().appTheme == AppState.THEME_INK ||
+                    AppState.get().appTheme == AppState.THEME_LIGHT) {
+                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
+            } else {
+                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+            }
+        } else if (isLightSurface) {
+            // A reader's menu drawn white would swallow the white its bars' icons wear, so on
+            // a light menu an icon takes the theme colour.
+            TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
+        } else {
+            TintUtil.setTintImageWithAlpha(imageView, MagicHelper.getTextOrIconColor());
+        }
     }
 
     public void show(int pos, boolean isLong) {
@@ -141,9 +162,28 @@ public class MyPopupMenu {
                 }
 
 
+                // A mark goes at the end of the row, after the name; an icon stands in the
+                // column in front of it. Rows come back recycled, so both are set every time.
+                ImageView imageEnd = (ImageView) layout.findViewById(R.id.imageEnd);
+                imageEnd.setVisibility(View.GONE);
+                if (item.smallIcon && item.iconRes != 0) {
+                    imageEnd.setVisibility(View.VISIBLE);
+                    imageEnd.setImageResource(item.iconRes);
+                    tintMenuIcon(imageEnd);
+                }
+
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
-                imageView.setVisibility(View.GONE);
-                if (item.iconRes != 0) {
+                // Where any row in the menu carries an icon of its own, the rows without one
+                // keep the room it takes: the names all start at the same place.
+                boolean anyIcon = false;
+                for (Menu other : list) {
+                    if (other.iconRes != 0 && !other.smallIcon) {
+                        anyIcon = true;
+                        break;
+                    }
+                }
+                imageView.setVisibility(anyIcon ? View.INVISIBLE : View.GONE);
+                if (item.iconRes != 0 && !item.smallIcon) {
                     imageView.setVisibility(View.VISIBLE);
                     imageView.setImageResource(item.iconRes);
                     if (item.iconRes == R.mipmap.icon_pdf_pro || Boolean.TRUE.equals(item.active)) {
@@ -151,22 +191,12 @@ public class MyPopupMenu {
                     } else if (Boolean.FALSE.equals(item.active)) {
                         TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                     } else {
-
-                        if (isTabsActivity) {
-                            if (AppState.get().appTheme == AppState.THEME_INK ||
-                                    AppState.get().appTheme == AppState.THEME_LIGHT) {
-                                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
-                            } else {
-                                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
-                            }
-                        } else {
-                            TintUtil.setTintImageWithAlpha(imageView, MagicHelper.getTextOrIconColor());
-                        }
+                        tintMenuIcon(imageView);
                     }
                 } else if (item.drawable != null) {
                     profileLetter.setVisibility(View.VISIBLE);
                     profileLetter.setText(item.letter);
-                    profileLetter.setBackgroundDrawable(item.drawable);
+                    profileLetter.setBackground(item.drawable);
                     imageView.setVisibility(View.GONE);
                 } else {
                     imageView.setVisibility(View.GONE);
@@ -636,6 +666,7 @@ public class MyPopupMenu {
         OnMenuItemClickListener click;
         OnMenuItemClickListener onLongClick;
         Boolean active;
+        boolean smallIcon;
         String checkboxString;
         boolean checkboxState;
         CompoundButton.OnCheckedChangeListener checkedChangeListener;
@@ -677,6 +708,13 @@ public class MyPopupMenu {
 
         public Menu setIcon(int res) {
             this.iconRes = res;
+            return this;
+        }
+
+        /** An icon that marks a row rather than naming it: drawn small, and kept close to the name. */
+        public Menu setIconSmall(int res) {
+            this.iconRes = res;
+            this.smallIcon = res != 0;
             return this;
         }
 

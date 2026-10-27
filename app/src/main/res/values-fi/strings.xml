@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Muunna tiedosto (online)</string>
    <string name="book_covers">Kirjojen kannet</string>
    <string name="cover_image_size">Kuvan koko</string>
+   <string name="cover_radius">Kannen pyöristys</string>
    <string name="column_count">Sarakkeiden lukumäärä</string>
    <string name="show_book_covers">Näytä kirjojen kannet</string>
    <string name="enable_effect_of_the_book_cover">Käytä kansiefektiä</string>
@@ -61,7 +62,7 @@
    <string name="web">Sivusto</string>
    <string name="beta_version">Beta-versio</string>
    <string name="archive">Arkisto</string>
-   <string name="rate_pdf_reader1">Kirjoita palautetta ja arvioi Google Playssa, se on meille erittäin tärkeätä</string>
+   <string name="rate_pdf_reader1">Jätä palautetta tästä sovelluksesta Google Playssa. Se on meille erittäin tärkeää</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Muotoiltu teksti (pseudografiikka)</string>
    <string name="continuous_text">Jatkuva teksti (ei rivinvaihtoja)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Tyylit</string>
    <string name="document_styles">Asiakirja</string>
    <string name="automatic_hyphenation">Tekstin tavutus</string>
+   <string name="parse_bbcode_tags">BBCode-tagien käsittely</string>
    <string name="empty_line">Tyhjä rivi</string>
    <string name="margin_width">Sivun marginaalit</string>
    <string name="top">Yläreuna</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>
    <string name="no_language">Ei kieltä</string>
+   <string name="no_date">Ei päivämäärää</string>
    <string name="without_series">N/A</string>
    <string name="folders">Hakemisto</string>
    <string name="recent">Viimeisimmät</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Sähköpostisovellusta ei ole asennettuna.</string>
    <string name="file_not_found">Tiedostoa ei löytynyt</string>
    <string name="you_need_grant_permission5">Sovellus tarvitsee lupasi kaikkien kirjojen löytämiseen ja näyttämiseen.</string>
+   <string name="allow">Salli</string>
+   <string name="storage">Tallennustila</string>
+   <string name="add_all_books_with_permission">Salli sovelluksen tutkia Lataukset-kansiosi, jotta kirjat lisätään automaattisesti kirjastoosi.</string>
+   <string name="allow_access_to_see_files">Salli pääsy kaikkiin tiedostoihin nähdäksesi tämän kansion kirjat. Ilman sitä näytetään vain sen kansiot.</string>
+   <string name="save_settings_in_librera_folder">Tallenna asetukset ja lukuedistyminen Librera-kansioon.</string>
+   <string name="regrant_folder_title">Salli pääsy kansioon uudelleen</string>
+   <string name="regrant_folder_msg">Sovellus ei voi enää lukea kohdetta %1$s: Android poistaa kansioiden käyttöoikeudet, kun sovellus asennetaan uudelleen. Valitse kansio uudelleen seuraavassa näkymässä.</string>
    <string name="remind_msg">Pidä tauko ja lepuuta hetki silmiäsi!</string>
    <string name="bookmark_for_this_page_already_exists">Tälle sivulle on jo kirjanmerkki</string>
    <string name="can_t_download">Ei voida ladata</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Lukutila</string>
    <string name="convert_to">Muunna</string>
-   <string name="mode_vertical">Vieritys</string>
-   <string name="mode_horizontally">Kirjatila</string>
+   <string name="mode_vertical">Pystysuora</string>
+   <string name="mode_horizontally">Sivuittain</string>
    <string name="mode_musician">Muusikkotila</string>
    <string name="save">Tallenna</string>
    <string name="remember_choice">Muista valinta</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Sivu</string>
    <string name="page">Sivu</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Valitse...</string>
+   <string name="choose_">Valitse</string>
    <string name="crop_white_borders">Rajaa valkoiset reunat</string>
    <string name="full_screen">Koko näyttö</string>
    <string name="go">Mene</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Rajaa reunukset symmetrisesti</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Hae tekijöiden tiedot ja kirjan otsikot PDF-tiedoston metatiedoista</string>
    <string name="meta_tags">Metatunnisteet</string>
-   <string name="librera_pro">Hanki Librera PRO — mainokseton, ja se poistaa mainokset myös tästä sovelluksesta</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Mainokseton sovellus, joka poistaa mainokset myös tästä sovelluksesta</string>
    <string name="annotation">Huomautus</string>
    <string name="book">Kirja</string>
    <string name="information">Tiedoston tiedot</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Aloita luvut alkirjaimella</string>
    <string name="size">Koko</string>
    <string name="quick_bookmark_by_the_headset">Luo kirjanmerkki kuulokkeilla (toisto/tauko-painikkeella)</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Näytä TTS-painikkeet sivun alaosassa</string>
    <string name="slider_scale">Slider-asteikko</string>
    <string name="chapter_format">Lukuformaatti</string>
    <string name="play_a_music_file">Toista musiikkitiedosto</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Tumma OLED</string>
    <string name="profile">Profiili</string>
    <string name="new_profile">Uusi profiili</string>
+   <string name="add_profile">Lisää profiili</string>
    <string name="main">Ensisijainen</string>
    <string name="do_you_want_to_switch_profile_">Vaihdetaanko toiseen profiiliin?</string>
    <string name="sync_error">Synkronointivirhe</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Sivuja yhteensä</string>
    <string name="close_menu">Sulje valikko</string>
    <string name="go_to_page">Mene sivulle</string>
-   <string name="update_library">Päivitä kirjasto</string>
+   <string name="update_library">Päivitä</string>
    <string name="ascending">Nouseva</string>
    <string name="descending">Laskeva</string>
    <string name="remove">Poista</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Korostamalla alkukirjaimia</string>
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
+   <string name="show_storage_book_covers">Näytä kannet lisätystä sijainnista</string>
    <string name="accent">Aksentti</string>
    <string name="discarded_books">Hylätyt kirjat</string>
    <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Varoitus: tässä asiakirjassa on tallentamattomia muutoksia</string>
    <string name="bold_headings">Lihavoidut otsikot</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset 1 tunniksi</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset kahdeksi tunniksi</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Katso tämä lyhyt video sammuttaaksesi kaikki mainokset kolmeksi tunniksi</string>
    <string name="the_book_is_complete">Kirja on valmis.</string>
    <string name="time">Aika</string>
    <string name="date_added">Lisäyspäivämäärä</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Näytä kontrasti ja kirkkaus -painike</string>
    <string name="text_and_background_color">Tekstin ja taustan väri</string>
    <string name="library_folders">Kirjaston kansiot</string>
+   <string name="library_folders_hint">Kirjoja etsitään näistä kansioista ja niiden alikansioista.</string>
+   <string name="add_folder_hint">Valitse yksi kansio</string>
+   <string name="add_storage_hint">SD-kortti tai USB-asema</string>
+   <string name="folder_no_access">Ei käyttöoikeutta · napauta salliaksesi uudelleen</string>
    <string name="watch">Katso</string>
+   <string name="librerax_not_installed">LibreraX ei ole asennettu. Lataa ja asenna se ja avaa kirja sitten uudelleen.</string>
+   <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>
+   <string name="epub_engine">EPUB-moottori</string>
+   <string name="msg_epub_engine_unavailable">WebView ei ole käytettävissä tässä laitteessa.</string>
+   <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
+   <string name="pdf_engine">PDF-moottori</string>
+   <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
+   <string name="book_open_failed">Tätä kirjaa ei voitu avata.</string>
+   <string name="book_open_crashed">Sovellus sulkeutui odottamatta, kun tätä kirjaa avattiin viimeksi.</string>
+   <string name="try_librerax">Kokeile avata se LibreraX:ssä.</string>
+   <string name="get_librerax">LibreraX saattaa pystyä avaamaan sen. Lataa se täältä:</string>
+   <string name="open_in_librerax">Avaa LibreraX:ssä</string>
+   <string name="try_again">Yritä uudelleen</string>
+   <string name="export_to_librerax">Vie LibreraX:ään</string>
+   <string name="update_librerax">Päivitä LibreraX uusimpaan versioon tuodaksesi tiedot Librerasta.</string>
+   <string name="reading_progress">Lukuedistyminen</string>
 </resources>

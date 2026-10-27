@@ -36,7 +36,6 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -70,6 +69,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -109,6 +109,27 @@ public class FileInformationDialog {
             sample.addView(t);
         }
 
+    }
+
+    /** The whole date beside the year: a day in the reader's own form, less than that as stored. */
+    private static String readableDate(String pubDate) {
+        if (pubDate == null || pubDate.length() <= 4) {
+            return "";
+        }
+        if (pubDate.length() < 10) {
+            return pubDate;
+        }
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.clear();
+            calendar.set(Integer.parseInt(pubDate.substring(0, 4)),
+                         Integer.parseInt(pubDate.substring(5, 7)) - 1,
+                         Integer.parseInt(pubDate.substring(8, 10)));
+            return ExtUtils.getDateFormat(calendar.getTimeInMillis());
+        } catch (Exception e) {
+            LOG.e(e);
+            return pubDate;
+        }
     }
 
     /**
@@ -210,6 +231,10 @@ public class FileInformationDialog {
         }
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
+        // Set in the colour the authors are set in: a fact that answers a tap looks the same
+        // wherever it stands on the sheet.
+        year.setTextColor(TintUtil.getColorInDayNighth());
+        ((TextView) dialog.findViewById(R.id.pubDate)).setText(readableDate(fileMeta.getPubDate()));
         year.setOnClickListener(v -> {
             EventBus.getDefault()
                     .post(new SearchMetaMsg(SEARCH_IN.YEAR, year.getText()
@@ -219,15 +244,14 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if (AppsConfig.IS_LOG) {
-            pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
-        }
 
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
+        ((TextView) dialog.findViewById(R.id.bookExt)).setText(TxtUtils.nullToEmpty(fileMeta.getExt()));
 
         TextView publisher = (TextView) dialog.findViewById(R.id.publisher);
         publisher.setText(fileMeta.getPublisher());
+        publisher.setTextColor(TintUtil.getColorInDayNighth());
 
         publisher.setOnClickListener(v -> {
             EventBus.getDefault()
@@ -280,29 +304,12 @@ public class FileInformationDialog {
         });
 
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
-        final TextView expand = (TextView) dialog.findViewById(R.id.expand);
         String bookOverview = FileMetaCore.getBookOverview(file.getPath());
         infoView.setText(TxtUtils.nullToEmpty(bookOverview));
 
-        infoView.post(new Runnable() {
-            @Override public void run() {
-                int lineCount = infoView.getLineCount();
-                boolean showExpandView = lineCount > 0 && infoView.getLayout()
-                                                                  .getEllipsisCount(lineCount - 1) > 0;
-                expand.setVisibility(showExpandView ? View.VISIBLE : View.GONE);
-                infoView.setTextIsSelectable(!showExpandView);
-            }
-        });
-
-        expand.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
-                infoView.setMaxLines(Integer.MAX_VALUE);
-                infoView.setEllipsize(null);
-                infoView.setTextIsSelectable(true);
-                expand.setVisibility(View.GONE);
-            }
-        });
+        // The annotation is read in full, at the end of the sheet, rather than cut to a few
+        // lines behind a More: it is what the book is about.
+        infoView.setTextIsSelectable(true);
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
@@ -527,6 +534,7 @@ public class FileInformationDialog {
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
+        TintUtil.roundCover(coverImage);
 
         IMG.getCoverPageWithEffect(a, file.getPath(), null)
            .into(coverImage);
@@ -568,6 +576,17 @@ public class FileInformationDialog {
 
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
 
+        // The sheet is closed from the ringed cross in its corner, mark and ring both drawn in
+        // the colour of the two marks beside it; it keeps no foot of buttons of its own.
+        final ImageView closeInfo = (ImageView) dialog.findViewById(R.id.closeInfo);
+        TintUtil.setTintImageNoAlpha(closeInfo, TintUtil.getColorInDayNighth());
+        TintUtil.setRingColor(closeInfo, TintUtil.getColorInDayNighth());
+        closeInfo.setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+            }
+        });
+
         TextView editTitle = (TextView) dialog.findViewById(R.id.editTitle);
         TextView editAuthor = (TextView) dialog.findViewById(R.id.editAuthor);
         TextView editAnnotation = (TextView) dialog.findViewById(R.id.editAnnotation);
@@ -591,7 +610,12 @@ public class FileInformationDialog {
             editMeta(fileMeta, editAnnotation, infoView, "info:Annotation");
         }
         // A fact the book has none of is left out rather than shown empty. The name, the author
-        // and the annotation stay whatever they hold - each carries the word that edits it.
+        // and the annotation stay whatever they hold - each carries the word that edits it -
+        // except an annotation that cannot be edited: with nothing in it and no way to write
+        // one, it would end the sheet with a name over nothing.
+        if (editAnnotation.getVisibility() != View.VISIBLE && TxtUtils.isEmpty(infoView.getText().toString().trim())) {
+            Views.gone(dialog.findViewById(R.id.rowAnnotation), infoView);
+        }
         hideRowIfEmpty(dialog, R.id.rowYear, R.id.year);
         hideRowIfEmpty(dialog, R.id.rowPublisher, R.id.publisher);
         hideRowIfEmpty(dialog, R.id.rowIsbn, R.id.isbn);
@@ -603,7 +627,6 @@ public class FileInformationDialog {
         TintUtil.asLinkButton(editTitle, 0);
         TintUtil.asLinkButton(editAuthor, 0);
         TintUtil.asLinkButton(editAnnotation, 0);
-        TintUtil.asLinkButton(expand, 0);
         TintUtil.asLinkButton(convertFile, 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.openWith), 0);
         TintUtil.asLinkButton((TextView) dialog.findViewById(R.id.sendFile), 0);
@@ -612,18 +635,6 @@ public class FileInformationDialog {
 
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);
-
-        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-
-        builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int id) {
-                ExtUtils.showDocumentWithoutDialog2(a, file);
-            }
-        });
 
         infoDialog = builder.create();
         infoDialog.setOnDismissListener(new OnDismissListener() {
@@ -634,12 +645,6 @@ public class FileInformationDialog {
         });
 
         infoDialog.show();
-
-        // The two words that close the sheet and open the book wear the same ring as the
-        // buttons inside it, asked for no width of their own - a sheet's foot has room for two
-        // side by side only if neither takes the width a column of them would.
-        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_NEGATIVE));
-        TintUtil.asDialogButton(infoDialog.getButton(AlertDialog.BUTTON_POSITIVE));
     }
 
     private static void editMeta(FileMeta fileMeta, TextView click, TextView author, String key) {
@@ -761,7 +766,7 @@ public class FileInformationDialog {
         }
 
         builder.setMessage("⛔" + a.getString(R.string.do_you_want_to_delete_this_file_1) + "\n\n\"" + name + "\"")
-               .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+               .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                    @Override public void onClick(final DialogInterface dialog, final int id) {
 
                        if (Clouds.isLibreraSyncRootFolder(file.getPath())) {

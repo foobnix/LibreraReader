@@ -40,6 +40,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV7());
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
+        migrations.add(new MigrationV10());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -146,6 +147,23 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         public void runMigration(Database db) {
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.FilesCount.columnName + " INTEGER");
             db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.ReadCount.columnName + " INTEGER");
+        }
+    }
+
+    private static class MigrationV10 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 10;
+        }
+
+        @Override
+        public void runMigration(Database db) {
+            db.execSQL("ALTER TABLE " + FileMetaDao.TABLENAME + " ADD COLUMN " + FileMetaDao.Properties.PubDate.columnName + " TEXT");
+            // Books already read keep their year, padded to four figures so it sorts as text.
+            db.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.PubDate.columnName +
+                       " = substr('0000' || " + FileMetaDao.Properties.Year.columnName + ", -4, 4) WHERE " +
+                       FileMetaDao.Properties.Year.columnName + " IS NOT NULL");
         }
     }
 

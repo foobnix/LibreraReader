@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Bihurtu dokumentuak (linean)</string>
    <string name="book_covers">Liburuen azalak</string>
    <string name="cover_image_size">Azaleko irudiaren tamaina</string>
+   <string name="cover_radius">Azalaren erradioa</string>
    <string name="column_count">Zutabe kopurua</string>
    <string name="show_book_covers">Erakutsi liburuen azalak</string>
    <string name="enable_effect_of_the_book_cover">Gaitu liburuen azalen efektuak</string>
@@ -61,7 +62,7 @@
    <string name="web">Webgunea</string>
    <string name="beta_version">Beta bertsioa</string>
    <string name="archive">Fitxategia</string>
-   <string name="rate_pdf_reader1">Mesedez, idatzi zure iruzkinak eta baloratu iezaguzu Google Play-n; Guretzat oso garrantzitsua da</string>
+   <string name="rate_pdf_reader1">Utzi aplikazio honi buruzko iritzia Google Play-n. Oso garrantzitsua da guretzat</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatua duen testua (pseudo grafikoak)</string>
    <string name="continuous_text">Testu jarraia (lerro jauzirik gabe)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Estiloak</string>
    <string name="document_styles">Dokumentu</string>
    <string name="automatic_hyphenation">Aktibatu banaketa (-)</string>
+   <string name="parse_bbcode_tags">Prozesatu BBCode etiketak</string>
    <string name="empty_line">Paragrafo-tartea</string>
    <string name="margin_width">Marjinak</string>
    <string name="top">Goian</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Sailik gabe</string>
    <string name="no_genre">Generorik gabe</string>
    <string name="no_language">Hizkuntzarik gabe</string>
+   <string name="no_date">Datarik gabe</string>
    <string name="without_series">Sailik gabe</string>
    <string name="folders">Karpetak</string>
    <string name="recent">Ikusi berria</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Ez dago posta-aplikaziorik instalatuta.</string>
    <string name="file_not_found">Fitxategia ez da aurkitu</string>
    <string name="you_need_grant_permission5">Aplikazioak zure baimena behar du zure liburu guztiak aurkitu eta bistaratzeko.</string>
+   <string name="allow">Baimendu</string>
+   <string name="storage">Biltegia</string>
+   <string name="add_all_books_with_permission">Mesedez, utzi aplikazioari Deskargak karpeta arakatzen, liburuak zure liburutegira automatikoki gehitzeko.</string>
+   <string name="allow_access_to_see_files">Baimendu fitxategi guztietarako sarbidea karpeta honetako liburuak ikusteko. Hori gabe, bere karpetak soilik erakusten dira.</string>
+   <string name="save_settings_in_librera_folder">Gorde ezarpenak eta irakurketaren aurrerapena Librera karpetan.</string>
+   <string name="regrant_folder_title">Baimendu berriro karpetarako sarbidea</string>
+   <string name="regrant_folder_msg">Aplikazioak ezin du jada %1$s irakurri: Androidek karpetetarako sarbidea kentzen du aplikazioa berriro instalatzean. Aukeratu karpeta berriro hurrengo pantailan.</string>
    <string name="remind_msg">Hartu arnasa eta eman atsedena begiei.</string>
    <string name="bookmark_for_this_page_already_exists">Laster marka hori badago</string>
    <string name="can_t_download">Ezin da deskargatu</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Irakurketa modua</string>
    <string name="convert_to">Hona bihurtu</string>
-   <string name="mode_vertical">Korritze modua</string>
-   <string name="mode_horizontally">Liburu modua</string>
+   <string name="mode_vertical">Bertikala</string>
+   <string name="mode_horizontally">Orrikatua</string>
    <string name="mode_musician">Musika modua</string>
    <string name="save">Gorde</string>
    <string name="remember_choice">Gogoratu aukeraketa</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Orria</string>
    <string name="page">Orria</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Aukeratu...</string>
+   <string name="choose_">Aukeratu</string>
    <string name="crop_white_borders">Moztu ertz zuriak</string>
    <string name="full_screen">Pantaila osoa</string>
    <string name="go">Joan</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Moztu ertzak simetrikoki</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Erakutsi egilea eta liburuaren izenburua meta-etiketetatik</string>
    <string name="meta_tags">Metaetiketak</string>
-   <string name="librera_pro">Eskuratu Librera PRO — iragarkirik gabe, eta aplikazio honetako iragarkiak ere kentzen ditu</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Iragarkirik gabeko aplikazio bat, aplikazio honetako iragarkiak ere kentzen dituena</string>
    <string name="annotation">Oharra</string>
    <string name="book">Liburua</string>
    <string name="information">Informazioa</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Erakutsi letra larria</string>
    <string name="size">Tamaina</string>
    <string name="quick_bookmark_by_the_headset">Urrutiko laster-markak</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Erakutsi TTS botoiak orriaren behealdean</string>
    <string name="slider_scale">Graduatzaileen eskala</string>
    <string name="chapter_format">Kapituluaren formatua</string>
    <string name="play_a_music_file">Erreproduzitu musika fitxategia</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">OLED iluna</string>
    <string name="profile">Profila</string>
    <string name="new_profile">Profil berria</string>
+   <string name="add_profile">Gehitu profila</string>
    <string name="main">Nagusia</string>
    <string name="do_you_want_to_switch_profile_">Beste profil batera aldatu?</string>
    <string name="sync_error">Sinkronizazio akatsa</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Orriak guztira</string>
    <string name="close_menu">Itxi menua</string>
    <string name="go_to_page">Joan orrialdera</string>
-   <string name="update_library">Eguneratze liburutegia</string>
+   <string name="update_library">Eguneratu</string>
    <string name="ascending">Behetik gora</string>
    <string name="descending">Goitik behera</string>
    <string name="remove">Kendu</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Hasierako letrak nabarmentzea</string>
    <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
+   <string name="show_storage_book_covers">Erakutsi gehitutako biltegiaren azalak</string>
    <string name="accent">Azentua</string>
    <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Abisua: dokumentu honek gorde gabeko aldaketak ditu</string>
    <string name="bold_headings">Izenburu lodiak</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Ikusi bideo labur hau iragarki guztiak ordubetez desaktibatzeko</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Ikusi bideo labur hau iragarki guztiak 2 orduz desaktibatzeko</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Ikusi bideo labur hau iragarki guztiak 3 orduz desaktibatzeko</string>
    <string name="the_book_is_complete">Liburua osatuta dago.</string>
    <string name="time">Denbora</string>
    <string name="date_added">Gehitze data</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Kontrastea eta distira erakusteko botoia</string>
    <string name="text_and_background_color">Testua eta atzeko planoaren kolorea</string>
    <string name="library_folders">Liburutegiko karpetak</string>
+   <string name="library_folders_hint">Liburuak karpeta hauetan eta haien azpikarpetetan bilatzen dira.</string>
+   <string name="add_folder_hint">Aukeratu karpeta bat</string>
+   <string name="add_storage_hint">SD txartela edo USB unitatea</string>
+   <string name="folder_no_access">Sarbiderik ez · sakatu berriro baimentzeko</string>
    <string name="watch">Ikusi</string>
+   <string name="librerax_not_installed">LibreraX ez dago instalatuta. Deskargatu eta instalatu, eta ireki liburua berriro.</string>
+   <string name="remove_library_folder">Karpeta hau liburutegitik kendu? Bertako fitxategiak ez dira ezabatuko.</string>
+   <string name="epub_engine">EPUB motorra</string>
+   <string name="msg_epub_engine_unavailable">WebView ez dago erabilgarri gailu honetan.</string>
+   <string name="base_stylesheet">Aplikatu oinarrizko estilo-orria (foliate-js)</string>
+   <string name="pdf_engine">PDF motorra</string>
+   <string name="msg_pdf_engine_unavailable">Konpilazio honek ez ditu PDFium liburutegiak.</string>
+   <string name="book_open_failed">Ezin izan da liburu hau ireki.</string>
+   <string name="book_open_crashed">Aplikazioa ustekabean itxi zen azken aldiz liburu hau irekitzean.</string>
+   <string name="try_librerax">Saiatu LibreraX-en irekitzen.</string>
+   <string name="get_librerax">Baliteke LibreraX-ek irekitzea. Deskargatu hemen:</string>
+   <string name="open_in_librerax">Ireki LibreraX-en</string>
+   <string name="try_again">Saiatu berriro</string>
+   <string name="export_to_librerax">Esportatu LibreraX-era</string>
+   <string name="update_librerax">Eguneratu LibreraX azken bertsiora Librera-tik inportatzeko.</string>
+   <string name="reading_progress">Irakurketaren aurrerapena</string>
 </resources>

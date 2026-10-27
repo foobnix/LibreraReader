@@ -5,7 +5,6 @@ import com.foobnix.ext.TxtExtract;
 import com.foobnix.model.AppState;
 
 import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.IOException;
@@ -19,9 +18,10 @@ public class TxtContext extends PdfContext {
         try {
             CacheZipUtils.emptyAllCacheDirs();
             if (AppState.get().isPreText) {
+                // A preformatted text is laid out as the page it was turned into, rather than
+                // going round by fb2; openReflowableHtml is where that page meets an engine
                 extractFile = TxtExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
-                MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, extractFile, "");
-                return muPdfDocument;
+                return openReflowableHtml(extractFile, "");
             }else {
                 extractFile = TxtExtract.extract1(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
             }

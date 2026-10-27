@@ -1,8 +1,10 @@
 package com.foobnix.drive;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
@@ -21,16 +23,13 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.work.SynctornizatoinWorker;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Scope;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.FileContent;
@@ -42,6 +41,8 @@ import com.google.api.services.drive.model.ChangeList;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.StartPageToken;
+
+import org.greenrobot.eventbus.EventBus;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 
@@ -68,6 +69,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class GFile {
+    /** The Google consent screen a sign-in sends the user through when the scope is not granted yet. */
     public static final int REQUEST_CODE_SIGN_IN = 1110;
 
 
@@ -116,73 +118,96 @@ public class GFile {
 
 
     public static String getDisplayInfo(Context c) {
-        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(c);
-        if (account == null) {
-            return "";
-        }
-        return TxtUtils.nullToEmpty(account.getDisplayName()) + " (" + account.getEmail() + ")";
-
+        return GoogleAuth.getDisplayInfo(c);
     }
 
     public static void logout(Context c) {
-        GoogleSignInOptions signInOptions =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .requestScopes(new Scope(MY_SCOPE))
-                        .build();
-        GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
-        client.signOut();
+        GoogleAuth.clear(c);
         googleDriveService = null;
         AppSP.get().syncRootID = "";
         AppSP.get().syncTime = 0;
 
     }
 
+    /**
+     * Signs the user in to Google Drive when they are not already, and builds the Drive client.
+     *
+     * It used to call {@link #logout(Context)} on its first line, which made the
+     * {@code googleDriveService != null} check below unreachable and dropped the sync root and the
+     * sync time of a working account every time the settings screen asked for a client. Now a
+     * signed-in account is left alone, and only an account that is about to be replaced has its
+     * sync position reset - the new account knows nothing of the old one's folder.
+     */
     public static void init(Activity c) {
 
-        logout(c);
+        if (!GoogleAuth.isAuthorized(c)) {
+            // Whatever the previous account had synced is of no use to the next one
+            googleDriveService = null;
+            AppSP.get().syncRootID = "";
+            AppSP.get().syncTime = 0;
 
-        if (googleDriveService != null) {
+            GoogleAuth.authorize(c, () -> onSignedIn(c), () -> onSignInFailed(c));
             return;
         }
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(c);
+        buildDriveService(c);
 
-        if (account == null) {
-
-
-            GoogleSignInOptions signInOptions =
-                    new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestEmail()
-                            .requestScopes(new Scope(MY_SCOPE))
-                            .build();
-            GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
-
-            // The result of the sign-in Intent is handled in onActivityResult.
-            c.startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
-        } else {
-
-            GoogleAccountCredential credential =
-                    GoogleAccountCredential.usingOAuth2(
-                            c, Collections.singleton(MY_SCOPE));
-            credential.setSelectedAccount(account.getAccount());
-            googleDriveService =
-                    new com.google.api.services.drive.Drive.Builder(
-                            new NetHttpTransport(),
-                            new GsonFactory(),
-                            credential)
-                            .setApplicationName(Apps.getApplicationName(c))
-                            .build();
-        }
         sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
         invalidateLastModifiedIndex();
 
     }
 
+    /**
+     * Finishes a sign-in: turns the sync on, tells the screens showing the account to redraw and
+     * starts the first sync. Called both when Google authorized the app without asking the user
+     * anything and, through {@link #onSignInResult(Activity, android.content.Intent)}, when they
+     * came back from the consent screen.
+     */
+    private static void onSignedIn(final Activity c) {
+        AppSP.get().isEnableSync = true;
+        AppSP.get().save();
+
+        Toast.makeText(c, R.string.success, Toast.LENGTH_SHORT).show();
+
+        buildDriveService(c);
+
+        sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
+        invalidateLastModifiedIndex();
+
+        EventBus.getDefault().post(new GDriveSycnEvent());
+        runSyncService(c);
+    }
+
+    /**
+     * A sign-in that ended with no account: Google refused, or the user backed out of the account
+     * chooser or the consent screen. It is said out loud wherever it happened - a sign-in that
+     * failed before any screen appeared used to leave the user tapping a button that did nothing.
+     */
+    private static void onSignInFailed(final Activity c) {
+        AppSP.get().isEnableSync = false;
+        AppSP.get().save();
+
+        Toast.makeText(c, R.string.fail, Toast.LENGTH_SHORT).show();
+        EventBus.getDefault().post(new GDriveSycnEvent());
+    }
+
+    /**
+     * The answer to the consent screen a sign-in sends the user through, handed over from the
+     * activity's {@code onActivityResult}. {@link GoogleAuth} carries on from there and ends the
+     * sign-in through {@link #onSignedIn(Activity)} or {@link #onSignInFailed(Activity)}, so both
+     * the screen and the user hear about it wherever the sign-in stopped.
+     *
+     * @return <code>true</code> when this was a sign-in's answer and has been dealt with
+     */
+    public static boolean onSignInActivityResult(final Activity c, final int requestCode, final int resultCode,
+                                                 final android.content.Intent data) {
+        return GoogleAuth.onActivityResult(c, requestCode, resultCode, data);
+    }
+
     static SharedPreferences sp;
 
     public static void buildDriveService(Context c) {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(c);
+        Account account = GoogleAuth.getAccount(c);
         if (account == null) {
             LOG.d(TAG, "buildDriveService", " account is null");
             return;
@@ -197,7 +222,7 @@ public class GFile {
         GoogleAccountCredential credential =
                 GoogleAccountCredential.usingOAuth2(
                         c, Collections.singleton(MY_SCOPE));
-        credential.setSelectedAccount(account.getAccount());
+        credential.setSelectedAccount(account);
         googleDriveService =
                 new com.google.api.services.drive.Drive.Builder(
                         new NetHttpTransport(),
@@ -1238,8 +1263,7 @@ public class GFile {
                     return;
                 }
 
-                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
-                if (account != null) {
+                if (GoogleAuth.isAuthorized(a)) {
                     GFile.buildDriveService(a);
                     //BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
                     OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SynctornizatoinWorker.class).build();

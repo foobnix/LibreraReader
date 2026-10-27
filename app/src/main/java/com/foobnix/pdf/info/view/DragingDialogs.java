@@ -110,6 +110,8 @@ import com.foobnix.model.SimpleMeta;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.model.AppAnnotation;
+import com.foobnix.pdf.info.AnnotationsData;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -150,6 +152,7 @@ import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TTSTracks;
+import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -161,6 +164,7 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -180,6 +184,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.graphics.PorterDuffColorFilter;
 
 public class DragingDialogs {
     public final static int PREF_WIDTH = 330;
@@ -254,6 +259,22 @@ public class DragingDialogs {
         dialog.show("WebView", false, true);
     }
 
+    /**
+     * A mark in an outlined button and the ring around it, drawn in the one colour: the
+     * reader's marks, or on a light sheet, where those would vanish, the theme colour.
+     */
+    private static void tintRingedMark(View button) {
+        if (button == null) {
+            return;
+        }
+        final int color = TintUtil.isLightSurface(button.getContext(), android.R.attr.colorBackground)
+                          ? TintUtil.color : MagicHelper.getTextOrIconColor();
+        if (button instanceof ImageView) {
+            TintUtil.setTintImageNoAlpha((ImageView) button, color);
+        }
+        TintUtil.setRingColor(button, color);
+    }
+
     public static void dialogTextReplaces(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
             return;
@@ -267,6 +288,12 @@ public class DragingDialogs {
 
                 final DragLinearLayout root = new DragLinearLayout(activity);
                 root.setOrientation(LinearLayout.VERTICAL);
+
+                // The buttons and the marks on each line wear the colour of the reader's marks,
+                // except on a light sheet, where that white would vanish into it; there they
+                // take the theme colour.
+                final int buttonColor = TintUtil.isLightSurface(activity, android.R.attr.colorBackground)
+                                        ? TintUtil.color : MagicHelper.getTextOrIconColor();
 
                 CheckBox isEnableTextReplacement = new CheckBox(activity);
                 isEnableTextReplacement.setText(R.string.enable);
@@ -310,12 +337,12 @@ public class DragingDialogs {
                     to.setHint("_");
 
                     ImageView img = new ImageView(activity);
-                    img.setPadding(Dips.DP_4, Dips.DP_4, Dips.DP_4, Dips.DP_4);
-                    img.setMaxWidth(Dips.DP_20);
-                    img.setMaxHeight(Dips.DP_20);
+                    img.setPadding(Dips.DP_3, Dips.DP_3, Dips.DP_3, Dips.DP_3);
 
                     img.setImageResource(R.drawable.glyphicons_599_menu_close);
-                    TintUtil.setTintImageWithAlpha(img);
+                    img.setBackgroundResource(R.drawable.bg_round_press_grey);
+                    // The cross that drops a line, drawn in the colour of the buttons.
+                    TintUtil.setTintImageNoAlpha(img, buttonColor);
 
                     img.setOnClickListener(new OnClickListener() {
                         @Override public void onClick(View v) {
@@ -329,7 +356,7 @@ public class DragingDialogs {
                     move.setMaxHeight(Dips.DP_20);
 
                     move.setImageResource(R.drawable.glyphicons_600_menu);
-                    TintUtil.setTintImageWithAlpha(move);
+                    TintUtil.setTintImageNoAlpha(move, buttonColor);
 
                     from.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -340,9 +367,7 @@ public class DragingDialogs {
                     to.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                      ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                      1.0f));
-                    img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                                      ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                                      0f));
+                    img.setLayoutParams(new LinearLayout.LayoutParams(Dips.DP_32, Dips.DP_32, 0f));
                     move.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                        0f));
@@ -362,7 +387,7 @@ public class DragingDialogs {
                 // A ringed button, like the ones the settings panel is drawn with, in the
                 // colour the marks in this panel are. The ring says it can be pressed, so the
                 // word is not underlined as well.
-                add.setTextColor(MagicHelper.getTextOrIconColor());
+                add.setTextColor(buttonColor);
                 TintUtil.asLinkButton(add);
                 add.setTag(false);
                 add.setOnClickListener(new OnClickListener() {
@@ -388,7 +413,8 @@ public class DragingDialogs {
                         h.addView(from);
                         h.addView(text);
                         h.addView(to);
-                        root.addView(h, root.getChildCount() - 2);
+                        // Just above the row of buttons, the last thing in the list.
+                        root.addView(h, root.getChildCount() - 1);
 
                         if (add.getTag().equals(true) && items.size() > 0) {
                             SimpleMeta last = items.get(items.size() - 1);
@@ -411,7 +437,7 @@ public class DragingDialogs {
                 TextView save = new TextView(controller.getActivity());
                 save.setText(R.string.save);
                 save.setAllCaps(true);
-                save.setTextColor(MagicHelper.getTextOrIconColor());
+                save.setTextColor(buttonColor);
                 TintUtil.asLinkButton(save);
                 save.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
@@ -423,6 +449,11 @@ public class DragingDialogs {
                             if (childAt instanceof LinearLayout) {
                                 final LinearLayout line = (LinearLayout) childAt;
                                 if (line.getOrientation() == LinearLayout.VERTICAL) {
+                                    continue;
+                                }
+                                // The row of buttons is laid out across too; only a line that
+                                // opens with a field to type in is a replacement.
+                                if (!(line.getChildAt(0) instanceof EditText)) {
                                     continue;
                                 }
                                 EditText childFrom = (EditText) line.getChildAt(0);
@@ -874,6 +905,11 @@ public class DragingDialogs {
                 final TTSControlsView tts = view.findViewById(R.id.ttsActive);
                 tts.setBackgroundColor(Color.TRANSPARENT);
                 tts.setDC(controller);
+                // On the dialog's sheet the controls take the theme colour when the sheet is
+                // light; the white they wear on the reading bars would vanish into it.
+                if (TintUtil.isLightSurface(activity, android.R.attr.colorBackground)) {
+                    tts.setTintColor(TintUtil.color);
+                }
 
 
                 TextView ttsSkeakToFile = view.findViewById(R.id.ttsSkeakToFile);
@@ -982,14 +1018,6 @@ public class DragingDialogs {
 
                 TTSEngine.get().getTTS(new OnInitListener() {
                     @Override public void onInit(int status) {
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.bold(ttsLang);
-                    }
-                });
-
-                controller.runTimer(1000, new Runnable() {
-                    @Override public void run() {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
                         TxtUtils.bold(ttsLang);
@@ -1169,6 +1197,16 @@ public class DragingDialogs {
                 isFastBookmarkByTTS.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isFastBookmarkByTTS = isChecked;
+                    }
+                });
+
+                CheckBox isShowTtsPageControls = view.findViewById(R.id.isShowTtsPageControls);
+                isShowTtsPageControls.setChecked(AppState.get().isShowTtsPageControls);
+                isShowTtsPageControls.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowTtsPageControls = isChecked;
+                        // the screens show or hide the controls on the page when the status changes
+                        EventBus.getDefault().post(new TtsStatus());
                     }
                 });
 
@@ -1425,6 +1463,9 @@ public class DragingDialogs {
 
                 // The links in this dialog are drawn as ringed buttons, as the settings panel
                 // draws its own.
+                // The voice and the names of the sliders under it stand in one column, one width
+                TintUtil.sameWidth(view.findViewById(R.id.ttsSettings), seekBarSpeed.getTitleText(),
+                        seekBarPitch.getTitleText(), seekVolume.getTitleText());
                 TintUtil.asLinkButtons(view);
 
 
@@ -1498,7 +1539,7 @@ public class DragingDialogs {
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
-                TintUtil.setTintBg(onSearch);
+                tintRingedMark(onSearch);
 
                 EditTextHelper.enableKeyboardSearch(searchEdit, new Runnable() {
                     @Override public void run() {
@@ -1706,9 +1747,7 @@ public class DragingDialogs {
                 final View view = inflater.inflate(R.layout.dialog_selected_text, null, false);
                 final LinearLayout linearLayoutColor = view.findViewById(R.id.colorsLine);
                 linearLayoutColor.removeAllViews();
-                List<String> colors = new ArrayList<String>(AppState.COLORS);
-                colors.remove(0);
-                colors.remove(0);
+                List<String> colors = AppState.ANNOTATION_COLORS;
 
                 final ImageView underLine = view.findViewById(R.id.onUnderline);
                 final ImageView strike = view.findViewById(R.id.onStrike);
@@ -1776,13 +1815,13 @@ public class DragingDialogs {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
                         Drawable highlight = controller.getDrawable(R.drawable.glyphicons_695_text_background);
-                        highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        highlight.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable underline = controller.getDrawable(R.drawable.glyphicons_104_underline);
-                        underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        underline.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         Drawable strikeout = controller.getDrawable(R.drawable.glyphicons_105_strikethrough);
-                        strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                        strikeout.setColorFilter(new PorterDuffColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP));
 
                         menu.getMenu()
                             .add(R.string.highlight_of_text)
@@ -2286,10 +2325,17 @@ public class DragingDialogs {
                     }
                 });
 
-                if (!BookType.PDF.is(controller.getCurrentBook().
-
-                        getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity ||
-                    controller.isPasswordProtected()) {
+                // Marking up used to be a PDF's privilege, because the annotation was written
+                // into the PDF and no other format has anywhere to put one. Librera keeps those
+                // itself now, so the only book that cannot be marked up is one with no text to
+                // mark - a comic, which is pictures.
+                // A text book - an epub, fb2, mobi - is marked up only when foliate-js lays it
+                // out: MuPDF draws it as pictures of pages that are laid out again at every font
+                // size, with nothing for a mark to stay on.
+                final String bookPath = controller.getCurrentBook().getPath();
+                final boolean textWithoutFoliate = ExtUtils.isTextFomat(bookPath)
+                        && !(controller.getCodecDocument() instanceof FoliateDocument);
+                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath) || textWithoutFoliate) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -2486,7 +2532,8 @@ public class DragingDialogs {
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
-                TintUtil.setTintBg(onSearch);
+                tintRingedMark(onSearch);
+                tintRingedMark(view.findViewById(R.id.onLink));
 
                 number.setOnKeyListener(new OnKeyListener() {
                     @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -2766,6 +2813,9 @@ public class DragingDialogs {
                 // shadow of its own that would draw a seam between them.
                 indicator.setBackgroundColor(TintUtil.color);
                 indicator.setElevation(0);
+                // The tabs stand on that tint, not on the page, so on Ink they are drawn white.
+                indicator.setTabsOnTint(true);
+                indicator.updateIcons(pager.getCurrentItem());
 
                 pager.setOffscreenPageLimit(10);
                 pager.setCurrentItem(AppState.get().tabPositionInRecentDialog);
@@ -2843,6 +2893,9 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
+                if (appBookmark instanceof BookmarksAdapter.Header) {
+                    return;
+                }
                 if (appBookmark.isF) {
                     controller.floatingBookmark = appBookmark;
                 } else {
@@ -2851,7 +2904,7 @@ public class DragingDialogs {
 
                 LOG.d("onItem", appBookmark);
 
-                int page = appBookmark.getPage(controller.getPageCount());
+                int page = controller.getBookmarkPage(appBookmark);
 
                 controller.onGoToPage(page);
 
@@ -2865,7 +2918,13 @@ public class DragingDialogs {
                                            final View view,
                                            final int position,
                                            final long id) {
-                ListBoxHelper.showEditDeleteDialog(objects.get(position),
+                final AppBookmark item = objects.get(position);
+                // A section title is not a bookmark, and a mark's text belongs to the book - it
+                // is removed with the cross, not renamed here
+                if (item instanceof BookmarksAdapter.Header || item instanceof BookmarksAdapter.Mark) {
+                    return true;
+                }
+                ListBoxHelper.showEditDeleteDialog(item,
                                                    controller,
                                                    bookmarksAdapter,
                                                    objects,
@@ -2948,7 +3007,15 @@ public class DragingDialogs {
                 objects.clear();
                 allData.clear();
 
-                List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+                final List<AppBookmark> bookmarksByBook =
+                        BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
+
+                // The reader's own marks, shown in their own section below the bookmarks and in
+                // the colour and style they were made with
+                final List<AppBookmark> marksByBook = new ArrayList<AppBookmark>();
+                for (AppAnnotation mark : AnnotationsData.get().byBook(controller.getCurrentBook().getPath())) {
+                    marksByBook.add(new BookmarksAdapter.Mark(mark, controller.getCurrentBook().getPath()));
+                }
 
                 final Comparator<AppBookmark> cmp = new Comparator<AppBookmark>() {
                     @Override public int compare(AppBookmark o1, AppBookmark o2) {
@@ -2965,12 +3032,27 @@ public class DragingDialogs {
                         return Float.compare(o1.getPercent(), o2.getPercent());
                     }
                 };
-                objects.addAll(bookmarksByBook);
-                allData.addAll(bookmarksByBook);
-
-                Collections.sort(objects, cmp);
-
-                bookmarksAdapter.notifyDataSetChanged();
+                // Each section sorted on its own, then laid end to end, so sorting the list
+                // cannot shuffle the two together
+                final Runnable rebuild = new Runnable() {
+                    @Override public void run() {
+                        Collections.sort(bookmarksByBook, cmp);
+                        Collections.sort(marksByBook, cmp);
+                        objects.clear();
+                        if (!bookmarksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.bookmarks));
+                            objects.addAll(bookmarksByBook);
+                        }
+                        if (!marksByBook.isEmpty()) {
+                            objects.add(new BookmarksAdapter.Header(R.string.select));
+                            objects.addAll(marksByBook);
+                        }
+                        allData.clear();
+                        allData.addAll(objects);
+                        bookmarksAdapter.notifyDataSetChanged();
+                    }
+                };
+                rebuild.run();
 
                 setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
@@ -2982,26 +3064,22 @@ public class DragingDialogs {
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_pages, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_PAGE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_222_chevron_up, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_ASC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 titlePopupMenu.getMenu(R.drawable.glyphicons_221_chevron_down, R.string.by_date, () -> {
                     AppState.get().sortBookmarksOrder = AppState.BOOKMARK_SORT_DATE_DESC;
-                    Collections.sort(objects, cmp);
-                    bookmarksAdapter.notifyDataSetChanged();
+                    rebuild.run();
                 });
 
                 return a;
@@ -4491,6 +4569,8 @@ public class DragingDialogs {
 
                 final TextView tapzoneCustomize = inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);
+                // In the column of values, as wide as they are
+                TintUtil.sameWidth(tapzoneCustomize, inflate.findViewById(R.id.tapzoneSize));
                 tapzoneCustomize.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View arg0) {
                         TapZoneDialog.show(controller.getActivity());
@@ -4813,6 +4893,20 @@ public class DragingDialogs {
                     popupMenu.show();
                 });
 
+                // The base stylesheet is a replacement UA stylesheet written for MuPDF, which
+                // has none of its own. A browser does, so foliate-js is given only the generated
+                // rules unless this is on - which is here, beside the stylesheet picker, so the
+                // two can be compared on the book itself. Closing this drawer restarts the
+                // activity when the app state changed, so the book reopens with the new styling.
+                final CheckBox isFoliateBaseCss = inflate.findViewById(R.id.isFoliateBaseCss);
+                isFoliateBaseCss.setVisibility(
+                        ExtUtils.isTextFomat(controller.getCurrentBook().getPath())
+                                && AppState.get().getEpubEngine() == AppState.EPUB_ENGINE_FOLIATE
+                                ? View.VISIBLE : View.GONE);
+                isFoliateBaseCss.setChecked(AppState.get().epubFoliateBaseCss);
+                isFoliateBaseCss.setOnCheckedChangeListener(
+                        (buttonView, isChecked) -> AppState.get().epubFoliateBaseCss = isChecked);
+
                 // end styles
 
                 // hypens
@@ -4827,6 +4921,17 @@ public class DragingDialogs {
                         BookCSS.get().isAutoHypens = isChecked;
                     }
                 });
+
+                CheckBox isEnableBBCode = inflate.findViewById(R.id.isEnableBBCode);
+                if (isEnableBBCode != null) {
+                    isEnableBBCode.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
+                    isEnableBBCode.setChecked(BookCSS.get().isEnableBBCode);
+                    isEnableBBCode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                        @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            BookCSS.get().isEnableBBCode = isChecked;
+                        }
+                    });
+                }
 
                 final TextView hypenLangLabel = inflate.findViewById(R.id.hypenLangLabel);
 
@@ -4972,11 +5077,13 @@ public class DragingDialogs {
                     }
                 });
 
+                // The line spacing of the engine laying this book out: foliate-js keeps its own
+                final boolean foliateLines = controller.getCodecDocument() instanceof FoliateDocument;
                 final CustomSeek lineHeight = inflate.findViewById(R.id.lineHeight);
-                lineHeight.init(10, 30, BookCSS.get().lineHeight12);
+                lineHeight.init(10, 30, BookCSS.get().lineHeight(foliateLines));
                 lineHeight.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().lineHeight12 = result;
+                        BookCSS.get().setLineHeight(foliateLines, result);
                         return false;
                     }
                 });
@@ -5017,39 +5124,41 @@ public class DragingDialogs {
 
 // Margins
 
+                // The margins of the engine laying this book out: foliate-js keeps its own
+                final boolean foliateMargins = controller.getCodecDocument() instanceof FoliateDocument;
                 final CustomSeek marginTop = inflate.findViewById(R.id.marginTop);
                 int maxMargin = Dips.isLargeOrXLargeScreen() ? 400 : 50;
-                marginTop.init(0, maxMargin, BookCSS.get().marginTop);
+                marginTop.init(0, maxMargin, BookCSS.get().marginTop(foliateMargins));
                 marginTop.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().marginTop = result;
+                        BookCSS.get().setMarginTop(foliateMargins, result);
                         return false;
                     }
                 });
 
                 final CustomSeek marginBottom = inflate.findViewById(R.id.marginBottom);
-                marginBottom.init(0, maxMargin, BookCSS.get().marginBottom);
+                marginBottom.init(0, maxMargin, BookCSS.get().marginBottom(foliateMargins));
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().marginBottom = result;
+                        BookCSS.get().setMarginBottom(foliateMargins, result);
                         return false;
                     }
                 });
 
                 final CustomSeek marginLeft = inflate.findViewById(R.id.marginLeft);
-                marginLeft.init(0, maxMargin, BookCSS.get().marginLeft);
+                marginLeft.init(0, maxMargin, BookCSS.get().marginLeft(foliateMargins));
                 marginLeft.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().marginLeft = result;
+                        BookCSS.get().setMarginLeft(foliateMargins, result);
                         return false;
                     }
                 });
 
                 final CustomSeek marginRight = inflate.findViewById(R.id.marginRight);
-                marginRight.init(0, maxMargin, BookCSS.get().marginRight);
+                marginRight.init(0, maxMargin, BookCSS.get().marginRight(foliateMargins));
                 marginRight.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().marginRight = result;
+                        BookCSS.get().setMarginRight(foliateMargins, result);
                         return false;
                     }
                 });
@@ -5094,7 +5203,7 @@ public class DragingDialogs {
 
 // align
                 final TextView textAlign = inflate.findViewById(R.id.textAlign);
-                textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                TxtUtils.underline(textAlign, (alignConst.get(BookCSS.get().textAlign)));
                 textAlign.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
@@ -5103,7 +5212,7 @@ public class DragingDialogs {
                             popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                                 @Override public boolean onMenuItemClick(MenuItem item) {
                                     BookCSS.get().textAlign = key;
-                                    textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                                    TxtUtils.underline(textAlign, (alignConst.get(BookCSS.get().textAlign)));
                                     return false;
                                 }
                             });
@@ -5180,24 +5289,24 @@ public class DragingDialogs {
                                                                   BookCSS.get()
                                                                          .resetToDefault(controller.getActivity());
 
-                                                                  fontsFolder.setText(TxtUtils.underline(TxtUtils.lastTwoPath(
+                                                                  TxtUtils.underline(fontsFolder, (TxtUtils.lastTwoPath(
                                                                           BookCSS.get().fontFolder)));
-                                                                  textAlign.setText(TxtUtils.underline(alignConst.get(
+                                                                  TxtUtils.underline(textAlign, (alignConst.get(
                                                                           BookCSS.get().textAlign)));
 
                                                                   fontWeight.reset(BookCSS.get().fontWeight / 100);
                                                                   fontWeight.setValueText(
                                                                           "" + BookCSS.get().fontWeight);
 
-                                                                  lineHeight.reset(BookCSS.get().lineHeight12);
+                                                                  lineHeight.reset(BookCSS.get().lineHeight(foliateLines));
                                                                   paragraphHeight.reset(BookCSS.get().paragraphHeight);
 
                                                                   fontParagraph.reset(BookCSS.get().textIndent);
                                                                   //
-                                                                  marginTop.reset(BookCSS.get().marginTop);
-                                                                  marginBottom.reset(BookCSS.get().marginBottom);
-                                                                  marginLeft.reset(BookCSS.get().marginLeft);
-                                                                  marginRight.reset(BookCSS.get().marginRight);
+                                                                  marginTop.reset(BookCSS.get().marginTop(foliateMargins));
+                                                                  marginBottom.reset(BookCSS.get().marginBottom(foliateMargins));
+                                                                  marginLeft.reset(BookCSS.get().marginLeft(foliateMargins));
+                                                                  marginRight.reset(BookCSS.get().marginRight(foliateMargins));
 
                                                                   emptyLine.reset(BookCSS.get().emptyLine);
 
@@ -5211,6 +5320,10 @@ public class DragingDialogs {
                                                           });
                             }
                         });
+
+                // The links in this dialog are drawn as ringed buttons, as the settings
+                // panel draws its own.
+                TintUtil.asLinkButtons(inflate);
 
                 return inflate;
             }
@@ -5481,15 +5594,17 @@ public class DragingDialogs {
                     }
                 });
 
+                // The font size of the engine laying this book out: foliate-js keeps its own
+                final boolean foliateFont = controller.getCodecDocument() instanceof FoliateDocument;
                 final CustomSeek fontSizeSp = inflate.findViewById(R.id.fontSizeSp);
-                fontSizeSp.init(10, 70, BookCSS.get().fontSizeSp);
+                fontSizeSp.init(10, 70, BookCSS.get().fontSize(foliateFont));
                 fontSizeSp.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
-                        BookCSS.get().fontSizeSp = result;
+                        BookCSS.get().setFontSize(foliateFont, result);
                         return false;
                     }
                 });
-                fontSizeSp.setValueText("" + BookCSS.get().fontSizeSp);
+                fontSizeSp.setValueText("" + BookCSS.get().fontSize(foliateFont));
 
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook()
                                                                                                        .getPath()) ?

@@ -23,7 +23,7 @@
    <string name="black">Svart</string>
    <string name="theme_color">Färg</string>
    <string name="widget">Widget</string>
-   <string name="show">Show</string>
+   <string name="show">Visa</string>
    <string name="layout">Layout</string>
    <string name="number_of_books">Antal böcker</string>
    <string name="remember_reading_mode">Kom ihåg läsläge</string>
@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Dokumentkonverterare (online)</string>
    <string name="book_covers">Bokomslag</string>
    <string name="cover_image_size">Cover bildstorlek</string>
+   <string name="cover_radius">Omslagets hörnradie</string>
    <string name="column_count">Kolumnräknar</string>
    <string name="show_book_covers">Visa bokomslag</string>
    <string name="enable_effect_of_the_book_cover">Aktivera effekten av bokomslaget</string>
@@ -61,7 +62,7 @@
    <string name="web">Webb</string>
    <string name="beta_version">Betaversion</string>
    <string name="archive">Arkiv</string>
-   <string name="rate_pdf_reader1">Skriv din feedback och betygsätta oss på Google Play är det mycket viktigt för oss</string>
+   <string name="rate_pdf_reader1">Lämna gärna en recension av den här appen på Google Play. Det är mycket viktigt för oss</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formaterad text (pseudo grafik)</string>
    <string name="continuous_text">Kontinuerlig text (ingen radbrytning)</string>
@@ -88,9 +89,10 @@
    <string name="right">Höger sida</string>
    <string name="center">Centrum</string>
    <string name="custom_css">Anpassad CSS</string>
-   <string name="styles">Styles</string>
+   <string name="styles">Stilar</string>
    <string name="document_styles">Dokument~~POS=TRUNC stilar</string>
    <string name="automatic_hyphenation">Automatisk avstavning</string>
+   <string name="parse_bbcode_tags">Tolka BBCode-taggar</string>
    <string name="empty_line">Tom rad</string>
    <string name="margin_width">Marginal bredd</string>
    <string name="top">Ovansidan</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen genre</string>
    <string name="no_language">Inget språk</string>
+   <string name="no_date">Inget datum</string>
    <string name="without_series">Utan serie</string>
    <string name="folders">Mappar</string>
    <string name="recent">Nyligen</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">E-postprogram inte är installerad.</string>
    <string name="file_not_found">Filen hittades inte</string>
    <string name="you_need_grant_permission5">Appen behöver din tillåtelse för att hitta och visa alla dina böcker.</string>
+   <string name="allow">Tillåt</string>
+   <string name="storage">Lagring</string>
+   <string name="add_all_books_with_permission">Låt appen söka igenom mappen Hämtade filer så att böcker läggs till automatiskt i ditt bibliotek.</string>
+   <string name="allow_access_to_see_files">Tillåt åtkomst till alla filer för att se böckerna i den här mappen. Utan den visas bara dess mappar.</string>
+   <string name="save_settings_in_librera_folder">Spara inställningar och läsframsteg i mappen Librera.</string>
+   <string name="regrant_folder_title">Tillåt åtkomst till mappen igen</string>
+   <string name="regrant_folder_msg">Appen kan inte längre läsa %1$s: Android tar bort mappåtkomsten när appen installeras om. Välj mappen igen på nästa skärm.</string>
    <string name="remind_msg">Ta en paus för dina ögon och vila lite.</string>
    <string name="bookmark_for_this_page_already_exists">Bokmärke för denna sida finns redan</string>
    <string name="can_t_download">Det går inte att ladda ner</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Välj läsläge</string>
    <string name="convert_to">Konvertera till</string>
-   <string name="mode_vertical">Läge \"Scroll\"</string>
-   <string name="mode_horizontally">Läge \"bok\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Sidvis</string>
    <string name="mode_musician">Läge \"musiker\"</string>
    <string name="save">Spara</string>
    <string name="remember_choice">Kom ihåg valet</string>
@@ -334,12 +344,12 @@
    <string name="search_in_document">Sök i dokumentet</string>
    <string name="web_dict_oxfort">Webbordbok (Oxford, ...)</string>
    <string name="___TO___CHECK___SECTION___"></string>
-   <string name="font">Font</string>
+   <string name="font">Typsnitt</string>
    <string name="font_name">Font namn</string>
    <string name="text_page">Sida</string>
    <string name="page">Sida</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Välja...</string>
+   <string name="choose_">Välja</string>
    <string name="crop_white_borders">Beskär vita kanter</string>
    <string name="full_screen">Fullskärm</string>
    <string name="go">Gå</string>
@@ -424,7 +434,7 @@
    <string name="keywords">Nyckelord</string>
    <string name="number">Siffra</string>
    <string name="percent">Procent</string>
-   <string name="awards">Awards</string>
+   <string name="awards">Utmärkelser</string>
    <string name="close_book_and_application">Stäng bok och ansökan</string>
    <string name="percent_and_number">Procent och antal</string>
    <string name="current_page">Nuvarande sida</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Beskär gränserna symmetriskt</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Visar författaren och titeln på PDF-boken från metataggarna</string>
    <string name="meta_tags">Metataggar</string>
-   <string name="librera_pro">Skaffa Librera PRO — utan annonser, och det tar bort annonserna i den här appen också</string>
+   <string name="librera_pro"><b>Librera PRO</b>: En reklamfri app som också tar bort annonserna i den här appen</string>
    <string name="annotation">Anteckning</string>
    <string name="book">Bok</string>
    <string name="information">Information</string>
@@ -474,7 +484,7 @@
    <string name="logout">Logga ut</string>
    <string name="cloud_not_connected">Cloud inte anslutet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
-   <string name="clouds">Clouds</string>
+   <string name="clouds">Moln</string>
    <string name="librera_cloud">Librera moln</string>
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Visa bokstaven</string>
    <string name="size">Storlek</string>
    <string name="quick_bookmark_by_the_headset">Snabbt bokmärke av headsetet</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Visa TTS-knappar längst ned på sidan</string>
    <string name="slider_scale">Skjutreglaget</string>
    <string name="chapter_format">Kapitelformat</string>
    <string name="play_a_music_file">Spela en musikfil</string>
@@ -518,7 +529,7 @@
    <string name="pause">Paus</string>
    <string name="favorite">Favorit</string>
    <string name="playlists">Spellistor</string>
-   <string name="tags">Tags</string>
+   <string name="tags">Taggar</string>
    <string name="are_you_sure_to_delete_playlist_">Är du säker på att radera spellista?</string>
    <string name="delete_this_bookmark_">Radera det här bokmärket?</string>
    <string name="zoom_in_out_with_lock_enable">Zooma in / ut med låsaktivera</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Mörk oled</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Ny profil</string>
+   <string name="add_profile">Lägg till profil</string>
    <string name="main">Huvud</string>
    <string name="do_you_want_to_switch_profile_">Byta till en annan profil?</string>
    <string name="sync_error">Synkroniseringsfel</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Totala sidor</string>
    <string name="close_menu">Stäng menyn</string>
    <string name="go_to_page">Gå till sidan</string>
-   <string name="update_library">Uppdatera biblioteket</string>
+   <string name="update_library">Uppdatera</string>
    <string name="ascending">Stigande</string>
    <string name="descending">Nedåtgående</string>
    <string name="remove">Avlägsna</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Markera initiala bokstäver</string>
    <string name="anti_aliasing_level">Kantutjämningsnivå</string>
    <string name="folder_preview">Förhandsgranskning av mapp</string>
+   <string name="show_storage_book_covers">Visa omslag för tillagd lagring</string>
    <string name="accent">Accent</string>
    <string name="discarded_books">Kasserade böcker</string>
    <string name="show_print_edition_page_numbers_epub3">Visa sidnummer i den tryckta utgåvan (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Varning: det här dokumentet har osparade ändringar</string>
    <string name="bold_headings">Fetstilta rubriker</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Titta på den här korta videon för att stänga av alla annonser i 1 timme</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Titta på den här korta videon för att stänga av all reklam i två timmar</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Titta på den här korta videon för att stänga av all reklam i tre timmar</string>
    <string name="the_book_is_complete">Boken är komplett.</string>
    <string name="time">Tid</string>
    <string name="date_added">Datum tillagt</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Visa kontrast- och ljusstyrkeknappen</string>
    <string name="text_and_background_color">Text- och bakgrundsfärg</string>
    <string name="library_folders">Bibliotekets mappar</string>
+   <string name="library_folders_hint">Böcker söks i dessa mappar och deras undermappar.</string>
+   <string name="add_folder_hint">Välj en mapp</string>
+   <string name="add_storage_hint">SD-kort eller USB-enhet</string>
+   <string name="folder_no_access">Ingen åtkomst · tryck för att tillåta igen</string>
    <string name="watch">Titta</string>
+   <string name="librerax_not_installed">LibreraX är inte installerat. Ladda ner och installera det och öppna sedan boken igen.</string>
+   <string name="remove_library_folder">Ta bort den här mappen från biblioteket? Filerna i den raderas inte.</string>
+   <string name="epub_engine">EPUB-motor</string>
+   <string name="msg_epub_engine_unavailable">WebView är inte tillgängligt på den här enheten.</string>
+   <string name="base_stylesheet">Använd grundläggande stilmall (foliate-js)</string>
+   <string name="pdf_engine">PDF-motor</string>
+   <string name="msg_pdf_engine_unavailable">Den här versionen innehåller inte PDFium-biblioteken.</string>
+   <string name="book_open_failed">Den här boken kunde inte öppnas.</string>
+   <string name="book_open_crashed">Appen stängdes oväntat förra gången den här boken öppnades.</string>
+   <string name="try_librerax">Försök öppna den i LibreraX.</string>
+   <string name="get_librerax">LibreraX kanske kan öppna den. Ladda ner den här:</string>
+   <string name="open_in_librerax">Öppna i LibreraX</string>
+   <string name="try_again">Försök igen</string>
+   <string name="export_to_librerax">Exportera till LibreraX</string>
+   <string name="update_librerax">Uppdatera LibreraX till den senaste versionen för att importera från Librera.</string>
+   <string name="reading_progress">Läsförlopp</string>
 </resources>

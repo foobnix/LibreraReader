@@ -20,6 +20,8 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
+import androidx.core.content.pm.PackageInfoCompat;
+
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
@@ -73,7 +75,7 @@ public class Apps {
         try {
             PackageInfo pInfo = context.getPackageManager()
                                        .getPackageInfo(context.getPackageName(), 0);
-            return pInfo.versionCode;
+            return (int) PackageInfoCompat.getLongVersionCode(pInfo);
         } catch (Exception e) {
             LOG.e(e);
         }

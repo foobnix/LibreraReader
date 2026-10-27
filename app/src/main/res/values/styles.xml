@@ -73,6 +73,12 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <!-- An icon in a screen's top bar: a little more room either side than buttonWhite. -->
+    <style name="buttonTop" parent="buttonWhite">
+        <item name="android:layout_marginLeft">@dimen/top_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/top_button_margin</item>
+    </style>
+
     <style name="buttonWhiteClose" parent="buttonWhite">
         <item name="android:padding">4dip</item>
     </style>
@@ -85,6 +91,13 @@
         <item name="android:tag">textLink</item>
         <item name="android:textColor">?android:attr/textColorLink</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- A link that opens a list to choose from: it ends in a chevron, which the ringed-button
+         pass sizes and tints to the word; the tint here is for a link drawn without that pass. -->
+    <style name="textLinkDropdown" parent="textLink">
+        <item name="android:drawableEnd">@drawable/ic_chevron_down</item>
+        <item name="android:drawableTint">?android:attr/textColorLink</item>
     </style>
 
     <style name="textLinkWhite" parent="textLink">
@@ -220,6 +233,23 @@
     <style name="DialogRoundDark" parent="@android:style/Theme.Material.Dialog.Alert">
         <item name="android:windowBackground">@drawable/bg_dialog_round_dark</item>
         <item name="android:windowTitleStyle">@style/DialogRoundTitle</item>
+    </style>
+
+    <!-- LibreraXActivity: no screen of its own, only the popup when LibreraX is missing. -->
+    <style name="LibreraXWhite" parent="StyledIndicatorsWhite">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="LibreraXBlack" parent="StyledIndicatorsBlack">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
 </resources>

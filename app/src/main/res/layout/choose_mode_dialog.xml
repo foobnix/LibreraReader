@@ -30,6 +30,16 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/librerax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@android:drawable/list_selector_background"
+        android:padding="15dip"
+        android:text="@string/librerax"
+        android:textSize="16sp" />
+
+    <TextView
         android:id="@+id/music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

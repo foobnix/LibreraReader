@@ -39,6 +39,7 @@
    <string name="document_converter_online_">文書変換 (オンライン)</string>
    <string name="book_covers">ブックカバー</string>
    <string name="cover_image_size">カバー画像サイズ</string>
+   <string name="cover_radius">カバーの角の丸み</string>
    <string name="column_count">列数</string>
    <string name="show_book_covers">ブックカバーを表示する</string>
    <string name="enable_effect_of_the_book_cover">ブックカバーの効果を有効にする</string>
@@ -55,13 +56,13 @@
    <string name="product">製品</string>
    <string name="version">バージョン</string>
    <string name="licence_gnu_gpl_v3_0">Licence: GNU GPL v3.0</string>
-   <string name="licenses_for_libraries">Libraries\' Licenses</string>
+   <string name="licenses_for_libraries">ライブラリのライセンス</string>
    <string name="autor_ivan_ivanenko">Autor: Ivan Ivanenko</string>
    <string name="support">サポート</string>
    <string name="web">ウェブ</string>
    <string name="beta_version">ベータ版</string>
    <string name="archive">アーカイブ</string>
-   <string name="rate_pdf_reader1">Google Playでフィードバックと評価をお願いします：今後の開発のために非常に重要なことです</string>
+   <string name="rate_pdf_reader1">Google Play でこのアプリのレビューをお願いします。私たちにとってとても大切です</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">フォーマットされたテキスト（擬似グラフィックス）</string>
    <string name="continuous_text">連続テキスト（改行なし）</string>
@@ -91,6 +92,7 @@
    <string name="styles">スタイル</string>
    <string name="document_styles">文書のスタイル</string>
    <string name="automatic_hyphenation">自動ハイフネーション</string>
+   <string name="parse_bbcode_tags">BBCodeタグを処理する</string>
    <string name="empty_line">空行</string>
    <string name="margin_width">マージン幅</string>
    <string name="top">上部</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">シリーズなし</string>
    <string name="no_genre">ジャンルなし</string>
    <string name="no_language">言語なし</string>
+   <string name="no_date">日付なし</string>
    <string name="without_series">シリーズなし</string>
    <string name="folders">フォルダ</string>
    <string name="recent">最近開いたファイル</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">メールアプリがインストールされていません。</string>
    <string name="file_not_found">ファイルが見つかりません</string>
    <string name="you_need_grant_permission5">アプリがあなたの蔵書をすべて検索して表示するには、あなたの許可が必要です。</string>
+   <string name="allow">許可</string>
+   <string name="storage">ストレージ</string>
+   <string name="add_all_books_with_permission">本を自動的にライブラリに追加するため、アプリにダウンロードフォルダのスキャンを許可してください。</string>
+   <string name="allow_access_to_see_files">このフォルダの本を表示するには、すべてのファイルへのアクセスを許可してください。許可がないとフォルダのみが表示されます。</string>
+   <string name="save_settings_in_librera_folder">設定と読書の進捗を Librera フォルダに保存します。</string>
+   <string name="regrant_folder_title">フォルダへのアクセスを再度許可</string>
+   <string name="regrant_folder_msg">アプリは %1$s を読み取れなくなりました。アプリを再インストールすると、Android はフォルダへのアクセス権を削除します。次の画面でもう一度フォルダを選択してください。</string>
    <string name="remind_msg">休憩の時間です！</string>
    <string name="bookmark_for_this_page_already_exists">このページのブックマークはすでに存在します</string>
    <string name="can_t_download">ダウンロードできません</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">読み取りモードを選択する</string>
    <string name="convert_to">変換</string>
-   <string name="mode_vertical">モード \"スクロール\"</string>
-   <string name="mode_horizontally">モード \"ブック\"</string>
+   <string name="mode_vertical">縦スクロール</string>
+   <string name="mode_horizontally">ページめくり</string>
    <string name="mode_musician">モード \"ミュージシャン\"</string>
    <string name="save">保存</string>
    <string name="remember_choice">選択を記憶する</string>
@@ -339,7 +349,7 @@
    <string name="text_page">ページ</string>
    <string name="page">1ページ</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">選択...</string>
+   <string name="choose_">選択</string>
    <string name="crop_white_borders">余白の切り取り</string>
    <string name="full_screen">全画面表示</string>
    <string name="go">Go</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">余白を左右対称に切り取る</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">メタタグから著者名とタイトル名を抽出する（PDF）</string>
    <string name="meta_tags">メタタグ</string>
-   <string name="librera_pro">Librera PRO を入手 — 広告なし。このアプリの広告も消えます</string>
+   <string name="librera_pro"><b>Librera PRO</b>：広告なしのアプリ。このアプリの広告も消えます</string>
    <string name="annotation">注釈</string>
    <string name="book">本</string>
    <string name="information">情報</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">大文字を表示する</string>
    <string name="size">サイズ</string>
    <string name="quick_bookmark_by_the_headset">ヘッドセットによる高速ブックマーク（開始/停止ボタン）</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">ページ下部にTTSボタンを表示</string>
    <string name="slider_scale">スライダーの目盛り</string>
    <string name="chapter_format">章形式</string>
    <string name="play_a_music_file">音楽ファイルを再生する</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">ダーク OLED</string>
    <string name="profile">プロファイル</string>
    <string name="new_profile">新しいプロファイル</string>
+   <string name="add_profile">プロファイルを追加</string>
    <string name="main">メイン</string>
    <string name="do_you_want_to_switch_profile_">別のプロファイルに切り替えますか？</string>
    <string name="sync_error">同期エラー</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">全ページ</string>
    <string name="close_menu">メニューを閉じる</string>
    <string name="go_to_page">ページに移動</string>
-   <string name="update_library">ライブラリを更新する</string>
+   <string name="update_library">更新</string>
    <string name="ascending">昇順</string>
    <string name="descending">降順</string>
    <string name="remove">削除する</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">頭文字のハイライト</string>
    <string name="anti_aliasing_level">アンチエイリアシング レベル</string>
    <string name="folder_preview">フォルダーのプレビュー</string>
+   <string name="show_storage_book_covers">追加したストレージの表紙を表示する</string>
    <string name="accent">アクセント</string>
    <string name="discarded_books">捨てられた本</string>
    <string name="show_print_edition_page_numbers_epub3">印刷版のページ番号を表示する (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">警告: このドキュメントには保存されていない変更があります</string>
    <string name="bold_headings">太字の見出し</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">この短いビデオを見ると、1時間すべての広告がオフになります</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">この短いビデオを見て、2時間すべての広告をオフにしてください</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">この短いビデオを見て、3時間すべての広告をオフにしてください</string>
    <string name="the_book_is_complete">本は完成しました。</string>
    <string name="time">時間</string>
    <string name="date_added">追加日</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">コントラストと明るさボタンを表示する</string>
    <string name="text_and_background_color">テキストと背景色</string>
    <string name="library_folders">ライブラリのフォルダ</string>
+   <string name="library_folders_hint">これらのフォルダとそのサブフォルダから本を探します。</string>
+   <string name="add_folder_hint">フォルダを1つ選択</string>
+   <string name="add_storage_hint">SDカードまたはUSBドライブ</string>
+   <string name="folder_no_access">アクセスなし · タップして再度許可</string>
    <string name="watch">見る</string>
+   <string name="librerax_not_installed">LibreraX がインストールされていません。ダウンロードしてインストールしてから、もう一度本を開いてください。</string>
+   <string name="remove_library_folder">このフォルダをライブラリから外しますか？フォルダ内のファイルは削除されません。</string>
+   <string name="epub_engine">EPUB エンジン</string>
+   <string name="msg_epub_engine_unavailable">この端末では WebView を利用できません。</string>
+   <string name="base_stylesheet">基本スタイルシートを適用 (foliate-js)</string>
+   <string name="pdf_engine">PDF エンジン</string>
+   <string name="msg_pdf_engine_unavailable">このビルドには PDFium ライブラリが含まれていません。</string>
+   <string name="book_open_failed">この本を開けませんでした。</string>
+   <string name="book_open_crashed">前回この本を開いている途中でアプリが予期せず終了しました。</string>
+   <string name="try_librerax">LibreraX で開いてみてください。</string>
+   <string name="get_librerax">LibreraX なら開ける可能性があります。こちらからダウンロードしてください:</string>
+   <string name="open_in_librerax">LibreraX で開く</string>
+   <string name="try_again">再試行</string>
+   <string name="export_to_librerax">LibreraX にエクスポート</string>
+   <string name="update_librerax">Librera からインポートするには、LibreraX を最新版に更新してください。</string>
+   <string name="reading_progress">読書の進捗</string>
 </resources>

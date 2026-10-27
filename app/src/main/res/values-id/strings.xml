@@ -24,7 +24,7 @@
    <string name="theme_color">Warna</string>
    <string name="widget">Widget</string>
    <string name="show">Menunjukkan</string>
-   <string name="layout">Layout</string>
+   <string name="layout">Tata letak</string>
    <string name="number_of_books">Jumlah buku</string>
    <string name="remember_reading_mode">Ingat mode baca</string>
    <string name="opening_the_last_book_when_the_application_starts">Membuka buku terakhir saat aplikasi dimulai</string>
@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Konverter dokumen (online)</string>
    <string name="book_covers">Sampul buku</string>
    <string name="cover_image_size">Ukuran gambar sampul</string>
+   <string name="cover_radius">Radius sampul</string>
    <string name="column_count">Hitungan kolom</string>
    <string name="show_book_covers">Tampilkan sampul buku</string>
    <string name="enable_effect_of_the_book_cover">Aktifkan efek sampul buku</string>
@@ -61,7 +62,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versi beta</string>
    <string name="archive">Arsipkan</string>
-   <string name="rate_pdf_reader1">Harap tulis umpan balik Anda dan beri nilai kami di Google Play sangat penting bagi kami</string>
+   <string name="rate_pdf_reader1">Beri ulasan tentang aplikasi ini di Google Play. Ini sangat penting bagi kami</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Teks terformat (grafis semu)</string>
    <string name="continuous_text">Teks terus menerus (tanpa jeda baris)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Gaya</string>
    <string name="document_styles">Gaya dokumen</string>
    <string name="automatic_hyphenation">Tanda hubung otomatis</string>
+   <string name="parse_bbcode_tags">Proses tag BBCode</string>
    <string name="empty_line">Garis kosong</string>
    <string name="margin_width">Lebar margin</string>
    <string name="top">Sisi atas</string>
@@ -105,7 +107,7 @@
    <string name="right_to_left">Kanan ke kiri</string>
    <string name="right_page_then_left_page_rtl_">Kanan halaman kemudian kiri halaman (RTL)</string>
    <string name="rotate_page">Putar Halaman</string>
-   <string name="rotate_default">Default</string>
+   <string name="rotate_default">Bawaan</string>
    <string name="tap_zone_size">Ukuran zona tekan</string>
    <string name="customize_tap_zones">Sesuaikan zona ketuk</string>
    <string name="left_side">Sisi kiri</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>
    <string name="no_language">Tidak ada bahasa</string>
+   <string name="no_date">Tanpa tanggal</string>
    <string name="without_series">Tanpa seri</string>
    <string name="folders">Map</string>
    <string name="recent">Baru</string>
@@ -207,7 +210,7 @@
    <string name="description">Deskripsi</string>
    <string name="add_as_a_web_site">Tambahkan sebagai situs WEB</string>
    <string name="more">Lebih</string>
-   <string name="download">Download</string>
+   <string name="download">Unduh</string>
    <string name="do_you_want_to_delete_">Apakah kamu ingin menghapus?</string>
    <string name="authentication_required">Diperlukan Otentikasi</string>
    <string name="user_name">Nama pengguna</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Aplikasi email tidak terinstal</string>
    <string name="file_not_found">Berkas tidak ditemukan</string>
    <string name="you_need_grant_permission5">Aplikasi ini memerlukan izin Anda untuk menemukan dan menampilkan semua buku Anda.</string>
+   <string name="allow">Izinkan</string>
+   <string name="storage">Penyimpanan</string>
+   <string name="add_all_books_with_permission">Harap izinkan aplikasi memindai folder Unduhan Anda untuk menambahkan buku ke perpustakaan secara otomatis.</string>
+   <string name="allow_access_to_see_files">Izinkan akses ke semua file untuk melihat buku di folder ini. Tanpanya, hanya foldernya yang ditampilkan.</string>
+   <string name="save_settings_in_librera_folder">Simpan pengaturan dan kemajuan membaca di folder Librera.</string>
+   <string name="regrant_folder_title">Izinkan lagi akses ke folder</string>
+   <string name="regrant_folder_msg">Aplikasi tidak bisa lagi membaca %1$s: Android menghapus akses folder saat aplikasi dipasang ulang. Pilih folder itu lagi di layar berikutnya.</string>
    <string name="remind_msg">Silakan istirahat untuk matamu dan istirahat sebentar.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark untuk halaman ini sudah ada</string>
    <string name="can_t_download">Tidak bisa mendownload</string>
@@ -246,12 +256,12 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Pilih mode bacaan</string>
    <string name="convert_to">Ubah ke</string>
-   <string name="mode_vertical">Mode \"Gulir\"</string>
-   <string name="mode_horizontally">Mode \"Buku\"</string>
+   <string name="mode_vertical">Vertikal</string>
+   <string name="mode_horizontally">Per halaman</string>
    <string name="mode_musician">Mode \"Musisi\"</string>
    <string name="save">Menyimpan</string>
    <string name="remember_choice">Ingat pilihan</string>
-   <string name="edit">Edit</string>
+   <string name="edit">Sunting</string>
    <string name="make_text_reflow">Mode teks (Text Reflow)</string>
    <string name="open_with">Buka dengan</string>
    <string name="send_file">Kirim file</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Halaman</string>
    <string name="page">Halaman</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Memilih...</string>
+   <string name="choose_">Memilih</string>
    <string name="crop_white_borders">Pangkas batas putih</string>
    <string name="full_screen">Layar penuh</string>
    <string name="go">Pergi</string>
@@ -462,9 +472,9 @@
    <string name="crop_borders_symmetrically">Perbatasan tanaman simetris</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Menampilkan penulis dan judul buku PDF dari meta tag</string>
    <string name="meta_tags">Meta tag</string>
-   <string name="librera_pro">Dapatkan Librera PRO — tanpa iklan, dan juga menghapus iklan di aplikasi ini</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Aplikasi bebas iklan yang juga menghapus iklan dari aplikasi ini</string>
    <string name="annotation">Anotasi</string>
-   <string name="book">Book</string>
+   <string name="book">Buku</string>
    <string name="information">Informasi</string>
    <string name="file_path">Jalur file</string>
    <string name="year">Tahun</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Tunjukkan huruf kapital</string>
    <string name="size">Ukuran</string>
    <string name="quick_bookmark_by_the_headset">Bookmark cepat dengan headset</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Tampilkan tombol TTS di bagian bawah halaman</string>
    <string name="slider_scale">Skala Slider</string>
    <string name="chapter_format">Format bab</string>
    <string name="play_a_music_file">Mainkan file musik</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Oled gelap</string>
    <string name="profile">Profil</string>
    <string name="new_profile">Profil baru</string>
+   <string name="add_profile">Tambah profil</string>
    <string name="main">Utama</string>
    <string name="do_you_want_to_switch_profile_">Beralih ke profil lain?</string>
    <string name="sync_error">Kesalahan sinkronisasi</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Total halaman</string>
    <string name="close_menu">Menu tutup</string>
    <string name="go_to_page">Buka halaman</string>
-   <string name="update_library">Perbarui perpustakaan</string>
+   <string name="update_library">Perbarui</string>
    <string name="ascending">Naik</string>
    <string name="descending">Menurun</string>
    <string name="remove">Menghapus</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Menyoroti huruf awal</string>
    <string name="anti_aliasing_level">Tingkat anti-aliasing</string>
    <string name="folder_preview">Pratinjau folder</string>
+   <string name="show_storage_book_covers">Tampilkan sampul untuk penyimpanan yang ditambahkan</string>
    <string name="accent">Aksen</string>
    <string name="discarded_books">Buku-buku yang dibuang</string>
    <string name="show_print_edition_page_numbers_epub3">Tampilkan nomor halaman edisi cetak (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Peringatan: dokumen ini memiliki perubahan yang belum disimpan</string>
    <string name="bold_headings">Judul tebal</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Tonton video singkat ini untuk menonaktifkan semua iklan selama 1 jam.</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Tonton video singkat ini untuk menonaktifkan semua iklan selama 2 jam.</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Tonton video singkat ini untuk menonaktifkan semua iklan selama 3 jam.</string>
    <string name="the_book_is_complete">Buku ini sudah selesai.</string>
    <string name="time">Waktu</string>
    <string name="date_added">Tanggal ditambahkan</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Tampilkan tombol kontras dan kecerahan.</string>
    <string name="text_and_background_color">Warna teks dan latar belakang</string>
    <string name="library_folders">Folder pustaka</string>
+   <string name="library_folders_hint">Buku dicari di folder ini dan subfoldernya.</string>
+   <string name="add_folder_hint">Pilih satu folder</string>
+   <string name="add_storage_hint">Kartu SD atau drive USB</string>
+   <string name="folder_no_access">Tanpa akses · ketuk untuk mengizinkan lagi</string>
    <string name="watch">Tonton</string>
+   <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>
+   <string name="remove_library_folder">Hapus folder ini dari pustaka? File di dalamnya tidak akan dihapus.</string>
+   <string name="epub_engine">Mesin EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView tidak tersedia di perangkat ini.</string>
+   <string name="base_stylesheet">Terapkan lembar gaya dasar (foliate-js)</string>
+   <string name="pdf_engine">Mesin PDF</string>
+   <string name="msg_pdf_engine_unavailable">Build ini tidak menyertakan pustaka PDFium.</string>
+   <string name="book_open_failed">Buku ini tidak dapat dibuka.</string>
+   <string name="book_open_crashed">Aplikasi tertutup secara tak terduga saat membuka buku ini terakhir kali.</string>
+   <string name="try_librerax">Coba buka di LibreraX.</string>
+   <string name="get_librerax">LibreraX mungkin dapat membukanya. Unduh di sini:</string>
+   <string name="open_in_librerax">Buka di LibreraX</string>
+   <string name="try_again">Coba lagi</string>
+   <string name="export_to_librerax">Ekspor ke LibreraX</string>
+   <string name="update_librerax">Perbarui LibreraX ke versi terbaru untuk mengimpor dari Librera.</string>
+   <string name="reading_progress">Kemajuan membaca</string>
 </resources>

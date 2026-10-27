@@ -39,6 +39,7 @@
    <string name="document_converter_online_">Performuoti dokumentą (internete)</string>
    <string name="book_covers">Knygų viršeliai</string>
    <string name="cover_image_size">Knygos viršelio atvaizdo dydis</string>
+   <string name="cover_radius">Viršelio kampų apvalumas</string>
    <string name="column_count">Stulpelių skaičius</string>
    <string name="show_book_covers">Rodyti knygų viršelius</string>
    <string name="enable_effect_of_the_book_cover">Knygos viršelio efektas</string>
@@ -61,7 +62,7 @@
    <string name="web">Internetinis adresas</string>
    <string name="beta_version">Bandomoji versija</string>
    <string name="archive">Archyvas</string>
-   <string name="rate_pdf_reader1">Parašykite atsiliepimą ir įvertinkite programą Google Play parduotuvėje, tai mums labai svarbu</string>
+   <string name="rate_pdf_reader1">Palikite atsiliepimą apie šią programą Google Play. Tai mums labai svarbu</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Formatuotas tekstas (pseudo grafika)</string>
    <string name="continuous_text">Nuolatinis tekstas (be eilučių)</string>
@@ -91,6 +92,7 @@
    <string name="styles">Stiliai</string>
    <string name="document_styles">Dokumento</string>
    <string name="automatic_hyphenation">Automatinė pertrauka</string>
+   <string name="parse_bbcode_tags">Apdoroti BBCode žymes</string>
    <string name="empty_line">Tuščia linija</string>
    <string name="margin_width">Paraštės plotis</string>
    <string name="top">Viršuje</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">Nėra serijos</string>
    <string name="no_genre">Nėra žanro</string>
    <string name="no_language">Nėra kalbos</string>
+   <string name="no_date">Be datos</string>
    <string name="without_series">Be serijos</string>
    <string name="folders">Aplankai</string>
    <string name="recent">Naujausi</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">Elektroninio pašto programa neįdiegta</string>
    <string name="file_not_found">Failas nerastas</string>
    <string name="you_need_grant_permission5">Programai reikia jūsų leidimo, kad ji galėtų rasti ir rodyti visas jūsų knygas.</string>
+   <string name="allow">Leisti</string>
+   <string name="storage">Saugykla</string>
+   <string name="add_all_books_with_permission">Leiskite programai nuskaityti aplanką „Atsisiuntimai“, kad knygos būtų automatiškai įtrauktos į jūsų biblioteką.</string>
+   <string name="allow_access_to_see_files">Leiskite prieigą prie visų failų, kad matytumėte šio aplanko knygas. Be jos rodomi tik jo aplankai.</string>
+   <string name="save_settings_in_librera_folder">Išsaugoti nustatymus ir skaitymo eigą Librera aplanke.</string>
+   <string name="regrant_folder_title">Vėl leisti prieigą prie aplanko</string>
+   <string name="regrant_folder_msg">Programa nebegali skaityti %1$s: iš naujo įdiegus programą, Android pašalina prieigą prie aplankų. Kitame ekrane pasirinkite aplanką dar kartą.</string>
    <string name="remind_msg">Padarykite pertraukėlę ir leiskite pailsėti akims</string>
    <string name="bookmark_for_this_page_already_exists">Šis puslapis jau žymelėse</string>
    <string name="can_t_download">Negalima atsisiųsti</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">Pasirinkite skaitymo režimą</string>
    <string name="convert_to">Performatuoti</string>
-   <string name="mode_vertical">Mode \"Scroll\"</string>
-   <string name="mode_horizontally">Mode \"Book\"</string>
+   <string name="mode_vertical">Vertikalus</string>
+   <string name="mode_horizontally">Puslapiais</string>
    <string name="mode_musician">Režimas \"muzikantas\"</string>
    <string name="save">Išsaugoti</string>
    <string name="remember_choice">Prisimink pasirinkimą</string>
@@ -339,7 +349,7 @@
    <string name="text_page">Puslapis</string>
    <string name="page">Puslapis</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Pasirinkti...</string>
+   <string name="choose_">Pasirinkti</string>
    <string name="crop_white_borders">Apkarpyti tuščias paraštes</string>
    <string name="full_screen">Per visą ekraną</string>
    <string name="go">Pirmyn</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">Sumažinti sienas simetriškai</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Rodoma autoriaus ir PDF knygos pavadinimo iš meta žymeles</string>
    <string name="meta_tags">Meta žymeles</string>
-   <string name="librera_pro">Įsigykite „Librera PRO“ — be reklamų, ir ji pašalina reklamas ir šioje programoje</string>
+   <string name="librera_pro"><b>Librera PRO</b>: Programa be reklamų, kuri pašalina reklamas ir iš šios programos</string>
    <string name="annotation">Anotacija</string>
    <string name="book">Knyga</string>
    <string name="information">Informacija</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">Rodyti didžiąją raidę</string>
    <string name="size">Dydis</string>
    <string name="quick_bookmark_by_the_headset">Greita žymė su laisvų rankų įranga</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">Rodyti TTS mygtukus puslapio apačioje</string>
    <string name="slider_scale">Slankiklio skalė</string>
    <string name="chapter_format">Skyriaus formatas</string>
    <string name="play_a_music_file">Groti muzikos failą</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">Tamsiai oled</string>
    <string name="profile">Profilis</string>
    <string name="new_profile">Naujas profilis</string>
+   <string name="add_profile">Pridėti profilį</string>
    <string name="main">Pagrindinis</string>
    <string name="do_you_want_to_switch_profile_">Pereiti prie kito profilio?</string>
    <string name="sync_error">Sinchronizavimo klaida</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">Viso puslapių</string>
    <string name="close_menu">Uždaryti meniu</string>
    <string name="go_to_page">Eiti į puslapį</string>
-   <string name="update_library">Atnaujinti biblioteką</string>
+   <string name="update_library">Atnaujinti</string>
    <string name="ascending">Kylant</string>
    <string name="descending">Besileidžianti</string>
    <string name="remove">Pašalinti</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">Paryškinant pradines raides</string>
    <string name="anti_aliasing_level">Anti-aliasing lygis</string>
    <string name="folder_preview">Aplanko peržiūra</string>
+   <string name="show_storage_book_covers">Rodyti pridėtos saugyklos viršelius</string>
    <string name="accent">Akcentas</string>
    <string name="discarded_books">Išmestų knygų</string>
    <string name="show_print_edition_page_numbers_epub3">Rodyti spausdinto leidimo puslapių numerius (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">Įspėjimas: šiame dokumente yra neišsaugotų pakeitimų</string>
    <string name="bold_headings">Paryškintos antraštės</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">Peržiūrėkite šį trumpą vaizdo įrašą, kad 1 valandai išjungtumėte visas reklamas</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">Peržiūrėkite šį trumpą vaizdo įrašą, kad 2 valandoms išjungtumėte visas reklamas</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">Peržiūrėkite šį trumpą vaizdo įrašą, kad 3 valandoms išjungtumėte visas reklamas</string>
    <string name="the_book_is_complete">Knyga baigta.</string>
    <string name="time">Laikas</string>
    <string name="date_added">Pridėjimo data</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">Rodyti kontrastą ir ryškumą mygtukas</string>
    <string name="text_and_background_color">Teksto ir fono spalva</string>
    <string name="library_folders">Bibliotekos aplankai</string>
+   <string name="library_folders_hint">Knygų ieškoma šiuose aplankuose ir jų poaplankiuose.</string>
+   <string name="add_folder_hint">Pasirinkite vieną aplanką</string>
+   <string name="add_storage_hint">SD kortelė arba USB diskas</string>
+   <string name="folder_no_access">Nėra prieigos · palieskite, kad leistumėte vėl</string>
    <string name="watch">Žiūrėti</string>
+   <string name="librerax_not_installed">LibreraX neįdiegta. Atsisiųskite ir įdiekite ją, tada vėl atidarykite knygą.</string>
+   <string name="remove_library_folder">Pašalinti šį aplanką iš bibliotekos? Jame esantys failai nebus ištrinti.</string>
+   <string name="epub_engine">EPUB variklis</string>
+   <string name="msg_epub_engine_unavailable">WebView šiame įrenginyje neprieinama.</string>
+   <string name="base_stylesheet">Taikyti bazinį stilių aprašą (foliate-js)</string>
+   <string name="pdf_engine">PDF variklis</string>
+   <string name="msg_pdf_engine_unavailable">Ši versija neturi PDFium bibliotekų.</string>
+   <string name="book_open_failed">Šios knygos atidaryti nepavyko.</string>
+   <string name="book_open_crashed">Paskutinį kartą atidarant šią knygą programa netikėtai užsidarė.</string>
+   <string name="try_librerax">Pabandykite ją atidaryti su LibreraX.</string>
+   <string name="get_librerax">LibreraX gali pavykti ją atidaryti. Atsisiųskite čia:</string>
+   <string name="open_in_librerax">Atidaryti su LibreraX</string>
+   <string name="try_again">Bandyti dar kartą</string>
+   <string name="export_to_librerax">Eksportuoti į LibreraX</string>
+   <string name="update_librerax">Atnaujinkite LibreraX iki naujausios versijos, kad galėtumėte importuoti iš Librera.</string>
+   <string name="reading_progress">Skaitymo eiga</string>
 </resources>

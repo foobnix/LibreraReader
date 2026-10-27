@@ -165,6 +165,24 @@ public class DjvuDocument extends AbstractCodecDocument {
         return list;
     }
 
+    /**
+     * All words of a page's text layer with their boxes normalized to 0..1, origin top left.
+     * Used by the DjVu render service; null when the page has no text layer.
+     */
+    public List<PageTextBox> getPageWords(final int pageNumber) {
+        final List<PageTextBox> list = DjvuPage.getPageTextSync(documentHandle, pageNumber, context.getContextHandle(), null);
+        if (LengthUtils.isNotEmpty(list)) {
+            CodecPageInfo cpi = getPageInfo(pageNumber);
+            if (cpi == null || cpi.width <= 0 || cpi.height <= 0) {
+                return null;
+            }
+            for (final PageTextBox ptb : list) {
+                DjvuPage.normalizeTextBox(ptb, cpi.width, cpi.height);
+            }
+        }
+        return list;
+    }
+
     @Override
     public void saveAnnotations(String path) {
 

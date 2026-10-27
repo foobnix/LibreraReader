@@ -53,6 +53,32 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     View panelRecent;
     String syncronizedBooksTitle;
 
+    // Every book and folder is taken off the shelf. The other tabs are told as well, so a heart
+    // left filled on a cover in the library does not go on claiming a place that is gone.
+    final Runnable clearAllFavorites = new Runnable() {
+
+        @Override public void run() {
+            for (FileMeta f : AppDB.get()
+                                   .getStarsFilesDeprecated()) {
+                f.setIsStar(false);
+                AppDB.get()
+                     .update(f);
+            }
+            for (FileMeta f : AppDB.get()
+                                   .getStarsFoldersDeprecated()) {
+                f.setIsStar(false);
+                AppDB.get()
+                     .update(f);
+            }
+            AppData.get()
+                   .clearFavorites();
+
+            populate();
+            EventBus.getDefault()
+                    .post(new NotifyAllFragments());
+        }
+    };
+
     @Override public Pair<Integer, Integer> getNameAndIconRes() {
         return PAIR;
     }
@@ -138,27 +164,22 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                 p.show();
             });
 
-        sortOrder.setOnClickListener(new OnClickListener() {
+        // The sort button says which way round the list runs; a long press turns it round.
+        onSort.setOnLongClickListener(new View.OnLongClickListener() {
 
-            @Override public void onClick(View v) {
+            @Override public boolean onLongClick(View v) {
                 AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
                 onSort.setImageResource(
                         AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
                                 R.drawable.glyphicons_476_sort_attributes);
-                sortOrder.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_222_chevron_up :
-                        R.drawable.glyphicons_221_chevron_down);
-
                 populate();
-
+                return true;
             }
         });
+        sortOrder.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
+        onSort.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
                 R.drawable.glyphicons_476_sort_attributes);
-        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_222_chevron_up :
-                R.drawable.glyphicons_221_chevron_down);
-
-        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         onSort.setOnClickListener(new OnClickListener() {
@@ -166,26 +187,26 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             @Override public void onClick(View v) {
 
                 List<String> names = Arrays.asList(//
+                        getActivity().getString(R.string.by_date), //
+                        getActivity().getString(R.string.publication_date), //
+                        getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.date_added), //
                         getActivity().getString(R.string.by_file_name), //
-                        getActivity().getString(R.string.by_date), //
-                        getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
-                        getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_extension) //
                                                   );//
 
                 final List<Integer> ids = Arrays.asList(//
+                        AppState.BR_SORT_BY_DATE, //
+                        AppState.BR_SORT_BY_YEAR, //
+                        AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_STAR_TIME, //
                         AppState.BR_SORT_BY_PATH, //
-                        AppState.BR_SORT_BY_DATE, //
-                        AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
-                        AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_EXT//
                                                        );//
 
@@ -195,6 +216,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     final int j = i;
                     menu.getMenu()
                         .add(name)
+                        .setIconSmall(AppState.get().sortByFavorite == ids.get(j) ? TintUtil.SORT_CURRENT_ICON : 0)
                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                             @Override public boolean onMenuItemClick(MenuItem item) {
@@ -213,27 +235,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
                     @Override public void onClick(View v) {
                         AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_),
-                                getString(R.string.ok), new Runnable() {
-
-                                    @Override public void run() {
-                                        for (FileMeta f : AppDB.get()
-                                                               .getStarsFilesDeprecated()) {
-                                            f.setIsStar(false);
-                                            AppDB.get()
-                                                 .update(f);
-                                        }
-                                        for (FileMeta f : AppDB.get()
-                                                               .getStarsFoldersDeprecated()) {
-                                            f.setIsStar(false);
-                                            AppDB.get()
-                                                 .update(f);
-                                        }
-                                        AppData.get()
-                                               .clearFavorites();
-
-                                        populate();
-                                    }
-                                });
+                                getString(R.string.ok), clearAllFavorites);
 
                     }
                 });
@@ -329,6 +331,20 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                  }
              });
         }
+
+        // Emptying the shelf sits under the same mark as it does on the Recent tab, and asks
+        // before it does anything.
+        p.getMenu()
+         .add(R.string.clear_all)
+         .setIcon(R.drawable.glyphicons_17_bin)
+         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+             @Override public boolean onMenuItemClick(MenuItem item) {
+                 AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_),
+                         getString(R.string.ok), clearAllFavorites);
+                 return false;
+             }
+         });
 
         p.show();
 
@@ -462,6 +478,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BY_DATE);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_SIZE) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BY_SIZE);
+                } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_YEAR) {
+                    Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_YEAR);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_NUMBER) {
                     Collections.sort(allFavoriteFiles, FileMetaComparators.BR_BY_NUMBER1);
                 } else if (AppState.get().sortByFavorite == AppState.BR_SORT_BY_PAGES) {

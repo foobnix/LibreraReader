@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -325,11 +326,21 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.count.setVisibility(View.GONE);
             }
 
+            // A recycled row may have held a cover: the folder mark is drawn whole and held off
+            // the edge of the card.
+            final View coverFrame = (View) holder.image.getParent();
+            coverFrame.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+            holder.image.setScaleType(ScaleType.FIT_CENTER);
+
             if (new File(fileMeta.getPath(), "Fonts").isDirectory()) {
                 holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
             } else {
                 if (AppState.get().isFolderPreview) {
                     IMG.updateImageSizeSmallDir(holder.image);
+                    // The cover a folder shows sits flush into the corner of the card, as a
+                    // book's does: no air round it, and the card cuts it to its own round.
+                    coverFrame.setPadding(0, 0, 0, 0);
+                    holder.image.setScaleType(ScaleType.CENTER_CROP);
                     IMG.getCoverPageWithEffect(holder.image.getContext(), fileMeta.getPath(),  new IMG.ResourceReady() {
                         @Override
                         public void onResourceReady(Bitmap bitmap) {
@@ -732,8 +743,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             // The line is as wide as the row and filled by a fraction of itself, so it keeps
             // the same air on both sides whatever the screen is.
             TintUtil.setProgressLine(holder.idProgressBg,
-                                     holder.idProgressBg.getResources()
-                                                        .getColor(R.color.lt_grey_dima),
+                                     ContextCompat.getColor(holder.idProgressBg.getContext(),
+                                             R.color.lt_grey_dima),
                                      TintUtil.color,
                                      recentProgress);
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
@@ -788,7 +799,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             });
         }
-        holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+        // A book on added storage is a favourite like any other: the list keeps its document uri
+        holder.star.setVisibility(View.VISIBLE);
 
         if (holder.signIcon != null) {
             holder.signIcon.setOnClickListener(new OnClickListener() {
@@ -809,6 +821,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
+        // The cover fills the corners of its card, so the card is cut to the cover's round:
+        // with a round of its own it would clip the cover to that instead.
+        if (holder.parent instanceof CardView) {
+            ((CardView) holder.parent).setRadius(TintUtil.coverRadius());
+        }
+
         if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
             if (holder.path != null) {
                 holder.path.setVisibility(View.GONE);
@@ -823,6 +841,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
 
             IMG.updateImageSizeBig(holder.imageParent, sizeDP);
+            TintUtil.roundCover(holder.imageParent);
 
             LayoutParams lp = holder.image.getLayoutParams();
 
@@ -852,9 +871,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (holder.imageParent instanceof CardView) {
                 boolean cardShows = AppState.get().isBorderAndShadow &&
                         AppState.get().appTheme != AppState.THEME_DARK_OLED;
-                ((CardView) holder.imageParent).setRadius(cardShows ? 0 :
-                        holder.imageParent.getResources()
-                                          .getDimension(R.dimen.cover_radius_small));
+                ((CardView) holder.imageParent).setRadius(cardShows ? 0 : TintUtil.coverRadius());
             }
 
             LayoutParams parentLp = IMG.updateImageSizeSmall(holder.imageParent);
@@ -937,12 +954,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.menu, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (holder.remove != null) {
-            // The mark that drops a book takes the same day/night colour as the heart beside
-            // it, so on a night theme it stays legible instead of sinking into the card.
+            // The cross that drops a book takes the same day/night colour as the heart beside it,
+            // so on a night theme it stays legible instead of sinking into the card.
+            int removeColor = holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
+                    TintUtil.getColorInDayNighthBook();
             if (holder.remove instanceof ImageView) {
-                TintUtil.setTintImageWithAlpha((ImageView) holder.remove,
-                        holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
-                                TintUtil.getColorInDayNighthBook());
+                TintUtil.setTintImageWithAlpha((ImageView) holder.remove, removeColor);
             }
             holder.remove.setOnClickListener(new OnClickListener() {
 

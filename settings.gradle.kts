@@ -1,4 +1,4 @@
-rootProject.name = "Librera"
+rootProject.name = "LibreraReader"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

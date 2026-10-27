@@ -39,6 +39,7 @@
    <string name="document_converter_online_">ממיר מסמכים (באינטרנט)</string>
    <string name="book_covers">כריכת ספרים</string>
    <string name="cover_image_size">כיסוי תמונה בגודל</string>
+   <string name="cover_radius">עיגול פינות הכריכה</string>
    <string name="column_count">ספירת עמודות</string>
    <string name="show_book_covers">הצג כריכות ספרים</string>
    <string name="enable_effect_of_the_book_cover">אפשר השפעת עטיפת הספר</string>
@@ -61,7 +62,7 @@
    <string name="web">אינטרנט</string>
    <string name="beta_version">גירסת בטא</string>
    <string name="archive">ארכיון</string>
-   <string name="rate_pdf_reader1">אנא כתוב את המשוב שלך לדרג אותנו ב-גוגל פליי חשוב מאוד בשבילנו</string>
+   <string name="rate_pdf_reader1">אנא השאירו משוב על האפליקציה הזו ב-Google Play. זה חשוב לנו מאוד</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">טקסט מעוצב (גרפיקה פסאודו)</string>
    <string name="continuous_text">טקסט רציף (ללא הפסקה בשורה)</string>
@@ -91,6 +92,7 @@
    <string name="styles">סגנונות</string>
    <string name="document_styles">סגנונות מסמך</string>
    <string name="automatic_hyphenation">המיקוף אוטומטי</string>
+   <string name="parse_bbcode_tags">עיבוד תגי BBCode</string>
    <string name="empty_line">שורה ריקה</string>
    <string name="margin_width">רוחב שולי</string>
    <string name="top">בצד למעלה</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>
    <string name="no_language">אין שפה</string>
+   <string name="no_date">ללא תאריך</string>
    <string name="without_series">ללא סדרה</string>
    <string name="folders">תיקיות</string>
    <string name="recent">לאחרונה</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">יישום דואר אלקטרוני אינו מותקן.</string>
    <string name="file_not_found">הקובץ לא נמצא</string>
    <string name="you_need_grant_permission5">האפליקציה זקוקה לאישורך כדי למצוא ולהציג את כל הספרים שלך.</string>
+   <string name="allow">אישור</string>
+   <string name="storage">אחסון</string>
+   <string name="add_all_books_with_permission">נא לאפשר לאפליקציה לסרוק את תיקיית ההורדות כדי להוסיף ספרים לספרייה שלך באופן אוטומטי.</string>
+   <string name="allow_access_to_see_files">אפשרו גישה לכל הקבצים כדי לראות את הספרים בתיקייה זו. בלעדיה מוצגות רק התיקיות שבה.</string>
+   <string name="save_settings_in_librera_folder">שמירת ההגדרות והתקדמות הקריאה בתיקייה Librera.</string>
+   <string name="regrant_folder_title">אפשר שוב גישה לתיקייה</string>
+   <string name="regrant_folder_msg">האפליקציה כבר לא יכולה לקרוא את %1$s: Android מסיר את הגישה לתיקיות כשהאפליקציה מותקנת מחדש. בחר שוב את התיקייה במסך הבא.</string>
    <string name="remind_msg">קח הפסקה לעיניים שלך ותנוח קצת.</string>
    <string name="bookmark_for_this_page_already_exists">Bookmark עבור הדף הזה כבר קיים</string>
    <string name="can_t_download">לא ניתן להוריד</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">בחר את מצב הקריאה</string>
    <string name="convert_to">להמיר ל</string>
-   <string name="mode_vertical">מצב \"גלילה\"</string>
-   <string name="mode_horizontally">מצב \"ספר\"</string>
+   <string name="mode_vertical">אנכי</string>
+   <string name="mode_horizontally">לפי עמודים</string>
    <string name="mode_musician">מצב \"מוסיקאי\"</string>
    <string name="save">להציל</string>
    <string name="remember_choice">זכור בחירה</string>
@@ -339,7 +349,7 @@
    <string name="text_page">עמוד</string>
    <string name="page">עמוד</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">בחר...</string>
+   <string name="choose_">בחר</string>
    <string name="crop_white_borders">חתוך שוליים לבנים</string>
    <string name="full_screen">מסך מלא</string>
    <string name="go">לעבור</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">חתוך גבולות באופן סימטרי</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">הצגת המחבר והכותרת של ספר ה- PDF מתוך המטא-תגים</string>
    <string name="meta_tags">מטא תגים</string>
-   <string name="librera_pro">קבלו את Librera PRO — ללא פרסומות, והיא מסירה את הפרסומות גם מהאפליקציה הזו</string>
+   <string name="librera_pro"><b>Librera PRO</b>: אפליקציה ללא פרסומות שמסירה את הפרסומות גם מהאפליקציה הזו</string>
    <string name="annotation">ביאור</string>
    <string name="book">ספר</string>
    <string name="information">מידע</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">הצג את אות ההוני</string>
    <string name="size">גודל</string>
    <string name="quick_bookmark_by_the_headset">סימנייה מהירה על ידי הדיבורית האישית</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">הצג את כפתורי ה-TTS בתחתית העמוד</string>
    <string name="slider_scale">סולם המחוון</string>
    <string name="chapter_format">תבנית פרק</string>
    <string name="play_a_music_file">נגן קובץ מוסיקה</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">כהה</string>
    <string name="profile">פרופיל</string>
    <string name="new_profile">פרופיל חדש</string>
+   <string name="add_profile">הוסף פרופיל</string>
    <string name="main">ראשי</string>
    <string name="do_you_want_to_switch_profile_">לעבור לפרופיל אחר?</string>
    <string name="sync_error">שגיאת סינכרון</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">סך העמודים</string>
    <string name="close_menu">סגור תפריט</string>
    <string name="go_to_page">לך לעמוד</string>
-   <string name="update_library">עדכון ספרייה</string>
+   <string name="update_library">עדכון</string>
    <string name="ascending">עולה</string>
    <string name="descending">יורד</string>
    <string name="remove">הסר</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">הדגשת אותיות ראשוניות</string>
    <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
+   <string name="show_storage_book_covers">הצג כריכות עבור האחסון שנוסף</string>
    <string name="accent">מִבטָא</string>
    <string name="discarded_books">ספרים שנזרקו</string>
    <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">אזהרה: במסמך זה יש שינויים שלא נשמרו</string>
    <string name="bold_headings">כותרות מודגשות</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">צפו בסרטון הקצר הזה כדי לכבות את כל הפרסומות למשך שעה</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">צפו בסרטון הקצר הזה כדי לכבות את כל הפרסומות למשך שעתיים</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">צפו בסרטון הקצר הזה כדי לכבות את כל הפרסומות למשך 3 שעות</string>
    <string name="the_book_is_complete">הספר שלם.</string>
    <string name="time">זְמַן</string>
    <string name="date_added">תאריך הוספה</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">כפתור הצג ניגודיות ובהירות</string>
    <string name="text_and_background_color">צבע טקסט ורקע</string>
    <string name="library_folders">תיקיות הספרייה</string>
+   <string name="library_folders_hint">ספרים מחופשים בתיקיות אלה ובתתי־התיקיות שלהן.</string>
+   <string name="add_folder_hint">בחרו תיקייה אחת</string>
+   <string name="add_storage_hint">כרטיס SD או כונן USB</string>
+   <string name="folder_no_access">אין גישה · הקישו כדי לאפשר שוב</string>
    <string name="watch">צפה</string>
+   <string name="librerax_not_installed">LibreraX אינו מותקן. הורידו והתקינו אותו ואז פתחו את הספר שוב.</string>
+   <string name="remove_library_folder">להסיר את התיקייה הזו מהספרייה? הקבצים שבה לא יימחקו.</string>
+   <string name="epub_engine">מנוע EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView אינו זמין במכשיר הזה.</string>
+   <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
+   <string name="pdf_engine">מנוע PDF</string>
+   <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
+   <string name="book_open_failed">לא ניתן היה לפתוח ספר זה.</string>
+   <string name="book_open_crashed">בפעם הקודמת היישום נסגר באופן בלתי צפוי בזמן פתיחת ספר זה.</string>
+   <string name="try_librerax">נסו לפתוח אותו ב-LibreraX.</string>
+   <string name="get_librerax">ייתכן ש-LibreraX יוכל לפתוח אותו. הורידו אותו מכאן:</string>
+   <string name="open_in_librerax">פתיחה ב-LibreraX</string>
+   <string name="try_again">ניסיון חוזר</string>
+   <string name="export_to_librerax">ייצוא ל-LibreraX</string>
+   <string name="update_librerax">יש לעדכן את LibreraX לגרסה האחרונה כדי לייבא מ-Librera.</string>
+   <string name="reading_progress">התקדמות קריאה</string>
 </resources>

@@ -16,6 +16,7 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import android.graphics.PorterDuffColorFilter;
 
 public class PopupHelper {
 
@@ -109,7 +110,7 @@ public class PopupHelper {
                 }
                 Drawable icon = item.getIcon().getConstantState().newDrawable();
                 icon = icon.mutate();
-                icon.setColorFilter(color, Mode.SRC_ATOP);
+                icon.setColorFilter(new PorterDuffColorFilter(color, Mode.SRC_ATOP));
                 item.setIcon(icon);
             }
 

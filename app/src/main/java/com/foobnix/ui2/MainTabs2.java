@@ -13,7 +13,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.content.UriPermission;
 import android.os.Build;
+import android.provider.DocumentsContract;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -38,19 +41,26 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
+import com.foobnix.drive.GoogleAuth;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
+import androidx.fragment.app.Fragment;
+
 import com.foobnix.model.AppProfile;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.LibreraSafSync;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.IMG;
@@ -58,6 +68,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -82,7 +93,6 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.foobnix.work.SearchAllBooksWorker;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -100,12 +110,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import mobi.librera.libgooglepro.RefiewForm;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
+    public static final int REQUEST_CODE_ADD_LIBRARY_STORAGE = 124;
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
     private static final String TAG = "MainTabs";
@@ -120,7 +133,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     View imageMenuParent, overlay;
     TextView toastBrightnessText, onSubscribe;
     Handler handler;
-    MyProgressBar fab;
     SwipeRefreshLayout swipeRefreshLayout;
     boolean isMyKey = false;
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
@@ -181,7 +193,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleAuth.isAuthorized(a) && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
@@ -230,6 +242,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (requestCode == MY_PERMISSIONS_REQUEST_WES) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LOG.d("PermissionGranted","Granted");
+                onStoragePermissionGranted();
                 SearchAllBooksWorker.run(this);
             }else{
                 LOG.d("PermissionGranted","NOT Granted");
@@ -246,6 +259,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             AppSP.get().currentProfile="";
             AppSP.get().save();
             AppProfile.init(this);
+            onStoragePermissionGranted();
             SearchAllBooksWorker.run(this);
         }
         if (Android6.isNeedToGrantAccess(this, requestCode)) {
@@ -255,6 +269,17 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
+
+        // A sign-in answers for itself, whatever the answer is: the Google consent screen can
+        // come back cancelled, which the check below would otherwise swallow on the older
+        // devices.
+        if (GFile.onSignInActivityResult(this, requestCode, resultCode, data)) {
+            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+            return;
+        }
+        if (LibreraSafSync.onActivityResult(this, requestCode, resultCode, data)) {
+            return;
+        }
 
         if (Build.VERSION.SDK_INT < Android6.ANDROID_12_INT && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
@@ -276,28 +301,272 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
-        } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
-            GoogleSignIn.getSignedInAccountFromIntent(data).addOnSuccessListener(googleAccount -> {
-                AppSP.get().isEnableSync = true;
-                Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                EventBus.getDefault().post(new GDriveSycnEvent());
-                GFile.runSyncService(MainTabs2.this);
-
-                swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
-
-                AppSP.get().save();
-            }).addOnFailureListener(exception -> {
-                LOG.e(exception);
-                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                AppSP.get().isEnableSync = false;
-                swipeRefreshLayout.setEnabled(false);
-                AppSP.get().save();
-            });
+        } else if (requestCode == REQUEST_CODE_ADD_LIBRARY_STORAGE && resultCode == Activity.RESULT_OK) {
+            // The folders panel, when there is one, says it has a new folder itself: it has the
+            // list on screen and would otherwise go on showing the old one.
+            PrefFragment2 prefs = findPrefFragment();
+            if (onAddLibraryStorageResult(this, requestCode, resultCode, data, prefs == null)) {
+                // A folder handed over again: its books' covers were drawn from their names
+                IMG.onAccessRegained();
+                if (prefs != null) {
+                    prefs.onStorageFolderAdded();
+                }
+                // the library's notice now asks for the Librera folder instead
+                updateOnGrantPanels();
+                // the folders tab, already showing, is moved onto it as well
+                if (!Android6.canWrite(this)) {
+                    for (UIFragment fragment : tabFragments) {
+                        if (fragment instanceof BrowseFragment2 && fragment.isAdded()) {
+                            ((BrowseFragment2) fragment).displayAnyPath(BookCSS.get().dirLastPath);
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    /**
+     * Takes in a folder the user handed over through the system's picker, wherever it was asked
+     * for. It is kept as a storage too, so the folders screen can reach it, and put into the
+     * library paths; {@code rebuild} then says whether the library is scanned again here, which
+     * the caller may want to do itself once it has caught up with the new folder.
+     *
+     * @return whether this was the folder picker's answer and the folder was taken in.
+     */
+    public static boolean onAddLibraryStorageResult(Activity activity, int requestCode, int resultCode, Intent data,
+            boolean rebuild) {
+        if (requestCode != REQUEST_CODE_ADD_LIBRARY_STORAGE || resultCode != Activity.RESULT_OK || data == null
+                || data.getData() == null) {
+            return false;
+        }
+        Uri uri = data.getData();
+        activity.getContentResolver().takePersistableUriPermission(uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        String pathSAF = uri.toString();
+        // the same folder handed over again - after a reinstall - is not listed twice
+        if (!StringDB.asList(BookCSS.get().pathSAF).contains(pathSAF)) {
+            StringDB.add(BookCSS.get().pathSAF, pathSAF, (db) -> BookCSS.get().pathSAF = db);
+        }
+
+        LOG.d("REQUEST_CODE_ADD_LIBRARY_STORAGE", pathSAF);
+
+        // The folder is put into the library here rather than in the panel, so that it lands
+        // whether or not a panel is there to hear about it. With the permission to read the
+        // storage it goes in as the path it stands for, as a folder added from the file list does.
+        String libraryPath = pathSAF;
+        if (Android6.canWrite(activity)) {
+            String file = ExtUtils.getSafTreePath(pathSAF);
+            if (file != null) {
+                libraryPath = file;
+            }
+        }
+        // A folder already in the list is one whose access was given back, after a reinstall
+        boolean regranted = JsonDB.get(BookCSS.get().searchPathsJson).contains(libraryPath);
+        if (!regranted && !PrefDialogs.addSearchPath(activity, libraryPath)) {
+            return false;
+        }
+        // The user has said where their books are. The storage roots the library started out
+        // guessing at are not readable without the permission they chose not to give, so they
+        // are taken out rather than left in the folders list showing nothing.
+        if (!Android6.canWrite(activity)) {
+            BookCSS.removeUnreadableStorageRoots(activity);
+            // The folders screen opens on it: without the permission it is the one place with
+            // books the user can browse.
+            BookCSS.get().dirLastPath = pathSAF;
+        }
+        if (rebuild) {
+            AppProfile.save(activity);
+            SearchAllBooksWorker.run(activity);
+        }
+        return true;
+    }
+
+    /**
+     * Asks the system for a folder and puts it into the library. This is the way in for books the
+     * app is not allowed to go looking for itself: the user hands one folder over, and what comes
+     * back is a document uri rather than a path. The answer lands in
+     * {@link #onActivityResult(int, int, Intent)} under
+     * {@link #REQUEST_CODE_ADD_LIBRARY_STORAGE}, whichever screen asked for it.
+     */
+    public static void startAddLibraryStorage(Activity activity) {
+        if (activity == null) {
+            return;
+        }
+        openLibraryStoragePicker(activity);
+    }
+
+    /**
+     * The library folders, to add to and take from, and Update to rebuild the library from them -
+     * the preferences panel's own dialog, for the library's top bar. Through the panel when there
+     * is one, so its list of folders follows what is changed here.
+     */
+    public void showLibraryFolders() {
+        PrefFragment2 prefs = findPrefFragment();
+        if (prefs != null) {
+            prefs.onFolderConfigDialog();
+            return;
+        }
+        PrefDialogs.chooseFolderDialog(this, () -> {
+            AppProfile.save(this);
+            updateOnGrantPanels();
+        }, () -> PrefFragment2.updateLibrary(this));
+    }
+
+    /**
+     * The storage can be read now: a library left with no folder is given Download, and the
+     * folders panel and the notices offering a way in are brought up to date with it. Nothing
+     * happens when the permission was not given after all.
+     */
+    private void onStoragePermissionGranted() {
+        if (Android6.canWrite(this)) {
+            IMG.onAccessRegained();
+        }
+        if (!BookCSS.addDownloadsIfNoFolders(this)) {
+            return;
+        }
+        PrefFragment2 prefs = findPrefFragment();
+        if (prefs != null) {
+            prefs.onLibraryFoldersChanged();
+        }
+        updateOnGrantPanels();
+    }
+
+    /** Every page's notice offering a way in for books, worked out again for the current folders. */
+    public void updateOnGrantPanels() {
+        if (tabFragments == null) {
+            return;
+        }
+        for (UIFragment fragment : tabFragments) {
+            if (fragment != null && fragment.isAdded()) {
+                fragment.updateOnGrantPanel();
+            }
+        }
+    }
+
+    /** The folders already asked about while the app has been running; each is asked about once. */
+    private static final Set<String> askedForLostStorage = new HashSet<>();
+
+    /**
+     * Asks again for a library folder handed over through the picker whose access is gone. Android
+     * forgets every such grant when the app is reinstalled, while the library folders come back
+     * with the profile from the Librera folder - so they would be listed and never read. The
+     * picker opens on the folder itself; the answer comes back as any other library folder does.
+     */
+    public static void askForLostLibraryStorage(Activity activity) {
+        if (activity == null || Android6.canWrite(activity)) {
+            return;
+        }
+        for (String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            if (!isLostLibraryStorage(activity, path) || !askedForLostStorage.add(path)) {
+                continue;
+            }
+            LOG.d("askForLostLibraryStorage", path);
+            askToRegrantLibraryStorage(activity, path);
+            return;
+        }
+    }
+
+    /** Whether this is a folder handed over through the picker that the app holds no grant for. */
+    public static boolean isLostLibraryStorage(Context c, String path) {
+        if (c == null || !ExtUtils.isExteralSD(path)) {
+            return false;
+        }
+        for (UriPermission p : c.getContentResolver().getPersistedUriPermissions()) {
+            if (p.getUri().toString().equals(path)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Says the folder can no longer be read and offers to hand it over again: the picker opens on
+     * the folder itself, and the answer comes back as any other library folder does.
+     */
+    public static void askToRegrantLibraryStorage(Activity activity, String path) {
+        Uri tree = Uri.parse(path);
+        String name;
+        try {
+            name = DocumentsContract.getTreeDocumentId(tree);
+        } catch (Exception e) {
+            name = path;
+        }
+        name = name.replaceFirst("^primary:", "");
+        AlertDialogs.showDialog(activity, activity.getString(R.string.regrant_folder_title),
+                activity.getString(R.string.regrant_folder_msg, name), activity.getString(R.string.choose_),
+                () -> openLibraryStoragePicker(activity, tree), null);
+    }
+
+    /** The system's folder picker, opened in Download, where books usually land. */
+    private static void openLibraryStoragePicker(Activity activity) {
+        openLibraryStoragePicker(activity, null);
+    }
+
+    /** @param at the tree uri of the folder to open on, or null for Download */
+    private static void openLibraryStoragePicker(Activity activity, Uri at) {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_READ_URI_PERMISSION //
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION //
+                       );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Uri initial = DocumentsContract.buildDocumentUri("com.android.externalstorage.documents", "primary:Download");
+            if (at != null) {
+                try {
+                    initial = DocumentsContract.buildDocumentUri(at.getAuthority(), DocumentsContract.getTreeDocumentId(at));
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initial);
+        }
+        try {
+            activity.startActivityForResult(intent, REQUEST_CODE_ADD_LIBRARY_STORAGE);
+        } catch (Exception e) {
+            LOG.e(e);
+            Toast.makeText(activity, R.string.fail, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * The preferences panel, wherever it is. It is the left drawer most of the time, and a tab of
+     * its own when the user has asked for one.
+     */
+    private PrefFragment2 findPrefFragment() {
+        try {
+            Fragment drawer = getSupportFragmentManager().findFragmentById(R.id.left_drawer);
+            if (drawer instanceof PrefFragment2 && drawer.isAdded()) {
+                return (PrefFragment2) drawer;
+            }
+            for (UIFragment fragment : tabFragments) {
+                if (fragment instanceof PrefFragment2 && fragment.isAdded()) {
+                    return (PrefFragment2) fragment;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return null;
     }
 
     public boolean isPullToRefreshEnable() {
         return isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout);
+    }
+
+
+    public void updatePullToRefresh() {
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+        boolean onPrefs = false;
+        try {
+            onPrefs = pager != null && tabFragments.get(pager.getCurrentItem()) instanceof PrefFragment2;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        swipeRefreshLayout.setEnabled(isPullToRefreshEnable() && !onPrefs);
     }
 
     @Override
@@ -315,6 +584,46 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(MyContextWrapper.wrap(context));
+    }
+
+    /**
+     * Keeps the floating bar clear of the system's buttons - only by as much of them as lies
+     * under it: with an ad beneath, the ad stands between the two and nothing is kept.
+     */
+    private void placeFloatingBar() {
+        if (indicator == null || !SlidingTabLayout.isFloating()) {
+            return;
+        }
+        View holder = (View) indicator.getParent();
+        WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
+        int below = DocumentController.keptClearOf(this, insets).bottom;
+        int[] at = new int[2];
+        holder.getLocationInWindow(at);
+        int holderBottom = at[1] + holder.getHeight();
+        int windowBottom = indicator.getRootView().getHeight();
+        int covered = Math.max(0, Math.min(below, holderBottom - (windowBottom - below)));
+
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
+        int margin, bottom, padding = indicator.getPaddingTop();
+        if (SlidingTabLayout.isFlush()) {
+            // Square, the bar sits on the screen's edges, and carries the system's buttons
+            // under its own instead of leaving the page showing there.
+            margin = 0;
+            bottom = 0;
+            padding += covered;
+        } else {
+            margin = Dips.DP_10;
+            bottom = Dips.DP_8 + covered;
+        }
+        if (lp.leftMargin != margin || lp.rightMargin != margin || lp.bottomMargin != bottom) {
+            lp.leftMargin = lp.rightMargin = margin;
+            lp.bottomMargin = bottom;
+            indicator.setLayoutParams(lp);
+        }
+        if (indicator.getPaddingBottom() != padding) {
+            indicator.setPadding(indicator.getPaddingLeft(), indicator.getPaddingTop(),
+                                 indicator.getPaddingRight(), padding);
+        }
     }
 
     @Override
@@ -350,7 +659,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         handler = new Handler(Looper.getMainLooper());
         isEink = Dips.isEInk();
 
-        TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);
 
@@ -365,17 +673,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(SlidingTabLayout.floatingTint(TintUtil.color));
-
-        fab = findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialogs.showSyncLOGDialog(MainTabs2.this);
-            }
-        });
-        fab.setBackgroundResource(R.drawable.bg_circular);
-        TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
@@ -401,7 +698,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             for (UITab tab : UITab.getOrdered()) {
                 LOG.d("getOrdered", tab, tab.isVisible());
                 if (tab.isVisible()) {
-                    tabFragments.add(tab.getClazz().newInstance());
+                    tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                 }
             }
             if (tabFragments.size() == 0) {
@@ -410,7 +707,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
                 for (UITab tab : UITab.getOrdered()) {
                     if (tab.isVisible()) {
-                        tabFragments.add(tab.getClazz().newInstance());
+                        tabFragments.add(tab.getClazz().getDeclaredConstructor().newInstance());
                     }
                 }
             }
@@ -498,7 +795,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                         swipeRefreshLayout.setEnabled(true);
                         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
                     }
-                    TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -523,7 +819,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         indicator.setViewPager(pager);
 
-        indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
+        indicator.setDividerColors(ContextCompat.getColor(this, R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setTabsBackground(TintUtil.color);
 
@@ -547,13 +843,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (SlidingTabLayout.isFloating()) {
             // The bar floats clear of the system's own buttons, which the page now runs
             // under rather than stopping above.
-            indicator.post(() -> {
-                WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(indicator);
-                int below = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) indicator.getLayoutParams();
-                lp.bottomMargin = Dips.DP_8 + below;
-                indicator.setLayoutParams(lp);
-            });
+            // Placed again whenever what holds it is laid out anew - an ad coming in under the
+            // bar lifts it off the system's buttons.
+            final View barHolder = (View) indicator.getParent();
+            barHolder.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> indicator.post(this::placeFloatingBar));
+            indicator.post(this::placeFloatingBar);
         }
 
         if (AppState.get().tapPositionTop) {
@@ -563,7 +857,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setOutlineProvider(null);
             imageMenuParent.post(() -> {
                 WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(imageMenuParent);
-                int top = insets == null ? 0 : insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+                int top = DocumentController.keptClearOf(MainTabs2.this, insets).top;
                 imageMenuParent.setPadding(imageMenuParent.getPaddingLeft(), top,
                                            imageMenuParent.getPaddingRight(),
                                            imageMenuParent.getPaddingBottom());
@@ -585,7 +879,10 @@ public class MainTabs2 extends AdsFragmentActivity {
             indicator.setSelectedIndicatorColors(TintUtil.color);
             indicator.setDividerColors(TintUtil.color);
             indicator.setTabsBackground(Color.TRANSPARENT);
-            imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
+            // At the foot the strip lies on the sheet and lets it show through. Standing over
+            // the page at the top, the books scroll beneath it, so there it is solid white,
+            // as ink paper is.
+            imageMenuParent.setBackgroundColor(AppState.get().tapPositionTop ? Color.WHITE : Color.TRANSPARENT);
         }
 
         //Android6.checkPermissions(this, true);
@@ -725,23 +1022,12 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
     }
 
+    // A sync is drawn in the preferences now, and nowhere else in the app; here the message
+    // only lets go of the pull-to-refresh wheel that may have started it.
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
-
         try {
-            if (msg.state == MessageSync.STATE_VISIBLE) {
-                if (BookCSS.get().isSyncAnimation) {
-                    fab.setVisibility(View.VISIBLE);
-                }
-                swipeRefreshLayout.setRefreshing(false);
-            } else if (msg.state == MessageSync.STATE_FAILE) {
-                fab.setVisibility(View.GONE);
-                swipeRefreshLayout.setRefreshing(false);
-                //Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
-            } else {
-                fab.setVisibility(View.GONE);
-                swipeRefreshLayout.setRefreshing(false);
-            }
+            swipeRefreshLayout.setRefreshing(false);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -807,6 +1093,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }
+        askForLostLibraryStorage(this);
 
         try {
             if (pager != null) {
@@ -900,7 +1187,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        String language = newConfig.locale.getLanguage();
+        String language = newConfig.getLocales().get(0).getLanguage();
         float fontScale = newConfig.fontScale;
 
         LOG.d("ContextWrapper ConfigChanged", language, fontScale);

@@ -1,5 +1,6 @@
 package translations;
 
+import paths.LocalPaths;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class DescriptionTranslation {
 
-    private static final String TR_PATH = "/home/data/git/LibreraReader/Builder/Description/about/";
-    private static final String RECENT_PATH = "/home/data/git/LibreraReader/Builder/Description/recent/";
+    private static final String TR_PATH = LocalPaths.repo("Builder/Description/about/");
+    private static final String RECENT_PATH = LocalPaths.repo("Builder/Description/recent/");
 
     public static void main(String[] args) throws IOException {
         // final List<String> asList = Arrays.asList("ar", "de", "es", "fr",
@@ -19,8 +20,8 @@ public class DescriptionTranslation {
         boolean translateDescription = false;
         boolean translateRecent = true;
 
-        String aboutEN = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/Description/about.txt")));
-        String recentEN = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/Description/recent.txt")));
+        String aboutEN = new String(Files.readAllBytes(Paths.get(LocalPaths.repo("Builder/Description/about.txt"))));
+        String recentEN = new String(Files.readAllBytes(Paths.get(LocalPaths.repo("Builder/Description/recent.txt"))));
 
         for (String ex : asList) {
             String outAbout = TR_PATH + ex + ".txt";

@@ -20,6 +20,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -85,10 +86,7 @@ public class RecentUpates {
                         public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
 
 
-                            Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
-                            if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-                                lastBookIntent = new Intent(c, HorizontalViewActivity.class);
-                            }
+                            Intent lastBookIntent = new Intent(c, LibreraX.readerClass());
                             lastBookIntent.setAction(Intent.ACTION_VIEW);
 
                             lastBookIntent.setData(Uri.fromFile(bookFile));

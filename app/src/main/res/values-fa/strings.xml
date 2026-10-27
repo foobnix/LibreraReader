@@ -39,6 +39,7 @@
    <string name="document_converter_online_">تبدیل سند (آنلاین)</string>
    <string name="book_covers">کتاب پوشش می دهد</string>
    <string name="cover_image_size">اندازه تصویر جلد</string>
+   <string name="cover_radius">گردی گوشه‌های جلد</string>
    <string name="column_count">تعداد ستون</string>
    <string name="show_book_covers">نمایش جلد کتاب</string>
    <string name="enable_effect_of_the_book_cover">فعال کردن اثر از جلد کتاب</string>
@@ -61,7 +62,7 @@
    <string name="web">وب</string>
    <string name="beta_version">نسخه بتا</string>
    <string name="archive">بایگانی</string>
-   <string name="rate_pdf_reader1">لطفا انتقادات و پیشنهادات خود را ارسال و امتیاز دادن به ما در گوگل بازی آن را برای ما بسیار مهم است</string>
+   <string name="rate_pdf_reader1">لطفاً نظر خود را درباره این برنامه در Google Play بنویسید. این برای ما بسیار مهم است</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">متن متنی (گرافیک شبه)</string>
    <string name="continuous_text">متن پیوسته (بدون شکستن خط)</string>
@@ -91,6 +92,7 @@
    <string name="styles">سبک</string>
    <string name="document_styles">سبک های سند</string>
    <string name="automatic_hyphenation">فاصلهگذاری اتوماتیک</string>
+   <string name="parse_bbcode_tags">پردازش تگ‌های BBCode</string>
    <string name="empty_line">خط خالی</string>
    <string name="margin_width">عرض حاشیه</string>
    <string name="top">سمت بالا</string>
@@ -173,6 +175,7 @@
    <string name="no_serie">هیچ سریالی وجود ندارد</string>
    <string name="no_genre">هیچ ژانر نیست</string>
    <string name="no_language">بدون زبان</string>
+   <string name="no_date">بدون تاریخ</string>
    <string name="without_series">بدون سری</string>
    <string name="folders">پوشه</string>
    <string name="recent">اخیر</string>
@@ -238,6 +241,13 @@
    <string name="there_are_no_email_applications_installed_">نرم افزار ایمیل نصب نشده است.</string>
    <string name="file_not_found">فایل یافت نشد</string>
    <string name="you_need_grant_permission5">این برنامه برای پیدا کردن و نمایش همه کتاب‌هایتان به اجازه شما نیاز دارد.</string>
+   <string name="allow">اجازه</string>
+   <string name="storage">حافظه</string>
+   <string name="add_all_books_with_permission">لطفاً به برنامه اجازه دهید پوشهٔ دانلودها را بررسی کند تا کتاب‌ها به‌طور خودکار به کتابخانهٔ شما اضافه شوند.</string>
+   <string name="allow_access_to_see_files">برای دیدن کتاب‌های این پوشه، دسترسی به همه فایل‌ها را مجاز کنید. بدون آن فقط پوشه‌های آن نشان داده می‌شود.</string>
+   <string name="save_settings_in_librera_folder">ذخیره تنظیمات و پیشرفت مطالعه در پوشه Librera.</string>
+   <string name="regrant_folder_title">دسترسی به پوشه را دوباره مجاز کنید</string>
+   <string name="regrant_folder_msg">برنامه دیگر نمی‌تواند %1$s را بخواند: Android هنگام نصب مجدد برنامه، دسترسی به پوشه‌ها را حذف می‌کند. در صفحه بعد دوباره پوشه را انتخاب کنید.</string>
    <string name="remind_msg">لطفا یک استراحت برای چشم خود را و استراحت کمی.</string>
    <string name="bookmark_for_this_page_already_exists">نشانک برای این صفحه قبلا وجود داشته</string>
    <string name="can_t_download">نمیتوانید دانلود کنید</string>
@@ -246,8 +256,8 @@
    <string name="___CONTEXT___MENU___SECTION___"></string>
    <string name="select_the_reading_mode">حالت خواندن را انتخاب کنید</string>
    <string name="convert_to">تبدیل به</string>
-   <string name="mode_vertical">حالت \"حرکت\"</string>
-   <string name="mode_horizontally">حالت \"کتاب\"</string>
+   <string name="mode_vertical">عمودی</string>
+   <string name="mode_horizontally">صفحه‌به‌صفحه</string>
    <string name="mode_musician">حالت \"موسیقیدان\"</string>
    <string name="save">صرفه جویی</string>
    <string name="remember_choice">به یاد داشته باشید انتخاب</string>
@@ -339,7 +349,7 @@
    <string name="text_page">صفحه</string>
    <string name="page">صفحه</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">انتخاب کنید...</string>
+   <string name="choose_">انتخاب کنید</string>
    <string name="crop_white_borders">محصول مرزهای سفید</string>
    <string name="full_screen">تمام صفحه</string>
    <string name="go">رفتن</string>
@@ -462,7 +472,7 @@
    <string name="crop_borders_symmetrically">میانه های محصول به طور متقارن</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">نمایش نویسنده و عنوان کتاب PDF از برچسب های متا</string>
    <string name="meta_tags">برچسب های متا</string>
-   <string name="librera_pro">Librera PRO را بگیرید — بدون تبلیغات، و تبلیغات این برنامه را هم حذف می‌کند</string>
+   <string name="librera_pro"><b>Librera PRO</b>: برنامه‌ای بدون تبلیغات که تبلیغات این برنامه را هم حذف می‌کند</string>
    <string name="annotation">حاشیه نویسی</string>
    <string name="book">کتاب</string>
    <string name="information">اطلاعات</string>
@@ -492,6 +502,7 @@
    <string name="show_the_capital_letter">نمایش نامه بزرگ</string>
    <string name="size">اندازه</string>
    <string name="quick_bookmark_by_the_headset">نشانک سریع توسط هدست</string>
+   <string name="show_tts_buttons_at_the_bottom_of_the_page">نمایش دکمه‌های TTS در پایین صفحه</string>
    <string name="slider_scale">مقیاس لغزان</string>
    <string name="chapter_format">فرمت فصل</string>
    <string name="play_a_music_file">یک فایل موسیقی را پخش کنید</string>
@@ -542,6 +553,7 @@
    <string name="dark_oled">تاریک است</string>
    <string name="profile">مشخصات</string>
    <string name="new_profile">مشخصات جدید</string>
+   <string name="add_profile">افزودن نمایه</string>
    <string name="main">اصلی</string>
    <string name="do_you_want_to_switch_profile_">تغییر به نمایه دیگری</string>
    <string name="sync_error">خطای همگام سازی</string>
@@ -624,7 +636,7 @@
    <string name="m_total_pages">صفحات کل</string>
    <string name="close_menu">منوی بستن</string>
    <string name="go_to_page">رفتن به صفحه</string>
-   <string name="update_library">به روزرسانی کتابخانه</string>
+   <string name="update_library">به‌روزرسانی</string>
    <string name="ascending">صعودی</string>
    <string name="descending">نزولی</string>
    <string name="remove">برداشتن</string>
@@ -661,6 +673,7 @@
    <string name="highlighting_initial_letters">برجسته کردن حروف اولیه</string>
    <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
    <string name="folder_preview">پیش نمایش پوشه</string>
+   <string name="show_storage_book_covers">نمایش جلد کتاب‌ها برای حافظهٔ افزوده‌شده</string>
    <string name="accent">لهجه</string>
    <string name="discarded_books">کتاب های دور ریخته شده</string>
    <string name="show_print_edition_page_numbers_epub3">نمایش شماره صفحات نسخه چاپی (epub3)</string>
@@ -672,7 +685,7 @@
    <string name="warning_this_document_has_unsaved_changes">هشدار: این سند تغییرات ذخیره نشده‌ای دارد</string>
    <string name="bold_headings">عنوان‌های پررنگ</string>
    <string name="watch_this_short_video_to_turn_off_all_ads_for_1_hour">برای خاموش کردن تمام تبلیغات به مدت ۱ ساعت، این ویدیوی کوتاه را تماشا کنید</string>
-   <string name="watch_this_short_video_to_turn_off_all_ads_for_2_hour">برای غیرفعال کردن تمام تبلیغات به مدت ۲ ساعت، این ویدیوی کوتاه را تماشا کنید</string>
+   <string name="watch_this_short_video_to_turn_off_all_ads_for_3_hour">برای غیرفعال کردن تمام تبلیغات به مدت ۳ ساعت، این ویدیوی کوتاه را تماشا کنید</string>
    <string name="the_book_is_complete">کتاب کامل است.</string>
    <string name="time">زمان</string>
    <string name="date_added">تاریخ اضافه شد</string>
@@ -688,5 +701,25 @@
    <string name="show_contrast_and_brightness_button">دکمه نمایش کنتراست و روشنایی</string>
    <string name="text_and_background_color">رنگ متن و پس زمینه</string>
    <string name="library_folders">پوشه‌های کتابخانه</string>
+   <string name="library_folders_hint">کتاب‌ها در این پوشه‌ها و زیرپوشه‌هایشان جستجو می‌شوند.</string>
+   <string name="add_folder_hint">یک پوشه انتخاب کنید</string>
+   <string name="add_storage_hint">کارت SD یا درایو USB</string>
+   <string name="folder_no_access">بدون دسترسی · برای اجازه دوباره ضربه بزنید</string>
    <string name="watch">تماشا</string>
+   <string name="librerax_not_installed">LibreraX نصب نشده است. آن را دانلود و نصب کنید، سپس کتاب را دوباره باز کنید.</string>
+   <string name="remove_library_folder">این پوشه از کتابخانه حذف شود؟ فایل‌های داخل آن پاک نمی‌شوند.</string>
+   <string name="epub_engine">موتور EPUB</string>
+   <string name="msg_epub_engine_unavailable">WebView در این دستگاه در دسترس نیست.</string>
+   <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
+   <string name="pdf_engine">موتور PDF</string>
+   <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>
+   <string name="book_open_failed">این کتاب باز نشد.</string>
+   <string name="book_open_crashed">دفعهٔ قبل برنامه هنگام باز کردن این کتاب به‌طور غیرمنتظره بسته شد.</string>
+   <string name="try_librerax">باز کردن آن را در LibreraX امتحان کنید.</string>
+   <string name="get_librerax">شاید LibreraX بتواند آن را باز کند. از اینجا دانلود کنید:</string>
+   <string name="open_in_librerax">باز کردن در LibreraX</string>
+   <string name="try_again">تلاش دوباره</string>
+   <string name="export_to_librerax">صدور به LibreraX</string>
+   <string name="update_librerax">برای وارد کردن از Librera، LibreraX را به آخرین نسخه به‌روز کنید.</string>
+   <string name="reading_progress">پیشرفت مطالعه</string>
 </resources>

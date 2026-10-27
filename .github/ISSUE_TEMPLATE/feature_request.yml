@@ -1,0 +1,56 @@
+name: Feature request
+description: Suggest a new feature or improvement for Librera
+title: "[Feature]: "
+body:
+  - type: dropdown
+    id: app
+    attributes:
+      label: Application
+      description: Which application is this request for?
+      options:
+        - Librera
+        - Librera F-Droid
+        - LibreraX
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Application version
+      description: You can find it in Settings → About
+      placeholder: e.g. 8.9.150
+    validations:
+      required: true
+
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Rendering engine
+      description: Which engine does this request relate to?
+      options:
+        - MuPDF
+        - PDFium
+        - foliate-js
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature you would like and why it would be useful
+      placeholder: |
+        I would like to be able to...
+        This would help because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop or paste screenshots or mockups here
+    validations:
+      required: false

@@ -12,6 +12,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -19,6 +20,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -34,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -54,7 +57,16 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String CHARIS_SIL = "Charis SIL";
 
-    public static final String DEFAULT_FONT = CHARIS_SIL;
+    /**
+     * The font a book is laid out in until the reader picks another one.
+     *
+     * One of the names the engines resolve themselves rather than a file in the font folder, so
+     * it needs nothing bundled and nothing downloaded: MuPDF maps it onto its own serif face and
+     * a WebView onto the system's. {@link #getTypeFaceForFont(String)} answers
+     * {@link android.graphics.Typeface#SERIF} for it, so the settings panel previews it properly
+     * too - which the name of a font with no file behind it could not.
+     */
+    public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
@@ -79,6 +91,99 @@ public class BookCSS {
     public String dictPath;
     public String fontFolder;
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 24 : 20;
+
+    /**
+     * foliate-js keeps a font size and page margins of its own: it lays a page out differently
+     * from MuPDF, so the values that read well in one are not the ones that read well in the
+     * other, and a reader switching engines would otherwise have to set them again each time.
+     * fontSizeSp and the margins above are MuPDF's. See {@link #fontSize(boolean)} and the rest.
+     */
+    public volatile int fontSizeSpFoliate = FOLIATE_FONT_SIZE;
+    public int marginTopFoliate = FOLIATE_MARGIN_TOP;
+    public int marginBottomFoliate = FOLIATE_MARGIN_BOTTOM;
+    public int marginLeftFoliate = FOLIATE_MARGIN_SIDE;
+    public int marginRightFoliate = FOLIATE_MARGIN_SIDE;
+
+    /** foliate-js's own line spacing, in tenths of an em; lineHeight12 is MuPDF's. */
+    public int lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
+
+    public static final int FOLIATE_LINE_HEIGHT = 15;
+    public static final int FOLIATE_FONT_SIZE = 20;
+    public static final int FOLIATE_MARGIN_TOP = 6;
+    public static final int FOLIATE_MARGIN_BOTTOM = 4;
+    public static final int FOLIATE_MARGIN_SIDE = 5;
+
+    public int fontSize(boolean foliate) {
+        return foliate ? fontSizeSpFoliate : fontSizeSp;
+    }
+
+    public void setFontSize(boolean foliate, int value) {
+        if (foliate) {
+            fontSizeSpFoliate = value;
+        } else {
+            fontSizeSp = value;
+        }
+    }
+
+    public int lineHeight(boolean foliate) {
+        return foliate ? lineHeight12Foliate : lineHeight12;
+    }
+
+    public void setLineHeight(boolean foliate, int value) {
+        if (foliate) {
+            lineHeight12Foliate = value;
+        } else {
+            lineHeight12 = value;
+        }
+    }
+
+    public int marginTop(boolean foliate) {
+        return foliate ? marginTopFoliate : marginTop;
+    }
+
+    public int marginBottom(boolean foliate) {
+        return foliate ? marginBottomFoliate : marginBottom;
+    }
+
+    public int marginLeft(boolean foliate) {
+        return foliate ? marginLeftFoliate : marginLeft;
+    }
+
+    public int marginRight(boolean foliate) {
+        return foliate ? marginRightFoliate : marginRight;
+    }
+
+    public void setMarginTop(boolean foliate, int value) {
+        if (foliate) {
+            marginTopFoliate = value;
+        } else {
+            marginTop = value;
+        }
+    }
+
+    public void setMarginBottom(boolean foliate, int value) {
+        if (foliate) {
+            marginBottomFoliate = value;
+        } else {
+            marginBottom = value;
+        }
+    }
+
+    public void setMarginLeft(boolean foliate, int value) {
+        if (foliate) {
+            marginLeftFoliate = value;
+        } else {
+            marginLeft = value;
+        }
+    }
+
+    public void setMarginRight(boolean foliate, int value) {
+        if (foliate) {
+            marginRightFoliate = value;
+        } else {
+            marginRight = value;
+        }
+    }
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
     public String dirLastPath;
@@ -106,6 +211,7 @@ public class BookCSS {
     public String headersFont;
     public String capitalFont;
     public boolean isAutoHypens;
+    public boolean isEnableBBCode;
     public String linkColorDay;
     public String linkColorNight;
     public boolean isCapitalLetter = false;
@@ -206,9 +312,15 @@ public class BookCSS {
         marginRight = 10;
         marginLeft = 10;
 
+        marginTopFoliate = FOLIATE_MARGIN_TOP;
+        marginBottomFoliate = FOLIATE_MARGIN_BOTTOM;
+        marginLeftFoliate = FOLIATE_MARGIN_SIDE;
+        marginRightFoliate = FOLIATE_MARGIN_SIDE;
+
         emptyLine = 1;
 
         lineHeight12 = 14;
+        lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
         paragraphHeight = 1;
         textIndent = 10;
         fontWeight = 400;
@@ -225,6 +337,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
+        isEnableBBCode = false;
         AppSP.get().hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
@@ -242,6 +355,75 @@ public class BookCSS {
 
     }
 
+    /**
+     * Whether the user has reached their books through the system's folder picker, either as a
+     * storage in the folders screen or as a library folder. Having done so, they are not asked
+     * again for the permission to go looking for books themselves.
+     */
+    public static boolean hasStorageAccess() {
+        try {
+            for (String path : StringDB.asList(get().pathSAF)) {
+                if (TxtUtils.isNotEmpty(path)) {
+                    return true;
+                }
+            }
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (ExtUtils.isExteralSD(path)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
+
+    /**
+     * Drops the storage roots the library falls back to when nothing else has been set. They are
+     * only a guess at where the books are, and without the permission to go looking the scan
+     * cannot read a single one of them. Once the user has handed over a folder of their own,
+     * leaving the roots in the list would show them folders that never fill.
+     */
+    /**
+     * Called as the permission to read the storage is given: a library with no folder gets the
+     * Download folder, where books land. Without the permission the list could only hold folders
+     * handed over through the picker, so an empty one then is no choice the user made - and it
+     * may have been kept from that time and carried over (LibreraSafSync.mergeDownloadLibrera).
+     *
+     * @return whether the folder was added.
+     */
+    public static boolean addDownloadsIfNoFolders(Context c) {
+        if (!Android6.canWrite(c) || !JsonDB.isEmpty(get().searchPathsJson)) {
+            return false;
+        }
+        get().searchPathsJson = JsonDB.set(List.of(AppProfile.DOWNLOADS_DIR.getPath()));
+        AppProfile.save(c);
+        LOG.d("addDownloadsIfNoFolders", get().searchPathsJson);
+        return true;
+    }
+
+    public static void removeUnreadableStorageRoots(Context c) {
+        try {
+            List<String> roots = ExtUtils.getAllExternalStorages(c);
+            String external = Environment.getExternalStorageDirectory().getPath();
+            if (!roots.contains(external)) {
+                roots.add(external);
+            }
+            // the Download folder a clean install starts with is one of those guesses too
+            roots.add(AppProfile.DOWNLOADS_DIR.getPath());
+            List<String> kept = new ArrayList<>();
+            for (String path : JsonDB.get(get().searchPathsJson)) {
+                if (TxtUtils.isNotEmpty(path) && !roots.contains(path)) {
+                    kept.add(path);
+                }
+            }
+            get().searchPathsJson = JsonDB.set(kept);
+            LOG.d("removeUnreadableStorageRoots", get().searchPathsJson);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static List<String> filtered(List<String> objects) {
         if (objects == null || objects.isEmpty()) {
             return Collections.emptyList();
@@ -249,7 +431,12 @@ public class BookCSS {
 
         List<String> res = new ArrayList<>();
         for (String item : objects) {
-            if (TxtUtils.isNotEmpty(item) && new File(item).isDirectory()) {
+            if (TxtUtils.isEmpty(item)) {
+                continue;
+            }
+            // A folder added through the system's folder picker is named by a document uri, which
+            // no File can be asked about; whether it still answers is for the scan to find out.
+            if (ExtUtils.isExteralSD(item) || new File(item).isDirectory()) {
                 res.add(item);
             }
         }
@@ -257,28 +444,110 @@ public class BookCSS {
 
     }
 
+    /**
+     * The library folders once the app may read the storage itself. A folder handed over through
+     * the system's picker was only ever the way in without the permission: one inside Download
+     * gives way to Download, the folder a library with the permission starts from, which holds it;
+     * one elsewhere becomes the plain path it stands for. The scan then walks them as files.
+     *
+     * A folder already turned into its path - by an earlier version, or before the permission
+     * went - is known by being one of the storages handed over ({@code pathSAF}); a folder the
+     * user added as a path themselves is left as it is.
+     */
+    static List<String> withSafFoldersAsPaths(List<String> paths, String storages) {
+        final String download = AppProfile.DOWNLOADS_DIR.getPath();
+        final List<String> handedOver = new ArrayList<>();
+        for (String saf : StringDB.asList(storages)) {
+            String file = ExtUtils.getSafTreePath(saf);
+            if (file != null) {
+                handedOver.add(file);
+            }
+        }
+        List<String> res = new ArrayList<>();
+        for (String path : paths) {
+            String file = ExtUtils.getSafTreePath(path);
+            boolean fromStorage = file != null || handedOver.contains(path);
+            String item = file != null ? file : path;
+            if (fromStorage && (item.equals(download) || item.startsWith(download + "/"))) {
+                item = download;
+            }
+            if (!res.contains(item)) {
+                res.add(item);
+            }
+        }
+        LOG.d("withSafFoldersAsPaths", paths, res);
+        return res;
+    }
+
+    /**
+     * Without the permission to read the storage the app can read only the folders handed over
+     * through the picker and its own; a path anywhere else - the Download default from before,
+     * a folder kept while the permission was there - would sit in the list and never fill.
+     */
+    static List<String> readableWithoutPermission(Context c, List<String> paths) {
+        String own = null;
+        try {
+            File files = c.getExternalFilesDir(null);
+            own = files != null ? files.getParent() : null;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        List<String> res = new ArrayList<>();
+        for (String path : paths) {
+            if (ExtUtils.isExteralSD(path) || (own != null && path.startsWith(own))) {
+                res.add(path);
+            }
+        }
+        return res;
+    }
+
     public void load1(Context c) {
         if (c == null) {
             return;
         }
         resetToDefault(c);
+        // the folders are the profile's own: a profile without any must not keep the last one's
+        instance.searchPathsJson = null;
 
         IO.readObj(AppProfile.syncCSS, instance);
 
+        // A storage handed over again used to be added again; each is kept once
+        String storages = "";
+        for (String saf : new LinkedHashSet<>(StringDB.asList(instance.pathSAF))) {
+            if (TxtUtils.isNotEmpty(saf)) {
+                storages = storages + (storages.isEmpty() ? StringDB.DIVIDER : "") + saf + StringDB.DIVIDER;
+            }
+        }
+        instance.pathSAF = storages;
+
         try {
+            // No list at all is a profile that has never had one; an empty one, a user who took
+            // every folder out
+            final boolean neverSet = TxtUtils.isEmpty(instance.searchPathsJson);
             List<String> filtered = filtered(JsonDB.get(instance.searchPathsJson));
-            instance.searchPathsJson = JsonDB.set(filtered);
+            if (Android6.canWrite(c)) {
+                filtered = withSafFoldersAsPaths(filtered, instance.pathSAF);
+            } else {
+                filtered = readableWithoutPermission(c, filtered);
+            }
+            // Without the permission a clean install has no folder - but the list is left unset
+            // rather than saved empty. The settings kept then are carried over once the
+            // permission is given (LibreraSafSync.mergeDownloadLibrera), and an empty list among
+            // them would read as one the user emptied: Download, below, would never be added.
+            if (neverSet && TxtUtils.isListEmpty(filtered) && !Android6.canWrite(c)) {
+                instance.searchPathsJson = null;
+            } else {
+                instance.searchPathsJson = JsonDB.set(filtered);
+            }
 
             LOG.d("searchPaths-all", 1, instance.searchPathsJson,filtered);
 
-            if (TxtUtils.isListEmpty(filtered)) {
-                List<String> extFolders = ExtUtils.getAllExternalStorages(c);
-
-                if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
-                    extFolders.add(Environment.getExternalStorageDirectory().getPath());
-                }
-
-                instance.searchPathsJson = JsonDB.set(extFolders);
+            // With the permission, a clean install searches the Download folder, where books
+            // land, rather than the whole storage. Without it there is no folder until the user
+            // hands one over: Download could not be read, and would only sit in the list empty.
+            // A list the user emptied stays empty; the library then offers a way in itself.
+            if (TxtUtils.isListEmpty(filtered) && neverSet && Android6.canWrite(c)) {
+                instance.searchPathsJson = JsonDB.set(List.of(AppProfile.DOWNLOADS_DIR.getPath()));
                 LOG.d("searchPaths-all", 2, instance.searchPathsJson);
             }
         } catch (Exception e) {
@@ -492,7 +761,7 @@ public class BookCSS {
                 return filtered;
             }
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     private Collection<String> getAllFontsFromFolder(String path) {
@@ -532,7 +801,7 @@ public class BookCSS {
         } catch (Exception e) {
             LOG.e(e);
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public boolean isUrlFont(String name) {
@@ -585,24 +854,50 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+        return generatedCss(path, true);
+    }
+
+    /**
+     * The stylesheet handed to a rendering engine: the base stylesheet asset
+     * ({@link #userStyleCss}, or the user's edited copy of it) followed by the rules generated from
+     * the reading settings - margins, fonts, line height, indent, alignment, colours, custom CSS.
+     *
+     * @param includeBaseStylesheet whether to prepend the base asset. MuPDF needs it: it ships no
+     *                              UA stylesheet of its own, so that asset is what gives every
+     *                              element a <code>display</code>. A browser already has all of
+     *                              that, and the asset's <code>display:block !important</code>
+     *                              resets fight its layout, so the foliate-js engine leaves it out
+     *                              unless {@link com.foobnix.model.AppState#epubFoliateBaseCss}
+     *                              asks for it.
+     */
+    public String generatedCss(String path, boolean includeBaseStylesheet) {
+        return generatedCss(path, includeBaseStylesheet, false);
+    }
+
+    /** @param foliate written for foliate-js, which keeps a line spacing of its own */
+    public String generatedCss(String path, boolean includeBaseStylesheet, boolean foliate) {
 
         lineHeight12 = Math.max(10, lineHeight12);
+        lineHeight12Foliate = Math.max(10, lineHeight12Foliate);
+        final int lineHeight = lineHeight(foliate);
 
         StringBuilder builder = new StringBuilder();
 
-        File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
-        if (!cssFile.exists()) {
-            try {
-                String css = IO.readStringFromAsset("app-Librera.css");
-                LOG.d("BookCSS-from asset");
+        if (includeBaseStylesheet) {
+            File cssFile = new File(AppProfile.SYNC_FOLDER_DEVICE_PROFILE, userStyleCss);
+            if (!cssFile.exists()) {
+                try {
+                    String css = IO.readStringFromAsset("app-Librera.css");
+                    LOG.d("BookCSS-from asset");
+                    builder.append(css);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            } else {
+                String css = IO.readString(cssFile);
+                LOG.d("BookCSS-from file", cssFile);
                 builder.append(css);
-            } catch (Exception e) {
-                LOG.e(e);
             }
-        } else {
-            String css = IO.readString(cssFile);
-            LOG.d("BookCSS-from file", cssFile);
-            builder.append(css);
         }
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
@@ -672,7 +967,7 @@ public class BookCSS {
                 builder.append(String.format("color:%s !important;", textColor));
             }
             //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 
@@ -685,7 +980,7 @@ public class BookCSS {
             builder.append("}");
             // </P> end
             builder.append("sub, sup{");
-            builder.append(String.format("line-height:%s !important;", em(lineHeight12)));
+            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append("}");
 
 

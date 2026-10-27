@@ -87,6 +87,42 @@ public class MuPdfOutline {
         return ls;
     }
 
+    /**
+     * Reads the heading marks a book converted from FB2 carries in its contents: Fb2Extractor
+     * writes each entry as "<depth>~@~[title] Name" (or [subtitle]), and this turns it back into
+     * the name at that depth. Shared by every engine that reads such a book's contents, so the
+     * panel lists the same headings whichever one laid the book out.
+     *
+     * @return false for an entry the reader's outline setting leaves out - a subheading, when
+     *         only headings are shown
+     */
+    public static boolean readFb2Heading(final OutlineLink outlineLink) {
+        boolean toAdd = true;
+        if (AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS) {
+            if (outlineLink.getTitle()
+                           .contains("[subtitle]")) {
+                toAdd = false;
+            }
+        }
+        outlineLink.setTitle(outlineLink.getTitle()
+                                        .replace("[title]", "")
+                                        .replace("[subtitle]", ""));
+
+        if (outlineLink.getTitle()
+                       .contains(Fb2Extractor.DIVIDER)) {
+            try {
+                String[] split = outlineLink.getTitle()
+                                            .split(Fb2Extractor.DIVIDER);
+                int level2 = Integer.parseInt(split[0]);
+                outlineLink.setLevel(level2);
+                outlineLink.setTitle(split[1]);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return toAdd;
+    }
+
     public String getTitleMod(long outline) {
 
         try {
@@ -122,31 +158,7 @@ public class MuPdfOutline {
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);
 
-                boolean toAdd = true;
-                if (AppState.get().outlineMode == AppState.OUTLINE_ONLY_HEADERS) {
-                    if (outlineLink.getTitle()
-                                   .contains("[subtitle]")) {
-                        toAdd = false;
-                    }
-                }
-                outlineLink.setTitle(outlineLink.getTitle()
-                                                .replace("[title]", "")
-                                                .replace("[subtitle]", ""));
-
-                if (outlineLink.getTitle()
-                               .contains(Fb2Extractor.DIVIDER)) {
-                    try {
-                        String[] split = outlineLink.getTitle()
-                                                    .split(Fb2Extractor.DIVIDER);
-                        int level2 = Integer.parseInt(split[0]);
-                        outlineLink.setLevel(level2);
-                        outlineLink.setTitle(split[1]);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-                }
-
-                if (toAdd) {
+                if (readFb2Heading(outlineLink)) {
                     ls.add(outlineLink);
                 }
             }

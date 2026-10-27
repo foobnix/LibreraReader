@@ -17,7 +17,6 @@ import android.widget.RemoteViews;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
@@ -30,15 +29,12 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TTSService;
 import com.foobnix.ui2.MainTabs2;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class TTSWidget extends AppWidgetProvider {
 
@@ -127,7 +123,7 @@ public class TTSWidget extends AppWidgetProvider {
                                     views.setOnClickPendingIntent(R.id.ttsIcon, mainTabsIntent);
 
 
-                                    final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintColor;
+                                    final int color = AppState.get().isUiTextColor ? AppState.get().uiTextColor : AppState.get().tintThemeColor;
 
 
                                     views.setInt(R.id.ttsPlay, "setColorFilter", color);

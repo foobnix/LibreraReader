@@ -38,7 +38,7 @@ public class ADS {
     public static int ADS_LIVE_SEC = 60 * 60;//60 min
     public static int INTERSTITIAL_DELAY_SEC = 60 * 5;//4 min
 
-    public static int REWARDS_HOURS_IN_SECONDS = 2 * 60 * 60;//2 hours
+    public static int REWARDS_HOURS_IN_SECONDS = 3 * 60 * 60;//3 hours
 
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
@@ -212,7 +212,13 @@ public class ADS {
 
     }
 
+    /** Banner ads are switched off; rewarded and interstitial ads are left as they are. */
+    public static final boolean IS_BANNER_ENABLED = false;
+
     public synchronized void showBanner(final Activity a) {
+        if (!IS_BANNER_ENABLED) {
+            return;
+        }
         if (a == null || a.isDestroyed() || a.isFinishing()) {
             return;
         }
