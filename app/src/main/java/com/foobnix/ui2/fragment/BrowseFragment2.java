@@ -723,7 +723,6 @@ import java.util.Map;
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
-                        getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_extension) //
                                                   );//
 
@@ -735,7 +734,6 @@ import java.util.Map;
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
-                        AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_EXT//
                                                        );//
 

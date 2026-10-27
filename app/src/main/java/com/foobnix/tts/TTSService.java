@@ -463,6 +463,12 @@ import java.util.List;
                 dispatchAction(TTSNotification.TTS_STOP_DESTROY);
             }
 
+            @Override public void onCustomAction(String action, Bundle extras) {
+                if (TTSNotification.TTS_STOP_DESTROY.equals(action)) {
+                    dispatchAction(TTSNotification.TTS_STOP_DESTROY);
+                }
+            }
+
             @Override public void onSkipToNext() {
                 dispatchAction(TTSNotification.TTS_NEXT);
             }
@@ -726,6 +732,17 @@ import java.util.List;
             TTSEngine.get()
                      .stopDestroy();
 
+            // stopMediaSesstionAndReleaweWakeLock() keeps the session active for a paused
+            // player; closing has to end it, or the system keeps showing the media controls.
+            try {
+                mMediaSessionCompat.setPlaybackState(new PlaybackStateCompat.Builder()
+                        .setState(PlaybackStateCompat.STATE_STOPPED, 0, 0f)
+                        .build());
+                mMediaSessionCompat.setActive(false);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
             EventBus.getDefault()
                     .post(new TtsStatus());
 
@@ -912,6 +929,12 @@ import java.util.List;
                     // that keeps the bar moving smoothly between page updates.
                     .setState(playing ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED,
                             currentPositionMs(), playing ? 1f : 0f)
+                    // Android 13+ draws the media notification's buttons from this state and
+                    // ignores the notification's own actions, so the close button has to be here.
+                    .addCustomAction(new PlaybackStateCompat.CustomAction.Builder(
+                            TTSNotification.TTS_STOP_DESTROY,
+                            LibreraApp.context.getString(R.string.close),
+                            R.drawable.ic_tts_close).build())
                     .build());
         } catch (Exception e) {
             LOG.e(e);
