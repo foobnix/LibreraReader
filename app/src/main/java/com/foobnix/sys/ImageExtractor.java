@@ -723,6 +723,27 @@ public class ImageExtractor {
                 }
                 String display = ExtUtils.getFileName(Uri.decode(path));
 
+                // A comic's cover is read out of the archive in place, through the provider's
+                // descriptor: the book is not copied for it
+                if (AppState.get().isSafBookCovers && (BookType.CBZ.is(display) || BookType.CBR.is(display)) && Arrays.asList(COVER_PAGE, COVER_PAGE_NO_EFFECT, COVER_PAGE_WITH_EFFECT)
+                                                                                    .contains(pageUrl.getPage())) {
+                    if (pageUrl.getHeight() == 0) {
+                        pageUrl.setHeight((int) (pageUrl.getWidth() * 1.5));
+                    }
+                    Bitmap cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(path), pageUrl.getWidth());
+                    if (cover != null) {
+                        if (pageUrl.getPage() == COVER_PAGE_NO_EFFECT) {
+                            return bitmapToStreamRAW(cover);
+                        }
+                        try {
+                            MagicHelper.isNeedBC = false;
+                            return bitmapToStreamRAW(generalCoverWithEffect(pageUrl, cover));
+                        } finally {
+                            MagicHelper.isNeedBC = true;
+                        }
+                    }
+                }
+
                 // A book the readers can open only as a file: with covers for added storage
                 // asked for, the cover is read from a copy, thrown away again below unless it is
                 // the book being read.

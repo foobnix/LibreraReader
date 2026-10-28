@@ -1,5 +1,9 @@
 package com.foobnix.ext;
 
+import android.content.Context;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+
 import com.foobnix.android.utils.LOG;
 
 import java.nio.charset.StandardCharsets;
@@ -48,11 +52,52 @@ public final class NativeArchive {
             return null;
         }
         try {
-            final long handle = nativeOpen(path.getBytes(StandardCharsets.UTF_8));
-            if (handle == 0) {
-                LOG.d("NativeArchive cannot open", path);
+            return listed(nativeOpen(path.getBytes(StandardCharsets.UTF_8)), path);
+        } catch (Throwable e) {
+            LOG.e(e, path);
+            return null;
+        }
+    }
+
+    /**
+     * Opens a document on added storage (a content:// uri) in place, through the descriptor its
+     * provider hands over: nothing is copied out.
+     *
+     * @return the archive, or <code>null</code> as {@link #open(String)}, and also when the
+     *         provider's descriptor cannot seek (a stream it makes on the fly)
+     */
+    public static NativeArchive open(final Context c, final String uri) {
+        if (c == null || uri == null || !LOADED) {
+            return null;
+        }
+        ParcelFileDescriptor pfd = null;
+        try {
+            pfd = c.getContentResolver().openFileDescriptor(Uri.parse(uri), "r");
+            if (pfd == null) {
                 return null;
             }
+            // the native side keeps a duplicate of the descriptor, this one is closed below
+            return listed(nativeOpenFd(pfd.getFd()), uri);
+        } catch (Throwable e) {
+            LOG.e(e, uri);
+            return null;
+        } finally {
+            if (pfd != null) {
+                try {
+                    pfd.close();
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        }
+    }
+
+    private static NativeArchive listed(final long handle, final String path) {
+        if (handle == 0) {
+            LOG.d("NativeArchive cannot open", path);
+            return null;
+        }
+        try {
             final byte[][] raw = nativeNames(handle);
             final long[] sizes = nativeSizes(handle);
             if (raw == null || sizes == null) {
@@ -68,6 +113,7 @@ public final class NativeArchive {
             return new NativeArchive(handle, path, Collections.unmodifiableList(names), sizes);
         } catch (Throwable e) {
             LOG.e(e, path);
+            nativeClose(handle);
             return null;
         }
     }
@@ -130,6 +176,8 @@ public final class NativeArchive {
     }
 
     private static native long nativeOpen(byte[] path);
+
+    private static native long nativeOpenFd(int fd);
 
     private static native byte[][] nativeNames(long handle);
 

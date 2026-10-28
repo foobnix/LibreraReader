@@ -277,6 +277,11 @@ public class FileMetaCore {
             ebookMeta.setPagesCount(FolderContext.getPageCount(unZipPath));
         }
 
+        return complete(ebookMeta, path, unZipPath, fileName, fileNameOriginal);
+    }
+
+    /** What every book's meta is finished with: series, a title out of the file name, the year. */
+    private EbookMeta complete(EbookMeta ebookMeta, String path, String unZipPath, String fileName, String fileNameOriginal) {
         try {
             String sequence = ebookMeta.getSequence();
             if (sequence != null && sequence.contains(",")) {
@@ -421,7 +426,8 @@ public class FileMetaCore {
     /**
      * Reads a book's author, series and the rest out of a document on added storage. The readers
      * want a file, so the book is copied out, read and the copy thrown away at once - a library on
-     * added storage then costs one book of disk at a time instead of all of them.
+     * added storage then costs one book of disk at a time instead of all of them. A comic is the
+     * exception: it is read in place.
      */
     public void udpateFullMetaSaf(Context c, FileMeta fileMeta) {
         if (c == null || fileMeta == null) {
@@ -429,6 +435,18 @@ public class FileMetaCore {
         }
         if (TxtUtils.isEmpty(fileMeta.getTitle()) || fileMeta.getState() == null) {
             upadteBasicMetaSaf(c, fileMeta);
+        }
+        String name = fileMeta.getTitle();
+        // A comic is read in place, through the provider's descriptor, without a copy
+        if (name != null && (BookType.CBZ.is(name) || BookType.CBR.is(name))) {
+            EbookMeta comic = CbzCbrExtractor.getBookMetaInformation(fileMeta.getPath());
+            if (comic.getPagesCount() > 0) {
+                udpateFullMeta(fileMeta, complete(comic, name, name, name, name));
+                if (TxtUtils.isEmpty(fileMeta.getTitle())) {
+                    fileMeta.setTitle(name);
+                }
+                return;
+            }
         }
         File copy = CacheZipUtils.getSafScanCopy(c, fileMeta.getPath(), fileMeta.getTitle());
         if (copy == null) {

@@ -1,10 +1,11 @@
 /*
  * The comic archives - .cbz (ZIP) and .cbr (RAR 1.5-4.x, RAR5) - read with libarchive, for
  * com.foobnix.ext.NativeArchive: every build opens a comic in the comic engine, which reads its
- * pages through it, and takes the library's covers and ComicInfo.xml from it. It is in
- * libMuPDF.so and libLibreraDocs.so alike (libarchive-3.8.10/Android.mk); MuPDF does not use it.
+ * pages through it, and takes the library's covers and ComicInfo.xml from it. It is built into
+ * libarchive.so (libarchive-3.8.10/Android.mk), in every flavour; MuPDF does not use it.
  *
- * The archive is read from the file in place, never copied. libarchive reads entries in the order
+ * The archive is read from the file in place, never copied - a document on added storage too,
+ * through the descriptor its provider opens it with. libarchive reads entries in the order
  * they are stored, so an entry is reached by reading the headers up to it - which skips the data
  * in between with a seek, or by decompressing it in a solid RAR - and an entry before the last
  * one read means starting again from the top. A comic is read front to back, so that is rare.
@@ -210,43 +211,65 @@ na_list(native_archive *na)
     return 0;
 }
 
-JNIEXPORT jlong JNICALL
-Java_com_foobnix_ext_NativeArchive_nativeOpen(JNIEnv *env, jclass clazz, jbyteArray jpath)
+/* Takes the descriptor over: it is closed with the archive, or here when it does not open. */
+static native_archive *
+na_open_fd(int fd)
 {
     native_archive *na;
     struct stat64 st;
-    jsize len = (*env)->GetArrayLength(env, jpath);
-    char *path = malloc(len + 1);
 
-    if (!path)
-        return 0;
-    (*env)->GetByteArrayRegion(env, jpath, 0, len, (jbyte *) path);
-    path[len] = 0;
-
+    if (fd < 0)
+        return NULL;
     na = calloc(1, sizeof *na);
     if (!na)
     {
-        free(path);
-        return 0;
+        close(fd);
+        return NULL;
     }
-    na->fd = open(path, O_RDONLY | O_CLOEXEC);
-    free(path);
+    na->fd = fd;
 
-    if (na->fd < 0 || fstat64(na->fd, &st) < 0)
+    if (fstat64(na->fd, &st) < 0)
     {
         na_free(na);
-        return 0;
+        return NULL;
     }
     na->file_size = st.st_size;
 
     if (na_start(na) < 0 || na_list(na) < 0)
     {
         na_free(na);
-        return 0;
+        return NULL;
     }
 
     /* the listing left the archive at its end: the first read starts it again */
-    return (jlong) (intptr_t) na;
+    return na;
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_foobnix_ext_NativeArchive_nativeOpen(JNIEnv *env, jclass clazz, jbyteArray jpath)
+{
+    jsize len = (*env)->GetArrayLength(env, jpath);
+    char *path = malloc(len + 1);
+    int fd;
+
+    if (!path)
+        return 0;
+    (*env)->GetByteArrayRegion(env, jpath, 0, len, (jbyte *) path);
+    path[len] = 0;
+    fd = open(path, O_RDONLY | O_CLOEXEC);
+    free(path);
+
+    return (jlong) (intptr_t) na_open_fd(fd);
+}
+
+/*
+ * A document of a storage provider, by the descriptor it was opened with: read in place like a
+ * file, with no copy, where the provider hands over a seekable one. The caller keeps its own.
+ */
+JNIEXPORT jlong JNICALL
+Java_com_foobnix_ext_NativeArchive_nativeOpenFd(JNIEnv *env, jclass clazz, jint fd)
+{
+    return (jlong) (intptr_t) na_open_fd(fcntl(fd, F_DUPFD_CLOEXEC, 0));
 }
 
 JNIEXPORT jobjectArray JNICALL

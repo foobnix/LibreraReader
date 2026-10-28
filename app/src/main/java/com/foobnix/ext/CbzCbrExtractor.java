@@ -1,5 +1,6 @@
 package com.foobnix.ext;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
@@ -16,7 +17,8 @@ import java.util.Locale;
 
 /**
  * What the library shows of a comic archive - its cover, page count and ComicInfo.xml - read
- * the same way for a .cbz and a .cbr, with {@link NativeArchive}, out of the file as it is.
+ * the same way for a .cbz and a .cbr, with {@link NativeArchive}, out of the file as it is - or
+ * out of the document on added storage as it is, by its content:// uri.
  */
 public class CbzCbrExtractor {
 
@@ -53,9 +55,17 @@ public class CbzCbrExtractor {
         return false;
     }
 
+    /** A file by its path, a document on added storage by its content:// uri - neither copied. */
+    private static NativeArchive openArchive(String path) {
+        if (path != null && path.startsWith("content://")) {
+            return NativeArchive.open(LibreraApp.context, path);
+        }
+        return NativeArchive.open(path);
+    }
+
     /** The files in the archive, ComicInfo.xml aside: what a comic's pages are counted as. */
     public static int getPageCount(String path) {
-        final NativeArchive archive = NativeArchive.open(path);
+        final NativeArchive archive = openArchive(path);
         if (archive == null) {
             return 0;
         }
@@ -74,7 +84,7 @@ public class CbzCbrExtractor {
 
     /** The ComicInfo.xml at the top of the archive, or <code>null</code>. */
     private static byte[] readComicInfo(String path) {
-        final NativeArchive archive = NativeArchive.open(path);
+        final NativeArchive archive = openArchive(path);
         if (archive == null) {
             return null;
         }
@@ -135,7 +145,9 @@ public class CbzCbrExtractor {
 
             final byte[] comicInfo = readComicInfo(path);
             if (comicInfo == null || comicInfo.length == 0) {
-                return EbookMeta.Empty();
+                EbookMeta empty = EbookMeta.Empty();
+                empty.setPagesCount(getPageCount(path));
+                return empty;
             }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
@@ -245,7 +257,7 @@ public class CbzCbrExtractor {
      * @return the image's bytes, empty when the archive holds no image or cannot be read
      */
     public static byte[] getBookCover(String path) {
-        final NativeArchive archive = NativeArchive.open(path);
+        final NativeArchive archive = openArchive(path);
         if (archive == null) {
             return new byte[0];
         }

@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.util.Log;
 
+import androidx.core.content.FileProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -147,6 +148,45 @@ public class ComicArchiveDeviceTest {
      * that file fails its CRC in the reference unpacker too. Whatever it makes of it, it answers
      * rather than crashing.
      */
+    /**
+     * A document on added storage is read by its content:// uri, through the descriptor its
+     * provider opens it with - here the app's own FileProvider - and gives what the file gives.
+     */
+    @Test
+    public void aContentUriReadsLikeTheFileWithoutACopy() throws Exception {
+        final Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        int archives = 0;
+        for (final File file : samples()) {
+            final NativeArchive byPath = NativeArchive.open(file.getPath());
+            if (byPath == null) {
+                continue;
+            }
+            archives++;
+            final String uri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", file).toString();
+            long t = System.nanoTime();
+            final NativeArchive byUri = NativeArchive.open(context, uri);
+            try {
+                assertNotNull("opens by uri: " + uri, byUri);
+                assertEquals(file.getName(), byPath.getNames(), byUri.getNames());
+                final long openMs = ms(t);
+
+                t = System.nanoTime();
+                final byte[] cover = CbzCbrExtractor.getBookCover(uri);
+                assertTrue("a cover by uri for " + file.getName(), cover.length > 0);
+                assertTrue("the same cover for " + file.getName(), Arrays.equals(CbzCbrExtractor.getBookCover(file.getPath()), cover));
+                assertNotNull("the cover decodes", BitmapFactory.decodeByteArray(cover, 0, cover.length));
+                Log.i(TAG, String.format(Locale.US, "%s by uri: %d entries, open %d ms, cover %d bytes in %d ms",
+                        file.getName(), byUri.getNames().size(), openMs, cover.length, ms(t)));
+            } finally {
+                byPath.close();
+                if (byUri != null) {
+                    byUri.close();
+                }
+            }
+        }
+        assumeTrue("no archive opens in " + dir, archives > 0);
+    }
+
     @Test
     public void aBrokenSolidRarAnswers() {
         final File file = new File(dir, "rar4-solid-aho.rar");
