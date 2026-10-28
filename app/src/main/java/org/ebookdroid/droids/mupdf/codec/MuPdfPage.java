@@ -612,6 +612,15 @@ public class MuPdfPage extends AbstractCodecPage {
 
 
     public void update(TextWord wd) {
+        // MuPDF 1.28 keeps the hyphen it draws at a line break as a soft hyphen (U+00AD), older
+        // versions as '-': selection, copy and TTS join a word cut at '-'
+        if (wd.w.indexOf('\u00AD') >= 0) {
+            boolean cut = wd.w.endsWith("\u00AD");
+            wd.w = wd.w.replace("\u00AD", "");
+            if (cut) {
+                wd.w = wd.w + "-";
+            }
+        }
         wd.setOriginal(wd);
         update((RectF) wd);
     }

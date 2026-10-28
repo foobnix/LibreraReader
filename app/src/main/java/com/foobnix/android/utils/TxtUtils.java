@@ -478,6 +478,8 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML [before]", pageHTML);
+        // MuPDF 1.28 writes the hyphen of a word cut at a line end as a soft hyphen (U+00AD)
+        pageHTML = pageHTML.replace("\u00AD", "-");
         if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER) {
             pageHTML = pageHTML.toLowerCase();
             LOG.d("pageHTML [isAccurateFontSize]", pageHTML);
