@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Exporta in LibreraX</string>
    <string name="update_librerax">Renova LibreraX ad ultimam versionem ut ex Librera importes.</string>
    <string name="reading_progress">Progressus lectionis</string>
+   <string name="add_to_home_screen">Adde ad tabulam primariam</string>
 </resources>

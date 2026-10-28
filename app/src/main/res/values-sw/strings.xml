@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Hamisha kwenda LibreraX</string>
    <string name="update_librerax">Sasisha LibreraX hadi toleo jipya zaidi ili kuleta kutoka Librera.</string>
    <string name="reading_progress">Maendeleo ya kusoma</string>
+   <string name="add_to_home_screen">Ongeza kwenye skrini ya mwanzo</string>
 </resources>

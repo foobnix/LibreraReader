@@ -722,4 +722,5 @@
    <string name="export_to_librerax">匯出到 LibreraX</string>
    <string name="update_librerax">請將 LibreraX 更新至最新版本，以便從 Librera 匯入。</string>
    <string name="reading_progress">閱讀進度</string>
+   <string name="add_to_home_screen">新增至主畫面</string>
 </resources>

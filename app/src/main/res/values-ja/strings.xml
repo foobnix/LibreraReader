@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX にエクスポート</string>
    <string name="update_librerax">Librera からインポートするには、LibreraX を最新版に更新してください。</string>
    <string name="reading_progress">読書の進捗</string>
+   <string name="add_to_home_screen">ホーム画面に追加</string>
 </resources>

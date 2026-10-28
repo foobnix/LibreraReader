@@ -396,6 +396,18 @@
                 android:resource="@xml/recent_images_provider_3x1" />
         </receiver>
 
+        <receiver
+            android:name=".widget.BookCoverWidget"
+            android:exported="false"
+            android:label="${appName}">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/book_cover_provider" />
+        </receiver>
+
         <service
             android:name=".widget.StackGridWidgetService"
             android:exported="false"

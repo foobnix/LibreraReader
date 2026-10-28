@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX로 내보내기</string>
    <string name="update_librerax">Librera에서 가져오려면 LibreraX를 최신 버전으로 업데이트하세요.</string>
    <string name="reading_progress">읽기 진행률</string>
+   <string name="add_to_home_screen">홈 화면에 추가</string>
 </resources>

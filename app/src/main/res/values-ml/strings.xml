@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX-ലേക്ക് എക്സ്പോർട്ട് ചെയ്യുക</string>
    <string name="update_librerax">Librera-യിൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യാൻ LibreraX ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക.</string>
    <string name="reading_progress">വായനാ പുരോഗതി</string>
+   <string name="add_to_home_screen">ഹോം സ്ക്രീനിലേക്ക് ചേർക്കുക</string>
 </resources>

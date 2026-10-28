@@ -92,6 +92,16 @@
                             android:contentDescription="@string/add_tag"
                             android:padding="7dip"
                             android:src="@drawable/glyphicons_67_tags" />
+
+                        <ImageView
+                            android:id="@+id/homeScreenIcon"
+                            android:layout_width="@dimen/wh_button"
+                            android:layout_height="@dimen/wh_button"
+                            android:layout_marginLeft="6dip"
+                            android:background="@drawable/bg_round_press"
+                            android:contentDescription="@string/add_to_home_screen"
+                            android:padding="7dip"
+                            android:src="@drawable/glyphicons_166_mobile_phone" />
                     </LinearLayout>
 
                     <!-- The kind of file the book is, said once under the marks, in caps, so it
@@ -573,6 +583,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/send_file"
                     android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/addWidget"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_home_screen" />
 
                 <TextView
                     android:id="@+id/onUpdateMeta"

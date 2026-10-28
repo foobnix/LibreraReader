@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Exporter vers LibreraX</string>
    <string name="update_librerax">Mettez à jour LibreraX vers la dernière version pour importer depuis Librera.</string>
    <string name="reading_progress">Progression de lecture</string>
+   <string name="add_to_home_screen">Ajouter à l\'écran d\'accueil</string>
 </resources>

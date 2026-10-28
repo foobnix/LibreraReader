@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX\'e aktar</string>
    <string name="update_librerax">Librera\'dan içe aktarmak için LibreraX\'i en son sürüme güncelleyin.</string>
    <string name="reading_progress">Okuma ilerlemesi</string>
+   <string name="add_to_home_screen">Ana ekrana ekle</string>
 </resources>

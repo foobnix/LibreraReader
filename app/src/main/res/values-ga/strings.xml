@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Easpórtáil go LibreraX</string>
    <string name="update_librerax">Nuashonraigh LibreraX go dtí an leagan is déanaí chun iompórtáil ó Librera.</string>
    <string name="reading_progress">Dul chun cinn léitheoireachta</string>
+   <string name="add_to_home_screen">Cuir leis an scáileán baile</string>
 </resources>

@@ -410,6 +410,18 @@ public class FileInformationDialog {
             }
         });
 
+        final ImageView homeScreenIcon = (ImageView) dialog.findViewById(R.id.homeScreenIcon);
+        TintUtil.setTintImageNoAlpha(homeScreenIcon, TintUtil.getColorInDayNighth());
+        final OnClickListener onAddWidget = v -> {
+            if (!BookCoverWidget.pin(a, file)) {
+                BookShortcut.pin(a, file, fileMeta.getTitle());
+            }
+        };
+        homeScreenIcon.setOnClickListener(onAddWidget);
+        TextView addWidget = (TextView) dialog.findViewById(R.id.addWidget);
+        TxtUtils.underlineTextView(addWidget).setOnClickListener(onAddWidget);
+        TintUtil.asLinkButton(addWidget, 0);
+
         View metaTags = dialog.findViewById(R.id.metaTags);
         TextView metaTagsInfo = (TextView) dialog.findViewById(R.id.metaTagsInfo);
         metaTags.setVisibility(View.GONE);

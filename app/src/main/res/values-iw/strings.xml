@@ -722,4 +722,5 @@
    <string name="export_to_librerax">ייצוא ל-LibreraX</string>
    <string name="update_librerax">יש לעדכן את LibreraX לגרסה האחרונה כדי לייבא מ-Librera.</string>
    <string name="reading_progress">התקדמות קריאה</string>
+   <string name="add_to_home_screen">הוספה למסך הבית</string>
 </resources>

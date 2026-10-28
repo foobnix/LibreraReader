@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Exportovať do LibreraX</string>
    <string name="update_librerax">Aktualizujte LibreraX na najnovšiu verziu, aby ste mohli importovať z Librera.</string>
    <string name="reading_progress">Postup čítania</string>
+   <string name="add_to_home_screen">Pridať na plochu</string>
 </resources>

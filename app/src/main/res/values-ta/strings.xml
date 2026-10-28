@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX-க்கு ஏற்றுமதி</string>
    <string name="update_librerax">Librera-இலிருந்து இறக்குமதி செய்ய LibreraX-ஐ சமீபத்திய பதிப்புக்குப் புதுப்பிக்கவும்.</string>
    <string name="reading_progress">வாசிப்பு முன்னேற்றம்</string>
+   <string name="add_to_home_screen">முகப்புத் திரையில் சேர்</string>
 </resources>

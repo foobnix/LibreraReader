@@ -722,4 +722,5 @@
    <string name="export_to_librerax">صدور به LibreraX</string>
    <string name="update_librerax">برای وارد کردن از Librera، LibreraX را به آخرین نسخه به‌روز کنید.</string>
    <string name="reading_progress">پیشرفت مطالعه</string>
+   <string name="add_to_home_screen">افزودن به صفحهٔ اصلی</string>
 </resources>

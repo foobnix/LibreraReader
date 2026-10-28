@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Εξαγωγή στο LibreraX</string>
    <string name="update_librerax">Ενημερώστε το LibreraX στην τελευταία έκδοση για εισαγωγή από το Librera.</string>
    <string name="reading_progress">Πρόοδος ανάγνωσης</string>
+   <string name="add_to_home_screen">Προσθήκη στην αρχική οθόνη</string>
 </resources>

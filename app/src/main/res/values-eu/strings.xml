@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Esportatu LibreraX-era</string>
    <string name="update_librerax">Eguneratu LibreraX azken bertsiora Librera-tik inportatzeko.</string>
    <string name="reading_progress">Irakurketaren aurrerapena</string>
+   <string name="add_to_home_screen">Gehitu hasierako pantailara</string>
 </resources>

@@ -722,4 +722,5 @@
    <string name="export_to_librerax">LibreraX-ке экспорттау</string>
    <string name="update_librerax">Librera-дан импорттау үшін LibreraX-ті соңғы нұсқаға жаңартыңыз.</string>
    <string name="reading_progress">Оқу барысы</string>
+   <string name="add_to_home_screen">Басты экранға қосу</string>
 </resources>

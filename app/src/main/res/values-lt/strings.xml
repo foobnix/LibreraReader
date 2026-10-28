@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Eksportuoti į LibreraX</string>
    <string name="update_librerax">Atnaujinkite LibreraX iki naujausios versijos, kad galėtumėte importuoti iš Librera.</string>
    <string name="reading_progress">Skaitymo eiga</string>
+   <string name="add_to_home_screen">Pridėti prie pradžios ekrano</string>
 </resources>

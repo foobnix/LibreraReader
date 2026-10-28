@@ -722,4 +722,5 @@
    <string name="export_to_librerax">Exportálás a LibreraX-be</string>
    <string name="update_librerax">Frissítse a LibreraX-et a legújabb verzióra a Librerából való importáláshoz.</string>
    <string name="reading_progress">Olvasási előrehaladás</string>
+   <string name="add_to_home_screen">Hozzáadás a kezdőképernyőhöz</string>
 </resources>
