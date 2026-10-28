@@ -4,6 +4,8 @@
     <item name="basePadding" type="id" />
     <!-- Set on a settings button drawn as a box rather than a pill: see bg_button_outline_card. -->
     <item name="cardShape" type="id" />
+    <!-- The shadow a library row's card was laid out with, to give back when borders return. -->
+    <item name="cardElevation" type="id" />
     <!-- Set on a link drawn as a ringed button: its words are not underlined, as the ring already
          says it can be pressed. -->
     <item name="linkButton" type="id" />

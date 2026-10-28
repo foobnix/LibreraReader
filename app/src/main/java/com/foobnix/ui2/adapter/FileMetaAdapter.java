@@ -3,6 +3,7 @@ package com.foobnix.ui2.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -307,9 +308,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
-            if (!AppState.get().isBorderAndShadow) {
-                paintRow(holder.parent, Color.TRANSPARENT);
-            }
 
             if (fileMeta.getIsStar() != null && fileMeta.getIsStar()) {
                 holder.starIcon.setImageResource(R.drawable.glyphicons_13_heart);
@@ -434,6 +432,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
                 paintRow(holder.parent, Color.BLACK);
             }
+            showShadow(holder.parent, AppState.get().isBorderAndShadow);
 
             TxtUtils.setInkTextView(holder.title, holder.path, holder.play, holder.count);
 
@@ -1001,12 +1000,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 return true;
             }
         });
-        if (!AppState.get().isBorderAndShadow) {
-            paintRow(holder.parent, Color.TRANSPARENT);
-        }
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
             paintRow(holder.parent, Color.BLACK);
         }
+        showShadow(holder.parent, AppState.get().isBorderAndShadow);
 
         if (tempValue == TEMP_VALUE_SERIES) {
             holder.menu.setVisibility(View.GONE);
@@ -1194,6 +1191,30 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
      * setBackgroundColor would put a plain colour where its round-rect is, and the cover -
      * which is clipped to the card's outline - would come out square.
      */
+    /** Without borders and shadows a row keeps its card, only the shadow under it goes. */
+    static void showShadow(View row, boolean show) {
+        if (!(row instanceof CardView)) {
+            return;
+        }
+        CardView card = (CardView) row;
+        Object saved = card.getTag(R.id.cardElevation);
+        if (saved == null) {
+            saved = card.getCardElevation();
+            card.setTag(R.id.cardElevation, saved);
+        }
+        card.setCardElevation(show ? (Float) saved : 0);
+        if (show) {
+            card.setForeground(null);
+            return;
+        }
+        // a thin line takes the place of the shadow, so the card still stands off the list
+        int fill = card.getCardBackgroundColor().getDefaultColor();
+        GradientDrawable border = new GradientDrawable();
+        border.setCornerRadius(card.getRadius());
+        border.setStroke(Dips.DP_1, MagicHelper.isColorDark(fill) ? Color.argb(90, 255, 255, 255) : Color.argb(60, 0, 0, 0));
+        card.setForeground(border);
+    }
+
     private static void paintRow(View row, int color) {
         if (row instanceof CardView) {
             ((CardView) row).setCardBackgroundColor(color);

@@ -1,6 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,9 +44,7 @@ public class AuthorsAdapter2 extends AppRecycleAdapter<String, AuthorViewHolder>
             background.setColor((Integer) holder.letter.getTag());
 
             bindItemClickAndLongClickListeners(holder.parent, string);
-            if (!AppState.get().isBorderAndShadow) {
-                holder.parent.setBackgroundColor(Color.TRANSPARENT);
-            }
+            FileMetaAdapter.showShadow(holder.parent, AppState.get().isBorderAndShadow);
         }
 
     }

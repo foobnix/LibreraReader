@@ -109,9 +109,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         Clouds.showHideCloudImage(holder.cloudImage, item.getPath());
 
 
-        if (!AppState.get().isBorderAndShadow) {
-            holder.parent.setBackgroundColor(Color.TRANSPARENT);
-        }
+        FileMetaAdapter.showShadow(holder.parent, AppState.get().isBorderAndShadow);
 
         bindItemClickAndLongClickListeners(holder.parent, getItem(position));
 
