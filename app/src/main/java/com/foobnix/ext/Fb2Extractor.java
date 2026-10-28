@@ -37,9 +37,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
@@ -1259,7 +1261,7 @@ public class Fb2Extractor extends BaseExtractor {
     private boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true, null, new ArrayList<>());
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true, null, new ArrayList<>(), null);
             FileOutputStream out = new FileOutputStream(toName);
             out.write(generateFb2File.toByteArray());
             out.close();
@@ -1280,7 +1282,6 @@ public class Fb2Extractor extends BaseExtractor {
 
             writeToZip(zos, "mimetype", "application/epub+zip");
             writeToZip(zos, "META-INF/container.xml", container_xml);
-            writeToZip(zos, "OEBPS/content.opf", content_opf);
 
             String encoding = findHeaderEncoding(inputFile);
             List<String> titles = getFb2Titles(inputFile, encoding);
@@ -1288,9 +1289,27 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
+            // the images come out of the text as files of their own, listed for foliate to load
+            final StringBuilder manifest = new StringBuilder();
+            final Set<String> written = new HashSet<>();
+            Fb2Xhtml.Images images = (file, contentType, base64) -> {
+                if (!written.add(file)) {
+                    return;
+                }
+                try {
+                    byte[] bytes = Base64.decode(base64, Base64.DEFAULT);
+                    writeToZip(zos, "OEBPS/" + file, new ByteArrayInputStream(bytes));
+                    manifest.append("  <item id=\"img").append(written.size()).append("\" href=\"").append(file)
+                            .append("\" media-type=\"").append(TextUtils.htmlEncode(contentType)).append("\"/>\n");
+                } catch (Exception e) {
+                    LOG.e(e, file);
+                }
+            };
+
             List<SimpleMeta> replacements = AppData.get().getAllTextReplaces();
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes, replacements);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes, replacements, images);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
+            writeToZip(zos, "OEBPS/content.opf", content_opf.replace(" </manifest>", manifest + " </manifest>"));
             LOG.d("Fb2Context convert true");
             zos.close();
             out.close();
@@ -1305,7 +1324,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes, List<SimpleMeta> replacements) throws Exception {
+    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes, List<SimpleMeta> replacements, Fb2Xhtml.Images images) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -1327,7 +1346,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean ready = true;
         // The skeleton that makes the FictionBook markup a document with a body - see Fb2Xhtml.
         // Without it foliate's paginator measures a null body and the book falls back to MuPDF.
-        final Fb2Xhtml xhtml = new Fb2Xhtml();
+        final Fb2Xhtml xhtml = new Fb2Xhtml(images);
         HypenUtils.resetTokenizer();
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled.get()) {

@@ -120,4 +120,23 @@ public class TestFb2Xhtml {
                 "</FictionBook>");
         assertTrue(out, out.contains("text"));
     }
+
+    @Test public void anImagePointsAtItsFile() {
+        final String out = run("<FictionBook>", "<body><image l:href=\"#pic 1.jpg\"/><p>text</p></body>",
+                "</FictionBook>");
+        assertTrue(out, out.contains("<image xlink:href=\"images/pic_1.jpg\"><img src=\"images/pic_1.jpg\" alt=\"\"/></image>"));
+        assertFalse(out, out.contains("l:href"));
+    }
+
+    @Test public void aBinaryBecomesAnImageFile() {
+        final StringBuilder got = new StringBuilder();
+        final Fb2Xhtml xhtml = new Fb2Xhtml((file, type, base64) -> got.append(file).append('|').append(type).append('|').append(base64));
+        final StringBuilder out = new StringBuilder();
+        for (final String line : new String[]{"<FictionBook>", "<binary content-type=\"image/png\" id=\"a.png\">AAAA",
+                "BBBB", "</binary>", "</FictionBook>"}) {
+            out.append(xhtml.apply(line));
+        }
+        assertEquals("images/a.png|image/png|AAAABBBB", got.toString());
+        assertFalse(out.toString(), out.toString().contains("AAAA"));
+    }
 }

@@ -1,5 +1,9 @@
 package com.foobnix.ext;
 
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Turns the FictionBook markup Librera packs into its cached {@code .epub} into a document a
  * browser will accept.
@@ -18,6 +22,13 @@ package com.foobnix.ext;
  * would be read out as the first page of text, {@code binary} holds the images base64-encoded and
  * would print as a wall of characters, and {@code stylesheet} is the book's own CSS.
  *
+ * Out of the document, an XHTML reader no longer finds an image by the FB2 {@code l:href="#id"}
+ * that points into it: MuPDF looks those up only in a FictionBook root, and foliate not at all.
+ * So each {@code binary} goes to {@link Images} to be stored as a file of its own, and each
+ * {@code <image>} names the file twice: as {@code xlink:href}, which Librera's MuPDF loads from the
+ * archive (it never looks inside an {@code image}, and an {@code l:href} it would load twice), and
+ * as an {@code <img>} inside for foliate. The {@code image} itself stays for the stylesheet to place.
+ *
  * It works a line at a time, keeping what it is in the middle of between calls, so it can be fed
  * the same stream {@link Fb2Extractor#generateFb2File} already reads.
  */
@@ -25,7 +36,7 @@ public class Fb2Xhtml {
 
     /** The xlink prefix FB2 uses for its hrefs, declared so the markup still parses as XML. */
     private static final String HEAD = "<html xmlns=\"http://www.w3.org/1999/xhtml\""
-            + " xmlns:l=\"http://www.w3.org/1999/xlink\">"
+            + " xmlns:l=\"http://www.w3.org/1999/xlink\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">"
             + "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>"
             + "<title>FB2</title></head><body>";
 
@@ -34,8 +45,41 @@ public class Fb2Xhtml {
     /** The elements thrown away whole, with everything between their tags. */
     private static final String[] DROPPED = {"description", "binary", "stylesheet"};
 
+    private static final Pattern HREF = Pattern.compile("\\s[\\w-]*:?href\\s*=\\s*([\"'])(.*?)\\1");
+    private static final Pattern ID = Pattern.compile("\\sid\\s*=\\s*([\"'])(.*?)\\1");
+    private static final Pattern TYPE = Pattern.compile("\\scontent-type\\s*=\\s*([\"'])(.*?)\\1");
+
+    /** Where the images go, each with the file name its {@code <img>} uses. */
+    public interface Images {
+        void add(String file, String contentType, String base64);
+    }
+
+    private final Images images;
+
     /** The element being skipped over, or null when the text is being kept. */
     private String dropping;
+
+    /** The image being read out of a {@code binary}, with its base64 so far. */
+    private String binaryFile, binaryType;
+    private StringBuilder binary;
+
+    public Fb2Xhtml() {
+        this(null);
+    }
+
+    public Fb2Xhtml(final Images images) {
+        this.images = images;
+    }
+
+    /** The image's file in the book, next to the text, made from the FB2 id a link names. */
+    public static String fileOf(final String id) {
+        final StringBuilder file = new StringBuilder("images/");
+        for (int i = 0; i < id.length(); i++) {
+            final char c = id.charAt(i);
+            file.append(c < 128 && (Character.isLetterOrDigit(c) || c == '.' || c == '-' || c == '_') ? c : '_');
+        }
+        return file.toString();
+    }
 
     public String apply(final String line) {
         if (line == null) {
@@ -48,11 +92,15 @@ public class Fb2Xhtml {
             if (open < 0) {
                 if (dropping == null) {
                     out.append(line, at, line.length());
+                } else if (binary != null) {
+                    binary.append(line, at, line.length());
                 }
                 break;
             }
             if (dropping == null) {
                 out.append(line, at, open);
+            } else if (binary != null) {
+                binary.append(line, at, open);
             }
             final int close = line.indexOf('>', open);
             if (close < 0) {
@@ -67,6 +115,10 @@ public class Fb2Xhtml {
             if (dropping != null) {
                 if (isClosing(tag, dropping)) {
                     dropping = null;
+                    if (binary != null) {
+                        images.add(binaryFile, binaryType, binary.toString());
+                        binary = null;
+                    }
                 }
             } else {
                 out.append(translate(tag));
@@ -88,9 +140,13 @@ public class Fb2Xhtml {
                     // <binary .../> closes itself, and nothing follows it to skip to
                     if (!tag.endsWith("/>")) {
                         dropping = dropped;
+                        startBinary(name, tag);
                     }
                     return "";
                 }
+            }
+            if ("image".equals(name)) {
+                return image(tag);
             }
         }
         if ("fictionbook".equals(name)) {
@@ -101,6 +157,36 @@ public class Fb2Xhtml {
             return isClose(tag) ? "</div>" : "<div class=\"fb2-body\">";
         }
         return tag;
+    }
+
+    private void startBinary(final String name, final String tag) {
+        final String id = value(ID, tag);
+        if (images != null && "binary".equals(name) && id != null && !id.isEmpty()) {
+            binaryFile = fileOf(id);
+            final String type = value(TYPE, tag);
+            binaryType = type == null || type.isEmpty() ? "image/jpeg" : type;
+            binary = new StringBuilder();
+        }
+    }
+
+    private static String image(final String tag) {
+        final Matcher m = HREF.matcher(tag);
+        if (!m.find() || m.group(2).isEmpty()) {
+            return tag;
+        }
+        final String href = m.group(2);
+        final String src = (href.startsWith("#") ? fileOf(href.substring(1)) : href).replace("\"", "&quot;");
+        final boolean empty = tag.endsWith("/>");
+        String open = tag.substring(0, m.start()) + " xlink:href=\"" + src + "\"" + tag.substring(m.end());
+        if (empty) {
+            open = open.substring(0, open.length() - 2).trim() + ">";
+        }
+        return open + "<img src=\"" + src + "\" alt=\"\"/>" + (empty ? "</image>" : "");
+    }
+
+    private static String value(final Pattern pattern, final String tag) {
+        final Matcher m = pattern.matcher(tag);
+        return m.find() ? m.group(2) : null;
     }
 
     /** The element's name in lower case, or null when the tag names no element. */
@@ -117,7 +203,7 @@ public class Fb2Xhtml {
                 || tag.charAt(to) == '-' || tag.charAt(to) == '_' || tag.charAt(to) == ':')) {
             to++;
         }
-        return tag.substring(from, to).toLowerCase(java.util.Locale.US);
+        return tag.substring(from, to).toLowerCase(Locale.US);
     }
 
     private static boolean isClose(final String tag) {
