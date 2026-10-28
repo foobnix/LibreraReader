@@ -53,6 +53,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.search.view.SpeedBgView;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BookmarkPanel;
@@ -1341,7 +1342,6 @@ public class DocumentWrapperUI {
 
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
-        TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
         // The name of the mode is set in the colour the book's own title beside it is, rather
         // than in a white of its own.
         lirbiLogo.setTextColor(MagicHelper.getTextOrIconColor());
@@ -1432,6 +1432,7 @@ public class DocumentWrapperUI {
 
         //int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         titleBar.setBackgroundColor(TintUtil.color);
+        lirbiLogo.setBackgroundColor(TintUtil.color);
 
         int progressColor = TintUtil.color;
 
@@ -1480,7 +1481,7 @@ public class DocumentWrapperUI {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void tintSpeed() {
         try {
-            int tintColor = MagicHelper.getTintColor();
+            int tintColor = MagicHelper.getPageMarkColor();
             speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 
             speedSeekBar.getThumb().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
@@ -1494,6 +1495,10 @@ public class DocumentWrapperUI {
             //line1.getBackground().
             TintUtil.setStrokeColorWithDash(line1, tintColor);
             TintUtil.setStrokeColorWithDash(line2, tintColor);
+            SpeedBgView speedBg = dc.getActivity().findViewById(R.id.speedBgView1);
+            if (speedBg != null) {
+                speedBg.setBorderColor(tintColor);
+            }
 
         } catch (Exception e) {
             LOG.e(e);
@@ -2122,6 +2127,7 @@ public class DocumentWrapperUI {
     }
 
     public void showPagesHelper() {
+        tintSpeed();
         try {
             BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark, onRefresh);
         } catch (Exception e) {

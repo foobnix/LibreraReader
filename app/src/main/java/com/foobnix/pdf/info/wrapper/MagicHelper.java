@@ -506,6 +506,14 @@ public class MagicHelper {
         return allpixels;
     }
 
+    public static int getPageMarkColor() {
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayText : AppState.get().colorNigthText;
+    }
+
+    public static int getPageMarkBgColor(int alpha) {
+        return ColorUtils.setAlphaComponent(AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg, alpha);
+    }
+
     public static int getTextOrIconColor() {
         int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
 

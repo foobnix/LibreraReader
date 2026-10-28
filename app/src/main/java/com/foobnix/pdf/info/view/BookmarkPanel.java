@@ -1,6 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager.LayoutParams;
 
 import com.foobnix.android.utils.Dips;
@@ -36,7 +34,6 @@ public class BookmarkPanel {
         if (dc == null) {
             return;
         }
-        int colorWhite = ColorUtils.setAlphaComponent(Color.WHITE,50);
 
         if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
             musicButtonPanel.setVisibility(View.VISIBLE);
@@ -51,14 +48,14 @@ public class BookmarkPanel {
 
 
         // Everything in this panel stands on the page rather than on a bar, so it is drawn in
-        // the colour the reading marks are - the theme colour the bars are filled with is
-        // barely there against the page itself.
-        final int bookmarkColor = MagicHelper.getTextOrIconColor();
+        // the colour of the book's text over a veil of the page's own colour, for day and night.
+        final int bookmarkColor = MagicHelper.getPageMarkColor();
+        final int veilColor = MagicHelper.getPageMarkBgColor(140);
         TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
         pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
         GradientDrawable pagesBookmarkShape = TintUtil.setStrokeColorWithDash(pagesBookmark, bookmarkColor);
         if (pagesBookmarkShape != null) {
-            pagesBookmarkShape.setColor(colorWhite);
+            pagesBookmarkShape.setColor(veilColor);
         }
 
 
@@ -93,7 +90,7 @@ public class BookmarkPanel {
 
             GradientDrawable shape = TintUtil.setStrokeColorWithDash(t, bookmarkColor);
             if (shape != null) {
-                shape.setColor(colorWhite);
+                shape.setColor(veilColor);
             }
 
 

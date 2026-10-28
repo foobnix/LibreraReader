@@ -22,7 +22,6 @@
             android:adjustViewBounds="true"
             android:background="@drawable/bg_search_second_clickable"
             android:cropToPadding="true"
-            android:elevation="8dip"
             android:ellipsize="end"
             android:gravity="center"
             android:paddingLeft="20dip"
