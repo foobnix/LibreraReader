@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">കോൺട്രാസ്റ്റും ബ്രൈറ്റ്‌നെസ് ബട്ടണും കാണിക്കുക</string>
    <string name="text_and_background_color">വാചകത്തിന്റെയും പശ്ചാത്തലത്തിന്റെയും നിറം</string>
    <string name="library_folders">ലൈബ്രറി ഫോള്‍ഡറുകള്‍</string>
-   <string name="library_folders_hint">ഈ ഫോൾഡറുകളിലും അവയുടെ ഉപഫോൾഡറുകളിലും പുസ്തകങ്ങൾ തിരയുന്നു.</string>
-   <string name="add_folder_hint">ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-   <string name="add_storage_hint">SD കാർഡ് അല്ലെങ്കിൽ USB ഡ്രൈവ്</string>
    <string name="folder_no_access">ആക്സസ് ഇല്ല · വീണ്ടും അനുവദിക്കാൻ ടാപ്പ് ചെയ്യുക</string>
    <string name="watch">കാണുക</string>
    <string name="librerax_not_installed">LibreraX ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല. ഇത് ഡൗൺലോഡ് ചെയ്ത് ഇൻസ്റ്റാൾ ചെയ്യുക, തുടർന്ന് പുസ്തകം വീണ്ടും തുറക്കുക.</string>

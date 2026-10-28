@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Tampilkan tombol kontras dan kecerahan.</string>
    <string name="text_and_background_color">Warna teks dan latar belakang</string>
    <string name="library_folders">Folder pustaka</string>
-   <string name="library_folders_hint">Buku dicari di folder ini dan subfoldernya.</string>
-   <string name="add_folder_hint">Pilih satu folder</string>
-   <string name="add_storage_hint">Kartu SD atau drive USB</string>
    <string name="folder_no_access">Tanpa akses · ketuk untuk mengizinkan lagi</string>
    <string name="watch">Tonton</string>
    <string name="librerax_not_installed">LibreraX belum terpasang. Unduh dan pasang, lalu buka buku lagi.</string>

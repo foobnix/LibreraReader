@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Ammustra sos butones de cuntrastu e lughentesa</string>
    <string name="text_and_background_color">Text and background color</string>
    <string name="library_folders">Cartellas de sa biblioteca</string>
-   <string name="library_folders_hint">Sos libros si chircant in custas cartellas e in sas sutacartellas issoro.</string>
-   <string name="add_folder_hint">Sèbera una cartella</string>
-   <string name="add_storage_hint">Ischeda SD o unidade USB</string>
    <string name="folder_no_access">Chene atzessu · toca pro lu permìtere torra</string>
    <string name="watch">Pòmpia</string>
    <string name="librerax_not_installed">LibreraX no est installadu. Iscàrriga·lu e installa·lu, e a pustis torra a abèrrere su libru.</string>

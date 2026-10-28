@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Kontrast ve parlaklık düğmesini göster</string>
    <string name="text_and_background_color">Metin ve arka plan rengi</string>
    <string name="library_folders">Kitaplık klasörleri</string>
-   <string name="library_folders_hint">Kitaplar bu klasörlerde ve alt klasörlerinde aranır.</string>
-   <string name="add_folder_hint">Bir klasör seçin</string>
-   <string name="add_storage_hint">SD kart veya USB sürücü</string>
    <string name="folder_no_access">Erişim yok · yeniden izin vermek için dokunun</string>
    <string name="watch">İzle</string>
    <string name="librerax_not_installed">LibreraX yüklü değil. İndirip yükleyin, ardından kitabı yeniden açın.</string>

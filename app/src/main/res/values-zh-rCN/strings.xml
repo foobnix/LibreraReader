@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">显示对比度和亮度按钮</string>
    <string name="text_and_background_color">文本和背景颜色</string>
    <string name="library_folders">书库文件夹</string>
-   <string name="library_folders_hint">在这些文件夹及其子文件夹中查找图书。</string>
-   <string name="add_folder_hint">选择一个文件夹</string>
-   <string name="add_storage_hint">SD 卡或 U 盘</string>
    <string name="folder_no_access">无访问权限 · 点按以重新允许</string>
    <string name="watch">观看</string>
    <string name="librerax_not_installed">尚未安装 LibreraX。请下载并安装，然后重新打开这本书。</string>

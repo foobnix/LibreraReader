@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">コントラストと明るさボタンを表示する</string>
    <string name="text_and_background_color">テキストと背景色</string>
    <string name="library_folders">ライブラリのフォルダ</string>
-   <string name="library_folders_hint">これらのフォルダとそのサブフォルダから本を探します。</string>
-   <string name="add_folder_hint">フォルダを1つ選択</string>
-   <string name="add_storage_hint">SDカードまたはUSBドライブ</string>
    <string name="folder_no_access">アクセスなし · タップして再度許可</string>
    <string name="watch">見る</string>
    <string name="librerax_not_installed">LibreraX がインストールされていません。ダウンロードしてインストールしてから、もう一度本を開いてください。</string>

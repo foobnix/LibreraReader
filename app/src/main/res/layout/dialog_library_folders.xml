@@ -23,17 +23,6 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="24sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:lineSpacingExtra="2sp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:text="@string/library_folders_hint"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp" />
-
         <!-- One row a folder, filled in by the dialog. -->
         <LinearLayout
             android:id="@+id/libraryFolders"
@@ -71,7 +60,7 @@
                 android:text="@string/cancel"
                 android:textSize="14sp" />
 
-            <!-- Filled in the theme colour by the dialog. -->
+            <!-- A ring with the sync mark, in the theme colour, drawn by the dialog. -->
             <TextView
                 android:id="@+id/libraryFoldersUpdate"
                 android:layout_width="wrap_content"

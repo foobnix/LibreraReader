@@ -188,9 +188,8 @@
                 android:layout_marginLeft="5dip"
                 android:orientation="vertical" />
 
-            <!-- The two ways a folder gets into the library, and under them the library rebuilt
-                 from the folders now listed - the cards and the button the library folders dialog
-                 has, so the two read as one thing. -->
+            <!-- The two ways a folder gets into the library - the same buttons the library
+                 folders dialog has - and under them the library rebuilt from the folders listed. -->
             <include
                 layout="@layout/library_folders_add"
                 android:layout_width="match_parent"
@@ -199,30 +198,29 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp" />
 
-            <!-- Filled in the theme colour by the panel, as the dialog fills its own. -->
-            <TextView
-                android:id="@+id/onUpdateLibrary"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
+            <!-- Drawn as Library Settings is: the mark beside it is folded into the ringed button. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:minWidth="120dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:text="@string/update_library"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:gravity="center">
 
-            <View
-                android:tag="with_tint1"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="1dip"
-                android:layout_marginBottom="1dip"
-                android:background="@color/lt_grey_alpha" />
+                <ImageView
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_weight="0"
+                    android:padding="4dip"
+                    android:src="@drawable/glyphicons_761_sync"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/onUpdateLibrary"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_library" />
+            </LinearLayout>
 
 
             <LinearLayout

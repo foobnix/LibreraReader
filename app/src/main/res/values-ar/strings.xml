@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">زر إظهار التباين والسطوع</string>
    <string name="text_and_background_color">لون النص والخلفية</string>
    <string name="library_folders">مجلدات المكتبة</string>
-   <string name="library_folders_hint">يتم البحث عن الكتب في هذه المجلدات ومجلداتها الفرعية.</string>
-   <string name="add_folder_hint">اختر مجلدًا واحدًا</string>
-   <string name="add_storage_hint">بطاقة SD أو محرك USB</string>
    <string name="folder_no_access">لا يوجد وصول · انقر للسماح مجددًا</string>
    <string name="watch">مشاهدة</string>
    <string name="librerax_not_installed">LibreraX غير مثبّت. نزّله وثبّته، ثم افتح الكتاب مرة أخرى.</string>

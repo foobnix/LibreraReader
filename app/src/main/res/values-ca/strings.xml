@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Botó per mostrar contrast i brillantor</string>
    <string name="text_and_background_color">Text i color de fons</string>
    <string name="library_folders">Carpetes de la biblioteca</string>
-   <string name="library_folders_hint">Els llibres es cerquen en aquestes carpetes i les seves subcarpetes.</string>
-   <string name="add_folder_hint">Tria una carpeta</string>
-   <string name="add_storage_hint">Targeta SD o unitat USB</string>
    <string name="folder_no_access">Sense accés · toca per tornar-lo a permetre</string>
    <string name="watch">Mira</string>
    <string name="librerax_not_installed">LibreraX no està instal·lat. Baixeu-lo i instal·leu-lo i torneu a obrir el llibre.</string>

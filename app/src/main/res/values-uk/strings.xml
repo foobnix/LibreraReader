@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Кнопка відображення контрастності та яскравості</string>
    <string name="text_and_background_color">Колір тексту та фону</string>
    <string name="library_folders">Папки бібліотеки</string>
-   <string name="library_folders_hint">Книги шукаються в цих папках та їхніх підпапках.</string>
-   <string name="add_folder_hint">Виберіть одну папку</string>
-   <string name="add_storage_hint">SD-карта або USB-накопичувач</string>
    <string name="folder_no_access">Немає доступу · торкніться, щоб дозволити знову</string>
    <string name="watch">Дивитися</string>
    <string name="librerax_not_installed">LibreraX не встановлено. Завантажте та встановіть її, потім відкрийте книгу знову.</string>

@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Cnaipe codarsnachta agus gile a thaispeáint</string>
    <string name="text_and_background_color">Dath téacs agus cúlra</string>
    <string name="library_folders">Fillteáin na leabharlainne</string>
-   <string name="library_folders_hint">Lorgaítear leabhair sna fillteáin seo agus ina bhfofhillteáin.</string>
-   <string name="add_folder_hint">Roghnaigh fillteán amháin</string>
-   <string name="add_storage_hint">Cárta SD nó tiomántán USB</string>
    <string name="folder_no_access">Gan rochtain · tapáil chun é a cheadú arís</string>
    <string name="watch">Féach</string>
    <string name="librerax_not_installed">Níl LibreraX suiteáilte. Íoslódáil agus suiteáil é, ansin oscail an leabhar arís.</string>

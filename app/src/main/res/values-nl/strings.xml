@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Toon de knop voor contrast en helderheid</string>
    <string name="text_and_background_color">Tekst- en achtergrondkleur</string>
    <string name="library_folders">Bibliotheekmappen</string>
-   <string name="library_folders_hint">Boeken worden gezocht in deze mappen en hun submappen.</string>
-   <string name="add_folder_hint">Kies één map</string>
-   <string name="add_storage_hint">SD-kaart of USB-stick</string>
    <string name="folder_no_access">Geen toegang · tik om opnieuw toe te staan</string>
    <string name="watch">Bekijken</string>
    <string name="librerax_not_installed">LibreraX is niet geïnstalleerd. Download en installeer het en open het boek daarna opnieuw.</string>

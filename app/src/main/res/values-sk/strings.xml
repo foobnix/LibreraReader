@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Zobraziť tlačidlo kontrastu a jasu</string>
    <string name="text_and_background_color">Farba textu a pozadia</string>
    <string name="library_folders">Priečinky knižnice</string>
-   <string name="library_folders_hint">Knihy sa hľadajú v týchto priečinkoch a ich podpriečinkoch.</string>
-   <string name="add_folder_hint">Vyberte jeden priečinok</string>
-   <string name="add_storage_hint">SD karta alebo USB disk</string>
    <string name="folder_no_access">Bez prístupu · ťuknutím povolíte znova</string>
    <string name="watch">Pozrieť</string>
    <string name="librerax_not_installed">LibreraX nie je nainštalovaný. Stiahnite a nainštalujte ho a potom knihu otvorte znova.</string>

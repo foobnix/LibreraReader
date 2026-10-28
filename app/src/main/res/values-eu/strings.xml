@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Kontrastea eta distira erakusteko botoia</string>
    <string name="text_and_background_color">Testua eta atzeko planoaren kolorea</string>
    <string name="library_folders">Liburutegiko karpetak</string>
-   <string name="library_folders_hint">Liburuak karpeta hauetan eta haien azpikarpetetan bilatzen dira.</string>
-   <string name="add_folder_hint">Aukeratu karpeta bat</string>
-   <string name="add_storage_hint">SD txartela edo USB unitatea</string>
    <string name="folder_no_access">Sarbiderik ez · sakatu berriro baimentzeko</string>
    <string name="watch">Ikusi</string>
    <string name="librerax_not_installed">LibreraX ez dago instalatuta. Deskargatu eta instalatu, eta ireki liburua berriro.</string>

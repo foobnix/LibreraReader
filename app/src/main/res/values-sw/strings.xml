@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Onyesha kitufe cha utofautishaji na mwangaza</string>
    <string name="text_and_background_color">Maandishi na rangi ya usuli</string>
    <string name="library_folders">Folda za maktaba</string>
-   <string name="library_folders_hint">Vitabu hutafutwa katika folda hizi na folda zake ndogo.</string>
-   <string name="add_folder_hint">Chagua folda moja</string>
-   <string name="add_storage_hint">Kadi ya SD au kiendeshi cha USB</string>
    <string name="folder_no_access">Hakuna ufikiaji · gusa ili kuruhusu tena</string>
    <string name="watch">Tazama</string>
    <string name="librerax_not_installed">LibreraX haijasakinishwa. Ipakue na uisakinishe, kisha ufungue kitabu tena.</string>

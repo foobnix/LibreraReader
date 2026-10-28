@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Butonul pentru afișarea contrastului și a luminozității</string>
    <string name="text_and_background_color">Text și culoare de fundal</string>
    <string name="library_folders">Dosarele bibliotecii</string>
-   <string name="library_folders_hint">Cărțile sunt căutate în aceste dosare și în subdosarele lor.</string>
-   <string name="add_folder_hint">Alegeți un dosar</string>
-   <string name="add_storage_hint">Card SD sau unitate USB</string>
    <string name="folder_no_access">Fără acces · atingeți pentru a permite din nou</string>
    <string name="watch">Vizionează</string>
    <string name="librerax_not_installed">LibreraX nu este instalat. Descarcă-l și instalează-l, apoi deschide din nou cartea.</string>

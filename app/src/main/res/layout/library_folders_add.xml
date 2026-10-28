@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The two ways a folder gets into the library, as cards side by side: one the app goes looking
-     in, one the system's picker hands over. Shared by the library folders dialog and the
-     preferences panel, which each set the margins round it. -->
+<!-- The two ways a folder gets into the library, side by side as ringed buttons: one the app goes
+     looking in, one the system's picker hands over. Shared by the library folders dialog and the
+     preferences panel, which each set the margins round it; the ring, the mark and the words are
+     coloured by PrefDialogs.tintAddCards. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,53 +15,33 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="6dp"
         android:layout_weight="1"
-        android:background="@drawable/bg_lf_card"
+        android:background="@drawable/bg_button_outline"
         android:clickable="true"
         android:focusable="true"
-        android:minHeight="64dp"
-        android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:paddingTop="14dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="14dp">
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp">
 
-        <!-- The mark and what it adds, on one line. The mark is pulled left by the margin drawn into its glyph, so its stroke lines up with the words under it. -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/addLibraryFolderIcon"
-                android:layout_marginLeft="-2dp"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_lf_folder_add" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
-                android:singleLine="true"
-                android:text="@string/add_folder"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/addLibraryFolderIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_lf_folder_add" />
 
         <TextView
+            android:id="@+id/addLibraryFolderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="@string/add_folder_hint"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="12sp" />
+            android:text="@string/add_folder"
+            android:textColor="?android:attr/textColorLink" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,52 +50,32 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
         android:layout_weight="1"
-        android:background="@drawable/bg_lf_card"
+        android:background="@drawable/bg_button_outline"
         android:clickable="true"
         android:focusable="true"
-        android:minHeight="64dp"
-        android:orientation="vertical"
-        android:paddingLeft="12dp"
-        android:paddingTop="14dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="14dp">
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp">
 
-        <!-- The mark and what it adds, on one line. The mark is pulled left by the margin drawn into its glyph, so its stroke lines up with the words under it. -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/addLibraryStorageIcon"
-                android:layout_marginLeft="-4dp"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:importantForAccessibility="no"
-                android:src="@drawable/ic_lf_storage_add" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
-                android:singleLine="true"
-                android:text="@string/add_resource"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/addLibraryStorageIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_lf_storage_add" />
 
         <TextView
+            android:id="@+id/addLibraryStorageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="@string/add_storage_hint"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="12sp" />
+            android:text="@string/add_resource"
+            android:textColor="?android:attr/textColorLink" />
     </LinearLayout>
 </LinearLayout>

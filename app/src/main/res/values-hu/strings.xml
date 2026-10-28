@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Kontraszt és fényerő megjelenítése gomb</string>
    <string name="text_and_background_color">Szöveg és háttérszín</string>
    <string name="library_folders">Könyvtár mappái</string>
-   <string name="library_folders_hint">A könyveket ezekben a mappákban és almappáikban keresi.</string>
-   <string name="add_folder_hint">Válasszon egy mappát</string>
-   <string name="add_storage_hint">SD-kártya vagy USB-meghajtó</string>
    <string name="folder_no_access">Nincs hozzáférés · koppintson az újbóli engedélyezéshez</string>
    <string name="watch">Megnézem</string>
    <string name="librerax_not_installed">A LibreraX nincs telepítve. Töltse le és telepítse, majd nyissa meg újra a könyvet.</string>

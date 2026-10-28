@@ -701,9 +701,6 @@
    <string name="show_contrast_and_brightness_button">Bouton d\'affichage du contraste et de la luminosité</string>
    <string name="text_and_background_color">Couleur du texte et de l\'arrière-plan</string>
    <string name="library_folders">Dossiers de la bibliothèque</string>
-   <string name="library_folders_hint">Les livres sont recherchés dans ces dossiers et leurs sous-dossiers.</string>
-   <string name="add_folder_hint">Choisir un dossier</string>
-   <string name="add_storage_hint">Carte SD ou clé USB</string>
    <string name="folder_no_access">Pas d\'accès · touchez pour l\'autoriser à nouveau</string>
    <string name="watch">Regarder</string>
    <string name="librerax_not_installed">LibreraX n\'est pas installé. Téléchargez-le et installez-le, puis rouvrez le livre.</string>

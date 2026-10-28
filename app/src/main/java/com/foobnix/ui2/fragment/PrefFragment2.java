@@ -236,18 +236,16 @@ public class PrefFragment2 extends UIFragment {
     }
 
     /**
-     * The library folders drawn again in the colours now picked: Update is filled in the theme
-     * colour, the cards' marks and the folders' rounds in the link colour, and neither is part of
-     * the panel's own colour pass.
+     * The library folders drawn again in the colours now picked: Update as a ringed button, the
+     * add buttons' marks and the folders' rounds in the link colour, none of them part of the
+     * panel's own colour pass.
      */
     private void paintLibraryFolders() {
         if (inflate == null || getActivity() == null) {
             return;
         }
         View update = inflate.findViewById(R.id.onUpdateLibrary);
-        if (update instanceof TextView) {
-            PrefDialogs.asFilledButton((TextView) update);
-        }
+        asButton(update);
         if (inflate.findViewById(R.id.addLibraryFolder) != null) {
             PrefDialogs.tintAddCards(inflate, TxtUtils.getLinkTextColor(getActivity()));
         }
@@ -1939,7 +1937,7 @@ public class PrefFragment2 extends UIFragment {
         // Rebuilds the library from the folders now listed, without going through the dialog
         // to reach the same scan.
         TextView updateLibrary = inflate.findViewById(R.id.onUpdateLibrary);
-        PrefDialogs.asFilledButton(updateLibrary);
+        asButton(updateLibrary);
         updateLibrary.setOnClickListener(v -> onScan());
 
         asButton(inflate.findViewById(R.id.importButton))

@@ -14,11 +14,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.RippleDrawable;
+import androidx.core.content.ContextCompat;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
@@ -192,7 +192,7 @@ public class PrefDialogs {
         cancel.setOnClickListener(v -> create.dismiss());
 
         TextView update = view.findViewById(R.id.libraryFoldersUpdate);
-        asFilledButton(update);
+        asSyncButton(update, accent);
         update.setOnClickListener(v -> {
             create.dismiss();
             onScan.run();
@@ -209,30 +209,31 @@ public class PrefDialogs {
     }
 
     /**
-     * The library folders' main action, a pill filled in the theme colour - the colour the panel's
-     * headers and the chooser's buttons are filled in - as the dialog and the panel both draw it.
+     * The library update, as the panel draws its own: a ring with the sync mark and the words,
+     * all in the theme colour, like the add buttons above it.
      */
-    public static void asFilledButton(TextView button) {
-        GradientDrawable pill = new GradientDrawable();
-        // A black theme colour on a dark theme would fill the button with the ground it stands
-        // on: it is drawn as a white ring there instead. On the light theme black still shows.
-        boolean darkTheme = AppState.get().appTheme == AppState.THEME_DARK
-                || AppState.get().appTheme == AppState.THEME_DARK_OLED;
-        if (darkTheme && Color.luminance(TintUtil.color) < 0.02f) {
-            pill.setColor(Color.TRANSPARENT);
-            pill.setStroke(Dips.dpToPx(1), Color.WHITE);
-        } else {
-            pill.setColor(TintUtil.color);
+    public static void asSyncButton(TextView button, int accent) {
+        button.setTextColor(accent);
+        TintUtil.asLinkButton(button, 0);
+        Drawable mark = ContextCompat.getDrawable(button.getContext(), R.drawable.glyphicons_761_sync);
+        if (mark != null) {
+            mark = mark.mutate();
+            mark.setTint(accent);
+            mark.setBounds(0, 0, Dips.dpToPx(18), Dips.dpToPx(18));
         }
-        button.setTextColor(Color.WHITE);
-        pill.setCornerRadius(Dips.dpToPx(20));
-        button.setBackground(new RippleDrawable(ColorStateList.valueOf(0x40FFFFFF), pill, null));
+        button.setCompoundDrawablesRelative(mark, null, null, null);
+        button.setCompoundDrawablePadding(Dips.DP_8);
+        button.setPadding(Dips.DP_10, Dips.DP_8, Dips.DP_10, Dips.DP_8);
     }
 
-    /** The marks on the add folder and add storage cards, in the theme colour. */
+    /** The add folder and add storage buttons - ring, mark and words - in the theme colour. */
     public static void tintAddCards(View root, int accent) {
         ((ImageView) root.findViewById(R.id.addLibraryFolderIcon)).setColorFilter(accent);
         ((ImageView) root.findViewById(R.id.addLibraryStorageIcon)).setColorFilter(accent);
+        ((TextView) root.findViewById(R.id.addLibraryFolderText)).setTextColor(accent);
+        ((TextView) root.findViewById(R.id.addLibraryStorageText)).setTextColor(accent);
+        TintUtil.setRingColor(root.findViewById(R.id.addLibraryFolder), accent);
+        TintUtil.setRingColor(root.findViewById(R.id.addLibraryStorage), accent);
     }
 
     /** One folder of the library: its mark in a round of the theme colour, its name, where it is, and the button that drops it. */
@@ -267,7 +268,7 @@ public class PrefDialogs {
         }
 
         ImageView remove = row.findViewById(R.id.folderRemove);
-        remove.setColorFilter(place.getCurrentTextColor());
+        remove.setColorFilter(accent);
         remove.setContentDescription(c.getString(R.string.remove) + " " + namePlace[0]);
         remove.setOnClickListener(v -> onRemove.run());
 
@@ -310,61 +311,40 @@ public class PrefDialogs {
     }
 
     /**
-     * A library folder as the dialog names it: the folder's own name, and where it is - the
-     * storage it is on, then the folders it sits in - so {@code /storage/emulated/0/Download/Books}
-     * and {@code primary:Download/Books} handed over through the picker both read "Books" in
-     * "Internal storage › Download". A whole storage is named by the storage, with its path under
-     * it.
+     * A library folder as the dialog names it: the folder's own name, and under it its full path,
+     * so {@code /storage/emulated/0/Download/Books} and {@code primary:Download/Books} handed over
+     * through the picker both read "Books" over "/storage/emulated/0/Download/Books". A whole
+     * storage is named by the storage.
      *
-     * @return name, place, and the path when the folder is a whole storage (unused by the row)
+     * @return name and full path
      */
     static String[] folderNameAndPlace(Context c, String path) {
         final String internal = c.getString(R.string.internal_storage);
-        String storage;
-        String inside;
-        String whole;
+        final String root = Environment.getExternalStorageDirectory().getPath();
+        String full = path;
         if (ExtUtils.isExteralSD(path)) {
             String id = ExtUtils.getExtSDDisplayName(c, path);
             int colon = id.indexOf(':');
             if (id.startsWith("content:") || colon < 0) {
-                return new String[]{id, "", null};
+                return new String[]{id, ""};
             }
             String volume = id.substring(0, colon);
-            storage = "primary".equals(volume) ? internal : volume;
-            inside = id.substring(colon + 1);
-            whole = "";
+            String inside = id.substring(colon + 1);
+            full = ("primary".equals(volume) ? root : "/storage/" + volume) + (inside.isEmpty() ? "" : "/" + inside);
+        }
+        while (full.length() > 1 && full.endsWith("/")) {
+            full = full.substring(0, full.length() - 1);
+        }
+        String name;
+        if (full.equals(root)) {
+            name = internal;
         } else {
-            String root = Environment.getExternalStorageDirectory().getPath();
-            if (path.equals(root) || path.startsWith(root + "/")) {
-                storage = internal;
-                inside = path.substring(root.length());
-            } else if (path.startsWith("/storage/") && path.length() > "/storage/".length()) {
-                String rest = path.substring("/storage/".length());
-                int slash = rest.indexOf('/');
-                storage = slash < 0 ? rest : rest.substring(0, slash);
-                inside = slash < 0 ? "" : rest.substring(slash);
-            } else {
-                File file = new File(path);
-                String parentPath = file.getParent();
-                return new String[]{TxtUtils.isEmpty(file.getName()) ? path : file.getName(),
-                        parentPath == null ? "" : parentPath, null};
-            }
-            whole = path;
-        }
-        List<String> parts = new ArrayList<>();
-        for (String part : inside.split("/")) {
-            if (part.length() > 0) {
-                parts.add(part);
+            name = new File(full).getName();
+            if (TxtUtils.isEmpty(name)) {
+                name = full;
             }
         }
-        if (parts.isEmpty()) {
-            return new String[]{storage, whole, whole};
-        }
-        StringBuilder place = new StringBuilder(storage);
-        for (int i = 0; i < parts.size() - 1; i++) {
-            place.append(" \u203A ").append(parts.get(i));
-        }
-        return new String[]{parts.get(parts.size() - 1), place.toString(), null};
+        return new String[]{name, full};
     }
 
     public static void importDialog(final FragmentActivity activity) {
