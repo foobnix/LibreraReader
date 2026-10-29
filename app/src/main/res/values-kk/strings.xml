@@ -670,7 +670,7 @@
    <string name="restart_manually">Бұл өзгеріс қолданбаны қолмен қайта іске қосуды талап етеді</string>
    <string name="search_in_the_library">Кітапханадан іздеу</string>
    <string name="update_metadata">Метадеректерді жаңарту</string>
-   <string name="highlighting_initial_letters">Бастауыш әріптерді белгілеу</string>
+   <string name="highlighting_initial_letters">Екпінді оқу</string>
    <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
    <string name="show_storage_book_covers">Қосылған жад үшін мұқабаларды көрсету</string>

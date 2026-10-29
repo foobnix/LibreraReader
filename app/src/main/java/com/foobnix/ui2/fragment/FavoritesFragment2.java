@@ -170,16 +170,14 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             @Override public boolean onLongClick(View v) {
                 AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
                 onSort.setImageResource(
-                        AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
-                                R.drawable.glyphicons_476_sort_attributes);
+                        PopupHelper.sortIcon(!AppState.get().sortByFavoriteReverse));
                 populate();
                 return true;
             }
         });
         sortOrder.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByFavoriteReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
-                R.drawable.glyphicons_476_sort_attributes);
+        onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByFavoriteReverse));
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         onSort.setOnClickListener(new OnClickListener() {
@@ -211,6 +209,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                                                        );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
+                PopupHelper.addSortOrder(menu, !AppState.get().sortByFavoriteReverse, () -> {
+                    AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
+                    onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByFavoriteReverse));
+                    populate();
+                });
                 for (int i = 0; i < names.size(); i++) {
                     String name = names.get(i);
                     final int j = i;

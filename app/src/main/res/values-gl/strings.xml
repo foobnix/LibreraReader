@@ -670,7 +670,7 @@
    <string name="restart_manually">Este troco require reiniciar manualmente a aplicación</string>
    <string name="search_in_the_library">Procurar na biblioteca</string>
    <string name="update_metadata">Actualizar metadatos</string>
-   <string name="highlighting_initial_letters">Resaltar letras iniciais</string>
+   <string name="highlighting_initial_letters">Lectura acentuada</string>
    <string name="anti_aliasing_level">Nivel de suavizado (anti-aliasing)</string>
    <string name="folder_preview">Vista previa do cartafol</string>
    <string name="show_storage_book_covers">Amosar portadas do almacenamento engadido</string>

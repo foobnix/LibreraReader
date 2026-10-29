@@ -670,7 +670,7 @@
    <string name="restart_manually">Aquest canvi requereix reiniciar manualment l\'aplicació</string>
    <string name="search_in_the_library">Cerca a la biblioteca</string>
    <string name="update_metadata">Actualitza les metadades</string>
-   <string name="highlighting_initial_letters">Ressalta les lletres inicials</string>
+   <string name="highlighting_initial_letters">Lectura accentuada</string>
    <string name="anti_aliasing_level">Nivell de suavitzat</string>
    <string name="folder_preview">Previsualització de la carpeta</string>
    <string name="show_storage_book_covers">Mostra les cobertes de l\'emmagatzematge afegit</string>

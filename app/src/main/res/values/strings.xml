@@ -672,7 +672,7 @@
    <string name="restart_manually">This change requires a manual restart of the application</string>
    <string name="search_in_the_library">Search in the library</string>
    <string name="update_metadata">Update metadata</string>
-   <string name="highlighting_initial_letters">Highlighting initial letters</string>
+   <string name="highlighting_initial_letters">Accent reading</string>
    <string name="anti_aliasing_level">Anti-aliasing level</string>
    <string name="folder_preview">Folder preview</string>
    <string name="show_storage_book_covers">Show covers for added storage</string>

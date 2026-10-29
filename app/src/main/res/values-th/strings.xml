@@ -670,7 +670,7 @@
    <string name="restart_manually">การเปลี่ยนแปลงนี้ต้องรีสตาร์ทแอปพลิเคชันด้วยตนเอง</string>
    <string name="search_in_the_library">ค้นหาในห้องสมุด</string>
    <string name="update_metadata">อัปเดตข้อมูลเมตา</string>
-   <string name="highlighting_initial_letters">เน้นตัวอักษรเริ่มต้น</string>
+   <string name="highlighting_initial_letters">การอ่านแบบเน้น</string>
    <string name="anti_aliasing_level">ระดับการต่อต้านนามแฝง</string>
    <string name="folder_preview">ดูตัวอย่างโฟลเดอร์</string>
    <string name="show_storage_book_covers">แสดงปกสำหรับที่เก็บข้อมูลที่เพิ่ม</string>

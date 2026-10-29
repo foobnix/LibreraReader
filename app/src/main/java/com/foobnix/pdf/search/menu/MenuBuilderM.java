@@ -11,11 +11,40 @@ import android.widget.PopupMenu;
 
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
 @SuppressLint("NewApi")
 public class MenuBuilderM {
+
+    /**
+     * The ways of reading the page-mode menu offers after its layouts, in the paged and the
+     * vertical view alike: speed reading, and the two switches that change how the page is drawn.
+     * A switch reopens the book, as accent reading is baked into the converted text.
+     */
+    public static void addReadingModes(final View anchor, final MyPopupMenu p, final DocumentController dc) {
+        p.getMenu()
+         .add(R.string.fast_reading)
+         .setIcon(R.drawable.glyphicons_177_forward)
+         .setOnMenuItemClickListener(item -> {
+             DialogSpeedRead.show(dc.getActivity(), dc);
+             return false;
+         });
+        if (dc.isTextFormat()) {
+            p.getMenu().addCheckbox(anchor.getContext().getString(R.string.highlighting_initial_letters),
+                    AppState.get().isBionicMode, (button, isChecked) -> {
+                        AppState.get().isBionicMode = isChecked;
+                        anchor.post(dc::restartActivity);
+                    });
+        }
+        p.getMenu().addCheckbox(anchor.getContext().getString(R.string.mirror_image_for_teleprompter),
+                AppState.get().isMirrorImage, (button, isChecked) -> {
+                    AppState.get().isMirrorImage = isChecked;
+                    anchor.post(dc::restartActivity);
+                });
+    }
 
 
 

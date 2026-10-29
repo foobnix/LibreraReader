@@ -670,7 +670,7 @@
    <string name="restart_manually">Ta zmiana wymaga ręcznego restartu aplikacji</string>
    <string name="search_in_the_library">Poszukaj w bibliotece</string>
    <string name="update_metadata">Aktualizować metadane</string>
-   <string name="highlighting_initial_letters">Podkreślanie pierwszych liter</string>
+   <string name="highlighting_initial_letters">Czytanie z akcentem</string>
    <string name="anti_aliasing_level">Poziom antyaliasingu</string>
    <string name="folder_preview">Podgląd folderu</string>
    <string name="show_storage_book_covers">Pokaż okładki dla dodanej pamięci</string>

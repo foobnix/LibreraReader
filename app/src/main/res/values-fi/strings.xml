@@ -670,7 +670,7 @@
    <string name="restart_manually">Tämä muutos vaatii sovelluksen manuaalisen uudelleenkäynnistyksen</string>
    <string name="search_in_the_library">Etsi kirjastosta</string>
    <string name="update_metadata">Päivittää metatiedot</string>
-   <string name="highlighting_initial_letters">Korostamalla alkukirjaimia</string>
+   <string name="highlighting_initial_letters">Korostettu lukeminen</string>
    <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
    <string name="show_storage_book_covers">Näytä kannet lisätystä sijainnista</string>

@@ -670,7 +670,7 @@
    <string name="restart_manually">Тази промяна изисква ръчно рестартиране на приложението</string>
    <string name="search_in_the_library">Търсене в библиотеката</string>
    <string name="update_metadata">Актуализиране на метаданни</string>
-   <string name="highlighting_initial_letters">Подчертаване на началните букви</string>
+   <string name="highlighting_initial_letters">Акцентно четене</string>
    <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
    <string name="show_storage_book_covers">Показване на корици за добавеното хранилище</string>

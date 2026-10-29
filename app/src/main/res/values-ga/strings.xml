@@ -670,7 +670,7 @@
    <string name="restart_manually">Teastaíonn atosú láimhe den fheidhmchlár leis an athrú seo</string>
    <string name="search_in_the_library">Cuardach sa leabharlann</string>
    <string name="update_metadata">Meiteashonraí a nuashonrú</string>
-   <string name="highlighting_initial_letters">Ag cur béime ar litreacha tosaigh</string>
+   <string name="highlighting_initial_letters">Léamh béime</string>
    <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
    <string name="show_storage_book_covers">Taispeáin clúdaigh don stóráil a cuireadh leis</string>

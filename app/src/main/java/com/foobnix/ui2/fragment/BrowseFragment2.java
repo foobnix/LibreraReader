@@ -300,8 +300,7 @@ import java.util.Map;
 
             @Override public boolean onLongClick(View v) {
                 AppState.get().sortByReverse = !AppState.get().sortByReverse;
-                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
-                        R.drawable.glyphicons_476_sort_attributes);
+                onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByReverse));
                 populate();
                 return true;
             }
@@ -323,8 +322,7 @@ import java.util.Map;
         });
         openAsBook.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_477_sort_attributes_alt :
-                R.drawable.glyphicons_476_sort_attributes);
+        onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByReverse));
 
         onSort.setContentDescription(getString(R.string.cd_sort_results));
 
@@ -738,6 +736,11 @@ import java.util.Map;
                                                        );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
+                PopupHelper.addSortOrder(menu, !AppState.get().sortByReverse, () -> {
+                    AppState.get().sortByReverse = !AppState.get().sortByReverse;
+                    onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByReverse));
+                    populate();
+                });
                 for (int i = 0; i < names.size(); i++) {
                     String name = names.get(i);
                     final int j = i;

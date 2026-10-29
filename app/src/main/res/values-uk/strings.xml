@@ -670,7 +670,7 @@
    <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>
    <string name="search_in_the_library">Шукати в бібліотеці</string>
    <string name="update_metadata">Оновити метадані</string>
-   <string name="highlighting_initial_letters">Виділення початкових букв</string>
+   <string name="highlighting_initial_letters">Акцентне читання</string>
    <string name="anti_aliasing_level">Рівень згладжування</string>
    <string name="folder_preview">Перегляд папки</string>
    <string name="show_storage_book_covers">Показувати обкладинки для доданого сховища</string>

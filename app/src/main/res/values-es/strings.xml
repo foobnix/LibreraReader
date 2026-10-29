@@ -670,7 +670,7 @@
    <string name="restart_manually">Este cambio requiere un reinicio manual de la aplicación</string>
    <string name="search_in_the_library">Buscar en la biblioteca</string>
    <string name="update_metadata">Actualizar metadatos</string>
-   <string name="highlighting_initial_letters">Resaltando letras iniciales</string>
+   <string name="highlighting_initial_letters">Lectura acentuada</string>
    <string name="anti_aliasing_level">Nivel de suavizado</string>
    <string name="folder_preview">Vista previa de la carpeta</string>
    <string name="show_storage_book_covers">Mostrar portadas del almacenamiento agregado</string>

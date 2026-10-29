@@ -66,6 +66,7 @@ import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.HypenPanelHelper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -211,6 +212,9 @@ public class DocumentWrapperUI {
 
                  @Override
                  public boolean onMenuItemClick(MenuItem item) {
+                     if (dc.isTextFormat()) {
+                         return false;
+                     }
                      closeDialogs();
                      onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
                      AppSP.get().isCut = !false;
@@ -219,6 +223,16 @@ public class DocumentWrapperUI {
                      return false;
                  }
              });
+            if (!dc.isTextFormat()) {
+                addHalfPage(p);
+            }
+            MenuBuilderM.addReadingModes(v, p, dc);
+            p.show();
+            Keyboards.hideNavigation(dc.getActivity());
+
+        }
+
+        private void addHalfPage(MyPopupMenu p) {
             p.getMenu()
              .add(R.string.half_page)
              .setIcon(R.drawable.my_glyphicons_page_split)
@@ -234,9 +248,6 @@ public class DocumentWrapperUI {
                      return false;
                  }
              });
-            p.show();
-            Keyboards.hideNavigation(dc.getActivity());
-
         }
     };
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon,
@@ -793,7 +804,7 @@ public class DocumentWrapperUI {
             zoomMinus.setVisibility(View.GONE);
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
-            onModeChange.setVisibility(View.GONE);
+            onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
             onTextReplacement.setVisibility(View.VISIBLE);
 
             if (AppSP.get().isCrop || AppState.get().isExperimental) {

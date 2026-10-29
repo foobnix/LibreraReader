@@ -670,7 +670,7 @@
    <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>
    <string name="search_in_the_library">Αναζήτηση στη βιβλιοθήκη</string>
    <string name="update_metadata">Ενημέρωση μεταδεδομένων</string>
-   <string name="highlighting_initial_letters">Τονίζοντας τα αρχικά γράμματα</string>
+   <string name="highlighting_initial_letters">Ανάγνωση με έμφαση</string>
    <string name="anti_aliasing_level">Επίπεδο αντιολίσθησης</string>
    <string name="folder_preview">Προεπισκόπηση φακέλου</string>
    <string name="show_storage_book_covers">Εμφάνιση εξωφύλλων για τον προστιθέμενο αποθηκευτικό χώρο</string>

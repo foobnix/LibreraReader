@@ -670,7 +670,7 @@
    <string name="restart_manually">שינוי זה מחייב הפעלה מחדש ידנית של האפליקציה</string>
    <string name="search_in_the_library">לחפש בספרייה</string>
    <string name="update_metadata">לעדכן מטא נתונים</string>
-   <string name="highlighting_initial_letters">הדגשת אותיות ראשוניות</string>
+   <string name="highlighting_initial_letters">קריאה מודגשת</string>
    <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
    <string name="show_storage_book_covers">הצג כריכות עבור האחסון שנוסף</string>

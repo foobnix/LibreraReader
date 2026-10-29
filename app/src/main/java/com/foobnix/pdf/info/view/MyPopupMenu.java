@@ -9,10 +9,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
 import android.view.ActionProvider;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.SubMenu;
@@ -201,6 +204,18 @@ public class MyPopupMenu {
                 } else {
                     imageView.setVisibility(View.GONE);
                 }
+                // A line under the row parts it from the rows that follow. Rows come back recycled,
+                // so the plain ones lose it again.
+                if (item.lineBelow) {
+                    ColorDrawable line = new ColorDrawable(isLightSurface ? 0x33000000 : 0x55FFFFFF);
+                    LayerDrawable under = new LayerDrawable(new Drawable[]{line});
+                    under.setLayerGravity(0, Gravity.BOTTOM | Gravity.FILL_HORIZONTAL);
+                    under.setLayerHeight(0, Dips.DP_1);
+                    layout.setForeground(under);
+                } else {
+                    layout.setForeground(null);
+                }
+
                 if (item.isTitle) {
                     layout.setOnClickListener(null);
                     layout.setOnLongClickListener(null);
@@ -215,6 +230,11 @@ public class MyPopupMenu {
                     public void onClick(View v) {
                         if (item.click != null) {
                             item.click.onMenuItemClick(new MyMenuItem(stringRes));
+                        }
+                        if (item.keepOpen) {
+                            // the row may have changed what it says: drawn again, menu still up
+                            notifyDataSetChanged();
+                            return;
                         }
                         try {
                             p1.dismiss();
@@ -340,6 +360,10 @@ public class MyPopupMenu {
         }
 
         return maxWidth;
+    }
+
+    public Context getContext() {
+        return c;
     }
 
     public Menu getMenu() {
@@ -671,7 +695,26 @@ public class MyPopupMenu {
         boolean checkboxState;
         CompoundButton.OnCheckedChangeListener checkedChangeListener;
         boolean isTitle;
+        boolean lineBelow;
+        boolean keepOpen;
         private String fontPath;
+
+        /** A tap on the row leaves the menu up, to be tapped again. */
+        public Menu keepOpen() {
+            this.keepOpen = true;
+            return this;
+        }
+
+        public Menu setTitle(String name) {
+            this.stringRes = name;
+            return this;
+        }
+
+        /** Draws a line under the row, between it and the rows after it. */
+        public Menu lineBelow() {
+            this.lineBelow = true;
+            return this;
+        }
 
         /** Makes the row the popup's head: named, underlined, and not there to be tapped. */
         public Menu asTitle() {

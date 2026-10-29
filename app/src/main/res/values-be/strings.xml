@@ -670,7 +670,7 @@
    <string name="restart_manually">Гэта змяненне патрабуе ручнога перазапуску прыкладання</string>
    <string name="search_in_the_library">Пошук у бібліятэцы</string>
    <string name="update_metadata">Абнавіць метададзеныя</string>
-   <string name="highlighting_initial_letters">Вылучэнне пачатковых літар</string>
+   <string name="highlighting_initial_letters">Акцэнтнае чытанне</string>
    <string name="anti_aliasing_level">Ўзровень згладжвання</string>
    <string name="folder_preview">Папярэдні прагляд папкі</string>
    <string name="show_storage_book_covers">Паказваць вокладкі для дададзенага сховішча</string>

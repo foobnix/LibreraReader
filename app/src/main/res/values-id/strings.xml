@@ -670,7 +670,7 @@
    <string name="restart_manually">Perubahan ini memerlukan restart manual aplikasi</string>
    <string name="search_in_the_library">Cari di perpustakaan</string>
    <string name="update_metadata">Memperbarui metadata</string>
-   <string name="highlighting_initial_letters">Menyoroti huruf awal</string>
+   <string name="highlighting_initial_letters">Membaca dengan aksen</string>
    <string name="anti_aliasing_level">Tingkat anti-aliasing</string>
    <string name="folder_preview">Pratinjau folder</string>
    <string name="show_storage_book_covers">Tampilkan sampul untuk penyimpanan yang ditambahkan</string>

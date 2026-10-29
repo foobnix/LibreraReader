@@ -670,7 +670,7 @@
    <string name="restart_manually">이 변경 사항을 적용하기 위해서는 응용 프로그램을 수동으로 다시 시작해야 합니다.</string>
    <string name="search_in_the_library">라이브러리에서 검색</string>
    <string name="update_metadata">메타데이터 업데이트</string>
-   <string name="highlighting_initial_letters">첫 글자 강조</string>
+   <string name="highlighting_initial_letters">강조 읽기</string>
    <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
    <string name="folder_preview">폴더 미리보기</string>
    <string name="show_storage_book_covers">추가한 저장소의 표지 표시</string>

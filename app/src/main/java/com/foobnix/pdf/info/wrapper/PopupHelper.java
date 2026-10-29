@@ -20,6 +20,34 @@ import android.graphics.PorterDuffColorFilter;
 
 public class PopupHelper {
 
+    /** The sort mark, in the state that says which way round the list runs. */
+    public static int sortIcon(boolean asc) {
+        return asc ? R.drawable.glyphicons_476_sort_attributes : R.drawable.glyphicons_477_sort_attributes_alt;
+    }
+
+    /**
+     * A sort menu's first row: the way the list runs, turned round by a tap that sorts the list
+     * again and leaves the menu up.
+     */
+    public static void addSortOrder(MyPopupMenu p, boolean asc, Runnable reverse) {
+        final boolean[] ascending = {asc};
+        final MyPopupMenu.Menu row = p.getMenu();
+        showSortOrder(p.getContext(), row, asc);
+        row.lineBelow()
+           .keepOpen()
+           .setOnMenuItemClickListener(item -> {
+               ascending[0] = !ascending[0];
+               reverse.run();
+               showSortOrder(p.getContext(), row, ascending[0]);
+               return false;
+           });
+    }
+
+    private static void showSortOrder(Context c, MyPopupMenu.Menu row, boolean asc) {
+        row.setTitle(c.getString(asc ? R.string.ascending : R.string.descending))
+           .setIcon(asc ? R.drawable.glyphicons_212_arrow_up : R.drawable.glyphicons_211_arrow_down);
+    }
+
     public static void updateGridOrListIcon(ImageView gridList, int libraryMode) {
         if (gridList == null) {
             return;

@@ -866,6 +866,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         return false;
                     }
                 });
+                MenuBuilderM.addReadingModes(v, p, dc);
                 p.show();
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 

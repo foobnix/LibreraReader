@@ -670,7 +670,7 @@
    <string name="restart_manually">Táto zmena si vyžaduje manuálny reštart aplikácie</string>
    <string name="search_in_the_library">Hľadať v knižnici</string>
    <string name="update_metadata">Aktualizovať metaúdaje</string>
-   <string name="highlighting_initial_letters">Zvýrazniť začiatočné písmená</string>
+   <string name="highlighting_initial_letters">Zvýraznené čítanie</string>
    <string name="anti_aliasing_level">Úroveň vyhladenia</string>
    <string name="folder_preview">Náhľad priečinka</string>
    <string name="show_storage_book_covers">Zobraziť obálky pre pridané úložisko</string>

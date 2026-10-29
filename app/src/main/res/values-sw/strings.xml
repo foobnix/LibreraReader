@@ -670,7 +670,7 @@
    <string name="restart_manually">Mabadiliko haya yanahitaji kuanzishwa upya kwa programu mwenyewe</string>
    <string name="search_in_the_library">Tafuta kwenye maktaba</string>
    <string name="update_metadata">Sasisha metadata</string>
-   <string name="highlighting_initial_letters">Kuangazia herufi za mwanzo</string>
+   <string name="highlighting_initial_letters">Usomaji wa msisitizo</string>
    <string name="anti_aliasing_level">Kiwango cha kupinga-aliasing</string>
    <string name="folder_preview">Hakikisho la folda</string>
    <string name="show_storage_book_covers">Onyesha jalada za hifadhi iliyoongezwa</string>

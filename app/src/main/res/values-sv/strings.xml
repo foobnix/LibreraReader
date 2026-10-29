@@ -670,7 +670,7 @@
    <string name="restart_manually">Denna ändring kräver en manuell omstart av programmet</string>
    <string name="search_in_the_library">Sök i biblioteket</string>
    <string name="update_metadata">Uppdatera metadata</string>
-   <string name="highlighting_initial_letters">Markera initiala bokstäver</string>
+   <string name="highlighting_initial_letters">Accentläsning</string>
    <string name="anti_aliasing_level">Kantutjämningsnivå</string>
    <string name="folder_preview">Förhandsgranskning av mapp</string>
    <string name="show_storage_book_covers">Visa omslag för tillagd lagring</string>

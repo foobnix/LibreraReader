@@ -715,8 +715,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return;
         }
         setSearchHint(R.string.msg_loading);
-        sortBy.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_476_sort_attributes :
-                R.drawable.glyphicons_477_sort_attributes_alt);
+        sortBy.setImageResource(PopupHelper.sortIcon(AppState.get().isSortAsc));
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
         // The mark alone says what it opens, so the field being sorted on is left to it.
@@ -1012,6 +1011,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private void sortByPopup(final View view) {
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
+        PopupHelper.addSortOrder(popup, AppState.get().isSortAsc, () -> {
+            AppState.get().isSortAsc = !AppState.get().isSortAsc;
+            recyclerView.scrollToPosition(0);
+            searchAndOrderAsync();
+        });
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu()
                  .add(sortBy.getResName())
