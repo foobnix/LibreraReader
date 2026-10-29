@@ -759,7 +759,7 @@ public abstract class DocumentController {
 
     /**
      * In a debuggable build, the reading mode's name in the bottom bar is followed by the engine
-     * that lays the book out - [MuPDF], [foliate-js], [PDFium] - to tell at a glance which one is
+     * that lays the book out - [MuPDF], [HTML+JS], [PDFium] - to tell at a glance which one is
      * at work, as the engine asked for can fall back to MuPDF. Once the book is open, and again
      * on every update, so the name is kept whatever rewrote it meanwhile.
      */
@@ -774,7 +774,7 @@ public abstract class DocumentController {
         }
         String engine;
         if (doc instanceof FoliateDocument) {
-            engine = "foliate-js";
+            engine = "HTML+JS";
         } else if (doc instanceof PdfiumDocument) {
             engine = "PDFium";
         } else if (doc instanceof DjvuDocument) {
