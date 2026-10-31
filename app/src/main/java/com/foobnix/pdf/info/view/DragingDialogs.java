@@ -6027,6 +6027,11 @@ public class DragingDialogs {
                                 return false;
                             });
 
+                final String engineName = controller.getEngineName();
+                if (engineName != null) {
+                    titlePopupMenu.getMenu().add(engineName);
+                }
+
                 inflate.findViewById(R.id.moreReadColorSettings).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());

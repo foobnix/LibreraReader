@@ -768,24 +768,33 @@ public abstract class DocumentController {
                 || (dc.getActivity().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) == 0) {
             return;
         }
-        CodecDocument doc = dc.getCodecDocument();
-        if (doc == null) {
+        String engine = dc.getEngineName();
+        if (engine == null) {
             return;
-        }
-        String engine;
-        if (doc instanceof FoliateDocument) {
-            engine = "HTML+JS";
-        } else if (doc instanceof PdfiumDocument) {
-            engine = "PDFium";
-        } else if (doc instanceof DjvuDocument) {
-            engine = "DjVu";
-        } else if (doc instanceof ComicDocument) {
-            engine = "Comic";
-        } else {
-            engine = "MuPDF";
         }
         String text = modeName.getText().toString().replaceAll(" \\[[^\\]]*\\]$", "");
         modeName.setText(text + " [" + engine + "]");
+    }
+
+    /** The engine that laid this book out, or null while no document is open. */
+    public String getEngineName() {
+        CodecDocument doc = getCodecDocument();
+        if (doc == null) {
+            return null;
+        }
+        if (doc instanceof FoliateDocument) {
+            return "HTML+JS";
+        }
+        if (doc instanceof PdfiumDocument) {
+            return "PDFium";
+        }
+        if (doc instanceof DjvuDocument) {
+            return "DjVu";
+        }
+        if (doc instanceof ComicDocument) {
+            return "Comic";
+        }
+        return "MuPDF";
     }
 
     public CodecDocument getCodecDocument() {
