@@ -427,7 +427,7 @@ public class AppState {
         if (!Engines.IS_MUPDF) {
             return PDF_ENGINE_PDFIUM;
         }
-        return Engines.IS_ENGINE_CHOICE ? pdfEngine : PDF_ENGINE_MUPDF;
+        return pdfEngine;
     }
 
     /**
@@ -438,7 +438,7 @@ public class AppState {
         if (!Engines.IS_MUPDF) {
             return EPUB_ENGINE_FOLIATE;
         }
-        return Engines.IS_ENGINE_CHOICE ? epubEngine : EPUB_ENGINE_MUPDF;
+        return epubEngine;
     }
     // n,
     // 25 - 25%

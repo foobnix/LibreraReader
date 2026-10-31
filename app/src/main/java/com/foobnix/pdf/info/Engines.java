@@ -33,13 +33,11 @@ public final class Engines {
     public static final boolean IS_MUPDF = !LibreraBuildConfig.FLAVOR.endsWith("JS");
 
     /**
-     * Whether the reader picks the engines: the fdroid and pro flavours, which carry MuPDF and the
-     * JS engines (PDFium, foliate-js) side by side. Every other MuPDF flavour renders with MuPDF
-     * alone, as it always has, and a JS flavour has only the JS engines - in both there is
-     * nothing to choose, so the settings are not shown and a stored choice is not read.
+     * Whether the reader picks the engines: every flavour with MuPDF, which carries the JS engines
+     * (PDFium, foliate-js) beside it. A JS flavour has only the JS engines, so there is nothing to
+     * choose: the settings are not shown and a stored choice is not read.
      */
-    public static final boolean IS_ENGINE_CHOICE = IS_MUPDF
-            && ("fdroid".equals(LibreraBuildConfig.FLAVOR) || "pro".equals(LibreraBuildConfig.FLAVOR));
+    public static final boolean IS_ENGINE_CHOICE = IS_MUPDF;
 
     /** MuPDF and its JNI, {@code lib<this>.so}, in the flavours built with it. */
     public static final String MUPDF_LIBRARY = "mupdf";

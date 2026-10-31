@@ -1010,8 +1010,8 @@ public class PrefFragment2 extends UIFragment {
         asButton(appEngine);
         Views.visible(appEngine, false /**LOG.isEnable || AppsConfig.IS_PRO**/);
 
-        // Only the fdroid flavour has engines to pick between; every other build has one for
-        // each, and AppState.getPdfEngine()/getEpubEngine() answer with it whatever these hold.
+        // A JS flavour has one engine for each, and AppState.getPdfEngine()/getEpubEngine() answer
+        // with it whatever these hold.
         Views.visible(inflate.findViewById(R.id.pdfEngineRow), Engines.IS_ENGINE_CHOICE);
         Views.visible(inflate.findViewById(R.id.epubEngineRow), Engines.IS_ENGINE_CHOICE);
 
