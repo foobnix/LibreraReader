@@ -12,6 +12,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
@@ -278,10 +279,10 @@ public class CacheZipUtils {
         }
     }
 
-    public static void savaJavaCache(Object object, File file) {
+    public static void savaJavaCache(Object object, File file, int pageCount) {
         try {
             LOG.d("JavaCache save", object, file.getName());
-            FileOutputStream fos = new FileOutputStream(new File(CACHE_TEMP, makeKey(file)));
+            FileOutputStream fos = new FileOutputStream(new File(CACHE_TEMP, makeKey(file, pageCount)));
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(object);
             oos.flush();
@@ -301,10 +302,10 @@ public class CacheZipUtils {
         }
     }
 
-    public static Object loadJavaCache(File file1) {
+    public static Object loadJavaCache(File file1, int pageCount) {
         try {
 
-            File file = new File(CACHE_TEMP, makeKey(file1));
+            File file = new File(CACHE_TEMP, makeKey(file1, pageCount));
             LOG.d("JavaCache load exist", file.isFile(), file);
             if (!file.isFile()) {
                 return null;
@@ -341,11 +342,17 @@ public class CacheZipUtils {
         }
     }
 
-    private static String makeKey(File file) {
+    /**
+     * The saved contents hold resolved page numbers, so the key has to change with the layout. The
+     * settings alone do not say that: a new build's stylesheet or another page size moves the
+     * pages under the same settings, and the contents then open the wrong page.
+     */
+    private static String makeKey(File file, int pageCount) {
         if (file == null) {
             return "no-file-outline";
         }
-        return "" + MagicHelper.hash() + file.lastModified() + file.getName() + "-outline";
+        return "" + MagicHelper.hash() + pageCount + BookCSS.get().toCssString(file.getPath()).hashCode()
+                + file.lastModified() + file.getName() + "-outline";
     }
 
 

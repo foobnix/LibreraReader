@@ -982,7 +982,7 @@ public class VerticalModeController extends DocumentController {
 
 
         final ArrayList<OutlineLinkWrapper> cached =
-                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook());
+                (ArrayList<OutlineLinkWrapper>) CacheZipUtils.loadJavaCache(getCurrentBook(), getPageCount());
         // An empty list is what a read that failed left behind, not the book's contents, so it
         // is read again rather than kept
         if (cached != null && !cached.isEmpty()) {
@@ -1025,7 +1025,7 @@ public class VerticalModeController extends DocumentController {
                     }
                 }
                 if (!result.isEmpty()) {
-                    CacheZipUtils.savaJavaCache(result, getCurrentBook());
+                    CacheZipUtils.savaJavaCache(result, getCurrentBook(), getPageCount());
                 }
                 outline = result;
                 resultWrapper.onResultRecive(outline);
