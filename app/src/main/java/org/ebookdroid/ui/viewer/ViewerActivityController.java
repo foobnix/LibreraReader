@@ -353,6 +353,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         wrapperControlls.setTitle(title);
         controller.setTitle(title);
+        controller.syncTtsPlace();
 
     }
 

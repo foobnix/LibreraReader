@@ -55,6 +55,18 @@ public class FoliateDocument extends AbstractCodecDocument {
 
     private volatile FoliateIndex index;
 
+    /** The book the reader has open, for those who must read the pages it shows. */
+    private static volatile FoliateDocument current;
+
+    /**
+     * The reader's own document, or <code>null</code> when no book is open in this engine. Another
+     * opening of the book would not do: TTS opens on the main thread, where this engine refuses,
+     * and the MuPDF copy it then gets breaks the book into different pages.
+     */
+    public static FoliateDocument current() {
+        return current;
+    }
+
     /** Which page the WebView is currently showing, so a repeat render costs nothing. */
     private volatile int positioned = -1;
 
@@ -97,12 +109,16 @@ public class FoliateDocument extends AbstractCodecDocument {
         sections = count;
         width = Dips.screenWidth();
         height = Dips.screenHeight();
+        current = this;
         LOG.d("FOLIATE! >>> open [document]", bookPath, count, "sections");
         return true;
     }
 
     /** Throws the WebView away without recycling the context, for the fall-back above. */
     public void disposeEngine() {
+        if (current == this) {
+            current = null;
+        }
         final FoliateRenderer local = renderer;
         renderer = null;
         if (local != null) {

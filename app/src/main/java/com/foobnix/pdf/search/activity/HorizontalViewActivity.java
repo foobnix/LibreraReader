@@ -1159,6 +1159,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     isInitOrientation = AppState.get().orientation;
 
                     updateIconMode();
+                    dc.syncTtsPlace();
 
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);

@@ -776,6 +776,21 @@ public abstract class DocumentController {
         modeName.setText(text + " [" + engine + "]");
     }
 
+    /**
+     * The place TTS goes on from is its own until the reader moves. Play in the notification has
+     * no reader to ask, so while TTS is quiet the reader keeps that place, and the page size it
+     * is laid out at, on the page on screen.
+     */
+    public void syncTtsPlace() {
+        if (TTSEngine.get().isPlaying() || getCodecDocument() == null) {
+            return;
+        }
+        AppSP.get().lastBookPage = getCurentPageFirst1() - 1;
+        AppSP.get().lastBookPageCount = getPageCount();
+        AppSP.get().lastBookWidth = getBookWidth();
+        AppSP.get().lastBookHeight = getBookHeight();
+    }
+
     /** The engine that laid this book out, or null while no document is open. */
     public String getEngineName() {
         CodecDocument doc = getCodecDocument();

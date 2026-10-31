@@ -10,7 +10,7 @@
         android:layout_width="@dimen/wh_tts_button"
         android:layout_height="@dimen/wh_tts_button"
         android:background="@drawable/bg_round_press"
-        android:padding="2dip"
+        android:padding="3dip"
         android:contentDescription="@string/settings"
         android:src="@drawable/glyphicons_smileys_100_headphones" />
 
@@ -22,7 +22,7 @@
         android:layout_marginLeft="4dp"
         android:background="@drawable/bg_round_press"
         android:contentDescription="@string/previous_page"
-        android:padding="2dp"
+        android:padding="3dp"
         android:src="@drawable/glyphicons_81_skip_to_previous" />
 
 
@@ -47,7 +47,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="4dip"
         android:background="@drawable/bg_round_press"
-        android:padding="2dp"
+        android:padding="3dp"
         android:src="@drawable/glyphicons_89_skip_to_next" />
     
     
@@ -59,7 +59,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="4dip"
         android:background="@drawable/bg_round_press"
-        android:padding="2dp"
+        android:padding="3dp"
         android:src="@drawable/glyphicons_172_skip_to_start" />
     
     
@@ -70,7 +70,7 @@
         android:layout_height="@dimen/wh_tts_button"
         android:layout_gravity="center"
         android:background="@drawable/bg_round_press"
-        android:padding="2dp"
+        android:padding="3dp"
         android:src="@drawable/glyphicons_178_skip_to_end" />
     
 
@@ -82,7 +82,7 @@
         android:layout_marginLeft="4dip"
         android:contentDescription="@string/close"
         android:background="@drawable/bg_round_press"
-        android:padding="8dp"
+        android:padding="12dp"
         android:src="@drawable/glyphicons_599_menu_close" />
 
 </LinearLayout>

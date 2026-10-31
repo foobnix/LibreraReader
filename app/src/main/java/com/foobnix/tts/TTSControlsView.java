@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -80,6 +81,35 @@ public class TTSControlsView extends FrameLayout {
             }
         }
     };
+
+    /**
+     * The row does not wrap and a dialog can be narrower than its buttons, the more so with the
+     * track buttons of an MP3 showing: they give up size there rather than being cut off.
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        final ViewGroup row = (ViewGroup) view.findViewById(R.id.ttsStop).getParent();
+        final int available = MeasureSpec.getSize(widthMeasureSpec);
+        if (available > 0) {
+            int visible = 0;
+            int margins = 0;
+            for (int i = 0; i < row.getChildCount(); i++) {
+                final View child = row.getChildAt(i);
+                if (child.getVisibility() != View.GONE) {
+                    visible++;
+                    margins += ((MarginLayoutParams) child.getLayoutParams()).leftMargin;
+                }
+            }
+            final int full = getResources().getDimensionPixelSize(R.dimen.wh_tts_button);
+            final int size = visible == 0 ? full : Math.min(full, (available - margins) / visible);
+            for (int i = 0; i < row.getChildCount(); i++) {
+                final ViewGroup.LayoutParams params = row.getChildAt(i).getLayoutParams();
+                params.width = size;
+                params.height = size;
+            }
+        }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
     @Override
     public void setBackgroundColor(int color) {

@@ -25,9 +25,8 @@
             android:paddingTop="5dip">
 
             <LinearLayout
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal">
 
@@ -37,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:maxWidth="140dp"
                     android:text=""
                     android:textStyle="bold" />
 
@@ -51,17 +51,16 @@
             </LinearLayout>
 
             <!-- The controls that play the book are put in here by the reading screen; the
-                 slot takes no room of its own while they are away. -->
+                 slot fills the row between its neighbours, so they stand in the middle of that gap. -->
             <FrameLayout
                 android:id="@+id/ttsControlsSlot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-
-            <LinearLayout
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
                 android:orientation="horizontal">
 

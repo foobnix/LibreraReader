@@ -31,6 +31,8 @@ import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -49,6 +51,7 @@ import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.pdf.info.IMG;
@@ -69,6 +72,7 @@ import com.foobnix.sys.TempHolder;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
@@ -177,7 +181,10 @@ import java.util.List;
     volatile boolean isStartForeground = false;
     CodecDocument cache;
     String path;
-    int wh;
+    String layout;
+    // Only the page asked for last is spoken, when a page's text comes back from another thread
+    int playRequest;
+    final Handler mainHandler = new Handler(Looper.getMainLooper());
     int emptyPageCount = 0;
     final OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
         @Override public void onAudioFocusChange(int focusChange) {
@@ -328,6 +335,8 @@ import java.util.List;
         AppSP.get().lastFontSize = fontSize;
         AppSP.get().lastBookTitle = title;
         AppSP.get().lastBookPage = page;
+        // A service not running yet reloads these from the saved copy as it starts
+        AppSP.get().save();
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -849,9 +858,16 @@ import java.util.List;
 
     public CodecDocument getDC() {
         try {
+            final FoliateDocument reader = FoliateDocument.current();
+            if (reader != null) {
+                return reader;
+            }
 
+            // Whatever changes the pages: a sum of the sides would not see the screen turned
+            final String currentLayout = AppSP.get().lastBookWidth + "x" + AppSP.get().lastBookHeight + "|"
+                    + BookCSS.get().fontSizeSp + "|" + BookCSS.get().toCssString(AppSP.get().lastBookPath).hashCode();
             if (AppSP.get().lastBookPath != null && AppSP.get().lastBookPath.equals(
-                    path) && cache != null && wh == AppSP.get().lastBookWidth + AppSP.get().lastBookHeight) {
+                    path) && cache != null && currentLayout.equals(layout)) {
                 LOG.d(TAG, "CodecDocument from cache", AppSP.get().lastBookPath);
                 return cache;
             }
@@ -867,7 +883,7 @@ import java.util.List;
                 return null;
             }
             cache.getPageCount(AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, BookCSS.get().fontSizeSp);
-            wh = AppSP.get().lastBookWidth + AppSP.get().lastBookHeight;
+            layout = currentLayout;
             LOG.d(TAG, "CodecDocument new", AppSP.get().lastBookPath, AppSP.get().lastBookWidth,
                     AppSP.get().lastBookHeight);
             return cache;
@@ -995,8 +1011,6 @@ import java.util.List;
         LOG.d("playPage", preText, pageNumber, anchor);
         if (pageNumber != -1) {
             isActivated = true;
-            EventBus.getDefault()
-                    .post(new MessagePageNumber(pageNumber));
             AppSP.get().lastBookPage = pageNumber;
             CodecDocument dc = getDC();
             if (dc == null) {
@@ -1006,189 +1020,265 @@ import java.util.List;
                 return;
             }
 
-            AppSP.get().lastBookPageCount = dc.getPageCount();
-            LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppSP.get().lastBookPageCount);
-            if (pageNumber >= AppSP.get().lastBookPageCount) {
-                Vibro.vibrateFinish();
-                LOG.d(TAG, "CodecDocument Book is Finished");
-                EventBus.getDefault()
-                        .post(new TtsStatus());
-
-                stopMediaSesstionAndReleaweWakeLock();
-                stopSelf();
+            final int request = ++playRequest;
+            if (dc instanceof FoliateDocument) {
+                // This engine answers on the main thread and makes its callers wait, so it cannot
+                // be asked from there. The page is the reader's own: it stays unrecycled.
+                AppsConfig.executorServiceSingle.execute(() -> {
+                    final int pageCount = dc.getPageCount();
+                    final int number = pageInLayout(dc, pageNumber, pageCount);
+                    final CodecPage page = number < pageCount ? dc.getPage(number) : null;
+                    final String pageHTML = page == null ? null : page.getPageHTML();
+                    mainHandler.post(() -> {
+                        if (request == playRequest) {
+                            speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
+                        }
+                    });
+                });
                 return;
             }
 
-            CodecPage page = dc.getPage(pageNumber);
-            if(page==null){
-                EventBus.getDefault()
-                        .post(new TtsStatus());
-
-                stopMediaSesstionAndReleaweWakeLock();
-                stopSelf();
-                return;
+            final int pageCount = dc.getPageCount();
+            final int number = pageInLayout(dc, pageNumber, pageCount);
+            final CodecPage page = number < pageCount ? dc.getPage(number) : null;
+            String pageHTML = null;
+            if (page != null) {
+                pageHTML = page.getPageHTML();
+                page.recycle();
             }
-            String pageHTML = page.getPageHTML();
-            page.recycle();
-            pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+            speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
+        }
+    }
 
-            if (TxtUtils.isNotEmpty(anchor)) {
-                int indexOf = pageHTML.indexOf(anchor);
-                if (indexOf > 0) {
-                    pageHTML = pageHTML.substring(indexOf);
-                    LOG.d("find anchor new text", pageHTML);
+    /**
+     * The same place in the layout TTS has now. With the book closed that is a layout of its own -
+     * this engine's copy, not the pages the reader left off on - and a page number means nothing
+     * in another layout. The book's saved page text finds the page; failing that, the percentage.
+     */
+    private int pageInLayout(CodecDocument dc, int page, int pageCount) {
+        final int from = AppSP.get().lastBookPageCount;
+        if (from <= 0 || from == pageCount) {
+            return page;
+        }
+        final int estimate = Math.min(pageCount - 1, Math.round((float) page / from * pageCount));
+        AppSP.get().lastBookParagraph = 0;
+        try {
+            final String text = savedPageText();
+            if (TxtUtils.isNotEmpty(text)) {
+                final int found = dc.findBookmarkPage(estimate + 1, null, text);
+                if (found > 0) {
+                    LOG.d(TAG, "pageInLayout", page, from, "found", found - 1, pageCount);
+                    return found - 1;
                 }
             }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        LOG.d(TAG, "pageInLayout", page, from, "estimate", estimate, pageCount);
+        return estimate;
+    }
 
-            LOG.d(TAG, pageHTML);
+    private String savedPageText() {
+        final AppBook book = SharedBooks.load(AppSP.get().lastBookPath);
+        return book == null ? null : book.pt;
+    }
 
-            if (TxtUtils.isEmpty(pageHTML)) {
-                LOG.d("empty page play next one", emptyPageCount);
-                emptyPageCount++;
-                if (emptyPageCount < 3) {
-                    playPage("", AppSP.get().lastBookPage + 1, null);
-                }
-                return;
-            }
-            emptyPageCount = 0;
+    /** Where to start on a page that was moved to another layout: the words the reader left at. */
+    private String placeText(int asked, int number, String anchor) {
+        if (asked == number && TxtUtils.isEmpty(anchor) || TxtUtils.isNotEmpty(anchor)) {
+            return anchor;
+        }
+        final String text = savedPageText();
+        if (TxtUtils.isEmpty(text)) {
+            return anchor;
+        }
+        final String words = text.trim();
+        return words.substring(0, Math.min(24, words.length()));
+    }
 
-            String[] parts = TxtUtils.getParts(pageHTML);
-            String firstPart =
-                    pageNumber + 1 >= AppSP.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? pageHTML :
-                            parts[0];
-            final String secondPart =
-                    pageNumber + 1 >= AppSP.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
-
-            if (TxtUtils.isNotEmpty(preText)) {
-                char last = preText.charAt(preText.length() - 1);
-                if (last == '-') {
-                    preText = TxtUtils.replaceLast(preText, "-", "");
-                    firstPart = preText + firstPart;
-                } else {
-                    firstPart = preText + " " + firstPart;
-                }
-            }
-            final String preText1 = preText;
-
-            if (Build.VERSION.SDK_INT >= 15) {
-                TTSEngine.get()
-                         .getTTS()
-                         .setOnUtteranceProgressListener(new UtteranceProgressListener() {
-                             @Override public void onStart(String utteranceId) {
-                                 LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
-                             }
-
-                             @Override public void onError(String utteranceId) {
-                                 LOG.d(TAG, "onUtteranceCompleted onError", utteranceId);
-                                 if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
-                                     return;
-                                 }
-                                 stopMediaSesstionAndReleaweWakeLock();
-                                 EventBus.getDefault()
-                                         .post(new TtsStatus());
-                             }
-
-                             @Override public void onDone(String utteranceId) {
-
-                                 LOG.d(TAG, "onUtteranceCompleted", utteranceId);
-                                 if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
-                                     stopMediaSesstionAndReleaweWakeLock();
-
-                                     return;
-                                 }
-                                 if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
-                                     if (TxtUtils.isNotEmpty(preText1)) {
-                                         AppSP.get().lastBookParagraph =
-                                                 Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
-                                     } else {
-                                         AppSP.get().lastBookParagraph = Integer.parseInt(
-                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
-                                     }
-                                     return;
-                                 }
-
-                                 if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
-                                     LOG.d(TAG, "onUtteranceCompleted skip", utteranceId);
-                                     return;
-                                 }
-
-                                 if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
-                                     LOG.d(TAG, "Update-timer-Stop1");
-                                     stopMediaSesstionAndReleaweWakeLock();
-                                     stopSelf();
-                                     return;
-                                 }
-
-                                 onPageSpeechFinished();
-                                 AppSP.get().lastBookParagraph = 0;
-                                 playPage(secondPart, AppSP.get().lastBookPage + 1, null);
-                             }
-                         });
-            } else {
-                TTSEngine.get()
-                         .getTTS()
-                         .setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
-                             @Override public void onUtteranceCompleted(String utteranceId) {
-                                 if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
-                                     stopMediaSesstionAndReleaweWakeLock();
-
-                                     return;
-                                 }
-                                 if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
-                                     if (TxtUtils.isNotEmpty(preText1)) {
-                                         AppSP.get().lastBookParagraph =
-                                                 Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
-                                     } else {
-                                         AppSP.get().lastBookParagraph = Integer.parseInt(
-                                                 utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
-                                     }
-                                     return;
-                                 }
-
-                                 if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
-                                     LOG.d(TAG, "onUtteranceCompleted skip", "");
-                                     return;
-                                 }
-
-                                 LOG.d(TAG, "onUtteranceCompleted", utteranceId);
-                                 if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
-                                     LOG.d(TAG, "Update-timer-Stop2");
-                                     stopMediaSesstionAndReleaweWakeLock();
-                                     stopSelf();
-                                     return;
-                                 }
-
-                                 onPageSpeechFinished();
-                                 AppSP.get().lastBookParagraph = 0;
-                                 playPage(secondPart, AppSP.get().lastBookPage + 1, null);
-                             }
-                         });
-            }
-
-            onPageSpeechStarted(firstPart);
-
-            TTSEngine.get()
-                     .speek(firstPart);
-
-            TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, dc.getPageCount());
-            LOG.d("TtsStatus send");
+    private void speakPage(String preText, final int pageNumber, String anchor, int pageCount, String pageHTML) {
+        AppSP.get().lastBookPage = pageNumber;
+        EventBus.getDefault()
+                .post(new MessagePageNumber(pageNumber));
+        AppSP.get().lastBookPageCount = pageCount;
+        LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppSP.get().lastBookPageCount);
+        if (pageNumber >= AppSP.get().lastBookPageCount) {
+            Vibro.vibrateFinish();
+            LOG.d(TAG, "CodecDocument Book is Finished");
             EventBus.getDefault()
                     .post(new TtsStatus());
 
-            TTSNotification.showLast();
-
-            new Thread(() -> {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                }
-                AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
-                load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
-
-                SharedBooks.saveNow(load);
-                AppProfile.save(this);
-            }, "@T TTS Save").start();
+            stopMediaSesstionAndReleaweWakeLock();
+            stopSelf();
+            return;
         }
+
+        if (pageHTML == null) {
+            EventBus.getDefault()
+                    .post(new TtsStatus());
+
+            stopMediaSesstionAndReleaweWakeLock();
+            stopSelf();
+            return;
+        }
+        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+
+        if (TxtUtils.isNotEmpty(anchor)) {
+            int indexOf = pageHTML.indexOf(anchor);
+            if (indexOf > 0) {
+                pageHTML = pageHTML.substring(indexOf);
+                LOG.d("find anchor new text", pageHTML);
+            }
+        }
+
+        LOG.d(TAG, pageHTML);
+
+        if (TxtUtils.isEmpty(pageHTML)) {
+            LOG.d("empty page play next one", emptyPageCount);
+            emptyPageCount++;
+            if (emptyPageCount < 3) {
+                playPage("", AppSP.get().lastBookPage + 1, null);
+            }
+            return;
+        }
+        emptyPageCount = 0;
+
+        String[] parts = TxtUtils.getParts(pageHTML);
+        String firstPart =
+                pageNumber + 1 >= AppSP.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? pageHTML :
+                        parts[0];
+        final String secondPart =
+                pageNumber + 1 >= AppSP.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
+
+        if (TxtUtils.isNotEmpty(preText)) {
+            char last = preText.charAt(preText.length() - 1);
+            if (last == '-') {
+                preText = TxtUtils.replaceLast(preText, "-", "");
+                firstPart = preText + firstPart;
+            } else {
+                firstPart = preText + " " + firstPart;
+            }
+        }
+        final String preText1 = preText;
+
+        if (Build.VERSION.SDK_INT >= 15) {
+            TTSEngine.get()
+                     .getTTS()
+                     .setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                         @Override public void onStart(String utteranceId) {
+                             LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
+                         }
+
+                         @Override public void onError(String utteranceId) {
+                             LOG.d(TAG, "onUtteranceCompleted onError", utteranceId);
+                             if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                                 return;
+                             }
+                             stopMediaSesstionAndReleaweWakeLock();
+                             EventBus.getDefault()
+                                     .post(new TtsStatus());
+                         }
+
+                         @Override public void onDone(String utteranceId) {
+
+                             LOG.d(TAG, "onUtteranceCompleted", utteranceId);
+                             if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
+                                 stopMediaSesstionAndReleaweWakeLock();
+
+                                 return;
+                             }
+                             if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
+                                 if (TxtUtils.isNotEmpty(preText1)) {
+                                     AppSP.get().lastBookParagraph =
+                                             Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
+                                 } else {
+                                     AppSP.get().lastBookParagraph = Integer.parseInt(
+                                             utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
+                                 }
+                                 return;
+                             }
+
+                             if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                                 LOG.d(TAG, "onUtteranceCompleted skip", utteranceId);
+                                 return;
+                             }
+
+                             if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                                 LOG.d(TAG, "Update-timer-Stop1");
+                                 stopMediaSesstionAndReleaweWakeLock();
+                                 stopSelf();
+                                 return;
+                             }
+
+                             onPageSpeechFinished();
+                             AppSP.get().lastBookParagraph = 0;
+                             playPage(secondPart, AppSP.get().lastBookPage + 1, null);
+                         }
+                     });
+        } else {
+            TTSEngine.get()
+                     .getTTS()
+                     .setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
+                         @Override public void onUtteranceCompleted(String utteranceId) {
+                             if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
+                                 stopMediaSesstionAndReleaweWakeLock();
+
+                                 return;
+                             }
+                             if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
+                                 if (TxtUtils.isNotEmpty(preText1)) {
+                                     AppSP.get().lastBookParagraph =
+                                             Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
+                                 } else {
+                                     AppSP.get().lastBookParagraph = Integer.parseInt(
+                                             utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
+                                 }
+                                 return;
+                             }
+
+                             if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
+                                 LOG.d(TAG, "onUtteranceCompleted skip", "");
+                                 return;
+                             }
+
+                             LOG.d(TAG, "onUtteranceCompleted", utteranceId);
+                             if (System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
+                                 LOG.d(TAG, "Update-timer-Stop2");
+                                 stopMediaSesstionAndReleaweWakeLock();
+                                 stopSelf();
+                                 return;
+                             }
+
+                             onPageSpeechFinished();
+                             AppSP.get().lastBookParagraph = 0;
+                             playPage(secondPart, AppSP.get().lastBookPage + 1, null);
+                         }
+                     });
+        }
+
+        onPageSpeechStarted(firstPart);
+
+        TTSEngine.get()
+                 .speek(firstPart);
+
+        TTSNotification.show(AppSP.get().lastBookPath, pageNumber + 1, pageCount);
+        LOG.d("TtsStatus send");
+        EventBus.getDefault()
+                .post(new TtsStatus());
+
+        TTSNotification.showLast();
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+            }
+            AppBook load = SharedBooks.load(AppSP.get().lastBookPath);
+            load.currentPageChanged(pageNumber + 1, AppSP.get().lastBookPageCount);
+
+            SharedBooks.saveNow(load);
+            AppProfile.save(this);
+        }, "@T TTS Save").start();
     }
 
     @Override public void onDestroy() {

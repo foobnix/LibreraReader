@@ -279,6 +279,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public void setCurrentPage(int page) {
         currentPage = page;
+        syncTtsPlace();
     }
 
     @Override public int getCurentPageFirst1() {
