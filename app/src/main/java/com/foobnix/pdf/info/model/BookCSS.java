@@ -68,6 +68,9 @@ public class BookCSS {
      */
     public static final String DEFAULT_FONT = TIMES_NEW_ROMAN;
 
+    /** The new reader's font, shipped in assets/fonts and copied out by FontExtractor. */
+    public static final String BUNDLED_FONT = "Literata";
+
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
     private static final Object TAG = "BookCSS";
@@ -303,6 +306,10 @@ public class BookCSS {
         }
     }
 
+    private static String bundledFont(String style) {
+        return new File(AppProfile.syncFontFolder, BUNDLED_FONT + "-" + style + ".ttf").getPath();
+    }
+
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
 
@@ -319,7 +326,7 @@ public class BookCSS {
 
         emptyLine = 1;
 
-        lineHeight12 = 14;
+        lineHeight12 = 15;
         lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
         paragraphHeight = 1;
         textIndent = 10;
@@ -327,13 +334,13 @@ public class BookCSS {
 
         fontFolder = AppProfile.syncFontFolder.getPath();
         downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera").getPath();
-        displayFontName = DEFAULT_FONT;
-        normalFont = DEFAULT_FONT;
-        boldFont = DEFAULT_FONT;
-        italicFont = DEFAULT_FONT;
-        boldItalicFont = DEFAULT_FONT;
-        headersFont = DEFAULT_FONT;
-        capitalFont = DEFAULT_FONT;
+        displayFontName = BUNDLED_FONT + ".ttf";
+        normalFont = bundledFont("Regular");
+        boldFont = bundledFont("Bold");
+        italicFont = bundledFont("Italic");
+        boldItalicFont = bundledFont("BoldItalic");
+        headersFont = boldFont;
+        capitalFont = normalFont;
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;

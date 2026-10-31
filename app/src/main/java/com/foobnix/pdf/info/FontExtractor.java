@@ -75,6 +75,12 @@ public class FontExtractor {
                         //critically important
 
                         try {
+                            copyBundledFonts(c);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+
+                        try {
                             if (hasZipFonts()) {
                                 long lastModified = AppProfile.FONT_LOCAL_ZIP.lastModified();
 
@@ -117,6 +123,24 @@ public class FontExtractor {
 
         }.start();
 
+    }
+
+    /** The fonts every app ships with, into Librera/Fonts; a copy already there is left alone. */
+    private static void copyBundledFonts(final Context c) throws Exception {
+        final File fontDir = AppProfile.syncFontFolder;
+        fontDir.mkdirs();
+        for (String name : c.getAssets().list("fonts")) {
+            File font = new File(fontDir, name);
+            if (!name.endsWith(".ttf") || font.isFile()) {
+                continue;
+            }
+            // Written aside first: a font cut short by the app being killed would stay broken
+            File partial = new File(fontDir, name + ".part");
+            IOUtils.copyClose(c.getAssets().open("fonts/" + name), new FileOutputStream(partial));
+            if (!partial.renameTo(font)) {
+                LOG.d("copyBundledFonts could not move", partial, font);
+            }
+        }
     }
 
     private static void extractInside(final Context c, String from, String to) {
