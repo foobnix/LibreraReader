@@ -1124,7 +1124,7 @@ import java.util.List;
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
 
         if (TxtUtils.isNotEmpty(anchor)) {
-            int indexOf = pageHTML.indexOf(anchor);
+            int indexOf = TxtUtils.indexOfLetters(pageHTML, anchor);
             if (indexOf > 0) {
                 pageHTML = pageHTML.substring(indexOf);
                 LOG.d("find anchor new text", pageHTML);

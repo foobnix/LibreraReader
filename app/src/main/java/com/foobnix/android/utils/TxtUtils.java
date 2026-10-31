@@ -451,6 +451,40 @@ public class TxtUtils {
         return pageHTML;
     }
 
+    /**
+     * Where {@code words} start in {@code text}, going by the letters alone: what TTS reads has
+     * lost its quotes, has its semicolons turned to full stops and its words cut by hyphens, none
+     * of which the text saved from the page has.
+     *
+     * @return the index in {@code text}, or -1
+     */
+    public static int indexOfLetters(String text, String words) {
+        if (text == null || words == null) {
+            return -1;
+        }
+        final StringBuilder letters = new StringBuilder(text.length());
+        final int[] index = new int[text.length()];
+        for (int i = 0; i < text.length(); i++) {
+            final char ch = text.charAt(i);
+            if (Character.isLetterOrDigit(ch)) {
+                index[letters.length()] = i;
+                letters.append(Character.toLowerCase(ch));
+            }
+        }
+        final StringBuilder wanted = new StringBuilder(words.length());
+        for (int i = 0; i < words.length(); i++) {
+            final char ch = words.charAt(i);
+            if (Character.isLetterOrDigit(ch)) {
+                wanted.append(Character.toLowerCase(ch));
+            }
+        }
+        if (wanted.length() == 0) {
+            return -1;
+        }
+        final int found = letters.indexOf(wanted.toString());
+        return found < 0 ? -1 : index[found];
+    }
+
     public static String replaceHTMLforTTS(String pageHTML) {
         try {
             return replaceHTMLforTTSAll(pageHTML);
