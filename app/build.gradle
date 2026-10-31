@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7527
-    FDroidVersionNumber = "10.0.20"
+    FDroidCodeNumber = 7531
+    FDroidVersionNumber = "10.0.21"
 }
 
 
@@ -174,7 +174,7 @@ android {
                     appName      : "Librera PRO-JS",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
-                    appWebClientId: project.findProperty("proJS_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
@@ -191,7 +191,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
-                    appWebClientId: project.findProperty("librera_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : librera_appGdriveKey,
                     admobAppId   : librera_admobAppId,
                     admobBannerId: librera_admobBannerId,
@@ -208,7 +208,7 @@ android {
                     appName      : "Librera",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
-                    appWebClientId: project.findProperty("pro_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : pro_appGdriveKey,
                     admobAppId   : "",
                     admobBannerId: "",
@@ -224,7 +224,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_classic",
                     appRoundIcon : "@mipmap/launcher_classic",
-                    appWebClientId: project.findProperty("pdf_classic_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : pdf_classic_appGdriveKey,
                     admobAppId   : pdf_classic_admobAppId,
                     admobBannerId: pdf_classic_admobBannerId,
@@ -240,7 +240,7 @@ android {
                     appName      : "Book Reader",
                     appIcon      : "@mipmap/icon_pdf_droid",
                     appRoundIcon : "@mipmap/launcher_droid",
-                    appWebClientId: project.findProperty("ebooka_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : ebooka_appGdriveKey,
                     admobAppId   : ebooka_admobAppId,
                     admobBannerId: ebooka_admobBannerId,
@@ -256,7 +256,7 @@ android {
                     appName      : "PDF Reader",
                     appIcon      : "@mipmap/icon_pdf_2",
                     appRoundIcon : "@mipmap/launcher_pdf_v2",
-                    appWebClientId: project.findProperty("pdf_v2_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : pdf_v2_appGdriveKey,
                     admobAppId   : pdf_v2_admobAppId,
                     admobBannerId: pdf_v2_admobBannerId,
@@ -272,7 +272,7 @@ android {
                     appName      : "TTS Reader",
                     appIcon      : "@mipmap/icon_tts_reader_app",
                     appRoundIcon : "@mipmap/launcher_tts_reader_app",
-                    appWebClientId: project.findProperty("tts_reader_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : tts_reader_appGdriveKey,
                     admobAppId   : tts_reader_admobAppId,
                     admobBannerId: tts_reader_admobBannerId,
@@ -288,7 +288,7 @@ android {
                     appName      : "Epub Reader",
                     appIcon      : "@mipmap/icon_epub_reader",
                     appRoundIcon : "@mipmap/launcher_epub_reader",
-                    appWebClientId: project.findProperty("epub_reader_appWebClientId") ?: "",
+                    appWebClientId: project.findProperty("appWebClientId") ?: "",
                     appGdriveKey : epub_reader_appGdriveKey,
                     admobAppId   : epub_reader_admobAppId,
                     admobBannerId: epub_reader_admobBannerId,
