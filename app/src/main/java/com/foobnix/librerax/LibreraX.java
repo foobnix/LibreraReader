@@ -96,14 +96,6 @@ public class LibreraX {
                 || mode == AppState.READING_MODE_MUSICIAN;
     }
 
-    // Called before readingMode becomes READING_MODE_LIBRERAX, which would lose the view in use.
-    public static void rememberView() {
-        final int mode = AppSP.get().readingMode;
-        if (isView(mode)) {
-            AppSP.get().libreraXView = mode;
-        }
-    }
-
     public static String view() {
         int mode = AppSP.get().readingMode;
         if (!isView(mode)) {
@@ -114,8 +106,6 @@ public class LibreraX {
 
     public static Class<?> readerClass() {
         switch (AppSP.get().readingMode) {
-            case AppState.READING_MODE_LIBRERAX:
-                return LibreraXActivity.class;
             case AppState.READING_MODE_BOOK:
                 return HorizontalViewActivity.class;
             default:

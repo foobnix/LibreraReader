@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -425,9 +426,7 @@ public class ShareDialog {
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override public void run() {
-                            LibreraX.rememberView();
-                            AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
-                            ExtUtils.showDocumentWithoutDialog(a, file, null);
+                            LibreraX.open(a, Uri.fromFile(file), 0f, null);
                         }
                     });
                 }

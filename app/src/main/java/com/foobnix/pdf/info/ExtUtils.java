@@ -968,12 +968,6 @@ public class ExtUtils {
                 return true;
             }
         }
-        // LibreraX remembered but no longer installed cannot open the book: the reader is asked
-        // which mode to open it in instead, as with no mode remembered
-        if (AppState.get().isRememberMode && AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX
-                && !LibreraX.isInstalled(c)) {
-            AppState.get().isRememberMode = false;
-        }
         if (AppState.get().isRememberMode) {
             showDocumentWithoutDialog(c, file, null);
             return true;
@@ -1117,9 +1111,9 @@ public class ExtUtils {
         librerax.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 dialog.dismiss();
-                LibreraX.rememberView();
-                AppSP.get().readingMode = AppState.READING_MODE_LIBRERAX;
-                showDocumentWithoutDialog(c, file, null);
+                // For this one opening: LibreraX is never the mode books open in
+                AppState.get().isRememberMode = false;
+                LibreraX.open(c, Uri.fromFile(file), 0f, null);
             }
         });
 
@@ -1175,12 +1169,6 @@ public class ExtUtils {
             return;
         }
         LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
-
-        if (AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX && TxtUtils.isEmpty(playlist)
-                && !uri.getPath().endsWith(Playlists.L_PLAYLIST)) {
-            LibreraX.open(c, uri, percent, TxtUtils.isNotEmpty(bookmarkPageText) ? bookmarkPageText : bookmarkText);
-            return;
-        }
 
         if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist, bookmarkText, bookmarkPageText);

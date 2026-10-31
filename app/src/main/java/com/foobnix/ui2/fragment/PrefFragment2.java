@@ -1233,25 +1233,15 @@ public class PrefFragment2 extends UIFragment {
 
         configSingleClick = (ConfLineView) inflate.findViewById(R.id.configSingeClick);
         configSingleClick.init(//
-                // LibreraX remembered but not installed opens the mode chooser, and reads so here
-                () -> AppState.get().isRememberMode && !(AppSP.get().readingMode == AppState.READING_MODE_LIBRERAX
-                        && !LibreraX.isInstalled(getActivity())) ? AppSP.get().readingMode
-                        : AppState.READING_MODE_SELECT_MODE,//
+                () -> AppState.get().isRememberMode ? AppSP.get().readingMode : AppState.READING_MODE_SELECT_MODE,//
                 value -> {
                     AppState.get().isRememberMode = value != AppState.READING_MODE_SELECT_MODE;
-                    if (value == AppState.READING_MODE_LIBRERAX) {
-                        LibreraX.rememberView();
-                    }
                     AppSP.get().readingMode = value;
                 },//
                 of(getString(R.string.select_mode), AppState.READING_MODE_SELECT_MODE),//
                 // marked in the list as the open-with menus mark the same modes
                 of(AppState.get().nameVerticalMode, AppState.READING_MODE_SCROLL).mark("①"),//
                 of(AppState.get().nameHorizontalMode, AppState.READING_MODE_BOOK).mark("②"),//
-                of(getString(R.string.librerax), AppState.READING_MODE_LIBRERAX).mark("③")
-                        // not installed, it cannot open books: the download is offered instead
-                        .requires(() -> LibreraX.isInstalled(getActivity()),
-                                () -> LibreraX.showNotInstalled(getActivity(), null)),//
                 of(AppState.get().nameMusicianMode, AppState.READING_MODE_MUSICIAN).mark("Ⓜ"),//
                 of(getString(R.string.tag_manager), AppState.READING_MODE_TAG_MANAGER).mark("Ⓣ"),//
                 of(getString(R.string.open_with), AppState.READING_MODE_OPEN_WITH).mark("⎘")//

@@ -30,7 +30,7 @@ public class AppSP {
     public boolean isFirstTimeHorizontal = true;
 
     public int readingMode = AppState.READING_MODE_BOOK;
-    // the scroll, book or musician mode in use before LibreraX was chosen, see LibreraX.view
+    // the view handed to LibreraX when readingMode is not one, see LibreraX.view
     public int libreraXView = AppState.READING_MODE_BOOK;
     public long syncTime;
     public int syncTimeStatus;
@@ -106,6 +106,10 @@ public class AppSP {
 
     public void load(Context c) {
         Objects.loadFromSp(instance, sp);
+        // LibreraX is opened for one book at a time now; a stored one goes back to the view it replaced
+        if (instance.readingMode == AppState.READING_MODE_LIBRERAX) {
+            instance.readingMode = instance.libreraXView;
+        }
     }
 
     public void save() {
