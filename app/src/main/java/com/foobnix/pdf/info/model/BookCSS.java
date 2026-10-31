@@ -967,7 +967,9 @@ public class BookCSS {
                 builder.append(String.format("color:%s !important;", textColor));
             }
             //always important
-            builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+            if (!foliate) {
+                builder.append(String.format("line-height:%s !important;", em(lineHeight)));
+            }
             builder.append(String.format("text-indent:%s !important;", em(textIndent)));
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 
@@ -979,6 +981,11 @@ public class BookCSS {
 
             builder.append("}");
             // </P> end
+            if (foliate) {
+                // Not on span: an em there is the span's own, so a drop cap at font-size:4em would
+                // get a line four times as tall, and the book's own line-height for it would lose
+                builder.append(String.format("body, div, p{line-height:%s !important;}", em(lineHeight)));
+            }
             builder.append("sub, sup{");
             builder.append(String.format("line-height:%s !important;", em(lineHeight)));
             builder.append("}");
