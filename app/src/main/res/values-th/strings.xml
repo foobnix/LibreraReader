@@ -586,7 +586,6 @@
    <string name="screen">จอภาพ</string>
    <string name="normal_screen">ปกติ</string>
    <string name="please_enter_more_characters_to_search">โปรดป้อนอักขระเพิ่มเติมเพื่อค้นหา</string>
-   <string name="enable_experimental_features">เปิดใช้งานคุณลักษณะทดลอง</string>
    <string name="display_original_file_names_without_metadata">แสดงชื่อไฟล์ต้นฉบับ (โดยไม่มีข้อมูลเมตา)</string>
    <string name="use_fingerprint_as_the_password">ใช้ลายนิ้วมือเป็นรหัสผ่าน</string>
    <string name="show_tap_zones_on_screen">แสดง tap-zones บนหน้าจอ</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">การเข้าถึง</string>
    <string name="web_search_google">ค้นเว็บ (Google, ...)</string>
    <string name="synced_books">หนังสือที่ซิงค์</string>
-   <string name="smart_reflow">สมาร์ทรีโฟลว์</string>
    <string name="user_styles">สไตล์ของผู้ใช้</string>
    <string name="engine">เครื่องยนต์</string>
    <string name="restart_manually">การเปลี่ยนแปลงนี้ต้องรีสตาร์ทแอปพลิเคชันด้วยตนเอง</string>

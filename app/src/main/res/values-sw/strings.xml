@@ -586,7 +586,6 @@
    <string name="screen">Skrini</string>
    <string name="normal_screen">Kawaida</string>
    <string name="please_enter_more_characters_to_search">Tafadhali ingiza wahusika zaidi ili utafute.</string>
-   <string name="enable_experimental_features">Itawezesha vipengele vya majaribio</string>
    <string name="display_original_file_names_without_metadata">Onyesha majina ya faili ya awali (bila metadata)</string>
    <string name="use_fingerprint_as_the_password">Tumia alama za kidole kama nenosiri</string>
    <string name="show_tap_zones_on_screen">Onyesha kanda za bomba kwenye skrini</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Upatikanaji</string>
    <string name="web_search_google">Utafutaji wa wavuti (Google, ...)</string>
    <string name="synced_books">Vitabu vilivyosawazishwa</string>
-   <string name="smart_reflow">Upangaji upya mahiri</string>
    <string name="user_styles">Mitindo user</string>
    <string name="engine">Injini</string>
    <string name="restart_manually">Mabadiliko haya yanahitaji kuanzishwa upya kwa programu mwenyewe</string>

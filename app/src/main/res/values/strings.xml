@@ -588,7 +588,6 @@
    <string name="screen">Screen</string>
    <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Need a longer search string!</string>
-   <string name="enable_experimental_features">Enable experimental features</string>
    <string name="display_original_file_names_without_metadata">Ignore metadata (display filenames only)</string>
    <string name="use_fingerprint_as_the_password">Allow fingerprint authentication</string>
    <string name="show_tap_zones_on_screen">Indicate tap zones (dotted line)</string>
@@ -666,7 +665,6 @@
    <string name="accessibility">Accessibility</string>
    <string name="web_search_google">Web Search (Google, ...)</string>
    <string name="synced_books">Synced books</string>
-   <string name="smart_reflow">Smart reflow</string>
    <string name="user_styles">User styles</string>
    <string name="engine">Engine</string>
    <string name="restart_manually">This change requires a manual restart of the application</string>

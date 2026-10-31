@@ -24,6 +24,9 @@ public class
 EpubContext extends PdfContext {
 
     private static final String TAG = "EpubContext";
+    /** Raised whenever what EpubExtractor writes changes, so cached conversions are redone. */
+    private static final int CONVERTER_VERSION = 1;
+
     File cacheFile;
 
     /**
@@ -47,7 +50,7 @@ EpubContext extends PdfContext {
                 AppSP.get().hypenLang +
                 AppState.get().textReplacementHash +
                 BookCSS.get().isEnableBBCode +
-                AppState.get().isExperimental)
+                CONVERTER_VERSION)
                 .hashCode() + ".epub");
         return cacheFile;
     }

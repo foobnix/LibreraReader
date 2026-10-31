@@ -586,7 +586,6 @@
    <string name="screen">Màn</string>
    <string name="normal_screen">Bình thường</string>
    <string name="please_enter_more_characters_to_search">Vui lòng nhập thêm ký tự để tìm kiếm.</string>
-   <string name="enable_experimental_features">Cho phép các tính năng thử nghiệm</string>
    <string name="display_original_file_names_without_metadata">Hiển thị tên tệp gốc (không có siêu dữ liệu)</string>
    <string name="use_fingerprint_as_the_password">Sử dụng dấu vân tay làm mật khẩu</string>
    <string name="show_tap_zones_on_screen">Hiển thị vùng tap trên màn hình</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Khả năng tiếp cận</string>
    <string name="web_search_google">Tìm kiếm trên web (Google, ...)</string>
    <string name="synced_books">Sách được đồng bộ hóa</string>
-   <string name="smart_reflow">Chỉnh lại thông minh</string>
    <string name="user_styles">Phong cách người dùng</string>
    <string name="engine">Động cơ</string>
    <string name="restart_manually">Thay đổi này yêu cầu khởi động lại ứng dụng theo cách thủ công</string>

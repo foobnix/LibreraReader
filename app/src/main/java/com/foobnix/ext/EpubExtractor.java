@@ -3,7 +3,6 @@ package com.foobnix.ext;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
@@ -127,8 +126,6 @@ public class EpubExtractor extends BaseExtractor {
 
         HypenUtils.applyLanguage(AppSP.get().hypenLang);
 
-        Map<String, String> svgs = new HashMap<>();
-
         List<String> spine = new ArrayList<>();
         Map<String, String> manifest = new HashMap<>();
         if (AppState.get().isReferenceMode) {
@@ -228,7 +225,7 @@ public class EpubExtractor extends BaseExtractor {
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
 
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count, replacements);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, count, replacements);
 
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
@@ -237,31 +234,6 @@ public class EpubExtractor extends BaseExtractor {
                 Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
             }
 
-        }
-
-        if (AppState.get().isExperimental) {
-
-            Object lock = new Object();
-
-            for (String key : svgs.keySet()) {
-
-
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                WebViewUtils.renterToPng(key, svgs.get(key), out, lock);
-
-                synchronized (lock) {
-                    lock.wait(2000);
-                }
-
-//                if (LibreraBuildConfig.LOG) {
-//                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
-//                    IO.writeString(file, svgs.get(key));
-//                }
-
-                Fb2Extractor.writeToZipNoClose(zos, key, new ByteArrayInputStream(out.toByteArray()));
-
-
-            }
         }
 
         zipInputStream.close();

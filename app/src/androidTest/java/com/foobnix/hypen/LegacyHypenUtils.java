@@ -134,9 +134,6 @@ class LegacyHypenUtils {
 
             if (Character.isLetter(ch)) {
                 res.append(ch);
-                if (AppState.get().isExperimental && (res.length() >= 30 && res.length() % 30 == 0)) {
-                    res.append(" ");
-                }
             } else {
                 if (res.length() > 0) {
                     listener.findText(res.toString());

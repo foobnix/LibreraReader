@@ -586,7 +586,6 @@
    <string name="screen">സ്ക്രീൻ</string>
    <string name="normal_screen">സാധാരണ</string>
    <string name="please_enter_more_characters_to_search">ദൈർഘ്യമേറിയ തിരയൽ സ്ട്രിംഗ് ആവശ്യമാണ്!</string>
-   <string name="enable_experimental_features">പരീക്ഷണാത്മക സവിശേഷതകൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
    <string name="display_original_file_names_without_metadata">മെറ്റാഡാറ്റ അവഗണിക്കുക (ഫയൽനാമങ്ങൾ മാത്രം പ്രദർശിപ്പിക്കുക)</string>
    <string name="use_fingerprint_as_the_password">ഫിംഗർപ്രിന്റ് പ്രാമാണീകരണം അനുവദിക്കുക</string>
    <string name="show_tap_zones_on_screen">ടാപ്പ് സോണുകൾ സൂചിപ്പിക്കുക (ഡോട്ട് ഇട്ട വരി)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
    <string name="web_search_google">വെബ് തിരയൽ (ഗൂഗിൾ, ...)</string>
    <string name="synced_books">സമന്വയിപ്പിച്ച പുസ്തകങ്ങൾ</string>
-   <string name="smart_reflow">സ്മാർട്ട് റിഫ്ലോ</string>
    <string name="user_styles">ഉപയോക്താവ് നിർവചിച്ചിരിക്കുന്നത്</string>
    <string name="engine">എഞ്ചിൻ</string>
    <string name="restart_manually">ഈ മാറ്റത്തിന് ആപ്ലിക്കേഷൻ സ്വമേധയാ പുനരാരംഭിക്കേണ്ടതുണ്ട്</string>

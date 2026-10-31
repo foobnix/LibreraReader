@@ -586,7 +586,6 @@
    <string name="screen">Obrazovka</string>
    <string name="normal_screen">Normální</string>
    <string name="please_enter_more_characters_to_search">Potřebujete delší vyhledávací řetězec!</string>
-   <string name="enable_experimental_features">Povolit experimentální funkce</string>
    <string name="display_original_file_names_without_metadata">Ignorovat metadata (zobrazit pouze názvy souborů)</string>
    <string name="use_fingerprint_as_the_password">Povolit  ověřování pomocí otisku prstu</string>
    <string name="show_tap_zones_on_screen">Vykreslit oblasti poklepu (tečkovaná čára)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Přístupnost</string>
    <string name="web_search_google">Vyhledávání na webu (Google, ...)</string>
    <string name="synced_books">Synchronizované knihy</string>
-   <string name="smart_reflow">Chytré přeformátování</string>
    <string name="user_styles">Uživatelsky definované</string>
    <string name="engine">Jádro</string>
    <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>

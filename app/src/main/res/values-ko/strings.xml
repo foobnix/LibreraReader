@@ -586,7 +586,6 @@
    <string name="screen">화면</string>
    <string name="normal_screen">표준</string>
    <string name="please_enter_more_characters_to_search">검색 할 문자를 더 입력하십시오.</string>
-   <string name="enable_experimental_features">실험 기능 사용</string>
    <string name="display_original_file_names_without_metadata">원본 파일 이름 표시 (메타 정보 무시)</string>
    <string name="use_fingerprint_as_the_password">지문 인중 사용</string>
    <string name="show_tap_zones_on_screen">화면에 탭 영역 표시</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">접근성</string>
    <string name="web_search_google">웹 검색(구글, ...)</string>
    <string name="synced_books">동기화된 책</string>
-   <string name="smart_reflow">스마트 리플로우</string>
    <string name="user_styles">사용자 스타일</string>
    <string name="engine">엔진</string>
    <string name="restart_manually">이 변경 사항을 적용하기 위해서는 응용 프로그램을 수동으로 다시 시작해야 합니다.</string>

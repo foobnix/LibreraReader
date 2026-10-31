@@ -102,20 +102,6 @@ public class TxtUtils {
         return in.toString();
     }
 
-    //<a> asdfsadf </a>
-    public static String getStringInTag(String string, String tag) {
-        String start = "<" + tag + ">";
-        String end = "</" + tag + ">";
-        int i1 = string.indexOf(start);
-        int i2 = string.indexOf(end);
-
-        if (i1 >= 0 && i2 > i1) {
-            return string.substring(i1 + start.length(), i2);
-        }
-
-        return "";
-    }
-
     public static String trim(String string) {
         if (string == null) {
             return null;

@@ -586,7 +586,6 @@
    <string name="screen">Екран</string>
    <string name="normal_screen">Звичайний</string>
    <string name="please_enter_more_characters_to_search">Введіть більше символів для пошуку.</string>
-   <string name="enable_experimental_features">Увімкнути експериментальні функції</string>
    <string name="display_original_file_names_without_metadata">Показувати назви оригінальних файлів (без метаданих)</string>
    <string name="use_fingerprint_as_the_password">Використовуйте відбиток пальця як пароль</string>
    <string name="show_tap_zones_on_screen">Показувати зони торкання на екрані</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Доступність</string>
    <string name="web_search_google">Веб-пошук (Google, ...)</string>
    <string name="synced_books">Синхронізовані книги</string>
-   <string name="smart_reflow">Розумне оплавлення</string>
    <string name="user_styles">Користувацькі</string>
    <string name="engine">Двигун</string>
    <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>

@@ -586,7 +586,6 @@
    <string name="screen">Экран</string>
    <string name="normal_screen">Қалыпты</string>
    <string name="please_enter_more_characters_to_search">Іздеу үшін көп таңбаларды енгізіңіз.</string>
-   <string name="enable_experimental_features">Эксперименттік мүмкіндіктерді қосыңыз</string>
    <string name="display_original_file_names_without_metadata">Бастапқы файл атауларын көрсету (метадеректер жоқ)</string>
    <string name="use_fingerprint_as_the_password">Саусақ ізін құпия сөз ретінде пайдаланыңыз</string>
    <string name="show_tap_zones_on_screen">Экрандағы сенсорлық аймақтарды көрсету</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Қолжетімділік</string>
    <string name="web_search_google">Веб-іздеу (Google, ...)</string>
    <string name="synced_books">Синхрондалған кітаптар</string>
-   <string name="smart_reflow">Ақылды қайта өңдеу</string>
    <string name="user_styles">Пайдаланушы анықтаған</string>
    <string name="engine">Қозғалтқыш</string>
    <string name="restart_manually">Бұл өзгеріс қолданбаны қолмен қайта іске қосуды талап етеді</string>

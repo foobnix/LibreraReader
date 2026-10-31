@@ -94,8 +94,6 @@ public abstract class HorizontalModeController extends DocumentController {
         // Keep crop rectangles in lockstep with the text they are used to map.
         PageImageState.get().clearPagesCrop();
 
-        AppSP.get().isSmartReflow = false;
-
         if (isTextFormat) {
             AppSP.get().isCrop = false;
             AppSP.get().isCut = false;
@@ -126,7 +124,6 @@ public abstract class HorizontalModeController extends DocumentController {
             AppSP.get().isDouble = true;
             AppSP.get().isCut = false;
             AppSP.get().isDoubleCoverAlone = false;
-            AppSP.get().isSmartReflow = false;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);

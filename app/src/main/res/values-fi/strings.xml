@@ -586,7 +586,6 @@
    <string name="screen">Näyttö</string>
    <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Kirjoita pidempi merkkijono hakuun!</string>
-   <string name="enable_experimental_features">Ota käyttöön kokeelliset ominaisuudet</string>
    <string name="display_original_file_names_without_metadata">Ohita metatiedot (näytä vain tiedostonimet)</string>
    <string name="use_fingerprint_as_the_password">Käytä sormenjälkeä tunnistautumiseen</string>
    <string name="show_tap_zones_on_screen">Näytä kosketusalueet näytöllä katkoviivoin</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Saavutettavuus</string>
    <string name="web_search_google">Verkkohaku (Google,...)</string>
    <string name="synced_books">Synkronoidut kirjat</string>
-   <string name="smart_reflow">Älykäs reflow</string>
    <string name="user_styles">Käyttäjän tyylit</string>
    <string name="engine">Moottori</string>
    <string name="restart_manually">Tämä muutos vaatii sovelluksen manuaalisen uudelleenkäynnistyksen</string>

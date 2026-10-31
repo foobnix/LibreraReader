@@ -39,11 +39,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * A WebView may only be created and called from the main thread, while Librera decodes pages on a
  * worker - the single Glide source thread in paged mode, the single {@code DecodeServiceBase} loop
  * in scroll mode. So every call here posts its work to the main thread and blocks the caller until
- * the answer comes back, the pattern {@link com.foobnix.android.utils.WebViewUtils} already uses to
- * rasterise MathML during an epub conversion.
+ * the answer comes back.
  *
  * <b>The WebView has to be attached to a window</b>, which is why this needs an activity on screen.
- * {@code WebViewUtils} gets away with an unattached one because it renders a single document, but
  * Chromium builds no subframe tree for a WebView outside a window: the iframe foliate paginates a
  * section in never navigates - its document stays empty at {@code about:blank} and its load event
  * never fires - and {@code View.layout} alone does not resize the web contents either, so the page

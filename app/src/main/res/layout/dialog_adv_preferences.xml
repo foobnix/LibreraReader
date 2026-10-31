@@ -474,12 +474,6 @@
             android:text="@string/enable_vibration_for_some_actions" />
 
         <CheckBox
-            android:id="@+id/isExperimental"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable_experimental_features" />
-
-        <CheckBox
             android:id="@+id/isReferenceMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

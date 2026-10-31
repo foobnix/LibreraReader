@@ -586,7 +586,6 @@
    <string name="screen">Ekran</string>
    <string name="normal_screen">Normalny</string>
    <string name="please_enter_more_characters_to_search">Potrzebujesz dłuższego ciągu wyszukiwania!</string>
-   <string name="enable_experimental_features">Włącz funkcje eksperymentalne</string>
    <string name="display_original_file_names_without_metadata">Wyświetl oryginalne nazwy plików (bez metadanych)</string>
    <string name="use_fingerprint_as_the_password">Użyj odcisku palca jako hasła</string>
    <string name="show_tap_zones_on_screen">Wskaż strefy tapnięcia (linia przerywana)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Dostępność</string>
    <string name="web_search_google">Wyszukiwarka internetowa (Google, ...)</string>
    <string name="synced_books">Zsynchronizowane książki</string>
-   <string name="smart_reflow">Inteligentny reflow</string>
    <string name="user_styles">Style użytkownika</string>
    <string name="engine">Silnik</string>
    <string name="restart_manually">Ta zmiana wymaga ręcznego restartu aplikacji</string>

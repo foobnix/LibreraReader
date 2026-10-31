@@ -586,7 +586,6 @@
    <string name="screen">திரை</string>
    <string name="normal_screen">இயல்பானது</string>
    <string name="please_enter_more_characters_to_search">நீண்ட தேடல் சரம் தேவை!</string>
-   <string name="enable_experimental_features">சோதனை அம்சங்களை இயக்கு</string>
    <string name="display_original_file_names_without_metadata">மெட்டாடேட்டாவை புறக்கணிக்கவும் (கோப்பு பெயர்களை மட்டும் காண்பி)</string>
    <string name="use_fingerprint_as_the_password">கைரேகை அங்கீகாரத்தை அனுமதிக்கவும்</string>
    <string name="show_tap_zones_on_screen">மண்டலங்களைக் குறிக்கவும் (புள்ளியிடப்பட்ட வரி</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">அணுகல்</string>
    <string name="web_search_google">இணைய தேடல் (Google, ...)</string>
    <string name="synced_books">ஒத்திசைக்கப்பட்ட புத்தகங்கள்</string>
-   <string name="smart_reflow">ஸ்மார்ட் ரிஃப்ளோ</string>
    <string name="user_styles">பயனர் வரையறுத்த</string>
    <string name="engine">இயந்திரம்</string>
    <string name="restart_manually">இந்த மாற்றத்திற்கு பயன்பாட்டை கைமுறையாக மறுதொடக்கம் செய்ய வேண்டும்</string>

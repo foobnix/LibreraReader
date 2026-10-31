@@ -586,7 +586,6 @@
    <string name="screen">Scáileán</string>
    <string name="normal_screen">Gnáth</string>
    <string name="please_enter_more_characters_to_search">Sreang cuardaigh níos faide de dhíth!</string>
-   <string name="enable_experimental_features">Gnéithe turgnamhacha a chumasú</string>
    <string name="display_original_file_names_without_metadata">Neamhaird a dhéanamh ar mheiteashonraí (ainmneacha comhaid a thaispeáint amháin)</string>
    <string name="use_fingerprint_as_the_password">Fíordheimhniú méarloirg a cheadú</string>
    <string name="show_tap_zones_on_screen">Léirigh criosanna sconna (líne phonc)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Inrochtaineacht</string>
    <string name="web_search_google">Cuardach gréasáin (Google, ...)</string>
    <string name="synced_books">Leabhair synced</string>
-   <string name="smart_reflow">Reflow cliste</string>
    <string name="user_styles">Sainithe ag an úsáideoir</string>
    <string name="engine">Inneall</string>
    <string name="restart_manually">Teastaíonn atosú láimhe den fheidhmchlár leis an athrú seo</string>

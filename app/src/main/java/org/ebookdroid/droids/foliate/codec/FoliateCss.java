@@ -124,6 +124,12 @@ public class FoliateCss {
         css.append("h1,h2,h3,h4,h5,h6,img,svg{text-indent:0 !important;}");
         css.append("title>p,subtitle{text-align:center !important;text-indent:0 !important;}");
 
+        // An inline image sits on its parent's line, so that line's indent moves it, and at
+        // width:100% it then runs off the page. Separate rules: an old WebView without :has()
+        // drops the whole rule it appears in.
+        css.append("figure{text-indent:0 !important;}");
+        css.append("div:has(>svg,>img){text-indent:0 !important;}");
+
         return css.toString();
     }
 

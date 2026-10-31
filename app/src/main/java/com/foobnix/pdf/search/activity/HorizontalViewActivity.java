@@ -711,7 +711,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          AppSP.get().isDouble = false;
                          AppSP.get().isDoubleCoverAlone = false;
                          AppSP.get().isCut = false;
-                         AppSP.get().isSmartReflow = false;
 
                          SettingsManager.getBookSettings().updateFromAppState();
                          SharedBooks.save(SettingsManager.getBookSettings());
@@ -742,7 +741,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          AppSP.get().isDouble = true;
                          AppSP.get().isCut = false;
                          AppSP.get().isDoubleCoverAlone = false;
-                         AppSP.get().isSmartReflow = false;
 
                          SettingsManager.getBookSettings().updateFromAppState();
                          SharedBooks.save(SettingsManager.getBookSettings());
@@ -774,7 +772,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              AppSP.get().isDouble = true;
                              AppSP.get().isCut = false;
                              AppSP.get().isDoubleCoverAlone = true;
-                             AppSP.get().isSmartReflow = false;
                              SettingsManager.getBookSettings().updateFromAppState();
                              SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -805,37 +802,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
                              AppSP.get().isDouble = false;
                              AppSP.get().isCut = true;
-                             AppSP.get().isSmartReflow = false;
                              // AppSP.get().isCrop = false;
-                             SettingsManager.getBookSettings().updateFromAppState();
-                             SharedBooks.save(SettingsManager.getBookSettings());
-
-                             TTSEngine.get().stop();
-
-                             // onCrop.underline(AppSP.get().isCrop);
-
-                             dc.cleanImageMatrix();
-                             reloadDoc.run();
-                             authoFit();
-                             return false;
-                         }
-                     });
-                }
-                if ((AppsConfig.IS_FDROID || AppState.get().isExperimental) && !dc.isTextFormat()) {
-                    p.getMenu()
-                     .add(getString(R.string.smart_reflow))
-                     .setIcon(R.drawable.glyphicons_108_text_resize)
-                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                         @Override
-                         public boolean onMenuItemClick(MenuItem item) {
-                             closeDialogs();
-                             onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
-                             AppSP.get().isDouble = false;
-                             AppSP.get().isCut = false;
-                             AppSP.get().isCrop = false;
-                             AppSP.get().isSmartReflow = true;
-
                              SettingsManager.getBookSettings().updateFromAppState();
                              SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -875,9 +842,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setVisibility(isTextFomat && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
-        if(AppState.get().isExperimental){
-            onCrop.setVisibility(View.VISIBLE);
-        }
 
         onCrop.setOnClickListener(v -> DragingDialogs.dialogCustomCrop(anchor, dc, onCropChange));
         onCrop.setOnLongClickListener(v -> {
@@ -1197,9 +1161,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     updateIconMode();
 
                     onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
-                    if(AppState.get().isExperimental){
-                        onCrop.setVisibility(View.VISIBLE);
-                    }
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
 
                     onCrop.underline(AppSP.get().isCrop);
@@ -1360,8 +1321,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         } else if (AppSP.get().isCut) {
             onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-        } else if (AppSP.get().isSmartReflow) {
-            onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
         } else {
             onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
         }

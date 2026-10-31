@@ -586,7 +586,6 @@
    <string name="screen">屏幕</string>
    <string name="normal_screen">正常</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
-   <string name="enable_experimental_features">启用实验功能</string>
    <string name="display_original_file_names_without_metadata">显示文件名而非元数据</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
    <string name="show_tap_zones_on_screen">在屏上显示点击区(虚线)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">无障碍</string>
    <string name="web_search_google">网络搜索(谷歌等)</string>
    <string name="synced_books">同步的书籍</string>
-   <string name="smart_reflow">智能重排</string>
    <string name="user_styles">用户样式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">重启应用后生效</string>

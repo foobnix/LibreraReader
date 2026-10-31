@@ -41,7 +41,6 @@ public class AppSP {
     public boolean isDoubleCoverAlone = false;
     public boolean isCrop = false;
     public boolean isCropSymetry = false;
-    public boolean isSmartReflow = false;
     public boolean isEnableSync;
     public String syncRootID;
 

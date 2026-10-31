@@ -3,11 +3,9 @@ package com.foobnix.ext;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppSP;
-import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -71,59 +69,12 @@ public class HtmlExtractor {
                 }
             } else {
 
-                boolean findSVG = false;
-                String svg = "";
-                int svgNumbver = 0;
-
                 while ((line = input.readLine()) != null) {
                     if (BookCSS.get().isEnableBBCode) {
                         line = TxtUtils.convertBBCodeToHtml(line);
                     }
 
-                    if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) {
-                        if (line.contains("<math")) {
-                            svgNumbver++;
-                            findSVG = true;
-                            svg = line.substring(line.indexOf("<math"));
-
-                            LOG.d("MathMl", "begin");
-
-                        }
-                        if (line.contains("</math>")) {
-
-                            svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
-
-                            final String imageName = "test" + "-" + svgNumbver + ".png";
-
-                            line += "<img src=\"" + imageName + "\" />";
-
-                            LOG.d("MathMl", svg);
-                            LOG.d("MathMl", "end");
-
-                            Object lock = new Object();
-
-                            FileOutputStream out = new FileOutputStream(new File(CacheZipUtils.CACHE_BOOK_DIR, imageName));
-
-                            WebViewUtils.renterToPng(imageName, svg, out, lock);
-
-                            synchronized (lock) {
-                                lock.wait();
-                            }
-                            out.flush();
-                            out.close();
-
-
-                            findSVG = false;
-                            svg = "";
-
-                        } else if (findSVG) {
-                            svg += line;
-                        }
-
-                        line = Fb2Extractor.processRemoteImages(line);
-
-                    }
-
+                    line = Fb2Extractor.processRemoteImages(line);
 
                     html.append(line + "\n");
                 }

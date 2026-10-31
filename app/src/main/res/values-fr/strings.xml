@@ -586,7 +586,6 @@
    <string name="screen">Écran</string>
    <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Veuillez entrer plus de caractères à rechercher.</string>
-   <string name="enable_experimental_features">Activer les fonctionnalités expérimentales</string>
    <string name="display_original_file_names_without_metadata">Afficher les noms de fichiers d\'origine (sans métadonnées)</string>
    <string name="use_fingerprint_as_the_password">Utiliser l\'empreinte digitale comme mot de passe</string>
    <string name="show_tap_zones_on_screen">Afficher les zones tactiles à l\'écran</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Accessibilité</string>
    <string name="web_search_google">Recherche internet (Google, ...)</string>
    <string name="synced_books">Livres synchronisés</string>
-   <string name="smart_reflow">Refusion intelligente</string>
    <string name="user_styles">Styles utilisateur</string>
    <string name="engine">Moteur</string>
    <string name="restart_manually">Ce changement nécessite un redémarrage manuel de l\'application</string>

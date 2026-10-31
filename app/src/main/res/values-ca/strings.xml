@@ -586,7 +586,6 @@
    <string name="screen">Pantalla</string>
    <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Fa falta una cerca més llarga.</string>
-   <string name="enable_experimental_features">Activa funcions experimentals</string>
    <string name="display_original_file_names_without_metadata">Ignora les metadades (mostra només els noms dels fitxers)</string>
    <string name="use_fingerprint_as_the_password">Permet l\'autenticació amb empremta digital</string>
    <string name="show_tap_zones_on_screen">Indica les zones de toc (línia de punts)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Accessibilitat</string>
    <string name="web_search_google">Cerca web (Google, ...)</string>
    <string name="synced_books">Llibres sincronitzats</string>
-   <string name="smart_reflow">Redistribueix el text intel·ligentment</string>
    <string name="user_styles">Estils d\'usuari</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Aquest canvi requereix reiniciar manualment l\'aplicació</string>

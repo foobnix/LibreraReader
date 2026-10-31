@@ -586,7 +586,6 @@
    <string name="screen">Ischermu</string>
    <string name="normal_screen">Normale</string>
    <string name="please_enter_more_characters_to_search">Serbit un\'istringa de chirca prus longa!</string>
-   <string name="enable_experimental_features">Abìlita sas funtzionalidades isperimentales</string>
    <string name="display_original_file_names_without_metadata">Ignora sos metadatos (ammustra sos nùmenes de sos documentos ebbia)</string>
    <string name="use_fingerprint_as_the_password">Permite s\'autenticatzione cun s\'imprenta digitale</string>
    <string name="show_tap_zones_on_screen">Indita sas àreas de tocu (lìnia trategiada)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Atzessibilidade</string>
    <string name="web_search_google">Chirca in lìnia (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
-   <string name="smart_reflow">Riflussu intelligente</string>
    <string name="user_styles">Definidu dae s\'utente</string>
    <string name="engine">Motore</string>
    <string name="restart_manually">Pro custa modìfica tocat a torrare a allughere s\'aplicatzione a manera manuale</string>

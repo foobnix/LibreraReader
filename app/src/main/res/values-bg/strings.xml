@@ -586,7 +586,6 @@
    <string name="screen">Екран</string>
    <string name="normal_screen">Нормален</string>
    <string name="please_enter_more_characters_to_search">Имам нужда от по-дълъг низ за търсене!</string>
-   <string name="enable_experimental_features">Активирайте експерименталните функции</string>
    <string name="display_original_file_names_without_metadata">Игнорирайте метаданните (само показвате имена на файлове)</string>
    <string name="use_fingerprint_as_the_password">Позволяват удостоверяване на пръстови отпечатъци</string>
    <string name="show_tap_zones_on_screen">Посочете зони за докосване (пунктирана линия)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Достъпност</string>
    <string name="web_search_google">Търсене в мрежата (Google, ...)</string>
    <string name="synced_books">Синхронизирани книги</string>
-   <string name="smart_reflow">Интелигентно преформатиране</string>
    <string name="user_styles">Дефинирани от потребителя</string>
    <string name="engine">Двигател</string>
    <string name="restart_manually">Тази промяна изисква ръчно рестартиране на приложението</string>

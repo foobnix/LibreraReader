@@ -586,7 +586,6 @@
    <string name="screen">شاشة</string>
    <string name="normal_screen">عادي</string>
    <string name="please_enter_more_characters_to_search">يرجى إدخال المزيد من الشخصيات للبحث.</string>
-   <string name="enable_experimental_features">تمكين الميزات التجريبية</string>
    <string name="display_original_file_names_without_metadata">عرض أسماء الملفات الأصلية (بدون بيانات التعريف)</string>
    <string name="use_fingerprint_as_the_password">استخدام بصمة ككلمة المرور</string>
    <string name="show_tap_zones_on_screen">عرض مناطق النقر على الشاشة</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">إمكانية الوصول</string>
    <string name="web_search_google">بحث الويب (Google ، ...)</string>
    <string name="synced_books">الكتب المتزامنة</string>
-   <string name="smart_reflow">إعادة التدفق الذكي</string>
    <string name="user_styles">أساليب العضو</string>
    <string name="engine">محرك</string>
    <string name="restart_manually">يتطلب هذا التغيير إعادة التشغيل اليدوي للتطبيق</string>

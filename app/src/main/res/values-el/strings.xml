@@ -586,7 +586,6 @@
    <string name="screen">Οθόνη</string>
    <string name="normal_screen">Κανονικός</string>
    <string name="please_enter_more_characters_to_search">Χρειάζεστε μια μεγαλύτερη συμβολοσειρά αναζήτησης!</string>
-   <string name="enable_experimental_features">Ενεργοποίηση πειραματικών χαρακτηριστικών</string>
    <string name="display_original_file_names_without_metadata">Αγνοήστε τα μεταδεδομένα (μόνο τα ονόματα αρχείων εμφάνισης)</string>
    <string name="use_fingerprint_as_the_password">Επιτρέψτε τον έλεγχο ταυτότητας δακτυλικών αποτυπωμάτων</string>
    <string name="show_tap_zones_on_screen">Υποδείξτε ζώνες βρύσης (διακεκομμένη γραμμή)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Προσιτότητα</string>
    <string name="web_search_google">Αναζήτηση ιστού (Google, ...)</string>
    <string name="synced_books">Συγχρονισμένα βιβλία</string>
-   <string name="smart_reflow">Έξυπνη ανανέωση</string>
    <string name="user_styles">Ορισμένο από τον χρήστη</string>
    <string name="engine">Κινητήρας</string>
    <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>

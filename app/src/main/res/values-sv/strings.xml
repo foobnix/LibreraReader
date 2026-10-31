@@ -586,7 +586,6 @@
    <string name="screen">Skärm</string>
    <string name="normal_screen">Vanligt</string>
    <string name="please_enter_more_characters_to_search">Vänligen ange fler tecken att söka.</string>
-   <string name="enable_experimental_features">Aktivera experimentella funktioner</string>
    <string name="display_original_file_names_without_metadata">Visa ursprungliga filnamn (utan metadata)</string>
    <string name="use_fingerprint_as_the_password">Använd fingeravtryck som lösenord</string>
    <string name="show_tap_zones_on_screen">Visa kretszoner på skärmen</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Tillgänglighet</string>
    <string name="web_search_google">Webbsökning (Google, ...)</string>
    <string name="synced_books">Synkroniserade böcker</string>
-   <string name="smart_reflow">Smart återflöde</string>
    <string name="user_styles">Användar stilar</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denna ändring kräver en manuell omstart av programmet</string>

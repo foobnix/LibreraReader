@@ -586,7 +586,6 @@
    <string name="screen">Schermo</string>
    <string name="normal_screen">Normale</string>
    <string name="please_enter_more_characters_to_search">Per favore inserisci più caratteri da cercare.</string>
-   <string name="enable_experimental_features">Abilita funzionalità sperimentali</string>
    <string name="display_original_file_names_without_metadata">Mostra i nomi dei file originali (senza metadati)</string>
    <string name="use_fingerprint_as_the_password">Utilizzare l\'impronta digitale come password</string>
    <string name="show_tap_zones_on_screen">Mostra le zone di tocco sullo schermo</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Accessibilità</string>
    <string name="web_search_google">Ricerca sul web (Google, ...)</string>
    <string name="synced_books">Libri sincronizzati</string>
-   <string name="smart_reflow">Riflusso intelligente</string>
    <string name="user_styles">Stili utente</string>
    <string name="engine">Motore</string>
    <string name="restart_manually">Questa modifica richiede un riavvio manuale dell\'applicazione</string>

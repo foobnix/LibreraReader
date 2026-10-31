@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7523
-    FDroidVersionNumber = "10.0.19"
+    FDroidCodeNumber = 7527
+    FDroidVersionNumber = "10.0.20"
 }
 
 
@@ -361,7 +361,6 @@ dependencies {
     fdroidImplementation project(':libPro')
     proJSImplementation project(':libPro')
     fdroidJSImplementation project(':libPro')
-    implementation project(':libReflow')
 
     //implementation project(":shared")
 

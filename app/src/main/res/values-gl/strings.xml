@@ -586,7 +586,6 @@
    <string name="screen">Pantalla</string>
    <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Precísase unha cadea de procura máis longa!</string>
-   <string name="enable_experimental_features">Activar funcións experimentais</string>
    <string name="display_original_file_names_without_metadata">Ignorar metadatos (amosar só nomes de ficheiro)</string>
    <string name="use_fingerprint_as_the_password">Permitir autenticación por pegada</string>
    <string name="show_tap_zones_on_screen">Indicar zonas de toque (liña punteada)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Accesibilidade</string>
    <string name="web_search_google">Procura web (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
-   <string name="smart_reflow">Reaxuste intelixente</string>
    <string name="user_styles">Estilos do usuario</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Este troco require reiniciar manualmente a aplicación</string>

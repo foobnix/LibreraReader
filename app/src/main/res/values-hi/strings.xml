@@ -586,7 +586,6 @@
    <string name="screen">स्क्रीन</string>
    <string name="normal_screen">साधारण</string>
    <string name="please_enter_more_characters_to_search">कृपया खोज के लिए और वर्ण दर्ज करें।</string>
-   <string name="enable_experimental_features">प्रयोगात्मक सुविधाओं को सक्षम करें</string>
    <string name="display_original_file_names_without_metadata">मूल फ़ाइल नाम प्रदर्शित करें (मेटाडेटा के बिना)</string>
    <string name="use_fingerprint_as_the_password">पासवर्ड के रूप में फिंगरप्रिंट का उपयोग करें</string>
    <string name="show_tap_zones_on_screen">स्क्रीन पर टैप-ज़ोन दिखाएं</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">पहुँच</string>
    <string name="web_search_google">वेब खोज (गूगल,...)</string>
    <string name="synced_books">समन्वयित पुस्तकें</string>
-   <string name="smart_reflow">स्मार्ट रिफ्लो</string>
    <string name="user_styles">उपयोगकर्ता शैलियों</string>
    <string name="engine">यन्त्र</string>
    <string name="restart_manually">इस परिवर्तन के लिए एप्लिकेशन के मैन्युअल पुनरारंभ की आवश्यकता है</string>

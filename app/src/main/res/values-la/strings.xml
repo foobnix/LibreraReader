@@ -586,7 +586,6 @@
    <string name="screen">Scrinium</string>
    <string name="normal_screen">Cotidianus</string>
    <string name="please_enter_more_characters_to_search">Mores inquirere placet introeamus.</string>
-   <string name="enable_experimental_features">Enable features experimentalem</string>
    <string name="display_original_file_names_without_metadata">Display original file nomina (sine metadata)</string>
    <string name="use_fingerprint_as_the_password">Uti fingerprints et password</string>
    <string name="show_tap_zones_on_screen">ICTUS sapien ostendit in screen,</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Accessibilitas</string>
    <string name="web_search_google">Interretialem inquisitionem (Google, ...)</string>
    <string name="synced_books">Synced libri</string>
-   <string name="smart_reflow">Dolor reflow</string>
    <string name="user_styles">Styli usufructuarii</string>
    <string name="engine">Machina</string>
    <string name="restart_manually">Haec mutatio requirit a manual sileo applicationis</string>

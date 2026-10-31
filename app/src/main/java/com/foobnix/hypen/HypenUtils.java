@@ -32,6 +32,10 @@ public class HypenUtils {
     public static Map<String, String> cache = new HashMap<>();
     static boolean ignore = false;
     static boolean ignore1 = false;
+    /** The tag being read if it opens a stylesheet or a script, whose text is not book text. */
+    private static String rawOpening = null;
+    /** The stylesheet or script being read: a soft hyphen in `text-anchor` breaks the rule. */
+    private static String rawElement = null;
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {
@@ -243,14 +247,24 @@ public class HypenUtils {
     public static void resetTokenizer() {
         ignore = false;
         ignore1 = false;
+        rawOpening = null;
+        rawElement = null;
+    }
+
+    private static boolean isTagAt(String in, int at, String tag) {
+        final int end = at + tag.length();
+        if (!in.regionMatches(true, at, tag, 0, tag.length())) {
+            return false;
+        }
+        if (end == in.length()) {
+            return true;
+        }
+        final char next = in.charAt(end);
+        return next == '>' || next == '/' || Character.isWhitespace(next);
     }
 
 
     public static void tokenize(String in, TokensListener listener) {
-        // Read once, not for every letter: AppState.get() is synchronized, and asking it for each
-        // letter was most of the time converting a book took
-        final boolean splitLongWords = AppState.get().isExperimental;
-
         StringBuilder res = new StringBuilder();
         final int length = in.length();
         for (int i = 0; i < length; i++) {
@@ -258,9 +272,23 @@ public class HypenUtils {
 
             if (ch == '<') {
                 ignore1 = true;
+                if (rawElement != null) {
+                    if (isTagAt(in, i, "</" + rawElement)) {
+                        rawElement = null;
+                    }
+                } else if (isTagAt(in, i, "<style")) {
+                    rawOpening = "style";
+                } else if (isTagAt(in, i, "<script")) {
+                    rawOpening = "script";
+                }
             }
             if (ch == '>') {
                 ignore1 = false;
+                if (rawOpening != null) {
+                    final boolean selfClosed = i > 0 && in.charAt(i - 1) == '/';
+                    rawElement = selfClosed ? null : rawOpening;
+                    rawOpening = null;
+                }
             }
             if (ch == '&') {
                 ignore = true;
@@ -273,7 +301,7 @@ public class HypenUtils {
                 ignore = false;
             }
 
-            if (ignore || ignore1) {
+            if (ignore || ignore1 || rawElement != null) {
                 if (res.length() > 0) {
                     listener.findText(res.toString());
                     res.setLength(0);
@@ -285,9 +313,6 @@ public class HypenUtils {
 
             if (Character.isLetter(ch)) {
                 res.append(ch);
-                if (splitLongWords && (res.length() >= 30 && res.length() % 30 == 0)) {
-                    res.append(" ");
-                }
             } else {
                 if (res.length() > 0) {
                     listener.findText(res.toString());

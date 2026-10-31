@@ -586,7 +586,6 @@
    <string name="screen">Полноэкранность</string>
    <string name="normal_screen">Обычный вид</string>
    <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
-   <string name="enable_experimental_features">Включить экспериментальные функции</string>
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
    <string name="use_fingerprint_as_the_password">Использовать отпечаток пальца в качестве пароля</string>
    <string name="show_tap_zones_on_screen">Показывать и использовать наэкранные тап-зоны</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Доступность</string>
    <string name="web_search_google">Веб-поиск (Google, ...)</string>
    <string name="synced_books">Синхронизированные книги</string>
-   <string name="smart_reflow">Умная перекомпоновка</string>
    <string name="user_styles">Пользовательские</string>
    <string name="engine">Движок</string>
    <string name="restart_manually">Это изменение требует ручного перезапуска приложения</string>

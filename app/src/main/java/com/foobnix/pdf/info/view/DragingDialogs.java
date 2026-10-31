@@ -4174,17 +4174,6 @@ public class DragingDialogs {
                 });
 
 
-                CheckBox isExperimental = inflate.findViewById(R.id.isExperimental);
-                isExperimental.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook()
-                                                                                           .getPath())));
-                isExperimental.setText(isExperimental.getText() + " (SVG, MathML)");
-                isExperimental.setChecked(AppState.get().isExperimental);
-                isExperimental.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isExperimental = isChecked;
-                    }
-                });
-
                 CheckBox isReferenceMode = inflate.findViewById(R.id.isReferenceMode);
                 isReferenceMode.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook()
                                                                                             .getPath())));

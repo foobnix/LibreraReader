@@ -586,7 +586,6 @@
    <string name="screen">Экран</string>
    <string name="normal_screen">Нармальны</string>
    <string name="please_enter_more_characters_to_search">Патрэбны больш доўгі радок пошуку!</string>
-   <string name="enable_experimental_features">Уключыць эксперыментальныя функцыі</string>
    <string name="display_original_file_names_without_metadata">Ігнараваць метададзеныя (адлюстроўваць толькі імёны файлаў)</string>
    <string name="use_fingerprint_as_the_password">Дазволіць аўтэнтыфікацыю па адбітках пальцаў</string>
    <string name="show_tap_zones_on_screen">Пазначыць зоны крана (пункцірная лінія)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Даступнасць</string>
    <string name="web_search_google">Вэб-пошук (google, ...)</string>
    <string name="synced_books">Сінхранізаваныя кнігі</string>
-   <string name="smart_reflow">Разумная аплаўка</string>
    <string name="user_styles">Карыстальніцкія стылі</string>
    <string name="engine">Рухавік</string>
    <string name="restart_manually">Гэта змяненне патрабуе ручнога перазапуску прыкладання</string>

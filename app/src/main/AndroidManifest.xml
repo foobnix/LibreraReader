@@ -330,16 +330,6 @@
 
 
         <activity
-            android:name="test.SvgActivity"
-            android:exported="true"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN1" />
-                <category android:name="android.intent.category.LAUNCHER1" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name="com.foobnix.test.ActivityA"
             android:launchMode="singleTop"
             android:exported="true">

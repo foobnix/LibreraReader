@@ -5,7 +5,6 @@ plugins {
 dependencies {
     implementation fileTree(dir: 'src/libs', include: ['*.jar'])
     runtimeOnly fileTree(dir: 'src/libs', include: ['*.aar', '*.jar'], exclude: [])
-    //implementation project(':smartreflow')
 }
 
 //java {

@@ -586,7 +586,6 @@
    <string name="screen">画面</string>
    <string name="normal_screen">ノーマル</string>
    <string name="please_enter_more_characters_to_search">さらに検索する文字を入力してください。</string>
-   <string name="enable_experimental_features">実験機能を有効にする</string>
    <string name="display_original_file_names_without_metadata">元のファイル名を表示する（メタデータなしで）</string>
    <string name="use_fingerprint_as_the_password">パスワードとして指紋を使う</string>
    <string name="show_tap_zones_on_screen">画面にタップゾーンを表示する</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">アクセシビリティ</string>
    <string name="web_search_google">Web 検索 (Google など)</string>
    <string name="synced_books">同期書籍</string>
-   <string name="smart_reflow">スマートリフロー</string>
    <string name="user_styles">ユーザーのスタイル</string>
    <string name="engine">エンジン</string>
    <string name="restart_manually">この変更には、アプリの手動再起動が必要です</string>

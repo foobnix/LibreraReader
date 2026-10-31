@@ -81,8 +81,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import mobi.librera.smartreflow.AndroidPlatformImage;
-import mobi.librera.smartreflow.SmartReflow1;
 
 public class ImageExtractor {
 
@@ -481,8 +479,6 @@ public class ImageExtractor {
 
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) pageInfo.height / pageInfo.width;
-        final float kScreen = (float) pageUrl.getHeight() / pageUrl.getWidth();
-        //final float kScreen = Dips.screenHeight()/Dips.screenWidth();
 
         int width = pageUrl.getWidth();
         int height = (int) (width * k);
@@ -551,25 +547,6 @@ public class ImageExtractor {
         } else if (pageUrl.isDoText()) {
             // Drop any rectangle left over from an earlier cropped render of this page.
             PageImageState.get().putPageCrop(pageUrl.getPage(), null);
-        }
-
-        if (AppSP.get().isSmartReflow) {
-            try {
-                final AndroidPlatformImage input = new AndroidPlatformImage(bitmap);
-
-                SmartReflow1 sm = new SmartReflow1();
-                sm.process(input);
-
-                final int rWidth = (int) (bitmap.getWidth() * 0.6);
-                final int rHeight = (int) (rWidth * kScreen);
-                LOG.d("SmartReflow", rWidth, rHeight, k, kScreen);
-                final AndroidPlatformImage output = new AndroidPlatformImage(rWidth, rHeight);
-                sm.reflow(output);
-                bitmap.recycle();
-                bitmap = output.getImage();
-            } catch (Exception e) {
-                LOG.e(e);
-            }
         }
 
         if (pageUrl.isInvert()) {

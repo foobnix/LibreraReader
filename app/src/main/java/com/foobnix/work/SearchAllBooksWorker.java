@@ -133,16 +133,6 @@ public class SearchAllBooksWorker extends MessageWorker {
                 SearchCore.search(itemsMeta, downloadsDir, ExtUtils.seachExts);
             }
 
-            if(AppState.get().isExperimental) {
-                if (itemsMeta.isEmpty()) {
-                    File path = AppProfile.DOWNLOADS_DIR;
-                    BookCSS.get().searchPathsJson = JsonDB.set(List.of(path.getPath()));
-                    SearchCore.search(itemsMeta, AppProfile.DOWNLOADS_DIR, ExtUtils.seachExts);
-                    LOG.d("SearchAllBooksWorker", "Files-emtpy", "DOWNLOADS_DIR");
-                }
-            }
-
-
             for (FileMeta meta : itemsMeta) {
                 meta.setIsSearchBook(true);
             }

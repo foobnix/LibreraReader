@@ -586,7 +586,6 @@
    <string name="screen">Pantaila</string>
    <string name="normal_screen">Normala</string>
    <string name="please_enter_more_characters_to_search">Idatzi karaktere gehiago bilatzeko.</string>
-   <string name="enable_experimental_features">Gaitu eginbide esperimentalak</string>
    <string name="display_original_file_names_without_metadata">Erakutsi jatorrizko fitxategi-izenak (metadaturik gabe)</string>
    <string name="use_fingerprint_as_the_password">Autentifikatu hatz-markarekin</string>
    <string name="show_tap_zones_on_screen">Erakutsi ukipen-zonak pantailan</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Irisgarritasuna</string>
    <string name="web_search_google">Web-bilaketa (Google, ...)</string>
    <string name="synced_books">Sinkronizatutako liburuak</string>
-   <string name="smart_reflow">Errefluxu adimenduna</string>
    <string name="user_styles">Erabiltzaile-estiloak</string>
    <string name="engine">Motorea</string>
    <string name="restart_manually">Aldaketa honek aplikazioa eskuz berrabiaraztea eskatzen du</string>

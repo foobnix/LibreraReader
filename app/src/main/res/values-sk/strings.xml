@@ -586,7 +586,6 @@
    <string name="screen">Obrazovka</string>
    <string name="normal_screen">Normálna</string>
    <string name="please_enter_more_characters_to_search">Zadajte dlhší reťazec na vyhľadávanie!</string>
-   <string name="enable_experimental_features">Povoliť experimentálne funkcie</string>
    <string name="display_original_file_names_without_metadata">Ignorovať metaúdaje (zobraziť iba názvy súborov)</string>
    <string name="use_fingerprint_as_the_password">Povoliť overenie odtlačkom prsta</string>
    <string name="show_tap_zones_on_screen">Zobrazovať zóny klepnutia (bodkovaná čiara)</string>
@@ -664,7 +663,6 @@
    <string name="accessibility">Prístupnosť</string>
    <string name="web_search_google">Vyhľadávanie na webe (Google, …)</string>
    <string name="synced_books">Synchronizované knihy</string>
-   <string name="smart_reflow">Inteligentné preformátovanie</string>
    <string name="user_styles">Používateľské štýly</string>
    <string name="engine">Prekladač</string>
    <string name="restart_manually">Táto zmena si vyžaduje manuálny reštart aplikácie</string>

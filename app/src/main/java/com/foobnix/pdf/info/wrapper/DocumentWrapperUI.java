@@ -807,7 +807,7 @@ public class DocumentWrapperUI {
             onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
             onTextReplacement.setVisibility(View.VISIBLE);
 
-            if (AppSP.get().isCrop || AppState.get().isExperimental) {
+            if (AppSP.get().isCrop) {
                 crop.setVisibility(View.VISIBLE);
             }
             if (AppSP.get().isCut) {

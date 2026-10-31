@@ -619,7 +619,6 @@ public class AppState {
     @IgnoreHashCode public boolean isSwipeGestureReverse = false;
     public boolean isCustomizeBgAndColors = false;
     @IgnoreHashCode public boolean isVibration = true;
-    public boolean isExperimental = false;
     @IgnoreHashCode public boolean isLockPDF = false;
     @IgnoreHashCode public boolean isCropPDF = false;
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi")

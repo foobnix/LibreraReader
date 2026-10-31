@@ -153,7 +153,7 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number, List<SimpleMeta> replacements) throws Exception {
+    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, int number, List<SimpleMeta> replacements) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
 
@@ -165,13 +165,7 @@ public class Fb2Extractor extends BaseExtractor {
         boolean isValidXML = false;
         boolean isValidXMLChecked = false;
 
-        String svg = "";
-        boolean findSVG = false;
-        int svgNumbver = 0;
-        String defs = "";
-
         int count = 0;
-        int beginMath = 0;
 
 
         while ((line = input.readLine()) != null) {
@@ -230,73 +224,6 @@ public class Fb2Extractor extends BaseExtractor {
             line = processRemoteImages(line);
 
 
-            if (AppState.get().isExperimental && svgs != null) {
-
-
-                line = line.replace("<m:", "<");
-                if (line.contains("<svg")) {
-                    svgNumbver++;
-                    findSVG = true;
-                    svg = line.substring(line.indexOf("<svg"));
-                } else if (line.contains("<math")) {
-                    svgNumbver++;
-                    findSVG = true;
-                    beginMath = line.indexOf("<math");
-                    //svg = line.substring(beginMath);
-                } else if (line.contains("</svg>")) {
-                    LOG.d("SVG", svg);
-                    svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
-
-
-                    String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
-
-                    svg = svg.replace("<defs>", "<defs>" + defs);
-                    svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
-                    if (TxtUtils.isNotEmpty(defsCurrent)) {
-                        defs = defs + defsCurrent;
-                    }
-                    LOG.d("DEFS:", defs);
-
-                    //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
-
-                    final String imageName = name + "-" + svgNumbver + ".png";
-                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                    svgs.put(imageName, svg);
-
-                    LOG.d("SVG:", imageName, svg);
-
-                    line += "<img src=\"" + imageName2 + "\" />";
-                    //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
-                    //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
-
-                    findSVG = false;
-                    svg = "";
-                }
-                if (line.contains("</math>")) {
-
-                    svg += line.substring(beginMath, line.indexOf("</math>") + "</math>".length());
-                    beginMath = 0;
-
-
-                    final String imageName = name + "-" + svgNumbver + ".png";
-                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                    svg = svg.replace(">math>", "></math>");
-                    svgs.put(imageName, svg);
-
-                    LOG.d("SVG-MATH:", imageName, svg);
-
-                    line += "<img src=\"" + imageName2 + "\" />";
-
-                    findSVG = false;
-                    svg = "";
-                }
-                if (findSVG) {
-                    svg += line;
-                }
-
-            }
-
-
             boolean isProcess = AppState.get().isEnableTextReplacement ||
                     (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang));
             if (isProcess) {
@@ -326,7 +253,7 @@ public class Fb2Extractor extends BaseExtractor {
     }
 
     public static synchronized String processRemoteImages(String line) {
-        if ((BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER || AppState.get().isExperimental) && line.contains("<img src=\"http")) {
+        if (BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER && line.contains("<img src=\"http")) {
             try {
                 String imgScr = "<img src=\"";
                 int i1 = line.indexOf(imgScr);
