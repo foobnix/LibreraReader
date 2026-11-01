@@ -136,6 +136,7 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 import org.greenrobot.eventbus.Subscribe;
+import org.ebookdroid.droids.foliate.codec.FoliateContext;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
@@ -676,6 +677,8 @@ public class PrefFragment2 extends UIFragment {
             if (Dips.isEInk()) {
                 version += " INK";
             }
+            version += " W:" + FoliateContext.webViewVersion().split("\\.")[0];
+            final String versionTitle = version;
             if (AppsConfig.IS_LOG) {
                 version += "\n MODEL: " + Build.MODEL;
                 version += "\n BRAND: " + Build.BRAND;
@@ -692,7 +695,7 @@ public class PrefFragment2 extends UIFragment {
             ((TextView) inflate.findViewById(R.id.pVersion)).setText(
                     String.format("%s: %s", getString(R.string.version), version));
             ((TextView) inflate.findViewById(R.id.section6)).setText(
-                    String.format("%s: %s %s %s", Apps.getApplicationName(getActivity()), version,
+                    String.format("%s: %s %s %s", Apps.getApplicationName(getActivity()), versionTitle,
                             "SDK: " + Build.VERSION.SDK_INT, Build.MANUFACTURER));
         } catch (final NameNotFoundException e) {
         }
@@ -1013,7 +1016,8 @@ public class PrefFragment2 extends UIFragment {
         // A JS flavour has one engine for each, and AppState.getPdfEngine()/getEpubEngine() answer
         // with it whatever these hold.
         Views.visible(inflate.findViewById(R.id.pdfEngineRow), Engines.IS_ENGINE_CHOICE);
-        Views.visible(inflate.findViewById(R.id.epubEngineRow), Engines.IS_ENGINE_CHOICE);
+        Views.visible(inflate.findViewById(R.id.epubEngineRow),
+                Engines.IS_ENGINE_CHOICE && FoliateContext.isWebViewSupported());
 
         // Which engine renders a PDF. The choice is read when a document is opened, so the books
         // and the covers already on screen keep the engine they were opened with: the cover cache

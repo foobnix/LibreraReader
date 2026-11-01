@@ -1,9 +1,13 @@
 package com.foobnix.librerax;
 
+import android.app.ActivityManager;
+import android.app.ApplicationExitInfo;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.View;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
 import java.util.UUID;
@@ -49,7 +53,37 @@ public final class BookOpenGuard {
         }
         // A Boolean is a mark from before marks named their open: a run long gone
         final Object mark = prefs(c).getAll().get(path);
-        return mark != null && !(mark instanceof String && ((String) mark).startsWith(RUN + "/"));
+        return mark != null && !(mark instanceof String && ((String) mark).startsWith(RUN + "/"))
+                && !lastRunEndedNormally(c);
+    }
+
+    /**
+     * A mark says only that the app stopped while the book was opening, and an update or the user
+     * closing it stops it too - easily done, as the first open of a long book can take a while.
+     * Android knows which it was from version 11, so a book is not blamed for those.
+     */
+    private static boolean lastRunEndedNormally(final Context c) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            return false;
+        }
+        try {
+            final ActivityManager manager = (ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
+            // Newest first, and the WebView's own processes are in the list too
+            for (ApplicationExitInfo exit : manager.getHistoricalProcessExitReasons(null, 0, 16)) {
+                if (c.getPackageName().equals(exit.getProcessName())) {
+                    final int reason = exit.getReason();
+                    return reason != ApplicationExitInfo.REASON_CRASH
+                            && reason != ApplicationExitInfo.REASON_CRASH_NATIVE
+                            && reason != ApplicationExitInfo.REASON_ANR
+                            && reason != ApplicationExitInfo.REASON_LOW_MEMORY
+                            && reason != ApplicationExitInfo.REASON_SIGNALED
+                            && reason != ApplicationExitInfo.REASON_INITIALIZATION_FAILURE;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
     }
 
     /**

@@ -1828,6 +1828,9 @@
             <TextView
                 android:id="@+id/section6"
                 style="@style/textSectionTitle"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:singleLine="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dip"

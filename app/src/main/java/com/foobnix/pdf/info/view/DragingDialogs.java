@@ -74,6 +74,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -166,6 +167,7 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.droids.foliate.codec.FoliateContext;
 import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -2337,7 +2339,8 @@ public class DragingDialogs {
                 final String bookPath = controller.getCurrentBook().getPath();
                 final boolean textWithoutFoliate = ExtUtils.isTextFomat(bookPath)
                         && !(controller.getCodecDocument() instanceof FoliateDocument);
-                if (withAnnotation && !ExtUtils.isNoTextLayerForamt(bookPath) && textWithoutFoliate) {
+                if (withAnnotation && !ExtUtils.isNoTextLayerForamt(bookPath) && textWithoutFoliate
+                        && FoliateContext.isWebViewSupported()) {
                     // Still on offer, as it is one setting away: every button says which one
                     final OnClickListener needsFoliate = v ->
                             Toast.makeText(v.getContext(), R.string.msg_mark_needs_foliate, Toast.LENGTH_LONG).show();
@@ -2351,7 +2354,7 @@ public class DragingDialogs {
                             line.getChildAt(i).setOnLongClickListener(null);
                         }
                     }
-                } else if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath)) {
+                } else if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath) || textWithoutFoliate) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -2919,6 +2922,7 @@ public class DragingDialogs {
                 }
 
                 LOG.d("onItem", appBookmark);
+                EpubEngineMenu.hintForMark(view.getContext(), appBookmark);
 
                 int page = controller.getBookmarkPage(appBookmark);
 
@@ -5721,7 +5725,12 @@ public class DragingDialogs {
 
                 // The engine is picked when a book opens, so another one takes reopening this one
                 final View epubEngineRow = inflate.findViewById(R.id.epubEngineRow);
-                epubEngineRow.setVisibility(TxtUtils.visibleIf(Engines.IS_ENGINE_CHOICE && controller.isTextFormat()));
+                epubEngineRow.setVisibility(TxtUtils.visibleIf(Engines.IS_ENGINE_CHOICE && controller.isTextFormat()
+                        && FoliateContext.isWebViewSupported()));
+                if (AppState.get().epubEngine == AppState.EPUB_ENGINE_FOLIATE) {
+                    final ImageView epubEngineIcon = inflate.findViewById(R.id.epubEngineIcon);
+                    epubEngineIcon.setImageResource(R.drawable.glyphicons_670_dashboard_fast);
+                }
                 final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
                 epubEngine.setText(EpubEngineMenu.name(epubEngine.getContext(), AppState.get().epubEngine));
                 TxtUtils.underlineTextView(epubEngine);

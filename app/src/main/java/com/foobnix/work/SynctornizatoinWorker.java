@@ -11,6 +11,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
@@ -48,6 +49,8 @@ public class SynctornizatoinWorker extends MessageWorker{
             if (GFile.isNeedUpdate) {
                 LOG.d("GFILE-isNeedUpdate", GFile.isNeedUpdate);
                 TempHolder.get().listHash++;
+                // Marks made on another device: the finder stays for as long as the app runs
+                AnnotationsFinder.invalidate();
                 EventBus.getDefault().post(new UpdateAllFragments());
             }
 

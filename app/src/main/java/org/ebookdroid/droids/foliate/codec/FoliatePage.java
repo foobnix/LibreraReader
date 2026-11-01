@@ -35,7 +35,7 @@ import java.util.List;
 public class FoliatePage extends AbstractCodecPage {
 
     /** How many times a page with text on it that drew as nothing is drawn again. */
-    private static final int BLANK_REDRAWS = 6;
+    private static final int BLANK_REDRAWS = 10;
 
     private final FoliateDocument document;
 

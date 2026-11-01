@@ -14,6 +14,40 @@
 
 import './foliate/view.js'
 
+// foliate is written for a current browser, and a WebView can be years old: Android 12 ships 91.
+// It calls these only once a book opens, so they are in time here, after its modules are loaded.
+if (!Object.groupBy) {
+    Object.groupBy = (items, key) => {
+        const groups = Object.create(null)
+        let i = 0
+        for (const item of items) (groups[key(item, i++)] ??= []).push(item)
+        return groups
+    }
+}
+if (!Map.groupBy) {
+    Map.groupBy = (items, key) => {
+        const groups = new Map()
+        let i = 0
+        for (const item of items) {
+            const group = key(item, i++)
+            if (!groups.has(group)) groups.set(group, [])
+            groups.get(group).push(item)
+        }
+        return groups
+    }
+}
+if (!Array.prototype.at) {
+    Array.prototype.at = function (index) {
+        return this[index < 0 ? this.length + index : index]
+    }
+}
+if (!Array.prototype.findLastIndex) {
+    Array.prototype.findLastIndex = function (test) {
+        for (let i = this.length - 1; i >= 0; i--) if (test(this[i], i, this)) return i
+        return -1
+    }
+}
+
 let view = null
 let config = null
 /** The visible Range of the page the book is on, from the paginator's own relocate event. */
@@ -613,9 +647,53 @@ const applyStyles = () => {
     view.renderer.setStyles([root + (config.before || ''), config.after || ''])
 }
 
+/**
+ * An epub is a zip, and zip.js unpacks it with the browser's DecompressionStream, which knows
+ * 'deflate-raw' only from Chromium 103. A WebView older than that - Android 12 as it ships has 91 -
+ * cannot read a single book, so there it is given a stream that does the same with fflate.
+ *
+ * fflate here has only the zlib call, which skips a two byte header and drops the four byte
+ * checksum at the end without reading it: raw deflate between those two is all it takes.
+ */
+const provideInflate = async () => {
+    try {
+        new DecompressionStream('deflate-raw')
+        return
+    } catch (e) {
+        // an older WebView, or one with no such stream at all
+    }
+    const [{ configure }, { unzlibSync }] = await Promise.all([
+        import('./foliate/vendor/zip.js'),
+        import('./foliate/vendor/fflate.js'),
+    ])
+    class RawInflate extends TransformStream {
+        constructor() {
+            const chunks = []
+            super({
+                transform(chunk) {
+                    chunks.push(chunk)
+                },
+                flush(controller) {
+                    const size = chunks.reduce((sum, chunk) => sum + chunk.length, 0)
+                    const zlib = new Uint8Array(size + 6)
+                    zlib.set([0x78, 0x01])
+                    let offset = 2
+                    for (const chunk of chunks) {
+                        zlib.set(chunk, offset)
+                        offset += chunk.length
+                    }
+                    controller.enqueue(unzlibSync(zlib))
+                },
+            })
+        }
+    }
+    configure({ DecompressionStream: RawInflate })
+}
+
 const handlers = {
     /** Creates the view, opens the book, and sets the page up as one paginated column. */
     async open(cfg) {
+        await provideInflate()
         config = cfg
         walkedToc = null
         document.documentElement.style.background = cfg.background

@@ -6,7 +6,9 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
@@ -24,6 +26,18 @@ public final class EpubEngineMenu {
     /** The engine's name as the preference shows it: MuPDF is the default one. */
     public static String name(final Context c, final int engine) {
         return engine == AppState.EPUB_ENGINE_FOLIATE ? "HTML+JS" : c.getString(R.string.default_label);
+    }
+
+    /**
+     * A mark in a text book can be shown on its page only by foliate-js, so one tapped under
+     * MuPDF says which setting it takes, as the buttons that make a mark do.
+     */
+    public static void hintForMark(final Context c, final AppBookmark item) {
+        if (item instanceof BookmarksAdapter.Mark && Engines.IS_ENGINE_CHOICE
+                && AppState.get().getEpubEngine() != AppState.EPUB_ENGINE_FOLIATE
+                && FoliateContext.isWebViewSupported() && ExtUtils.isTextFomat(item.getPath())) {
+            Toast.makeText(c, R.string.msg_mark_needs_foliate, Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
