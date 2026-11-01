@@ -2996,11 +2996,7 @@ public class DragingDialogs {
                 LOG.d("onItem", appBookmark);
                 EpubEngineMenu.hintForMark(view.getContext(), appBookmark);
 
-                int page = controller.getBookmarkPage(appBookmark);
-
-                controller.onGoToPage(page);
-
-                onRefeshUI.run();
+                controller.goToBookmark(appBookmark, onRefeshUI);
             }
         };
 

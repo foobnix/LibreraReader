@@ -68,6 +68,11 @@ public class BookmarksAdapter extends BaseAdapter {
             this.pt = TxtUtils.isNotEmpty(mark.pt) ? mark.pt : mark.text;
             setPath(path);
         }
+
+        @Override
+        public String getLocation() {
+            return mark.cfi;
+        }
     }
 
     private final List<AppBookmark> objects;

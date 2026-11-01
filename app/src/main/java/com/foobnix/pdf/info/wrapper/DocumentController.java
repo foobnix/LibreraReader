@@ -65,6 +65,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.model.AppAnnotation;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.Engines;
 import org.ebookdroid.BookType;
@@ -953,7 +954,27 @@ public abstract class DocumentController {
         if (getString(R.string.fast_bookmark).equals(text)) {
             text = null; // a label, not text of the page
         }
-        return findBookmarkPage(bookmark.getPage(getPageCount()), text, bookmark.pt);
+        return findBookmarkPage(bookmark.getPage(getPageCount()), text, bookmark.pt, bookmark.getLocation());
+    }
+
+    /**
+     * Goes to a bookmark. foliate-js finds a place by asking the WebView, which answers on the main
+     * thread and refuses to be waited for there: asked from there it gives nothing, and the bookmark
+     * lands wherever its percentage does in today's layout.
+     */
+    public void goToBookmark(final AppBookmark bookmark, final Runnable after) {
+        if (!(getCodecDocument() instanceof FoliateDocument)) {
+            onGoToPage(getBookmarkPage(bookmark));
+            after.run();
+            return;
+        }
+        AppsConfig.executorService.execute(() -> {
+            final int page = getBookmarkPage(bookmark);
+            activity.runOnUiThread(() -> {
+                onGoToPage(page);
+                after.run();
+            });
+        });
     }
 
     // the book is opened on a bookmark from the library bookmarks, see ExtUtils.showDocumentWithoutDialog2

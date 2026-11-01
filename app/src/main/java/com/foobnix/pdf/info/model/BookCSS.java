@@ -526,6 +526,7 @@ public class BookCSS {
             }
         }
         instance.pathSAF = storages;
+        instance.keepFontsReadable();
 
         try {
             // No list at all is a profile that has never had one; an empty one, a user who took
@@ -648,6 +649,36 @@ public class BookCSS {
         }
         LOG.d("resetAll 2", normalFont);
 
+    }
+
+    /**
+     * The font folder is saved as a path, and it can be one this install may not read: fonts put
+     * in Download/Librera by an earlier install belong to that install, so without the permission
+     * to all files the folder lists as empty, and the fonts drop out of the list and the book. The
+     * app copies its fonts to its own folder as it starts, so that one takes over.
+     */
+    private void keepFontsReadable() {
+        if (AppProfile.syncFontFolder == null || TxtUtils.isEmpty(fontFolder)) {
+            return;
+        }
+        final String own = AppProfile.syncFontFolder.getPath();
+        if (own.equals(fontFolder) || !getAllFontsFromFolder(fontFolder).isEmpty()) {
+            return;
+        }
+        LOG.d("keepFontsReadable", fontFolder, own);
+        final String was = fontFolder;
+        fontFolder = own;
+        normalFont = inFontFolder(normalFont, was);
+        boldFont = inFontFolder(boldFont, was);
+        boldItalicFont = inFontFolder(boldItalicFont, was);
+        italicFont = inFontFolder(italicFont, was);
+        headersFont = inFontFolder(headersFont, was);
+        capitalFont = inFontFolder(capitalFont, was);
+    }
+
+    /** The same font in {@link #fontFolder}, for a path that was in the folder before it. */
+    private String inFontFolder(final String font, final String was) {
+        return font != null && font.startsWith(was + "/") ? fontFolder + font.substring(was.length()) : font;
     }
 
     public List<String> getAllFonts() {

@@ -46,6 +46,11 @@ public class AppBookmark implements MyPath.RelativePath {
         this.path = MyPath.toRelative(path);
     }
 
+    /** The exact place in the book, where there is one: only a mark knows it. */
+    public String getLocation() {
+        return null;
+    }
+
     public float getPercent() {
         return p;
     }
