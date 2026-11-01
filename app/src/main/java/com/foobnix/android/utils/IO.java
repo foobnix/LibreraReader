@@ -220,6 +220,11 @@ public class IO {
                     }
                 }
 
+                // Sync finds what changed by this time, and shared storage can go on reporting the
+                // one before after a file is put in place: the change would then never leave the
+                // device, while the file itself reads as new.
+                file.setLastModified(System.currentTimeMillis());
+
                 cached = new Cached(file, string);
 
             } catch (Exception e) {
