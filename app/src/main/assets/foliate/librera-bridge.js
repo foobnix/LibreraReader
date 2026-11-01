@@ -221,6 +221,17 @@ const normalize = (rect, offset, size) => {
     }
 }
 
+/**
+ * Whether a word's box on one line is this page's, which is more than touching it. A column of
+ * text can be wider than the step between pages, so the last word of every line of the page before
+ * reaches a few pixels into this one, and read as this page's those words are spoken at its top,
+ * one from each line. A word goes with the page its middle is on.
+ */
+const onPage = (rect, offset, size) => {
+    const middle = (offset.left + (rect.left + rect.right) / 2) / size.width
+    return middle > 0 && middle < 1
+}
+
 /** The text nodes worth looking at: those the visible range covers, else the whole section. */
 const textNodes = doc => {
     const root = visible && visible.commonAncestorContainer
@@ -296,6 +307,7 @@ const collectWords = () => {
         // margin beside every line of a selection. A space is never much wider than it is tall,
         // whatever the justification stretches it to, so that is what decides.
         if (/^\s*$/.test(text) && rectWidth(rect) > 3 * rectHeight(rect)) return
+        if (!onPage(rect, offset, size)) return
         const box = normalize(rect, offset, size)
         if (!box) return
         box.w = readable(text)
@@ -454,9 +466,11 @@ const collectText = () => {
                 range.setStart(node, i)
                 range.setEnd(node, end)
                 // A word hyphenated across two pages has a box on each, and goes with the first:
-                // on both it would be read twice, once either side of the page turn
-                const first = range.getClientRects()[0] || range.getBoundingClientRect()
-                if (normalize(first, offset, size)) {
+                // on both it would be read twice, once either side of the page turn. A word that
+                // opens a column can also have an empty box left at the end of the column before.
+                const rects = Array.from(range.getClientRects())
+                const first = rects.find(r => r.width > 0) || rects[0]
+                if (first && normalize(first, offset, size) && onPage(first, offset, size)) {
                     piece += isSpace ? ' ' : text.slice(i, end)
                 }
             } catch (e) {
