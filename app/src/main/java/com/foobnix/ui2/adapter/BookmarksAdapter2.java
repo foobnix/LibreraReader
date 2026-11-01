@@ -47,7 +47,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         final AppBookmark item = getItem(position);
 
         holder.page.setText(TxtUtils.percentFormatInt(item.getPercent()));
-        FileMeta m = AppDB.get().load(MyPath.toAbsolute(item.path));
+        FileMeta m = AppDB.get().load(item.getPath());
 
         if (m != null && m.getPages() != null && m.getPages() > 0) {
             holder.page.setText("" + Math.round(item.getPercent() * m.getPages()));

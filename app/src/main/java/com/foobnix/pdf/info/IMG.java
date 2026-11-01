@@ -294,6 +294,10 @@ public class IMG {
                 && !Android6.canWrite(LibreraApp.context) && !new File(path).canRead()
                 && ExtUtils.getSafUriForPath(LibreraApp.context, path) != null) {
             pdfUrl.setUnic(2);
+        } else if (path != null && path.startsWith("/") && !new File(path).exists()) {
+            // A synced book is listed before its file comes down. The name drawn for it meanwhile
+            // must not stay in the cache as this book's cover once the file is here.
+            pdfUrl.setUnic(3);
         }
         if(withHash) {
             pdfUrl.hash =

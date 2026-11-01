@@ -34,6 +34,9 @@ import java.util.List;
  */
 public class FoliatePage extends AbstractCodecPage {
 
+    /** How many times a page with text on it that drew as nothing is drawn again. */
+    private static final int BLANK_REDRAWS = 6;
+
     private final FoliateDocument document;
 
     /** 0-based, as the page model counts pages. */
@@ -196,14 +199,23 @@ public class FoliatePage extends AbstractCodecPage {
             // throttling that leaves the count reading 0, so the pages that most needed redrawing
             // were exactly the ones that never got it - a whole grid of thumbnails came back
             // blank. A genuinely blank page now pays for one extra draw and is still blank.
-            if (drawn != null && isBlank(drawn)) {
+            //
+            // A count above 0 is proof the other way, though: there is text here, it just has not
+            // reached the WebView's last frame, as with a book reopened while the window is still
+            // changing. Such a page goes on being redrawn, or the empty bitmap is what stays.
+            for (int i = 0; i < BLANK_REDRAWS && drawn != null && isBlank(drawn)
+                    && (i == 0 || document.getPositionedChars() > 0); i++) {
                 LOG.d("FOLIATE! page drew blank, once more", pageNumber,
-                        document.getPositionedChars());
+                        document.getPositionedChars(), i);
                 final Bitmap again = renderer.redraw(width, height);
-                if (again != null) {
-                    drawn.recycle();
-                    drawn = again;
+                if (again == null) {
+                    break;
                 }
+                drawn.recycle();
+                drawn = again;
+            }
+            if (drawn != null && document.getPositionedChars() > 0 && isBlank(drawn)) {
+                LOG.d("FOLIATE! page still blank", pageNumber, document.getPositionedChars());
             }
             bitmap = drawn;
         }

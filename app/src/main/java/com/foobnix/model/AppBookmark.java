@@ -37,8 +37,9 @@ public class AppBookmark implements MyPath.RelativePath {
         return text;
     }
 
+    /** Made on another device the book may be elsewhere there: here it is the synced copy. */
     public String getPath() {
-        return MyPath.toAbsolute(path);
+        return MyPath.getSyncPath(MyPath.toAbsolute(path));
     }
 
     public void setPath(String path) {

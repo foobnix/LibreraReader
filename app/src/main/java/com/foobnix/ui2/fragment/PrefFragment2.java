@@ -93,6 +93,7 @@ import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Engines;
+import com.foobnix.pdf.info.EpubEngineMenu;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
@@ -133,7 +134,6 @@ import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
-import org.ebookdroid.droids.foliate.codec.FoliateContext;
 import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -1040,31 +1040,11 @@ public class PrefFragment2 extends UIFragment {
             popupMenu.show();
         });
 
-        // Which engine lays out a reflowable book. Dropping the cached outline matters as much as
-        // dropping the covers: the TOC's page numbers are serialized per book, and they came from
-        // whichever engine produced them.
+        // Which engine lays out a reflowable book
         final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
-        asButton(epubEngine, epubEngineName(AppState.get().epubEngine));
-        epubEngine.setOnClickListener(v -> {
-            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-            for (final int engine : EPUB_ENGINES) {
-                popupMenu.getMenu().add(epubEngineName(engine)).setOnMenuItemClickListener(item -> {
-                    if (engine == AppState.EPUB_ENGINE_FOLIATE && !FoliateContext.isAvailable()) {
-                        Toast.makeText(v.getContext(), R.string.msg_epub_engine_unavailable, Toast.LENGTH_LONG).show();
-                        return false;
-                    }
-                    if (AppState.get().epubEngine != engine) {
-                        AppState.get().epubEngine = engine;
-                        ImageExtractor.clearCodeDocument();
-                        CacheZipUtils.removeOutlineCache();
-                        TempHolder.listHash++;
-                    }
-                    asButton(epubEngine, epubEngineName(engine));
-                    return false;
-                });
-            }
-            popupMenu.show();
-        });
+        asButton(epubEngine, EpubEngineMenu.name(getContext(), AppState.get().epubEngine));
+        epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v,
+                () -> asButton(epubEngine, EpubEngineMenu.name(v.getContext(), AppState.get().epubEngine))));
 
 //        appEngine.setOnClickListener(v -> {
 //            if (BooksService.isRunning) {
@@ -3015,14 +2995,6 @@ public class PrefFragment2 extends UIFragment {
 
     /** The engines {@link AppState#pdfEngine} can be set to, in the order they are offered. */
     private static final int[] PDF_ENGINES = {AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
-
-    /** The engines {@link AppState#epubEngine} can be set to, in the order they are offered. */
-    private static final int[] EPUB_ENGINES = {AppState.EPUB_ENGINE_MUPDF, AppState.EPUB_ENGINE_FOLIATE};
-
-    /** The engine's name as the preference shows it: MuPDF is the default one. */
-    private String epubEngineName(final int engine) {
-        return engine == AppState.EPUB_ENGINE_FOLIATE ? "HTML+JS" : getString(R.string.default_label);
-    }
 
     /** The engine's name as the preference shows it: MuPDF is the default one. */
     private String pdfEngineName(final int engine) {

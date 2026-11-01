@@ -776,6 +776,15 @@ const handlers = {
         const since = relocateCount
         await view.renderer.goTo({ index, anchor: fraction })
         await painted()
+        // The fonts of a section start loading at its first layout, which painted() has just
+        // forced, and until they are in its text is laid out but paints as nothing: a capture now
+        // is the background alone. Every section opens with this, as each is a new document, so a
+        // custom font in the settings made the page after any move across sections an empty one.
+        const current = contents()
+        if (current && current.doc && current.doc.fonts.status === 'loading') {
+            await laidOut()
+            await painted()
+        }
         // The count has to describe the page this call landed on, and `visible` only becomes that
         // page's range when the paginator relocates - which it does after the frames above, not
         // before them. Read without this wait it is the previous page's range, or null on the

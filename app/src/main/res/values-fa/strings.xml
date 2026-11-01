@@ -705,6 +705,7 @@
    <string name="remove_library_folder">این پوشه از کتابخانه حذف شود؟ فایل‌های داخل آن پاک نمی‌شوند.</string>
    <string name="epub_engine">موتور EPUB</string>
    <string name="msg_epub_engine_unavailable">WebView در این دستگاه در دسترس نیست.</string>
+   <string name="msg_mark_needs_foliate">برای علامت‌گذاری متن، موتور EPUB را در تنظیمات به HTML+JS تغییر دهید.</string>
    <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
    <string name="pdf_engine">موتور PDF</string>
    <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>

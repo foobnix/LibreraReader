@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Pašalinti šį aplanką iš bibliotekos? Jame esantys failai nebus ištrinti.</string>
    <string name="epub_engine">EPUB variklis</string>
    <string name="msg_epub_engine_unavailable">WebView šiame įrenginyje neprieinama.</string>
+   <string name="msg_mark_needs_foliate">Norėdami žymėti tekstą, nustatymuose pakeiskite EPUB variklį į HTML+JS.</string>
    <string name="base_stylesheet">Taikyti bazinį stilių aprašą (foliate-js)</string>
    <string name="pdf_engine">PDF variklis</string>
    <string name="msg_pdf_engine_unavailable">Ši versija neturi PDFium bibliotekų.</string>

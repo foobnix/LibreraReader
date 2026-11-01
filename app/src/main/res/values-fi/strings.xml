@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Poistetaanko tämä kansio kirjastosta? Sen tiedostoja ei poisteta.</string>
    <string name="epub_engine">EPUB-moottori</string>
    <string name="msg_epub_engine_unavailable">WebView ei ole käytettävissä tässä laitteessa.</string>
+   <string name="msg_mark_needs_foliate">Jos haluat merkitä tekstiä, vaihda EPUB-moottoriksi HTML+JS asetuksista.</string>
    <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
    <string name="pdf_engine">PDF-moottori</string>
    <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>

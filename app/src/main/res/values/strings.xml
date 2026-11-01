@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Remove this folder from the library? The files in it will not be deleted.</string>
    <string name="epub_engine">EPUB engine</string>
    <string name="msg_epub_engine_unavailable">A WebView is not available on this device.</string>
+   <string name="msg_mark_needs_foliate">To mark text, change the EPUB engine to HTML+JS in the settings.</string>
    <string name="base_stylesheet">Apply the base stylesheet (foliate-js)</string>
    <string name="pdf_engine">PDF engine</string>
    <string name="msg_pdf_engine_unavailable">This build does not include the PDFium libraries.</string>

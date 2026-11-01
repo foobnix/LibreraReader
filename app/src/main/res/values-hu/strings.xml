@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Eltávolítja ezt a mappát a könyvtárból? A benne lévő fájlok nem törlődnek.</string>
    <string name="epub_engine">EPUB-motor</string>
    <string name="msg_epub_engine_unavailable">A WebView nem érhető el ezen az eszközön.</string>
+   <string name="msg_mark_needs_foliate">Szöveg megjelöléséhez a beállításokban állítsa az EPUB-motort HTML+JS-re.</string>
    <string name="base_stylesheet">Alap stíluslap alkalmazása (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
    <string name="msg_pdf_engine_unavailable">Ez a build nem tartalmazza a PDFium könyvtárakat.</string>

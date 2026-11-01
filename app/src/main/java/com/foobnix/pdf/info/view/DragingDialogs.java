@@ -109,6 +109,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
+import com.foobnix.pdf.info.Engines;
+import com.foobnix.pdf.info.EpubEngineMenu;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.model.AppAnnotation;
 import com.foobnix.pdf.info.AnnotationsData;
@@ -2335,7 +2337,21 @@ public class DragingDialogs {
                 final String bookPath = controller.getCurrentBook().getPath();
                 final boolean textWithoutFoliate = ExtUtils.isTextFomat(bookPath)
                         && !(controller.getCodecDocument() instanceof FoliateDocument);
-                if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath) || textWithoutFoliate) {
+                if (withAnnotation && !ExtUtils.isNoTextLayerForamt(bookPath) && textWithoutFoliate) {
+                    // Still on offer, as it is one setting away: every button says which one
+                    final OnClickListener needsFoliate = v ->
+                            Toast.makeText(v.getContext(), R.string.msg_mark_needs_foliate, Toast.LENGTH_LONG).show();
+                    underLine.setOnClickListener(needsFoliate);
+                    strike.setOnClickListener(needsFoliate);
+                    selection.setOnClickListener(needsFoliate);
+                    onAddCustom.setOnClickListener(needsFoliate);
+                    for (LinearLayout line : Arrays.asList(linearLayoutColor, customsLayout)) {
+                        for (int i = 0; i < line.getChildCount(); i++) {
+                            line.getChildAt(i).setOnClickListener(needsFoliate);
+                            line.getChildAt(i).setOnLongClickListener(null);
+                        }
+                    }
+                } else if (!withAnnotation || ExtUtils.isNoTextLayerForamt(bookPath)) {
                     linearLayoutColor.setVisibility(View.GONE);
                     view.findViewById(R.id.onUnderline).setVisibility(View.GONE);
                     view.findViewById(R.id.onStrike).setVisibility(View.GONE);
@@ -5702,6 +5718,14 @@ public class DragingDialogs {
                 });
 
                 // orientation end
+
+                // The engine is picked when a book opens, so another one takes reopening this one
+                final View epubEngineRow = inflate.findViewById(R.id.epubEngineRow);
+                epubEngineRow.setVisibility(TxtUtils.visibleIf(Engines.IS_ENGINE_CHOICE && controller.isTextFormat()));
+                final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
+                epubEngine.setText(EpubEngineMenu.name(epubEngine.getContext(), AppState.get().epubEngine));
+                TxtUtils.underlineTextView(epubEngine);
+                epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v, controller::restartActivity));
 
                 BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
 // brightness end

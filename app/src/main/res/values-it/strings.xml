@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Rimuovere questa cartella dalla libreria? I file al suo interno non verranno eliminati.</string>
    <string name="epub_engine">Motore EPUB</string>
    <string name="msg_epub_engine_unavailable">WebView non è disponibile su questo dispositivo.</string>
+   <string name="msg_mark_needs_foliate">Per evidenziare il testo, imposta il motore EPUB su HTML+JS nelle impostazioni.</string>
    <string name="base_stylesheet">Applica il foglio di stile di base (foliate-js)</string>
    <string name="pdf_engine">Motore PDF</string>
    <string name="msg_pdf_engine_unavailable">Questa build non include le librerie PDFium.</string>

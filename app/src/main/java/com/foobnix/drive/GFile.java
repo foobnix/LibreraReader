@@ -295,11 +295,31 @@ public class GFile {
 
         final List<File> files = exeQF("name = 'Librera' and 'root' in parents and mimeType = '%s' and trashed = false", MIME_FOLDER);
         debugPrint(files);
-        if (files.size() > 0) {
-            return files.get(0);
-        } else {
-            return null;
+        // Drive holds several folders of this name happily. The listing has no order, so taking the
+        // first would let two devices settle on different folders and never see each other's books.
+        File oldest = null;
+        for (File file : files) {
+            if (oldest == null || file.getCreatedTime().getValue() < oldest.getCreatedTime().getValue()) {
+                oldest = file;
+            }
         }
+        return oldest;
+    }
+
+    /**
+     * Devices starting their first sync together each find nothing and each create a folder. Both
+     * then read the listing back and keep the oldest, and the empty one that lost goes to the trash.
+     */
+    private static File createLibreraSync() throws Exception {
+        final File created = GFile.createFolder("root", "Librera");
+        debug("\n Create remote [Librera]");
+        final File oldest = GFile.findLibreraSync();
+        if (oldest == null || oldest.getId().equals(created.getId())) {
+            return created;
+        }
+        LOG.d(TAG, "Trash duplicate root", created.getId(), "keep", oldest.getId());
+        googleDriveService.files().update(created.getId(), new File().setTrashed(true)).execute();
+        return oldest;
     }
 
     public static void debugPrint(List<File> list) {
@@ -464,7 +484,10 @@ public class GFile {
 
             final boolean result = IO.copyFile(is, temp);
             if (result) {
-                IO.copyFile(temp, file);
+                // All at once: the list may be drawing this book's cover from it right now
+                if (!temp.renameTo(file)) {
+                    IO.copyFile(temp, file);
+                }
                 setLastModifiedTime(file, lastModified);
                 return true;
             }
@@ -770,8 +793,7 @@ public class GFile {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null || syncRoot.getTrashed() == true) {
-                    syncRoot = GFile.createFolder("root", "Librera");
-                    debug("\n Create remote [Librera]");
+                    syncRoot = createLibreraSync();
                 }
                 AppSP.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
@@ -1007,10 +1029,19 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
+                // Not on this device yet: there is nothing to compare, it just has to come down, in
+                // this sync - the next one is skipped when nothing changes. Only the copy that
+                // collapse() picked, as two of them would be written to the same temp file.
+                final boolean missing = !local.exists();
+                if (missing && remote != map2.get(local)) {
+                    LOG.d(TAG, "Skip duplicate", remote.getName());
+                    continue;
+                }
+
                 final boolean sameSize = remote.getSize() != null
                         && !local.getName().endsWith(".json")
                         && local.length() == remote.getSize().longValue();
-                if (!hasLastModified(local) || sameSize) {
+                if (!missing && (!hasLastModified(local) || sameSize)) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
                     //debug("\n skip: " + local.getName());

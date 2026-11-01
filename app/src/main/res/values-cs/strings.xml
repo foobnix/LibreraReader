@@ -705,6 +705,7 @@
    <string name="remove_library_folder">Odebrat tuto složku z knihovny? Soubory v ní nebudou smazány.</string>
    <string name="epub_engine">Jádro EPUB</string>
    <string name="msg_epub_engine_unavailable">WebView není na tomto zařízení k dispozici.</string>
+   <string name="msg_mark_needs_foliate">Chcete-li označovat text, změňte v nastavení EPUB engine na HTML+JS.</string>
    <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
    <string name="pdf_engine">Jádro PDF</string>
    <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>

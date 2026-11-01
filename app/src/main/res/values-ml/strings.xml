@@ -705,6 +705,7 @@
    <string name="remove_library_folder">ഈ ഫോൾഡർ ലൈബ്രറിയിൽ നിന്ന് നീക്കം ചെയ്യണോ? അതിലെ ഫയലുകൾ ഇല്ലാതാക്കില്ല.</string>
    <string name="epub_engine">EPUB എഞ്ചിൻ</string>
    <string name="msg_epub_engine_unavailable">ഈ ഉപകരണത്തിൽ WebView ലഭ്യമല്ല.</string>
+   <string name="msg_mark_needs_foliate">ടെക്സ്റ്റ് അടയാളപ്പെടുത്താൻ, ക്രമീകരണങ്ങളിൽ EPUB എഞ്ചിൻ HTML+JS ആക്കുക.</string>
    <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
    <string name="pdf_engine">PDF എഞ്ചിൻ</string>
    <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
