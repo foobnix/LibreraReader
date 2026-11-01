@@ -190,6 +190,19 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public int[] getSelectionPlace(final String text) {
+        final int first = ctr.getDocumentController().getFirstVisiblePage();
+        final int last = ctr.getDocumentController().getLastVisiblePage();
+        for (int i = first; i < last + 1; i++) {
+            final Page page = ctr.getDocumentModel().getPageByDocIndex(i);
+            if (page != null && page.selectedText != null && !page.selectedText.isEmpty()) {
+                return new int[]{i, AnnotationsFinder.occurrenceOf(page.texts, page.selectedText.get(0), text)};
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void clearSelectedText() {
         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         ctr.getDocumentController().clearSelectedText();

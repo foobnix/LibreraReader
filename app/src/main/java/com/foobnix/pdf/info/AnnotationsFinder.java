@@ -228,6 +228,43 @@ public class AnnotationsFinder {
         return out.toString();
     }
 
+    /**
+     * How many times a selected text is on the page before the place it was selected, so what
+     * reads from a selection starts there, and not at the first place with the same words.
+     *
+     * Counted in letters, as {@link TxtUtils#indexOfLetters} finds them in the text TTS reads.
+     *
+     * @param first the first word selected; a copy of the page's own, so found by what it is
+     */
+    public static int occurrenceOf(final TextWord[][] lines, final TextWord first, final String text) {
+        if (lines == null || first == null || text == null) {
+            return 0;
+        }
+        final String wanted = TxtUtils.lettersOf(text);
+        if (wanted.isEmpty()) {
+            return 0;
+        }
+        final StringBuilder letters = new StringBuilder();
+        int start = -1;
+        for (TextWord[] line : lines) {
+            for (TextWord word : line) {
+                if (word == null || word.w == null) {
+                    continue;
+                }
+                if (start < 0 && word.w.equals(first.w) && Math.abs(word.left - first.left) < 0.002f
+                        && Math.abs(word.top - first.top) < 0.002f) {
+                    start = letters.length();
+                }
+                letters.append(TxtUtils.lettersOf(word.w));
+            }
+        }
+        int count = 0;
+        for (int i = letters.indexOf(wanted); i >= 0 && i < start; i = letters.indexOf(wanted, i + 1)) {
+            count++;
+        }
+        return count;
+    }
+
     // ---------------------------------------------------------------- rectangles as text
 
     /** "l,t,r,b;l,t,r,b" - compact, and readable in the JSON when something has to be looked at. */

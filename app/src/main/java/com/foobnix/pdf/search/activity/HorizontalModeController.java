@@ -594,6 +594,17 @@ public abstract class HorizontalModeController extends DocumentController {
         }.start();
     }
 
+    @Override
+    public int[] getSelectionPlace(final String text) {
+        final List<TextWord> words = PageImageState.get().getSelectedWords(currentPage);
+        if (words == null || words.isEmpty()) {
+            return null;
+        }
+        final TextWord first = words.get(0);
+        final int page = docPageOf(currentPage, first.number);
+        return new int[]{page, AnnotationsFinder.occurrenceOf(PageImageState.get().pagesText.get(page), first, text)};
+    }
+
     /**
      * Which page of the book one of the pages on screen is, keyed as the links and the text are.
      *

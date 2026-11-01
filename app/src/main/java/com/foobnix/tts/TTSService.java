@@ -85,6 +85,7 @@ import java.util.List;
 @TargetApi(Build.VERSION_CODES.O) public class TTSService extends MediaBrowserServiceCompat {
     public static final String EXTRA_PATH = "EXTRA_PATH";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
+    public static final String EXTRA_ANCHOR_OCCURRENCE = "EXTRA_ANCHOR_OCCURRENCE";
     public static final String EXTRA_INT = "INT";
     private static final String TAG = "TTSService";
     public static String ACTION_PLAY_CURRENT_PAGE = "ACTION_PLAY_CURRENT_PAGE";
@@ -338,6 +339,13 @@ import java.util.List;
     @TargetApi(26)
     public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize,
                                     String title) {
+        playBookPage(page, path, anchor, 0, width, height, fontSize, title);
+    }
+
+    /** @param occurrence which of the places on the page that have the anchor's words, from 0 */
+    @TargetApi(26)
+    public static void playBookPage(int page, String path, String anchor, int occurrence, int width, int height,
+                                    int fontSize, String title) {
         LOG.d(TAG, "playBookPage1", page, path, width, height);
 
         TTSEngine.get()
@@ -352,6 +360,7 @@ import java.util.List;
         AppSP.get().save();
 
         Intent intent = playBookIntent(page, path, anchor);
+        intent.putExtra(EXTRA_ANCHOR_OCCURRENCE, occurrence);
 
         try {
             if (Build.VERSION.SDK_INT >= 26) {
@@ -848,6 +857,7 @@ import java.util.List;
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppSP.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
+            anchorOccurrence = intent.getIntExtra(EXTRA_ANCHOR_OCCURRENCE, 0);
 
             if (pageNumber != -1) {
                 playPage("", pageNumber, anchor);
@@ -1109,6 +1119,9 @@ import java.util.List;
         return words.substring(0, Math.min(24, words.length()));
     }
 
+    /** Which of the places with the anchor's words the next page read starts from. */
+    private volatile int anchorOccurrence;
+
     private void speakPage(String preText, final int pageNumber, String anchor, int pageCount, String pageHTML) {
         AppSP.get().lastBookPage = pageNumber;
         EventBus.getDefault()
@@ -1137,7 +1150,8 @@ import java.util.List;
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
 
         if (TxtUtils.isNotEmpty(anchor)) {
-            int indexOf = TxtUtils.indexOfLetters(pageHTML, anchor);
+            int indexOf = TxtUtils.indexOfLetters(pageHTML, anchor, anchorOccurrence);
+            anchorOccurrence = 0;
             if (indexOf > 0) {
                 pageHTML = pageHTML.substring(indexOf);
                 LOG.d("find anchor new text", pageHTML);

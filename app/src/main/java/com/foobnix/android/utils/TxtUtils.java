@@ -459,6 +459,15 @@ public class TxtUtils {
      * @return the index in {@code text}, or -1
      */
     public static int indexOfLetters(String text, String words) {
+        return indexOfLetters(text, words, 0);
+    }
+
+    /**
+     * The same, for a text that is on the page more than once.
+     *
+     * @param occurrence how many of them to pass over; when there are not that many, the first
+     */
+    public static int indexOfLetters(String text, String words, int occurrence) {
         if (text == null || words == null) {
             return -1;
         }
@@ -471,18 +480,31 @@ public class TxtUtils {
                 letters.append(Character.toLowerCase(ch));
             }
         }
-        final StringBuilder wanted = new StringBuilder(words.length());
-        for (int i = 0; i < words.length(); i++) {
-            final char ch = words.charAt(i);
-            if (Character.isLetterOrDigit(ch)) {
-                wanted.append(Character.toLowerCase(ch));
-            }
-        }
-        if (wanted.length() == 0) {
+        final String wanted = lettersOf(words);
+        if (wanted.isEmpty()) {
             return -1;
         }
-        final int found = letters.indexOf(wanted.toString());
+        int found = letters.indexOf(wanted);
+        final int first = found;
+        for (int i = 0; i < occurrence && found >= 0; i++) {
+            found = letters.indexOf(wanted, found + 1);
+        }
+        if (found < 0) {
+            found = first;
+        }
         return found < 0 ? -1 : index[found];
+    }
+
+    /** A text as {@link #indexOfLetters} compares it: its letters and digits, in lower case. */
+    public static String lettersOf(String text) {
+        final StringBuilder letters = new StringBuilder(text.length());
+        for (int i = 0; i < text.length(); i++) {
+            final char ch = text.charAt(i);
+            if (Character.isLetterOrDigit(ch)) {
+                letters.append(Character.toLowerCase(ch));
+            }
+        }
+        return letters.toString();
     }
 
     public static String replaceHTMLforTTS(String pageHTML) {

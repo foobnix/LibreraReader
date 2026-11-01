@@ -38,4 +38,17 @@ public class TestIndexOfLetters {
         assertEquals(-1, TxtUtils.indexOfLetters("some text", "..."));
         assertEquals(-1, TxtUtils.indexOfLetters(null, "text"));
     }
+
+    @Test
+    public void passesOverTheOccurrencesBeforeTheSelection() {
+        final String text = "Such a fall as this. Would the fall never end? The third fall.";
+        assertEquals(7, TxtUtils.indexOfLetters(text, "fall", 0));
+        assertEquals(31, TxtUtils.indexOfLetters(text, "fall", 1));
+        assertEquals(57, TxtUtils.indexOfLetters(text, "fall", 2));
+    }
+
+    @Test
+    public void takesTheFirstWhenThereAreNotThatMany() {
+        assertEquals(7, TxtUtils.indexOfLetters("Such a fall as this.", "fall", 5));
+    }
 }

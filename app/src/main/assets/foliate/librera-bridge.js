@@ -453,7 +453,10 @@ const collectText = () => {
             try {
                 range.setStart(node, i)
                 range.setEnd(node, end)
-                if (normalize(range.getBoundingClientRect(), offset, size)) {
+                // A word hyphenated across two pages has a box on each, and goes with the first:
+                // on both it would be read twice, once either side of the page turn
+                const first = range.getClientRects()[0] || range.getBoundingClientRect()
+                if (normalize(first, offset, size)) {
                     piece += isSpace ? ' ' : text.slice(i, end)
                 }
             } catch (e) {

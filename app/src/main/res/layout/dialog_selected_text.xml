@@ -133,7 +133,7 @@
                 android:layout_weight="0"
                 android:adjustViewBounds="true"
                 android:background="@drawable/bg_clickable"
-                android:src="@drawable/glyphicons_1020_head_voice"
+                android:src="@drawable/glyphicons_186_volume_up"
                 android:tint="@color/tint_gray" />
 
             <ImageView

@@ -986,6 +986,16 @@ public abstract class DocumentController {
         return getBookmarkPage(bookmark);
     }
 
+    /**
+     * Where the selected text is.
+     *
+     * @return the page, 0-based, and how many times the text comes before it on that page, or
+     *         null with nothing selected
+     */
+    public int[] getSelectionPlace(final String text) {
+        return null;
+    }
+
     public abstract void updateRendering();
 
     public void goToPageByTTS() {

@@ -2009,28 +2009,16 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                         AppSP.get().lastBookParagraph = 0;
                         if (TTSService.isTTSGranted(controller.getActivity())) {
-                            if (!TTSService.isServiceRunning(TTSService.class, controller.getActivity())) {
-                                Intent intent = new Intent(LibreraApp.context, TTSService.class);
-                                intent.setAction("TTSService.ACTION_INIT");
-
-                                PendingIntent play = PendingIntent.getService(LibreraApp.context,
-                                                                              0,
-                                                                              intent,
-                                                                              PendingIntent.FLAG_IMMUTABLE);
-                                try {
-                                    play.send();
-                                } catch (Exception e) {
-                                    LOG.e(e);
-                                }
-                            } else {
-                                TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
-                                                        controller.getCurrentBook().getPath(),
-                                                        editText.getText().toString().trim(),
-                                                        controller.getBookWidth(),
-                                                        controller.getBookHeight(),
-                                                        BookCSS.get().fontSizeSp,
-                                                        controller.getTitle());
-                            }
+                            final String anchor = editText.getText().toString().trim();
+                            final int[] place = controller.getSelectionPlace(anchor);
+                            TTSService.playBookPage(place != null ? place[0] : controller.getCurentPageFirst1() - 1,
+                                                    controller.getCurrentBook().getPath(),
+                                                    anchor,
+                                                    place != null ? place[1] : 0,
+                                                    controller.getBookWidth(),
+                                                    controller.getBookHeight(),
+                                                    BookCSS.get().fontSizeSp,
+                                                    controller.getTitle());
                         }
                     }
                 });
