@@ -473,7 +473,10 @@ const collectText = () => {
     for (const block of blocks) {
         const text = readable(block.text).replace(/\s+/g, ' ').trim()
         if (!text) continue
-        const heading = bodyFont > 0 && block.size > bodyFont
+        // By a margin: the size read back is rounded, and at some font and screen sizes it comes out
+        // a hair above the body's own, which would put a pause around every paragraph of the book,
+        // one of them in the middle of a sentence that goes on over the page
+        const heading = bodyFont > 0 && block.size > bodyFont * 1.05
         if (heading) html += '<pause>'
         html += '<p>' + escapeHtml(text) + ' </p>\n'
         if (heading) html += '<pause>\n'

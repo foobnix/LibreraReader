@@ -190,6 +190,11 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public void redrawPage() {
+        ctr.getDocumentController().redrawView();
+    }
+
+    @Override
     public int[] getSelectionPlace(final String text) {
         final int first = ctr.getDocumentController().getFirstVisiblePage();
         final int last = ctr.getDocumentController().getLastVisiblePage();

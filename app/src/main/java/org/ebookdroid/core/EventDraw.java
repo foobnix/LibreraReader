@@ -17,6 +17,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.tts.ReadingHighlight;
 import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -152,6 +153,7 @@ public class EventDraw implements IEvent {
         // drawSomething(page);
         // drawHighlights(page);
         drawAnnotations(page);
+        drawReading(page);
         drawSelectedText(page);
 
         return res;
@@ -261,6 +263,14 @@ public class EventDraw implements IEvent {
                 rect.offset(-viewState.viewBase.x, -viewState.viewBase.y);
                 AnnotationsPainter.draw(canvas, rect, mark.annotation);
             }
+        }
+    }
+
+    private void drawReading(final Page page) {
+        for (final RectF normalized : ReadingHighlight.on(page.index.docIndex)) {
+            final RectF rect = page.getPageRegion(pageBounds, new RectF(normalized));
+            rect.offset(-viewState.viewBase.x, -viewState.viewBase.y);
+            AnnotationsPainter.drawReading(canvas, rect);
         }
     }
 

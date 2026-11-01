@@ -30,6 +30,7 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsData;
 import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.tts.ReadingHighlight;
 import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -294,6 +295,9 @@ public class PageImaveView extends View {
             for (RectF rect : mark.rects) {
                 AnnotationsPainter.draw(canvas, transform(rect, number), mark.annotation);
             }
+        }
+        for (RectF rect : ReadingHighlight.on(docPageOf(number))) {
+            AnnotationsPainter.drawReading(canvas, transform(rect, number));
         }
     }
 

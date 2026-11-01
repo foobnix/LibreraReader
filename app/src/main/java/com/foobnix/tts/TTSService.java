@@ -59,6 +59,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppData;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.common.settings.SettingsManager;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
@@ -871,6 +872,7 @@ import java.util.List;
     }
 
     private void stopMediaSesstionAndReleaweWakeLock() {
+        ReadingHighlight.clear();
         TTSEngine.get()
                  .stop(mMediaSessionCompat);
         releaseWakeLock();
@@ -1052,8 +1054,10 @@ import java.util.List;
                     final int number = pageInLayout(dc, pageNumber, pageCount);
                     final CodecPage page = number < pageCount ? dc.getPage(number) : null;
                     final String pageHTML = page == null ? null : page.getPageHTML();
+                    final TextWord[][] words = page == null ? null : page.getText();
                     mainHandler.post(() -> {
                         if (request == playRequest) {
+                            readingWords = words;
                             speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
                         }
                     });
@@ -1061,6 +1065,7 @@ import java.util.List;
                 return;
             }
 
+            readingWords = null;
             final int pageCount = dc.getPageCount();
             final int number = pageInLayout(dc, pageNumber, pageCount);
             final CodecPage page = number < pageCount ? dc.getPage(number) : null;
@@ -1118,6 +1123,9 @@ import java.util.List;
         final String words = text.trim();
         return words.substring(0, Math.min(24, words.length()));
     }
+
+    /** The words of the page being read, where the engine lays them out to be marked. */
+    private volatile TextWord[][] readingWords;
 
     /** Which of the places with the anchor's words the next page read starts from. */
     private volatile int anchorOccurrence;
@@ -1187,6 +1195,7 @@ import java.util.List;
             }
         }
         final String preText1 = preText;
+        ReadingHighlight.prepare(pageNumber, readingWords, firstPart);
 
         if (Build.VERSION.SDK_INT >= 15) {
             TTSEngine.get()
@@ -1194,6 +1203,10 @@ import java.util.List;
                      .setOnUtteranceProgressListener(new UtteranceProgressListener() {
                          @Override public void onStart(String utteranceId) {
                              LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
+                             if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
+                                 ReadingHighlight.show(Integer.parseInt(
+                                         utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")));
+                             }
                          }
 
                          @Override public void onError(String utteranceId) {

@@ -3,8 +3,11 @@ package com.foobnix.pdf.info;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
+import com.foobnix.model.AppState;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppAnnotation;
@@ -26,6 +29,19 @@ public class AnnotationsPainter {
 
     static {
         paint.setAntiAlias(true);
+    }
+
+    /** The sentence TTS is reading. */
+    public static void drawReading(final Canvas canvas, final RectF rect) {
+        final Paint paint = new Paint();
+        if (AppState.get().isDayNotInvert) {
+            // Multiplied, so the text under it stays as dark as it was
+            paint.setColor(0xFFFFEE80);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+        } else {
+            paint.setColor(0x66FFEB3B);
+        }
+        canvas.drawRect(rect, paint);
     }
 
     public static synchronized void draw(final Canvas canvas, final RectF rect, final AppAnnotation annotation) {

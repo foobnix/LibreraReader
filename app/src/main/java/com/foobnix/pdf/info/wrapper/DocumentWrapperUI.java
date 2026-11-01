@@ -74,6 +74,7 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.search.activity.ViewBinder;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
+import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageEditMark;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -421,6 +422,11 @@ public class DocumentWrapperUI {
             return true;
         }
         return false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onInvalidate(InvalidateMessage event) {
+        dc.redrawPage();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

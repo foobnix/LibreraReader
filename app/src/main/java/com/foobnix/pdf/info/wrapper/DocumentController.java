@@ -996,6 +996,10 @@ public abstract class DocumentController {
         return null;
     }
 
+    /** Draws the pages on screen again, as they are. */
+    public void redrawPage() {
+    }
+
     public abstract void updateRendering();
 
     public void goToPageByTTS() {
