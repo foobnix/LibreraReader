@@ -21,7 +21,7 @@ public class File {
         return null;
     }
 
-    public Object getCreatedTime() {
+    public DateTime getCreatedTime() {
         return null;
     }
 
