@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
+import com.foobnix.pdf.search.activity.msg.MessageEditMark;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
@@ -587,14 +588,12 @@ public class PageImaveView extends View {
     }
 
     /**
-     * Removes one of Librera's own marks under a tap, when the eraser is on.
+     * One of Librera's own marks under a tap: the eraser removes it, any other tap offers to
+     * change it.
      *
      * @return whether a mark was there, in which case the tap was for it and nothing else
      */
-    public boolean removeMarkAt(float x1, float y1) {
-        if (AppState.get().editWith != AppState.EDIT_DELETE) {
-            return false;
-        }
+    public boolean onMarkTap(float x1, float y1) {
         RectF tr = new RectF();
         imageMatrix().mapRect(tr);
         float[] f = new float[9];
@@ -616,16 +615,23 @@ public class PageImaveView extends View {
                 if (!RectF.intersects(transform(rect, number), tapRect)) {
                     continue;
                 }
-                AnnotationsData.get().remove(mark.annotation);
-                AnnotationsFinder.invalidate();
-                final List<AnnotationsFinder.Drawn> shown =
-                        PageImageState.get().pagesMarks.get(docPageOf(number));
-                if (shown != null) {
-                    final List<AnnotationsFinder.Drawn> marks = new ArrayList<AnnotationsFinder.Drawn>(shown);
-                    marks.remove(mark);
-                    PageImageState.get().pagesMarks.put(docPageOf(number), marks);
+                final int page = docPageOf(number);
+                final Runnable taken = () -> {
+                    final List<AnnotationsFinder.Drawn> shown = PageImageState.get().pagesMarks.get(page);
+                    if (shown != null) {
+                        final List<AnnotationsFinder.Drawn> marks = new ArrayList<AnnotationsFinder.Drawn>(shown);
+                        marks.remove(mark);
+                        PageImageState.get().pagesMarks.put(page, marks);
+                    }
+                    invalidate();
+                };
+                if (AppState.get().editWith == AppState.EDIT_DELETE) {
+                    AnnotationsData.get().remove(mark.annotation);
+                    AnnotationsFinder.invalidate();
+                    taken.run();
+                } else {
+                    EventBus.getDefault().post(new MessageEditMark(mark.annotation, this::invalidate, taken));
                 }
-                invalidate();
                 return true;
             }
         }
@@ -1158,9 +1164,8 @@ public class PageImaveView extends View {
                     }
                 }
 
-                if (!isIgronerClick && removeMarkAt(event.getX(), event.getY())) {
-                    // The tap was on a mark and the eraser is on; it has gone and that is all
-                    // the tap meant
+                if (!isIgronerClick && onMarkTap(event.getX(), event.getY())) {
+                    // The tap was on a mark, and that is all it meant
                     isIgronerClick = false;
                 } else if (!isIgronerClick) {
                     int target = 0;

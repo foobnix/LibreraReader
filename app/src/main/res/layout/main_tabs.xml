@@ -101,6 +101,26 @@
                             android:layout_marginBottom="8dip"
                             android:visibility="gone" />
 
+                        <!-- A running sync, placed over the tabs by MainTabs2. Drawn here, as the
+                             system's own bar stays thin at any height. -->
+                        <FrameLayout
+                            android:id="@+id/syncNavProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="4dip"
+                            android:layout_gravity="top"
+                            android:layout_marginLeft="34dip"
+                            android:layout_marginRight="34dip"
+                            android:background="@drawable/bg_sync_track"
+                            android:elevation="8dip"
+                            android:visibility="gone">
+
+                            <View
+                                android:id="@+id/syncNavBar"
+                                android:layout_width="72dip"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_sync_bar" />
+                        </FrameLayout>
+
                     </FrameLayout>
 
                     <FrameLayout

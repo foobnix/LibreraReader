@@ -74,6 +74,21 @@
                 android:text="@string/update_library"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/libraryFoldersSync"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:minWidth="88dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:text="@string/sync"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

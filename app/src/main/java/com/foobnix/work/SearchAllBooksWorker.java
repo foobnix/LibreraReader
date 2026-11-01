@@ -93,7 +93,7 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             handler.post(timer);
             LOG.d("SearchAllBooksWorker","searchPaths-all", 3, BookCSS.get().searchPathsJson);
-            for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+            for (final String path : AppProfile.libraryFolders()) {
                 if (path == null) {
                     continue;
                 }

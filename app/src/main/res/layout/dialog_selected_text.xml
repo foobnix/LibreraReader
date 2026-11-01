@@ -67,6 +67,17 @@
                     android:padding="1dip"
                     android:src="@drawable/glyphicons_371_plus"
                     android:tint="@color/tint_gray" />
+
+                <ImageView
+                    android:id="@+id/onRemoveMark"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_marginLeft="10dip"
+                    android:background="@android:drawable/list_selector_background"
+                    android:padding="2dip"
+                    android:src="@drawable/glyphicons_17_bin"
+                    android:tint="@color/tint_gray"
+                    android:visibility="gone" />
             </LinearLayout>
         </HorizontalScrollView>
 

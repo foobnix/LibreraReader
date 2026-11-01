@@ -220,6 +220,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/update_library" />
+
+                <!-- Shown while sync is on. -->
+                <TextView
+                    android:id="@+id/onSyncLibrary"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/sync"
+                    android:visibility="gone" />
             </LinearLayout>
 
 
@@ -1766,10 +1776,9 @@
 
                     <TextView
                         android:id="@+id/syncInfo2"
-                        android:layout_width="0dp"
+                        style="@style/textLink"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="4dip"
                         android:text="ivan@gmail.com" />
 
                     <ProgressBar

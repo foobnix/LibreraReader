@@ -1,5 +1,6 @@
 package com.foobnix.model;
 
+import com.foobnix.android.utils.JsonDB;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -180,6 +181,26 @@ public class AppProfile {
         ExtUtils.init(c);
         FontExtractor.extractFonts(c);
 
+    }
+
+    /**
+     * The folders the library is built from: the user's, and Librera/Books, where synced books
+     * arrive. That one is not theirs to manage, so it stays out of the list settings shows, and it
+     * is left out here too when a folder of theirs already holds it.
+     */
+    public static List<String> libraryFolders() {
+        final List<String> folders = new ArrayList<>(JsonDB.get(BookCSS.get().searchPathsJson));
+        if (SYNC_FOLDER_BOOKS == null) {
+            return folders;
+        }
+        final String books = SYNC_FOLDER_BOOKS.getPath() + "/";
+        for (String folder : folders) {
+            if (folder != null && books.startsWith(folder.endsWith("/") ? folder : folder + "/")) {
+                return folders;
+            }
+        }
+        folders.add(SYNC_FOLDER_BOOKS.getPath());
+        return folders;
     }
 
     public static List<File> getAllFiles(String name) {

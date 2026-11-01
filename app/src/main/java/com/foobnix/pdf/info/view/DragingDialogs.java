@@ -115,6 +115,8 @@ import com.foobnix.pdf.info.EpubEngineMenu;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.model.AppAnnotation;
 import com.foobnix.pdf.info.AnnotationsData;
+import com.foobnix.pdf.search.activity.msg.MessageEditMark;
+import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -1745,6 +1747,32 @@ public class DragingDialogs {
                                         final DocumentController controller,
                                         boolean withAnnotation1,
                                         final Runnable reloadUI) {
+        dialogSelectText(anchor, controller, withAnnotation1, reloadUI, null);
+    }
+
+    /** The same dialog for a mark already in the book: its buttons change that mark. */
+    public static void dialogEditMark(final FrameLayout anchor,
+                                      final DocumentController controller,
+                                      final Runnable reloadUI,
+                                      final MessageEditMark edit) {
+        AppState.get().selectedText = edit.mark.text;
+        dialogSelectText(anchor, controller, true, reloadUI, edit);
+    }
+
+    private static void changeMark(final MessageEditMark edit, final String color, final AnnotationType type) {
+        edit.mark.color = color;
+        edit.mark.setType(type);
+        // Stored under the time it was made, in the file it came from, so this replaces it
+        AnnotationsData.get().add(edit.mark);
+        AnnotationsFinder.invalidate();
+        edit.changed.run();
+    }
+
+    private static void dialogSelectText(final FrameLayout anchor,
+                                         final DocumentController controller,
+                                         boolean withAnnotation1,
+                                         final Runnable reloadUI,
+                                         final MessageEditMark edit) {
         final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() && withAnnotation1;
         new DragingPopup(R.string.text, anchor, 300, 400) {
             @Override public View getContentView(LayoutInflater inflater) {
@@ -1769,6 +1797,7 @@ public class DragingDialogs {
                                 continue;
                             }
                             final ImageView image = new ImageView(controller.getActivity());
+                            image.setTag(line);
                             if (line.startsWith("H")) {
                                 image.setImageResource(R.drawable.glyphicons_695_text_background);
                             } else if (line.startsWith("U")) {
@@ -2339,7 +2368,50 @@ public class DragingDialogs {
                 final String bookPath = controller.getCurrentBook().getPath();
                 final boolean textWithoutFoliate = ExtUtils.isTextFomat(bookPath)
                         && !(controller.getCodecDocument() instanceof FoliateDocument);
-                if (withAnnotation && !ExtUtils.isNoTextLayerForamt(bookPath) && textWithoutFoliate
+                if (edit != null) {
+                    final int markColor = Color.parseColor(edit.mark.color);
+                    underLine.setColorFilter(markColor);
+                    strike.setColorFilter(markColor);
+                    selection.setColorFilter(markColor);
+                    final AnnotationType[] styles = {AnnotationType.UNDERLINE, AnnotationType.STRIKEOUT,
+                            AnnotationType.HIGHLIGHT};
+                    final View[] buttons = {underLine, strike, selection};
+                    for (int i = 0; i < buttons.length; i++) {
+                        final AnnotationType style = styles[i];
+                        buttons[i].setOnClickListener(v -> {
+                            changeMark(edit, edit.mark.color, style);
+                            closeDialog();
+                        });
+                    }
+                    // A colour keeps the mark's style and the dialog open, to try another one
+                    for (int i = 0; i < linearLayoutColor.getChildCount(); i++) {
+                        final View tile = linearLayoutColor.getChildAt(i);
+                        final String color = (String) tile.getTag();
+                        tile.setOnClickListener(v -> {
+                            AppState.get().annotationTextColor = color;
+                            underLine.setColorFilter(Color.parseColor(color));
+                            strike.setColorFilter(Color.parseColor(color));
+                            selection.setColorFilter(Color.parseColor(color));
+                            changeMark(edit, color, edit.mark.getType());
+                        });
+                    }
+                    for (int i = 0; i < customsLayout.getChildCount(); i++) {
+                        final View custom = customsLayout.getChildAt(i);
+                        final String line = (String) custom.getTag();
+                        custom.setOnClickListener(v -> {
+                            changeMark(edit, line.substring(1), line.startsWith("H") ? AnnotationType.HIGHLIGHT
+                                    : line.startsWith("U") ? AnnotationType.UNDERLINE : AnnotationType.STRIKEOUT);
+                            closeDialog();
+                        });
+                    }
+                    final View onRemoveMark = view.findViewById(R.id.onRemoveMark);
+                    onRemoveMark.setVisibility(View.VISIBLE);
+                    onRemoveMark.setOnClickListener(v -> {
+                        controller.removeAnnotation(edit.mark);
+                        edit.removed.run();
+                        closeDialog();
+                    });
+                } else if (withAnnotation && !ExtUtils.isNoTextLayerForamt(bookPath) && textWithoutFoliate
                         && FoliateContext.isWebViewSupported()) {
                     // Still on offer, as it is one setting away: every button says which one
                     final OnClickListener needsFoliate = v ->

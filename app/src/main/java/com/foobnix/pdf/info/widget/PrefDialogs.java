@@ -3,6 +3,8 @@ package com.foobnix.pdf.info.widget;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import com.foobnix.model.AppSP;
+import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.wrapper.UITab;
 import android.util.TypedValue;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -197,6 +199,16 @@ public class PrefDialogs {
             create.dismiss();
             onScan.run();
         });
+
+        if (AppSP.get().isEnableSync) {
+            TextView sync = view.findViewById(R.id.libraryFoldersSync);
+            sync.setVisibility(View.VISIBLE);
+            asSyncButton(sync, accent);
+            sync.setOnClickListener(v -> {
+                create.dismiss();
+                GFile.runSyncService(a, true);
+            });
+        }
 
         create.setOnDismissListener(new OnDismissListener() {
 

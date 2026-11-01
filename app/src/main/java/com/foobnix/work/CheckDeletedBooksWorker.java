@@ -72,14 +72,14 @@ public class CheckDeletedBooksWorker extends MessageWorker {
         }
 
         List<FileMeta> localMeta = new LinkedList<FileMeta>();
-        if (JsonDB.isEmpty(BookCSS.get().searchPathsJson)) {
+        if (AppProfile.libraryFolders().isEmpty()) {
             sendFinishMessage();
             return true;
         }
         if (isStopped()) {
             return false;
         }
-        for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
+        for (final String path : AppProfile.libraryFolders()) {
             if (path == null || path.trim()
                                     .length() == 0) {
                 continue;

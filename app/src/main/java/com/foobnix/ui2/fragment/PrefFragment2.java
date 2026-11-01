@@ -155,7 +155,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent,
             statusBarHack;
-    TextView singIn, syncInfo, syncInfo2, syncHeader, syncNow;
+    TextView singIn, syncInfo, syncInfo2, syncHeader, syncNow, syncLibrary;
     ProgressBar syncProgress;
     CheckBox isEnableSync, isSyncPullToRefresh;
     private TextView curBrightness, themeColor, profileLetter;
@@ -292,6 +292,9 @@ public class PrefFragment2 extends UIFragment {
 
     // The sync-now button stands only while an account is signed in.
     private void updateSyncNow() {
+        if (syncLibrary != null) {
+            syncLibrary.setVisibility(AppSP.get().isEnableSync ? View.VISIBLE : View.GONE);
+        }
         if (syncNow == null || getActivity() == null) {
             return;
         }
@@ -349,7 +352,9 @@ public class PrefFragment2 extends UIFragment {
         inflate.findViewById(R.id.syncStatus)
                .setOnClickListener(v -> Dialogs.showSyncLOGDialog(getActivity()));
         syncHeader = inflate.findViewById(R.id.syncHeader);
+        TintUtil.asLinkButton(syncInfo2);
         syncNow = inflate.findViewById(R.id.syncNow);
+        TintUtil.asLinkButton(syncNow);
         // A sync by hand. With sync switched off the service does nothing, so the button
         // switches it on through its own box, whose listener starts the first run.
         syncNow.setOnClickListener(v -> {
@@ -367,6 +372,7 @@ public class PrefFragment2 extends UIFragment {
         isEnableSync.setChecked(AppSP.get().isEnableSync);
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppSP.get().isEnableSync = isChecked;
+            updateSyncNow();
             if (isChecked && getActivity() != null) {
                 if (!GoogleAuth.isAuthorized(getActivity())) {
                     GFile.init(getActivity());
@@ -1913,6 +1919,10 @@ public class PrefFragment2 extends UIFragment {
         TextView updateLibrary = inflate.findViewById(R.id.onUpdateLibrary);
         asButton(updateLibrary);
         updateLibrary.setOnClickListener(v -> onScan());
+        syncLibrary = inflate.findViewById(R.id.onSyncLibrary);
+        PrefDialogs.asSyncButton(syncLibrary, accent);
+        syncLibrary.setOnClickListener(v -> GFile.runSyncService(getActivity(), true));
+        updateSyncNow();
 
         asButton(inflate.findViewById(R.id.importButton))
                 .setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));

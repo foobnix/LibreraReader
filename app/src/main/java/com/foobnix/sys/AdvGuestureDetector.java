@@ -15,6 +15,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.search.activity.msg.MessageEditMark;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -195,6 +196,21 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 annotation = null;
                 avc.selectAnnotation(null);
                 return true;
+            }
+
+            if (annotation2 == null) {
+                final Pair<Page, AnnotationsFinder.Drawn> mark = avc.isMarkTap(e.getX(), e.getY());
+                if (mark != null) {
+                    EventBus.getDefault().post(new MessageEditMark(mark.second.annotation,
+                            avc::toggleRenderingEffects, () -> {
+                                final java.util.List<AnnotationsFinder.Drawn> marks =
+                                        new java.util.ArrayList<AnnotationsFinder.Drawn>(mark.first.marks);
+                                marks.remove(mark.second);
+                                mark.first.marks = marks;
+                                avc.toggleRenderingEffects();
+                            }));
+                    return true;
+                }
             }
             annotation = annotation2;
 

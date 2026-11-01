@@ -2,6 +2,8 @@ package com.foobnix.ui2;
 
 import static com.foobnix.pdf.info.Android6.MY_PERMISSIONS_REQUEST_WES;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -20,10 +22,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.KeyEvent;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -809,6 +813,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         indicator.addSwipeRefreshLayout(swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
+        syncProgress = findViewById(R.id.syncNavProgress);
         indicator.init();
 
         indicator.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -1023,12 +1028,49 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
     }
 
-    // A sync is drawn in the preferences now, and nowhere else in the app; here the message
-    // only lets go of the pull-to-refresh wheel that may have started it.
+    private View syncProgress;
+    private ObjectAnimator syncAnimator;
+
+    // Most syncs find nothing to do and are over in a moment: only one that takes a while is shown
+    private final Runnable showSyncProgress = () -> {
+        final boolean tabsAtTop = AppState.get().tapPositionTop;
+        final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) syncProgress.getLayoutParams();
+        // Above the icons: the tabs at the foot sit higher or lower with the system's own bars
+        params.topMargin = tabsAtTop ? findViewById(R.id.imageParent1).getHeight()
+                                     : indicator.getTop() + Dips.dpToPx(4);
+        if (tabsAtTop) {
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+        }
+        syncProgress.setLayoutParams(params);
+        syncProgress.setVisibility(View.VISIBLE);
+        syncProgress.post(() -> {
+            final View bar = syncProgress.findViewById(R.id.syncNavBar);
+            syncAnimator = ObjectAnimator.ofFloat(bar, View.TRANSLATION_X, 0, syncProgress.getWidth() - bar.getWidth());
+            syncAnimator.setDuration(900);
+            syncAnimator.setRepeatCount(ValueAnimator.INFINITE);
+            syncAnimator.setRepeatMode(ValueAnimator.REVERSE);
+            syncAnimator.start();
+        });
+    };
+
+    // A sync shows as a line in the tabs; the message also lets go of the pull-to-refresh wheel
+    // that may have started it.
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
         try {
             swipeRefreshLayout.setRefreshing(false);
+            if (syncProgress != null) {
+                syncProgress.removeCallbacks(showSyncProgress);
+                if (msg.state == MessageSync.STATE_VISIBLE) {
+                    syncProgress.postDelayed(showSyncProgress, 400);
+                } else {
+                    syncProgress.setVisibility(View.GONE);
+                    if (syncAnimator != null) {
+                        syncAnimator.cancel();
+                    }
+                }
+            }
         } catch (Exception e) {
             LOG.e(e);
         }

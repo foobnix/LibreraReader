@@ -303,6 +303,13 @@ public class AppData {
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.browseExts);
 
+        // The search gives a file name and nothing else: a row needs the book's title and author,
+        // and its progress, which may have just come from another device
+        for (int i = 0; i < res.size(); i++) {
+            res.set(i, FileMetaCore.createMetaIfNeed(res.get(i).getPath(), true));
+        }
+        SharedBooks.updateProgress(res, false, LIMIT);
+
         Collections.sort(res, FileMetaComparators.BY_SYNC_DATE);
         Collections.reverse(res);
         return res;
