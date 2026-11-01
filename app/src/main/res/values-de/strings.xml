@@ -107,7 +107,7 @@
    <string name="right_to_left">Rechts nach links</string>
    <string name="right_page_then_left_page_rtl_">Im Dokument von rechts nach links lesen (RTL)</string>
    <string name="rotate_page">Seite drehen</string>
-   <string name="rotate_default">Standardeinstellung</string>
+   <string name="default_label">Standard</string>
    <string name="tap_zone_size">Größe der Kanten-Tippzone</string>
    <string name="customize_tap_zones">Tippzonen anpassen</string>
    <string name="left_side">Linke Seite</string>

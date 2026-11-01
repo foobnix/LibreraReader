@@ -109,7 +109,7 @@
    <string name="right_to_left">RTL</string>
    <string name="right_page_then_left_page_rtl_">Force right-hand page</string>
    <string name="rotate_page">Rotate angle</string>
-   <string name="rotate_default">Default</string>
+   <string name="default_label">Default</string>
    <string name="tap_zone_size">Tap zones (edges)</string>
    <string name="customize_tap_zones">Configure Tap Zones</string>
    <string name="left_side">Left</string>

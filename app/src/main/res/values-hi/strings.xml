@@ -107,7 +107,7 @@
    <string name="right_to_left">दाएं से बाएं</string>
    <string name="right_page_then_left_page_rtl_">दायां पृष्ठ तब बाएं पेज (आरटीएल)</string>
    <string name="rotate_page">घुमाएँ पृष्ठ</string>
-   <string name="rotate_default">चूक</string>
+   <string name="default_label">डिफ़ॉल्ट</string>
    <string name="tap_zone_size">ठोकर क्षेत्र आकार</string>
    <string name="customize_tap_zones">जोनों नल बनाइए</string>
    <string name="left_side">बाईं तरफ</string>

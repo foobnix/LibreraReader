@@ -107,7 +107,7 @@
    <string name="right_to_left">Dae dereta a manca</string>
    <string name="right_page_then_left_page_rtl_">Pàgina a dereta e a pustis a manca</string>
    <string name="rotate_page">Àngulu de rotatzione</string>
-   <string name="rotate_default">Predefinidu</string>
+   <string name="default_label">Predefinidu</string>
    <string name="tap_zone_size">Zonas de tocu (oros)</string>
    <string name="customize_tap_zones">Cunfigura sas zonas de tocu</string>
    <string name="left_side">Manca</string>

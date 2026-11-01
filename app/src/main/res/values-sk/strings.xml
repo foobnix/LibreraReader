@@ -107,7 +107,7 @@
    <string name="right_to_left">Sprava doľava</string>
    <string name="right_page_then_left_page_rtl_">Vynútiť pravú stranu</string>
    <string name="rotate_page">Uhol otočenia</string>
-   <string name="rotate_default">Predvolené</string>
+   <string name="default_label">Predvolené</string>
    <string name="tap_zone_size">Oblasti klepnutia (okraje)</string>
    <string name="customize_tap_zones">Prispôsobiť oblasti klepnutia</string>
    <string name="left_side">Vľavo</string>

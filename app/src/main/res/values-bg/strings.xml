@@ -107,7 +107,7 @@
    <string name="right_to_left">RTL</string>
    <string name="right_page_then_left_page_rtl_">Сила дясна страница</string>
    <string name="rotate_page">Завъртане ъгъл</string>
-   <string name="rotate_default">По подразбиране</string>
+   <string name="default_label">По подразбиране</string>
    <string name="tap_zone_size">Зони на крана (ръбове)</string>
    <string name="customize_tap_zones">Конфигуриране на зони за докосване</string>
    <string name="left_side">Наляво</string>

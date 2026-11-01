@@ -107,7 +107,7 @@
    <string name="right_to_left">வலமிருந்து இடமாக</string>
    <string name="right_page_then_left_page_rtl_">வலது பக்கத்தை கட்டாயப்படுத்தவும்</string>
    <string name="rotate_page">கோணத்தை சுழற்று</string>
-   <string name="rotate_default">இயல்புநிலை</string>
+   <string name="default_label">இயல்புநிலை</string>
    <string name="tap_zone_size">தட்டுகள் மண்டலங்கள் (விளிம்புகள்)</string>
    <string name="customize_tap_zones">தொடு மண்டலங்களை உள்ளமைக்கவும்</string>
    <string name="left_side">இடது</string>

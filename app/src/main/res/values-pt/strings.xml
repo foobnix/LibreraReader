@@ -107,7 +107,7 @@
    <string name="right_to_left">Direita para esquerda</string>
    <string name="right_page_then_left_page_rtl_">Página direita e esquerda (RTL)</string>
    <string name="rotate_page">Girar página</string>
-   <string name="rotate_default">Padrão</string>
+   <string name="default_label">Padrão</string>
    <string name="tap_zone_size">Zonas de toque (bordas)</string>
    <string name="customize_tap_zones">Personalize zonas de toque</string>
    <string name="left_side">Lado esquerdo</string>

@@ -107,7 +107,7 @@
    <string name="right_to_left">Oikealta vasemmalle</string>
    <string name="right_page_then_left_page_rtl_">Pakota oikeakätinen sivu</string>
    <string name="rotate_page">Kiertokulma</string>
-   <string name="rotate_default">Oletus</string>
+   <string name="default_label">Oletus</string>
    <string name="tap_zone_size">Kosketusalueet (reunat)</string>
    <string name="customize_tap_zones">Muokkaa kosketusalueita</string>
    <string name="left_side">Vasen reuna</string>

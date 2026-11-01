@@ -107,7 +107,7 @@
    <string name="right_to_left">Rtl</string>
    <string name="right_page_then_left_page_rtl_">വലത് പേജ് നിർബന്ധിക്കുക</string>
    <string name="rotate_page">റൊട്ടേറ്റ് ആംഗിൾ</string>
-   <string name="rotate_default">സ്ഥിരസ്ഥിതി</string>
+   <string name="default_label">സ്ഥിരസ്ഥിതി</string>
    <string name="tap_zone_size">ടാപ്പ് സോണുകൾ (അരികുകൾ)</string>
    <string name="customize_tap_zones">ടാപ്പ് സോണുകൾ ക്രമീകരിക്കുക</string>
    <string name="left_side">ഇടത്തെ</string>

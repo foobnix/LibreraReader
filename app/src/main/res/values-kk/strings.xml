@@ -107,7 +107,7 @@
    <string name="right_to_left">RTL</string>
    <string name="right_page_then_left_page_rtl_">Тиісті бетті мәжбүрлеңіз</string>
    <string name="rotate_page">Бұрышты бұру</string>
-   <string name="rotate_default">Әдетті</string>
+   <string name="default_label">Әдепкі</string>
    <string name="tap_zone_size">Облыстарды түртіңіз (жиектер)</string>
    <string name="customize_tap_zones">Аймақтарды теңшеу</string>
    <string name="left_side">Сол</string>

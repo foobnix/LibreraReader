@@ -107,7 +107,7 @@
    <string name="right_to_left">راست به چپ</string>
    <string name="right_page_then_left_page_rtl_">صفحه سمت راست و سپس صفحه را ترک کرد (RTL)</string>
    <string name="rotate_page">چرخش صفحه</string>
-   <string name="rotate_default">به طور پیش فرض</string>
+   <string name="default_label">پیش‌فرض</string>
    <string name="tap_zone_size">اندازه شیر منطقه</string>
    <string name="customize_tap_zones">سفارشی کردن مناطق شیر</string>
    <string name="left_side">سمت چپ</string>

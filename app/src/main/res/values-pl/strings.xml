@@ -107,7 +107,7 @@
    <string name="right_to_left">Od prawej do lewej</string>
    <string name="right_page_then_left_page_rtl_">Wymuś prawą stronę</string>
    <string name="rotate_page">Obrót strony</string>
-   <string name="rotate_default">Domyślnie</string>
+   <string name="default_label">Domyślnie</string>
    <string name="tap_zone_size">Obszar szybkich gestów</string>
    <string name="customize_tap_zones">Skonfiguruj strefy dotyku</string>
    <string name="left_side">Lewa strona</string>

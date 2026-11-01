@@ -107,7 +107,7 @@
    <string name="right_to_left">Höger till vänster</string>
    <string name="right_page_then_left_page_rtl_">Höger sida sedan vänster sida (RTL)</string>
    <string name="rotate_page">Rotera Page</string>
-   <string name="rotate_default">Standard</string>
+   <string name="default_label">Standard</string>
    <string name="tap_zone_size">Tap-zonstorleken</string>
    <string name="customize_tap_zones">Skräddarsy klickzoner</string>
    <string name="left_side">Vänster sida</string>

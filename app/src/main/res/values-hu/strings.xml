@@ -107,7 +107,7 @@
    <string name="right_to_left">Jobbról balra</string>
    <string name="right_page_then_left_page_rtl_">Jobb oldal kényszerítése</string>
    <string name="rotate_page">Elforgatási szög</string>
-   <string name="rotate_default">Alapértelmezett</string>
+   <string name="default_label">Alapértelmezett</string>
    <string name="tap_zone_size">Érintési zónák (élek)</string>
    <string name="customize_tap_zones">Érintési zónák konfigurálása</string>
    <string name="left_side">Bal</string>

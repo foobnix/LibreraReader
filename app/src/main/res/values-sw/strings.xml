@@ -107,7 +107,7 @@
    <string name="right_to_left">Haki ya kushoto</string>
    <string name="right_page_then_left_page_rtl_">Ukurasa wa kulia basi ukurasa wa kushoto (RTL)</string>
    <string name="rotate_page">Kilimo cha kubadilishana Kwanza</string>
-   <string name="rotate_default">Chaguo-msingi</string>
+   <string name="default_label">Chaguo-msingi</string>
    <string name="tap_zone_size">Tap-zone ukubwa</string>
    <string name="customize_tap_zones">Customize kanda bomba</string>
    <string name="left_side">Upande wa kushoto</string>

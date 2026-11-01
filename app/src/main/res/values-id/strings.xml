@@ -107,7 +107,7 @@
    <string name="right_to_left">Kanan ke kiri</string>
    <string name="right_page_then_left_page_rtl_">Kanan halaman kemudian kiri halaman (RTL)</string>
    <string name="rotate_page">Putar Halaman</string>
-   <string name="rotate_default">Bawaan</string>
+   <string name="default_label">Bawaan</string>
    <string name="tap_zone_size">Ukuran zona tekan</string>
    <string name="customize_tap_zones">Sesuaikan zona ketuk</string>
    <string name="left_side">Sisi kiri</string>

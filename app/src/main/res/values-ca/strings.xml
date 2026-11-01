@@ -107,7 +107,7 @@
    <string name="right_to_left">RTL</string>
    <string name="right_page_then_left_page_rtl_">Força la pàgina de la mà dreta</string>
    <string name="rotate_page">Angle de rotació</string>
-   <string name="rotate_default">Per defecte</string>
+   <string name="default_label">Per defecte</string>
    <string name="tap_zone_size">Zones de toc (vores)</string>
    <string name="customize_tap_zones">Configura las zones de toc</string>
    <string name="left_side">Esquerra</string>

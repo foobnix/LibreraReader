@@ -107,7 +107,7 @@
    <string name="right_to_left">由右至左</string>
    <string name="right_page_then_left_page_rtl_">强制从右到左</string>
    <string name="rotate_page">旋转角度</string>
-   <string name="rotate_default">默认</string>
+   <string name="default_label">默认</string>
    <string name="tap_zone_size">点按区域(边缘)</string>
    <string name="customize_tap_zones">自定义点按区域</string>
    <string name="left_side">左侧</string>

@@ -107,7 +107,7 @@
    <string name="right_to_left">Rtl</string>
    <string name="right_page_then_left_page_rtl_">Bhfeidhm leathanach ceart</string>
    <string name="rotate_page">Rothlú uillinn</string>
-   <string name="rotate_default">Réamhshocraithe</string>
+   <string name="default_label">Réamhshocrú</string>
    <string name="tap_zone_size">Sconna criosanna (imill)</string>
    <string name="customize_tap_zones">Criosanna sconna a chumrú</string>
    <string name="left_side">Ar chlé</string>

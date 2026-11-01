@@ -107,7 +107,7 @@
    <string name="right_to_left">من اليمين الى اليسار</string>
    <string name="right_page_then_left_page_rtl_">الصفحة اليمنى ثم الصفحة اليسرى (رتل)</string>
    <string name="rotate_page">تدوير الصفحة</string>
-   <string name="rotate_default">افتراضي</string>
+   <string name="default_label">افتراضي</string>
    <string name="tap_zone_size">حجم منطقة الصنبور</string>
    <string name="customize_tap_zones">تخصيص مناطق الصنبور</string>
    <string name="left_side">الجهه اليسرى</string>

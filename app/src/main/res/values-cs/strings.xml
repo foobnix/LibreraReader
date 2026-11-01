@@ -107,7 +107,7 @@
    <string name="right_to_left">Zprava doleva</string>
    <string name="right_page_then_left_page_rtl_">Vynutit pravou stránku</string>
    <string name="rotate_page">Úhel natočení</string>
-   <string name="rotate_default">Výchozí</string>
+   <string name="default_label">Výchozí</string>
    <string name="tap_zone_size">Oblasti poklepu (okraje)</string>
    <string name="customize_tap_zones">Přizpůsobení oblasti poklepu</string>
    <string name="left_side">Vlevo</string>

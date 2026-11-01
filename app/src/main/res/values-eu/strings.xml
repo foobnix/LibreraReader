@@ -107,7 +107,7 @@
    <string name="right_to_left">Eskuinetik ezkerrera</string>
    <string name="right_page_then_left_page_rtl_">Eskuin eta ezkerreko orrialdea (RTL)</string>
    <string name="rotate_page">Orria biratu</string>
-   <string name="rotate_default">Berez</string>
+   <string name="default_label">Lehenetsia</string>
    <string name="tap_zone_size">Sakatzeko eremuak</string>
    <string name="customize_tap_zones">Pertsonalizatu sakatzeko eremuak</string>
    <string name="left_side">Ezker aldea</string>

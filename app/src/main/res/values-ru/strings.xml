@@ -107,7 +107,7 @@
    <string name="right_to_left">Справа налево</string>
    <string name="right_page_then_left_page_rtl_">Сначала правая страница [или правая её половина], потом левая (для араб. и др. языков)</string>
    <string name="rotate_page">Угол поворота страниц</string>
-   <string name="rotate_default">По умолчанию</string>
+   <string name="default_label">По умолчанию</string>
    <string name="tap_zone_size">Размер зон листаний</string>
    <string name="customize_tap_zones">Настройка зон листаний</string>
    <string name="left_side">Левая сторона</string>

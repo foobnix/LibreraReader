@@ -107,7 +107,7 @@
    <string name="right_to_left">Iš dešinės į kairę</string>
    <string name="right_page_then_left_page_rtl_">Dešiniuoju pelės klavišu kairėje pusėje (RTL)</string>
    <string name="rotate_page">Pasukti puslapį</string>
-   <string name="rotate_default">Numatytasis</string>
+   <string name="default_label">Numatytasis</string>
    <string name="tap_zone_size">Pasirinkimo vietos dydis</string>
    <string name="customize_tap_zones">Redaguoti pasirinkimo vietas</string>
    <string name="left_side">Kairėje</string>

@@ -107,7 +107,7 @@
    <string name="right_to_left">Sağdan sola</string>
    <string name="right_page_then_left_page_rtl_">Sağdan sola kitap</string>
    <string name="rotate_page">Sayfa Döndür</string>
-   <string name="rotate_default">Varsayılan</string>
+   <string name="default_label">Varsayılan</string>
    <string name="tap_zone_size">Dokunma alanları (kenarlar)</string>
    <string name="customize_tap_zones">Dokunma alanlarını düzenle</string>
    <string name="left_side">Sol</string>

@@ -107,7 +107,7 @@
    <string name="right_to_left">Rechts naar links</string>
    <string name="right_page_then_left_page_rtl_">Forceer rechterpagina</string>
    <string name="rotate_page">Pagina draaien</string>
-   <string name="rotate_default">Standaard</string>
+   <string name="default_label">Standaard</string>
    <string name="tap_zone_size">Tap-zone size</string>
    <string name="customize_tap_zones">Pas tik zones aan</string>
    <string name="left_side">Links</string>

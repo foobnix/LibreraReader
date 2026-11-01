@@ -107,7 +107,7 @@
    <string name="right_to_left">右から左へ</string>
    <string name="right_page_then_left_page_rtl_">右ページ→左ページの順（RTL）</string>
    <string name="rotate_page">ページの回転</string>
-   <string name="rotate_default">デフォルト</string>
+   <string name="default_label">デフォルト</string>
    <string name="tap_zone_size">タップゾーンサイズ</string>
    <string name="customize_tap_zones">タップゾーンのカスタマイズ</string>
    <string name="left_side">左部</string>

@@ -107,7 +107,7 @@
    <string name="right_to_left">จากขวาไปซ้าย</string>
    <string name="right_page_then_left_page_rtl_">บังคับหน้าขวาตามด้วยหน้าซ้าย</string>
    <string name="rotate_page">หมุนหน้า</string>
-   <string name="rotate_default">ค่าเริ่มต้น</string>
+   <string name="default_label">ค่าเริ่มต้น</string>
    <string name="tap_zone_size">ขนาดพื้นที่ของ Tap-zone</string>
    <string name="customize_tap_zones">กำหนดโซนการแตะ</string>
    <string name="left_side">ด้านซ้าย</string>

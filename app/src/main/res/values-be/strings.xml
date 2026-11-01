@@ -107,7 +107,7 @@
    <string name="right_to_left">Rtl</string>
    <string name="right_page_then_left_page_rtl_">Прымусіць правую старонку</string>
    <string name="rotate_page">Кут павароту</string>
-   <string name="rotate_default">Па змаўчанні</string>
+   <string name="default_label">Па змаўчанні</string>
    <string name="tap_zone_size">Зоны крана (краі)</string>
    <string name="customize_tap_zones">Наладзіць зоны крана</string>
    <string name="left_side">Злева</string>

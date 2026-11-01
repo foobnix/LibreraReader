@@ -107,7 +107,7 @@
    <string name="right_to_left">Справа наліво</string>
    <string name="right_page_then_left_page_rtl_">Спочатку права сторінка, потім ліва (RTL)</string>
    <string name="rotate_page">Поворот сторінки</string>
-   <string name="rotate_default">Початково</string>
+   <string name="default_label">За замовчуванням</string>
    <string name="tap_zone_size">Розмір зон гортання</string>
    <string name="customize_tap_zones">Налаштування зон натискання</string>
    <string name="left_side">Ліва сторона</string>

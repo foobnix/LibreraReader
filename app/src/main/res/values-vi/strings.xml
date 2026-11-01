@@ -107,7 +107,7 @@
    <string name="right_to_left">Phải sang trái</string>
    <string name="right_page_then_left_page_rtl_">Trang bên phải trang sau đó (RTL)</string>
    <string name="rotate_page">Xoay trang</string>
-   <string name="rotate_default">Mặc định</string>
+   <string name="default_label">Mặc định</string>
    <string name="tap_zone_size">Kích thước Tap-zone</string>
    <string name="customize_tap_zones">Tùy chỉnh khu tap</string>
    <string name="left_side">Bên trái</string>

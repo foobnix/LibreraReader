@@ -107,7 +107,7 @@
    <string name="right_to_left">오른쪽에서 왼쪽으로</string>
    <string name="right_page_then_left_page_rtl_">오른쪽 페이지, 왼쪽 페이지 (RTL)</string>
    <string name="rotate_page">페이지 회전</string>
-   <string name="rotate_default">기본</string>
+   <string name="default_label">기본</string>
    <string name="tap_zone_size">탭 영역 크기</string>
    <string name="customize_tap_zones">탭 영역 설정</string>
    <string name="left_side">왼쪽</string>

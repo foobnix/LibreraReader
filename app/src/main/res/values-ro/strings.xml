@@ -107,7 +107,7 @@
    <string name="right_to_left">De la dreapta la stânga</string>
    <string name="right_page_then_left_page_rtl_">Pagina dreapta, apoi pagina stanga (RTL)</string>
    <string name="rotate_page">Rotire pagină</string>
-   <string name="rotate_default">Mod implicit</string>
+   <string name="default_label">Implicit</string>
    <string name="tap_zone_size">Dimensiunea robinet zonă</string>
    <string name="customize_tap_zones">Personaliza apăsare zone</string>
    <string name="left_side">Partea stanga</string>

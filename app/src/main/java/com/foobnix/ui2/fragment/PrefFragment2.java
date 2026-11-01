@@ -3019,14 +3019,14 @@ public class PrefFragment2 extends UIFragment {
     /** The engines {@link AppState#epubEngine} can be set to, in the order they are offered. */
     private static final int[] EPUB_ENGINES = {AppState.EPUB_ENGINE_MUPDF, AppState.EPUB_ENGINE_FOLIATE};
 
-    /** The engine's name as the preference shows it, untranslated. */
-    private static String epubEngineName(final int engine) {
-        return engine == AppState.EPUB_ENGINE_FOLIATE ? "HTML+JS" : "MuPDF";
+    /** The engine's name as the preference shows it: MuPDF is the default one. */
+    private String epubEngineName(final int engine) {
+        return engine == AppState.EPUB_ENGINE_FOLIATE ? "HTML+JS" : getString(R.string.default_label);
     }
 
-    /** The engine's name as the preference shows it, untranslated. */
-    private static String pdfEngineName(final int engine) {
-        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF";
+    /** The engine's name as the preference shows it: MuPDF is the default one. */
+    private String pdfEngineName(final int engine) {
+        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : getString(R.string.default_label);
     }
 
     /**

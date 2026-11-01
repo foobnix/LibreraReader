@@ -107,7 +107,7 @@
    <string name="right_to_left">Ab Dextra versus Laeva</string>
    <string name="right_page_then_left_page_rtl_">Dextra pagina postibi laeva pagina (RTL)</string>
    <string name="rotate_page">Declinationum paginae</string>
-   <string name="rotate_default">Usitatus</string>
+   <string name="default_label">Praefinitum</string>
    <string name="tap_zone_size">Plagae procurrendi causa</string>
    <string name="customize_tap_zones">Modificare plagas</string>
    <string name="left_side">Laevum latus</string>

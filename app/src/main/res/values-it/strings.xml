@@ -107,7 +107,7 @@
    <string name="right_to_left">Da destra a sinistra</string>
    <string name="right_page_then_left_page_rtl_">Pagina a destra, quindi pagina a sinistra (RTL)</string>
    <string name="rotate_page">Ruota pagina</string>
-   <string name="rotate_default">Ruota Default</string>
+   <string name="default_label">Predefinito</string>
    <string name="tap_zone_size">Dimensione Tap-zone</string>
    <string name="customize_tap_zones">Personalizza Tap-zone</string>
    <string name="left_side">Lato sinistro</string>

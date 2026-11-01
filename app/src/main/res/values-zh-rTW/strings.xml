@@ -107,7 +107,7 @@
    <string name="right_to_left">由右至左</string>
    <string name="right_page_then_left_page_rtl_">先右頁再左頁（RTL）</string>
    <string name="rotate_page">旋轉頁面</string>
-   <string name="rotate_default">默認角度</string>
+   <string name="default_label">預設</string>
    <string name="tap_zone_size">觸碰區域</string>
    <string name="customize_tap_zones">觸碰事件</string>
    <string name="left_side">左邊</string>

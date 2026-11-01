@@ -107,7 +107,7 @@
    <string name="right_to_left">מימין לשמאל</string>
    <string name="right_page_then_left_page_rtl_">דף מימין ולאחר מכן דף שמאלי (RTL)</string>
    <string name="rotate_page">סובב דף</string>
-   <string name="rotate_default">ברירת מחדל</string>
+   <string name="default_label">ברירת מחדל</string>
    <string name="tap_zone_size">גודל Tap-אזור</string>
    <string name="customize_tap_zones">התאמה אישית של אזורים ברז</string>
    <string name="left_side">צד שמאל</string>

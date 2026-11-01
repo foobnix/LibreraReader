@@ -107,7 +107,7 @@
    <string name="right_to_left">Høyre til venstre</string>
    <string name="right_page_then_left_page_rtl_">Høyre side deretter venstre side (RTL)</string>
    <string name="rotate_page">Roter side</string>
-   <string name="rotate_default">Misligholde</string>
+   <string name="default_label">Standard</string>
    <string name="tap_zone_size">Tap-sone størrelse</string>
    <string name="customize_tap_zones">Tilpass trykksone</string>
    <string name="left_side">Venstre side</string>

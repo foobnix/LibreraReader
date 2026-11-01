@@ -199,7 +199,7 @@ public class MenuBuilderM {
             });
         }
 
-        final MenuItem r1 = rotateMenu.getMenu().add(R.string.rotate_default);
+        final MenuItem r1 = rotateMenu.getMenu().add(R.string.default_label);
         r1.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
             @Override

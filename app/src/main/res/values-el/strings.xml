@@ -107,7 +107,7 @@
    <string name="right_to_left">Rtl</string>
    <string name="right_page_then_left_page_rtl_">Δύναμη σωστή σελίδα</string>
    <string name="rotate_page">Περιστροφή γωνίας</string>
-   <string name="rotate_default">Προκαθορισμένο</string>
+   <string name="default_label">Προεπιλογή</string>
    <string name="tap_zone_size">Ζώνες βρύσης (άκρα)</string>
    <string name="customize_tap_zones">Διαμόρφωση ζωνών βρύσης</string>
    <string name="left_side">Αριστερά</string>
