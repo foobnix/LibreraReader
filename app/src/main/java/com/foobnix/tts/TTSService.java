@@ -238,6 +238,19 @@ import java.util.List;
         LOG.d(TAG, "Create constructor");
     }
 
+    /**
+     * A button on the home screen. The app is in the background there, where Android refuses to
+     * start a plain service, so it has to be a foreground one - which onStartCommand makes it on
+     * its first line, whatever the action.
+     */
+    public static PendingIntent widgetIntent(Context context, String action) {
+        final Intent intent = new Intent(action, null, context, TTSService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        }
+        return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+    }
+
     public static void playLastBook() {
         playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth,
                 AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);

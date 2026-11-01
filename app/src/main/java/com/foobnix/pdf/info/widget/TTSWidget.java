@@ -96,9 +96,9 @@ public class TTSWidget extends AppWidgetProvider {
                                     views.setViewVisibility(R.id.ttsStop, View.GONE);
                                     //views.setViewVisibility(R.id.ttsPrev, View.GONE);
 
-                                    PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
-                                    PendingIntent prev = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
-                                    PendingIntent playPause = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PLAY_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
+                                    PendingIntent next = TTSService.widgetIntent(context, TTSNotification.TTS_NEXT);
+                                    PendingIntent prev = TTSService.widgetIntent(context, TTSNotification.TTS_PREV);
+                                    PendingIntent playPause = TTSService.widgetIntent(context, TTSNotification.TTS_PLAY_PAUSE);
 
 
                                     views.setOnClickPendingIntent(R.id.ttsPlay, playPause);
