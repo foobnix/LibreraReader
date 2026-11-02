@@ -120,12 +120,23 @@ public class Fb2Extractor extends BaseExtractor {
                 meta = meta.replace("%title%", title);
             }
 
-            writeToZip(zos, "OEBPS/content.opf", meta);
+            // the images are listed for foliate to load, as it reads nothing the manifest leaves out
+            final File[] files = inputFolder.listFiles();
+            final StringBuilder manifest = new StringBuilder();
+            int images = 0;
+            for (File file : files) {
+                final String name = file.getName();
+                if (name.endsWith(".jpg") || name.endsWith(".png")) {
+                    manifest.append("  <item id=\"img").append(++images).append("\" href=\"").append(name)
+                            .append("\" media-type=\"image/").append(name.endsWith(".jpg") ? "jpeg" : "png").append("\"/>\n");
+                }
+            }
+            writeToZip(zos, "OEBPS/content.opf", meta.replace(" </manifest>", manifest + " </manifest>"));
             if (TxtUtils.isListNotEmpty(outline)) {
                 writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
             }
 
-            for (File file : inputFolder.listFiles()) {
+            for (File file : files) {
                 writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
             }
 

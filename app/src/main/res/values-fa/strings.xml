@@ -348,6 +348,7 @@
    <string name="font_name">نام فونت</string>
    <string name="text_page">صفحه</string>
    <string name="page">صفحه</string>
+   <string name="page_range">محدوده صفحات</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">انتخاب کنید</string>
    <string name="crop_white_borders">محصول مرزهای سفید</string>

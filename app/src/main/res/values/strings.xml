@@ -350,6 +350,7 @@
    <string name="font_name">Font</string>
    <string name="text_page">Page</string>
    <string name="page">Page</string>
+   <string name="page_range">Page range</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Choose</string>
    <string name="crop_white_borders">Crop White Space</string>

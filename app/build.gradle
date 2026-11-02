@@ -399,7 +399,7 @@ dependencies {
 
 
     implementation(libs.zip4j)
-    // Second PDF render engine (Pdfium); the bundled MuPDF stays the default
+    // The default PDF render engine (Pdfium); the bundled MuPDF stays for every other format
     implementation(libs.pdfiumandroid)
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)

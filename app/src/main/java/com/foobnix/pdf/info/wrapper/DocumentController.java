@@ -1282,6 +1282,13 @@ public abstract class DocumentController {
     }
 
     public void restartActivity() {
+        // A settings panel restarts the reader when it closes with a setting changed, and a
+        // reader being torn down closes its panels. By then the next reader is open on the shared
+        // document, and clearing it here leaves that reader on a recycled one, with no contents
+        // and no search, while its pages go on drawing from the copy they open for themselves.
+        if (activity.isFinishing()) {
+            return;
+        }
         //IMG.clearMemoryCache();
         saveAppState();
         TTSEngine.get().stop();
@@ -1290,6 +1297,9 @@ public abstract class DocumentController {
 
             @Override
             public void run() {
+                if (activity.isFinishing()) {
+                    return;
+                }
                 ImageExtractor.clearCodeDocument();
                 activity.finish();
                 activity.startActivity(activity.getIntent());

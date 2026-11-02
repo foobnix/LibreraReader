@@ -105,6 +105,10 @@ public class ViewContollerStub implements IViewController {
     }
 
     @Override
+    public void recycleHiddenPages() {
+    }
+
+    @Override
     public boolean onLayoutChanged(final boolean layoutChanged) {
         return false;
     }

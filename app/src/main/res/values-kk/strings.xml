@@ -348,6 +348,7 @@
    <string name="font_name">Қаріп</string>
    <string name="text_page">Бет</string>
    <string name="page">Бет</string>
+   <string name="page_range">Беттер ауқымы</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Таңдау</string>
    <string name="crop_white_borders">Ақ кеңістікті қиып алыңыз</string>

@@ -13,14 +13,11 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Build;
-import android.os.ParcelFileDescriptor;
 import android.util.Base64;
 import android.util.Pair;
 
-import androidx.annotation.RequiresApi;
 
 import com.BaseExtractor;
 import com.foobnix.LibreraApp;
@@ -258,31 +255,6 @@ public class ImageExtractor {
         return BaseExtractor.getBookCoverWithTitle(msg, name, true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public Bitmap coverPDFNative(PageUrl pageUrl) {
-        try {
-            LOG.d("Cover-PDF-navite");
-            try (PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY))) {
-                try(PdfRenderer.Page page = renderer.openPage(0)) {
-
-                    final float k = (float) page.getHeight() / page.getWidth();
-                    int width = pageUrl.getWidth();
-                    int height = (int) (width * k);
-
-                    Bitmap bitmap = Bitmap.createBitmap(width, height, AppsConfig.CURRENT_BITMAP_ARGB);
-                    page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-
-                    return bitmap;
-                }
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-            return null;
-        }
-
-    }
-
-
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
         String path = pageUrl.getPath();
 
@@ -378,17 +350,8 @@ public class ImageExtractor {
         } else if (BookType.RTF.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath)) {
-            if (Build.VERSION.SDK_INT >= 29 && Arrays.asList(COVER_PAGE, COVER_PAGE_NO_EFFECT, COVER_PAGE_WITH_EFFECT)
-                                                     .contains(pageUrl.getPage())) {
-                LOG.d("Native-PDF-cover", pageUrl);
-                cover = coverPDFNative(pageUrl);
-                if (cover == null) {
-                    LOG.d("Native-PDF-cover", "error", pageUrl);
-                    cover = proccessOtherPage(pageUrl);
-                }
-            } else {
-                cover = proccessOtherPage(pageUrl);
-            }
+            // With the engine the book is read with, which IMG.toUrl keeps in the cover's url
+            cover = proccessOtherPage(pageUrl);
         } else if (BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
             cover = proccessOtherPage(pageUrl);
             LOG.d("BookType.DJVU", cover, pageUrl);

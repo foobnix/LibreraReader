@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Base64;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -21,6 +24,7 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +44,10 @@ public class PdfiumPage extends AbstractCodecPage {
 
     /** White, which is what MuPDF renders a page on when no background colour is asked for. */
     private static final int WHITE = 0xFFFFFFFF;
+
+    /** The longest side of a page converted to an image: 2 pixels per point, up to this. */
+    private static final int IMAGE_MAX_SIDE = 2000;
+    private static final int IMAGE_JPEG_QUALITY = 85;
 
     private final PdfiumDocument document;
 
@@ -340,8 +348,37 @@ public class PdfiumPage extends AbstractCodecPage {
 
     @Override
     public String getPageHTMLWithImages() {
-        // PDFium has no way to hand out a page's images, so the export carries the text only.
-        return getPageHTML();
+        // PDFium has no way to hand out a page's images, so they are MuPDF's where there is one
+        final CodecPage images = annotations();
+        final String html = images != null ? images.getPageHTMLWithImages() : getPageHTML();
+        return TxtUtils.isEmpty(html) ? pageAsImageHtml() : html;
+    }
+
+    /**
+     * A page with nothing to extract - a scan, on a build without MuPDF - as one image, so that
+     * converting the book keeps the page rather than leaving it out.
+     *
+     * @return the image the way MuPDF writes one, or "" when the page could not be rendered
+     */
+    private String pageAsImageHtml() {
+        final float k = Math.min(IMAGE_MAX_SIDE, 2f * Math.max(actualWidth, actualHeight)) / Math.max(actualWidth, actualHeight);
+        final BitmapRef ref = render(Math.max(1, Math.round(actualWidth * k)), Math.max(1, Math.round(actualHeight * k)),
+                new RectF(0, 0, 1f, 1f), false);
+        if (ref == null) {
+            return "";
+        }
+        final Bitmap bitmap = ref.getBitmap();
+        try {
+            final ByteArrayOutputStream jpeg = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, IMAGE_JPEG_QUALITY, jpeg);
+            return ExtUtils.IMAGE_BEGIN + ExtUtils.IMAGE_JPEG_BASE64
+                    + Base64.encodeToString(jpeg.toByteArray(), Base64.NO_WRAP) + ExtUtils.IMAGE_END + "<br/>";
+        } catch (Throwable e) {
+            LOG.e(e);
+            return "";
+        } finally {
+            bitmap.recycle();
+        }
     }
 
     // ---------------------------------------------------------------- annotations

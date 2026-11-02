@@ -348,6 +348,7 @@
    <string name="font_name">اسم الخط</string>
    <string name="text_page">صفحة</string>
    <string name="page">صفحة</string>
+   <string name="page_range">نطاق الصفحات</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">اختر</string>
    <string name="crop_white_borders">إزالة الحدود البيضاء</string>

@@ -2,9 +2,12 @@
 #include <android/log.h>
 #include <jni.h>
 #include <signal.h>
+#include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "../ebookdroid.h"
 #include "../javahelpers.h"
@@ -55,6 +58,103 @@ jni_new_locks();
 
 extern void
 jni_free_locks(fz_locks_context* locks);
+
+/*
+ * What MuPDF may hold in the whole process, open books and the library scan together. A broken file
+ * can ask for anything: a few bytes of JBIG2 header ask for gigabytes, which are then cleared, and
+ * the main thread waits for that memory until the app is not responding. Over this a decoder is
+ * told there is no memory, and the file fails to open as any other broken file does.
+ */
+#define MAX_MEMORY ((uint64_t)1024 * 1024 * 1024)
+
+static size_t memory_limit;
+static size_t memory_used;
+
+typedef union
+{
+    size_t size;
+    max_align_t align;
+} memory_header;
+
+static int
+memory_reserve(size_t size)
+{
+    if (size >= memory_limit) {
+        return 0;
+    }
+    if (__atomic_add_fetch(&memory_used, size, __ATOMIC_RELAXED) > memory_limit) {
+        __atomic_sub_fetch(&memory_used, size, __ATOMIC_RELAXED);
+        return 0;
+    }
+    return 1;
+}
+
+static void
+memory_release(size_t size)
+{
+    __atomic_sub_fetch(&memory_used, size, __ATOMIC_RELAXED);
+}
+
+static void*
+memory_malloc(void* user, size_t size)
+{
+    if (!memory_reserve(size)) {
+        ERROR("MuPDF memory limit: %zu asked, %zu in use", size, memory_used);
+        return NULL;
+    }
+    memory_header* header = malloc(sizeof(memory_header) + size);
+    if (!header) {
+        memory_release(size);
+        return NULL;
+    }
+    header->size = size;
+    return header + 1;
+}
+
+static void
+memory_free(void* user, void* p)
+{
+    if (p) {
+        memory_header* header = (memory_header*)p - 1;
+        memory_release(header->size);
+        free(header);
+    }
+}
+
+static void*
+memory_realloc(void* user, void* p, size_t size)
+{
+    if (!p) {
+        return memory_malloc(user, size);
+    }
+    memory_header* old = (memory_header*)p - 1;
+    const size_t old_size = old->size;
+    if (size > old_size && !memory_reserve(size - old_size)) {
+        ERROR("MuPDF memory limit: %zu asked, %zu in use", size, memory_used);
+        return NULL;
+    }
+    memory_header* header = realloc(old, sizeof(memory_header) + size);
+    if (!header) {
+        if (size > old_size) {
+            memory_release(size - old_size);
+        }
+        return NULL;
+    }
+    if (size < old_size) {
+        memory_release(old_size - size);
+    }
+    header->size = size;
+    return header + 1;
+}
+
+static fz_alloc_context memory_alloc = { NULL, memory_malloc, memory_realloc, memory_free };
+
+static void
+memory_init()
+{
+    const uint64_t quarter = (uint64_t)sysconf(_SC_PHYS_PAGES) * sysconf(_SC_PAGESIZE) / 4;
+    memory_limit = (size_t)(quarter < MAX_MEMORY ? quarter : MAX_MEMORY);
+}
 
 ///////////////////
 static struct sigaction old_sa[32]; // Using fixed size instead of NSIG
@@ -290,7 +390,8 @@ JNIEXPORT jlong
     }
     DEBUG("MuPdfDocument.nativeOpen(): storememory = %d", storememory);
 
-    doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_DEFAULT);
+    memory_init();
+    doc->ctx = fz_new_context(&memory_alloc, NULL, FZ_STORE_DEFAULT);
     // doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_DEFAULT);
     //  doc->ctx = fz_new_context(NULL, NULL, FZ_STORE_UNLIMITED);
 

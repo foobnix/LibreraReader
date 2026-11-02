@@ -739,7 +739,11 @@ public class MyPopupMenu {
         public Menu addCheckbox(String name, boolean state, CompoundButton.OnCheckedChangeListener listener) {
             this.checkboxString = name;
             this.checkboxState = state;
-            this.checkedChangeListener = listener;
+            // The menu outlives this call: shown again, it has to show the state it was left in
+            this.checkedChangeListener = (button, checked) -> {
+                this.checkboxState = checked;
+                listener.onCheckedChanged(button, checked);
+            };
             return this;
         }
 

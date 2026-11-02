@@ -43,6 +43,7 @@ public class ImagePageFragment extends Fragment {
     long lifeTime = 0;
     int loadImageId;
     boolean fistTime = true;
+    private boolean released;
     CustomTarget<Bitmap> target = null;
     Future<?> submit;
     private PageImaveView image;
@@ -51,7 +52,7 @@ public class ImagePageFragment extends Fragment {
 
         @Override
         public void run() {
-            if (!isDetached()) {
+            if (!isDetached() && !released) {
                 loadImageGlide();
             } else {
                 LOG.d("Image page is detached");
@@ -214,6 +215,31 @@ public class ImagePageFragment extends Fragment {
             }
 
         }
+    }
+
+    /** Gives the page back while the reader is out of sight, until {@link #restoreImage()}. */
+    public void releaseImage() {
+        if (image == null || getActivity() == null) {
+            return;
+        }
+        released = true;
+        handler.removeCallbacks(callback);
+        image.clearBitmap();
+        IMG.clear(getActivity(), target);
+        target = null;
+    }
+
+    public void restoreImage() {
+        if (released) {
+            released = false;
+            if (image != null) {
+                loadImageGlide();
+            }
+        }
+    }
+
+    public int getPage() {
+        return page;
     }
 
     public int getPriority() {

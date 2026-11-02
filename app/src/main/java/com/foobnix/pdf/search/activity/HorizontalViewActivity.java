@@ -1541,6 +1541,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         super.onStart();
         // Analytics.onStart(this);
         EventBus.getDefault().register(this);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof ImagePageFragment) {
+                ((ImagePageFragment) fragment).restoreImage();
+            }
+        }
 
     }
 
@@ -1552,7 +1557,31 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
+        releaseHiddenPages();
 
+    }
+
+    /**
+     * Google Play counts the bitmaps of a process in the background, and each page here is a whole
+     * screen at {@link AppState#pageQuality}. The page on screen stays, so coming back from a
+     * dictionary does not show it being drawn again.
+     */
+    private void releaseHiddenPages() {
+        if (viewPager == null) {
+            return;
+        }
+        final int current = viewPager.getCurrentItem();
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof ImagePageFragment && ((ImagePageFragment) fragment).getPage() != current) {
+                ((ImagePageFragment) fragment).releaseImage();
+            }
+        }
+        // Glide takes a page it is given back on the next turn of the main thread, into its memory
+        // cache, and what that cache lets go of reaches its bitmap pool on the turn after
+        handler.post(() -> {
+            IMG.clearMemoryCache();
+            handler.post(IMG::clearMemoryCache);
+        });
     }
 
     @Override

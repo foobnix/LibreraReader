@@ -1,6 +1,5 @@
 package com.foobnix.model;
 
-import com.foobnix.LibreraBuildConfig;
 
 import static com.foobnix.pdf.info.Playlists.L_PLAYLIST_RECENT;
 
@@ -392,14 +391,14 @@ public class AppState {
     public boolean isShowSubChaptersOnProgress = true;
     public int antiAliasLevel = 8;//0-8
     /**
-     * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_MUPDF} (the
-     * engine Librera has always used, and the default) or {@link #PDF_ENGINE_PDFIUM}, the default
-     * in the F-Droid flavour. It applies to
+     * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_PDFIUM}, the
+     * default, or {@link #PDF_ENGINE_MUPDF}. A default only reaches a fresh install: this is saved
+     * with the rest of the state, so whoever was on MuPDF stays there. It applies to
      * .pdf files only - every other format is MuPDF's - and is read by
      * {@link org.ebookdroid.BookType#getCodecContextByPath(String)} each time a document is
      * opened, so the covers and the books follow the setting from the next open on.
      */
-    public int pdfEngine = "fdroid".equals(LibreraBuildConfig.FLAVOR) ? PDF_ENGINE_PDFIUM : PDF_ENGINE_MUPDF;
+    public int pdfEngine = PDF_ENGINE_PDFIUM;
     /**
      * The engine a reflowable book is laid out, rendered and read with: {@link #EPUB_ENGINE_MUPDF}
      * (the default) or {@link #EPUB_ENGINE_FOLIATE}, which paginates it in a WebView with
@@ -691,6 +690,7 @@ public class AppState {
     public boolean isShowDiscardedBooks = true;
     @IgnoreHashCode public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;
     public boolean isEnableTextReplacement = false;
+    @IgnoreHashCode public boolean isSearchPageRange = false;
     public long textReplacementHash = 0;
     public boolean isShowSeriesNumberInTitle = true;
     public boolean enableImageScale = true;

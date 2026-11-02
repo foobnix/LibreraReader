@@ -1486,6 +1486,15 @@ public class DragingDialogs {
         dialog.show("TTS", false, true);
     }
 
+    /** The page number typed in a field, or the fallback when there is no number in it. */
+    private static int pageIn(final EditText edit, final int fallback) {
+        try {
+            return Integer.parseInt(edit.getText().toString().trim());
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
+    }
+
     public static void dialogSearchText(final FrameLayout anchor, final DocumentController controller, String text) {
         if (controller == null) {
             return;
@@ -1502,6 +1511,24 @@ public class DragingDialogs {
                 } else {
                     searchEdit.setText(lastSearchText);
                 }
+
+                final EditText searchFirstPage = view.findViewById(R.id.searchFirstPage);
+                final EditText searchLastPage = view.findViewById(R.id.searchLastPage);
+                searchFirstPage.setText("1");
+                searchLastPage.setText("" + controller.getPageCount());
+
+                final View searchRange = view.findViewById(R.id.searchRange);
+                searchRange.setVisibility(AppState.get().isSearchPageRange ? View.VISIBLE : View.GONE);
+
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
+                titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
+                titlePopupMenu.getMenu()
+                              .addCheckbox(controller.getString(R.string.page_range),
+                                           AppState.get().isSearchPageRange,
+                                           (buttonView, isChecked) -> {
+                                               AppState.get().isSearchPageRange = isChecked;
+                                               searchRange.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                                           });
 
                 final MyProgressBar MyProgressBar = view.findViewById(R.id.progressBarSearch);
                 final TextView searchingMsg = view.findViewById(R.id.searching);
@@ -1536,6 +1563,8 @@ public class DragingDialogs {
                         if (!isRun) {
                             lastSearchText = "";
                             searchEdit.setText("");
+                            searchFirstPage.setText("1");
+                            searchLastPage.setText("" + controller.getPageCount());
                             controller.clearSelectedText();
                             searchingMsg.setVisibility(View.GONE);
                             adapter.getItems().clear();
@@ -1547,11 +1576,14 @@ public class DragingDialogs {
                 final View onSearch = view.findViewById(R.id.onSearch);
                 tintRingedMark(onSearch);
 
-                EditTextHelper.enableKeyboardSearch(searchEdit, new Runnable() {
+                final Runnable search = new Runnable() {
                     @Override public void run() {
                         onSearch.performClick();
                     }
-                });
+                };
+                EditTextHelper.enableKeyboardSearch(searchEdit, search);
+                EditTextHelper.enableKeyboardSearch(searchFirstPage, search);
+                EditTextHelper.enableKeyboardSearch(searchLastPage, search);
 
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
                 final int count = controller.getPageCount();
@@ -1605,31 +1637,10 @@ public class DragingDialogs {
                                            Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (!(searchString.contains("[") && searchString.contains(":"))) {
-                            searchString = searchString + "[1:" + controller.getPageCount() + "]";
-                            searchEdit.setText(searchString);
-                        }
-
-                        Pattern pattern = Pattern.compile("(.*?)\\[(\\d+):(\\d+)\\]");
-                        Matcher matcher = pattern.matcher(searchString);
-                        int firstPage = 1;
-                        int lastPage = controller.getPageCount();
-                        try {
-                            if (matcher.find()) {
-                                searchString = matcher.group(1);
-                                firstPage = Integer.parseInt(matcher.group(2));
-                                lastPage = Integer.parseInt(matcher.group(3));
-                            } else {
-                                Toast.makeText(controller.getActivity(),
-                                               R.string.msg_unexpected_error,
-                                               Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } catch (Exception ignored) {
-                            Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
-                                 .show();
-                            return;
-                        }
+                        final boolean inRange = AppState.get().isSearchPageRange;
+                        int firstPage = inRange ? pageIn(searchFirstPage, 1) : 1;
+                        int lastPage = inRange ? pageIn(searchLastPage, controller.getPageCount())
+                                               : controller.getPageCount();
                         if (firstPage > lastPage || firstPage < 1) {
                             firstPage = 1;
                         }
@@ -1637,7 +1648,8 @@ public class DragingDialogs {
                             lastPage = controller.getPageCount();
                         }
 
-                        searchEdit.setText(searchString + "[" + firstPage + ":" + lastPage + "]");
+                        searchFirstPage.setText("" + firstPage);
+                        searchLastPage.setText("" + lastPage);
 
                         LOG.d("Searching", searchString, firstPage, lastPage);
 

@@ -23,6 +23,10 @@ import java.util.Map;
 public class DecodeServiceStub implements DecodeService {
 
 	@Override
+	public void releasePages() {
+	}
+
+	@Override
 	public void shutdown() {
 	}
 

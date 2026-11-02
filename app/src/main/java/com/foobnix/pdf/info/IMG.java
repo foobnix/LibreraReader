@@ -35,8 +35,10 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.LibreraAppGlideModule;
 import com.foobnix.ui2.MainTabs2;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -115,6 +117,7 @@ public class IMG {
     public static void clearMemoryCache() {
         if (LibreraApp.context != null) {
             LOG.d("clearMemoryCache", "Bitmap-test-2 clearMemoryCache");
+            LibreraAppGlideModule.clearCache();
             Glide.get(LibreraApp.context)
                  .clearMemory();
         }
@@ -303,7 +306,9 @@ public class IMG {
             pdfUrl.hash =
                     ("" + AppState.get().isBookCoverEffect + TintUtil.getColorInDayNighth() + AppState.get().sortByBrowse).hashCode() + MagicHelper.hash();
         }else{
-            pdfUrl.hash = 0;
+            // A PDF's cover is drawn by the engine that reads it, so a change of engine draws it
+            // again. PDF_ENGINE_MUPDF is 0, which keeps the covers already in the cache.
+            pdfUrl.hash = BookType.PDF.is(path) ? AppState.get().getPdfEngine() : 0;
         }
         return pdfUrl.toString();
     }

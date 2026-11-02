@@ -348,6 +348,7 @@
    <string name="font_name">Skriftnavn</string>
    <string name="text_page">Side</string>
    <string name="page">Side</string>
+   <string name="page_range">Sideområde</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Velge</string>
    <string name="crop_white_borders">Beskjær hvite grenser</string>

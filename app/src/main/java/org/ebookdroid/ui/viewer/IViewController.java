@@ -58,6 +58,9 @@ public interface IViewController extends ZoomListener {
 
     void updateMemorySettings();
 
+    /** Frees the pages not on screen; {@link #updateMemorySettings()} decodes them again. */
+    void recycleHiddenPages();
+
     public static enum InvalidateSizeReason {
         INIT, LAYOUT, PAGE_ALIGN, PAGE_LOADED;
     }

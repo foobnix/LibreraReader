@@ -348,6 +348,7 @@
    <string name="font_name">字體名稱</string>
    <string name="text_page">頁</string>
    <string name="page">頁</string>
+   <string name="page_range">頁面範圍</string>
    <string name="___INDEFINITE___SECTION___">無限</string>
    <string name="choose_">請選擇</string>
    <string name="crop_white_borders">切除白邊</string>

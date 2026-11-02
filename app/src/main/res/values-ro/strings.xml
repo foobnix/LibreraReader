@@ -348,6 +348,7 @@
    <string name="font_name">Numele fontului</string>
    <string name="text_page">Pagină</string>
    <string name="page">Pagină</string>
+   <string name="page_range">Interval de pagini</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Alegeți</string>
    <string name="crop_white_borders">Decupați marginile albe</string>

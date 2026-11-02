@@ -348,6 +348,7 @@
    <string name="font_name">ชื่อแบบอักษร</string>
    <string name="text_page">หน้า</string>
    <string name="page">หน้า</string>
+   <string name="page_range">ช่วงหน้า</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">เลือก</string>
    <string name="crop_white_borders">ตัดขอบสีขาว</string>

@@ -348,6 +348,7 @@
    <string name="font_name">Litterae</string>
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
+   <string name="page_range">Spatium paginarum</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Elige</string>
    <string name="crop_white_borders">Crop white borders</string>

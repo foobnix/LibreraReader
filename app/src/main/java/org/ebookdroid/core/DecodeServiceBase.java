@@ -239,7 +239,7 @@ public class DecodeServiceBase implements DecodeService {
                     if (page.index.docIndex < firstPage) {
                         continue;
                     }
-                    if (page.index.docIndex > lastPage) {
+                    if (page.index.docIndex >= lastPage) {
                         continue;
                     }
 
@@ -642,6 +642,19 @@ public class DecodeServiceBase implements DecodeService {
     @Override
     public CodecDocument getCodecDocument() {
         return codecDocument;
+    }
+
+    @Override
+    public void releasePages() {
+        try {
+            // A copy: the map belongs to the decoding thread. A page it is using stays locked and
+            // is passed over, and a page released stays in the map until that thread drops it.
+            for (final CodecPageHolder holder : new ArrayList<CodecPageHolder>(pages.values())) {
+                holder.recycle(-1, false);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Override

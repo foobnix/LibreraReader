@@ -7,9 +7,11 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Base64;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -18,8 +20,11 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.sys.Colors;
+import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
@@ -77,6 +82,7 @@ public class PdfiumEngineDeviceTest {
 
     private File file;
     private int engineBefore;
+    private boolean dayBefore;
 
     @Before
     public void setUp() throws Exception {
@@ -90,6 +96,9 @@ public class PdfiumEngineDeviceTest {
         AppProfile.init(context);
         TempHolder.get().loadingCancelled.set(false);
         engineBefore = AppState.get().pdfEngine;
+        dayBefore = AppState.get().isDayNotInvert;
+        // The colours of a rendered page follow the profile of whoever runs this
+        AppState.get().isDayNotInvert = true;
 
         file = new File(context.getCacheDir(), "pdfium-engine-test.pdf");
         final OutputStream out = new FileOutputStream(file);
@@ -103,6 +112,7 @@ public class PdfiumEngineDeviceTest {
     @After
     public void tearDown() {
         AppState.get().pdfEngine = engineBefore;
+        AppState.get().isDayNotInvert = dayBefore;
         if (file != null) {
             file.delete();
         }
@@ -113,7 +123,7 @@ public class PdfiumEngineDeviceTest {
     @Test
     public void theSettingPicksTheEngine() {
         AppState.get().pdfEngine = AppState.PDF_ENGINE_MUPDF;
-        assertTrue("MuPDF by default", BookType.getCodecContextByPath(file.getPath()) instanceof PdfContext);
+        assertTrue("MuPDF once it is asked for", BookType.getCodecContextByPath(file.getPath()) instanceof PdfContext);
 
         AppState.get().pdfEngine = AppState.PDF_ENGINE_PDFIUM;
         final CodecContext chosen = BookType.getCodecContextByPath(file.getPath());
@@ -124,6 +134,57 @@ public class PdfiumEngineDeviceTest {
                 BookType.getCodecContextByPath("/books/sample.xps") instanceof PdfContext);
         assertTrue("a request without a name stays on MuPDF",
                 BookType.getCodecContextByType(BookType.PDF) instanceof PdfContext);
+    }
+
+    @Test
+    public void pdfiumIsTheDefault() {
+        assertEquals(AppState.PDF_ENGINE_PDFIUM, new AppState().pdfEngine);
+    }
+
+    @Test
+    public void aCoverIsDrawnByTheSelectedEngine() {
+        final Bitmap mupdf = cover(AppState.PDF_ENGINE_MUPDF);
+        final Bitmap pdfium = cover(AppState.PDF_ENGINE_PDFIUM);
+
+        assertTrue("the engines draw a page differently, or this proves nothing", !mupdf.sameAs(pdfium));
+        assertTrue("MuPDF's cover is MuPDF's page", mupdf.sameAs(page(AppState.PDF_ENGINE_MUPDF, mupdf)));
+        assertTrue("PDFium's cover is PDFium's page", pdfium.sameAs(page(AppState.PDF_ENGINE_PDFIUM, pdfium)));
+    }
+
+    @Test
+    public void aCoverIsCachedPerEngine() {
+        AppState.get().pdfEngine = AppState.PDF_ENGINE_MUPDF;
+        final String mupdf = IMG.getCoverUrl(file.getPath());
+        AppState.get().pdfEngine = AppState.PDF_ENGINE_PDFIUM;
+        assertFalse("PDFium does not get MuPDF's cover", mupdf.equals(IMG.getCoverUrl(file.getPath())));
+
+        assertEquals("a cover other engines have nothing to do with keeps its url",
+                IMG.getCoverUrl("/books/sample.epub"), coverUrlWith(AppState.PDF_ENGINE_MUPDF, "/books/sample.epub"));
+    }
+
+    private static String coverUrlWith(final int engine, final String path) {
+        AppState.get().pdfEngine = engine;
+        return IMG.getCoverUrl(path);
+    }
+
+    private Bitmap cover(final int engine) {
+        AppState.get().pdfEngine = engine;
+        final Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        final PageUrl url = PageUrl.build(file.getPath(), ImageExtractor.COVER_PAGE_NO_EFFECT, 200, 300);
+        final Bitmap cover = ImageExtractor.getInstance(context).proccessCoverPage(url);
+        assertNotNull("a cover from engine " + engine, cover);
+        return cover;
+    }
+
+    /** The first page, drawn by this engine alone at the size of the cover. */
+    private Bitmap page(final int engine, final Bitmap size) {
+        final CodecDocument document = open(engine);
+        try {
+            return document.getPage(0).renderBitmap(size.getWidth(), size.getHeight(), new RectF(0, 0, 1, 1), false)
+                           .getBitmap();
+        } finally {
+            document.recycle();
+        }
     }
 
     @Test
@@ -298,6 +359,31 @@ public class PdfiumEngineDeviceTest {
         }
     }
 
+    /** A scan has no text at all, so all a conversion to EPUB gets of its pages is their images. */
+    @Test
+    public void aPageWithoutTextConvertsToAnImage() throws Exception {
+        final OutputStream out = new FileOutputStream(file);
+        try {
+            out.write(imageOnlyPdf());
+        } finally {
+            out.close();
+        }
+        final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
+        try {
+            final String html = pdfium.getPage(0).getPageHTMLWithImages();
+            final int begin = html.indexOf("<image-begin>");
+            final int end = html.indexOf("<image-end>");
+            assertTrue("the page's image is in its html: " + html, begin >= 0 && end > begin);
+
+            final String data = html.substring(begin + "<image-begin>".length(), end);
+            final byte[] image = Base64.decode(data.substring(data.indexOf(',') + 1), Base64.DEFAULT);
+            assertNotNull("the image can be read back: " + data,
+                    BitmapFactory.decodeByteArray(image, 0, image.length));
+        } finally {
+            pdfium.recycle();
+        }
+    }
+
     @Test
     public void aFreshDocumentHasNoChanges() {
         final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
@@ -459,7 +545,26 @@ public class PdfiumEngineDeviceTest {
         objects.add("<< /Title (" + CHAPTER + ") /Parent 6 0 R /Dest [3 0 R /XYZ 0 " + PAGE_HEIGHT + " 0] >>");
         objects.add("<< /Type /Annot /Subtype /Link /Rect [10 10 60 30] /Border [0 0 0]"
                 + " /A << /S /URI /URI (" + URL + ") >> >>");
+        return pdf(objects);
+    }
 
+    /** A PDF of one page holding nothing but an image, the way a scanned book does. */
+    private static byte[] imageOnlyPdf() {
+        final String content = "q " + PAGE_WIDTH + " 0 0 " + PAGE_HEIGHT + " 0 0 cm /Im0 Do Q\n";
+        final String image = "FF0000 00FF00 0000FF FFFF00>";
+        final List<String> objects = new ArrayList<String>();
+        objects.add("<< /Type /Catalog /Pages 2 0 R >>");
+        objects.add("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+        objects.add("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + PAGE_WIDTH + " " + PAGE_HEIGHT + "]"
+                + " /Resources << /XObject << /Im0 5 0 R >> >> /Contents 4 0 R >>");
+        objects.add("<< /Length " + content.length() + " >>\nstream\n" + content + "endstream");
+        objects.add("<< /Type /XObject /Subtype /Image /Width 2 /Height 2 /ColorSpace /DeviceRGB"
+                + " /BitsPerComponent 8 /Filter /ASCIIHexDecode /Length " + image.length() + " >>\nstream\n"
+                + image + "\nendstream");
+        return pdf(objects);
+    }
+
+    private static byte[] pdf(final List<String> objects) {
         final StringBuilder out = new StringBuilder("%PDF-1.4\n");
         final int[] offsets = new int[objects.size()];
         for (int i = 0; i < objects.size(); i++) {

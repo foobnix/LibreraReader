@@ -1026,8 +1026,8 @@ public class PrefFragment2 extends UIFragment {
                 Engines.IS_ENGINE_CHOICE && FoliateContext.isWebViewSupported());
 
         // Which engine renders a PDF. The choice is read when a document is opened, so the books
-        // and the covers already on screen keep the engine they were opened with: the cover cache
-        // is dropped so the library redraws them with the new one.
+        // and the covers already on screen keep the engine they were opened with: a cover's url
+        // names its engine, see IMG.toUrl, so the library redraws them with the new one.
         final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
         asButton(pdfEngine, pdfEngineName(AppState.get().pdfEngine));
         pdfEngine.setOnClickListener(v -> {
@@ -3010,9 +3010,9 @@ public class PrefFragment2 extends UIFragment {
     /** The engines {@link AppState#pdfEngine} can be set to, in the order they are offered. */
     private static final int[] PDF_ENGINES = {AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
 
-    /** The engine's name as the preference shows it: MuPDF is the default one. */
+    /** The engine's name as the preference shows it. */
     private String pdfEngineName(final int engine) {
-        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : getString(R.string.default_label);
+        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF";
     }
 
     /**

@@ -505,6 +505,12 @@ public class PageImaveView extends View {
         LOG.d("addBitmap", bitmap.getWidth(), bitmap.getHeight(), "Real WH:", getWidth(), getHeight());
     }
 
+    /** Lets go of the page. Its size stays, so the same page added back keeps the zoom. */
+    public void clearBitmap() {
+        imageDrawable = null;
+        invalidate();
+    }
+
     public void recycle() {
         try {
             if (imageDrawable != null && imageDrawable.getBitmap() != null) {

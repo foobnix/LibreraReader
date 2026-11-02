@@ -53,6 +53,12 @@ public class LibreraAppGlideModule extends AppGlideModule {
     static Bitmap cache;
     static String path;
 
+    /** The last page decoded is a whole page, and it outlives everything that shows it. */
+    public static void clearCache() {
+        path = null;
+        cache = null;
+    }
+
     final static ModelLoader<String, Bitmap> modelLoader = new ModelLoader<String, Bitmap>() {
         @Nullable
         @Override
@@ -70,8 +76,9 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (isCanced) {
                             return;
                         }
-                        if (s.equals(path)) {
-                            callback.onDataReady(cache);
+                        final Bitmap last = cache;
+                        if (s.equals(path) && last != null && !last.isRecycled()) {
+                            callback.onDataReady(last);
                             return;
                         }
                         LOG.d("LibreraAppGlideModule loadData", s);
@@ -99,8 +106,8 @@ public class LibreraAppGlideModule extends AppGlideModule {
                             LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                             callback.onDataReady(bitmap);
 
-                            path = s;
                             cache = bitmap;
+                            path = s;
                         } else {
                             callback.onDataReady(BitmapFactory.decodeStream(stream));
                             stream.close();

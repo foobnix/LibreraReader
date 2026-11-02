@@ -348,6 +348,7 @@
    <string name="font_name">글꼴 이름</string>
    <string name="text_page">페이지</string>
    <string name="page">페이지</string>
+   <string name="page_range">페이지 범위</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">선택하기</string>
    <string name="crop_white_borders">여백자르기</string>

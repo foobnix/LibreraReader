@@ -86,6 +86,9 @@ public interface DecodeService {
 
     CodecDocument getCodecDocument();
 
+    /** Frees what the document keeps for its pages. They are opened again as they are decoded. */
+    void releasePages();
+
     void shutdown() ;
     void restore() ;
 

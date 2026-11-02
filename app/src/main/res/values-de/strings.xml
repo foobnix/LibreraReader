@@ -348,6 +348,7 @@
    <string name="font_name">Font-Titel</string>
    <string name="text_page">Seite</string>
    <string name="page">Seite</string>
+   <string name="page_range">Seitenbereich</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Wählen</string>
    <string name="crop_white_borders">Leerraum beschneiden</string>

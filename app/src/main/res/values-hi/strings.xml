@@ -348,6 +348,7 @@
    <string name="font_name">फ़ॉन्ट का नाम</string>
    <string name="text_page">पृष्ठ</string>
    <string name="page">पृष्ठ</string>
+   <string name="page_range">पृष्ठ सीमा</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">चुनें</string>
    <string name="crop_white_borders">सफेद सीमाओं फसल</string>

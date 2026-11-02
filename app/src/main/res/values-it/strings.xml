@@ -348,6 +348,7 @@
    <string name="font_name">Carattere</string>
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
+   <string name="page_range">Intervallo di pagine</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Scegli</string>
    <string name="crop_white_borders">Elimina bordi bianchi</string>

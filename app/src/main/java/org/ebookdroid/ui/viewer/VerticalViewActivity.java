@@ -275,6 +275,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         // Analytics.onStart(this);
         try {
             getController().getDocumentModel().decodeService.restore();
+            if (pagesReleased) {
+                pagesReleased = false;
+                getController().getDocumentController().updateMemorySettings();
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -289,12 +293,19 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onStop() {
         try {
+            // Google Play counts the bitmaps of a process in the background. The page on screen
+            // stays, so coming back from a dictionary does not show it being drawn again.
+            getController().getDocumentController().recycleHiddenPages();
+            getController().getDocumentModel().decodeService.releasePages();
+            pagesReleased = true;
             getController().getDocumentModel().decodeService.shutdown();
         } catch (Exception e) {
             LOG.e(e);
         }
         super.onStop();
     }
+
+    private boolean pagesReleased;
 
     Runnable closeRunnable = new Runnable() {
 

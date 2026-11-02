@@ -19,6 +19,8 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.AdvGuestureDetector;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.common.bitmaps.BitmapManager;
+import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.common.settings.types.PageAlign;
@@ -281,6 +283,22 @@ public abstract class AbstractViewController extends AbstractComponentController
     @Override
     public final void updateMemorySettings() {
         EventPool.newEventReset(this, null, false).process();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#recycleHiddenPages()
+     */
+    @Override
+    public final void recycleHiddenPages() {
+        final List<Bitmaps> bitmapsToRecycle = new ArrayList<Bitmaps>();
+        for (final Page page : getBase().getDocumentModel().getPages()) {
+            if (page.index.viewIndex < firstVisiblePage || page.index.viewIndex > lastVisiblePage) {
+                page.nodes.recycleAll(bitmapsToRecycle, true);
+            }
+        }
+        BitmapManager.release(bitmapsToRecycle);
     }
 
     public final int getScrollX() {

@@ -348,6 +348,7 @@
    <string name="font_name">Nome da fonte</string>
    <string name="text_page">Página</string>
    <string name="page">Página</string>
+   <string name="page_range">Intervalo de páginas</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Escolha</string>
    <string name="crop_white_borders">Remover bordas brancas</string>

@@ -348,6 +348,7 @@
    <string name="font_name">எழுத்துரு</string>
    <string name="text_page">பக்கம்</string>
    <string name="page">பக்கம்</string>
+   <string name="page_range">பக்க வரம்பு</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">தேர்வு</string>
    <string name="crop_white_borders">வெள்ளை நிற இடம் வெட்டு</string>

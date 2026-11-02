@@ -348,6 +348,7 @@
    <string name="font_name">Název písma</string>
    <string name="text_page">Stránka</string>
    <string name="page">Stránka</string>
+   <string name="page_range">Rozsah stránek</string>
    <string name="___INDEFINITE___SECTION___"></string>
    <string name="choose_">Vybrat</string>
    <string name="crop_white_borders">Oříznout prázdný prostor</string>
