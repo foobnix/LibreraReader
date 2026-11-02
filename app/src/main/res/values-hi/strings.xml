@@ -718,6 +718,8 @@
    <string name="try_again">फिर से कोशिश करें</string>
    <string name="export_to_librerax">LibreraX में निर्यात करें</string>
    <string name="update_librerax">Librera से आयात करने के लिए LibreraX को नवीनतम संस्करण में अपडेट करें।</string>
+   <string name="librerax_migrate">यह ऐप अब समर्थित नहीं रहेगा और जल्द ही हटा दिया जाएगा। कृपया हमारे आधुनिक बुक रीडर LibreraX पर जाएँ। इंस्टॉल करने के बाद आप अपनी पढ़ने की प्रगति और नोट्स नए ऐप में निर्यात कर सकते हैं।</string>
+   <string name="librerax_migrate_installed">यह ऐप अब समर्थित नहीं रहेगा और जल्द ही हटा दिया जाएगा। अपनी पढ़ने की प्रगति, पसंदीदा, बुकमार्क और टैग LibreraX में ले जाएँ।</string>
    <string name="reading_progress">पढ़ने की प्रगति</string>
    <string name="add_to_home_screen">होम स्क्रीन पर जोड़ें</string>
 </resources>

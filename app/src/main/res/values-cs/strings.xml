@@ -718,6 +718,8 @@
    <string name="try_again">Zkusit znovu</string>
    <string name="export_to_librerax">Exportovat do LibreraX</string>
    <string name="update_librerax">Aktualizujte LibreraX na nejnovější verzi, abyste mohli importovat z Librera.</string>
+   <string name="librerax_migrate">Tato aplikace již nebude podporována a brzy bude odstraněna. Přejděte prosím na LibreraX, naši moderní čtečku knih. Po instalaci můžete do nové aplikace exportovat postup čtení a poznámky.</string>
+   <string name="librerax_migrate_installed">Tato aplikace již nebude podporována a brzy bude odstraněna. Přeneste postup čtení, oblíbené, záložky a štítky do LibreraX.</string>
    <string name="reading_progress">Postup čtení</string>
    <string name="add_to_home_screen">Přidat na plochu</string>
 </resources>

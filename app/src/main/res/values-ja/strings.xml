@@ -718,6 +718,8 @@
    <string name="try_again">再試行</string>
    <string name="export_to_librerax">LibreraX にエクスポート</string>
    <string name="update_librerax">Librera からインポートするには、LibreraX を最新版に更新してください。</string>
+   <string name="librerax_migrate">このアプリのサポートは終了し、まもなく削除されます。最新の読書アプリ LibreraX に移行してください。インストール後、読書の進捗とメモを新しいアプリにエクスポートできます。</string>
+   <string name="librerax_migrate_installed">このアプリのサポートは終了し、まもなく削除されます。読書の進捗、お気に入り、ブックマーク、タグを LibreraX に移行してください。</string>
    <string name="reading_progress">読書の進捗</string>
    <string name="add_to_home_screen">ホーム画面に追加</string>
 </resources>

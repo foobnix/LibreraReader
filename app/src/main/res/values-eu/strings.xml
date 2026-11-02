@@ -718,6 +718,8 @@
    <string name="try_again">Saiatu berriro</string>
    <string name="export_to_librerax">Esportatu LibreraX-era</string>
    <string name="update_librerax">Eguneratu LibreraX azken bertsiora Librera-tik inportatzeko.</string>
+   <string name="librerax_migrate">Aplikazio honek ez du euskarririk izango eta laster kenduko da. Aldatu LibreraX-era, gure liburu-irakurgailu modernora. Instalatu ondoren, irakurketa-aurrerapena eta oharrak aplikazio berrira esporta ditzakezu.</string>
+   <string name="librerax_migrate_installed">Aplikazio honek ez du euskarririk izango eta laster kenduko da. Eraman irakurketa-aurrerapena, gogokoak, laster-markak eta etiketak LibreraX-era.</string>
    <string name="reading_progress">Irakurketaren aurrerapena</string>
    <string name="add_to_home_screen">Gehitu hasierako pantailara</string>
 </resources>

@@ -718,6 +718,8 @@
    <string name="try_again">Yritä uudelleen</string>
    <string name="export_to_librerax">Vie LibreraX:ään</string>
    <string name="update_librerax">Päivitä LibreraX uusimpaan versioon tuodaksesi tiedot Librerasta.</string>
+   <string name="librerax_migrate">Tätä sovellusta ei enää tueta, ja se poistetaan pian. Siirry käyttämään LibreraX-sovellusta, modernia kirjanlukijaamme. Asennuksen jälkeen voit viedä lukuedistymisesi ja muistiinpanosi uuteen sovellukseen.</string>
+   <string name="librerax_migrate_installed">Tätä sovellusta ei enää tueta, ja se poistetaan pian. Siirrä lukuedistyminen, suosikit, kirjanmerkit ja tunnisteet LibreraX-sovellukseen.</string>
    <string name="reading_progress">Lukuedistyminen</string>
    <string name="add_to_home_screen">Lisää aloitusnäyttöön</string>
 </resources>

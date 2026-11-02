@@ -718,6 +718,8 @@
    <string name="try_again">Bandyti dar kartą</string>
    <string name="export_to_librerax">Eksportuoti į LibreraX</string>
    <string name="update_librerax">Atnaujinkite LibreraX iki naujausios versijos, kad galėtumėte importuoti iš Librera.</string>
+   <string name="librerax_migrate">Ši programa nebebus palaikoma ir netrukus bus pašalinta. Pereikite prie „LibreraX“, mūsų modernios knygų skaityklės. Įdiegę galėsite eksportuoti skaitymo eigą ir pastabas į naują programą.</string>
+   <string name="librerax_migrate_installed">Ši programa nebebus palaikoma ir netrukus bus pašalinta. Perkelkite skaitymo eigą, mėgstamiausius, žymes ir žymas į „LibreraX“.</string>
    <string name="reading_progress">Skaitymo eiga</string>
    <string name="add_to_home_screen">Pridėti prie pradžios ekrano</string>
 </resources>

@@ -718,6 +718,8 @@
    <string name="try_again">Opnieuw proberen</string>
    <string name="export_to_librerax">Exporteren naar LibreraX</string>
    <string name="update_librerax">Werk LibreraX bij naar de nieuwste versie om vanuit Librera te importeren.</string>
+   <string name="librerax_migrate">Deze app wordt niet langer ondersteund en wordt binnenkort verwijderd. Stap over op LibreraX, onze moderne boekenlezer. Na de installatie kun je je leesvoortgang en notities naar de nieuwe app exporteren.</string>
+   <string name="librerax_migrate_installed">Deze app wordt niet langer ondersteund en wordt binnenkort verwijderd. Zet je leesvoortgang, favorieten, bladwijzers en tags over naar LibreraX.</string>
    <string name="reading_progress">Leesvoortgang</string>
    <string name="add_to_home_screen">Toevoegen aan startscherm</string>
 </resources>

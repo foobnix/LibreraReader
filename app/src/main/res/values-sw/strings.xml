@@ -718,6 +718,8 @@
    <string name="try_again">Jaribu tena</string>
    <string name="export_to_librerax">Hamisha kwenda LibreraX</string>
    <string name="update_librerax">Sasisha LibreraX hadi toleo jipya zaidi ili kuleta kutoka Librera.</string>
+   <string name="librerax_migrate">Programu hii haitatumika tena na itaondolewa hivi karibuni. Tafadhali hamia LibreraX, kisomaji chetu cha kisasa cha vitabu. Baada ya kusakinisha, unaweza kuhamisha maendeleo yako ya kusoma na madokezo kwenda programu mpya.</string>
+   <string name="librerax_migrate_installed">Programu hii haitatumika tena na itaondolewa hivi karibuni. Hamishia LibreraX maendeleo yako ya kusoma, vipendwa, alamisho na lebo.</string>
    <string name="reading_progress">Maendeleo ya kusoma</string>
    <string name="add_to_home_screen">Ongeza kwenye skrini ya mwanzo</string>
 </resources>

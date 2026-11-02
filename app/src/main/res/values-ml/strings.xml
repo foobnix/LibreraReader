@@ -718,6 +718,8 @@
    <string name="try_again">വീണ്ടും ശ്രമിക്കുക</string>
    <string name="export_to_librerax">LibreraX-ലേക്ക് എക്സ്പോർട്ട് ചെയ്യുക</string>
    <string name="update_librerax">Librera-യിൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യാൻ LibreraX ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്ഡേറ്റ് ചെയ്യുക.</string>
+   <string name="librerax_migrate">ഈ ആപ്പിന് ഇനി പിന്തുണ ഉണ്ടാകില്ല, ഉടൻ നീക്കം ചെയ്യും. ഞങ്ങളുടെ ആധുനിക പുസ്തക വായനാ ആപ്പായ LibreraX-ലേക്ക് മാറുക. ഇൻസ്റ്റാൾ ചെയ്ത ശേഷം വായനാ പുരോഗതിയും കുറിപ്പുകളും പുതിയ ആപ്പിലേക്ക് എക്സ്പോർട്ട് ചെയ്യാം.</string>
+   <string name="librerax_migrate_installed">ഈ ആപ്പിന് ഇനി പിന്തുണ ഉണ്ടാകില്ല, ഉടൻ നീക്കം ചെയ്യും. വായനാ പുരോഗതി, പ്രിയപ്പെട്ടവ, ബുക്ക്മാർക്കുകൾ, ടാഗുകൾ എന്നിവ LibreraX-ലേക്ക് മാറ്റുക.</string>
    <string name="reading_progress">വായനാ പുരോഗതി</string>
    <string name="add_to_home_screen">ഹോം സ്ക്രീനിലേക്ക് ചേർക്കുക</string>
 </resources>

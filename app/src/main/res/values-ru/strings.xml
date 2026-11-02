@@ -718,6 +718,8 @@
    <string name="try_again">Повторить</string>
    <string name="export_to_librerax">Экспорт в LibreraX</string>
    <string name="update_librerax">Обновите LibreraX до последней версии, чтобы импортировать из Librera.</string>
+   <string name="librerax_migrate">Это приложение больше не будет поддерживаться и скоро будет удалено. Пожалуйста, перейдите на LibreraX, нашу современную читалку. После установки вы сможете экспортировать прогресс чтения и заметки в новое приложение.</string>
+   <string name="librerax_migrate_installed">Это приложение больше не будет поддерживаться и скоро будет удалено. Перенесите прогресс чтения, избранное, закладки и теги в LibreraX.</string>
    <string name="reading_progress">Прогресс чтения</string>
    <string name="add_to_home_screen">Добавить на главный экран</string>
 </resources>

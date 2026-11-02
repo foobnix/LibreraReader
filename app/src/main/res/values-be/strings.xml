@@ -718,6 +718,8 @@
    <string name="try_again">Паспрабаваць зноў</string>
    <string name="export_to_librerax">Экспарт у LibreraX</string>
    <string name="update_librerax">Абнавіце LibreraX да апошняй версіі, каб імпартаваць з Librera.</string>
+   <string name="librerax_migrate">Гэтая праграма больш не будзе падтрымлівацца і хутка будзе выдалена. Калі ласка, перайдзіце на LibreraX, наш сучасны чытач кніг. Пасля ўсталявання вы зможаце экспартаваць прагрэс чытання і нататкі ў новую праграму.</string>
+   <string name="librerax_migrate_installed">Гэтая праграма больш не будзе падтрымлівацца і хутка будзе выдалена. Перанясіце прагрэс чытання, абранае, закладкі і тэгі ў LibreraX.</string>
    <string name="reading_progress">Прагрэс чытання</string>
    <string name="add_to_home_screen">Дадаць на галоўны экран</string>
 </resources>

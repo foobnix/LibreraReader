@@ -718,6 +718,8 @@
    <string name="try_again">Қайталау</string>
    <string name="export_to_librerax">LibreraX-ке экспорттау</string>
    <string name="update_librerax">Librera-дан импорттау үшін LibreraX-ті соңғы нұсқаға жаңартыңыз.</string>
+   <string name="librerax_migrate">Бұл қолданбаға енді қолдау көрсетілмейді және ол жақында жойылады. Біздің заманауи кітап оқу құралымыз LibreraX-ке өтіңіз. Орнатқаннан кейін оқу барысы мен жазбаларды жаңа қолданбаға экспорттай аласыз.</string>
+   <string name="librerax_migrate_installed">Бұл қолданбаға енді қолдау көрсетілмейді және ол жақында жойылады. Оқу барысын, таңдаулыларды, бетбелгілерді және тегтерді LibreraX-ке көшіріңіз.</string>
    <string name="reading_progress">Оқу барысы</string>
    <string name="add_to_home_screen">Басты экранға қосу</string>
 </resources>

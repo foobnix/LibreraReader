@@ -718,6 +718,8 @@
    <string name="try_again">Försök igen</string>
    <string name="export_to_librerax">Exportera till LibreraX</string>
    <string name="update_librerax">Uppdatera LibreraX till den senaste versionen för att importera från Librera.</string>
+   <string name="librerax_migrate">Den här appen kommer inte längre att stödjas och tas snart bort. Byt till LibreraX, vår moderna bokläsare. När den är installerad kan du exportera läsframsteg och anteckningar till den nya appen.</string>
+   <string name="librerax_migrate_installed">Den här appen kommer inte längre att stödjas och tas snart bort. Flytta läsframsteg, favoriter, bokmärken och taggar till LibreraX.</string>
    <string name="reading_progress">Läsförlopp</string>
    <string name="add_to_home_screen">Lägg till på startskärmen</string>
 </resources>

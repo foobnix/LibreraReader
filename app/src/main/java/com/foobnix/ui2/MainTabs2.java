@@ -52,6 +52,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.drive.GoogleAuth;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
 import androidx.fragment.app.Fragment;
@@ -634,6 +635,11 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // A new start of the app rather than the screen turning: the notice comes back.
+        if (savedInstanceState == null) {
+            LibreraX.migrateNoticeClosed = false;
+        }
 
         if (!isTaskRoot() && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(getIntent().getAction())) {
             finish();

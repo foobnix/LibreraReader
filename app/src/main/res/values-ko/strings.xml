@@ -718,6 +718,8 @@
    <string name="try_again">다시 시도</string>
    <string name="export_to_librerax">LibreraX로 내보내기</string>
    <string name="update_librerax">Librera에서 가져오려면 LibreraX를 최신 버전으로 업데이트하세요.</string>
+   <string name="librerax_migrate">이 앱은 더 이상 지원되지 않으며 곧 삭제됩니다. 최신 도서 리더 LibreraX로 옮겨 주세요. 설치 후 독서 진행률과 메모를 새 앱으로 내보낼 수 있습니다.</string>
+   <string name="librerax_migrate_installed">이 앱은 더 이상 지원되지 않으며 곧 삭제됩니다. 독서 진행률, 즐겨찾기, 북마크, 태그를 LibreraX로 옮겨 주세요.</string>
    <string name="reading_progress">읽기 진행률</string>
    <string name="add_to_home_screen">홈 화면에 추가</string>
 </resources>

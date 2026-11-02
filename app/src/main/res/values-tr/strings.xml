@@ -718,6 +718,8 @@
    <string name="try_again">Tekrar dene</string>
    <string name="export_to_librerax">LibreraX\'e aktar</string>
    <string name="update_librerax">Librera\'dan içe aktarmak için LibreraX\'i en son sürüme güncelleyin.</string>
+   <string name="librerax_migrate">Bu uygulama artık desteklenmeyecek ve yakında kaldırılacak. Lütfen modern kitap okuyucumuz LibreraX\'e geçin. Yükledikten sonra okuma ilerlemenizi ve notlarınızı yeni uygulamaya aktarabilirsiniz.</string>
+   <string name="librerax_migrate_installed">Bu uygulama artık desteklenmeyecek ve yakında kaldırılacak. Okuma ilerlemenizi, favorilerinizi, yer imlerinizi ve etiketlerinizi LibreraX\'e taşıyın.</string>
    <string name="reading_progress">Okuma ilerlemesi</string>
    <string name="add_to_home_screen">Ana ekrana ekle</string>
 </resources>

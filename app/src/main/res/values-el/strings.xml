@@ -718,6 +718,8 @@
    <string name="try_again">Δοκιμάστε ξανά</string>
    <string name="export_to_librerax">Εξαγωγή στο LibreraX</string>
    <string name="update_librerax">Ενημερώστε το LibreraX στην τελευταία έκδοση για εισαγωγή από το Librera.</string>
+   <string name="librerax_migrate">Αυτή η εφαρμογή δεν θα υποστηρίζεται πλέον και θα αφαιρεθεί σύντομα. Μεταβείτε στο LibreraX, τον σύγχρονο αναγνώστη βιβλίων μας. Μετά την εγκατάσταση, μπορείτε να εξαγάγετε την πρόοδο ανάγνωσης και τις σημειώσεις σας στη νέα εφαρμογή.</string>
+   <string name="librerax_migrate_installed">Αυτή η εφαρμογή δεν θα υποστηρίζεται πλέον και θα αφαιρεθεί σύντομα. Μεταφέρετε την πρόοδο ανάγνωσης, τα αγαπημένα, τους σελιδοδείκτες και τις ετικέτες στο LibreraX.</string>
    <string name="reading_progress">Πρόοδος ανάγνωσης</string>
    <string name="add_to_home_screen">Προσθήκη στην αρχική οθόνη</string>
 </resources>

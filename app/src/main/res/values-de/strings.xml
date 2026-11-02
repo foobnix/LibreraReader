@@ -718,6 +718,8 @@
    <string name="try_again">Erneut versuchen</string>
    <string name="export_to_librerax">Nach LibreraX exportieren</string>
    <string name="update_librerax">Aktualisieren Sie LibreraX auf die neueste Version, um aus Librera zu importieren.</string>
+   <string name="librerax_migrate">Diese App wird nicht mehr unterstützt und bald entfernt. Bitte wechseln Sie zu LibreraX, unserem modernen E-Book-Reader. Nach der Installation können Sie Ihren Lesefortschritt und Ihre Notizen in die neue App exportieren.</string>
+   <string name="librerax_migrate_installed">Diese App wird nicht mehr unterstützt und bald entfernt. Übertragen Sie Ihren Lesefortschritt, Ihre Favoriten, Lesezeichen und Tags zu LibreraX.</string>
    <string name="reading_progress">Lesefortschritt</string>
    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen</string>
 </resources>

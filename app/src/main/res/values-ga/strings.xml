@@ -718,6 +718,8 @@
    <string name="try_again">Bain triail eile as</string>
    <string name="export_to_librerax">Easpórtáil go LibreraX</string>
    <string name="update_librerax">Nuashonraigh LibreraX go dtí an leagan is déanaí chun iompórtáil ó Librera.</string>
+   <string name="librerax_migrate">Ní thacófar leis an aip seo a thuilleadh agus bainfear í go luath. Bog go LibreraX, ár léitheoir leabhar nua-aimseartha. Nuair a bheidh sí suiteáilte, is féidir leat do dhul chun cinn léitheoireachta agus do nótaí a easpórtáil chuig an aip nua.</string>
+   <string name="librerax_migrate_installed">Ní thacófar leis an aip seo a thuilleadh agus bainfear í go luath. Bog do dhul chun cinn léitheoireachta, do cheanáin, do leabharmharcanna agus do chlibeanna go LibreraX.</string>
    <string name="reading_progress">Dul chun cinn léitheoireachta</string>
    <string name="add_to_home_screen">Cuir leis an scáileán baile</string>
 </resources>

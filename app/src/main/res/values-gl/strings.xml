@@ -718,6 +718,8 @@
    <string name="try_again">Tentar de novo</string>
    <string name="export_to_librerax">Exportar a LibreraX</string>
    <string name="update_librerax">Actualiza LibreraX á última versión para importar desde Librera.</string>
+   <string name="librerax_migrate">Esta aplicación deixará de ter soporte e eliminarase pronto. Pasa a LibreraX, o noso lector de libros moderno. Unha vez instalada, poderás exportar o progreso de lectura e as notas á nova aplicación.</string>
+   <string name="librerax_migrate_installed">Esta aplicación deixará de ter soporte e eliminarase pronto. Pasa a LibreraX o progreso de lectura, os favoritos, os marcadores e as etiquetas.</string>
    <string name="reading_progress">Progreso de lectura</string>
    <string name="add_to_home_screen">Engadir á pantalla de inicio</string>
 </resources>

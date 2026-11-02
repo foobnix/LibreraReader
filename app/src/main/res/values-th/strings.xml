@@ -718,6 +718,8 @@
    <string name="try_again">ลองอีกครั้ง</string>
    <string name="export_to_librerax">ส่งออกไปยัง LibreraX</string>
    <string name="update_librerax">อัปเดต LibreraX เป็นเวอร์ชันล่าสุดเพื่อนำเข้าจาก Librera</string>
+   <string name="librerax_migrate">แอปนี้จะไม่ได้รับการสนับสนุนอีกต่อไปและจะถูกนำออกเร็ว ๆ นี้ โปรดย้ายไปใช้ LibreraX โปรแกรมอ่านหนังสือสมัยใหม่ของเรา เมื่อติดตั้งแล้ว คุณสามารถส่งออกความคืบหน้าการอ่านและบันทึกไปยังแอปใหม่ได้</string>
+   <string name="librerax_migrate_installed">แอปนี้จะไม่ได้รับการสนับสนุนอีกต่อไปและจะถูกนำออกเร็ว ๆ นี้ โปรดย้ายความคืบหน้าการอ่าน รายการโปรด บุ๊กมาร์ก และแท็กไปยัง LibreraX</string>
    <string name="reading_progress">ความคืบหน้าการอ่าน</string>
    <string name="add_to_home_screen">เพิ่มไปยังหน้าจอหลัก</string>
 </resources>

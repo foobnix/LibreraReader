@@ -718,6 +718,8 @@
    <string name="try_again">Iterum conare</string>
    <string name="export_to_librerax">Exporta in LibreraX</string>
    <string name="update_librerax">Renova LibreraX ad ultimam versionem ut ex Librera importes.</string>
+   <string name="librerax_migrate">Haec applicatio non iam sustinebitur et mox removebitur. Quaeso transi ad LibreraX, nostrum lectorem librorum hodiernum. Post installationem progressum lectionis et notas ad novam applicationem exportare potes.</string>
+   <string name="librerax_migrate_installed">Haec applicatio non iam sustinebitur et mox removebitur. Transfer progressum lectionis, favorita, signacula et notas ad LibreraX.</string>
    <string name="reading_progress">Progressus lectionis</string>
    <string name="add_to_home_screen">Adde ad tabulam primariam</string>
 </resources>

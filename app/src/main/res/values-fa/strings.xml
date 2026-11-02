@@ -718,6 +718,8 @@
    <string name="try_again">تلاش دوباره</string>
    <string name="export_to_librerax">صدور به LibreraX</string>
    <string name="update_librerax">برای وارد کردن از Librera، LibreraX را به آخرین نسخه به‌روز کنید.</string>
+   <string name="librerax_migrate">این برنامه دیگر پشتیبانی نمی‌شود و به‌زودی حذف خواهد شد. لطفاً به LibreraX، کتاب‌خوان مدرن ما، کوچ کنید. پس از نصب، می‌توانید پیشرفت مطالعه و یادداشت‌های خود را به برنامه جدید صادر کنید.</string>
+   <string name="librerax_migrate_installed">این برنامه دیگر پشتیبانی نمی‌شود و به‌زودی حذف خواهد شد. پیشرفت مطالعه، موارد دلخواه، نشانک‌ها و برچسب‌های خود را به LibreraX منتقل کنید.</string>
    <string name="reading_progress">پیشرفت مطالعه</string>
    <string name="add_to_home_screen">افزودن به صفحهٔ اصلی</string>
 </resources>

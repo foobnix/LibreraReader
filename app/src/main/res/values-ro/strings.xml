@@ -718,6 +718,8 @@
    <string name="try_again">Reîncercați</string>
    <string name="export_to_librerax">Exportă în LibreraX</string>
    <string name="update_librerax">Actualizați LibreraX la cea mai recentă versiune pentru a importa din Librera.</string>
+   <string name="librerax_migrate">Această aplicație nu va mai fi acceptată și va fi eliminată în curând. Treceți la LibreraX, cititorul nostru modern de cărți. După instalare, puteți exporta progresul lecturii și notițele în noua aplicație.</string>
+   <string name="librerax_migrate_installed">Această aplicație nu va mai fi acceptată și va fi eliminată în curând. Transferați progresul lecturii, favoritele, marcajele și etichetele în LibreraX.</string>
    <string name="reading_progress">Progresul lecturii</string>
    <string name="add_to_home_screen">Adaugă pe ecranul de pornire</string>
 </resources>

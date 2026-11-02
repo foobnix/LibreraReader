@@ -718,6 +718,8 @@
    <string name="try_again">Újra</string>
    <string name="export_to_librerax">Exportálás a LibreraX-be</string>
    <string name="update_librerax">Frissítse a LibreraX-et a legújabb verzióra a Librerából való importáláshoz.</string>
+   <string name="librerax_migrate">Ez az alkalmazás a továbbiakban nem kap támogatást, és hamarosan eltávolítjuk. Kérjük, váltson a LibreraX-re, a modern könyvolvasónkra. Telepítés után az olvasási előrehaladást és a jegyzeteket exportálhatja az új alkalmazásba.</string>
+   <string name="librerax_migrate_installed">Ez az alkalmazás a továbbiakban nem kap támogatást, és hamarosan eltávolítjuk. Vigye át az olvasási előrehaladást, a kedvenceket, a könyvjelzőket és a címkéket a LibreraX-be.</string>
    <string name="reading_progress">Olvasási előrehaladás</string>
    <string name="add_to_home_screen">Hozzáadás a kezdőképernyőhöz</string>
 </resources>

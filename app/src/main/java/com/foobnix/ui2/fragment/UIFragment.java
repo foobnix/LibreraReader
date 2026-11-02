@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,6 +39,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.Views;
+import com.foobnix.librerax.LibreraX;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
@@ -176,7 +180,32 @@ public abstract class UIFragment<T> extends Fragment {
         if (onLibrera != null) {
             onLibrera.setOnClickListener(v -> LibreraSafSync.startPick(getActivity()));
         }
+        View onMigrate = layoutOnGrant.findViewById(R.id.onGrantMigrateButton);
+        if (onMigrate != null) {
+            onMigrate.setOnClickListener(v -> LibreraX.migrate(getActivity()));
+        }
+        View onMigrateClose = layoutOnGrant.findViewById(R.id.onGrantMigrateClose);
+        if (onMigrateClose != null) {
+            onMigrateClose.setOnClickListener(v -> closeMigrateNotice());
+        }
+        ImageView migrateIcon = layoutOnGrant.findViewById(R.id.onGrantMigrateIcon);
+        if (migrateIcon != null) {
+            RoundedBitmapDrawable round = RoundedBitmapDrawableFactory.create(getResources(),
+                    BitmapFactory.decodeResource(getResources(), R.drawable.icon_librerax));
+            round.setCircular(true);
+            migrateIcon.setImageDrawable(round);
+        }
         updateOnGrantPanel();
+    }
+
+    /** Closed on every page at once: the library and the folders each carry the notice. */
+    private void closeMigrateNotice() {
+        LibreraX.migrateNoticeClosed = true;
+        if (getActivity() instanceof MainTabs2) {
+            ((MainTabs2) getActivity()).updateOnGrantPanels();
+        } else {
+            updateOnGrantPanel();
+        }
     }
 
     /**
@@ -227,7 +256,17 @@ public abstract class UIFragment<T> extends Fragment {
             message.setText(permissionMessage());
         }
 
-        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (askPermission || askLibrera));
+        boolean migrate = LibreraX.isMigrateNotice();
+        TextView migrateMessage = onGrantPanel.findViewById(R.id.onGrantMigrateText);
+        TextView migrateButton = onGrantPanel.findViewById(R.id.onGrantMigrateButtonText);
+        if (migrate && migrateMessage != null && migrateButton != null) {
+            boolean installed = LibreraX.isInstalled(getContext());
+            migrateMessage.setText(installed ? R.string.librerax_migrate_installed : R.string.librerax_migrate);
+            migrateButton.setText(installed ? R.string.export_to_librerax : R.string.librerax);
+        }
+
+        Views.visible(onGrantPanel, isOnGrantPanelAllowed() && (askPermission || askLibrera || migrate));
+        Views.visible(onGrantPanel.findViewById(R.id.onGrantMigrate), migrate);
         Views.visible(onGrantPanel.findViewById(R.id.onGrantPermission), askPermission);
         Views.visible(onGrantPanel.findViewById(R.id.onGrantLibrera), askLibrera);
     }

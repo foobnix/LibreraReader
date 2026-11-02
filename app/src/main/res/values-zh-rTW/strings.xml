@@ -718,6 +718,8 @@
    <string name="try_again">重試</string>
    <string name="export_to_librerax">匯出到 LibreraX</string>
    <string name="update_librerax">請將 LibreraX 更新至最新版本，以便從 Librera 匯入。</string>
+   <string name="librerax_migrate">此應用程式將不再受支援，並即將移除。請轉移到我們的現代圖書閱讀器 LibreraX。安裝後，您可以將閱讀進度和筆記匯出到新應用程式。</string>
+   <string name="librerax_migrate_installed">此應用程式將不再受支援，並即將移除。請將閱讀進度、最愛、書籤和標籤轉移到 LibreraX。</string>
    <string name="reading_progress">閱讀進度</string>
    <string name="add_to_home_screen">新增至主畫面</string>
 </resources>

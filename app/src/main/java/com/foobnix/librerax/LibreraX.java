@@ -91,6 +91,25 @@ public class LibreraX {
     // export names, granted to LibreraX with the intent so it can read books it has no access to
     public static final String EXPORT_BOOKS = "librera-books.json";
 
+    // The apps going away in favour of LibreraX, each told so on the notice at the top of its pages.
+    private static final List<String> RETIRED_FLAVORS =
+            Arrays.asList("ebooka", "pdf_classic", "pdf_v2", "tts_reader");
+    // Closed for this run of the app only: MainTabs2 clears it when the app is started again.
+    public static boolean migrateNoticeClosed;
+
+    public static boolean isMigrateNotice() {
+        return RETIRED_FLAVORS.contains(AppsConfig.FLAVOR) && !migrateNoticeClosed;
+    }
+
+    /** Takes the user to LibreraX: gets it, or, with it installed, hands this profile over to it. */
+    public static void migrate(Activity a) {
+        if (isInstalled(a)) {
+            exportTo(a);
+        } else {
+            Urls.open(a, downloadUrl());
+        }
+    }
+
     private static boolean isView(int mode) {
         return mode == AppState.READING_MODE_SCROLL || mode == AppState.READING_MODE_BOOK
                 || mode == AppState.READING_MODE_MUSICIAN;

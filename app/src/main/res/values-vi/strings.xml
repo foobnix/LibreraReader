@@ -718,6 +718,8 @@
    <string name="try_again">Thử lại</string>
    <string name="export_to_librerax">Xuất sang LibreraX</string>
    <string name="update_librerax">Cập nhật LibreraX lên phiên bản mới nhất để nhập từ Librera.</string>
+   <string name="librerax_migrate">Ứng dụng này sẽ không còn được hỗ trợ và sẽ sớm bị gỡ bỏ. Vui lòng chuyển sang LibreraX, trình đọc sách hiện đại của chúng tôi. Sau khi cài đặt, bạn có thể xuất tiến độ đọc và ghi chú sang ứng dụng mới.</string>
+   <string name="librerax_migrate_installed">Ứng dụng này sẽ không còn được hỗ trợ và sẽ sớm bị gỡ bỏ. Hãy chuyển tiến độ đọc, mục yêu thích, dấu trang và thẻ sang LibreraX.</string>
    <string name="reading_progress">Tiến độ đọc</string>
    <string name="add_to_home_screen">Thêm vào màn hình chính</string>
 </resources>
