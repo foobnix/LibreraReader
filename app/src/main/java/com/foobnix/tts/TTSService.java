@@ -669,7 +669,12 @@ import java.util.List;
     }
 
     public boolean startMyForeground() {
-        if (!isStartForeground) {
+        // Every startForegroundService() needs its startForeground(), and the service can have
+        // stopped being one without being destroyed - closing it stops the foreground first, and
+        // a play pressed straight after reaches the same instance before it is gone. Android then
+        // kills the app for a service that never started.
+        if (!isStartForeground || (Build.VERSION.SDK_INT >= 29
+                && getForegroundServiceType() == ServiceInfo.FOREGROUND_SERVICE_TYPE_NONE)) {
             startServiceWithNotification();
             isStartForeground = true;
         }
@@ -780,6 +785,7 @@ import java.util.List;
 
             TTSNotification.hideNotification();
             stopForeground(true);
+            isStartForeground = false;
             stopSelf();
 
             return START_STICKY;

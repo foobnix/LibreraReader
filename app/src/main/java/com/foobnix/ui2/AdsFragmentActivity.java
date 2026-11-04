@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MotionEvent;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentActivity;
@@ -30,6 +31,22 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     boolean doubleBackToExitPressedOnce = false;
 
     public abstract void onFinishActivity();
+
+    /**
+     * A touch handler that empties a layout while a second finger is down on another of its
+     * children leaves the platform's dispatch loop holding a target it has just recycled, and the
+     * next step of that loop reads its null child (ViewGroup.resetCancelNextUpFlag). The layout has
+     * already let go of its targets by then, so dropping this one event is all it costs.
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        try {
+            return super.dispatchTouchEvent(ev);
+        } catch (NullPointerException e) {
+            LOG.e(e);
+            return true;
+        }
+    }
 
     long timeActivityCreated = 0;
 

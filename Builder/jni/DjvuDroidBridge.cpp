@@ -19,6 +19,10 @@
 
 void ThrowError(JNIEnv* env, const char* msg)
 {
+    // A document with several errors queues several messages, and every one of them comes
+    // here: the first stays the one thrown. FindClass with an exception pending aborts the app.
+    if (env->ExceptionCheck())
+        return;
     jclass exceptionClass = env->FindClass("java/lang/RuntimeException");
     if (!exceptionClass)
         return;
@@ -328,7 +332,10 @@ extern "C" jlong Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_open(JNIEnv 
     ddjvu_document_t* doc = ddjvu_document_create_by_filename((ddjvu_context_t*) (contextHandle), fileNameString, FALSE);
     env->ReleaseStringUTFChars(fileName, fileNameString);
     if (!doc)
+    {
         ThrowError(env, "DJVU file not found or corrupted.");
+        return 0;
+    }
 
     ddjvu_fileinfo_t info;
     while(ddjvu_document_get_fileinfo(doc, 0, &info) < DDJVU_JOB_OK)
@@ -445,6 +452,12 @@ extern "C" jobject Java_org_ebookdroid_droids_djvu_codec_DjvuPage_getPageText(JN
         waitAndHandleMessages(jenv, contextHandle);
     }
 
+    // The helper looks classes up, which cannot be done with a decoding error pending
+    if (jenv->ExceptionCheck())
+    {
+        return NULL;
+    }
+
     if (r == miniexp_nil || !miniexp_consp(r))
     {
         // DEBUG_PRINT("getPageLinks(%d): no text on page", pageNumber);
@@ -483,6 +496,12 @@ extern "C" jint Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getPageInfo(J
     while ((r = ddjvu_document_get_pageinfo((ddjvu_document_t*) docHandle, pageNumber, &info)) < DDJVU_JOB_OK)
     {
         waitAndHandleMessages(env, contextHandle);
+    }
+
+    // The helper looks classes up, which cannot be done with a decoding error pending
+    if (env->ExceptionCheck())
+    {
+        return -1;
     }
 
     CodecPageInfoHelper h(env);
@@ -551,15 +570,17 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPage(JN
     ddjvu_format_set_row_order(pixelFormat, TRUE);
     ddjvu_format_set_y_direction(pixelFormat, TRUE);
 
-    char *pBuffer = (char *) env->GetPrimitiveArrayCritical(buffer, 0);
-
     while (ddjvu_page_decoding_status(page) < DDJVU_JOB_OK)
     {
-       
+
         DEBUG_WRITE("Rendering status 1 ... ");
-        waitAndHandleMessages(env, contextHandle);        
+        waitAndHandleMessages(env, contextHandle);
         DEBUG_WRITE("Rendering status 2 ... ");
     }
+
+    // Taken only once decoding is done: an error thrown while waiting makes JNI calls, which
+    // are not allowed while the array is held
+    char *pBuffer = (char *) env->GetPrimitiveArrayCritical(buffer, 0);
 
     jboolean result = ddjvu_page_render(page, (ddjvu_render_mode_t) rendermode, &pageRect, &targetRect, pixelFormat,
         targetWidth * 4, pBuffer);
