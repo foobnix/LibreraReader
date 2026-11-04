@@ -11,6 +11,7 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.MyPath;
 import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 
 import org.librera.LinkedJSONObject;
@@ -192,6 +193,7 @@ public class BookmarksData {
     public List<AppBookmark> getBookmarksByBook(String path) {
 
         List<AppBookmark> all = new ArrayList<>();
+        final String name = ExtUtils.getFileName(path);
 
 
         List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
@@ -206,9 +208,10 @@ public class BookmarksData {
                     appBookmark.file = file;
                     final LinkedJSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
-                    String path1 = ExtUtils.getFileName(path);
-                    String path2 = ExtUtils.getFileName(appBookmark.getPath());
-                    if (path1.equals(path2)) {
+                    // By the name as it was saved, not getPath(): that looks for the synced copy
+                    // on disk, which has the same name, and every bookmark of every book is read
+                    // here each time the bookmarks of one are shown
+                    if (name.equals(ExtUtils.getFileName(MyPath.toAbsolute(appBookmark.path)))) {
                         appBookmark.path = path;//update path
                         all.add(appBookmark);
                     }

@@ -582,9 +582,19 @@ public class MainTabs2 extends AdsFragmentActivity {
 
        // if (Android6.canWrite(this)) {
             BrightnessHelper.applySystemBrigtness(this);
-            overlay.setVisibility(View.GONE);
+            hideOverlay();
     //    }
         GFile.runSyncService(this);
+    }
+
+    /**
+     * There is no overlay while the app password is asked: onCreate stops before the layout is
+     * set, and the screen still goes on to be shown under the prompt.
+     */
+    private void hideOverlay() {
+        if (overlay != null) {
+            overlay.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -1140,7 +1150,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
         BrightnessHelper.applySystemBrigtness(this);
-        overlay.setVisibility(View.GONE);
+        hideOverlay();
 
         LocalBroadcastManager.getInstance(this)
                              .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
