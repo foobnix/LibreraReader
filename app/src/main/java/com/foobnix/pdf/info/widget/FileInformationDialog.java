@@ -548,7 +548,9 @@ public class FileInformationDialog {
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
         TintUtil.roundCover(coverImage);
 
-        IMG.getCoverPageWithEffect(a, file.getPath(), null)
+        // Not the library's own Glide, which gives its covers back when it goes out of sight, and
+        // would leave this one empty on coming back with the dialog still open
+        IMG.getCoverPageWithEffect(LibreraApp.context, file.getPath(), null)
            .into(coverImage);
 
         coverImage.setOnClickListener(new OnClickListener() {

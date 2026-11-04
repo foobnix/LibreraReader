@@ -278,7 +278,7 @@ public class LibreraApp extends Application {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         LOG.d("onTrimMemory", level);
-        IMG.clearMemoryCache();
+        IMG.releaseMemory();
         TempHolder.get().loadingCancelled.set(true);
     }
 

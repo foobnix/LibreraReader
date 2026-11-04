@@ -123,6 +123,20 @@ public class IMG {
         }
     }
 
+    /**
+     * {@link #clearMemoryCache()} until nothing is left: what Glide's memory cache lets go of
+     * reaches its bitmap pool on the next turn of the main thread, and would stay there, counted
+     * by Google Play while the app is in the background.
+     */
+    public static void releaseMemory() {
+        clearMemoryCache();
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(() -> {
+            clearMemoryCache();
+            handler.post(IMG::clearMemoryCache);
+        });
+    }
+
     public static RequestManager with(Context a) {
         if (a instanceof HorizontalViewActivity) {
             return Glide.with((HorizontalViewActivity) a);

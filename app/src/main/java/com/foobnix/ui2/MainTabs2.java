@@ -43,6 +43,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
 import com.cloudrail.si.CloudRail;
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.JsonDB;
@@ -137,6 +138,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     TabsAdapter2 adapter;
     ImageView imageMenu;
     View imageMenuParent, overlay;
+    private boolean coversReleased;
     TextView toastBrightnessText, onSubscribe;
     Handler handler;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -708,6 +710,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         overlay = findViewById(R.id.overlay);
 
+        // The library lies under the book being read, and its covers - dozens of them on a
+        // tablet, a megabyte each - stayed in memory with it, counted by Google Play once the app
+        // is in the background. Glide gives them back on onStop and onStart binds them again.
+        Glide.with(this).clearOnStop();
+
         toastBrightnessText = findViewById(R.id.toastBrightnessText);
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
@@ -1214,9 +1221,24 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // Glide gave the covers back when the library went out of sight, see onCreate
+        if (coversReleased) {
+            coversReleased = false;
+            if (tabFragments != null) {
+                for (UIFragment fragment : tabFragments) {
+                    fragment.rebindItems();
+                }
+            }
+        }
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         SharedBooks.cache.clear();
+        coversReleased = overlay != null;
     }
 
     @Override

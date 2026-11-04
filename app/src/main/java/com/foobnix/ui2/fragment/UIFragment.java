@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -190,8 +191,14 @@ public abstract class UIFragment<T> extends Fragment {
         }
         ImageView migrateIcon = layoutOnGrant.findViewById(R.id.onGrantMigrateIcon);
         if (migrateIcon != null) {
-            RoundedBitmapDrawable round = RoundedBitmapDrawableFactory.create(getResources(),
-                    BitmapFactory.decodeResource(getResources(), R.drawable.icon_librerax));
+            // At the size it is shown: the icon is 512 pixels, and every page has the notice
+            final int size = Math.max(1, migrateIcon.getLayoutParams().width);
+            final Bitmap full = BitmapFactory.decodeResource(getResources(), R.drawable.icon_librerax);
+            final Bitmap icon = Bitmap.createScaledBitmap(full, size, size, true);
+            if (icon != full) {
+                full.recycle();
+            }
+            RoundedBitmapDrawable round = RoundedBitmapDrawableFactory.create(getResources(), icon);
             round.setCircular(true);
             migrateIcon.setImageDrawable(round);
         }
@@ -512,6 +519,13 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public abstract void notifyFragment();
+
+    /** Binds the items shown again, for their covers, without reading the list again. */
+    public void rebindItems() {
+        if (recyclerView != null && recyclerView.getAdapter() != null) {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
 
     public abstract void resetFragment();
 
