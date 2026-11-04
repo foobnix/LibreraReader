@@ -1071,15 +1071,18 @@ import java.util.List;
                 return;
             }
 
-            readingWords = null;
             final int pageCount = dc.getPageCount();
             final int number = pageInLayout(dc, pageNumber, pageCount);
             final CodecPage page = number < pageCount ? dc.getPage(number) : null;
             String pageHTML = null;
+            TextWord[][] words = null;
             if (page != null) {
                 pageHTML = page.getPageHTML();
+                // This copy is laid out at the reader's size, so its words fall where the reader's do
+                words = page.getText();
                 page.recycle();
             }
+            readingWords = words;
             speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
         }
     }

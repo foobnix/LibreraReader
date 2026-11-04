@@ -298,6 +298,14 @@ public class AppDB {
         }
     }
 
+    public List<FileMeta> getAllWithoutPages() {
+        try {
+            return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.Pages.isNull()).list();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
+
     public List<FileMeta> getAllByState(int state) {
         try {
             return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.State.eq(state)).list();
@@ -675,6 +683,9 @@ public class AppDB {
         DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //
         PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.PubDate),//
         SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
+        // Back with the pages of reflowable books estimated, see PageEstimate: 8 is what settings
+        // and backups made before it was taken out still keep
+        PAGES(8, R.string.by_number_of_pages, FileMetaDao.Properties.Pages), //
         PATH(0, R.string.folder, FileMetaDao.Properties.ParentPath), //
         FILE_NAME(1, R.string.by_file_name, FileMetaDao.Properties.PathTxt), //
         TITLE(4, R.string.by_title, FileMetaDao.Properties.Title), //

@@ -24,19 +24,23 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
+import com.foobnix.ext.PageEstimate;
 import com.foobnix.ext.PdfExtract;
 import com.foobnix.ext.PubDate;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
+import org.greenrobot.eventbus.EventBus;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FileMetaCore {
 
@@ -205,6 +209,7 @@ public class FileMetaCore {
                     UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
                     if (extract) {
                         ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName);
+                        estimatePages(ebookMeta, res.unZipPath);
                     }
                     ebookMeta.setUnzipPath(res.unZipPath);
                 } finally {
@@ -213,6 +218,7 @@ public class FileMetaCore {
             } else {
                 if (extract) {
                     ebookMeta = getEbookMeta(path, path, null);
+                    estimatePages(ebookMeta, path);
                 }
                 ebookMeta.setUnzipPath(path);
             }
@@ -222,6 +228,102 @@ public class FileMetaCore {
         }
         return ebookMeta;
 
+    }
+
+    /** A reflowable book has no pages of its own: it is given the standard pages its text fills. */
+    private static void estimatePages(EbookMeta ebookMeta, String unZipPath) {
+        if (ebookMeta.getPagesCount() == 0 && PageEstimate.isEstimated(unZipPath)) {
+            ebookMeta.setPagesCount(PageEstimate.of(unZipPath, ebookMeta.getLang(), ebookMeta.getTitle() + " " + ebookMeta.getAuthor()));
+        }
+    }
+
+    /**
+     * The pages of a book, read as the scan reads them when it has none yet, and kept. Not on the
+     * main thread: a PDF or DjVu is opened for them.
+     */
+    public static int pagesOf(FileMeta meta) {
+        if (meta.getPages() != null && meta.getPages() > 0) {
+            return meta.getPages();
+        }
+        if (meta.getPages() != null && PageEstimate.isEstimated(meta.getPath(), meta.getChild())) {
+            // Read before, and nothing found
+            return 0;
+        }
+        try {
+            if (ExtUtils.isExteralSD(meta.getPath()) || !new File(meta.getPath()).isFile()) {
+                return 0;
+            }
+            int pages = get().getEbookMeta(meta.getPath(), CacheDir.ZipApp, true).getPagesCount();
+            if (pages > 0 || PageEstimate.isEstimated(meta.getPath(), meta.getChild())) {
+                meta.setPages(pages);
+                AppDB.get().update(meta);
+            }
+            return pages;
+        } catch (Exception e) {
+            LOG.e(e);
+            return 0;
+        }
+    }
+
+    private static final AtomicBoolean estimatingPages = new AtomicBoolean();
+
+    /**
+     * {@link #estimateMissingPages()} on a thread of its own: a library read before the pages
+     * were estimated has every book to read, minutes of work, and the app's shared threads are
+     * wanted meanwhile.
+     */
+    public static void startEstimatingMissingPages() {
+        if (!estimatingPages.compareAndSet(false, true)) {
+            return;
+        }
+        Thread thread = new Thread(() -> {
+            try {
+                estimateMissingPages();
+            } catch (Exception e) {
+                LOG.e(e);
+            } finally {
+                estimatingPages.set(false);
+            }
+        }, "estimate-pages");
+        thread.setPriority(Thread.MIN_PRIORITY);
+        thread.start();
+    }
+
+    /**
+     * The books with no pages yet in a format whose pages are estimated: read before the estimate
+     * was made, or opened in a version that kept the pages of their layout instead. A book that
+     * cannot be read is given 0, so it is not read again.
+     */
+    public static void estimateMissingPages() {
+        int updated = 0;
+        for (FileMeta meta : AppDB.get().getAllWithoutPages()) {
+            if (BooksService.isRunning) {
+                // The scan reads every book again, and estimates them as it does
+                return;
+            }
+            String path = meta.getPath();
+            if (!PageEstimate.isEstimated(path, meta.getChild()) || ExtUtils.isExteralSD(path) || !new File(path).isFile()) {
+                continue;
+            }
+            String unZipPath = path;
+            if (ExtUtils.isZip(path)) {
+                CacheZipUtils.cacheLock.lock();
+                try {
+                    unZipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
+                    meta.setPages(PageEstimate.of(unZipPath, meta.getLang(), meta.getTitle() + " " + meta.getAuthor()));
+                } finally {
+                    CacheZipUtils.cacheLock.unlock();
+                }
+            } else {
+                meta.setPages(PageEstimate.of(unZipPath, meta.getLang(), meta.getTitle() + " " + meta.getAuthor()));
+            }
+            AppDB.get().update(meta);
+            updated++;
+        }
+        LOG.d("estimateMissingPages", updated);
+        if (updated > 0 && AppState.get().sortBy == AppDB.SORT_BY.PAGES.getIndex()) {
+            EventBus.getDefault().post(new UpdateAllFragments());
+        }
     }
 
     private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
@@ -345,7 +447,9 @@ public class FileMetaCore {
         fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
         fileMeta.setKeyword(replaceComma(meta.getKeywords()));
         int pagesCount = meta.getPagesCount();
-        if (pagesCount != 0) {
+        // An estimated book is given its pages even when there are none to give: 0 is "read, and
+        // not to be read again" to estimateMissingPages(), where null is "not read yet"
+        if (pagesCount != 0 || PageEstimate.isEstimated(meta.getUnzipPath())) {
             fileMeta.setPages(pagesCount);
         }
 

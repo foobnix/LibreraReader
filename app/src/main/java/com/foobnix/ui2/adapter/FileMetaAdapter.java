@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.foobnix.ext.PageEstimate;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -722,7 +723,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         if (holder.size != null) {
             if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-                holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
+                // ≈ for the standard pages of a reflowable book, which are estimated
+                String near = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild()) ? "≈" : "";
+                holder.size.setText(fileMeta.getSizeTxt() + " (" + near + fileMeta.getPages() + ")");
             } else {
                 holder.size.setText(fileMeta.getSizeTxt());
 

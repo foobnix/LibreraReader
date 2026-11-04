@@ -39,6 +39,7 @@ import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -137,6 +138,7 @@ public class AppProfile {
         bookCount = AppDB.get()
                          .getCount();
         AppData.get().clearRecentCache();
+        FileMetaCore.startEstimatingMissingPages();
         LOG.d("AppProfile init bookCount", profile, bookCount,appDB);
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().getRootPath(c));

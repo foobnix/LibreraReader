@@ -32,7 +32,9 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.ext.PageEstimate;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
@@ -262,12 +264,23 @@ public class FileInformationDialog {
 
         ((TextView) dialog.findViewById(R.id.isbn)).setText(showKeys(fileMeta.getIsbn()));
 
-        if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            ((TextView) dialog.findViewById(R.id.size)).setText(
-                    fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
-        } else {
-            ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
-        }
+        ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
+
+        // A reflowable book has no pages of its own: what it shows is the standard pages its
+        // text would fill, so it is marked as near rather than exact
+        final View rowPages = dialog.findViewById(R.id.rowPages);
+        final TextView pagesView = dialog.findViewById(R.id.pages);
+        final String near = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild()) ? "≈" : "";
+        rowPages.setVisibility(View.GONE);
+        AppsConfig.executorService.execute(() -> {
+            final int pages = FileMetaCore.pagesOf(fileMeta);
+            if (pages > 0) {
+                pagesView.post(() -> {
+                    pagesView.setText(near + pages);
+                    rowPages.setVisibility(View.VISIBLE);
+                });
+            }
+        });
 
         ((TextView) dialog.findViewById(R.id.mimeType)).setText("" + ExtUtils.getMimeType(file));
 

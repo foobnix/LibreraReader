@@ -332,6 +332,9 @@ public class TTSEngine {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) public void stop(MediaSessionCompat mediaSessionCompat) {
+        // Every way of stopping comes here - the reader stops it when it restarts for a setting -
+        // and a sentence left marked would look as if it were still being read
+        ReadingHighlight.clear();
         if (mediaSessionCompat != null) {
             mediaSessionCompat.setActive(false);
         }

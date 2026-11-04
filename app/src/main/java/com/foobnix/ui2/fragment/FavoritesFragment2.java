@@ -188,6 +188,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.publication_date), //
                         getActivity().getString(R.string.by_size), //
+                        getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.date_added), //
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_title), //
@@ -200,6 +201,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_YEAR, //
                         AppState.BR_SORT_BY_SIZE, //
+                        AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_STAR_TIME, //
                         AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_TITLE, //

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 
+import com.foobnix.ext.PageEstimate;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
@@ -153,7 +154,9 @@ public abstract class HorizontalModeController extends DocumentController {
         try {
             FileMeta meta = AppDB.get()
                                  .load(bookPath);
-            if (meta != null) {
+            // A reflowable book is as many pages here as its font makes it: it keeps the standard
+            // pages of its text, so it is sorted with the others by one measure
+            if (meta != null && !PageEstimate.isEstimated(bookPath, meta.getChild())) {
                 meta.setPages(pagesCount);
                 AppDB.get()
                      .update(meta);

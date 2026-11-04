@@ -717,6 +717,7 @@ import java.util.Map;
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.publication_date), //
                         getActivity().getString(R.string.by_size), //
+                        getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_file_name), //
                         getActivity().getString(R.string.by_title), //
                         getActivity().getString(R.string.by_author), //
@@ -728,6 +729,7 @@ import java.util.Map;
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_YEAR, //
                         AppState.BR_SORT_BY_SIZE, //
+                        AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_PATH, //
                         AppState.BR_SORT_BY_TITLE, //
                         AppState.BR_SORT_BY_AUTHOR, //

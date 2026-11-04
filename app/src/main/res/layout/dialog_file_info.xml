@@ -427,6 +427,28 @@
                     android:text="" />
             </LinearLayout>
 
+            <!-- Pages -->
+            <LinearLayout
+                android:id="@+id/rowPages"
+                style="@style/infoRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/infoLabel"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/by_number_of_pages" />
+
+                <com.foobnix.pdf.info.view.SelectableTextView
+                    android:id="@+id/pages"
+                    style="@style/infoValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+
             <!-- Date -->
             <LinearLayout
                 android:id="@+id/rowDate"

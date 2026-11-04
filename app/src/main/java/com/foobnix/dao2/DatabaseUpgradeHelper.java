@@ -3,6 +3,8 @@ package com.foobnix.dao2;
 import android.content.Context;
 import android.util.Log;
 
+import com.foobnix.ext.PageEstimate;
+
 import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV8());
         migrations.add(new MigrationV9());
         migrations.add(new MigrationV10());
+        migrations.add(new MigrationV11());
 
         Comparator<Migration> migrationComparator = new Comparator<Migration>() {
             @Override
@@ -164,6 +167,40 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
             db.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.PubDate.columnName +
                        " = substr('0000' || " + FileMetaDao.Properties.Year.columnName + ", -4, 4) WHERE " +
                        FileMetaDao.Properties.Year.columnName + " IS NOT NULL");
+        }
+    }
+
+    private static class MigrationV11 implements Migration {
+
+        @Override
+        public Integer getVersion() {
+            return 11;
+        }
+
+        /**
+         * A reflowable book kept the pages of its layout when it was opened - as many as its font
+         * made it - where the others have none. They are let go, and the books are given the
+         * standard pages of their text instead (FileMetaCore.estimateMissingPages), so that the
+         * books are sorted by one measure.
+         */
+        @Override
+        public void runMigration(Database db) {
+            String path = "lower(" + FileMetaDao.Properties.Path.columnName + ")";
+            StringBuilder where = new StringBuilder();
+            StringBuilder children = new StringBuilder();
+            for (String format : PageEstimate.FORMATS) {
+                if (where.length() > 0) {
+                    where.append(" OR ");
+                    children.append(",");
+                }
+                where.append(path).append(" LIKE '%.").append(format).append("' OR ")
+                     .append(path).append(" LIKE '%.").append(format).append(".zip'");
+                children.append("'").append(format).append("'");
+            }
+            // A zip of another name, with such a book inside
+            where.append(" OR (").append(path).append(" LIKE '%.zip' AND lower(").append(FileMetaDao.Properties.Child.columnName)
+                 .append(") IN (").append(children).append("))");
+            db.execSQL("UPDATE " + FileMetaDao.TABLENAME + " SET " + FileMetaDao.Properties.Pages.columnName + " = NULL WHERE " + where);
         }
     }
 
